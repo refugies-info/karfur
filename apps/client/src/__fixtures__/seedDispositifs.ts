@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 export interface SeedIds {
   themeA: mongoose.Types.ObjectId;
   themeB: mongoose.Types.ObjectId;
+  themeC: mongoose.Types.ObjectId;
   needA1: mongoose.Types.ObjectId;
   needA2: mongoose.Types.ObjectId;
   needB1: mongoose.Types.ObjectId;
@@ -12,8 +13,10 @@ export interface SeedIds {
 // Minimal Dispositif schema containing only fields needed by filters/aggregations
 export const DispositifSchema = new mongoose.Schema(
   {
-    thematiques: [{ type: mongoose.Schema.Types.ObjectId, ref: "Thematique" }],
-    besoins: [{ type: mongoose.Schema.Types.ObjectId, ref: "Besoin" }],
+    // Fields used by buildBaseMatch(): theme, secondaryThemes, needs
+    theme: { type: mongoose.Schema.Types.ObjectId, ref: "Theme" },
+    secondaryThemes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Theme" }],
+    needs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Need" }],
     metadatas: {
       location: {
         type: String,
@@ -115,9 +118,10 @@ export const DispositifSchema = new mongoose.Schema(
           "online",
         ],
       },
-      frenchLevel: [{ type: String, enum: ["A1", "A2", "B1", "B2", "C1", "C2"] }],
+      frenchLevel: [{ type: String, enum: ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"] }],
       public: [{ type: String, enum: ["family", "women", "youths", "senior", "gender"] }],
-      status: [
+      // Field used by counts.ts to filter refugee statuses
+      publicStatus: [
         {
           type: String,
           enum: ["apatride", "asile", "french", "refugie", "subsidiaire", "temporaire"],
@@ -128,12 +132,8 @@ export const DispositifSchema = new mongoose.Schema(
         ages: [Number],
       },
     },
-    availableLanguages: [
-      {
-        type: String,
-        enum: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
-      },
-    ],
+    // Used by counts.ts to facet languages: presence of translations.<lang>
+    translations: { type: mongoose.Schema.Types.Mixed },
     status: {
       type: String,
       enum: ["Actif", "Archivé", "Brouillon", "En attente", "En attente admin", "Supprimé"],
@@ -154,19 +154,25 @@ export const DispositifSchema = new mongoose.Schema(
 export const makeSeedIds = (): SeedIds => ({
   themeA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
   themeB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
+  // Added an extra theme to allow up to two secondary themes
+  // Note: SeedIds type should include this if referenced elsewhere
+  // We only use it locally for seeds normalization below
+  themeC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),
   needA1: new mongoose.Types.ObjectId("64b0000000000000000000a1"),
   needA2: new mongoose.Types.ObjectId("64b0000000000000000000a2"),
   needB1: new mongoose.Types.ObjectId("64b0000000000000000000b1"),
 });
 
 export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
-  const { themeA, themeB, needA1, needA2, needB1 } = ids;
+  const { themeA, themeB, needA1, needA2, needB1 } = ids as any;
+  const themeC = (ids as any).themeC as mongoose.Types.ObjectId | undefined;
   const Dispositif = conn.model("Dispositif");
-  await Dispositif.insertMany([
+  const base = [
     // Paris (75), FR/EN, public: [jeunes], french A1, themeA, needs [A1,A2], age 16-25
     {
-      thematiques: [themeA],
-      besoins: [needA1, needA2],
+      theme: themeA,
+      needs: [needA1, needA2],
+      secondaryThemes: [themeB],
       title: "Cours de français A1 pour jeunes à Paris",
       name: "Association Langues Paris",
       titreMarque: "Langues&Co",
@@ -176,17 +182,27 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         location: "75 - Paris",
         frenchLevel: ["A1"],
         public: ["youths"],
-        status: ["asile", "refugie"],
+        publicStatus: ["asile", "refugie"],
         age: { type: "between", ages: [16, 25] },
       },
-      availableLanguages: ["fr", "en"],
+      translations: {
+        en: {
+          title: "French A1 course for young people in Paris",
+          abstract: "Weekly French classes for beginners for young people aged 16-25.",
+        },
+        fr: {
+          title: "Cours de français A1 pour jeunes à Paris",
+          abstract: "Ateliers hebdomadaires de français niveau débutant pour les 16-25 ans.",
+        },
+      },
       status: "Actif",
       typeContenu: "dispositif",
     },
     // Hauts-de-Seine (92), FR only, public: [familles], french B1, themeA, needs [A1], age 26-64
     {
-      thematiques: [themeA],
-      besoins: [needA1],
+      theme: themeA,
+      needs: [needA1],
+      secondaryThemes: [],
       title: "Accompagnement administratif B1 pour familles",
       name: "Solidarité 92",
       titreMarque: "Plateforme Familles",
@@ -196,17 +212,23 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         location: "92 - Hauts-de-Seine",
         frenchLevel: ["B1"],
         public: ["family"],
-        status: ["subsidiaire"],
+        publicStatus: ["subsidiaire"],
         age: { type: "between", ages: [26, 64] },
       },
-      availableLanguages: ["fr"],
+      translations: {
+        fr: {
+          title: "Accompagnement administratif B1 pour familles",
+          abstract: "Aide aux démarches et cours de français intermédiaire B1.",
+        },
+      },
       status: "Actif",
       typeContenu: "dispositif",
     },
     // Paris (75), FR, public: [seniors], french A2, themeB, needs [B1], age 65+
     {
-      thematiques: [themeB],
-      besoins: [needB1],
+      theme: themeB,
+      needs: [needB1],
+      secondaryThemes: [themeA],
       title: "Atelier numérique A2 pour seniors",
       name: "Maison des Seniors Paris",
       titreMarque: "Seniors Connectés",
@@ -216,29 +238,42 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         location: "75 - Paris",
         frenchLevel: ["A2"],
         public: ["senior"],
-        status: ["apatride", "temporaire"],
+        publicStatus: ["apatride", "temporaire"],
         age: { type: "moreThan", ages: [65] },
       },
-      availableLanguages: ["fr"],
+      translations: {
+        fr: {
+          title: "Atelier numérique A2 pour seniors",
+          abstract: "Découverte du numérique et cours de français niveau A2.",
+        },
+      },
       status: "Actif",
       typeContenu: "dispositif",
     },
     // Inactive entry should be filtered out globally
     {
-      thematiques: [themeB],
-      besoins: [needB1],
+      theme: themeB,
+      needs: [needB1],
+      secondaryThemes: [],
       metadatas: {
         location: "75 - Paris",
         frenchLevel: ["A1"],
         public: ["youths"],
-        status: ["french"],
+        publicStatus: ["french"],
         age: { type: "between", ages: [18, 25] },
       },
-      availableLanguages: ["fr"],
+      translations: {
+        fr: {
+          title: "Cours de français A1 pour jeunes à Paris",
+          abstract: "Ateliers hebdomadaires de français niveau débutant pour les 16-25 ans.",
+        },
+      },
       status: "Archivé",
       typeContenu: "dispositif",
     },
-  ]);
+  ];
+
+  await Dispositif.insertMany(base);
 };
 
 export const makeNeedsList = (ids: SeedIds) => [
