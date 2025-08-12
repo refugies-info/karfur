@@ -51,6 +51,7 @@ export interface QueryParams {
   public?: PublicOptions[];
   status?: StatusOptions[];
   language?: string[];
+  type?: "dispositif" | "demarche" | "online";
 }
 
 export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
@@ -58,6 +59,11 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
 
   if (algoliaIds) {
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
+  }
+
+  // Optional type filter
+  if (query.type && (query.type === "dispositif" || query.type === "demarche" || query.type === "online")) {
+    match.typeContenu = query.type;
   }
 
   const departments = (query.departments ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
@@ -82,33 +88,46 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const ages = (query.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
   if (ages.length > 0) {
-    const binToExpr = (min: number, max: number | null) => {
-      const orConds: any[] = [];
-      if (max !== null) {
-        orConds.push({
-          $and: [
-            { $eq: ["$metadatas.age.type", "between"] },
-            { $lte: ["$metadatas.age.ages.0", min] },
-            { $gte: ["$metadatas.age.ages.1", max] },
-          ],
-        });
-      }
-      orConds.push({ $and: [{ $eq: ["$metadatas.age.type", "moreThan"] }, { $lte: ["$metadatas.age.ages.0", min] }] });
-      if (max !== null) {
-        orConds.push({
-          $and: [{ $eq: ["$metadatas.age.type", "lessThan"] }, { $gte: ["$metadatas.age.ages.0", max] }],
-        });
-      }
-      return { $or: orConds };
+    const minAgeExpr = {
+      $switch: {
+        branches: [
+          {
+            case: { $eq: ["$metadatas.age.type", "between"] },
+            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+          },
+          {
+            case: { $eq: ["$metadatas.age.type", "moreThan"] },
+            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+          },
+          { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
+        ],
+        default: 0,
+      },
+    } as const;
+    const maxAgeExpr = {
+      $switch: {
+        branches: [
+          {
+            case: { $eq: ["$metadatas.age.type", "between"] },
+            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } },
+          },
+          { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
+          {
+            case: { $eq: ["$metadatas.age.type", "lessThan"] },
+            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+          },
+        ],
+        default: 0,
+      },
+    } as const;
+
+    const bucketExpr = (range: AgeOptions) => {
+      if (range === "-18") return { $and: [{ $lte: [minAgeExpr, 0] }, { $gte: [maxAgeExpr, 17] }] };
+      if (range === "18-25") return { $and: [{ $lte: [minAgeExpr, 18] }, { $gte: [maxAgeExpr, 25] }] };
+      return { $and: [{ $lte: [minAgeExpr, 25] }, { $gte: [maxAgeExpr, 1000000] }] }; // +25
     };
 
-    const ageExprs = ages.map((ageRange: AgeOptions) => {
-      if (ageRange === "-18") return binToExpr(0, 17);
-      if (ageRange === "18-25") return binToExpr(18, 25);
-      if (ageRange === "+25") return binToExpr(25, null);
-      return {};
-    });
-    match.$and = (match.$and || []).concat({ $expr: { $or: ageExprs } });
+    match.$and = (match.$and || []).concat({ $expr: { $or: ages.map(bucketExpr) } });
   }
   const frenchLevel = (query.frenchLevel ?? []).filter((x): x is FrenchOptions => x === "a" || x === "b" || x === "c");
   if (frenchLevel.length > 0) {
@@ -160,6 +179,11 @@ export const buildQueryParams = (query: any): QueryParams => ({
   public: getQueryParamAsArray(query.public) as PublicOptions[],
   status: getQueryParamAsArray(query.status) as StatusOptions[],
   language: getQueryParamAsArray(query.language),
+  type:
+    ((): "dispositif" | "demarche" | "online" | undefined => {
+      const raw = Array.isArray(query.type) ? query.type[0] : query.type;
+      return raw === "dispositif" || raw === "demarche" || raw === "online" ? raw : undefined;
+    })(),
 });
 
 export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {
