@@ -51,7 +51,6 @@ export interface QueryParams {
   public?: PublicOptions[];
   status?: StatusOptions[];
   language?: string[];
-  type?: "dispositif" | "demarche" | "online";
 }
 
 export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
@@ -59,11 +58,6 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
 
   if (algoliaIds) {
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
-  }
-
-  // Optional type filter
-  if (query.type && (query.type === "dispositif" || query.type === "demarche" || query.type === "online")) {
-    match.typeContenu = query.type;
   }
 
   const departments = (query.departments ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
@@ -244,11 +238,6 @@ export const buildQueryParams = (query: any): QueryParams => ({
   public: getQueryParamAsArray(query.public) as PublicOptions[],
   status: getQueryParamAsArray(query.status) as StatusOptions[],
   language: getQueryParamAsArray(query.language),
-  type:
-    ((): "dispositif" | "demarche" | "online" | undefined => {
-      const raw = Array.isArray(query.type) ? query.type[0] : query.type;
-      return raw === "dispositif" || raw === "demarche" || raw === "online" ? raw : undefined;
-    })(),
 });
 
 export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {

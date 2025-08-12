@@ -2,7 +2,8 @@ import { SearchCountsResponse } from "../../pages/api/search/counts";
 import { SearchQuery } from "../SearchResults/searchResults.reducer";
 
 export const getSearchCounts = async (searchQuery: SearchQuery): Promise<SearchCountsResponse> => {
-  const { search, ...otherFilters } = searchQuery;
+  // Exclude presentation-only params from counts: type (tab) and sort
+  const { search, sort, type, ...otherFilters } = searchQuery as any;
   const params = {
     ...otherFilters,
     query: search,
