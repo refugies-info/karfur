@@ -4,7 +4,7 @@ import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
@@ -65,6 +65,13 @@ const debouncedQuery = debounce(
   500,
 );
 
+const pickRelevantFilters = (q: SearchQuery) => {
+  const { search, departments, themes, needs, age, frenchLevel, public: publicFilter, status, language } = q;
+  // Normalize empty search to empty string for stable comparison
+  const normSearch = typeof search === "string" ? search.trim() : "";
+  return { search: normSearch, departments, themes, needs, age, frenchLevel, public: publicFilter, status, language };
+};
+
 const Recherche = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -91,8 +98,20 @@ const Recherche = () => {
     };
   }, [router]);
 
+  // fetch counts when relevant filters change (including when cleared). Ignores tab/sort-only changes.
+  const prevRelevantRef = useRef<ReturnType<typeof pickRelevantFilters> | null>(null);
   useEffect(() => {
-    // update url
+    const currentRelevant = pickRelevantFilters(query);
+    const prevRelevant = prevRelevantRef.current;
+    const changed = JSON.stringify(prevRelevant) !== JSON.stringify(currentRelevant);
+    if (!isNavigating && changed) {
+      dispatch(fetchSearchCountsRequest(query));
+    }
+    prevRelevantRef.current = currentRelevant;
+  }, [query, isNavigating, dispatch]);
+
+  // update URL and fetch search results (debounced)
+  useEffect(() => {
     const updateUrl = () => {
       const oldQueryString = router.asPath.split("?")[1] || "";
       const newQueryString = buildUrlQuery(query, params);
@@ -108,15 +127,13 @@ const Recherche = () => {
       }
     };
 
-    // query dispositifs
     if (!isNavigating) {
-      dispatch(fetchSearchCountsRequest(query));
       debouncedQuery(query, dispositifs, languei18nCode, allNeeds, (res) => {
         updateUrl();
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, dispatch, router, isNavigating, languei18nCode, params, allNeeds, locale]);
+  }, [query, dispositifs, router, isNavigating, languei18nCode, params, allNeeds, locale, dispatch]);
 
   // generate list of demarches to show when no results
   useEffect(() => {
