@@ -24,23 +24,25 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
     // Partial indexes for common filters used in buildBaseMatch()
     const partial = { partialFilterExpression: { status: "Actif" } } as const;
 
-    // Helper to check if an index with the same key already exists (regardless of options)
-    const hasKey = (key: Record<string, 1 | -1>) =>
-      existing.some((idx: any) => JSON.stringify(idx.key) === JSON.stringify(key));
+    // Helper to check by name; we want to create our partial indexes even if a non-partial
+    // index with the same key already exists. Using names avoids accidentally skipping them.
+    const existingNames = new Set((existing || []).map((idx: any) => idx.name).filter(Boolean));
 
     const specs: Array<{ key: Record<string, 1>; name: string }> = [
-      { key: { "metadatas.location": 1 }, name: "metadatas.location_1__actif" },
-      { key: { thematiques: 1 }, name: "thematiques_1__actif" },
-      { key: { besoins: 1 }, name: "besoins_1__actif" },
-      { key: { "metadatas.frenchLevel": 1 }, name: "metadatas.frenchLevel_1__actif" },
-      { key: { "metadatas.public": 1 }, name: "metadatas.public_1__actif" },
-      { key: { "metadatas.status": 1 }, name: "metadatas.status_1__actif" },
-      { key: { availableLanguages: 1 }, name: "availableLanguages_1__actif" },
-      { key: { typeContenu: 1 }, name: "typeContenu_1__actif" },
+      { key: { "metadatas.location": 1 }, name: "metadatas.location_1_counts" },
+      // Theme and needs fields used by counts API
+      { key: { theme: 1 }, name: "theme_1_counts" },
+      { key: { secondaryThemes: 1 }, name: "secondaryThemes_1_counts" },
+      { key: { needs: 1 }, name: "needs_1_counts" },
+      { key: { "metadatas.frenchLevel": 1 }, name: "metadatas.frenchLevel_1_counts" },
+      { key: { "metadatas.public": 1 }, name: "metadatas.public_1_counts" },
+      { key: { "metadatas.status": 1 }, name: "metadatas.status_1_counts" },
+      { key: { availableLanguages: 1 }, name: "availableLanguages_1_counts" },
+      { key: { typeContenu: 1 }, name: "typeContenu_1_counts" },
     ];
 
     for (const { key, name } of specs) {
-      if (!hasKey(key)) {
+      if (!existingNames.has(name)) {
         await coll.createIndex(key, { ...partial, name });
       }
     }
@@ -53,14 +55,15 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
     const coll = db.collection("dispositifs");
 
     // Drop only the indexes created by this migration
-    await coll.dropIndex("metadatas.location_1__actif").catch(() => undefined);
-    await coll.dropIndex("thematiques_1__actif").catch(() => undefined);
-    await coll.dropIndex("besoins_1__actif").catch(() => undefined);
-    await coll.dropIndex("metadatas.frenchLevel_1__actif").catch(() => undefined);
-    await coll.dropIndex("metadatas.public_1__actif").catch(() => undefined);
-    await coll.dropIndex("metadatas.status_1__actif").catch(() => undefined);
-    await coll.dropIndex("availableLanguages_1__actif").catch(() => undefined);
-    await coll.dropIndex("typeContenu_1__actif").catch(() => undefined);
+    await coll.dropIndex("metadatas.location_1_counts").catch(() => undefined);
+    await coll.dropIndex("theme_1_counts").catch(() => undefined);
+    await coll.dropIndex("secondaryThemes_1_counts").catch(() => undefined);
+    await coll.dropIndex("needs_1_counts").catch(() => undefined);
+    await coll.dropIndex("metadatas.frenchLevel_1_counts").catch(() => undefined);
+    await coll.dropIndex("metadatas.public_1_counts").catch(() => undefined);
+    await coll.dropIndex("metadatas.status_1_counts").catch(() => undefined);
+    await coll.dropIndex("availableLanguages_1_counts").catch(() => undefined);
+    await coll.dropIndex("typeContenu_1_counts").catch(() => undefined);
 
     // Do not drop the base status index unconditionally (it may pre-exist)
   }

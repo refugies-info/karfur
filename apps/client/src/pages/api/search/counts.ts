@@ -275,8 +275,18 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         $project: {
           _allThemes: {
             $setUnion: [
-              { $ifNull: ["$thematiques", []] },
+              // theme is a single ObjectId; normalize to array if present
+              {
+                $ifNull: [
+                  {
+                    $cond: [{ $ne: ["$theme", null] }, ["$theme"], []],
+                  },
+                  [],
+                ],
+              },
               { $ifNull: ["$secondaryThemes", []] },
+              // keep legacy field support if present
+              { $ifNull: ["$thematiques", []] },
             ],
           },
         },
@@ -437,6 +447,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         // Themes and needs are dependent/hierarchical facets (a selected need implies its parent theme).
         // When computing counts for either facet, drop BOTH filters to avoid self- and cross-filtering bias.
         // Otherwise, selecting a need would trivially constrain theme counts (and vice versa), which isn't useful for facet exploration.
+        delete newMatch.theme;
         delete newMatch.thematiques;
         delete newMatch.secondaryThemes;
         delete newMatch.besoins;
