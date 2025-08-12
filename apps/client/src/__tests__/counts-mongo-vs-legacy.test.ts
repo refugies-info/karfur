@@ -321,13 +321,13 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       needs: ["6319f6b363ab2bbb162d7df6"],
     };
 
-    // runFacetTests(
-    //   generateCases({
-    //     filters: randomFilters,
-    //     includeZero: true,
-    //     maxCombinationSize: 3,
-    //     searchTerm: "jeunes",
-    //   }).map((c) => makeCase(c.name, c.params)),
-    // );
+    runFacetTests(
+      generateCases({
+        filters: randomFilters,
+        includeZero: true,
+        maxCombinationSize: 3,
+        searchTerm: "jeunes",
+      }).map((c) => makeCase(c.name, c.params)),
+    );
   });
 });

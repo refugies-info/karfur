@@ -75,17 +75,13 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   const themes = (query.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (themes.length > 0) {
     const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
-    match.$or = (match.$or || []).concat([
-      { theme: { $in: themeIds } },
-      { secondaryThemes: { $in: themeIds } },
-    ]);
+    // Mirror filterByThemeOrNeed (withSecondaryTheme = false) for base filtering: PRIMARY theme only
+    match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
   }
   const needs = (query.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (needs.length > 0) {
     const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
-    match.$or = (match.$or || []).concat([
-      { needs: { $in: needIds } },
-    ]);
+    match.$or = (match.$or || []).concat([{ needs: { $in: needIds } }]);
   }
   const ages = (query.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
   if (ages.length > 0) {
@@ -144,39 +140,41 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
                   $cond: [
                     {
                       $or: [
-                        { $eq: [
-                          {
-                            $size: {
-                              $ifNull: [
-                                {
-                                  $filter: {
-                                    input: {
-                                      $map: {
-                                        input: { $ifNull: ["$metadatas.frenchLevel", []] },
-                                        as: "lvl",
-                                        in: {
-                                          $switch: {
-                                            branches: [
-                                              { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
-                                              { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
-                                              { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
-                                            ],
-                                            default: null,
+                        {
+                          $eq: [
+                            {
+                              $size: {
+                                $ifNull: [
+                                  {
+                                    $filter: {
+                                      input: {
+                                        $map: {
+                                          input: { $ifNull: ["$metadatas.frenchLevel", []] },
+                                          as: "lvl",
+                                          in: {
+                                            $switch: {
+                                              branches: [
+                                                { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
+                                                { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
+                                                { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
+                                              ],
+                                              default: null,
+                                            },
                                           },
                                         },
                                       },
+                                      as: "x",
+                                      cond: { $ne: ["$$x", null] },
                                     },
-                                    as: "x",
-                                    cond: { $ne: ["$$x", null] },
                                   },
-                                },
-                                [],
-                              ],
+                                  [],
+                                ],
+                              },
                             },
-                          },
-                          0,
-                        ] },
-                        { $eq: [ { $ifNull: ["$metadatas.frenchLevel", null] }, null ] },
+                            0,
+                          ],
+                        },
+                        { $eq: [{ $ifNull: ["$metadatas.frenchLevel", null] }, null] },
                       ],
                     },
                     ["a", "b", "c"],
@@ -297,10 +295,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       {
         $project: {
           _allNeeds: {
-            $setUnion: [
-              { $ifNull: ["$besoins", []] },
-              { $ifNull: ["$needs", []] },
-            ],
+            $setUnion: [{ $ifNull: ["$besoins", []] }, { $ifNull: ["$needs", []] }],
           },
         },
       },
