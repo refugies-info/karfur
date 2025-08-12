@@ -113,16 +113,6 @@ export function legacyFacetCounts(
 
   const needsMap = buildNeedsThemeMap(allNeeds);
 
-  // Treat query.status as refugee status stored in metadatas.publicStatus, not document status
-  const refugeeStatuses = Array.isArray(query.status) ? query.status.filter(Boolean) : [];
-  const queryNoStatus = { ...query, status: [] as string[] } as LegacyQuery;
-  const matchesRefugeeStatus = (d: any): boolean => {
-    if (refugeeStatuses.length === 0) return true;
-    const st: string[] = (d?.metadatas?.publicStatus || []).map(String);
-    if (!st || st.length === 0) return false;
-    return st.some((s) => refugeeStatuses.includes(s));
-  };
-
   // Helper to count fields
   const countBy = (arr: any[], iteratee: (d: any) => string | string[] | undefined) => {
     return arr
@@ -139,22 +129,10 @@ export function legacyFacetCounts(
   };
 
   // Total (no skip)
-  const allFiltered = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    undefined,
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const allFiltered = filterDispositifs(query as any, filteredBySearch as any, false, undefined, allNeeds as any);
 
   // Themes facet (skip theme)
-  const forThemes = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "theme",
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const forThemes = filterDispositifs(query as any, filteredBySearch as any, false, "theme", allNeeds as any);
   const themes = countBy(forThemes, (d: any) => {
     const ids: string[] = [];
     if (d?.theme) ids.push(String(d.theme));
@@ -176,47 +154,23 @@ export function legacyFacetCounts(
     .value();
 
   // Languages facet (skip language)
-  const forLanguages = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "language",
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const forLanguages = filterDispositifs(query as any, filteredBySearch as any, false, "language", allNeeds as any);
   const languages = countBy(forLanguages, (d: any) => {
     // In test context, objects conform to SimpleDispositif and expose availableLanguages
     return (d?.availableLanguages || []).map(String);
   });
 
   // Publics facet (skip public)
-  const forPublics = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "public",
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const forPublics = filterDispositifs(query as any, filteredBySearch as any, false, "public", allNeeds as any);
   const publics = countBy(forPublics, (d: any) => (d?.metadatas?.public || []).map(String));
 
   // Statuses facet (skip status) — counts refugee statuses stored in metadatas.publicStatus
   // For statuses facet, skip the refugee status filter
-  const forStatuses = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "status",
-    allNeeds as any,
-  );
+  const forStatuses = filterDispositifs(query as any, filteredBySearch as any, false, "status", allNeeds as any);
   const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.publicStatus || []).map(String));
 
   // French levels facet (skip frenchLevel). Group by categories a/b/c; empty -> ["a","b","c"].
-  const forFrench = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "frenchLevel",
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const forFrench = filterDispositifs(query as any, filteredBySearch as any, false, "frenchLevel", allNeeds as any);
   const mapFrenchCats = (d: any): string[] => {
     const levels: string[] = (d?.metadatas?.frenchLevel || []).map(String);
     if (!levels || levels.length === 0) return ["a", "b", "c"];
@@ -231,13 +185,7 @@ export function legacyFacetCounts(
   const frenchLevels = countBy(forFrench, (d: any) => mapFrenchCats(d));
 
   // Age ranges facet (skip age)
-  const forAges = filterDispositifs(
-    queryNoStatus as any,
-    filteredBySearch as any,
-    false,
-    "age",
-    allNeeds as any,
-  ).filter((d: any) => matchesRefugeeStatus(d));
+  const forAges = filterDispositifs(query as any, filteredBySearch as any, false, "age", allNeeds as any);
   const ageRanges = countBy(forAges, (d: any) => computeAgeRanges(d));
 
   return {

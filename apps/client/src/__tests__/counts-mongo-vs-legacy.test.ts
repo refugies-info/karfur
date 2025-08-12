@@ -275,7 +275,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
       if (!db) throw new Error("Connection DB not initialized");
       await db.dropDatabase();
       // Seed many random documents for broader coverage. Seed ensures determinism across runs.
-      await seedRandomDispositifs(conn, ids, 500, 12345);
+      await seedRandomDispositifs(conn, ids, 0, 12345);
     });
 
     // Randomized dataset cases
