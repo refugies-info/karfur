@@ -118,13 +118,14 @@ export function legacyFacetCounts(
 
   const needsMap = buildNeedsThemeMap(allNeeds);
 
-  // Treat query.status as refugee status stored in metadatas.status, not document status
+  // Treat query.status as refugee status stored in metadatas.publicStatus, not document status
   const refugeeStatuses = Array.isArray(query.status) ? query.status.filter(Boolean) : [];
   const queryNoStatus = { ...query, status: [] as string[] } as LegacyQuery;
   const matchesRefugeeStatus = (d: any): boolean => {
     if (refugeeStatuses.length === 0) return true;
-    const s: string[] = (d?.metadatas?.status || []).map(String);
-    return s.some((x) => refugeeStatuses.includes(x));
+    const st: string[] = (d?.metadatas?.publicStatus || []).map(String);
+    if (!st || st.length === 0) return false;
+    return st.some((s) => refugeeStatuses.includes(s));
   };
 
   // Helper to count fields
@@ -164,14 +165,25 @@ export function legacyFacetCounts(
     (d: any) => matchesRefugeeStatus(d),
   );
   const themes = countBy(
-    forThemes.filter((d: any) => d.theme),
-    (d: any) => (d.theme ? String(d.theme) : undefined),
+    forThemes,
+    (d: any) => {
+      const ids: string[] = [];
+      if (d?.theme) ids.push(String(d.theme));
+      if (Array.isArray(d?.secondaryThemes)) ids.push(...d.secondaryThemes.map((t: any) => String(t)));
+      return ids.length > 0 ? ids : undefined;
+    },
   );
 
-  // Needs facet: legacy doesn’t support skipping needs alone, we mimic ThemeMenu: skip theme, count needs that belong to the dispositif theme
+  // Needs facet: mimic ThemeMenu behavior, but support secondaryThemes.
+  // Skip theme facet; count needs whose parent theme matches the dispositif's primary or any secondary theme.
   const needs = _(forThemes)
-    .filter((d: any) => d.theme)
-    .flatMap((d: any) => (d.needs || []).filter((id: Id) => needsMap.get(String(id)) === String(d.theme)))
+    .filter((d: any) => Array.isArray(d.needs) && d.needs.length > 0)
+    .flatMap((d: any) => {
+      const themeIds = new Set<string>();
+      if (d?.theme) themeIds.add(String(d.theme));
+      if (Array.isArray(d?.secondaryThemes)) d.secondaryThemes.forEach((t: any) => themeIds.add(String(t)));
+      return (d.needs as Id[]).filter((id: Id) => themeIds.has(String(needsMap.get(String(id)))));
+    })
     .countBy((id) => String(id))
     .value();
 
@@ -197,7 +209,16 @@ export function legacyFacetCounts(
   ).filter(
     (d: any) => matchesRefugeeStatus(d),
   );
-  const languages = countBy(forLanguages, (d: any) => (d?.availableLanguages || []).map(String));
+  const languages = countBy(
+    forLanguages,
+    (d: any) => {
+      const tr = d?.translations;
+      if (!tr) return [] as string[];
+      // Accept both plain object and Map shapes
+      if (tr instanceof Map) return Array.from(tr.keys()).map(String);
+      return Object.keys(tr).map(String);
+    },
+  );
 
   // Publics facet (skip public)
   const forPublics = filterDispositifs(
@@ -211,7 +232,7 @@ export function legacyFacetCounts(
   );
   const publics = countBy(forPublics, (d: any) => (d?.metadatas?.public || []).map(String));
 
-  // Statuses facet (skip status) — counts refugee statuses stored in metadatas.status
+  // Statuses facet (skip status) — counts refugee statuses stored in metadatas.publicStatus
   // For statuses facet, skip the refugee status filter
   const forStatuses = filterDispositifs(
     queryNoStatus as any,
@@ -220,7 +241,7 @@ export function legacyFacetCounts(
     "status",
     allNeeds as any,
   );
-  const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.status || []).map(String));
+  const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.publicStatus || []).map(String));
 
   // French levels facet (skip frenchLevel). Group by categories a/b/c; empty -> ["a","b","c"].
   const forFrench = filterDispositifs(
