@@ -143,7 +143,8 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const languages = (query.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
-    match["availableLanguages"] = { $in: languages };
+    // Filter by presence of a translation key for each requested language
+    match.$or = languages.map((lng) => ({ [`translations.${lng}`]: { $exists: true } }));
   }
 
   return match;
@@ -226,7 +227,22 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       { $group: { _id: "$cats", count: { $sum: 1 } } },
     ],
     publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
-    languages: [{ $unwind: "$availableLanguages" }, { $group: { _id: "$availableLanguages", count: { $sum: 1 } } }],
+    languages: [
+      // Transform translations object into array of {k, v}, take keys as language codes
+      {
+        $project: {
+          _langs: {
+            $map: {
+              input: { $objectToArray: { $ifNull: ["$translations", {}] } },
+              as: "t",
+              in: "$$t.k",
+            },
+          },
+        },
+      },
+      { $unwind: "$_langs" },
+      { $group: { _id: "$_langs", count: { $sum: 1 } } },
+    ],
     // Count refugee statuses in metadatas.publicStatus (normalize to array first)
     statuses: [
       {
@@ -318,7 +334,8 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       } else if (key === "publics") {
         delete newMatch["metadatas.public"];
       } else if (key === "languages") {
-        delete newMatch.availableLanguages;
+        // Remove language filter ($or on translations.<lang>) to avoid self-filtering
+        if (newMatch.$or) delete newMatch.$or;
       } else if (key === "statuses") {
         delete newMatch["metadatas.publicStatus"];
       }
