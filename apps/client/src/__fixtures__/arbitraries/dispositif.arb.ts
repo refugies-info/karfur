@@ -117,16 +117,27 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
 
   return themeArb.chain((themeId) => {
     const themeIdStr = String(themeId);
-    const allowedNeeds = themeIdStr === String(ids.themeA) ? [ids.needA1, ids.needA2] : [ids.needB1];
 
-    // Secondary themes: 0–2 from the other theme(s)
-    const secondaryThemesArb = fc.constantFrom(
-      [],
-      [ids.themeA === themeId ? ids.themeB : ids.themeA],
-    ).chain((arr) =>
-      // Optionally add none or one extra (we only have two themes in SeedIds)
-      fc.constant(arr),
-    );
+    // Secondary themes: choose 0–2 themes explicitly excluding the primary `theme`
+    const allThemes = [ids.themeA, ids.themeB];
+    const otherThemes = allThemes.filter((t) => String(t) !== themeIdStr);
+    const secondaryThemesArb = fc
+      .array(fc.constantFrom(...otherThemes), { minLength: 0, maxLength: Math.min(2, otherThemes.length) })
+      .map(uniq);
+
+    // Needs must be related to the primary theme or any of the secondaryThemes
+    const needsArb = secondaryThemesArb.chain((secs) => {
+      const inScope = new Set([themeIdStr, ...secs.map((t) => String(t))]);
+      const allowed: mongoose.Types.ObjectId[] = [];
+      if (inScope.has(String(ids.themeA))) allowed.push(ids.needA1, ids.needA2);
+      if (inScope.has(String(ids.themeB))) allowed.push(ids.needB1);
+      return fc
+        .array(fc.constantFrom(...allowed), {
+          minLength: 1,
+          maxLength: Math.min(2, allowed.length),
+        })
+        .map(uniq);
+    });
 
     // Pick 1–3 languages and build translations with title/abstract per lang
     const languagesArb = fc.array(fc.constantFrom(...enums.languages), { minLength: 1, maxLength: 3 }).map(uniq);
@@ -134,12 +145,7 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     return fc.record<InsertableDispositif>({
       theme: fc.constant(themeId),
       secondaryThemes: secondaryThemesArb as any,
-      needs: fc
-        .array(fc.constantFrom(...allowedNeeds), {
-          minLength: 1,
-          maxLength: Math.min(2, allowedNeeds.length),
-        })
-        .map(uniq),
+      needs: needsArb as any,
       // Generate simple phrases for Algolia-like fields
       title: phraseArb(2, 6),
       name: phraseArb(2, 4),
