@@ -14,8 +14,7 @@ function getEnumValues(conn: Connection) {
     const typeEnums = schema.path("typeContenu").enumValues as string[];
     const levelEnums = schema.path("metadatas.frenchLevel").caster.enumValues as string[];
     const publicEnums = schema.path("metadatas.public").caster.enumValues as string[];
-    const refugeeStatusEnums = schema.path("metadatas.status").caster.enumValues as string[];
-    const languageEnums = schema.path("availableLanguages").caster.enumValues as string[];
+    const refugeeStatusEnums = schema.path("metadatas.publicStatus").caster.enumValues as string[];
     return {
       locations: locationEnums,
       statuses: statusEnums,
@@ -23,17 +22,17 @@ function getEnumValues(conn: Connection) {
       frenchLevels: levelEnums,
       publics: publicEnums,
       refugeeStatuses: refugeeStatusEnums,
-      availableLanguages: languageEnums,
+      languages: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
     } as const;
   } catch {
     return {
       locations: ["75 - Paris", "92 - Hauts-de-Seine", "france", "online"],
       statuses: ["Actif", "Archivé"],
       types: ["dispositif", "online"],
-      frenchLevels: ["A1", "A2", "B1", "B2", "C1", "C2"],
+      frenchLevels: ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"],
       publics: ["family", "women", "youths", "senior", "gender"],
       refugeeStatuses: ["apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"],
-      availableLanguages: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
+      languages: ["ar", "en", "fa", "fr", "ps", "ru", "ti", "uk"],
     } as const;
   }
 }
@@ -83,8 +82,11 @@ const ageThresholdArb = fc.oneof(
 const ageArb = fc.oneof(ageBetweenArb, ageThresholdArb);
 
 export type InsertableDispositif = {
-  thematiques: mongoose.Types.ObjectId[];
-  besoins: mongoose.Types.ObjectId[];
+  // Production-shaped fields used by API
+  theme: mongoose.Types.ObjectId;
+  secondaryThemes: mongoose.Types.ObjectId[];
+  needs: mongoose.Types.ObjectId[];
+  translations: Record<string, { title?: string; abstract?: string }>;
   title: string;
   name: string;
   titreMarque: string;
@@ -94,10 +96,9 @@ export type InsertableDispositif = {
     location: string;
     frenchLevel: string[];
     public: string[];
-    status: string[];
+    publicStatus: string[];
     age: { type: "between" | "moreThan" | "lessThan"; ages: number[] };
   };
-  availableLanguages: string[];
   status: string;
   typeContenu: string;
 };
@@ -118,9 +119,22 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     const themeIdStr = String(themeId);
     const allowedNeeds = themeIdStr === String(ids.themeA) ? [ids.needA1, ids.needA2] : [ids.needB1];
 
+    // Secondary themes: 0–2 from the other theme(s)
+    const secondaryThemesArb = fc.constantFrom(
+      [],
+      [ids.themeA === themeId ? ids.themeB : ids.themeA],
+    ).chain((arr) =>
+      // Optionally add none or one extra (we only have two themes in SeedIds)
+      fc.constant(arr),
+    );
+
+    // Pick 1–3 languages and build translations with title/abstract per lang
+    const languagesArb = fc.array(fc.constantFrom(...enums.languages), { minLength: 1, maxLength: 3 }).map(uniq);
+
     return fc.record<InsertableDispositif>({
-      thematiques: fc.constant([themeId]),
-      besoins: fc
+      theme: fc.constant(themeId),
+      secondaryThemes: secondaryThemesArb as any,
+      needs: fc
         .array(fc.constantFrom(...allowedNeeds), {
           minLength: 1,
           maxLength: Math.min(2, allowedNeeds.length),
@@ -142,12 +156,16 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
         location: fc.constantFrom(...enums.locations),
         frenchLevel: frenchLevelArb,
         public: publicArb,
-        status: refugeeStatusArb,
+        publicStatus: refugeeStatusArb,
         age: ageArb,
       }),
-      availableLanguages: fc
-        .array(fc.constantFrom(...enums.availableLanguages), { minLength: 1, maxLength: 3 })
-        .map(uniq),
+      translations: languagesArb.chain((langs) =>
+        fc.record(
+          Object.fromEntries(
+            langs.map((l) => [l, fc.record({ title: phraseArb(2, 6), abstract: phraseArb(6, 14) })]),
+          ) as any,
+        ),
+      ),
       status: fc.constantFrom(...enums.statuses),
       // Force 'dispositif' to align with tests and API expectations
       typeContenu: fc.constant("dispositif"),
