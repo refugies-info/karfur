@@ -76,7 +76,7 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   if (themes.length > 0) {
     const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
     match.$or = (match.$or || []).concat([
-      { thematiques: { $in: themeIds } },
+      { theme: { $in: themeIds } },
       { secondaryThemes: { $in: themeIds } },
     ]);
   }
@@ -84,7 +84,6 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   if (needs.length > 0) {
     const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
     match.$or = (match.$or || []).concat([
-      { besoins: { $in: needIds } },
       { needs: { $in: needIds } },
     ]);
   }
