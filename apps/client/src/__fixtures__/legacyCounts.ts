@@ -184,11 +184,8 @@ export function legacyFacetCounts(
     allNeeds as any,
   ).filter((d: any) => matchesRefugeeStatus(d));
   const languages = countBy(forLanguages, (d: any) => {
-    const tr = d?.translations;
-    if (!tr) return [] as string[];
-    // Accept both plain object and Map shapes
-    if (tr instanceof Map) return Array.from(tr.keys()).map(String);
-    return Object.keys(tr).map(String);
+    // In test context, objects conform to SimpleDispositif and expose availableLanguages
+    return (d?.availableLanguages || []).map(String);
   });
 
   // Publics facet (skip public)
