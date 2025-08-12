@@ -441,31 +441,26 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
 
   const facet = Object.entries(facetPipelines).reduce(
     (acc, [key, pipeline]) => {
-      const newMatch: any = { ...baseMatch };
+      // IMPORTANT: Rebuild base match with the corresponding facet filter removed
+      // rather than mutating a shallow copy. Some filters are embedded in $or/$and expressions
+      // (e.g., themes/needs in $or, frenchLevel in $and/$expr). Rebuilding guarantees removal.
+      let matchForFacet: any = baseMatch;
       if (key === "themes" || key === "needs") {
-        // Themes and needs are dependent/hierarchical facets (a selected need implies its parent theme).
-        // When computing counts for either facet, drop BOTH filters to avoid self- and cross-filtering bias.
-        // Otherwise, selecting a need would trivially constrain theme counts (and vice versa), which isn't useful for facet exploration.
-        delete newMatch.theme;
-        delete newMatch.thematiques;
-        delete newMatch.secondaryThemes;
-        delete newMatch.besoins;
-        delete newMatch.needs;
+        matchForFacet = buildBaseMatch({ ...queryParams, themes: [], needs: [] }, algoliaIds);
       } else if (key === "ageRanges") {
-        delete newMatch.$and;
+        matchForFacet = buildBaseMatch({ ...queryParams, age: [] }, algoliaIds);
       } else if (key === "frenchLevels") {
-        delete newMatch["metadatas.frenchLevel"];
+        matchForFacet = buildBaseMatch({ ...queryParams, frenchLevel: [] }, algoliaIds);
       } else if (key === "publics") {
-        delete newMatch["metadatas.public"];
+        matchForFacet = buildBaseMatch({ ...queryParams, public: [] }, algoliaIds);
       } else if (key === "languages") {
-        // Remove language filter ($or on translations.<lang>) to avoid self-filtering
-        if (newMatch.$or) delete newMatch.$or;
+        matchForFacet = buildBaseMatch({ ...queryParams, language: [] }, algoliaIds);
       } else if (key === "statuses") {
-        delete newMatch["metadatas.publicStatus"];
+        matchForFacet = buildBaseMatch({ ...queryParams, status: [] }, algoliaIds);
       }
 
       (acc as any)[key] = [
-        { $match: newMatch },
+        { $match: matchForFacet },
         ...(pipeline as unknown as any[]),
         { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
       ];
