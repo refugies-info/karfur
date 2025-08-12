@@ -183,7 +183,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         frenchLevel: ["A1"],
         public: ["youths"],
         publicStatus: ["asile", "refugie"],
-        age: { type: "between", ages: [16, 25] },
+        age: { type: "between", ages: [0, 17] },
       },
       translations: {
         en: {
@@ -213,7 +213,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         frenchLevel: ["B1"],
         public: ["family"],
         publicStatus: ["subsidiaire"],
-        age: { type: "between", ages: [26, 64] },
+        age: { type: "between", ages: [18, 25] },
       },
       translations: {
         fr: {
@@ -239,7 +239,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         frenchLevel: ["A2"],
         public: ["senior"],
         publicStatus: ["apatride", "temporaire"],
-        age: { type: "moreThan", ages: [65] },
+        age: { type: "moreThan", ages: [24] },
       },
       translations: {
         fr: {

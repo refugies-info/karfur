@@ -124,6 +124,22 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     }));
   };
 
+  test("Legacy counts should match manual counts", async () => {
+    const all = await getAllDispositifs();
+    const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
+    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
+    expect(3).toBe(legacy.total);
+    expect({ en: 1, fr: 3 }).toEqual(legacy.languages);
+    expect({ family: 1, youths: 1, senior: 1 }).toEqual(legacy.publics);
+    expect({ asile: 1, apatride: 1, refugie: 1, subsidiaire: 1, temporaire: 1 }).toEqual(legacy.statuses);
+    expect({ a: 2, b: 1 }).toEqual(legacy.frenchLevels);
+    expect({ "+25": 1, "-18": 1, "18-25": 1 }).toEqual(legacy.ageRanges);
+    expect({ "64a0000000000000000000a1": 3, "64a0000000000000000000b2": 2 }).toEqual(legacy.themes);
+    expect({ "64b0000000000000000000a1": 2, "64b0000000000000000000a2": 1, "64b0000000000000000000b1": 1 }).toEqual(
+      legacy.needs,
+    );
+  });
+
   // Helper to register a suite of facet comparison tests from a list of cases
   const runFacetTests = (
     cases: Array<{
