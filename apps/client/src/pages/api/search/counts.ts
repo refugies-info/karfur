@@ -38,18 +38,7 @@ export interface SearchCountsResponse {
 
 export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
-  const toItems = (v: string) => v.split(",").map((s) => s.trim()).filter((s) => s.length > 0);
-  const items = Array.isArray(param) ? param.flatMap(toItems) : toItems(param);
-  // de-duplicate while preserving order
-  const seen = new Set<string>();
-  const unique: string[] = [];
-  for (const it of items) {
-    if (!seen.has(it)) {
-      seen.add(it);
-      unique.push(it);
-    }
-  }
-  return unique;
+  return Array.isArray(param) ? param : [param];
 };
 
 export interface QueryParams {
