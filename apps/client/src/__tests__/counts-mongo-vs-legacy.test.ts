@@ -98,14 +98,13 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
 
   const expectCountsEqual = (api: any, legacy: any) => {
     expect(api.total).toBe(legacy.total);
-    expect(Object.fromEntries(api.departments.map((x: any) => [x.id, x.count]))).toEqual(legacy.departments);
-    expect(Object.fromEntries(api.languages.map((x: any) => [x.id, x.count]))).toEqual(legacy.languages);
-    expect(Object.fromEntries(api.publics.map((x: any) => [x.id, x.count]))).toEqual(legacy.publics);
-    expect(Object.fromEntries(api.statuses.map((x: any) => [x.id, x.count]))).toEqual(legacy.statuses);
-    expect(Object.fromEntries(api.frenchLevels.map((x: any) => [x.id, x.count]))).toEqual(legacy.frenchLevels);
-    expect(Object.fromEntries(api.ageRanges.map((x: any) => [x.id, x.count]))).toEqual(legacy.ageRanges);
-    expect(Object.fromEntries(api.themes.map((x: any) => [x.id, x.count]))).toEqual(legacy.themes);
-    expect(Object.fromEntries(api.needs.map((x: any) => [x.id, x.count]))).toEqual(legacy.needs);
+    expect(Object.fromEntries((api.languages || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.languages);
+    expect(Object.fromEntries((api.publics || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.publics);
+    expect(Object.fromEntries((api.statuses || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.statuses);
+    expect(Object.fromEntries((api.frenchLevels || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.frenchLevels);
+    expect(Object.fromEntries((api.ageRanges || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.ageRanges);
+    expect(Object.fromEntries((api.themes || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.themes);
+    expect(Object.fromEntries((api.needs || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.needs);
   };
 
   const getAllDispositifs = async () => {
@@ -113,8 +112,15 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     return (await Dispositif.find({ status: "Actif" }).lean()).map((d: any) => ({
       ...d,
       _id: d._id.toString(),
-      theme: d.thematiques?.[0]?.toString() ?? null,
-      needs: (d.besoins || []).map((x: any) => x.toString()),
+      theme: d.theme ? d.theme.toString() : null,
+      secondaryThemes: Array.isArray(d.secondaryThemes) ? d.secondaryThemes.map((x: any) => x.toString()) : [],
+      needs: Array.isArray(d.needs) ? d.needs.map((x: any) => x.toString()) : [],
+      availableLanguages: (() => {
+        const tr = d?.translations;
+        if (!tr) return [] as string[];
+        if (tr instanceof Map) return Array.from(tr.keys()).map(String);
+        return Object.keys(tr).map(String);
+      })(),
     }));
   };
 
@@ -140,8 +146,11 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
   };
 
   // Helper to avoid duplicating params as legacy for each case
-  const makeCase = (name: string, params: Partial<QueryParams>) =>
-    ({ name, params, legacy: params as Partial<LegacyQuery> });
+  const makeCase = (name: string, params: Partial<QueryParams>) => ({
+    name,
+    params,
+    legacy: params as Partial<LegacyQuery>,
+  });
 
   // Title helpers
   const singleTitles: Record<string, string> = {
@@ -177,7 +186,7 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
 
     // helpers
-    const kCombinations = <T,>(arr: T[], k: number): T[][] => {
+    const kCombinations = <T>(arr: T[], k: number): T[][] => {
       const res: T[][] = [];
       const backtrack = (start: number, combo: T[]) => {
         if (combo.length === k) {
@@ -197,7 +206,10 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     if (includeZero) {
       cases.push({ name: "baseline: totals and facets match (no filters)", params: {} });
       if (searchTerm) {
-        cases.push({ name: "search facet matches legacy when search filter applied (skip search)", params: { search: searchTerm } });
+        cases.push({
+          name: "search facet matches legacy when search filter applied (skip search)",
+          params: { search: searchTerm },
+        });
       }
     }
 
