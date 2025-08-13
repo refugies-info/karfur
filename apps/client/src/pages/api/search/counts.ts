@@ -94,7 +94,10 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
           },
           {
             case: { $eq: ["$metadatas.age.type", "moreThan"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+            // legacy convertAudienceAgeToRange uses (age + 1, MAX]
+            then: {
+              $add: [{ $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } }, 1],
+            },
           },
           { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
         ],
@@ -111,7 +114,8 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
           { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
           {
             case: { $eq: ["$metadatas.age.type", "lessThan"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+            // legacy convertAudienceAgeToRange uses [MIN, age - 1]
+            then: { $add: [{ $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } }, -1] },
           },
         ],
         default: 0,
@@ -123,8 +127,18 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
       if (range === "18-25") return { $and: [{ $lte: [minAgeExpr, 18] }, { $gte: [maxAgeExpr, 25] }] };
       return { $and: [{ $lte: [minAgeExpr, 25] }, { $gte: [maxAgeExpr, 1000000] }] }; // +25
     };
-
-    match.$and = (match.$and || []).concat({ $expr: { $or: ages.map(bucketExpr) } });
+    // If age is missing/empty on the record, legacy filtering treats it as matching all filters.
+    // Mirror that by short-circuiting the age condition when metadatas.age is null or ages array is empty.
+    match.$and = (match.$and || []).concat({
+      $or: [
+        { $eq: [{ $ifNull: ["$metadatas.age", null] }, null] },
+        {
+          $expr: {
+            $or: ages.map(bucketExpr),
+          },
+        },
+      ],
+    });
   }
   const frenchLevel = (query.frenchLevel ?? []).filter((x): x is FrenchOptions => x === "a" || x === "b" || x === "c");
   if (frenchLevel.length > 0) {
@@ -226,8 +240,11 @@ export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
   }
   const languages = (query.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
-    // Filter by presence of a translation key for each requested language
-    match.$or = languages.map((lng) => ({ [`translations.${lng}`]: { $exists: true } }));
+    // Filter by presence of a translation key for any requested language.
+    // IMPORTANT: Compose with other conditions using AND, not by overwriting existing $or (themes/needs).
+    match.$and = (match.$and || []).concat([
+      { $or: languages.map((lng) => ({ [`translations.${lng}`]: { $exists: true } })) },
+    ]);
   }
 
   return match;
