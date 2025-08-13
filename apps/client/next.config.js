@@ -4,9 +4,7 @@ const path = require("path");
 
 module.exports = {
   output: "standalone",
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, "../../"),
-  },
+  outputFileTracingRoot: path.join(__dirname, "../../"),
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {
@@ -31,9 +29,7 @@ module.exports = {
       fullySpecified: false,
     };
 
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
-    );
+    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.(".svg"));
 
     config.module.rules.push(
       // Re-add the existing rule, but only for svg imports ending in ?url
@@ -48,7 +44,7 @@ module.exports = {
         issuer: fileLoaderRule.issuer,
         resourceQuery: { not: [...(fileLoaderRule.resourceQuery.not || []), /url/] }, // exclude if *.svg?url
         use: ["@svgr/webpack"],
-      }
+      },
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
