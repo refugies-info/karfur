@@ -2,7 +2,7 @@ import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose, { Connection } from "mongoose";
 import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
 import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/__fixtures__/legacyCounts";
-import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
+import { DispositifSchema, makeNeedsList, makeSeedIds } from "~/__fixtures__/seedDispositifs";
 import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
@@ -13,7 +13,10 @@ jest.mock("@algolia/client-search", () => {
   return { searchClient, __mockSearchSingleIndex: mockSearchSingleIndex };
 });
 
-describe("Mongo counts vs legacy filterDispositifs", () => {
+/**
+ * Randomized dataset tests: seeds many generated documents for broader coverage
+ */
+describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let mongod: MongoMemoryServer;
   let conn: Connection;
 
@@ -67,7 +70,8 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     const db = conn.db;
     if (!db) throw new Error("Connection DB not initialized");
     await db.dropDatabase();
-    await seedDispositifs(conn, ids);
+    // Seed many random documents for broader coverage. Seed ensures determinism across runs.
+    await seedRandomDispositifs(conn, ids, 0, 12345);
   });
 
   const toLegacyQuery = (p: Partial<LegacyQuery>): LegacyQuery => ({
@@ -107,55 +111,6 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     expect(Object.fromEntries((api.needs || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.needs);
   };
 
-  const getAllDispositifs = async () => {
-    const Dispositif = conn.model("Dispositif");
-    return (await Dispositif.find({ status: "Actif" }).lean()).map((d: any) => ({
-      ...d,
-      _id: d._id.toString(),
-      theme: d.theme ? d.theme.toString() : null,
-      secondaryThemes: Array.isArray(d.secondaryThemes) ? d.secondaryThemes.map((x: any) => x.toString()) : [],
-      needs: Array.isArray(d.needs) ? d.needs.map((x: any) => x.toString()) : [],
-      availableLanguages: (() => {
-        const tr = d?.translations;
-        if (!tr) return [] as string[];
-        if (tr instanceof Map) return Array.from(tr.keys()).map(String);
-        return Object.keys(tr).map(String);
-      })(),
-    }));
-  };
-
-  test("Legacy counts should match manual counts", async () => {
-    const all = await getAllDispositifs();
-    const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
-    expect(3).toBe(legacy.total);
-    expect({ en: 1, fr: 3 }).toEqual(legacy.languages);
-    expect({ family: 1, youths: 1, senior: 1 }).toEqual(legacy.publics);
-    expect({ asile: 1, apatride: 1, refugie: 1, subsidiaire: 1, temporaire: 1 }).toEqual(legacy.statuses);
-    expect({ a: 2, b: 1 }).toEqual(legacy.frenchLevels);
-    expect({ "+25": 1, "-18": 1, "18-25": 1 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 3, "64a0000000000000000000b2": 2 }).toEqual(legacy.themes);
-    expect({ "64b0000000000000000000a1": 2, "64b0000000000000000000a2": 1, "64b0000000000000000000b1": 1 }).toEqual(
-      legacy.needs,
-    );
-  });
-
-  test("Legacy counts when skipping frenchLevel should match manual counts", async () => {
-    const all = await getAllDispositifs();
-    const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
-    const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
-    expect(2).toBe(legacy.total);
-    expect({ en: 1, fr: 2 }).toEqual(legacy.languages);
-    expect({ youths: 1, senior: 1 }).toEqual(legacy.publics);
-    expect({ asile: 1, apatride: 1, refugie: 1, temporaire: 1 }).toEqual(legacy.statuses);
-    expect({ a: 2, b: 1 }).toEqual(legacy.frenchLevels);
-    expect({ "+25": 1, "-18": 1 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 2, "64a0000000000000000000b2": 2 }).toEqual(legacy.themes);
-    expect({ "64b0000000000000000000a1": 1, "64b0000000000000000000a2": 1, "64b0000000000000000000b1": 1 }).toEqual(
-      legacy.needs,
-    );
-  });
-
   // Helper to register a suite of facet comparison tests from a list of cases
   const runFacetTests = (
     cases: Array<{
@@ -169,20 +124,27 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
         const params = toParams(c.params);
         const api = await computeSearchCounts(conn, params);
 
-        const all = await getAllDispositifs();
+        const Dispositif = conn.model("Dispositif");
+        const all = (await Dispositif.find({ status: "Actif" }).lean()).map((d: any) => ({
+          ...d,
+          _id: d._id.toString(),
+          theme: d.theme ? d.theme.toString() : null,
+          secondaryThemes: Array.isArray(d.secondaryThemes) ? d.secondaryThemes.map((x: any) => x.toString()) : [],
+          needs: Array.isArray(d.needs) ? d.needs.map((x: any) => x.toString()) : [],
+          availableLanguages: (() => {
+            const tr = d?.translations;
+            if (!tr) return [] as string[];
+            if (tr instanceof Map) return Array.from(tr.keys()).map(String);
+            return Object.keys(tr).map(String);
+          })(),
+        }));
+
         const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery(c.legacy));
 
         expectCountsEqual(api, legacy);
       });
     }
   };
-
-  // Helper to avoid duplicating params as legacy for each case
-  const makeCase = (name: string, params: Partial<QueryParams>) => ({
-    name,
-    params,
-    legacy: params as Partial<LegacyQuery>,
-  });
 
   // Title helpers
   const singleTitles: Record<string, string> = {
@@ -203,16 +165,10 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     includeZero?: boolean;
     maxCombinationSize?: number; // number of distinct filters per case (1 = singles, 2 = pairs, 3 = triples ...)
     searchTerm?: string | null;
-    // When true, the single "needs" case will also add the provided theme id in params
+    // When true, the single "needs" case will also add a provided theme id in params
     needsSinglesIncludeThemeId?: string | null;
   }): Array<{ name: string; params: Partial<QueryParams> }> => {
-    const {
-      filters,
-      includeZero = false,
-      maxCombinationSize = 1,
-      searchTerm = null,
-      needsSinglesIncludeThemeId = null,
-    } = options;
+    const { filters, includeZero = false, maxCombinationSize = 1, searchTerm = null } = options;
 
     const entries = Object.entries(filters);
     const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
@@ -253,10 +209,6 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
         for (const [key, value] of combo) {
           params[key] = value;
         }
-        // special seeded-like behavior: when k=1 and key is needs, also include theme
-        if (k === 1 && combo[0][0] === "needs" && needsSinglesIncludeThemeId) {
-          params.themes = [needsSinglesIncludeThemeId];
-        }
 
         // Title follows the pattern from the original suites: base on the first key
         const [firstKey] = combo[0];
@@ -276,58 +228,23 @@ describe("Mongo counts vs legacy filterDispositifs", () => {
     return cases;
   };
 
-  // Seeded dataset cases
-  const seededFilters: FiltersDef = {
+  // Randomized dataset cases (kept identical to original values)
+  const randomFilters: FiltersDef = {
     departments: ["75"],
     frenchLevel: ["a"],
     language: ["fr"],
     public: ["family"],
     status: ["refugie"],
-    themes: [ids.themeB.toString()],
-    needs: [ids.needB1.toString()],
+    themes: ["6319f6b363ab2bbb162d7df5"],
+    needs: ["6319f6b363ab2bbb162d7df6"],
   };
 
   runFacetTests(
     generateCases({
-      filters: seededFilters,
+      filters: randomFilters,
       includeZero: true,
-      maxCombinationSize: 1,
+      maxCombinationSize: 3,
       searchTerm: "jeunes",
-      // special rule: needs singles also include themeB
-      needsSinglesIncludeThemeId: ids.themeB.toString(),
-    }).map((c) => makeCase(c.name, c.params)),
+    }).map((c) => ({ name: c.name, params: c.params, legacy: c.params as Partial<LegacyQuery> })),
   );
-
-  // *******************************************************
-  // Randomized dataset using fast-check generated documents
-  // *******************************************************
-  describe("randomized dataset (fast-check)", () => {
-    beforeEach(async () => {
-      const db = conn.db;
-      if (!db) throw new Error("Connection DB not initialized");
-      await db.dropDatabase();
-      // Seed many random documents for broader coverage. Seed ensures determinism across runs.
-      await seedRandomDispositifs(conn, ids, 0, 12345);
-    });
-
-    // Randomized dataset cases
-    const randomFilters: FiltersDef = {
-      departments: ["75"],
-      frenchLevel: ["a"],
-      language: ["fr"],
-      public: ["family"],
-      status: ["refugie"],
-      themes: ["6319f6b363ab2bbb162d7df5"],
-      needs: ["6319f6b363ab2bbb162d7df6"],
-    };
-
-    runFacetTests(
-      generateCases({
-        filters: randomFilters,
-        includeZero: true,
-        maxCombinationSize: 3,
-        searchTerm: "jeunes",
-      }).map((c) => makeCase(c.name, c.params)),
-    );
-  });
 });
