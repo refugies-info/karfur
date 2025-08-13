@@ -14,9 +14,9 @@ overrides:
   react-dom: latest
 
 patchedDependencies:
-  '@codegouvfr/react-dsfr@1.20.2':
-    hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
-    path: patches/@codegouvfr__react-dsfr@1.20.2.patch
+  '@codegouvfr/react-dsfr@1.26.0':
+    hash: 6e520e79f99188a05c04e863737641e945733bb91ff21d049b623a2a92866152
+    path: patches/@codegouvfr__react-dsfr@1.26.0.patch
 
 importers:
 
@@ -24,7 +24,7 @@ importers:
     devDependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
-        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
+        version: 1.20.2
       '@refugies-info/api-types':
         specifier: '*'
         version: 1.0.51(@aws-sdk/credential-providers@3.797.0)(typescript@5.9.2)
@@ -87,7 +87,7 @@ importers:
         version: 5.35.0
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0
+        version: 1.26.0(patch_hash=6e520e79f99188a05c04e863737641e945733bb91ff21d049b623a2a92866152)
       '@lexical/html':
         specifier: ^0.34.0
         version: 0.34.0
@@ -198,7 +198,7 @@ importers:
         version: 15.4.6(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0)
       next-i18next:
         specifier: ^15.4.2
-        version: 15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1)
+        version: 15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1)
       next-redux-wrapper:
         specifier: ^8.1.0
         version: 8.1.0(next@15.4.6(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-redux@9.2.0(@types/react@19.1.10)(react@19.1.1)(redux@5.0.1))(react@19.1.1)
@@ -873,7 +873,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0
+        version: 1.26.0(patch_hash=6e520e79f99188a05c04e863737641e945733bb91ff21d049b623a2a92866152)
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -982,7 +982,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0
+        version: 1.26.0(patch_hash=6e520e79f99188a05c04e863737641e945733bb91ff21d049b623a2a92866152)
       '@lottiefiles/dotlottie-react':
         specifier: ^0.13.5
         version: 0.13.5(react@19.1.1)
@@ -991,7 +991,7 @@ importers:
         version: 2.1.1
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1)
+        version: 15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1)
       react:
         specifier: latest
         version: 19.1.1
@@ -14862,12 +14862,12 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@codegouvfr/react-dsfr@1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
+  '@codegouvfr/react-dsfr@1.20.2':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
 
-  '@codegouvfr/react-dsfr@1.26.0':
+  '@codegouvfr/react-dsfr@1.26.0(patch_hash=6e520e79f99188a05c04e863737641e945733bb91ff21d049b623a2a92866152)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -25534,7 +25534,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-i18next@15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(@babel/core@7.28.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1):
+  next-i18next@15.4.2(@types/react@19.1.10)(i18next@25.3.4(typescript@5.9.2))(next@15.4.6(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(sass@1.90.0))(react-i18next@15.6.1(i18next@25.3.4(typescript@5.9.2))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.2))(react@19.1.1):
     dependencies:
       '@babel/runtime': 7.28.2
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.1.10)
