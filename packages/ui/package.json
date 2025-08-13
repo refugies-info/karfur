@@ -24,7 +24,7 @@
     "lint": "eslint . --ext ts,tsx,js --quiet --cache"
   },
   "dependencies": {
-    "@codegouvfr/react-dsfr": "1.20.2",
+    "@codegouvfr/react-dsfr": "1.26.0",
     "@lottiefiles/dotlottie-react": "^0.13.5",
     "clsx": "^2.1.1",
     "next-i18next": "^15.3.0",
