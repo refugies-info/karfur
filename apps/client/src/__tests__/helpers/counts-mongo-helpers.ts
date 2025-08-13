@@ -215,3 +215,10 @@ export const generateCases = (options: {
 
   return cases;
 };
+
+// Prevent Jest from failing this helpers file when collected as a test suite
+describe.skip("counts-mongo helpers placeholder", () => {
+  it("placeholder", () => {
+    expect(true).toBe(true);
+  });
+});
