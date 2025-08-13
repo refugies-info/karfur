@@ -1,8 +1,8 @@
-@use "../../colors";
-@use "../../variables";
-@use "../../mixins/unit";
-@use "../../mixins/text";
-@use "../../mixins/responsive";
+@use "~/scss/colors";
+@use "~/scss/variables";
+@use "~/scss/mixins/unit";
+@use "~/scss/mixins/text";
+@use "~/scss/mixins/responsive";
 /* stylelint-disable scss/at-extend-no-missing-placeholder */
 
 $breakpoint: "lg-limit";

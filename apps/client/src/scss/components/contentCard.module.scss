@@ -1,9 +1,9 @@
-@use "../../colors";
-@use "../../mixins/responsive";
-@use "../../mixins/unit";
-@use "../../mixins/rtl";
-@use "../../mixins/text";
-@use "../../variables";
+@use "~/scss/colors";
+@use "~/scss/mixins/responsive";
+@use "~/scss/mixins/unit";
+@use "~/scss/mixins/rtl";
+@use "~/scss/mixins/text";
+@use "~/scss/variables";
 
 $shadowHeight: 1.4rem;
 
