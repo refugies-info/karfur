@@ -4,12 +4,14 @@ const path = require("path");
 
 module.exports = {
   output: "standalone",
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, "../../"),
-  },
+  // Next 15: outputFileTracingRoot moved out of experimental
+  outputFileTracingRoot: path.join(__dirname, "../../"),
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {
+    // Allow SVGs with next/image if used; consider tightening CSP if needed
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: "https",
