@@ -59,7 +59,7 @@
   "Recherche": {
     "pageTitle": "Recherche",
     "title": "Trouver une fiche d'information",
-    "yourResults": "Vos résultats de recherche",
+    "yourResults": "Vos {{count}} résultats de recherche",
     "subtitle": "Cherchez parmi nos {{count}} fiches démarches et dispositifs locaux.",
     "updated": "actualisé",
     "demarcheTitle": "Les fiches démarches",

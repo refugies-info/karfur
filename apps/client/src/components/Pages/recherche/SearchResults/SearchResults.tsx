@@ -114,7 +114,7 @@ const SearchResults = (props: Props) => {
           </>
         ) : (
           <div style={{ width: "100%" }}>
-            <h2>{t("Recherche.yourResults")}</h2>
+            <h2>{t("Recherche.yourResults", { count: filteredResults.matches.length })}</h2>
 
             <div className={styles.results}>
               {dispositifs.length > 0 &&
