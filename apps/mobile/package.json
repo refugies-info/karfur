@@ -93,7 +93,7 @@
     "@types/sanitize-html": "^2.16.0",
     "@types/styled-components-react-native": "^5.2.5",
     "@types/uuid": "^10.0.0",
-    "@welldone-software/why-did-you-render": "^7.0.1",
+    "@welldone-software/why-did-you-render": "^10.0.1",
     "csvtojson": "^2.0.10",
     "eslint": "^9.32.0",
     "jest": "^29.7.0",

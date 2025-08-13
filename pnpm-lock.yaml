@@ -668,8 +668,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0
       '@welldone-software/why-did-you-render':
-        specifier: ^7.0.1
-        version: 7.0.1(react@18.3.1)
+        specifier: ^10.0.1
+        version: 10.0.1(react@18.3.1)
       csvtojson:
         specifier: ^2.0.10
         version: 2.0.10
@@ -5039,10 +5039,10 @@ packages:
   '@webassemblyjs/wast-printer@1.14.1':
     resolution: {integrity: sha512-kPSSXE6De1XOR820C90RIo2ogvZG+c3KiHzqUoO/F34Y2shGzesfqv7o57xrxovZJH/MetF5UjroJ/R/3isoiw==}
 
-  '@welldone-software/why-did-you-render@7.0.1':
-    resolution: {integrity: sha512-Qe/8Xxa2G+LMdI6VoazescPzjjkHYduCDa8aHOJR50e9Bgs8ihkfMBY+ev7B4oc3N59Zm547Sgjf8h5y0FOyoA==}
+  '@welldone-software/why-did-you-render@10.0.1':
+    resolution: {integrity: sha512-tMgGkt30iVYeLMUKExNmtm019QgyjLtA7lwB0QAizYNEuihlCG2eoAWBBaz/bDeI7LeqAJ9msC6hY3vX+JB97g==}
     peerDependencies:
-      react: ^16 || ^17 || ^18
+      react: ^19
 
   '@xmldom/xmldom@0.7.13':
     resolution: {integrity: sha512-lm2GW5PkosIzccsaZIz7tp8cPADSIlIHWDFTR1N0SzfinhhYgeIQjFMz4rYzanCScr3DqQLeomUDArp6MWKm+g==}
@@ -18134,7 +18134,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@xtuc/long': 4.2.2
 
-  '@welldone-software/why-did-you-render@7.0.1(react@18.3.1)':
+  '@welldone-software/why-did-you-render@10.0.1(react@18.3.1)':
     dependencies:
       lodash: 4.17.21
       react: 18.3.1
