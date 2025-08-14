@@ -36,6 +36,8 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
       { key: { needs: 1 }, name: "needs_1_counts" },
       { key: { "metadatas.frenchLevel": 1 }, name: "metadatas.frenchLevel_1_counts" },
       { key: { "metadatas.public": 1 }, name: "metadatas.public_1_counts" },
+      // New: filter by refugee public statuses used in counts API
+      { key: { "metadatas.publicStatus": 1 }, name: "metadatas.publicStatus_1_counts" },
       { key: { "metadatas.status": 1 }, name: "metadatas.status_1_counts" },
       { key: { availableLanguages: 1 }, name: "availableLanguages_1_counts" },
       { key: { typeContenu: 1 }, name: "typeContenu_1_counts" },
@@ -44,6 +46,16 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
     for (const { key, name } of specs) {
       if (!existingNames.has(name)) {
         await coll.createIndex(key, { ...partial, name });
+      }
+    }
+
+    // Optional: wildcard index to efficiently support translations.<lng> existence checks
+    // Wrapped in try/catch in case the target cluster does not support wildcard indexes.
+    if (!existingNames.has("translations_wildcard_counts")) {
+      try {
+        await coll.createIndex({ "translations.$**": 1 }, { ...partial, name: "translations_wildcard_counts" });
+      } catch (_) {
+        // Ignore if not supported; the app can fall back to availableLanguages index
       }
     }
 
@@ -61,9 +73,11 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
     await coll.dropIndex("needs_1_counts").catch(() => undefined);
     await coll.dropIndex("metadatas.frenchLevel_1_counts").catch(() => undefined);
     await coll.dropIndex("metadatas.public_1_counts").catch(() => undefined);
+    await coll.dropIndex("metadatas.publicStatus_1_counts").catch(() => undefined);
     await coll.dropIndex("metadatas.status_1_counts").catch(() => undefined);
     await coll.dropIndex("availableLanguages_1_counts").catch(() => undefined);
     await coll.dropIndex("typeContenu_1_counts").catch(() => undefined);
+    await coll.dropIndex("translations_wildcard_counts").catch(() => undefined);
 
     // Do not drop the base status index unconditionally (it may pre-exist)
   }
