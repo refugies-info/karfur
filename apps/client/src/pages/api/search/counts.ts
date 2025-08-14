@@ -25,13 +25,13 @@ interface TypeCounts {
 }
 
 export interface SearchCountsResponse {
-  themes: CountItem[];
-  needs: CountItem[];
-  frenchLevels: CountItem[];
-  ageRanges: CountItem[];
-  publics: CountItem[];
-  languages: CountItem[];
-  statuses: CountItem[];
+  themes: Record<string, number>;
+  needs: Record<string, number>;
+  frenchLevels: Record<string, number>;
+  ageRanges: Record<string, number>;
+  publics: Record<string, number>;
+  languages: Record<string, number>;
+  statuses: Record<string, number>;
   types: TypeCounts;
   total: number;
 }
@@ -487,14 +487,25 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   const results = await Dispositif.aggregate([{ $facet: facet }]);
   const data = results[0] || {};
 
+  const toMap = (arr: Array<{ id: string; count: number }> | undefined): Record<string, number> => {
+    const map: Record<string, number> = {};
+    for (const item of arr || []) {
+      // Prefer string keys; ensure defined id
+      if (item && typeof item.id === "string") {
+        map[item.id] = item.count ?? 0;
+      }
+    }
+    return map;
+  };
+
   const response: SearchCountsResponse = {
-    themes: data.themes || [],
-    needs: data.needs || [],
-    frenchLevels: data.frenchLevels || [],
-    ageRanges: data.ageRanges || [],
-    publics: data.publics || [],
-    languages: data.languages || [],
-    statuses: data.statuses || [],
+    themes: toMap(data.themes),
+    needs: toMap(data.needs),
+    frenchLevels: toMap(data.frenchLevels),
+    ageRanges: toMap(data.ageRanges),
+    publics: toMap(data.publics),
+    languages: toMap(data.languages),
+    statuses: toMap(data.statuses),
     types: {
       dispositif: data.types?.find((t: any) => t._id === "dispositif")?.count || 0,
       demarche: data.types?.find((t: any) => t._id === "demarche")?.count || 0,

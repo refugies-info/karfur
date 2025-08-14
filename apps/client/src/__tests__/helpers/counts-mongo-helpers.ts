@@ -71,13 +71,13 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   expect(api.total).toBe(legacy.total);
-  expect(Object.fromEntries((api.languages || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.languages);
-  expect(Object.fromEntries((api.publics || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.publics);
-  expect(Object.fromEntries((api.statuses || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.statuses);
-  expect(Object.fromEntries((api.frenchLevels || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.frenchLevels);
-  expect(Object.fromEntries((api.ageRanges || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.ageRanges);
-  expect(Object.fromEntries((api.themes || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.themes);
-  expect(Object.fromEntries((api.needs || []).map((x: any) => [x.id, x.count]))).toEqual(legacy.needs);
+  expect(api.languages || {}).toEqual(legacy.languages);
+  expect(api.publics || {}).toEqual(legacy.publics);
+  expect(api.statuses || {}).toEqual(legacy.statuses);
+  expect(api.frenchLevels || {}).toEqual(legacy.frenchLevels);
+  expect(api.ageRanges || {}).toEqual(legacy.ageRanges);
+  expect(api.themes || {}).toEqual(legacy.themes);
+  expect(api.needs || {}).toEqual(legacy.needs);
 };
 
 export const getAllDispositifs = async (conn: Connection) => {

@@ -8,7 +8,6 @@ import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
-import { CountItem } from "~/pages/api/search/counts";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
@@ -85,14 +84,12 @@ const Filters = (props: Props) => {
 
   const countsByFilter = useMemo(() => {
     if (!counts) return {};
-    const toCountMap = (items: CountItem[] | undefined) =>
-      Object.fromEntries((items || []).map(({ id, count }) => [id, count]));
     return {
-      status: toCountMap(counts.statuses),
-      public: toCountMap(counts.publics),
-      age: toCountMap(counts.ageRanges),
-      frenchLevel: toCountMap(counts.frenchLevels),
-      language: toCountMap(counts.languages),
+      status: counts.statuses || {},
+      public: counts.publics || {},
+      age: counts.ageRanges || {},
+      frenchLevel: counts.frenchLevels || {},
+      language: counts.languages || {},
     };
   }, [counts]);
 
