@@ -4698,7 +4698,7 @@ exports[`homepage renders homepage 1`] = `
               MobileApp.langLabel
             </label>
             <select
-              aria-describedby="select-:r1e:-desc"
+              aria-describedby=""
               class="fr-select"
               id="select-:r1d:"
               name="languageSelected"
