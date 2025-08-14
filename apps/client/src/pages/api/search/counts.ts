@@ -312,7 +312,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       {
         $project: {
           _allNeeds: {
-            $setUnion: [{ $ifNull: ["$besoins", []] }, { $ifNull: ["$needs", []] }],
+            $ifNull: ["$needs", []],
           },
         },
       },
