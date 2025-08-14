@@ -13,8 +13,8 @@ overrides:
 
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.26.0':
-    hash: 12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3
-    path: patches/@codegouvfr__react-dsfr@1.26.0.patch
+    hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    path: patches/@codegouvfr+react-dsfr@1.26.0.patch
 
 importers:
 
@@ -22,7 +22,7 @@ importers:
     devDependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0(patch_hash=12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3)
+        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
       '@refugies-info/api-types':
         specifier: '*'
         version: 1.0.51(@aws-sdk/credential-providers@3.797.0)(typescript@5.9.2)
@@ -85,7 +85,7 @@ importers:
         version: 5.35.0
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0(patch_hash=12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3)
+        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
       '@lexical/html':
         specifier: ^0.27.2
         version: 0.27.2
@@ -871,7 +871,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0(patch_hash=12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3)
+        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -980,7 +980,7 @@ importers:
     dependencies:
       '@codegouvfr/react-dsfr':
         specifier: 1.26.0
-        version: 1.26.0(patch_hash=12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3)
+        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
       '@lottiefiles/dotlottie-react':
         specifier: ^0.13.5
         version: 0.13.5(react@18.3.1)
@@ -14059,7 +14059,7 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@codegouvfr/react-dsfr@1.26.0(patch_hash=12a20d0aecb67a7c704b562cd19380cb16f69ea600cb62c01670294345b20ce3)':
+  '@codegouvfr/react-dsfr@1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
