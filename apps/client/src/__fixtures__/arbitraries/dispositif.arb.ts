@@ -142,7 +142,7 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     // Pick 1–3 languages and build translations with title/abstract per lang
     const languagesArb = fc.array(fc.constantFrom(...enums.languages), { minLength: 1, maxLength: 3 }).map(uniq);
 
-    return fc.record<InsertableDispositif>({
+    const recordArb = fc.record<InsertableDispositif>({
       theme: fc.constant(themeId),
       secondaryThemes: secondaryThemesArb as any,
       needs: needsArb as any,
@@ -175,6 +175,33 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
       status: fc.constantFrom(...enums.statuses),
       // Force 'dispositif' to align with tests and API expectations
       typeContenu: fc.constant("dispositif"),
+    });
+
+    // Normalize: ensure each need's parent theme is in primary theme or secondaryThemes
+    return recordArb.map((doc) => {
+      const primary = String(doc.theme);
+      const secs = (doc.secondaryThemes || []).map((t) => String(t));
+      const inScope = new Set([primary, ...secs]);
+
+      const needToTheme = (nid: mongoose.Types.ObjectId): string | null => {
+        const s = String(nid);
+        if (s === String(ids.needA1) || s === String(ids.needA2)) return String(ids.themeA);
+        if (s === String(ids.needB1)) return String(ids.themeB);
+        return null;
+      };
+
+      const requiredThemes = new Set<string>();
+      for (const n of doc.needs || []) {
+        const t = needToTheme(n);
+        if (t && !inScope.has(t)) requiredThemes.add(t);
+      }
+
+      if (requiredThemes.size > 0) {
+        const toAdd = Array.from(requiredThemes).map((t) => new mongoose.Types.ObjectId(t));
+        const merged = Array.from(new Set([...(doc.secondaryThemes || []), ...toAdd]));
+        return { ...doc, secondaryThemes: merged };
+      }
+      return doc;
     });
   });
 };
