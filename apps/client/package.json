@@ -80,7 +80,7 @@
     "reselect": "^5.1.1",
     "sortablejs": "^1.15.3",
     "styled-components": "6.1.13",
-    "sweetalert2": "^11.22.2",
+    "sweetalert2": "^11.22.4",
     "typesafe-actions": "^5.1.0",
     "uuid": "^11.0.3"
   },
