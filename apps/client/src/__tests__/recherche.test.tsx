@@ -23,7 +23,6 @@ describe("recherche", () => {
           data: {
             themes: [],
             needs: [],
-            departments: [],
             frenchLevels: [],
             ageRanges: [],
             publics: [],
