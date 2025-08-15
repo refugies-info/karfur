@@ -167,7 +167,7 @@ jest.mock("react-native-svg/lib/commonjs/utils/fetchData", () => {
   if (typeof global.fetch === "function") {
     try {
       jest.spyOn(global, "fetch").mockImplementation(fetchImpl);
-    } catch (_) {
+    } catch {
       // fallback if spy fails
       global.fetch = jest.fn(fetchImpl);
     }
@@ -197,6 +197,7 @@ jest.mock("react-native-svg", () => {
   const { View } = require("react-native");
   const SvgUri = (props) => React.createElement(View, props, props.children);
   return {
+    __esModule: true,
     ...actual,
     SvgUri,
     default: actual.default,
