@@ -115,11 +115,6 @@ jest.mock("react-native-reanimated", () => {
   };
 });
 
-
-// Mock react-native-svg to avoid network fetches in SvgUri during tests
-// SvgUri tries to fetch() the provided uri, which fails in Node (CI) when given
-// a non-absolute path like "/images/app/logement.svg". We stub the module so
-// components render as simple Views and never invoke fetch.
 // Targeted mock: stub out react-native-svg's fetchData to avoid URL parsing/fetch in Node
 jest.mock("react-native-svg/src/utils/fetchData", () => {
   const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
@@ -129,6 +124,51 @@ jest.mock("react-native-svg/src/utils/fetchData", () => {
     fetchUriData: makeResponse,
   };
 });
+
+// Also mock potential alternate paths used by compiled builds or resolvers
+jest.mock("react-native-svg/src/utils/fetchData.ts", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+  };
+});
+
+jest.mock("react-native-svg/lib/commonjs/utils/fetchData", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+  };
+});
+
+// Defensive: mock global fetch for .svg URIs so any stray fetch still returns a valid SVG
+(() => {
+  const makeSvg = '<svg xmlns="http://www.w3.org/2000/svg" />';
+  const fetchImpl = async (input) => {
+    const url = typeof input === "string" ? input : input?.url;
+    if (typeof url === "string" && url.endsWith(".svg")) {
+      return new Response(makeSvg, {
+        status: 200,
+        headers: { "Content-Type": "image/svg+xml" },
+      });
+    }
+    return new Response("", { status: 404 });
+  };
+
+  if (typeof global.fetch === "function") {
+    try {
+      jest.spyOn(global, "fetch").mockImplementation(fetchImpl);
+    } catch (_) {
+      // fallback if spy fails
+      global.fetch = jest.fn(fetchImpl);
+    }
+  } else {
+    global.fetch = jest.fn(fetchImpl);
+  }
+})();
 
 jest.mock("@gorhom/bottom-sheet", () => ({
   __esModule: true,
