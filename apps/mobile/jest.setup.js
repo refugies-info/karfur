@@ -115,6 +115,21 @@ jest.mock("react-native-reanimated", () => {
   };
 });
 
+
+// Mock react-native-svg to avoid network fetches in SvgUri during tests
+// SvgUri tries to fetch() the provided uri, which fails in Node (CI) when given
+// a non-absolute path like "/images/app/logement.svg". We stub the module so
+// components render as simple Views and never invoke fetch.
+// Targeted mock: stub out react-native-svg's fetchData to avoid URL parsing/fetch in Node
+jest.mock("react-native-svg/src/utils/fetchData", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+  };
+});
+
 jest.mock("@gorhom/bottom-sheet", () => ({
   __esModule: true,
   default: "BottomSheet",
