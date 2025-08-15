@@ -118,29 +118,35 @@ jest.mock("react-native-reanimated", () => {
 // Targeted mock: stub out react-native-svg's fetchData to avoid URL parsing/fetch in Node
 jest.mock("react-native-svg/src/utils/fetchData", () => {
   const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
   return {
     __esModule: true,
     default: makeResponse,
     fetchUriData: makeResponse,
+    fetchText,
   };
 });
 
 // Also mock potential alternate paths used by compiled builds or resolvers
 jest.mock("react-native-svg/src/utils/fetchData.ts", () => {
   const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
   return {
     __esModule: true,
     default: makeResponse,
     fetchUriData: makeResponse,
+    fetchText,
   };
 });
 
 jest.mock("react-native-svg/lib/commonjs/utils/fetchData", () => {
   const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
   return {
     __esModule: true,
     default: makeResponse,
     fetchUriData: makeResponse,
+    fetchText,
   };
 });
 
