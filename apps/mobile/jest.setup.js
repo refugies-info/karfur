@@ -176,6 +176,33 @@ jest.mock("react-native-svg/lib/commonjs/utils/fetchData", () => {
   }
 })();
 
+// Filter known act() warning noise from react-native-svg's SvgUri to stabilize CI logs.
+// We only suppress the specific warning string; other errors still surface.
+(() => {
+  const origError = console.error;
+  const svgActWarning = "Warning: An update to SvgUri inside a test was not wrapped in act(...).";
+  console.error = (...args) => {
+    const msg = args?.[0];
+    if (typeof msg === "string" && msg.includes(svgActWarning)) {
+      return; // ignore this specific noisy warning
+    }
+    return origError(...args);
+  };
+})();
+
+// Make SvgUri sync-only to eliminate async setState (no act warnings); keep other exports intact
+jest.mock("react-native-svg", () => {
+  const actual = jest.requireActual("react-native-svg");
+  const React = require("react");
+  const { View } = require("react-native");
+  const SvgUri = (props) => React.createElement(View, props, props.children);
+  return {
+    ...actual,
+    SvgUri,
+    default: actual.default,
+  };
+});
+
 jest.mock("@gorhom/bottom-sheet", () => ({
   __esModule: true,
   default: "BottomSheet",
