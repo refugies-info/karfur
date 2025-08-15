@@ -43,10 +43,10 @@ jobs:
       - name: Check Types and Test
         run: turbo check:types test
         env:
-          JEST_WATCHMAN: "0"
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG }}
+          JEST_WATCHMAN: "0"
 
       - name: Lint styles
         run: pnpm lint:style
