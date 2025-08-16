@@ -41,7 +41,7 @@ jobs:
         run: pnpm lint
 
       - name: Check Types and Test
-        run: turbo check:types test
+        run: turbo check:types test:client test:server
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
