@@ -16,6 +16,7 @@ import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 import styles from "./SearchResults.module.scss";
 
 export const MATCHES_PER_PAGE = 24;
@@ -30,6 +31,7 @@ const SearchResults = (props: Props) => {
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
   const noResultsDemarche = useSelector(noResultsSelector);
+  const counts = useSelector(searchCountsDataSelector);
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
@@ -79,7 +81,7 @@ const SearchResults = (props: Props) => {
   return (
     <section className={styles.wrapper}>
       <Container className={styles.container}>
-        <ResultsFilter />
+        <ResultsFilter counts={counts} />
         {noResults ? (
           <>
             <div className={styles.no_results}>

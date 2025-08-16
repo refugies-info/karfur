@@ -19,6 +19,21 @@ describe("recherche", () => {
       Component: recherche,
       reduxState: {
         ...initialMockStore,
+        searchCounts: {
+          data: {
+            themes: {},
+            needs: {},
+            frenchLevels: {},
+            ageRanges: {},
+            publics: {},
+            languages: {},
+            statuses: {},
+            types: { dispositif: 0, demarche: 0, online: 0 },
+            total: 0,
+          },
+          loading: false,
+          error: null,
+        },
         searchResults: {
           results: {
             matches: [],

@@ -526,7 +526,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/admin.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -659,7 +665,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/francais.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -792,7 +804,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/logement.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -925,7 +943,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/sante.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1058,7 +1082,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/metier.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1191,7 +1221,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/travail.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1324,7 +1360,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/transport.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1457,7 +1499,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469805/pictures/zhsms7ptlkjvolprxi3z.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1590,7 +1638,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/etudes.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>
@@ -1723,7 +1777,13 @@ exports[`Search Screen should render correctly 1`] = `
                         }
                       }
                     >
-                      <View />
+                      <View>
+                        <View
+                          height="100%"
+                          uri="/images/app/loisirs.svg"
+                          width="100%"
+                        />
+                      </View>
                     </View>
                   </View>
                 </View>

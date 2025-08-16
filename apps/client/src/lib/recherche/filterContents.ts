@@ -34,13 +34,22 @@ export const filterByThemeOrNeed = (
 
 export const filterByLocations = (dispositif: SimpleDispositif, departments: string[]) => {
   if (departments.length === 0) return true;
-  const location = dispositif.metadatas?.location;
-  if (!Array.isArray(location)) return true; // not array = france or online -> keep result
+  const location = dispositif.metadatas?.location as any;
   if (!location) return false;
-  for (const dep of location) {
-    if (departments.includes(dep.split(" - ")[1])) return true;
+  const matchDep = (val: string) => {
+    if (!val) return false;
+    const parts = val.split(" - ");
+    const code = parts.length > 1 ? parts[1] : val;
+    return departments.includes(code);
+  };
+  if (Array.isArray(location)) {
+    for (const dep of location) {
+      if (matchDep(dep)) return true;
+    }
+    return false;
   }
-  return false;
+  // string value
+  return matchDep(location);
 };
 
 const FILTER_AGE_VALUES: Record<AgeOptions, [number, number]> = {
@@ -125,32 +134,25 @@ export const filterByAge = (dispositif: SimpleDispositif, ageFilters: AgeOptions
   return countMatchingAgeOptions(dispositif, ageFilters) > 0;
 };
 
-const FILTER_FRENCH_LEVEL_VALUES = {
-  a: ["A1", "A2"],
-  b: ["A1", "A2", "B1", "B2"],
-  c: [],
+const FILTER_FRENCH_LEVEL_VALUES: Record<FrenchOptions, string[]> = {
+  a: ["alpha", "A1", "A2"],
+  b: ["B1", "B2"],
+  c: ["C1", "C2"],
 };
 
 export const filterByFrenchLevel = (dispositif: SimpleDispositif, frenchLevelFilters: FrenchOptions[]) => {
   if (frenchLevelFilters.length === 0) return true;
-  const frenchLevels = dispositif.metadatas?.frenchLevel;
+  const frenchLevels = dispositif.metadatas?.frenchLevel as string[] | undefined;
+  // If no level specified on the record, consider it matching all (as per UI counts logic)
   if (!frenchLevels || frenchLevels.length === 0) return true;
 
-  if (frenchLevelFilters.includes("c")) {
-    return true;
-  } else if (frenchLevelFilters.includes("b")) {
-    for (const frenchLevel of frenchLevels) {
-      if (FILTER_FRENCH_LEVEL_VALUES["b"].includes(frenchLevel)) return true;
-    }
-    return false;
-  } else if (frenchLevelFilters.includes("a")) {
-    for (const frenchLevel of frenchLevels) {
-      if (FILTER_FRENCH_LEVEL_VALUES["a"].includes(frenchLevel)) return true;
-    }
-    return false;
+  // Build the union of allowed concrete levels from selected categories
+  const allowed = new Set<string>();
+  for (const cat of frenchLevelFilters) {
+    for (const lvl of FILTER_FRENCH_LEVEL_VALUES[cat]) allowed.add(lvl);
   }
 
-  return false;
+  return frenchLevels.some((lvl) => allowed.has(lvl));
 };
 
 export const filterByLanguage = (dispositif: SimpleDispositif, languageFilters: string[]) => {

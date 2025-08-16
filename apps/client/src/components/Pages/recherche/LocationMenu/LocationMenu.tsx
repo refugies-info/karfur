@@ -2,10 +2,11 @@ import debounce from "lodash/debounce";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentCodeFromName } from "~/lib/departments";
+import { getDepartmentCodeFromName, getDepartmentNameFromCode } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { useSearchCounts } from "../SearchCountsContext";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import DepartmentMenuItem from "./DepartmentMenuItem";
 import styles from "./LocationMenu.module.css";
@@ -31,6 +32,7 @@ interface Props {
 }
 
 const LocationMenu: React.FC<Props> = () => {
+  const searchCounts = useSearchCounts();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const eventName = useSearchEventName();
@@ -104,6 +106,8 @@ const LocationMenu: React.FC<Props> = () => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
 
+  // No department counts shown anymore
+
   return (
     <div className={styles.container}>
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
@@ -124,14 +128,16 @@ const LocationMenu: React.FC<Props> = () => {
         {locationSearch === "" &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
-            .map(({ deptNo, placeName }) => (
-              <CommonPlaceMenuItem
-                key={deptNo}
-                placeName={placeName}
-                deptNo={deptNo}
-                onSelectCommonPlace={onSelectCommonPlace}
-              />
-            ))}
+            .map(({ deptNo, placeName }) => {
+              return (
+                <CommonPlaceMenuItem
+                  key={deptNo}
+                  placeName={placeName}
+                  deptNo={deptNo}
+                  onSelectCommonPlace={onSelectCommonPlace}
+                />
+              );
+            })}
       </div>
     </div>
   );
