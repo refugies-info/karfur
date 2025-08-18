@@ -532,8 +532,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       lottie-react-native:
-        specifier: 7.2.2
-        version: 7.2.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+        specifier: 7.3.2
+        version: 7.3.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1269,6 +1269,10 @@ packages:
     resolution: {integrity: sha512-lJjzvrbEeWrhB4P3QBsH7tey117PjLZnDbLiQEKjQ/fNJTjuq4HSqgFA+UNSwZT8D7dxxbnuSBMsa1lrWzKlQg==}
     engines: {node: '>=6.9.0'}
 
+  '@babel/generator@7.28.3':
+    resolution: {integrity: sha512-3lSpxGgvnmZznmBkCRnVREPUFJv2wrv9iAoFDvADJc0ypmdOxdUtcLeBgBJ6zE0PMeTKnxeQzyk0xTBq4Ep7zw==}
+    engines: {node: '>=6.9.0'}
+
   '@babel/helper-annotate-as-pure@7.27.3':
     resolution: {integrity: sha512-fXSwMQqitTGeHLBC08Eq5yXz2m37E4pJX1qAU1+2cNedz/ifv/bVXft90VeSav5nFO61EcNgwr0aJxbyPaWBPg==}
     engines: {node: '>=6.9.0'}
@@ -1362,6 +1366,11 @@ packages:
 
   '@babel/parser@7.28.0':
     resolution: {integrity: sha512-jVZGvOxOuNSsuQuLRTh13nU0AogFlw32w/MT+LV6D3sP5WdbW61E77RnkbaO2dUvmPAYrBDJXGn5gGS6tH4j8g==}
+    engines: {node: '>=6.0.0'}
+    hasBin: true
+
+  '@babel/parser@7.28.3':
+    resolution: {integrity: sha512-7+Ey1mAgYqFAx2h0RuoxcQT5+MlG3GTV0TQrgr7/ZliKsm/MNDxVVutlWaziMq7wJNAz8MTqz55XLpWvva6StA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1965,6 +1974,10 @@ packages:
 
   '@babel/traverse@7.28.0':
     resolution: {integrity: sha512-mGe7UK5wWyh0bKRfupsUchrQGqvDbZDbKJw+kcRGSmdHVYrv+ltd0pnpDTVpiTqnaBru9iEvA8pz8W46v0Amwg==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/traverse@7.28.3':
+    resolution: {integrity: sha512-7w4kZYHneL3A6NP2nxzHvT3HCZ7puDZZjFMqDpBPECub79sTtSO5CGXDkKrTQq8ksAwfD/XI2MRFX23njdDaIQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/types@7.28.2':
@@ -2941,6 +2954,9 @@ packages:
   '@jridgewell/gen-mapping@0.3.12':
     resolution: {integrity: sha512-OuLGC46TjB5BbN1dH8JULVVZY4WTdkF7tV9Ys6wLL1rubZnCMstOhNHueU5bLCrnRuDhKPDM4g6sw4Bel5Gzqg==}
 
+  '@jridgewell/gen-mapping@0.3.13':
+    resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
+
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
     engines: {node: '>=6.0.0'}
@@ -2951,8 +2967,14 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.4':
     resolution: {integrity: sha512-VT2+G1VQs/9oz078bLrYbecdZKs912zQlkelYpuf+SXF+QvZDYJlbx/LSx+meSAwdDFnF8FVXW92AVjjkVmgFw==}
 
+  '@jridgewell/sourcemap-codec@1.5.5':
+    resolution: {integrity: sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og==}
+
   '@jridgewell/trace-mapping@0.3.29':
     resolution: {integrity: sha512-uw6guiW/gcAGPDhLmd77/6lW8QLeiV5RUTsAX46Db6oLhGaVj4lhnPwb184s1bkc8kdVg/+h988dro8GRDpmYQ==}
+
+  '@jridgewell/trace-mapping@0.3.30':
+    resolution: {integrity: sha512-GQ7Nw5G2lTu/BtHTKfXhKHok2WGetd4XYcVKGx00SjAk8GMwgJM3zr6zORiPGuOE+/vkc90KtTosSSvaCjKb2Q==}
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
@@ -8867,8 +8889,8 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
-  lottie-react-native@7.2.2:
-    resolution: {integrity: sha512-pp3dnFVFZlfZzIL5qKGXju2d6RfnYhPbb8xQL9dYqvPbPy2EbnK2aFlv6jAZLYh0QjUGPEmRAgAAnsOOtT+H9Q==}
+  lottie-react-native@7.3.2:
+    resolution: {integrity: sha512-uKVGXiG3+6GvSVnVSgM1cNQTPxfylg94gc2lGHhsXvjK0NVkxF/S3qDNESJ59K5uDg4AjXlP5+tf/UhA9CEZOA==}
     peerDependencies:
       '@lottiefiles/dotlottie-react': ^0.6.5
       react: '*'
@@ -13189,6 +13211,14 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.29
       jsesc: 3.1.0
 
+  '@babel/generator@7.28.3':
+    dependencies:
+      '@babel/parser': 7.28.3
+      '@babel/types': 7.28.2
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
+      jsesc: 3.1.0
+
   '@babel/helper-annotate-as-pure@7.27.3':
     dependencies:
       '@babel/types': 7.28.2
@@ -13315,6 +13345,10 @@ snapshots:
       picocolors: 1.1.1
 
   '@babel/parser@7.28.0':
+    dependencies:
+      '@babel/types': 7.28.2
+
+  '@babel/parser@7.28.3':
     dependencies:
       '@babel/types': 7.28.2
 
@@ -14047,6 +14081,18 @@ snapshots:
       '@babel/generator': 7.28.0
       '@babel/helper-globals': 7.28.0
       '@babel/parser': 7.28.0
+      '@babel/template': 7.27.2
+      '@babel/types': 7.28.2
+      debug: 4.4.1(supports-color@5.5.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@babel/traverse@7.28.3':
+    dependencies:
+      '@babel/code-frame': 7.27.1
+      '@babel/generator': 7.28.3
+      '@babel/helper-globals': 7.28.0
+      '@babel/parser': 7.28.3
       '@babel/template': 7.27.2
       '@babel/types': 7.28.2
       debug: 4.4.1(supports-color@5.5.0)
@@ -15474,19 +15520,31 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.4
       '@jridgewell/trace-mapping': 0.3.29
 
+  '@jridgewell/gen-mapping@0.3.13':
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.5.5
+      '@jridgewell/trace-mapping': 0.3.30
+
   '@jridgewell/resolve-uri@3.1.2': {}
 
   '@jridgewell/source-map@0.3.6':
     dependencies:
-      '@jridgewell/gen-mapping': 0.3.12
-      '@jridgewell/trace-mapping': 0.3.29
+      '@jridgewell/gen-mapping': 0.3.13
+      '@jridgewell/trace-mapping': 0.3.30
 
   '@jridgewell/sourcemap-codec@1.5.4': {}
+
+  '@jridgewell/sourcemap-codec@1.5.5': {}
 
   '@jridgewell/trace-mapping@0.3.29':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.4
+
+  '@jridgewell/trace-mapping@0.3.30':
+    dependencies:
+      '@jridgewell/resolve-uri': 3.1.2
+      '@jridgewell/sourcemap-codec': 1.5.5
 
   '@jridgewell/trace-mapping@0.3.9':
     dependencies:
@@ -16402,7 +16460,7 @@ snapshots:
 
   '@react-native/codegen@0.76.9(@babel/preset-env@7.28.0(@babel/core@7.28.0))':
     dependencies:
-      '@babel/parser': 7.28.0
+      '@babel/parser': 7.28.3
       '@babel/preset-env': 7.28.0(@babel/core@7.28.0)
       glob: 7.2.3
       hermes-parser: 0.23.1
@@ -22480,7 +22538,7 @@ snapshots:
   jscodeshift@0.14.0(@babel/preset-env@7.28.0(@babel/core@7.28.0)):
     dependencies:
       '@babel/core': 7.28.0
-      '@babel/parser': 7.28.0
+      '@babel/parser': 7.28.3
       '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.28.0)
       '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.28.0)
       '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.28.0)
@@ -22983,7 +23041,7 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lottie-react-native@7.2.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
+  lottie-react-native@7.3.2(react-native@0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-native: 0.77.0(@babel/core@7.28.0)(@babel/preset-env@7.28.0(@babel/core@7.28.0))(@types/react@18.3.12)(react@18.3.1)
@@ -23165,7 +23223,7 @@ snapshots:
   metro-source-map@0.81.4:
     dependencies:
       '@babel/traverse': 7.28.0
-      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.0'
+      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.28.3'
       '@babel/types': 7.28.2
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
@@ -23191,7 +23249,7 @@ snapshots:
   metro-transform-plugins@0.81.4:
     dependencies:
       '@babel/core': 7.28.0
-      '@babel/generator': 7.28.0
+      '@babel/generator': 7.28.3
       '@babel/template': 7.27.2
       '@babel/traverse': 7.28.0
       flow-enums-runtime: 0.0.6
@@ -23202,8 +23260,8 @@ snapshots:
   metro-transform-worker@0.81.4:
     dependencies:
       '@babel/core': 7.28.0
-      '@babel/generator': 7.28.0
-      '@babel/parser': 7.28.0
+      '@babel/generator': 7.28.3
+      '@babel/parser': 7.28.3
       '@babel/types': 7.28.2
       flow-enums-runtime: 0.0.6
       metro: 0.81.4
