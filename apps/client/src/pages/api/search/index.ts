@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
       conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
 
     const queryParams = buildQueryParams(req.query);
-    const { search, type, sort, department } = req.query;
+    const { search, type, sort } = req.query;
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
 
@@ -71,16 +71,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
     ];
 
     if (sort === "theme") {
-      aggregation.push({ $sort: { themeSortIndex: 1, "metadatas.updatedAt": -1 } });
-    } else if (sort === "location" && department) {
+      aggregation.push({ $sort: { "themeSortIndex": 1, "metadatas.updatedAt": -1 } });
+    } else if (sort === "location") {
       aggregation.push({
         $addFields: {
           isLocal: {
-            $cond: { if: { $in: [department, "$metadatas.location"] }, then: 1, else: 2 },
+            $cond: { if: { $in: ["$metadatas.location"] }, then: 1, else: 2 },
           },
         },
       });
-      aggregation.push({ $sort: { isLocal: 1, "metadatas.vues": -1 } });
+      aggregation.push({ $sort: { "isLocal": 1, "metadatas.vues": -1 } });
     } else if (sort === "views") {
       aggregation.push({ $sort: { "metadatas.vues": -1 } });
     } else {
