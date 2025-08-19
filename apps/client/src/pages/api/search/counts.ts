@@ -90,8 +90,24 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
           },
           _themeIds: {
             $setUnion: [
-              { $ifNull: [{ $map: { input: { $ifNull: ["$theme", []] }, as: "t", in: { $toString: "$$t" } } }, []] },
-              { $ifNull: [{ $map: { input: { $ifNull: ["$secondaryThemes", []] }, as: "t", in: { $toString: "$$t" } } }, []] },
+              // main theme is a single ObjectId -> wrap into array if present then stringify
+              {
+                $cond: [
+                  { $ne: ["$theme", null] },
+                  [{ $toString: "$theme" }],
+                  [],
+                ],
+              },
+              // secondaryThemes is an array of ObjectIds -> stringify
+              {
+                $map: {
+                  input: { $ifNull: ["$secondaryThemes", []] },
+                  as: "t",
+                  in: { $toString: "$$t" },
+                },
+              },
+              // legacy field already an array of string ids
+              { $ifNull: ["$thematiques", []] },
             ],
           },
         },
