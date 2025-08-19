@@ -2,8 +2,8 @@ import { searchClient } from "@algolia/client-search";
 import { SimpleDispositif } from "@refugies-info/api-types";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
+import { buildBaseMatch, buildQueryParams } from "~/lib/search-helpers";
 import dbConnect from "../../../lib/db";
-import { buildBaseMatch, buildQueryParams } from "./counts";
 
 const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
 const indexName =
