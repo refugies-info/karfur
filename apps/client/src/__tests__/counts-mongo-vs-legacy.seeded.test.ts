@@ -1,14 +1,14 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose, { Connection } from "mongoose";
-import { legacyFacetCounts, LegacyNeedsItem, LegacyQuery } from "~/__fixtures__/legacyCounts";
+import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
 import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
 import {
   configureAlgoliaMockFor,
-  toLegacyQuery,
-  getAllDispositifs,
-  runFacetTests,
   generateCases,
+  getAllDispositifs,
   makeCase,
+  runFacetTests,
+  toLegacyQuery,
   type FiltersDef,
 } from "./helpers/counts-mongo-helpers";
 
@@ -43,20 +43,20 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     await seedDispositifs(conn, ids);
   });
 
-  
-  
   test("Legacy counts should match manual counts", async () => {
     const all = await getAllDispositifs(conn);
     const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
-    expect(3).toBe(legacy.total);
-    expect({ en: 1, fr: 3 }).toEqual(legacy.languages);
-    expect({ family: 1, youths: 1, senior: 1 }).toEqual(legacy.publics);
-    expect({ asile: 1, apatride: 1, refugie: 1, subsidiaire: 1, temporaire: 1 }).toEqual(legacy.statuses);
-    expect({ a: 2, b: 1 }).toEqual(legacy.frenchLevels);
-    expect({ "+25": 1, "-18": 1, "18-25": 1 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 3, "64a0000000000000000000b2": 2 }).toEqual(legacy.themes);
-    expect({ "64b0000000000000000000a1": 2, "64b0000000000000000000a2": 1, "64b0000000000000000000b1": 1 }).toEqual(
+    expect(24).toBe(legacy.total);
+    expect({ en: 2, fr: 24 }).toEqual(legacy.languages);
+    expect({ family: 10, youths: 7, senior: 8 }).toEqual(legacy.publics);
+    expect({ asile: 20, apatride: 1, french: 2, refugie: 2, subsidiaire: 2, temporaire: 1 }).toEqual(legacy.statuses);
+    expect({ a: 13, b: 11, c: 1 }).toEqual(legacy.frenchLevels);
+    expect({ "+25": 2, "-18": 1, "18-25": 20 }).toEqual(legacy.ageRanges);
+    expect({ "64a0000000000000000000a1": 11, "64a0000000000000000000b2": 10, "64a0000000000000000000c3": 8 }).toEqual(
+      legacy.themes,
+    );
+    expect({ "64b0000000000000000000a1": 8, "64b0000000000000000000a2": 2, "64b0000000000000000000b1": 2 }).toEqual(
       legacy.needs,
     );
   });
@@ -77,7 +77,6 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     );
   });
 
-  
   // Seeded dataset cases
   const seededFilters: FiltersDef = {
     departments: ["75"],
