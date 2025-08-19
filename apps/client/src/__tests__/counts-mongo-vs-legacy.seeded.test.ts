@@ -65,14 +65,14 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     const all = await getAllDispositifs(conn);
     const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
-    expect(2).toBe(legacy.total);
-    expect({ en: 1, fr: 2 }).toEqual(legacy.languages);
-    expect({ youths: 1, senior: 1 }).toEqual(legacy.publics);
-    expect({ asile: 1, apatride: 1, refugie: 1, temporaire: 1 }).toEqual(legacy.statuses);
-    expect({ a: 2, b: 1 }).toEqual(legacy.frenchLevels);
-    expect({ "+25": 1, "-18": 1 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 2, "64a0000000000000000000b2": 2 }).toEqual(legacy.themes);
-    expect({ "64b0000000000000000000a1": 1, "64b0000000000000000000a2": 1, "64b0000000000000000000b1": 1 }).toEqual(
+    expect(13).toBe(legacy.total);
+    expect({ en: 1, fr: 13 }).toEqual(legacy.languages);
+    expect({ youths: 4, senior: 4, family: 5 }).toEqual(legacy.publics);
+    expect({ asile: 12, apatride: 1, refugie: 2, temporaire: 1, subsidiaire: 1 }).toEqual(legacy.statuses);
+    expect({ a: 13, b: 11, c: 1 }).toEqual(legacy.frenchLevels);
+    expect({ "+25": 2, "-18": 1, "18-25": 11 }).toEqual(legacy.ageRanges);
+    expect({ "64a0000000000000000000a1": 6, "64a0000000000000000000b2": 6, "64a0000000000000000000c3": 4 }).toEqual(legacy.themes);
+    expect({ "64b0000000000000000000a1": 4, "64b0000000000000000000a2": 2, "64b0000000000000000000b1": 1 }).toEqual(
       legacy.needs,
     );
   });
