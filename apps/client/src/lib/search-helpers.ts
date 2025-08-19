@@ -52,7 +52,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   sort: typeof query.sort === "string" ? query.sort : undefined,
 });
 
-export const buildBaseMatch = (queryParams: QueryParams, algoliaIds?: string[]): any => {
+export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaIds?: string[]): any => {
   const match: any = { status: "Actif" };
 
   if (algoliaIds) {
