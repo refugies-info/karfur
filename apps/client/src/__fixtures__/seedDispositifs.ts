@@ -118,6 +118,8 @@ export const DispositifSchema = new mongoose.Schema(
           "online",
         ],
       },
+      vues: Number,
+      updatedAt: Date,
       frenchLevel: [{ type: String, enum: ["alpha", "A1", "A2", "B1", "B2", "C1", "C2"] }],
       public: [{ type: String, enum: ["family", "women", "youths", "senior", "gender"] }],
       // Field used by counts.ts to filter refugee statuses
@@ -151,6 +153,7 @@ export const DispositifSchema = new mongoose.Schema(
   { collection: "dispositifs" },
 );
 
+
 export const makeSeedIds = (): SeedIds => ({
   themeA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
   themeB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
@@ -167,8 +170,17 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   const { themeA, themeB, needA1, needA2, needB1 } = ids as any;
   const themeC = (ids as any).themeC as mongoose.Types.ObjectId | undefined;
   const Dispositif = conn.model("Dispositif");
+  
+  // Create theme documents with positions for theme sorting
+  const Theme = conn.model("Theme") || conn.model("Theme", new mongoose.Schema({ position: Number, name: String }, { collection: "themes" }));
+  await Theme.insertMany([
+    { _id: themeA, position: 1, name: "Langues et intégration" },
+    { _id: themeB, position: 3, name: "Numérique et compétences" },
+    { _id: themeC, position: 2, name: "Emploi et formation" },
+  ]);
+
   const base = [
-    // Paris (75), FR/EN, public: [jeunes], french A1, themeA, needs [A1,A2], age 16-25
+    // Enhanced existing items with views and timestamps
     {
       theme: themeA,
       needs: [needA1, needA2],
@@ -184,6 +196,8 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         public: ["youths"],
         publicStatus: ["asile", "refugie"],
         age: { type: "between", ages: [0, 17] },
+        vues: 150,
+        updatedAt: new Date("2024-01-15"),
       },
       translations: {
         en: {
@@ -198,7 +212,6 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       status: "Actif",
       typeContenu: "dispositif",
     },
-    // Hauts-de-Seine (92), FR only, public: [familles], french B1, themeA, needs [A1], age 26-64
     {
       theme: themeA,
       needs: [needA1],
@@ -214,6 +227,8 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         public: ["family"],
         publicStatus: ["subsidiaire"],
         age: { type: "between", ages: [18, 25] },
+        vues: 89,
+        updatedAt: new Date("2024-02-20"),
       },
       translations: {
         fr: {
@@ -224,7 +239,6 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       status: "Actif",
       typeContenu: "dispositif",
     },
-    // Paris (75), FR, public: [seniors], french A2, themeB, needs [B1], age 65+
     {
       theme: themeB,
       needs: [needB1],
@@ -240,6 +254,8 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         public: ["senior"],
         publicStatus: ["apatride", "temporaire"],
         age: { type: "moreThan", ages: [24] },
+        vues: 234,
+        updatedAt: new Date("2024-03-10"),
       },
       translations: {
         fr: {
@@ -250,17 +266,122 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       status: "Actif",
       typeContenu: "dispositif",
     },
+    // Additional items for comprehensive testing
+    {
+      theme: themeC,
+      needs: [needB1],
+      secondaryThemes: [themeA, themeB],
+      title: "Formation professionnelle en ligne",
+      name: "Centre de Formation Digital",
+      titreMarque: "Digital Pro",
+      abstract: "Cours professionnels en ligne pour adultes.",
+      sponsorName: "Région Île-de-France",
+      metadatas: {
+        location: "online",
+        frenchLevel: ["B2"],
+        public: ["family", "senior"],
+        publicStatus: ["french"],
+        age: { type: "between", ages: [25, 64] },
+        vues: 567,
+        updatedAt: new Date("2024-01-30"),
+      },
+      translations: {
+        fr: { title: "Formation professionnelle en ligne", abstract: "Cours professionnels en ligne pour adultes." },
+        en: { title: "Online professional training", abstract: "Professional online courses for adults." },
+      },
+      status: "Actif",
+      typeContenu: "online",
+    },
+    {
+      theme: themeA,
+      needs: [needA2],
+      secondaryThemes: [themeC],
+      title: "Démarche administrative en ligne",
+      name: "Service Démarches",
+      titreMarque: "Admin Express",
+      abstract: "Guide en ligne pour démarches administratives.",
+      sponsorName: "État français",
+      metadatas: {
+        location: "online",
+        frenchLevel: ["A2", "B1"],
+        public: ["family"],
+        publicStatus: ["asile", "refugie", "subsidiaire"],
+        age: { type: "moreThan", ages: [17] },
+        vues: 1234,
+        updatedAt: new Date("2024-03-05"),
+      },
+      translations: {
+        fr: { title: "Démarche administrative en ligne", abstract: "Guide en ligne pour démarches administratives." },
+      },
+      status: "Actif",
+      typeContenu: "demarche",
+    },
+    // Edge case items
+    {
+      theme: themeB,
+      needs: [needA1],
+      title: "Cours intensif C1 pour professionnels",
+      name: "Institut Linguistique",
+      titreMarque: "Pro Lingua",
+      abstract: "Formation intensive niveau avancé pour cadres.",
+      sponsorName: "Entreprise Plus",
+      metadatas: {
+        location: "13 - Bouches-du-Rhône",
+        frenchLevel: ["C1"],
+        public: ["family"],
+        publicStatus: ["french"],
+        age: { type: "between", ages: [25, 65] },
+        vues: 45,
+        updatedAt: new Date("2024-02-28"),
+      },
+      translations: {
+        fr: { title: "Cours intensif C1 pour professionnels", abstract: "Formation intensive niveau avancé pour cadres." },
+      },
+      status: "Actif",
+      typeContenu: "dispositif",
+    },
+    // Pagination test items (create 20+ items)
+    ...Array.from({ length: 18 }, (_, i) => ({
+      theme: i % 3 === 0 ? themeA : i % 3 === 1 ? themeB : themeC,
+      needs: [needA1],
+      title: `Formation ${i + 6} - ${i % 2 === 0 ? "Paris" : "Lyon"}`,
+      name: `Organisation ${String.fromCharCode(65 + i)}`,
+      titreMarque: `Brand ${i + 1}`,
+      abstract: `Description de la formation ${i + 6}`,
+      sponsorName: `Sponsor ${i + 1}`,
+      metadatas: {
+        location: i % 2 === 0 ? "75 - Paris" : "69 - Rhône",
+        frenchLevel: [i % 4 === 0 ? "A1" : i % 4 === 1 ? "A2" : i % 4 === 2 ? "B1" : "B2"],
+        public: [i % 3 === 0 ? "youths" : i % 3 === 1 ? "family" : "senior"],
+        publicStatus: ["asile"],
+        age: { type: "between", ages: [18, 25] },
+        vues: 50 + i * 10,
+        updatedAt: new Date(2024, 2, 15 + i),
+      },
+      translations: {
+        fr: { title: `Formation ${i + 6}`, abstract: `Description de la formation ${i + 6}` },
+      },
+      status: "Actif",
+      typeContenu: i % 3 === 0 ? "dispositif" : i % 3 === 1 ? "demarche" : "online",
+    })),
     // Inactive entry should be filtered out globally
     {
       theme: themeB,
       needs: [needB1],
       secondaryThemes: [],
+      title: "Cours de français A1 pour jeunes à Paris",
+      name: "Association Langues Paris",
+      titreMarque: "Langues&Co",
+      abstract: "Ateliers hebdomadaires de français niveau débutant pour les 16-25 ans.",
+      sponsorName: "Ville de Paris",
       metadatas: {
         location: "75 - Paris",
         frenchLevel: ["A1"],
         public: ["youths"],
         publicStatus: ["french"],
         age: { type: "between", ages: [18, 25] },
+        vues: 100,
+        updatedAt: new Date("2024-01-01"),
       },
       translations: {
         fr: {
