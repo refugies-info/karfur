@@ -153,7 +153,6 @@ export const DispositifSchema = new mongoose.Schema(
   { collection: "dispositifs" },
 );
 
-
 export const makeSeedIds = (): SeedIds => ({
   themeA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
   themeB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
@@ -170,14 +169,22 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   const { themeA, themeB, needA1, needA2, needB1 } = ids as any;
   const themeC = (ids as any).themeC as mongoose.Types.ObjectId | undefined;
   const Dispositif = conn.model("Dispositif");
-  
+
   // Create theme documents with positions for theme sorting
-  const Theme = conn.model("Theme") || conn.model("Theme", new mongoose.Schema({ position: Number, name: String }, { collection: "themes" }));
-  await Theme.insertMany([
-    { _id: themeA, position: 1, name: "Langues et intégration" },
-    { _id: themeB, position: 3, name: "Numérique et compétences" },
-    { _id: themeC, position: 2, name: "Emploi et formation" },
-  ]);
+  // Only create theme documents if Theme model exists (for search index testing)
+  try {
+    const Theme = conn.model("Theme");
+    if (Theme) {
+      await Theme.insertMany([
+        { _id: themeA, position: 1, name: "Langues et intégration" },
+        { _id: themeB, position: 3, name: "Numérique et compétences" },
+        { _id: themeC, position: 2, name: "Emploi et formation" },
+      ]);
+    }
+  } catch (error) {
+    // Theme model doesn't exist in legacy tests, skip theme creation gracefully
+    // This is expected behavior for legacy tests that don't register the Theme model
+  }
 
   const base = [
     // Enhanced existing items with views and timestamps
@@ -335,7 +342,10 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         updatedAt: new Date("2024-02-28"),
       },
       translations: {
-        fr: { title: "Cours intensif C1 pour professionnels", abstract: "Formation intensive niveau avancé pour cadres." },
+        fr: {
+          title: "Cours intensif C1 pour professionnels",
+          abstract: "Formation intensive niveau avancé pour cadres.",
+        },
       },
       status: "Actif",
       typeContenu: "dispositif",
