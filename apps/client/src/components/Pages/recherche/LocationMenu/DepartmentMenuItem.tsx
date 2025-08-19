@@ -1,7 +1,9 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Checkbox from "~/components/UI/Checkbox";
+import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { getDepartmentCodeFromName } from "~/lib/departments";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./DepartmentMenuItem.module.css";
@@ -13,6 +15,7 @@ interface Props {
 const DepartmentMenuItem: React.FC<Props> = ({ dep }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const stylesDisabled = useStylesDisabled();
 
   const removeDepartement = useCallback(() => {
     const departments = query.departments.filter((d) => d !== dep);
@@ -26,9 +29,20 @@ const DepartmentMenuItem: React.FC<Props> = ({ dep }) => {
 
   return (
     <div className={styles.item} onClick={(e) => e.preventDefault()}>
-      <Checkbox checked={true} onChange={removeDepartement}>
-        {dep} {getDepartmentCodeFromName(dep)}
-      </Checkbox>
+      {stylesDisabled ? (
+        <span
+          onClick={removeDepartement}
+          onKeyDown={(e) => onEnterOrSpace(e, removeDepartement)}
+          role="button"
+          tabIndex={0}
+        >
+          [x] {dep} {getDepartmentCodeFromName(dep)}
+        </span>
+      ) : (
+        <Checkbox checked={true} onChange={removeDepartement}>
+          {dep} {getDepartmentCodeFromName(dep)}
+        </Checkbox>
+      )}
     </div>
   );
 };

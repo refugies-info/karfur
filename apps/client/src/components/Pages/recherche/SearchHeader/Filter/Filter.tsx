@@ -179,17 +179,8 @@ const Filter = ({
                       const isDisabled = option.count === 0;
                       return (
                         <span key={option.key}>
-                          <input
-                            type="checkbox"
-                            id={`MenuItemTooltip${o}`}
-                            onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
-                            tabIndex={0}
-                            checked={isSelected}
-                            disabled={isDisabled}
-                            aria-checked={isSelected}
-                            aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
-                          />
                           <span onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
+                            {isSelected ? "[x]" : "[ ]"}{" "}
                             {currentmenu.translateOptions ? t(option.value) : option.value}
                           </span>{" "}
                           <small>

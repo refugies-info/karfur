@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";
 import { useSearchEventName } from "~/hooks";
+import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -24,6 +26,7 @@ const AllNeedsItem: React.FC<Props> = ({ themeId }) => {
   const dispatch = useDispatch();
   const allNeeds = useSelector(needsSelector);
   const eventName = useSearchEventName();
+  const stylesDisabled = useStylesDisabled();
 
   let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
   const needsFromCurrentTheme = useMemo(
@@ -60,10 +63,23 @@ const AllNeedsItem: React.FC<Props> = ({ themeId }) => {
 
   return (
     <div className={cls(styles.container)}>
-      <Checkbox checked={selected} onChange={() => toggleNeeds()}>
-        <span className={styles.label}>{t("Recherche.all", "Tous")}</span>
-        <span className={styles.count}>{selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""}</span>
-      </Checkbox>
+      {stylesDisabled ? (
+        <span
+          onClick={toggleNeeds}
+          onKeyDown={(e) => onEnterOrSpace(e, toggleNeeds)}
+          role="button"
+          tabIndex={0}
+          className={styles.label}
+        >
+          {selected ? "[x]" : "[ ]"} {t("Recherche.all", "Tous")}
+          <span className={styles.count}>{selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""}</span>
+        </span>
+      ) : (
+        <Checkbox checked={selected} onChange={toggleNeeds}>
+          <span className={styles.label}>{t("Recherche.all", "Tous")}</span>
+          <span className={styles.count}>{selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""}</span>
+        </Checkbox>
+      )}
     </div>
   );
 };

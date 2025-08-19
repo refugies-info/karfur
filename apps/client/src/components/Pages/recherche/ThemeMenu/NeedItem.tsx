@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import Checkbox from "~/components/UI/Checkbox";
 import { useLocale, useSearchEventName } from "~/hooks";
+import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -22,6 +24,8 @@ const NeedItem: React.FC<Props> = ({ need }) => {
   const allNeeds = useSelector(needsSelector);
   const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
   const eventName = useSearchEventName();
+  const stylesDisabled = useStylesDisabled();
+  const action = () => selectNeed(need._id);
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
@@ -46,10 +50,23 @@ const NeedItem: React.FC<Props> = ({ need }) => {
 
   const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
 
-  return (
+  return stylesDisabled ? (
+    <div
+      className={styles.container}
+      onClick={action}
+      onKeyDown={(e) => onEnterOrSpace(e, action)}
+      role="button"
+      tabIndex={0}
+    >
+      <span className={styles.label}>
+        {selected ? "[x]" : "[ ]"} {need[locale]?.text || ""}
+      </span>{" "}
+      <span className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</span>
+    </div>
+  ) : (
     <Checkbox
       checked={selected}
-      onChange={() => selectNeed(need._id)}
+      onChange={action}
       className={styles.container}
       labelClassName={styles.labelWrapper}
     >
