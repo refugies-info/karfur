@@ -1,6 +1,7 @@
 import type { Connection } from "mongoose";
-import { LegacyQuery } from "~/__fixtures__/legacyCounts";
-import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
+import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/legacyCounts";
+import { QueryParams } from "~/lib/search-helpers";
+import { computeSearchCounts } from "~/pages/api/search/counts";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -114,11 +115,7 @@ export const runFacetTests = (
       const api = await computeSearchCounts(conn, params);
 
       const all = await getAllDispositifs(conn);
-      const legacy = (await import("~/__fixtures__/legacyCounts")).legacyFacetCounts(
-        all as any,
-        needsList,
-        toLegacyQuery(c.legacy),
-      );
+      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery(c.legacy));
 
       expectCountsEqual(api, legacy);
     });
@@ -154,8 +151,13 @@ export const generateCases = (options: {
   // When true, the single "needs" case will also add the provided theme id in params
   needsSinglesIncludeThemeId?: string | null;
 }): Array<{ name: string; params: Partial<QueryParams> }> => {
-  const { filters, includeZero = false, maxCombinationSize = 1, searchTerm = null, needsSinglesIncludeThemeId = null } =
-    options;
+  const {
+    filters,
+    includeZero = false,
+    maxCombinationSize = 1,
+    searchTerm = null,
+    needsSinglesIncludeThemeId = null,
+  } = options;
 
   const entries = Object.entries(filters);
   const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
@@ -181,7 +183,10 @@ export const generateCases = (options: {
   if (includeZero) {
     cases.push({ name: "baseline: totals and facets match (no filters)", params: {} });
     if (searchTerm) {
-      cases.push({ name: "search facet matches legacy when search filter applied (skip search)", params: { search: searchTerm } });
+      cases.push({
+        name: "search facet matches legacy when search filter applied (skip search)",
+        params: { search: searchTerm },
+      });
     }
   }
 
