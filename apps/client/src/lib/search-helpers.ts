@@ -78,7 +78,10 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   const needs = (queryParams.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (needs.length > 0) {
     const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
-    match.$or = (match.$or || []).concat([{ needs: { $in: needIds } }]);
+    // Legacy behavior: needs are filtered by their parent theme matching dispositif themes
+    // This is handled in the aggregation pipeline, not in the match stage
+    // For now, just filter by needs IDs - the theme filtering happens during facet computation
+    match.needs = { $in: needIds };
   }
 
   const ages = (queryParams.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");

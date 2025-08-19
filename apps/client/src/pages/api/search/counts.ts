@@ -88,9 +88,31 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
           _allNeeds: {
             $ifNull: ["$needs", []],
           },
+          _themeIds: {
+            $setUnion: [
+              { $ifNull: [{ $map: { input: { $ifNull: ["$theme", []] }, as: "t", in: { $toString: "$$t" } } }, []] },
+              { $ifNull: [{ $map: { input: { $ifNull: ["$secondaryThemes", []] }, as: "t", in: { $toString: "$$t" } } }, []] },
+            ],
+          },
         },
       },
       { $unwind: "$_allNeeds" },
+      {
+        $lookup: {
+          from: "needs",
+          localField: "_allNeeds",
+          foreignField: "_id",
+          as: "needDoc",
+        },
+      },
+      { $unwind: "$needDoc" },
+      {
+        $match: {
+          $expr: {
+            $in: [{ $toString: "$needDoc.theme" }, "$_themeIds"],
+          },
+        },
+      },
       { $group: { _id: "$_allNeeds", count: { $sum: 1 } } },
     ],
     frenchLevels: [
