@@ -2,6 +2,19 @@ import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/se
 import mongoose from "mongoose";
 import { ParsedUrlQuery } from "querystring";
 
+interface SearchQuery extends ParsedUrlQuery {
+  search?: string;
+  departments?: string | string[];
+  themes?: string | string[];
+  needs?: string | string[];
+  age?: string | string[];
+  frenchLevel?: string | string[];
+  public?: string | string[];
+  status?: string | string[];
+  language?: string | string[];
+  sort?: string;
+}
+
 export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
   return Array.isArray(param) ? param : [param];
@@ -20,7 +33,7 @@ export interface QueryParams {
   sort?: string;
 }
 
-export const buildQueryParams = (query: ParsedUrlQuery): QueryParams => ({
+export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   search: typeof query.search === "string" ? query.search : undefined,
   departments: getQueryParamAsArray(query.departments),
   themes: getQueryParamAsArray(query.themes),
