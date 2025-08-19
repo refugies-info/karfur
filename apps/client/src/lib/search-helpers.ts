@@ -1,5 +1,6 @@
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
+import { ParsedUrlQuery } from "querystring";
 
 export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
@@ -19,7 +20,7 @@ export interface QueryParams {
   sort?: string;
 }
 
-export const buildQueryParams = (query: any): QueryParams => ({
+export const buildQueryParams = (query: ParsedUrlQuery): QueryParams => ({
   search: typeof query.search === "string" ? query.search : undefined,
   departments: getQueryParamAsArray(query.departments),
   themes: getQueryParamAsArray(query.themes),
