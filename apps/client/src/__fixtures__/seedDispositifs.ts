@@ -187,15 +187,21 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   }
 
   // Create needs documents for the aggregation pipeline lookup
+  // Important: conn.model("Need") throws if not registered; make sure we register a minimal model
   try {
-    const Need = conn.model("Need") || conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    await Need.insertMany([
+    let NeedModel: mongoose.Model<any>;
+    try {
+      NeedModel = conn.model("Need");
+    } catch (e) {
+      NeedModel = conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
+    }
+    await NeedModel.insertMany([
       { _id: needA1, theme: themeA },
       { _id: needA2, theme: themeA },
       { _id: needB1, theme: themeB },
     ]);
   } catch (error) {
-    // Handle any errors in needs creation
+    // Handle any errors in needs creation without failing the seed step
   }
 
   const base = [
