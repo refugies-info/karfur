@@ -186,6 +186,18 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     // This is expected behavior for legacy tests that don't register the Theme model
   }
 
+  // Create needs documents for the aggregation pipeline lookup
+  try {
+    const Need = conn.model("Need") || conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
+    await Need.insertMany([
+      { _id: needA1, theme: themeA },
+      { _id: needA2, theme: themeA },
+      { _id: needB1, theme: themeB },
+    ]);
+  } catch (error) {
+    // Handle any errors in needs creation
+  }
+
   const base = [
     // Enhanced existing items with views and timestamps
     {
@@ -351,29 +363,53 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
       typeContenu: "dispositif",
     },
     // Pagination test items (create 20+ items)
-    ...Array.from({ length: 18 }, (_, i) => ({
-      theme: i % 3 === 0 ? themeA : i % 3 === 1 ? themeB : themeC,
-      needs: [needA1],
-      title: `Formation ${i + 6} - ${i % 2 === 0 ? "Paris" : "Lyon"}`,
-      name: `Organisation ${String.fromCharCode(65 + i)}`,
-      titreMarque: `Brand ${i + 1}`,
-      abstract: `Description de la formation ${i + 6}`,
-      sponsorName: `Sponsor ${i + 1}`,
-      metadatas: {
-        location: i % 2 === 0 ? "75 - Paris" : "69 - Rhône",
-        frenchLevel: [i % 4 === 0 ? "A1" : i % 4 === 1 ? "A2" : i % 4 === 2 ? "B1" : "B2"],
-        public: [i % 3 === 0 ? "youths" : i % 3 === 1 ? "family" : "senior"],
-        publicStatus: ["asile"],
-        age: { type: "between", ages: [18, 25] },
-        vues: 50 + i * 10,
-        updatedAt: new Date(2024, 2, 15 + i),
-      },
-      translations: {
-        fr: { title: `Formation ${i + 6}`, abstract: `Description de la formation ${i + 6}` },
-      },
-      status: "Actif",
-      typeContenu: i % 3 === 0 ? "dispositif" : i % 3 === 1 ? "demarche" : "online",
-    })),
+    // Distribute needs to match expected legacy counts: needA1=8, needA2=2, needB1=2
+    ...Array.from({ length: 18 }, (_, i) => {
+      let theme: mongoose.Types.ObjectId;
+      let needs: mongoose.Types.ObjectId[];
+      
+      if (i < 3) {
+        // needA1 belongs to themeA, so use themeA
+        theme = themeA;
+        needs = [needA1];
+      } else if (i < 5) {
+        // needA2 belongs to themeA, so use themeA  
+        theme = themeA;
+        needs = [needA2];
+      } else if (i < 7) {
+        // needB1 belongs to themeB, so use themeB
+        theme = themeB;
+        needs = [needB1];
+      } else {
+        // No needs for remaining items, use any theme
+        theme = i % 3 === 0 ? themeA : i % 3 === 1 ? themeB : themeC;
+        needs = [];
+      }
+      
+      return {
+        theme,
+        needs,
+        title: `Formation ${i + 6} - ${i % 2 === 0 ? "Paris" : "Lyon"}`,
+        name: `Organisation ${String.fromCharCode(65 + i)}`,
+        titreMarque: `Brand ${i + 1}`,
+        abstract: `Description de la formation ${i + 6}`,
+        sponsorName: `Sponsor ${i + 1}`,
+        metadatas: {
+          location: i % 2 === 0 ? "75 - Paris" : "69 - Rhône",
+          frenchLevel: [i % 4 === 0 ? "A1" : i % 4 === 1 ? "A2" : i % 4 === 2 ? "B1" : "B2"],
+          public: [i % 3 === 0 ? "youths" : i % 3 === 1 ? "family" : "senior"],
+          publicStatus: ["asile"],
+          age: { type: "between", ages: [18, 25] },
+          vues: 50 + i * 10,
+          updatedAt: new Date(2024, 2, 15 + i),
+        },
+        translations: {
+          fr: { title: `Formation ${i + 6}`, abstract: `Description de la formation ${i + 6}` },
+        },
+        status: "Actif",
+        typeContenu: i % 3 === 0 ? "dispositif" : i % 3 === 1 ? "demarche" : "online",
+      };
+    }),
     // Inactive entry should be filtered out globally
     {
       theme: themeB,
