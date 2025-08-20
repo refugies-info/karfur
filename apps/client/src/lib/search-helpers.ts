@@ -70,18 +70,24 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   }
 
   const themes = (queryParams.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (themes.length > 0) {
-    const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
-    match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
-  }
-
   const needs = (queryParams.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (needs.length > 0) {
+  if (themes.length > 0 && needs.length > 0) {
+    // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
+    // a record matches if it has the theme OR the need (not both).
+    const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
     const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
-    // Legacy behavior: needs are filtered by their parent theme matching dispositif themes
-    // This is handled in the aggregation pipeline, not in the match stage
-    // For now, just filter by needs IDs - the theme filtering happens during facet computation
-    match.needs = { $in: needIds };
+    match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }, { needs: { $in: needIds } }]);
+  } else {
+    if (themes.length > 0) {
+      const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
+      match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
+    }
+
+    if (needs.length > 0) {
+      const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
+      // Legacy behavior note: parent theme alignment is handled at aggregation time where needed
+      match.needs = { $in: needIds };
+    }
   }
 
   const ages = (queryParams.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
