@@ -1,15 +1,8 @@
-import { searchClient } from "@algolia/client-search";
 import { SimpleDispositif } from "@refugies-info/api-types";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
-import { buildBaseMatch, buildQueryParams } from "~/lib/search-helpers";
+import { buildBaseMatch, buildQueryParams, getSearchClient } from "~/lib/search-helpers";
 import dbConnect from "../../../lib/db";
-
-const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
-const indexName =
-  (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
-    ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
-    : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
 
 export interface SearchResponse {
   results: SimpleDispositif[];
@@ -39,6 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
 
     let algoliaIds: string[] | undefined = undefined;
     if (search && typeof search === "string") {
+      const { algoliaClient, indexName } = getSearchClient();
       const searchResults = await algoliaClient.searchSingleIndex({
         indexName,
         searchParams: {

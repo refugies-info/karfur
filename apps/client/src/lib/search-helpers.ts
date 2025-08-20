@@ -1,3 +1,4 @@
+import { searchClient } from "@algolia/client-search";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
 import { ParsedUrlQuery } from "querystring";
@@ -184,4 +185,14 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   }
 
   return match;
+};
+
+export const getSearchClient = () => {
+  const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
+  const indexName =
+    (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
+      ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
+      : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
+
+  return { algoliaClient, indexName };
 };

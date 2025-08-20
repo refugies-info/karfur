@@ -1,16 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { searchClient } from "@algolia/client-search";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
-import { buildBaseMatch, buildQueryParams, QueryParams } from "~/lib/search-helpers";
-import dbConnect from "../../../lib/db";
-
-// Initialize Algolia client
-const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
-const indexName =
-  (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
-    ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
-    : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
+import { buildBaseMatch, buildQueryParams, getSearchClient, QueryParams } from "~/lib/search-helpers";
+import dbConnect from "~/lib/db";
 
 // Define types locally
 interface CountItem {
@@ -44,6 +36,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
 
   let algoliaIds: string[] | undefined = undefined;
   if (queryParams.search) {
+    const { algoliaClient, indexName } = getSearchClient();
     const searchResults = await algoliaClient.searchSingleIndex({
       indexName,
       searchParams: {
