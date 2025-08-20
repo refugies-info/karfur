@@ -1,6 +1,7 @@
 import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
 import { LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { DispositifSchema, makeNeedsList, makeSeedIds } from "~/__fixtures__/seedDispositifs";
+import { makeSeedIds, makeNeedsList } from "~/__fixtures__/seedDispositifs";
+import { TestSchemas } from "~/__tests__/helpers/test-schemas";
 import {
   generateCases,
   makeCase,
@@ -22,7 +23,7 @@ describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
 
   beforeAll(async () => {
-    setup = await setupMongoTest(DispositifSchema);
+    setup = await setupMongoTest();
   });
 
   afterAll(async () => {

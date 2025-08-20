@@ -225,33 +225,39 @@ export const generateCases = (options: {
 export interface TestSetup {
   mongod: any;
   conn: Connection;
+  models: any;
+  closeDatabase: () => Promise<void>;
 }
+
+import { registerTestSchemas } from "./test-schemas";
 
 /**
  * Sets up a MongoDB memory server and connection for testing
- * @param schema The Mongoose schema to register
- * @param modelName The name of the model to register (default: "Dispositif")
+ * Registers all required test schemas (Theme, Need, Dispositif)
  * @returns Promise resolving to test setup object
  */
-export const setupMongoTest = async (
-  schema: any = null,
-  modelName: string = "Dispositif"
-): Promise<TestSetup> => {
+export const setupMongoTest = async (): Promise<TestSetup> => {
   const { MongoMemoryServer } = require("mongodb-memory-server");
   const mongoose = require("mongoose");
   
   const mongod = await MongoMemoryServer.create();
   const conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
   
-  // Register model on this connection
-  if (schema) {
-    conn.model(modelName, schema);
-  }
-  
-  // Configure Algolia mock to search in Mongo across simplified indexed fields
+  // Register all test schemas on this connection
+  const models = registerTestSchemas(conn);
+
+  // Configure Algolia mock for the connection
   configureAlgoliaMockFor(conn);
-  
-  return { mongod, conn };
+
+  return {
+    conn,
+    mongod,
+    models,
+    closeDatabase: async () => {
+      await conn.close();
+      await mongod.stop();
+    },
+  };
 };
 
 /**

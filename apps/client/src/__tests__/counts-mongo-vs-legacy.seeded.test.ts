@@ -1,5 +1,6 @@
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
+import { makeSeedIds, makeNeedsList, seedDispositifs } from "~/__fixtures__/seedDispositifs";
+import { TestSchemas } from "~/__tests__/helpers/test-schemas";
 import {
   generateCases,
   getAllDispositifs,
@@ -23,7 +24,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
 
   beforeAll(async () => {
-    setup = await setupMongoTest(DispositifSchema);
+    setup = await setupMongoTest();
   });
 
   afterAll(async () => {
