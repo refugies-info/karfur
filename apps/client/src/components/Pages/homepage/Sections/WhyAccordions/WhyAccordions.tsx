@@ -122,6 +122,7 @@ const WhyAccordions = (props: Props) => {
       <h2 className="mb-20">{t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}</h2>
       <Accordion
         items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
+        name="why-accordions"
         withImages
         initOpen
         multiOpen={!!isTablet}

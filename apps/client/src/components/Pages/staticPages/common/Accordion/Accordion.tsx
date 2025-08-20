@@ -28,6 +28,7 @@ type Item = {
 
 interface Props {
   items: Item[];
+  name: string;
   withImages?: boolean; // not compatible with multi open
   multiOpen?: boolean;
   initOpen?: boolean;
@@ -37,11 +38,11 @@ interface Props {
 
 const Accordion = (props: Props) => {
   const { finalityConsent } = useConsent();
-  const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
+  const [open, setOpen] = useState<string[]>(props.initOpen ? [`${props.name}-0`] : []);
   const { isTablet } = useWindowSize();
 
-  const isOpen = (index: number) => {
-    return open.includes(index);
+  const isOpen = (value: string) => {
+    return open.includes(value);
   };
 
   const getMedia = (type: "image" | "video" | "youtube", item: Item) => {
@@ -81,11 +82,19 @@ const Accordion = (props: Props) => {
   return (
     <div className={cn("flex gap-20", props.className)}>
       <div className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}>
-        <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
+        <AccordionRoot
+          multiOpen={props.multiOpen}
+          initOpen={props.initOpen}
+          setOpen={setOpen}
+          name={props.name}
+          nbItems={props.items.length}
+        >
           {props.items.map((item, i) => {
-            const isItemOpen = isOpen(i);
+            const value = `${props.name}-${i}`;
+            const isItemOpen = isOpen(value);
+
             return (
-              <AccordionRadix.Item key={i} value={i.toString()} className={cn(item.className)}>
+              <AccordionRadix.Item key={i} value={value} className={cn(item.className)}>
                 <AccordionRadix.Header className="!mb-0">
                   <AccordionRadix.Trigger
                     className={cn(
@@ -153,12 +162,15 @@ const Accordion = (props: Props) => {
           className={cn(
             "flex w-1/2 items-center",
             props.mediaAlign === "center" ? "justify-center" : "justify-end",
-            props.items[open[0]]?.className,
+            props.items[Number.parseInt(open[0].split("-")[1])]?.className,
           )}
         >
-          {props.items[open[0]]?.image && getMedia("image", props.items[open[0]])}
-          {props.items[open[0]]?.video && getMedia("video", props.items[open[0]])}
-          {props.items[open[0]]?.youtube && getMedia("youtube", props.items[open[0]])}
+          {props.items[Number.parseInt(open[0].split("-")[1])]?.image &&
+            getMedia("image", props.items[Number.parseInt(open[0].split("-")[1])])}
+          {props.items[Number.parseInt(open[0].split("-")[1])]?.video &&
+            getMedia("video", props.items[Number.parseInt(open[0].split("-")[1])])}
+          {props.items[Number.parseInt(open[0].split("-")[1])]?.youtube &&
+            getMedia("youtube", props.items[Number.parseInt(open[0].split("-")[1])])}
         </div>
       )}
     </div>

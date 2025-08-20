@@ -123,6 +123,7 @@ const RecensezVotreAction = (props: Props) => {
           <div className="fr-container">
             <Title2 className="!text-left">Pourquoi recenser mon action sur Réfugiés.info ?</Title2>
             <Accordion
+              name="why-accordion"
               items={[
                 {
                   title: "Bénéficiez d'un outil gratuit et traduit",
@@ -374,6 +375,7 @@ const RecensezVotreAction = (props: Props) => {
             <Title2 className="text-center">Il vous reste des questions ?</Title2>
             <div className="mx-auto max-w-[720px]">
               <Accordion
+                name="faq-accordion"
                 items={[
                   {
                     title: "Pourquoi je dois écrire moi-même la fiche ?",

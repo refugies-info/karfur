@@ -284,6 +284,7 @@ const RecensezVotreAction = (props: Props) => {
           <Title2 className="text-center">Il vous reste des questions ?</Title2>
           <div className="mx-auto max-w-[720px]">
             <Accordion
+              name="faq-accordion"
               items={[
                 {
                   title: "Quel niveau je dois avoir pour devenir traducteur ?",
