@@ -37,7 +37,7 @@
       "request": "launch",
       "name": "Debug Current Test (client)",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["test:client", "--runInBand", "${fileBasename}", "--testNamePattern=\"baseline: totals and facets match\""],
+      "runtimeArgs": ["test:client", "--runInBand", "${fileBasename}"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "cwd": "${workspaceFolder}"
