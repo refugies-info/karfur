@@ -1,50 +1,42 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose, { Connection } from "mongoose";
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
 import { DispositifSchema, makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
 import {
-  configureAlgoliaMockFor,
   generateCases,
   getAllDispositifs,
   makeCase,
+  resetDatabase,
   runFacetTests,
+  setupMongoTest,
+  teardownMongoTest,
   toLegacyQuery,
   type FiltersDef,
+  type TestSetup,
 } from "./helpers/search-test-helpers";
 
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`
  */
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
-  let mongod: MongoMemoryServer;
-  let conn: Connection;
+  let setup: TestSetup;
 
   const ids = makeSeedIds();
   const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
 
   beforeAll(async () => {
-    mongod = await MongoMemoryServer.create();
-    conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
-    // register model on this connection
-    conn.model("Dispositif", DispositifSchema);
-    // Configure Algolia mock to search in Mongo across simplified indexed fields
-    configureAlgoliaMockFor(conn);
+    setup = await setupMongoTest(DispositifSchema);
   });
 
   afterAll(async () => {
-    await conn?.close();
-    await mongod?.stop();
+    await teardownMongoTest(setup);
   });
 
   beforeEach(async () => {
-    const db = conn.db;
-    if (!db) throw new Error("Connection DB not initialized");
-    await db.dropDatabase();
-    await seedDispositifs(conn, ids);
+    await resetDatabase(setup.conn);
+    await seedDispositifs(setup.conn, ids);
   });
 
   test("Legacy counts should match manual counts", async () => {
-    const all = await getAllDispositifs(conn);
+    const all = await getAllDispositifs(setup.conn);
     const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
     expect(24).toBe(legacy.total);
@@ -62,7 +54,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   });
 
   test("Legacy counts when skipping frenchLevel should match manual counts", async () => {
-    const all = await getAllDispositifs(conn);
+    const all = await getAllDispositifs(setup.conn);
     const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
     expect(13).toBe(legacy.total);
@@ -91,7 +83,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   };
 
   runFacetTests(
-    () => conn,
+    () => setup.conn,
     needsList,
     generateCases({
       filters: seededFilters,

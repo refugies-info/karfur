@@ -1,46 +1,38 @@
-import { MongoMemoryServer } from "mongodb-memory-server";
-import mongoose, { Connection } from "mongoose";
 import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
 import { LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
 import { DispositifSchema, makeNeedsList, makeSeedIds } from "~/__fixtures__/seedDispositifs";
 import {
-  configureAlgoliaMockFor,
   generateCases,
   makeCase,
+  resetDatabase,
   runFacetTests,
+  setupMongoTest,
+  teardownMongoTest,
   type FiltersDef,
+  type TestSetup,
 } from "./helpers/search-test-helpers";
 
 /**
  * Randomized dataset tests: seeds many generated documents for broader coverage
  */
 describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
-  let mongod: MongoMemoryServer;
-  let conn: Connection;
+  let setup: TestSetup;
 
   const ids = makeSeedIds();
   const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
 
   beforeAll(async () => {
-    mongod = await MongoMemoryServer.create();
-    conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
-    // register model on this connection
-    conn.model("Dispositif", DispositifSchema);
-    // Configure Algolia mock to search in Mongo across simplified indexed fields
-    configureAlgoliaMockFor(conn);
+    setup = await setupMongoTest(DispositifSchema);
   });
 
   afterAll(async () => {
-    await conn?.close();
-    await mongod?.stop();
+    await teardownMongoTest(setup);
   });
 
   beforeEach(async () => {
-    const db = conn.db;
-    if (!db) throw new Error("Connection DB not initialized");
-    await db.dropDatabase();
+    await resetDatabase(setup.conn);
     // Seed many random documents for broader coverage. Seed ensures determinism across runs.
-    await seedRandomDispositifs(conn, ids, 100, 12345);
+    await seedRandomDispositifs(setup.conn, ids, 100, 12345);
   });
 
   // Use shared helpers to generate cases
@@ -57,7 +49,7 @@ describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   };
 
   runFacetTests(
-    () => conn,
+    () => setup.conn,
     needsList,
     generateCases({
       filters: randomFilters,

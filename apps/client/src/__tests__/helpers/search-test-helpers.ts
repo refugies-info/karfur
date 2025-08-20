@@ -221,6 +221,62 @@ export const generateCases = (options: {
   return cases;
 };
 
+// Centralized MongoDB test setup helper
+export interface TestSetup {
+  mongod: any;
+  conn: Connection;
+}
+
+/**
+ * Sets up a MongoDB memory server and connection for testing
+ * @param schema The Mongoose schema to register
+ * @param modelName The name of the model to register (default: "Dispositif")
+ * @returns Promise resolving to test setup object
+ */
+export const setupMongoTest = async (
+  schema: any = null,
+  modelName: string = "Dispositif"
+): Promise<TestSetup> => {
+  const { MongoMemoryServer } = require("mongodb-memory-server");
+  const mongoose = require("mongoose");
+  
+  const mongod = await MongoMemoryServer.create();
+  const conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
+  
+  // Register model on this connection
+  if (schema) {
+    conn.model(modelName, schema);
+  }
+  
+  // Configure Algolia mock to search in Mongo across simplified indexed fields
+  configureAlgoliaMockFor(conn);
+  
+  return { mongod, conn };
+};
+
+/**
+ * Cleans up MongoDB test resources
+ * @param setup The test setup object to clean up
+ */
+export const teardownMongoTest = async (setup: TestSetup): Promise<void> => {
+  if (setup.conn) {
+    await setup.conn.close();
+  }
+  if (setup.mongod) {
+    await setup.mongod.stop();
+  }
+};
+
+/**
+ * Resets the database between tests
+ * @param conn The MongoDB connection
+ */
+export const resetDatabase = async (conn: Connection): Promise<void> => {
+  const db = conn.db;
+  if (!db) throw new Error("Connection DB not initialized");
+  await db.dropDatabase();
+};
+
 // Prevent Jest from failing this helpers file when collected as a test suite
 describe.skip("counts-mongo helpers placeholder", () => {
   it("placeholder", () => {
