@@ -10,7 +10,7 @@ import {
   runFacetTests,
   toLegacyQuery,
   type FiltersDef,
-} from "./helpers/counts-mongo-helpers";
+} from "./helpers/search-test-helpers";
 
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`
@@ -71,7 +71,9 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     expect({ asile: 12, apatride: 1, refugie: 2, temporaire: 1, subsidiaire: 1 }).toEqual(legacy.statuses);
     expect({ a: 13, b: 11, c: 1 }).toEqual(legacy.frenchLevels);
     expect({ "+25": 2, "-18": 1, "18-25": 11 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 8, "64a0000000000000000000b2": 5, "64a0000000000000000000c3": 3 }).toEqual(legacy.themes);
+    expect({ "64a0000000000000000000a1": 8, "64a0000000000000000000b2": 5, "64a0000000000000000000c3": 3 }).toEqual(
+      legacy.themes,
+    );
     expect({ "64b0000000000000000000a1": 3, "64b0000000000000000000a2": 3, "64b0000000000000000000b1": 2 }).toEqual(
       legacy.needs,
     );

@@ -5,11 +5,11 @@ import { LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
 import { DispositifSchema, makeNeedsList, makeSeedIds } from "~/__fixtures__/seedDispositifs";
 import {
   configureAlgoliaMockFor,
-  runFacetTests,
   generateCases,
   makeCase,
+  runFacetTests,
   type FiltersDef,
-} from "./helpers/counts-mongo-helpers";
+} from "./helpers/search-test-helpers";
 
 /**
  * Randomized dataset tests: seeds many generated documents for broader coverage
