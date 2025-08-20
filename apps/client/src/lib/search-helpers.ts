@@ -150,25 +150,15 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
     (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
   );
   if (frenchLevel.length > 0) {
-    const selectedCats = frenchLevel;
-    match.$expr = {
-      $in: [
-        {
-          $switch: {
-            branches: [
-              { case: { $eq: ["$metadatas.frenchLevel", "A1"] }, then: "a" },
-              { case: { $eq: ["$metadatas.frenchLevel", "A2"] }, then: "a" },
-              { case: { $eq: ["$metadatas.frenchLevel", "B1"] }, then: "b" },
-              { case: { $eq: ["$metadatas.frenchLevel", "B2"] }, then: "b" },
-              { case: { $eq: ["$metadatas.frenchLevel", "C1"] }, then: "c" },
-              { case: { $eq: ["$metadatas.frenchLevel", "C2"] }, then: "c" },
-            ],
-            default: "a",
-          },
-        },
-        selectedCats,
-      ],
-    };
+    const allowedLevels = Array.from(
+      new Set(
+        frenchLevel.flatMap((cat) =>
+          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
+        ),
+      ),
+    );
+    // Match if the field (string or array) contains any allowedLevels
+    match["metadatas.frenchLevel"] = { $in: allowedLevels };
   }
 
   const publics = (queryParams.public ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
