@@ -174,7 +174,11 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   const languages = (queryParams.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
     const languageConditions = languages.map((lang) => ({
-      [lang]: { $exists: true },
+      [
+        // translations is an object whose keys are language codes (e.g., fr, en)
+        // We must check the existence of the nested key rather than a top-level field
+        `translations.${lang}`
+      ]: { $exists: true },
     }));
     match.$or = (match.$or || []).concat(languageConditions);
   }
