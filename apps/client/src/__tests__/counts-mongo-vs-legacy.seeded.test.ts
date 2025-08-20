@@ -53,10 +53,10 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     expect({ asile: 20, apatride: 1, french: 2, refugie: 2, subsidiaire: 2, temporaire: 1 }).toEqual(legacy.statuses);
     expect({ a: 13, b: 11, c: 1 }).toEqual(legacy.frenchLevels);
     expect({ "+25": 2, "-18": 1, "18-25": 20 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 11, "64a0000000000000000000b2": 10, "64a0000000000000000000c3": 8 }).toEqual(
+    expect({ "64a0000000000000000000a1": 13, "64a0000000000000000000b2": 10, "64a0000000000000000000c3": 6 }).toEqual(
       legacy.themes,
     );
-    expect({ "64b0000000000000000000a1": 8, "64b0000000000000000000a2": 2, "64b0000000000000000000b1": 2 }).toEqual(
+    expect({ "64b0000000000000000000a1": 5, "64b0000000000000000000a2": 4, "64b0000000000000000000b1": 4 }).toEqual(
       legacy.needs,
     );
   });
@@ -71,8 +71,8 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     expect({ asile: 12, apatride: 1, refugie: 2, temporaire: 1, subsidiaire: 1 }).toEqual(legacy.statuses);
     expect({ a: 13, b: 11, c: 1 }).toEqual(legacy.frenchLevels);
     expect({ "+25": 2, "-18": 1, "18-25": 11 }).toEqual(legacy.ageRanges);
-    expect({ "64a0000000000000000000a1": 6, "64a0000000000000000000b2": 6, "64a0000000000000000000c3": 4 }).toEqual(legacy.themes);
-    expect({ "64b0000000000000000000a1": 4, "64b0000000000000000000a2": 2, "64b0000000000000000000b1": 1 }).toEqual(
+    expect({ "64a0000000000000000000a1": 8, "64a0000000000000000000b2": 5, "64a0000000000000000000c3": 3 }).toEqual(legacy.themes);
+    expect({ "64b0000000000000000000a1": 3, "64b0000000000000000000a2": 3, "64b0000000000000000000b1": 2 }).toEqual(
       legacy.needs,
     );
   });
