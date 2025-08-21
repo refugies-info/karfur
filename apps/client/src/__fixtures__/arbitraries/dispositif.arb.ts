@@ -213,6 +213,45 @@ export async function seedRandomDispositifs(
   seed?: number,
 ): Promise<number> {
   const Dispositif = conn.model("Dispositif");
+  // Ensure Theme documents exist with positions for sorting tests
+  try {
+    let ThemeModel: mongoose.Model<any>;
+    try {
+      ThemeModel = conn.model("Theme");
+    } catch {
+      ThemeModel = conn.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));
+    }
+    const themeA = (ids as any).themeA;
+    const themeB = (ids as any).themeB;
+    const themeC = (ids as any).themeC;
+    const docs: any[] = [
+      { _id: themeA, position: 1, name: "Theme A" },
+      { _id: themeB, position: 3, name: "Theme B" },
+    ];
+    if (themeC) docs.push({ _id: themeC, position: 2, name: "Theme C" });
+    await ThemeModel.insertMany(docs, { ordered: false });
+  } catch {
+    // Ignore duplicate key or schema errors in tests
+  }
+  // Ensure the 'needs' collection exists for the API needs facet $lookup
+  try {
+    let NeedModel: mongoose.Model<any>;
+    try {
+      NeedModel = conn.model("Need");
+    } catch {
+      NeedModel = conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
+    }
+    await NeedModel.insertMany(
+      [
+        { _id: (ids as any).needA1, theme: (ids as any).themeA },
+        { _id: (ids as any).needA2, theme: (ids as any).themeA },
+        { _id: (ids as any).needB1, theme: (ids as any).themeB },
+      ],
+      { ordered: false },
+    );
+  } catch {
+    // Ignore duplicate key or schema-related errors in tests
+  }
   const arb = makeDispositifArb(conn, ids);
   const docs = fc.sample(arb, { seed, numRuns: count });
   await Dispositif.insertMany(docs);
