@@ -2,6 +2,7 @@ import type { Connection } from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/legacyCounts";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
+import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seedIds";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -69,6 +70,31 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
   language: [],
   ...p,
 });
+
+// Centralized helpers to access seed IDs in tests
+export interface SeedFilterIds {
+  ids: SeedIds;
+  themes: { A: string; B: string; C: string };
+  needs: { A1: string; A2: string; B1: string };
+}
+
+/**
+ * Returns deterministic seed IDs along with convenient string maps for filters.
+ * Use this in tests instead of hard-coding ObjectId strings.
+ */
+export const getSeedFilterIds = (): SeedFilterIds => {
+  const ids = makeSeedIds();
+  return {
+    ids,
+    themes: { A: ids.themeA.toString(), B: ids.themeB.toString(), C: ids.themeC.toString() },
+    needs: { A1: ids.needA1.toString(), A2: ids.needA2.toString(), B1: ids.needB1.toString() },
+  };
+};
+
+/**
+ * Builds the legacy needsList structure from provided seed IDs (or fresh ones).
+ */
+export const getLegacyNeedsList = (ids?: SeedIds) => makeNeedsList(ids ?? makeSeedIds());
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   try {

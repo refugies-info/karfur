@@ -1,5 +1,5 @@
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
+import { seedDispositifs } from "~/__fixtures__/seedDispositifs";
 import {
   generateCases,
   getAllDispositifs,
@@ -11,6 +11,8 @@ import {
   toLegacyQuery,
   type FiltersDef,
   type TestSetup,
+  getLegacyNeedsList,
+  getSeedFilterIds,
 } from "./helpers/search-test-helpers";
 
 /**
@@ -19,8 +21,8 @@ import {
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const ids = makeSeedIds();
-  const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
+  const { ids, themes, needs } = getSeedFilterIds();
+  const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
 
   beforeAll(async () => {
     setup = await setupMongoTest();
@@ -37,7 +39,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   test("Legacy counts should match manual counts", async () => {
     const all = await getAllDispositifs(setup.conn);
-    const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
+    const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
     expect(24).toBe(legacy.total);
     expect({ en: 2, fr: 24 }).toEqual(legacy.languages);
@@ -55,7 +57,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   test("Legacy counts when skipping frenchLevel should match manual counts", async () => {
     const all = await getAllDispositifs(setup.conn);
-    const needsList: LegacyNeedsItem[] = makeNeedsList(ids) as any;
+    const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
     expect(13).toBe(legacy.total);
     expect({ en: 1, fr: 13 }).toEqual(legacy.languages);
@@ -78,8 +80,8 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     language: ["fr"],
     public: ["family"],
     status: ["refugie"],
-    themes: [ids.themeB.toString()],
-    needs: [ids.needB1.toString()],
+    themes: [themes.B],
+    needs: [needs.B1],
   };
 
   runFacetTests(
@@ -91,7 +93,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
       maxCombinationSize: 1,
       searchTerm: "jeunes",
       // special rule: needs singles also include themeB
-      needsSinglesIncludeThemeId: ids.themeB.toString(),
+      needsSinglesIncludeThemeId: themes.B,
     }).map((c) => makeCase(c.name, c.params)),
   );
 });

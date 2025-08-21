@@ -1,26 +1,6 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-
-export interface SeedIds {
-  themeA: mongoose.Types.ObjectId;
-  themeB: mongoose.Types.ObjectId;
-  themeC: mongoose.Types.ObjectId;
-  needA1: mongoose.Types.ObjectId;
-  needA2: mongoose.Types.ObjectId;
-  needB1: mongoose.Types.ObjectId;
-}
-
-export const makeSeedIds = (): SeedIds => ({
-  themeA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
-  themeB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
-  // Added an extra theme to allow up to two secondary themes
-  // Note: SeedIds type should include this if referenced elsewhere
-  // We only use it locally for seeds normalization below
-  themeC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),
-  needA1: new mongoose.Types.ObjectId("64b0000000000000000000a1"),
-  needA2: new mongoose.Types.ObjectId("64b0000000000000000000a2"),
-  needB1: new mongoose.Types.ObjectId("64b0000000000000000000b1"),
-});
+import type { SeedIds } from "~/__fixtures__/seedIds";
 
 export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   const { themeA, themeB, needA1, needA2, needB1 } = ids as any;
@@ -306,8 +286,3 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   await Dispositif.insertMany(base);
 };
 
-export const makeNeedsList = (ids: SeedIds) => [
-  { _id: ids.needA1, theme: { _id: ids.themeA } },
-  { _id: ids.needA2, theme: { _id: ids.themeA } },
-  { _id: ids.needB1, theme: { _id: ids.themeB } },
-];
