@@ -1,6 +1,5 @@
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { makeSeedIds, makeNeedsList, seedDispositifs } from "~/__fixtures__/seedDispositifs";
-import { TestSchemas } from "~/__tests__/helpers/test-schemas";
+import { makeNeedsList, makeSeedIds, seedDispositifs } from "~/__fixtures__/seedDispositifs";
 import {
   generateCases,
   getAllDispositifs,

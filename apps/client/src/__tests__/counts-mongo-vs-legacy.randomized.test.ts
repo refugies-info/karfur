@@ -1,7 +1,6 @@
 import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
 import { LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { makeSeedIds, makeNeedsList } from "~/__fixtures__/seedDispositifs";
-import { TestSchemas } from "~/__tests__/helpers/test-schemas";
+import { makeNeedsList, makeSeedIds } from "~/__fixtures__/seedDispositifs";
 import {
   generateCases,
   makeCase,
