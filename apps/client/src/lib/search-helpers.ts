@@ -153,9 +153,7 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   if (frenchLevel.length > 0) {
     const allowedLevels = Array.from(
       new Set(
-        frenchLevel.flatMap((cat) =>
-          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
-        ),
+        frenchLevel.flatMap((cat) => (cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"])),
       ),
     );
     // Match if the field (string or array) contains any allowedLevels
@@ -175,13 +173,12 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   const languages = (queryParams.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
   if (languages.length > 0) {
     const languageConditions = languages.map((lang) => ({
-      [
-        // translations is an object whose keys are language codes (e.g., fr, en)
-        // We must check the existence of the nested key rather than a top-level field
-        `translations.${lang}`
-      ]: { $exists: true },
+      // translations is an object whose keys are language codes (e.g., fr, en)
+      [// We must check the existence of the nested key rather than a top-level field
+      `translations.${lang}`]: { $exists: true },
     }));
-    match.$or = (match.$or || []).concat(languageConditions);
+    // Ensure language conditions are ANDed with other filters while ORed among themselves
+    match.$and = (match.$and || []).concat([{ $or: languageConditions }]);
   }
 
   return match;
