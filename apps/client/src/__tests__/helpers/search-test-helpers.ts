@@ -71,14 +71,21 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
 });
 
 export const expectCountsEqual = (api: any, legacy: any) => {
-  expect(api.total).toBe(legacy.total);
-  expect(api.languages || {}).toEqual(legacy.languages);
-  expect(api.publics || {}).toEqual(legacy.publics);
-  expect(api.statuses || {}).toEqual(legacy.statuses);
-  expect(api.frenchLevels || {}).toEqual(legacy.frenchLevels);
-  expect(api.ageRanges || {}).toEqual(legacy.ageRanges);
-  expect(api.themes || {}).toEqual(legacy.themes);
-  expect(api.needs || {}).toEqual(legacy.needs);
+  try {
+    expect(api.total).toBe(legacy.total);
+    expect(api.languages || {}).toEqual(legacy.languages);
+    expect(api.publics || {}).toEqual(legacy.publics);
+    expect(api.statuses || {}).toEqual(legacy.statuses);
+    expect(api.frenchLevels || {}).toEqual(legacy.frenchLevels);
+    expect(api.ageRanges || {}).toEqual(legacy.ageRanges);
+    expect(api.themes || {}).toEqual(legacy.themes);
+    expect(api.needs || {}).toEqual(legacy.needs);
+  } catch (error) {
+    // This will pause execution when debugging
+    // eslint-disable-next-line no-debugger
+    debugger;
+    throw error; // Re-throw to maintain test failure behavior
+  }
 };
 
 export const getAllDispositifs = async (conn: Connection) => {
@@ -239,10 +246,10 @@ import { registerTestSchemas } from "./test-schemas";
 export const setupMongoTest = async (): Promise<TestSetup> => {
   const { MongoMemoryServer } = require("mongodb-memory-server");
   const mongoose = require("mongoose");
-  
+
   const mongod = await MongoMemoryServer.create();
   const conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
-  
+
   // Register all test schemas on this connection
   const models = registerTestSchemas(conn);
 
