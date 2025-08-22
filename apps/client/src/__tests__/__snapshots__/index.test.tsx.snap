@@ -4698,31 +4698,31 @@ exports[`homepage renders homepage 1`] = `
               MobileApp.langLabel
             </label>
             <select
-              aria-describedby=""
               class="fr-select"
               id="select-:r1d:"
               name="languageSelected"
             >
               <option
+                disabled=""
+                value=""
+              >
+                Sélectionner une option
+              </option>
+              <option
                 value="fr"
               >
-                Français 
+                Français
               </option>
               <option
                 value="en"
               >
-                English  - Anglais
+                English - Anglais
               </option>
             </select>
-            <div
-              aria-live="polite"
-              class="fr-messages-group"
-              id="select-:r1d:-messages-group"
-            />
           </div>
           <button
             class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
-            id="fr-button-:r1f:"
+            id="fr-button-:r1e:"
             type="submit"
           >
             MobileApp.buttonText
@@ -4782,7 +4782,7 @@ exports[`homepage renders homepage 1`] = `
                 />
                 <button
                   class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
-                  id="fr-button-:r1h:"
+                  id="fr-button-:r1g:"
                   type="submit"
                 >
                   NewsletterForm.ok
@@ -4840,7 +4840,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://kit.refugies.info/formation/"
-              id="fr-button-:r1i:"
+              id="fr-button-:r1h:"
               target="_blank"
             >
               WorkTogether.ts_cta
@@ -4881,7 +4881,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1j:"
+              id="fr-button-:r1i:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4918,7 +4918,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1k:"
+              id="fr-button-:r1j:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4955,7 +4955,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1l:"
+              id="fr-button-:r1k:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4992,7 +4992,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1m:"
+              id="fr-button-:r1l:"
             >
               WorkTogether.structure_cta
             </a>
@@ -5028,7 +5028,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1n:"
+              id="fr-button-:r1m:"
             >
               WorkTogether.traducteur_cta
             </a>
