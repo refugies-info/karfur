@@ -339,21 +339,19 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
             enableContainerPadding &&
               "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
             "ltr:pr-4 rtl:pl-4",
+            "cursor-grab active:cursor-grabbing",
             containerClassName,
           )}
           aria-live="polite"
           aria-atomic="true"
           style={{
-            "scrollbarWidth": "none",
-            "msOverflowStyle": "none",
-            "WebkitOverflowScrolling": "touch",
-            "willChange": "transform",
-            "scrollBehavior": "smooth",
-            "overscrollBehaviorX": "contain",
-            "cursor": "grab",
-            // @ts-expect-error style prop is not recognized
-            "&:active": { cursor: "grabbing" },
-            "direction": dir, // Set the direction explicitly
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+            willChange: "transform",
+            scrollBehavior: "smooth",
+            overscrollBehaviorX: "contain",
+            direction: dir, // Set the direction explicitly
           }}
         >
           {React.Children.map(children, (child, index) => (
