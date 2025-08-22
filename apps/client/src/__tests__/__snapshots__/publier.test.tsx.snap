@@ -222,7 +222,6 @@ exports[`publier renders publier 1`] = `
                   >
                     <button
                       aria-controls="radix-:r6:"
-                      aria-disabled="true"
                       aria-expanded="true"
                       class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                       data-orientation="vertical"
@@ -388,20 +387,7 @@ exports[`publier renders publier 1`] = `
             </div>
             <div
               class="flex w-1/2 items-center justify-center"
-            >
-              <img
-                alt=""
-                class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
-                data-nimg="1"
-                decoding="async"
-                height="320"
-                loading="lazy"
-                src="/_next/image?url=%2Fimg.jpg&w=828&q=75"
-                srcset="/_next/image?url=%2Fimg.jpg&w=640&q=75 1x, /_next/image?url=%2Fimg.jpg&w=828&q=75 2x"
-                style="color: transparent;"
-                width="400"
-              />
-            </div>
+            />
           </div>
         </div>
       </div>
