@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
+import React, { forwardRef, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from "react";
 
 type CarrouselTexts = {
   title?: string | null;
@@ -57,6 +57,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
     const [canScrollNext, setCanScrollNext] = useState(true);
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+    const componentId = useId();
 
     const t: Required<CarrouselTexts> = useMemo(
       () => ({
@@ -360,7 +361,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
               ref={(el) => {
                 slideRefs.current[index] = el;
               }}
-              id={`slide-${index}`}
+              id={`slide-${componentId}-${index}`}
               className="min-w-max shrink-0 snap-start"
               role="group"
               aria-roledescription="slide"
