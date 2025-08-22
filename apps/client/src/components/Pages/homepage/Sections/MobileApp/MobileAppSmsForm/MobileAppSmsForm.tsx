@@ -67,9 +67,13 @@ const MobileAppSmsForm = () => {
       <Select
         label={t("MobileApp.langLabel")}
         nativeSelectProps={{
-          name: "languageSelected",
-          onChange: (event) => setLanguageSelected(event.target.value),
-          value: languageSelected,
+          "aria-describedby": t(
+            "MobileApp.smsLangDescription",
+            "Sélectionnez une langue pour recevoir le lien de téléchargement par SMS",
+          ),
+          "name": "languageSelected",
+          "onChange": (event) => setLanguageSelected(event.target.value),
+          "value": languageSelected,
         }}
       >
         {languages.map((lang) => {
