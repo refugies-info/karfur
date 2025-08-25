@@ -14,66 +14,34 @@
       @apply mt-0 mb-2 px-0 pb-0 last:mb-0;
     }
 
-    /* Fixes nested numbered lis numbers ovelap */
+    /* Ordered lists: use native markers to avoid layout fragmentation */
     ol {
-      @apply grid grid-cols-[min-content_auto] gap-y-2 p-0;
+      @apply p-0 ps-6;
 
-      counter-reset: list-item;
+      list-style: decimal;
+    }
 
-      ol {
-        @apply mb-0 ps-[0.625em];
-      }
+    /* Nested ordered lists: lower-alpha style and tighter spacing */
+    ol ol {
+      @apply mb-0 ps-[0.625em];
 
-      li {
-        @apply pb-2;
+      list-style: lower-alpha;
+    }
 
-        display: contents;
+    /* Keep list items as actual list items and avoid column/page breaks */
+    ol li {
+      display: list-item;
+      break-inside: avoid;
+    }
 
-        ol > li::before {
-          content: counter(list-item, lower-alpha) ".\a0";
-        }
-      }
+    /* Remove any custom pseudo marker content if present */
+    ol li::before {
+      content: none;
+    }
 
-      li::before {
-        @apply font-bold;
-
-        counter-increment: list-item;
-        content: counter(list-item, decimal) ".\a0";
-        display: table-cell;
-        text-align: right;
-      }
-
-      ol {
-        @apply ps-2;
-
-        > li::before {
-          content: counter(list-item, lower-alpha) ".\a0";
-        }
-
-        ol {
-          > li::before {
-            content: counter(list-item, upper-roman) ".\a0";
-          }
-
-          ol {
-            > li::before {
-              content: counter(list-item, decimal) ".\a0";
-            }
-
-            ol {
-              > li::before {
-                content: counter(list-item, lower-alpha) ".\a0";
-              }
-
-              ol {
-                > li::before {
-                  content: counter(list-item, upper-roman) ".\a0";
-                }
-              }
-            }
-          }
-        }
-      }
+    /* Optional: stronger marker weight in supporting browsers */
+    ol li::marker {
+      font-weight: 700;
     }
   }
 
