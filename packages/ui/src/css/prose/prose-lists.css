@@ -28,6 +28,11 @@
       list-style: lower-alpha;
     }
 
+    /* Deeper nested ordered lists */
+    ol ol ol {
+      list-style: lower-roman;
+    }
+
     /* Keep list items as actual list items and avoid column/page breaks */
     ol li {
       display: list-item;
