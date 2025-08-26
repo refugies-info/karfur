@@ -133,7 +133,7 @@
     "cssnano": "^7.1.0",
     "csvtojson": "^2.0.10",
     "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.31",
+    "eslint-config-next": "^14.2.32",
     "eslint-config-turbo": "2.5.4",
     "eslint-plugin-react": "^7.37.5",
     "fast-check": "^4.2.0",
