@@ -29,7 +29,7 @@
     "@radix-ui/react-dropdown-menu": "^2.1.14",
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-toast": "^1.2.13",
-    "@radix-ui/react-tooltip": "^1.2.6",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "@refugies-info/api-types": "workspace:*",
     "@refugies-info/ui": "workspace:*",
     "@tailwindcss/typography": "^0.5.16",
