@@ -45,6 +45,12 @@
       margin: 0 0 0 u(6);
     }
 
+    /* Spacing between paragraph and following list inside the editor */
+    p + ul,
+    p + ol {
+      margin-top: u(2);
+    }
+
     /* Level 3: smaller font */
     ol ol {
       --list-font-size: calc(var(--base-font-size) * 0.9);
@@ -92,16 +98,9 @@
     padding-inline-start: 0;
   }
 
-
   ol > li:has(> ol)::before {
     content: none;
     counter-increment: none;
-  }
-
-  /* Spacing between paragraph and following list inside the editor */
-  p + ul,
-  p + ol {
-    margin-top: u(2);
   }
 }
 
