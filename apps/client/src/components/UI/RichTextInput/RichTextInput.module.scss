@@ -27,6 +27,7 @@
   /* Ordered lists: hierarchical counters like 1., 1.1., 1.1.1. */
   ol {
     --ol-marker-w: 10ch; /* wide enough for 1.1.1.1.1. */
+
     list-style: none;
     counter-reset: item;
     padding-inline-start: u(6);
