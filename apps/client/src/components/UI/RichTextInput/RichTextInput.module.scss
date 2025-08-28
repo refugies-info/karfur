@@ -31,7 +31,7 @@
 
   ol {
     --ol-marker-w: 6ch; /* much wider for deep hierarchical numbers */
-    --ol-list-indent: 1.2em; /* minimal indent for paragraph alignment */
+    --ol-list-indent: 0.2em; /* minimal indent for paragraph alignment */
 
     list-style: none;
     counter-reset: item;
