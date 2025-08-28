@@ -14,39 +14,68 @@
       @apply mt-0 mb-2 px-0 pb-0 last:mb-0;
     }
 
-    /* Ordered lists: use native markers to avoid layout fragmentation */
+    /* Ordered lists: hierarchical decimal counters (1., 1.1., 1.1.1.) */
     ol {
       @apply p-0 ps-6;
 
-      list-style: decimal;
+      list-style: none;
+      counter-reset: item;
     }
 
-    /* Nested ordered lists: lower-alpha style and tighter spacing */
+    /* Indentation accumulates per level */
     ol ol {
-      @apply mb-0 ps-[0.625em];
+      @apply mb-0 ps-6;
 
-      list-style: lower-alpha;
+      counter-reset: item;
     }
 
-    /* Deeper nested ordered lists */
     ol ol ol {
-      list-style: lower-roman;
+      @apply ps-6;
+
+      counter-reset: item;
     }
 
-    /* Keep list items as actual list items and avoid column/page breaks */
+    ol ol ol ol {
+      @apply ps-6;
+
+      counter-reset: item;
+    }
+
+    /* Keep items stable, generate hierarchical numbers, and apply hanging indent */
+
+    :where(ol) {
+      --ol-marker-w: 12ch; /* wide enough for deep levels like 1.1.1.1.1. */
+    }
+    
     ol li {
-      display: list-item;
+      display: block;
       break-inside: avoid;
+      position: relative;
+      padding-inline-start: calc(var(--ol-marker-w) + 1.25ch);
     }
 
-    /* Remove any custom pseudo marker content if present */
     ol li::before {
-      content: none;
+      @apply font-bold;
+
+      counter-increment: item;
+      content: counters(item, ".") ".\a0";
+      position: absolute;
+      inset-inline-start: 0;
+      width: var(--ol-marker-w);
+      text-align: right;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums; /* align digits better */
     }
 
-    /* Optional: stronger marker weight in supporting browsers */
-    ol li::marker {
-      font-weight: 700;
+    /* If an LI wraps a nested OL (editor may inject empty nodes), hide its own number to avoid 2.2.1 */
+    ol > li:has(> ol) {
+      padding-inline-start: 0;
+      list-style: none;
+      counter-increment: none;
+    }
+
+    ol > li:has(> ol)::before {
+      content: none;
     }
   }
 
