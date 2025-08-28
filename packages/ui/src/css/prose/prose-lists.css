@@ -16,59 +16,67 @@
 
     /* Ordered lists: hierarchical decimal counters (1., 1.1., 1.1.1.) */
     ol {
-      @apply p-0 ps-6;
+      --ol-marker-w: 6ch; /* marker width for deep hierarchical numbers */
+      --ol-list-indent: 0.2em; /* minimal indent for paragraph alignment */
+      --base-font-size: 1rem;
 
       list-style: none;
       counter-reset: item;
+      
+      /* Small left margin for alignment with paragraph */
+      padding-inline-start: 0;
+      margin: 0 0 0 var(--ol-list-indent);
+
+      /* nested lists keep cumulative indentation */
+      ol {
+        counter-reset: item;
+        padding-inline-start: 0;
+        margin: 0 0 0 1.5rem; /* equivalent to u(6) */
+      }
+
+      /* Level 3: smaller font */
+      ol ol {
+        --list-font-size: calc(var(--base-font-size) * 0.9);
+      }
+
+      /* Level 4+: minimum readable size */
+      ol ol ol,
+      ol ol ol ol,
+      ol ol ol ol ol,
+      ol ol ol ol ol ol,
+      ol ol ol ol ol ol ol {
+        --list-font-size: calc(var(--base-font-size) * 0.9);
+      }
     }
 
-    /* Indentation accumulates per level */
-    ol ol {
-      @apply mb-0 ps-6;
-
-      counter-reset: item;
-    }
-
-    ol ol ol {
-      @apply ps-6;
-
-      counter-reset: item;
-    }
-
-    ol ol ol ol {
-      @apply ps-6;
-
-      counter-reset: item;
-    }
-
-    /* Keep items stable, generate hierarchical numbers, and apply hanging indent */
-
-    :where(ol) {
-      --ol-marker-w: 12ch; /* wide enough for deep levels like 1.1.1.1.1. */
-    }
-    
+    /* Keep list items stable, use grid for consistent gap */
     ol li {
-      display: block;
+      display: grid;
+      grid-template-columns: max-content 1ch 1fr;
       break-inside: avoid;
-      position: relative;
-      padding-inline-start: calc(var(--ol-marker-w) + 1.25ch);
+      align-items: baseline;
+      font-size: var(--list-font-size, var(--base-font-size));
     }
 
     ol li::before {
       @apply font-bold;
 
       counter-increment: item;
-      content: counters(item, ".") ".\a0";
-      position: absolute;
-      inset-inline-start: 0;
-      width: var(--ol-marker-w);
-      text-align: right;
+      content: counters(item, ".") ".";
+      grid-column: 1;
       white-space: nowrap;
-      font-variant-numeric: tabular-nums; /* align digits better */
+      font-variant-numeric: tabular-nums;
+      justify-self: end;
+    }
+
+    /* Create the content wrapper for text */
+    ol li > * {
+      grid-column: 3;
     }
 
     /* If an LI wraps a nested OL (editor may inject empty nodes), hide its own number to avoid 2.2.1 */
     ol > li:has(> ol) {
+      display: block;
       padding-inline-start: 0;
       list-style: none;
       counter-increment: none;
