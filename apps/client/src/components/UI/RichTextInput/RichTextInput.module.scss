@@ -29,6 +29,7 @@
   ol {
     --ol-marker-w: 6ch; /* much wider for deep hierarchical numbers */
     --ol-list-indent: 0.2em; /* minimal indent for paragraph alignment */
+    --base-font-size: 1rem;
 
     list-style: none;
     counter-reset: item;
@@ -43,6 +44,20 @@
       padding-inline-start: 0;
       margin: 0 0 0 u(6);
     }
+
+    /* Level 3: smaller font */
+    ol ol {
+      --list-font-size: calc(var(--base-font-size) * 0.9);
+    }
+
+    /* Level 4+: minimum readable size */
+    ol ol ol,
+    ol ol ol ol,
+    ol ol ol ol ol,
+    ol ol ol ol ol ol,
+    ol ol ol ol ol ol ol {
+      --list-font-size: calc(var(--base-font-size) * 0.9);
+    }
   }
 
   /* Top-level OL is aligned by zero left padding; LI handles the hanging indent */
@@ -53,6 +68,7 @@
     grid-template-columns: max-content 1ch 1fr;
     break-inside: avoid;
     align-items: baseline;
+    font-size: var(--list-font-size, var(--base-font-size));
   }
 
   ol li::before {
@@ -76,18 +92,6 @@
     padding-inline-start: 0;
   }
 
-  /* Progressive font size reduction for deeper nesting levels */
-  ol ol ol li {
-    font-size: 0.9em;
-  }
-
-  ol ol ol ol li {
-    font-size: 0.85em;
-  }
-
-  ol ol ol ol ol li {
-    font-size: 0.8em;
-  }
 
   ol > li:has(> ol)::before {
     content: none;
