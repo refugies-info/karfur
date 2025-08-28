@@ -23,6 +23,58 @@
   outline: none !important;
   position: relative;
   z-index: 1;
+
+  /* Ordered lists: hierarchical counters like 1., 1.1., 1.1.1. */
+  ol {
+    --ol-marker-w: 10ch; /* wide enough for 1.1.1.1.1. */
+    list-style: none;
+    counter-reset: item;
+    padding-inline-start: u(6);
+    margin: 0;
+
+    /* nested lists keep cumulative indentation */
+    ol {
+      counter-reset: item;
+      padding-inline-start: u(6);
+      margin: 0;
+    }
+  }
+
+  /* Keep list items stable, add hanging indent, generate numbers */
+  ol li {
+    display: block;
+    position: relative;
+    break-inside: avoid;
+    padding-inline-start: calc(var(--ol-marker-w) + 1ch); /* more space for multi-level numbers */
+  }
+
+  ol li::before {
+    counter-increment: item;
+    content: counters(item, ".") ".\00a0";
+    position: absolute;
+    inset-inline-start: 0;
+    width: var(--ol-marker-w); /* accommodate longer markers */
+    text-align: right;
+    font-weight: 700;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* If an LI only wraps a nested OL, hide its own number to avoid 2.2.1 */
+  ol > li:has(> ol) {
+    padding-inline-start: 0;
+  }
+
+  ol > li:has(> ol)::before {
+    content: none;
+    counter-increment: none;
+  }
+
+  /* Spacing between paragraph and following list inside the editor */
+  p + ul,
+  p + ol {
+    margin-top: u(2);
+  }
 }
 
 .placeholder {
