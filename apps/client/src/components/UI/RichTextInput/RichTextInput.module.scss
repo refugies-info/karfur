@@ -14,7 +14,6 @@
   &.focus {
     border-color: var(--text-title-grey);
   }
-
 }
 
 .content {
@@ -24,8 +23,6 @@
   outline: none !important;
   position: relative;
   z-index: 1;
-
-
 
   /* Ordered lists: hierarchical counters like 1., 1.1., 1.1.1. */
 
@@ -50,7 +47,6 @@
 
   /* Top-level OL is aligned by zero left padding; LI handles the hanging indent */
 
-
   /* Keep list items stable, use grid for consistent gap */
   ol li {
     display: grid;
@@ -74,11 +70,23 @@
     grid-column: 3;
   }
 
-
   /* If an LI only wraps a nested OL, hide its own number to avoid 2.2.1 */
   ol > li:has(> ol) {
     display: block;
     padding-inline-start: 0;
+  }
+
+  /* Progressive font size reduction for deeper nesting levels */
+  ol ol ol li {
+    font-size: 0.9em;
+  }
+
+  ol ol ol ol li {
+    font-size: 0.85em;
+  }
+
+  ol ol ol ol ol li {
+    font-size: 0.8em;
   }
 
   ol > li:has(> ol)::before {
