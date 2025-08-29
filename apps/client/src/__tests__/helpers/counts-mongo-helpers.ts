@@ -12,7 +12,6 @@ jest.mock("@algolia/client-search", () => {
 
 // Wire the Algolia mock to query the Mongo connection for simple text fields
 export const configureAlgoliaMockFor = (conn: Connection) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const algoliaMock = require("@algolia/client-search") as any;
   const reindex = async (q: string) => {
     const Dispositif = conn.model("Dispositif");

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { searchClient } from "@algolia/client-search";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
