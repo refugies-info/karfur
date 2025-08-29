@@ -61,7 +61,13 @@
     margin: 0 !important;
   }
 
-  /* Target the specific nested structure from the HTML */
+  /*
+ * Aggressive margin reset for all list items with value attributes.
+ * This prevents cumulative vertical spacing in deeply nested lists where
+ * wrapper <li> elements (that only contain nested <ol>) would otherwise
+ * accumulate margins, creating excessive gaps between list sections.
+ * Without this, deeply nested structures show large vertical gaps.
+ */
   ol li[value="2"]:has(> ol) {
     margin: 0 !important;
     padding: 0 !important;
