@@ -22,10 +22,10 @@
 
       list-style: none;
       counter-reset: item;
-      
+
       /* Small left margin for alignment with paragraph */
-      padding-inline-start: 0;
-      margin: 0 0 0 var(--ol-list-indent);
+      padding-inline-start: 0 !important;
+      margin: 0 0 0 var(--ol-list-indent) !important;
 
       /* nested lists keep cumulative indentation */
       ol {
@@ -47,6 +47,14 @@
       ol ol ol ol ol ol ol {
         --list-font-size: calc(var(--base-font-size) * 0.9);
       }
+    }
+
+    /* Override DSFR padding specifically for top-level ol elements in prose */
+    .prose > ol,
+    .prose p + ol,
+    .prose div > ol {
+      padding-inline-start: 0 !important;
+      padding-left: 0 !important;
     }
 
     /* Keep list items stable, use grid for consistent gap */
