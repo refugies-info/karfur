@@ -28,8 +28,6 @@
     padding-inline-start: u(4);
   }
 
-  
-
   /* Keep list items stable, use grid for consistent gap */
   ol li {
     display: grid;
@@ -37,18 +35,36 @@
     break-inside: avoid;
     align-items: baseline;
     font-size: var(--list-font-size, var(--base-font-size));
+    margin: 0; /* prevent additive margins from DSFR/UA */
   }
 
-  /* If an LI only wraps a nested OL, hide its own number to avoid 2.2.1 */
+  /* If an LI contains a nested OL, treat it as a wrapper with no margin */
   ol > li:has(> ol) {
     display: block;
     padding-inline-start: 0;
+    margin: 0 !important; /* critical: no margin on wrapper items */
+  }
+
+  /* Add spacing only between actual content items at the top level */
+  > ol > li:not(:has(> ol)) + li:not(:has(> ol)) {
+    margin-top: u(3);
   }
 
   /* Hide marker for wrapping LIs that contain only another list */
   li:has(> ul:only-child) {
     list-style-type: none;
     padding-inline-start: 0;
+  }
+
+  /* More aggressive reset for all nested list structures */
+  ol li[value] {
+    margin: 0 !important;
+  }
+
+  /* Target the specific nested structure from the HTML */
+  ol li[value="2"]:has(> ol) {
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   /* Ordered lists: hierarchical counters like 1., 1.1., 1.1.1. */
@@ -59,16 +75,18 @@
 
     list-style: none;
     counter-reset: item;
+    margin: 0; /* reset all margins */
+    padding: 0; /* reset all padding */
 
     /* Small left margin for alignment with paragraph */
-    padding-inline-start: 0;
-    margin: 0 0 0 var(--ol-list-indent);
+    margin-left: var(--ol-list-indent);
 
     /* nested lists keep cumulative indentation */
     ol {
       counter-reset: item;
-      padding-inline-start: 0;
-      margin: 0 0 0 u(6);
+      margin: 0; /* absolutely no margins on nested lists */
+      padding: 0; /* absolutely no padding on nested lists */
+      margin-left: u(6); /* only left margin for indentation */
     }
 
     /* Level 3: smaller font */
@@ -84,6 +102,12 @@
     ol ol ol ol ol ol ol {
       --list-font-size: calc(var(--base-font-size) * 0.9);
     }
+  }
+
+  /* No extra gap between an item's content and its nested list */
+  /* stylelint-disable-next-line no-descending-specificity */
+  ol li > ol {
+    margin-top: 0;
   }
 
   /* Spacing between a paragraph and the following numbered list */
@@ -105,6 +129,9 @@
   /* Create the content wrapper for text */
   ol li > * {
     grid-column: 3;
+
+    /* Avoid additive margins inside list items */
+    margin-block: 0;
   }
 
   ol > li:has(> ol)::before {
