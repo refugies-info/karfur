@@ -67,16 +67,23 @@
     :global .fr-tag {
       font-size: 0.7em;
     }
+
+    :global(ul) {
+      padding-inline-start: 0 !important;
+    }
   }
 
   .radio {
-    :global(.fr-fieldset__content) {
-      padding-left: 0;
+    :global(.fr-fieldset__content ul) {
+      padding-inline-start: 0 !important;
     }
 
     :global(.fr-radio-group) {
       padding: 1rem;
       border: 1px solid var(--border-default-grey);
+      width: 100% !important;
+      max-width: none !important;
+      box-sizing: border-box;
 
       &:hover {
         background-color: var(--background-alt-blue-france);
