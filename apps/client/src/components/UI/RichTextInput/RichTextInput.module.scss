@@ -33,16 +33,18 @@
 
     list-style: none;
     counter-reset: item;
+    margin: 0; /* reset all margins */
+    padding: 0; /* reset all padding */
 
     /* Small left margin for alignment with paragraph */
-    padding-inline-start: 0;
-    margin: 0 0 0 var(--ol-list-indent);
+    margin-left: var(--ol-list-indent);
 
     /* nested lists keep cumulative indentation */
     ol {
       counter-reset: item;
-      padding-inline-start: 0;
-      margin: 0 0 0 u(6);
+      margin: 0; /* absolutely no margins on nested lists */
+      padding: 0; /* absolutely no padding on nested lists */
+      margin-left: u(6); /* only left margin for indentation */
     }
 
     /* Spacing between paragraph and following list inside the editor */
@@ -75,6 +77,7 @@
     break-inside: avoid;
     align-items: baseline;
     font-size: var(--list-font-size, var(--base-font-size));
+    margin: 0; /* prevent additive margins from DSFR/UA */
   }
 
   ol li::before {
@@ -87,15 +90,43 @@
     justify-self: end;
   }
 
-  /* Create the content wrapper for text */
-  ol li > * {
-    grid-column: 3;
-  }
-
-  /* If an LI only wraps a nested OL, hide its own number to avoid 2.2.1 */
+  /* If an LI contains a nested OL, treat it as a wrapper with no margin */
   ol > li:has(> ol) {
     display: block;
     padding-inline-start: 0;
+    margin: 0 !important; /* critical: no margin on wrapper items */
+  }
+
+  /* More aggressive targeting for Lexical editor wrapper LI elements */
+  ol li[value]:not([dir]) {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Target empty wrapper LI elements that only contain OL */
+  ol li:not(:has(span)) {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+  }
+
+  /* Add spacing only between actual content items at the top level */
+  > ol > li:not(:has(> ol)) + li:not(:has(> ol)) {
+    margin-top: u(3);
+  }
+
+  /* Create the content wrapper for text */
+  ol li > * {
+    grid-column: 3;
+
+    /* Avoid additive margins inside list items */
+    margin-block: 0;
+  }
+
+  /* No extra gap between an item's content and its nested list */
+  /* stylelint-disable-next-line no-descending-specificity */
+  ol li > ol {
+    margin-top: 0;
   }
 
   ol > li:has(> ol)::before {
