@@ -25,7 +25,6 @@
 
       /* Small left margin for alignment with paragraph */
       padding-inline-start: 0 !important;
-      margin: 0 0 0 var(--ol-list-indent) !important;
 
       /* nested lists keep cumulative indentation */
       ol {
