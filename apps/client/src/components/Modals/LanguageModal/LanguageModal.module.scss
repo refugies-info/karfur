@@ -109,4 +109,21 @@
       margin: 0;
     }
   }
+
+  .lang_name,
+  .lang_name_bold {
+    color: var(--tokens-light-text-label-grey, #161616);
+    font-family: Marianne, sans-serif;
+    font-size: 1rem;
+    font-style: normal;
+    line-height: 1.5rem;
+  }
+
+  .lang_name {
+    font-weight: 400;
+  }
+
+  .lang_name_bold {
+    font-weight: 700;
+  }
 }

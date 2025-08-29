@@ -27,7 +27,13 @@ const LanguageModal = (props: Props) => {
   const { changeLanguage } = useChangeLanguage();
 
   const languagesOptions = (activatedLanguages || []).map((lang) => ({
-    label: `${lang.langueFr} - ${lang.langueLoc}`,
+    label: (
+      <>
+        <span className={styles.lang_name}>
+          <span className={styles.lang_name_bold}>{lang.langueFr}</span> - {lang.langueLoc}
+        </span>
+      </>
+    ),
     nativeInputProps: {
       checked: props.currentLanguage === lang.i18nCode,
       onChange: () => {
