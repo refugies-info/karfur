@@ -101,11 +101,7 @@
     }
 
     /* Level 4+: minimum readable size */
-    ol ol ol,
-    ol ol ol ol,
-    ol ol ol ol ol,
-    ol ol ol ol ol ol,
-    ol ol ol ol ol ol ol {
+    ol ol ol {
       --list-font-size: calc(var(--base-font-size) * 0.9);
     }
   }
