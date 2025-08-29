@@ -88,9 +88,18 @@
     background-color: var(--background-alt-blue-france);
     padding: 1rem;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
 
     .title {
       font-weight: bold;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
     }
   }
 }

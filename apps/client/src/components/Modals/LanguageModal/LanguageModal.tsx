@@ -4,7 +4,7 @@ import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+import { ListGroup, Modal, ModalBody, ModalHeader } from "reactstrap";
 import { getPath } from "routes";
 import { activatedLanguages } from "~/data/activatedLanguages";
 import { useChangeLanguage } from "~/hooks";
@@ -39,22 +39,15 @@ const LanguageModal = (props: Props) => {
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <ModalHeader toggle={props.toggle} className={styles.modal_header}>
-        <span className={styles.title}>{t("Homepage.change_language", "Choisissez votre langue")}</span>
+        <span className={styles.title}>{t("Homepage.change_language", "Quelle langue parlez-vous ?")}</span>
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <ListGroup>
-          <RadioButtons
-            legend={t("Homepage.change_language", "Choisissez votre langue")}
-            options={languagesOptions}
-            className={styles.radio}
-          />
+          <RadioButtons options={languagesOptions} className={styles.radio} />
 
           {!isMobile && (
             <div className={styles.help_translate_container}>
-              <p className={styles.title}>
-                {t("Homepage.traduire_title", "Contribuer à la traduction")}
-              </p>
-              <p>{t("Homepage.traduire_text", "Le contenu est traduit par des bénévoles, mais il manque encore des langues. Vous pouvez nous aider !")}</p>
+              <p>{t("Homepage.traduire_text", "Vous pouvez nous aider à traduire !")}</p>
               <Button
                 onClick={() => {
                   props.toggle();
@@ -65,7 +58,7 @@ const LanguageModal = (props: Props) => {
                   }, 100);
                 }}
               >
-                {t("Homepage.traduire_button", "Contribuer")}
+                {t("Homepage.traduire_button", "Traduire")}
               </Button>
             </div>
           )}
