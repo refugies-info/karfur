@@ -91,6 +91,11 @@
         background-color: var(--background-alt-blue-france);
       }
     }
+
+    :global(.fr-radio-group:has(input:checked)) {
+      border: 1px solid var(--light-border-default-grey, #DDD);
+      background: var(--tokens-light-background-open-blue-france, #E3E3FD);
+    }
   }
 
   .help_translate_container {
