@@ -15,7 +15,7 @@
     "@algolia/client-search": "^5.36.0",
     "@codegouvfr/react-dsfr": "1.26.0",
     "@lexical/html": "^0.27.2",
-    "@lexical/link": "^0.27.2",
+    "@lexical/link": "^0.34.0",
     "@lexical/list": "^0.27.2",
     "@lexical/react": "^0.27.2",
     "@lexical/rich-text": "^0.27.2",
