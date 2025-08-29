@@ -128,6 +128,10 @@
 
   .lang_name {
     font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
   }
 
   .lang_name_bold {
