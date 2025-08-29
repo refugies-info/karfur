@@ -93,8 +93,8 @@
     }
 
     :global(.fr-radio-group:has(input:checked)) {
-      border: 1px solid var(--light-border-default-grey, #DDD);
-      background: var(--tokens-light-background-open-blue-france, #E3E3FD);
+      border: 1px solid var(--border-default-grey);
+      background: var(--background-open-blue-france);
     }
   }
 
@@ -119,7 +119,7 @@
 
   .lang_name,
   .lang_name_bold {
-    color: var(--tokens-light-text-label-grey, #161616);
+    color: var(--text-label-grey);
     font-family: Marianne, sans-serif;
     font-size: 1rem;
     font-style: normal;
