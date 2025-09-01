@@ -1,9 +1,10 @@
+import Badge from "@codegouvfr/react-dsfr/Badge";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { isMobile } from "react-device-detect";
 import { useSelector } from "react-redux";
 import { ListGroup, Modal, ModalBody, ModalHeader } from "reactstrap";
@@ -39,18 +40,15 @@ const LanguageModal = (props: Props) => {
     [langues],
   );
 
-  const translationProgress = useMemo(
-    () => new Map((activatedLanguages || []).map((lang) => [lang.i18nCode, getTranslationProgress(lang.i18nCode)])),
-    [getTranslationProgress],
-  );
-
   const languagesOptions = (activatedLanguages || []).map((lang) => ({
     label: (
       <span className={styles.lang_name}>
         <span>
           <span className={styles.lang_name_bold}>{lang.langueFr}</span> - {lang.langueLoc}
         </span>
-        <span>{translationProgress.get(lang.i18nCode)}</span>
+        <Badge as="span" noIcon severity={getTranslationProgress(lang.i18nCode) === 1 ? "success" : "new"}>
+          {Math.round(getTranslationProgress(lang.i18nCode) * 100) + " %"}
+        </Badge>
       </span>
     ),
     nativeInputProps: {
