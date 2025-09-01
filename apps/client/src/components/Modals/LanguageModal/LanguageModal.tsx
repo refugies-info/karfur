@@ -1,6 +1,7 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
+import Tag from "@codegouvfr/react-dsfr/Tag";
 import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -39,6 +40,8 @@ const LanguageModal = (props: Props) => {
     sortedLanguages.unshift(frenchLanguage);
   }
 
+  const notListenableLanguages = ["er"];
+
   const getTranslationProgress = useCallback(
     (i18nCode: string) => {
       if (i18nCode === "fr") return 1;
@@ -52,7 +55,10 @@ const LanguageModal = (props: Props) => {
     label: (
       <span className={styles.lang_name}>
         <span>
-          <span className={styles.lang_name_bold}>{lang.langueFr}</span> - {lang.langueLoc}
+          <span className={styles.lang_name_bold}>{lang.langueFr}</span> - {lang.langueLoc}{" "}
+          {lang.langueCode && notListenableLanguages.includes(lang.langueCode) && (
+            <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
+          )}
         </span>
         <Badge as="span" noIcon severity={getTranslationProgress(lang.i18nCode) === 1 ? "success" : "new"}>
           {Math.round(getTranslationProgress(lang.i18nCode) * 100) + " %"}
