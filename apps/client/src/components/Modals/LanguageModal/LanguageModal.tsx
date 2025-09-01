@@ -12,9 +12,9 @@ import { getPath } from "routes";
 import { activatedLanguages } from "~/data/activatedLanguages";
 import { useChangeLanguage } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
+import { cls } from "~/lib/classname";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LanguageModal.module.scss";
-import { cls } from "~/lib/classname";
 
 interface Props {
   show: boolean;
@@ -31,6 +31,13 @@ const LanguageModal = (props: Props) => {
   const locale = useLocale();
   const { changeLanguage } = useChangeLanguage();
   const langues = useSelector(allLanguesSelector);
+  const sortedLanguages = [...activatedLanguages].sort((a, b) => a.langueFr.localeCompare(b.langueFr));
+  const frenchLanguage = sortedLanguages.find((lang) => lang.langueCode === "fr");
+
+  if (frenchLanguage) {
+    sortedLanguages.splice(sortedLanguages.indexOf(frenchLanguage), 1);
+    sortedLanguages.unshift(frenchLanguage);
+  }
 
   const getTranslationProgress = useCallback(
     (i18nCode: string) => {
@@ -41,7 +48,7 @@ const LanguageModal = (props: Props) => {
     [langues],
   );
 
-  const languagesOptions = (activatedLanguages || []).map((lang) => ({
+  const languagesOptions = (sortedLanguages || []).map((lang) => ({
     label: (
       <span className={styles.lang_name}>
         <span>
