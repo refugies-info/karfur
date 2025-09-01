@@ -24,16 +24,21 @@
 
   .modal_header {
     border: none;
-    padding: 1.25rem;
+    padding: 3em 1.25rem 2em;
 
-    .close {
-      color: $gray90;
+    :global(.modal-title) {
+      margin-bottom: 0 !important;
+    }
+
+    :global(.btn-close) {
+      color: var(--color-text-action-high-blue-france);
       outline: none;
       text-shadow: none;
       position: absolute;
       opacity: 1;
       top: 20px;
       right: 20px;
+      background-size: 0.53rem;
 
       @include isMobile {
         color: white;
