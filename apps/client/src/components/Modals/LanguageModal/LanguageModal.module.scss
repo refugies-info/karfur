@@ -1,6 +1,7 @@
 @import "~/scss/colors";
 @import "~/scss/mixins/responsive";
 @import "~/scss/variables";
+@import "~/scss/mixins/text";
 
 .modal {
   @include media-min("tablet-up") {
@@ -50,6 +51,18 @@
         top: 35px;
         right: 35px;
       }
+    }
+
+    .close_label {
+      @include text("small");
+
+      position: absolute;
+      top: 1.4em;
+      right: 40px;
+      z-index: 1;
+      color: var(--text-action-high-blue-france);
+      font-style: normal;
+      font-weight: 500;
     }
 
     h5 {

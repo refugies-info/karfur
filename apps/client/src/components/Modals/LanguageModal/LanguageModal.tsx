@@ -63,6 +63,7 @@ const LanguageModal = (props: Props) => {
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
       <ModalHeader toggle={props.toggle} className={styles.modal_header}>
         <span className={styles.title}>{t("Homepage.change_language", "Quelle langue parlez-vous ?")}</span>
+        <span className={styles.close_label}>{t("close", "Fermer")}</span>
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <ListGroup>
