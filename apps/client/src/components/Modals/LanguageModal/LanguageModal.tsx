@@ -14,6 +14,7 @@ import { useChangeLanguage } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LanguageModal.module.scss";
+import { cls } from "~/lib/classname";
 
 interface Props {
   show: boolean;
@@ -61,9 +62,11 @@ const LanguageModal = (props: Props) => {
 
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
-      <ModalHeader toggle={props.toggle} className={styles.modal_header}>
+      <ModalHeader className={styles.modal_header}>
         <span className={styles.title}>{t("Homepage.change_language", "Quelle langue parlez-vous ?")}</span>
-        <span className={styles.close_label}>{t("close", "Fermer")}</span>
+        <button className={styles.close_label} onClick={props.toggle}>
+          {t("close", "Fermer")} <i className={cls(styles.close_icon, "ri-close-line")}></i>
+        </button>
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <ListGroup>

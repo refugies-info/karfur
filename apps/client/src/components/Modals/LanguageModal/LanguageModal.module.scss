@@ -31,15 +31,20 @@
       margin-bottom: 0 !important;
     }
 
-    :global(.btn-close) {
+    .close_icon {
       color: var(--color-text-action-high-blue-france);
       outline: none;
       text-shadow: none;
-      position: absolute;
       opacity: 1;
-      top: 20px;
-      right: 20px;
-      background-size: 0.53rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &::before {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+      }
 
       @include isMobile {
         color: white;
@@ -57,8 +62,15 @@
       @include text("small");
 
       position: absolute;
-      top: 1.4em;
-      right: 40px;
+      display: flex;
+      padding: 0.25rem 0.75rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      align-self: stretch;
+      top: 1em;
+      right: 2em;
+      transform: translateX(1.75em);
       z-index: 1;
       color: var(--text-action-high-blue-france);
       font-style: normal;
