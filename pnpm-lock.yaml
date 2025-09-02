@@ -641,8 +641,8 @@ importers:
         specifier: ^7.28.3
         version: 7.28.3
       '@react-native/assets-registry':
-        specifier: ^0.80.2
-        version: 0.80.2
+        specifier: ^0.81.1
+        version: 0.81.1
       '@react-native/eslint-plugin':
         specifier: ^0.80.2
         version: 0.80.2
@@ -3977,9 +3977,9 @@ packages:
     resolution: {integrity: sha512-Ms4tYYAMScgINAXIhE4riCFJPPL/yltughHS950l0VP5sm5glbimn9n7RFn9Tc8cipX74/ddbk19+ydK2iDMmA==}
     engines: {node: '>=18'}
 
-  '@react-native/assets-registry@0.80.2':
-    resolution: {integrity: sha512-+sI2zIM22amhkZqW+RpD3qDoopeRiezrTtZMP+Y3HI+6/2JbEq7DdyV/2YS1lrSSdyy3STW2V37Lt4dKqP0lEQ==}
-    engines: {node: '>=18'}
+  '@react-native/assets-registry@0.81.1':
+    resolution: {integrity: sha512-o/AeHeoiPW8x9MzxE1RSnKYc+KZMW9b7uaojobEz0G8fKgGD1R8n5CJSOiQ/0yO2fJdC5wFxMMOgy2IKwRrVgw==}
+    engines: {node: '>= 20.19.4'}
 
   '@react-native/babel-plugin-codegen@0.76.9':
     resolution: {integrity: sha512-vxL/vtDEIYHfWKm5oTaEmwcnNGsua/i9OjIxBDBFiJDu5i5RU3bpmDiXQm/bJxrJNPRp5lW0I0kpGihVhnMAIQ==}
@@ -16846,7 +16846,7 @@ snapshots:
 
   '@react-native/assets-registry@0.77.0': {}
 
-  '@react-native/assets-registry@0.80.2': {}
+  '@react-native/assets-registry@0.81.1': {}
 
   '@react-native/babel-plugin-codegen@0.76.9(@babel/preset-env@7.28.3(@babel/core@7.28.3))':
     dependencies:
