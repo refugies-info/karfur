@@ -1,8 +1,8 @@
 import type { Connection } from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/legacyCounts";
+import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seedIds";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
-import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seedIds";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -262,6 +262,7 @@ export interface TestSetup {
   closeDatabase: () => Promise<void>;
 }
 
+import mongoose from "mongoose";
 import { registerTestSchemas } from "./test-schemas";
 
 /**
@@ -322,3 +323,11 @@ describe.skip("counts-mongo helpers placeholder", () => {
     expect(true).toBe(true);
   });
 });
+
+export const getOrRegisterModel = (conn: mongoose.Connection, modelName: string, schema: mongoose.Schema) => {
+  try {
+    return conn.model(modelName);
+  } catch {
+    return conn.model(modelName, schema);
+  }
+};
