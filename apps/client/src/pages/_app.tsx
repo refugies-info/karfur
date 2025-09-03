@@ -111,7 +111,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
       <ToastProvider swipeDirection="down">
         <TooltipProvider delayDuration={250}>
-          {/* {options.cookiesModule && <ConsentBannerAndConsentManagement />} */}
           <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
           {options.supportModule && (
