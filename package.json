@@ -21,6 +21,7 @@
       "core-js-pure",
       "esbuild",
       "mongodb-memory-server",
+      "oxc-resolver",
       "protobufjs",
       "sharp",
       "unrs-resolver"
