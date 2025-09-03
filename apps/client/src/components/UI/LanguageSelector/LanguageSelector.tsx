@@ -1,5 +1,5 @@
 import { activatedLanguages } from "data/activatedLanguages";
-import { forwardRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import {
   AccessibleNavigation,
   AccessibleNavigationItem,
@@ -10,16 +10,22 @@ import { useLocale } from "~/hooks";
 interface LanguageSelectProps {
   onChangeLang?: () => void;
   type?: "global" | "page";
+  itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null;
 }
 
 const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
-  ({ onChangeLang, type = "global", availableLanguages, ...props }, ref) => {
+  ({ onChangeLang, type = "global", itemsDesign = "default", availableLanguages, ...props }, ref) => {
     const sortedLanguages = [...activatedLanguages].sort((a, b) => a.langueFr.localeCompare(b.langueFr));
     const frenchLanguage = sortedLanguages.find((lang) => lang.langueCode === "fr");
     const currentLanguage = useLocale();
     const forceFrenchLanguage =
       availableLanguages?.length && !availableLanguages?.includes(currentLanguage) ? true : false;
+    const firstItemRef = useRef<HTMLButtonElement>(null);
+
+    useEffect(() => {
+      firstItemRef?.current?.focus();
+    }, [firstItemRef]);
 
     if (frenchLanguage) {
       sortedLanguages.splice(sortedLanguages.indexOf(frenchLanguage), 1);
@@ -38,7 +44,9 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
                 forceActive={forceFrenchLanguage && lang.langueCode === "fr"}
                 onChangeLang={isDisabled ? undefined : onChangeLang}
                 type={type}
+                design={itemsDesign}
                 disabled={isDisabled}
+                ref={index === 0 ? firstItemRef : undefined}
               />
             </AccessibleNavigationItem>
           );
