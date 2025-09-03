@@ -25,7 +25,7 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
 
     useEffect(() => {
       firstItemRef?.current?.focus();
-    }, [firstItemRef]);
+    }, []);
 
     if (frenchLanguage) {
       sortedLanguages.splice(sortedLanguages.indexOf(frenchLanguage), 1);
