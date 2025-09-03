@@ -1,5 +1,6 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
+import { getOrRegisterModel } from "~/__fixtures__/search-test-helpers";
 import type { SeedIds } from "~/__fixtures__/seedIds";
 
 export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
@@ -10,9 +11,13 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   // Create theme documents with positions for theme sorting
   // Only create theme documents if Theme model exists (for search index testing)
   try {
-    const Theme = conn.model("Theme");
-    if (Theme) {
-      await Theme.insertMany([
+    const ThemeModel = getOrRegisterModel(
+      conn,
+      "Theme",
+      new mongoose.Schema({}, { strict: false, collection: "themes" }),
+    );
+    if (ThemeModel) {
+      await ThemeModel.insertMany([
         { _id: themeA, position: 1, name: "Langues et intégration" },
         { _id: themeB, position: 3, name: "Numérique et compétences" },
         { _id: themeC, position: 2, name: "Emploi et formation" },
@@ -26,12 +31,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   // Create needs documents for the aggregation pipeline lookup
   // Important: conn.model("Need") throws if not registered; make sure we register a minimal model
   try {
-    let NeedModel: mongoose.Model<any>;
-    try {
-      NeedModel = conn.model("Need");
-    } catch (e) {
-      NeedModel = conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    }
+    const NeedModel = getOrRegisterModel(conn, "Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
     await NeedModel.insertMany([
       { _id: needA1, theme: themeA },
       { _id: needA2, theme: themeA },
@@ -210,13 +210,13 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
     ...Array.from({ length: 18 }, (_, i) => {
       let theme: mongoose.Types.ObjectId;
       let needs: mongoose.Types.ObjectId[];
-      
+
       if (i < 3) {
         // needA1 belongs to themeA, so use themeA
         theme = themeA;
         needs = [needA1];
       } else if (i < 5) {
-        // needA2 belongs to themeA, so use themeA  
+        // needA2 belongs to themeA, so use themeA
         theme = themeA;
         needs = [needA2];
       } else if (i < 7) {
@@ -228,7 +228,7 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
         theme = i % 3 === 0 ? themeA : i % 3 === 1 ? themeB : themeC;
         needs = [];
       }
-      
+
       return {
         theme,
         needs,
@@ -285,4 +285,3 @@ export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
 
   await Dispositif.insertMany(base);
 };
-

@@ -1,6 +1,7 @@
 import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
+import { getOrRegisterModel } from "~/__fixtures__/search-test-helpers";
 
 import type { SeedIds } from "~/__fixtures__/seedIds";
 
@@ -37,7 +38,7 @@ function getEnumValues(conn: Connection) {
   }
 }
 
-const uniq = <T,>(arr: T[]) => Array.from(new Set(arr));
+const uniq = <T>(arr: T[]) => Array.from(new Set(arr));
 
 // Small vocabulary to build deterministic phrases that tests can target
 const vocab = [
@@ -65,8 +66,7 @@ const vocab = [
 
 const wordArb = fc.constantFrom(...vocab);
 const wordsArb = (min: number, max: number) => fc.array(wordArb, { minLength: min, maxLength: max });
-const phraseArb = (min: number, max: number) =>
-  wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
+const phraseArb = (min: number, max: number) => wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
 
 // Arbitrary for the "age" field structure in metadatas
 const ageBetweenArb = fc
@@ -105,9 +105,7 @@ export type InsertableDispositif = {
 
 export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
   const enums = getEnumValues(conn);
-  const frenchLevelArb = fc
-    .array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 })
-    .map(uniq);
+  const frenchLevelArb = fc.array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 }).map(uniq);
   const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
   const refugeeStatusArb = fc
     .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
@@ -215,12 +213,11 @@ export async function seedRandomDispositifs(
   const Dispositif = conn.model("Dispositif");
   // Ensure Theme documents exist with positions for sorting tests
   try {
-    let ThemeModel: mongoose.Model<any>;
-    try {
-      ThemeModel = conn.model("Theme");
-    } catch {
-      ThemeModel = conn.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));
-    }
+    const ThemeModel = getOrRegisterModel(
+      conn,
+      "Theme",
+      new mongoose.Schema({}, { strict: false, collection: "themes" }),
+    );
     const themeA = (ids as any).themeA;
     const themeB = (ids as any).themeB;
     const themeC = (ids as any).themeC;
@@ -235,12 +232,7 @@ export async function seedRandomDispositifs(
   }
   // Ensure the 'needs' collection exists for the API needs facet $lookup
   try {
-    let NeedModel: mongoose.Model<any>;
-    try {
-      NeedModel = conn.model("Need");
-    } catch {
-      NeedModel = conn.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    }
+    const NeedModel = getOrRegisterModel(conn, "Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
     await NeedModel.insertMany(
       [
         { _id: (ids as any).needA1, theme: (ids as any).themeA },
