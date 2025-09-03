@@ -74,25 +74,46 @@ export const filterDispositifs = (
   const rule = getDisplayRule(query.type, filterKeys, query.sort);
 
   const inferedThemes: Id[] | undefined =
-    query.themes.length === 0 && query.needs
+    query.themes.length === 0 && query.needs && query.needs.length > 0
       ? [
           ...new Set(
-            allNeeds?.filter((currentNeed) => query.needs.includes(currentNeed._id)).map((need) => need.theme._id),
+            allNeeds
+              ?.filter((currentNeed) => query.needs.some((needId) => String(currentNeed._id) === String(needId)))
+              .map((need) => need.theme._id),
           ),
         ]
       : undefined;
 
-  const filteredDispositifs = dispositifs
-    .filter(
-      (dispositif) =>
-        skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes, inferedThemes),
-    )
-    .filter((dispositif) => skip === "location" || filterByLocations(dispositif, query.departments))
-    .filter((dispositif) => skip === "age" || filterByAge(dispositif, query.age))
-    .filter((dispositif) => skip === "frenchLevel" || filterByFrenchLevel(dispositif, query.frenchLevel))
-    .filter((dispositif) => skip === "language" || filterByLanguage(dispositif, query.language))
-    .filter((dispositif) => skip === "public" || filterByPublic(dispositif, query.public))
-    .filter((dispositif) => skip === "status" || filterByStatus(dispositif, query.status));
+  let filteredDispositifs = dispositifs;
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) =>
+      skip === "theme" || filterByThemeOrNeed(dispositif, query.themes, query.needs, secondaryThemes, inferedThemes),
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "location" || filterByLocations(dispositif, query.departments)
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "age" || filterByAge(dispositif, query.age)
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "frenchLevel" || filterByFrenchLevel(dispositif, query.frenchLevel)
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "language" || filterByLanguage(dispositif, query.language)
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "public" || filterByPublic(dispositif, query.public)
+  );
+  
+  filteredDispositifs = filteredDispositifs.filter(
+    (dispositif) => skip === "status" || filterByStatus(dispositif, query.status)
+  );
 
   return rule?.sortFunction && !skip
     ? [...filteredDispositifs].sort((a, b) => rule.sortFunction(a, b))
