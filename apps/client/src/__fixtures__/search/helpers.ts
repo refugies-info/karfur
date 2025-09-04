@@ -1,9 +1,14 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
-import { registerTestSchemas } from "~/__fixtures__/seed-data/schemas";
-import { makeNeedsList, makeNeedsSeedIds, type NeedsSeedIds } from "~/__fixtures__/seed-data/needs";
-import { makeThemesSeedIds, type ThemesSeedIds } from "~/__fixtures__/seed-data/themes";
+import {
+  registerTestSchemas,
+  makeNeedsList,
+  makeNeedsSeedIds,
+  makeThemesSeedIds,
+  type NeedsSeedIds,
+  type ThemesSeedIds,
+} from "~/__fixtures__/seed-data";
 
 export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 import { QueryParams } from "~/lib/search-helpers";

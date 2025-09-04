@@ -13,7 +13,7 @@ import {
   type TestSetup,
 } from "~/__fixtures__/search/helpers";
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
-import { seedDispositifs } from "~/__fixtures__/seed-data/dispositifs";
+import { seedDispositifs } from "~/__fixtures__/seed-data";
 
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`

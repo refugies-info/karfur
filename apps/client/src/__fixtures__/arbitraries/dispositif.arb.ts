@@ -2,8 +2,7 @@ import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
-import type { NeedsSeedIds } from "~/__fixtures__/seed-data/needs";
-import type { ThemesSeedIds } from "~/__fixtures__/seed-data/themes";
+import type { NeedsSeedIds, ThemesSeedIds } from "~/__fixtures__/seed-data";
 
 export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 
