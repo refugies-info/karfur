@@ -1,5 +1,5 @@
 import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb";
-import { LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
+import { LegacyNeedsItem } from "~/__fixtures__/search/legacyCounts";
 import {
   generateCases,
   getLegacyNeedsList,
@@ -11,7 +11,7 @@ import {
   teardownMongoTest,
   type FiltersDef,
   type TestSetup,
-} from "~/__fixtures__/search-test-helpers";
+} from "~/__fixtures__/search/search-test-helpers";
 
 /**
  * Randomized dataset tests: seeds many generated documents for broader coverage

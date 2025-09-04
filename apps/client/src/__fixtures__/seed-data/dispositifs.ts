@@ -1,6 +1,6 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { getOrRegisterModel } from "~/__fixtures__/search-test-helpers";
+import { getOrRegisterModel } from "~/__fixtures__/search/search-test-helpers";
 import type { SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
 
 export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
