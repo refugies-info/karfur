@@ -104,7 +104,7 @@ export type InsertableDispositif = {
   typeContenu: string;
 };
 
-export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
+export const makeDispositifArb = (conn: Connection, themeIds: ThemesSeedIds, needIds: NeedsSeedIds) => {
   const enums = getEnumValues(conn);
   const frenchLevelArb = fc.array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 }).map(uniq);
   const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
@@ -112,13 +112,13 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
     .map(uniq);
 
-  const themeArb = fc.constantFrom(ids.themeA, ids.themeB);
+  const themeArb = fc.constantFrom(themeIds.themeA, themeIds.themeB);
 
   return themeArb.chain((themeId) => {
     const themeIdStr = String(themeId);
 
     // Secondary themes: choose 0–2 themes explicitly excluding the primary `theme`
-    const allThemes = [ids.themeA, ids.themeB];
+    const allThemes = [themeIds.themeA, themeIds.themeB];
     const otherThemes = allThemes.filter((t) => String(t) !== themeIdStr);
     const secondaryThemesArb = fc
       .array(fc.constantFrom(...otherThemes), { minLength: 0, maxLength: Math.min(2, otherThemes.length) })
@@ -128,8 +128,8 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     const needsArb = secondaryThemesArb.chain((secs) => {
       const inScope = new Set([themeIdStr, ...secs.map((t) => String(t))]);
       const allowed: mongoose.Types.ObjectId[] = [];
-      if (inScope.has(String(ids.themeA))) allowed.push(ids.needA1, ids.needA2);
-      if (inScope.has(String(ids.themeB))) allowed.push(ids.needB1);
+      if (inScope.has(String(themeIds.themeA))) allowed.push(needIds.needA1, needIds.needA2);
+      if (inScope.has(String(themeIds.themeB))) allowed.push(needIds.needB1);
       return fc
         .array(fc.constantFrom(...allowed), {
           minLength: 1,
@@ -184,8 +184,8 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
 
       const needToTheme = (nid: mongoose.Types.ObjectId): string | null => {
         const s = String(nid);
-        if (s === String(ids.needA1) || s === String(ids.needA2)) return String(ids.themeA);
-        if (s === String(ids.needB1)) return String(ids.themeB);
+        if (s === String(needIds.needA1) || s === String(needIds.needA2)) return String(themeIds.themeA);
+        if (s === String(needIds.needB1)) return String(themeIds.themeB);
         return null;
       };
 
@@ -207,7 +207,8 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
 
 export async function seedRandomDispositifs(
   conn: Connection,
-  ids: SeedIds,
+  themeIds: ThemesSeedIds,
+  needIds: NeedsSeedIds,
   count: number,
   seed?: number,
 ): Promise<number> {
@@ -219,9 +220,9 @@ export async function seedRandomDispositifs(
       "Theme",
       new mongoose.Schema({}, { strict: false, collection: "themes" }),
     );
-    const themeA = (ids as any).themeA;
-    const themeB = (ids as any).themeB;
-    const themeC = (ids as any).themeC;
+    const themeA = themeIds.themeA;
+    const themeB = themeIds.themeB;
+    const themeC = themeIds.themeC;
     const docs: any[] = [
       { _id: themeA, position: 1, name: "Theme A" },
       { _id: themeB, position: 3, name: "Theme B" },
@@ -236,16 +237,16 @@ export async function seedRandomDispositifs(
     const NeedModel = getOrRegisterModel(conn, "Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
     await NeedModel.insertMany(
       [
-        { _id: (ids as any).needA1, theme: (ids as any).themeA },
-        { _id: (ids as any).needA2, theme: (ids as any).themeA },
-        { _id: (ids as any).needB1, theme: (ids as any).themeB },
+        { _id: needIds.needA1, theme: themeIds.themeA },
+        { _id: needIds.needA2, theme: themeIds.themeA },
+        { _id: needIds.needB1, theme: themeIds.themeB },
       ],
       { ordered: false },
     );
   } catch {
     // Ignore duplicate key or schema-related errors in tests
   }
-  const arb = makeDispositifArb(conn, ids);
+  const arb = makeDispositifArb(conn, themeIds, needIds);
   const docs = fc.sample(arb, { seed, numRuns: count });
   await Dispositif.insertMany(docs);
   return docs.length;
