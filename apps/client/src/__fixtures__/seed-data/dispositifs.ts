@@ -1,7 +1,10 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
-import type { SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
+import type { NeedsSeedIds } from "~/__fixtures__/seed-data/needs";
+import type { ThemesSeedIds } from "~/__fixtures__/seed-data/themes";
+
+export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 
 export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
   const { themeA, themeB, needA1, needA2, needB1 } = ids as any;

@@ -2,7 +2,10 @@ import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
-import type { SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
+import type { NeedsSeedIds } from "~/__fixtures__/seed-data/needs";
+import type { ThemesSeedIds } from "~/__fixtures__/seed-data/themes";
+
+export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).

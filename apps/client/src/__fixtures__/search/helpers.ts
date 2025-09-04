@@ -2,7 +2,10 @@ import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
 import { registerTestSchemas } from "~/__fixtures__/seed-data/schemas";
-import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
+import { makeNeedsList, makeNeedsSeedIds, type NeedsSeedIds } from "~/__fixtures__/seed-data/needs";
+import { makeThemesSeedIds, type ThemesSeedIds } from "~/__fixtures__/seed-data/themes";
+
+export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
 
@@ -84,7 +87,7 @@ export interface SeedFilterIds {
  * Use this in tests instead of hard-coding ObjectId strings.
  */
 export const getSeedFilterIds = (): SeedFilterIds => {
-  const ids = makeSeedIds();
+  const ids = { ...makeNeedsSeedIds(), ...makeThemesSeedIds() };
   return {
     ids,
     themes: { A: ids.themeA.toString(), B: ids.themeB.toString(), C: ids.themeC.toString() },
@@ -95,7 +98,7 @@ export const getSeedFilterIds = (): SeedFilterIds => {
 /**
  * Builds the legacy needsList structure from provided seed IDs (or fresh ones).
  */
-export const getLegacyNeedsList = (ids?: SeedIds) => makeNeedsList(ids ?? makeSeedIds());
+export const getLegacyNeedsList = (ids?: SeedIds) => makeNeedsList(ids ?? { ...makeNeedsSeedIds(), ...makeThemesSeedIds() });
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   try {
