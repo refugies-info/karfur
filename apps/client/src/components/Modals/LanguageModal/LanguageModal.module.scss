@@ -50,6 +50,7 @@
     h5 {
       width: 100%;
       cursor: default;
+      margin-bottom: 0;
     }
 
     .title {
@@ -67,7 +68,7 @@
   }
 
   .modal_body {
-    padding: 0 1.25rem 1.25rem;
+    padding: 1rem 2rem 2rem;
 
     :global .fr-tag {
       font-size: 0.7em;
