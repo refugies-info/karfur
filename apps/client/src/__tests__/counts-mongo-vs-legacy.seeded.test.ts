@@ -21,8 +21,8 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const { ids, themes, needs } = getSeedFilterIds();
-  const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
+  const { themes, needs, themeIds, needIds } = getSeedFilterIds();
+  const needsList: LegacyNeedsItem[] = getLegacyNeedsList({ ...themeIds, ...needIds }) as any;
 
   beforeAll(async () => {
     setup = await setupMongoTest();
@@ -34,12 +34,12 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   beforeEach(async () => {
     await resetDatabase(setup.conn);
-    await seedDispositifs(setup.conn, ids);
+    await seedDispositifs(setup.conn, { ...themeIds, ...needIds });
   });
 
   test("Legacy counts should match manual counts", async () => {
     const all = await getAllDispositifs(setup.conn);
-    const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
+    const needsList: LegacyNeedsItem[] = getLegacyNeedsList({ ...themeIds, ...needIds }) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({}));
     expect(24).toBe(legacy.total);
     expect({ en: 2, fr: 24 }).toEqual(legacy.languages);
@@ -57,7 +57,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   test("Legacy counts when skipping frenchLevel should match manual counts", async () => {
     const all = await getAllDispositifs(setup.conn);
-    const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
+    const needsList: LegacyNeedsItem[] = getLegacyNeedsList({ ...themeIds, ...needIds }) as any;
     const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery({ frenchLevel: ["a"] }));
     expect(13).toBe(legacy.total);
     expect({ en: 1, fr: 13 }).toEqual(legacy.languages);

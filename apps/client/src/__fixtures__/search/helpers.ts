@@ -82,9 +82,10 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
 
 // Centralized helpers to access seed IDs in tests
 export interface SeedFilterIds {
-  ids: SeedIds;
   themes: { A: string; B: string; C: string };
   needs: { A1: string; A2: string; B1: string };
+  themeIds: ThemesSeedIds;
+  needIds: NeedsSeedIds;
 }
 
 /**
@@ -92,11 +93,13 @@ export interface SeedFilterIds {
  * Use this in tests instead of hard-coding ObjectId strings.
  */
 export const getSeedFilterIds = (): SeedFilterIds => {
-  const ids = { ...makeNeedsSeedIds(), ...makeThemesSeedIds() };
+  const themeIds = makeThemesSeedIds();
+  const needIds = makeNeedsSeedIds();
   return {
-    ids,
-    themes: { A: ids.themeA.toString(), B: ids.themeB.toString(), C: ids.themeC.toString() },
-    needs: { A1: ids.needA1.toString(), A2: ids.needA2.toString(), B1: ids.needB1.toString() },
+    themes: { A: themeIds.themeA.toString(), B: themeIds.themeB.toString(), C: themeIds.themeC.toString() },
+    needs: { A1: needIds.needA1.toString(), A2: needIds.needA2.toString(), B1: needIds.needB1.toString() },
+    themeIds,
+    needIds,
   };
 };
 

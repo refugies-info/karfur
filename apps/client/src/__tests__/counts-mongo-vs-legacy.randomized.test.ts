@@ -19,8 +19,8 @@ import { LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
 describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let setup: TestSetup;
 
-  const { ids, themes, needs } = getSeedFilterIds();
-  const needsList: LegacyNeedsItem[] = getLegacyNeedsList(ids) as any;
+  const { themes, needs, themeIds, needIds } = getSeedFilterIds();
+  const needsList: LegacyNeedsItem[] = getLegacyNeedsList({ ...themeIds, ...needIds }) as any;
 
   beforeAll(async () => {
     setup = await setupMongoTest();
@@ -33,7 +33,7 @@ describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   beforeEach(async () => {
     await resetDatabase(setup.conn);
     // Seed many random documents for broader coverage. Seed ensures determinism across runs.
-    await seedRandomDispositifs(setup.conn, ids, 100, 12345);
+    await seedRandomDispositifs(setup.conn, { ...themeIds, ...needIds }, 100, 12345);
   });
 
   // Use shared helpers to generate cases
