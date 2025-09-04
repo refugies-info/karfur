@@ -34,8 +34,9 @@ const LanguageModal = (props: Props) => {
             iconId="fr-icon-close-line"
             priority="tertiary no outline"
             iconPosition="right"
+            size="small"
           >
-            {t("fermer", "Fermer")}
+            {t("close", "Fermer")}
           </Button>
           <h5 className={cn(styles.title)}>{t("Homepage.modalLangTitle", "Quelle langue parlez-vous ?")}</h5>
         </div>
