@@ -13,7 +13,7 @@ import {
   type FiltersDef,
   type TestSetup,
 } from "~/__fixtures__/search-test-helpers";
-import { seedDispositifs } from "~/__fixtures__/seedDispositifs";
+import { seedDispositifs } from "~/__fixtures__/seed-data/seedDispositifs";
 
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`
