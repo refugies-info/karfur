@@ -6,13 +6,13 @@ import {
   makeNeedsSeedIds,
   makeThemesSeedIds,
   registerTestSchemas,
-  type NeedsSeedIds,
-  type ThemesSeedIds,
+  type NeedSeedIds,
+  type ThemeSeedIds,
 } from "~/__fixtures__/seed-data";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
 
-export type SeedIds = NeedsSeedIds & ThemesSeedIds;
+export type SeedIds = NeedSeedIds & ThemeSeedIds;
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {

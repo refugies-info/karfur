@@ -1,10 +1,10 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
-import type { NeedsSeedIds } from "./needs";
-import type { ThemesSeedIds } from "./themes";
+import type { NeedSeedIds } from "./needs";
+import type { ThemeSeedIds } from "./themes";
 
-export const seedDispositifs = async (conn: Connection, themeIds: ThemesSeedIds, needIds: NeedsSeedIds) => {
+export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
   const { themeA, themeB, themeC } = themeIds;
   const { needA1, needA2, needB1 } = needIds;
   const Dispositif = conn.model("Dispositif");

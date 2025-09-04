@@ -2,9 +2,7 @@ import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
-import type { NeedsSeedIds, ThemesSeedIds } from "~/__fixtures__/seed-data";
-
-type SeedIds = NeedsSeedIds & ThemesSeedIds;
+import type { NeedSeedIds, ThemeSeedIds } from "~/__fixtures__/seed-data";
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).
@@ -104,7 +102,7 @@ export type InsertableDispositif = {
   typeContenu: string;
 };
 
-export const makeDispositifArb = (conn: Connection, themeIds: ThemesSeedIds, needIds: NeedsSeedIds) => {
+export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
   const enums = getEnumValues(conn);
   const frenchLevelArb = fc.array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 }).map(uniq);
   const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
@@ -207,8 +205,8 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemesSeedIds, nee
 
 export async function seedRandomDispositifs(
   conn: Connection,
-  themeIds: ThemesSeedIds,
-  needIds: NeedsSeedIds,
+  themeIds: ThemeSeedIds,
+  needIds: NeedSeedIds,
   count: number,
   seed?: number,
 ): Promise<number> {
