@@ -109,7 +109,7 @@ export const getSeedFilterIds = (): SeedFilterIds => {
 export const getLegacyNeedsList = (themeIds?: ThemesSeedIds, needIds?: NeedsSeedIds) => {
   const finalThemeIds = themeIds ?? makeThemesSeedIds();
   const finalNeedIds = needIds ?? makeNeedsSeedIds();
-  return makeNeedsList({ ...finalThemeIds, ...finalNeedIds });
+  return makeNeedsList(finalNeedIds, finalThemeIds);
 };
 
 export const expectCountsEqual = (api: any, legacy: any) => {

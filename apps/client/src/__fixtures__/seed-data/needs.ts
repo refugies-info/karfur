@@ -18,8 +18,8 @@ export interface ThemeSeedIds {
   themeC: mongoose.Types.ObjectId;
 }
 
-export const makeNeedsList = (ids: NeedsSeedIds & ThemeSeedIds) => [
-  { _id: ids.needA1, theme: { _id: ids.themeA } },
-  { _id: ids.needA2, theme: { _id: ids.themeA } },
-  { _id: ids.needB1, theme: { _id: ids.themeB } },
+export const makeNeedsList = (needIds: NeedsSeedIds, themeIds: ThemeSeedIds) => [
+  { _id: needIds.needA1, theme: { _id: themeIds.themeA } },
+  { _id: needIds.needA2, theme: { _id: themeIds.themeA } },
+  { _id: needIds.needB1, theme: { _id: themeIds.themeB } },
 ];
