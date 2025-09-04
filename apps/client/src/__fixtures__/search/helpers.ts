@@ -88,16 +88,29 @@ export const getLegacyNeedsList = () => {
 };
 
 /**
- * Returns deterministic string IDs for use in filter tests.
+ * Returns deterministic theme IDs for use in filter tests.
  * Use this in tests instead of hard-coding ObjectId strings.
  */
-export const getSeedFilterIds = () => {
+export const getSeedThemeIds = () => {
   const themeIds = makeThemesSeedIds();
+  return {
+    A: themeIds.themeA.toString(),
+    B: themeIds.themeB.toString(),
+    C: themeIds.themeC.toString(),
+    themeIds,
+  };
+};
+
+/**
+ * Returns deterministic need IDs for use in filter tests.
+ * Use this in tests instead of hard-coding ObjectId strings.
+ */
+export const getSeedNeedIds = () => {
   const needIds = makeNeedsSeedIds();
   return {
-    themes: { A: themeIds.themeA.toString(), B: themeIds.themeB.toString(), C: themeIds.themeC.toString() },
-    needs: { A1: needIds.needA1.toString(), A2: needIds.needA2.toString(), B1: needIds.needB1.toString() },
-    themeIds,
+    A1: needIds.needA1.toString(),
+    A2: needIds.needA2.toString(),
+    B1: needIds.needB1.toString(),
     needIds,
   };
 };
