@@ -20,7 +20,7 @@ describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let setup: TestSetup;
 
   const { themes, needs, themeIds, needIds } = getSeedFilterIds();
-  const needsList: LegacyNeedsItem[] = getLegacyNeedsList(themeIds, needIds) as any;
+  const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {
     setup = await setupMongoTest();

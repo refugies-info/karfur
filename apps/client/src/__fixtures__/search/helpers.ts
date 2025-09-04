@@ -2,17 +2,17 @@ import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
 import {
-  registerTestSchemas,
   makeNeedsList,
   makeNeedsSeedIds,
   makeThemesSeedIds,
+  registerTestSchemas,
   type NeedsSeedIds,
   type ThemesSeedIds,
 } from "~/__fixtures__/seed-data";
-
-export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
+
+export type SeedIds = NeedsSeedIds & ThemesSeedIds;
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -80,19 +80,18 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
   ...p,
 });
 
-// Centralized helpers to access seed IDs in tests
-export interface SeedFilterIds {
-  themes: { A: string; B: string; C: string };
-  needs: { A1: string; A2: string; B1: string };
-  themeIds: ThemesSeedIds;
-  needIds: NeedsSeedIds;
-}
+// Centralized helper to access seed IDs for tests
+export const getLegacyNeedsList = () => {
+  const themeIds = makeThemesSeedIds();
+  const needIds = makeNeedsSeedIds();
+  return makeNeedsList(needIds, themeIds);
+};
 
 /**
- * Returns deterministic seed IDs along with convenient string maps for filters.
+ * Returns deterministic string IDs for use in filter tests.
  * Use this in tests instead of hard-coding ObjectId strings.
  */
-export const getSeedFilterIds = (): SeedFilterIds => {
+export const getSeedFilterIds = () => {
   const themeIds = makeThemesSeedIds();
   const needIds = makeNeedsSeedIds();
   return {
@@ -101,15 +100,6 @@ export const getSeedFilterIds = (): SeedFilterIds => {
     themeIds,
     needIds,
   };
-};
-
-/**
- * Builds the legacy needsList structure from provided seed IDs (or fresh ones).
- */
-export const getLegacyNeedsList = (themeIds?: ThemesSeedIds, needIds?: NeedsSeedIds) => {
-  const finalThemeIds = themeIds ?? makeThemesSeedIds();
-  const finalNeedIds = needIds ?? makeNeedsSeedIds();
-  return makeNeedsList(finalNeedIds, finalThemeIds);
 };
 
 export const expectCountsEqual = (api: any, legacy: any) => {
