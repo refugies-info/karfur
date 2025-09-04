@@ -1,8 +1,9 @@
 import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/legacyCounts";
-import { seedDispositifs } from "~/__fixtures__/seedDispositifs";
 import {
   generateCases,
   getAllDispositifs,
+  getLegacyNeedsList,
+  getSeedFilterIds,
   makeCase,
   resetDatabase,
   runFacetTests,
@@ -11,9 +12,8 @@ import {
   toLegacyQuery,
   type FiltersDef,
   type TestSetup,
-  getLegacyNeedsList,
-  getSeedFilterIds,
-} from "./helpers/search-test-helpers";
+} from "~/__fixtures__/search-test-helpers";
+import { seedDispositifs } from "~/__fixtures__/seedDispositifs";
 
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`

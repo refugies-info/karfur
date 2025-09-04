@@ -1,8 +1,7 @@
 import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { getOrRegisterModel } from "~/__tests__/helpers/search-test-helpers";
-
+import { getOrRegisterModel } from "~/__fixtures__/search-test-helpers";
 import type { SeedIds } from "~/__fixtures__/seedIds";
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
