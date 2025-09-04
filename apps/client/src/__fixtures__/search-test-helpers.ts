@@ -1,6 +1,6 @@
 import type { Connection } from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/legacyCounts";
-import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seed-data/seedIds";
+import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
 
@@ -262,7 +262,7 @@ export interface TestSetup {
 }
 
 import mongoose from "mongoose";
-import { registerTestSchemas } from "./seed-data/test-schemas";
+import { registerTestSchemas } from "./seed-data/schemas";
 
 /**
  * Sets up a MongoDB memory server and connection for testing
