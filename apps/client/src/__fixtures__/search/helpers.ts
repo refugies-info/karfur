@@ -106,7 +106,11 @@ export const getSeedFilterIds = (): SeedFilterIds => {
 /**
  * Builds the legacy needsList structure from provided seed IDs (or fresh ones).
  */
-export const getLegacyNeedsList = (ids?: SeedIds) => makeNeedsList(ids ?? { ...makeNeedsSeedIds(), ...makeThemesSeedIds() });
+export const getLegacyNeedsList = (themeIds?: ThemesSeedIds, needIds?: NeedsSeedIds) => {
+  const finalThemeIds = themeIds ?? makeThemesSeedIds();
+  const finalNeedIds = needIds ?? makeNeedsSeedIds();
+  return makeNeedsList({ ...finalThemeIds, ...finalNeedIds });
+};
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   try {
