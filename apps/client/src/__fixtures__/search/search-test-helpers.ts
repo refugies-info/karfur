@@ -315,13 +315,6 @@ export const resetDatabase = async (conn: Connection): Promise<void> => {
   await db.dropDatabase();
 };
 
-// Prevent Jest from failing this helpers file when collected as a test suite
-describe.skip("counts-mongo helpers placeholder", () => {
-  it("placeholder", () => {
-    expect(true).toBe(true);
-  });
-});
-
 export const getOrRegisterModel = (conn: mongoose.Connection, modelName: string, schema: mongoose.Schema) => {
   try {
     return conn.model(modelName);
