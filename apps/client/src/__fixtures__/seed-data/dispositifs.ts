@@ -4,11 +4,9 @@ import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
 import type { NeedsSeedIds } from "./needs";
 import type { ThemesSeedIds } from "./themes";
 
-export type SeedIds = NeedsSeedIds & ThemesSeedIds;
-
-export const seedDispositifs = async (conn: Connection, ids: SeedIds) => {
-  const { themeA, themeB, needA1, needA2, needB1 } = ids as any;
-  const themeC = (ids as any).themeC as mongoose.Types.ObjectId | undefined;
+export const seedDispositifs = async (conn: Connection, themeIds: ThemesSeedIds, needIds: NeedsSeedIds) => {
+  const { themeA, themeB, themeC } = themeIds;
+  const { needA1, needA2, needB1 } = needIds;
   const Dispositif = conn.model("Dispositif");
 
   // Create theme documents with positions for theme sorting

@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
 import type { NeedsSeedIds, ThemesSeedIds } from "~/__fixtures__/seed-data";
 
-export type SeedIds = NeedsSeedIds & ThemesSeedIds;
+type SeedIds = NeedsSeedIds & ThemesSeedIds;
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).

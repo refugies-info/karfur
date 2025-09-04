@@ -36,7 +36,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   beforeEach(async () => {
     await resetDatabase(setup.conn);
-    await seedDispositifs(setup.conn, { ...themeIds, ...needIds });
+    await seedDispositifs(setup.conn, themeIds, needIds);
   });
 
   test("Legacy counts should match manual counts", async () => {
