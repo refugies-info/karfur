@@ -1,4 +1,3 @@
-import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/search/legacyCounts";
 import {
   generateCases,
   getAllDispositifs,
@@ -12,7 +11,8 @@ import {
   toLegacyQuery,
   type FiltersDef,
   type TestSetup,
-} from "~/__fixtures__/search/search-test-helpers";
+} from "~/__fixtures__/search/helpers";
+import { legacyFacetCounts, LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
 import { seedDispositifs } from "~/__fixtures__/seed-data/dispositifs";
 
 /**

@@ -1,6 +1,6 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacyCounts";
+import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
 import { registerTestSchemas } from "~/__fixtures__/seed-data/schemas";
 import { makeNeedsList, makeSeedIds, type SeedIds } from "~/__fixtures__/seed-data/themes-and-needs";
 import { QueryParams } from "~/lib/search-helpers";
