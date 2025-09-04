@@ -11,14 +11,19 @@ export const filterByThemeOrNeed = (
   if (themesSelected.length === 0 && needs.length === 0) return true;
 
   // Normalize all IDs to strings for consistent comparison
-  const dispositifThemeStr = String(dispositif.theme || '');
+  const dispositifThemeStr = String(dispositif.theme || "");
   const inferedThemesStr = inferedThemes?.map(String) || [];
   const needsStr = needs.map(String);
   const themesSelectedStr = themesSelected.map(String);
 
   // Only apply inferred themes filtering when themes are explicitly selected
   // When themesSelected is empty, inferred themes should not filter out dispositifs
-  if (themesSelected.length > 0 && inferedThemesStr.length > 0 && dispositifThemeStr && !inferedThemesStr.includes(dispositifThemeStr)) {
+  if (
+    themesSelected.length > 0 &&
+    inferedThemesStr.length > 0 &&
+    dispositifThemeStr &&
+    !inferedThemesStr.includes(dispositifThemeStr)
+  ) {
     return false;
   }
 

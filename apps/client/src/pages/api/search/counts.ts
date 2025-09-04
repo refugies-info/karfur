@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
-import { buildBaseMatch, buildQueryParams, getSearchClient, QueryParams } from "~/lib/search-helpers";
 import dbConnect from "~/lib/db";
+import { buildBaseMatch, buildQueryParams, getSearchClient, QueryParams } from "~/lib/search-helpers";
 
 // Define types locally
 interface CountItem {
@@ -85,11 +84,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
             $setUnion: [
               // main theme is a single ObjectId -> wrap into array if present then stringify
               {
-                $cond: [
-                  { $ne: ["$theme", null] },
-                  [{ $toString: "$theme" }],
-                  [],
-                ],
+                $cond: [{ $ne: ["$theme", null] }, [{ $toString: "$theme" }], []],
               },
               // secondaryThemes is an array of ObjectIds -> stringify
               {
