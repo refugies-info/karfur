@@ -79,32 +79,31 @@ export const getLegacyNeedsList = () => {
 };
 
 /**
- * Returns deterministic theme IDs for use in filter tests.
- * Use this in tests instead of hard-coding ObjectId strings.
+ * Returns deterministic theme IDs as strings for use in test assertions and filter parameters.
+ * Use this when you need string values for comparisons or filter parameters.
  */
-export const getSeedThemeIds = () => {
+export const getSeedThemeIdsAsStrings = () => {
   const themeIds = makeThemesSeedIds();
   return {
     TA: themeIds.TA.toString(),
     TB: themeIds.TB.toString(),
     TC: themeIds.TC.toString(),
-    themeIds,
   };
 };
 
 /**
- * Returns deterministic need IDs for use in filter tests.
- * Use this in tests instead of hard-coding ObjectId strings.
+ * Returns deterministic need IDs as strings for use in test assertions and filter parameters.
+ * Use this when you need string values for comparisons or filter parameters.
  */
-export const getSeedNeedIds = () => {
+export const getSeedNeedIdsAsStrings = () => {
   const needIds = makeNeedsSeedIds();
   return {
     NA1: needIds.NA1.toString(),
     NA2: needIds.NA2.toString(),
     NB1: needIds.NB1.toString(),
-    needIds,
   };
 };
+
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   try {

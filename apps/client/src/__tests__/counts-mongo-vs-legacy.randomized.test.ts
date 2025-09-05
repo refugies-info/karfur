@@ -2,8 +2,8 @@ import { seedRandomDispositifs } from "~/__fixtures__/arbitraries/dispositif.arb
 import {
   generateCases,
   getLegacyNeedsList,
-  getSeedNeedIds,
-  getSeedThemeIds,
+  getSeedNeedIdsAsStrings,
+  getSeedThemeIdsAsStrings,
   makeCase,
   resetDatabase,
   runFacetTests,
@@ -20,8 +20,8 @@ import { LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
 describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let setup: TestSetup;
 
-  const { TB } = getSeedThemeIds();
-  const { NB1 } = getSeedNeedIds();
+  const { TB } = getSeedThemeIdsAsStrings();
+  const { NB1 } = getSeedNeedIdsAsStrings();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {

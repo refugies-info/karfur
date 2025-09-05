@@ -2,8 +2,8 @@ import {
   generateCases,
   getAllDispositifs,
   getLegacyNeedsList,
-  getSeedNeedIds,
-  getSeedThemeIds,
+  getSeedNeedIdsAsStrings,
+  getSeedThemeIdsAsStrings,
   makeCase,
   resetDatabase,
   runFacetTests,
@@ -22,8 +22,8 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const { TB } = getSeedThemeIds();
-  const { NB1 } = getSeedNeedIds();
+  const { TB } = getSeedThemeIdsAsStrings();
+  const { NB1 } = getSeedNeedIdsAsStrings();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {
