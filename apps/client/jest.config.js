@@ -9,12 +9,18 @@ const customJestConfig = {
   testEnvironment: "jest-environment-jsdom",
   rootDir: "./",
   setupFilesAfterEnv: ["./jest/setup.js"],
+  testMatch: [
+    "**/__tests__/**/*.test.(js|jsx|ts|tsx)",
+    "**/__tests__/**/*.spec.(js|jsx|ts|tsx)",
+    "**/?(*.)+(spec|test).(js|jsx|ts|tsx)",
+  ],
   transform: {
     "^.+\\.(t|j)sx?$": ["babel-jest", { presets: ["next/babel"] }],
     "^.+\\.mjs$": ["babel-jest", { presets: ["next/babel"] }],
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "mjs", "json", "node"],
   modulePathIgnorePatterns: ["<rootDir>/.dist"],
+  testPathIgnorePatterns: ["/node_modules/", "/__fixtures__/", "/__mocks__/"],
   // Transpile ESM packages from node_modules used in tests
   transformIgnorePatterns: ["node_modules/(?!@codegouvfr/react-dsfr|@lottiefiles|bson|mongodb)"],
   moduleNameMapper: {

@@ -1,6 +1,9 @@
 import type { Connection } from "mongoose";
-import { LegacyQuery } from "~/__fixtures__/legacyCounts";
-import { computeSearchCounts, QueryParams } from "~/pages/api/search/counts";
+import mongoose from "mongoose";
+import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
+import { getNeedSeedIds, getThemeSeedIds, makeNeedsList, registerTestSchemas } from "~/__fixtures__/seed-data";
+import { QueryParams } from "~/lib/search-helpers";
+import { computeSearchCounts } from "~/pages/api/search/counts";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
@@ -68,15 +71,55 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
   ...p,
 });
 
+// Centralized helper to access seed IDs for tests
+export const getLegacyNeedsList = () => {
+  const themeIds = getThemeSeedIds();
+  const needIds = getNeedSeedIds();
+  return makeNeedsList(needIds, themeIds);
+};
+
+/**
+ * Returns deterministic theme IDs as strings for use in test assertions and filter parameters.
+ * Use this when you need string values for comparisons or filter parameters.
+ */
+export const getSeedThemeIdsAsStrings = () => {
+  const themeIds = getThemeSeedIds();
+  return {
+    TA: themeIds.TA.toString(),
+    TB: themeIds.TB.toString(),
+    TC: themeIds.TC.toString(),
+  };
+};
+
+/**
+ * Returns deterministic need IDs as strings for use in test assertions and filter parameters.
+ * Use this when you need string values for comparisons or filter parameters.
+ */
+export const getSeedNeedIdsAsStrings = () => {
+  const needIds = getNeedSeedIds();
+  return {
+    NA1: needIds.NA1.toString(),
+    NA2: needIds.NA2.toString(),
+    NB1: needIds.NB1.toString(),
+  };
+};
+
 export const expectCountsEqual = (api: any, legacy: any) => {
-  expect(api.total).toBe(legacy.total);
-  expect(api.languages || {}).toEqual(legacy.languages);
-  expect(api.publics || {}).toEqual(legacy.publics);
-  expect(api.statuses || {}).toEqual(legacy.statuses);
-  expect(api.frenchLevels || {}).toEqual(legacy.frenchLevels);
-  expect(api.ageRanges || {}).toEqual(legacy.ageRanges);
-  expect(api.themes || {}).toEqual(legacy.themes);
-  expect(api.needs || {}).toEqual(legacy.needs);
+  try {
+    expect(api.total).toBe(legacy.total);
+    expect(api.languages || {}).toEqual(legacy.languages);
+    expect(api.publics || {}).toEqual(legacy.publics);
+    expect(api.statuses || {}).toEqual(legacy.statuses);
+    expect(api.frenchLevels || {}).toEqual(legacy.frenchLevels);
+    expect(api.ageRanges || {}).toEqual(legacy.ageRanges);
+    expect(api.themes || {}).toEqual(legacy.themes);
+    expect(api.needs || {}).toEqual(legacy.needs);
+  } catch (error) {
+    // This will pause execution when debugging
+    // eslint-disable-next-line no-debugger
+    debugger;
+    throw error; // Re-throw to maintain test failure behavior
+  }
 };
 
 export const getAllDispositifs = async (conn: Connection) => {
@@ -113,11 +156,7 @@ export const runFacetTests = (
       const api = await computeSearchCounts(conn, params);
 
       const all = await getAllDispositifs(conn);
-      const legacy = (await import("~/__fixtures__/legacyCounts")).legacyFacetCounts(
-        all as any,
-        needsList,
-        toLegacyQuery(c.legacy),
-      );
+      const legacy = legacyFacetCounts(all as any, needsList, toLegacyQuery(c.legacy));
 
       expectCountsEqual(api, legacy);
     });
@@ -153,8 +192,13 @@ export const generateCases = (options: {
   // When true, the single "needs" case will also add the provided theme id in params
   needsSinglesIncludeThemeId?: string | null;
 }): Array<{ name: string; params: Partial<QueryParams> }> => {
-  const { filters, includeZero = false, maxCombinationSize = 1, searchTerm = null, needsSinglesIncludeThemeId = null } =
-    options;
+  const {
+    filters,
+    includeZero = false,
+    maxCombinationSize = 1,
+    searchTerm = null,
+    needsSinglesIncludeThemeId = null,
+  } = options;
 
   const entries = Object.entries(filters);
   const cases: Array<{ name: string; params: Partial<QueryParams> }> = [];
@@ -180,7 +224,10 @@ export const generateCases = (options: {
   if (includeZero) {
     cases.push({ name: "baseline: totals and facets match (no filters)", params: {} });
     if (searchTerm) {
-      cases.push({ name: "search facet matches legacy when search filter applied (skip search)", params: { search: searchTerm } });
+      cases.push({
+        name: "search facet matches legacy when search filter applied (skip search)",
+        params: { search: searchTerm },
+      });
     }
   }
 
@@ -215,9 +262,70 @@ export const generateCases = (options: {
   return cases;
 };
 
-// Prevent Jest from failing this helpers file when collected as a test suite
-describe.skip("counts-mongo helpers placeholder", () => {
-  it("placeholder", () => {
-    expect(true).toBe(true);
-  });
-});
+// Centralized MongoDB test setup helper
+export interface TestSetup {
+  mongod: any;
+  conn: Connection;
+  models: any;
+  closeDatabase: () => Promise<void>;
+}
+
+/**
+ * Sets up a MongoDB memory server and connection for testing
+ * Registers all required test schemas (Theme, Need, Dispositif)
+ * @returns Promise resolving to test setup object
+ */
+export const setupMongoTest = async (): Promise<TestSetup> => {
+  const { MongoMemoryServer } = require("mongodb-memory-server");
+  const mongoose = require("mongoose");
+
+  const mongod = await MongoMemoryServer.create();
+  const conn = await mongoose.createConnection(mongod.getUri(), { dbName: "test" }).asPromise();
+
+  // Register all test schemas on this connection
+  const models = registerTestSchemas(conn);
+
+  // Configure Algolia mock for the connection
+  configureAlgoliaMockFor(conn);
+
+  return {
+    conn,
+    mongod,
+    models,
+    closeDatabase: async () => {
+      await conn.close();
+      await mongod.stop();
+    },
+  };
+};
+
+/**
+ * Cleans up MongoDB test resources
+ * @param setup The test setup object to clean up
+ */
+export const teardownMongoTest = async (setup: TestSetup): Promise<void> => {
+  if (setup.conn) {
+    await setup.conn.close();
+  }
+  if (setup.mongod) {
+    await setup.mongod.stop();
+  }
+};
+
+/**
+ * Resets the database between tests
+ * @param conn The MongoDB connection
+ */
+export const resetDatabase = async (conn: Connection): Promise<void> => {
+  const db = conn.db;
+  if (!db) throw new Error("Connection DB not initialized");
+  await db.dropDatabase();
+};
+
+export const getOrRegisterModel = (conn: mongoose.Connection, modelName: string, schema: mongoose.Schema) => {
+  try {
+    return conn.model(modelName);
+  } catch {
+    return conn.model(modelName, schema);
+  }
+};

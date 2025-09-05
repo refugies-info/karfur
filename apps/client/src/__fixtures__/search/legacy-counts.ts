@@ -148,7 +148,11 @@ export function legacyFacetCounts(
       const themeIds = new Set<string>();
       if (d?.theme) themeIds.add(String(d.theme));
       if (Array.isArray(d?.secondaryThemes)) d.secondaryThemes.forEach((t: any) => themeIds.add(String(t)));
-      return (d.needs as Id[]).filter((id: Id) => themeIds.has(String(needsMap.get(String(id)))));
+      return (d.needs as Id[]).filter((id: Id) => {
+        const needId = String(id);
+        const themeId = String(needsMap.get(needId));
+        return themeIds.has(themeId);
+      });
     })
     .countBy((id) => String(id))
     .value();

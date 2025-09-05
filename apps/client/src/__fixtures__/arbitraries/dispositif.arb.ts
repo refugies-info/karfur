@@ -1,8 +1,8 @@
 import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-
-import type { SeedIds } from "~/__fixtures__/seedDispositifs";
+import type { NeedSeedIds, ThemeSeedIds } from "~/__fixtures__/seed-data";
+import { getNeedSeedIds, getThemeSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).
@@ -37,7 +37,7 @@ function getEnumValues(conn: Connection) {
   }
 }
 
-const uniq = <T,>(arr: T[]) => Array.from(new Set(arr));
+const uniq = <T>(arr: T[]) => Array.from(new Set(arr));
 
 // Small vocabulary to build deterministic phrases that tests can target
 const vocab = [
@@ -65,8 +65,7 @@ const vocab = [
 
 const wordArb = fc.constantFrom(...vocab);
 const wordsArb = (min: number, max: number) => fc.array(wordArb, { minLength: min, maxLength: max });
-const phraseArb = (min: number, max: number) =>
-  wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
+const phraseArb = (min: number, max: number) => wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
 
 // Arbitrary for the "age" field structure in metadatas
 const ageBetweenArb = fc
@@ -103,23 +102,21 @@ export type InsertableDispositif = {
   typeContenu: string;
 };
 
-export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
+export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
   const enums = getEnumValues(conn);
-  const frenchLevelArb = fc
-    .array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 })
-    .map(uniq);
+  const frenchLevelArb = fc.array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 }).map(uniq);
   const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
   const refugeeStatusArb = fc
     .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
     .map(uniq);
 
-  const themeArb = fc.constantFrom(ids.themeA, ids.themeB);
+  const themeArb = fc.constantFrom(themeIds.TA, themeIds.TB);
 
   return themeArb.chain((themeId) => {
     const themeIdStr = String(themeId);
 
     // Secondary themes: choose 0–2 themes explicitly excluding the primary `theme`
-    const allThemes = [ids.themeA, ids.themeB];
+    const allThemes = [themeIds.TA, themeIds.TB, themeIds.TC];
     const otherThemes = allThemes.filter((t) => String(t) !== themeIdStr);
     const secondaryThemesArb = fc
       .array(fc.constantFrom(...otherThemes), { minLength: 0, maxLength: Math.min(2, otherThemes.length) })
@@ -129,8 +126,8 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
     const needsArb = secondaryThemesArb.chain((secs) => {
       const inScope = new Set([themeIdStr, ...secs.map((t) => String(t))]);
       const allowed: mongoose.Types.ObjectId[] = [];
-      if (inScope.has(String(ids.themeA))) allowed.push(ids.needA1, ids.needA2);
-      if (inScope.has(String(ids.themeB))) allowed.push(ids.needB1);
+      if (inScope.has(String(themeIds.TA))) allowed.push(needIds.NA1, needIds.NA2);
+      if (inScope.has(String(themeIds.TB))) allowed.push(needIds.NB1);
       return fc
         .array(fc.constantFrom(...allowed), {
           minLength: 1,
@@ -185,8 +182,8 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
 
       const needToTheme = (nid: mongoose.Types.ObjectId): string | null => {
         const s = String(nid);
-        if (s === String(ids.needA1) || s === String(ids.needA2)) return String(ids.themeA);
-        if (s === String(ids.needB1)) return String(ids.themeB);
+        if (s === String(needIds.NA1) || s === String(needIds.NA2)) return String(themeIds.TA);
+        if (s === String(needIds.NB1)) return String(themeIds.TB);
         return null;
       };
 
@@ -206,14 +203,13 @@ export const makeDispositifArb = (conn: Connection, ids: SeedIds) => {
   });
 };
 
-export async function seedRandomDispositifs(
-  conn: Connection,
-  ids: SeedIds,
-  count: number,
-  seed?: number,
-): Promise<number> {
+export async function seedRandomDispositifs(conn: Connection, count: number, seed?: number): Promise<number> {
+  const themeIds = getThemeSeedIds();
+  const needIds = getNeedSeedIds();
   const Dispositif = conn.model("Dispositif");
-  const arb = makeDispositifArb(conn, ids);
+  await seedThemes(conn, themeIds);
+  await seedNeeds(conn, needIds, themeIds);
+  const arb = makeDispositifArb(conn, themeIds, needIds);
   const docs = fc.sample(arb, { seed, numRuns: count });
   await Dispositif.insertMany(docs);
   return docs.length;

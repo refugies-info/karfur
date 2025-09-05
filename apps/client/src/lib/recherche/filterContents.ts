@@ -10,25 +10,51 @@ export const filterByThemeOrNeed = (
 ) => {
   if (themesSelected.length === 0 && needs.length === 0) return true;
 
-  if (inferedThemes && dispositif.theme && !inferedThemes.includes(dispositif.theme)) return false;
+  // Normalize all IDs to strings for consistent comparison
+  const dispositifThemeStr = String(dispositif.theme || "");
+  const inferedThemesStr = inferedThemes?.map(String) || [];
+  const needsStr = needs.map(String);
+  const themesSelectedStr = themesSelected.map(String);
 
-  if (dispositif.needs) {
-    for (const need of dispositif.needs) {
-      // return true if dispositif has need
-      if (needs.includes(need)) return true;
-    }
+  // Only apply inferred themes filtering when themes are explicitly selected
+  // When themesSelected is empty, inferred themes should not filter out dispositifs
+  if (
+    themesSelected.length > 0 &&
+    inferedThemesStr.length > 0 &&
+    dispositifThemeStr &&
+    !inferedThemesStr.includes(dispositifThemeStr)
+  ) {
+    return false;
   }
-  if (!withSecondaryTheme) {
-    // or has theme as primary one
-    if (dispositif.theme && themesSelected.includes(dispositif.theme)) return true;
-  } else {
-    // or has theme as secondary one
-    if (dispositif.secondaryThemes) {
-      for (const theme of dispositif.secondaryThemes) {
-        if (themesSelected.includes(theme)) return true;
+
+  // If we have needs to filter by, check if dispositif has any of them
+  if (needs.length > 0) {
+    if (dispositif.needs) {
+      for (const need of dispositif.needs) {
+        const needStr = String(need);
+        if (needsStr.includes(needStr)) return true;
+      }
+    }
+    // If we only have needs (no themes), and no needs match, return false
+    if (themesSelected.length === 0) return false;
+  }
+
+  // If we have themes to filter by
+  if (themesSelected.length > 0) {
+    if (!withSecondaryTheme) {
+      // check primary theme
+      if (dispositifThemeStr && themesSelectedStr.includes(dispositifThemeStr)) return true;
+    } else {
+      // check secondary themes
+      if (dispositif.secondaryThemes) {
+        for (const theme of dispositif.secondaryThemes) {
+          const themeStr = String(theme);
+          if (themesSelectedStr.includes(themeStr)) return true;
+        }
       }
     }
   }
+
   return false;
 };
 

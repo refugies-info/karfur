@@ -1,18 +1,10 @@
-import { searchClient } from "@algolia/client-search";
-import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
 import { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "../../../lib/db";
-
-// Initialize Algolia client
-const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
-const indexName =
-  (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
-    ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD
-    : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
+import dbConnect from "~/lib/db";
+import { buildBaseMatch, buildQueryParams, getSearchClient, QueryParams } from "~/lib/search-helpers";
 
 // Define types locally
-export interface CountItem {
+interface CountItem {
   id: string;
   count: number;
 }
@@ -35,232 +27,6 @@ export interface SearchCountsResponse {
   total: number;
 }
 
-export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
-  if (!param) return [];
-  return Array.isArray(param) ? param : [param];
-};
-
-export interface QueryParams {
-  search?: string;
-  departments?: string[];
-  themes?: string[];
-  needs?: string[];
-  age?: AgeOptions[];
-  frenchLevel?: FrenchOptions[];
-  public?: PublicOptions[];
-  status?: StatusOptions[];
-  language?: string[];
-}
-
-export const buildBaseMatch = (query: QueryParams, algoliaIds?: string[]) => {
-  const match: any = { status: "Actif" };
-
-  if (algoliaIds) {
-    match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
-  }
-
-  const departments = (query.departments ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (departments.length > 0) {
-    // Accept both full tokens (e.g., "67 - Bas-Rhin", "france", "online")
-    // and county-only names (e.g., "Bas-Rhin"). For county-only names, match
-    // documents whose metadatas.location ends with " - <County>" (case-insensitive).
-    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const tokensOrRegexes = departments.map((dep) => {
-      if (dep === "france" || dep === "online" || dep.includes(" - ")) return dep;
-      return new RegExp(` \\- ${escapeRegExp(dep)}$`, "i");
-    });
-    match["metadatas.location"] = { $in: tokensOrRegexes };
-  }
-  const themes = (query.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (themes.length > 0) {
-    const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
-    // Mirror filterByThemeOrNeed (withSecondaryTheme = false) for base filtering: PRIMARY theme only
-    match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
-  }
-  const needs = (query.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (needs.length > 0) {
-    const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
-    match.$or = (match.$or || []).concat([{ needs: { $in: needIds } }]);
-  }
-  const ages = (query.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
-  if (ages.length > 0) {
-    const minAgeExpr = {
-      $switch: {
-        branches: [
-          {
-            case: { $eq: ["$metadatas.age.type", "between"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
-          },
-          {
-            case: { $eq: ["$metadatas.age.type", "moreThan"] },
-            // legacy convertAudienceAgeToRange uses (age + 1, MAX]
-            then: {
-              $add: [{ $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } }, 1],
-            },
-          },
-          { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
-        ],
-        default: 0,
-      },
-    } as const;
-    const maxAgeExpr = {
-      $switch: {
-        branches: [
-          {
-            case: { $eq: ["$metadatas.age.type", "between"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } },
-          },
-          { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
-          {
-            case: { $eq: ["$metadatas.age.type", "lessThan"] },
-            // legacy convertAudienceAgeToRange uses [MIN, age - 1]
-            then: { $add: [{ $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } }, -1] },
-          },
-        ],
-        default: 0,
-      },
-    } as const;
-
-    const bucketExpr = (range: AgeOptions) => {
-      if (range === "-18") return { $and: [{ $lte: [minAgeExpr, 0] }, { $gte: [maxAgeExpr, 17] }] };
-      if (range === "18-25") return { $and: [{ $lte: [minAgeExpr, 18] }, { $gte: [maxAgeExpr, 25] }] };
-      return { $and: [{ $lte: [minAgeExpr, 25] }, { $gte: [maxAgeExpr, 1000000] }] }; // +25
-    };
-    // If age is missing/empty on the record, legacy filtering treats it as matching all filters.
-    // Mirror that by short-circuiting the age condition when metadatas.age is null or ages array is empty.
-    match.$and = (match.$and || []).concat({
-      $or: [
-        { $eq: [{ $ifNull: ["$metadatas.age", null] }, null] },
-        {
-          $expr: {
-            $or: ages.map(bucketExpr),
-          },
-        },
-      ],
-    });
-  }
-  const frenchLevel = (query.frenchLevel ?? []).filter((x): x is FrenchOptions => x === "a" || x === "b" || x === "c");
-  if (frenchLevel.length > 0) {
-    // Mirror facet logic: derive cats (a/b/c); if empty/missing -> ["a","b","c"].
-    const selectedCats = frenchLevel;
-    match.$and = (match.$and || []).concat({
-      $expr: {
-        $gt: [
-          {
-            $size: {
-              $setIntersection: [
-                {
-                  $cond: [
-                    {
-                      $or: [
-                        {
-                          $eq: [
-                            {
-                              $size: {
-                                $ifNull: [
-                                  {
-                                    $filter: {
-                                      input: {
-                                        $map: {
-                                          input: { $ifNull: ["$metadatas.frenchLevel", []] },
-                                          as: "lvl",
-                                          in: {
-                                            $switch: {
-                                              branches: [
-                                                { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
-                                                { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
-                                                { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
-                                              ],
-                                              default: null,
-                                            },
-                                          },
-                                        },
-                                      },
-                                      as: "x",
-                                      cond: { $ne: ["$$x", null] },
-                                    },
-                                  },
-                                  [],
-                                ],
-                              },
-                            },
-                            0,
-                          ],
-                        },
-                        { $eq: [{ $ifNull: ["$metadatas.frenchLevel", null] }, null] },
-                      ],
-                    },
-                    ["a", "b", "c"],
-                    {
-                      $setUnion: [
-                        {
-                          $filter: {
-                            input: {
-                              $map: {
-                                input: { $ifNull: ["$metadatas.frenchLevel", []] },
-                                as: "lvl",
-                                in: {
-                                  $switch: {
-                                    branches: [
-                                      { case: { $in: ["$$lvl", ["alpha", "A1", "A2"]] }, then: "a" },
-                                      { case: { $in: ["$$lvl", ["B1", "B2"]] }, then: "b" },
-                                      { case: { $in: ["$$lvl", ["C1", "C2"]] }, then: "c" },
-                                    ],
-                                    default: null,
-                                  },
-                                },
-                              },
-                            },
-                            as: "x",
-                            cond: { $ne: ["$$x", null] },
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                selectedCats,
-              ],
-            },
-          },
-          0,
-        ],
-      },
-    });
-  }
-  const publics = (query.public ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (publics.length > 0) {
-    match["metadatas.public"] = { $in: publics };
-  }
-  const statuses = (query.status ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (statuses.length > 0) {
-    // Filter by refugee statuses stored in metadatas.publicStatus (document status remains constrained to "Actif")
-    match["metadatas.publicStatus"] = { $in: statuses };
-  }
-  const languages = (query.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  if (languages.length > 0) {
-    // Filter by presence of a translation key for any requested language.
-    // IMPORTANT: Compose with other conditions using AND, not by overwriting existing $or (themes/needs).
-    match.$and = (match.$and || []).concat([
-      { $or: languages.map((lng) => ({ [`translations.${lng}`]: { $exists: true } })) },
-    ]);
-  }
-
-  return match;
-};
-
-export const buildQueryParams = (query: any): QueryParams => ({
-  search: query.query as string,
-  departments: getQueryParamAsArray(query.departments),
-  themes: getQueryParamAsArray(query.themes),
-  needs: getQueryParamAsArray(query.needs),
-  age: getQueryParamAsArray(query.age) as AgeOptions[],
-  frenchLevel: getQueryParamAsArray(query.frenchLevel) as FrenchOptions[],
-  public: getQueryParamAsArray(query.public) as PublicOptions[],
-  status: getQueryParamAsArray(query.status) as StatusOptions[],
-  language: getQueryParamAsArray(query.language),
-});
-
 export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {
   // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
   const Dispositif =
@@ -269,6 +35,7 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
 
   let algoliaIds: string[] | undefined = undefined;
   if (queryParams.search) {
+    const { algoliaClient, indexName } = getSearchClient();
     const searchResults = await algoliaClient.searchSingleIndex({
       indexName,
       searchParams: {
@@ -313,9 +80,43 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
           _allNeeds: {
             $ifNull: ["$needs", []],
           },
+          _themeIds: {
+            $setUnion: [
+              // main theme is a single ObjectId -> wrap into array if present then stringify
+              {
+                $cond: [{ $ne: ["$theme", null] }, [{ $toString: "$theme" }], []],
+              },
+              // secondaryThemes is an array of ObjectIds -> stringify
+              {
+                $map: {
+                  input: { $ifNull: ["$secondaryThemes", []] },
+                  as: "t",
+                  in: { $toString: "$$t" },
+                },
+              },
+              // legacy field already an array of string ids
+              { $ifNull: ["$thematiques", []] },
+            ],
+          },
         },
       },
       { $unwind: "$_allNeeds" },
+      {
+        $lookup: {
+          from: "needs",
+          localField: "_allNeeds",
+          foreignField: "_id",
+          as: "needDoc",
+        },
+      },
+      { $unwind: "$needDoc" },
+      {
+        $match: {
+          $expr: {
+            $in: [{ $toString: "$needDoc.theme" }, "$_themeIds"],
+          },
+        },
+      },
       { $group: { _id: "$_allNeeds", count: { $sum: 1 } } },
     ],
     frenchLevels: [
