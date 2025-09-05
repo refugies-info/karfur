@@ -20,8 +20,8 @@ import { LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
 describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let setup: TestSetup;
 
-  const { TB: themeB, themeIds } = getSeedThemeIds();
-  const { NB1: needB1, needIds } = getSeedNeedIds();
+  const { TB, themeIds } = getSeedThemeIds();
+  const { NB1, needIds } = getSeedNeedIds();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {
@@ -47,8 +47,8 @@ describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
     language: ["fr"],
     public: ["family"],
     status: ["refugie"],
-    themes: [themeB],
-    needs: [needB1],
+    themes: [TB],
+    needs: [NB1],
   };
 
   runFacetTests(

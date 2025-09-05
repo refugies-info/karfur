@@ -22,8 +22,8 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const { TB: themeB, themeIds } = getSeedThemeIds();
-  const { NB1: needB1, needIds } = getSeedNeedIds();
+  const { TB, themeIds } = getSeedThemeIds();
+  const { NB1, needIds } = getSeedNeedIds();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {
@@ -82,8 +82,8 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
     language: ["fr"],
     public: ["family"],
     status: ["refugie"],
-    themes: [themeB],
-    needs: [needB1],
+    themes: [TB],
+    needs: [NB1],
   };
 
   runFacetTests(
@@ -95,7 +95,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
       maxCombinationSize: 1,
       searchTerm: "jeunes",
       // special rule: needs singles also include themeB
-      needsSinglesIncludeThemeId: themeB,
+      needsSinglesIncludeThemeId: TB,
     }).map((c) => makeCase(c.name, c.params)),
   );
 });
