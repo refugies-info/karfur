@@ -1,6 +1,7 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { getNeedSeedIds, getThemeSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
+import { getNeedSeedIds, seedNeeds } from "./needs";
+import { getThemeSeedIds, seedThemes } from "./themes";
 
 export const seedDispositifs = async (conn: Connection) => {
   const themeIds = getThemeSeedIds();

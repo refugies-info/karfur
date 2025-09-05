@@ -1,24 +1,12 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-
-export interface ThemeSeedIds {
-  TA: mongoose.Types.ObjectId;
-  TB: mongoose.Types.ObjectId;
-  TC: mongoose.Types.ObjectId;
-}
+import type { ThemeDocument, ThemeSeedIds } from "./types";
 
 export const getThemeSeedIds = (): ThemeSeedIds => ({
   TA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
   TB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
   TC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),
 });
-
-export interface ThemeDocument {
-  _id: mongoose.Types.ObjectId;
-  name: string;
-  short: string;
-  position: number;
-}
 
 export const makeThemesList = (themeIds: ThemeSeedIds): ThemeDocument[] => [
   { _id: themeIds.TA, name: "Theme A", short: "TA", position: 1 },

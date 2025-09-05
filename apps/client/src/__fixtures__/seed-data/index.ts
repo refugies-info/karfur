@@ -3,13 +3,14 @@
  * This file provides a single entry point for all seed data utilities
  */
 
+// Export from types.ts
+export type { NeedDocument, NeedSeedIds, ThemeDocument, ThemeSeedIds } from "./types";
+
 // Export from themes.ts
 export { getThemeSeedIds, makeThemesList, seedThemes } from "./themes";
-export type { ThemeDocument, ThemeSeedIds } from "./themes";
 
 // Export from needs.ts
 export { getNeedSeedIds, makeNeedsList, seedNeeds } from "./needs";
-export type { NeedDocument, NeedSeedIds } from "./needs";
 
 // Export from schemas.ts
 export { DispositifSchema, ModelNames, NeedSchema, TestSchemas, ThemeSchema, registerTestSchemas } from "./schemas";
