@@ -22,8 +22,8 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const { TB, themeIds } = getSeedThemeIds();
-  const { NB1, needIds } = getSeedNeedIds();
+  const { TB } = getSeedThemeIds();
+  const { NB1 } = getSeedNeedIds();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {
@@ -36,7 +36,7 @@ describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
 
   beforeEach(async () => {
     await resetDatabase(setup.conn);
-    await seedDispositifs(setup.conn, themeIds, needIds);
+    await seedDispositifs(setup.conn);
   });
 
   test("Legacy counts should match manual counts", async () => {
