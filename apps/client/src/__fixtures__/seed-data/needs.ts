@@ -2,21 +2,21 @@ import mongoose from "mongoose";
 import type { Connection } from "mongoose";
 
 export interface NeedSeedIds {
-  needA1: mongoose.Types.ObjectId;
-  needA2: mongoose.Types.ObjectId;
-  needB1: mongoose.Types.ObjectId;
+  NA1: mongoose.Types.ObjectId;
+  NA2: mongoose.Types.ObjectId;
+  NB1: mongoose.Types.ObjectId;
 }
 
 export const makeNeedsSeedIds = (): NeedSeedIds => ({
-  needA1: new mongoose.Types.ObjectId("64b0000000000000000000a1"),
-  needA2: new mongoose.Types.ObjectId("64b0000000000000000000a2"),
-  needB1: new mongoose.Types.ObjectId("64b0000000000000000000b1"),
+  NA1: new mongoose.Types.ObjectId("64b0000000000000000000a1"),
+  NA2: new mongoose.Types.ObjectId("64b0000000000000000000a2"),
+  NB1: new mongoose.Types.ObjectId("64b0000000000000000000b1"),
 });
 
 export interface ThemeSeedIds {
-  themeA: mongoose.Types.ObjectId;
-  themeB: mongoose.Types.ObjectId;
-  themeC: mongoose.Types.ObjectId;
+  TA: mongoose.Types.ObjectId;
+  TB: mongoose.Types.ObjectId;
+  TC: mongoose.Types.ObjectId;
 }
 
 export interface NeedDocument {
@@ -25,9 +25,9 @@ export interface NeedDocument {
 }
 
 export const makeNeedsList = (needIds: NeedSeedIds, themeIds: ThemeSeedIds): NeedDocument[] => [
-  { _id: needIds.needA1, theme: themeIds.themeA },
-  { _id: needIds.needA2, theme: themeIds.themeA },
-  { _id: needIds.needB1, theme: themeIds.themeB },
+  { _id: needIds.NA1, theme: themeIds.TA },
+  { _id: needIds.NA2, theme: themeIds.TA },
+  { _id: needIds.NB1, theme: themeIds.TB },
 ];
 
 export const seedNeeds = async (conn: Connection, needIds: NeedSeedIds, themeIds: ThemeSeedIds) => {

@@ -110,13 +110,13 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
     .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
     .map(uniq);
 
-  const themeArb = fc.constantFrom(themeIds.themeA, themeIds.themeB);
+  const themeArb = fc.constantFrom(themeIds.TA, themeIds.TB);
 
   return themeArb.chain((themeId) => {
     const themeIdStr = String(themeId);
 
     // Secondary themes: choose 0–2 themes explicitly excluding the primary `theme`
-    const allThemes = [themeIds.themeA, themeIds.themeB];
+    const allThemes = [themeIds.TA, themeIds.TB, themeIds.TC];
     const otherThemes = allThemes.filter((t) => String(t) !== themeIdStr);
     const secondaryThemesArb = fc
       .array(fc.constantFrom(...otherThemes), { minLength: 0, maxLength: Math.min(2, otherThemes.length) })
@@ -126,8 +126,8 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
     const needsArb = secondaryThemesArb.chain((secs) => {
       const inScope = new Set([themeIdStr, ...secs.map((t) => String(t))]);
       const allowed: mongoose.Types.ObjectId[] = [];
-      if (inScope.has(String(themeIds.themeA))) allowed.push(needIds.needA1, needIds.needA2);
-      if (inScope.has(String(themeIds.themeB))) allowed.push(needIds.needB1);
+      if (inScope.has(String(themeIds.TA))) allowed.push(needIds.NA1, needIds.NA2);
+      if (inScope.has(String(themeIds.TB))) allowed.push(needIds.NB1);
       return fc
         .array(fc.constantFrom(...allowed), {
           minLength: 1,
@@ -182,8 +182,8 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
 
       const needToTheme = (nid: mongoose.Types.ObjectId): string | null => {
         const s = String(nid);
-        if (s === String(needIds.needA1) || s === String(needIds.needA2)) return String(themeIds.themeA);
-        if (s === String(needIds.needB1)) return String(themeIds.themeB);
+        if (s === String(needIds.NA1) || s === String(needIds.NA2)) return String(themeIds.TA);
+        if (s === String(needIds.NB1)) return String(themeIds.TB);
         return null;
       };
 

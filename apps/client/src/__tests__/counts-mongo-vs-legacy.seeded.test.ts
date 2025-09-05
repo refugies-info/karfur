@@ -22,8 +22,8 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
-  const { B: themeB, themeIds } = getSeedThemeIds();
-  const { B1: needB1, needIds } = getSeedNeedIds();
+  const { TB: themeB, themeIds } = getSeedThemeIds();
+  const { NB1: needB1, needIds } = getSeedNeedIds();
   const needsList: LegacyNeedsItem[] = getLegacyNeedsList() as any;
 
   beforeAll(async () => {

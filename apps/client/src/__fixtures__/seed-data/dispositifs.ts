@@ -1,14 +1,13 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
 import type { NeedSeedIds } from "./needs";
+import { seedNeeds } from "./needs";
 import type { ThemeSeedIds } from "./themes";
 import { seedThemes } from "./themes";
-import { seedNeeds } from "./needs";
 
 export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
-  const { themeA, themeB, themeC } = themeIds;
-  const { needA1, needA2, needB1 } = needIds;
+  const { TA, TB, TC } = themeIds;
+  const { NA1, NA2, NB1 } = needIds;
   const Dispositif = conn.model("Dispositif");
 
   // Use centralized theme and need creation
@@ -18,9 +17,9 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
   const base = [
     // Enhanced existing items with views and timestamps
     {
-      theme: themeA,
-      needs: [needA1, needA2],
-      secondaryThemes: [themeB],
+      theme: TA,
+      needs: [NA1, NA2],
+      secondaryThemes: [TB],
       title: "Cours de français A1 pour jeunes à Paris",
       name: "Association Langues Paris",
       titreMarque: "Langues&Co",
@@ -49,8 +48,8 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
       typeContenu: "dispositif",
     },
     {
-      theme: themeA,
-      needs: [needA1],
+      theme: TA,
+      needs: [NA1],
       secondaryThemes: [],
       title: "Accompagnement administratif B1 pour familles",
       name: "Solidarité 92",
@@ -76,9 +75,9 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
       typeContenu: "dispositif",
     },
     {
-      theme: themeB,
-      needs: [needB1],
-      secondaryThemes: [themeA],
+      theme: TB,
+      needs: [NB1],
+      secondaryThemes: [TA],
       title: "Atelier numérique A2 pour seniors",
       name: "Maison des Seniors Paris",
       titreMarque: "Seniors Connectés",
@@ -104,9 +103,9 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
     },
     // Additional items for comprehensive testing
     {
-      theme: themeC,
-      needs: [needB1],
-      secondaryThemes: [themeA, themeB],
+      theme: TC,
+      needs: [NB1],
+      secondaryThemes: [TA, TB],
       title: "Formation professionnelle en ligne",
       name: "Centre de Formation Digital",
       titreMarque: "Digital Pro",
@@ -129,9 +128,9 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
       typeContenu: "online",
     },
     {
-      theme: themeA,
-      needs: [needA2],
-      secondaryThemes: [themeC],
+      theme: TA,
+      needs: [NA2],
+      secondaryThemes: [TC],
       title: "Démarche administrative en ligne",
       name: "Service Démarches",
       titreMarque: "Admin Express",
@@ -154,8 +153,8 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
     },
     // Edge case items
     {
-      theme: themeB,
-      needs: [needA1],
+      theme: TB,
+      needs: [NA1],
       title: "Cours intensif C1 pour professionnels",
       name: "Institut Linguistique",
       titreMarque: "Pro Lingua",
@@ -186,20 +185,20 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
       let needs: mongoose.Types.ObjectId[];
 
       if (i < 3) {
-        // needA1 belongs to themeA, so use themeA
-        theme = themeA;
-        needs = [needA1];
+        // NA1 belongs to TA, so use TA
+        theme = TA;
+        needs = [NA1];
       } else if (i < 5) {
-        // needA2 belongs to themeA, so use themeA
-        theme = themeA;
-        needs = [needA2];
+        // NA2 belongs to TA, so use TA
+        theme = TA;
+        needs = [NA2];
       } else if (i < 7) {
-        // needB1 belongs to themeB, so use themeB
-        theme = themeB;
-        needs = [needB1];
+        // NB1 belongs to TB, so use TB
+        theme = TB;
+        needs = [NB1];
       } else {
         // No needs for remaining items, use any theme
-        theme = i % 3 === 0 ? themeA : i % 3 === 1 ? themeB : themeC;
+        theme = i % 3 === 0 ? TA : i % 3 === 1 ? TB : TC;
         needs = [];
       }
 
@@ -229,8 +228,8 @@ export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, 
     }),
     // Inactive entry should be filtered out globally
     {
-      theme: themeB,
-      needs: [needB1],
+      theme: TB,
+      needs: [NB1],
       secondaryThemes: [],
       title: "Cours de français A1 pour jeunes à Paris",
       name: "Association Langues Paris",

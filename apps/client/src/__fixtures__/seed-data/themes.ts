@@ -2,27 +2,28 @@ import mongoose from "mongoose";
 import type { Connection } from "mongoose";
 
 export interface ThemeSeedIds {
-  themeA: mongoose.Types.ObjectId;
-  themeB: mongoose.Types.ObjectId;
-  themeC: mongoose.Types.ObjectId;
+  TA: mongoose.Types.ObjectId;
+  TB: mongoose.Types.ObjectId;
+  TC: mongoose.Types.ObjectId;
 }
 
 export const makeThemesSeedIds = (): ThemeSeedIds => ({
-  themeA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
-  themeB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
-  themeC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),
+  TA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
+  TB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
+  TC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),
 });
 
 export interface ThemeDocument {
   _id: mongoose.Types.ObjectId;
   name: string;
+  short: string;
   position: number;
 }
 
-export const makeThemesList = (ids: ThemeSeedIds): ThemeDocument[] => [
-  { _id: ids.themeA, position: 1, name: "Langues et intégration" },
-  { _id: ids.themeB, position: 3, name: "Numérique et compétences" },
-  { _id: ids.themeC, position: 2, name: "Emploi et formation" },
+export const makeThemesList = (themeIds: ThemeSeedIds): ThemeDocument[] => [
+  { _id: themeIds.TA, name: "Theme A", short: "TA", position: 1 },
+  { _id: themeIds.TB, name: "Theme B", short: "TB", position: 2 },
+  { _id: themeIds.TC, name: "Theme C", short: "TC", position: 3 },
 ];
 
 export const seedThemes = async (conn: Connection, themeIds: ThemeSeedIds) => {

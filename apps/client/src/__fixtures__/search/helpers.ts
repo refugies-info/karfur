@@ -85,9 +85,9 @@ export const getLegacyNeedsList = () => {
 export const getSeedThemeIds = () => {
   const themeIds = makeThemesSeedIds();
   return {
-    A: themeIds.themeA.toString(),
-    B: themeIds.themeB.toString(),
-    C: themeIds.themeC.toString(),
+    TA: themeIds.TA.toString(),
+    TB: themeIds.TB.toString(),
+    TC: themeIds.TC.toString(),
     themeIds,
   };
 };
@@ -99,9 +99,9 @@ export const getSeedThemeIds = () => {
 export const getSeedNeedIds = () => {
   const needIds = makeNeedsSeedIds();
   return {
-    A1: needIds.needA1.toString(),
-    A2: needIds.needA2.toString(),
-    B1: needIds.needB1.toString(),
+    NA1: needIds.NA1.toString(),
+    NA2: needIds.NA2.toString(),
+    NB1: needIds.NB1.toString(),
     needIds,
   };
 };
