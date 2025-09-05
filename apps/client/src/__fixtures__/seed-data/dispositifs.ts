@@ -3,44 +3,17 @@ import mongoose from "mongoose";
 import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
 import type { NeedSeedIds } from "./needs";
 import type { ThemeSeedIds } from "./themes";
+import { seedThemes } from "./themes";
+import { seedNeeds } from "./needs";
 
 export const seedDispositifs = async (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
   const { themeA, themeB, themeC } = themeIds;
   const { needA1, needA2, needB1 } = needIds;
   const Dispositif = conn.model("Dispositif");
 
-  // Create theme documents with positions for theme sorting
-  // Only create theme documents if Theme model exists (for search index testing)
-  try {
-    const ThemeModel = getOrRegisterModel(
-      conn,
-      "Theme",
-      new mongoose.Schema({}, { strict: false, collection: "themes" }),
-    );
-    if (ThemeModel) {
-      await ThemeModel.insertMany([
-        { _id: themeA, position: 1, name: "Langues et intégration" },
-        { _id: themeB, position: 3, name: "Numérique et compétences" },
-        { _id: themeC, position: 2, name: "Emploi et formation" },
-      ]);
-    }
-  } catch (error) {
-    // Theme model doesn't exist in legacy tests, skip theme creation gracefully
-    // This is expected behavior for legacy tests that don't register the Theme model
-  }
-
-  // Create needs documents for the aggregation pipeline lookup
-  // Important: conn.model("Need") throws if not registered; make sure we register a minimal model
-  try {
-    const NeedModel = getOrRegisterModel(conn, "Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    await NeedModel.insertMany([
-      { _id: needA1, theme: themeA },
-      { _id: needA2, theme: themeA },
-      { _id: needB1, theme: themeB },
-    ]);
-  } catch (error) {
-    // Handle any errors in needs creation without failing the seed step
-  }
+  // Use centralized theme and need creation
+  await seedThemes(conn, themeIds);
+  await seedNeeds(conn, needIds, themeIds);
 
   const base = [
     // Enhanced existing items with views and timestamps
