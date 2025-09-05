@@ -1,10 +1,10 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { makeNeedsSeedIds, makeThemesSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
+import { getNeedSeedIds, getThemeSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
 
 export const seedDispositifs = async (conn: Connection) => {
-  const themeIds = makeThemesSeedIds();
-  const needIds = makeNeedsSeedIds();
+  const themeIds = getThemeSeedIds();
+  const needIds = getNeedSeedIds();
   const { TA, TB, TC } = themeIds;
   const { NA1, NA2, NB1 } = needIds;
   const Dispositif = conn.model("Dispositif");

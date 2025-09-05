@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
 import type { Connection } from "mongoose";
+import mongoose from "mongoose";
+import { ThemeSeedIds } from "~/__fixtures__/seed-data/themes";
 
 export interface NeedSeedIds {
   NA1: mongoose.Types.ObjectId;
@@ -7,17 +8,11 @@ export interface NeedSeedIds {
   NB1: mongoose.Types.ObjectId;
 }
 
-export const makeNeedsSeedIds = (): NeedSeedIds => ({
+export const getNeedSeedIds = (): NeedSeedIds => ({
   NA1: new mongoose.Types.ObjectId("64b0000000000000000000a1"),
   NA2: new mongoose.Types.ObjectId("64b0000000000000000000a2"),
   NB1: new mongoose.Types.ObjectId("64b0000000000000000000b1"),
 });
-
-export interface ThemeSeedIds {
-  TA: mongoose.Types.ObjectId;
-  TB: mongoose.Types.ObjectId;
-  TC: mongoose.Types.ObjectId;
-}
 
 export interface NeedDocument {
   _id: mongoose.Types.ObjectId;

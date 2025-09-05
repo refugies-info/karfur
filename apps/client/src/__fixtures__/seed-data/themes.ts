@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import type { Connection } from "mongoose";
+import mongoose from "mongoose";
 
 export interface ThemeSeedIds {
   TA: mongoose.Types.ObjectId;
@@ -7,7 +7,7 @@ export interface ThemeSeedIds {
   TC: mongoose.Types.ObjectId;
 }
 
-export const makeThemesSeedIds = (): ThemeSeedIds => ({
+export const getThemeSeedIds = (): ThemeSeedIds => ({
   TA: new mongoose.Types.ObjectId("64a0000000000000000000a1"),
   TB: new mongoose.Types.ObjectId("64a0000000000000000000b2"),
   TC: new mongoose.Types.ObjectId("64a0000000000000000000c3"),

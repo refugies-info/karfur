@@ -2,7 +2,7 @@ import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import type { NeedSeedIds, ThemeSeedIds } from "~/__fixtures__/seed-data";
-import { makeNeedsSeedIds, makeThemesSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
+import { getNeedSeedIds, getThemeSeedIds, seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).
@@ -204,8 +204,8 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
 };
 
 export async function seedRandomDispositifs(conn: Connection, count: number, seed?: number): Promise<number> {
-  const themeIds = makeThemesSeedIds();
-  const needIds = makeNeedsSeedIds();
+  const themeIds = getThemeSeedIds();
+  const needIds = getNeedSeedIds();
   const Dispositif = conn.model("Dispositif");
   await seedThemes(conn, themeIds);
   await seedNeeds(conn, needIds, themeIds);

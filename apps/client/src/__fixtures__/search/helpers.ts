@@ -1,7 +1,7 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
-import { makeNeedsList, makeNeedsSeedIds, makeThemesSeedIds, registerTestSchemas } from "~/__fixtures__/seed-data";
+import { getNeedSeedIds, getThemeSeedIds, makeNeedsList, registerTestSchemas } from "~/__fixtures__/seed-data";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
 
@@ -73,8 +73,8 @@ export const toParams = (p: Partial<QueryParams>): QueryParams => ({
 
 // Centralized helper to access seed IDs for tests
 export const getLegacyNeedsList = () => {
-  const themeIds = makeThemesSeedIds();
-  const needIds = makeNeedsSeedIds();
+  const themeIds = getThemeSeedIds();
+  const needIds = getNeedSeedIds();
   return makeNeedsList(needIds, themeIds);
 };
 
@@ -83,7 +83,7 @@ export const getLegacyNeedsList = () => {
  * Use this when you need string values for comparisons or filter parameters.
  */
 export const getSeedThemeIdsAsStrings = () => {
-  const themeIds = makeThemesSeedIds();
+  const themeIds = getThemeSeedIds();
   return {
     TA: themeIds.TA.toString(),
     TB: themeIds.TB.toString(),
@@ -96,14 +96,13 @@ export const getSeedThemeIdsAsStrings = () => {
  * Use this when you need string values for comparisons or filter parameters.
  */
 export const getSeedNeedIdsAsStrings = () => {
-  const needIds = makeNeedsSeedIds();
+  const needIds = getNeedSeedIds();
   return {
     NA1: needIds.NA1.toString(),
     NA2: needIds.NA2.toString(),
     NB1: needIds.NB1.toString(),
   };
 };
-
 
 export const expectCountsEqual = (api: any, legacy: any) => {
   try {

@@ -4,12 +4,12 @@
  */
 
 // Export from themes.ts
-export { makeThemesList, makeThemesSeedIds, seedThemes } from "./themes";
-export type { ThemeSeedIds, ThemeDocument } from "./themes";
+export { getThemeSeedIds, makeThemesList, seedThemes } from "./themes";
+export type { ThemeDocument, ThemeSeedIds } from "./themes";
 
 // Export from needs.ts
-export { makeNeedsList, makeNeedsSeedIds, seedNeeds } from "./needs";
-export type { NeedSeedIds, NeedDocument } from "./needs";
+export { getNeedSeedIds, makeNeedsList, seedNeeds } from "./needs";
+export type { NeedDocument, NeedSeedIds } from "./needs";
 
 // Export from schemas.ts
 export { DispositifSchema, ModelNames, NeedSchema, TestSchemas, ThemeSchema, registerTestSchemas } from "./schemas";
