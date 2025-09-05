@@ -1,8 +1,8 @@
 import fc from "fast-check";
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
-import { getOrRegisterModel } from "~/__fixtures__/search/helpers";
 import type { NeedSeedIds, ThemeSeedIds } from "~/__fixtures__/seed-data";
+import { seedNeeds, seedThemes } from "~/__fixtures__/seed-data";
 
 // Dynamically read enum values from the registered Dispositif schema on the provided connection.
 // Falls back to a minimal hardcoded list if schema is unavailable (e.g., misuse).
@@ -211,39 +211,8 @@ export async function seedRandomDispositifs(
   seed?: number,
 ): Promise<number> {
   const Dispositif = conn.model("Dispositif");
-  // Ensure Theme documents exist with positions for sorting tests
-  try {
-    const ThemeModel = getOrRegisterModel(
-      conn,
-      "Theme",
-      new mongoose.Schema({}, { strict: false, collection: "themes" }),
-    );
-    const themeA = themeIds.themeA;
-    const themeB = themeIds.themeB;
-    const themeC = themeIds.themeC;
-    const docs: any[] = [
-      { _id: themeA, position: 1, name: "Theme A" },
-      { _id: themeB, position: 3, name: "Theme B" },
-    ];
-    if (themeC) docs.push({ _id: themeC, position: 2, name: "Theme C" });
-    await ThemeModel.insertMany(docs, { ordered: false });
-  } catch {
-    // Ignore duplicate key or schema errors in tests
-  }
-  // Ensure the 'needs' collection exists for the API needs facet $lookup
-  try {
-    const NeedModel = getOrRegisterModel(conn, "Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    await NeedModel.insertMany(
-      [
-        { _id: needIds.needA1, theme: themeIds.themeA },
-        { _id: needIds.needA2, theme: themeIds.themeA },
-        { _id: needIds.needB1, theme: themeIds.themeB },
-      ],
-      { ordered: false },
-    );
-  } catch {
-    // Ignore duplicate key or schema-related errors in tests
-  }
+  await seedThemes(conn, themeIds);
+  await seedNeeds(conn, needIds, themeIds);
   const arb = makeDispositifArb(conn, themeIds, needIds);
   const docs = fc.sample(arb, { seed, numRuns: count });
   await Dispositif.insertMany(docs);
