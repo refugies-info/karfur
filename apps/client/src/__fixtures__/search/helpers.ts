@@ -1,18 +1,9 @@
 import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
-import {
-  makeNeedsList,
-  makeNeedsSeedIds,
-  makeThemesSeedIds,
-  registerTestSchemas,
-  type NeedSeedIds,
-  type ThemeSeedIds,
-} from "~/__fixtures__/seed-data";
+import { makeNeedsList, makeNeedsSeedIds, makeThemesSeedIds, registerTestSchemas } from "~/__fixtures__/seed-data";
 import { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
-
-export type SeedIds = NeedSeedIds & ThemeSeedIds;
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
 jest.mock("@algolia/client-search", () => {
