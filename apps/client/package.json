@@ -150,7 +150,7 @@
     "postcss": "^8.5.6",
     "redux-mock-store": "^1.5.5",
     "redux-saga-test-plan": "^4.0.5",
-    "sass": "^1.91.0",
+    "sass": "^1.92.1",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
