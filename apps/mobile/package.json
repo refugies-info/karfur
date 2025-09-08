@@ -72,7 +72,7 @@
     "search-insights": "^2.17.2",
     "styled-components": "6.1.13",
     "typesafe-actions": "^5.1.0",
-    "use-sync-external-store": "1.2.0",
+    "use-sync-external-store": "1.5.0",
     "uuid": "^11.0.5"
   },
   "devDependencies": {
