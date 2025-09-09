@@ -28,7 +28,7 @@
     "@types/node": "^20.19.11",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "chromatic": "^11.29.0",
+    "chromatic": "^13.1.4",
     "dotenv-run-script": "^0.4.1",
     "eslint": "^9.34.0",
     "eslint-config-next": "^14.2.32",
