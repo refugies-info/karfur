@@ -7,10 +7,10 @@ import { Response } from "~/types/interface";
 
 export const updateAvis = async (
   id: string,
-  userId: string,
-  anonymousUserId: string,
+  userId: string | null,
+  anonymousUserId: string | null,
   avis: boolean,
-  language: string,
+  language: string | null,
 ): Response => {
   const dispositif = await getDispositifById(id, { status: 1 });
   if (!dispositif || dispositif.status !== DispositifStatus.ACTIVE) {
@@ -21,9 +21,9 @@ export const updateAvis = async (
   const avisData: Avis = {
     created_at: new Date(),
     userId: userId ? new Types.ObjectId(userId) : undefined,
-    anonymousUserId,
+    anonymousUserId: anonymousUserId ? anonymousUserId : undefined,
     avis,
-    language,
+    language: language || "fr",
   };
 
   await updateAvisDispositifInDB(id, avisData);

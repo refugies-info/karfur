@@ -61,7 +61,9 @@ const NorthStar = () => {
         didVote ||
         (userId || anonymousUserId
           ? dispositif.avis?.find(
-              (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
+              (a) =>
+                (userId && a.userId === userId) ||
+                (anonymousUserId && a.anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {
@@ -109,7 +111,9 @@ const NorthStar = () => {
     const avis =
       userId || anonymousUserId
         ? dispositif.avis?.find(
-            (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
+            (a) =>
+              (userId && a.userId === userId) ||
+              (anonymousUserId && a.anonymousUserId && a.anonymousUserId === anonymousUserId),
           )
         : false;
 

@@ -338,7 +338,7 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     validateId(id, "dispositif");
-    return updateAvis(id, request.userId || body.userId, body.anonymousUserId || "", body.avis, body.language);
+    return updateAvis(id, request.userId || body.userId || null, body.anonymousUserId || null, body.avis, body.language || null);
   }
   @Security({
     jwt: ["optional"],
