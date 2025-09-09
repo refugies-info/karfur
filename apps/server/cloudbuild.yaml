@@ -61,7 +61,6 @@ steps:
         MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION},
         MONGODB_URI=sm://refugies-info/${_MONGODB_VAR},
         NODE_ENV=${_NODE_ENV},
-        OVH_PASS=sm://refugies-info/OVH_PASS,
         POSTMAN_SECRET=sm://refugies-info/POSTMAN_SECRET,
         REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET,
         SECRET=sm://refugies-info/SECRET,
