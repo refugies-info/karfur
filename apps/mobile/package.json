@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@expo/config-plugins": "^9.1.7",
-    "@expo/metro-config": "~0.19.12",
+    "@expo/metro-config": "~0.20.17",
     "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/hooks": "^3.0.0",
