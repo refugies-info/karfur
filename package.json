@@ -32,10 +32,11 @@
       "expo-dev-menu": "6.0.21",
       "undici": "5.28.5",
       "image-size": "^1.2.1",
-      "stylus": "npm:noop3@^1000.0.0"
+      "stylus": "npm:noop3@^1000.0.0",
+      "@codegouvfr/react-dsfr": "1.20.2"
     },
     "patchedDependencies": {
-      "@codegouvfr/react-dsfr@1.26.0": "patches/@codegouvfr+react-dsfr@1.26.0.patch"
+      "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
     }
   },
   "scripts": {
