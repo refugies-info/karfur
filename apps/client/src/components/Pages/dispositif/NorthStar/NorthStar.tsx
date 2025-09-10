@@ -63,7 +63,7 @@ const NorthStar = () => {
           ? dispositif.avis?.find(
               (a) =>
                 (userId && a.userId === userId) ||
-                (anonymousUserId && a.anonymousUserId && a.anonymousUserId === anonymousUserId),
+                (anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {
