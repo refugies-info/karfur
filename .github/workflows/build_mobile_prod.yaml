@@ -34,10 +34,9 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "22.14.0"
-          cache: "pnpm"
 
       - name: Setup Expo
         uses: expo/expo-github-action@v8
