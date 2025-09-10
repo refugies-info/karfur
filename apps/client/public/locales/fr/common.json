@@ -762,6 +762,7 @@
     "northStar_yes": "Oui",
     "northStar_notUseful": "Pas utile",
     "northStar_useful": "C'est utile ? ✨",
-    "northStar_thanks": "Merci pour votre retour 😊"
+    "northStar_thanks": "Merci pour votre retour 😊",
+    "northStar_error": "Une erreur est survenue lors de la soumission de votre avis"
   }
 }
