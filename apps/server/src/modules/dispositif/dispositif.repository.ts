@@ -10,6 +10,7 @@ import {
 import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { cleanupAvis } from "~/libs/cleanupAvis";
 import { DispositifAbstracts } from "~/modules/dispositif/types";
 import {
   Dispositif,
@@ -267,13 +268,9 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
   );
 
 export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Avis): Promise<Dispositif> => {
-  const cleanAvis = avis;
-  if (avis.userId === undefined) delete cleanAvis.userId;
-  if (avis.anonymousUserId === undefined) delete cleanAvis.anonymousUserId;
-
   return DispositifModel.findOneAndUpdate(
     { _id: dispositifId },
-    { $push: { avis: cleanAvis } },
+    { $push: { avis: cleanupAvis(avis) } },
     {
       upsert: true,
       new: true,
@@ -369,13 +366,9 @@ export const updateAvisDispositifInDB = async (
     }
     if (avisIndex === -1) return { modifiedCount: 0 };
 
-    const cleanUpdatedAvis = updatedAvis;
-    if (updatedAvis.userId === undefined) delete cleanUpdatedAvis.userId;
-    if (updatedAvis.anonymousUserId === undefined) delete cleanUpdatedAvis.anonymousUserId;
-
     const updateQuery = {
       $set: {
-        [`avis.${avisIndex}`]: cleanUpdatedAvis,
+        [`avis.${avisIndex}`]: cleanupAvis(updatedAvis),
       },
     };
 

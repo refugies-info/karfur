@@ -341,6 +341,11 @@ export class DispositifController extends Controller {
     const userId = request.userId || body.userId || undefined;
     const anonymousUserId = userId ? undefined : body.anonymousUserId || undefined;
 
+    if (userId === undefined && anonymousUserId === undefined) {
+      this.setStatus(403);
+      return { text: "error" };
+    }
+
     return deleteAvis(id, userId, anonymousUserId);
   }
   @Security({
