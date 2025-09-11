@@ -1,15 +1,18 @@
-import { Db, MongoClient } from "mongodb";
+import { MigrationInterface } from "mongo-migrate-ts";
+import { Db } from "mongodb";
 
-export const up = async (db: Db, _client: MongoClient) => {
-  await db.collection("dispositifs").createIndex({ "metadatas.updatedAt": -1 });
-  await db.collection("dispositifs").createIndex({ "metadatas.vues": -1 });
-  await db.collection("dispositifs").createIndex({ theme: 1 });
-  await db.collection("dispositifs").createIndex({ "metadatas.location": 1 });
-};
+export class Migration1755535200000 implements MigrationInterface {
+  public async up(db: Db): Promise<void | never> {
+    await db.collection("dispositifs").createIndex({ "metadatas.updatedAt": -1 });
+    await db.collection("dispositifs").createIndex({ "metadatas.vues": -1 });
+    await db.collection("dispositifs").createIndex({ theme: 1 });
+    await db.collection("dispositifs").createIndex({ "metadatas.location": 1 });
+  }
 
-export const down = async (db: Db, _client: MongoClient) => {
-  await db.collection("dispositifs").dropIndex("metadatas.updatedAt_-1");
-  await db.collection("dispositifs").dropIndex("metadatas.vues_-1");
-  await db.collection("dispositifs").dropIndex("theme_1");
-  await db.collection("dispositifs").dropIndex("metadatas.location_1");
-};
+  public async down(db: Db): Promise<void | never> {
+    await db.collection("dispositifs").dropIndex("metadatas.updatedAt_-1");
+    await db.collection("dispositifs").dropIndex("metadatas.vues_-1");
+    await db.collection("dispositifs").dropIndex("theme_1");
+    await db.collection("dispositifs").dropIndex("metadatas.location_1");
+  }
+}
