@@ -7,8 +7,8 @@ import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { useSearchCounts } from "../SearchCountsContext";
-import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
-import DepartmentMenuItem from "./DepartmentMenuItem";
+import CommonPlaceFilterItem from "./CommonPlaceFilterItem";
+import DepartmentFilterItem from "./DepartmentFilterItem";
 import styles from "./LocationMenu.module.css";
 import LocationMenuItem from "./LocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
@@ -114,7 +114,7 @@ const LocationMenu: React.FC<Props> = () => {
 
       <div className={styles.departments}>
         {query.departments.map((depName, i) => (
-          <DepartmentMenuItem key={i} dep={depName} />
+          <DepartmentFilterItem key={i} dep={depName} />
         ))}
       </div>
 
@@ -130,7 +130,7 @@ const LocationMenu: React.FC<Props> = () => {
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
             .map(({ deptNo, placeName }) => {
               return (
-                <CommonPlaceMenuItem
+                <CommonPlaceFilterItem
                   key={deptNo}
                   placeName={placeName}
                   deptNo={deptNo}
