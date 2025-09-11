@@ -60,7 +60,6 @@ const LocationMenuItem: React.FC<Props> = ({ locationSearch = "" }) => {
 
   return (
     <>
-      <Separator />
       <div className={styles.item}>
         {!permissionDenied ? (
           <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>

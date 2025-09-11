@@ -2,7 +2,7 @@ import debounce from "lodash/debounce";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentCodeFromName, getDepartmentNameFromCode } from "~/lib/departments";
+import { getDepartmentCodeFromName } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
@@ -110,6 +110,8 @@ const LocationMenu: React.FC<Props> = () => {
 
   return (
     <div className={styles.container}>
+      <LocationMenuItem locationSearch={locationSearch} />
+
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
 
       <div className={styles.departments}>
@@ -117,8 +119,6 @@ const LocationMenu: React.FC<Props> = () => {
           <DepartmentMenuItem key={i} dep={depName} />
         ))}
       </div>
-
-      <LocationMenuItem locationSearch={locationSearch} />
 
       <div className={styles.places}>
         {suggestions.length > 0 &&
