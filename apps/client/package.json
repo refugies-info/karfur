@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@algolia/client-search": "^5.36.0",
-    "@codegouvfr/react-dsfr": "1.26.0",
+    "@codegouvfr/react-dsfr": "1.20.2",
     "@lexical/html": "^0.27.2",
     "@lexical/link": "^0.27.2",
     "@lexical/list": "^0.27.2",
@@ -144,7 +144,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "jest-mock-axios": "^4.7.0-beta2",
     "jest-styled-components": "^7.0.0",
-    "mongodb-memory-server": "^10.2.0",
+    "mongodb-memory-server": "^10.2.1-beta.1",
     "next-router-mock": "^0.9.13",
     "papaparse": "^5.5.3",
     "postcss": "^8.5.6",
