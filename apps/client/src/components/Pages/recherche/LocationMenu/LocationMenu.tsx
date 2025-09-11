@@ -127,7 +127,10 @@ const LocationMenu: React.FC<Props> = () => {
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
         {suggestions.length === 0 &&
           commonPlaces
-            .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
+            .filter(({ deptNo, placeName }) => 
+              !queryDepartmentCodes.includes(deptNo) &&
+              placeName.toLowerCase().includes(locationSearch.toLowerCase())
+            )
             .map(({ deptNo, placeName }) => {
               return (
                 <CommonPlaceMenuItem
