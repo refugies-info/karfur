@@ -317,16 +317,37 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     validateId(id, "dispositif");
-    return addAvis(id, request.userId || body.userId, body.anonymousUserId || null, body.avis, body.language);
+    const userId = request.userId || body.userId || undefined;
+    const anonymousUserId = userId ? undefined : body.anonymousUserId || undefined;
+    const language = body.language || "fr";
+
+    if (userId === undefined && anonymousUserId === undefined) {
+      this.setStatus(403);
+      return { text: "error" };
+    }
+
+    return addAvis(id, userId, anonymousUserId, body.avis, language);
   }
   @Security({
     jwt: ["optional"],
     fromSite: [],
   })
   @Delete("/{id}/avis")
-  public async deleteAvis(@Path() id: string, @Request() request: express.Request): Response {
+  public async deleteAvis(
+    @Path() id: string,
+    @Body() body: { userId?: string; anonymousUserId?: string },
+    @Request() request: express.Request,
+  ): Response {
     validateId(id, "dispositif");
-    return deleteAvis(id, request.userId);
+    const userId = request.userId || body.userId || undefined;
+    const anonymousUserId = userId ? undefined : body.anonymousUserId || undefined;
+
+    if (userId === undefined && anonymousUserId === undefined) {
+      this.setStatus(403);
+      return { text: "error" };
+    }
+
+    return deleteAvis(id, userId, anonymousUserId);
   }
   @Security({
     jwt: ["optional"],
@@ -339,7 +360,16 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     validateId(id, "dispositif");
-    return updateAvis(id, request.userId || body.userId, body.anonymousUserId || "", body.avis, body.language);
+    const userId = request.userId || body.userId || undefined;
+    const anonymousUserId = userId ? undefined : body.anonymousUserId || undefined;
+    const language = body.language || "fr";
+
+    if (userId === undefined && anonymousUserId === undefined) {
+      this.setStatus(403);
+      return { text: "error" };
+    }
+
+    return updateAvis(id, userId, anonymousUserId, body.avis, language);
   }
   @Security({
     jwt: ["optional"],

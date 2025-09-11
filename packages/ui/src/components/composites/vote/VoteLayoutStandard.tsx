@@ -49,7 +49,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         </div>
         <p
           className={cn(
-            "m-0 overflow-hidden transition-[max-height] delay-200 duration-500",
+            "m-0 overflow-hidden transition-[max-height] delay-200 duration-500 text-sm",
             hasVoted ? "max-h-[1000px]" : "max-h-0",
             vote === true && "delay-1000",
           )}

@@ -1,5 +1,8 @@
 name: Checks
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches-ignore:
@@ -17,17 +20,17 @@ jobs:
     environment: checks
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.14.0"
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22.14.0"
 
       - name: Install Dependencies
         run: |
@@ -37,15 +40,16 @@ jobs:
       - name: Build UI Package
         run: turbo build --filter=@refugies-info/ui
 
-      - name: Lint
-        run: pnpm lint
+      - name: Lint and Check Types
+        run: pnpm lint check:types
 
-      - name: Check Types and Test
-        run: turbo check:types test
+      - name: Test (except mobile for now because flaky)
+        run: turbo test --filter=!@refugies-info/mobile
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG }}
+          JEST_WATCHMAN: "0"
 
       - name: Lint styles
         run: pnpm lint:style

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
+
 // actions
 import {
   fetchLanguesActionCreator,
@@ -37,6 +38,8 @@ import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
 import styles from "./Layout.module.scss";
 
+import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
+
 interface Props {
   children: any;
   history: string[];
@@ -47,6 +50,7 @@ interface Props {
 const Layout = (props: Props) => {
   const [showMobileModal, setShowMobileModal] = useState<boolean>(false);
   const [languageLoaded, setLanguageLoaded] = useState(false);
+
   // Use refs to track modal state and timeout
   const manuallyClosedRef = useRef<boolean>(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
@@ -250,13 +254,7 @@ const Layout = (props: Props) => {
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
-      <DownloadAppBanner />
-      <Navbar />
-      <div id="contenu" className={styles.main}>
-        <main className={styles.content}>{props.children}</main>
-      </div>
-      <Footer />
-      <AutoAddFavorite />
+      {!showLangModal && <ConsentBannerAndConsentManagement />}
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
@@ -265,6 +263,14 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
+      <DownloadAppBanner />
+      <Navbar />
+      <div id="contenu" className={styles.main}>
+        <main className={styles.content}>{props.children}</main>
+      </div>
+      <Footer />
+      <AutoAddFavorite />
+
       <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
       <NewProfileModal />
       <SubscribeNewsletterModal />

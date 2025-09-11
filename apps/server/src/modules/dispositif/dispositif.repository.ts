@@ -10,6 +10,7 @@ import {
 import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
 import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { cleanupAvis } from "~/libs/cleanupAvis";
 import { DispositifAbstracts } from "~/modules/dispositif/types";
 import {
   Dispositif,
@@ -266,15 +267,16 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
     },
   );
 
-export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Avis): Promise<Dispositif> =>
-  DispositifModel.findOneAndUpdate(
+export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Avis): Promise<Dispositif> => {
+  return DispositifModel.findOneAndUpdate(
     { _id: dispositifId },
-    { $push: { avis } },
+    { $push: { avis: cleanupAvis(avis) } },
     {
       upsert: true,
       new: true,
     },
   );
+};
 
 export const addNewParticipant = async (dispositifId: DispositifId, userId: Id) =>
   DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $addToSet: { participants: userId } });
@@ -304,29 +306,16 @@ export const removeMerciDispositifInDB = async (dispositifId: DispositifId, user
   return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { merci: newMerci });
 };
 
-export const removeAvisDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
-  if (userId) {
-    // remove avis of user
-    return DispositifModel.findOneAndUpdate(
-      { _id: dispositifId },
-      { $pull: { avis: { userId } } },
-      {
-        upsert: true,
-        new: true,
-      },
-    );
-  }
-  // if no user id, remove last avis without userId
-  const dispositif = await DispositifModel.findOne({ _id: dispositifId }, { avis: 1 });
-  if (!dispositif) return;
-  const newAvis = [...(dispositif.avis || [])];
-  for (let i = newAvis.length - 1; i >= 0; i--) {
-    if (!newAvis[i].userId) {
-      newAvis.splice(i, 1);
-      break;
-    }
-  }
-  return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { avis: newAvis });
+export const removeAvisDispositifInDB = async (
+  dispositifId: DispositifId,
+  userId: UserId,
+  anonymousUserId: string | undefined,
+): Promise<Dispositif> => {
+  const pullQuery: { userId?: UserId; anonymousUserId?: string } = {};
+  if (userId !== undefined) pullQuery.userId = userId;
+  if (anonymousUserId !== undefined) pullQuery.anonymousUserId = anonymousUserId;
+
+  return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { avis: pullQuery } }, { new: true });
 };
 
 export const addSuggestionDispositifInDB = async (
@@ -377,14 +366,12 @@ export const updateAvisDispositifInDB = async (
     }
     if (avisIndex === -1) return { modifiedCount: 0 };
 
-    // Update the review at the found index
     const updateQuery = {
       $set: {
-        [`avis.${avisIndex}`]: updatedAvis,
+        [`avis.${avisIndex}`]: cleanupAvis(updatedAvis),
       },
     };
 
-    // Perform the update
     const result = await DispositifModel.updateOne({ _id: dispositifId }, updateQuery);
 
     return { modifiedCount: result.modifiedCount };

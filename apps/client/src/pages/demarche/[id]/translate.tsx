@@ -25,7 +25,7 @@ const DemarchePage = (props: Props) => {
   return (
     <PageContext.Provider value={dispositifFormContext}>
       <FormProvider {...methods}>
-        <form>
+        <form className="w-full">
           <DispositifTranslate
             traductions={props.traductions}
             defaultTraduction={props.defaultTraduction}

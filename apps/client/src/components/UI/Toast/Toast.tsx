@@ -1,27 +1,28 @@
 import { ToastClose, ToastDescription, Toast as ToastRoot } from "@radix-ui/react-toast";
 import React from "react";
-import { cls } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import styles from "./Toast.module.scss";
 
 interface Props {
   open: boolean;
   children: string | React.ReactNode;
+  type?: "success" | "error";
   closeCallback: () => void;
 }
 
-const Toast = (props: Props) => {
+const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
   const onOpenChange = (open: boolean) => {
-    if (!open) props.closeCallback();
+    if (!open) closeCallback();
   };
 
   return (
-    <ToastRoot open={props.open} className={styles.container} onOpenChange={onOpenChange}>
-      <ToastDescription className={styles.body}>
-        <i className="fr-icon-checkbox-circle-fill" aria-hidden />
-        {props.children}
+    <ToastRoot open={open} className={styles.container} onOpenChange={onOpenChange}>
+      <ToastDescription className={cn(styles.body, type === "error" && styles.error)}>
+        <i className={cn(type === "error" ? "fr-icon-error-fill" : "fr-icon-checkbox-circle-fill")} aria-hidden />
+        {children}
       </ToastDescription>
       <ToastClose aria-label="Close" className={styles.close}>
-        <i className={cls("fr-icon-close-line", styles.icon)} aria-hidden />
+        <i className={"fr-icon-close-line"} aria-hidden />
       </ToastClose>
     </ToastRoot>
   );

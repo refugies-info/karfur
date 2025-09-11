@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
@@ -12,17 +12,20 @@ import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDi
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
+import { useSearchCounts } from "../SearchCountsContext";
 import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
 import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
 import SearchInput from "./SearchInput";
 
-type Props = {
-  isSticky?: boolean;
-};
+interface Props {
+  isSticky: boolean;
+}
 
-const Filters: React.FC<Props> = ({ isSticky }) => {
+const Filters = (props: Props) => {
+  const { isSticky } = props;
+  const counts = useSearchCounts();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -79,6 +82,17 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
   const frenchLevelOptions = useFrenchLevelOptions();
   const languageOptions = useLanguagesOptions();
 
+  const countsByFilter = useMemo(() => {
+    if (!counts) return {};
+    return {
+      status: counts.statuses || {},
+      public: counts.publics || {},
+      age: counts.ageRanges || {},
+      frenchLevel: counts.frenchLevels || {},
+      language: counts.languages || {},
+    };
+  }, [counts]);
+
   return (
     <Container className={cls(styles.container, isSticky && styles.sticky)}>
       <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
@@ -120,6 +134,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
                 options: statusOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.status,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -134,6 +149,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
                 options: publicOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.public,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -148,6 +164,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
                 options: ageOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.age,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -162,6 +179,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
                 options: frenchLevelOptions,
                 translateOptions: true,
                 menuItemStyles: cls(styles.menuItem, styles.small),
+                counts: countsByFilter.frenchLevel,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}
@@ -176,6 +194,7 @@ const Filters: React.FC<Props> = ({ isSticky }) => {
                 options: languageOptions,
                 translateOptions: false,
                 menuItemStyles: cls(styles.menuItem, styles.medium),
+                counts: countsByFilter.language,
               },
             ]}
             className={cls(styles.filter, styles.filterHiddenOnMobile)}

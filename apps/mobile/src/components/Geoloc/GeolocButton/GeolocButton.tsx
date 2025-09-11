@@ -4,9 +4,8 @@ import { View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { getCityFromResult, getDepartementFromResult } from "~/libs/geolocalisation";
 import { styles } from "~/theme";
-import { getPlaceIdFromLocationFromGoogleAPI } from "~/utils/API";
+import { getPlaceFromLocationFromGeoAPI } from "~/utils/API";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { ReadableText } from "../../ReadableText";
 import { TextDSFR_MD_Med, TextDSFR_XS } from "../../StyledText";
@@ -58,17 +57,12 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
 
       const location = await Location.getCurrentPositionAsync({});
       if (location && location.coords && location.coords.latitude && location.coords.longitude) {
-        const result = await getPlaceIdFromLocationFromGoogleAPI(location.coords.longitude, location.coords.latitude);
+        const result = await getPlaceFromLocationFromGeoAPI(location.coords.longitude, location.coords.latitude);
 
-        if (
-          result &&
-          result.data &&
-          result.data.results &&
-          result.data.results.length > 0 &&
-          result.data.results[0].address_components
-        ) {
-          const department = getDepartementFromResult(result.data.results[0].address_components);
-          const city = getCityFromResult(result.data.results[0].address_components);
+        if (result && result.data && result.data.features && result.data.features.length > 0) {
+          const firstFeature = result.data.features[0];
+          const department = firstFeature.properties.context.split(", ")[1];
+          const city = firstFeature.properties.city;
 
           if (!department || !city) {
             throw new Error("NO_CORRESPONDING_DEP");
