@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { getDepartmentNameFromCode } from "~/lib/departments";
 import CheckboxIcon from "~/components/UI/Checkbox/CheckboxIcon";
+import { getDepartmentNameFromCode } from "~/lib/departments";
 import styles from "./CommonPlaceFilterItem.module.css";
 
 interface Props {
