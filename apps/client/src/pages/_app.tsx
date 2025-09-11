@@ -1,4 +1,5 @@
 import "css/index.css";
+import "leaflet/dist/leaflet.css";
 import "scss/index.scss";
 
 import { Caveat } from "next/font/google";
@@ -19,7 +20,7 @@ import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import Layout from "~/components/Layout/Layout";
 import { useRTL, useScrollToAnchor } from "~/hooks";
-import { ConsentBannerAndConsentManagement, useConsent } from "~/hooks/useConsentContext";
+import { useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
 import { wrapper } from "~/services/configureStore";
@@ -110,7 +111,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
       <ToastProvider swipeDirection="down">
         <TooltipProvider delayDuration={250}>
-          {options.cookiesModule && <ConsentBannerAndConsentManagement />}
           <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
           {options.supportModule && (

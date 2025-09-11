@@ -5,6 +5,7 @@ import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
 import useWindowSize from "~/hooks/useWindowSize";
 import { customEvent } from "~/lib/tracking";
@@ -19,11 +20,14 @@ const NorthStar = () => {
   const currentLanguage = useTranslation().i18n.language;
   const anonymousUserId = useAnonymousUserId();
   const theme = useSelector(themeSelector(dispositif?.theme));
+  const { t } = useTranslation();
 
   const { isDesktop, isLargeDesktop } = useWindowSize();
 
   const [didVote, setDidVote] = useState<boolean | null>(null);
   const [currentAvis, setCurrentAvis] = useState<boolean | null>(null);
+  const [error, setError] = useState<boolean | null>(null);
+  const [showErrorToast, setShowErrorToast] = useState(false);
 
   const trackData = useMemo(
     () => ({
@@ -61,7 +65,9 @@ const NorthStar = () => {
         didVote ||
         (userId || anonymousUserId
           ? dispositif.avis?.find(
-              (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
+              (a) =>
+                (userId && a.userId === userId) ||
+                (anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {
@@ -69,13 +75,19 @@ const NorthStar = () => {
           .then(() => {
             setDidVote(true);
           })
-          .catch((e) => logger.error(e));
+          .catch((e) => {
+            logger.error(e);
+            setError(true);
+          });
       } else {
         API.addDispositifAvis(dispositif._id.toString(), newAvis)
           .then(() => {
             setDidVote(true);
           })
-          .catch((e) => logger.error(e));
+          .catch((e) => {
+            logger.error(e);
+            setError(true);
+          });
       }
     },
     [dispositif, currentLanguage, anonymousUserId, userId, didVote],
@@ -101,7 +113,10 @@ const NorthStar = () => {
         setDidVote(false);
         setCurrentAvis(null);
       })
-      .catch((e) => logger.error(e));
+      .catch((e) => {
+        logger.error(e);
+        setError(true);
+      });
   };
 
   useEffect(() => {
@@ -109,7 +124,9 @@ const NorthStar = () => {
     const avis =
       userId || anonymousUserId
         ? dispositif.avis?.find(
-            (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
+            (a) =>
+              (userId && a.userId === userId) ||
+              (anonymousUserId && a.anonymousUserId && a.anonymousUserId === anonymousUserId),
           )
         : false;
 
@@ -122,16 +139,29 @@ const NorthStar = () => {
     }
   }, [dispositif, userId, anonymousUserId]);
 
+  useEffect(() => {
+    if (error) {
+      setShowErrorToast(true);
+      setDidVote(false);
+    }
+  }, [error]);
+
   return (
-    <Vote
-      className="sticky top-8 z-20"
-      currentVote={currentAvis}
-      onVoteYes={onVoteYes}
-      onVoteNo={onVoteNo}
-      onCancelYes={onCancel}
-      onCancelNo={onCancel}
-      isSticky={!isLargeDesktop}
-    />
+    <>
+      <Vote
+        className="sticky top-8 z-20"
+        currentVote={currentAvis}
+        onVoteYes={onVoteYes}
+        onVoteNo={onVoteNo}
+        onCancelYes={onCancel}
+        onCancelNo={onCancel}
+        isSticky={!isLargeDesktop}
+        error={error}
+      />
+      <Toast open={showErrorToast} closeCallback={() => setShowErrorToast(false)} type="error">
+        {t("ui.northStar_error", "Une erreur est survenue lors de la soumission de votre avis")}
+      </Toast>
+    </>
   );
 };
 

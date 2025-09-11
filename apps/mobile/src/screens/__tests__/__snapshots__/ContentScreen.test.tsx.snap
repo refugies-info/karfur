@@ -6901,7 +6901,13 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         }
                       >
-                        <View />
+                        <View>
+                          <View
+                            height="100%"
+                            uri="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469805/pictures/zhsms7ptlkjvolprxi3z.svg"
+                            width="100%"
+                          />
+                        </View>
                       </View>
                     </View>
                   </View>
@@ -15905,7 +15911,13 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         }
                       >
-                        <View />
+                        <View>
+                          <View
+                            height="100%"
+                            uri="https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665469805/pictures/zhsms7ptlkjvolprxi3z.svg"
+                            width="100%"
+                          />
+                        </View>
                       </View>
                     </View>
                   </View>

@@ -115,6 +115,95 @@ jest.mock("react-native-reanimated", () => {
   };
 });
 
+// Targeted mock: stub out react-native-svg's fetchData to avoid URL parsing/fetch in Node
+jest.mock("react-native-svg/src/utils/fetchData", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+    fetchText,
+  };
+});
+
+// Also mock potential alternate paths used by compiled builds or resolvers
+jest.mock("react-native-svg/src/utils/fetchData.ts", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+    fetchText,
+  };
+});
+
+jest.mock("react-native-svg/lib/commonjs/utils/fetchData", () => {
+  const makeResponse = async () => ({ xml: '<svg xmlns="http://www.w3.org/2000/svg" />' });
+  const fetchText = async () => '<svg xmlns="http://www.w3.org/2000/svg" />';
+  return {
+    __esModule: true,
+    default: makeResponse,
+    fetchUriData: makeResponse,
+    fetchText,
+  };
+});
+
+// Defensive: mock global fetch for .svg URIs so any stray fetch still returns a valid SVG
+(() => {
+  const makeSvg = '<svg xmlns="http://www.w3.org/2000/svg" />';
+  const fetchImpl = async (input) => {
+    const url = typeof input === "string" ? input : input?.url;
+    if (typeof url === "string" && url.endsWith(".svg")) {
+      return new Response(makeSvg, {
+        status: 200,
+        headers: { "Content-Type": "image/svg+xml" },
+      });
+    }
+    return new Response("", { status: 404 });
+  };
+
+  if (typeof global.fetch === "function") {
+    try {
+      jest.spyOn(global, "fetch").mockImplementation(fetchImpl);
+    } catch {
+      // fallback if spy fails
+      global.fetch = jest.fn(fetchImpl);
+    }
+  } else {
+    global.fetch = jest.fn(fetchImpl);
+  }
+})();
+
+// Filter known act() warning noise from react-native-svg's SvgUri to stabilize CI logs.
+// We only suppress the specific warning string; other errors still surface.
+(() => {
+  const origError = console.error;
+  const svgActWarning = "Warning: An update to SvgUri inside a test was not wrapped in act(...).";
+  console.error = (...args) => {
+    const msg = args?.[0];
+    if (typeof msg === "string" && msg.includes(svgActWarning)) {
+      return; // ignore this specific noisy warning
+    }
+    return origError(...args);
+  };
+})();
+
+// Make SvgUri sync-only to eliminate async setState (no act warnings); keep other exports intact
+jest.mock("react-native-svg", () => {
+  const actual = jest.requireActual("react-native-svg");
+  const React = require("react");
+  const { View } = require("react-native");
+  const SvgUri = (props) => React.createElement(View, props, props.children);
+  return {
+    __esModule: true,
+    ...actual,
+    SvgUri,
+    default: actual.default,
+  };
+});
+
 jest.mock("@gorhom/bottom-sheet", () => ({
   __esModule: true,
   default: "BottomSheet",
