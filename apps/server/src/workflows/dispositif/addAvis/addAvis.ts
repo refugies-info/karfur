@@ -23,7 +23,7 @@ export const addAvis = async (
   const newAvis: Avis = {
     created_at: new Date(),
     avis,
-    language: language || "fr", // Use provided language or default to French
+    language: language || "fr",
     userId: userId ? new ObjectId(userId) : undefined,
     anonymousUserId: anonymousUserId ? anonymousUserId : undefined,
   };

@@ -16,17 +16,17 @@ overrides:
   undici: '>=6.21.2'
 
 patchedDependencies:
-  '@codegouvfr/react-dsfr@1.26.0':
-    hash: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
-    path: patches/@codegouvfr+react-dsfr@1.26.0.patch
+  '@codegouvfr/react-dsfr@1.20.2':
+    hash: ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff
+    path: patches/@codegouvfr__react-dsfr@1.20.2.patch
 
 importers:
 
   .:
     devDependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/api-types':
         specifier: '*'
         version: 1.0.51(@aws-sdk/credential-providers@3.797.0)(typescript@5.9.2)
@@ -88,8 +88,8 @@ importers:
         specifier: ^5.36.0
         version: 5.36.0
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lexical/html':
         specifier: ^0.27.2
         version: 0.27.2
@@ -401,8 +401,8 @@ importers:
         specifier: ^7.0.0
         version: 7.2.0(styled-components@6.1.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       mongodb-memory-server:
-        specifier: ^10.2.0
-        version: 10.2.0(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
+        specifier: ^10.2.1-beta.1
+        version: 10.2.1-beta.1(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
       next-router-mock:
         specifier: ^0.9.13
         version: 0.9.13(next@15.5.2(@babel/core@7.28.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.92.1))(react@18.3.1)
@@ -868,8 +868,8 @@ importers:
         specifier: ^29.7.0
         version: 29.7.0(@types/node@22.18.0)(ts-node@10.9.2(@types/node@22.18.0)(typescript@5.9.2))
       mongodb-memory-server:
-        specifier: ^10.2.0
-        version: 10.2.0(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
+        specifier: ^10.2.1-beta.1
+        version: 10.2.1-beta.1(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
       nodemon:
         specifier: ^3.1.7
         version: 3.1.10
@@ -889,8 +889,8 @@ importers:
   apps/storybook:
     dependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@refugies-info/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -998,8 +998,8 @@ importers:
   packages/ui:
     dependencies:
       '@codegouvfr/react-dsfr':
-        specifier: 1.26.0
-        version: 1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
+        specifier: 1.20.2
+        version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
       '@lottiefiles/dotlottie-react':
         specifier: ^0.13.5
         version: 0.13.5(react@18.3.1)
@@ -2036,8 +2036,8 @@ packages:
     peerDependencies:
       storybook: ^0.0.0-0 || ^9.0.0 || ^9.1.0-0 || ^9.2.0-0 || ^10.0.0-0
 
-  '@codegouvfr/react-dsfr@1.26.0':
-    resolution: {integrity: sha512-yfevs/blAVDqw03/w7Gb/rumTlFC2i//ly0SHwrs6ZXmxRayc+UiKoou71uZSAwu1lZ9J9wyCYUbvQug57uStg==}
+  '@codegouvfr/react-dsfr@1.20.2':
+    resolution: {integrity: sha512-BE2VUqoLdn1XLWs1Nu+0DAr+YzmV6q6EVBvEusSTSX/mYcfJzsWu8tPrF9isPojPWxW53ToYgVk1ui3E3jjZpQ==}
     hasBin: true
     peerDependencies:
       '@gouvfr/dsfr-chart': ^1.0.0
@@ -9588,12 +9588,12 @@ packages:
   mongodb-connection-string-url@3.0.2:
     resolution: {integrity: sha512-rMO7CGo/9BFwyZABcKAWL8UJwH/Kc2x0g72uhDWzG48URRax5TCIcJ7Rc3RZqffZzO/Gwff/jyKwCU9TN8gehA==}
 
-  mongodb-memory-server-core@10.2.0:
-    resolution: {integrity: sha512-IsgWlsXdZxbMNoa3hqazMQ/QeMazEztMBr/fK6OrHefJLlZtCEtIIYoAKJDYDQjcwId0CRkW3WRy05WEuyClDg==}
+  mongodb-memory-server-core@10.2.1-beta.1:
+    resolution: {integrity: sha512-w8/NBAkpNqy30kakz79OkjaGSKpuKjkf7YYm1eq1N9IjZVUs/CdND4iOLDJmTtmogywsWH26yYVMo2K2jZTSig==}
     engines: {node: '>=16.20.1'}
 
-  mongodb-memory-server@10.2.0:
-    resolution: {integrity: sha512-FG4OVoXjBHC7f8Mdyj1TZ6JyTtMex+qniEzoY1Rsuo/FvHSOHYzGYVbuElamjHuam+HLxWTWEpc43fqke8WNGw==}
+  mongodb-memory-server@10.2.1-beta.1:
+    resolution: {integrity: sha512-NjD92APalg4cb7ksoYOVkHGC/VaDjpLi1ETWxMnWtY8cga2UpuVIBWGUgNfSqP+B5Sh4rz+aSqrQbw6ZvbmBbA==}
     engines: {node: '>=16.20.1'}
 
   mongodb@4.17.2:
@@ -14796,7 +14796,7 @@ snapshots:
       - '@chromatic-com/cypress'
       - '@chromatic-com/playwright'
 
-  '@codegouvfr/react-dsfr@1.26.0(patch_hash=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)':
+  '@codegouvfr/react-dsfr@1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)':
     dependencies:
       tsafe: 1.8.5
       yargs-parser: 21.1.1
@@ -24453,7 +24453,7 @@ snapshots:
       '@types/whatwg-url': 11.0.5
       whatwg-url: 14.2.0
 
-  mongodb-memory-server-core@10.2.0(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4):
+  mongodb-memory-server-core@10.2.1-beta.1(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4):
     dependencies:
       async-mutex: 0.5.0
       camelcase: 6.3.0
@@ -24477,9 +24477,9 @@ snapshots:
       - socks
       - supports-color
 
-  mongodb-memory-server@10.2.0(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4):
+  mongodb-memory-server@10.2.1-beta.1(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4):
     dependencies:
-      mongodb-memory-server-core: 10.2.0(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
+      mongodb-memory-server-core: 10.2.1-beta.1(@aws-sdk/credential-providers@3.797.0)(socks@2.8.4)
       tslib: 2.8.1
     transitivePeerDependencies:
       - '@aws-sdk/credential-providers'
