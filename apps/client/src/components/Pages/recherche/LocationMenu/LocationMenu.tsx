@@ -121,11 +121,11 @@ const LocationMenu: React.FC<Props> = () => {
       <LocationMenuItem locationSearch={locationSearch} />
 
       <div className={styles.places}>
-        {locationSearch !== "" &&
+        {suggestions.length > 0 &&
           suggestions
             .slice(0, 5)
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
-        {locationSearch === "" &&
+        {suggestions.length === 0 &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
             .map(({ deptNo, placeName }) => {
