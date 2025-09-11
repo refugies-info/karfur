@@ -12,6 +12,7 @@ on:
 
 jobs:
   migrate-production:
+    if: github.event.pull_request.merged == true && github.base_ref == 'master-backend'
     runs-on: ubuntu-latest
     environment: master-migrate
     concurrency:
