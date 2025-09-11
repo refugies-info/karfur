@@ -1,15 +1,13 @@
 name: Chromatic
 
+permissions:
+  contents: read
+
 on:
   push:
-    branches-ignore:
-      - dependabot/**
-      - master-backend
-      - master-frontend
-      - master-mobile
-      - staging-backend
+    branches:
       - staging-frontend
-      - staging-mobile
+      - master-frontend
   workflow_dispatch:
 
 jobs:
@@ -18,17 +16,17 @@ jobs:
     environment: checks
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22.14.0"
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: "22.14.0"
 
       - name: Install Dependencies
         run: |

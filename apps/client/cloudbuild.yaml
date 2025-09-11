@@ -56,6 +56,8 @@ steps:
         "--allow-unauthenticated",
         "--concurrency",
         "160",
+        "--max-instances",
+        "${_MAX_INSTANCES}",
       ]
 
 options:
@@ -63,6 +65,7 @@ options:
   machineType: "E2_HIGHCPU_32"
 
 substitutions:
+  _MAX_INSTANCES: "20"
   _COMPONENT: frontend
   _REGION: europe-west1
   _REGISTRY: "registry-${_ENV}"

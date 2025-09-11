@@ -38,14 +38,18 @@ export const findTraductors = (dispositifId: DispositifId, language: Languages) 
 
 const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Dispositif) => {
   const traductions: Traductions[] = await TraductionsModel.find(query);
-  await Promise.all(
-    traductions.map((traduction) =>
-      TraductionsModel.updateOne(
-        { _id: traduction._id },
-        { finished: Traductions.computeFinished(dispositif, traduction) },
-      ),
-    ),
-  );
+  if (traductions.length === 0) {
+    return;
+  }
+
+  const operations = traductions.map((traduction) => ({
+    updateOne: {
+      filter: { _id: traduction._id },
+      update: { $set: { finished: Traductions.computeFinished(dispositif, traduction) } },
+    },
+  }));
+
+  await TraductionsModel.bulkWrite(operations);
 };
 
 /**

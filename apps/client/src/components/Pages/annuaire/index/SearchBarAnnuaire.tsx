@@ -1,7 +1,6 @@
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { structureTypes } from "data/structureTypes";
 import { createRef, useEffect, useState } from "react";
-import Autocomplete from "react-google-autocomplete";
 import { Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
@@ -46,29 +45,20 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const handleChange = (e: any) => props.setVille(e.target.value);
 
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+
   const onPlaceSelected: any = (place: any) => {
-    if (place.address_components.find((item: any) => item.types.includes("postal_code"))) {
-      props.setDepNumber(
-        place.address_components.find((item: any) => item.types.includes("postal_code")).long_name.substr(0, 2),
-      );
+    props.setDepNumber(place.properties.postcode.substr(0, 2));
+    // context: "87, Haute-Vienne, Nouvelle-Aquitaine"
+    const contextParts = place.properties.context.split(", ");
+    if (contextParts.length > 1) {
+      props.setDepName(contextParts[1]);
     }
-    if (place.address_components.find((item: any) => item.types.includes("administrative_area_level_2"))) {
-      if (
-        place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name ===
-        "Département de Paris"
-      ) {
-        props.setDepName("Paris");
-      } else {
-        props.setDepName(
-          place.address_components.find((item: any) => item.types.includes("administrative_area_level_2")).long_name,
-        );
-      }
-    }
+
     props.setIsCityFocus(false);
-    if (place.formatted_address) {
-      props.setVille(place.formatted_address);
-      props.setIsCitySelected(true);
-    }
+    props.setVille(place.properties.label);
+    props.setIsCitySelected(true);
+    setSuggestions([]);
   };
 
   const resetCity = () => {
@@ -85,10 +75,24 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   useEffect(() => {
-    if (props.isCityFocus) {
-      autocompleteRef.current?.focus();
+    if (props.isCityFocus && autocompleteRef.current) {
+      autocompleteRef.current.focus();
     }
-  }, [autocompleteRef, props.isCityFocus]);
+  }, [props.isCityFocus, autocompleteRef]);
+
+  useEffect(() => {
+    if (props.ville.length > 2) {
+      fetch(`https://data.geopf.fr/geocodage/search?q=${props.ville}&type=municipality`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.features) {
+            setSuggestions(data.features);
+          }
+        });
+    } else {
+      setSuggestions([]);
+    }
+  }, [props.ville]);
 
   return (
     <div className={styles.container}>
@@ -151,22 +155,31 @@ export const SearchBarAnnuaire = (props: Props) => {
         <div className={styles.btn}>
           <EVAIcon name="pin-outline" fill={colors.gray90} className="me-2" id="bookmarkBtn" size={"large"} />
           <div className={styles.city_input}>
-            <Autocomplete
-              apiKey={process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY || ""}
+            <input
               className={styles.autocomplete}
               onBlur={() => {
-                props.setIsCityFocus(false);
+                // Do not hide suggestions right away to let the click happen
+                setTimeout(() => props.setIsCityFocus(false), 200);
               }}
               placeholder=""
               id="villeAuto"
               value={props.ville}
               onChange={handleChange}
-              onPlaceSelected={onPlaceSelected}
               ref={autocompleteRef}
-              options={{
-                componentRestrictions: { country: "fr" },
-              }}
             />
+            {suggestions.length > 0 && props.isCityFocus && (
+              <ul className="list-group position-absolute w-100" style={{ zIndex: 1000, top: "100%" }}>
+                {suggestions.map((place, i) => (
+                  <li
+                    key={i}
+                    className="list-group-item list-group-item-action"
+                    onClick={() => onPlaceSelected(place)}
+                  >
+                    {place.properties.label}
+                  </li>
+                ))}
+              </ul>
+            )}
             <EVAIcon name="close-circle" size="large" className="ms-2" onClick={() => {}} />
           </div>
         </div>

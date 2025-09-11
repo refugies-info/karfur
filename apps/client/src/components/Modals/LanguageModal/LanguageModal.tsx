@@ -3,10 +3,11 @@ import { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroup, ListGroupItem, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+import { Col, ListGroup, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
 import { getPath } from "routes";
 import { LanguageSelector } from "~/components/UI/LanguageSelector";
 import useLocale from "~/hooks/useLocale";
+import { cn } from "~/lib/classname";
 import styles from "./LanguageModal.module.scss";
 
 interface Props {
@@ -25,22 +26,23 @@ const LanguageModal = (props: Props) => {
 
   return (
     <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
-      <ModalHeader toggle={props.toggle} className={styles.modal_header}>
-        <>
-          <span className={styles.title}>
-            {!isMobile && t("Homepage.Choisir une langue", "Choisir une langue")}
-            {isMobile && t("Homepage.Ma langue", "Ma langue")}
-          </span>
-          {!isMobile && (
-            <div className={styles.subtitle}>
-              {t("Homepage.site dispo", "Réfugiés.info est disponible dans les langues suivantes :")}
-            </div>
-          )}
-        </>
-      </ModalHeader>
       <ModalBody className={styles.modal_body}>
-        <ListGroup>
-          <LanguageSelector onChangeLang={props.toggle} />
+        <div className="flex flex-col gap-8">
+          <Button
+            onClick={props.toggle}
+            className="!ms-auto block translate-x-4"
+            iconId="fr-icon-close-line"
+            priority="tertiary no outline"
+            iconPosition="right"
+            size="small"
+          >
+            {t("close", "Fermer")}
+          </Button>
+          <h5 className={cn(styles.title)}>{t("Homepage.modalLangTitle", "Quelle langue parlez-vous ?")}</h5>
+        </div>
+
+        <ListGroup className="!pl-0">
+          <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
 
           {!isMobile && (
             <ListGroupItem action key="unavailable" className={styles.list_group_item + " " + styles.unavailable}>
@@ -59,7 +61,7 @@ const LanguageModal = (props: Props) => {
                       }, 100);
                     }}
                   >
-                    {t("Homepage.btn_translate", "Je traduis")}
+                    {t("Homepage.btnTranslate", "Traduire")}
                   </Button>
                 </Col>
               </Row>
