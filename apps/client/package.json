@@ -144,7 +144,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "jest-mock-axios": "^4.7.0-beta2",
     "jest-styled-components": "^7.0.0",
-    "mongodb-memory-server": "^10.2.1-beta.1",
+    "mongodb-memory-server": "10.1.4",
     "next-router-mock": "^0.9.13",
     "papaparse": "^5.5.3",
     "postcss": "^8.5.6",

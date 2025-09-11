@@ -397,7 +397,8 @@
     "directory": "L’annuaire des acteurs",
     "information_types": "Trois types d’information",
     "help_translate": "Aider à traduire",
-    "mission_impact": "Mission et impact"
+    "mission_impact": "Mission et impact",
+    "useful_links": "Liens utiles"
   },
   "Roles": {
     "admin": "Admin",
