@@ -12,6 +12,7 @@ on:
 
 jobs:
   migrate-staging:
+    if: github.event.pull_request.merged == true && github.base_ref == 'staging-backend'
     runs-on: ubuntu-latest
     environment: staging-migrate
     concurrency:
