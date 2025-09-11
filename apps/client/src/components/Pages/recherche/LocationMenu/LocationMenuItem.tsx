@@ -8,7 +8,11 @@ import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./LocationMenuItem.module.css";
 
-const LocationMenuItem: React.FC = () => {
+interface Props {
+  locationSearch?: string;
+}
+
+const LocationMenuItem: React.FC<Props> = ({ locationSearch = "" }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [geolocationSupported, setGeolocationSupported] = useState(false);
@@ -49,8 +53,8 @@ const LocationMenuItem: React.FC = () => {
     }
   };
 
-  // Show nothing if geolocation is not supported
-  if (!geolocationSupported) {
+  // Show nothing if geolocation is not supported or if user is typing in search
+  if (!geolocationSupported || locationSearch.length > 0) {
     return null;
   }
 

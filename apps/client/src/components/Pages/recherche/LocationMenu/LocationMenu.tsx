@@ -118,7 +118,7 @@ const LocationMenu: React.FC<Props> = () => {
         ))}
       </div>
 
-      <LocationMenuItem />
+      <LocationMenuItem locationSearch={locationSearch} />
 
       <div className={styles.places}>
         {locationSearch !== "" &&
