@@ -552,8 +552,6 @@
     "ok": "Ok"
   },
   "MobileApp": {
-    "imageAlt": "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
-    "logoAlt": "Logo Réfugiés.info",
     "rankingText": "Top 3 des applications publiques",
     "rankingLabel": "Note : 5 sur 5",
     "titleDesktop": "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
