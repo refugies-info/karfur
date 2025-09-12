@@ -8,10 +8,12 @@
 */
 .callout {
   margin-block: 1.5rem;
+  background: var(--background-contrast-grey);
+  border-inline-start: 0.25rem solid var(--border-default-blue-france);
 
   /* stylelint-disable-next-line selector-class-pattern */
-  &.callout--info {
-    border-inline-start: 0.25rem solid var(--border-default-blue-france);
+  &.callout--info,
+  &.callout--important {
     color: var(--color-text-default-grey);
     margin-inline-start: 2rem;
     padding-block: 1rem;
@@ -21,48 +23,15 @@
       color: var(--color-text-title-grey);
       content: attr(data-title);
       display: block;
-      font-size: 1.25rem;
+      font-size: 1rem;
       font-weight: 700;
       line-height: 1.75rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
 
       @include media-max("lg-limit") {
-        @include dsfr-text("large");
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
       }
-    }
-  }
-
-  /* stylelint-disable-next-line selector-class-pattern */
-  &.callout--important {
-    background: var(--background-contrast-grey);
-    position: relative;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    padding: 1rem 0.5rem 1rem 3.5rem;
-
-    &::before {
-      @include dsfr-text("h6");
-
-      content: attr(data-title);
-      display: block;
-      margin-bottom: 0.25rem;
-      font-weight: bold;
-
-      @include media-max("lg-limit") {
-        @include dsfr-text("large");
-      }
-    }
-
-    &::after {
-      content: url("../assets/important-callout.svg");
-      text-align: center;
-      padding-top: 1rem;
-      width: 2.5rem;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      inset-inline-start: 0;
-      background: var(--border-default-blue-france);
     }
   }
 }
