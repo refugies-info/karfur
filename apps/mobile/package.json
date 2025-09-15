@@ -81,7 +81,7 @@
     "@babel/runtime": "^7.28.3",
     "@react-native/assets-registry": "^0.81.1",
     "@react-native/eslint-plugin": "^0.80.2",
-    "@react-navigation/core": "^6.4.10",
+    "@react-navigation/core": "^7.12.4",
     "@refugies-info/api-types": "workspace:*",
     "@testing-library/react": "^15.0.7",
     "@testing-library/react-native": "^12.9.0",
