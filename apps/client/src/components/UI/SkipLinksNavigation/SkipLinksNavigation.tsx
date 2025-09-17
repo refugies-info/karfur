@@ -8,7 +8,7 @@ const SkipLinksNavigation = () => {
       links={[
         {
           anchor: "#contenu",
-          label: t("SkipLinks.Contenu", "Contenu"),
+          label: t("SkipLinks.Contenu", "Aller au contenu"),
         },
         {
           anchor: "#main-navigation",
