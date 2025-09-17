@@ -24,8 +24,8 @@ const SearchInput: React.FC<Props> = ({ onChange, className }) => {
     <>
       <Input
         iconId="fr-icon-search-line"
-        className={cls(styles.container, className)}
-        label=""
+        className={cls(styles.container, "[&_label]:sr-only", className)}
+        label={t("Recherche.keyword", "Rechercher par mot-clé")}
         hintText={hintText}
         nativeInputProps={{
           placeholder: t("Recherche.keyword", "Rechercher par mot-clé"),
