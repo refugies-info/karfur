@@ -11,7 +11,7 @@ const SkipLinksNavigation = () => {
           label: t("SkipLinks.Contenu", "Contenu"),
         },
         {
-          anchor: "#fr-header-main-navigation",
+          anchor: "#main-navigation",
           label: t("SkipLinks.Menu", "Menu"),
         },
         {
