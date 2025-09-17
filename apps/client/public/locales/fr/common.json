@@ -559,13 +559,13 @@
     "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
     "description": "Suivez l'évolution du service Réfugiés.info",
     "imgAlt": "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
-    "label": "Adresse email",
+    "label": "Adresse email (requise)",
     "confirmMessageTitle": "Yay...",
     "confirmMessageText": "Mail <b>{{email}}</b> correctement enregistré !",
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
-    "ok": "Ok"
+    "ok": "S'inscrire"
   },
   "MobileApp": {
     "imageAlt": "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
@@ -577,7 +577,7 @@
     "subtitleDesktop": "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
     "subtitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info vous aide à construire votre vie en France !",
     "subTitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info t’aide à construire ta vie en France !",
-    "phoneLabel": "Numéro de téléphone",
+    "phoneLabel": "Numéro de téléphone (requis)",
     "langLabel": "Envoyer par SMS en :",
     "buttonText": "Envoyer le lien",
     "downloadButtonText": "Télécharger l’application",
