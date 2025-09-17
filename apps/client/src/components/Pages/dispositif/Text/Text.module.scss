@@ -131,6 +131,10 @@
   /* Create the content wrapper for text */
   ol li > * {
     grid-column: 3;
+  }
+
+  ol li > span,
+  ol li > a {
     width: fit-content;
     margin: 0;
   }
