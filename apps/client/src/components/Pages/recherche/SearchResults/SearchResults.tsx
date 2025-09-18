@@ -107,7 +107,7 @@ const SearchResults = (props: Props) => {
         delay: 1000,
       },
     );
-  }, [dispositifs, announce, query, showSuggestions, t]);
+  }, [dispositifs, announce, query, t]);
 
   return (
     <section className={styles.wrapper} aria-labelledby="resultats">
