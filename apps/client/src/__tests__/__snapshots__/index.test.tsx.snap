@@ -3,6 +3,14 @@
 exports[`homepage renders homepage 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="main"
   >
     <div
