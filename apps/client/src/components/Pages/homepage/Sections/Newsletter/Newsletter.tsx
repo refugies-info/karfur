@@ -104,11 +104,16 @@ const Newsletter = () => {
                 id: "newsletter-email",
               }}
               addon={
-                <Button iconId="fr-icon-send-plane-fill" type="submit" iconPosition="right">
-                  {t("NewsletterForm.ok", "Ok")}
+                <Button
+                  iconId="fr-icon-send-plane-fill"
+                  type="submit"
+                  iconPosition="right"
+                  className="whitespace-nowrap"
+                >
+                  {t("NewsletterForm.ok", "S'inscrire")}
                 </Button>
               }
-              label={t("NewsletterForm.label", "Adresse email")}
+              label={t("NewsletterForm.label", "Adresse email (requise)")}
               state={newsletterFormState}
               stateRelatedMessage={newsletterError}
             />
