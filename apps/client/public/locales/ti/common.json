@@ -496,13 +496,11 @@
   "NewsletterForm": {
     "title": "ወርሓዊ ዜና መጽኤትና ሳብስክራይብ ግበሩ!",
     "description": "ምዕባለ ኣገልግሎት ናይ Réfugiés.info ተኸታተሉ።",
-    "label": "ናይ ኢ-መይል ኣድራሻ",
     "confirmMessageTitle": "Yay...",
     "confirmMessageText": "መልእኽቲ {{email}} ተመዝጊቡ!",
     "errorsEmailnotvalid": "እዚ ኢመይል ትኽኽል ኣይኮነን፡ ዳግማይ ኣረጋጊጽኩም ለኣኹ",
     "errorsAlreadyexists": "እዚ ኢመይል ኣድራሻ ድሮ ኣብ Réfugiés.info ዜናዊ ፋይል ምዝገባ ኮይኑ ኣሎ!",
-    "errorsSystemerror": "ጌጋ ተከሲቱ ኣሎ",
-    "ok": "ስደድ"
+    "errorsSystemerror": "ጌጋ ተከሲቱ ኣሎ"
   },
   "MobileApp": {
     "rankingText": "ብሉጻት 3 ህዝባዊ ኣፕሊኬሽን",
@@ -512,7 +510,6 @@
     "subtitleDesktop": "ብነጻ፡ እቲ ኣፕሊኬሽን ምስ ስደተኛታትን ንስደተኛታትን ዝሰርሑን ዝተዳለዉ ኮይኖም ። ኣብኡ ዝተቐለለ ሓበሬታ ክረኽቡ ክኽእሉ እዮም፣ ናብ 7 ቋንቋታት ተተርጒሙን ንኽሰምዑ ክቐርቡን እዮም።",
     "subtitleMobile": "ነጻ፡ ናብ 7 ቋንቋታት ዝተተርጎመ፡ ንኣጠቓቕማ ቀሊል... እቲ Réfugiés.info ዝበሃል ኣፕሊኬሽን ኣብ ፈረንሳ ህይወትኩል ክትሃንጹ  ይሕግዘዘኩም!",
     "subTitleMobile": "ነጻ፡ ናብ 7 ቋንቋታት ዝተተርጎመ፡ ንኣጠቓቕማ ቀሊል... እቲ Réfugiés.info ዝበሃል ኣፕሊኬሽን ኣብ ፈረንሳ ህይወትኩም ንምህናጽ ይሕግዘኩም!",
-    "phoneLabel": "ቁጽሪ ተሌፎን",
     "langLabel": "ብኤስኤምኤስ SMS ምልኣኽ፤",
     "buttonText": "ሊንክ ስደዱ",
     "downloadButtonText": "ነቲ ኣፕሊኬሽን ኣውርድዎ",

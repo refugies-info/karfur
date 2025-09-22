@@ -508,13 +508,11 @@
   "NewsletterForm": {
     "title": "Subscribe to our monthly newsletter!",
     "description": "Follow the development of the Réfugiés.info service",
-    "label": "Email address",
     "confirmMessageTitle": "Yay...",
     "confirmMessageText": "Mail {{email}} successfully registered !",
     "errorsEmailnotvalid": "This is not an email, please check the spelling.",
     "errorsAlreadyexists": "This email address is already subscribed to the Réfugiés.info newsletter!",
-    "errorsSystemerror": "An error has occurred",
-    "ok": "Send"
+    "errorsSystemerror": "An error has occurred"
   },
   "MobileApp": {
     "rankingText": "Top 3 public applications",
@@ -524,7 +522,6 @@
     "subtitleDesktop": "The free app has been designed with and for refugees. They will find simplified information, translated into 7 languages, that they can listen to.",
     "subtitleMobile": "Free, translated into 7 languages, easy to use... The Réfugiés.info application helps you build your life in France!",
     "subTitleMobile": "Free, translated into 7 languages, easy to use... The Réfugiés.info application helps you build your life in France!",
-    "phoneLabel": "Phone number",
     "langLabel": "Send by SMS in:",
     "buttonText": "Send link",
     "downloadButtonText": "Download the application",

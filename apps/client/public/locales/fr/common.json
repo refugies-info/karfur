@@ -542,13 +542,13 @@
   "NewsletterForm": {
     "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
     "description": "Suivez l'évolution du service Réfugiés.info",
-    "label": "Adresse email",
+    "label": "Adresse email (requise)",
     "confirmMessageTitle": "Yay...",
     "confirmMessageText": "Mail <b>{{email}}</b> correctement enregistré !",
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
-    "ok": "Ok"
+    "ok": "S'inscrire"
   },
   "MobileApp": {
     "rankingText": "Top 3 des applications publiques",
@@ -558,7 +558,7 @@
     "subtitleDesktop": "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
     "subtitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info vous aide à construire votre vie en France !",
     "subTitleMobile": "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info t’aide à construire ta vie en France !",
-    "phoneLabel": "Numéro de téléphone",
+    "phoneLabel": "Numéro de téléphone (requis)",
     "langLabel": "Envoyer par SMS en :",
     "buttonText": "Envoyer le lien",
     "downloadButtonText": "Télécharger l’application",

@@ -71,7 +71,7 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
         id="sms-phone-input"
         ref={ref}
         nativeInputProps={{ type: "tel", name: "tel", onChange: (e: any) => setTel(e.target.value) }}
-        label={t("MobileApp.phoneLabel", "Numéro de téléphone")}
+        label={t("MobileApp.phoneLabel", "Numéro de téléphone (requis)")}
         state={error ? "error" : "default"}
         stateRelatedMessage={errorMessage}
         className="mb-4"
