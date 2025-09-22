@@ -20,12 +20,16 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
   labelClassName,
 }) => {
   const stylesDisabled = useStylesDisabled();
+  const generatedId = React.useId();
+  const checkboxId = id || `checkbox-${generatedId}`;
+  const inputId = `input-${checkboxId}`;
+  
   const handleLabelClick = (e: React.MouseEvent) => {
     // Prevent triggering twice if clicking on the Root component
     if ((e.target as HTMLElement).closest('[role="checkbox"]')) return;
     onChange?.();
   };
-
+  
   return (
     <span className={cls(styles.container, disabled && styles.disabled, className)} id={id}>
       <Root
@@ -34,6 +38,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
         onCheckedChange={onChange}
         disabled={disabled}
         tabIndex={0}
+        id={checkboxId}
       >
         <input
           type="checkbox"
@@ -41,6 +46,7 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
           onChange={onChange}
           className={styles.realCheckBox}
           tabIndex={-1}
+          id={inputId}
         />
         {!stylesDisabled && (
           <Indicator className={styles.indicator}>
@@ -48,7 +54,12 @@ const Checkbox: React.FC<React.PropsWithChildren<Props>> = ({
           </Indicator>
         )}
       </Root>
-      <label className={cls(styles.label, disabled && styles.disabled, labelClassName)}>{children}</label>
+      <label 
+        htmlFor={checkboxId} 
+        className={cls(styles.label, disabled && styles.disabled, labelClassName)}
+      >
+        {children}
+      </label>
     </span>
   );
 };

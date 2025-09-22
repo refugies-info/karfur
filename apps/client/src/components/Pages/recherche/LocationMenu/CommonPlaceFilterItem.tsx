@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
-import CheckboxIcon from "~/components/UI/Checkbox/CheckboxIcon";
+import Checkbox from "~/components/UI/Checkbox";
+import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { getDepartmentNameFromCode } from "~/lib/departments";
 import styles from "./CommonPlaceFilterItem.module.css";
 
@@ -10,40 +11,29 @@ interface Props {
 }
 
 const CommonPlaceFilterItem: React.FC<Props> = ({ deptNo, placeName, onSelectCommonPlace }) => {
-  const handleClick = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      onSelectCommonPlace(getDepartmentNameFromCode(deptNo));
-    },
-    [deptNo, onSelectCommonPlace],
-  );
+  const handleChange = useCallback(() => {
+    onSelectCommonPlace(getDepartmentNameFromCode(deptNo));
+  }, [deptNo, onSelectCommonPlace]);
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        onSelectCommonPlace(getDepartmentNameFromCode(deptNo));
-      }
+    (e: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => {
+      onEnterOrSpace(e, () => onSelectCommonPlace(getDepartmentNameFromCode(deptNo)));
     },
     [deptNo, onSelectCommonPlace],
   );
 
   return (
-    <div
+    <Checkbox
       className={styles.container}
-      onClick={handleClick}
+      checked={false}
+      onChange={handleChange}
       onKeyDown={handleKeyDown}
-      role="button"
-      tabIndex={0}
       aria-label={`Ajouter le filtre ${placeName} (${deptNo})`}
     >
-      <div className={styles.checkbox} aria-hidden="true">
-        <CheckboxIcon />
-      </div>
       <span className={styles.label}>
         {placeName} {deptNo}
       </span>
-    </div>
+    </Checkbox>
   );
 };
 
