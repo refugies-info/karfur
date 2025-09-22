@@ -2,16 +2,15 @@ import debounce from "lodash/debounce";
 import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentCodeFromName } from "~/lib/departments";
+import { getDepartmentCodeFromName, getDepartmentNameFromCode } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { useSearchCounts } from "../SearchCountsContext";
-import CommonPlaceFilterItem from "./CommonPlaceFilterItem";
-import DepartmentFilterItem from "./DepartmentFilterItem";
-import styles from "./LocationMenu.module.css";
+import { getPlaceName } from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
-import PlaceMenuItem from "./PlaceMenuItem";
+import LocationMenuItem from "./LocationMenuItem";
+import styles from "./LocationMenu.module.css";
 import SearchMenuItem from "./SearchMenuItem";
 
 const commonPlaces = [
@@ -102,6 +101,19 @@ const LocationMenu: React.FC<Props> = () => {
     [query.departments, dispatch, eventName],
   );
 
+  const removeDepartment = useCallback(
+    (dep: string) => {
+      const departments = query.departments.filter((d) => d !== dep);
+      dispatch(
+        addToQueryActionCreator({
+          departments,
+          sort: departments.length === 0 ? "default" : "location",
+        }),
+      );
+    },
+    [dispatch, query.departments],
+  );
+
   const queryDepartmentCodes = useMemo(() => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
@@ -114,7 +126,13 @@ const LocationMenu: React.FC<Props> = () => {
 
       <div className={styles.departments}>
         {query.departments.map((depName, i) => (
-          <DepartmentFilterItem key={i} dep={depName} />
+          <LocationMenuItem
+            key={i}
+            type="department"
+            checked={true}
+            label={`${depName} ${getDepartmentCodeFromName(depName)}`}
+            onChange={() => removeDepartment(depName)}
+          />
         ))}
       </div>
 
@@ -124,17 +142,31 @@ const LocationMenu: React.FC<Props> = () => {
         {locationSearch !== "" &&
           suggestions
             .slice(0, 5)
-            .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
+            .map((p, i) => {
+              const placeName = getPlaceName(p);
+              const deptNo = p.properties.context.split(",")[0];
+              return (
+                <LocationMenuItem
+                  key={i}
+                  type="place"
+                  checked={false}
+                  label={`${placeName} ${deptNo}`}
+                  onChange={() => onSelectPrediction(p)}
+                />
+              );
+            })}
         {locationSearch === "" &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
             .map(({ deptNo, placeName }) => {
               return (
-                <CommonPlaceFilterItem
+                <LocationMenuItem
                   key={deptNo}
-                  placeName={placeName}
-                  deptNo={deptNo}
-                  onSelectCommonPlace={onSelectCommonPlace}
+                  type="commonPlace"
+                  checked={false}
+                  label={`${placeName} ${deptNo}`}
+                  ariaLabel={`Ajouter le filtre ${placeName} (${deptNo})`}
+                  onChange={() => onSelectCommonPlace(getDepartmentNameFromCode(deptNo))}
                 />
               );
             })}

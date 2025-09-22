@@ -1,3 +1,4 @@
+/* Container styles for department and commonPlace types */
 .container {
   /* Layout */
   display: flex;
@@ -24,21 +25,19 @@
   outline-offset: 2px;
 }
 
-.checkbox {
+/* Item styles for place type (simpler styling) */
+.item {
   /* Layout */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
-  
-  /* Style */
-  border: 1px solid var(--border-action-high-blue-france);
-  border-radius: 4px;
-  background: transparent;
+  align-items: flex-start;
+  align-self: stretch;
 }
 
+.item:hover {
+  background: var(--background-alt-grey);
+}
+
+/* Label styles for department and commonPlace types */
 .label {
   /* Layout */
   flex: 1;
