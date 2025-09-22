@@ -10,7 +10,7 @@ import { useSearchCounts } from "../SearchCountsContext";
 import CommonPlaceFilterItem from "./CommonPlaceFilterItem";
 import DepartmentFilterItem from "./DepartmentFilterItem";
 import styles from "./LocationMenu.module.css";
-import LocationMenuItem from "./LocationMenuItem";
+import GeoLocationMenuItem from "./GeoLocationMenuItem";
 import PlaceMenuItem from "./PlaceMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
 
@@ -118,7 +118,7 @@ const LocationMenu: React.FC<Props> = () => {
         ))}
       </div>
 
-      <LocationMenuItem />
+      <GeoLocationMenuItem />
 
       <div className={styles.places}>
         {locationSearch !== "" &&

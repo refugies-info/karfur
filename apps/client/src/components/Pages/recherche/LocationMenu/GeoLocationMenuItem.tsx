@@ -6,9 +6,9 @@ import Separator from "~/components/UI/Separator";
 import { cls } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import styles from "./LocationMenuItem.module.css";
+import styles from "./GeoLocationMenuItem.module.css";
 
-const LocationMenuItem: React.FC = () => {
+const GeoLocationMenuItem: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [geolocationSupported, setGeolocationSupported] = useState(false);
@@ -72,4 +72,4 @@ const LocationMenuItem: React.FC = () => {
   );
 };
 
-export default LocationMenuItem;
+export default GeoLocationMenuItem;
