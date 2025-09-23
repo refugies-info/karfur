@@ -1,6 +1,5 @@
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useRef } from "react";
-import Separator from "~/components/UI/Separator";
 import { cls } from "~/lib/classname";
 import styles from "./SearchMenuItem.module.css";
 
@@ -19,22 +18,24 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   }, []);
 
   return (
-    <>
-      <span className={styles.item} onClick={(e) => e.preventDefault()}>
-        <span className={styles.zone}>
-          <i className={cls("fr-icon-search-line", styles.icon)} />
-          <input
-            type="text"
-            ref={ref}
-            dir={i18n.dir()}
-            className={styles.input}
-            placeholder={t("Rechercher", "Rechercher")}
-            onChange={onChange}
-          />
-        </span>
+    <form className={styles.item} onClick={(e) => e.preventDefault()} onSubmit={(e) => e.preventDefault()}>
+      <span className={styles.zone}>
+        <i className={cls("fr-icon-search-line", styles.icon)} />
+        <label htmlFor="location-search" className="sr-only">
+          {t("Rechercher", "Rechercher")}
+        </label>
+        <input
+          type="text"
+          ref={ref}
+          dir={i18n.dir()}
+          className={styles.input}
+          id="location-search"
+          placeholder={t("Rechercher", "Rechercher")}
+          name="location-search"
+          onChange={onChange}
+        />
       </span>
-      <Separator />
-    </>
+    </form>
   );
 };
 
