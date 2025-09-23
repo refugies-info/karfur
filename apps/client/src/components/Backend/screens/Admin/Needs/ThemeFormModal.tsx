@@ -283,7 +283,7 @@ export const ThemeFormModal = (props: Props) => {
                 </div>
               ))}
             </div>
-            <p className="text-sm ">Sur le site color60 = couleur de fond, color40 = couleur de survol</p>
+            <p className="text-sm ">Sur le site color40 = couleur de fond, color60 = couleur de survol</p>
             <Label htmlFor="colors">Couleurs du dégradé du thème</Label>
             <div className={styles.colors}>
               <div>
