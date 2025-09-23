@@ -19,6 +19,8 @@ import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./SearchResults.module.scss";
+import { Event } from "~/lib/tracking";
+
 
 export const MATCHES_PER_PAGE = 24;
 
@@ -62,6 +64,10 @@ const SearchResults = (props: Props) => {
   }, [remainingItems]);
 
   const noResults = filteredResults.matches.length === 0;
+
+  useEffect(() => {
+    Event("SEE_MORE", "Click on see more button", page.toString());
+  }, [page]);
 
   const handleSeeMore = () => {
     announce(t("Recherche.loadingResults", "Chargement de {{count}} résultats...", { count: seeMoreCount }), {
