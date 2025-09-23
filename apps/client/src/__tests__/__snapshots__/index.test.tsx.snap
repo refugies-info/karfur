@@ -4788,7 +4788,7 @@ exports[`homepage renders homepage 1`] = `
                   value=""
                 />
                 <button
-                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
+                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right whitespace-nowrap"
                   id="fr-button-:r1g:"
                   type="submit"
                 >
