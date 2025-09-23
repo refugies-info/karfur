@@ -1,9 +1,9 @@
 import Input from "@codegouvfr/react-dsfr/Input";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React from "react";
 import { useSelector } from "react-redux";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import { cls } from "~/lib/classname";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./SearchInput.module.css";
 
@@ -24,8 +24,8 @@ const SearchInput: React.FC<Props> = ({ onChange, className }) => {
     <>
       <Input
         iconId="fr-icon-search-line"
-        className={cls(styles.container, className)}
-        label=""
+        className={cn(styles.container, className)}
+        label={t("Recherche.keyword", "Rechercher par mot-clé")}
         hintText={hintText}
         nativeInputProps={{
           placeholder: t("Recherche.keyword", "Rechercher par mot-clé"),
