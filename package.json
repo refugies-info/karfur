@@ -35,7 +35,8 @@
       "sha.js": ">=2.4.12",
       "stylus": "npm:noop3@^1000.0.0",
       "tmp": ">=0.2.4",
-      "undici": ">=6.21.2"
+      "undici": ">=6.21.2",
+      "@codegouvfr/react-dsfr": "1.20.2"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"

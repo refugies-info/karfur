@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { RootState } from "services/rootReducer";
+import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 
 interface WrapWithProvidersAndRenderParams<Props> {
   Component: React.FunctionComponent<any>;
@@ -34,7 +35,9 @@ export function wrapWithProvidersAndRenderForTesting<T>({
       <TooltipProvider>
         <Router>
           <Provider store={store}>
-            <Component {...compProps} />
+            <ScreenReaderAnnouncerProvider>
+              <Component {...compProps} />
+            </ScreenReaderAnnouncerProvider>
           </Provider>
         </Router>
       </TooltipProvider>

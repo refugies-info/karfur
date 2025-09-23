@@ -3,6 +3,14 @@
 exports[`auth/reinitialiser-mot-de-passe renders page if email 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="container half"
   >
     <button
@@ -76,6 +84,14 @@ exports[`auth/reinitialiser-mot-de-passe renders page if email 1`] = `
 
 exports[`auth/reinitialiser-mot-de-passe renders page if no email 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   <div
     class="container half"
   >

@@ -69,18 +69,8 @@ const Dispositif = (props: Props) => {
         {isViewMode && <Breadcrumb dispositif={dispositif} />}
         {isViewMode ? <Banner themeId={dispositif?.theme} /> : <BannerEdition />}
         <div className={cn("z-10 container flex gap-10 max-lg:flex-col max-sm:!px-0")}>
-          {(isDesktop || isLargeDesktop) && (
-            <>
-              {isViewMode ? (
-                <LeftSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:pt-0" />
-              ) : (
-                <LeftSidebarEdition className="z-10 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
-              )}
-            </>
-          )}
-
           <article
-            className="z-10 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
+            className="z-10 order-2 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
             dir={isRTL ? undefined : "ltr"}
           >
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
@@ -101,12 +91,22 @@ const Dispositif = (props: Props) => {
             {isViewMode && <Contributors />}
           </article>
 
+          {(isDesktop || isLargeDesktop) && (
+            <>
+              {isViewMode ? (
+                <LeftSidebar className="z-10 order-1 lg:w-[20%] lg:pt-[371px] print:pt-0" />
+              ) : (
+                <LeftSidebarEdition className="z-10 order-1 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
+              )}
+            </>
+          )}
+
           {isLargeDesktop && (
             <>
               {isViewMode ? (
-                <RightSidebar className="z-10 lg:w-[20%] lg:pt-[371px] print:hidden" />
+                <RightSidebar className="z-10 order-3 lg:w-[20%] lg:pt-[371px] print:hidden" />
               ) : (
-                <RightSidebarEdition className="z-10 lg:w-[20%] lg:pt-[371px]" />
+                <RightSidebarEdition className="z-10 order-3 lg:w-[20%] lg:pt-[371px]" />
               )}
             </>
           )}

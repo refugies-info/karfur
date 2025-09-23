@@ -160,6 +160,7 @@ const Navbar = () => {
   return (
     <>
       <Header
+        id="main-navigation"
         brandTop={
           <>
             République
