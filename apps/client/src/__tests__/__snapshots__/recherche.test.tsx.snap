@@ -67,7 +67,7 @@ exports[`recherche renders search results 1`] = `
         class="container container"
       >
         <div
-          class="fr-input-group container [&_label]:sr-only searchZone"
+          class="fr-input-group $$typeof type props _owner _store"
         >
           <label
             class="fr-label"
