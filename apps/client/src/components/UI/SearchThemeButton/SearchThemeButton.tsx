@@ -49,6 +49,10 @@ const SearchThemeButton = (props: Props) => {
         if (props.onClick) props.onClick();
         window.scrollTo(0, 0);
       }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
     >
       {content}
     </button>
