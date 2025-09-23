@@ -2,9 +2,10 @@ import { useTranslation } from "next-i18next";
 import { useContext } from "react";
 import { useSanitizedContent } from "~/hooks";
 import { cn } from "~/lib/classname";
-import { getCalloutTranslationKey, translationParsing } from "~/lib/contentParsing";
+import { CalloutSegment, getCalloutTranslationKey, htmlParsing, TextSegment, translationParsing } from "~/lib/contentParsing";
 import PageContext from "~/utils/pageContext";
 import styles from "./Text.module.scss";
+import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 
 interface Props {
   id: string;
@@ -13,9 +14,7 @@ interface Props {
   className?: string;
 }
 
-/**
- * Displays a text (string or HTML) which can be highlighted
- */
+
 const Text = (props: Props) => {
   const { t } = useTranslation();
   const pageContext = useContext(PageContext);
@@ -26,19 +25,55 @@ const Text = (props: Props) => {
         { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
       ])
     : props.children;
+    
+    const isClient = typeof window !== 'undefined';
+    
+    const { contentSegments } = isClient && props.html 
+      ? htmlParsing(convertedContent as string) 
+      : { contentSegments: [{ type: 'text', content: convertedContent as string }] };
 
-  const safeContent = useSanitizedContent(convertedContent);
 
   return props.html ? (
     <div
       data-section={props.id}
-      dangerouslySetInnerHTML={{ __html: safeContent }}
-      className={cn(styles.content, pageContext.activeSection === props.id && styles.highlighted, props.className)}
-    />
+      className={cn( styles.content, pageContext.activeSection === props.id && styles.highlighted, props.className)}
+    >
+      {contentSegments.map((segment, index) => {
+        if (segment.type === 'text') {
+          const textSegment = segment as TextSegment;
+          const sanitizedContent = useSanitizedContent(textSegment.content);
+          return (
+            <div 
+              key={`text-${index}`}
+              dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+            />
+          );
+        } else if (segment.type === 'callout') {
+          const calloutSegment = segment as CalloutSegment;
+          const iconId = calloutSegment.calloutType === 'important' 
+            ? "fr-icon-warning-fill" 
+            : "ri-information-line";
+          
+          return (
+            <CallOut 
+              key={`callout-${calloutSegment.calloutType}-${index}`}
+              title={calloutSegment.title}
+              iconId={iconId}
+              colorVariant={calloutSegment.calloutType === 'important' ? 'yellow-tournesol' : 'blue-cumulus'}
+            >
+              <p className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
+            </CallOut>
+          );
+        }
+        return null;
+      })}
+    </div>
   ) : (
-    <span className={pageContext.activeSection === props.id ? styles.highlighted : ""} data-section={props.id}>
-      {convertedContent}
-    </span>
+    <>
+      <span className={pageContext.activeSection === props.id ? styles.highlighted : ""} data-section={props.id}>
+        {convertedContent}
+      </span>
+    </>
   );
 };
 
