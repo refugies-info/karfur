@@ -3,6 +3,14 @@
 exports[`auth renders auth 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="container half"
   >
     <button

@@ -3,6 +3,14 @@
 exports[`agir renders traduire 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="w-full"
   >
     <div
