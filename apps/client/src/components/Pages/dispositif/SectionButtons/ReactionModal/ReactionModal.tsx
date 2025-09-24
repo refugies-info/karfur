@@ -45,7 +45,7 @@ const ReactionModal = (props: Props) => {
       <p>{t("Dispositif.suggestionSubtitle")}</p>
 
       <Input
-        label={t("Dispositif.suggestionLabel", "Ma suggestion")}
+        label={t("Dispositif.suggestionLabel", "Ma suggestion (Obligatoire)")}
         textArea
         nativeTextAreaProps={{
           onChange: (e: any) => setSuggestion(e.target.value),
@@ -53,7 +53,7 @@ const ReactionModal = (props: Props) => {
       />
 
       <div className={styles.footer}>
-        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit}>
+        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit} disabled={!suggestion.trim()}>
           {t("Valider", "Valider")}
         </Button>
       </div>
