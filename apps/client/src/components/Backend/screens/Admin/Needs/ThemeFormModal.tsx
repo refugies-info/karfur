@@ -279,9 +279,11 @@ export const ThemeFormModal = (props: Props) => {
                     onChange={(e: any) => setColors({ ...colors, [i]: e.target.value as string })}
                     style={{ backgroundColor: colors[i] }}
                   />
+                  <small>{i}</small>
                 </div>
               ))}
             </div>
+            <p className="text-sm ">Sur le site color40 = couleur de fond, color60 = couleur de survol</p>
             <Label htmlFor="colors">Couleurs du dégradé du thème</Label>
             <div className={styles.colors}>
               <div>
