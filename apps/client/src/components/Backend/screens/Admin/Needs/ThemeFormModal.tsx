@@ -179,20 +179,14 @@ export const ThemeFormModal = (props: Props) => {
   };
 
   const getDSFRColor = (color: string) => {
-    switch (color) {
-      case "color100":
-        return "Sun";
-      case "color80":
-        return "Sun-hover";
-      case "color60":
-        return "Sun-active";
-      case "color40":
-        return "850";
-      case "color30":
-        return "975";
-      default:
-        return "";
-    }
+    const DSFRColorMap: Record<string, string> = {
+      color100: "Sun",
+      color80: "Sun-hover",
+      color60: "Sun-active",
+      color40: "850",
+      color30: "975",
+    };
+    return DSFRColorMap[color] || "";
   };
 
   const isInvalid =
