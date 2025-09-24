@@ -291,11 +291,13 @@ export const ThemeFormModal = (props: Props) => {
                     style={{ backgroundColor: colors[i] }}
                   />
                   <small className="flex flex-col justify-between text-xs">
-                    <span className="flex flex-wrap gap-x-1">
-                      <b>RI :</b> {i}
+                    <span className="flex flex-wrap">
+                      <b>RI : </b>
+                      {i}
                     </span>{" "}
-                    <span className="flex flex-wrap gap-x-1">
-                      <b>DSFR :</b> <span>{getDSFRColor(i)}</span>
+                    <span className="flex flex-wrap">
+                      <b>DSFR : </b>
+                      <span>{getDSFRColor(i)}</span>
                     </span>
                   </small>
                 </div>
