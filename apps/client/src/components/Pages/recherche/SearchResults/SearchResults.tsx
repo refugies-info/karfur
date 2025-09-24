@@ -16,6 +16,7 @@ import Image from "~/components/UI/Image";
 import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
+import { Event } from "~/lib/tracking";
 import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./SearchResults.module.scss";
@@ -62,6 +63,12 @@ const SearchResults = (props: Props) => {
   }, [remainingItems]);
 
   const noResults = filteredResults.matches.length === 0;
+
+  useEffect(() => {
+    if (page > 1) {
+      Event("SEE_MORE", "Click on see more button", page.toString());
+    }
+  }, [page]);
 
   const handleSeeMore = () => {
     announce(t("Recherche.loadingResults", "Chargement de {{count}} résultats...", { count: seeMoreCount }), {
