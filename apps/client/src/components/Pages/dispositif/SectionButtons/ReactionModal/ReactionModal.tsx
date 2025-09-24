@@ -53,7 +53,7 @@ const ReactionModal = (props: Props) => {
       />
 
       <div className={styles.footer}>
-        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit} disabled={suggestion.length === 0}>
+        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit} disabled={!suggestion.trim()}>
           {t("Valider", "Valider")}
         </Button>
       </div>
