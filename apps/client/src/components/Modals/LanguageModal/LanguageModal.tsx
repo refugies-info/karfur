@@ -52,7 +52,7 @@ const LanguageModal = (props: Props) => {
           {!isMobile && (
             <ListGroupItem action key="unavailable" className={styles.list_group_item + " " + styles.unavailable}>
               <Row>
-                <Col xs="8" className={cn("whitespace-nowrap", styles.vertical_center)}>
+                <Col xs="8" className={cn(styles.vertical_center)}>
                   {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
                 </Col>
                 <Col xs="4" className={styles.button_col}>
