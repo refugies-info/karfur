@@ -47,7 +47,7 @@
 ## Constitution Check
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-**I. Accessibility First**: ✅/❌ Feature includes accessibility requirements and testing plan
+**I. Accessibility First**: ✅/❌ Feature includes RGAA 4 accessibility requirements and testing plan
 **II. Multilingual by Design**: ✅/❌ All user-facing text externalized for translation (8 languages)
 **III. Progressive Migration**: ✅/❌ Uses modern tech stack (Tailwind, App Router, Context API) or justified legacy use
 **IV. Monorepo Consistency**: ✅/❌ Follows Turborepo conventions, uses proper package structure

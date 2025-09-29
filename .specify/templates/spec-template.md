@@ -101,7 +101,7 @@ When creating this spec from a user prompt:
 - [ ] Dependencies and assumptions identified
 
 ### Constitutional Compliance
-- [ ] Accessibility requirements explicitly defined (WCAG 2.1 AA)
+- [ ] Accessibility requirements explicitly defined (RGAA 4)
 - [ ] Multilingual support considered (8 languages)
 - [ ] DSFR design system compatibility noted
 - [ ] GDPR compliance implications addressed

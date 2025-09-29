@@ -11,9 +11,9 @@ Follow-up TODOs: None - all placeholders filled
 ## Core Principles
 
 ### I. Accessibility First (NON-NEGOTIABLE)
-All features MUST meet WCAG 2.1 AA standards and maintain compatibility with assistive technologies. Accessibility testing is mandatory before any release. The platform serves vulnerable populations who rely on accessible design. Features that compromise accessibility will be rejected regardless of other benefits.
+All features MUST meet RGAA 4 (Référentiel Général d'Amélioration de l'Accessibilité) standards and maintain compatibility with assistive technologies. Accessibility testing is mandatory before any release. The platform serves vulnerable populations who rely on accessible design. Features that compromise accessibility will be rejected regardless of other benefits.
 
-**Rationale**: As a French government service serving refugee populations, accessibility is both a legal requirement and moral imperative.
+**Rationale**: As a French government service serving refugee populations, accessibility is both a legal requirement under French law and moral imperative.
 
 ### II. Multilingual by Design
 Every user-facing feature MUST support the platform's 8 languages (French + 7 refugee languages). Text content must be externalized for translation. UI components must handle variable text lengths and RTL languages. No hardcoded strings in user interfaces.
