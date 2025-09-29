@@ -1,6 +1,6 @@
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 import { useTranslation } from "next-i18next";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { cn } from "~/lib/classname";
 import {
   CalloutSegment,
@@ -22,6 +22,12 @@ interface Props {
 const Text = (props: Props) => {
   const { t } = useTranslation();
   const pageContext = useContext(PageContext);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  // Mark component as mounted after initial render
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const convertedContent = props.html
     ? translationParsing(props.children || "", [
@@ -30,10 +36,9 @@ const Text = (props: Props) => {
       ])
     : props.children;
 
-  const isClient = typeof window !== "undefined";
-
+  // Use simple content for server-side rendering or before mounting
   const { contentSegments } =
-    isClient && props.html
+    hasMounted && props.html
       ? htmlParsing(convertedContent as string)
       : { contentSegments: [{ type: "text", content: convertedContent as string }] };
 
@@ -57,7 +62,7 @@ const Text = (props: Props) => {
               iconId={iconId}
               colorVariant={calloutSegment.calloutType === "important" ? "yellow-tournesol" : "blue-cumulus"}
             >
-              <p className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
+              <span className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
             </CallOut>
           );
         }
