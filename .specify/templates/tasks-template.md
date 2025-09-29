@@ -118,7 +118,7 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 
 ## Phase 3.6: Constitutional Compliance
 - [ ] T### [P] Implement accessibility testing (RGAA 4 compliance)
-- [ ] T### [P] Set up internationalization for 8 languages
+- [ ] T### [P] Set up internationalization for refugee-facing features (8 languages)
 - [ ] T### [P] Configure DSFR components and CSS layer compatibility
 - [ ] T### [P] Add GDPR compliance documentation and data handling
 

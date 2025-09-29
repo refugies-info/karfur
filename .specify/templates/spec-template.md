@@ -102,7 +102,7 @@ When creating this spec from a user prompt:
 
 ### Constitutional Compliance
 - [ ] Accessibility requirements explicitly defined (RGAA 4)
-- [ ] Multilingual support considered (8 languages)
+- [ ] Multilingual support considered for refugee-facing content
 - [ ] DSFR design system compatibility noted
 - [ ] GDPR compliance implications addressed
 

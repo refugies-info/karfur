@@ -16,9 +16,9 @@ All features MUST meet RGAA 4 (Référentiel Général d'Amélioration de l'Acce
 **Rationale**: As a French government service serving refugee populations, accessibility is both a legal requirement under French law and moral imperative.
 
 ### II. Multilingual by Design
-Every user-facing feature MUST support the platform's 8 languages (French + 7 refugee languages). Text content must be externalized for translation. UI components must handle variable text lengths and RTL languages. No hardcoded strings in user interfaces.
+All content targeting refugees MUST support the platform's 8 languages (French + 7 refugee languages). Sections targeting contributors and administrators (e.g., Middle Office, Back Office) are exempt and can be French-only. Text content for multilingual sections must be externalized for translation, and UI components must handle variable text lengths and RTL languages.
 
-**Rationale**: The refugee population requires information in their native languages to effectively navigate French administrative processes.
+**Rationale**: The refugee population requires information in their native languages, while administrative interfaces for French-speaking social workers and staff can be streamlined for a single language.
 
 ### III. Progressive Migration Strategy
 Legacy technologies (Redux, Sagas, SCSS, Pages Router) should be gradually replaced with modern alternatives (Context API, Tailwind CSS, App Router). New features MUST use modern approaches. Existing code can be refactored incrementally during feature work.
