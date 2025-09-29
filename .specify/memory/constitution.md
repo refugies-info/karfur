@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-Version change: 1.0.0 → 1.1.0
-Added sections: Principle VI. Mobile-First and Refugee-Centric UI
-Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
+Version change: 1.1.0 → 1.2.0
+Added sections: Technology Standards
+Templates requiring updates: None
 Follow-up TODOs: None
 -->
 
@@ -46,7 +46,15 @@ All user interfaces MUST be designed with a mobile-first approach and be fully r
 
 **API Security**: All server endpoints must implement proper authentication and authorization. Use TSOA decorators for API documentation and validation. Rate limiting required for public endpoints.
 
-**Dependency Management**: Regular security audits of dependencies. Use pnpm overrides to address vulnerabilities. Keep Node.js on LTS versions (currently 22.x).
+**Dependency Management**: Regular security audits of dependencies. Use pnpm overrides to address vulnerabilities.
+
+## Technology Standards
+
+**Core Stack**: The platform's active applications (`server`, `client`, `mobile`) are built on a Node.js runtime and a TypeScript codebase. All new code MUST be written in TypeScript.
+
+**Node.js Version**: All services and development environments MUST use the current Long-Term Support (LTS) version of Node.js (currently 22.x).
+
+**Frameworks**: Adherence to the primary frameworks for each application (Express for `server`, Next.js for `client`, React Native for `mobile`) is required unless a migration is formally approved.
 
 ## Development Workflow
 
@@ -66,4 +74,4 @@ This constitution supersedes all other development practices. All pull requests 
 
 **Compliance Review**: Monthly review of adherence to principles. Quarterly assessment of technical debt and migration progress. Annual accessibility audit by external experts.
 
-**Version**: 1.1.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-09-29
+**Version**: 1.2.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-09-29
