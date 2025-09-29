@@ -27,6 +27,15 @@ const useWindowSize = () => {
   });
   const [hasMounted, setHasMounted] = useState(false);
   const [fontSize, setFontSize] = useState(16);
+  const [zoomLevel, setZoomLevel] = useState(100);
+
+  useEffect(() => {
+    if (hasMounted && fontSize) {
+      const defaultFontSize = 16;
+      const currentZoom = Math.round((fontSize / defaultFontSize) * 100);
+      setZoomLevel(currentZoom);
+    }
+  }, [fontSize, hasMounted]);
 
   useEffect(() => {
     const checkResponsiveFlags = () => {
@@ -45,22 +54,26 @@ const useWindowSize = () => {
       }
     };
 
-    // Mark as mounted and set initial size
     setHasMounted(true);
     if (isInBrowser()) {
+      const initialFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      if (initialFontSize > 0 && initialFontSize !== fontSize) {
+        setFontSize(initialFontSize);
+      }
+      
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
+      
       checkResponsiveFlags();
     }
 
-    let rafId: number;
+    let rafId: number | undefined;
 
     const handleResize = debounce(() => {
       if (!isInBrowser()) return;
 
-      // Use innerWidth for accurate window size detection
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -71,16 +84,16 @@ const useWindowSize = () => {
 
     const handleFontSizeChange = debounce(() => {
       if (!isInBrowser()) return;
+      
       const newFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-      if (newFontSize !== fontSize) {
+      
+      if (newFontSize > 0 && newFontSize !== fontSize) {
         setFontSize(newFontSize);
-        rafId = requestAnimationFrame(handleResize);
       }
     }, 100);
 
     const debouncedFontSizeChange = debounce(handleFontSizeChange, 100);
 
-    // Set up observers if in browser environment
     if (isInBrowser() && typeof ResizeObserver !== "undefined") {
       const resizeObserver = new ResizeObserver(debouncedFontSizeChange);
       const mutationObserver = new MutationObserver((mutations) => {
@@ -95,37 +108,58 @@ const useWindowSize = () => {
         }
       });
 
-      // Initial calculations
       handleResize();
       handleFontSizeChange();
 
-      // Attach observers and event listeners
       resizeObserver.observe(document.documentElement);
       mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
       mutationObserver.observe(document.head, { childList: true, subtree: true });
 
       window.addEventListener("resize", handleResize);
       window.addEventListener("load", handleFontSizeChange);
-      window.addEventListener("keydown", (e) => {
+
+      const keydownHandler = (e: KeyboardEvent) => {
         if ((e.ctrlKey || e.metaKey) && ["+", "-", "0", "="].includes(e.key)) {
-          handleFontSizeChange();
+          setTimeout(handleFontSizeChange, 100);
         }
-      });
-      window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
+      };
+      
+      const wheelHandler = (e: WheelEvent) => {
+        if (e.ctrlKey) {
+          setTimeout(handleFontSizeChange, 100);
+        }
+      };
+      
+      window.addEventListener("keydown", keydownHandler);
+      window.addEventListener("wheel", wheelHandler);
+      window.addEventListener("load", handleFontSizeChange);
+      
+      const bodyObserver = new MutationObserver(handleFontSizeChange);
+      if (document.body) {
+        bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["style", "class"] });
+      }
 
       return () => {
         [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
-        ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
-        window.removeEventListener("keydown", handleFontSizeChange);
-        window.removeEventListener("wheel", handleFontSizeChange);
-        clearTimeout(rafId);
+        if (document.body) {
+          bodyObserver.disconnect();
+        }
+        
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("load", handleFontSizeChange);
+        window.removeEventListener("keydown", keydownHandler);
+        window.removeEventListener("wheel", wheelHandler);
+        
+        if (rafId !== undefined) {
+          cancelAnimationFrame(rafId);
+        }
       };
     }
     // Return empty cleanup function if conditions are not met
     return () => {};
   }, [hasMounted, windowSize.width, fontSize]);
 
-  return { windowSize, ...responsiveFlags };
+  return { windowSize, zoomLevel, ...responsiveFlags };
 };
 
 export default useWindowSize;
