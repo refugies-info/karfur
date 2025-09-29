@@ -116,6 +116,12 @@ Task: "Integration test auth in tests/integration/test_auth.py"
    - Setup → Tests → Models → Services → Endpoints → Polish
    - Dependencies block parallel execution
 
+## Phase 3.6: Constitutional Compliance
+- [ ] T### [P] Implement accessibility testing (WCAG 2.1 AA compliance)
+- [ ] T### [P] Set up internationalization for 8 languages
+- [ ] T### [P] Configure DSFR components and CSS layer compatibility
+- [ ] T### [P] Add GDPR compliance documentation and data handling
+
 ## Validation Checklist
 *GATE: Checked by main() before returning*
 
@@ -124,4 +130,5 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - [ ] All tests come before implementation
 - [ ] Parallel tasks truly independent
 - [ ] Each task specifies exact file path
+- [ ] Constitutional compliance tasks included for user-facing features
 - [ ] No task modifies same file as another [P] task

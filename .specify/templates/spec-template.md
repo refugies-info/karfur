@@ -100,6 +100,12 @@ When creating this spec from a user prompt:
 - [ ] Scope is clearly bounded
 - [ ] Dependencies and assumptions identified
 
+### Constitutional Compliance
+- [ ] Accessibility requirements explicitly defined (WCAG 2.1 AA)
+- [ ] Multilingual support considered (8 languages)
+- [ ] DSFR design system compatibility noted
+- [ ] GDPR compliance implications addressed
+
 ---
 
 ## Execution Status
