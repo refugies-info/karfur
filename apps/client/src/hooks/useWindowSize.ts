@@ -1,6 +1,7 @@
 import { debounce } from "lodash";
 import { useEffect, useState } from "react";
 import isInBrowser from "~/lib/isInBrowser";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 type WindowSize = {
   width: number | undefined;
@@ -28,7 +29,8 @@ const useWindowSize = () => {
   const [hasMounted, setHasMounted] = useState(false);
   const [fontSize, setFontSize] = useState(16);
 
-  useEffect(() => {
+  // Use useIsomorphicLayoutEffect for initial setup to avoid flicker
+  useIsomorphicLayoutEffect(() => {
     const checkResponsiveFlags = () => {
       if (hasMounted && windowSize.width) {
         // Use fixed pixel values for breakpoints
@@ -46,13 +48,12 @@ const useWindowSize = () => {
     };
 
     // Mark as mounted and set initial size
-    setHasMounted(true);
     if (isInBrowser()) {
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-      checkResponsiveFlags();
+      setHasMounted(true);
     }
 
     let rafId: number;
@@ -123,6 +124,19 @@ const useWindowSize = () => {
     }
     // Return empty cleanup function if conditions are not met
     return () => {};
+  }, [hasMounted, windowSize.width, fontSize]);
+
+  // Update responsive flags when component has mounted
+  useEffect(() => {
+    if (hasMounted && windowSize.width) {
+      // Update responsive flags after mounting
+      setResponsiveFlags({
+        isMobile: windowSize.width <= fontSize * 48,
+        isTablet: windowSize.width >= fontSize * 48 && windowSize.width < fontSize * 62,
+        isDesktop: windowSize.width >= fontSize * 62 && windowSize.width < fontSize * 75,
+        isLargeDesktop: windowSize.width >= fontSize * 75,
+      });
+    }
   }, [hasMounted, windowSize.width, fontSize]);
 
   return { windowSize, ...responsiveFlags };
