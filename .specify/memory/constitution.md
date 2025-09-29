@@ -1,9 +1,9 @@
 <!--
 Sync Impact Report:
-Version change: Initial → 1.0.0
-Added sections: All core principles and governance
-Templates requiring updates: ✅ constitution.md created
-Follow-up TODOs: None - all placeholders filled
+Version change: 1.0.0 → 1.1.0
+Added sections: Principle VI. Mobile-First and Refugee-Centric UI
+Templates requiring updates: ✅ plan-template.md, ✅ spec-template.md, ✅ tasks-template.md
+Follow-up TODOs: None
 -->
 
 # Réfugiés.info Constitution
@@ -35,6 +35,11 @@ All styling must use DSFR (Système de Design de l'État) components and tokens.
 
 **Rationale**: Legal requirement for French government digital services and ensures consistent user experience across government platforms.
 
+### VI. Mobile-First and Refugee-Centric UI
+All user interfaces MUST be designed with a mobile-first approach and be fully responsive. UI/UX for mobile web browsers should be specifically tailored to the needs of refugee users, as this is their primary access method. Desktop views can be optimized for social workers and administrative staff.
+
+**Rationale**: Refugee users overwhelmingly access the service via mobile phones, making a mobile-optimized experience critical for service delivery. Desktop experiences are secondary and cater to administrative users.
+
 ## Security & Privacy Requirements
 
 **Data Protection**: All user data handling must comply with GDPR. Personal information should be minimized and encrypted at rest. No user tracking without explicit consent.
@@ -61,4 +66,4 @@ This constitution supersedes all other development practices. All pull requests 
 
 **Compliance Review**: Monthly review of adherence to principles. Quarterly assessment of technical debt and migration progress. Annual accessibility audit by external experts.
 
-**Version**: 1.0.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-01-29
+**Version**: 1.1.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-09-29

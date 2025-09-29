@@ -121,6 +121,7 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - [ ] T### [P] Set up internationalization for refugee-facing features (8 languages)
 - [ ] T### [P] Configure DSFR components and CSS layer compatibility
 - [ ] T### [P] Add GDPR compliance documentation and data handling
+- [ ] T### [P] Implement mobile-first, responsive UI with refugee-centric UX
 
 ## Validation Checklist
 *GATE: Checked by main() before returning*

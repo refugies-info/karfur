@@ -52,6 +52,7 @@
 **III. Progressive Migration**: ✅/❌ Uses modern tech stack (Tailwind, App Router, Context API) or justified legacy use
 **IV. Monorepo Consistency**: ✅/❌ Follows Turborepo conventions, uses proper package structure
 **V. Government Standards**: ✅/❌ Uses DSFR components and maintains CSS layer compatibility
+**VI. Mobile-First UI**: ✅/❌ Design is mobile-first and responsive, with specific UX for refugee users
 
 **Security & Privacy**: ✅/❌ GDPR compliance considered, API security implemented
 **Development Workflow**: ✅/❌ Testing strategy defined, follows code quality standards

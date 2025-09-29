@@ -105,6 +105,7 @@ When creating this spec from a user prompt:
 - [ ] Multilingual support considered for refugee-facing content
 - [ ] DSFR design system compatibility noted
 - [ ] GDPR compliance implications addressed
+- [ ] Mobile-first, responsive design with refugee-centric UX specified
 
 ---
 
