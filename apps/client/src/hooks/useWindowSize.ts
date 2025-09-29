@@ -195,7 +195,7 @@ const useWindowSize = () => {
     return () => {};
   }, [hasMounted, windowSize.width, fontSize]);
 
-  return { windowSize, ...responsiveFlags };
+  return { windowSize, zoomLevel, ...responsiveFlags };
 };
 
 export default useWindowSize;

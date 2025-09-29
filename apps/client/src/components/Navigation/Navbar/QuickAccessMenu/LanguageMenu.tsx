@@ -46,7 +46,7 @@ const LanguageMenu = ({
   }
 
   const { isMobile, zoomLevel } = useWindowSize();
-  console.log(zoomLevel);
+
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
 
