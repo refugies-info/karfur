@@ -37,6 +37,7 @@ const Dispositif = (props: Props) => {
   // Use the hook to ensure all rtri-link class links open in a new tab
   useRtriLinks(dispositifRef);
   const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
+  console.log(isTablet, isMobile, isDesktop, isLargeDesktop);
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
