@@ -2,6 +2,14 @@
 
 exports[`userContributions should render correctly when 0 contributions 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   .c1 {
   background: lightGrey;
   border-radius: 12px;
@@ -199,6 +207,14 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 
 exports[`userContributions should render correctly when click on delete 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   .c3 {
   display: flex;
   flex-direction: row;
@@ -773,6 +789,14 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 
 exports[`userContributions should render correctly when contributions 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   .c3 {
   display: flex;
   flex-direction: row;
@@ -2575,6 +2599,14 @@ exports[`userContributions should render correctly when contributions 1`] = `
 
 exports[`userContributions should render correctly when loading 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   .c1 {
   background: lightGrey;
   border-radius: 12px;

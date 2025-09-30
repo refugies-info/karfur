@@ -91,7 +91,7 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
           }),
-          seeMore: t("ui.carrouselSeemore", "Voir tout"),
+          seeMore: t("Homepage.demarcheSeeAll", "Voir toutes les démarches"),
           prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
           next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}
@@ -109,7 +109,7 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
           }),
-          seeMore: t("ui.carrouselSeemore", "Voir plus"),
+          seeMore: t("Homepage.dispositifSeeAll", "Voir tous les dispositifs"),
           prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
           next: t("ui.carrouselNext", "Faire défiler à droite"),
         }}

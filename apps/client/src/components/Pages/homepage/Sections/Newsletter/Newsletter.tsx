@@ -54,16 +54,7 @@ const Newsletter = () => {
   return (
     <section className="bg-alt-blue-france w-full py-20" id="newsletter">
       <div className="container grid grid-cols-2 items-center gap-10">
-        <Image
-          src={NewsletterIllu}
-          alt={t(
-            "NewsletterForm.imgAlt",
-            "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
-          )}
-          width={433}
-          height={320}
-          className="m-auto max-w-full"
-        />
+        <Image src={NewsletterIllu} alt="" width={433} height={320} className="m-auto max-w-full" />
 
         <div className="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center">
           {newsletterFormState === "success" && (

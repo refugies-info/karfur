@@ -131,9 +131,12 @@
   /* Create the content wrapper for text */
   ol li > * {
     grid-column: 3;
+  }
 
-    /* Avoid additive margins inside list items */
-    margin-block: 0;
+  ol li > span,
+  ol li > a {
+    width: fit-content;
+    margin: 0;
   }
 
   ol > li:has(> ol)::before {

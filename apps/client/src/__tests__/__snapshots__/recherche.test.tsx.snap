@@ -3,6 +3,14 @@
 exports[`recherche renders search results 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="container"
   >
     <div
@@ -59,8 +67,17 @@ exports[`recherche renders search results 1`] = `
         class="container container"
       >
         <div
-          class="fr-input-group container searchZone"
+          class="fr-input-group $$typeof type props _owner _store"
         >
+          <label
+            class="fr-label"
+            for="input-:r1:"
+          >
+            Recherche.keyword
+            <span
+              class="fr-hint-text"
+            />
+          </label>
           <div
             class="fr-input-wrap fr-icon-search-line"
           >
@@ -299,6 +316,7 @@ exports[`recherche renders search results 1`] = `
       </div>
     </div>
     <section
+      aria-labelledby="resultats"
       class="wrapper"
     >
       <div
@@ -355,6 +373,7 @@ exports[`recherche renders search results 1`] = `
         </div>
         <div
           class="no_results"
+          id="resultats-liste"
         >
           <img
             alt=""
@@ -370,6 +389,7 @@ exports[`recherche renders search results 1`] = `
           <div>
             <h2
               class="mb-2"
+              id="resultats"
             >
               Recherche.noResultTitle
             </h2>
@@ -389,11 +409,13 @@ exports[`recherche renders search results 1`] = `
         >
           <h2
             class="no_results_other"
+            id="resultats-suggestions"
           >
             Recherche.noResultOther
           </h2>
           <div
             class="results"
+            id="resultats-suggestions-liste"
           />
         </div>
       </div>

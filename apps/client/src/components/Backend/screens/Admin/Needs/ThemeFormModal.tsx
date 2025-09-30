@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import FButton from "~/components/UI/FButton/FButton";
 import FInput from "~/components/UI/FInput/FInput";
 import ImageInput from "~/components/UI/ImageInput";
-import { cls } from "~/lib/classname";
+import { cls, cn } from "~/lib/classname";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import {
@@ -178,6 +178,17 @@ export const ThemeFormModal = (props: Props) => {
     props.toggleModal();
   };
 
+  const getDSFRColor = (color: string) => {
+    const DSFRColorMap: Record<string, string> = {
+      color100: "Sun",
+      color80: "Sun-hover",
+      color60: "Sun-active",
+      color40: "850",
+      color30: "975",
+    };
+    return DSFRColorMap[color] || "";
+  };
+
   const isInvalid =
     toArray(emoji).length !== 1 ||
     !short /* isThemeTitleOk(short, languages) || */ ||
@@ -269,7 +280,7 @@ export const ThemeFormModal = (props: Props) => {
           </div>
           <div>
             <Label htmlFor="colors">Couleurs principales du thème</Label>
-            <div className={styles.colors}>
+            <div className={cn(styles.colors, "!grid !grid-cols-3 !gap-2")}>
               {COLOR_KEYS.map((i: colorKey) => (
                 <div key={i}>
                   <Input
@@ -279,9 +290,20 @@ export const ThemeFormModal = (props: Props) => {
                     onChange={(e: any) => setColors({ ...colors, [i]: e.target.value as string })}
                     style={{ backgroundColor: colors[i] }}
                   />
+                  <small className="flex flex-col justify-between text-xs">
+                    <span className="flex flex-wrap">
+                      <b>RI : </b>
+                      {i}
+                    </span>{" "}
+                    <span className="flex flex-wrap">
+                      <b>DSFR : </b>
+                      <span>{getDSFRColor(i)}</span>
+                    </span>
+                  </small>
                 </div>
               ))}
             </div>
+            <p className="text-sm">Sur le site color40 = couleur de fond, color60 = couleur de survol</p>
             <Label htmlFor="colors">Couleurs du dégradé du thème</Label>
             <div className={styles.colors}>
               <div>

@@ -17,9 +17,12 @@ const SearchButton: React.FC<Props> = ({ onChange }) => {
     }
   }, []);
   return (
-    <div className={styles.container}>
+    <form className={styles.container} onSubmit={(e) => e.preventDefault()}>
       <div className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
+        <label htmlFor="theme-search-button" className="sr-only">
+          {t("Rechercher", "Rechercher")}
+        </label>
         <input
           type="text"
           ref={ref}
@@ -27,9 +30,11 @@ const SearchButton: React.FC<Props> = ({ onChange }) => {
           className={styles.input}
           placeholder={t("Rechercher", "Rechercher")}
           onChange={onChange}
+          id="theme-search-button"
+          name="theme-search-button"
         />
       </div>
-    </div>
+    </form>
   );
 };
 
