@@ -30,7 +30,7 @@
     "@typegoose/typegoose": "^12.19.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.36.0",
-    "axios": "^1.12.0",
+    "axios": "^1.12.2",
     "cloudinary": "^2.7.0",
     "compression": "^1.8.1",
     "cors": "^2.8.5",
