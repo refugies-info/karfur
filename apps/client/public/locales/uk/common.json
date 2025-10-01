@@ -195,7 +195,7 @@
     "nbThanks_other": "{{count}} дякую",
     "feedbackThanks": "Дякуємо за ваш відгук!",
     "contentNotTranslated": "Цей запис ще не доступний:",
-    "infoContentNotTranslated": "Цей запис ще не доступний {{мова}}. Наші перекладачі працюють над цим!",
+    "infoContentNotTranslated": "Цей запис ще не доступний {{language}}. Наші перекладачі працюють над цим!",
     "linkedThemes": "Пов'язані теми",
     "mapPinList": "Переглянути перелік",
     "mapTitle": "Місце прийому",
