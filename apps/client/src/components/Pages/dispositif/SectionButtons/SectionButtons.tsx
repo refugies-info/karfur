@@ -2,7 +2,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Tooltip from "@codegouvfr/react-dsfr/Tooltip";
 import { InfoSection } from "@refugies-info/api-types";
-import { useWindowSize } from "@refugies-info/ui";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useCallback, useMemo, useState } from "react";
