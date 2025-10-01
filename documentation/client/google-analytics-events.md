@@ -1,0 +1,250 @@
+# Événements Google Analytics - Réfugiés.info
+
+Ce document liste tous les événements Google Analytics (GA4) trackés sur le site Réfugiés.info.
+
+## Table des matières
+
+- [Événements Google Analytics - Réfugiés.info](#événements-google-analytics---réfugiésinfo)
+  - [Table des matières](#table-des-matières)
+  - [Fonctions de tracking](#fonctions-de-tracking)
+  - [Événements par catégorie](#événements-par-catégorie)
+    - [SESSION - Gestion des sessions](#session---gestion-des-sessions)
+    - [AUTH - Authentification](#auth---authentification)
+    - [NEWSLETTER - Newsletter](#newsletter---newsletter)
+    - [CHANGE\_LANGUAGE - Changement de langue](#change_language---changement-de-langue)
+    - [RECHERCHE - Page de recherche](#recherche---page-de-recherche)
+    - [SEE\_MORE - Pagination](#see_more---pagination)
+    - [DISPO\_VIEW - Consultation d'un dispositif](#dispo_view---consultation-dun-dispositif)
+    - [DISPO\_CREATE - Création/Édition d'un dispositif](#dispo_create---créationédition-dun-dispositif)
+    - [DISPO\_TRAD - Traduction d'un dispositif](#dispo_trad---traduction-dun-dispositif)
+    - [FAVORITES - Favoris](#favorites---favoris)
+    - [VOICEOVER - Lecture audio](#voiceover---lecture-audio)
+    - [SCROLL - Défilement de page](#scroll---défilement-de-page)
+    - [SEND\_SMS - Envoi de SMS](#send_sms---envoi-de-sms)
+    - [Share - Partage](#share---partage)
+    - [REACTION - Réactions](#reaction---réactions)
+    - [avis (customEvent) - Avis positif/négatif](#avis-customevent---avis-positifnégatif)
+    - [ANNUAIRE\_VIEW - Annuaire](#annuaire_view---annuaire)
+  - [Événements Algolia](#événements-algolia)
+  - [Fichiers sources](#fichiers-sources)
+
+## Fonctions de tracking
+
+Le projet utilise deux fonctions principales pour le tracking :
+
+1. **`Event(category: string, action: string, label?: string)`** - Événement GA4 standard
+   - Fichier : `/apps/client/src/lib/tracking.ts`
+   - Utilise `ReactGA.event()`
+
+2. **`customEvent(eventName: string, eventData: object)`** - Événement GA4 personnalisé avec données structurées
+   - Fichier : `/apps/client/src/lib/tracking.ts`
+   - Utilise `ReactGA.gtag("event", eventName, eventData)`
+
+## Événements par catégorie
+
+### SESSION - Gestion des sessions
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `count` | `start` | Au démarrage de l'application (initialisation GA) | `lib/tracking.ts` |
+| `count` | `first` | Première visite (pas de consentement précédent) | `pages/_app.tsx` |
+
+### AUTH - Authentification
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `start` | `translate_page` | Clic sur "S'inscrire" depuis la page traduire | `Pages/staticPages/common/Register/Register.tsx` |
+| `start` | `publish_page` | Clic sur "S'inscrire" depuis la page publier | `Pages/staticPages/common/Register/Register.tsx` |
+| `start` | `footer` | Clic sur inscription/connexion depuis le footer | `pages/plan-du-site.tsx` |
+| `start` | `bookmark` | Clic pour se connecter depuis la modal de favoris | `Modals/BookmarkedModal/BookmarkedModal.tsx` |
+| `password login` | `start` | Début du processus de connexion par mot de passe | `pages/auth/index.tsx` |
+| `password login` | `success` | Connexion par mot de passe réussie | `pages/auth/connexion.tsx` |
+| `google login` | `start` | Début du processus de connexion Google | `pages/auth/index.tsx` |
+| `google login` | `success` | Connexion Google réussie | `pages/auth/index.tsx` |
+| `microsoft login` | `start` | Début du processus de connexion Microsoft | `pages/auth/index.tsx` |
+| `microsoft login` | `success` | Connexion Microsoft réussie | `pages/auth/microsoft-login.tsx` |
+| `reset password` | `mail sent` | Email de réinitialisation envoyé | `User/ForgotPassword/ForgotPassword.tsx` |
+| `reset password` | `new password ok` | Nouveau mot de passe défini avec succès | `pages/auth/reinitialiser-mot-de-passe/nouveau.tsx` |
+
+### NEWSLETTER - Newsletter
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `open modal` | `navbar` | Ouverture de la modal newsletter depuis la navbar | `Navigation/Navbar/Navbar.tsx` |
+| `open modal` | `footer` | Ouverture de la modal newsletter depuis le footer | `Layout/Footer/FooterDSFR.tsx` |
+| `open modal` | `url param` | Ouverture de la modal newsletter via paramètre URL | `pages/index.tsx` |
+| `subscribe` | `newsletter modal` | Inscription à la newsletter réussie | `Modals/SubscribeNewsletterModal/SubscribeNewsletterModal.tsx` |
+
+### CHANGE_LANGUAGE - Changement de langue
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `{i18nCode}` | `Global Modal` | Changement de langue depuis le sélecteur | `UI/LanguageSelector/LanguageItem.tsx` |
+
+**Note** : L'action contient le code de la langue sélectionnée (ex: "fr", "en", "ar", etc.)
+
+### RECHERCHE - Page de recherche
+
+#### Filtres de thème
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `use theme filter` | `click theme` | Clic sur un thème | `Pages/recherche/ThemeMenu/ThemeMenu.tsx` |
+| `use theme filter` | `select all needs` | Sélection de tous les besoins d'un thème | `Pages/recherche/ThemeMenu/AllNeedsItem.tsx` |
+| `use theme filter` | `select one need` | Sélection d'un besoin spécifique | `Pages/recherche/ThemeMenu/NeedItem.tsx` |
+
+#### Filtres de localisation
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `choose location option` | `{place.label}` | Sélection d'une localisation depuis l'autocomplétion | `Pages/recherche/LocationMenu/LocationMenu.tsx` |
+| `click filter` | `location` | Application du filtre de localisation | `Pages/recherche/LocationMenu/LocationMenu.tsx` |
+| `choose location suggestion` | `{depName}` | Sélection d'une suggestion de département | `Pages/recherche/LocationMenu/LocationMenu.tsx` |
+
+#### Filtres généraux
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `use keyword filter` | `use searchbar` | Utilisation de la barre de recherche | `Pages/recherche/SearchHeader/Filters.tsx` |
+| `use type filter` | `{type}` | Changement du type de contenu (dispositif/démarche/all) | `Pages/recherche/ResultsFilter/ResultsFilter.tsx` |
+| `click filter` | `{gaType}` | Clic sur un filtre (age, frenchLevel, public, status, language) | `Pages/recherche/SearchHeader/Filter/Filter.tsx` |
+| `open filter` | `{gaType}` | Ouverture d'un menu de filtre (dropdown ou dialog) | `Pages/recherche/SearchHeader/Filter/MenuLayouts/*.tsx` |
+| `open filter` | `sort` | Ouverture du menu de tri | `Pages/recherche/ResultsFilter/ResultsFilter.tsx` |
+| `click sort option` | `{sortKey}` | Sélection d'une option de tri | `Pages/recherche/SearchHeader/Filter/Filter.tsx` |
+
+**Note** : `{eventName}` varie selon le contexte (page de recherche, embed, etc.)
+
+### SEE_MORE - Pagination
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `Click on see more button` | `{page}` | Clic sur "Voir plus" pour charger plus de résultats | `Pages/recherche/SearchResults/SearchResults.tsx` |
+
+### DISPO_VIEW - Consultation d'un dispositif
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `share` | `{dispositifId}` | Partage d'un dispositif via le bouton natif | `Pages/dispositif/Header/Header.tsx` |
+| `click marker` | `Map` | Clic sur un marqueur de la carte | `Pages/dispositif/Map/Map.tsx` |
+| `click location` | `Left sidebar` | Clic sur un lien de localisation | `Pages/dispositif/Metadatas/CardInfo/CardInfo.tsx` |
+| `click french level` | `Left sidebar` | Clic sur le niveau de français | `Pages/dispositif/Metadatas/CardPublic/CardPublic.tsx` |
+| `click theme` | `Linked themes` | Clic sur un thème lié | `Pages/dispositif/LinkedThemes/LinkedThemes.tsx` |
+| `click need` | `Linked themes` | Clic sur un besoin lié | `Pages/dispositif/LinkedThemes/LinkedThemes.tsx` |
+
+### DISPO_CREATE - Création/Édition d'un dispositif
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `close section` | `Section` | Fermeture d'une section en édition | `Pages/dispositif/Edition/RichTextEdit/RichTextEdit.tsx` |
+| `close section` | `Section` | Fermeture d'une section accordion | `Pages/dispositif/Edition/AccordionsEdit/AccordionItem/AccordionItem.tsx` |
+| `close welcome modal` | `Modals` | Fermeture de la modal de bienvenue | `Pages/dispositif/Edition/Modals/ModalWelcome/ModalWelcome.tsx` |
+| `click quit` | `Navbar` | Clic sur "Quitter" dans la navbar | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarEdit/CustomNavbarEdit.tsx` |
+| `click validate` | `Navbar` | Clic sur "Valider" pour publier | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarEdit/CustomNavbarEdit.tsx` |
+| `click show missing steps` | `Navbar` | Affichage/masquage des étapes manquantes | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarEdit/CustomNavbarEdit.tsx` |
+| `{n} missing steps: {steps}` | `Missing Steps` | Liste des étapes manquantes lors de la tentative de publication | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarEdit/PublishModal/PublishModal.tsx` |
+
+### DISPO_TRAD - Traduction d'un dispositif
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `close welcome modal` | `Modals` | Fermeture de la modal de bienvenue traduction | `Pages/dispositif/Translation/ModalWelcome/ModalWelcome.tsx` |
+| `click show missing steps` | `Navbar` | Affichage/masquage des étapes manquantes | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarTranslate/CustomNavbarTranslate.tsx` |
+| `click finish later` | `Navbar` | Clic sur "Finir plus tard" (expert) | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarTranslate/CustomNavbarTranslate.tsx` |
+| `click save and quit` | `Navbar` | Clic sur "Sauvegarder et quitter" (traducteur) | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarTranslate/CustomNavbarTranslate.tsx` |
+| `{n} missing steps: {steps}` | `Missing Steps` | Liste des étapes manquantes lors de la tentative de publication | `Pages/dispositif/Edition/CustomNavbar/CustomNavbarTranslate/PublishModal/PublishModal.tsx` |
+| `edit suggestion as expert` | `Translation Input` | Expert modifie une suggestion de traduction | `Pages/dispositif/Translation/TranslationInput/TranslationInput.tsx` |
+| `cancel` | `Translation Input` | Annulation d'une traduction | `Pages/dispositif/Translation/TranslationInput/TranslationInput.tsx` |
+| `finish later` | `Translation Input` | Sauvegarde d'une traduction pour finir plus tard | `Pages/dispositif/Translation/TranslationInput/BottomButtons/BottomButtons.tsx` |
+
+### FAVORITES - Favoris
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `add` | `Dispo View` | Ajout d'un dispositif aux favoris | `Pages/dispositif/SaveBookmark/SaveBookmark.tsx` |
+
+### VOICEOVER - Lecture audio
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `click section button` | `Dispo View` | Clic sur le bouton de lecture d'une section | `Pages/dispositif/SectionButtons/SectionButtons.tsx` |
+| `click sidebar button` | `Dispo View` | Clic sur le bouton de lecture dans la sidebar | `hooks/dispositif/useDispositifTts.ts` |
+
+### SCROLL - Défilement de page
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `scrolled bottom` | `Dispo View` | L'utilisateur a scrollé jusqu'en bas de la page | `hooks/useScrolledBottomEvent.ts` |
+
+### SEND_SMS - Envoi de SMS
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `{locale}` | `Dispo View` | Envoi d'un SMS depuis un dispositif | `hooks/useSendSms.ts` |
+| `download app` | `homepage` | Envoi d'un SMS pour télécharger l'app depuis la homepage | `Pages/homepage/Sections/MobileApp/MobileAppSmsForm/MobileAppSmsForm.tsx` |
+
+### Share - Partage
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `Copy` | `from dispositif sidebar` | Copie du lien depuis la sidebar | `Pages/dispositif/ShareButtons/ShareButtons.tsx` |
+| `Print` | `from dispositif sidebar` | Impression depuis la sidebar | `Pages/dispositif/ShareButtons/ShareButtons.tsx` |
+
+### REACTION - Réactions
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `Reaction send` | `{dispositifId}` | Envoi d'une réaction sur un dispositif | `Pages/dispositif/SectionButtons/ReactionModal/ReactionModal.tsx` |
+
+### avis (customEvent) - Avis positif/négatif
+
+Événement personnalisé avec données structurées :
+
+```typescript
+customEvent("avis", {
+  valeur: "positif" | "negatif",
+  count: 1 | -1,
+  ...trackData // contient dispositifId, typeContenu, themeId, etc.
+})
+```
+
+| Contexte | Fichier |
+|----------|---------|
+| Vote positif/négatif sur un dispositif | `Pages/dispositif/NorthStar/NorthStar.tsx` |
+
+**Note** : `count: 1` pour un nouveau vote, `count: -1` pour retirer un vote
+
+### ANNUAIRE_VIEW - Annuaire
+
+| Action | Label | Contexte | Fichier |
+|--------|-------|----------|---------|
+| `VIEW` | `label` | Consultation de la page annuaire | `pages/annuaire/index.tsx` |
+
+## Événements Algolia
+
+Le projet utilise également Algolia pour la recherche, avec des tags analytiques :
+
+```typescript
+analyticsTags: [`ln_${locale}`]
+```
+
+**Fichier** : `lib/recherche/queryContents.ts`
+
+Ces tags permettent de tracker les recherches par langue dans Algolia Analytics.
+
+## Fichiers sources
+
+Les principaux fichiers liés au tracking :
+
+- **Configuration** : `/apps/client/src/lib/tracking.ts`
+- **Initialisation** : `/apps/client/src/pages/_app.tsx`
+- **Hooks** :
+  - `/apps/client/src/hooks/useScrolledBottomEvent.ts`
+  - `/apps/client/src/hooks/useSendSms.ts`
+  - `/apps/client/src/hooks/dispositif/useDispositifTts.ts`
+  - `/apps/client/src/hooks/useConsentContext/useConsentContext.ts`
+
+---
+
+**Dernière mise à jour** : 1er octobre 2025
+
+**Note** : Ce document liste les événements tels qu'implémentés dans le code. Pour voir les événements réels dans Google Analytics, consultez le dashboard GA4 du projet.
