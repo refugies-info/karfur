@@ -63,7 +63,6 @@ export const useWindowSize = () => {
 
       const newFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
-      console.log("newFontSize", newFontSize);
       if (newFontSize !== fontSize) {
         setFontSize(newFontSize);
         rafId = requestAnimationFrame(handleResize);
