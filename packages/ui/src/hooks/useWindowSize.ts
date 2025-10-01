@@ -1,6 +1,6 @@
-import { debounce } from "lodash";
-import { useEffect, useRef, useState } from "react";
 import { isInBrowser } from "@refugies-info/ui";
+import { debounce } from "lodash";
+import { useRef, useState } from "react";
 import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 type WindowSize = {
@@ -29,7 +29,6 @@ export const useWindowSize = () => {
   const hasMountedRef = useRef(false);
   const [fontSize, setFontSize] = useState(16);
   const [zoomLevel, setZoomLevel] = useState(100);
-
 
   useIsomorphicLayoutEffect(() => {
     if (!isInBrowser()) {
