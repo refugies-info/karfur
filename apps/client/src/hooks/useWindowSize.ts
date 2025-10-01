@@ -27,6 +27,32 @@ const useWindowSize = () => {
   });
   const [hasMounted, setHasMounted] = useState(false);
   const [fontSize, setFontSize] = useState(16);
+  const [zoomLevel, setZoomLevel] = useState(100);
+
+  useEffect(() => {
+    if (hasMounted && isInBrowser()) {
+      const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+      if (isFirefox) {
+        const defaultFontSize = 16;
+        const currentZoom = Math.round((fontSize / defaultFontSize) * 100);
+        setZoomLevel(currentZoom);
+      } else {
+        const isHiDPI =
+          window.matchMedia &&
+          window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)").matches;
+
+        let currentZoom;
+        if (isHiDPI) {
+          currentZoom = Math.round((window.devicePixelRatio / 2) * 100);
+        } else {
+          currentZoom = Math.round(window.devicePixelRatio * 100);
+        }
+
+        setZoomLevel(currentZoom);
+      }
+    }
+  }, [fontSize, hasMounted, windowSize]);
 
   useEffect(() => {
     const checkResponsiveFlags = () => {
@@ -106,26 +132,74 @@ const useWindowSize = () => {
 
       window.addEventListener("resize", handleResize);
       window.addEventListener("load", handleFontSizeChange);
-      window.addEventListener("keydown", (e) => {
+      const keydownHandler = (e: KeyboardEvent) => {
         if ((e.ctrlKey || e.metaKey) && ["+", "-", "0", "="].includes(e.key)) {
           handleFontSizeChange();
         }
-      });
-      window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
+      };
+
+      const wheelHandler = (e: WheelEvent) => {
+        if (e.ctrlKey || e.metaKey) {
+          handleFontSizeChange();
+        }
+      };
+
+      window.addEventListener("keydown", keydownHandler);
+      window.addEventListener("wheel", wheelHandler);
+
+      const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+      const chromeZoomHandler = () => {
+        if (!isFirefox && isInBrowser()) {
+          const isHiDPI =
+            window.matchMedia &&
+            window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)").matches;
+
+          let currentZoom;
+          if (isHiDPI) {
+            currentZoom = Math.round((window.devicePixelRatio / 2) * 100);
+          } else {
+            currentZoom = Math.round(window.devicePixelRatio * 100);
+          }
+
+          setZoomLevel(currentZoom);
+        }
+      };
+
+      if (!isFirefox) {
+        window.addEventListener("resize", chromeZoomHandler);
+      }
+
+      const bodyObserver = new MutationObserver(handleFontSizeChange);
+      if (document.body) {
+        bodyObserver.observe(document.body, { attributes: true, attributeFilter: ["style", "class"] });
+      }
 
       return () => {
         [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
-        ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
-        window.removeEventListener("keydown", handleFontSizeChange);
-        window.removeEventListener("wheel", handleFontSizeChange);
-        clearTimeout(rafId);
+        if (document.body) {
+          bodyObserver.disconnect();
+        }
+
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("load", handleFontSizeChange);
+        window.removeEventListener("keydown", keydownHandler);
+        window.removeEventListener("wheel", wheelHandler);
+
+        if (!isFirefox) {
+          window.removeEventListener("resize", chromeZoomHandler);
+        }
+
+        if (rafId !== undefined) {
+          cancelAnimationFrame(rafId);
+        }
       };
     }
     // Return empty cleanup function if conditions are not met
     return () => {};
   }, [hasMounted, windowSize.width, fontSize]);
 
-  return { windowSize, ...responsiveFlags };
+  return { windowSize, zoomLevel, ...responsiveFlags };
 };
 
 export default useWindowSize;

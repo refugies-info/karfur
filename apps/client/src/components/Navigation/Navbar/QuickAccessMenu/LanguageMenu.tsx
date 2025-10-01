@@ -45,7 +45,8 @@ const LanguageMenu = ({
     currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === "fr");
   }
 
-  const { isMobile } = useWindowSize();
+  const { isMobile, zoomLevel } = useWindowSize();
+
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
 
@@ -90,7 +91,7 @@ const LanguageMenu = ({
 
       {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
         <DropdownRoot
-          className={className}
+          className={cn( className, zoomLevel >= 175 && "!w-full")}
           ref={dropdownRef}
           key={key}
           onOpenChange={(open) => setLangMenuOpened(open)}
@@ -106,7 +107,7 @@ const LanguageMenu = ({
               <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="start" className={dropDownClassName}>
+          <DropdownContent position="start" className={cn(dropDownClassName, zoomLevel > 175 && "!w-full")}>
             <LanguageSelector
               onChangeLang={handleToggleDesktopDopdown}
               type={languageSelectorType}
