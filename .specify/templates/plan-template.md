@@ -54,6 +54,7 @@
 **V. Government Standards**: ✅/❌ Uses DSFR components and maintains CSS layer compatibility
 **VI. Mobile-First UI**: ✅/❌ Design is mobile-first and responsive, with specific UX for refugee users
 
+**UI Composition Standards**: ✅/❌/⚪️ Components use react-dsfr, shared components in @refugies-info/ui, Storybook documented
 **Security & Privacy**: ✅/❌ GDPR compliance considered, API security implemented
 **Development Workflow**: ✅/❌ Testing strategy defined, follows code quality standards
 

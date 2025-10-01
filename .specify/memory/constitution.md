@@ -1,7 +1,7 @@
 <!--
 Sync Impact Report:
-Version change: 1.3.0 → 1.3.1
-Amended sections: Compliance Review (DRI changed to CTO)
+Version change: 1.3.1 → 1.4.0
+Added sections: UI Composition Standards
 Templates requiring updates: None
 Follow-up TODOs: None
 -->
@@ -56,6 +56,54 @@ All user interfaces MUST be designed with a mobile-first approach and be fully r
 
 **Frameworks**: Adherence to the primary frameworks for each application (Express for `server`, Next.js for `client`, React Native for `mobile`) is required unless a migration is formally approved.
 
+## UI Composition Standards
+
+### I. React DSFR as the Foundation
+- All UI components MUST use [react-dsfr](https://github.com/codegouvfr/react-dsfr) as the primary base.
+- When a DSFR component exists, we MUST use or extend it.
+- Only when **no DSFR component matches the use case** may we create a custom component in `@refugies-info/ui`.
+
+**Rationale**: Ensures visual consistency with government services and reduces maintenance cost.
+
+### II. Component Location & Reusability
+- All shared UI components MUST be created in `@refugies-info/ui`.
+- Avoid duplicating UI logic inside feature apps — always factor reusable patterns into the UI package.
+- Prefer composition (nested components, slots/children) over duplication.
+- Any component expected to be reused MUST be exported and documented in Storybook.
+
+**Rationale**: Centralizes the design system and enforces reusability across client, server-rendered, and mobile apps.
+
+### III. Props Forwarding & Extensibility
+- Use `React.forwardRef` for all components that wrap DSFR elements or native HTML controls. → This ensures accessibility, focus management, and external styling extensions.
+- Expose DSFR and native props where relevant, via prop spreading (`...props`).
+- Avoid prop drilling: pass only what the child needs, and use context for shared state when necessary.
+
+**Rationale**: Guarantees flexibility for consumers while keeping components composable and predictable.
+
+### IV. Composition Best Practices
+- **Nesting**: Design components to be composable (`<Card><Card.Header/><Card.Body/><Card.Footer/></Card>`).
+- **Controlled/Uncontrolled**: Expose both modes when relevant (e.g., forms, inputs).
+- **Accessibility-first**: Always ensure ARIA attributes and keyboard navigation work with forwarded refs.
+- **Atomic principles**: Favor smaller primitives (Button, TextField, Icon) combined into complex components (Form, Modal) rather than creating large monolithic blocks.
+
+**Rationale**: Supports scalable component design while enforcing accessibility and predictable behavior.
+
+### V. Tailwind & DSFR Integration
+- We have **DSFR tokens mapped to Tailwind classes** (colors, spacing, typography, shadows, etc.).
+- **Tailwind MUST be the first choice** when styling, since it guarantees token consistency and developer velocity.
+- Only use raw DSFR utility classes when no Tailwind equivalent exists.
+- No arbitrary values (`#123456`, `10px`, etc.) outside DSFR tokens.
+
+**Rationale**: Maintains design-system alignment while keeping a lightweight and predictable styling approach.
+
+### VI. Storybook & Documentation
+- Each UI component MUST have:
+  - At least one Storybook example (default state).
+  - Documentation of props (including forwarded DSFR props).
+  - Multilingual/RTL visual check when applicable.
+
+**Rationale**: Provides visibility, encourages adoption, and prevents accessibility regressions.
+
 ## Development Workflow
 
 **Testing Strategy**: Follow narrow integration testing principles over heavy mocking. Test database interactions with real test databases. Unit tests for pure functions, integration tests for service layers.
@@ -74,4 +122,4 @@ This constitution supersedes all other development practices. All pull requests 
 
 **Compliance Review**: The CTO is the DRI for ensuring the following reviews occur: monthly review of adherence to principles, quarterly assessment of technical debt and migration progress, and an annual accessibility audit by external experts.
 
-**Version**: 1.3.1 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-09-29
+**Version**: 1.4.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-10-01

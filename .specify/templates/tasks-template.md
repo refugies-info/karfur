@@ -122,6 +122,7 @@ Task: "Integration test auth in tests/integration/test_auth.py"
 - [ ] T### [P] Configure DSFR components and CSS layer compatibility
 - [ ] T### [P] Add GDPR compliance documentation and data handling
 - [ ] T### [P] Implement mobile-first, responsive UI with refugee-centric UX
+- [ ] T### [P] Create UI components using react-dsfr in @refugies-info/ui with Storybook documentation
 
 ## Validation Checklist
 *GATE: Checked by main() before returning*

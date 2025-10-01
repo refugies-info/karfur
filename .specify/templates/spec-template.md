@@ -106,6 +106,7 @@ When creating this spec from a user prompt:
 - [ ] DSFR design system compatibility noted
 - [ ] GDPR compliance implications addressed
 - [ ] Mobile-first, responsive design with refugee-centric UX specified
+- [ ] UI composition follows react-dsfr standards and component reusability guidelines
 
 ---
 
