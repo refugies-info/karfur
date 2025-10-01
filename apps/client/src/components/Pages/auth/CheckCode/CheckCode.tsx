@@ -1,5 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import { isInBrowser } from "@refugies-info/ui";
 import { logger } from "logger";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,7 +12,6 @@ import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
 import Image from "~/components/UI/Image";
 import { useLogin } from "~/hooks";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import styles from "~/scss/components/auth.module.scss";
 import API from "~/utils/API";
 import Loader from "../Loader";

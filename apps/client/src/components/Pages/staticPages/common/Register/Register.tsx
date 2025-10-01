@@ -1,6 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { RoleName, SubscriptionRequest } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { getPath } from "routes";
@@ -8,7 +9,7 @@ import DesktopRegisterImg from "~/assets/staticPages/publier/desktop-register.sv
 import MobileRegisterImg from "~/assets/staticPages/publier/mobile-register.png";
 import { Title2 } from "~/components/Pages/staticPages/common/Title2";
 import Image from "~/components/UI/Image";
-import { useAuth, useWindowSize } from "~/hooks";
+import { useAuth } from "~/hooks";
 import { handleApiError } from "~/lib/handleApiErrors";
 import { setLoginRedirect, setRegisterInfos } from "~/lib/loginRedirect";
 import { Event } from "~/lib/tracking";

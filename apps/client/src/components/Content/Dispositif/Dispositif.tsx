@@ -2,6 +2,7 @@ import { ContentType } from "@refugies-info/api-types";
 import { useContext, useMemo, useRef } from "react";
 
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
@@ -15,7 +16,7 @@ import {
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import { useContentLocale, useRtriLinks, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";

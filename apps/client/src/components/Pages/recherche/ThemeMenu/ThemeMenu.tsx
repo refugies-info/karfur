@@ -1,8 +1,9 @@
 import { Id } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
-import { useSearchEventName, useWindowSize } from "~/hooks";
+import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";

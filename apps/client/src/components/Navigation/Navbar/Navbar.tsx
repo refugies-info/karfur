@@ -1,5 +1,6 @@
 import { Header } from "@codegouvfr/react-dsfr/Header";
 import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import { isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
@@ -11,9 +12,8 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { useEditionMode, useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";

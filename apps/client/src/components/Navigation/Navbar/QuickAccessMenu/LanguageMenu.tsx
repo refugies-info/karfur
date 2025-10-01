@@ -1,6 +1,7 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useWindowSize } from "@refugies-info/ui";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useRef, useState } from "react";
@@ -9,7 +10,6 @@ import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
 

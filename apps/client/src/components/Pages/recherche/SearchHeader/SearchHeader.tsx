@@ -1,15 +1,15 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { useWindowSize } from "~/hooks";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
+import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { SearchCountsContext } from "../SearchCountsContext";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";

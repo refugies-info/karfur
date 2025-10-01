@@ -1,9 +1,9 @@
 import { ContentType, DispositifStatus, GetDispositifResponse } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useWindowSize } from "~/hooks";
 import { canEdit, isStatus } from "~/lib/dispositif";
 import { userSelector } from "~/services/User/user.selectors";
 import PageContext from "~/utils/pageContext";
