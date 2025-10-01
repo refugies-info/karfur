@@ -3,7 +3,7 @@ const React = require("react");
 
 // Create a component factory that returns a simple mock component
 const createMockComponent = (name) => {
-  const component = ({ children, className, ...props }) => {
+  const component = ({ children, className, ...props } = {}) => {
     return React.createElement(
       "div",
       {
