@@ -7,6 +7,5 @@ import DOMPurify from "isomorphic-dompurify";
 export const sanitizeContent = (content?: string): string => {
   if (!content) return "";
 
-  // Sanitize content on both server and client to prevent XSS and hydration mismatches.
   return DOMPurify.sanitize(content);
 };
