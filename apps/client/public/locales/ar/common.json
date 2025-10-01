@@ -9,16 +9,12 @@
     "titleDesktop": "المعلومات الرسمية للاجئين",
     "titleMobile": "معلومات مفيدة للاجئين في فرنسا",
     "searchButton": "ابحث عن معلومة",
-    "Choisir une langue": "اختر لغة",
-    "Ma langue": "لغتي",
     "site dispo": "Réfugiés.info متوفّر باللغات التالية :",
-    "imageDescription": "رسم توضيحي ملون وبسيط يظهر مدينة ترحب باللاجئين و نرى مباني و مساحات الخضراء و أنشطة مجتمعية. يتفاعل السكان مع اللاجئين في صورة ترمز الى التعاون و الاندماج و مؤسسات الدعم و منظماته.",
     "subtitle1": "مصادر معلومات مترجمة و واضحة",
     "subtitle2": "لمساعدة اللاجئين في فرنسا",
     "subtitleMobile": "معلومات مترجمة و مفيدة لبناء حياتك في فرنسا",
     "donwloadAppButton": "تنزيل التطبيق",
     "traduire": "ساعدوا على ترجمة المحتوى",
-    "btn_translate": "أترجم",
     "infoTypeDemarche": "معاملة ادارية مشروحة و مفصّلة",
     "infoTypeDispositif": "دورة و برنامج في كل فرنسا",
     "whyTitle": "ما فائدة تطبيق Réfugiés.info و متى أستعمله",
@@ -384,7 +380,11 @@
     "help_translate": "المساعدة في الترجمة",
     "mission_impact": "مهامنا و أنجازاتنا"
   },
-  "Roles": { "admin": "أدمن", "redactor": "مُحرر", "translator": "مُُترجم" },
+  "Roles": {
+    "admin": "أدمن",
+    "redactor": "مُحرر",
+    "translator": "مُُترجم"
+  },
   "LanguageDropdown": {
     "en_français": "باللغة الفرنسية",
     "en_persan/dari": "باللغة الفارسية / الداري",
