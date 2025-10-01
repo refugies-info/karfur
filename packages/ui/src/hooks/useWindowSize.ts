@@ -28,6 +28,8 @@ export const useWindowSize = () => {
   });
   const hasMountedRef = useRef(false);
   const [fontSize, setFontSize] = useState(16);
+  const [zoomLevel, setZoomLevel] = useState(100);
+
 
   useIsomorphicLayoutEffect(() => {
     if (!isInBrowser()) {
@@ -60,6 +62,8 @@ export const useWindowSize = () => {
       if (!isInBrowser() || !hasMountedRef.current) return;
 
       const newFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+      console.log("newFontSize", newFontSize);
       if (newFontSize !== fontSize) {
         setFontSize(newFontSize);
         rafId = requestAnimationFrame(handleResize);
@@ -119,7 +123,7 @@ export const useWindowSize = () => {
     return () => {};
   }, []);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (hasMountedRef.current && windowSize.width) {
       setResponsiveFlags({
         isMobile: windowSize.width <= fontSize * 48,
@@ -130,7 +134,32 @@ export const useWindowSize = () => {
     }
   }, [windowSize.width, fontSize]);
 
-  return { windowSize, ...responsiveFlags };
+  useIsomorphicLayoutEffect(() => {
+    if (hasMountedRef.current && windowSize.width) {
+      const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+      if (isFirefox) {
+        const defaultFontSize = 16;
+        const currentZoom = Math.round((fontSize / defaultFontSize) * 100);
+        setZoomLevel(currentZoom);
+      } else {
+        const isHiDPI =
+          window.matchMedia &&
+          window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)").matches;
+
+        let currentZoom;
+        if (isHiDPI) {
+          currentZoom = Math.round((window.devicePixelRatio / 2) * 100);
+        } else {
+          currentZoom = Math.round(window.devicePixelRatio * 100);
+        }
+
+        setZoomLevel(currentZoom);
+      }
+    }
+  }, [fontSize, hasMountedRef.current, windowSize]);
+
+  return { windowSize, zoomLevel, ...responsiveFlags };
 };
 
 export default useWindowSize;

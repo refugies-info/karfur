@@ -32,6 +32,7 @@ const Header = (props: Props) => {
   const { isMobile } = useWindowSize();
   const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
 
+
   // Check for Web Share API support when component mounts
   useEffect(() => {
     if (navigator.share !== undefined && typeof navigator.share === "function") {
@@ -121,13 +122,13 @@ const Header = (props: Props) => {
 
       {isViewMode && (
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
-          {isMobile && navigatorShareSupported ? (
+          <SaveBookmark />
+          
+          {navigatorShareSupported && 
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}
             </Button>
-          ) : (
-            <SaveBookmark />
-          )}
+          }
 
           <LanguageMenu
             mobileMode="modal"
