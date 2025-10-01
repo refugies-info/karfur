@@ -9,16 +9,12 @@
     "titleDesktop": "The public information service for refugees",
     "titleMobile": "Information for refugees in France",
     "searchButton": "Search for information",
-    "Choisir une langue": "Choose a language",
-    "Ma langue": "My language",
     "site dispo": "Réfugiés.info is available in the following languages:",
-    "imageDescription": "Colourful, minimalist illustration showing a welcoming city with buildings, green spaces and community activities. Residents interact with refugees, symbolising mutual aid, integration and support services.",
     "subtitle1": "Clear, translated resources",
     "subtitle2": "to support refugees in France",
     "subtitleMobile": "Clear, translated information to help you build your life in France",
     "donwloadAppButton": "Download the application",
     "traduire": "Help us translate!",
-    "btn_translate": "I translate",
     "infoTypeDemarche": "{{count}} administrative procedures explained",
     "infoTypeDispositif": "{{count}} devices throughout France",
     "whyTitle": "Why and when should you use Réfugiés.info?",
@@ -568,7 +564,11 @@
     "AnnotationsVocalize": "Vocalisation of content",
     "AnnotationsListen": "Listening"
   },
-  "SkipLinks": { "PiedDePage": "Footer", "Menu": "Menu", "Contenu": "Content" },
+  "SkipLinks": {
+    "PiedDePage": "Footer",
+    "Menu": "Menu",
+    "Contenu": "Content"
+  },
   "ui": {
     "carrouselSeemore": "View all",
     "carrouselPrev": "Scroll left",
