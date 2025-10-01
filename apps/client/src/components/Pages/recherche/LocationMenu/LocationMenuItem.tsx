@@ -1,77 +1,43 @@
-import axios from "axios";
-import { useTranslation } from "next-i18next";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import Separator from "~/components/UI/Separator";
-import { cls } from "~/lib/classname";
+import React, { useCallback } from "react";
+import Checkbox from "~/components/UI/Checkbox";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
-import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./LocationMenuItem.module.css";
 
+export type LocationMenuItemType = "department" | "commonPlace" | "place";
+
 interface Props {
-  locationSearch?: string;
+  type: LocationMenuItemType;
+  checked?: boolean;
+  label: string;
+  ariaLabel?: string;
+  className?: string;
+  onChange: () => void;
 }
 
-const LocationMenuItem: React.FC<Props> = ({ locationSearch = "" }) => {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const [geolocationSupported, setGeolocationSupported] = useState(false);
-  const [permissionDenied, setPermissionDenied] = useState(false);
+const LocationMenuItem: React.FC<Props> = ({ type, checked = false, label, ariaLabel, className, onChange }) => {
+  const handleChange = useCallback(() => {
+    onChange();
+  }, [onChange]);
 
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      setGeolocationSupported(true);
-    }
-  }, []);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement | HTMLDivElement>) => {
+      onEnterOrSpace(e, onChange);
+    },
+    [onChange],
+  );
 
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (res) => {
-          axios
-            .get(
-              `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
-            )
-            .then((response) => {
-              if (response.data[0]?.departement?.nom) {
-                dispatch(
-                  addToQueryActionCreator({
-                    departments: [response.data[0].departement.nom],
-                    sort: "location",
-                  }),
-                );
-              }
-            });
-          setPermissionDenied(false);
-        },
-        (error) => {
-          if (error.code === error.PERMISSION_DENIED) {
-            setPermissionDenied(true);
-          }
-        },
-      );
-    }
-  };
-
-  // Show nothing if geolocation is not supported or if user is typing in search
-  if (!geolocationSupported || locationSearch.length > 0) {
-    return null;
-  }
+  const containerClass = className || (type === "place" ? styles.item : styles.container);
 
   return (
-    <>
-      <div className={styles.item}>
-        {!permissionDenied ? (
-          <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
-            <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
-            <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
-          </button>
-        ) : (
-          <>{t("Recherche.positionEnable", "Vous devez activer la géolocalisation pour votre navigateur")}</>
-        )}
-      </div>
-      <Separator />
-    </>
+    <Checkbox
+      className={containerClass}
+      checked={checked}
+      onChange={handleChange}
+      onKeyDown={handleKeyDown}
+      aria-label={ariaLabel}
+    >
+      <span className={type === "place" ? undefined : styles.label}>{label}</span>
+    </Checkbox>
   );
 };
 
