@@ -9,9 +9,9 @@ import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   variant?: "flag";

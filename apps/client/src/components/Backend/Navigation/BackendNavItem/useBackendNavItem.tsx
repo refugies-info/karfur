@@ -9,7 +9,7 @@ import { PathNames } from "routes";
 import { useAuth } from "~/hooks";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { cn } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { userSelector } from "~/services/User/user.selectors";
 import history from "~/utils/backendHistory";
 import styles from "./BackendNavItem.module.scss";

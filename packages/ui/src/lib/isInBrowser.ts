@@ -1,4 +1,4 @@
-const isInBrowser = () => {
+export const isInBrowser = () => {
   return typeof window !== "undefined";
 };
 

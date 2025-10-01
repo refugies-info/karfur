@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import FButton from "~/components/UI/FButton";
 import FInput from "~/components/UI/FInput/FInput";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";

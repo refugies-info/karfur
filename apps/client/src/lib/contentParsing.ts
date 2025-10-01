@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { sanitizeContent } from "~/lib/sanitizeContent";
 
 export const getCalloutTranslationKey = (level: "info" | "important") => {

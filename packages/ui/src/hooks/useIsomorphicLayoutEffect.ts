@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect } from "react";
-import isInBrowser from "~/lib/isInBrowser";
+import isInBrowser from "../lib/isInBrowser";
 
 /**
  * A version of useLayoutEffect that falls back to useEffect when rendering on the server.

@@ -15,11 +15,12 @@ import SaveBookmark from "~/components/Pages/dispositif/SaveBookmark";
 import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import Title from "../Title";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   typeContenu: string;

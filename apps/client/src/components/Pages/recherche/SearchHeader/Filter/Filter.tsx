@@ -11,7 +11,8 @@ import {
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
 import Tooltip from "~/components/UI/Tooltip";
-import { useSearchEventName, useWindowSize } from "~/hooks";
+import { useSearchEventName } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";

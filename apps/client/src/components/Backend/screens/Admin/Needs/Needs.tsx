@@ -7,7 +7,7 @@ import AdminNeedButton from "~/components/UI/AdminNeedButton";
 import AdminThemeButton from "~/components/UI/AdminThemeButton";
 import FButton from "~/components/UI/FButton";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";

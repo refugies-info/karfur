@@ -15,7 +15,8 @@ import {
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import { useContentLocale, useRtriLinks, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
