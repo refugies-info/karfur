@@ -19,7 +19,7 @@ export function Bookmark({ variant = "line", className, size = "1.5em" }: Bookma
   }
 }
 
-function addVariant({ className, size = "1.5em" }: BookmarkProps) {
+function addVariant({ className, size }: BookmarkProps) {
   return (
     <svg
       width={size}
@@ -38,7 +38,7 @@ function addVariant({ className, size = "1.5em" }: BookmarkProps) {
   );
 }
 
-function fillVariant({ className, size = "1.5em" }: BookmarkProps) {
+function fillVariant({ className, size }: BookmarkProps) {
   return (
     <svg
       width={size}
@@ -58,7 +58,7 @@ function fillVariant({ className, size = "1.5em" }: BookmarkProps) {
   );
 }
 
-function lineVariant({ className, size = "1.5em" }: BookmarkProps) {
+function lineVariant({ className, size }: BookmarkProps) {
   return (
     <svg
       width={size}
