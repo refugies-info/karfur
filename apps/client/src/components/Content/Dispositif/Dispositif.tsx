@@ -94,7 +94,7 @@ const Dispositif = (props: Props) => {
           {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 order-1 lg:w-[20%] lg:pt-[371px] print:pt-0" />
+                <LeftSidebar className="z-10 order-1 max-lg:hidden lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
                 <LeftSidebarEdition className="z-10 order-1 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
               )}
