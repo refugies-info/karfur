@@ -112,5 +112,15 @@
   "volta": {
     "node": "22.14.0",
     "pnpm": "10.14.0"
+  },
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude": [
+          "react-native-eva-icons"
+        ],
+        "listUnknownPackages": false
+      }
+    }
   }
 }
