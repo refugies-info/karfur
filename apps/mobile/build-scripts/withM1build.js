@@ -2,8 +2,8 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require("fs");
 const path = require("path");
-const generateCode = require("@expo/config-plugins/build/utils/generateCode");
-const configPlugins = require("@expo/config-plugins");
+const generateCode = require("expo/config-plugins/build/utils/generateCode");
+const configPlugins = require("expo/config-plugins");
 
 const code = `
 pre_install do |installer|

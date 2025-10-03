@@ -9,8 +9,6 @@
     "lint": "eslint . --ext ts,tsx,js --quiet --cache  --ignore-pattern dist"
   },
   "dependencies": {
-    "@expo/config-plugins": "^9.1.7",
-    "@expo/metro-config": "~0.20.17",
     "@gorhom/bottom-sheet": "^4",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-community/hooks": "^3.0.0",
@@ -101,6 +99,7 @@
     "papaparse": "^5.5.3",
     "react-native-svg-transformer": "^1.5.1",
     "redux-saga-test-plan": "^4.0.5",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0"
   },
