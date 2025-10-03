@@ -11,6 +11,7 @@ const displayVersionNumber = "2025.03.1";
 
 module.exports = ({ config }: { config: ExpoConfig }) => {
   return {
+    ...config,
     name: "Réfugiés.info",
     owner: "refugies-info",
     slug: "refugies-info-app",
