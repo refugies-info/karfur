@@ -13,7 +13,7 @@ FROM node:22.14.0-alpine AS base
   WORKDIR /app
 
   # Install pnpm
-  RUN npm install -g pnpm@10.14.0
+  RUN npm install -g pnpm@10.18.0
 
   # Install turbo
   ENV PNPM_HOME="/root/.local/share/pnpm"
@@ -46,9 +46,6 @@ FROM base AS installer
 
   # Set working directory
   WORKDIR /app
-
-  # Install pnpm
-  RUN npm install -g pnpm@10.14.0
 
   # Install turbo
   ENV PNPM_HOME="/root/.local/share/pnpm"
@@ -83,9 +80,6 @@ FROM base AS runner
 
   # Set working directory
   WORKDIR /app
-
-  # Install pnpm
-  RUN npm install -g pnpm@10.14.0
 
   # Install turbo
   ENV PNPM_HOME="/root/.local/share/pnpm"
