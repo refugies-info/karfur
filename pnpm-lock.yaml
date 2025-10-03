@@ -454,14 +454,14 @@ importers:
         specifier: 11.4.1
         version: 11.4.1(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))
       '@react-native-firebase/analytics':
-        specifier: ^18.9.0
-        version: 18.9.0(@react-native-firebase/app@18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
+        specifier: ^19.3.0
+        version: 19.3.0(@react-native-firebase/app@19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
       '@react-native-firebase/app':
-        specifier: ^18.9.0
-        version: 18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+        specifier: ^19.3.0
+        version: 19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       '@react-native-firebase/crashlytics':
-        specifier: ^18.9.0
-        version: 18.9.0(@react-native-firebase/app@18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
+        specifier: ^19.3.0
+        version: 19.3.0(@react-native-firebase/app@19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
       '@react-navigation/bottom-tabs':
         specifier: ^6.5.11
         version: 6.6.1(@react-navigation/native@6.1.18(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-safe-area-context@4.12.0(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native-screens@4.4.0(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -3799,13 +3799,13 @@ packages:
     peerDependencies:
       react-native: '>=0.59'
 
-  '@react-native-firebase/analytics@18.9.0':
-    resolution: {integrity: sha512-+5xuU2k+6zCG+QOzHTKLdZpD14DD9tz1m7gfO89/gO2qFdCqwOpLcBu2bb6ocsfgUE9CJkb0cFceO/m/9pe3jw==}
+  '@react-native-firebase/analytics@19.3.0':
+    resolution: {integrity: sha512-I+LSDvA2crn8UY78StCqatrUkBD/ZBVaQaunZYnEd4Nsm1R7HycSaW1iUzAB+3sbwLchFr4RcPc++P20m+zzHA==}
     peerDependencies:
-      '@react-native-firebase/app': 18.9.0
+      '@react-native-firebase/app': 19.3.0
 
-  '@react-native-firebase/app@18.9.0':
-    resolution: {integrity: sha512-kMY4HVWxfz0YjQ5n9oyW9uifI5CkQfLfj2FEeQrI9mCwaCNuRw04x9Yc8LeFpew7NPEDVfty7tlL3WEjDpvNEw==}
+  '@react-native-firebase/app@19.3.0':
+    resolution: {integrity: sha512-Y4Jlu7s7JasCcOktAN9LC+7SvMeAG04008OxtbhDK9rpatVznJqRSkMefIIwN2yBs94MWo9b61e+7v5IRMbQdw==}
     peerDependencies:
       expo: '>=47.0.0'
       react: '*'
@@ -3814,10 +3814,10 @@ packages:
       expo:
         optional: true
 
-  '@react-native-firebase/crashlytics@18.9.0':
-    resolution: {integrity: sha512-n+xKK90HR8zfXIIwHqBTD8shvWvgmL37J6952eCBO7SKQWvTTpZ28sv9ebse97WrrMrH7i0jnoBD7NvdRclkdw==}
+  '@react-native-firebase/crashlytics@19.3.0':
+    resolution: {integrity: sha512-fcHi9+tlxmi4FNqE6ydnTSizkwRnZeDxg/CN5Ti1i9+AAdov4rKZNh3JHgg+7RqhsF3f1TvOw/hp4hHiFOfAvQ==}
     peerDependencies:
-      '@react-native-firebase/app': 18.9.0
+      '@react-native-firebase/app': 19.3.0
       expo: '>=47.0.0'
     peerDependenciesMeta:
       expo:
@@ -16401,11 +16401,11 @@ snapshots:
     dependencies:
       react-native: 0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1)
 
-  '@react-native-firebase/analytics@18.9.0(@react-native-firebase/app@18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))':
+  '@react-native-firebase/analytics@19.3.0(@react-native-firebase/app@19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@react-native-firebase/app': 18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+      '@react-native-firebase/app': 19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
 
-  '@react-native-firebase/app@18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)':
+  '@react-native-firebase/app@19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)':
     dependencies:
       opencollective-postinstall: 2.0.3
       react: 18.3.1
@@ -16414,9 +16414,9 @@ snapshots:
     optionalDependencies:
       expo: 52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
 
-  '@react-native-firebase/crashlytics@18.9.0(@react-native-firebase/app@18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))':
+  '@react-native-firebase/crashlytics@19.3.0(@react-native-firebase/app@19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))':
     dependencies:
-      '@react-native-firebase/app': 18.9.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+      '@react-native-firebase/app': 19.3.0(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       stacktrace-js: 2.0.2
     optionalDependencies:
       expo: 52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.12.5(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.76.9(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
