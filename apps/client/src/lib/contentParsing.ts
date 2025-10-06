@@ -1,5 +1,4 @@
 import { t } from "i18next";
-import { isInBrowser } from "@refugies-info/ui";
 import { sanitizeContent } from "~/lib/sanitizeContent";
 
 export const getCalloutTranslationKey = (level: "info" | "important") => {
@@ -34,14 +33,6 @@ export type ContentSegment = TextSegment | CalloutSegment;
  * @returns An object containing an array of content segments.
  */
 export const htmlParsing = (htmlContent: string) => {
-  // Return simple text segment for server-side rendering
-  if (!isInBrowser()) {
-    return {
-      contentSegments: [{ type: "text", content: htmlContent }] as ContentSegment[],
-    };
-  }
-
-  // Client-side parsing
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlContent, "text/html");
   const body = doc.body;
