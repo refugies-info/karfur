@@ -29,7 +29,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
-  const { isMobile, isTablet } = useWindowSize();
+  const { isMobile, isTablet, zoomLevel } = useWindowSize();
 
   // content
   const contentHtml: string | undefined = useMemo(
@@ -82,8 +82,10 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           </>
         )}
       </section>
-      {/* We bring back the metadatas in the what section on mobile */}
-      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8 print:hidden" />}
+
+      {(isMobile || isTablet || zoomLevel >= 175) && sectionKey === "what" && (
+        <Metadatas className="bg-white px-4 py-8 print:hidden" />
+      )}
     </>
   );
 };
