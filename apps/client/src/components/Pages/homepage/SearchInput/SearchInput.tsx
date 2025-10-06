@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import useWindowSize from "~/hooks/useWindowSize";
+import { useWindowSize } from "@refugies-info/ui";
 import { checkIfEllipsis } from "~/lib/checkIfEllipsis";
 import { cls } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";

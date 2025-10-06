@@ -3,8 +3,9 @@ import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { getPath } from "~/routes";
+import { useWindowSize } from "@refugies-info/ui";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
 // - The Header expects an array of React elements for its quickAccessItems prop

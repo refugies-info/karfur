@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useContentLocale, useLocale, useWindowSize } from "~/hooks";
+import { useContentLocale, useLocale } from "~/hooks";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { needSelector } from "~/services/Needs/needs.selectors";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import { getDepartments } from "./functions";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   dispositif: GetDispositifResponse;

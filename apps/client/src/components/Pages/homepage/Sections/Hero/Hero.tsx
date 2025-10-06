@@ -6,7 +6,7 @@ import Character from "~/assets/homepage/hero/character.svg";
 import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
 
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   targetArrow: string;
