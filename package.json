@@ -30,7 +30,7 @@
       "@codegouvfr/react-dsfr": "1.20.2",
       "@expo/config-plugins": "~9.0.0",
       "debug": "4.4.1",
-      "expo-dev-menu": "6.1.15",
+      "expo-dev-menu": "6.0.23",
       "form-data": ">=4.0.4",
       "image-size": "^1.2.1",
       "pbkdf2": ">=3.1.3",
