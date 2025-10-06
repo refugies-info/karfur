@@ -6,7 +6,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import { GoogleAPISuggestion } from "~/types/navigation";
-import { getCitiesFromGeoAPI } from "~/utils/API";
+import { getCitiesFromGeoAPI } from "~/utils/geocodage";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
 import { Tag } from "../formulaire";

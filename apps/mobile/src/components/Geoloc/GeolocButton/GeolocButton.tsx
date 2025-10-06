@@ -5,7 +5,7 @@ import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { getPlaceFromLocationFromGeoAPI } from "~/utils/API";
+import { getPlaceFromLocationFromGeoAPI } from "~/utils/geocodage";
 import { RTLTouchableOpacity } from "../../BasicComponents";
 import { ReadableText } from "../../ReadableText";
 import { TextDSFR_MD_Med, TextDSFR_XS } from "../../StyledText";
@@ -56,8 +56,13 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
       }
 
       const location = await Location.getCurrentPositionAsync({});
+
+      console.log("Location", location);
+
       if (location && location.coords && location.coords.latitude && location.coords.longitude) {
         const result = await getPlaceFromLocationFromGeoAPI(location.coords.longitude, location.coords.latitude);
+
+        console.log("Result", result);
 
         if (result && result.data && result.data.features && result.data.features.length > 0) {
           const firstFeature = result.data.features[0];
@@ -75,6 +80,7 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
       }
       throw new Error("ERREUR");
     } catch (error: unknown) {
+      console.log("Geoloc error", error);
       if (error instanceof Error && error.message === "ERREUR_NOT_GRANTED") {
         setError(
           t(

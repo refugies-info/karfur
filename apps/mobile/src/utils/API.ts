@@ -18,7 +18,7 @@ import ReactNativeBlobUtil from "react-native-blob-util";
 
 import { makeApiRequest, ResponseWith } from "~/hooks/useApi";
 import { logger } from "~/logger";
-import { apiCaller, dbURL, headers } from "./ConfigAPI";
+import { dbURL, headers } from "./ConfigAPI";
 
 export const getLanguages = (): Promise<GetLanguagesResponse[]> =>
   makeApiRequest<null, ResponseWith<GetLanguagesResponse[]>>("/langues/getLanguages", null).then(
@@ -30,12 +30,6 @@ export const getNeeds = () =>
 
 export const getThemes = () =>
   makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then((response) => response.data);
-
-export const getCitiesFromGeoAPI = (text: string) =>
-  apiCaller.post(`https://data.geopf.fr/geocodage/search?q=${text}&type=municipality`);
-
-export const getPlaceFromLocationFromGeoAPI = (longitude: number, latitude: number) =>
-  apiCaller.post(`https://data.geopf.fr/geocodage/reverse?lon=${longitude}&lat=${latitude}`);
 
 export const getContentsForApp = (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> =>
   makeApiRequest<GetContentsForAppRequest, ResponseWith<GetContentsForAppResponse>>(
