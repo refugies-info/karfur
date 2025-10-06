@@ -5,7 +5,6 @@ import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
 import { getCitiesFromGeoAPI } from "~/utils/geocodage";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
@@ -17,6 +16,15 @@ import { Label, Title } from "../Onboarding/SharedStyledComponents";
 import { ReadableText } from "../ReadableText";
 import CityChoice from "./CityChoice";
 import GeolocButton from "./GeolocButton";
+
+interface GeoAPIFeature {
+  properties: {
+    city?: string;
+    context?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
 
 const CITIES = [
   { city: "Paris", department: "Paris" },
@@ -56,7 +64,7 @@ export const FilterCityComponent = ({
 }: Props) => {
   const theme = useTheme();
   const [enteredText, setEnteredText] = React.useState("");
-  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>([]);
+  const [suggestions, setSuggestions] = React.useState<GeoAPIFeature[]>([]);
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t } = useTranslationWithRTL();
@@ -82,22 +90,24 @@ export const FilterCityComponent = ({
   const onChangeText = async (data: string) => {
     setError("");
     setEnteredText(data);
-    try {
-      const results = await getCitiesFromGeoAPI(data);
-      if (results && results.data && results.data.features) {
-        setSuggestions(results.data.features);
+    if (data.trim().length >= 3) {
+      try {
+        const results = await getCitiesFromGeoAPI(data);
+        if (results && results.data && results.data.features) {
+          setSuggestions(results.data.features);
+        }
+      } catch (_: unknown) {
+        setError(defaultError);
+        resetData();
+        setIsGeolocLoading(false);
       }
-    } catch (_: unknown) {
-      setError(defaultError);
-      resetData();
-      setIsGeolocLoading(false);
     }
   };
 
-  const setCityAndGetDepartment = async (suggestion: any) => {
+  const setCityAndGetDepartment = async (suggestion: GeoAPIFeature) => {
     setIsGeolocLoading(true);
-    setSelectedCity(suggestion.properties.city);
-    const department = suggestion.properties.context.split(", ")[1];
+    setSelectedCity(suggestion.properties.city || "");
+    const department = suggestion.properties.context?.split(", ")[1];
     if (!department) {
       setIsGeolocLoading(false);
       throw new Error("NO_CORRESPONDING_DEP");
@@ -111,7 +121,7 @@ export const FilterCityComponent = ({
     setSelectedDepartment(department);
   };
 
-  const onSelectSuggestion = async (suggestion: any) => {
+  const onSelectSuggestion = async (suggestion: GeoAPIFeature) => {
     try {
       setEnteredText("");
       await setCityAndGetDepartment(suggestion);
