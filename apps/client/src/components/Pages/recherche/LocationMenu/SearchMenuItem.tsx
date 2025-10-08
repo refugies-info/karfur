@@ -11,7 +11,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
-    <form onClick={(e) => e.preventDefault()} onSubmit={(e) => e.preventDefault()}>
+    <form className="w-full min-w-52" onClick={(e) => e.preventDefault()} onSubmit={(e) => e.preventDefault()}>
       <Input
         iconId="fr-icon-search-line"
         ref={ref}

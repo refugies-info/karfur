@@ -253,16 +253,15 @@ const Filter = ({
                 <>
                   {menuItems.map((item, i) => {
                     return (
-                      <>
+                      <React.Fragment key={i}>
                         {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
                         <FilterCheckboxes
                           className="px-2"
-                          key={i}
                           options={item.options}
                           currentmenu={item}
                           onSelectItem={onSelectItem}
                         />
-                      </>
+                      </React.Fragment>
                     );
                   })}
                   <DialogMenuLayoutTitle className={styles.menuItemLabel}>
