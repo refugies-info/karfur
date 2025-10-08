@@ -6,7 +6,7 @@ import Character from "~/assets/homepage/hero/character.svg";
 import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
 
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   targetArrow: string;
@@ -79,10 +79,7 @@ const Hero = (props: Props) => {
           height={1120}
           priority={true}
           className="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:h-full md:w-full md:object-[50%_80%] 2xl:object-[50%_90%]"
-          alt={t(
-            "Homepage.imageDescription",
-            "Illustration colorée et minimaliste montrant une ville accueillante avec des.batiments, des espaces verts et des activités communautaires. Des habitants interagissent avec des réfugiés, symbolisant l'entraide, l'intégration et les services d'accompagnement.",
-          )}
+          alt=""
         />
         {/* White wave */}
         <WhiteWave className="absolute bottom-0 -left-1/3 w-full max-w-full origin-[50%_68%] scale-x-[2] scale-y-[6] md:bottom-0 md:left-0 md:origin-bottom md:scale-x-100 md:scale-y-100 2xl:scale-y-60" />

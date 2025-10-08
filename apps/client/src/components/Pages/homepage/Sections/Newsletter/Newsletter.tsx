@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cls } from "~/lib/classname";
 import API from "~/utils/API";
 
@@ -54,16 +54,7 @@ const Newsletter = () => {
   return (
     <section className="bg-alt-blue-france w-full py-20" id="newsletter">
       <div className="container grid grid-cols-2 items-center gap-10">
-        <Image
-          src={NewsletterIllu}
-          alt={t(
-            "NewsletterForm.imgAlt",
-            "Illustration de deux personnes s'échangeant une enveloppe symbolisant l'inscription à une newsletter, avec une plante en arrière-plan.",
-          )}
-          width={433}
-          height={320}
-          className="m-auto max-w-full"
-        />
+        <Image src={NewsletterIllu} alt="" width={433} height={320} className="m-auto max-w-full" />
 
         <div className="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center">
           {newsletterFormState === "success" && (
@@ -104,11 +95,16 @@ const Newsletter = () => {
                 id: "newsletter-email",
               }}
               addon={
-                <Button iconId="fr-icon-send-plane-fill" type="submit" iconPosition="right">
-                  {t("NewsletterForm.ok", "Ok")}
+                <Button
+                  iconId="fr-icon-send-plane-fill"
+                  type="submit"
+                  iconPosition="right"
+                  className="whitespace-nowrap"
+                >
+                  {t("NewsletterForm.ok", "S'inscrire")}
                 </Button>
               }
-              label={t("NewsletterForm.label", "Adresse email")}
+              label={t("NewsletterForm.label", "Adresse email (requise)")}
               state={newsletterFormState}
               stateRelatedMessage={newsletterError}
             />

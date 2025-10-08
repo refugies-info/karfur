@@ -3,6 +3,14 @@
 exports[`homepage renders homepage 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="main"
   >
     <div
@@ -31,7 +39,7 @@ exports[`homepage renders homepage 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national !
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
@@ -97,7 +105,7 @@ exports[`homepage renders homepage 1`] = `
           class="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"
         />
         <img
-          alt="Homepage.imageDescription"
+          alt=""
           class="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:h-full md:w-full md:object-[50%_80%] 2xl:object-[50%_90%]"
           data-nimg="1"
           decoding="async"
@@ -156,7 +164,7 @@ exports[`homepage renders homepage 1`] = `
         class="flex flex-wrap justify-center gap-x-10"
       >
         <img
-          alt="Homepage.StructuresLogosFtda"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -167,7 +175,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosSos"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -178,7 +186,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFrancetravail"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -189,7 +197,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosCos"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -200,7 +208,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFh"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -211,7 +219,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosCoalia"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -222,7 +230,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosPierrevaldo"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -233,7 +241,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosHis"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -244,7 +252,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosForumrefugie"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -255,7 +263,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFederationacteurs"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -4103,7 +4111,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-icon-building-line me-2"
                     />
                     <span>
-                      CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher 
+                      CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher
                     </span>
                   </span>
                 </div>
@@ -4535,7 +4543,7 @@ exports[`homepage renders homepage 1`] = `
           class="flex w-1/2 items-center justify-end"
         >
           <img
-            alt="Homepage.accordionItemsdesktopAlt1"
+            alt=""
             class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
             data-nimg="1"
             decoding="async"
@@ -4562,7 +4570,7 @@ exports[`homepage renders homepage 1`] = `
           data-testid="mock-AnnotationsOverlay"
         >
           <img
-            alt="MobileApp.imageAlt"
+            alt=""
             class="object-contain"
             data-nimg="fill"
             decoding="async"
@@ -4617,7 +4625,7 @@ exports[`homepage renders homepage 1`] = `
           class="mb-6 flex items-center gap-6"
         >
           <img
-            alt="MobileApp.logoAlt"
+            alt=""
             data-nimg="1"
             decoding="async"
             height="72"
@@ -4737,7 +4745,7 @@ exports[`homepage renders homepage 1`] = `
         class="container grid grid-cols-2 items-center gap-10"
       >
         <img
-          alt="NewsletterForm.imgAlt"
+          alt=""
           class="m-auto max-w-full"
           data-nimg="1"
           decoding="async"
@@ -4780,7 +4788,7 @@ exports[`homepage renders homepage 1`] = `
                   value=""
                 />
                 <button
-                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
+                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right whitespace-nowrap"
                   id="fr-button-:r1g:"
                   type="submit"
                 >
@@ -4816,7 +4824,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.ts_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -4856,7 +4864,7 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt="WorkTogether.agir_alt"
+                alt=""
                 data-nimg="1"
                 decoding="async"
                 height="100"
@@ -4894,7 +4902,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.etat_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="80"
@@ -4931,7 +4939,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.administration_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -4968,7 +4976,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.structure_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5004,7 +5012,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.traducteur_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"

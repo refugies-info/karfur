@@ -1,93 +1,47 @@
 @import "colors";
 @import "variables";
-@import "mixins/unit";
 @import "mixins/text";
-@import "mixins/rtl";
 @import "mixins/responsive";
 
 /**
 * Global style for content callouts so they can be used in input or view mode
 */
 .callout {
-  margin-top: u(6);
-  margin-bottom: u(6);
+  margin-block: 1.5rem;
+  background: var(--background-contrast-blue-cumulus);
+  border-inline-start: 0.25rem solid var(--border-default-blue-cumulus);
 
-  /* stylelint-disable-next-line selector-class-pattern */
-  &.callout--info {
-    @include pl-ltr(u(8));
-    @include ml-ltr(u(8));
-
-    $border: 4px solid var(--border-default-blue-france);
-
-    @include media-max("lg-limit") {
-      @include pl-ltr(u(4));
-      @include ml-ltr(u(2));
-    }
-
-    @include rtl {
-      border-right: $border;
-      border-left: none;
-    }
-
-    @include ltr {
-      border-left: $border;
-      border-right: none;
-    }
-
-    &::before {
-      @include dsfr-text("h6");
-
-      content: attr(data-title);
-      display: block;
-      margin-bottom: u(2);
-      font-weight: bold;
-      color: var(--border-default-blue-france);
-
-      @include media-max("lg-limit") {
-        @include dsfr-text("large");
-      }
-    }
+  &.callout--important {
+    border-inline-start: 0.25rem solid var(--border-default-yellow-tournesol);
+    background: var(--background-contrast-yellow-tournesol);
   }
 
   /* stylelint-disable-next-line selector-class-pattern */
+  &.callout--info,
   &.callout--important {
-    background: var(--background-contrast-grey);
-    position: relative;
-    border-radius: u(2);
-    overflow: hidden;
+    color: var(--color-text-default-grey);
+    line-height: 1.5rem;
+    margin-inline-start: 2rem;
+    padding-block: 1rem;
+    padding-inline: 0.75rem 1rem;
 
-    @include rtl {
-      padding: u(4) u(14) u(4) u(2);
-    }
-
-    @include ltr {
-      padding: u(4) u(2) u(4) u(14);
+    @include media-max("lg-limit") {
+      line-height: 1.75rem;
     }
 
     &::before {
-      @include dsfr-text("h6");
-
+      color: var(--color-text-title-grey);
       content: attr(data-title);
       display: block;
-      margin-bottom: u(1);
-      font-weight: bold;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.75rem;
+      margin-bottom: 0.75rem;
 
       @include media-max("lg-limit") {
-        @include dsfr-text("large");
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
       }
-    }
-
-    &::after {
-      @include l-ltr(0);
-
-      content: url("../assets/important-callout.svg");
-      text-align: center;
-      padding-top: u(4);
-      width: u(10);
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      background: var(--border-default-blue-france);
     }
   }
 }

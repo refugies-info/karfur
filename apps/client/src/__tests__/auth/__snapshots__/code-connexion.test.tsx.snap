@@ -3,6 +3,14 @@
 exports[`auth/connexion renders code-connexion if email 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="container half"
   >
     <button
@@ -137,6 +145,14 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
 
 exports[`auth/connexion renders null if no email 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
   <div
     aria-label="Notifications (F8)"
     role="region"

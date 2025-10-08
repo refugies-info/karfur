@@ -11,9 +11,9 @@ import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
+import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
 import styles from "./ResultsFilter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
@@ -124,11 +124,9 @@ const ResultsFilter = (props: Props): React.ReactNode => {
       <div className={styles.grid}>
         <TabsBar>
           {filterType.map((option, i) => (
-            <>
-              <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
-                {t(option.value)} {getCount(option.key)}
-              </TabItem>
-            </>
+            <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+              {t(option.value)} {getCount(option.key)}
+            </TabItem>
           ))}
         </TabsBar>
         {filteredSortOptions.length > 0 && (

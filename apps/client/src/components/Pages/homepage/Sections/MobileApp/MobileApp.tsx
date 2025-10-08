@@ -7,7 +7,8 @@ import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -66,21 +67,13 @@ const MobileApp = () => {
             },
           ]}
         >
-          <Image
-            src={application}
-            fill
-            className="object-contain"
-            alt={t(
-              "MobileApp.imageAlt",
-              "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
-            )}
-          />
+          <Image src={application} fill className="object-contain" alt="" />
         </AnnotationsOverlay>
         {storeLinks}
       </div>
       <div className="">
         <div className="mb-6 flex items-center gap-6">
-          <Image src="/images/logoRI.svg" width={72} height={72} alt={t("MobileApp.logoAlt", "Logo Réfugiés.info")} />
+          <Image src="/images/logoRI.svg" width={72} height={72} alt="" />
           <p className="m-0 flex flex-col gap-2 font-medium">
             <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
               {Array.from({ length: 5 }).map((_, index) => (

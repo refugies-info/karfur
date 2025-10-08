@@ -15,11 +15,12 @@ import SaveBookmark from "~/components/Pages/dispositif/SaveBookmark";
 import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
 import Title from "../Title";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   typeContenu: string;
@@ -30,6 +31,7 @@ const Header = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const { isMobile } = useWindowSize();
   const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
+
 
   // Check for Web Share API support when component mounts
   useEffect(() => {
@@ -120,13 +122,13 @@ const Header = (props: Props) => {
 
       {isViewMode && (
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
-          {isMobile && navigatorShareSupported ? (
+          <SaveBookmark />
+          
+          {navigatorShareSupported && 
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}
             </Button>
-          ) : (
-            <SaveBookmark />
-          )}
+          }
 
           <LanguageMenu
             mobileMode="modal"

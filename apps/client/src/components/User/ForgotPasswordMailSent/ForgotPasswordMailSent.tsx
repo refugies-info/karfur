@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { useCallback } from "react";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import API from "~/utils/API";
 import styles from "./ForgotPasswordMailSent.module.scss";
 

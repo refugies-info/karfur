@@ -18,51 +18,51 @@ const StructuresLogos = () => {
   const logos: { image: StaticImageData; alt: string }[] = [
     {
       image: FTDA,
-      alt: t("Homepage.StructuresLogosFtda", "Logo FTDA"),
+      alt: "",
     },
     {
       image: SOS,
-      alt: t("Homepage.StructuresLogosSos", "Logo du Groupe SOS"),
+      alt: "",
     },
     {
       image: FranceTravail,
-      alt: t("Homepage.StructuresLogosFrancetravail", "Logo France Travail"),
+      alt: "",
     },
     {
       image: COS,
-      alt: t("Homepage.StructuresLogosCos", "Logo Fondation COS"),
+      alt: "",
     },
     {
       image: FH,
-      alt: t("Homepage.StructuresLogosFh", "Logo France Horizon"),
+      alt: "",
     },
     {
       image: Coallia,
-      alt: t("Homepage.StructuresLogosCoalia", "Logo Coallia"),
+      alt: "",
     },
     {
       image: PierreValdo,
-      alt: t("Homepage.StructuresLogosPierrevaldo", "Logo Entraide Pierre Valdo"),
+      alt: "",
     },
     {
       image: HIS,
-      alt: t("Homepage.StructuresLogosHis", "Logo GIP Habitat et Interventions Sociales"),
+      alt: "",
     },
     {
       image: ForumRefugie,
-      alt: t("Homepage.StructuresLogosForumrefugie", "Logo Forum Réfugiés"),
+      alt: "",
     },
     {
       image: FederationActeurs,
-      alt: t("Homepage.StructuresLogosFederationacteurs", "Logo Fédération des Acteurs de la Solidarité"),
+      alt: "",
     },
   ];
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 md:px-32 xl:px-4">
       <div className="flex flex-wrap justify-center gap-x-10">
-        {logos.map((logo) => (
-          <Image key={logo.alt} src={logo.image} alt={logo.alt} width={72} height={72} />
+        {logos.map((logo, index) => (
+          <Image key={index} src={logo.image} alt={logo.alt} width={72} height={72} />
         ))}
       </div>
       <p className="text-center text-lg">

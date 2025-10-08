@@ -3,7 +3,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import FButton from "~/components/UI/FButton";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { deleteWidgetActionCreator } from "~/services/Widgets/widgets.actions";
 import { colors } from "~/utils/colors";
 import { copyToClipboard, generateIframe } from "../functions";
