@@ -1,16 +1,17 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { Types } from "mongoose";
 import { AuthenticationError } from "~/errors";
+import logger from "~/logger";
 import { getDispositifById, updateAvisDispositifInDB } from "~/modules/dispositif/dispositif.repository";
 import { Avis } from "~/typegoose/Dispositif";
 import { Response } from "~/types/interface";
 
 export const updateAvis = async (
   id: string,
-  userId: string,
-  anonymousUserId: string,
+  userId: string | undefined,
+  anonymousUserId: string | undefined,
   avis: boolean,
-  language: string,
+  language: string | undefined,
 ): Response => {
   const dispositif = await getDispositifById(id, { status: 1 });
   if (!dispositif || dispositif.status !== DispositifStatus.ACTIVE) {
@@ -21,11 +22,16 @@ export const updateAvis = async (
   const avisData: Avis = {
     created_at: new Date(),
     userId: userId ? new Types.ObjectId(userId) : undefined,
-    anonymousUserId,
+    anonymousUserId: anonymousUserId ? anonymousUserId : undefined,
     avis,
-    language,
+    language: language || "fr",
   };
 
-  await updateAvisDispositifInDB(id, avisData);
-  return { text: "success" };
+  try {
+    await updateAvisDispositifInDB(id, avisData);
+    return { text: "success" };
+  } catch (error) {
+    logger.error("[updateAvis] Error updating feedback", error);
+    return { text: "error" };
+  }
 };

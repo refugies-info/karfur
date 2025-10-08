@@ -9,6 +9,8 @@ import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { SearchCountsResponse } from "~/pages/api/search/counts";
+import { SearchCountsContext } from "../SearchCountsContext";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
@@ -16,6 +18,7 @@ const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 
 interface Props {
   nbResults: number;
+  counts: SearchCountsResponse | null;
 }
 
 const SearchHeader = (props: Props) => {
@@ -60,7 +63,9 @@ const SearchHeader = (props: Props) => {
         </Container>
       </div>
       <div className={cls(styles.stickybar, isSticky && styles.sticky)}>
-        <Filters isSticky={isSticky} />
+        <SearchCountsContext.Provider value={props.counts}>
+          <Filters isSticky={isSticky} />
+        </SearchCountsContext.Provider>
         {isMobile && !isSticky && showNotDeployedMessage && (
           <div className={styles.notDeployedAlert}>
             <Alert

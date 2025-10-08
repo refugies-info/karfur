@@ -1,5 +1,5 @@
 import { DemoComponent } from "@refugies-info/ui";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs";
 
 const meta: Meta<typeof DemoComponent> = {
   title: "UI/DemoComponent",

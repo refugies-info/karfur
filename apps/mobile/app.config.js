@@ -109,15 +109,14 @@ export default {
     jsEngine: "hermes",
     plugins: [
       "./src/utils/withSimulatorExcludedArchitectures.js",
-      "./build-scripts/withGoogleMapsApiKey.js",
       // "./build-scripts/withM1build.js",
       [
         "expo-build-properties",
         {
           android: {
-            compileSdkVersion: 34,
-            targetSdkVersion: 34,
-            buildToolsVersion: "34.0.0",
+            compileSdkVersion: 35,
+            targetSdkVersion: 35,
+            buildToolsVersion: "35.0.0",
           },
           ios: {
             useFrameworks: "static",

@@ -35,13 +35,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug Current Test (app)",
+      "name": "Debug Current Test (client)",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "test:app",
-        "--runInBand",
-        "${fileBasename}"
-      ],
+      "runtimeArgs": ["test:client", "--runInBand", "--detectOpenHandles", "${fileBasename}"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "cwd": "${workspaceFolder}"
@@ -51,11 +47,7 @@
       "request": "launch",
       "name": "Debug Current Test (mobile)",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "test:mobile",
-        "--runInBand",
-        "${fileBasename}"
-      ],
+      "runtimeArgs": ["test:mobile", "--runInBand", "--detectOpenHandles", "${fileBasename}"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "cwd": "${workspaceFolder}"
@@ -65,14 +57,10 @@
       "request": "launch",
       "name": "Debug Current Test (server)",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": [
-        "test:server",
-        "--runInBand",
-        "${fileBasename}"
-      ],
+      "runtimeArgs": ["test:server", "--runInBand", "--detectOpenHandles", "${fileBasename}"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "cwd": "${workspaceFolder}"
-    },
+    }
   ]
 }

@@ -11,13 +11,18 @@ import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
+import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./ResultsFilter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
 
-const ResultsFilter = (): React.ReactNode => {
+interface Props {
+  counts: SearchCountsResponse | null;
+}
+
+const ResultsFilter = (props: Props): React.ReactNode => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const stylesDisabled = useStylesDisabled();
 
@@ -27,26 +32,14 @@ const ResultsFilter = (): React.ReactNode => {
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
 
-  const nbDemarches = useMemo(
-    () => filteredResult.matches.filter(({ typeContenu }) => typeContenu === "demarche").length,
-    [filteredResult.matches],
-  );
-  const nbDispositifs = useMemo(
-    () =>
-      filteredResult.matches.filter(
-        ({ metadatas, typeContenu }) => typeContenu === "dispositif" && metadatas?.location !== "online",
-      ).length,
-    [filteredResult.matches],
-  );
-  const onlineResourceCount = useMemo(
-    () => filteredResult.matches.filter((d) => d.metadatas?.location === "online").length,
-    [filteredResult.matches],
-  );
+  const nbDemarches = props.counts?.types.demarche || 0;
+  const nbDispositifs = props.counts?.types.dispositif || 0;
+  const onlineResourceCount = props.counts?.types.online || 0;
 
   const getCount = (type: TypeOptions) => {
     switch (type) {
       case "all":
-        return `(${filteredResult.matches.length})`;
+        return `(${props.counts?.total || 0})`;
       case "demarche":
         return `(${nbDemarches})`;
       case "dispositif":
@@ -131,11 +124,9 @@ const ResultsFilter = (): React.ReactNode => {
       <div className={styles.grid}>
         <TabsBar>
           {filterType.map((option, i) => (
-            <>
-              <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
-                {t(option.value)} {getCount(option.key)}
-              </TabItem>
-            </>
+            <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+              {t(option.value)} {getCount(option.key)}
+            </TabItem>
           ))}
         </TabsBar>
         {filteredSortOptions.length > 0 && (

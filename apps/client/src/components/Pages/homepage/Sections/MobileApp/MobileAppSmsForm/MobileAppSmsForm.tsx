@@ -1,5 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
+import { Select } from "@codegouvfr/react-dsfr/SelectNext";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,8 +9,6 @@ import { Event } from "~/lib/tracking";
 import { isValidPhone } from "~/lib/validateFields";
 import { allLanguesSelector, languei18nSelector } from "~/services/Langue/langue.selectors";
 import API from "~/utils/API";
-
-import { Select } from "@codegouvfr/react-dsfr/Select";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();
@@ -71,15 +70,11 @@ const MobileAppSmsForm = () => {
           onChange: (event) => setLanguageSelected(event.target.value),
           value: languageSelected,
         }}
-      >
-        {languages.map((lang) => {
-          return (
-            <option key={lang._id} value={lang.i18nCode}>
-              {lang.langueLoc} {lang.i18nCode !== "fr" && <> - {lang.langueFr}</>}
-            </option>
-          );
-        })}
-      </Select>
+        options={languages.map((lang) => ({
+          value: lang.i18nCode,
+          label: lang.i18nCode === "fr" ? lang.langueLoc : `${lang.langueLoc} - ${lang.langueFr}`,
+        }))}
+      />
 
       <Button
         nativeButtonProps={{

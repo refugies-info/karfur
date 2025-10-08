@@ -36,6 +36,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
     () => (sectionKey === "what" ? dispositif?.[sectionKey] || "" : undefined),
     [sectionKey, dispositif],
   );
+
   const contentAccordions: InfoSections | undefined = useMemo(
     () => (sectionKey !== "what" ? dispositif?.[sectionKey] : undefined),
     [sectionKey, dispositif],

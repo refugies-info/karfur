@@ -665,3 +665,31 @@ export const sendValidatedAndPublishedMailService = async (data: ValidatedAndPub
     logger.info("[sendValidatedAndPublishedMailService] user has not consented to email", { email: data.email });
   }
 };
+
+export const sendNewsletterSubscriptionEmail = async (email: string, prefill: boolean) => {
+  try {
+    logger.info("[sendNewsletterSubscriptionEmail] received", { email });
+    const dynamicData = {
+      to: email,
+      from: {
+        email: "contact@refugies.info",
+        name: "L'équipe de Réfugiés.info",
+      },
+      reply_to: "contact@email.refugies.info",
+      dynamicTemplateData: {
+        brevo_form_url: prefill
+          ? `https://app.brevo.com/contact/forms/subscription/edit/67bc78579db2ed76cb17f329?email=${email}`
+          : "https://app.brevo.com/contact/forms/subscription/edit/67bc78579db2ed76cb17f329",
+      },
+    };
+    const templateName = "newsletterSubscriptionConfirmation";
+    sendMail(templateName, dynamicData, true);
+    await addMailEvent({ templateName, email });
+    return;
+  } catch (error) {
+    logger.error("[sendNewsletterSubscriptionEmail] error", {
+      email,
+      error: error.message,
+    });
+  }
+};
