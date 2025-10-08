@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";

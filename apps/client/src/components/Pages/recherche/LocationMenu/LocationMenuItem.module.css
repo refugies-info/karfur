@@ -1,44 +1,53 @@
+/* Container styles for department and commonPlace types */
+.container {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  width: 100%;
+  
+  /* Style */
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  
+  /* Accessibility */
+  outline: none;
+}
+
+.container:hover {
+  background: var(--background-alt-grey);
+}
+
+.container:focus-visible {
+  outline: 2px solid var(--border-action-high-blue-france);
+  outline-offset: 2px;
+}
+
+/* Item styles for place type (simpler styling) */
 .item {
   /* Layout */
   display: flex;
-  padding: 8px 10px;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   align-self: stretch;
 }
 
 .item:hover {
+  background: var(--background-alt-grey);
+}
+
+/* Label styles for department and commonPlace types */
+.label {
+  /* Layout */
+  flex: 1;
+  
   /* Style */
-  background: var(--background-alt-blue-france);
-}
-
-.icon {
-  /* Layout */
-  display: flex;
-  padding: 4px;
-  align-items: center;
-  gap: 10px;
-}
-
-.button {
-  /* Override the default button styles */
-  padding-block: 0;
-  padding-inline: 0;
-
-  /* Layout */
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  color: var(--background-action-high-blue-france-hover);
-}
-
-.buttonText {
-  color: var(--background-action-high-blue-france-hover);
-
-  /* 2.Corps de texte/M - Texte standard/Desktop & Mobile - Medium */
+  color: var(--text-title-grey);
   font-family: Marianne, sans-serif;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
-  line-height: 24px; /* 150% */
+  font-weight: 400;
+  line-height: 24px;
+  white-space: nowrap;
 }

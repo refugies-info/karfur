@@ -255,14 +255,6 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       {!showLangModal && <ConsentBannerAndConsentManagement />}
-      <LanguageModal
-        show={showLangModal}
-        currentLanguage={router.locale || "fr"}
-        toggle={toggleLanguageModal}
-        changeLanguage={changeLanguageCallback}
-        languages={langues}
-        isLanguagesLoading={isLanguagesLoading}
-      />
       <DownloadAppBanner />
       <Navbar />
       <div id="contenu" className={styles.main}>
@@ -274,6 +266,14 @@ const Layout = (props: Props) => {
       <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
       <NewProfileModal />
       <SubscribeNewsletterModal />
+      <LanguageModal
+        show={showLangModal}
+        currentLanguage={router.locale || "fr"}
+        toggle={toggleLanguageModal}
+        changeLanguage={changeLanguageCallback}
+        languages={langues}
+        isLanguagesLoading={isLanguagesLoading}
+      />
     </div>
   );
 };

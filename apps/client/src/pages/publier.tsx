@@ -38,7 +38,7 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import useWindowSize from "~/hooks/useWindowSize";
+import { useWindowSize } from "@refugies-info/ui";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";

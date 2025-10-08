@@ -5,7 +5,7 @@ import dispos from "~/assets/homepage/why-accordion/dispos-mobile.png";
 import dispositif from "~/assets/homepage/why-accordion/dispositifs.png";
 import partage from "~/assets/homepage/why-accordion/partage.png";
 import { Accordion } from "~/components/Pages/staticPages/common";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   nbDemarches: number;

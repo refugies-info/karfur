@@ -1,6 +1,6 @@
 import { GetThemeResponse } from "@refugies-info/api-types";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Image from "~/components/UI/Image";
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const SearchThemeButton = (props: Props) => {
+  const [hover, setHover] = useState(false);
   const content = useMemo(
     () => (
       <span className="flex items-center justify-center gap-1 p-1 md:px-0.5 md:py-0.5">
@@ -27,10 +28,14 @@ const SearchThemeButton = (props: Props) => {
     <Link
       className="flex flex-col items-center rounded-full px-2"
       style={{
-        backgroundColor: props.theme.colors.color40,
+        backgroundColor: hover ? props.theme.colors.color60 : props.theme.colors.color40,
       }}
       href={props.href}
       onClick={props.onClick}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
     >
       {content}
     </Link>
@@ -44,6 +49,10 @@ const SearchThemeButton = (props: Props) => {
         if (props.onClick) props.onClick();
         window.scrollTo(0, 0);
       }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocus={() => setHover(true)}
+      onBlur={() => setHover(false)}
     >
       {content}
     </button>

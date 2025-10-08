@@ -6,13 +6,14 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { useEditionMode, useLocale } from "~/hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./FooterDSFR.module.scss";
+import { useWindowSize } from "@refugies-info/ui";
 
 const Footer = () => {
   const locale = useLocale();

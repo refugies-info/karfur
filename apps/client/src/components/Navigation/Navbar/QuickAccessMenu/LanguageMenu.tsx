@@ -9,9 +9,9 @@ import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   variant?: "flag";
@@ -46,6 +46,7 @@ const LanguageMenu = ({
   }
 
   const { isMobile } = useWindowSize();
+
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
 
@@ -90,7 +91,7 @@ const LanguageMenu = ({
 
       {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
         <DropdownRoot
-          className={className}
+          className={cn(className)}
           ref={dropdownRef}
           key={key}
           onOpenChange={(open) => setLangMenuOpened(open)}
@@ -106,7 +107,7 @@ const LanguageMenu = ({
               <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="start" className={dropDownClassName}>
+          <DropdownContent position="start" className={cn(dropDownClassName)}>
             <LanguageSelector
               onChangeLang={handleToggleDesktopDopdown}
               type={languageSelectorType}
