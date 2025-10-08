@@ -321,7 +321,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
-
   try {
     const conn = await dbConnect();
     const queryParams = buildQueryParams(req.query);

@@ -24,6 +24,10 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
 ) {
   const { t } = useTranslation();
 
+  const handleOnClear = () => {
+    onClear();
+  };
+
   return (
     <div className={styles.container}>
       <button
@@ -68,7 +72,11 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
       </button>
 
       {!icon && value.length > 0 && (
-        <button className={styles.clear} onClick={onClear} title={t("Recherche.resetButton")}>
+        <button
+          className={styles.clear}
+          onClick={handleOnClear}
+          title={`${t("Recherche.resetButton", "Réinitialiser le filtre")} ${label}`}
+        >
           <i className="ri-close-circle-fill"></i>
         </button>
       )}

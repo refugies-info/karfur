@@ -223,8 +223,6 @@ export const DropdownContent = memo(
         if (!isOpen || !autoFocusFirst || !isFirstRender.current) return;
 
         const currentRef = typeof combinedRef === "function" ? null : combinedRef?.current;
-        // eslint-disable-next-line no-console
-        console.log(currentRef);
         if (currentRef) {
           const focusableElements = currentRef.querySelectorAll<HTMLElement>(
             'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',

@@ -1,9 +1,9 @@
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
-import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
@@ -12,6 +12,7 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const { openDropdownId, setOpenDropdownId } = useDropdownContext();
   const dropdownId = label; // Use a unique ID for each dropdown, such as `label`
 
@@ -61,6 +62,7 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
       } else if (event.key === "Escape") {
         setOpen(false);
         setOpenDropdownId(null);
+        buttonRef.current?.focus();
       }
     }
   };
@@ -117,18 +119,22 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
   }, [open, setOpenDropdownId]);
 
   return (
-    <div className={cls(styles.menuContainer, openDropdownId === label && styles.open)}>
+    <div className={cn(styles.menuContainer, openDropdownId === label && (styles.open, "open"))}>
       <DropdownButton
         label={label}
         tooltip={tooltip}
         icon={icon}
         value={value ?? []}
-        onClear={resetOptions}
+        onClear={() => {
+          buttonRef.current?.focus();
+          resetOptions();
+        }}
         isOpen={open}
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => handleOpenChange(!open)}
         onKeyDown={handleKeyDown}
+        ref={buttonRef}
       >
         {t(label as any)}
       </DropdownButton>
