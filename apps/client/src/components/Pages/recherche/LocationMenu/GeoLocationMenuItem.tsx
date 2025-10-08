@@ -2,7 +2,6 @@ import axios from "axios";
 import { useTranslation } from "next-i18next";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Separator from "~/components/UI/Separator";
 import { cls } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -55,20 +54,16 @@ const GeoLocationMenuItem: React.FC = () => {
   }
 
   return (
-    <>
-      <Separator />
-      <div className={styles.item}>
-        {!permissionDenied ? (
-          <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
-            <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
-            <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
-          </button>
-        ) : (
-          <>{t("Recherche.positionEnable", "Vous devez activer la géolocalisation pour votre navigateur")}</>
-        )}
-      </div>
-      <Separator />
-    </>
+    <div className={styles.item}>
+      {!permissionDenied ? (
+        <button onClick={getLocation} onKeyDown={(e) => onEnterOrSpace(e, getLocation)} className={styles.button}>
+          <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
+          <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
+        </button>
+      ) : (
+        <>{t("Recherche.positionEnable", "Vous devez activer la géolocalisation pour votre navigateur")}</>
+      )}
+    </div>
   );
 };
 

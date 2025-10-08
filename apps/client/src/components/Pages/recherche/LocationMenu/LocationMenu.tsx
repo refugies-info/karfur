@@ -9,8 +9,8 @@ import { searchQuerySelector } from "~/services/SearchResults/searchResults.sele
 import { useSearchCounts } from "../SearchCountsContext";
 import { getPlaceName } from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
-import LocationMenuItem from "./LocationMenuItem";
 import styles from "./LocationMenu.module.css";
+import LocationMenuItem from "./LocationMenuItem";
 import SearchMenuItem from "./SearchMenuItem";
 
 const commonPlaces = [
@@ -122,8 +122,8 @@ const LocationMenu: React.FC<Props> = () => {
 
   return (
     <div className={styles.container}>
+      <GeoLocationMenuItem />
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
-
       <div className={styles.departments}>
         {query.departments.map((depName, i) => (
           <LocationMenuItem
@@ -135,26 +135,21 @@ const LocationMenu: React.FC<Props> = () => {
           />
         ))}
       </div>
-
-      <GeoLocationMenuItem />
-
       <div className={styles.places}>
         {locationSearch !== "" &&
-          suggestions
-            .slice(0, 5)
-            .map((p, i) => {
-              const placeName = getPlaceName(p);
-              const deptNo = p.properties.context.split(",")[0];
-              return (
-                <LocationMenuItem
-                  key={i}
-                  type="place"
-                  checked={false}
-                  label={`${placeName} ${deptNo}`}
-                  onChange={() => onSelectPrediction(p)}
-                />
-              );
-            })}
+          suggestions.slice(0, 5).map((p, i) => {
+            const placeName = getPlaceName(p);
+            const deptNo = p.properties.context.split(",")[0];
+            return (
+              <LocationMenuItem
+                key={i}
+                type="place"
+                checked={false}
+                label={`${placeName} ${deptNo}`}
+                onChange={() => onSelectPrediction(p)}
+              />
+            );
+          })}
         {locationSearch === "" &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
