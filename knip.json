@@ -1,15 +1,16 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "include": ["dependencies"],
-  "ignoreDependencies": ["@refugies-info/api-types"],
   "workspaces": {
+    ".": {
+      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"]
+    },
     "apps/client": {
-      "entry": ["src/scripts/*.js"],
+      "entry": ["next-sitemap.config.js"],
       "ignoreDependencies": [
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
-        "eslint",
         "eslint-config-next",
         "eslint-config-turbo",
         "flag-icons",
@@ -36,23 +37,21 @@
       "ignoreDependencies": [
         "@tsoa/runtime",
         "eslint-config-turbo",
-        "nodemon",
         "path-to-regexp",
         "ts-node",
         "tsconfig-paths"
-      ]
+      ],
+      "ignore": ["dist/**"]
     },
     "packages/api-types": {
-      "ignoreDependencies": ["eslint-config-turbo", "globals"]
+      "ignoreDependencies": ["eslint-config-turbo"]
     },
     "apps/storybook": {
       "ignoreDependencies": [
-        "@storybook/blocks",
         "@tailwindcss/typography",
         "eslint-config-next",
         "eslint-config-turbo",
         "eslint-plugin-storybook",
-        "globals",
         "tailwindcss"
       ]
     },
