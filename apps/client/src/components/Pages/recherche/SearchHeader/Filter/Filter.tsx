@@ -355,16 +355,14 @@ const FilterCheckboxes = ({
               id={`MenuItemTooltip${o}`}
             >
               {currentmenu.translateOptions ? t(option.value as any) : option.value}{" "}
-              <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">{option.count ?? ""}</span>
-              {isDisabled && (
-                <span
-                  aria-hidden="true"
-                  ref={(el) => {
-                    if (el) el.setAttribute("inert", "");
-                  }}
-                >
-                  <Tooltip kind="click" aria-hidden="true" title={t("Recherche.tooltipAucuneFicheCorrespondante")} />
-                </span>
+              {isDisabled ? (
+                <div className="text-mention-grey ms-auto block p-2 ps-3 pe-1 pt-[0.35rem] text-xs">
+                  <Tooltip kind="hover" aria-hidden="true" title={t("Recherche.tooltipAucuneFicheCorrespondante")}>
+                    {option.count ?? ""}
+                  </Tooltip>
+                </div>
+              ) : (
+                <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">{option.count ?? ""}</span>
               )}
             </span>
           ),
