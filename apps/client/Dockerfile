@@ -1,25 +1,30 @@
 # WARNING: using root folder as current context to make this dockerfile work
 FROM node:22.14.0-alpine AS base
 
-  #
-  # Setup builder image
-  #
-  FROM base AS builder
-
   # Update and install system packages
   RUN apk update && apk add --no-cache libc6-compat
 
-  # Set working directory
-  WORKDIR /app
+#
+# Setup tools image with build dependencies
+#
+FROM base AS tools
 
-  # Install pnpm
-  RUN npm install -g pnpm@10.18.0
+  # Enable corepack and prepare pnpm globally
+  RUN corepack enable && corepack prepare pnpm@10.18.0 --activate
 
-  # Install turbo
+  # Install turbo globally
   ENV PNPM_HOME="/root/.local/share/pnpm"
   ENV PATH="${PNPM_HOME}:${PATH}"
   RUN mkdir -p "$PNPM_HOME" && \
       pnpm add -g turbo
+
+#
+# Setup builder image
+#
+FROM tools AS builder
+
+  # Set working directory
+  WORKDIR /app
 
   # Copy workspace
   COPY . .
@@ -34,24 +39,15 @@ FROM node:22.14.0-alpine AS base
 #
 # Setup installer image
 #
-FROM base AS installer
+FROM tools AS installer
 
   # Build arguments
   ARG APP_ENV=production
   ARG APP_SERVER_URL=http://localhost:8000
   ARG APP_SITE_URL=http://localhost:3000
 
-  # Update and install system packages
-  RUN apk update && apk add --no-cache libc6-compat
-
   # Set working directory
   WORKDIR /app
-
-  # Install turbo
-  ENV PNPM_HOME="/root/.local/share/pnpm"
-  ENV PATH="${PNPM_HOME}:${PATH}"
-  RUN mkdir -p "$PNPM_HOME" && \
-      pnpm add -g turbo
 
   # First install the dependencies (as they change less often)
   COPY --from=builder /app/out/json/ .
@@ -74,18 +70,12 @@ FROM base AS installer
   RUN pnpm build:client
 
 #
-# Setup runner image
+# Setup runner image (minimal, no build tools)
 #
 FROM base AS runner
 
   # Set working directory
   WORKDIR /app
-
-  # Install turbo
-  ENV PNPM_HOME="/root/.local/share/pnpm"
-  ENV PATH="${PNPM_HOME}:${PATH}"
-  RUN mkdir -p "$PNPM_HOME" && \
-      pnpm add -g turbo
 
   ENV NEXT_TELEMETRY_DISABLED=1
   ENV NODE_ENV=production
