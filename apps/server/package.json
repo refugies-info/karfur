@@ -6,7 +6,7 @@
   "homepage": "https://refugies.info",
   "copyright": "Copyright 2019 DiAiR",
   "license": "MIT",
-  "main": "server.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "pnpm gen:tsoa && ncc build src/server.ts -o dist",
     "build:dev": "pnpm gen:tsoa && tsc",
