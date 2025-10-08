@@ -16,6 +16,7 @@ import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadin
 import { MiscellaneousState, miscellaneousReducer } from "./Miscellaneous/miscellaneous.reducer";
 import { NeedsState, needsReducer } from "./Needs/needs.reducer";
 import { SearchResultsState, searchResultsReducer } from "./SearchResults/searchResults.reducer";
+import searchCountsReducer, { SearchCountsState } from "./SearchCounts/searchCounts.reducer";
 import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
 import { SelectedStructureState, selectedStructureReducer } from "./SelectedStructure/selectedStructure.reducer";
 import { ThemesState, themesReducer } from "./Themes/themes.reducer";
@@ -38,6 +39,7 @@ export interface RootState {
   miscellaneous: MiscellaneousState;
   needs: NeedsState;
   searchResults: SearchResultsState;
+  searchCounts: SearchCountsState;
   selectedDispositif: SelectedDispositifState;
   selectedStructure: SelectedStructureState;
   themes: ThemesState;
@@ -62,6 +64,7 @@ const combinedReducer = combineReducers({
   miscellaneous: miscellaneousReducer,
   needs: needsReducer,
   searchResults: searchResultsReducer,
+  searchCounts: searchCountsReducer,
   selectedDispositif: selectedDispositifReducer,
   selectedStructure: selectedStructureReducer,
   themes: themesReducer,

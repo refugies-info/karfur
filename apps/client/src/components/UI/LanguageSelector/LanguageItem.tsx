@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { forwardRef, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useChangeLanguage, useLocale } from "~/hooks";
-import { cls, cn } from "~/lib/classname";
+import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import styles from "./LanguageItem.module.scss";
@@ -15,13 +15,26 @@ interface LanguageItemProps {
   className?: string;
   onChangeLang?: () => void;
   type?: "global" | "page";
+  design?: "radio" | "default";
   disabled?: boolean;
   forceActive?: boolean;
 }
 
 const LanguageItem = memo(
   forwardRef<HTMLButtonElement, LanguageItemProps>(
-    ({ item, className, onChangeLang, type = "global", disabled = false, forceActive = false, ...props }, ref) => {
+    (
+      {
+        item,
+        className,
+        onChangeLang,
+        type = "global",
+        design = "default",
+        disabled = false,
+        forceActive = false,
+        ...props
+      },
+      ref,
+    ) => {
       const { t } = useTranslation();
 
       const { changeLanguage, loading } = useChangeLanguage();
@@ -51,8 +64,9 @@ const LanguageItem = memo(
         <button
           ref={ref}
           data-nav-item
-          className={cls(
+          className={cn(
             styles.item,
+            styles[`design-${design}`],
             (currentLanguage === item.i18nCode && !disabled) || forceActive ? styles.selected : "",
             type === "page" && "[&:before]:hidden",
             disabled &&
@@ -85,12 +99,12 @@ const LanguageItem = memo(
               <b>{t("LanguageDropdown.loading", "Chargement de la langue")}</b>
             </span>
           )}
-          {type === "page" && (
+          {design === "radio" && (
             <span
               className={cn(
-                "relative h-6 w-6 flex-none rounded-full ring",
+                "relative h-4 w-4 flex-none rounded-full ring",
                 (currentLanguage === item.i18nCode && !disabled) || forceActive
-                  ? "bg-active-blue-france border-5 border-white"
+                  ? "bg-active-blue-france border-3 border-white"
                   : "",
                 disabled && "ring-disabled-grey",
               )}

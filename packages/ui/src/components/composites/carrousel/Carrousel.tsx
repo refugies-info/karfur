@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
-import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
+import React, { forwardRef, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from "react";
 
 type CarrouselTexts = {
   title?: string | null;
@@ -57,6 +57,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
     const [canScrollNext, setCanScrollNext] = useState(true);
     const [canScrollPrev, setCanScrollPrev] = useState(false);
     const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+    const componentId = useId();
 
     const t: Required<CarrouselTexts> = useMemo(
       () => ({
@@ -338,21 +339,19 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
             enableContainerPadding &&
               "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
             "ltr:pr-4 rtl:pl-4",
+            "cursor-grab active:cursor-grabbing",
             containerClassName,
           )}
           aria-live="polite"
           aria-atomic="true"
           style={{
-            "scrollbarWidth": "none",
-            "msOverflowStyle": "none",
-            "WebkitOverflowScrolling": "touch",
-            "willChange": "transform",
-            "scrollBehavior": "smooth",
-            "overscrollBehaviorX": "contain",
-            "cursor": "grab",
-            // @ts-expect-error style prop is not recognized
-            "&:active": { cursor: "grabbing" },
-            "direction": dir, // Set the direction explicitly
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+            willChange: "transform",
+            scrollBehavior: "smooth",
+            overscrollBehaviorX: "contain",
+            direction: dir, // Set the direction explicitly
           }}
         >
           {React.Children.map(children, (child, index) => (
@@ -360,7 +359,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
               ref={(el) => {
                 slideRefs.current[index] = el;
               }}
-              id={`slide-${index}`}
+              id={`slide-${componentId}-${index}`}
               className="min-w-max shrink-0 snap-start"
               role="group"
               aria-roledescription="slide"

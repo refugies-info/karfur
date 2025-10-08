@@ -15,6 +15,7 @@ type VoteProps = {
   onCancelYes?: () => void;
   onCancelNo?: () => void;
   onVoteUpdate?: (vote: boolean) => void;
+  error?: boolean | null;
 };
 
 type VoteRef = {
@@ -23,7 +24,17 @@ type VoteRef = {
 
 export const Vote = forwardRef<VoteRef, VoteProps>(
   (
-    { className, currentVote = null, onVoteYes, onVoteNo, onCancelYes, onCancelNo, onVoteUpdate, isSticky = false },
+    {
+      className,
+      currentVote = null,
+      onVoteYes,
+      onVoteNo,
+      onCancelYes,
+      onCancelNo,
+      onVoteUpdate,
+      isSticky = false,
+      error = false,
+    },
     ref,
   ) => {
     const [hasVoted, setHasVoted] = useState(false);
@@ -60,6 +71,12 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
 
       return () => clearInterval(checkAnimation);
     }, []);
+
+    useEffect(() => {
+      if (error) {
+        setHasVoted(false);
+      }
+    }, [error]);
 
     useImperativeHandle(ref, () => ({ thumbUpRef }), [thumbUpRef]);
 
@@ -125,7 +142,7 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
         vote={vote}
         handleClickYes={handleClickYes}
         handleClickNo={handleClickNo}
-        hasVoted={hasVoted}
+        hasVoted={!error && hasVoted}
         thumbUpRef={thumbUpRef}
       />
     );

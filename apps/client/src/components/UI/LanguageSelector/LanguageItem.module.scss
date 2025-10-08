@@ -25,33 +25,49 @@
     background-color: #fff;
   }
 
-  &:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - var(--inline-padding) * 2);
-    height: 1px;
-    background: var(--border-default-grey);
-  }
+  &.design {
+    &-radio {
+      border: 1px solid var(--border-default-grey);
+      margin-bottom: 1rem;
 
-  &.selected {
-    position: relative;
-
-    * {
-      color: var(--text-title-blue-france);
+      &.selected {
+        background-color: var(--border-open-blue-france);
+        border-color: var(--border-open-blue-france);
+      }
     }
 
-    &::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: calc(100% - var(--block-padding) * 2);
-      width: 2px;
-      background: var(--text-title-blue-france);
+    &-default {
+      background-color: white;
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - var(--inline-padding) * 2);
+        height: 1px;
+        background: var(--border-default-grey);
+      }
+
+      &.selected {
+        position: relative;
+
+        * {
+          color: var(--text-title-blue-france);
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          height: calc(100% - var(--block-padding) * 2);
+          width: 2px;
+          background: var(--text-title-blue-france);
+        }
+      }
     }
   }
 
