@@ -19,6 +19,7 @@ const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
         label={t("Recherche.searchPlaceholder", "Recherche par ville")}
         nativeInputProps={{
           type: "search",
+          placeholder: t("Recherche.searchPlaceholder", "Recherche par ville"),
           onChange,
           className: "fr-input-wrap fr-icon-search-line",
         }}

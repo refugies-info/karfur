@@ -156,6 +156,7 @@ const LocationMenu: React.FC<Props> = () => {
           <RadioButtons
             name="radio"
             legend="Résultats de recherche"
+            className="[&_legend]:sr-only"
             options={suggestions.slice(0, 5).map((p, i) => {
               const placeName = getPlaceName(p);
               const deptNo = p.properties.context.split(",")[0];
@@ -175,6 +176,7 @@ const LocationMenu: React.FC<Props> = () => {
           <RadioButtons
             name="radio"
             legend="Villes courantes"
+            className="[&_legend]:sr-only"
             options={commonPlaces.map(({ deptNo, placeName, deptName }) => {
               const isChecked = query?.departments[0] === deptName;
 
