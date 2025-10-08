@@ -4,6 +4,11 @@ FROM node:22.14.0-alpine AS base
   # Update and install system packages
   RUN apk update && apk add --no-cache libc6-compat
 
+#
+# Setup tools image with build dependencies
+#
+FROM base AS tools
+
   # Enable corepack and prepare pnpm globally
   RUN corepack enable && corepack prepare pnpm@10.18.0 --activate
 
@@ -16,7 +21,7 @@ FROM node:22.14.0-alpine AS base
 #
 # Setup builder image
 #
-FROM base AS builder
+FROM tools AS builder
 
   # Set working directory
   WORKDIR /app
@@ -34,7 +39,7 @@ FROM base AS builder
 #
 # Setup installer image
 #
-FROM base AS installer
+FROM tools AS installer
 
   # Build arguments
   ARG APP_ENV=production
@@ -65,7 +70,7 @@ FROM base AS installer
   RUN pnpm build:client
 
 #
-# Setup runner image
+# Setup runner image (minimal, no build tools)
 #
 FROM base AS runner
 
