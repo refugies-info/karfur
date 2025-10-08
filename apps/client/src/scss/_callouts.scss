@@ -8,8 +8,13 @@
 */
 .callout {
   margin-block: 1.5rem;
-  background: var(--background-contrast-grey);
-  border-inline-start: 0.25rem solid var(--border-default-blue-france);
+  background: var(--background-contrast-blue-cumulus);
+  border-inline-start: 0.25rem solid var(--border-default-blue-cumulus);
+
+  &.callout--important {
+    border-inline-start: 0.25rem solid var(--border-default-yellow-tournesol);
+    background: var(--background-contrast-yellow-tournesol);
+  }
 
   /* stylelint-disable-next-line selector-class-pattern */
   &.callout--info,

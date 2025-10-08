@@ -13,7 +13,7 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";

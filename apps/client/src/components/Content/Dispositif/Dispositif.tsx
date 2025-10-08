@@ -15,7 +15,8 @@ import {
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import { useContentLocale, useRtriLinks, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -94,7 +95,7 @@ const Dispositif = (props: Props) => {
           {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 order-1 lg:w-[20%] lg:pt-[371px] print:pt-0" />
+                <LeftSidebar className="z-10 order-1 max-lg:hidden lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
                 <LeftSidebarEdition className="z-10 order-1 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
               )}

@@ -7,7 +7,8 @@ import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 

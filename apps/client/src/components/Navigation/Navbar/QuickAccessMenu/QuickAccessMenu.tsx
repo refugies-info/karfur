@@ -1,9 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { getPath } from "~/routes";
+import { useWindowSize } from "@refugies-info/ui";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
 // - The Header expects an array of React elements for its quickAccessItems prop
@@ -15,7 +17,7 @@ import { getPath } from "~/routes";
 
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
-  const { isMobile } = useWindowSize();
+  const { isMobile, zoomLevel } = useWindowSize();
   const locale = useLocale();
 
   const menuItems = [
@@ -41,7 +43,11 @@ const QuickAccessMenu = () => {
     >
       {isMobile ? t("Toolbar.TraduireUneFiche", "Traduire une fiche") : t("Toolbar.Traduire", "Traduire")}
     </Button>,
-    <LanguageMenu key="language" />,
+    <LanguageMenu
+      key="language"
+      className={cn(zoomLevel >= 175 && "!w-full")}
+      dropDownClassName={cn(zoomLevel >= 175 && "!w-full")}
+    />,
     !isMobile ? <LoginButton key="login" /> : null,
   ];
 

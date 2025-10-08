@@ -7,12 +7,12 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
-import useWindowSize from "~/hooks/useWindowSize";
 import { customEvent } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import { userSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
+import { useWindowSize } from "@refugies-info/ui";
 
 const NorthStar = () => {
   const dispositif = useSelector(selectedDispositifSelector);

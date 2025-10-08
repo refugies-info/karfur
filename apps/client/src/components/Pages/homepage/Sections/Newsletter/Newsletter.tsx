@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { cls } from "~/lib/classname";
 import API from "~/utils/API";
 
