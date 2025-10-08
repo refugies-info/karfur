@@ -14,7 +14,7 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { openDropdownId, setOpenDropdownId } = useDropdownContext();
-  const dropdownId = label; // Use a unique ID for each dropdown, such as `label`
+  const dropdownId = useRef(gaType || label).current;
 
   const handleOpenChange = useCallback(
     (newOpen: boolean) => {
@@ -81,32 +81,37 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
 
   useEffect(() => {
     if (openDropdownId !== dropdownId && open) {
-      setOpen(false); // Close this dropdown if another dropdown is opened
+      setOpen(false);
     }
   }, [openDropdownId, dropdownId, open]);
 
-  // Handle clicks outside and focus changes
   useEffect(() => {
     const dropdownNode = dropdownRef.current;
+    const buttonNode = buttonRef.current;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (open && dropdownNode && !dropdownNode.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (open && dropdownNode && buttonNode && !dropdownNode.contains(target) && !buttonNode.contains(target)) {
         setOpen(false);
         setOpenDropdownId(null);
       }
     };
 
     const handleFocusChange = (event: FocusEvent) => {
-      // Only handle focus changes from tabbing, not from clicks
-      if (
-        event.relatedTarget && // Check if we have a new focus target
-        open &&
-        dropdownNode &&
-        !dropdownNode.contains(event.relatedTarget as Node)
-      ) {
-        setOpen(false);
-        setOpenDropdownId(null);
-      }
+      setTimeout(() => {
+        const currentlyFocused = document.activeElement;
+        if (
+          open &&
+          dropdownNode &&
+          currentlyFocused &&
+          currentlyFocused !== document.body &&
+          !dropdownNode.contains(currentlyFocused) &&
+          currentlyFocused !== buttonRef.current
+        ) {
+          setOpen(false);
+          setOpenDropdownId(null);
+        }
+      }, 150);
     };
 
     document.addEventListener("mousedown", handleClickOutside);

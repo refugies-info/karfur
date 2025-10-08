@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import Checkbox from "~/components/UI/Checkbox";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import styles from "./LocationMenuItem.module.css";
 
@@ -29,15 +28,10 @@ const LocationMenuItem: React.FC<Props> = ({ type, checked = false, label, ariaL
   const containerClass = className || (type === "place" ? styles.item : styles.container);
 
   return (
-    <Checkbox
-      className={containerClass}
-      checked={checked}
-      onChange={handleChange}
-      onKeyDown={handleKeyDown}
-      aria-label={ariaLabel}
-    >
+    <label className={containerClass}>
+      <input type="radio" checked={checked} aria-label={ariaLabel} onKeyDown={handleKeyDown} onChange={handleChange} />
       <span className={type === "place" ? undefined : styles.label}>{label}</span>
-    </Checkbox>
+    </label>
   );
 };
 
