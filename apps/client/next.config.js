@@ -4,9 +4,7 @@ const path = require("path");
 
 module.exports = {
   output: "standalone",
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, "../../"),
-  },
+  outputFileTracingRoot: path.join(__dirname, "../../"),
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
   i18n,
   images: {

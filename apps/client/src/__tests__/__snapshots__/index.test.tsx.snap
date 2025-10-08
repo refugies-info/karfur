@@ -3,6 +3,14 @@
 exports[`homepage renders homepage 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="[object Object]"
+    role="status"
+  >
+     
+  </div>
+  <div
     class="main"
   >
     <div
@@ -97,11 +105,10 @@ exports[`homepage renders homepage 1`] = `
           class="absolute inset-0 z-0 h-full w-full shadow-[inset_0px_-4.167px_20.833px_0px_rgba(0,0,0,0.10)]"
         />
         <img
-          alt="Homepage.imageDescription"
+          alt=""
           class="-z-1 -translate-y-6 object-cover max-sm:-translate-x-4 max-sm:-translate-y-16 max-sm:scale-[1.4] md:h-full md:w-full md:object-[50%_80%] 2xl:object-[50%_90%]"
           data-nimg="1"
           decoding="async"
-          fetchpriority="high"
           height="1120"
           src="/_next/image?url=%2Fimg.jpg&w=3840&q=75"
           srcset="/_next/image?url=%2Fimg.jpg&w=1920&q=75 1x, /_next/image?url=%2Fimg.jpg&w=3840&q=75 2x"
@@ -142,7 +149,6 @@ exports[`homepage renders homepage 1`] = `
           class="absolute bottom-0 left-4 z-10 max-w-[8rem] max-md:left-1/2 max-md:-translate-x-1/2 max-sm:left-1/2 xl:left-[2%] xl:max-w-[14rem] 2xl:left-[10%]"
           data-nimg="1"
           decoding="async"
-          fetchpriority="high"
           height="274"
           src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
           srcset="/_next/image?url=%2Fimg.jpg&w=256&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
@@ -158,7 +164,7 @@ exports[`homepage renders homepage 1`] = `
         class="flex flex-wrap justify-center gap-x-10"
       >
         <img
-          alt="Homepage.StructuresLogosFtda"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -169,7 +175,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosSos"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -180,7 +186,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFrancetravail"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -191,7 +197,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosCos"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -202,7 +208,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFh"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -213,7 +219,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosCoalia"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -224,7 +230,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosPierrevaldo"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -235,7 +241,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosHis"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -246,7 +252,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosForumrefugie"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -257,7 +263,7 @@ exports[`homepage renders homepage 1`] = `
           width="72"
         />
         <img
-          alt="Homepage.StructuresLogosFederationacteurs"
+          alt=""
           data-nimg="1"
           decoding="async"
           height="72"
@@ -4537,7 +4543,7 @@ exports[`homepage renders homepage 1`] = `
           class="flex w-1/2 items-center justify-end"
         >
           <img
-            alt="Homepage.accordionItemsdesktopAlt1"
+            alt=""
             class="mx-auto mt-6 h-auto max-w-full lg:mt-0"
             data-nimg="1"
             decoding="async"
@@ -4564,7 +4570,7 @@ exports[`homepage renders homepage 1`] = `
           data-testid="mock-AnnotationsOverlay"
         >
           <img
-            alt="MobileApp.imageAlt"
+            alt=""
             class="object-contain"
             data-nimg="fill"
             decoding="async"
@@ -4619,7 +4625,7 @@ exports[`homepage renders homepage 1`] = `
           class="mb-6 flex items-center gap-6"
         >
           <img
-            alt="MobileApp.logoAlt"
+            alt=""
             data-nimg="1"
             decoding="async"
             height="72"
@@ -4698,31 +4704,32 @@ exports[`homepage renders homepage 1`] = `
               MobileApp.langLabel
             </label>
             <select
-              aria-describedby="select-:r1e:-desc"
+              aria-describedby="select-:r1d:-desc"
               class="fr-select"
               id="select-:r1d:"
               name="languageSelected"
             >
               <option
+                disabled=""
+                value=""
+              >
+                Sélectionner une option
+              </option>
+              <option
                 value="fr"
               >
-                Français 
+                Français
               </option>
               <option
                 value="en"
               >
-                English  - Anglais
+                English - Anglais
               </option>
             </select>
-            <div
-              aria-live="polite"
-              class="fr-messages-group"
-              id="select-:r1d:-messages-group"
-            />
           </div>
           <button
             class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right w-full justify-center"
-            id="fr-button-:r1f:"
+            id="fr-button-:r1e:"
             type="submit"
           >
             MobileApp.buttonText
@@ -4738,7 +4745,7 @@ exports[`homepage renders homepage 1`] = `
         class="container grid grid-cols-2 items-center gap-10"
       >
         <img
-          alt="NewsletterForm.imgAlt"
+          alt=""
           class="m-auto max-w-full"
           data-nimg="1"
           decoding="async"
@@ -4781,8 +4788,8 @@ exports[`homepage renders homepage 1`] = `
                   value=""
                 />
                 <button
-                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right"
-                  id="fr-button-:r1h:"
+                  class="fr-btn fr-icon-send-plane-fill fr-btn--icon-right whitespace-nowrap"
+                  id="fr-button-:r1g:"
                   type="submit"
                 >
                   NewsletterForm.ok
@@ -4817,7 +4824,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.ts_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -4840,7 +4847,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://kit.refugies.info/formation/"
-              id="fr-button-:r1i:"
+              id="fr-button-:r1h:"
               target="_blank"
             >
               WorkTogether.ts_cta
@@ -4857,7 +4864,7 @@ exports[`homepage renders homepage 1`] = `
               class="flex h-20 w-20 items-center justify-center bg-black p-1"
             >
               <img
-                alt="WorkTogether.agir_alt"
+                alt=""
                 data-nimg="1"
                 decoding="async"
                 height="100"
@@ -4881,7 +4888,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1j:"
+              id="fr-button-:r1i:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4895,7 +4902,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.etat_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="80"
@@ -4918,7 +4925,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1k:"
+              id="fr-button-:r1j:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4932,7 +4939,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.administration_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -4955,7 +4962,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-calendar-event-line fr-btn--icon-right mt-auto"
               href="https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info"
-              id="fr-button-:r1l:"
+              id="fr-button-:r1k:"
               target="_blank"
             >
               WorkTogether.meeting_cta
@@ -4969,7 +4976,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.structure_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -4992,7 +4999,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/publier"
-              id="fr-button-:r1m:"
+              id="fr-button-:r1l:"
             >
               WorkTogether.structure_cta
             </a>
@@ -5005,7 +5012,7 @@ exports[`homepage renders homepage 1`] = `
             class="flex h-full flex-col gap-4"
           >
             <img
-              alt="WorkTogether.traducteur_alt"
+              alt=""
               data-nimg="1"
               decoding="async"
               height="40"
@@ -5028,7 +5035,7 @@ exports[`homepage renders homepage 1`] = `
             <a
               class="fr-btn fr-btn--tertiary fr-icon-arrow-right-line fr-btn--icon-right mt-auto"
               href="https://refugies.info/traduire"
-              id="fr-button-:r1n:"
+              id="fr-button-:r1m:"
             >
               WorkTogether.traducteur_cta
             </a>

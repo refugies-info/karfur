@@ -1,12 +1,12 @@
 import debounce from "lodash/debounce";
 import React, { useCallback, useMemo, useState } from "react";
-import usePlacesAutocompleteService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchEventName } from "~/hooks";
 import { getDepartmentCodeFromName } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { useSearchCounts } from "../SearchCountsContext";
 import CommonPlaceMenuItem from "./CommonPlaceMenuItem";
 import DepartmentMenuItem from "./DepartmentMenuItem";
 import styles from "./LocationMenu.module.css";
@@ -32,29 +32,35 @@ interface Props {
 }
 
 const LocationMenu: React.FC<Props> = () => {
+  const searchCounts = useSearchCounts();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const eventName = useSearchEventName();
 
   const [locationSearch, setLocationSearch] = useState("");
-  const resetLocationSearch = useCallback(() => setLocationSearch(""), []);
-
-  const { placesService, placePredictions, getPlacePredictions } = usePlacesAutocompleteService({
-    apiKey: process.env.NEXT_PUBLIC_REACT_APP_GOOGLE_API_KEY,
-    //@ts-ignore
-    options: {
-      componentRestrictions: { country: "fr" },
-      types: ["administrative_area_level_2", "locality", "postal_code"],
-      language: "fr",
-    },
-  });
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const resetLocationSearch = useCallback(() => {
+    setLocationSearch("");
+    setSuggestions([]);
+  }, []);
 
   const onChangeDepartmentInput = useCallback(
     (e: any) => {
-      setLocationSearch(e.target.value);
-      getPlacePredictions({ input: e.target.value });
+      const search = e.target.value;
+      setLocationSearch(search);
+      if (search.length > 2) {
+        fetch(`https://data.geopf.fr/geocodage/search?q=${search}&type=municipality`)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.features) {
+              setSuggestions(data.features);
+            }
+          });
+      } else {
+        setSuggestions([]);
+      }
     },
-    [setLocationSearch, getPlacePredictions],
+    [setLocationSearch],
   );
 
   const debouncedOnChangeDepartmentInput = useMemo(
@@ -63,28 +69,23 @@ const LocationMenu: React.FC<Props> = () => {
   );
 
   const onSelectPrediction = useCallback(
-    (id: string, name: string) => {
-      Event(eventName, "choose location option", name);
+    (place: any) => {
+      Event(eventName, "choose location option", place.properties.label);
       Event(eventName, "click filter", "location");
-      placesService?.getDetails({ placeId: id, fields: ["address_components"] }, (placeDetails) => {
-        const departement = (placeDetails?.address_components || []).find((comp) =>
-          comp.types.includes("administrative_area_level_2"),
+      const contextParts = place.properties.context.split(", ");
+      if (contextParts.length > 1) {
+        const depName = contextParts[1];
+        const oldDeps = query.departments;
+        dispatch(
+          addToQueryActionCreator({
+            departments: [...new Set([...oldDeps, depName])],
+            sort: "location",
+          }),
         );
-        let depName = departement?.long_name;
-        if (depName === "Département de Paris") depName = "Paris"; // specific case to fix google API
-        if (depName) {
-          const oldDeps = query.departments;
-          dispatch(
-            addToQueryActionCreator({
-              departments: [...new Set([...oldDeps, depName])],
-              sort: "location",
-            }),
-          );
-        }
-      });
+      }
       resetLocationSearch();
     },
-    [placesService, resetLocationSearch, query.departments, dispatch, eventName],
+    [resetLocationSearch, query.departments, dispatch, eventName],
   );
 
   const onSelectCommonPlace = useCallback(
@@ -105,8 +106,12 @@ const LocationMenu: React.FC<Props> = () => {
     return query.departments.map((dep) => getDepartmentCodeFromName(dep));
   }, [query.departments]);
 
+  // No department counts shown anymore
+
   return (
     <div className={styles.container}>
+      <LocationMenuItem locationSearch={locationSearch} />
+
       <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
 
       <div className={styles.departments}>
@@ -115,24 +120,24 @@ const LocationMenu: React.FC<Props> = () => {
         ))}
       </div>
 
-      <LocationMenuItem />
-
       <div className={styles.places}>
-        {locationSearch !== "" &&
-          placePredictions
+        {suggestions.length > 0 &&
+          suggestions
             .slice(0, 5)
             .map((p, i) => <PlaceMenuItem key={i} p={p} onSelectPrediction={onSelectPrediction} />)}
-        {locationSearch === "" &&
+        {suggestions.length === 0 &&
           commonPlaces
             .filter(({ deptNo }) => !queryDepartmentCodes.includes(deptNo))
-            .map(({ deptNo, placeName }) => (
-              <CommonPlaceMenuItem
-                key={deptNo}
-                placeName={placeName}
-                deptNo={deptNo}
-                onSelectCommonPlace={onSelectCommonPlace}
-              />
-            ))}
+            .map(({ deptNo, placeName }) => {
+              return (
+                <CommonPlaceMenuItem
+                  key={deptNo}
+                  placeName={placeName}
+                  deptNo={deptNo}
+                  onSelectCommonPlace={onSelectCommonPlace}
+                />
+              );
+            })}
       </div>
     </div>
   );

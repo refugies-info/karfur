@@ -20,6 +20,7 @@ interface Props {
   className?: string;
   dropDownClassName?: string;
   languageSelectorType?: "global" | "page";
+  itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null | undefined;
   key?: string;
 }
@@ -32,6 +33,7 @@ const LanguageMenu = ({
   dropDownClassName,
   languageSelectorType = "global",
   availableLanguages = null,
+  itemsDesign = "default",
   key,
 }: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
@@ -81,6 +83,7 @@ const LanguageMenu = ({
             onChangeLang={handleToggleMobileMenu}
             type={languageSelectorType}
             availableLanguages={availableLanguages}
+            itemsDesign={itemsDesign}
           />
         </Accordion>
       ) : null}
@@ -108,6 +111,7 @@ const LanguageMenu = ({
               onChangeLang={handleToggleDesktopDopdown}
               type={languageSelectorType}
               availableLanguages={availableLanguages}
+              itemsDesign={itemsDesign}
             />
           </DropdownContent>
         </DropdownRoot>
@@ -151,6 +155,7 @@ const LanguageMenu = ({
                       onChangeLang={handleToggleDesktopDopdown}
                       type={languageSelectorType}
                       availableLanguages={availableLanguages}
+                      itemsDesign={itemsDesign}
                     />
                   </Dialog.Description>
                 </Dialog.Content>
