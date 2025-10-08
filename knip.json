@@ -9,6 +9,7 @@
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
+        "eslint",
         "eslint-config-next",
         "eslint-config-turbo",
         "flag-icons",
