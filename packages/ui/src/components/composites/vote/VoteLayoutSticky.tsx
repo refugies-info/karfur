@@ -8,7 +8,7 @@ type VoteLayoutStickyProps = {
   vote?: boolean | null;
   handleClickYes: () => void;
   handleClickNo: () => void;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
 };
 
 const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(

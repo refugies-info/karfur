@@ -9,7 +9,7 @@ type VoteLayoutStandardProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
 };
 
 const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
@@ -49,7 +49,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         </div>
         <p
           className={cn(
-            "m-0 overflow-hidden transition-[max-height] delay-200 duration-500 text-sm",
+            "m-0 overflow-hidden text-sm transition-[max-height] delay-200 duration-500",
             hasVoted ? "max-h-[1000px]" : "max-h-0",
             vote === true && "delay-1000",
           )}
