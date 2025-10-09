@@ -24,6 +24,7 @@ const ThemeItem: React.FC<Props> = ({ color, id, label, needCount, selected }) =
           : undefined
       }
       onClick={() => setSelectedThemeId(id)}
+      type="button"
     >
       <div className={styles.zone}>
         <span className={styles.label}>{label}</span>

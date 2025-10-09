@@ -39,9 +39,9 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
       <div className={styles.needs} ref={needsContainerRef}>
         {displayedNeeds.map((need, i) => {
           return (
-            <>
-              <NeedItem key={i} need={need} />{" "}
-            </>
+            <React.Fragment key={i}>
+              <NeedItem need={need} />{" "}
+            </React.Fragment>
           );
         })}
       </div>
