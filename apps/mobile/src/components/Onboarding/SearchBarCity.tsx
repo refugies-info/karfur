@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
+import { GeoAPISuggestion } from "~/types/navigation";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import CityChoice from "../Geoloc/CityChoice";
 
@@ -65,9 +65,9 @@ const TextModal = styled(Modal)`
 
 interface Props {
   enteredText: string;
-  suggestions: any[];
+  suggestions: GeoAPISuggestion[];
   onChangeText: (data: string) => void;
-  selectSuggestion: (suggestion: any) => void;
+  selectSuggestion: (suggestion: GeoAPISuggestion) => void;
   geoloc: React.ReactNode;
 }
 

@@ -5,7 +5,7 @@ import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
+import { GeoAPISuggestion } from "~/types/navigation";
 import { getCitiesFromGeoAPI } from "~/utils/API";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
@@ -56,7 +56,7 @@ export const FilterCityComponent = ({
 }: Props) => {
   const theme = useTheme();
   const [enteredText, setEnteredText] = React.useState("");
-  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>([]);
+  const [suggestions, setSuggestions] = React.useState<GeoAPISuggestion[]>([]);
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t } = useTranslationWithRTL();
@@ -94,7 +94,7 @@ export const FilterCityComponent = ({
     }
   };
 
-  const setCityAndGetDepartment = async (suggestion: any) => {
+  const setCityAndGetDepartment = async (suggestion: GeoAPISuggestion) => {
     setIsGeolocLoading(true);
     setSelectedCity(suggestion.properties.city);
     const department = suggestion.properties.context.split(", ")[1];
@@ -111,7 +111,7 @@ export const FilterCityComponent = ({
     setSelectedDepartment(department);
   };
 
-  const onSelectSuggestion = async (suggestion: any) => {
+  const onSelectSuggestion = async (suggestion: GeoAPISuggestion) => {
     try {
       setEnteredText("");
       await setCityAndGetDepartment(suggestion);
