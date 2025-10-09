@@ -46,7 +46,7 @@ export const ReadableText = React.forwardRef<ReadableTextRef, Props>((props, ref
   const elementFocused = props.isFocused !== undefined ? props.isFocused : isFocused;
 
   // Attach the properties/methods to the ref
-  const readingObject = useRef<ReadingObject>();
+  const readingObject = useRef<ReadingObject | undefined>(undefined);
   readingObject.current = {
     getReadingItem: (currentScroll: number) => {
       return new Promise((resolve) => {

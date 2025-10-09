@@ -146,9 +146,9 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       // no layout, matching children's layout
     }
     return React.Children.toArray(childrenItems)
-      .filter((child) => child !== null && typeof child === "object" && "props" in child)
+      .filter((child): child is React.ReactElement => child !== null && typeof child === "object" && "props" in child)
       .map((child, i) => {
-        const styling = child && typeof child === "object" && "props" in child ? child.props.style : {};
+        const styling = (child.props as { style?: ICustomViewStyle }).style || {};
         return getShiverBone(styling, i);
       });
   };
