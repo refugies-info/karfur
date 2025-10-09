@@ -5,9 +5,17 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import CityChoice from "../Geoloc/CityChoice";
+
+interface GeoAPIFeature {
+  properties: {
+    city?: string;
+    context?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
 
 const MainContainer = styled.View`
   flex-direction: row;
@@ -58,16 +66,23 @@ const FakeInputText = styled.Text<{ isRTL: boolean }>`
 const SuggestionsContainer = styled.ScrollView`
   margin-top: ${styles.margin}px;
 `;
-const TextModal = styled(Modal)`
-  justify-content: flex-start;
-  padding-top: ${styles.margin * 6}px;
+
+const ModalContainer = styled.View`
+  flex: 1;
+  background-color: ${styles.colors.white};
+`;
+
+const ModalContent = styled.View`
+  flex: 1;
+  padding-horizontal: ${styles.margin * 2}px;
+  padding-vertical: ${styles.margin * 10}px;
 `;
 
 interface Props {
   enteredText: string;
-  suggestions: any[];
+  suggestions: GeoAPIFeature[];
   onChangeText: (data: string) => void;
-  selectSuggestion: (suggestion: any) => void;
+  selectSuggestion: (suggestion: GeoAPIFeature) => void;
   geoloc: React.ReactNode;
 }
 
@@ -95,54 +110,63 @@ export const SearchBarCity = (props: Props) => {
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
-      <TextModal
+      <Modal
         visible={modalOpened}
-        onDismiss={() => setModalOpened(false)}
+        onRequestClose={() => setModalOpened(false)}
         statusBarTranslucent={true}
-        backdropColor={styles.colors.greyF7}
         transparent={false}
+        animationType="slide"
       >
-        <SafeAreaView>
-          <MainContainer>
-            <TouchableOpacity
-              onPress={() => setModalOpened(false)}
-              style={{ marginRight: styles.margin }}
-              accessibilityRole="button"
-              accessible={true}
-              accessibilityLabel={t("global.back")}
-            >
-              <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
-            </TouchableOpacity>
-            <InputContainer>
-              <StyledInput
-                ref={input}
-                value={props.enteredText}
-                onChangeText={props.onChangeText}
-                isRTL={isRTL}
-                testID="test-city-input"
-              />
-              <TouchableOpacity
-                onPress={clearInput}
-                accessibilityRole="button"
-                accessible={true}
-                accessibilityLabel={t("global.clear_selection_accessibility")}
-              >
-                <Icon name="close-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
-              </TouchableOpacity>
-            </InputContainer>
-          </MainContainer>
-          <SuggestionsContainer keyboardShouldPersistTaps={"handled"} keyboardDismissMode="on-drag">
-            {props.geoloc}
-            {(props.suggestions || []).map((suggestion, index) => (
-              <CityChoice
-                key={index}
-                city={suggestion?.properties?.city}
-                onSelect={() => props.selectSuggestion(suggestion)}
-              />
-            ))}
-          </SuggestionsContainer>
-        </SafeAreaView>
-      </TextModal>
+        <ModalContainer>
+          <SafeAreaView style={{ flex: 1 }}>
+            <ModalContent>
+              <MainContainer>
+                <TouchableOpacity
+                  onPress={() => setModalOpened(false)}
+                  style={{ marginRight: styles.margin }}
+                  accessibilityRole="button"
+                  accessible={true}
+                  accessibilityLabel={t("global.back")}
+                >
+                  <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+                </TouchableOpacity>
+                <InputContainer>
+                  <StyledInput
+                    ref={input}
+                    value={props.enteredText}
+                    onChangeText={props.onChangeText}
+                    isRTL={isRTL}
+                    testID="test-city-input"
+                  />
+                  <TouchableOpacity
+                    onPress={clearInput}
+                    accessibilityRole="button"
+                    accessible={true}
+                    accessibilityLabel={t("global.clear_selection_accessibility")}
+                  >
+                    <Icon name="close-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+                  </TouchableOpacity>
+                </InputContainer>
+              </MainContainer>
+              <SuggestionsContainer keyboardShouldPersistTaps={"handled"} keyboardDismissMode="on-drag">
+                {props.geoloc}
+                {(props.suggestions || [])
+                  .filter(
+                    (suggestion): suggestion is GeoAPIFeature & { properties: { city: string } } =>
+                      !!suggestion?.properties?.city,
+                  )
+                  .map((suggestion, index) => (
+                    <CityChoice
+                      key={index}
+                      city={suggestion.properties.city}
+                      onSelect={() => props.selectSuggestion(suggestion)}
+                    />
+                  ))}
+              </SuggestionsContainer>
+            </ModalContent>
+          </SafeAreaView>
+        </ModalContainer>
+      </Modal>
     </View>
   );
 };
