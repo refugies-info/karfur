@@ -27,7 +27,6 @@
     ],
     "overrides": {
       "debug": "4.4.1",
-      "expo-dev-menu": "6.0.21",
       "form-data": ">=4.0.4",
       "image-size": "^1.2.1",
       "pbkdf2": ">=3.1.3",
