@@ -34,7 +34,9 @@
       "stylus": "npm:noop3@^1000.0.0",
       "tmp": ">=0.2.4",
       "undici": ">=6.21.2",
-      "@codegouvfr/react-dsfr": "1.20.2"
+      "@codegouvfr/react-dsfr": "1.20.2",
+      "@types/react": "19.0.14",
+      "@types/react-dom": "19.2.1"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
