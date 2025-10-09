@@ -15,6 +15,7 @@
   ],
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@firebase/util",
       "@parcel/watcher",
       "@tailwindcss/oxide",
       "core-js",
