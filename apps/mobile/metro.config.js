@@ -14,6 +14,9 @@ config.resolver = {
   ...resolver,
   assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
   sourceExts: [...resolver.sourceExts, "svg"],
+  // Fix for redux-saga with React Native 0.79+
+  unstable_enablePackageExports: true,
+  unstable_conditionNames: ["require", "import"],
 };
 
 module.exports = config;
