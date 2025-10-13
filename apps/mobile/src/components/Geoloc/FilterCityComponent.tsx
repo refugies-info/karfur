@@ -60,12 +60,18 @@ export const FilterCityComponent = ({
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t } = useTranslationWithRTL();
+  const debounceTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const defaultError = t("global.error", "Une erreur est survenue, réessaie.");
 
   const resetData = () => {
     setEnteredText("");
     setSuggestions([]);
+    setSelectedDepartment("");
+    setSelectedCity("");
+  };
+
+  const resetSelection = () => {
     setSelectedDepartment("");
     setSelectedCity("");
   };
@@ -79,19 +85,46 @@ export const FilterCityComponent = ({
     }
   }, [userLocation.city, userLocation.department]);
 
-  const onChangeText = async (data: string) => {
-    setError("");
-    setEnteredText(data);
+  // Cleanup debounce timer on unmount
+  React.useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
+
+  const fetchCitySuggestions = async (searchText: string) => {
+    if (!searchText.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
     try {
-      const results = await getCitiesFromGeoAPI(data);
+      const results = await getCitiesFromGeoAPI(searchText);
       if (results && results.data && results.data.features) {
         setSuggestions(results.data.features);
       }
     } catch (_: unknown) {
       setError(defaultError);
-      resetData();
+      setSuggestions([]);
       setIsGeolocLoading(false);
     }
+  };
+
+  const onChangeText = (data: string) => {
+    setError("");
+    setEnteredText(data);
+
+    // Clear existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // Set new timer to fetch suggestions after 300ms of no typing
+    debounceTimerRef.current = setTimeout(() => {
+      fetchCitySuggestions(data);
+    }, 300);
   };
 
   const setCityAndGetDepartment = async (suggestion: GeoAPISuggestion) => {
@@ -114,10 +147,11 @@ export const FilterCityComponent = ({
   const onSelectSuggestion = async (suggestion: GeoAPISuggestion) => {
     try {
       setEnteredText("");
+      setSuggestions([]);
       await setCityAndGetDepartment(suggestion);
     } catch (_: unknown) {
       setError(defaultError);
-      resetData();
+      resetSelection();
       setIsGeolocLoading(false);
     }
   };
@@ -128,10 +162,10 @@ export const FilterCityComponent = ({
         setSelectedCity={setSelectedCity}
         setSelectedDepartment={setSelectedDepartment}
         setLoading={setIsGeolocLoading}
-        onError={() => resetData()}
+        onError={() => resetSelection()}
       />
     );
-  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading, resetData]);
+  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading]);
 
   return (
     <Rows verticalAlign="space-between">
