@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
@@ -71,10 +71,10 @@ export const FilterCityComponent = ({
     setSelectedCity("");
   };
 
-  const resetSelection = () => {
+  const resetSelection = useCallback(() => {
     setSelectedDepartment("");
     setSelectedCity("");
-  };
+  }, []);
 
   const userLocation = useSelector(userLocationSelector);
 
@@ -165,7 +165,7 @@ export const FilterCityComponent = ({
         onError={() => resetSelection()}
       />
     );
-  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading]);
+  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading, resetSelection]);
 
   return (
     <Rows verticalAlign="space-between">
