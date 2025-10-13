@@ -88,6 +88,11 @@ FROM base AS runner
   # Automatically leverage output traces to reduce image size
   # https://nextjs.org/docs/advanced-features/output-file-tracing
   COPY --from=installer --chown=nextjs:nodejs /app/apps/client/.dist ./
+  
+  # Copy node_modules from the installer stage
+  # Next.js standalone tracing doesn't properly handle all pnpm workspace dependencies
+  # so we copy the full node_modules to ensure runtime dependencies are available
+  COPY --from=installer --chown=nextjs:nodejs /app/node_modules ./node_modules
 
   EXPOSE 3000
 
