@@ -489,8 +489,8 @@ importers:
         specifier: ^52.0.47
         version: 52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       expo-av:
-        specifier: ~15.0.2
-        version: 15.0.2(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
+        specifier: ~16.0.7
+        version: 16.0.7(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       expo-build-properties:
         specifier: ~0.14.8
         version: 0.14.8(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
@@ -7264,8 +7264,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  expo-av@15.0.2:
-    resolution: {integrity: sha512-AHIHXdqLgK1dfHZF0JzX3YSVySGMrWn9QtPzaVjw54FAzvXfMt4sIoq4qRL/9XWCP9+ICcCs/u3EcvmxQjrfcA==}
+  expo-av@16.0.7:
+    resolution: {integrity: sha512-QReef6/RYuZ4GekTcZZw5zY26pcPOmHqK6LMgFlPhnsT0ga97HJrgMc63pvIiojDP+q4oIv24g+QPD8ljZu4XQ==}
     peerDependencies:
       expo: '*'
       react: '*'
@@ -21324,7 +21324,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  expo-av@15.0.2(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
+  expo-av@16.0.7(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1):
     dependencies:
       expo: 52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       react: 18.3.1
