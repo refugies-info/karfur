@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
 import { getDepartmentNameFromCode } from "~/lib/departments";
+import { filterByType } from "~/lib/recherche/filterContents";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
@@ -41,7 +42,16 @@ const LocationMenu: React.FC<Props> = () => {
 
   const [locationSearch, setLocationSearch] = useState("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [hasClicked, setHasClicked] = useState(false);
+  const [pendingAnnounce, setPendingAnnounce] = useState(false);
+  const [previousDepartment, setPreviousDepartment] = useState<string>("");
+  const [previousResultsCount, setPreviousResultsCount] = useState<number>(0);
+
+  const filteredResults = useMemo(() => {
+    return {
+      matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
+      suggestions: searchResults.suggestions,
+    };
+  }, [query.type, searchResults]);
 
   const onChangeDepartmentInput = useCallback(
     (e: any) => {
@@ -87,21 +97,12 @@ const LocationMenu: React.FC<Props> = () => {
       Event(eventName, "choose location option", place.properties.label);
       Event(eventName, "click filter", "location");
       const contextParts = place.properties.context.split(", ");
-      setHasClicked(true);
+
+      setPreviousResultsCount(filteredResults.matches.length);
+      setPendingAnnounce(true);
 
       if (contextParts.length > 1) {
         const depName = contextParts[1];
-
-        announce(
-          t("Recherche.selectDepartement", "Département {{dept}} séléctionné {{count}} fiches chargées", {
-            dept: depName,
-            count: searchResults.matches.length,
-          }),
-          {
-            delay: 1000,
-            priority: "interrupt",
-          },
-        );
         dispatch(
           addToQueryActionCreator({
             departments: [depName],
@@ -110,13 +111,14 @@ const LocationMenu: React.FC<Props> = () => {
         );
       }
     },
-    [dispatch, eventName, announce, searchResults.matches.length, t],
+    [dispatch, eventName, filteredResults.matches.length],
   );
 
   const onSelectCommonPlace = useCallback(
     (depName: string) => {
       Event(eventName, "choose location suggestion", depName);
-      setHasClicked(true);
+      setPreviousResultsCount(filteredResults.matches.length);
+      setPendingAnnounce(true);
 
       dispatch(
         addToQueryActionCreator({
@@ -125,26 +127,40 @@ const LocationMenu: React.FC<Props> = () => {
         }),
       );
     },
-    [dispatch, eventName],
+    [dispatch, eventName, filteredResults.matches.length],
   );
 
   useEffect(() => {
-    if (!hasClicked) return;
-    const decodedDept = query.departments[0] ? decodeURIComponent(query.departments[0]) : "";
-    const message = t("Recherche.selectDepartement", "{{count}} fiches chargées", {
-      dept: decodedDept,
-      count: searchResults.matches.length,
-    });
-    // Decode HTML entities like &#39; to regular characters
-    const parser = new DOMParser();
-    const decodedMessage = parser.parseFromString(message, "text/html").documentElement.textContent || message;
-    announce(decodedMessage, {
-      delay: 1000,
-      priority: "interrupt",
-    });
+    const currentDepartment = query.departments[0] || "";
+    if (pendingAnnounce && currentDepartment && currentDepartment !== previousDepartment) {
+      setPreviousDepartment(currentDepartment);
+    }
+  }, [query.departments, pendingAnnounce, previousDepartment]);
 
-    setHasClicked(false);
-  }, [searchResults.matches.length, announce, t, query.departments, hasClicked]);
+  useEffect(() => {
+    if (!pendingAnnounce) return undefined;
+
+    const currentDepartment = query.departments[0] || "";
+    const currentCount = filteredResults.matches.length;
+
+    if (currentDepartment && currentCount > 0 && currentCount !== previousResultsCount) {
+      const decodedDept = decodeURIComponent(currentDepartment);
+      const message = t("Recherche.selectDepartement", "Département {{dept}} sélectionné {{count}} fiches chargées", {
+        dept: decodedDept,
+        count: currentCount,
+      });
+      const parser = new DOMParser();
+      const decodedMessage = parser.parseFromString(message, "text/html").documentElement.textContent || message;
+      announce(decodedMessage, {
+        delay: 1000,
+        priority: "interrupt",
+      });
+
+      setPreviousResultsCount(currentCount);
+      setPendingAnnounce(false);
+    }
+    return undefined;
+  }, [filteredResults.matches.length, announce, t, query.departments, pendingAnnounce, previousResultsCount]);
 
   return (
     <div className={styles.container}>
