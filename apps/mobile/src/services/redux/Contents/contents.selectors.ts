@@ -1,4 +1,5 @@
 import { Languages } from "@refugies-info/api-types";
+import { createSelector } from "reselect";
 import { RootState } from "../reducers";
 
 export const contentsSelector = (state: RootState) =>
@@ -10,7 +11,13 @@ export const contentSelector = (id: string) => (state: RootState) =>
 export const mostViewedContentsSelector = (langue: Languages) => (state: RootState) =>
   state.contents[langue].sort((a, b) => b.nbVuesMobile - a.nbVuesMobile).slice(0, 10);
 
-export const nbContentsSelector = (state: RootState) => ({
-  nbGlobalContent: state.contents.nbGlobalContent,
-  nbLocalizedContent: state.contents.nbLocalizedContent,
-});
+const nbGlobalContentSelector = (state: RootState) => state.contents.nbGlobalContent;
+const nbLocalizedContentSelector = (state: RootState) => state.contents.nbLocalizedContent;
+
+export const nbContentsSelector = createSelector(
+  [nbGlobalContentSelector, nbLocalizedContentSelector],
+  (nbGlobalContent, nbLocalizedContent) => ({
+    nbGlobalContent,
+    nbLocalizedContent,
+  }),
+);

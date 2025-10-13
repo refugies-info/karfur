@@ -58,9 +58,11 @@ const FakeInputText = styled.Text<{ isRTL: boolean }>`
 const SuggestionsContainer = styled.ScrollView`
   margin-top: ${styles.margin}px;
 `;
-const TextModal = styled(Modal)`
-  justify-content: flex-start;
-  padding-top: ${styles.margin * 6}px;
+const ModalContainer = styled(SafeAreaView)`
+  flex: 1;
+  padding-horizontal: ${styles.margin * 2}px;
+  padding-vertical: ${styles.margin * 8}px;
+  background-color: ${styles.colors.white};
 `;
 
 interface Props {
@@ -95,14 +97,13 @@ export const SearchBarCity = (props: Props) => {
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
-      <TextModal
+      <Modal
         visible={modalOpened}
         onDismiss={() => setModalOpened(false)}
         statusBarTranslucent={true}
-        backdropColor={styles.colors.greyF7}
         transparent={false}
       >
-        <SafeAreaView>
+        <ModalContainer>
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
@@ -141,8 +142,8 @@ export const SearchBarCity = (props: Props) => {
               />
             ))}
           </SuggestionsContainer>
-        </SafeAreaView>
-      </TextModal>
+        </ModalContainer>
+      </Modal>
     </View>
   );
 };

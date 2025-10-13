@@ -32,10 +32,10 @@ export const getThemes = () =>
   makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then((response) => response.data);
 
 export const getCitiesFromGeoAPI = (text: string) =>
-  apiCaller.post(`https://data.geopf.fr/geocodage/search?q=${text}&type=municipality`);
+  apiCaller.get(`https://data.geopf.fr/geocodage/search?q=${text}&type=municipality`);
 
 export const getPlaceFromLocationFromGeoAPI = (longitude: number, latitude: number) =>
-  apiCaller.post(`https://data.geopf.fr/geocodage/reverse?lon=${longitude}&lat=${latitude}`);
+  apiCaller.get(`https://data.geopf.fr/geocodage/reverse?lon=${longitude}&lat=${latitude}`);
 
 export const getContentsForApp = (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> =>
   makeApiRequest<GetContentsForAppRequest, ResponseWith<GetContentsForAppResponse>>(
