@@ -236,8 +236,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       react-hook-form:
-        specifier: ^7.62.0
-        version: 7.62.0(react@18.3.1)
+        specifier: ^7.65.0
+        version: 7.65.0(react@18.3.1)
       react-i18next:
         specifier: ^15.7.3
         version: 15.7.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
@@ -662,7 +662,7 @@ importers:
         version: 15.0.7(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@testing-library/react-native':
         specifier: ^12.9.0
-        version: 12.9.0(jest@29.7.0(@types/node@22.18.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 12.9.0(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/jest':
         specifier: ^29.5.14
         version: 29.5.14
@@ -701,7 +701,7 @@ importers:
         version: 29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2))
       jest-expo:
         specifier: 52.0.6
-        version: 52.0.6(@babel/core@7.28.4)(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.18.1))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.101.3)
+        version: 52.0.6(@babel/core@7.28.4)(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.101.3)
       papaparse:
         specifier: ^5.5.3
         version: 5.5.3
@@ -10877,8 +10877,8 @@ packages:
   react-ga4@2.1.0:
     resolution: {integrity: sha512-ZKS7PGNFqqMd3PJ6+C2Jtz/o1iU9ggiy8Y8nUeksgVuvNISbmrQtJiZNvC/TjDsqD0QlU5Wkgs7i+w9+OjHhhQ==}
 
-  react-hook-form@7.62.0:
-    resolution: {integrity: sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==}
+  react-hook-form@7.65.0:
+    resolution: {integrity: sha512-xtOzDz063WcXvGWaHgLNrNzlsdFgtUWcb32E6WFaGTd7kPZG3EeDusjdZfUsPwKCKVXy1ZlntifaHZ4l8pAsmw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -18249,7 +18249,7 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react-native@12.9.0(jest@29.7.0(@types/node@22.18.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@testing-library/react-native@12.9.0(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react-test-renderer@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       jest-matcher-utils: 29.7.0
       pretty-format: 29.7.0
@@ -23045,7 +23045,7 @@ snapshots:
       jest-util: 30.0.5
       jest-validate: 30.1.0
 
-  jest-expo@52.0.6(@babel/core@7.28.4)(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.18.1))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.101.3):
+  jest-expo@52.0.6(@babel/core@7.28.4)(expo@52.0.47(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(webpack@5.101.3):
     dependencies:
       '@expo/config': 10.0.11
       '@expo/json-file': 9.1.5
@@ -23058,7 +23058,7 @@ snapshots:
       jest-environment-jsdom: 29.7.0
       jest-snapshot: 29.7.0
       jest-watch-select-projects: 2.0.0
-      jest-watch-typeahead: 2.2.1(jest@29.7.0(@types/node@22.18.1))
+      jest-watch-typeahead: 2.2.1(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))
       json5: 2.2.3
       lodash: 4.17.21
       react-native: 0.77.0(@babel/core@7.28.4)(@babel/preset-env@7.28.3(@babel/core@7.28.4))(@types/react@18.3.12)(react@18.3.1)
@@ -23438,7 +23438,7 @@ snapshots:
       chalk: 3.0.0
       prompts: 2.4.2
 
-  jest-watch-typeahead@2.2.1(jest@29.7.0(@types/node@22.18.1)):
+  jest-watch-typeahead@2.2.1(jest@29.7.0(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2))):
     dependencies:
       ansi-escapes: 6.2.1
       chalk: 4.1.2
@@ -25756,7 +25756,7 @@ snapshots:
 
   react-ga4@2.1.0: {}
 
-  react-hook-form@7.62.0(react@18.3.1):
+  react-hook-form@7.65.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
