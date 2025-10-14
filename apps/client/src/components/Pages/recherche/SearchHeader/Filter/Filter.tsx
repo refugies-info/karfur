@@ -1,4 +1,5 @@
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
+import { useWindowSize } from "@refugies-info/ui";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
@@ -11,7 +12,7 @@ import {
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
 import Tooltip from "~/components/UI/Tooltip";
-import { useSearchEventName, useWindowSize } from "~/hooks";
+import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -141,7 +142,9 @@ const Filter = ({
     const querySelected = processedMenuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
     if (Array.isArray(querySelected)) {
       return querySelected.map((selected) => {
-        const val = processedMenuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
+        const val = processedMenuItems
+          .flatMap((item) => item.options.find((a) => a.key === selected)?.value)
+          .filter(Boolean);
         return val.length > 0 ? t(val[0] as any) : null;
       });
     }

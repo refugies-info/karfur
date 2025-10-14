@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { AnnotationsOverlay } from "@refugies-info/ui";
+import { AnnotationsOverlay, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
@@ -7,7 +7,7 @@ import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 

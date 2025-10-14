@@ -1,7 +1,6 @@
 "use client";
-import { Carrousel, cn } from "@refugies-info/ui";
+import { Carrousel, cn, useWindowSize } from "@refugies-info/ui";
 import { useCallback, useEffect, useMemo } from "react";
-import { useWindowSize } from "../../../hooks";
 import { useMapContext } from "./MapContext";
 import MapPanelItem from "./MapPanelItem";
 

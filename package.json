@@ -117,7 +117,7 @@
     "knip": "^5.63.0",
     "lint-staged": "^15.5.2",
     "mongo-migrate-ts": "^1.6.3",
-    "mongodb": "^6.19.0",
+    "mongodb": "^6.20.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.2.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
@@ -125,7 +125,7 @@
     "stylelint": "^16.23.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.20.5",
-    "turbo": "2.5.6",
+    "turbo": "2.5.8",
     "typescript": "^5.9.2"
   },
   "volta": {

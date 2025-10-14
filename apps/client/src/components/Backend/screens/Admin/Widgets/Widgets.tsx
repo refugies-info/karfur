@@ -1,11 +1,11 @@
 import { ContentType, Id } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import { useCallback, useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import FButton from "~/components/UI/FButton";
 import FInput from "~/components/UI/FInput/FInput";
-import isInBrowser from "~/lib/isInBrowser";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";

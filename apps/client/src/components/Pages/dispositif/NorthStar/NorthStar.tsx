@@ -1,13 +1,12 @@
 "use client";
 
-import { Vote } from "@refugies-info/ui";
+import { useWindowSize, Vote } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
-import useWindowSize from "~/hooks/useWindowSize";
 import { customEvent } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -65,9 +64,7 @@ const NorthStar = () => {
         didVote ||
         (userId || anonymousUserId
           ? dispositif.avis?.find(
-              (a) =>
-                (userId && a.userId === userId) ||
-                (anonymousUserId && a.anonymousUserId === anonymousUserId),
+              (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {
