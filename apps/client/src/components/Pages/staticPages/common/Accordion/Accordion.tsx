@@ -1,11 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
+import { useWindowSize } from "@refugies-info/ui";
 import DOMPurify from "isomorphic-dompurify";
 import { useState } from "react";
 import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
 import { useConsent } from "~/hooks/useConsentContext";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import styles from "./Accordion.module.scss";

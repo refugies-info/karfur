@@ -1,3 +1,4 @@
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import demarchesMobile from "~/assets/homepage/why-accordion/demarches-mobile.png";
 import demarches from "~/assets/homepage/why-accordion/demarches.png";
@@ -5,7 +6,6 @@ import dispos from "~/assets/homepage/why-accordion/dispos-mobile.png";
 import dispositif from "~/assets/homepage/why-accordion/dispositifs.png";
 import partage from "~/assets/homepage/why-accordion/partage.png";
 import { Accordion } from "~/components/Pages/staticPages/common";
-import { useWindowSize } from "~/hooks";
 
 interface Props {
   nbDemarches: number;

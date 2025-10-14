@@ -1,6 +1,7 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useWindowSize } from "@refugies-info/ui";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
 import { useRef, useState } from "react";
@@ -9,7 +10,6 @@ import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
 
@@ -45,7 +45,8 @@ const LanguageMenu = ({
     currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === "fr");
   }
 
-  const { isMobile } = useWindowSize();
+  const { isMobile, zoomLevel } = useWindowSize();
+
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
 
@@ -90,7 +91,7 @@ const LanguageMenu = ({
 
       {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
         <DropdownRoot
-          className={className}
+          className={cn(className, zoomLevel >= 175 && "!w-full")}
           ref={dropdownRef}
           key={key}
           onOpenChange={(open) => setLangMenuOpened(open)}
@@ -106,7 +107,7 @@ const LanguageMenu = ({
               <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="start" className={dropDownClassName}>
+          <DropdownContent position="start" className={cn(dropDownClassName, zoomLevel > 175 && "!w-full")}>
             <LanguageSelector
               onChangeLang={handleToggleDesktopDopdown}
               type={languageSelectorType}

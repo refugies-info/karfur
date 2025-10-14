@@ -1,8 +1,9 @@
 import * as Accordion from "@radix-ui/react-accordion";
+import { useWindowSize } from "@refugies-info/ui";
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import ThemeItemMobile from "~/components/Pages/recherche/ThemeMenu/ThemeItem.mobile";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { sortThemes } from "~/lib/sortThemes";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
