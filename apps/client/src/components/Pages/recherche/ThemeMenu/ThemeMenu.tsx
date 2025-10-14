@@ -1,9 +1,9 @@
 import { Id } from "@refugies-info/api-types";
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useWindowSize } from "@refugies-info/ui";
+import { ChangeEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { cls } from "~/lib/classname";
 import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
@@ -94,13 +94,17 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
     };
   }, []);
 
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <ThemeMenuContext.Provider
       value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
     >
       <div className={cls(!isMobile && styles.container, className)} ref={themesMenuContainerRef}>
         <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>
-          <SearchButton onChange={(e) => setSearch(e.target.value)} />
+          <SearchButton onChange={handleSearch} />
         </div>
         <div className={styles.main}>
           {search ? (

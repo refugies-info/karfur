@@ -1,6 +1,7 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
 import { getThemesDisplayed } from "~/lib/recherche/functions";
+import { queryDispositifs } from "~/lib/recherche/queryContents";
 import { RootState } from "../rootReducer";
 import { Results, SearchQuery } from "./searchResults.reducer";
 
@@ -25,4 +26,27 @@ export const themesDisplayedSelector = createSelector(
 export const themesDisplayedValueSelector = createSelector(
   [themesDisplayedSelector, selectLanguage],
   (themesDisplayed, selectLanguage) => themesDisplayed.map((t) => t.short[selectLanguage] || t.short.fr),
+);
+
+const selectActiveDispositifs = (state: RootState) => state.activeDispositifs;
+
+/**
+ * Selector that returns a function to compute the filtered dispositifs count
+ * when a specific need is selected (in addition to current filters)
+ */
+export const filteredDispositifsCountByNeedSelector = createSelector(
+  [selectActiveDispositifs, selectNeeds, searchQuerySelector],
+  (dispositifs, allNeeds, currentQuery) => {
+    return (needId: Id): number => {
+      // Create a new query with the selected need added
+      const queryWithNeed: SearchQuery = {
+        ...currentQuery,
+        needs: [...currentQuery.needs, needId],
+      };
+      
+      // Filter dispositifs with the new query
+      const results = queryDispositifs(queryWithNeed, dispositifs, allNeeds);
+      return results.matches.length;
+    };
+  },
 );
