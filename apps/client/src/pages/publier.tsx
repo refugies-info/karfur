@@ -1,5 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -38,7 +39,6 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import useWindowSize from "~/hooks/useWindowSize";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";

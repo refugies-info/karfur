@@ -1,5 +1,5 @@
 import { t } from "i18next";
-import { useSanitizedContent } from "~/hooks";
+import { sanitizeContent } from "~/lib/sanitizeContent";
 
 export const getCalloutTranslationKey = (level: "info" | "important") => {
   switch (level) {
@@ -57,7 +57,7 @@ export const htmlParsing = (htmlContent: string) => {
             type: "callout",
             calloutType,
             title,
-            content: useSanitizedContent(content),
+            content: sanitizeContent(content),
           });
         }
       } else {
@@ -68,7 +68,7 @@ export const htmlParsing = (htmlContent: string) => {
         if (tempDiv.innerHTML.trim()) {
           contentSegments.push({
             type: "text",
-            content: useSanitizedContent(tempDiv.innerHTML),
+            content: sanitizeContent(tempDiv.innerHTML),
           });
         }
       }

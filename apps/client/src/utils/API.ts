@@ -93,9 +93,9 @@ import {
   UpdateUserResponse,
   WidgetRequest,
 } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import axios, { Canceler } from "axios";
 import Swal from "sweetalert2";
-import isInBrowser from "~/lib/isInBrowser";
 import { APIResponse } from "~/types/interface";
 import { getAuthToken, removeAuthToken } from "~/utils/authToken";
 import { logger } from "../logger";

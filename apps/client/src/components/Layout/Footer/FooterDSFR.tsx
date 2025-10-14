@@ -1,12 +1,13 @@
 "use client";
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { useEditionMode, useLocale } from "~/hooks";
 import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";

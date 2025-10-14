@@ -5,7 +5,7 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
-import { Carrousel } from "@refugies-info/ui";
+import { Carrousel, isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -20,9 +20,8 @@ import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useRTL, useWindowSize } from "~/hooks";
+import { useRTL } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
