@@ -27,7 +27,7 @@
     "@refugies-info/api-types": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
     "@slack/webhook": "^7.0.6",
-    "@typegoose/typegoose": "^12.19.0",
+    "@typegoose/typegoose": "^12.20.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.36.0",
     "axios": "^1.12.2",
