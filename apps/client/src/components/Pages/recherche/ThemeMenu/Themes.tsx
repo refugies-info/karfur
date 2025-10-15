@@ -1,9 +1,10 @@
 import * as Accordion from "@radix-ui/react-accordion";
+import { useWindowSize } from "@refugies-info/ui";
 import React, { useContext, useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import ThemeItemMobile from "~/components/Pages/recherche/ThemeMenu/ThemeItem.mobile";
 import { useLocale } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { sortThemes } from "~/lib/sortThemes";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
@@ -18,6 +19,7 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const sortedThemes = useMemo(() => themes.sort(sortThemes), [themes]);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const locale = useLocale();
+  const { t } = useTranslation();
 
   const query = useSelector(searchQuerySelector);
   const needs = useSelector(needsSelector);
@@ -61,21 +63,26 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
           })}
         </Accordion.Root>
       ) : (
-        <div className={styles.container}>
+        <div
+          className={styles.container}
+          role="tablist"
+          aria-orientation="vertical"
+          aria-label={t("Recherche.themeTabs")}
+        >
           {sortedThemes.map(({ _id, mainColor, short }, i) => {
             const count = nbNeedsSelectedByTheme[_id.toString()];
             const selected = selectedThemeId === _id;
+            const isFirst = i === 0;
             return (
-              <>
-                <ThemeItem
-                  key={i}
-                  color={mainColor}
-                  id={_id.toString()}
-                  label={short[locale] ?? ""}
-                  needCount={count}
-                  selected={selected}
-                />
-              </>
+              <ThemeItem
+                key={i}
+                color={mainColor}
+                id={_id.toString()}
+                label={short[locale] ?? ""}
+                needCount={count}
+                selected={selected}
+                isFirst={isFirst}
+              />
             );
           })}
         </div>

@@ -2,7 +2,7 @@ import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { Id } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { useContext, useEffect, useMemo, useRef } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
@@ -13,6 +13,7 @@ import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDi
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
@@ -24,6 +25,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const { search, selectedThemeId, nbDispositifsByNeed, nbDispositifsByTheme } = useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
   const allNeeds = useSelector(needsSelector);
+  const themes = useSelector(themesSelector);
   const { t } = useTranslation();
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();
@@ -57,6 +59,8 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   );
 
   const allNeedsSelected = currentlySelectedNeedsFromTheme.length === needsFromCurrentTheme.length;
+
+  const selectedTheme = useMemo(() => themes.find((theme) => theme._id === selectedThemeId), [themes, selectedThemeId]);
 
   const toggleAllNeeds = () => {
     let updatedSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
@@ -106,15 +110,13 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     announce(t("Recherche.updatedFilters", { count: results.matches.length }));
   };
 
-  useEffect(() => {
-    const firstFocusable = needsContainerRef.current?.querySelector(
-      "[tabindex], a, button, input, radio, select, textarea",
-    ) as HTMLElement;
-    firstFocusable?.focus();
-  }, [selectedThemeId]);
-
   return (
-    <div className={styles.container} ref={ref}>
+    <div
+      className={styles.container}
+      ref={ref}
+      role="tabpanel"
+      id={selectedThemeId ? `tabpanel-${selectedThemeId}` : undefined}
+    >
       <div
         className={cn("w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full", styles.needs)}
         ref={needsContainerRef}

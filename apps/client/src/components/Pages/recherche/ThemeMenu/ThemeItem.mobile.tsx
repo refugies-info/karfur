@@ -1,8 +1,7 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import AllNeedsItem from "~/components/Pages/recherche/ThemeMenu/AllNeedsItem";
-import NeedItem from "~/components/Pages/recherche/ThemeMenu/NeedItem";
+import Needs from "~/components/Pages/recherche/ThemeMenu/Needs";
 import { cls } from "~/lib/classname";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import styles from "./ThemeItem.mobile.module.scss";
@@ -36,10 +35,7 @@ const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) 
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Content className={styles.content}>
-        <AllNeedsItem themeId={themeId} />
-        {needs.map((need, i) => (
-          <NeedItem key={i} need={need} />
-        ))}
+        <Needs />
       </Accordion.Content>
     </Accordion.Item>
   );
