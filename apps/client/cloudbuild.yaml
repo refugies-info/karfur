@@ -35,30 +35,22 @@ steps:
 
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    entrypoint: gcloud
+    entrypoint: bash
     args:
-      [
-        "run",
-        "deploy",
-        "${_COMPONENT}-${_ENV}",
-        "--project",
-        "$PROJECT_ID",
-        "--region",
-        "${_REGION}",
-        "--platform",
-        "managed",
-        "--image",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-        "--port",
-        "3000",
-        "--memory",
-        "${_MEMORY}",
-        "--allow-unauthenticated",
-        "--concurrency",
-        "160",
-        "--max-instances",
-        "${_MAX_INSTANCES}",
-      ]
+      - -c
+      - |
+        gcloud run deploy ${_COMPONENT}-${_ENV} \
+          --project $PROJECT_ID \
+          --region ${_REGION} \
+          --platform managed \
+          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --port 3000 \
+          --memory ${_MEMORY} \
+          --set-env-vars MONGODB_URI=sm://refugies-info/${_MONGODB_VAR} \
+          --allow-unauthenticated \
+          --concurrency 160 \
+          --max-instances ${_MAX_INSTANCES} \
+          ${_VPC_CONNECTOR:+--vpc-connector=${_VPC_CONNECTOR}}
 
 options:
   dynamicSubstitutions: true
