@@ -39,6 +39,12 @@ steps:
     args:
       - -c
       - |
+        if [ -n "${_VPC_CONNECTOR}" ]; then
+          VPC_FLAG="--vpc-connector=${_VPC_CONNECTOR}"
+        else
+          VPC_FLAG=""
+        fi
+        
         gcloud run deploy ${_COMPONENT}-${_ENV} \
           --project $PROJECT_ID \
           --region ${_REGION} \
@@ -50,7 +56,7 @@ steps:
           --allow-unauthenticated \
           --concurrency 160 \
           --max-instances ${_MAX_INSTANCES} \
-          ${_VPC_CONNECTOR:+--vpc-connector=${_VPC_CONNECTOR}}
+          $VPC_FLAG
 
 options:
   dynamicSubstitutions: true

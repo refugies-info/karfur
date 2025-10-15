@@ -21,6 +21,12 @@ steps:
     args:
       - -c
       - |
+        if [ -n "${_VPC_CONNECTOR}" ]; then
+          VPC_FLAG="--vpc-connector=${_VPC_CONNECTOR}"
+        else
+          VPC_FLAG=""
+        fi
+        
         gcloud run deploy ${_COMPONENT}-${_ENV} \
           --project ${_PROJECT_NAME} \
           --platform managed \
@@ -64,7 +70,7 @@ steps:
           --max-instances ${_MAX_INSTANCES} \
           --service-account ${_SA} \
           --allow-unauthenticated \
-          ${_VPC_CONNECTOR:+--vpc-connector=${_VPC_CONNECTOR}}
+          $VPC_FLAG
 
 substitutions:
   _MAX_INSTANCES: "20"
