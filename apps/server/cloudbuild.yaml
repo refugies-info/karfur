@@ -21,10 +21,11 @@ steps:
     args:
       - -c
       - |
-        if [ -n "${_VPC_CONNECTOR}" ]; then
-          VPC_FLAG="--vpc-connector=${_VPC_CONNECTOR}"
-        else
-          VPC_FLAG=""
+        # Use array for optional command-line arguments (Google Shell Style Guide)
+        # https://google.github.io/styleguide/shellguide.html#arrays
+        vpc_args=()
+        if [[ -n "${_VPC_CONNECTOR}" ]]; then
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
         fi
         
         gcloud run deploy ${_COMPONENT}-${_ENV} \
@@ -70,7 +71,7 @@ steps:
           --max-instances ${_MAX_INSTANCES} \
           --service-account ${_SA} \
           --allow-unauthenticated \
-          $VPC_FLAG
+          "${vpc_args[@]}"
 
 substitutions:
   _MAX_INSTANCES: "20"
