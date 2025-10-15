@@ -39,10 +39,11 @@ steps:
     args:
       - -c
       - |
-        if [ -n "${_VPC_CONNECTOR}" ]; then
-          VPC_FLAG="--vpc-connector=${_VPC_CONNECTOR}"
-        else
-          VPC_FLAG=""
+        # Use array for optional command-line arguments (Google Shell Style Guide)
+        # https://google.github.io/styleguide/shellguide.html#arrays
+        vpc_args=()
+        if [[ -n "${_VPC_CONNECTOR}" ]]; then
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
         fi
         
         gcloud run deploy ${_COMPONENT}-${_ENV} \
@@ -56,7 +57,7 @@ steps:
           --allow-unauthenticated \
           --concurrency 160 \
           --max-instances ${_MAX_INSTANCES} \
-          $VPC_FLAG
+          "${vpc_args[@]}"
 
 options:
   dynamicSubstitutions: true
