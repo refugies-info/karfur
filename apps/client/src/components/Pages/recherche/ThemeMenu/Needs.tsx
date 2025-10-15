@@ -7,13 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
+import { queryDispositifs } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import {
-  filteredDispositifsCountByNeedSelector,
-  searchQuerySelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
@@ -29,7 +28,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
-  const getFilteredCountByNeed = useSelector(filteredDispositifsCountByNeedSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
 
   const displayedNeeds = useMemo(() => {
     if (search) {
@@ -76,13 +75,15 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
         themes: res.themes,
       }),
     );
+
+    // Calculate count using the updated query (after selection/deselection)
+    const updatedQuery = { ...query, needs: res.needs, themes: res.themes };
+    const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
+    announce(t("Recherche.updatedFilters", { count: results.matches.length }));
   };
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
-
-    const isSelecting = !allSelectedNeeds.includes(id);
-    const selectedNeed = needs.find((n) => n._id === id);
 
     if (allSelectedNeeds.includes(id)) {
       allSelectedNeeds = allSelectedNeeds.filter((n) => n !== id);
@@ -99,10 +100,10 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
       }),
     );
 
-    if (isSelecting && selectedNeed) {
-      const count = getFilteredCountByNeed(id);
-      announce(t("Recherche.updatedFilters", { count }));
-    }
+    // Calculate count using the updated query (after selection/deselection)
+    const updatedQuery = { ...query, needs: res.needs, themes: res.themes };
+    const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
+    announce(t("Recherche.updatedFilters", { count: results.matches.length }));
   };
 
   useEffect(() => {
