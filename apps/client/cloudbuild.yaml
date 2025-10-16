@@ -45,19 +45,19 @@ steps:
         if [[ -n "${_VPC_CONNECTOR}" ]]; then
           vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
         fi
-        
+
         gcloud run deploy ${_COMPONENT}-${_ENV} \
-          --project $PROJECT_ID \
-          --region ${_REGION} \
-          --platform managed \
-          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
-          --port 3000 \
-          --memory ${_MEMORY} \
-          --set-env-vars MONGODB_URI=sm://refugies-info/${_MONGODB_VAR} \
-          --max-instances ${_MAX_INSTANCES} \
-          --service-account ${_SA} \
           --allow-unauthenticated \
           --concurrency 160 \
+          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --max-instances ${_MAX_INSTANCES} \
+          --memory ${_MEMORY} \
+          --platform managed \
+          --port 3000 \
+          --project $PROJECT_ID \
+          --region ${_REGION} \
+          --service-account ${_SA} \
+          --set-env-vars MONGODB_URI=sm://refugies-info/${_MONGODB_VAR} \
           "${vpc_args[@]}"
 
 options:
