@@ -54,9 +54,10 @@ steps:
           --port 3000 \
           --memory ${_MEMORY} \
           --set-env-vars MONGODB_URI=sm://refugies-info/${_MONGODB_VAR} \
+          --max-instances ${_MAX_INSTANCES} \
+          --service-account ${_SA} \
           --allow-unauthenticated \
           --concurrency 160 \
-          --max-instances ${_MAX_INSTANCES} \
           "${vpc_args[@]}"
 
 options:
