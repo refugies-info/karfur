@@ -27,13 +27,16 @@ steps:
         if [[ -n "${_VPC_CONNECTOR}" ]]; then
           vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
         fi
-        
+
         gcloud run deploy ${_COMPONENT}-${_ENV} \
-          --project ${_PROJECT_NAME} \
-          --platform managed \
-          --region ${_REGION} \
+          --allow-unauthenticated \
           --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --max-instances ${_MAX_INSTANCES} \
           --memory ${_MEMORY} \
+          --platform managed \
+          --project ${_PROJECT_NAME} \
+          --region ${_REGION} \
+          --service-account ${_SA} \
           --set-env-vars accountSid=sm://refugies-info/accountSid \
           --set-env-vars AIRTABLE_BASE_CONTENU=sm://refugies-info/${_AIRTABLE_BASE_CONTENU_VAR} \
           --set-env-vars AIRTABLE_BASE_TRAD=sm://refugies-info/${_AIRTABLE_BASE_TRAD_VAR} \
@@ -68,9 +71,6 @@ steps:
           --set-env-vars SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL \
           --set-env-vars SMS_SENDER=sm://refugies-info/SMS_SENDER \
           --set-env-vars TTS_KEY_1=sm://refugies-info/TTS_KEY_1 \
-          --max-instances ${_MAX_INSTANCES} \
-          --service-account ${_SA} \
-          --allow-unauthenticated \
           "${vpc_args[@]}"
 
 substitutions:
