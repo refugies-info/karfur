@@ -107,4 +107,4 @@ FROM base AS runner
 
   EXPOSE 3000
 
-  CMD node apps/client/server.js
+  CMD ["node", "apps/client/server.js"]
