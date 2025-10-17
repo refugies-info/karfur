@@ -29,8 +29,12 @@ steps:
         fi
 
         gcloud run deploy ${_COMPONENT}-${_ENV} \
-          --project ${_PROJECT_NAME} \
+          --allow-unauthenticated \
+          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --max-instances ${_MAX_INSTANCES} \
+          --memory ${_MEMORY} \
           --platform managed \
+          --project ${_PROJECT_NAME} \
           --region ${_REGION} \
           --service-account ${_SA} \
           --set-env-vars MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION} \
