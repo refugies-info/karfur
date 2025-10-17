@@ -105,9 +105,6 @@ FROM base AS runner
   # https://nextjs.org/docs/advanced-features/output-file-tracing
   COPY --from=installer --chown=nextjs:nodejs /app/apps/client/.dist ./
 
-  # Install berglas to resolve sm:// URIs in environment variables
-  COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/berglas
-
   EXPOSE 3000
 
-  ENTRYPOINT ["/bin/berglas", "exec", "--", "node", "apps/client/server.js"]
+  CMD ["node", "apps/client/server.js"]
