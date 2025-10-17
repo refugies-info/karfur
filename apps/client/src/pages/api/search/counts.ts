@@ -322,6 +322,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsRes
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
+  // Check if the search counts API is disabled via environment variable
+  if (process.env.DISABLE_SEARCH_COUNTS === "true") {
+    return res.status(503).json({ message: "Search counts temporarily unavailable" });
+  }
+
   try {
     const conn = await dbConnect();
     const queryParams = buildQueryParams(req.query);
