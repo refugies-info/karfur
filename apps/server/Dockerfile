@@ -63,7 +63,4 @@ FROM base AS runner
   # Copy built app
   COPY --from=installer /app/apps/server/dist/index.js ./index.js
 
-  # Install berglas
-  COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/berglas
-
-  ENTRYPOINT ["/bin/berglas", "exec", "--", "node", "./index.js"]
+  CMD ["node", "./index.js"]

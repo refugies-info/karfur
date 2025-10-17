@@ -94,9 +94,6 @@ FROM base AS runner
   # so we copy the full node_modules to ensure runtime dependencies are available
   COPY --from=installer --chown=nextjs:nodejs /app/node_modules ./node_modules
 
-  # Install berglas to resolve sm:// URIs in environment variables
-  COPY --from=us-docker.pkg.dev/berglas/berglas/berglas:2.0.7 /bin/berglas /bin/berglas
-
   EXPOSE 3000
 
-  ENTRYPOINT ["/bin/berglas", "exec", "--", "node", "apps/client/server.js"]
+  CMD ["node", "apps/client/server.js"]
