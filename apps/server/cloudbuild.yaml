@@ -37,40 +37,40 @@ steps:
           --project ${_PROJECT_NAME} \
           --region ${_REGION} \
           --service-account ${_SA} \
-          --set-env-vars accountSid=sm://refugies-info/accountSid \
-          --set-env-vars AIRTABLE_BASE_CONTENU=sm://refugies-info/${_AIRTABLE_BASE_CONTENU_VAR} \
-          --set-env-vars AIRTABLE_BASE_TRAD=sm://refugies-info/${_AIRTABLE_BASE_TRAD_VAR} \
-          --set-env-vars AIRTABLE_BASE_USERS=sm://refugies-info/AIRTABLE_BASE_USERS \
-          --set-env-vars AIRTABLE_TOKEN=sm://refugies-info/AIRTABLE_TOKEN \
-          --set-env-vars ALGOLIA_API_KEY=sm://refugies-info/ALGOLIA_API_KEY \
-          --set-env-vars ALGOLIA_INDEX=sm://refugies-info/${_ALGOLIA_INDEX_VAR} \
-          --set-env-vars API_KEY=sm://refugies-info/API_KEY \
-          --set-env-vars API_SECRET=sm://refugies-info/API_SECRET \
-          --set-env-vars authToken=sm://refugies-info/authToken \
-          --set-env-vars BREVO_API_KEY=sm://refugies-info/BREVO_API_KEY \
-          --set-env-vars CLOUD_NAME=sm://refugies-info/CLOUD_NAME \
-          --set-env-vars CRON_TOKEN=sm://refugies-info/CRON_TOKEN \
-          --set-env-vars EXPO_ACCESS_TOKEN=sm://refugies-info/EXPO_ACCESS_TOKEN \
-          --set-env-vars FRONT_SITE_URL=sm://refugies-info/${_FRONT_URL_VAR} \
-          --set-env-vars GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL \
-          --set-env-vars GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID \
-          --set-env-vars GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509 \
-          --set-env-vars GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY \
-          --set-env-vars GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID \
-          --set-env-vars GOOGLE_CLIENT_ID=sm://refugies-info/GOOGLE_CLIENT_ID \
-          --set-env-vars GOOGLE_CLIENT_SECRET=sm://refugies-info/GOOGLE_CLIENT_SECRET \
-          --set-env-vars MICROSOFT_CLIENT_ID=sm://refugies-info/MICROSOFT_CLIENT_ID \
-          --set-env-vars MICROSOFT_CLIENT_SECRET=sm://refugies-info/MICROSOFT_CLIENT_SECRET \
           --set-env-vars MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION} \
-          --set-env-vars MONGODB_URI=sm://refugies-info/${_MONGODB_VAR} \
           --set-env-vars NODE_ENV=${_NODE_ENV} \
-          --set-env-vars POSTMAN_SECRET=sm://refugies-info/POSTMAN_SECRET \
-          --set-env-vars REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET \
-          --set-env-vars SECRET=sm://refugies-info/SECRET \
-          --set-env-vars SENDGRID_API_KEY=sm://refugies-info/SENDGRID_API_KEY \
-          --set-env-vars SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL \
-          --set-env-vars SMS_SENDER=sm://refugies-info/SMS_SENDER \
-          --set-env-vars TTS_KEY_1=sm://refugies-info/TTS_KEY_1 \
+          --set-secrets accountSid=accountSid:latest \
+          --set-secrets AIRTABLE_BASE_CONTENU=${_AIRTABLE_BASE_CONTENU_VAR}:latest \
+          --set-secrets AIRTABLE_BASE_TRAD=${_AIRTABLE_BASE_TRAD_VAR}:latest \
+          --set-secrets AIRTABLE_BASE_USERS=AIRTABLE_BASE_USERS:latest \
+          --set-secrets AIRTABLE_TOKEN=AIRTABLE_TOKEN:latest \
+          --set-secrets ALGOLIA_API_KEY=ALGOLIA_API_KEY:latest \
+          --set-secrets ALGOLIA_INDEX=${_ALGOLIA_INDEX_VAR}:latest \
+          --set-secrets API_KEY=API_KEY:latest \
+          --set-secrets API_SECRET=API_SECRET:latest \
+          --set-secrets authToken=authToken:latest \
+          --set-secrets BREVO_API_KEY=BREVO_API_KEY:latest \
+          --set-secrets CLOUD_NAME=CLOUD_NAME:latest \
+          --set-secrets CRON_TOKEN=CRON_TOKEN:latest \
+          --set-secrets EXPO_ACCESS_TOKEN=EXPO_ACCESS_TOKEN:latest \
+          --set-secrets FRONT_SITE_URL=${_FRONT_URL_VAR}:latest \
+          --set-secrets GCLOUD_CLIENT_EMAIL=GCLOUD_CLIENT_EMAIL:latest \
+          --set-secrets GCLOUD_CLIENT_ID=GCLOUD_CLIENT_ID:latest \
+          --set-secrets GCLOUD_CLIENT_X509=GCLOUD_CLIENT_X509:latest \
+          --set-secrets GCLOUD_PKEY=GCLOUD_PKEY:latest \
+          --set-secrets GCLOUD_PRIVATE_KEY_ID=GCLOUD_PRIVATE_KEY_ID:latest \
+          --set-secrets GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID:latest \
+          --set-secrets GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest \
+          --set-secrets MICROSOFT_CLIENT_ID=MICROSOFT_CLIENT_ID:latest \
+          --set-secrets MICROSOFT_CLIENT_SECRET=MICROSOFT_CLIENT_SECRET:latest \
+          --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
+          --set-secrets POSTMAN_SECRET=POSTMAN_SECRET:latest \
+          --set-secrets REACT_APP_SITE_SECRET=REACT_APP_SITE_SECRET:latest \
+          --set-secrets SECRET=SECRET:latest \
+          --set-secrets SENDGRID_API_KEY=SENDGRID_API_KEY:latest \
+          --set-secrets SLACK_WEBHOOK_URL=SLACK_WEBHOOK_URL:latest \
+          --set-secrets SMS_SENDER=SMS_SENDER:latest \
+          --set-secrets TTS_KEY_1=TTS_KEY_1:latest \
           "${vpc_args[@]}"
 
 substitutions:
