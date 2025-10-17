@@ -51,7 +51,9 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
     setCurrent("");
 
     const delayTimer = setTimeout(() => {
-      setCurrent(first.message);
+      // Add zero-width space repeated by ID to force screen reader to announce even if message is identical
+      // The zero-width space won't be vocalized but will make the DOM content unique
+      setCurrent(`${first.message}${"\u200B".repeat(first.id)}`);
     }, first.delay);
 
     const nextTimer = setTimeout(() => setQueue(rest), first.delay + 1500);

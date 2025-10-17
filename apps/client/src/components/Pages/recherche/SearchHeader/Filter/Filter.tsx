@@ -5,7 +5,7 @@ import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { useWindowSize } from "@refugies-info/ui";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
@@ -16,15 +16,13 @@ import {
 import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls, cn } from "~/lib/classname";
-import { filterByType } from "~/lib/recherche/filterContents";
+import { queryDispositifs } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import {
-  searchQuerySelector,
-  searchResultsSelector,
-  themesDisplayedSelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector, themesDisplayedSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./Filter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
@@ -86,18 +84,11 @@ const Filter = ({
   const themesDisplayed = useSelector(themesDisplayedSelector);
   const eventName = useSearchEventName();
   const stylesDisabled = useStylesDisabled();
-  const searchResults = useSelector(searchResultsSelector);
   const announce = useAnnounce();
-  const [filterChanged, setFiltersChanged] = useState(false);
+  const dispositifs = useSelector(activeDispositifsSelector);
+  const allNeeds = useSelector(needsSelector);
 
   const { isMobile, isTablet } = useWindowSize();
-
-  const filteredResults = useMemo(() => {
-    return {
-      matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
-      suggestions: searchResults.suggestions,
-    };
-  }, [query.type, searchResults]);
 
   const processedMenuItems = useMemo(() => {
     if (!menuItems) return [];
@@ -119,7 +110,6 @@ const Filter = ({
 
   const onSelectItem = (filterKey: keyof SearchQuery, key: string) => {
     if (externalMenu) return;
-    setFiltersChanged(true);
 
     const menuItem = processedMenuItems.find((item) => item.filterKey === filterKey);
     if (!menuItem) return;
@@ -130,18 +120,12 @@ const Filter = ({
 
     addToQuery({ [filterKey]: newSelected });
     Event(eventName, "click filter", menuItem.gaType || gaType);
+
+    // Calculate count using the updated query (after selection/deselection)
+    const updatedQuery = { ...query, [filterKey]: newSelected };
+    const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
+    announce(t("Recherche.updatedFilters", { count: results.matches.length }), { priority: "interrupt", delay: 1000 });
   };
-
-  useEffect(() => {
-    if (!filterChanged || isMobile || isTablet) return;
-
-    announce(
-      t("Recherche.resultsForYourFilters", {
-        count: filteredResults.matches.length,
-        search: "",
-      }),
-    );
-  }, [announce, filteredResults.matches.length, t, filterChanged, isMobile, isTablet]);
 
   const resetOptions = () => {
     if (externalMenu) {
