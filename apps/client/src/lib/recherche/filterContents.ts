@@ -62,10 +62,10 @@ export const filterByLocations = (dispositif: SimpleDispositif, departments: str
   if (departments.length === 0) return true;
   const location = dispositif.metadatas?.location as any;
   if (!location) return false;
-  // Fiches "toute la france" should always appear when filtering by department
-  if (location === "france") return true;
   const matchDep = (val: string) => {
     if (!val) return false;
+    // Fiches "toute la france" should always appear when filtering by department
+    if (val === "france") return true;
     const parts = val.split(" - ");
     const code = parts.length > 1 ? parts[1] : val;
     return departments.includes(code);
