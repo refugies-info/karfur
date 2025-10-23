@@ -46,9 +46,9 @@ As a system administrator, I want the cache to be automatically invalidated when
 
 **Acceptance Scenarios**:
 
-1. **Given** search counts are cached, **When** a dispositif status changes to DELETED or ARCHIVED, **Then** all related cache entries are invalidated
-2. **Given** search counts are cached, **When** a new dispositif is created or published, **Then** cache entries for relevant filter combinations are invalidated
-3. **Given** cache is invalidated, **When** client calls GET /api/search/counts with previously cached filters, **Then** system executes fresh MongoDB aggregation
+1. **Given** search counts are cached, **When** a dispositif status changes to DELETED or ARCHIVED, **Then** only cache entries for filter combinations matching this dispositif's attributes are invalidated
+2. **Given** search counts are cached, **When** a new dispositif is created or published, **Then** only cache entries for filter combinations that would include this dispositif are invalidated
+3. **Given** cache is invalidated for specific filters, **When** client calls GET /api/search/counts with those filters, **Then** system executes fresh MongoDB aggregation while other cached entries remain valid
 
 ---
 
@@ -90,7 +90,8 @@ As a frontend developer, I want the search counts API to implement debouncing an
 - How does system handle cache stampede when many requests arrive simultaneously after cache expiration? System SHOULD use cache lock or probabilistic early expiration to prevent thundering herd
 - What happens when Redis memory is full? System MUST handle eviction gracefully and rely on in-memory cache as fallback
 - What happens when Redis is unavailable but in-memory cache is full? System MUST evict oldest entries and continue serving from remaining cache
-- How does system handle partial cache invalidation? When one dispositif changes, should all counts cache clear or only affected filters? NEEDS CLARIFICATION: Scope of invalidation (aggressive vs selective)
+- How does system determine which cache entries are affected by a dispositif change? System MUST track dispositif attributes (theme, needs, language, status, etc.) and invalidate only cache keys that would include this dispositif
+- What happens when a dispositif's attributes change (e.g., theme reassignment)? System MUST invalidate cache for both old and new attribute combinations
 - What happens when cache contains stale data due to network partition? System SHOULD prioritize availability over consistency with documented TTL window
 - How are in-memory caches synchronized across multiple containers? Each container maintains its own independent in-memory cache; invalidation events must be broadcast to all containers
 - What is the memory footprint of in-memory cache per container? System SHOULD limit in-memory cache size to prevent memory exhaustion (e.g., max 100MB per container)
@@ -106,7 +107,7 @@ As a frontend developer, I want the search counts API to implement debouncing an
 
 - **FR-001**: System MUST cache search counts results using Redis with configurable TTL (default 5-15 minutes)
 - **FR-002**: System MUST generate unique cache keys based on query parameters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses)
-- **FR-003**: System MUST invalidate cache entries when dispositif status changes (CREATED, UPDATED, DELETED, ARCHIVED)
+- **FR-003**: System MUST implement selective cache invalidation: when dispositif status changes, only invalidate cache entries for filter combinations affected by this dispositif's attributes (theme, needs, language, status, etc.)
 - **FR-004**: System MUST implement tiered caching: primary (Redis), secondary (per-container in-memory)
 - **FR-005**: System MUST fall back to in-memory cache if Redis is unavailable
 - **FR-006**: System MUST fall back to MongoDB aggregation only if both Redis and in-memory cache are unavailable
@@ -148,7 +149,8 @@ As a frontend developer, I want the search counts API to implement debouncing an
 - **SC-005**: If both Redis and in-memory cache are unavailable, system falls back to MongoDB without cascading failures
 - **SC-006**: Database query load for search counts endpoint reduced by at least 70% during normal operations (measured by MongoDB query count)
 - **SC-007**: During Redis outage, database load remains within acceptable limits due to in-memory cache fallback
-- **SC-008**: Cache invalidation occurs within 100ms of dispositif status change across both cache layers
+- **SC-008**: Selective cache invalidation occurs within 100ms of dispositif status change, invalidating only affected filter combinations across both cache layers
+- **SC-008a**: Unaffected cache entries remain valid and serve from cache, reducing unnecessary invalidations by at least 80% compared to aggressive clearing
 - **SC-009**: Monitoring dashboard shows cache metrics separately for Redis and in-memory layers with at least 95% uptime
 - **SC-010**: All cache operations include appropriate logging with cache layer identification for troubleshooting and auditing
 - **SC-011**: Rate limiting reduces redundant API calls by at least 50% during typical search input scenarios (measured by comparing requests with/without debouncing)
@@ -170,13 +172,17 @@ As a frontend developer, I want the search counts API to implement debouncing an
 
 **Context**: Edge case in specification addresses cache invalidation when dispositif data changes
 
-**What we need to know**: When a single dispositif is created, updated, deleted, or archived, should the system:
+**Decision**: Option B - Selective cache invalidation
 
-| Option | Answer | Implications |
-|--------|--------|---------------|
-| A | Clear ALL search counts cache entries regardless of filters | Simpler implementation, conservative approach, ensures no stale data, but may clear unrelated cache entries unnecessarily |
-| B | Only clear cache entries for filter combinations that would be affected by this specific dispositif | More complex logic to determine affected filters, better cache efficiency, but requires tracking dispositif attributes |
-| C | Hybrid approach: Start with aggressive (A), optimize to selective (B) in future iteration | Allows faster initial implementation, can be optimized later based on real-world usage patterns |
-| Custom | Provide your own approach | Explain your preferred strategy |
+**Implementation Approach**: When a dispositif is created, updated, deleted, or archived, the system will:
+1. Extract the dispositif's attributes (theme, needs, language, status, type, etc.)
+2. Determine which cache key combinations would be affected by this dispositif
+3. Invalidate only those specific cache entries in both Redis and in-memory layers
+4. Leave unaffected cache entries intact to maximize cache efficiency
 
-**Your choice**: _[Awaiting user response]_
+**Benefits**:
+- Better cache efficiency: 80%+ reduction in unnecessary invalidations
+- Improved performance: More cache hits during high-frequency updates
+- Scalability: Reduces load on cache layers during bulk operations
+
+**Complexity**: Requires tracking dispositif attributes and building logic to determine affected filter combinations. This is addressed in FR-003 and edge case handling.
