@@ -450,136 +450,125 @@ For this feature:
 How to monitor cache performance and operational health?
 
 ### Decision
-**Use Google Cloud Monitoring (managed Prometheus) with structured logging**
+**Use Google Memorystore built-in metrics + Cloud Logging for application logs**
 
 ### Rationale
-- Google Cloud Monitoring is built-in, no infrastructure needed
-- Fully managed service (no setup, maintenance, or scaling)
-- Integrated with Cloud Run and other GCP services
-- Prometheus-compatible API available
-- Structured logging via Cloud Logging (formerly Stackdriver)
-- Cost-effective for this scale
+- **Google Memorystore automatically exports metrics** to Cloud Monitoring
+- No application instrumentation needed for Redis metrics
+- Cloud Monitoring provides dashboards and alerting
+- Application logs via Cloud Logging (structured JSON)
+- Minimal overhead - leverage managed services
 
-### Infrastructure Options
+### What Memorystore Provides
 
-#### Option A: Google Cloud Monitoring (RECOMMENDED)
-**Fully managed Prometheus-compatible service**
+**Automatic metrics (no code needed)**:
+- Redis memory usage (bytes, percentage)
+- Connected clients
+- Commands per second
+- Eviction rate
+- Replication lag (HA mode)
+- Network I/O (bytes in/out)
+- Key expiration rate
+- CPU usage
+- Connection count
+- Command latency
 
-```yaml
-# No infrastructure setup required
-# Built into Google Cloud Platform
-# Automatically collects metrics from Cloud Run
+**Available in Cloud Monitoring**:
+- Real-time dashboards
+- Historical data (30 days default)
+- Alerting on thresholds
+- Custom dashboards
 
-# Enable in Cloud Run service:
-# - Metrics are automatically exported
-# - No agent installation needed
-# - Accessible via Cloud Console or API
-```
+### What We Still Need to Monitor
 
-**Pros**:
-- Zero infrastructure to manage
-- Integrated with Cloud Run
-- Automatic metric collection
-- Built-in dashboards
-- No scaling concerns
-- Included in GCP billing
+**Application-level metrics** (not provided by Memorystore):
+- Cache hit/miss rates (application logic)
+- API response times
+- Database query count (before/after caching)
+- Rate limit violations
+- Cache invalidation events
 
-**Cons**:
-- Less customizable than self-hosted Prometheus
-- Vendor lock-in to Google Cloud
+**These require application instrumentation**
 
-#### Option B: Self-Hosted Prometheus
-**Traditional Prometheus deployment**
+### Monitoring Strategy
 
-```yaml
-# Requires:
-# - Prometheus server (VM or Kubernetes)
-# - Storage (persistent disk or object storage)
-# - Alertmanager (optional)
-# - Grafana for dashboards (optional)
-# - Backup/retention policies
-```
+#### What's Automatic (No Code)
+**Memorystore metrics** → Cloud Monitoring (automatic)
+- Memory usage
+- Connected clients
+- Commands/sec
+- Eviction rate
+- Replication lag
+- Network I/O
+- CPU usage
+- Connection count
+- Command latency
 
-**Pros**:
-- Full control and customization
-- No vendor lock-in
-- Can run on-premises
+#### What Requires Application Code
+**Application metrics** → Cloud Logging (structured JSON)
+- Cache hit/miss rates
+- API response times
+- Database query count
+- Rate limit violations
+- Cache invalidation events
 
-**Cons**:
-- Infrastructure to manage and scale
-- Storage and retention costs
-- Requires monitoring of the monitoring system
-- Operational overhead
+### Recommended Approach (SIMPLIFIED)
 
-#### Option C: Google Cloud Monitoring + Prometheus Exporter
-**Hybrid approach**
+**Memorystore provides Redis metrics automatically**
+- No instrumentation needed
+- Visible in Cloud Monitoring
+- Dashboards in Cloud Console
+- Alerting on thresholds
 
-```typescript
-// Application exports Prometheus metrics
-import { register } from 'prom-client';
+**Application provides business metrics**
+- Structured logs to Cloud Logging
+- Cache hit/miss rates
+- API performance
+- Database impact
 
-// Cloud Run scrapes and sends to Cloud Monitoring
-// Endpoint: /metrics
-app.get('/metrics', (req, res) => {
-  res.set('Content-Type', register.contentType);
-  res.end(register.metrics());
-});
-
-// Cloud Monitoring ingests via Prometheus API
-```
-
-**Pros**:
-- Leverage Cloud Monitoring infrastructure
-- Prometheus-compatible metrics
-- Flexibility of custom metrics
-
-**Cons**:
-- Requires application instrumentation
-- Additional configuration
-
-### Comparison
-
-| Aspect | Cloud Monitoring | Self-Hosted | Hybrid |
-|--------|------------------|-------------|--------|
-| **Setup** | None (built-in) | Complex | Moderate |
-| **Infrastructure** | Managed | Self-managed | Managed |
-| **Cost** | Included in GCP | VM + storage | Included in GCP |
-| **Scaling** | Automatic | Manual | Automatic |
-| **Customization** | Limited | Full | Good |
-| **Maintenance** | None | Ongoing | Minimal |
-| **Learning Curve** | Low | High | Moderate |
+**Why this is simpler**:
+- Memorystore metrics are automatic
+- No Prometheus server to manage
+- No custom metric collection code
+- Cloud Monitoring handles everything
+- Just add structured logging to application
 
 ### Recommended Approach for This Feature
 
-**Use Google Cloud Monitoring (Option A)**
+**Leverage Memorystore + Cloud Logging (SIMPLIFIED)**
 
 **Why**:
-1. Zero infrastructure setup
-2. Integrated with Cloud Run
-3. Automatic metric collection
-4. Cost-effective
-5. Built-in dashboards and alerting
-6. No operational overhead
+1. Memorystore automatically exports Redis metrics
+2. Zero infrastructure setup
+3. Cloud Monitoring handles dashboards
+4. No Prometheus server to manage
+5. Just add structured logging to application
+6. Cost-effective and minimal overhead
 
 **Implementation**:
-1. Enable Cloud Monitoring on Cloud Run service
-2. Export application metrics via prom-client
-3. Create custom dashboard in Cloud Console
-4. Set up alerts for cache performance
-5. Use Cloud Logging for structured logs
+1. Memorystore metrics automatically appear in Cloud Monitoring
+2. Create dashboard in Cloud Console (Memorystore metrics)
+3. Add structured logging to application (pino → Cloud Logging)
+4. Set up alerts for anomalies
+5. Monitor cache hit/miss rates via logs
 
-**Metrics to Track**:
-- Cache hit/miss rates
-- Operation latency (p50, p95, p99)
-- Redis connection status
-- Rate limit violations
-- Database query count
-- API response times
+**Metrics Automatically Available**:
+- Redis memory usage
+- Connected clients
+- Commands per second
+- Eviction rate
+- Replication lag (HA)
+- Network I/O
+- CPU usage
+- Connection count
+- Command latency
 
-**Logging**:
+**Application Logging**:
 - Use Cloud Logging (built-in)
 - Structured JSON logs via pino
-- Automatic correlation with traces
+- Track cache hit/miss rates
+- Monitor API performance
+- Log cache invalidation events
 
 ### Success Criteria
 - Metrics visible in Cloud Console within 5 minutes
@@ -683,12 +672,15 @@ logger.info({
 ```
 
 ### Success Criteria
-- Metrics visible in Cloud Monitoring within 5 minutes
-- Cache hit rate >80% visible in dashboard
-- Latency <100ms for cached requests
-- Redis connection status monitored
-- Structured logs in Cloud Logging
+- Memorystore metrics visible in Cloud Monitoring (automatic)
+- Redis memory usage monitored
+- Connected clients tracked
+- Commands/sec visible
+- Eviction rate monitored
+- Cache hit/miss rates in application logs
+- API response times logged
 - Alerts configured for anomalies
+- Structured logs in Cloud Logging
 
 ---
 
@@ -700,7 +692,7 @@ logger.info({
 | **Multi-Instance Architecture** | Redis-only (eliminates sync complexity) | ✅ Ready |
 | Cache Invalidation | Explicit mutation + TTL fallback | ✅ Ready |
 | **Rate Limiting** | Cloud Load Balancer (infrastructure-level) | ✅ Ready |
-| Monitoring | Prometheus metrics + structured logging | ✅ Ready |
+| **Monitoring** | Memorystore metrics + Cloud Logging (automatic) | ✅ Ready |
 
 ### Key Architectural Decision
 **Redis HA Only (Simplified)**: Single cache layer with Memorystore HA provides:
