@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  title: Search Counts API
+  description: Get aggregated counts of dispositifs by various filters with Redis caching
+  version: 1.0.0
+  contact:
+    name: Refugies.info Team
+    url: https://refugies.info
+
+servers:
+  - url: https://api.refugies.info
+    description: Production
+  - url: http://localhost:3000
+    description: Development
+
+paths:
+  /api/search/counts:
+    get:
+      summary: Get search counts by filters
+      description: |
+        Returns aggregated counts of dispositifs matching the provided filters.
+        Results are cached for 5-15 minutes to improve performance.
+        
+        **Rate Limiting**: 10 requests per second per IP address.
+        
+        **Cache Behavior**:
+        - First request: Queries MongoDB, caches result (200-500ms)
+        - Subsequent requests: Served from Redis cache (<100ms)
+        - Cache invalidated when dispositif data changes
+      operationId: getSearchCounts
+      tags:
+        - Search
+      parameters:
+        - name: language
+          in: query
+          required: true
+          description: ISO 639-1 language code
+          schema:
+            type: string
+            enum: [fr, en, ar, es, de, it, pl, ru, uk, zh, ja, ko]
+          example: fr
+        
+        - name: themes
+          in: query
+          required: false
+          description: Comma-separated theme IDs to filter by
+          schema:
+            type: string
+          example: "health,education"
+        
+        - name: needs
+          in: query
+          required: false
+          description: Comma-separated need IDs to filter by
+          schema:
+            type: string
+          example: "legal,financial"
+        
+        - name: frenchLevel
+          in: query
+          required: false
+          description: Comma-separated French proficiency levels
+          schema:
+            type: string
+            enum: [A1, A2, B1, B2, B1+, B2+]
+          example: "A1,A2"
+        
+        - name: status
+          in: query
+          required: false
+          description: Comma-separated dispositif statuses
+          schema:
+            type: string
+            enum: [CREATED, PUBLISHED, DELETED, ARCHIVED]
+          example: "PUBLISHED"
+        
+        - name: type
+          in: query
+          required: false
+          description: Comma-separated dispositif types
+          schema:
+            type: string
+          example: "ASSOCIATION,SERVICE"
+        
+        - name: search
+          in: query
+          required: false
+          description: Free-text search query
+          schema:
+            type: string
+          example: "paris"
+      
+      responses:
+        '200':
+          description: Successful response with counts
+          headers:
+            X-Cache-Hit:
+              schema:
+                type: boolean
+              description: Whether result was served from cache
+            X-Cache-Age:
+              schema:
+                type: integer
+              description: Age of cached result in seconds
+            X-Cache-TTL:
+              schema:
+                type: integer
+              description: Time-to-live of cached result in seconds
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Rate limit (requests per second)
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining requests in current window
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: date-time
+              description: When rate limit resets
+          
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCountsResponse'
+              example:
+                total: 1250
+                byTheme:
+                  health: 450
+                  education: 380
+                  housing: 420
+                byNeeds:
+                  legal: 320
+                  financial: 280
+                  medical: 650
+                byFrenchLevel:
+                  A1: 200
+                  A2: 350
+                  B1: 400
+                  B2: 300
+                cached: true
+                cacheAge: 120
+        
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Bad Request"
+                message: "Invalid language: 'xx'. Supported: fr, en, ar, etc."
+        
+        '429':
+          description: Too many requests - rate limit exceeded
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+              description: Seconds to wait before retrying
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Too Many Requests"
+                message: "Rate limit exceeded: 10 requests per second per IP"
+                retryAfter: 60
+        
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Internal Server Error"
+                message: "Failed to fetch search counts"
+
+components:
+  schemas:
+    SearchCountsResponse:
+      type: object
+      required:
+        - total
+        - byTheme
+        - byNeeds
+        - byFrenchLevel
+        - cached
+      properties:
+        total:
+          type: integer
+          description: Total number of matching dispositifs
+          example: 1250
+        
+        byTheme:
+          type: object
+          description: Counts grouped by theme
+          additionalProperties:
+            type: integer
+          example:
+            health: 450
+            education: 380
+            housing: 420
+        
+        byNeeds:
+          type: object
+          description: Counts grouped by need
+          additionalProperties:
+            type: integer
+          example:
+            legal: 320
+            financial: 280
+            medical: 650
+        
+        byFrenchLevel:
+          type: object
+          description: Counts grouped by French proficiency level
+          additionalProperties:
+            type: integer
+          example:
+            A1: 200
+            A2: 350
+            B1: 400
+            B2: 300
+        
+        cached:
+          type: boolean
+          description: Whether result was served from cache
+          example: true
+        
+        cacheAge:
+          type: integer
+          description: Age of cached result in seconds (only if cached=true)
+          example: 120
+    
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "Bad Request"
+        
+        message:
+          type: string
+          description: Error message
+          example: "Invalid language parameter"
+        
+        retryAfter:
+          type: integer
+          description: Seconds to wait before retrying (only for 429)
+          example: 60
+
+tags:
+  - name: Search
+    description: Search and count dispositifs
