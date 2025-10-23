@@ -59,48 +59,30 @@ specs/[###-feature]/
 ### Source Code (repository root)
 
 ```
-apps/server/
+apps/client/
 ├── src/
 │   ├── libs/
 │   │   ├── redis.ts              # Redis connection & initialization
 │   │   ├── cache.ts              # Cache layer abstraction (Redis + in-memory)
 │   │   └── cacheInvalidation.ts  # Selective invalidation logic
-│   ├── middleware/
-│   │   └── rateLimiter.ts        # Rate limiting middleware
-│   ├── workflows/
-│   │   ├── dispositif/
-│   │   │   └── updateDispositifStatus/
-│   │   │       └── updateDispositifStatus.ts  # Trigger cache invalidation
-│   │   └── search/
-│   │       └── getCountDispositifs/
-│   │           └── getCountDispositifs.ts  # Updated with caching
-│   └── controllers/
-│       └── cacheController.ts    # Admin cache management endpoint
-└── tests/
-    ├── unit/
-    │   ├── cache.test.ts
-    │   └── cacheInvalidation.test.ts
-    └── integration/
-        └── search-counts-cache.test.ts
-
-apps/client/
-├── src/
 │   ├── pages/
 │   │   └── api/
 │   │       └── search/
-│   │           └── counts.ts     # Next.js API route (uses server cache)
+│   │           └── counts.ts     # Next.js API route with caching (accesses MongoDB directly)
 │   ├── components/
 │   │   └── SearchFilters.tsx     # Client-side debouncing
 │   └── hooks/
 │       └── useSearchCounts.ts    # Debounced search counts hook
 └── tests/
     ├── unit/
+    │   ├── cache.test.ts
+    │   ├── cacheInvalidation.test.ts
     │   └── useSearchCounts.test.ts
     └── integration/
-        └── search-counts-api.test.ts
+        └── search-counts-cache.test.ts
 ```
 
-**Structure Decision**: Monorepo with server + client apps. Cache layer utilities in `/apps/server/src/libs/` (redis.ts, cache.ts). API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js). Client-side debouncing in search component. Rate limiting middleware in Express server. No new top-level projects required.
+**Structure Decision**: Client app only. Cache layer utilities in `/apps/client/src/libs/` (redis.ts, cache.ts, cacheInvalidation.ts). API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and caching. Client-side debouncing in search component. Rate limiting via Next.js middleware. No new top-level projects required.
 
 ## Complexity Tracking
 
