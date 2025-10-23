@@ -68,7 +68,21 @@ As an operations team member, I want the system to implement tiered caching (Red
 
 ---
 
-[Add more user stories as needed, each with an assigned priority]
+### User Story 4 - Debouncing and Rate Limiting (Priority: P2)
+
+As a frontend developer, I want the search counts API to implement debouncing and rate limiting so that rapid successive queries (e.g., typing in search box) don't overwhelm the cache or backend with redundant requests.
+
+**Why this priority**: Prevents cache thrashing from high-frequency requests. When users type character-by-character in the search box, each keystroke triggers a new query with a different search term, creating many unique cache keys. Rate limiting reduces unnecessary load and improves user experience by preventing API throttling.
+
+**Independent Test**: Can be fully tested by simulating rapid API calls (e.g., 10 requests in 1 second) and verifying that only a subset are processed while others are rate-limited. Delivers protection against request storms.
+
+**Acceptance Scenarios**:
+
+1. **Given** client sends 10 requests within 1 second with different search terms, **When** rate limiter is configured to 2 requests/second, **Then** first 2 requests are processed, remaining 8 are rejected with 429 Too Many Requests
+2. **Given** client sends requests with same search term within debounce window (e.g., 300ms), **When** frontend implements debouncing, **Then** only the final request after debounce delay is sent to API
+3. **Given** rate limit is exceeded, **When** client retries after rate limit window expires, **Then** request is processed normally
+
+---
 
 ### Edge Cases
 
@@ -103,6 +117,11 @@ As an operations team member, I want the system to implement tiered caching (Red
 - **FR-011**: System MUST track and expose cache performance metrics separately for each cache layer (hit rate, miss rate, operation latency)
 - **FR-012**: System MUST use VPC-secured Redis connection with TLS encryption in production
 - **FR-013**: System MUST handle Redis connection failures without blocking API responses and transparently fall back to in-memory cache
+- **FR-014**: System MUST implement rate limiting on the API endpoint with configurable requests per second (default 10 req/sec per IP)
+- **FR-015**: System MUST return 429 Too Many Requests status code when rate limit is exceeded
+- **FR-016**: System MUST include rate limit headers in responses (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)
+- **FR-017**: Frontend MUST implement client-side debouncing for search input (default 300-500ms debounce delay)
+- **FR-018**: System MUST document recommended debounce delay for API consumers to prevent cache thrashing
 
 ### Key Entities
 
@@ -132,6 +151,10 @@ As an operations team member, I want the system to implement tiered caching (Red
 - **SC-008**: Cache invalidation occurs within 100ms of dispositif status change across both cache layers
 - **SC-009**: Monitoring dashboard shows cache metrics separately for Redis and in-memory layers with at least 95% uptime
 - **SC-010**: All cache operations include appropriate logging with cache layer identification for troubleshooting and auditing
+- **SC-011**: Rate limiting reduces redundant API calls by at least 50% during typical search input scenarios (measured by comparing requests with/without debouncing)
+- **SC-012**: Client-side debouncing prevents cache thrashing by reducing unique cache keys generated during search input by at least 60%
+- **SC-013**: Rate-limited requests return 429 status with appropriate X-RateLimit headers within 10ms
+- **SC-014**: Rate limiting does not affect legitimate batch operations or admin queries (configurable per-IP or per-user allowances)
 
 ## Assumptions
 
