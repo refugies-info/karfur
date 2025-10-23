@@ -578,77 +578,206 @@ How to monitor cache performance and operational health?
 - Audit trail of cache operations in Cloud Logging
 - Alerts configured for anomalies
 
-### Implementation Details
+### Implementation Challenge: Per-Instance Metrics
 
-#### Application Metrics Export (prom-client)
+**Problem**: Application metrics are per-container instance
+- Each Cloud Run instance tracks its own cache hits/misses
+- Metrics are isolated per instance
+- No automatic aggregation across instances
+- Cannot get true cache hit rate without manual aggregation
+
+**Example**:
+```
+Instance 1: 80 hits, 20 misses (80% hit rate)
+Instance 2: 60 hits, 40 misses (60% hit rate)
+Instance 3: 70 hits, 30 misses (70% hit rate)
+
+True aggregate: 210 hits, 90 misses (70% hit rate)
+But each instance only sees its own metrics
+```
+
+### Solution: Use Structured Logging Instead
+
+**Why structured logging is better for aggregation**:
+1. All logs go to Cloud Logging (centralized)
+2. Cloud Logging can aggregate across instances
+3. BigQuery integration for analysis
+4. No per-instance isolation
+5. Simpler to query and analyze
+
+**Recommended approach**:
 ```typescript
-import { register, Counter, Histogram, Gauge } from 'prom-client';
+// Instead of per-instance Prometheus metrics,
+// use structured logs that Cloud Logging can aggregate
 
-// Cache hit/miss counters
-const cacheHits = new Counter({
-  name: 'cache_hits_total',
-  help: 'Total cache hits',
-  labelNames: ['layer'], // 'redis' or 'memory'
+import pino from 'pino';
+
+const logger = pino({
+  level: process.env.LOG_LEVEL || 'info',
+  transport: {
+    target: 'pino-stackdriver',
+  },
 });
 
-const cacheMisses = new Counter({
-  name: 'cache_misses_total',
-  help: 'Total cache misses',
-  labelNames: ['layer'],
+// Log every cache operation
+logger.info({
+  operation: 'cache_get',
+  key: cacheKey,
+  hit: true,  // or false
+  latency_ms: 5,
+  timestamp: new Date().toISOString(),
 });
 
-// Cache operation latency
-const cacheLatency = new Histogram({
-  name: 'cache_operation_duration_ms',
-  help: 'Cache operation latency in milliseconds',
-  labelNames: ['operation', 'layer'], // operation: 'get', 'set', 'invalidate'
-  buckets: [1, 5, 10, 25, 50, 100, 250, 500],
+logger.info({
+  operation: 'cache_set',
+  key: cacheKey,
+  latency_ms: 3,
+  timestamp: new Date().toISOString(),
 });
 
-// Redis connection status
-const redisConnected = new Gauge({
-  name: 'redis_connected',
-  help: 'Redis connection status (1=connected, 0=disconnected)',
-});
-
-// Cache size
-const cacheSize = new Gauge({
-  name: 'cache_size_bytes',
-  help: 'Cache size in bytes',
-  labelNames: ['layer'],
+logger.info({
+  operation: 'cache_invalidate',
+  keys_invalidated: 5,
+  latency_ms: 2,
+  timestamp: new Date().toISOString(),
 });
 ```
 
-#### Structured Logging
+**Cloud Logging can then aggregate**:
+```sql
+-- Query to get cache hit rate across all instances
+SELECT
+  COUNT(*) as total_requests,
+  COUNTIF(hit = true) as cache_hits,
+  COUNTIF(hit = false) as cache_misses,
+  ROUND(100 * COUNTIF(hit = true) / COUNT(*), 2) as hit_rate_percent
+FROM `project.dataset.logs`
+WHERE operation = 'cache_get'
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+```
+
+**Cloud Logging also provides**:
+- Real-time log aggregation
+- Automatic instance identification (resource labels)
+- BigQuery export for historical analysis
+- Log-based metrics (automatic aggregation)
+- Dashboards and alerting
+
+### Revised Monitoring Strategy
+
+**Automatic (no code)**:
+- Memorystore metrics → Cloud Monitoring
+- Redis memory, connections, commands/sec, etc.
+
+**Centralized (structured logging)**:
+- Application logs → Cloud Logging
+- Cache hit/miss rates (aggregated across instances)
+- API response times
+- Database query impact
+- Cache invalidation events
+
+**Why this works**:
+1. Memorystore metrics are already aggregated (managed service)
+2. Structured logs go to centralized Cloud Logging
+3. Cloud Logging handles multi-instance aggregation
+4. No per-instance metric isolation
+5. Easy to query and analyze
+
+### Implementation Details
+
+#### Structured Logging (Recommended)
 ```typescript
 import pino from 'pino';
 
 const logger = pino({
   level: process.env.LOG_LEVEL || 'info',
   transport: {
-    target: 'pino-stackdriver', // For Google Cloud Logging
+    target: 'pino-stackdriver',
   },
 });
 
-// Log cache operations
+// Log cache operations with structured fields
 logger.info({
   operation: 'cache_get',
-  layer: 'redis',
   key: cacheKey,
   hit: true,
   latency_ms: 5,
   timestamp: new Date().toISOString(),
 });
+
+logger.info({
+  operation: 'cache_invalidate',
+  keys_invalidated: 5,
+  reason: 'dispositif_updated',
+  latency_ms: 2,
+});
+
+logger.info({
+  operation: 'api_response',
+  endpoint: '/api/search/counts',
+  status: 200,
+  latency_ms: 45,
+  cache_hit: true,
+  database_queries: 0,
+});
+```
+
+#### Cloud Logging Queries for Aggregation
+
+**Cache hit rate across all instances**:
+```sql
+SELECT
+  TIMESTAMP_TRUNC(timestamp, MINUTE) as minute,
+  COUNT(*) as total_requests,
+  COUNTIF(hit = true) as cache_hits,
+  ROUND(100 * COUNTIF(hit = true) / COUNT(*), 2) as hit_rate_percent
+FROM `project.dataset.logs`
+WHERE operation = 'cache_get'
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+GROUP BY minute
+ORDER BY minute DESC
+```
+
+**Average latency by operation**:
+```sql
+SELECT
+  operation,
+  COUNT(*) as count,
+  ROUND(AVG(latency_ms), 2) as avg_latency_ms,
+  APPROX_QUANTILES(latency_ms, 100)[OFFSET(50)] as p50_latency_ms,
+  APPROX_QUANTILES(latency_ms, 100)[OFFSET(95)] as p95_latency_ms,
+  APPROX_QUANTILES(latency_ms, 100)[OFFSET(99)] as p99_latency_ms
+FROM `project.dataset.logs`
+WHERE timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+GROUP BY operation
+```
+
+**Database impact (queries before/after caching)**:
+```sql
+SELECT
+  TIMESTAMP_TRUNC(timestamp, MINUTE) as minute,
+  SUM(database_queries) as total_queries,
+  COUNT(*) as total_requests,
+  ROUND(100 * SUM(database_queries) / COUNT(*), 2) as queries_per_request_percent
+FROM `project.dataset.logs`
+WHERE operation = 'api_response'
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+GROUP BY minute
+ORDER BY minute DESC
 ```
 
 #### Cloud Monitoring Dashboard
 Create in Google Cloud Console:
-- Cache hit rate (%) over time
-- Cache operation latency (p50, p95, p99)
-- Redis connection status
-- Rate limit violations per IP
-- Database query count (before/after caching)
-- API response times
+- Memorystore metrics (automatic)
+- Redis memory usage
+- Connected clients
+- Commands per second
+- Replication lag (HA)
+
+**Link to Cloud Logging for application metrics**:
+- Cache hit rate queries
+- API response time analysis
+- Database query impact
 
 #### Cloud Logging Configuration
 ```typescript
@@ -677,10 +806,11 @@ logger.info({
 - Connected clients tracked
 - Commands/sec visible
 - Eviction rate monitored
-- Cache hit/miss rates in application logs
-- API response times logged
-- Alerts configured for anomalies
+- **Cache hit/miss rates aggregated across instances** (Cloud Logging queries)
+- **API response times aggregated** (Cloud Logging queries)
+- **Database query impact visible** (Cloud Logging queries)
 - Structured logs in Cloud Logging
+- BigQuery export configured for historical analysis
 
 ---
 
