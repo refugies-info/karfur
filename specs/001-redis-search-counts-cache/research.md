@@ -128,65 +128,103 @@ const redis = new Redis({
 
 ---
 
-## Research Area 2: Cache Invalidation in Client-Only Architecture
+## Research Area 2: Multi-Instance Cache Architecture
 
 ### Question
-How does Next.js API route detect and respond to dispositif data changes?
+How to handle cache invalidation and consistency across multiple Cloud Run instances?
+
+### Concern
+Per-instance in-memory cache creates synchronization challenges:
+- **Invalidation Broadcast**: When one instance invalidates cache, others don't know
+- **Stale Data**: Different instances serve different cached data
+- **Complexity**: Requires pub/sub, event listeners, or cross-instance communication
+- **Operational Burden**: Harder to debug, monitor, and maintain
 
 ### Decision
-**Implement explicit cache invalidation via mutation event detection**
+**Simplify to Redis-only (HA) with TTL expiration. Remove per-instance in-memory cache.**
 
 ### Rationale
-- Client-only architecture cannot automatically detect server-side mutations
-- Explicit invalidation provides clear, testable behavior
-- TTL expiration provides eventual consistency fallback
-- Simpler than implementing cross-process communication
+- **Memorystore HA provides resilience**: <1s failover handles maintenance/failures
+- **Eliminates synchronization problem**: Single source of truth (Redis)
+- **Simpler architecture**: No cross-instance communication needed
+- **Easier to operate**: Single cache layer to monitor and debug
+- **Still resilient**: TTL expiration (5-15 min) provides eventual consistency
 
-### Implementation Approach
+### Revised Architecture
 
-#### Option A: Explicit Invalidation on Mutation (RECOMMENDED)
-When dispositif is created/updated/deleted:
-1. Mutation handler calls cache invalidation function
-2. Function identifies affected cache keys
-3. Invalidates keys in both Redis and in-memory cache
-4. Returns success/failure status
+#### Option A: Redis HA Only (RECOMMENDED)
+```typescript
+// Single cache layer: Redis HA
+// - Memorystore HA handles failover automatically
+// - All instances read/write to same Redis
+// - TTL expiration ensures consistency
+// - No cross-instance synchronization needed
 
-**Pros**: Clear, testable, no external dependencies  
-**Cons**: Requires mutation handler integration
+const redis = new Redis({
+  host: process.env.REDIS_HOST, // HA endpoint
+  port: parseInt(process.env.REDIS_PORT || '6379'),
+  password: process.env.REDIS_PASSWORD,
+  tls: { rejectUnauthorized: false },
+  maxRetriesPerRequest: 3,
+  enableReadyCheck: true,
+  enableOfflineQueue: true,
+  retryStrategy: (times) => Math.min(times * 50, 2000),
+});
 
-#### Option B: Pub/Sub Subscription
-Next.js API route subscribes to dispositif mutation events:
-1. Redis pub/sub channel for cache invalidation events
-2. API route listens for events
-3. Invalidates cache on event receipt
+async function cacheGet(key: string): Promise<any> {
+  try {
+    const value = await redis.get(key);
+    return value ? JSON.parse(value) : null;
+  } catch (error) {
+    logger.warn({ key, error }, 'Redis get failed');
+    // Fall back to database query
+    return null;
+  }
+}
 
-**Pros**: Decoupled, scalable  
-**Cons**: Requires event system, adds complexity
+async function cacheSet(key: string, value: any, ttl: number): Promise<void> {
+  try {
+    await redis.setex(key, ttl, JSON.stringify(value));
+  } catch (error) {
+    logger.warn({ key, error }, 'Redis set failed, query will be uncached');
+    // Graceful degradation: continue without cache
+  }
+}
+```
 
-#### Option C: TTL-Only (Fallback)
-No explicit invalidation; rely on TTL expiration:
-1. All cache entries expire after 5-15 minutes
-2. Stale data possible during TTL window
-3. Simpler implementation
+#### Option B: Redis HA + Local In-Memory Cache (COMPLEX)
+Keep per-instance in-memory cache but requires:
+1. Pub/sub subscription for invalidation events
+2. Event listener in each instance
+3. Cross-instance communication overhead
+4. Harder to debug and monitor
 
-**Pros**: Simplest implementation  
-**Cons**: Potential stale data, higher database load during TTL
+**Cons**: Complexity not justified by performance gain  
+**Pros**: Slightly faster reads during Redis latency
 
-### Recommended Implementation
-**Hybrid approach**: Explicit invalidation (Option A) with TTL fallback (Option C)
-- Primary: Explicit invalidation when mutations occur
-- Fallback: TTL expiration ensures eventual consistency
-- Best of both: Performance + consistency guarantee
+### Resilience with Redis HA Only
+
+| Scenario | Behavior | Impact |
+|----------|----------|--------|
+| **Normal operation** | All instances hit Redis HA | <100ms response time |
+| **Memorystore upgrade** | <1s failover to replica | <1s downtime |
+| **Hardware failure** | Automatic failover | <1s downtime |
+| **Redis unavailable** | Queries go to database | Slower but operational |
+| **Cache invalidation** | Single operation in Redis | Instant across all instances |
+| **Consistency** | Strong (all instances see same data) | No stale data issues |
 
 ### Success Criteria
-- Cache invalidation occurs within 100ms of mutation
-- Affected cache entries cleared from both layers
-- Unaffected entries remain valid (80%+ efficiency)
-- TTL provides 5-15 minute consistency window
+- Redis HA endpoint configured with <1s failover
+- Cache invalidation via explicit mutation handlers
+- TTL expiration (5-15 min) ensures eventual consistency
+- All instances read/write to same Redis
+- No cross-instance communication needed
+- Graceful degradation if Redis unavailable
+- <100ms response time for cached requests
 
 ---
 
-## Research Area 3: Next.js Middleware Rate Limiting
+## Research Area 4: Next.js Middleware Rate Limiting
 
 ### Question
 How to implement per-IP rate limiting in Next.js middleware on Cloud Run?
@@ -443,18 +481,21 @@ logger.info({
 
 | Research Area | Decision | Status |
 |---------------|----------|--------|
-| **Redis Resilience & HA** | Memorystore HA + write-through in-memory cache | ✅ Ready |
+| **Redis Resilience & HA** | Memorystore HA (single source of truth) | ✅ Ready |
+| **Multi-Instance Architecture** | Redis-only (eliminates sync complexity) | ✅ Ready |
 | Cache Invalidation | Explicit mutation + TTL fallback | ✅ Ready |
 | Rate Limiting | Next.js middleware + Redis token bucket | ✅ Ready |
-| In-Memory Cache | node-cache with LRU eviction + write-through | ✅ Ready |
 | Monitoring | Prometheus metrics + structured logging | ✅ Ready |
 
 ### Key Architectural Decision
-**Write-Through Cache Pattern**: All cache writes go to both Redis and in-memory cache simultaneously. This ensures:
-- In-memory cache stays warm during normal operation
-- No cache stampede during Redis failover
-- Graceful degradation: in-memory cache serves during outage
-- <1s downtime during Memorystore HA failover
+**Redis HA Only (Simplified)**: Single cache layer with Memorystore HA provides:
+- **Resilience**: <1s failover handles maintenance/failures
+- **Simplicity**: No cross-instance communication needed
+- **Consistency**: All instances read/write to same Redis
+- **Operability**: Single cache layer to monitor and debug
+- **Graceful Degradation**: Falls back to database if Redis unavailable
+
+**Removed**: Per-instance in-memory cache (complexity not justified)
 
 ---
 
@@ -470,8 +511,16 @@ logger.info({
 
 ## Implementation Priority
 
-1. **CRITICAL**: Memorystore HA configuration (prevents downtime)
-2. **CRITICAL**: Write-through cache pattern (prevents cache stampede)
-3. **HIGH**: Rate limiting middleware (prevents abuse)
-4. **HIGH**: Cache invalidation logic (ensures consistency)
-5. **MEDIUM**: Monitoring & observability (operational visibility)
+1. **CRITICAL**: Memorystore HA configuration (single source of truth, <1s failover)
+2. **CRITICAL**: Cache invalidation logic (explicit mutation handlers)
+3. **HIGH**: Rate limiting middleware (per-IP, Redis-backed)
+4. **HIGH**: TTL expiration (5-15 min eventual consistency)
+5. **MEDIUM**: Monitoring & observability (Prometheus metrics)
+
+### Architecture Simplification Benefits
+- ✅ Eliminated per-instance in-memory cache complexity
+- ✅ No cross-instance pub/sub or event listeners needed
+- ✅ Single source of truth (Redis HA)
+- ✅ Instant cache invalidation across all instances
+- ✅ Easier to debug and operate
+- ✅ Memorystore HA provides resilience without application complexity
