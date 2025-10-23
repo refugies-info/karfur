@@ -301,20 +301,21 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
-    const themes = request.nextUrl.searchParams.get('themes')?.split(',') || [];
-    const needs = request.nextUrl.searchParams.get('needs')?.split(',') || [];
-    const frenchLevel = request.nextUrl.searchParams.get('frenchLevel')?.split(',') || [];
-    const status = request.nextUrl.searchParams.get('status')?.split(',') || [];
-    const type = request.nextUrl.searchParams.get('type')?.split(',') || [];
+    // Parse theme and need MongoDB ObjectIds
+    const themes = request.nextUrl.searchParams.get('themes')?.split(',').filter(Boolean) || [];
+    const needs = request.nextUrl.searchParams.get('needs')?.split(',').filter(Boolean) || [];
+    const frenchLevel = request.nextUrl.searchParams.get('frenchLevel')?.split(',').filter(Boolean) || [];
+    const status = request.nextUrl.searchParams.get('status')?.split(',').filter(Boolean) || [];
+    const type = request.nextUrl.searchParams.get('type')?.split(',').filter(Boolean) || [];
     const search = request.nextUrl.searchParams.get('search') || '';
     
     // Build filters object
     const filters = {
-      themes: themes.filter(Boolean),
-      needs: needs.filter(Boolean),
-      frenchLevel: frenchLevel.filter(Boolean),
-      status: status.filter(Boolean),
-      type: type.filter(Boolean),
+      themes,
+      needs,
+      frenchLevel,
+      status,
+      type,
       search,
     };
     
@@ -525,7 +526,7 @@ export const options = {
 };
 
 export default function () {
-  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=santé,logement&needs=trouver un travail,voir un docteur&frenchLevel=A1,A2&status=PUBLISHED';
+  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=63286a015d31b2c0cad9960f,63286a015d31b2c0cad9960c&needs=613721a409c5190dfa70d053,614d9a3e95b9b700142ef6c4&frenchLevel=A1,A2&status=PUBLISHED';
   const res = http.get(url);
   
   check(res, {

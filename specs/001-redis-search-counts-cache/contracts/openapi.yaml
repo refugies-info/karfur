@@ -43,18 +43,18 @@ paths:
         - name: themes
           in: query
           required: false
-          description: Comma-separated theme IDs to filter by (e.g., Santé, Français, Logement, Travail, Formation, Études, Mobilité, Famille, Loisirs, Administratif)
+          description: Comma-separated theme MongoDB ObjectIds to filter by
           schema:
             type: string
-          example: "santé,logement"
+          example: "63286a015d31b2c0cad9960f,63286a015d31b2c0cad9960c"
         
         - name: needs
           in: query
           required: false
-          description: Comma-separated need IDs to filter by (e.g., find a job, apply for allowances, see a doctor, etc.)
+          description: Comma-separated need MongoDB ObjectIds to filter by
           schema:
             type: string
-          example: "trouver un travail,demander des aides financières"
+          example: "613721a409c5190dfa70d053,613721a409c5190dfa70d052"
         
         - name: frenchLevel
           in: query
@@ -127,13 +127,13 @@ paths:
               example:
                 total: 1250
                 byTheme:
-                  santé: 450
-                  français: 380
-                  logement: 420
+                  63286a015d31b2c0cad9960f: 450
+                  63286a015d31b2c0cad9960a: 380
+                  63286a015d31b2c0cad9960c: 420
                 byNeeds:
-                  trouver un travail: 320
-                  demander des aides financières: 280
-                  voir un docteur: 650
+                  613721a409c5190dfa70d053: 320
+                  613721a409c5190dfa70d052: 280
+                  614d9a3e95b9b700142ef6c4: 650
                 byFrenchLevel:
                   A1: 200
                   A2: 350
