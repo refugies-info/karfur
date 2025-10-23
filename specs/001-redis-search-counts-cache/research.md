@@ -389,32 +389,58 @@ async function checkRateLimit(ip: string, limit: number = 10): Promise<boolean> 
 | **Latency** | <1ms | <1ms | 5-10ms |
 
 ### Success Criteria
-- Rate limiting enforced at 10 req/sec per IP
+- Rate limiting enforced at 10 req/sec per IP (via Cloud Armor)
 - 429 status returned when exceeded
-- X-RateLimit-* headers in response
-- Transparent to application (if using load balancer)
+- X-RateLimit-* headers in response (optional, Cloud Armor provides basic headers)
+- Transparent to application (handled at load balancer level)
 - No impact on cached request latency
+- Traffic blocked before reaching Cloud Run instances
+
+### Cloud Run Native Rate Limiting
+
+**Important Note**: Google Cloud Run does NOT offer native rate limiting at the service level.
+
+Cloud Run provides:
+- **Concurrency limits**: Max concurrent requests per instance (default 80)
+- **Request timeout**: Max request duration (default 60s)
+- **Memory/CPU limits**: Per-instance resource constraints
+- **Automatic scaling**: Scales based on traffic
+
+**What Cloud Run does NOT provide**:
+- ❌ Per-IP rate limiting
+- ❌ Request throttling
+- ❌ Rate-based traffic shaping
+- ❌ 429 Too Many Requests responses
 
 ### Recommended Approach
 
-**Primary**: Use Cloud Load Balancer rate limiting (no code needed)  
-**Fallback**: Application-level rate limiting if load balancer unavailable
+**Primary**: Use Cloud Load Balancer with Cloud Armor rate limiting  
+**Alternative**: Application-level rate limiting if load balancer unavailable
 
 This provides:
 - Infrastructure-level protection (blocks before compute)
 - No application code complexity
 - Cost-effective (prevents unnecessary compute usage)
-- Optional application-level fallback for specific endpoints
+- Managed by Google Cloud
 
 ### Architecture Decision
 
 For this feature:
 1. **Deploy with Cloud Load Balancer** in front of Cloud Run
-2. **Configure rate limiting policy** (10 req/sec per IP)
-3. **Optional**: Add application-level rate limiting for specific endpoints if needed
+2. **Attach Cloud Armor security policy** with rate limiting (10 req/sec per IP)
+3. **Configure to return 429** when rate limit exceeded
 4. **Monitor**: Track rate limit violations via Cloud Logging
 
-This eliminates the need for Redis-backed rate limiting and reduces application complexity.
+**Why not Cloud Run alone?**
+- Cloud Run has no native rate limiting
+- Load Balancer provides infrastructure-level protection
+- Blocks malicious traffic before reaching compute
+- More cost-effective than application-level handling
+
+**If Load Balancer not available**:
+- Fall back to application-level rate limiting
+- Use Redis-backed token bucket in Next.js middleware
+- Less efficient but still functional
 
 ---
 
