@@ -29,11 +29,28 @@ const Text = (props: Props) => {
     setHasMounted(true);
   }, []);
 
+  // Wrap content of li elements with value attribute in a div
+  const transformListItems = (html: string): string => {
+    return html.replace(
+      /<li\s+value="(\d+)"([^>]*)>([\s\S]*?)<\/li>/gi,
+      (match: string, value: string, attrs: string, content: string) => {
+        const trimmedContent = content.trim();
+        // Skip if already wrapped in a div
+        if (trimmedContent.startsWith("<div>") && trimmedContent.endsWith("</div>")) {
+          return match;
+        }
+        return `<li value="${value}"${attrs}><div>${content}</div></li>`;
+      },
+    );
+  };
+
   const convertedContent = props.html
-    ? translationParsing(props.children || "", [
-        { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
-        { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
-      ])
+    ? transformListItems(
+        translationParsing(props.children || "", [
+          { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
+          { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
+        ]),
+      )
     : props.children;
 
   // Use simple content for server-side rendering or before mounting
