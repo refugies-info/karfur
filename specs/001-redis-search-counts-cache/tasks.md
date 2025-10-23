@@ -1,331 +1,281 @@
-# Phase 2: Implementation Tasks
+# Tasks: Redis Caching for Search Counts API
 
-**Feature**: Redis Caching for Search Counts API  
-**Date**: 2025-10-23  
-**Status**: Ready for Implementation  
-**Estimated Duration**: 2-3 weeks (5 sprints)  
-**Team Size**: 1-2 engineers
+**Input**: Design documents from `/specs/001-redis-search-counts-cache/`  
+**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md  
+**Feature Branch**: `001-redis-search-counts-cache`  
+**Estimated Duration**: 2-3 weeks (5 sprints)
+
+**Organization**: Tasks are grouped by user story (P1, P2, P3) to enable independent implementation and testing of each story.
+
+## Format: `[ID] [P?] [Story] Description`
+- **[P]**: Can run in parallel (different files, no dependencies)
+- **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3, US4)
+- Include exact file paths in descriptions
 
 ---
 
-## Overview
+## Phase 1: Setup (Shared Infrastructure)
 
-This document contains all implementation tasks organized by user story priority. Each task is independently executable and includes specific file paths for clarity.
+**Purpose**: Project initialization and infrastructure setup
 
-**Key Metrics**:
-- **Total Tasks**: 28
-- **Phase 1 (Setup)**: 4 tasks
-- **Phase 2 (Foundational)**: 5 tasks
-- **Phase 3 (US1 - P1)**: 6 tasks
-- **Phase 4 (US2 - P2)**: 4 tasks
-- **Phase 5 (US4 - P2)**: 5 tasks
-- **Phase 6 (US3 - P3)**: 3 tasks
-- **Phase 7 (Polish)**: 1 task
+- [ ] T001 Create Google Cloud Memorystore HA instance in europe-west1 region with Redis 7.0, 2GB size, standard tier
+- [ ] T002 Configure Cloud Load Balancer with Cloud Armor rate limiting policy (10 req/sec per IP, 60s ban duration)
+- [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
+- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver node-cache`
+
+---
+
+## Phase 2: Foundational (Blocking Prerequisites)
+
+**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+
+**⚠️ CRITICAL**: No user story work can begin until this phase is complete
+
+- [ ] T005 Create Redis connection module at `apps/client/src/libs/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
+- [ ] T006 Create cache abstraction layer at `apps/client/src/libs/cache.ts` with `getCached()`, `setCached()`, `invalidateByFilters()` functions and SHA-256 key generation
+- [ ] T007 Create cache invalidation logic at `apps/client/src/libs/cacheInvalidation.ts` with `invalidateOnDispoChange()` function for dispositif mutations
+- [ ] T008 [P] Create structured logging module at `apps/client/src/libs/logger.ts` using pino with Cloud Logging transport (pino-stackdriver)
+- [ ] T009 [P] Create TypeScript types for cache operations at `apps/client/src/types/cache.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
+
+**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+
+---
+
+## Phase 3: User Story 1 - Cache Search Counts Results (Priority: P1) 🎯 MVP
+
+**Goal**: Implement basic Redis caching for GET `/api/search/counts` endpoint to reduce database load by 70%+ and improve response times from 500ms+ to <100ms.
+
+**Independent Test**: Query same filter combination twice; verify second request completes in <100ms without executing MongoDB aggregation.
+
+### Tests for User Story 1
+
+- [ ] T010 [P] [US1] Create unit tests for cache layer at `apps/client/src/libs/__tests__/cache.test.ts` (cache key generation, get/set operations, TTL expiration, error handling)
+- [ ] T011 [P] [US1] Create integration tests for API caching at `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts` (cache hit/miss scenarios, TTL expiration, graceful degradation)
+
+### Implementation for User Story 1
+
+- [ ] T012 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: wrap `computeSearchCounts()` with cache get/set logic
+- [ ] T013 [US1] Add cache response headers to API response in `apps/client/src/pages/api/search/counts.ts`: `X-Cache-Hit`, `X-Cache-Age`, `X-Cache-TTL`
+- [ ] T014 [US1] Add cache hit/miss logging to API route in `apps/client/src/pages/api/search/counts.ts` with structured logs (operation, key, hit, latency_ms)
+- [ ] T015 [US1] Implement graceful degradation in `apps/client/src/pages/api/search/counts.ts`: if Redis unavailable, fall back to direct MongoDB query without blocking
+
+**Checkpoint**: User Story 1 is fully functional and independently testable. Delivers <100ms cached responses and 70%+ database load reduction.
+
+---
+
+## Phase 4: User Story 2 - Invalidate Cache on Data Changes (Priority: P2)
+
+**Goal**: Implement selective cache invalidation when dispositif data changes to ensure data consistency without unnecessary invalidations.
+
+**Independent Test**: Create/update/delete dispositif; verify cache cleared for affected filter combinations and next query returns fresh data from MongoDB.
+
+### Tests for User Story 2
+
+- [ ] T016 [P] [US2] Create unit tests for cache invalidation logic at `apps/client/src/libs/__tests__/cacheInvalidation.test.ts` (selective invalidation, attribute matching, multi-language support)
+- [ ] T017 [P] [US2] Create integration tests for cache invalidation at `apps/client/src/pages/api/search/__tests__/counts-invalidation.test.ts` (invalidation on create/update/delete, affected vs unaffected entries)
+
+### Implementation for User Story 2
+
+- [ ] T018 [US2] Implement cache invalidation on dispositif creation in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: call `invalidateOnDispoChange()` after creation
+- [ ] T019 [US2] Implement cache invalidation on dispositif update in `apps/server/src/workflows/dispositif/updateDispositif/updateDispositif.ts`: invalidate both old and new attribute combinations
+- [ ] T020 [US2] Implement cache invalidation on dispositif status change in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: call invalidation logic for CREATED, PUBLISHED, DELETED, ARCHIVED transitions
+
+**Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
+
+---
+
+## Phase 5: User Story 4 - Debouncing and Rate Limiting (Priority: P2)
+
+**Goal**: Implement client-side debouncing and server-side rate limiting to prevent cache thrashing from rapid successive queries.
+
+**Independent Test**: Send 10 requests in 1 second; verify rate limiting returns 429 for excess requests and debouncing collapses multiple rapid calls into single request.
+
+### Tests for User Story 4
+
+- [ ] T021 [P] [US4] Create integration tests for rate limiting at `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts` (verify 429 responses, rate limit headers, per-IP tracking)
+- [ ] T022 [P] [US4] Create tests for debouncing hook at `apps/client/src/hooks/__tests__/useSearchCounts.test.ts` (debounce delay enforcement, multiple rapid calls collapse to single request)
+
+### Implementation for User Story 4
+
+- [ ] T023 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
+- [ ] T024 [US4] Create debounced search counts hook at `apps/client/src/hooks/useSearchCounts.ts` with configurable debounce delay and error handling
+- [ ] T025 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
+- [ ] T026 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
+
+**Checkpoint**: User Stories 1, 2, AND 4 are independently functional. Client-side debouncing reduces unique cache keys by 60%+; rate limiting reduces redundant API calls by 50%+.
+
+---
+
+## Phase 6: User Story 3 - Tiered Caching with Graceful Degradation (Priority: P3)
+
+**Goal**: Implement per-container in-memory cache as fallback and add comprehensive monitoring for operational visibility.
+
+**Independent Test**: Simulate Redis unavailability; verify API returns cached results from in-memory cache within 150ms without querying MongoDB.
+
+### Tests for User Story 3
+
+- [ ] T027 [P] [US3] Create integration tests for in-memory cache fallback at `apps/client/src/libs/__tests__/memoryCache.test.ts` (fallback behavior, LRU eviction, TTL expiration)
+- [ ] T028 [P] [US3] Create integration tests for tiered caching at `apps/client/src/pages/api/search/__tests__/counts-tiered-cache.test.ts` (Redis unavailable scenario, in-memory cache serves requests)
+
+### Implementation for User Story 3
+
+- [ ] T029 [US3] Create in-memory cache layer at `apps/client/src/libs/memoryCache.ts` using node-cache with LRU eviction, 1-5 min TTL, and max 100MB size limit
+- [ ] T030 [US3] Integrate in-memory cache into `apps/client/src/libs/cache.ts` as write-through fallback: write to both Redis and in-memory, read from Redis first then in-memory
+- [ ] T031 [US3] Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics, cache hit rates, latency, database impact, and connection status
+
+**Checkpoint**: All user stories are independently functional. In-memory cache serves requests during Redis outage; response latency <150ms; combined cache hit rate >80%.
+
+---
+
+## Phase 7: Polish & Cross-Cutting Concerns
+
+**Purpose**: Improvements and documentation affecting multiple user stories
+
+- [ ] T032 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram, deployment guide, troubleshooting, monitoring queries, and performance tuning
+- [ ] T033 [P] Run quickstart.md validation: verify all steps work end-to-end with local Redis Docker setup
+- [ ] T034 [P] Run load testing with k6: simulate 100 concurrent users, verify cache hit rate >80%, response latency <100ms, database load reduced by 70%+
+- [ ] T035 Create deployment runbook at `apps/client/docs/DEPLOYMENT_RUNBOOK.md` with pre-deployment checklist, deployment steps, rollback procedure, and post-deployment verification
+
+---
+
+## Dependencies & Execution Order
+
+### Phase Dependencies
+
+- **Setup (Phase 1)**: No dependencies - can start immediately
+- **Foundational (Phase 2)**: Depends on Setup completion - BLOCKS all user stories
+- **User Stories (Phase 3-6)**: All depend on Foundational phase completion
+  - User Story 1 (P1): Can start after Foundational - No dependencies on other stories
+  - User Story 2 (P2): Can start after Foundational - Depends on US1 cache layer but independently testable
+  - User Story 4 (P2): Can start after Foundational - Independent of US1 and US2
+  - User Story 3 (P3): Can start after Foundational - Depends on US1 cache layer but independently testable
+- **Polish (Phase 7)**: Depends on all desired user stories being complete
+
+### User Story Dependencies
+
+```
+Setup (Phase 1)
+    ↓
+Foundational (Phase 2)
+    ↓
+    ├─→ US1 (P1) ─────────────┐
+    │                          ├─→ US2 (P2) ─┐
+    ├─→ US4 (P2) ─────────────┘              ├─→ US3 (P3)
+    │                                        │
+    └─────────────────────────────────────────┘
+                                ↓
+                        Polish (Phase 7)
+```
+
+### Within Each User Story
+
+- Tests MUST be written and FAIL before implementation
+- Implementation tasks follow test-driven development (TDD)
+- Story complete before moving to next priority
+- Each story independently testable and deployable
+
+### Parallel Opportunities
+
+**Phase 1 (Setup)**:
+- All [P] tasks can run in parallel (T003, T004)
+
+**Phase 2 (Foundational)**:
+- All [P] tasks can run in parallel (T008, T009)
+- T005, T006, T007 have dependencies but can start after T001-T004
+
+**Phase 3 (US1)**:
+- Tests (T010, T011) can run in parallel
+- Implementation (T012-T015) sequential due to dependencies
+
+**Phase 4 (US2)**:
+- Tests (T016, T017) can run in parallel
+- Implementation (T018-T020) can run in parallel (different files)
+
+**Phase 5 (US4)**:
+- Tests (T021, T022) can run in parallel
+- Implementation (T023-T026) can run in parallel (different files)
+
+**Phase 6 (US3)**:
+- Tests (T027, T028) can run in parallel
+- Implementation (T029-T031) sequential due to dependencies
+
+**Parallel Team Strategy** (with 2-3 developers):
+1. Team completes Setup + Foundational together (Phases 1-2)
+2. Once Foundational is done:
+   - Developer A: User Story 1 (P1) - MVP
+   - Developer B: User Story 4 (P2) - Rate limiting
+   - Developer C: User Story 2 (P2) - Cache invalidation
+3. After US1 complete, Developer A moves to US3 (P3)
+4. Stories complete and integrate independently
 
 ---
 
 ## Implementation Strategy
 
-### MVP Scope (Recommended First Sprint)
-Focus on **User Story 1 (P1)** to deliver core value:
-- Basic Redis caching with 5-15 min TTL
-- Cache hit/miss tracking
-- Graceful degradation if Redis unavailable
-- Estimated: 3-4 days for 1 engineer
+### MVP First (User Story 1 Only)
 
-**Delivers**: <100ms cached responses, 70%+ database load reduction
+1. Complete Phase 1: Setup (1 day)
+2. Complete Phase 2: Foundational (1 day)
+3. Complete Phase 3: User Story 1 (3-4 days)
+4. **STOP and VALIDATE**: Test User Story 1 independently
+5. Deploy/demo if ready
 
-### Incremental Delivery
-1. **Sprint 1**: User Story 1 (P1) - Core caching
-2. **Sprint 2**: User Story 2 (P2) - Cache invalidation
-3. **Sprint 3**: User Story 4 (P2) - Rate limiting & debouncing
-4. **Sprint 4**: User Story 3 (P3) - Tiered caching & monitoring
-5. **Sprint 5**: Polish, testing, deployment
+**Delivers**: <100ms cached responses, 70%+ database load reduction, >80% cache hit rate
 
----
+### Incremental Delivery (Recommended)
 
-## Dependencies & Parallelization
+1. **Sprint 1**: Setup + Foundational → Foundation ready
+2. **Sprint 2**: User Story 1 (P1) → Test independently → Deploy/Demo (MVP!)
+3. **Sprint 3**: User Story 2 (P2) + User Story 4 (P2) in parallel → Test independently → Deploy/Demo
+4. **Sprint 4**: User Story 3 (P3) → Test independently → Deploy/Demo
+5. **Sprint 5**: Polish & documentation → Final deployment
 
-### User Story Dependencies
-```
-US1 (P1) ─────────────────┐
-                           ├─→ US2 (P2) ─┐
-                           │              ├─→ US3 (P3)
-US4 (P2) ─────────────────┘              │
-                                         └─→ Deployment
-```
-
-**Parallelizable**:
-- US1 and US4 can be developed in parallel (independent)
-- US2 depends on US1 (needs cache layer)
-- US3 depends on US1 (needs cache layer)
+Each story adds value without breaking previous stories.
 
 ---
 
-## Phase 1: Setup & Infrastructure (Days 1-2)
+## Success Criteria
 
-### Prerequisites
-- [ ] T001 Create Google Cloud Memorystore HA instance in europe-west1 region with Redis 7.0
-- [ ] T002 Configure Cloud Load Balancer with Cloud Armor rate limiting policy (10 req/sec per IP, 60s ban)
-- [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
-- [ ] T004 [P] Install dependencies: `pnpm add ioredis pino pino-stackdriver node-cache`
-
-**Success Criteria**:
-- ✅ Memorystore instance running and accessible
-- ✅ Cloud Load Balancer configured with rate limiting
-- ✅ Environment variables set correctly
-- ✅ All dependencies installed
-
----
-
-## Phase 2: Foundational Infrastructure (Days 3-4)
-
-### Core Cache Layer
-- [ ] T005 Create Redis connection module at `apps/client/src/libs/redis.ts` with connection pooling, retry strategy, and error handling
-- [ ] T006 Create cache abstraction layer at `apps/client/src/libs/cache.ts` with `getCached()`, `setCached()`, `invalidateByFilters()` functions
-- [ ] T007 Create cache invalidation logic at `apps/client/src/libs/cacheInvalidation.ts` with `invalidateOnDispoChange()` function
-- [ ] T008 [P] Create structured logging module at `apps/client/src/libs/logger.ts` using pino with Cloud Logging transport
-- [ ] T009 [P] Create TypeScript types for cache operations at `apps/client/src/types/cache.ts` (CacheEntry, CacheKey, SearchCountsResponse)
-
-**Success Criteria**:
-- ✅ Redis connection established and tested
-- ✅ Cache layer abstracts Redis operations
-- ✅ Structured logging configured
-- ✅ All modules have proper error handling and logging
-
----
-
-## Phase 3: User Story 1 - Cache Search Counts Results (P1) (Days 5-8)
-
-**Goal**: Implement basic Redis caching for GET `/api/search/counts` endpoint to reduce database load and improve response times.
-
-**Independent Test**: Query same filter combination twice; verify second request <100ms without MongoDB aggregation.
-
-### Implementation Tasks
-- [ ] T010 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: wrap `computeSearchCounts()` with cache get/set logic
-- [ ] T011 [US1] Add cache response headers to API response: `X-Cache-Hit`, `X-Cache-Age`, `X-Cache-TTL` in `apps/client/src/pages/api/search/counts.ts`
-- [ ] T012 [P] [US1] Create unit tests for cache layer at `apps/client/src/libs/__tests__/cache.test.ts` (get, set, key generation, TTL)
-- [ ] T013 [P] [US1] Create integration tests for API caching at `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts` (cache hit/miss scenarios)
-- [ ] T014 [US1] Add cache hit/miss logging to API route in `apps/client/src/pages/api/search/counts.ts` with structured logs
-- [ ] T015 [US1] Implement graceful degradation: if Redis unavailable, fall back to direct MongoDB query without blocking
-
-**Success Criteria**:
-- ✅ Cached responses complete in <100ms
+### User Story 1 (P1) - Cache Search Counts Results
+- ✅ Cached responses complete in <100ms (p99)
 - ✅ Cache hit rate >80% for repeated queries
-- ✅ Database load reduced by 70%+ (measured by query count)
-- ✅ All tests passing
+- ✅ Database query load reduced by 70%+ (measured by query count)
+- ✅ All unit and integration tests passing
 - ✅ Graceful fallback if Redis unavailable
 - ✅ Structured logs show cache operations
 
----
-
-## Phase 4: User Story 2 - Invalidate Cache on Data Changes (P2) (Days 9-11)
-
-**Goal**: Implement selective cache invalidation when dispositif data changes to ensure data consistency.
-
-**Independent Test**: Create/update/delete dispositif; verify cache cleared and next query returns fresh data.
-
-### Implementation Tasks
-- [ ] T016 [US2] Implement cache invalidation on dispositif creation in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts` (call invalidation logic)
-- [ ] T017 [US2] Implement cache invalidation on dispositif update in `apps/server/src/workflows/dispositif/updateDispositif/updateDispositif.ts` (invalidate old + new attributes)
-- [ ] T018 [US2] Implement cache invalidation on dispositif status change in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`
-- [ ] T019 [P] [US2] Create unit tests for cache invalidation logic at `apps/client/src/libs/__tests__/cacheInvalidation.test.ts` (selective invalidation, attribute matching)
-
-**Success Criteria**:
+### User Story 2 (P2) - Invalidate Cache on Data Changes
 - ✅ Cache invalidated within 100ms of dispositif change
 - ✅ Only affected filter combinations invalidated (80%+ reduction in unnecessary invalidations)
-- ✅ Unaffected cache entries remain valid
-- ✅ All tests passing
-- ✅ Structured logs show invalidation events
+- ✅ Unaffected cache entries remain valid and serve from cache
+- ✅ All unit and integration tests passing
+- ✅ Structured logs show invalidation events with trigger and affected keys
 
----
-
-## Phase 5: User Story 4 - Debouncing and Rate Limiting (P2) (Days 12-14)
-
-**Goal**: Implement client-side debouncing and server-side rate limiting to prevent cache thrashing.
-
-**Independent Test**: Send 10 requests in 1 second; verify rate limiting returns 429 for excess requests.
-
-### Implementation Tasks
-- [ ] T020 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
-- [ ] T021 [US4] Create debounced search counts hook at `apps/client/src/hooks/useSearchCounts.ts` with configurable debounce delay
-- [ ] T022 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
-- [ ] T023 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header
-- [ ] T024 [P] [US4] Create integration tests for rate limiting at `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts` (verify 429 responses, header validation)
-
-**Success Criteria**:
+### User Story 4 (P2) - Debouncing and Rate Limiting
 - ✅ Client-side debouncing reduces unique cache keys by 60%+ during search input
 - ✅ Rate limiting reduces redundant API calls by 50%+
 - ✅ Rate-limited requests return 429 within 10ms
-- ✅ All tests passing
-- ✅ Rate limit headers present in responses
+- ✅ Rate limit headers present in all responses
+- ✅ All unit and integration tests passing
 
----
-
-## Phase 6: User Story 3 - Tiered Caching with Graceful Degradation (P3) (Days 15-17)
-
-**Goal**: Implement per-container in-memory cache as fallback and add comprehensive monitoring.
-
-**Independent Test**: Simulate Redis unavailability; verify API returns cached results from in-memory cache within 150ms.
-
-### Implementation Tasks
-- [ ] T025 [US3] Create in-memory cache layer at `apps/client/src/libs/memoryCache.ts` using node-cache with LRU eviction and 1-5 min TTL
-- [ ] T026 [US3] Integrate in-memory cache into `apps/client/src/libs/cache.ts` as write-through fallback (write to both Redis and in-memory)
-- [ ] T027 [US3] Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics, cache hit rates, latency, and database impact
-
-**Success Criteria**:
+### User Story 3 (P3) - Tiered Caching with Graceful Degradation
 - ✅ In-memory cache serves requests when Redis unavailable
 - ✅ Response latency <150ms during Redis outage
 - ✅ Memory footprint <100MB per container
 - ✅ Monitoring dashboard shows cache performance metrics
-- ✅ Cache hit rate >80% combined (Redis + in-memory)
+- ✅ Combined cache hit rate >80% (Redis + in-memory)
+- ✅ All unit and integration tests passing
 
 ---
 
-## Phase 7: Polish & Cross-Cutting Concerns (Days 18-19)
+## Notes
 
-### Final Tasks
-- [ ] T028 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram, deployment guide, troubleshooting, and monitoring queries
-
-**Success Criteria**:
-- ✅ Documentation complete and accurate
-- ✅ Deployment guide tested
-- ✅ Troubleshooting guide covers common issues
-- ✅ Monitoring queries work in Cloud Logging
-
----
-
-## Testing Strategy
-
-### Unit Tests (Per-Component)
-- **Cache layer**: `apps/client/src/libs/__tests__/cache.test.ts`
-  - Cache key generation consistency
-  - Get/set operations
-  - TTL expiration
-  - Error handling
-
-- **Cache invalidation**: `apps/client/src/libs/__tests__/cacheInvalidation.test.ts`
-  - Selective invalidation logic
-  - Attribute matching
-  - Multi-language support
-
-- **Debouncing hook**: `apps/client/src/hooks/__tests__/useSearchCounts.test.ts`
-  - Debounce delay enforcement
-  - Multiple rapid calls collapse to single request
-  - Error handling
-
-### Integration Tests (End-to-End)
-- **API caching**: `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts`
-  - Cache hit on repeated queries
-  - Cache miss on first query
-  - TTL expiration triggers fresh query
-  - Graceful degradation if Redis unavailable
-
-- **Rate limiting**: `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts`
-  - 429 response when limit exceeded
-  - Rate limit headers present
-  - Per-IP tracking
-
-- **Cache invalidation**: `apps/client/src/pages/api/search/__tests__/counts-invalidation.test.ts`
-  - Cache cleared on dispositif create/update/delete
-  - Only affected entries invalidated
-  - Unaffected entries remain valid
-
-### Load Testing
-- Use k6 to simulate 100 concurrent users
-- Verify cache hit rate >80%
-- Verify response latency <100ms for cached requests
-- Verify database load reduced by 70%+
-
----
-
-## Deployment Checklist
-
-- [ ] Memorystore HA instance created and tested
-- [ ] Cloud Load Balancer configured with rate limiting
-- [ ] Environment variables set in production
-- [ ] Redis connection tested in staging
-- [ ] All unit tests passing
-- [ ] All integration tests passing
-- [ ] Load testing completed with success criteria met
-- [ ] Cloud Monitoring dashboard created
-- [ ] Cloud Logging queries configured
-- [ ] Alerts configured for anomalies
-- [ ] Documentation complete
-- [ ] Team trained on monitoring and troubleshooting
-- [ ] Deployment to production
-- [ ] Post-deployment verification (cache hit rate, latency, database load)
-
----
-
-## Success Metrics
-
-### Performance
-- **Cached response latency**: <100ms (p99)
-- **Cache hit rate**: >80% (combined Redis + in-memory)
-- **Database load reduction**: 70%+ (fewer queries)
-- **Rate-limited response latency**: <10ms
-
-### Reliability
-- **Memorystore HA failover**: <1s downtime
-- **In-memory cache fallback**: <150ms response time during Redis outage
-- **Graceful degradation**: Falls back to database if both caches unavailable
-
-### Observability
-- **Cache metrics**: Visible in Cloud Monitoring within 5 minutes
-- **Structured logs**: All cache operations logged to Cloud Logging
-- **Audit trail**: Complete history of cache operations
-
----
-
-## Risk Mitigation
-
-| Risk | Probability | Impact | Mitigation |
-|------|-------------|--------|-----------|
-| **Redis connection failure** | Medium | High | Graceful fallback to database; in-memory cache as secondary layer |
-| **Cache stampede** | Low | High | Memorystore HA + write-through in-memory cache keeps cache warm |
-| **Memory exhaustion** | Low | High | LRU eviction in in-memory cache; max 100MB per container |
-| **Stale data** | Low | Medium | TTL expiration (5-15 min) + explicit invalidation on mutations |
-| **Rate limiting misconfiguration** | Low | Medium | Cloud Load Balancer handles; test in staging first |
-| **Monitoring blind spots** | Medium | Medium | Structured logging + Cloud Logging queries provide visibility |
-
----
-
-## Next Steps
-
-1. ✅ Specification complete
-2. ✅ Plan complete
-3. ✅ Phase 0 research complete
-4. ✅ Phase 1 design complete
-5. ⏳ **Phase 2: Execute tasks in priority order (US1 → US2 → US4 → US3)**
-6. ⏳ Phase 3: Testing & deployment
-7. ⏳ Phase 4: Post-deployment monitoring & optimization
-
-**Status**: Ready for implementation! 🚀
-
----
-
-## Task Execution Guide
-
-### For Sprint Planning
-1. Group tasks by phase (1-7)
-2. Assign Phase 1-2 to first sprint (foundational)
-3. Assign Phase 3 to second sprint (MVP - US1)
-4. Assign Phase 4-5 to third sprint (parallel - US2 + US4)
-5. Assign Phase 6 to fourth sprint (US3)
-6. Assign Phase 7 to fifth sprint (polish)
-
-### For Parallel Execution
-- **Sprint 2**: Tasks T005-T009 can run in parallel (different files)
-- **Sprint 3**: Tasks T012-T013 can run in parallel (different test files)
-- **Sprint 4**: Tasks T016-T019 can run in parallel (different files)
-- **Sprint 5**: Tasks T020-T024 can run in parallel (different files)
-
-### For Code Review
-Each task should be reviewed for:
-- ✅ Correct file paths
-- ✅ Proper error handling
-- ✅ Structured logging
-- ✅ Test coverage
-- ✅ TypeScript type safety
-- ✅ Prettier formatting compliance
+- [P] tasks = different files, no dependencies
+- [Story] label maps task to specific user story for traceability
+- Each user story should be independently completable and testable
+- Verify tests fail before implementing
+- Commit after each task or logical group
+- Stop at any checkpoint to validate story independently
+- Use exact file paths from plan.md project structure
+- Follow Prettier formatting rules (printWidth: 120, semi: true, singleQuote: false, trailingComma: all)
+- All code must follow TypeScript strict mode
