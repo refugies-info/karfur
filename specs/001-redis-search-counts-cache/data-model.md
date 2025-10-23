@@ -29,21 +29,46 @@ cache:search_counts:en:xyz789uvw012
   "ttl": 600,
   "data": {
     "total": 1250,
-    "byTheme": {
-      "health": 450,
-      "education": 380,
-      "housing": 420
+    "themes": {
+      "63286a015d31b2c0cad9960f": 450,
+      "63286a015d31b2c0cad9960a": 380,
+      "63286a015d31b2c0cad9960c": 420
     },
-    "byNeeds": {
-      "legal": 320,
-      "financial": 280,
-      "medical": 650
+    "needs": {
+      "613721a409c5190dfa70d053": 320,
+      "613721a409c5190dfa70d052": 280,
+      "614d9a3e95b9b700142ef6c4": 650
     },
-    "byFrenchLevel": {
+    "frenchLevels": {
       "A1": 200,
       "A2": 350,
       "B1": 400,
       "B2": 300
+    },
+    "ageRanges": {
+      "-18": 150,
+      "18-25": 400,
+      "+25": 700
+    },
+    "publics": {
+      "family": 300,
+      "women": 250,
+      "youths": 200
+    },
+    "languages": {
+      "fr": 800,
+      "en": 200,
+      "ar": 150
+    },
+    "statuses": {
+      "asile": 400,
+      "refugie": 500,
+      "subsidiaire": 200
+    },
+    "types": {
+      "dispositif": 900,
+      "demarche": 250,
+      "online": 100
     }
   }
 }

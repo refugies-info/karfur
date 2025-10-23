@@ -1,8 +1,8 @@
 # Quickstart Guide: Redis Caching for Search Counts API
 
-**Feature**: Redis Caching for Search Counts API  
-**Duration**: ~2-3 weeks (5 sprints)  
-**Complexity**: Medium  
+**Feature**: Redis Caching for Search Counts API
+**Duration**: ~2-3 weeks (5 sprints)
+**Complexity**: Medium
 **Team Size**: 1-2 engineers
 
 ---
@@ -12,6 +12,7 @@
 This guide walks you through implementing Redis caching for the `/api/search/counts` endpoint to reduce database load by 70%+ and improve response times from 500ms+ to <100ms.
 
 **Key Components**:
+
 - Google Cloud Memorystore (Redis HA)
 - Cloud Load Balancer + Cloud Armor (rate limiting)
 - Next.js API route with caching logic
@@ -81,6 +82,7 @@ gcloud redis instances describe search-counts-cache \
 ```
 
 **Store these values**:
+
 - `REDIS_HOST`: Internal IP address
 - `REDIS_PORT`: Usually 6379
 - `REDIS_PASSWORD`: Generated password
@@ -122,11 +124,11 @@ gcloud monitoring metrics-descriptors list \
 **File**: `apps/client/src/libs/redis.ts`
 
 ```typescript
-import Redis from 'ioredis';
+import Redis from "ioredis";
 
 const redis = new Redis({
   host: process.env.REDIS_HOST,
-  port: parseInt(process.env.REDIS_PORT || '6379'),
+  port: parseInt(process.env.REDIS_PORT || "6379"),
   password: process.env.REDIS_PASSWORD,
   tls: { rejectUnauthorized: false },
   maxRetriesPerRequest: 3,
@@ -135,12 +137,12 @@ const redis = new Redis({
   retryStrategy: (times) => Math.min(times * 50, 2000),
 });
 
-redis.on('connect', () => {
-  console.log('Redis connected');
+redis.on("connect", () => {
+  console.log("Redis connected");
 });
 
-redis.on('error', (err) => {
-  console.error('Redis error:', err);
+redis.on("error", (err) => {
+  console.error("Redis error:", err);
 });
 
 export default redis;
@@ -151,8 +153,8 @@ export default redis;
 **File**: `apps/client/src/libs/cache.ts`
 
 ```typescript
-import redis from './redis';
-import { createHash } from 'crypto';
+import redis from "./redis";
+import { createHash } from "crypto";
 
 interface CacheEntry {
   version: number;
@@ -161,11 +163,11 @@ interface CacheEntry {
   data: any;
 }
 
-const CACHE_TTL_SECONDS = parseInt(process.env.CACHE_TTL_SECONDS || '600');
+const CACHE_TTL_SECONDS = parseInt(process.env.CACHE_TTL_SECONDS || "600");
 
 function generateCacheKey(language: string, filters: Record<string, any>): string {
   const sortedFilters = JSON.stringify(filters, Object.keys(filters).sort());
-  const hash = createHash('sha256').update(sortedFilters).digest('hex');
+  const hash = createHash("sha256").update(sortedFilters).digest("hex");
   return `cache:search_counts:${language}:${hash}`;
 }
 
@@ -173,24 +175,20 @@ async function getCached(language: string, filters: Record<string, any>): Promis
   try {
     const key = generateCacheKey(language, filters);
     const value = await redis.get(key);
-    
+
     if (value) {
       const entry: CacheEntry = JSON.parse(value);
       return entry.data;
     }
-    
+
     return null;
   } catch (error) {
-    console.warn('Cache get failed:', error);
+    console.warn("Cache get failed:", error);
     return null;
   }
 }
 
-async function setCached(
-  language: string,
-  filters: Record<string, any>,
-  data: any
-): Promise<void> {
+async function setCached(language: string, filters: Record<string, any>, data: any): Promise<void> {
   try {
     const key = generateCacheKey(language, filters);
     const entry: CacheEntry = {
@@ -199,24 +197,24 @@ async function setCached(
       ttl: CACHE_TTL_SECONDS,
       data,
     };
-    
+
     await redis.setex(key, CACHE_TTL_SECONDS, JSON.stringify(entry));
   } catch (error) {
-    console.warn('Cache set failed:', error);
+    console.warn("Cache set failed:", error);
   }
 }
 
 async function invalidateByFilters(filters: Record<string, any>): Promise<void> {
   try {
     // Invalidate for all supported languages
-    const languages = ['fr', 'en', 'uk', 'ti', 'ar', 'ps', 'ru', 'fa'];
-    
+    const languages = ["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"];
+
     for (const language of languages) {
       const key = generateCacheKey(language, filters);
       await redis.del(key);
     }
   } catch (error) {
-    console.warn('Cache invalidation failed:', error);
+    console.warn("Cache invalidation failed:", error);
   }
 }
 
@@ -228,8 +226,8 @@ export { getCached, setCached, invalidateByFilters, generateCacheKey };
 **File**: `apps/client/src/libs/cacheInvalidation.ts`
 
 ```typescript
-import { invalidateByFilters } from './cache';
-import logger from './logger';
+import { invalidateByFilters } from "./cache";
+import logger from "./logger";
 
 interface Dispositif {
   _id: string;
@@ -250,19 +248,19 @@ async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
       status: dispositif.status ? [dispositif.status] : [],
       type: dispositif.type ? [dispositif.type] : [],
     };
-    
+
     await invalidateByFilters(filters);
-    
+
     logger.info({
-      operation: 'cache_invalidate',
-      trigger: 'dispositif_changed',
+      operation: "cache_invalidate",
+      trigger: "dispositif_changed",
       dispositif_id: dispositif._id,
       keys_invalidated: 1,
     });
   } catch (error) {
     logger.error({
-      operation: 'cache_invalidate',
-      error: error instanceof Error ? error.message : 'Unknown error',
+      operation: "cache_invalidate",
+      error: error instanceof Error ? error.message : "Unknown error",
     });
   }
 }
@@ -272,107 +270,39 @@ export { invalidateOnDispoChange };
 
 ---
 
+cat > /tmp/update_quickstart.txt << 'EOF'
+
 ## Step 3: Implement API Route (Days 4-5)
 
-### 3.1 Create Search Counts API Route
+### 3.1 Search Counts API Route
 
 **File**: `apps/client/src/pages/api/search/counts.ts`
 
-```typescript
-import { NextRequest, NextResponse } from 'next/server';
-import { getCached, setCached } from '@/libs/cache';
-import logger from '@/libs/logger';
-import { getSearchCounts } from '@/services/searchService';
+The API route is already implemented in the codebase. It provides:
 
-export const runtime = 'nodejs';
+- **Endpoint**: `GET /api/search/counts`
+- **Query Parameters**: language (required), themes, needs, frenchLevel, status, public, age, departments, sort, search
+- **Response**: SearchCountsResponse with counts grouped by themes, needs, frenchLevels, ageRanges, publics, languages, statuses, and types
+- **Features**:
+  - MongoDB aggregation pipeline for efficient counting
+  - Algolia integration for free-text search
+  - Faceted counts across all filter dimensions
+  - Proper error handling and validation
 
-export async function GET(request: NextRequest) {
-  const startTime = Date.now();
-  
-  try {
-    // Parse query parameters
-    // Validate language is supported
-    const supportedLanguages = ['fr', 'en', 'uk', 'ti', 'ar', 'ps', 'ru', 'fa'];
-    const language = request.nextUrl.searchParams.get('language') || 'fr';
-    
-    if (!supportedLanguages.includes(language)) {
-      return NextResponse.json(
-        { error: 'Bad Request', message: `Invalid language: '${language}'. Supported: ${supportedLanguages.join(', ')}` },
-        { status: 400 }
-      );
-    }
-    // Parse theme and need MongoDB ObjectIds
-    const themes = request.nextUrl.searchParams.get('themes')?.split(',').filter(Boolean) || [];
-    const needs = request.nextUrl.searchParams.get('needs')?.split(',').filter(Boolean) || [];
-    const frenchLevel = request.nextUrl.searchParams.get('frenchLevel')?.split(',').filter(Boolean) || [];
-    const status = request.nextUrl.searchParams.get('status')?.split(',').filter(Boolean) || [];
-    const search = request.nextUrl.searchParams.get('search') || '';
-    
-    // Build filters object
-    const filters = {
-      themes,
-      needs,
-      frenchLevel,
-      status,
-      search,
-    };
-    
-    // Try cache first
-    let data = await getCached(language, filters);
-    let cacheHit = !!data;
-    let cacheAge = 0;
-    
-    // If not cached, query database
-    if (!data) {
-      data = await getSearchCounts(language, filters);
-      await setCached(language, filters, data);
-    } else {
-      cacheAge = Math.floor((Date.now() - Date.parse(data.timestamp)) / 1000);
-    }
-    
-    const latency = Date.now() - startTime;
-    
-    // Log operation
-    logger.info({
-      operation: 'api_response',
-      endpoint: '/api/search/counts',
-      status: 200,
-      cache_hit: cacheHit,
-      database_queries: cacheHit ? 0 : 1,
-      latency_ms: latency,
-      language,
-    });
-    
-    // Return response
-    return NextResponse.json(
-      {
-        ...data,
-        cached: cacheHit,
-        cacheAge: cacheHit ? cacheAge : undefined,
-      },
-      {
-        status: 200,
-        headers: {
-          'X-Cache-Hit': cacheHit ? 'true' : 'false',
-          'X-Cache-Age': cacheAge.toString(),
-          'X-Cache-TTL': '600',
-        },
-      }
-    );
-  } catch (error) {
-    logger.error({
-      operation: 'api_response',
-      endpoint: '/api/search/counts',
-      error: error instanceof Error ? error.message : 'Unknown error',
-    });
-    
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
-  }
-}
-```
+**Key Implementation Details**:
+
+- Uses `computeSearchCounts()` function for MongoDB aggregation
+- Supports all query parameters from the search-helpers
+- Returns structured counts for UI filtering
+- Handles method validation (GET only)
+- Can be disabled via `DISABLE_SEARCH_COUNTS` environment variable
+
+**Next Steps for Caching Integration**:
+
+1. Add Redis caching layer around `computeSearchCounts()`
+2. Implement cache invalidation on dispositif mutations
+3. Add rate limiting via Cloud Load Balancer
+4. Add structured logging for monitoring
 
 ---
 
@@ -383,12 +313,12 @@ export async function GET(request: NextRequest) {
 **File**: `apps/client/src/libs/logger.ts`
 
 ```typescript
-import pino from 'pino';
+import pino from "pino";
 
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || "info",
   transport: {
-    target: 'pino-stackdriver',
+    target: "pino-stackdriver",
   },
 });
 
@@ -468,35 +398,35 @@ ORDER BY minute DESC
 **File**: `apps/client/src/libs/__tests__/cache.test.ts`
 
 ```typescript
-import { getCached, setCached, generateCacheKey } from '../cache';
-import redis from '../redis';
+import { getCached, setCached, generateCacheKey } from "../cache";
+import redis from "../redis";
 
-describe('Cache Layer', () => {
+describe("Cache Layer", () => {
   afterEach(async () => {
     await redis.flushdb();
   });
 
-  it('should cache and retrieve data', async () => {
-    const filters = { themes: ['health'] };
+  it("should cache and retrieve data", async () => {
+    const filters = { themes: ["health"] };
     const data = { total: 100 };
 
-    await setCached('fr', filters, data);
-    const cached = await getCached('fr', filters);
+    await setCached("fr", filters, data);
+    const cached = await getCached("fr", filters);
 
     expect(cached).toEqual(data);
   });
 
-  it('should return null for missing cache', async () => {
-    const filters = { themes: ['health'] };
-    const cached = await getCached('fr', filters);
+  it("should return null for missing cache", async () => {
+    const filters = { themes: ["health"] };
+    const cached = await getCached("fr", filters);
 
     expect(cached).toBeNull();
   });
 
-  it('should generate consistent cache keys', () => {
-    const filters = { themes: ['health'], needs: ['legal'] };
-    const key1 = generateCacheKey('fr', filters);
-    const key2 = generateCacheKey('fr', filters);
+  it("should generate consistent cache keys", () => {
+    const filters = { themes: ["health"], needs: ["legal"] };
+    const key1 = generateCacheKey("fr", filters);
+    const key2 = generateCacheKey("fr", filters);
 
     expect(key1).toBe(key2);
   });
@@ -526,7 +456,7 @@ export const options = {
 export default function () {
   const url = 'http://localhost:3000/api/search/counts?language=fr&themes=63286a015d31b2c0cad9960f,63286a015d31b2c0cad9960c&needs=613721a409c5190dfa70d053,614d9a3e95b9b700142ef6c4&frenchLevel=A1,A2&status=PUBLISHED';
   const res = http.get(url);
-  
+
   check(res, {
     'status is 200': (r) => r.status === 200,
     'response time < 100ms': (r) => r.timings.duration < 100,
@@ -572,6 +502,7 @@ gcloud run deploy search-counts-api \
 ## Troubleshooting
 
 ### Redis Connection Failed
+
 ```bash
 # Check Memorystore instance
 gcloud redis instances describe search-counts-cache --region=europe-west1
@@ -582,11 +513,13 @@ gcloud compute ssh <instance> --zone=<zone> -- \
 ```
 
 ### Low Cache Hit Rate
+
 - Check cache invalidation logic
 - Verify TTL is appropriate
 - Monitor filter combinations in logs
 
 ### High Latency
+
 - Check Redis memory usage
 - Verify Cloud Run instance size
 - Review database query performance
