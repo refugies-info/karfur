@@ -77,11 +77,11 @@
 
 ### Implementation for User Story 2
 
-**Architecture**: Server-side mutations trigger webhook calls to client app cache invalidation endpoint. Client app invalidates Redis cache based on dispositif attributes.
+**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using Redis client. Cache layer remains in client app but is invalidated by server.
 
-- [ ] T018 [US2] Create cache invalidation webhook endpoint at `apps/client/src/pages/api/webhooks/cache-invalidate.ts` that accepts dispositif attributes (themes, needs, language, status, etc.) and calls `invalidateByFilters()` from cache layer
-- [ ] T019 [US2] Add cache invalidation webhook call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, POST to client webhook with dispositif attributes
-- [ ] T020 [US2] Add cache invalidation webhook calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), POST to client webhook with both old and new attributes
+- [ ] T018 [US2] Create Redis cache invalidation utility in `apps/server/src/libs/cacheInvalidation.ts` with function to invalidate search counts cache based on dispositif attributes (themes, needs, language, status, etc.)
+- [ ] T019 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, call invalidation utility with new dispositif attributes
+- [ ] T020 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), call invalidation utility with both old and new attributes
 
 **Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
 
