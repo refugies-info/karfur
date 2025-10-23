@@ -3,7 +3,7 @@
 **Feature Branch**: `001-redis-search-counts-cache`  
 **Created**: 2025-10-23  
 **Status**: Draft  
-**Input**: User description: "Implement Redis caching for search counts API using Google Cloud Memorystore to improve performance. The GET /dispositifs/count endpoint currently performs direct MongoDB queries on every request without caching, causing high database load and slow response times."
+**Input**: User description: "Implement Redis caching for search counts API using Google Cloud Memorystore to improve performance. The GET /api/search/counts endpoint (Next.js route in client app) currently performs direct MongoDB aggregations on every request without caching, causing high database load and slow response times."
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -30,9 +30,9 @@ As an admin user querying the search counts API, I want the system to cache resu
 
 **Acceptance Scenarios**:
 
-1. **Given** Redis cache is empty, **When** admin calls GET /dispositifs/count with filters (type=service, publishedOnly=true), **Then** system queries MongoDB and stores result in cache with 5-15 minute TTL
-2. **Given** result is cached for the same filter combination, **When** admin calls GET /dispositifs/count with identical filters within TTL, **Then** system returns cached result in under 100ms without querying MongoDB
-3. **Given** cache TTL has expired, **When** admin calls GET /dispositifs/count with previously cached filters, **Then** system queries MongoDB again and updates cache
+1. **Given** Redis cache is empty, **When** client calls GET /api/search/counts with filters (themes, needs, frenchLevel, etc.), **Then** system executes MongoDB aggregation and stores result in cache with 5-15 minute TTL
+2. **Given** result is cached for the same filter combination, **When** client calls GET /api/search/counts with identical filters within TTL, **Then** system returns cached result in under 100ms without executing MongoDB aggregation
+3. **Given** cache TTL has expired, **When** client calls GET /api/search/counts with previously cached filters, **Then** system executes MongoDB aggregation again and updates cache
 
 ---
 
@@ -48,7 +48,7 @@ As a system administrator, I want the cache to be automatically invalidated when
 
 1. **Given** search counts are cached, **When** a dispositif status changes to DELETED or ARCHIVED, **Then** all related cache entries are invalidated
 2. **Given** search counts are cached, **When** a new dispositif is created or published, **Then** cache entries for relevant filter combinations are invalidated
-3. **Given** cache is invalidated, **When** admin calls GET /dispositifs/count with previously cached filters, **Then** system queries fresh data from MongoDB
+3. **Given** cache is invalidated, **When** client calls GET /api/search/counts with previously cached filters, **Then** system executes fresh MongoDB aggregation
 
 ---
 
@@ -62,7 +62,7 @@ As an operations team member, I want the system to gracefully handle Redis failu
 
 **Acceptance Scenarios**:
 
-1. **Given** Redis is unavailable, **When** admin calls GET /dispositifs/count, **Then** system falls back to direct MongoDB query and returns correct result
+1. **Given** Redis is unavailable, **When** client calls GET /api/search/counts, **Then** system falls back to direct MongoDB aggregation and returns correct result
 2. **Given** cache operations are occurring, **When** monitoring system queries cache metrics, **Then** it receives hit/miss ratio, operation latency, and connection status
 3. **Given** Redis connection fails, **When** system attempts cache operations, **Then** error is logged and operation continues without blocking the API response
 
@@ -88,11 +88,11 @@ As an operations team member, I want the system to gracefully handle Redis failu
 ### Functional Requirements
 
 - **FR-001**: System MUST cache search counts results using Redis with configurable TTL (default 5-15 minutes)
-- **FR-002**: System MUST generate unique cache keys based on query parameters (type, publishedOnly, themeId)
+- **FR-002**: System MUST generate unique cache keys based on query parameters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses)
 - **FR-003**: System MUST invalidate cache entries when dispositif status changes (CREATED, UPDATED, DELETED, ARCHIVED)
-- **FR-004**: System MUST fall back to direct MongoDB queries if Redis is unavailable
-- **FR-005**: System MUST return identical results whether data comes from cache or direct query
-- **FR-006**: System MUST support manual cache clearing via admin endpoint (POST /admin/cache/clear)
+- **FR-004**: System MUST fall back to direct MongoDB aggregation if Redis is unavailable
+- **FR-005**: System MUST return identical results whether data comes from cache or direct aggregation
+- **FR-006**: System MUST support manual cache clearing via admin endpoint (POST /api/admin/cache/clear or similar)
 - **FR-007**: System MUST log all cache operations (hits, misses, errors) with appropriate severity levels
 - **FR-008**: System MUST track and expose cache performance metrics (hit rate, miss rate, operation latency)
 - **FR-009**: System MUST use VPC-secured Redis connection with TLS encryption in production
@@ -100,8 +100,9 @@ As an operations team member, I want the system to gracefully handle Redis failu
 
 ### Key Entities
 
-- **Cache Entry**: Represents a cached search counts result with key (filter combination), value (count), TTL, and timestamp
-- **Search Counts Query**: Represents a request to count dispositifs with optional filters (type, publishedOnly, themeId)
+- **Cache Entry**: Represents a cached search counts result with key (filter combination), value (SearchCountsResponse), TTL, and timestamp
+- **Search Counts Query**: Represents a request to GET /api/search/counts with optional filters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses, search)
+- **SearchCountsResponse**: Object containing counts for themes, needs, frenchLevels, ageRanges, publics, languages, statuses, types (dispositif/demarche/online), and total
 - **Redis Instance**: Managed service providing distributed cache storage with persistence and high availability
 - **Cache Invalidation Event**: Triggered when dispositif data changes, contains affected filter combinations to clear
 
