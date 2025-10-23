@@ -28,8 +28,13 @@ const getGoogleAuth = () => {
 export const notifyGoogleUrlDeleted = async (url: string): Promise<boolean> => {
   try {
     // Skip if credentials not configured
-    if (!process.env.GCLOUD_CLIENT_EMAIL) {
-      logger.warn("[notifyGoogleUrlDeleted] Google Cloud credentials not configured, skipping", { url });
+    if (
+      !process.env.GCLOUD_CLIENT_EMAIL ||
+      !process.env.GCLOUD_PROJECT_ID ||
+      !process.env.GCLOUD_PRIVATE_KEY_ID ||
+      !process.env.GCLOUD_PKEY
+    ) {
+      logger.warn("[notifyGoogleUrlDeleted] Google Cloud credentials not fully configured, skipping", { url });
       return false;
     }
 
@@ -61,6 +66,7 @@ export const notifyGoogleUrlDeleted = async (url: string): Promise<boolean> => {
     logger.error("[notifyGoogleUrlDeleted] Error notifying Google", {
       url,
       error: error instanceof Error ? error.message : String(error),
+      ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
     });
     return false;
   }
