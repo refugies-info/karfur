@@ -23,6 +23,7 @@
 - [ ] T002 Configure Cloud Load Balancer with Cloud Armor rate limiting policy (10 req/sec per IP, 60s ban duration)
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
 - [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver node-cache`
+- [ ] T005 [P] Create shared cache package at `packages/cache/` with structure: `src/`, `package.json`, `tsconfig.json`, `README.md`
 
 ---
 
@@ -32,11 +33,13 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Create Redis connection module at `apps/client/src/libs/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
-- [ ] T006 Create cache abstraction layer at `apps/client/src/libs/cache.ts` with `getCached()`, `setCached()`, `invalidateByFilters()` functions and SHA-256 key generation
-- [ ] T007 Create cache invalidation logic at `apps/client/src/libs/cacheInvalidation.ts` with `invalidateOnDispoChange()` function for dispositif mutations
-- [ ] T008 [P] Create structured logging module at `apps/client/src/libs/logger.ts` using pino with Cloud Logging transport (pino-stackdriver)
-- [ ] T009 [P] Create TypeScript types for cache operations at `apps/client/src/types/cache.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
+- [ ] T006 Create Redis connection module in `packages/cache/src/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
+- [ ] T007 Create cache abstraction layer in `packages/cache/src/cache.ts` with `getCached()`, `setCached()`, `invalidateByFilters()` functions and SHA-256 key generation
+- [ ] T008 Create cache invalidation logic in `packages/cache/src/cacheInvalidation.ts` with `invalidateOnDispoChange()` function for dispositif mutations
+- [ ] T009 [P] Create TypeScript types for cache operations in `packages/cache/src/types.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
+- [ ] T010 [P] Create package exports and documentation in `packages/cache/src/index.ts` and `packages/cache/README.md`
+- [ ] T011 [P] Update `packages/cache/package.json` with dependencies (ioredis, pino) and export configuration
+- [ ] T012 [P] Add `@refugies-info/cache` to `apps/client/package.json` and `apps/server/package.json` as dependency
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -50,15 +53,15 @@
 
 ### Tests for User Story 1
 
-- [ ] T010 [P] [US1] Create unit tests for cache layer at `apps/client/src/libs/__tests__/cache.test.ts` (cache key generation, get/set operations, TTL expiration, error handling)
-- [ ] T011 [P] [US1] Create integration tests for API caching at `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts` (cache hit/miss scenarios, TTL expiration, graceful degradation)
+- [ ] T013 [P] [US1] Create unit tests for cache layer at `packages/cache/__tests__/cache.test.ts` (cache key generation, get/set operations, TTL expiration, error handling)
+- [ ] T014 [P] [US1] Create integration tests for API caching at `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts` (cache hit/miss scenarios, TTL expiration, graceful degradation)
 
 ### Implementation for User Story 1
 
-- [ ] T012 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: wrap `computeSearchCounts()` with cache get/set logic
-- [ ] T013 [US1] Add cache response headers to API response in `apps/client/src/pages/api/search/counts.ts`: `X-Cache-Hit`, `X-Cache-Age`, `X-Cache-TTL`
-- [ ] T014 [US1] Add cache hit/miss logging to API route in `apps/client/src/pages/api/search/counts.ts` with structured logs (operation, key, hit, latency_ms)
-- [ ] T015 [US1] Implement graceful degradation in `apps/client/src/pages/api/search/counts.ts`: if Redis unavailable, fall back to direct MongoDB query without blocking
+- [ ] T015 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: import from `@refugies-info/cache`, wrap `computeSearchCounts()` with cache get/set logic
+- [ ] T016 [US1] Add cache response headers to API response in `apps/client/src/pages/api/search/counts.ts`: `X-Cache-Hit`, `X-Cache-Age`, `X-Cache-TTL`
+- [ ] T017 [US1] Add cache hit/miss logging to API route in `apps/client/src/pages/api/search/counts.ts` with structured logs (operation, key, hit, latency_ms)
+- [ ] T018 [US1] Implement graceful degradation in `apps/client/src/pages/api/search/counts.ts`: if Redis unavailable, fall back to direct MongoDB query without blocking
 
 **Checkpoint**: User Story 1 is fully functional and independently testable. Delivers <100ms cached responses and 70%+ database load reduction.
 
@@ -72,16 +75,15 @@
 
 ### Tests for User Story 2
 
-- [ ] T016 [P] [US2] Create unit tests for cache invalidation logic at `apps/client/src/libs/__tests__/cacheInvalidation.test.ts` (selective invalidation, attribute matching, multi-language support)
-- [ ] T017 [P] [US2] Create integration tests for cache invalidation at `apps/client/src/pages/api/search/__tests__/counts-invalidation.test.ts` (invalidation on create/update/delete, affected vs unaffected entries)
+- [ ] T019 [P] [US2] Create unit tests for cache invalidation logic at `packages/cache/__tests__/cacheInvalidation.test.ts` (selective invalidation, attribute matching, multi-language support)
+- [ ] T020 [P] [US2] Create integration tests for cache invalidation at `apps/server/src/modules/dispositif/__tests__/cache-invalidation.test.ts` (invalidation on create/update/delete, affected vs unaffected entries)
 
 ### Implementation for User Story 2
 
-**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using Redis client. Cache layer remains in client app but is invalidated by server.
+**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using shared cache package. Cache layer is shared between client and server via `@refugies-info/cache`.
 
-- [ ] T018 [US2] Create Redis cache invalidation utility in `apps/server/src/libs/cacheInvalidation.ts` with function to invalidate search counts cache based on dispositif attributes (themes, needs, language, status, etc.)
-- [ ] T019 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, call invalidation utility with new dispositif attributes
-- [ ] T020 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), call invalidation utility with both old and new attributes
+- [ ] T021 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, import from `@refugies-info/cache` and call invalidation with new dispositif attributes
+- [ ] T022 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), import from `@refugies-info/cache` and call invalidation with both old and new attributes
 
 **Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
 
@@ -95,15 +97,15 @@
 
 ### Tests for User Story 4
 
-- [ ] T021 [P] [US4] Create integration tests for rate limiting at `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts` (verify 429 responses, rate limit headers, per-IP tracking)
-- [ ] T022 [P] [US4] Create tests for debouncing hook at `apps/client/src/hooks/__tests__/useSearchCounts.test.ts` (debounce delay enforcement, multiple rapid calls collapse to single request)
+- [ ] T023 [P] [US4] Create integration tests for rate limiting at `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts` (verify 429 responses, rate limit headers, per-IP tracking)
+- [ ] T024 [P] [US4] Create tests for debouncing hook at `apps/client/src/hooks/__tests__/useSearchCounts.test.ts` (debounce delay enforcement, multiple rapid calls collapse to single request)
 
 ### Implementation for User Story 4
 
-- [ ] T023 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
-- [ ] T024 [US4] Create debounced search counts hook at `apps/client/src/hooks/useSearchCounts.ts` with configurable debounce delay and error handling
-- [ ] T025 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
-- [ ] T026 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
+- [ ] T025 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
+- [ ] T026 [US4] Create debounced search counts hook at `apps/client/src/hooks/useSearchCounts.ts` with configurable debounce delay and error handling
+- [ ] T027 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
+- [ ] T028 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
 
 **Checkpoint**: User Stories 1, 2, AND 4 are independently functional. Client-side debouncing reduces unique cache keys by 60%+; rate limiting reduces redundant API calls by 50%+. All three user stories complete.
 
@@ -117,9 +119,9 @@
 
 ### Implementation
 
-- [ ] T027 Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics (memory usage, commands/sec, eviction rate, replication lag), cache hit rates, latency (p50, p95, p99), database query impact, and connection status
-- [ ] T028 [P] Configure Cloud Logging queries at `apps/client/docs/MONITORING_QUERIES.md` for cache hit rate analysis, latency tracking, database load reduction measurement, and rate limit violation tracking
-- [ ] T029 [P] Set up alerting rules in Cloud Monitoring for anomalies: Redis connection failures, cache hit rate <80%, response latency >150ms, database load increase >20%
+- [ ] T029 Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics (memory usage, commands/sec, eviction rate, replication lag), cache hit rates, latency (p50, p95, p99), database query impact, and connection status
+- [ ] T030 [P] Configure Cloud Logging queries at `apps/client/docs/MONITORING_QUERIES.md` for cache hit rate analysis, latency tracking, database load reduction measurement, and rate limit violation tracking
+- [ ] T031 [P] Set up alerting rules in Cloud Monitoring for anomalies: Redis connection failures, cache hit rate <80%, response latency >150ms, database load increase >20%
 
 **Checkpoint**: Production monitoring in place. Visibility into cache performance, database impact, and system health.
 
@@ -129,10 +131,11 @@
 
 **Purpose**: Final documentation and validation before deployment
 
-- [ ] T030 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram (Redis HA only), deployment guide, troubleshooting, monitoring queries, and performance tuning
-- [ ] T031 [P] Run quickstart.md validation: verify all steps work end-to-end with local Redis Docker setup
-- [ ] T032 [P] Run load testing with k6: simulate 100 concurrent users, verify cache hit rate >80%, response latency <100ms, database load reduced by 70%+
-- [ ] T033 Create deployment runbook at `apps/client/docs/DEPLOYMENT_RUNBOOK.md` with pre-deployment checklist, deployment steps, rollback procedure, and post-deployment verification
+- [ ] T032 Create comprehensive documentation at `packages/cache/README.md` with API reference, usage examples, and integration guide for both client and server apps
+- [ ] T033 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram (Redis HA + shared cache package), deployment guide, troubleshooting, monitoring queries, and performance tuning
+- [ ] T034 [P] Run quickstart.md validation: verify all steps work end-to-end with local Redis Docker setup
+- [ ] T035 [P] Run load testing with k6: simulate 100 concurrent users, verify cache hit rate >80%, response latency <100ms, database load reduced by 70%+
+- [ ] T036 Create deployment runbook at `apps/client/docs/DEPLOYMENT_RUNBOOK.md` with pre-deployment checklist, deployment steps, rollback procedure, and post-deployment verification
 
 ---
 
@@ -267,8 +270,6 @@ Each story adds value without breaking previous stories.
 
 - ✅ Cloud Monitoring dashboard shows Memorystore metrics and cache performance
 - ✅ Cloud Logging queries track cache hit rate, latency, and database impact
-- ✅ Alerting rules configured for anomalies
-- ✅ Production visibility into system health
 
 ---
 
@@ -283,3 +284,15 @@ Each story adds value without breaking previous stories.
 - Use exact file paths from plan.md project structure
 - Follow Prettier formatting rules (printWidth: 120, semi: true, singleQuote: false, trailingComma: all)
 - All code must follow TypeScript strict mode
+
+---
+
+## Metrics
+
+| Metric | Count | Status |
+|--------|-------|--------|
+| **Total Functional Requirements** | 18 | ✅ All mapped to tasks |
+| **Total Success Criteria** | 15 | ✅ All measurable |
+| **Total User Stories** | 3 | ✅ All independently testable |
+| **Total Tasks** | 39 | ✅ All properly formatted |
+| **Shared Packages** | 1 | ✅ @refugies-info/cache |
