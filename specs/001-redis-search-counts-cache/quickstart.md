@@ -306,7 +306,6 @@ export async function GET(request: NextRequest) {
     const needs = request.nextUrl.searchParams.get('needs')?.split(',').filter(Boolean) || [];
     const frenchLevel = request.nextUrl.searchParams.get('frenchLevel')?.split(',').filter(Boolean) || [];
     const status = request.nextUrl.searchParams.get('status')?.split(',').filter(Boolean) || [];
-    const type = request.nextUrl.searchParams.get('type')?.split(',').filter(Boolean) || [];
     const search = request.nextUrl.searchParams.get('search') || '';
     
     // Build filters object
@@ -315,7 +314,6 @@ export async function GET(request: NextRequest) {
       needs,
       frenchLevel,
       status,
-      type,
       search,
     };
     

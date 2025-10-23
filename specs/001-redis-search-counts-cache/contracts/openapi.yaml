@@ -74,14 +74,6 @@ paths:
             enum: [asile, refugie, subsidiaire, apatride, temporaire, french]
           example: "refugie,asile"
         
-        - name: type
-          in: query
-          required: false
-          description: Comma-separated dispositif types
-          schema:
-            type: string
-          example: "ASSOCIATION,SERVICE"
-        
         - name: search
           in: query
           required: false
