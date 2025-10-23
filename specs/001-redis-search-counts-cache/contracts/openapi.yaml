@@ -62,7 +62,7 @@ paths:
           description: Comma-separated French proficiency levels
           schema:
             type: string
-            enum: [A1, A2, B1, B2, B1+, B2+]
+            enum: [alpha, A1, A2, B1, B2, C1, C2]
           example: "A1,A2"
         
         - name: status
