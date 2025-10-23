@@ -6,43 +6,125 @@
 
 ---
 
-## Research Area 1: Redis Connection Pooling
+## Research Area 1: Redis Resilience & High Availability
 
 ### Question
-How should ioredis handle connection pooling with Google Cloud Memorystore?
+How to ensure Redis availability during Memorystore maintenance, upgrades, and failures?
+
+### Concern
+Single-instance Memorystore is vulnerable to:
+- Unattended upgrades (Google Cloud maintenance windows)
+- Hardware failures
+- Network partitions
+- Planned maintenance (0-30 min downtime)
+
+During outage, all traffic falls back to in-memory cache, causing:
+- Cache stampede (all instances miss simultaneously)
+- Memory spikes (all instances populate in-memory cache)
+- Potential OOM if dataset larger than per-instance memory limit
 
 ### Decision
-**Use ioredis with automatic connection pooling**
+**Use Memorystore High Availability (HA) with automatic failover + write-through in-memory cache**
 
 ### Rationale
-- ioredis provides built-in connection pooling with configurable pool size
-- Google Cloud Memorystore supports standard Redis protocol
-- No cluster mode required for single-instance Memorystore
-- ioredis automatically handles reconnection and failover
+- **Memorystore HA**: Provides automatic failover with <1s switchover time
+- **Write-Through Cache**: Ensures in-memory cache stays warm during normal operation
+- **Resilience**: Handles unattended upgrades without user-facing downtime
+- **Performance**: In-memory cache serves requests during Redis failover
 
 ### Implementation Details
+
+#### Option A: Memorystore HA (RECOMMENDED)
 ```typescript
-// Connection configuration for Google Cloud Memorystore
+// Google Cloud Memorystore HA provides:
+// - Primary + replica instances
+// - Automatic failover (<1s)
+// - Transparent to application
+// - Cost: ~2x single instance
+
 const redis = new Redis({
-  host: process.env.REDIS_HOST,
+  host: process.env.REDIS_HOST, // HA endpoint (handles failover)
   port: parseInt(process.env.REDIS_PORT || '6379'),
   password: process.env.REDIS_PASSWORD,
-  tls: { rejectUnauthorized: false }, // For Cloud Memorystore
+  tls: { rejectUnauthorized: false },
   maxRetriesPerRequest: 3,
   enableReadyCheck: true,
   enableOfflineQueue: true,
   retryStrategy: (times) => Math.min(times * 50, 2000),
+  sentinels: [], // Not needed with HA endpoint
 });
 ```
 
-### Alternatives Considered
-- **Redis Cluster**: Not needed for single Memorystore instance; adds complexity
-- **Connection pooling library (generic-pool)**: ioredis built-in pooling sufficient
+#### Option B: Write-Through In-Memory Cache (REQUIRED)
+Ensure in-memory cache stays synchronized with Redis:
+```typescript
+async function cacheGet(key: string): Promise<any> {
+  // Try Redis first
+  try {
+    const value = await redis.get(key);
+    if (value) {
+      // Write-through: also populate in-memory cache
+      memoryCache.set(key, JSON.parse(value));
+      return JSON.parse(value);
+    }
+  } catch (error) {
+    logger.warn({ key, error }, 'Redis get failed, falling back to memory');
+  }
+  
+  // Fallback to in-memory cache
+  const memValue = memoryCache.get(key);
+  if (memValue) {
+    return memValue;
+  }
+  
+  return null;
+}
+
+async function cacheSet(key: string, value: any, ttl: number): Promise<void> {
+  // Write-through: set in both layers
+  memoryCache.set(key, value, ttl);
+  
+  try {
+    await redis.setex(key, ttl, JSON.stringify(value));
+  } catch (error) {
+    logger.warn({ key, error }, 'Redis set failed, in-memory cache still valid');
+  }
+}
+```
+
+#### Option C: Connection Pooling with Sentinel (ALTERNATIVE)
+Use Redis Sentinel for manual HA:
+```typescript
+const redis = new Redis({
+  sentinels: [
+    { host: process.env.SENTINEL_HOST_1, port: 26379 },
+    { host: process.env.SENTINEL_HOST_2, port: 26379 },
+    { host: process.env.SENTINEL_HOST_3, port: 26379 },
+  ],
+  name: 'mymaster',
+  password: process.env.REDIS_PASSWORD,
+  sentinelPassword: process.env.SENTINEL_PASSWORD,
+});
+```
+**Cons**: Requires managing Sentinel infrastructure; Memorystore HA simpler
+
+### Resilience Scenarios
+
+| Scenario | With HA + Write-Through | Without HA |
+|----------|------------------------|------------|
+| **Memorystore upgrade** | <1s failover, in-memory cache serves | 30+ min downtime, cache stampede |
+| **Hardware failure** | Automatic failover to replica | Full outage, memory spike |
+| **Network partition** | Failover to replica | All traffic to in-memory cache |
+| **Cache stampede risk** | Low (warm in-memory cache) | High (cold in-memory cache) |
+| **Memory spike risk** | Low (gradual population) | High (simultaneous population) |
 
 ### Success Criteria
-- Connection established within 1 second
-- Automatic reconnection on network failure
-- No connection leaks under sustained load
+- Memorystore HA enabled with <1s failover
+- Write-through cache keeps in-memory warm
+- In-memory cache serves requests during Redis failover
+- No cache stampede during maintenance windows
+- Memory usage stays <100MB per instance
+- Downtime <1s during failover
 
 ---
 
@@ -361,11 +443,18 @@ logger.info({
 
 | Research Area | Decision | Status |
 |---------------|----------|--------|
-| Redis Connection Pooling | ioredis with automatic pooling | ✅ Ready |
+| **Redis Resilience & HA** | Memorystore HA + write-through in-memory cache | ✅ Ready |
 | Cache Invalidation | Explicit mutation + TTL fallback | ✅ Ready |
 | Rate Limiting | Next.js middleware + Redis token bucket | ✅ Ready |
-| In-Memory Cache | node-cache with LRU eviction | ✅ Ready |
+| In-Memory Cache | node-cache with LRU eviction + write-through | ✅ Ready |
 | Monitoring | Prometheus metrics + structured logging | ✅ Ready |
+
+### Key Architectural Decision
+**Write-Through Cache Pattern**: All cache writes go to both Redis and in-memory cache simultaneously. This ensures:
+- In-memory cache stays warm during normal operation
+- No cache stampede during Redis failover
+- Graceful degradation: in-memory cache serves during outage
+- <1s downtime during Memorystore HA failover
 
 ---
 
@@ -376,3 +465,13 @@ logger.info({
 3. ⏳ Phase 2: Run `/speckit.tasks` to generate tasks.md
 
 **Status**: All research questions resolved. Ready for Phase 1 design.
+
+---
+
+## Implementation Priority
+
+1. **CRITICAL**: Memorystore HA configuration (prevents downtime)
+2. **CRITICAL**: Write-through cache pattern (prevents cache stampede)
+3. **HIGH**: Rate limiting middleware (prevents abuse)
+4. **HIGH**: Cache invalidation logic (ensures consistency)
+5. **MEDIUM**: Monitoring & observability (operational visibility)
