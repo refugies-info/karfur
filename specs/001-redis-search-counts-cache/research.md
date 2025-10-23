@@ -224,50 +224,135 @@ Keep per-instance in-memory cache but requires:
 
 ---
 
-## Research Area 4: Next.js Middleware Rate Limiting
+## Research Area 4: Rate Limiting Strategy
 
 ### Question
-How to implement per-IP rate limiting in Next.js middleware on Cloud Run?
+How to implement per-IP rate limiting (10 req/sec default)?
 
 ### Decision
-**Use Next.js middleware with Redis-backed token bucket algorithm**
+**Use Cloud Load Balancer-based rate limiting (RECOMMENDED) with optional application-level fallback**
 
 ### Rationale
-- Next.js middleware runs on every request before route handler
-- Redis provides distributed state across Cloud Run instances
-- Token bucket algorithm is industry-standard for rate limiting
-- Handles `x-forwarded-for` header for Cloud Run IP detection
+- **Cloud Load Balancer**: Managed service, no code to maintain
+- **Infrastructure-level**: Blocks traffic before reaching Cloud Run
+- **Cost-effective**: Prevents unnecessary compute usage
+- **Simpler**: No Redis dependency for rate limiting
+- **Reliable**: Google-managed, high availability
+- **Fallback**: Application-level rate limiting if needed for specific endpoints
 
-### Implementation Details
+### Implementation Options
 
-#### Getting Client IP in Cloud Run
+#### Option A: Cloud Load Balancer Rate Limiting (RECOMMENDED)
+```yaml
+# Google Cloud Load Balancer configuration
+# Terraform/Deployment Manager
+
+resource "google_compute_security_policy" "rate_limit_policy" {
+  name = "search-counts-rate-limit"
+  
+  # Rate limiting rule: 10 requests per second per IP
+  rule {
+    action   = "rate-based-ban"
+    priority = "1000"
+    match {
+      versioned_expr = "CEL"
+      expr           = "origin.region_code == 'US' || origin.region_code == 'FR'"
+    }
+    rate_limit_options {
+      conform_action   = "allow"
+      exceed_action    = "deny-429"
+      rate_limit_threshold {
+        count        = 10
+        interval_sec = 1
+      }
+      ban_duration_sec = 60
+    }
+  }
+  
+  # Default rule: allow
+  rule {
+    action   = "allow"
+    priority = "65535"
+    match {
+      versioned_expr = "CEL"
+      expr           = "true"
+    }
+  }
+}
+
+# Attach to backend service
+resource "google_compute_backend_service" "search_counts" {
+  name            = "search-counts-backend"
+  security_policy = google_compute_security_policy.rate_limit_policy.id
+  # ... other config
+}
+```
+
+**Pros**:
+- No application code needed
+- Blocks traffic at infrastructure level
+- Prevents DDoS and abuse before reaching compute
+- Managed by Google Cloud
+- Returns 429 status automatically
+- Per-IP tracking built-in
+
+**Cons**:
+- Requires Cloud Load Balancer (not available with Cloud Run direct URLs)
+- Additional infrastructure cost
+- Less flexible for complex rate limiting rules
+
+#### Option B: Cloud Armor Rate Limiting (ALTERNATIVE)
+Google Cloud Armor provides advanced rate limiting:
+```yaml
+# Cloud Armor security policy
+rule {
+  action = "rate-based-ban"
+  priority = 1000
+  match {
+    expr {
+      expression = "evaluatePreconfiguredExpr('xss-v33-stable')"
+    }
+  }
+  rate_limit_options {
+    conform_action = "allow"
+    exceed_action = "deny-429"
+    rate_limit_threshold {
+      count = 10
+      interval_sec = 1
+    }
+    ban_duration_sec = 60
+    # Optional: enforce on key
+    enforce_on_key = "IP"
+  }
+}
+```
+
+**Pros**: Advanced DDoS protection, adaptive rate limiting  
+**Cons**: Higher cost, more complex configuration
+
+#### Option C: Application-Level Rate Limiting (FALLBACK)
+If load balancer rate limiting unavailable, implement in Next.js middleware:
 ```typescript
+// Use only if Cloud Load Balancer not available
+// Redis-backed token bucket for distributed rate limiting
+
 function getClientIp(request: NextRequest): string {
-  // Cloud Run sets x-forwarded-for header
   const forwarded = request.headers.get('x-forwarded-for');
   if (forwarded) {
     return forwarded.split(',')[0].trim();
   }
   return request.ip || 'unknown';
 }
-```
-
-#### Token Bucket Algorithm
-```typescript
-// Redis key: rate_limit:{ip}
-// Value: { tokens: number, lastRefill: timestamp }
-// Default: 10 requests per second per IP
 
 async function checkRateLimit(ip: string, limit: number = 10): Promise<boolean> {
   const key = `rate_limit:${ip}`;
   const now = Date.now();
   
-  // Lua script for atomic operation
   const script = `
     local key = KEYS[1]
     local limit = tonumber(ARGV[1])
     local now = tonumber(ARGV[2])
-    local window = 1000 -- 1 second
+    local window = 1000
     
     local current = redis.call('GET', key)
     if not current then
@@ -288,98 +373,48 @@ async function checkRateLimit(ip: string, limit: number = 10): Promise<boolean> 
 }
 ```
 
-#### Middleware Implementation
-```typescript
-export function middleware(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith('/api/search/counts')) {
-    const ip = getClientIp(request);
-    const allowed = await checkRateLimit(ip, 10);
-    
-    if (!allowed) {
-      return new NextResponse('Too Many Requests', {
-        status: 429,
-        headers: {
-          'X-RateLimit-Limit': '10',
-          'X-RateLimit-Remaining': '0',
-          'X-RateLimit-Reset': new Date(Date.now() + 1000).toISOString(),
-        },
-      });
-    }
-  }
-}
-```
+**Pros**: Flexible, no infrastructure changes  
+**Cons**: Requires Redis, adds application complexity, uses compute resources
 
-### Alternatives Considered
-- **In-memory rate limiting**: Not distributed; different limits per instance
-- **Database-backed rate limiting**: Slower than Redis
-- **Third-party service (e.g., Cloudflare)**: Adds external dependency
+### Comparison
+
+| Aspect | Cloud LB | Cloud Armor | App-Level |
+|--------|----------|-------------|----------|
+| **Setup** | Infrastructure config | Infrastructure config | Code |
+| **Cost** | Moderate | Higher | Lower (uses compute) |
+| **Complexity** | Low | Medium | High |
+| **Flexibility** | Limited | Good | High |
+| **DDoS Protection** | Basic | Advanced | None |
+| **Maintenance** | Minimal | Minimal | Ongoing |
+| **Latency** | <1ms | <1ms | 5-10ms |
 
 ### Success Criteria
-- Rate limit enforced per IP (10 req/sec default)
-- Distributed across Cloud Run instances via Redis
-- Response headers include X-RateLimit-* fields
-- Legitimate batch operations can be exempted via configuration
+- Rate limiting enforced at 10 req/sec per IP
+- 429 status returned when exceeded
+- X-RateLimit-* headers in response
+- Transparent to application (if using load balancer)
+- No impact on cached request latency
 
----
+### Recommended Approach
 
-## Research Area 4: In-Memory Cache Eviction Strategy
+**Primary**: Use Cloud Load Balancer rate limiting (no code needed)  
+**Fallback**: Application-level rate limiting if load balancer unavailable
 
-### Question
-How to manage in-memory cache with node-cache in multi-instance Cloud Run?
+This provides:
+- Infrastructure-level protection (blocks before compute)
+- No application code complexity
+- Cost-effective (prevents unnecessary compute usage)
+- Optional application-level fallback for specific endpoints
 
-### Decision
-**Use node-cache with LRU eviction and per-instance independence**
+### Architecture Decision
 
-### Rationale
-- node-cache provides simple, fast in-memory caching
-- LRU eviction strategy balances memory usage and hit rate
-- Per-instance independence simplifies multi-instance deployment
-- Redis provides distributed cache; in-memory is resilience layer
+For this feature:
+1. **Deploy with Cloud Load Balancer** in front of Cloud Run
+2. **Configure rate limiting policy** (10 req/sec per IP)
+3. **Optional**: Add application-level rate limiting for specific endpoints if needed
+4. **Monitor**: Track rate limit violations via Cloud Logging
 
-### Implementation Details
-
-#### node-cache Configuration
-```typescript
-import NodeCache from 'node-cache';
-
-const memoryCache = new NodeCache({
-  stdTTL: 300, // 5 minutes default TTL
-  checkperiod: 60, // Check for expired keys every 60 seconds
-  useClones: false, // Don't clone values (performance)
-  maxKeys: 10000, // Max 10k entries
-});
-
-// Monitor memory usage
-memoryCache.on('set', (key, value) => {
-  const memoryUsage = process.memoryUsage();
-  if (memoryUsage.heapUsed > 100 * 1024 * 1024) { // 100MB
-    // Trigger eviction or warn
-    console.warn('Memory usage high, consider eviction');
-  }
-});
-```
-
-#### Eviction Strategy
-- **LRU (Least Recently Used)**: Built into node-cache via `checkperiod`
-- **Memory Limit**: Monitor heap usage; clear cache if >100MB
-- **TTL Expiration**: Automatic cleanup via `checkperiod`
-
-#### Multi-Instance Behavior
-- Each Cloud Run instance has independent in-memory cache
-- No synchronization between instances needed
-- Redis provides shared cache across instances
-- During Redis outage, each instance serves from its own in-memory cache
-
-### Alternatives Considered
-- **Shared in-memory cache (e.g., Memcached)**: Adds external dependency
-- **Database-backed cache**: Slower than in-memory
-- **No in-memory cache**: Loses resilience during Redis outage
-
-### Success Criteria
-- In-memory cache latency <10ms
-- Memory footprint <100MB per instance
-- LRU eviction prevents memory exhaustion
-- Independent per-instance operation
+This eliminates the need for Redis-backed rate limiting and reduces application complexity.
 
 ---
 
@@ -395,7 +430,6 @@ How to monitor cache performance and operational health?
 - Prometheus is industry-standard for metrics
 - Structured logging enables debugging and auditing
 - Metrics provide visibility into cache effectiveness
-- Aligns with existing monitoring infrastructure
 
 ### Implementation Details
 
@@ -484,7 +518,7 @@ logger.info({
 | **Redis Resilience & HA** | Memorystore HA (single source of truth) | ✅ Ready |
 | **Multi-Instance Architecture** | Redis-only (eliminates sync complexity) | ✅ Ready |
 | Cache Invalidation | Explicit mutation + TTL fallback | ✅ Ready |
-| Rate Limiting | Next.js middleware + Redis token bucket | ✅ Ready |
+| **Rate Limiting** | Cloud Load Balancer (infrastructure-level) | ✅ Ready |
 | Monitoring | Prometheus metrics + structured logging | ✅ Ready |
 
 ### Key Architectural Decision
@@ -513,7 +547,7 @@ logger.info({
 
 1. **CRITICAL**: Memorystore HA configuration (single source of truth, <1s failover)
 2. **CRITICAL**: Cache invalidation logic (explicit mutation handlers)
-3. **HIGH**: Rate limiting middleware (per-IP, Redis-backed)
+3. **HIGH**: Cloud Load Balancer rate limiting (infrastructure-level, no code)
 4. **HIGH**: TTL expiration (5-15 min eventual consistency)
 5. **MEDIUM**: Monitoring & observability (Prometheus metrics)
 
