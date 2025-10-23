@@ -208,8 +208,8 @@ async function setCached(
 
 async function invalidateByFilters(filters: Record<string, any>): Promise<void> {
   try {
-    // Invalidate for all languages
-    const languages = ['fr', 'en', 'ar', 'es', 'de', 'it', 'pl', 'ru', 'uk', 'zh', 'ja', 'ko'];
+    // Invalidate for all supported languages
+    const languages = ['fr', 'en', 'uk', 'ti', 'ar', 'ps', 'ru', 'fa'];
     
     for (const language of languages) {
       const key = generateCacheKey(language, filters);
@@ -291,7 +291,16 @@ export async function GET(request: NextRequest) {
   
   try {
     // Parse query parameters
+    // Validate language is supported
+    const supportedLanguages = ['fr', 'en', 'uk', 'ti', 'ar', 'ps', 'ru', 'fa'];
     const language = request.nextUrl.searchParams.get('language') || 'fr';
+    
+    if (!supportedLanguages.includes(language)) {
+      return NextResponse.json(
+        { error: 'Bad Request', message: `Invalid language: '${language}'. Supported: ${supportedLanguages.join(', ')}` },
+        { status: 400 }
+      );
+    }
     const themes = request.nextUrl.searchParams.get('themes')?.split(',') || [];
     const needs = request.nextUrl.searchParams.get('needs')?.split(',') || [];
     const frenchLevel = request.nextUrl.searchParams.get('frenchLevel')?.split(',') || [];
@@ -516,7 +525,7 @@ export const options = {
 };
 
 export default function () {
-  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=health';
+  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=health,education';
   const res = http.get(url);
   
   check(res, {
