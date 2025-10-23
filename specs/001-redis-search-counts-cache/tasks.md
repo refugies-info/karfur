@@ -3,9 +3,9 @@
 **Input**: Design documents from `/specs/001-redis-search-counts-cache/`  
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md  
 **Feature Branch**: `001-redis-search-counts-cache`  
-**Estimated Duration**: 2-3 weeks (5 sprints)
+**Estimated Duration**: 2-3 weeks (4 sprints)
 
-**Organization**: Tasks are grouped by user story (P1, P2, P3) to enable independent implementation and testing of each story.
+**Organization**: Tasks are grouped by user story (P1, P2, P2) to enable independent implementation and testing of each story. Architecture: Redis HA only (per research.md decision) - no per-instance in-memory cache.
 
 ## Format: `[ID] [P?] [Story] Description`
 - **[P]**: Can run in parallel (different files, no dependencies)
@@ -102,39 +102,34 @@
 - [ ] T025 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
 - [ ] T026 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
 
-**Checkpoint**: User Stories 1, 2, AND 4 are independently functional. Client-side debouncing reduces unique cache keys by 60%+; rate limiting reduces redundant API calls by 50%+.
+**Checkpoint**: User Stories 1, 2, AND 4 are independently functional. Client-side debouncing reduces unique cache keys by 60%+; rate limiting reduces redundant API calls by 50%+. All three user stories complete.
 
 ---
 
-## Phase 6: User Story 3 - Tiered Caching with Graceful Degradation (Priority: P3)
+## Phase 6: Monitoring & Observability (Cross-Cutting)
 
-**Goal**: Implement per-container in-memory cache as fallback and add comprehensive monitoring for operational visibility.
+**Purpose**: Add comprehensive monitoring and observability for production operations
 
-**Independent Test**: Simulate Redis unavailability; verify API returns cached results from in-memory cache within 150ms without querying MongoDB.
+**Goal**: Implement Cloud Monitoring dashboard and structured logging to track cache performance, database impact, and system health.
 
-### Tests for User Story 3
+### Implementation
 
-- [ ] T027 [P] [US3] Create integration tests for in-memory cache fallback at `apps/client/src/libs/__tests__/memoryCache.test.ts` (fallback behavior, LRU eviction, TTL expiration)
-- [ ] T028 [P] [US3] Create integration tests for tiered caching at `apps/client/src/pages/api/search/__tests__/counts-tiered-cache.test.ts` (Redis unavailable scenario, in-memory cache serves requests)
+- [ ] T027 Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics (memory usage, commands/sec, eviction rate, replication lag), cache hit rates, latency (p50, p95, p99), database query impact, and connection status
+- [ ] T028 [P] Configure Cloud Logging queries at `apps/client/docs/MONITORING_QUERIES.md` for cache hit rate analysis, latency tracking, database load reduction measurement, and rate limit violation tracking
+- [ ] T029 [P] Set up alerting rules in Cloud Monitoring for anomalies: Redis connection failures, cache hit rate <80%, response latency >150ms, database load increase >20%
 
-### Implementation for User Story 3
-
-- [ ] T029 [US3] Create in-memory cache layer at `apps/client/src/libs/memoryCache.ts` using node-cache with LRU eviction, 1-5 min TTL, and max 100MB size limit
-- [ ] T030 [US3] Integrate in-memory cache into `apps/client/src/libs/cache.ts` as write-through fallback: write to both Redis and in-memory, read from Redis first then in-memory
-- [ ] T031 [US3] Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics, cache hit rates, latency, database impact, and connection status
-
-**Checkpoint**: All user stories are independently functional. In-memory cache serves requests during Redis outage; response latency <150ms; combined cache hit rate >80%.
+**Checkpoint**: Production monitoring in place. Visibility into cache performance, database impact, and system health.
 
 ---
 
-## Phase 7: Polish & Cross-Cutting Concerns
+## Phase 7: Polish & Documentation
 
-**Purpose**: Improvements and documentation affecting multiple user stories
+**Purpose**: Final documentation and validation before deployment
 
-- [ ] T032 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram, deployment guide, troubleshooting, monitoring queries, and performance tuning
-- [ ] T033 [P] Run quickstart.md validation: verify all steps work end-to-end with local Redis Docker setup
-- [ ] T034 [P] Run load testing with k6: simulate 100 concurrent users, verify cache hit rate >80%, response latency <100ms, database load reduced by 70%+
-- [ ] T035 Create deployment runbook at `apps/client/docs/DEPLOYMENT_RUNBOOK.md` with pre-deployment checklist, deployment steps, rollback procedure, and post-deployment verification
+- [ ] T030 Create comprehensive documentation at `apps/client/docs/SEARCH_COUNTS_CACHE.md` with architecture diagram (Redis HA only), deployment guide, troubleshooting, monitoring queries, and performance tuning
+- [ ] T031 [P] Run quickstart.md validation: verify all steps work end-to-end with local Redis Docker setup
+- [ ] T032 [P] Run load testing with k6: simulate 100 concurrent users, verify cache hit rate >80%, response latency <100ms, database load reduced by 70%+
+- [ ] T033 Create deployment runbook at `apps/client/docs/DEPLOYMENT_RUNBOOK.md` with pre-deployment checklist, deployment steps, rollback procedure, and post-deployment verification
 
 ---
 
@@ -148,7 +143,6 @@
   - User Story 1 (P1): Can start after Foundational - No dependencies on other stories
   - User Story 2 (P2): Can start after Foundational - Depends on US1 cache layer but independently testable
   - User Story 4 (P2): Can start after Foundational - Independent of US1 and US2
-  - User Story 3 (P3): Can start after Foundational - Depends on US1 cache layer but independently testable
 - **Polish (Phase 7)**: Depends on all desired user stories being complete
 
 ### User Story Dependencies
@@ -160,11 +154,11 @@ Foundational (Phase 2)
     ↓
     ├─→ US1 (P1) ─────────────┐
     │                          ├─→ US2 (P2) ─┐
-    ├─→ US4 (P2) ─────────────┘              ├─→ US3 (P3)
-    │                                        │
-    └─────────────────────────────────────────┘
-                                ↓
-                        Polish (Phase 7)
+    ├─→ US4 (P2) ─────────────┘              │
+    │                                        ↓
+    └─────────────────────────→ Monitoring & Observability
+                                        ↓
+                        Polish & Documentation (Phase 7)
 ```
 
 ### Within Each User Story
@@ -195,9 +189,8 @@ Foundational (Phase 2)
 - Tests (T021, T022) can run in parallel
 - Implementation (T023-T026) can run in parallel (different files)
 
-**Phase 6 (US3)**:
-- Tests (T027, T028) can run in parallel
-- Implementation (T029-T031) sequential due to dependencies
+**Phase 6 (Monitoring)**:
+- All tasks (T027-T029) can run in parallel (different files)
 
 **Parallel Team Strategy** (with 2-3 developers):
 1. Team completes Setup + Foundational together (Phases 1-2)
@@ -205,8 +198,8 @@ Foundational (Phase 2)
    - Developer A: User Story 1 (P1) - MVP
    - Developer B: User Story 4 (P2) - Rate limiting
    - Developer C: User Story 2 (P2) - Cache invalidation
-3. After US1 complete, Developer A moves to US3 (P3)
-4. Stories complete and integrate independently
+3. After US1-US4 complete, team works on Monitoring & Observability (Phase 6)
+4. All stories complete and integrate independently
 
 ---
 
@@ -227,8 +220,7 @@ Foundational (Phase 2)
 1. **Sprint 1**: Setup + Foundational → Foundation ready
 2. **Sprint 2**: User Story 1 (P1) → Test independently → Deploy/Demo (MVP!)
 3. **Sprint 3**: User Story 2 (P2) + User Story 4 (P2) in parallel → Test independently → Deploy/Demo
-4. **Sprint 4**: User Story 3 (P3) → Test independently → Deploy/Demo
-5. **Sprint 5**: Polish & documentation → Final deployment
+4. **Sprint 4**: Monitoring & Observability + Polish & documentation → Final deployment
 
 Each story adds value without breaking previous stories.
 
@@ -258,13 +250,11 @@ Each story adds value without breaking previous stories.
 - ✅ Rate limit headers present in all responses
 - ✅ All unit and integration tests passing
 
-### User Story 3 (P3) - Tiered Caching with Graceful Degradation
-- ✅ In-memory cache serves requests when Redis unavailable
-- ✅ Response latency <150ms during Redis outage
-- ✅ Memory footprint <100MB per container
-- ✅ Monitoring dashboard shows cache performance metrics
-- ✅ Combined cache hit rate >80% (Redis + in-memory)
-- ✅ All unit and integration tests passing
+### Monitoring & Observability
+- ✅ Cloud Monitoring dashboard shows Memorystore metrics and cache performance
+- ✅ Cloud Logging queries track cache hit rate, latency, and database impact
+- ✅ Alerting rules configured for anomalies
+- ✅ Production visibility into system health
 
 ---
 
