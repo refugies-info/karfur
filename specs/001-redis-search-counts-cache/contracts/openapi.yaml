@@ -43,18 +43,18 @@ paths:
         - name: themes
           in: query
           required: false
-          description: Comma-separated theme IDs to filter by
+          description: Comma-separated theme IDs to filter by (e.g., Santé, Français, Logement, Travail, Formation, Études, Mobilité, Famille, Loisirs, Administratif)
           schema:
             type: string
-          example: "health,education"
+          example: "santé,logement"
         
         - name: needs
           in: query
           required: false
-          description: Comma-separated need IDs to filter by
+          description: Comma-separated need IDs to filter by (e.g., find a job, apply for allowances, see a doctor, etc.)
           schema:
             type: string
-          example: "legal,financial"
+          example: "trouver un travail,demander des aides financières"
         
         - name: frenchLevel
           in: query
@@ -127,13 +127,13 @@ paths:
               example:
                 total: 1250
                 byTheme:
-                  health: 450
-                  education: 380
-                  housing: 420
+                  santé: 450
+                  français: 380
+                  logement: 420
                 byNeeds:
-                  legal: 320
-                  financial: 280
-                  medical: 650
+                  trouver un travail: 320
+                  demander des aides financières: 280
+                  voir un docteur: 650
                 byFrenchLevel:
                   A1: 200
                   A2: 350

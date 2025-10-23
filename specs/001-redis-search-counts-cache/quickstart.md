@@ -525,7 +525,7 @@ export const options = {
 };
 
 export default function () {
-  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=health,education';
+  const url = 'http://localhost:3000/api/search/counts?language=fr&themes=santé,logement&needs=trouver un travail,voir un docteur&frenchLevel=A1,A2&status=PUBLISHED';
   const res = http.get(url);
   
   check(res, {
