@@ -80,13 +80,16 @@ cache:search_counts:en:xyz789uvw012
 
 **Filters Hash**: SHA-256 hash of filter parameters
 ```typescript
-// Example filter object
+// Example filter object (from search-helpers.ts QueryParams)
 {
-  themes: ['health', 'education'],
-  needs: ['legal', 'financial'],
+  themes: ['63286a015d31b2c0cad9960f', '63286a015d31b2c0cad9960a'],
+  needs: ['613721a409c5190dfa70d053', '613721a409c5190dfa70d052'],
   frenchLevel: ['A1', 'A2'],
-  status: ['PUBLISHED'],
-  type: ['ASSOCIATION'],
+  status: ['asile', 'refugie'],
+  public: ['family', 'women'],
+  age: ['-18', '18-25'],
+  departments: ['75', '92'],
+  sort: 'date',
   search: 'paris'
 }
 
@@ -103,11 +106,11 @@ cache:search_counts:en:xyz789uvw012
   "trigger": "dispositif_updated",
   "dispositif_id": "507f1f77bcf86cd799439011",
   "dispositif_attributes": {
-    "themes": ["health"],
-    "needs": ["legal"],
+    "themes": ["63286a015d31b2c0cad9960f"],
+    "needs": ["613721a409c5190dfa70d053"],
     "frenchLevel": ["A1", "A2"],
-    "status": "PUBLISHED",
-    "type": "ASSOCIATION"
+    "status": "asile",
+    "typeContenu": "dispositif"
   },
   "affected_cache_keys": [
     "cache:search_counts:fr:abc123",
@@ -200,40 +203,66 @@ cache:search_counts:en:xyz789uvw012
 
 **Request**:
 ```
-GET /api/search/counts?language=fr&themes=health,education&needs=legal&frenchLevel=A1,A2&status=PUBLISHED
+GET /api/search/counts?language=fr&themes=63286a015d31b2c0cad9960f,63286a015d31b2c0cad9960a&needs=613721a409c5190dfa70d053&frenchLevel=A1,A2&status=asile,refugie
 ```
 
 **Query Parameters**:
-- `language` (required): ISO 639-1 code (fr, en, ar, etc.)
-- `themes` (optional): Comma-separated theme IDs
-- `needs` (optional): Comma-separated need IDs
-- `frenchLevel` (optional): Comma-separated levels (A1, A2, B1, B2, B1+, B2+)
-- `status` (optional): Comma-separated statuses (CREATED, PUBLISHED, DELETED, ARCHIVED)
-- `type` (optional): Comma-separated types (ASSOCIATION, SERVICE, etc.)
+- `language` (required): ISO 639-1 code (fr, en, uk, ti, ar, ps, ru, fa)
+- `themes` (optional): Comma-separated theme MongoDB ObjectIds
+- `needs` (optional): Comma-separated need MongoDB ObjectIds
+- `frenchLevel` (optional): Comma-separated levels (alpha, A1, A2, B1, B2, C1, C2)
+- `status` (optional): Comma-separated statuses (asile, refugie, subsidiaire, apatride, temporaire, french)
+- `public` (optional): Comma-separated public types (family, women, youths, gender, senior)
+- `age` (optional): Comma-separated age ranges (-18, 18-25, +25)
+- `departments` (optional): Comma-separated department codes
+- `sort` (optional): Sort order (default, date, view, theme, location)
 - `search` (optional): Free-text search query
 
 **Response** (200 OK):
 ```json
 {
   "total": 1250,
-  "byTheme": {
-    "health": 450,
-    "education": 380,
-    "housing": 420
+  "themes": {
+    "63286a015d31b2c0cad9960f": 450,
+    "63286a015d31b2c0cad9960a": 380,
+    "63286a015d31b2c0cad9960c": 420
   },
-  "byNeeds": {
-    "legal": 320,
-    "financial": 280,
-    "medical": 650
+  "needs": {
+    "613721a409c5190dfa70d053": 320,
+    "613721a409c5190dfa70d052": 280,
+    "614d9a3e95b9b700142ef6c4": 650
   },
-  "byFrenchLevel": {
+  "frenchLevels": {
     "A1": 200,
     "A2": 350,
     "B1": 400,
     "B2": 300
   },
-  "cached": true,
-  "cacheAge": 120
+  "ageRanges": {
+    "-18": 150,
+    "18-25": 400,
+    "+25": 700
+  },
+  "publics": {
+    "family": 300,
+    "women": 250,
+    "youths": 200
+  },
+  "languages": {
+    "fr": 800,
+    "en": 200,
+    "ar": 150
+  },
+  "statuses": {
+    "asile": 400,
+    "refugie": 500,
+    "subsidiaire": 200
+  },
+  "types": {
+    "dispositif": 900,
+    "demarche": 250,
+    "online": 100
+  }
 }
 ```
 
@@ -249,20 +278,20 @@ X-RateLimit-Reset: 2025-10-23T12:00:01Z
 
 **Error Responses**:
 
+400 Bad Request (invalid parameters):
+```json
+{
+  "error": "Bad Request",
+  "message": "Invalid language: 'xx'. Supported: fr, en, uk, ti, ar, ps, ru, fa"
+}
+```
+
 429 Too Many Requests (rate limited):
 ```json
 {
   "error": "Too Many Requests",
   "message": "Rate limit exceeded: 10 requests per second per IP",
   "retryAfter": 60
-}
-```
-
-400 Bad Request (invalid parameters):
-```json
-{
-  "error": "Bad Request",
-  "message": "Invalid language: 'xx'. Supported: fr, en, ar, etc."
 }
 ```
 
