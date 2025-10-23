@@ -153,21 +153,45 @@ paths:
                 $ref: '#/components/schemas/SearchCountsResponse'
               example:
                 total: 1250
-                byTheme:
+                themes:
                   63286a015d31b2c0cad9960f: 450
                   63286a015d31b2c0cad9960a: 380
                   63286a015d31b2c0cad9960c: 420
-                byNeeds:
+                needs:
                   613721a409c5190dfa70d053: 320
                   613721a409c5190dfa70d052: 280
                   614d9a3e95b9b700142ef6c4: 650
-                byFrenchLevel:
+                frenchLevels:
                   A1: 200
                   A2: 350
                   B1: 400
                   B2: 300
-                cached: true
-                cacheAge: 120
+                ageRanges:
+                  "-18": 150
+                  "18-25": 400
+                  "+25": 700
+                publics:
+                  family: 300
+                  women: 250
+                  youths: 200
+                  senior: 150
+                  gender: 100
+                languages:
+                  fr: 800
+                  en: 200
+                  ar: 150
+                  uk: 100
+                statuses:
+                  asile: 400
+                  refugie: 500
+                  subsidiaire: 200
+                  apatride: 50
+                  temporaire: 75
+                  french: 25
+                types:
+                  dispositif: 900
+                  demarche: 250
+                  online: 100
         
         '400':
           description: Bad request - invalid parameters
@@ -177,7 +201,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               example:
                 error: "Bad Request"
-                message: "Invalid language: 'xx'. Supported: fr, en, ar, etc."
+                message: "Invalid language: 'xx'. Supported: fr, en, uk, ti, ar, ps, ru, fa"
         
         '429':
           description: Too many requests - rate limit exceeded
@@ -211,37 +235,41 @@ components:
       type: object
       required:
         - total
-        - byTheme
-        - byNeeds
-        - byFrenchLevel
-        - cached
+        - themes
+        - needs
+        - frenchLevels
+        - ageRanges
+        - publics
+        - languages
+        - statuses
+        - types
       properties:
         total:
           type: integer
           description: Total number of matching dispositifs
           example: 1250
         
-        byTheme:
+        themes:
           type: object
-          description: Counts grouped by theme
+          description: Counts grouped by theme MongoDB ObjectId
           additionalProperties:
             type: integer
           example:
-            health: 450
-            education: 380
-            housing: 420
+            "63286a015d31b2c0cad9960f": 450
+            "63286a015d31b2c0cad9960a": 380
+            "63286a015d31b2c0cad9960c": 420
         
-        byNeeds:
+        needs:
           type: object
-          description: Counts grouped by need
+          description: Counts grouped by need MongoDB ObjectId
           additionalProperties:
             type: integer
           example:
-            legal: 320
-            financial: 280
-            medical: 650
+            "613721a409c5190dfa70d053": 320
+            "613721a409c5190dfa70d052": 280
+            "614d9a3e95b9b700142ef6c4": 650
         
-        byFrenchLevel:
+        frenchLevels:
           type: object
           description: Counts grouped by French proficiency level
           additionalProperties:
@@ -252,15 +280,65 @@ components:
             B1: 400
             B2: 300
         
-        cached:
-          type: boolean
-          description: Whether result was served from cache
-          example: true
+        ageRanges:
+          type: object
+          description: Counts grouped by age range
+          additionalProperties:
+            type: integer
+          example:
+            "-18": 150
+            "18-25": 400
+            "+25": 700
         
-        cacheAge:
-          type: integer
-          description: Age of cached result in seconds (only if cached=true)
-          example: 120
+        publics:
+          type: object
+          description: Counts grouped by target audience
+          additionalProperties:
+            type: integer
+          example:
+            family: 300
+            women: 250
+            youths: 200
+            senior: 150
+            gender: 100
+        
+        languages:
+          type: object
+          description: Counts grouped by language
+          additionalProperties:
+            type: integer
+          example:
+            fr: 800
+            en: 200
+            ar: 150
+            uk: 100
+        
+        statuses:
+          type: object
+          description: Counts grouped by refugee/reader status
+          additionalProperties:
+            type: integer
+          example:
+            asile: 400
+            refugie: 500
+            subsidiaire: 200
+            apatride: 50
+            temporaire: 75
+            french: 25
+        
+        types:
+          type: object
+          description: Counts grouped by dispositif type
+          properties:
+            dispositif:
+              type: integer
+              example: 900
+            demarche:
+              type: integer
+              example: 250
+            online:
+              type: integer
+              example: 100
     
     ErrorResponse:
       type: object
