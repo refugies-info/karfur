@@ -168,6 +168,10 @@ As a frontend developer, I want the search counts API to implement debouncing an
 
 ## Clarifications Needed
 
+### Session 2025-10-23
+
+- Q: Rate limit scope - per-IP vs per-user? → A: **Per-IP only** (Option A). Rationale: Few authenticated users in current deployment; per-IP approach simpler to implement and maintain.
+
 ### Question 1: Cache Invalidation Strategy
 
 **Context**: Edge case in specification addresses cache invalidation when dispositif data changes
@@ -188,3 +192,9 @@ As a frontend developer, I want the search counts API to implement debouncing an
 - Scalability: Reduces load on cache layers during bulk operations
 
 **Complexity**: Requires tracking dispositif attributes and building logic to determine affected filter combinations. This is addressed in FR-003 and edge case handling.
+
+---
+
+## Implementation Notes
+
+**Rate Limiting Scope**: Rate limiting applies per-IP address only. All requests from the same IP are counted against the 10 req/sec limit, regardless of user identity. This approach is appropriate for the current deployment with few authenticated users and simplifies implementation.
