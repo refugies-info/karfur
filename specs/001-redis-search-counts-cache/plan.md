@@ -18,13 +18,13 @@ Implement tiered caching architecture (Redis primary + per-container in-memory s
 -->
 
 **Language/Version**: TypeScript (Node.js 22.x LTS)  
-**Primary Dependencies**: redis (ioredis), node-cache, Express.js (server), Next.js (client)  
+**Primary Dependencies**: redis (ioredis), node-cache, Next.js  
 **Storage**: Redis (Google Cloud Memorystore), MongoDB (existing), In-Memory (node-cache)  
 **Testing**: Jest (unit/integration), manual load testing for cache hit rates  
-**Target Platform**: Google Cloud Run (server), Next.js API routes (client)  
-**Project Type**: Monorepo (server + client apps)
+**Target Platform**: Next.js API routes (Cloud Run)  
+**Project Type**: Client app only (Next.js)
 **Performance Goals**: <100ms cached response time, >80% cache hit rate, 70%+ database load reduction  
-**Constraints**: <150ms in-memory cache latency during Redis outage, <100MB per-container memory footprint  
+**Constraints**: <150ms in-memory cache latency during Redis outage, <100MB per-container memory footprint, multi-instance in-memory cache independence  
 **Scale/Scope**: Single API endpoint, 2 cache layers, 4 user stories, 18 functional requirements
 
 ## Constitution Check
@@ -36,7 +36,7 @@ Implement tiered caching architecture (Redis primary + per-container in-memory s
 | **I. Accessibility First** | ✅ PASS | API endpoint is non-UI; rate limiting includes configurable allowances for batch operations (SC-015). Monitoring dashboard must follow RGAA 4 standards. |
 | **II. Multilingual by Design** | ✅ PASS | Cache keys include language parameter (FR-002). Search counts respect language filters. No user-facing text in API responses. |
 | **III. Progressive Migration** | ✅ PASS | Uses modern TypeScript/Node.js stack. Leverages existing GCP infrastructure (Translation API, Indexing API already use Google Cloud). |
-| **IV. Monorepo Consistency** | ✅ PASS | Follows Turborepo conventions. Uses pnpm for dependency management. Cache utilities in `/apps/server/src/libs/`. |
+| **IV. Monorepo Consistency** | ✅ PASS | Follows Turborepo conventions. Uses pnpm for dependency management. Cache utilities in `/apps/client/src/libs/`. |
 | **V. Government Standards** | ✅ PASS | Rate limiting prevents abuse (government service best practice). Audit logging for all cache operations (FR-010). |
 | **VI. Mobile-First UI** | N/A | API endpoint only; no UI component. |
 
@@ -97,12 +97,26 @@ apps/client/
 ### Key Research Areas
 
 1. **Redis Connection Pooling**: ioredis handles connection pooling automatically; verify cluster mode compatibility with Google Cloud Memorystore
-2. **Cache Invalidation Broadcasting**: Implement pub/sub or event-driven invalidation to all containers
-3. **In-Memory Cache Eviction**: node-cache LRU strategy; verify memory footprint limits
-4. **Rate Limiting Strategy**: Token bucket algorithm using Redis (distributed) or in-memory (per-container)
+2. **Cache Invalidation in Client-Only Architecture**: How does Next.js API route detect dispositif data changes? Options:
+   - Webhook/event listener triggered by data mutations
+   - Cache invalidation on API calls (explicit, not automatic)
+   - Pub/sub subscription within API route
+3. **Next.js Middleware Rate Limiting**: Verify Next.js middleware supports per-IP rate limiting; handle `x-forwarded-for` header for Cloud Run
+4. **In-Memory Cache Eviction**: node-cache LRU strategy; verify memory footprint limits with multi-instance deployment
 5. **Monitoring & Observability**: Prometheus metrics for cache hit/miss rates, latency, connection status
 
 **Output**: research.md (Phase 0 deliverable)
+
+### Implementation Notes
+
+**Cache Invalidation Strategy**: With client-only architecture, cache invalidation must be triggered by:
+- Explicit invalidation on dispositif mutations (CREATED, PUBLISHED, DELETED, ARCHIVED)
+- Pub/sub subscription to invalidation events (if event system available)
+- TTL expiration as fallback (5-15 minutes)
+
+**Rate Limiting Implementation**: Next.js middleware will handle per-IP rate limiting with token bucket algorithm, using Redis for distributed state across Cloud Run instances.
+
+**Multi-Instance Considerations**: Each Cloud Run instance maintains independent in-memory cache; Redis provides shared cache across instances. No cross-instance in-memory cache synchronization needed.
 
 ---
 

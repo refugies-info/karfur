@@ -179,17 +179,18 @@ As a frontend developer, I want the search counts API to implement debouncing an
 **Decision**: Option B - Selective cache invalidation
 
 **Implementation Approach**: When a dispositif status changes (CREATED, PUBLISHED, DELETED, ARCHIVED), the system will:
+1. Detect the change via webhook, event listener, or pub/sub subscription in the Next.js API route
+2. Extract the dispositif's attributes (theme, needs, language, status, type, etc.)
+3. Determine which cache key combinations would be affected by this dispositif
+4. Invalidate only those specific cache entries in both Redis and in-memory layers
+5. Leave unaffected cache entries intact to maximize cache efficiency
 
-1. Extract the dispositif's attributes (theme, needs, language, status, type, etc.)
-2. Determine which cache key combinations would be affected by this dispositif
-3. Invalidate only those specific cache entries in both Redis and in-memory layers
-4. Leave unaffected cache entries intact to maximize cache efficiency
+**Note**: With client-only architecture, cache invalidation is triggered by explicit mutation events rather than automatic server-side detection. TTL expiration (5-15 minutes) provides fallback consistency.
 
 **Benefits**:
 
 - Better cache efficiency: 80%+ reduction in unnecessary invalidations
 - Improved performance: More cache hits during high-frequency updates
-- Scalability: Reduces load on cache layers during bulk operations
 
 **Complexity**: Requires tracking dispositif attributes and building logic to determine affected filter combinations. This is addressed in FR-003 and edge case handling.
 
@@ -198,3 +199,5 @@ As a frontend developer, I want the search counts API to implement debouncing an
 ## Implementation Notes
 
 **Rate Limiting Scope**: Rate limiting applies per-IP address only. All requests from the same IP are counted against the 10 req/sec limit, regardless of user identity. This approach is appropriate for the current deployment with few authenticated users and simplifies implementation.
+
+**Client-Only Architecture**: Cache layer implemented entirely within Next.js API route (`/apps/client/src/pages/api/search/counts.ts`). Cache invalidation triggered by explicit mutation events (dispositif create/update/delete) rather than automatic server-side detection. Redis provides distributed cache across Cloud Run instances; in-memory cache provides per-instance resilience during Redis outages.
