@@ -17,62 +17,61 @@ steps:
       - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    entrypoint: gcloud
+    entrypoint: bash
     args:
-      - "run"
-      - "deploy"
-      - "${_COMPONENT}-${_ENV}"
-      - "--project"
-      - "${_PROJECT_NAME}"
-      - "--platform"
-      - "managed"
-      - "--region"
-      - "${_REGION}"
-      - "--image"
-      - "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA"
-      - "--memory"
-      - "${_MEMORY}"
-      - "--set-env-vars"
-      - >-
-        accountSid=sm://refugies-info/accountSid,
-        AIRTABLE_BASE_CONTENU=sm://refugies-info/${_AIRTABLE_BASE_CONTENU_VAR},
-        AIRTABLE_BASE_TRAD=sm://refugies-info/${_AIRTABLE_BASE_TRAD_VAR},
-        AIRTABLE_BASE_USERS=sm://refugies-info/AIRTABLE_BASE_USERS,
-        AIRTABLE_TOKEN=sm://refugies-info/AIRTABLE_TOKEN,
-        ALGOLIA_API_KEY=sm://refugies-info/ALGOLIA_API_KEY,
-        ALGOLIA_INDEX=sm://refugies-info/${_ALGOLIA_INDEX_VAR},
-        API_KEY=sm://refugies-info/API_KEY,
-        API_SECRET=sm://refugies-info/API_SECRET,
-        authToken=sm://refugies-info/authToken,
-        BREVO_API_KEY=sm://refugies-info/BREVO_API_KEY,
-        CLOUD_NAME=sm://refugies-info/CLOUD_NAME,
-        CRON_TOKEN=sm://refugies-info/CRON_TOKEN,
-        EXPO_ACCESS_TOKEN=sm://refugies-info/EXPO_ACCESS_TOKEN,
-        FRONT_SITE_URL=sm://refugies-info/${_FRONT_URL_VAR},
-        GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL,
-        GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID,
-        GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509,
-        GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY,
-        GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID,
-        GOOGLE_CLIENT_ID=sm://refugies-info/GOOGLE_CLIENT_ID,
-        GOOGLE_CLIENT_SECRET=sm://refugies-info/GOOGLE_CLIENT_SECRET,
-        MICROSOFT_CLIENT_ID=sm://refugies-info/MICROSOFT_CLIENT_ID,
-        MICROSOFT_CLIENT_SECRET=sm://refugies-info/MICROSOFT_CLIENT_SECRET,
-        MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION},
-        MONGODB_URI=sm://refugies-info/${_MONGODB_VAR},
-        NODE_ENV=${_NODE_ENV},
-        POSTMAN_SECRET=sm://refugies-info/POSTMAN_SECRET,
-        REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET,
-        SECRET=sm://refugies-info/SECRET,
-        SENDGRID_API_KEY=sm://refugies-info/SENDGRID_API_KEY,
-        SLACK_WEBHOOK_URL=sm://refugies-info/SLACK_WEBHOOK_URL,
-        SMS_SENDER=sm://refugies-info/SMS_SENDER,
-        TTS_KEY_1=sm://refugies-info/TTS_KEY_1
-      - "--max-instances"
-      - "${_MAX_INSTANCES}"
-      - "--service-account"
-      - "${_SA}"
-      - "--allow-unauthenticated"
+      - -c
+      - |
+        # Use array for optional command-line arguments (Google Shell Style Guide)
+        # https://google.github.io/styleguide/shellguide.html#arrays
+        vpc_args=()
+        if [[ -n "${_VPC_CONNECTOR}" ]]; then
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
+        fi
+
+        gcloud run deploy ${_COMPONENT}-${_ENV} \
+          --allow-unauthenticated \
+          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --max-instances ${_MAX_INSTANCES} \
+          --memory ${_MEMORY} \
+          --platform managed \
+          --project ${_PROJECT_NAME} \
+          --region ${_REGION} \
+          --service-account ${_SA} \
+          --set-env-vars MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION} \
+          --set-env-vars NODE_ENV=${_NODE_ENV} \
+          --set-secrets accountSid=accountSid:latest \
+          --set-secrets AIRTABLE_BASE_CONTENU=${_AIRTABLE_BASE_CONTENU_VAR}:latest \
+          --set-secrets AIRTABLE_BASE_TRAD=${_AIRTABLE_BASE_TRAD_VAR}:latest \
+          --set-secrets AIRTABLE_BASE_USERS=AIRTABLE_BASE_USERS:latest \
+          --set-secrets AIRTABLE_TOKEN=AIRTABLE_TOKEN:latest \
+          --set-secrets ALGOLIA_API_KEY=ALGOLIA_API_KEY:latest \
+          --set-secrets ALGOLIA_INDEX=${_ALGOLIA_INDEX_VAR}:latest \
+          --set-secrets API_KEY=API_KEY:latest \
+          --set-secrets API_SECRET=API_SECRET:latest \
+          --set-secrets authToken=authToken:latest \
+          --set-secrets BREVO_API_KEY=BREVO_API_KEY:latest \
+          --set-secrets CLOUD_NAME=CLOUD_NAME:latest \
+          --set-secrets CRON_TOKEN=CRON_TOKEN:latest \
+          --set-secrets EXPO_ACCESS_TOKEN=EXPO_ACCESS_TOKEN:latest \
+          --set-secrets FRONT_SITE_URL=${_FRONT_URL_VAR}:latest \
+          --set-secrets GCLOUD_CLIENT_EMAIL=GCLOUD_CLIENT_EMAIL:latest \
+          --set-secrets GCLOUD_CLIENT_ID=GCLOUD_CLIENT_ID:latest \
+          --set-secrets GCLOUD_CLIENT_X509=GCLOUD_CLIENT_X509:latest \
+          --set-secrets GCLOUD_PKEY=GCLOUD_PKEY:latest \
+          --set-secrets GCLOUD_PRIVATE_KEY_ID=GCLOUD_PRIVATE_KEY_ID:latest \
+          --set-secrets GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID:latest \
+          --set-secrets GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest \
+          --set-secrets MICROSOFT_CLIENT_ID=MICROSOFT_CLIENT_ID:latest \
+          --set-secrets MICROSOFT_CLIENT_SECRET=MICROSOFT_CLIENT_SECRET:latest \
+          --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
+          --set-secrets POSTMAN_SECRET=POSTMAN_SECRET:latest \
+          --set-secrets REACT_APP_SITE_SECRET=REACT_APP_SITE_SECRET:latest \
+          --set-secrets SECRET=SECRET:latest \
+          --set-secrets SENDGRID_API_KEY=SENDGRID_API_KEY:latest \
+          --set-secrets SLACK_WEBHOOK_URL=SLACK_WEBHOOK_URL:latest \
+          --set-secrets SMS_SENDER=SMS_SENDER:latest \
+          --set-secrets TTS_KEY_1=TTS_KEY_1:latest \
+          "${vpc_args[@]}"
 
 substitutions:
   _MAX_INSTANCES: "20"

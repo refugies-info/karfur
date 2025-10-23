@@ -35,30 +35,31 @@ steps:
 
   # Deploy container image to Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    entrypoint: gcloud
+    entrypoint: bash
     args:
-      [
-        "run",
-        "deploy",
-        "${_COMPONENT}-${_ENV}",
-        "--project",
-        "$PROJECT_ID",
-        "--region",
-        "${_REGION}",
-        "--platform",
-        "managed",
-        "--image",
-        "${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA",
-        "--port",
-        "3000",
-        "--memory",
-        "${_MEMORY}",
-        "--allow-unauthenticated",
-        "--concurrency",
-        "160",
-        "--max-instances",
-        "${_MAX_INSTANCES}",
-      ]
+      - -c
+      - |
+        # Use array for optional command-line arguments (Google Shell Style Guide)
+        # https://google.github.io/styleguide/shellguide.html#arrays
+        vpc_args=()
+        if [[ -n "${_VPC_CONNECTOR}" ]]; then
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
+        fi
+
+        gcloud run deploy ${_COMPONENT}-${_ENV} \
+          --allow-unauthenticated \
+          --concurrency 160 \
+          --image ${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA \
+          --max-instances ${_MAX_INSTANCES} \
+          --memory ${_MEMORY} \
+          --platform managed \
+          --port 3000 \
+          --project $PROJECT_ID \
+          --region ${_REGION} \
+          --service-account ${_SA} \
+          --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
+          --set-env-vars DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS} \
+          "${vpc_args[@]}"
 
 options:
   dynamicSubstitutions: true
@@ -70,5 +71,6 @@ substitutions:
   _REGION: europe-west1
   _REGISTRY: "registry-${_ENV}"
   _REGISTRY_URL: "${_REGION}-docker.pkg.dev"
+  _DISABLE_SEARCH_COUNTS: "false"
 
 timeout: 1200s
