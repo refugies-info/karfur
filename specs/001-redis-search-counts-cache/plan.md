@@ -1,0 +1,160 @@
+# Implementation Plan: Redis Caching for Search Counts API
+
+**Branch**: `001-redis-search-counts-cache` | **Date**: 2025-10-23 | **Spec**: [RI-914](https://linear.app/refugiesinfo/issue/RI-914/implement-redis-caching-for-search-counts-api)
+**Input**: Feature specification from `/specs/001-redis-search-counts-cache/spec.md`
+
+**Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
+
+## Summary
+
+Implement tiered caching architecture (Redis primary + per-container in-memory secondary) for the GET `/api/search/counts` endpoint to reduce database load by 70%+ and improve response times from 500ms+ to <100ms. Includes selective cache invalidation based on dispositif attributes, rate limiting (10 req/sec per IP), and client-side debouncing (300-500ms). Leverages existing Google Cloud Memorystore infrastructure.
+
+## Technical Context
+
+<!--
+  ACTION REQUIRED: Replace the content in this section with the technical details
+  for the project. The structure here is presented in advisory capacity to guide
+  the iteration process.
+-->
+
+**Language/Version**: TypeScript (Node.js 22.x LTS)  
+**Primary Dependencies**: redis (ioredis), node-cache, Express.js (server), Next.js (client)  
+**Storage**: Redis (Google Cloud Memorystore), MongoDB (existing), In-Memory (node-cache)  
+**Testing**: Jest (unit/integration), manual load testing for cache hit rates  
+**Target Platform**: Google Cloud Run (server), Next.js API routes (client)  
+**Project Type**: Monorepo (server + client apps)
+**Performance Goals**: <100ms cached response time, >80% cache hit rate, 70%+ database load reduction  
+**Constraints**: <150ms in-memory cache latency during Redis outage, <100MB per-container memory footprint  
+**Scale/Scope**: Single API endpoint, 2 cache layers, 4 user stories, 18 functional requirements
+
+## Constitution Check
+
+*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+
+| Principle | Status | Notes |
+|-----------|--------|-------|
+| **I. Accessibility First** | ✅ PASS | API endpoint is non-UI; rate limiting includes configurable allowances for batch operations (SC-015). Monitoring dashboard must follow RGAA 4 standards. |
+| **II. Multilingual by Design** | ✅ PASS | Cache keys include language parameter (FR-002). Search counts respect language filters. No user-facing text in API responses. |
+| **III. Progressive Migration** | ✅ PASS | Uses modern TypeScript/Node.js stack. Leverages existing GCP infrastructure (Translation API, Indexing API already use Google Cloud). |
+| **IV. Monorepo Consistency** | ✅ PASS | Follows Turborepo conventions. Uses pnpm for dependency management. Cache utilities in `/apps/server/src/libs/`. |
+| **V. Government Standards** | ✅ PASS | Rate limiting prevents abuse (government service best practice). Audit logging for all cache operations (FR-010). |
+| **VI. Mobile-First UI** | N/A | API endpoint only; no UI component. |
+
+**Gate Status**: ✅ **PASS** - All applicable principles satisfied. No violations.
+
+## Project Structure
+
+### Documentation (this feature)
+
+```
+specs/[###-feature]/
+├── plan.md              # This file (/speckit.plan command output)
+├── research.md          # Phase 0 output (/speckit.plan command)
+├── data-model.md        # Phase 1 output (/speckit.plan command)
+├── quickstart.md        # Phase 1 output (/speckit.plan command)
+├── contracts/           # Phase 1 output (/speckit.plan command)
+└── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
+```
+
+### Source Code (repository root)
+
+```
+apps/server/
+├── src/
+│   ├── libs/
+│   │   ├── redis.ts              # Redis connection & initialization
+│   │   ├── cache.ts              # Cache layer abstraction (Redis + in-memory)
+│   │   └── cacheInvalidation.ts  # Selective invalidation logic
+│   ├── middleware/
+│   │   └── rateLimiter.ts        # Rate limiting middleware
+│   ├── workflows/
+│   │   ├── dispositif/
+│   │   │   └── updateDispositifStatus/
+│   │   │       └── updateDispositifStatus.ts  # Trigger cache invalidation
+│   │   └── search/
+│   │       └── getCountDispositifs/
+│   │           └── getCountDispositifs.ts  # Updated with caching
+│   └── controllers/
+│       └── cacheController.ts    # Admin cache management endpoint
+└── tests/
+    ├── unit/
+    │   ├── cache.test.ts
+    │   └── cacheInvalidation.test.ts
+    └── integration/
+        └── search-counts-cache.test.ts
+
+apps/client/
+├── src/
+│   ├── pages/
+│   │   └── api/
+│   │       └── search/
+│   │           └── counts.ts     # Next.js API route (uses server cache)
+│   ├── components/
+│   │   └── SearchFilters.tsx     # Client-side debouncing
+│   └── hooks/
+│       └── useSearchCounts.ts    # Debounced search counts hook
+└── tests/
+    ├── unit/
+    │   └── useSearchCounts.test.ts
+    └── integration/
+        └── search-counts-api.test.ts
+```
+
+**Structure Decision**: Monorepo with server + client apps. Cache layer utilities in `/apps/server/src/libs/` (redis.ts, cache.ts). API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js). Client-side debouncing in search component. Rate limiting middleware in Express server. No new top-level projects required.
+
+## Complexity Tracking
+
+*No Constitution Check violations. All complexity justified by requirements.*
+
+---
+
+## Phase 0: Research & Unknowns
+
+**Status**: All technical context clarified. No NEEDS CLARIFICATION items.
+
+### Key Research Areas
+
+1. **Redis Connection Pooling**: ioredis handles connection pooling automatically; verify cluster mode compatibility with Google Cloud Memorystore
+2. **Cache Invalidation Broadcasting**: Implement pub/sub or event-driven invalidation to all containers
+3. **In-Memory Cache Eviction**: node-cache LRU strategy; verify memory footprint limits
+4. **Rate Limiting Strategy**: Token bucket algorithm using Redis (distributed) or in-memory (per-container)
+5. **Monitoring & Observability**: Prometheus metrics for cache hit/miss rates, latency, connection status
+
+**Output**: research.md (Phase 0 deliverable)
+
+---
+
+## Phase 1: Design & Contracts
+
+**Prerequisites**: research.md complete
+
+### Deliverables
+
+1. **data-model.md**: Cache entry schema, invalidation event structure, rate limit state
+2. **contracts/**: OpenAPI spec for cache admin endpoint, rate limit response headers
+3. **quickstart.md**: Local development setup (Redis Docker, environment variables)
+4. **Agent Context Update**: Run `.specify/scripts/bash/update-agent-context.sh windsurf`
+
+**Output**: data-model.md, /contracts/*, quickstart.md, updated agent context
+
+---
+
+## Phase 2: Task Generation
+
+**Prerequisites**: Phase 1 design complete
+
+**Command**: `/speckit.tasks` (generates tasks.md with implementation breakdown)
+
+**Output**: tasks.md with dependency-ordered tasks
+
+---
+
+## Next Steps
+
+1. ✅ **Specification**: Complete with all clarifications resolved
+2. ✅ **Plan**: Complete with technical context and constitution check
+3. ⏳ **Phase 0**: Generate research.md
+4. ⏳ **Phase 1**: Generate data-model.md, contracts/, quickstart.md
+5. ⏳ **Phase 2**: Run `/speckit.tasks` to generate tasks.md
+
+**Status**: Plan complete. Ready for Phase 0 research generation.
