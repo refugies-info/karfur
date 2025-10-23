@@ -76,9 +76,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T018 [US2] Implement cache invalidation on dispositif creation in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: call `invalidateOnDispoChange()` after creation
-- [ ] T019 [US2] Implement cache invalidation on dispositif update in `apps/server/src/workflows/dispositif/updateDispositif/updateDispositif.ts`: invalidate both old and new attribute combinations
-- [ ] T020 [US2] Implement cache invalidation on dispositif status change in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: call invalidation logic for CREATED, PUBLISHED, DELETED, ARCHIVED transitions
+- [ ] T018 [US2] Create cache invalidation endpoint at `apps/client/src/pages/api/admin/cache-invalidate.ts` that accepts dispositif attributes and calls `invalidateByFilters()` from cache layer
+- [ ] T019 [US2] Add cache invalidation calls in `apps/client/src/pages/api/dispositif/create.ts` (or mutation handler): after dispositif creation, call cache invalidation endpoint with new dispositif attributes
+- [ ] T020 [US2] Add cache invalidation calls in `apps/client/src/pages/api/dispositif/update.ts` (or mutation handler): after dispositif update/status change, call cache invalidation endpoint with both old and new attributes
 
 **Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
 
