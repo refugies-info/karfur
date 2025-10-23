@@ -74,6 +74,41 @@ paths:
             enum: [asile, refugie, subsidiaire, apatride, temporaire, french]
           example: "refugie,asile"
         
+        - name: public
+          in: query
+          required: false
+          description: Comma-separated public type filters (target audience)
+          schema:
+            type: string
+            enum: [family, women, youths, gender, senior]
+          example: "family,women"
+        
+        - name: age
+          in: query
+          required: false
+          description: Comma-separated age group filters
+          schema:
+            type: string
+            enum: ["-18", "18-25", "+25"]
+          example: "-18,18-25"
+        
+        - name: departments
+          in: query
+          required: false
+          description: Comma-separated department codes or location filters
+          schema:
+            type: string
+          example: "75,92,france"
+        
+        - name: sort
+          in: query
+          required: false
+          description: Sort order for results
+          schema:
+            type: string
+            enum: [default, date, view, theme, location]
+          example: "date"
+        
         - name: search
           in: query
           required: false
