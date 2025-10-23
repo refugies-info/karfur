@@ -1,5 +1,6 @@
 import { DispositifStatus, DispositifStatusRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
+import { notifyGoogleUrlDeleted } from "~/libs/googleIndexingApi";
 import {
   deleteDispositifInDb,
   publishDispositif,
@@ -20,6 +21,16 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
   }
   if (body.status === DispositifStatus.DELETED) {
     await deleteDispositifInDb(id, user);
+    // Notify Google to remove from index (only in production)
+    if (process.env.NODE_ENV === "production") {
+      notifyGoogleUrlDeleted(`${process.env.FRONT_SITE_URL}/fr/dispositif/${id}`).catch((error) =>
+        logger.error("[updateDispositifStatus] Failed to notify Google", {
+          id,
+          error: error instanceof Error ? error.message : String(error),
+          ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
+        }),
+      );
+    }
     return { text: "success" };
   }
 
@@ -28,6 +39,16 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
 
   if (body.status === DispositifStatus.ARCHIVED) {
     await sendMailWhenDispositifArchived(new ObjectId(id));
+    // Notify Google to remove from index (only in production)
+    if (process.env.NODE_ENV === "production") {
+      notifyGoogleUrlDeleted(`${process.env.FRONT_SITE_URL}/fr/dispositif/${id}`).catch((error) =>
+        logger.error("[updateDispositifStatus] Failed to notify Google", {
+          id,
+          error: error instanceof Error ? error.message : String(error),
+          ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
+        }),
+      );
+    }
   }
 
   return { text: "success" };
