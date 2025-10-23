@@ -52,19 +52,19 @@ As a system administrator, I want the cache to be automatically invalidated when
 
 ---
 
-### User Story 3 - Graceful Fallback and Monitoring (Priority: P3)
+### User Story 3 - Tiered Caching with Graceful Degradation (Priority: P3)
 
-As an operations team member, I want the system to gracefully handle Redis failures and provide visibility into cache performance so that service remains available even if caching fails.
+As an operations team member, I want the system to implement tiered caching (Redis + per-container in-memory) so that service remains performant even if Redis becomes unavailable, and to provide visibility into cache performance.
 
-**Why this priority**: Ensures reliability and observability. If Redis becomes unavailable, the system should continue working by falling back to direct MongoDB queries. This prevents cascading failures but is less critical than basic caching.
+**Why this priority**: Ensures reliability and observability at production scale. If Redis becomes unavailable, falling back to direct MongoDB queries would recreate the original database load problem. A per-container in-memory cache provides local resilience while Redis is being restored. This prevents cascading failures but is less critical than basic Redis caching.
 
-**Independent Test**: Can be fully tested by simulating Redis unavailability and verifying API continues to work with direct MongoDB queries. Delivers operational resilience.
+**Independent Test**: Can be fully tested by simulating Redis unavailability and verifying API continues to return cached results from in-memory cache within acceptable latency. Delivers operational resilience without database overload.
 
 **Acceptance Scenarios**:
 
-1. **Given** Redis is unavailable, **When** client calls GET /api/search/counts, **Then** system falls back to direct MongoDB aggregation and returns correct result
-2. **Given** cache operations are occurring, **When** monitoring system queries cache metrics, **Then** it receives hit/miss ratio, operation latency, and connection status
-3. **Given** Redis connection fails, **When** system attempts cache operations, **Then** error is logged and operation continues without blocking the API response
+1. **Given** Redis is unavailable but in-memory cache has valid entries, **When** client calls GET /api/search/counts, **Then** system returns result from per-container in-memory cache without querying MongoDB
+2. **Given** both Redis and in-memory cache are unavailable, **When** client calls GET /api/search/counts, **Then** system executes MongoDB aggregation, stores in in-memory cache, and returns result
+3. **Given** cache operations are occurring, **When** monitoring system queries cache metrics, **Then** it receives hit/miss ratio by cache layer (Redis vs in-memory), operation latency, and connection status for each layer
 
 ---
 
@@ -72,11 +72,14 @@ As an operations team member, I want the system to gracefully handle Redis failu
 
 ### Edge Cases
 
-- What happens when multiple filter combinations exist (type, publishedOnly, themeId)? System MUST generate unique cache keys for each combination
+- What happens when multiple filter combinations exist? System MUST generate unique cache keys for each combination and maintain them in both Redis and in-memory cache
 - How does system handle cache stampede when many requests arrive simultaneously after cache expiration? System SHOULD use cache lock or probabilistic early expiration to prevent thundering herd
-- What happens when Redis memory is full? System MUST handle eviction gracefully and fall back to MongoDB
+- What happens when Redis memory is full? System MUST handle eviction gracefully and rely on in-memory cache as fallback
+- What happens when Redis is unavailable but in-memory cache is full? System MUST evict oldest entries and continue serving from remaining cache
 - How does system handle partial cache invalidation? When one dispositif changes, should all counts cache clear or only affected filters? NEEDS CLARIFICATION: Scope of invalidation (aggressive vs selective)
 - What happens when cache contains stale data due to network partition? System SHOULD prioritize availability over consistency with documented TTL window
+- How are in-memory caches synchronized across multiple containers? Each container maintains its own independent in-memory cache; invalidation events must be broadcast to all containers
+- What is the memory footprint of in-memory cache per container? System SHOULD limit in-memory cache size to prevent memory exhaustion (e.g., max 100MB per container)
 
 ## Requirements *(mandatory)*
 
@@ -90,21 +93,25 @@ As an operations team member, I want the system to gracefully handle Redis failu
 - **FR-001**: System MUST cache search counts results using Redis with configurable TTL (default 5-15 minutes)
 - **FR-002**: System MUST generate unique cache keys based on query parameters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses)
 - **FR-003**: System MUST invalidate cache entries when dispositif status changes (CREATED, UPDATED, DELETED, ARCHIVED)
-- **FR-004**: System MUST fall back to direct MongoDB aggregation if Redis is unavailable
-- **FR-005**: System MUST return identical results whether data comes from cache or direct aggregation
-- **FR-006**: System MUST support manual cache clearing via admin endpoint (POST /api/admin/cache/clear or similar)
-- **FR-007**: System MUST log all cache operations (hits, misses, errors) with appropriate severity levels
-- **FR-008**: System MUST track and expose cache performance metrics (hit rate, miss rate, operation latency)
-- **FR-009**: System MUST use VPC-secured Redis connection with TLS encryption in production
-- **FR-010**: System MUST handle Redis connection failures without blocking API responses
+- **FR-004**: System MUST implement tiered caching: primary (Redis), secondary (per-container in-memory)
+- **FR-005**: System MUST fall back to in-memory cache if Redis is unavailable
+- **FR-006**: System MUST fall back to MongoDB aggregation only if both Redis and in-memory cache are unavailable
+- **FR-007**: System MUST maintain separate TTL for in-memory cache (shorter than Redis, e.g., 1-5 minutes) to prevent stale data
+- **FR-008**: System MUST return identical results whether data comes from Redis, in-memory cache, or direct aggregation
+- **FR-009**: System MUST support manual cache clearing via admin endpoint that clears both Redis and all in-memory caches
+- **FR-010**: System MUST log all cache operations (hits, misses, errors) with cache layer identification (Redis vs in-memory)
+- **FR-011**: System MUST track and expose cache performance metrics separately for each cache layer (hit rate, miss rate, operation latency)
+- **FR-012**: System MUST use VPC-secured Redis connection with TLS encryption in production
+- **FR-013**: System MUST handle Redis connection failures without blocking API responses and transparently fall back to in-memory cache
 
 ### Key Entities
 
 - **Cache Entry**: Represents a cached search counts result with key (filter combination), value (SearchCountsResponse), TTL, and timestamp
 - **Search Counts Query**: Represents a request to GET /api/search/counts with optional filters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses, search)
 - **SearchCountsResponse**: Object containing counts for themes, needs, frenchLevels, ageRanges, publics, languages, statuses, types (dispositif/demarche/online), and total
-- **Redis Instance**: Managed service providing distributed cache storage with persistence and high availability
-- **Cache Invalidation Event**: Triggered when dispositif data changes, contains affected filter combinations to clear
+- **Redis Instance**: Managed service providing distributed cache storage with persistence and high availability (primary cache layer)
+- **In-Memory Cache**: Per-container local cache using node-cache or similar (secondary cache layer for resilience)
+- **Cache Invalidation Event**: Triggered when dispositif data changes, contains affected filter combinations to clear from both cache layers
 
 ## Success Criteria *(mandatory)*
 
@@ -116,13 +123,15 @@ As an operations team member, I want the system to gracefully handle Redis failu
 ### Measurable Outcomes
 
 - **SC-001**: Cached search counts API responses complete in under 100ms (compared to current 500ms+ for uncached queries)
-- **SC-002**: Cache hit rate exceeds 80% in production during normal usage patterns
+- **SC-002**: Cache hit rate exceeds 80% in production during normal usage patterns (combined Redis + in-memory)
 - **SC-003**: Zero breaking changes to API contract - all existing clients continue working without modification
-- **SC-004**: System gracefully falls back to MongoDB queries with no user-facing errors if Redis becomes unavailable
-- **SC-005**: Database query load for search counts endpoint reduced by at least 70% (measured by MongoDB query count)
-- **SC-006**: Cache invalidation occurs within 100ms of dispositif status change
-- **SC-007**: Monitoring dashboard shows cache metrics with at least 95% uptime
-- **SC-008**: All cache operations include appropriate logging for troubleshooting and auditing
+- **SC-004**: If Redis becomes unavailable, in-memory cache maintains performance within 150ms for cached entries
+- **SC-005**: If both Redis and in-memory cache are unavailable, system falls back to MongoDB without cascading failures
+- **SC-006**: Database query load for search counts endpoint reduced by at least 70% during normal operations (measured by MongoDB query count)
+- **SC-007**: During Redis outage, database load remains within acceptable limits due to in-memory cache fallback
+- **SC-008**: Cache invalidation occurs within 100ms of dispositif status change across both cache layers
+- **SC-009**: Monitoring dashboard shows cache metrics separately for Redis and in-memory layers with at least 95% uptime
+- **SC-010**: All cache operations include appropriate logging with cache layer identification for troubleshooting and auditing
 
 ## Assumptions
 
