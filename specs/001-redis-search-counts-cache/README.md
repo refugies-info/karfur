@@ -52,8 +52,8 @@ This feature respects the project's core principles:
 
 ### 2. Tiered Caching Approach
 - Redis for distributed caching across containers
-- Per-container in-memory cache prevents database overload during Redis outages
-- **Rationale**: Production-scale resilience without recreating original performance problem
+- Per-container in-memory cache mitigates database overload during Redis outages
+- **Rationale**: Production-scale resilience without recreating original performance problem (each container maintains independent cache, so global cache is lost)
 
 ### 3. Rate Limiting & Debouncing
 - API-level rate limiting (10 req/sec per IP, configurable)
