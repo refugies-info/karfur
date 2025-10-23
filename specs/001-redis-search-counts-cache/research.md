@@ -450,16 +450,148 @@ For this feature:
 How to monitor cache performance and operational health?
 
 ### Decision
-**Implement Prometheus metrics with structured logging**
+**Use Google Cloud Monitoring (managed Prometheus) with structured logging**
 
 ### Rationale
-- Prometheus is industry-standard for metrics
-- Structured logging enables debugging and auditing
-- Metrics provide visibility into cache effectiveness
+- Google Cloud Monitoring is built-in, no infrastructure needed
+- Fully managed service (no setup, maintenance, or scaling)
+- Integrated with Cloud Run and other GCP services
+- Prometheus-compatible API available
+- Structured logging via Cloud Logging (formerly Stackdriver)
+- Cost-effective for this scale
+
+### Infrastructure Options
+
+#### Option A: Google Cloud Monitoring (RECOMMENDED)
+**Fully managed Prometheus-compatible service**
+
+```yaml
+# No infrastructure setup required
+# Built into Google Cloud Platform
+# Automatically collects metrics from Cloud Run
+
+# Enable in Cloud Run service:
+# - Metrics are automatically exported
+# - No agent installation needed
+# - Accessible via Cloud Console or API
+```
+
+**Pros**:
+- Zero infrastructure to manage
+- Integrated with Cloud Run
+- Automatic metric collection
+- Built-in dashboards
+- No scaling concerns
+- Included in GCP billing
+
+**Cons**:
+- Less customizable than self-hosted Prometheus
+- Vendor lock-in to Google Cloud
+
+#### Option B: Self-Hosted Prometheus
+**Traditional Prometheus deployment**
+
+```yaml
+# Requires:
+# - Prometheus server (VM or Kubernetes)
+# - Storage (persistent disk or object storage)
+# - Alertmanager (optional)
+# - Grafana for dashboards (optional)
+# - Backup/retention policies
+```
+
+**Pros**:
+- Full control and customization
+- No vendor lock-in
+- Can run on-premises
+
+**Cons**:
+- Infrastructure to manage and scale
+- Storage and retention costs
+- Requires monitoring of the monitoring system
+- Operational overhead
+
+#### Option C: Google Cloud Monitoring + Prometheus Exporter
+**Hybrid approach**
+
+```typescript
+// Application exports Prometheus metrics
+import { register } from 'prom-client';
+
+// Cloud Run scrapes and sends to Cloud Monitoring
+// Endpoint: /metrics
+app.get('/metrics', (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(register.metrics());
+});
+
+// Cloud Monitoring ingests via Prometheus API
+```
+
+**Pros**:
+- Leverage Cloud Monitoring infrastructure
+- Prometheus-compatible metrics
+- Flexibility of custom metrics
+
+**Cons**:
+- Requires application instrumentation
+- Additional configuration
+
+### Comparison
+
+| Aspect | Cloud Monitoring | Self-Hosted | Hybrid |
+|--------|------------------|-------------|--------|
+| **Setup** | None (built-in) | Complex | Moderate |
+| **Infrastructure** | Managed | Self-managed | Managed |
+| **Cost** | Included in GCP | VM + storage | Included in GCP |
+| **Scaling** | Automatic | Manual | Automatic |
+| **Customization** | Limited | Full | Good |
+| **Maintenance** | None | Ongoing | Minimal |
+| **Learning Curve** | Low | High | Moderate |
+
+### Recommended Approach for This Feature
+
+**Use Google Cloud Monitoring (Option A)**
+
+**Why**:
+1. Zero infrastructure setup
+2. Integrated with Cloud Run
+3. Automatic metric collection
+4. Cost-effective
+5. Built-in dashboards and alerting
+6. No operational overhead
+
+**Implementation**:
+1. Enable Cloud Monitoring on Cloud Run service
+2. Export application metrics via prom-client
+3. Create custom dashboard in Cloud Console
+4. Set up alerts for cache performance
+5. Use Cloud Logging for structured logs
+
+**Metrics to Track**:
+- Cache hit/miss rates
+- Operation latency (p50, p95, p99)
+- Redis connection status
+- Rate limit violations
+- Database query count
+- API response times
+
+**Logging**:
+- Use Cloud Logging (built-in)
+- Structured JSON logs via pino
+- Automatic correlation with traces
+
+### Success Criteria
+- Metrics visible in Cloud Console within 5 minutes
+- Cache hit rate >80% visible in dashboard
+- Latency <100ms for cached requests
+- Redis connection status monitored
+- Audit trail of cache operations in Cloud Logging
+- Alerts configured for anomalies
 
 ### Implementation Details
 
-#### Prometheus Metrics
+#### Application Metrics Export (prom-client)
 ```typescript
 import { register, Counter, Histogram, Gauge } from 'prom-client';
 
@@ -520,20 +652,43 @@ logger.info({
 });
 ```
 
-#### Monitoring Dashboard
-- Cache hit rate (%) by layer
+#### Cloud Monitoring Dashboard
+Create in Google Cloud Console:
+- Cache hit rate (%) over time
 - Cache operation latency (p50, p95, p99)
 - Redis connection status
-- In-memory cache size and eviction rate
 - Rate limit violations per IP
 - Database query count (before/after caching)
+- API response times
+
+#### Cloud Logging Configuration
+```typescript
+import pino from 'pino';
+
+const logger = pino({
+  level: process.env.LOG_LEVEL || 'info',
+  transport: {
+    target: 'pino-stackdriver', // Sends to Cloud Logging
+  },
+});
+
+// Structured logs automatically appear in Cloud Logging
+logger.info({
+  operation: 'cache_get',
+  key: cacheKey,
+  hit: true,
+  latency_ms: 5,
+  timestamp: new Date().toISOString(),
+});
+```
 
 ### Success Criteria
-- Metrics exposed on `/metrics` endpoint
+- Metrics visible in Cloud Monitoring within 5 minutes
 - Cache hit rate >80% visible in dashboard
 - Latency <100ms for cached requests
 - Redis connection status monitored
-- Audit trail of cache operations
+- Structured logs in Cloud Logging
+- Alerts configured for anomalies
 
 ---
 
