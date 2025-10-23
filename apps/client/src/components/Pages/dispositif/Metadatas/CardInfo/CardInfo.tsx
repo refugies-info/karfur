@@ -39,14 +39,14 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
         <MetaDataCard
           mode={isEditMode ? "edit" : "view"}
           state={price ? "valid" : "invalid"}
-          title="Informations pratiques"
+          title={t("Dispositif.practicalInformations")}
           className={cn(className)}
           {...props}
         >
           {isEditMode || price ? (
             <MetaDataItem
               icon="fr-icon-money-euro-circle-line"
-              title="Prix"
+              title={t("Dispositif.price")}
               state={formSubmitted && price === undefined ? "invalid" : undefined}
               onClick={isEditMode ? () => setActiveModal?.("Price") : undefined}
             >
