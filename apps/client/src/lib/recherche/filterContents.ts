@@ -64,6 +64,8 @@ export const filterByLocations = (dispositif: SimpleDispositif, departments: str
   if (!location) return false;
   const matchDep = (val: string) => {
     if (!val) return false;
+    // Fiches "toute la france" should always appear when filtering by department
+    if (val === "france") return true;
     const parts = val.split(" - ");
     const code = parts.length > 1 ? parts[1] : val;
     return departments.includes(code);
