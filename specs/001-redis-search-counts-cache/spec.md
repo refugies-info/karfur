@@ -106,7 +106,7 @@ As a frontend developer, I want the search counts API to implement debouncing an
 ### Functional Requirements
 
 - **FR-001**: System MUST cache search counts results using Redis with configurable TTL (default 5-15 minutes)
-- **FR-002**: System MUST generate unique cache keys based on query parameters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses)
+- **FR-002**: System MUST generate unique cache keys based on query parameters (themes, needs, frenchLevel, ageRanges, publics, languages, statuses, search)
 - **FR-003**: System MUST implement selective cache invalidation: when dispositif status changes (CREATED, PUBLISHED, DELETED, ARCHIVED), only invalidate cache entries for filter combinations affected by this dispositif's attributes (theme, needs, language, status, etc.)
 - **FR-004**: System MUST implement tiered caching: primary (Redis), secondary (per-container in-memory)
 - **FR-005**: System MUST fall back to in-memory cache if Redis is unavailable
@@ -150,13 +150,13 @@ As a frontend developer, I want the search counts API to implement debouncing an
 - **SC-006**: Database query load for search counts endpoint reduced by at least 70% during normal operations (measured by MongoDB query count)
 - **SC-007**: During Redis outage, database load remains within acceptable limits due to in-memory cache fallback
 - **SC-008**: Selective cache invalidation occurs within 100ms of dispositif status change, invalidating only affected filter combinations across both cache layers
-- **SC-008a**: Unaffected cache entries remain valid and serve from cache, reducing unnecessary invalidations by at least 80% compared to aggressive clearing
-- **SC-009**: Monitoring dashboard shows cache metrics separately for Redis and in-memory layers with at least 95% uptime
-- **SC-010**: All cache operations include appropriate logging with cache layer identification for troubleshooting and auditing
-- **SC-011**: Rate limiting reduces redundant API calls by at least 50% during typical search input scenarios (measured by comparing requests with/without debouncing)
-- **SC-012**: Client-side debouncing prevents cache thrashing by reducing unique cache keys generated during search input by at least 60%
-- **SC-013**: Rate-limited requests return 429 status with appropriate X-RateLimit headers within 10ms
-- **SC-014**: Rate limiting does not affect legitimate batch operations or admin queries (configurable per-IP or per-user allowances)
+- **SC-009**: Unaffected cache entries remain valid and serve from cache, reducing unnecessary invalidations by at least 80% compared to aggressive clearing
+- **SC-010**: Monitoring dashboard shows cache metrics separately for Redis and in-memory layers with at least 95% uptime
+- **SC-011**: All cache operations include appropriate logging with cache layer identification for troubleshooting and auditing
+- **SC-012**: Rate limiting reduces redundant API calls by at least 50% during typical search input scenarios (measured by comparing requests with/without debouncing)
+- **SC-013**: Client-side debouncing prevents cache thrashing by reducing unique cache keys generated during search input by at least 60%
+- **SC-014**: Rate-limited requests return 429 status with appropriate X-RateLimit headers within 10ms
+- **SC-015**: Rate limiting does not affect legitimate batch operations or admin queries (configurable per-IP or per-user allowances)
 
 ## Assumptions
 
