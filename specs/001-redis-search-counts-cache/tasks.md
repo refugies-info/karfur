@@ -1,13 +1,14 @@
 # Tasks: Redis Caching for Search Counts API
 
-**Input**: Design documents from `/specs/001-redis-search-counts-cache/`  
-**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md  
-**Feature Branch**: `001-redis-search-counts-cache`  
+**Input**: Design documents from `/specs/001-redis-search-counts-cache/`
+**Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md
+**Feature Branch**: `001-redis-search-counts-cache`
 **Estimated Duration**: 2-3 weeks (4 sprints)
 
 **Organization**: Tasks are grouped by user story (P1, P2, P2) to enable independent implementation and testing of each story. Architecture: Redis HA only (per research.md decision) - no per-instance in-memory cache.
 
 ## Format: `[ID] [P?] [Story] Description`
+
 - **[P]**: Can run in parallel (different files, no dependencies)
 - **[Story]**: Which user story this task belongs to (e.g., US1, US2, US3, US4)
 - Include exact file paths in descriptions
@@ -76,9 +77,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T018 [US2] Create cache invalidation endpoint at `apps/client/src/pages/api/admin/cache-invalidate.ts` that accepts dispositif attributes and calls `invalidateByFilters()` from cache layer
-- [ ] T019 [US2] Add cache invalidation calls in `apps/client/src/pages/api/dispositif/create.ts` (or mutation handler): after dispositif creation, call cache invalidation endpoint with new dispositif attributes
-- [ ] T020 [US2] Add cache invalidation calls in `apps/client/src/pages/api/dispositif/update.ts` (or mutation handler): after dispositif update/status change, call cache invalidation endpoint with both old and new attributes
+**Architecture**: Server-side mutations trigger webhook calls to client app cache invalidation endpoint. Client app invalidates Redis cache based on dispositif attributes.
+
+- [ ] T018 [US2] Create cache invalidation webhook endpoint at `apps/client/src/pages/api/webhooks/cache-invalidate.ts` that accepts dispositif attributes (themes, needs, language, status, etc.) and calls `invalidateByFilters()` from cache layer
+- [ ] T019 [US2] Add cache invalidation webhook call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, POST to client webhook with dispositif attributes
+- [ ] T020 [US2] Add cache invalidation webhook calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), POST to client webhook with both old and new attributes
 
 **Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
 
@@ -171,28 +174,35 @@ Foundational (Phase 2)
 ### Parallel Opportunities
 
 **Phase 1 (Setup)**:
+
 - All [P] tasks can run in parallel (T003, T004)
 
 **Phase 2 (Foundational)**:
+
 - All [P] tasks can run in parallel (T008, T009)
 - T005, T006, T007 have dependencies but can start after T001-T004
 
 **Phase 3 (US1)**:
+
 - Tests (T010, T011) can run in parallel
 - Implementation (T012-T015) sequential due to dependencies
 
 **Phase 4 (US2)**:
+
 - Tests (T016, T017) can run in parallel
 - Implementation (T018-T020) can run in parallel (different files)
 
 **Phase 5 (US4)**:
+
 - Tests (T021, T022) can run in parallel
 - Implementation (T023-T026) can run in parallel (different files)
 
 **Phase 6 (Monitoring)**:
+
 - All tasks (T027-T029) can run in parallel (different files)
 
 **Parallel Team Strategy** (with 2-3 developers):
+
 1. Team completes Setup + Foundational together (Phases 1-2)
 2. Once Foundational is done:
    - Developer A: User Story 1 (P1) - MVP
@@ -229,6 +239,7 @@ Each story adds value without breaking previous stories.
 ## Success Criteria
 
 ### User Story 1 (P1) - Cache Search Counts Results
+
 - ✅ Cached responses complete in <100ms (p99)
 - ✅ Cache hit rate >80% for repeated queries
 - ✅ Database query load reduced by 70%+ (measured by query count)
@@ -237,6 +248,7 @@ Each story adds value without breaking previous stories.
 - ✅ Structured logs show cache operations
 
 ### User Story 2 (P2) - Invalidate Cache on Data Changes
+
 - ✅ Cache invalidated within 100ms of dispositif change
 - ✅ Only affected filter combinations invalidated (80%+ reduction in unnecessary invalidations)
 - ✅ Unaffected cache entries remain valid and serve from cache
@@ -244,6 +256,7 @@ Each story adds value without breaking previous stories.
 - ✅ Structured logs show invalidation events with trigger and affected keys
 
 ### User Story 4 (P2) - Debouncing and Rate Limiting
+
 - ✅ Client-side debouncing reduces unique cache keys by 60%+ during search input
 - ✅ Rate limiting reduces redundant API calls by 50%+
 - ✅ Rate-limited requests return 429 within 10ms
@@ -251,6 +264,7 @@ Each story adds value without breaking previous stories.
 - ✅ All unit and integration tests passing
 
 ### Monitoring & Observability
+
 - ✅ Cloud Monitoring dashboard shows Memorystore metrics and cache performance
 - ✅ Cloud Logging queries track cache hit rate, latency, and database impact
 - ✅ Alerting rules configured for anomalies
