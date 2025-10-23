@@ -68,11 +68,11 @@ paths:
         - name: status
           in: query
           required: false
-          description: Comma-separated dispositif statuses
+          description: Comma-separated refugee/reader status filters
           schema:
             type: string
-            enum: [CREATED, PUBLISHED, DELETED, ARCHIVED]
-          example: "PUBLISHED"
+            enum: [asile, refugie, subsidiaire, apatride, temporaire, french]
+          example: "refugie,asile"
         
         - name: type
           in: query
