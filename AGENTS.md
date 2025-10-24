@@ -685,7 +685,7 @@ export function SearchForm() {
 **Testing Multilingual Features:**
 - Test with all 8 languages
 - Verify text doesn't overflow
-- Check RTL rendering (Arabic, Dari, Pashto, Tigrinya)
+- Check RTL rendering (Arabic, Dari, Pashto)
 - Ensure images/icons work in all contexts
 - Test number/date formatting per locale
 
