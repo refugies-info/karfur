@@ -130,7 +130,7 @@ cache:search_counts:en:xyz789uvw012
 - 60-second ban duration on exceed
 - Returns 429 Too Many Requests
 
-**No application state needed** - handled by Cloud Armor
+**No application state needed** - handled by @upstash/ratelimit with Redis backend
 
 ### Application Logging Schema
 
@@ -423,7 +423,7 @@ const CACHE_TTL_SECONDS = parseInt(process.env.CACHE_TTL_SECONDS || '600');
 
 - [ ] Memorystore HA instance created
 - [ ] Cloud Load Balancer configured
-- [ ] Cloud Armor rate limiting policy attached
+- [ ] Application-level rate limiting configured with @upstash/ratelimit
 - [ ] Next.js API route implemented
 - [ ] Cache layer (redis.ts) implemented
 - [ ] Cache invalidation logic implemented

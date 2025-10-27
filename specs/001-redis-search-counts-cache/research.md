@@ -414,8 +414,8 @@ Cloud Run provides:
 
 ### Recommended Approach
 
-**Primary**: Use Cloud Load Balancer with Cloud Armor rate limiting  
-**Alternative**: Application-level rate limiting if load balancer unavailable
+**Primary**: Use application-level rate limiting with @upstash/ratelimit and Redis backend (suitable for Cloud Run container environment)
+**Alternative**: Cloud Load Balancer with Cloud Armor if infrastructure-level protection needed
 
 This provides:
 - Infrastructure-level protection (blocks before compute)
@@ -426,21 +426,21 @@ This provides:
 ### Architecture Decision
 
 For this feature:
-1. **Deploy with Cloud Load Balancer** in front of Cloud Run
-2. **Attach Cloud Armor security policy** with rate limiting (10 req/sec per IP)
-3. **Configure to return 429** when rate limit exceeded
+1. **Implement application-level rate limiting** using @upstash/ratelimit with Redis backend
+2. **Configure 10 req/sec per IP** with 60s ban duration
+3. **Add rate limit headers** to API responses (X-RateLimit-*)
 4. **Monitor**: Track rate limit violations via Cloud Logging
 
-**Why not Cloud Run alone?**
-- Cloud Run has no native rate limiting
-- Load Balancer provides infrastructure-level protection
-- Blocks malicious traffic before reaching compute
-- More cost-effective than application-level handling
+**Why application-level rate limiting?**
+- Works with existing Cloud Run container deployment
+- No additional infrastructure costs or complexity
+- Uses existing Redis Memorystore backend
+- More flexible for custom rate limiting rules
+- Easier to test and debug
 
-**If Load Balancer not available**:
-- Fall back to application-level rate limiting
-- Use Redis-backed token bucket in Next.js middleware
-- Less efficient but still functional
+**If infrastructure-level protection needed**:
+- Add Cloud Load Balancer + Cloud Armor as additional layer
+- Higher cost but provides DDoS protection
 
 ---
 

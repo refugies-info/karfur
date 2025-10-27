@@ -27,9 +27,9 @@
 **Purpose**: Project initialization and infrastructure setup
 
 - [ ] T001 Create Google Cloud Memorystore HA instance in europe-west1 region with Redis 7.0, 2GB size, standard tier
-- [ ] T002 Configure Cloud Load Balancer with Cloud Armor rate limiting policy (10 req/sec per IP, 60s ban duration)
+- [ ] T002 Configure application-level rate limiting using @upstash/ratelimit with Redis backend (10 req/sec per IP, 60s ban duration)
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
-- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver`
+- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver @upstash/ratelimit`
 - [ ] T005 [P] Create shared cache package at `packages/cache/` with structure: `src/`, `package.json`, `tsconfig.json`, `README.md`
 
 ---
@@ -87,7 +87,7 @@
 
 ### Implementation for User Story 2
 
-**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using shared cache package. Cache layer is shared between client and server via `@refugies-info/cache`.
+**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using shared cache package. Cache layer is shared between client and server via `@refugies-info/cache`. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.
 
 - [ ] T021 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, import from `@refugies-info/cache` and call invalidation with new dispositif attributes
 - [ ] T022 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), import from `@refugies-info/cache` and call invalidation with both old and new attributes
@@ -111,8 +111,8 @@
 
 - [ ] T025 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
 - [ ] T026 [US4] Create enhanced debounced search counts hook at `apps/client/src/hooks/useSearchCountsCache.ts` with configurable debounce delay, cache-aware logic, and error handling. **Note**: Existing `SearchCountsContext.tsx` provides basic data access; new hook should wrap existing context and add Redis caching features (debouncing, cache headers, rate limit awareness, graceful degradation). Maintain backward compatibility with existing components.
-- [ ] T027 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
-- [ ] T028 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
+- [ ] T027 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset` using @upstash/ratelimit
+- [ ] T028 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when rate limit exceeded using @upstash/ratelimit
 
 **Checkpoint**: User Stories 1, 2, AND 4 are independently functional. Client-side debouncing reduces unique cache keys by 60%+; rate limiting reduces redundant API calls by 50%+. All three user stories complete.
 

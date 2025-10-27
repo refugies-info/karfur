@@ -95,7 +95,7 @@ As a frontend developer, I want the search counts API to implement debouncing an
 - **FR-007**: System MUST log all cache operations (hits, misses, errors) with cache layer identification
 - **FR-008**: System MUST track and expose cache performance metrics (hit rate, miss rate, operation latency)
 - **FR-009**: System MUST use VPC-secured Redis connection with TLS encryption in production
-- **FR-010**: System MUST implement rate limiting on the API endpoint with configurable requests per second (default 10 req/sec per IP)
+- **FR-010**: System MUST implement rate limiting on the API endpoint with configurable requests per second (default 10 req/sec per IP) using application-level rate limiting with Redis backend
 - **FR-011**: System MUST return 429 Too Many Requests status code when rate limit is exceeded
 - **FR-012**: System MUST include rate limit headers in responses (X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset)
 - **FR-013**: Frontend MUST implement client-side debouncing for search input (default 300-500ms debounce delay)
@@ -173,4 +173,4 @@ As a frontend developer, I want the search counts API to implement debouncing an
 
 **Rate Limiting Scope**: Rate limiting applies per-IP address only. All requests from the same IP are counted against the 10 req/sec limit, regardless of user identity. This approach is appropriate for the current deployment with few authenticated users and simplifies implementation.
 
-**Shared Cache Architecture**: Cache layer implemented in shared package `@refugies-info/cache` used by both client app (for caching API responses) and server app (for cache invalidation). Server detects dispositif mutations and invalidates Redis cache directly. Redis provides distributed cache across Cloud Run instances.
+**Shared Cache Architecture**: Cache layer implemented in shared package `@refugies-info/cache` used by both client app (for caching API responses) and server app (for cache invalidation). Server detects dispositif mutations and invalidates Redis cache directly. Redis provides distributed cache across Cloud Run instances. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.

@@ -23,7 +23,7 @@ The GET `/api/search/counts` endpoint (Next.js API route in client app) performs
 **Redis Caching Architecture** using Google Cloud Memorystore:
 
 1. **Primary Cache**: Redis (5-15 min TTL) - shared across containers with high availability
-2. **Rate Limiting**: 10 req/sec per IP - prevents cache thrashing
+2. **Rate Limiting**: Application-level rate limiting using @upstash/ratelimit with Redis backend (10 req/sec per IP) - prevents cache thrashing
 3. **Client Debouncing**: 300-500ms delay - reduces redundant requests by 50%+
 4. **Selective Invalidation**: Only clear affected cache entries on dispositif changes
 
@@ -55,7 +55,7 @@ This feature respects the project's core principles:
 - **Rationale**: Simplified architecture with HA Memorystore eliminates need for complex per-container caching
 
 ### 3. Rate Limiting & Debouncing
-- API-level rate limiting (10 req/sec per IP, configurable)
+- API-level rate limiting (10 req/sec per IP, configurable) using @upstash/ratelimit with Redis backend
 - Client-side debouncing (300-500ms default)
 - **Rationale**: Prevents cache thrashing from rapid search input (character-by-character typing)
 

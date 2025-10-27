@@ -101,7 +101,7 @@ apps/client/
    - Webhook/event listener triggered by data mutations
    - Cache invalidation on API calls (explicit, not automatic)
    - Pub/sub subscription within API route
-3. **Next.js Middleware Rate Limiting**: Verify Next.js middleware supports per-IP rate limiting; handle `x-forwarded-for` header for Cloud Run
+3. **Next.js Middleware Rate Limiting**: Verify Next.js middleware supports per-IP rate limiting; handle `x-forwarded-for` header for Cloud Run container environment
 4. **Redis Cache Eviction**: Redis LRU strategy; verify memory footprint limits with Memorystore configuration
 5. **Monitoring & Observability**: Prometheus metrics for cache hit/miss rates, latency, connection status
 
@@ -114,7 +114,7 @@ apps/client/
 - Pub/sub subscription to invalidation events (if event system available)
 - TTL expiration as fallback (5-15 minutes)
 
-**Rate Limiting Implementation**: Next.js middleware will handle per-IP rate limiting with token bucket algorithm, using Redis for distributed state across Cloud Run instances.
+**Rate Limiting Implementation**: Application-level rate limiting using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment. No additional infrastructure required beyond existing Redis Memorystore.
 
 **High Availability**: Redis Memorystore HA provides automatic failover and distributed caching across all Cloud Run instances.
 

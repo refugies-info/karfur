@@ -14,7 +14,7 @@ This guide walks you through implementing Redis caching for the `/api/search/cou
 **Key Components**:
 
 - Google Cloud Memorystore (Redis HA)
-- Cloud Load Balancer + Cloud Armor (rate limiting)
+- Application-level rate limiting with @upstash/ratelimit (Redis backend)
 - Next.js API route with caching logic
 - Cloud Logging for monitoring
 - Cloud Monitoring dashboards
@@ -42,7 +42,7 @@ This guide walks you through implementing Redis caching for the `/api/search/cou
          ▼
 ┌─────────────────────────────┐
 │  Cloud Load Balancer        │
-│  + Cloud Armor (Rate Limit) │
+│  + @upstash/ratelimit (Rate Limit) │
 └────────┬────────────────────┘
          │
          ▼
@@ -87,23 +87,11 @@ gcloud redis instances describe search-counts-cache \
 - `REDIS_PORT`: Usually 6379
 - `REDIS_PASSWORD`: Generated password
 
-### 1.2 Configure Cloud Load Balancer
+### 1.2 Configure Application-Level Rate Limiting
 
 ```bash
-# Create security policy with rate limiting
-gcloud compute security-policies create search-counts-rate-limit \
-  --description="Rate limiting for search counts API"
-
-# Add rate limiting rule (10 req/sec per IP)
-gcloud compute security-policies rules create 1000 \
-  --security-policy=search-counts-rate-limit \
-  --action=rate-based-ban \
-  --rate-limit-options-conform-action=allow \
-  --rate-limit-options-exceed-action=deny-429 \
-  --rate-limit-options-enforce-on-key=IP \
-  --rate-limit-options-ban-duration-sec=60 \
-  --rate-limit-options-rate-limit-threshold-count=10 \
-  --rate-limit-options-rate-limit-threshold-interval-sec=1
+# Create rate limiter with Redis backend
+npm install @upstash/ratelimit
 ```
 
 ### 1.3 Enable Cloud Monitoring & Logging
