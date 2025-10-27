@@ -155,7 +155,7 @@ As a frontend developer, I want the search counts API to implement debouncing an
 1. Detect the change via webhook, event listener, or pub/sub subscription in the Next.js API route
 2. Extract the dispositif's attributes (theme, needs, language, status, type, etc.)
 3. Determine which cache key combinations would be affected by this dispositif
-4. Invalidate only those specific cache entries in both Redis and in-memory layers
+4. Invalidate only those specific cache entries in Redis
 5. Leave unaffected cache entries intact to maximize cache efficiency
 
 **Note**: With client-only architecture, cache invalidation is triggered by explicit mutation events rather than automatic server-side detection. TTL expiration (5-15 minutes) provides fallback consistency.

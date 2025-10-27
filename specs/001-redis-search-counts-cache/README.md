@@ -20,13 +20,12 @@ The GET `/api/search/counts` endpoint (Next.js API route in client app) performs
 
 ## Solution Overview
 
-**Tiered Caching Architecture** using Google Cloud Memorystore (Redis):
+**Redis Caching Architecture** using Google Cloud Memorystore:
 
-1. **Primary Cache**: Redis (5-15 min TTL) - shared across containers
-2. **Secondary Cache**: Per-container in-memory (1-5 min TTL) - resilience during Redis outages
-3. **Rate Limiting**: 10 req/sec per IP - prevents cache thrashing
-4. **Client Debouncing**: 300-500ms delay - reduces redundant requests by 50%+
-5. **Selective Invalidation**: Only clear affected cache entries on dispositif changes
+1. **Primary Cache**: Redis (5-15 min TTL) - shared across containers with high availability
+2. **Rate Limiting**: 10 req/sec per IP - prevents cache thrashing
+3. **Client Debouncing**: 300-500ms delay - reduces redundant requests by 50%+
+4. **Selective Invalidation**: Only clear affected cache entries on dispositif changes
 
 ---
 
@@ -34,7 +33,7 @@ The GET `/api/search/counts` endpoint (Next.js API route in client app) performs
 
 This feature respects the project's core principles:
 
-✅ **Accessibility First**: Service remains available during Redis outages (graceful degradation), no breaking changes to API  
+✅ **Accessibility First**: Service remains available during Redis outages (graceful degradation to MongoDB), no breaking changes to API  
 ✅ **Multilingual by Design**: Language parameter included in cache keys, language-specific counts preserved  
 ✅ **Progressive Migration**: Leverages existing GCP infrastructure (Translation API, Indexing API already use Google Cloud)  
 ✅ **Monorepo Consistency**: Follows Turborepo conventions, pnpm package management, consistent logging patterns  
@@ -50,10 +49,10 @@ This feature respects the project's core principles:
 - **Expected benefit**: 80%+ reduction in unnecessary invalidations
 - **Applies to**: CREATED, PUBLISHED, DELETED, ARCHIVED status changes
 
-### 2. Tiered Caching Approach
-- Redis for distributed caching across containers
-- Per-container in-memory cache mitigates database overload during Redis outages
-- **Rationale**: Production-scale resilience without recreating original performance problem (each container maintains independent cache, so global cache is lost)
+### 2. Redis-Only Caching Approach
+- Redis for distributed caching across containers with high availability
+- Graceful fallback to MongoDB if Redis unavailable
+- **Rationale**: Simplified architecture with HA Memorystore eliminates need for complex per-container caching
 
 ### 3. Rate Limiting & Debouncing
 - API-level rate limiting (10 req/sec per IP, configurable)
@@ -75,7 +74,7 @@ This feature respects the project's core principles:
 
 ---
 
-## User Stories (4 Total)
+## User Stories (3 Total)
 
 ### P1: Cache Search Counts Results
 Core caching functionality with Redis (5-15 min TTL)
@@ -86,9 +85,6 @@ Selective cache invalidation based on dispositif attributes
 ### P2: Debouncing and Rate Limiting
 Client-side debouncing + API rate limiting to prevent cache thrashing
 
-### P3: Tiered Caching with Graceful Degradation
-In-memory fallback + monitoring for production resilience
-
 ---
 
 ## Implementation Scope
@@ -96,7 +92,7 @@ In-memory fallback + monitoring for production resilience
 **18 Functional Requirements** covering:
 - Redis caching with configurable TTL
 - Selective cache invalidation
-- Tiered caching (Redis + in-memory)
+- Redis-only caching with graceful fallback
 - Rate limiting and debouncing
 - Monitoring, logging, and metrics
 - VPC security and TLS encryption
@@ -118,7 +114,7 @@ In-memory fallback + monitoring for production resilience
 
 ## Files
 
-- **spec.md** - Complete feature specification with 4 user stories, 18 requirements, 14 success criteria
+- **spec.md** - Complete feature specification with 3 user stories, 18 requirements, 14 success criteria
 - **checklists/requirements.md** - Quality checklist (all items complete)
 - **README.md** - This file
 

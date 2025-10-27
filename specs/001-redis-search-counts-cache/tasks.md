@@ -22,7 +22,7 @@
 - [ ] T001 Create Google Cloud Memorystore HA instance in europe-west1 region with Redis 7.0, 2GB size, standard tier
 - [ ] T002 Configure Cloud Load Balancer with Cloud Armor rate limiting policy (10 req/sec per IP, 60s ban duration)
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
-- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver node-cache`
+- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver`
 - [ ] T005 [P] Create shared cache package at `packages/cache/` with structure: `src/`, `package.json`, `tsconfig.json`, `README.md`
 
 ---

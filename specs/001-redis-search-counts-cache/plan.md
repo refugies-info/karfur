@@ -7,7 +7,7 @@
 
 ## Summary
 
-Implement tiered caching architecture (Redis primary + per-container in-memory secondary) for the GET `/api/search/counts` endpoint to reduce database load by 70%+ and improve response times from 500ms+ to <100ms. Includes selective cache invalidation based on dispositif attributes, rate limiting (10 req/sec per IP), and client-side debouncing (300-500ms). Leverages existing Google Cloud Memorystore infrastructure.
+Implement Redis caching architecture for the GET `/api/search/counts` endpoint to reduce database load by 70%+ and improve response times from 500ms+ to <100ms. Includes selective cache invalidation based on dispositif attributes, rate limiting (10 req/sec per IP), and client-side debouncing (300-500ms). Leverages existing Google Cloud Memorystore infrastructure.
 
 ## Technical Context
 
@@ -18,14 +18,14 @@ Implement tiered caching architecture (Redis primary + per-container in-memory s
 -->
 
 **Language/Version**: TypeScript (Node.js 22.x LTS)  
-**Primary Dependencies**: redis (ioredis), node-cache, Next.js  
-**Storage**: Redis (Google Cloud Memorystore), MongoDB (existing), In-Memory (node-cache)  
+**Primary Dependencies**: redis (ioredis), Next.js  
+**Storage**: Redis (Google Cloud Memorystore), MongoDB (existing)  
 **Testing**: Jest (unit/integration), manual load testing for cache hit rates  
 **Target Platform**: Next.js API routes (Cloud Run)  
 **Project Type**: Client app only (Next.js)
 **Performance Goals**: <100ms cached response time, >80% cache hit rate, 70%+ database load reduction  
-**Constraints**: <150ms in-memory cache latency during Redis outage, <100MB per-container memory footprint, multi-instance in-memory cache independence  
-**Scale/Scope**: Single API endpoint, 2 cache layers, 4 user stories, 18 functional requirements
+**Constraints**: <100ms Redis cache response time, <50MB Redis memory footprint, high availability across multiple instances  
+**Scale/Scope**: Single API endpoint, Redis-only caching, 3 user stories, 18 functional requirements
 
 ## Constitution Check
 
@@ -63,7 +63,7 @@ apps/client/
 ├── src/
 │   ├── libs/
 │   │   ├── redis.ts              # Redis connection & initialization
-│   │   ├── cache.ts              # Cache layer abstraction (Redis + in-memory)
+│   │   ├── cache.ts              # Cache layer abstraction (Redis only)
 │   │   └── cacheInvalidation.ts  # Selective invalidation logic
 │   ├── pages/
 │   │   └── api/
@@ -102,7 +102,7 @@ apps/client/
    - Cache invalidation on API calls (explicit, not automatic)
    - Pub/sub subscription within API route
 3. **Next.js Middleware Rate Limiting**: Verify Next.js middleware supports per-IP rate limiting; handle `x-forwarded-for` header for Cloud Run
-4. **In-Memory Cache Eviction**: node-cache LRU strategy; verify memory footprint limits with multi-instance deployment
+4. **Redis Cache Eviction**: Redis LRU strategy; verify memory footprint limits with Memorystore configuration
 5. **Monitoring & Observability**: Prometheus metrics for cache hit/miss rates, latency, connection status
 
 **Output**: research.md (Phase 0 deliverable)
@@ -116,7 +116,7 @@ apps/client/
 
 **Rate Limiting Implementation**: Next.js middleware will handle per-IP rate limiting with token bucket algorithm, using Redis for distributed state across Cloud Run instances.
 
-**Multi-Instance Considerations**: Each Cloud Run instance maintains independent in-memory cache; Redis provides shared cache across instances. No cross-instance in-memory cache synchronization needed.
+**High Availability**: Redis Memorystore HA provides automatic failover and distributed caching across all Cloud Run instances.
 
 ---
 
