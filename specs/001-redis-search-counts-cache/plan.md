@@ -72,12 +72,12 @@ apps/client/
 │   ├── components/
 │   │   └── SearchFilters.tsx     # Client-side debouncing
 │   └── hooks/
-│       └── useSearchCounts.ts    # Debounced search counts hook
+│       └── useSearchCountsCache.ts    # Enhanced debounced search counts hook (wraps existing context)
 └── tests/
     ├── unit/
     │   ├── cache.test.ts
     │   ├── cacheInvalidation.test.ts
-    │   └── useSearchCounts.test.ts
+    │   └── useSearchCountsCache.test.ts
     └── integration/
         └── search-counts-cache.test.ts
 ```

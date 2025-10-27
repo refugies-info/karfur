@@ -7,6 +7,13 @@
 
 **Organization**: Tasks are grouped by user story (P1, P2, P2) to enable independent implementation and testing of each story. Architecture: Redis HA only (per research.md decision) - no per-instance in-memory cache.
 
+**Existing Implementation Context**: 
+- Basic `SearchCountsContext.tsx` exists at `apps/client/src/components/Pages/recherche/SearchCountsContext.tsx`
+- Provides simple context with `useSearchCounts()` hook for data access
+- Current flow: Redux → SearchHeader component → Context → Filter components
+- New implementation should enhance existing context, not replace it
+- New hook name changed to `useSearchCountsCache.ts` to avoid naming conflicts
+
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: Can run in parallel (different files, no dependencies)
@@ -98,12 +105,12 @@
 ### Tests for User Story 4
 
 - [ ] T023 [P] [US4] Create integration tests for rate limiting at `apps/client/src/pages/api/search/__tests__/counts-rate-limit.test.ts` (verify 429 responses, rate limit headers, per-IP tracking)
-- [ ] T024 [P] [US4] Create tests for debouncing hook at `apps/client/src/hooks/__tests__/useSearchCounts.test.ts` (debounce delay enforcement, multiple rapid calls collapse to single request)
+- [ ] T024 [P] [US4] Create tests for debouncing hook at `apps/client/src/hooks/__tests__/useSearchCountsCache.test.ts` (test new enhanced hook, not existing context hook; verify debounce delay enforcement, multiple rapid calls collapse to single request, cache hit/miss scenarios, rate limit handling)
 
 ### Implementation for User Story 4
 
 - [ ] T025 [US4] Implement client-side debouncing in `apps/client/src/components/SearchFilters.tsx` with 300-500ms delay on search input changes
-- [ ] T026 [US4] Create debounced search counts hook at `apps/client/src/hooks/useSearchCounts.ts` with configurable debounce delay and error handling
+- [ ] T026 [US4] Create enhanced debounced search counts hook at `apps/client/src/hooks/useSearchCountsCache.ts` with configurable debounce delay, cache-aware logic, and error handling. **Note**: Existing `SearchCountsContext.tsx` provides basic data access; new hook should wrap existing context and add Redis caching features (debouncing, cache headers, rate limit awareness, graceful degradation). Maintain backward compatibility with existing components.
 - [ ] T027 [US4] Add rate limit response headers to API route in `apps/client/src/pages/api/search/counts.ts`: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`
 - [ ] T028 [US4] Add rate limiting error handling in `apps/client/src/pages/api/search/counts.ts` to return 429 with `Retry-After` header when Cloud Armor rate limit exceeded
 
