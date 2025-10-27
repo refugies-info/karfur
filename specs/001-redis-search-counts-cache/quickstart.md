@@ -41,14 +41,9 @@ This guide walks you through implementing Redis caching for the `/api/search/cou
          │
          ▼
 ┌─────────────────────────────┐
-│  Cloud Load Balancer        │
-│  + @upstash/ratelimit (Rate Limit) │
-└────────┬────────────────────┘
-         │
-         ▼
-┌─────────────────────────────┐
 │  Cloud Run                  │
 │  /api/search/counts         │
+│  + @upstash/ratelimit       │
 │  (Next.js API Route)        │
 └────────┬────────────────────┘
          │
