@@ -124,13 +124,12 @@ cache:search_counts:en:xyz789uvw012
 
 ### Rate Limiting State
 
-**Cloud Load Balancer Rate Limiting** (managed by Google Cloud):
-- Per-IP tracking (infrastructure-level)
+**Application-Level Rate Limiting** (using @upstash/ratelimit with Redis backend):
+- Per-IP tracking (application-level)
 - 10 requests per second (configurable)
 - 60-second ban duration on exceed
 - Returns 429 Too Many Requests
-
-**No application state needed** - handled by @upstash/ratelimit with Redis backend
+- Rate limit state persisted in Redis to survive container restarts
 
 ### Application Logging Schema
 
@@ -422,7 +421,6 @@ const CACHE_TTL_SECONDS = parseInt(process.env.CACHE_TTL_SECONDS || '600');
 ## Deployment Checklist
 
 - [ ] Memorystore HA instance created
-- [ ] Cloud Load Balancer configured
 - [ ] Application-level rate limiting configured with @upstash/ratelimit
 - [ ] Next.js API route implemented
 - [ ] Cache layer (redis.ts) implemented
