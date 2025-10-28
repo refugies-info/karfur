@@ -7,7 +7,7 @@
 
 **Organization**: Tasks are grouped by user story (P1, P2, P2) to enable independent implementation and testing of each story. Architecture: Redis HA only (per research.md decision) - no per-instance in-memory cache.
 
-**Existing Implementation Context**: 
+**Existing Implementation Context**:
 - Basic `SearchCountsContext.tsx` exists at `apps/client/src/components/Pages/recherche/SearchCountsContext.tsx`
 - Provides simple context with `useSearchCounts()` hook for data access
 - Current flow: Redux → SearchHeader component → Context → Filter components
