@@ -110,14 +110,52 @@ gcloud monitoring metrics-descriptors list \
 
 **File**: `packages/infra/src/logger/gcp-logger.ts`
 
-First install the required dependencies in the infra package:
+First create the infrastructure package structure:
+
+```bash
+# Create package directories
+mkdir -p packages/infra/src/cache packages/infra/src/logger
+
+# Create package.json for the shared infra package
+cat > packages/infra/package.json << 'EOF'
+{
+  "name": "@refugies-info/infra",
+  "version": "1.0.0",
+  "description": "Shared infrastructure utilities for cache and logging",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": ["infrastructure", "cache", "logging", "redis"],
+  "author": "refugies.info",
+  "license": "MIT"
+}
+EOF
+
+# Create TypeScript config
+cat > packages/infra/tsconfig.json << 'EOF'
+{
+  "extends": "@refugies-info/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}
+EOF
+```
+
+Then install the required dependencies in the infra package:
 
 ```bash
 cd packages/infra
 pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit
 ```
 
-Then add the infra package as a dependency to both apps:
+Finally, add the infra package as a dependency to both apps:
 
 ```bash
 cd apps/client && pnpm add @refugies-info/infra@workspace:*
