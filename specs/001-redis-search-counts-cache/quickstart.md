@@ -100,13 +100,11 @@ gcloud monitoring metrics-descriptors list \
 
 ---
 
-## Step 2: Implement Cache Layer (Days 2-3)
-
-### 2.1 Set Up Monitoring (Required for All Cache Operations)
+## Step 2: Set Up Monitoring (Required for All Cache Operations)
 
 **Note**: Set up monitoring first to have proper structured logging available throughout all cache modules.
 
-#### 2.1.1 Create Cloud Logging Logger
+### 2.1 Create Cloud Logging Logger
 
 **File**: `packages/infra/src/logger/gcp-logger.ts`
 
@@ -189,7 +187,7 @@ export default logger;
 
 **File**: `packages/infra/src/logger/gcp-logger.ts`
 
-#### 2.1.2 Create Cloud Monitoring Dashboard
+### 2.2 Create Cloud Monitoring Dashboard
 
 **File**: `apps/client/monitoring/search-counts-dashboard.json`
 
@@ -243,9 +241,11 @@ cat > apps/client/monitoring/search-counts-dashboard.json << 'EOF'
         }
       }
     ]
-  ```
+EOF
+```
 
 # Deploy the dashboard to Google Cloud Monitoring
+```bash
 gcloud monitoring dashboards create --config-file=apps/client/monitoring/search-counts-dashboard.json
 ```
 
@@ -280,7 +280,7 @@ The JSON file contains:
 
 The dashboard will appear in your Cloud Console at Monitoring → Dashboards.
 
-#### 2.1.3 Cloud Logging Queries for Analysis
+### 2.3 Cloud Logging Queries for Analysis
 
 **File**: `apps/client/docs/MONITORING_QUERIES.md`
 
@@ -311,6 +311,7 @@ cat > apps/client/docs/MONITORING_QUERIES.md << 'EOF'
 ### Method 3: gcloud CLI (Automation)
 ```bash
 gcloud logging read "YOUR_QUERY_HERE" --format=json --limit=100
+EOF
 ```
 
 ## Pre-built Queries
@@ -357,8 +358,6 @@ WHERE jsonPayload.operation = "api_response"
 GROUP BY hour
 ORDER BY hour DESC
 ```
-EOF
-```
 
 **Query Usage in Cloud Console:**
 
@@ -369,7 +368,11 @@ EOF
 
 **Unlike dashboard JSON, these queries are for human analysis, not automated deployment.**
 
-#### 2.2.1 Create Redis Connection Module
+---
+
+## Step 3: Implement Cache Layer (Days 2-3)
+
+### 3.1 Create Redis Connection Module
 
 **File**: `packages/infra/src/cache/redis.ts`
 
@@ -398,7 +401,7 @@ redis.on("error", (err) => {
 export default redis;
 ```
 
-#### 2.2.2 Create Cache Abstraction Layer
+### 3.2 Create Cache Abstraction Layer
 
 **File**: `packages/infra/src/cache/main.ts`
 
@@ -456,7 +459,7 @@ export const setCached = async (language: string, filters: Record<string, any>, 
 };
 ```
 
-#### 2.2.3 Create Cache Invalidation Logic
+### 3.3 Create Cache Invalidation Logic
 
 **File**: `packages/infra/src/cache/invalidation.ts`
 
@@ -531,7 +534,7 @@ export const invalidateOnDispoChange = async (dispositif: Dispositif): Promise<v
 };
 ```
 
-#### 2.2.4 Create Public Interface
+### 3.4 Create Public Interface
 
 **File**: `packages/infra/src/index.ts` (Main exports)
 
@@ -588,9 +591,9 @@ Run tests with: `cd packages/infra && pnpm test`
 
 ---
 
-## Step 3: Implement API Route (Days 4-5)
+## Step 4: Implement API Route (Days 4-5)
 
-### 3.1 Search Counts API Route
+### 4.1 Search Counts API Route
 
 **File**: `apps/client/src/pages/api/search/counts.ts`
 
@@ -623,9 +626,9 @@ The API route is already implemented in the codebase. It provides:
 
 ---
 
-## Step 4: Testing & Deployment (Days 7-10)
+## Step 5: Testing & Deployment (Days 7-10)
 
-### 4.1 Unit Tests
+### 5.1 Unit Tests
 
 **File**: `apps/client/src/libs/__tests__/cache.test.ts`
 
@@ -665,7 +668,7 @@ describe("Cache Layer", () => {
 });
 ```
 
-### 4.2 Load Testing
+### 5.2 Load Testing
 
 ```bash
 # Install k6
@@ -700,7 +703,7 @@ EOF
 k6 run load-test.js
 ```
 
-### 4.3 Deployment
+### 5.3 Deployment
 
 ```bash
 # Deploy to Cloud Run
