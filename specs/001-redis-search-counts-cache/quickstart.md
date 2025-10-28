@@ -114,10 +114,10 @@ First install the required dependencies in the client app:
 
 ```bash
 cd apps/client
-pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit
+pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit @refugies-info/infra
 ```
 
-**Note**: `@google-cloud/pino-logging-gcp-config` is the official Google package for proper Cloud Logging integration. The older `pino-stackdriver` package is deprecated.
+**Note**: `@google-cloud/pino-logging-gcp-config` is the official Google package for proper Cloud Logging integration. The older `pino-stackdriver` package is deprecated. `@refugies-info/infra` is our shared infrastructure package containing cache and logging utilities.
 
 ```typescript
 import pino from 'pino';
@@ -141,6 +141,8 @@ export default logger;
 **Local Development**: When running locally, this automatically falls back to pretty-printed console output. No additional configuration needed.
 
 **Production**: When deployed to Cloud Run, automatically integrates with Google Cloud Logging with structured JSON output.
+
+**File**: `packages/infra/src/logger/gcp-logger.ts`
 
 #### 2.1.2 Create Cloud Monitoring Dashboard
 
@@ -208,9 +210,9 @@ ORDER BY minute DESC
 
 ---
 
-### 2.2 Create Redis Connection Module
+#### 2.2.1 Create Redis Connection Module
 
-**File**: `apps/client/src/libs/cache/redis.ts`
+**File**: `packages/infra/src/cache/redis.ts`
 
 ```typescript
 import Redis from "ioredis";
@@ -237,13 +239,14 @@ redis.on("error", (err) => {
 export default redis;
 ```
 
-### 2.3 Create Cache Abstraction Layer
+#### 2.2.2 Create Cache Abstraction Layer
 
-**File**: `apps/client/src/libs/cache/main.ts`
+**File**: `packages/infra/src/cache/main.ts`
 
 ```typescript
 import redis from "./redis";
 import { createHash } from "crypto";
+import { logger } from "../logger";
 
 interface CacheEntry {
   version: number;
@@ -294,14 +297,14 @@ export const setCached = async (language: string, filters: Record<string, any>, 
 };
 ```
 
-### 2.4 Create Cache Invalidation Logic
+#### 2.2.3 Create Cache Invalidation Logic
 
-**File**: `apps/client/src/libs/cache/invalidation.ts`
+**File**: `packages/infra/src/cache/invalidation.ts`
 
 ```typescript
 import redis from "./redis";
 import { generateCacheKey } from "./main";
-import logger from "../logger";
+import { logger } from "../logger";
 
 // Invalidate cache entries by filter combinations for all languages
 export const invalidateByFilters = async (filters: Record<string, any>): Promise<void> => {
@@ -369,9 +372,20 @@ export const invalidateOnDispoChange = async (dispositif: Dispositif): Promise<v
 };
 ```
 
-### 2.5 Create Public Interface
+#### 2.2.4 Create Public Interface
 
-**File**: `apps/client/src/libs/cache/index.ts`
+**File**: `packages/infra/src/index.ts` (Main exports)
+
+```typescript
+// Main public interface - clean imports for consumers
+export { cache, logger } from './src';
+
+// Or specific exports
+export * from './src/cache';
+export * from './src/logger';
+```
+
+**File**: `packages/infra/src/cache/index.ts` (Cache-specific exports)
 
 ```typescript
 // Re-export all cache functions for clean public interface
@@ -382,6 +396,25 @@ export { default as redis } from "./redis";
 // Export types
 export type { CacheEntry } from "./main";
 export type { Dispositif } from "./invalidation";
+```
+
+**File**: `packages/infra/src/logger/index.ts` (Logger exports)
+
+```typescript
+// Export logger configuration
+export { default as logger } from "./gcp-logger";
+```
+
+**Usage Examples:**
+
+```typescript
+// In client app
+import { cache, logger } from '@refugies-info/infra';
+import { getCached, invalidateByFilters } from '@refugies-info/infra/cache';
+
+// In server app  
+import { invalidateByFilters } from '@refugies-info/infra/cache';
+import { logger } from '@refugies-info/infra/logger';
 ```
 
 ---

@@ -59,14 +59,33 @@ specs/[###-feature]/
 ### Source Code (repository root)
 
 ```
+packages/infra/
+├── src/
+│   ├── cache/
+│   │   ├── index.ts           # Public interface for cache operations
+│   │   ├── redis.ts           # Redis connection & initialization
+│   │   ├── main.ts            # Core cache layer abstraction (Redis only)
+│   │   ├── invalidation.ts    # Selective invalidation logic
+│   │   └── types.ts           # TypeScript types
+│   ├── logger/
+│   │   ├── index.ts           # Logger exports
+│   │   └── gcp-logger.ts      # Google Cloud Logging configuration
+│   └── index.ts               # Main public interface
+├── package.json
+├── tsconfig.json
+└── tests/
+    ├── unit/
+    │   ├── cache/
+    │   │   ├── redis.test.ts
+    │   │   ├── main.test.ts
+    │   │   └── invalidation.test.ts
+    │   └── logger/
+    │       └── gcp-logger.test.ts
+    └── integration/
+        └── cache-invalidation.test.ts
+
 apps/client/
 ├── src/
-│   ├── libs/
-│   │   └── cache/
-│   │       ├── index.ts           # Public interface for cache operations
-│   │       ├── redis.ts           # Redis connection & initialization
-│   │       ├── main.ts            # Core cache layer abstraction (Redis only)
-│   │       └── invalidation.ts    # Selective invalidation logic
 │   ├── pages/
 │   │   └── api/
 │   │       └── search/
@@ -75,19 +94,18 @@ apps/client/
 │   │   └── SearchFilters.tsx     # Client-side debouncing
 │   └── hooks/
 │       └── useSearchCountsCache.ts    # Enhanced debounced search counts hook (wraps existing context)
-└── tests/
-    ├── unit/
-    │   ├── cache/
-    │   │   ├── redis.test.ts
-    │   │   ├── main.test.ts
-    │   │   └── invalidation.test.ts
-    │   └── hooks/
-    │       └── useSearchCountsCache.test.ts
-    └── integration/
-        └── search-counts-cache.test.ts
+└── package.json                    # Depends on @refugies-info/infra
+
+apps/server/
+├── src/
+│   └── workflows/
+│       └── dispositif/
+│           ├── createDispositif/createDispositif.ts      # Cache invalidation on create
+│           └── updateDispositifStatus/updateDispositifStatus.ts # Cache invalidation on update
+└── package.json                    # Depends on @refugies-info/infra
 ```
 
-**Structure Decision**: Client app only. Cache layer utilities organized in `/apps/client/src/libs/cache/` with index.ts as public interface, redis.ts for connection, main.ts for core abstraction, and invalidation.ts for selective logic. API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and caching. Client-side debouncing in search component. Rate limiting via application-level @upstash/ratelimit. No new top-level projects required.
+**Structure Decision**: Shared infrastructure package. Cache and logging utilities organized in `/packages/infra/` as a shared package that both client and server apps can depend on. This eliminates architectural dependency issues while enabling server-side cache invalidation. Cache modules in `src/cache/` with organized subfolders, logger in `src/logger/`, and main public interface in `src/index.ts`. API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and shared cache library. Server-side workflows use same shared package for cache invalidation. Client-side debouncing in search component. Rate limiting via application-level @upstash/ratelimit. Workspace dependencies configured via pnpm-workspace.yaml.
 
 ## Complexity Tracking
 
