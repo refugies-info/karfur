@@ -117,7 +117,7 @@ const Filters = (props: Props) => {
 
   const locationLabel = useMemo(() => {
     return query.departments.length === 0
-      ? t("Recherche.filterLocation", "Département")
+      ? t("Recherche.filterLocation", "Ville")
       : departmentsNotDeployed.length > 0 && isTablet
         ? `${query.departments[0]} ⚠️`
         : query.departments[0];

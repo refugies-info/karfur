@@ -7,10 +7,17 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
 import { getDepartmentNameFromCode } from "~/lib/departments";
 import { filterByType } from "~/lib/recherche/filterContents";
+import { getCountDispositifsForDepartment, getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
-import { getPlaceName } from "./functions";
+import {
+  sortByRelevance,
+  transformDepartmentResult,
+  transformMunicipalityResult,
+  UnifiedSearchResult,
+} from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
 import styles from "./LocationMenu.module.css";
 import SearchMenuItem from "./SearchMenuItem";
@@ -39,12 +46,16 @@ const LocationMenu: React.FC<Props> = () => {
   const announce = useAnnounce();
   const { t } = useTranslation();
   const searchResults = useSelector(searchResultsSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
 
   const [locationSearch, setLocationSearch] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<UnifiedSearchResult[]>([]);
   const [pendingAnnounce, setPendingAnnounce] = useState(false);
-  const [previousDepartment, setPreviousDepartment] = useState<string>("");
-  const [previousResultsCount, setPreviousResultsCount] = useState<number>(0);
+  const [lastAnnouncedDepartment, setLastAnnouncedDepartment] = useState<string>("");
+  const [lastAnnouncedCount, setLastAnnouncedCount] = useState<number>(-1);
+  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
+    getDepartmentsNotDeployed(query.departments, dispositifs ?? []),
+  );
 
   const filteredResults = useMemo(() => {
     return {
@@ -58,18 +69,59 @@ const LocationMenu: React.FC<Props> = () => {
       const search = e.target.value;
       setLocationSearch(search);
       if (search.length > 2) {
-        fetch(`https://data.geopf.fr/geocodage/search?q=${search}&type=municipality`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.features) {
-              setSuggestions(data.features);
-              announce(
-                t("Recherche.citySelectionsResults", {
-                  count: data.features.length,
-                }),
-                { delay: 1000, priority: "interrupt" },
-              );
-            }
+        // Helper function to normalize string (same as in functions.ts)
+        const normalizeString = (str: string) =>
+          str
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/[\s-]+/g, " ")
+            .trim();
+
+        // For department API, use normalized query to handle accent and hyphen issues
+        const normalizedSearch = normalizeString(search);
+        // Convert spaces back to %20 for URL encoding (not to hyphens)
+        const apiSearchQuery = normalizedSearch.replace(/ /g, "%20");
+
+        // Parallel API calls to both municipality and department APIs
+        Promise.all([
+          fetch(`https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`)
+            .then((response) => response.json())
+            .catch(() => ({ features: [] })),
+          // Try normalized search for departments to handle accent and hyphen issues
+          fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
+            .then((response) => response.json())
+            .catch(() => []),
+        ])
+          .then(([municipalityData, departmentData]) => {
+            // Transform municipality results
+            const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
+
+            // Transform department results
+            const departmentResults = (departmentData || []).map(transformDepartmentResult);
+
+            // Merge and sort results
+            const allResults = [...municipalityResults, ...departmentResults];
+            const sortedResults = sortByRelevance(allResults, search);
+            const limitedResults = sortedResults.slice(0, 5);
+
+            setSuggestions(limitedResults);
+            announce(
+              t("Recherche.citySelectionsResults", {
+                count: limitedResults.length,
+              }),
+              { delay: 1000, priority: "interrupt" },
+            );
+          })
+          .catch((error) => {
+            setSuggestions([]);
+            announce(
+              t("Recherche.citySelectionsResults", {
+                count: 0,
+              }),
+              { delay: 1000, priority: "interrupt" },
+            );
           });
       } else {
         announce(
@@ -93,31 +145,25 @@ const LocationMenu: React.FC<Props> = () => {
   );
 
   const onSelectPrediction = useCallback(
-    (place: any) => {
-      Event(eventName, "choose location option", place.properties.label);
+    (result: UnifiedSearchResult) => {
+      Event(eventName, "choose location option", result.label);
       Event(eventName, "click filter", "location");
-      const contextParts = place.properties.context.split(", ");
 
-      setPreviousResultsCount(filteredResults.matches.length);
       setPendingAnnounce(true);
 
-      if (contextParts.length > 1) {
-        const depName = contextParts[1];
-        dispatch(
-          addToQueryActionCreator({
-            departments: [depName],
-            sort: "location",
-          }),
-        );
-      }
+      dispatch(
+        addToQueryActionCreator({
+          departments: [result.deptName],
+          sort: "location",
+        }),
+      );
     },
-    [dispatch, eventName, filteredResults.matches.length],
+    [dispatch, eventName],
   );
 
   const onSelectCommonPlace = useCallback(
     (depName: string) => {
       Event(eventName, "choose location suggestion", depName);
-      setPreviousResultsCount(filteredResults.matches.length);
       setPendingAnnounce(true);
 
       dispatch(
@@ -127,40 +173,72 @@ const LocationMenu: React.FC<Props> = () => {
         }),
       );
     },
-    [dispatch, eventName, filteredResults.matches.length],
+    [dispatch, eventName],
   );
 
   useEffect(() => {
-    const currentDepartment = query.departments[0] || "";
-    if (pendingAnnounce && currentDepartment && currentDepartment !== previousDepartment) {
-      setPreviousDepartment(currentDepartment);
-    }
-  }, [query.departments, pendingAnnounce, previousDepartment]);
+    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs ?? []));
+  }, [query.departments, dispositifs]);
 
+  // Vocalization effect - announces department selection and results
   useEffect(() => {
-    if (!pendingAnnounce) return undefined;
+    if (!pendingAnnounce) return;
 
     const currentDepartment = query.departments[0] || "";
-    const currentCount = filteredResults.matches.length;
+    // Get the actual count of dispositifs for the selected department
+    const currentCount = currentDepartment ? getCountDispositifsForDepartment(currentDepartment, dispositifs ?? []) : 0;
 
-    if (currentDepartment && currentCount > 0 && currentCount !== previousResultsCount) {
-      const decodedDept = decodeURIComponent(currentDepartment);
+    // Skip if we've already announced this exact state
+    if (currentDepartment === lastAnnouncedDepartment && currentCount === lastAnnouncedCount) {
+      setPendingAnnounce(false);
+      return;
+    }
+
+    if (!currentDepartment) {
+      setPendingAnnounce(false);
+      return;
+    }
+
+    const decodedDept = decodeURIComponent(currentDepartment);
+    // Check if department is not deployed (< 10 dispositifs)
+    const isNotDeployed = currentCount < 10;
+
+    // Announce not deployed status
+    if (isNotDeployed) {
+      const message = t("Recherche.notDeployedText", {
+        department: decodedDept,
+      });
+      announce(message, {
+        delay: 1000,
+        priority: "interrupt",
+      });
+    }
+    // Announce results count for deployed departments
+    else if (currentCount > 0) {
       const message = t("Recherche.selectDepartement", "Département {{dept}} sélectionné {{count}} fiches chargées", {
         dept: decodedDept,
         count: currentCount,
       });
-      const parser = new DOMParser();
-      const decodedMessage = parser.parseFromString(message, "text/html").documentElement.textContent || message;
-      announce(decodedMessage, {
+      announce(message, {
         delay: 1000,
         priority: "interrupt",
       });
-
-      setPreviousResultsCount(currentCount);
-      setPendingAnnounce(false);
     }
-    return undefined;
-  }, [filteredResults.matches.length, announce, t, query.departments, pendingAnnounce, previousResultsCount]);
+
+    // Update tracking state
+    setLastAnnouncedDepartment(currentDepartment);
+    setLastAnnouncedCount(currentCount);
+    setPendingAnnounce(false);
+  }, [
+    pendingAnnounce,
+    query.departments,
+    dispositifs,
+    departmentsNotDeployed,
+    lastAnnouncedDepartment,
+    lastAnnouncedCount,
+    announce,
+    t,
+  ]);
 
   return (
     <div className={styles.container}>
@@ -173,16 +251,15 @@ const LocationMenu: React.FC<Props> = () => {
             name="radio"
             legend="Résultats de recherche"
             className="[&_legend]:sr-only"
-            options={suggestions.slice(0, 5).map((p, i) => {
-              const placeName = getPlaceName(p);
-              const deptNo = p.properties.context.split(",")[0];
-              const isChecked = p.properties.context.includes(query.departments[0]);
+            options={suggestions.slice(0, 5).map((result) => {
+              const isChecked = result.deptName === query.departments[0];
+              const typeLabel = result.type === "department" ? " (Département)" : "";
 
               return {
-                label: `${placeName} ${deptNo}`,
+                label: `${result.displayName} (${result.deptCode})${typeLabel}`,
                 nativeInputProps: {
                   checked: isChecked,
-                  onChange: () => onSelectPrediction(p),
+                  onChange: () => onSelectPrediction(result),
                 },
               };
             })}
