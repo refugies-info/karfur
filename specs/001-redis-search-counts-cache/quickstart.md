@@ -363,7 +363,7 @@ EOF
 **Query Usage in Cloud Console:**
 
 1. **Interactive Analysis**: Run queries in Cloud Logging console for real-time troubleshooting
-2. **Saved Queries**: Save frequently used queries for quick access  
+2. **Saved Queries**: Save frequently used queries for quick access
 3. **Alert Integration**: Use query results to set up log-based metrics and alerts
 4. **Dashboard Integration**: Add query results as panels in custom dashboards
 
@@ -571,7 +571,7 @@ export { default as logger } from "./gcp-logger";
 import { cache, logger } from '@refugies-info/infra';
 import { getCached, invalidateByFilters } from '@refugies-info/infra/cache';
 
-// In server app  
+// In server app
 import { invalidateByFilters } from '@refugies-info/infra/cache';
 import { logger } from '@refugies-info/infra/logger';
 ```
@@ -617,7 +617,7 @@ The API route is already implemented in the codebase. It provides:
 
 1. Import cache functions from `~/libs/cache`
 2. Add Redis caching layer around `computeSearchCounts()`
-3. Implement cache invalidation on dispositif mutations  
+3. Implement cache invalidation on dispositif mutations
 4. Add rate limiting via @upstash/ratelimit
 5. Add structured logging for monitoring
 
