@@ -123,17 +123,24 @@ pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit
 import pino from 'pino';
 import { createGcpLoggingPinoConfig } from '@google-cloud/pino-logging-gcp-config';
 
-const logger = pino(createGcpLoggingPinoConfig({
+// Create logger configuration that works both locally and in production
+const loggerConfig = createGcpLoggingPinoConfig({
   serviceContext: {
     service: 'search-counts-cache', // Name of your service
     version: '1.0.0', // Your app version
   },
 }, {
   level: process.env.LOG_LEVEL || 'info',
-}));
+});
+
+const logger = pino(loggerConfig);
 
 export default logger;
 ```
+
+**Local Development**: When running locally, this automatically falls back to pretty-printed console output. No additional configuration needed.
+
+**Production**: When deployed to Cloud Run, automatically integrates with Google Cloud Logging with structured JSON output.
 
 #### 2.1.2 Create Cloud Monitoring Dashboard
 
