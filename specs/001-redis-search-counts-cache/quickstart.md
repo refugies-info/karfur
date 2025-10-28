@@ -187,6 +187,18 @@ async function setCached(language: string, filters: Record<string, any>, data: a
   }
 }
 
+export { getCached, setCached, generateCacheKey };
+```
+
+### 2.3 Create Cache Invalidation Logic
+
+**File**: `apps/client/src/libs/cache/invalidation.ts`
+
+```typescript
+import redis from "./redis";
+import { generateCacheKey } from "./main";
+
+// Invalidate cache entries by filter combinations for all languages
 async function invalidateByFilters(filters: Record<string, any>): Promise<void> {
   try {
     // Invalidate for all supported languages
@@ -200,16 +212,6 @@ async function invalidateByFilters(filters: Record<string, any>): Promise<void> 
     console.warn("Cache invalidation failed:", error);
   }
 }
-
-export { getCached, setCached, invalidateByFilters, generateCacheKey };
-```
-
-### 2.3 Create Cache Invalidation Logic
-
-**File**: `apps/client/src/libs/cache/invalidation.ts`
-
-```typescript
-import { invalidateByFilters } from "./main";
 
 interface Dispositif {
   _id: string;
@@ -247,7 +249,7 @@ async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
   }
 }
 
-export { invalidateOnDispoChange };
+export { invalidateByFilters, invalidateOnDispoChange };
 ```
 
 ### 2.4 Create Public Interface
@@ -256,8 +258,8 @@ export { invalidateOnDispoChange };
 
 ```typescript
 // Re-export all cache functions for clean public interface
-export { getCached, setCached, invalidateByFilters, generateCacheKey } from "./main";
-export { invalidateOnDispoChange } from "./invalidation";
+export { getCached, setCached, generateCacheKey } from "./main";
+export { invalidateByFilters, invalidateOnDispoChange } from "./invalidation";
 export { default as redis } from "./redis";
 
 // Export types
