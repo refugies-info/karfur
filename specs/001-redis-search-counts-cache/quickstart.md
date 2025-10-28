@@ -102,7 +102,94 @@ gcloud monitoring metrics-descriptors list \
 
 ## Step 2: Implement Cache Layer (Days 2-3)
 
-### 2.1 Create Redis Connection Module
+### 2.1 Set Up Monitoring (Required for All Cache Operations)
+
+**Note**: Set up monitoring first to have proper structured logging available throughout all cache modules.
+
+#### 2.1.1 Create Cloud Logging Logger
+
+**File**: `apps/client/src/libs/logger.ts`
+
+```typescript
+import pino from "pino";
+
+const logger = pino({
+  level: process.env.LOG_LEVEL || "info",
+  transport: {
+    target: "pino-stackdriver",
+  },
+});
+
+export default logger;
+```
+
+#### 2.1.2 Create Cloud Monitoring Dashboard
+
+```bash
+# Create dashboard with Memorystore metrics
+gcloud monitoring dashboards create --config='{
+  "displayName": "Search Counts Cache",
+  "mosaicLayout": {
+    "columns": 12,
+    "tiles": [
+      {
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Redis Memory Usage",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"redis.googleapis.com/memory/usage\" resource.type=\"redis_instance\""
+                }
+              }
+            }]
+          }
+        }
+      },
+      {
+        "xPos": 6,
+        "width": 6,
+        "height": 4,
+        "widget": {
+          "title": "Commands/sec",
+          "xyChart": {
+            "dataSets": [{
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"redis.googleapis.com/commands_per_second\" resource.type=\"redis_instance\""
+                }
+              }
+            }]
+          }
+        }
+      }
+    ]
+  }
+}'
+```
+
+#### 2.1.3 Set Up Cloud Logging Queries
+
+```sql
+-- Cache hit rate (run in Cloud Logging)
+SELECT
+  TIMESTAMP_TRUNC(timestamp, MINUTE) as minute,
+  COUNT(*) as total_requests,
+  COUNTIF(cache_hit = true) as cache_hits,
+  ROUND(100 * COUNTIF(cache_hit = true) / COUNT(*), 2) as hit_rate_percent
+FROM `project.dataset.logs`
+WHERE operation = 'api_response'
+  AND endpoint = '/api/search/counts'
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+GROUP BY minute
+ORDER BY minute DESC
+```
+
+---
+
+### 2.2 Create Redis Connection Module
 
 **File**: `apps/client/src/libs/cache/redis.ts`
 
@@ -131,7 +218,7 @@ redis.on("error", (err) => {
 export default redis;
 ```
 
-### 2.2 Create Cache Abstraction Layer
+### 2.3 Create Cache Abstraction Layer
 
 **File**: `apps/client/src/libs/cache/main.ts`
 
@@ -187,12 +274,6 @@ export const setCached = async (language: string, filters: Record<string, any>, 
   }
 };
 ```
-
-### 2.3 Set Up Monitoring (Required for Structured Logging)
-
-**Note**: Set up monitoring before implementing cache invalidation to use proper structured logging throughout all cache modules.
-
-*(Move Step 4 monitoring content here - create logger.ts, Cloud Logging setup, etc.)*
 
 ### 2.4 Create Cache Invalidation Logic
 
@@ -321,94 +402,9 @@ The API route is already implemented in the codebase. It provides:
 
 ---
 
-## Step 4: Set Up Monitoring (Day 6)
+## Step 4: Testing & Deployment (Days 7-10)
 
-### 4.1 Create Cloud Logging Logger
-
-**File**: `apps/client/src/libs/logger.ts`
-
-```typescript
-import pino from "pino";
-
-const logger = pino({
-  level: process.env.LOG_LEVEL || "info",
-  transport: {
-    target: "pino-stackdriver",
-  },
-});
-
-export default logger;
-```
-
-### 4.2 Create Cloud Monitoring Dashboard
-
-```bash
-# Create dashboard with Memorystore metrics
-gcloud monitoring dashboards create --config='{
-  "displayName": "Search Counts Cache",
-  "mosaicLayout": {
-    "columns": 12,
-    "tiles": [
-      {
-        "width": 6,
-        "height": 4,
-        "widget": {
-          "title": "Redis Memory Usage",
-          "xyChart": {
-            "dataSets": [{
-              "timeSeriesQuery": {
-                "timeSeriesFilter": {
-                  "filter": "metric.type=\"redis.googleapis.com/memory/usage\" resource.type=\"redis_instance\""
-                }
-              }
-            }]
-          }
-        }
-      },
-      {
-        "xPos": 6,
-        "width": 6,
-        "height": 4,
-        "widget": {
-          "title": "Commands/sec",
-          "xyChart": {
-            "dataSets": [{
-              "timeSeriesQuery": {
-                "timeSeriesFilter": {
-                  "filter": "metric.type=\"redis.googleapis.com/commands_per_second\" resource.type=\"redis_instance\""
-                }
-              }
-            }]
-          }
-        }
-      }
-    ]
-  }
-}'
-```
-
-### 4.3 Set Up Cloud Logging Queries
-
-```sql
--- Cache hit rate (run in Cloud Logging)
-SELECT
-  TIMESTAMP_TRUNC(timestamp, MINUTE) as minute,
-  COUNT(*) as total_requests,
-  COUNTIF(cache_hit = true) as cache_hits,
-  ROUND(100 * COUNTIF(cache_hit = true) / COUNT(*), 2) as hit_rate_percent
-FROM `project.dataset.logs`
-WHERE operation = 'api_response'
-  AND endpoint = '/api/search/counts'
-  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
-GROUP BY minute
-ORDER BY minute DESC
-```
-
----
-
-## Step 5: Testing & Deployment (Days 7-10)
-
-### 5.1 Unit Tests
+### 4.1 Unit Tests
 
 **File**: `apps/client/src/libs/__tests__/cache.test.ts`
 
@@ -448,7 +444,7 @@ describe("Cache Layer", () => {
 });
 ```
 
-### 5.2 Load Testing
+### 4.2 Load Testing
 
 ```bash
 # Install k6
@@ -483,7 +479,7 @@ EOF
 k6 run load-test.js
 ```
 
-### 5.3 Deployment
+### 4.3 Deployment
 
 ```bash
 # Deploy to Cloud Run
