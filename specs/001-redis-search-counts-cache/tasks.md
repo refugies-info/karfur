@@ -30,7 +30,7 @@
 - [ ] T002 Configure application-level rate limiting using @upstash/ratelimit with Redis backend (10 req/sec per IP, 60s ban duration)
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
 - [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver @upstash/ratelimit`
-- [ ] T005 [P] Create shared cache package at `packages/cache/` with structure: `src/`, `package.json`, `tsconfig.json`, `README.md`
+- [ ] T005 [P] Create cache library folder at `apps/client/src/libs/cache/` with structure: `src/`, `index.ts` (public interface), `redis.ts` (connection), `main.ts` (core abstraction), `invalidation.ts` (selective logic)
 
 ---
 
@@ -40,13 +40,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Create Redis connection module in `packages/cache/src/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
-- [ ] T007 Create cache abstraction layer in `packages/cache/src/cache.ts` with `getCached()`, `setCached()`, `invalidateByFilters()` functions and SHA-256 key generation
-- [ ] T008 Create cache invalidation logic in `packages/cache/src/cacheInvalidation.ts` with `invalidateOnDispoChange()` function for dispositif mutations
-- [ ] T009 [P] Create TypeScript types for cache operations in `packages/cache/src/types.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
-- [ ] T010 [P] Create package exports and documentation in `packages/cache/src/index.ts` and `packages/cache/README.md`
-- [ ] T011 [P] Update `packages/cache/package.json` with dependencies (ioredis, pino) and export configuration
-- [ ] T012 [P] Add `@refugies-info/cache` to `apps/client/package.json` and `apps/server/package.json` as dependency
+- [ ] T006 Create Redis connection module in `apps/client/src/libs/cache/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
+- [ ] T007 [P] Create core cache abstraction in `apps/client/src/libs/cache/main.ts` with get/set/delete operations, TTL handling, graceful fallback to MongoDB, and performance logging
+- [ ] T008 [P] Create selective cache invalidation module in `apps/client/src/libs/cache/invalidation.ts` with attribute matching logic, multi-language support, and bulk invalidation capabilities
+- [ ] T009 [P] Create TypeScript types for cache operations in `apps/client/src/libs/cache/types.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
+- [ ] T010 [P] Create public interface exports in `apps/client/src/libs/cache/index.ts` and add documentation
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -60,12 +58,13 @@
 
 ### Tests for User Story 1
 
-- [ ] T013 [P] [US1] Create unit tests for cache layer at `packages/cache/__tests__/cache.test.ts` (cache key generation, get/set operations, TTL expiration, error handling)
+- [ ] T013 [P] [US1] Create unit tests for cache layer at `apps/client/src/libs/cache/__tests__/main.test.ts` (cache key generation, get/set operations, TTL expiration, error handling)
 - [ ] T014 [P] [US1] Create integration tests for API caching at `apps/client/src/pages/api/search/__tests__/counts-cache.test.ts` (cache hit/miss scenarios, TTL expiration, graceful degradation)
 
 ### Implementation for User Story 1
 
-- [ ] T015 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: import from `@refugies-info/cache`, wrap `computeSearchCounts()` with cache get/set logic
+- [ ] T012 [US1] Implement caching logic in Next.js API route `apps/client/src/pages/api/search/counts.ts` using cache library from `~/libs/cache`, include cache key generation, Redis operations, MongoDB fallback, and error handling
+- [ ] T015 [US1] Integrate cache layer into `apps/client/src/pages/api/search/counts.ts`: import from `~/libs/cache`, wrap `computeSearchCounts()` with cache get/set logic
 - [ ] T016 [US1] Add cache response headers to API response in `apps/client/src/pages/api/search/counts.ts`: `X-Cache-Hit`, `X-Cache-Age`, `X-Cache-TTL`
 - [ ] T017 [US1] Add cache hit/miss logging to API route in `apps/client/src/pages/api/search/counts.ts` with structured logs (operation, key, hit, latency_ms)
 - [ ] T018 [US1] Implement graceful degradation in `apps/client/src/pages/api/search/counts.ts`: if Redis unavailable, fall back to direct MongoDB query without blocking
@@ -82,15 +81,15 @@
 
 ### Tests for User Story 2
 
-- [ ] T019 [P] [US2] Create unit tests for cache invalidation logic at `packages/cache/__tests__/cacheInvalidation.test.ts` (selective invalidation, attribute matching, multi-language support)
+- [ ] T019 [P] [US2] Create unit tests for cache invalidation logic at `apps/client/src/libs/cache/__tests__/invalidation.test.ts` (selective invalidation, attribute matching, multi-language support)
 - [ ] T020 [P] [US2] Create integration tests for cache invalidation at `apps/server/src/modules/dispositif/__tests__/cache-invalidation.test.ts` (invalidation on create/update/delete, affected vs unaffected entries)
 
 ### Implementation for User Story 2
 
-**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using shared cache package. Cache layer is shared between client and server via `@refugies-info/cache`. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.
+**Architecture**: Server detects dispositif mutations (via database events or workflow hooks) and invalidates Redis cache directly using cache library from `~/libs/cache`. Cache layer is local to client app with server-side access via direct imports. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.
 
-- [ ] T021 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, import from `@refugies-info/cache` and call invalidation with new dispositif attributes
-- [ ] T022 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), import from `@refugies-info/cache` and call invalidation with both old and new attributes
+- [ ] T021 [US2] Add cache invalidation call in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts`: after dispositif creation, import from `~/libs/cache` and call invalidation with new dispositif attributes
+- [ ] T022 [US2] Add cache invalidation calls in `apps/server/src/workflows/dispositif/updateDispositifStatus/updateDispositifStatus.ts`: on status change (CREATED, PUBLISHED, DELETED, ARCHIVED), import from `~/libs/cache` and call invalidation with both old and new attributes
 
 **Checkpoint**: User Stories 1 AND 2 are both independently functional. Cache invalidation occurs within 100ms of dispositif change with 80%+ reduction in unnecessary invalidations.
 

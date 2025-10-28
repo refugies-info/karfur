@@ -62,9 +62,11 @@ specs/[###-feature]/
 apps/client/
 ├── src/
 │   ├── libs/
-│   │   ├── redis.ts              # Redis connection & initialization
-│   │   ├── cache.ts              # Cache layer abstraction (Redis only)
-│   │   └── cacheInvalidation.ts  # Selective invalidation logic
+│   │   └── cache/
+│   │       ├── index.ts           # Public interface for cache operations
+│   │       ├── redis.ts           # Redis connection & initialization
+│   │       ├── main.ts            # Core cache layer abstraction (Redis only)
+│   │       └── invalidation.ts    # Selective invalidation logic
 │   ├── pages/
 │   │   └── api/
 │   │       └── search/
@@ -75,14 +77,17 @@ apps/client/
 │       └── useSearchCountsCache.ts    # Enhanced debounced search counts hook (wraps existing context)
 └── tests/
     ├── unit/
-    │   ├── cache.test.ts
-    │   ├── cacheInvalidation.test.ts
-    │   └── useSearchCountsCache.test.ts
+    │   ├── cache/
+    │   │   ├── redis.test.ts
+    │   │   ├── main.test.ts
+    │   │   └── invalidation.test.ts
+    │   └── hooks/
+    │       └── useSearchCountsCache.test.ts
     └── integration/
         └── search-counts-cache.test.ts
 ```
 
-**Structure Decision**: Client app only. Cache layer utilities in `/apps/client/src/libs/` (redis.ts, cache.ts, cacheInvalidation.ts). API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and caching. Client-side debouncing in search component. Rate limiting via Next.js middleware. No new top-level projects required.
+**Structure Decision**: Client app only. Cache layer utilities organized in `/apps/client/src/libs/cache/` with index.ts as public interface, redis.ts for connection, main.ts for core abstraction, and invalidation.ts for selective logic. API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and caching. Client-side debouncing in search component. Rate limiting via application-level @upstash/ratelimit. No new top-level projects required.
 
 ## Complexity Tracking
 
