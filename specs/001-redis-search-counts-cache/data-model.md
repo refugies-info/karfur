@@ -115,7 +115,7 @@ cache:search_counts:en:xyz789uvw012
       "public": ["youths"],
       "location": "75"
     },
-    "status": "PUBLISHED",
+    "status": "Actif",
     "typeContenu": "dispositif"
   },
   "affected_cache_keys": [
@@ -188,7 +188,7 @@ cache:search_counts:en:xyz789uvw012
 ```javascript
 {
   _id: ObjectId,
-  status: String,           // CREATED, PUBLISHED, DELETED, ARCHIVED
+  status: String,           // Actif, Archivé, Supprimé, etc.
   typeContenu: String,      // dispositif, demarche, online
   theme: ObjectId,          // Primary theme (singular)
   secondaryThemes: [ObjectId], // Secondary themes (array)
@@ -340,7 +340,7 @@ X-RateLimit-Reset: 2025-10-23T12:00:01Z
 - Invalidate all cache keys matching dispositif attributes
 - Log: `trigger: "dispositif_deleted"`
 
-**On STATUS CHANGE** (CREATED → PUBLISHED → ARCHIVED → DELETED):
+**On STATUS CHANGE** (Actif ↔ Archivé ↔ Supprimé):
 - Invalidate all cache keys matching dispositif attributes
 - Log: `trigger: "dispositif_status_changed"`
 
