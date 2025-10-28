@@ -29,7 +29,7 @@
 - [ ] T001 Create Google Cloud Memorystore HA instance in europe-west1 region with Redis 7.0, 2GB size, standard tier
 - [ ] T002 Configure application-level rate limiting using @upstash/ratelimit with Redis backend (10 req/sec per IP, 60s ban duration)
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
-- [ ] T004 [P] Install dependencies at monorepo root: `pnpm add ioredis pino pino-stackdriver @upstash/ratelimit`
+- [ ] T004 [P] Install dependencies in client app: `cd apps/client && pnpm add ioredis pino pino-stackdriver @upstash/ratelimit`
 - [ ] T005 [P] Create cache library folder at `apps/client/src/libs/cache/` with structure: `src/`, `index.ts` (public interface), `redis.ts` (connection), `main.ts` (core abstraction), `invalidation.ts` (selective logic)
 
 ---

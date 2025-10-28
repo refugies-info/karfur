@@ -110,6 +110,13 @@ gcloud monitoring metrics-descriptors list \
 
 **File**: `apps/client/src/libs/logger.ts`
 
+First install the required dependencies in the client app:
+
+```bash
+cd apps/client
+pnpm add ioredis pino pino-stackdriver @upstash/ratelimit
+```
+
 ```typescript
 import pino from "pino";
 
