@@ -106,10 +106,16 @@ cache:search_counts:en:xyz789uvw012
   "trigger": "dispositif_updated",
   "dispositif_id": "507f1f77bcf86cd799439011",
   "dispositif_attributes": {
-    "themes": ["63286a015d31b2c0cad9960f"],
+    "theme": "63286a015d31b2c0cad9960f",
+    "secondaryThemes": ["63286a015d31b2c0cad9960a"],
     "needs": ["613721a409c5190dfa70d053"],
-    "frenchLevel": ["A1", "A2"],
-    "status": "asile",
+    "metadatas": {
+      "frenchLevel": ["A1", "A2"],
+      "publicStatus": ["refugie"],
+      "public": ["youths"],
+      "location": "75"
+    },
+    "status": "PUBLISHED",
     "typeContenu": "dispositif"
   },
   "affected_cache_keys": [
@@ -182,13 +188,26 @@ cache:search_counts:en:xyz789uvw012
 ```javascript
 {
   _id: ObjectId,
-  name: String,
-  themes: [String],
-  needs: [String],
-  frenchLevel: [String],
-  status: String,  // CREATED, PUBLISHED, DELETED, ARCHIVED
-  type: String,    // ASSOCIATION, SERVICE, etc.
-  // ... other fields
+  status: String,           // CREATED, PUBLISHED, DELETED, ARCHIVED
+  typeContenu: String,      // dispositif, demarche, online
+  theme: ObjectId,          // Primary theme (singular)
+  secondaryThemes: [ObjectId], // Secondary themes (array)
+  needs: [ObjectId],        // Array of need ObjectIds
+  metadatas: {
+    frenchLevel: [String] | null,  // A1, A2, B1, B2, C1, C2, alpha
+    publicStatus: [String],        // refugie, subsidiaire, temporaire, apatride, asile, french
+    public: [String],              // youths, women, family, gender, senior
+    location: String | [String],   // france or specific departments
+    age: {
+      type: String,          // "between" or other
+      ages: [Number]         // age range values
+    } | null,
+    conditions: [String] | null,
+    commitment: {...} | null,
+    frequency: {...} | null,
+    timeSlots: [String] | null
+  },
+  // ... other fields (translations, participants, sponsors, etc.)
 }
 ```
 
@@ -337,11 +356,15 @@ function getAffectedCacheKeys(dispositif: Dispositif): string[] {
     // This is a simplified version - actual implementation would be more complex
     
     // Invalidate keys where:
-    // - themes includes dispositif.themes
+    // - theme includes dispositif.theme (primary)
+    // - secondaryThemes includes dispositif.secondaryThemes
     // - needs includes dispositif.needs
-    // - frenchLevel includes dispositif.frenchLevel
+    // - metadatas.frenchLevel includes dispositif.metadatas.frenchLevel
+    // - metadatas.publicStatus includes dispositif.metadatas.publicStatus
+    // - metadatas.public includes dispositif.metadatas.public
+    // - metadatas.location includes dispositif.metadatas.location
     // - status includes dispositif.status
-    // - type includes dispositif.type
+    // - typeContenu includes dispositif.typeContenu
     
     const key = `cache:search_counts:${language}:*`;
     affectedKeys.push(key);
