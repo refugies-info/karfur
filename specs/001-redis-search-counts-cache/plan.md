@@ -33,7 +33,7 @@ Implement Redis caching architecture for the GET `/api/search/counts` endpoint t
 
 | Principle | Status | Notes |
 |-----------|--------|-------|
-| **I. Accessibility First** | ✅ PASS | API endpoint is non-UI; rate limiting includes configurable allowances for batch operations (SC-015). Monitoring dashboard must follow RGAA 4 standards. |
+| **I. Accessibility First** | ✅ PASS | API endpoint is non-UI; rate limiting includes configurable allowances for batch operations (SC-015). Monitoring dashboard implemented via Google Cloud Monitoring (GCP responsibility). |
 | **II. Multilingual by Design** | ✅ PASS | Cache keys include language parameter (FR-002). Search counts respect language filters. No user-facing text in API responses. |
 | **III. Progressive Migration** | ✅ PASS | Uses modern TypeScript/Node.js stack. Leverages existing GCP infrastructure (Translation API, Indexing API already use Google Cloud). |
 | **IV. Monorepo Consistency** | ✅ PASS | Follows Turborepo conventions. Uses pnpm for dependency management. Cache utilities in `/apps/client/src/libs/`. |
