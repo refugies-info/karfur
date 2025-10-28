@@ -84,10 +84,7 @@ gcloud redis instances describe search-counts-cache \
 
 ### 1.2 Configure Application-Level Rate Limiting
 
-```bash
-# Create rate limiter with Redis backend
-npm install @upstash/ratelimit
-```
+The `@upstash/ratelimit` dependency will be installed in the `packages/infra` shared package (see Step 2 below). This package is then added as a dependency to `apps/client` where the rate limiting middleware will be used.
 
 ### 1.3 Enable Cloud Monitoring & Logging
 
@@ -720,7 +717,7 @@ gcloud run deploy search-counts-api \
 ## Verification Checklist
 
 - [ ] Memorystore HA instance running
-- [ ] Cloud Load Balancer configured with rate limiting
+- [ ] Application-level rate limiting configured with @upstash/ratelimit
 - [ ] Redis connection working
 - [ ] Cache layer implemented
 - [ ] API route caching results
