@@ -53,7 +53,7 @@ As a system administrator, I want the cache to be automatically invalidated when
 ---
 
 
-### User Story 4 - Debouncing and Rate Limiting (Priority: P2)
+### User Story 3 - Debouncing and Rate Limiting (Priority: P2)
 
 As a frontend developer, I want the search counts API to implement debouncing and rate limiting so that rapid successive queries (e.g., typing in search box) don't overwhelm the cache or backend with redundant requests.
 
@@ -173,4 +173,6 @@ As a frontend developer, I want the search counts API to implement debouncing an
 
 **Rate Limiting Scope**: Rate limiting applies per-IP address only. All requests from the same IP are counted against the 10 req/sec limit, regardless of user identity. This approach is appropriate for the current deployment with few authenticated users and simplifies implementation.
 
-**Shared Cache Architecture**: Cache layer implemented in shared package `@refugies-info/cache` used by both client app (for caching API responses) and server app (for cache invalidation). Server detects dispositif mutations and invalidates Redis cache directly. Redis provides distributed cache across Cloud Run instances. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.
+**Shared Cache Architecture**: Cache layer implemented in shared package `@refugies-info/infra` used by both client app (for caching API responses) and server app (for cache invalidation). Server detects dispositif mutations and invalidates Redis cache directly. Redis provides distributed cache across Cloud Run instances. Rate limiting implemented at application level using @upstash/ratelimit with Redis backend, suitable for Cloud Run container environment.
+
+**Rate Limit State Persistence**: Rate limit state MUST be persisted in Redis to survive container restarts. @upstash/ratelimit handles this automatically by storing rate limit counters in Redis, ensuring consistent rate limiting across container lifecycle and multiple Cloud Run instances.

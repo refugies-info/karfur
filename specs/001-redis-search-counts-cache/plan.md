@@ -25,7 +25,7 @@ Implement Redis caching architecture for the GET `/api/search/counts` endpoint t
 **Project Type**: Client app only (Next.js)
 **Performance Goals**: <100ms cached response time, >80% cache hit rate, 70%+ database load reduction  
 **Constraints**: <100ms Redis cache response time, <50MB Redis memory footprint, high availability across multiple instances  
-**Scale/Scope**: Single API endpoint, Redis-only caching, 3 user stories, 18 functional requirements
+**Scale/Scope**: Single API endpoint, Redis-only caching, 3 user stories, 14 functional requirements
 
 ## Constitution Check
 
@@ -106,7 +106,7 @@ apps/server/
 └── package.json                    # Depends on @refugies-info/infra
 ```
 
-**Structure Decision**: Shared infrastructure package. Cache and logging utilities organized in `/packages/infra/` as a shared package that both client and server apps can depend on. This eliminates architectural dependency issues while enabling server-side cache invalidation. Cache modules in `src/cache/` with organized subfolders, logger in `src/logger/`, and main public interface in `src/index.ts`. API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and shared cache library. Server-side workflows use same shared package for cache invalidation. Client-side debouncing in search component. Rate limiting via application-level @upstash/ratelimit. Workspace dependencies configured via pnpm-workspace.yaml.
+**Structure Decision**: Shared infrastructure package `@refugies-info/infra`. Cache and logging utilities organized in `/packages/infra/` as a shared package that both client and server apps can depend on. This eliminates architectural dependency issues while enabling server-side cache invalidation. Cache modules in `src/cache/` with organized subfolders, logger in `src/logger/`, and main public interface in `src/index.ts`. API endpoint in `/apps/client/src/pages/api/search/counts.ts` (Next.js) with direct MongoDB access and shared cache library. Server-side workflows use same shared package for cache invalidation. Client-side debouncing in search component. Rate limiting via application-level @upstash/ratelimit. Workspace dependencies configured via pnpm-workspace.yaml.
 
 ## Complexity Tracking
 
