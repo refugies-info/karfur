@@ -196,6 +196,9 @@ export const setCached = async (language: string, filters: Record<string, any>, 
 import redis from "./redis";
 import { generateCacheKey } from "./main";
 
+// Note: Import logger after setting up monitoring in Step 4
+// import logger from "../logger";
+
 // Invalidate cache entries by filter combinations for all languages
 export const invalidateByFilters = async (filters: Record<string, any>): Promise<void> => {
   try {
@@ -206,7 +209,20 @@ export const invalidateByFilters = async (filters: Record<string, any>): Promise
       const key = generateCacheKey(language, filters);
       await redis.del(key);
     }
+
+    // Use structured logging after monitoring setup (Step 4)
+    // logger.info({
+    //   operation: "cache_invalidate",
+    //   trigger: "filters_invalidated",
+    //   filters,
+    //   keys_invalidated: languages.length,
+    // });
   } catch (error) {
+    // Use structured logging after monitoring setup (Step 4)
+    // logger.error({
+    //   operation: "cache_invalidate",
+    //   error: error instanceof Error ? error.message : "Unknown error",
+    // });
     console.warn("Cache invalidation failed:", error);
   }
 };
@@ -233,17 +249,23 @@ export const invalidateOnDispoChange = async (dispositif: Dispositif): Promise<v
 
     await invalidateByFilters(filters);
 
-    console.log({
-      operation: "cache_invalidate",
-      trigger: "dispositif_changed",
-      dispositif_id: dispositif._id,
-      keys_invalidated: 1,
-    });
+    // Use structured logging after monitoring setup (Step 4)
+    // logger.info({
+    //   operation: "cache_invalidate",
+    //   trigger: "dispositif_changed",
+    //   dispositif_id: dispositif._id,
+    //   dispositif_themes: dispositif.themes,
+    //   dispositif_needs: dispositif.needs,
+    //   keys_invalidated: 8, // Number of languages
+    // });
   } catch (error) {
-    console.error({
-      operation: "cache_invalidate",
-      error: error instanceof Error ? error.message : "Unknown error",
-    });
+    // Use structured logging after monitoring setup (Step 4)
+    // logger.error({
+    //   operation: "cache_invalidate",
+    //   trigger: "dispositif_changed",
+    //   dispositif_id: dispositif._id,
+    //   error: error instanceof Error ? error.message : "Unknown error",
+    // });
   }
 };
 ```
@@ -262,6 +284,14 @@ export { default as redis } from "./redis";
 export type { CacheEntry } from "./main";
 export type { Dispositif } from "./invalidation";
 ```
+
+---
+
+## Step 2.5: Set Up Monitoring (Recommended Early)
+
+**Note**: Before implementing the cache layer, set up monitoring to get proper structured logging throughout the cache modules. The cache modules above include commented logger imports that can be activated after monitoring setup.
+
+**Alternative**: You can proceed with console logging now and upgrade to structured logging in Step 4.
 
 ---
 
