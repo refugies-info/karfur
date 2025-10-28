@@ -188,16 +188,20 @@ export const setCached = async (language: string, filters: Record<string, any>, 
 };
 ```
 
-### 2.3 Create Cache Invalidation Logic
+### 2.3 Set Up Monitoring (Required for Structured Logging)
+
+**Note**: Set up monitoring before implementing cache invalidation to use proper structured logging throughout all cache modules.
+
+*(Move Step 4 monitoring content here - create logger.ts, Cloud Logging setup, etc.)*
+
+### 2.4 Create Cache Invalidation Logic
 
 **File**: `apps/client/src/libs/cache/invalidation.ts`
 
 ```typescript
 import redis from "./redis";
 import { generateCacheKey } from "./main";
-
-// Note: Import logger after setting up monitoring in Step 4
-// import logger from "../logger";
+import logger from "../logger";
 
 // Invalidate cache entries by filter combinations for all languages
 export const invalidateByFilters = async (filters: Record<string, any>): Promise<void> => {
@@ -210,20 +214,17 @@ export const invalidateByFilters = async (filters: Record<string, any>): Promise
       await redis.del(key);
     }
 
-    // Use structured logging after monitoring setup (Step 4)
-    // logger.info({
-    //   operation: "cache_invalidate",
-    //   trigger: "filters_invalidated",
-    //   filters,
-    //   keys_invalidated: languages.length,
-    // });
+    logger.info({
+      operation: "cache_invalidate",
+      trigger: "filters_invalidated",
+      filters,
+      keys_invalidated: languages.length,
+    });
   } catch (error) {
-    // Use structured logging after monitoring setup (Step 4)
-    // logger.error({
-    //   operation: "cache_invalidate",
-    //   error: error instanceof Error ? error.message : "Unknown error",
-    // });
-    console.warn("Cache invalidation failed:", error);
+    logger.error({
+      operation: "cache_invalidate",
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 };
 
@@ -249,28 +250,26 @@ export const invalidateOnDispoChange = async (dispositif: Dispositif): Promise<v
 
     await invalidateByFilters(filters);
 
-    // Use structured logging after monitoring setup (Step 4)
-    // logger.info({
-    //   operation: "cache_invalidate",
-    //   trigger: "dispositif_changed",
-    //   dispositif_id: dispositif._id,
-    //   dispositif_themes: dispositif.themes,
-    //   dispositif_needs: dispositif.needs,
-    //   keys_invalidated: 8, // Number of languages
-    // });
+    logger.info({
+      operation: "cache_invalidate",
+      trigger: "dispositif_changed",
+      dispositif_id: dispositif._id,
+      dispositif_themes: dispositif.themes,
+      dispositif_needs: dispositif.needs,
+      keys_invalidated: 8, // Number of languages
+    });
   } catch (error) {
-    // Use structured logging after monitoring setup (Step 4)
-    // logger.error({
-    //   operation: "cache_invalidate",
-    //   trigger: "dispositif_changed",
-    //   dispositif_id: dispositif._id,
-    //   error: error instanceof Error ? error.message : "Unknown error",
-    // });
+    logger.error({
+      operation: "cache_invalidate",
+      trigger: "dispositif_changed",
+      dispositif_id: dispositif._id,
+      error: error instanceof Error ? error.message : "Unknown error",
+    });
   }
 };
 ```
 
-### 2.4 Create Public Interface
+### 2.5 Create Public Interface
 
 **File**: `apps/client/src/libs/cache/index.ts`
 
@@ -286,16 +285,6 @@ export type { Dispositif } from "./invalidation";
 ```
 
 ---
-
-## Step 2.5: Set Up Monitoring (Recommended Early)
-
-**Note**: Before implementing the cache layer, set up monitoring to get proper structured logging throughout the cache modules. The cache modules above include commented logger imports that can be activated after monitoring setup.
-
-**Alternative**: You can proceed with console logging now and upgrade to structured logging in Step 4.
-
----
-
-cat > /tmp/update_quickstart.txt << 'EOF'
 
 ## Step 3: Implement API Route (Days 4-5)
 
