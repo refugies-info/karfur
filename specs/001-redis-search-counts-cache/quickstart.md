@@ -148,13 +148,13 @@ interface CacheEntry {
 
 const CACHE_TTL_SECONDS = parseInt(process.env.CACHE_TTL_SECONDS || "600");
 
-function generateCacheKey(language: string, filters: Record<string, any>): string {
+export const generateCacheKey = (language: string, filters: Record<string, any>): string => {
   const sortedFilters = JSON.stringify(filters, Object.keys(filters).sort());
   const hash = createHash("sha256").update(sortedFilters).digest("hex");
   return `cache:search_counts:${language}:${hash}`;
-}
+};
 
-async function getCached(language: string, filters: Record<string, any>): Promise<any | null> {
+export const getCached = async (language: string, filters: Record<string, any>): Promise<any | null> => {
   try {
     const key = generateCacheKey(language, filters);
     const value = await redis.get(key);
@@ -169,9 +169,9 @@ async function getCached(language: string, filters: Record<string, any>): Promis
     console.warn("Cache get failed:", error);
     return null;
   }
-}
+};
 
-async function setCached(language: string, filters: Record<string, any>, data: any): Promise<void> {
+export const setCached = async (language: string, filters: Record<string, any>, data: any): Promise<void> => {
   try {
     const key = generateCacheKey(language, filters);
     const entry: CacheEntry = {
@@ -185,9 +185,7 @@ async function setCached(language: string, filters: Record<string, any>, data: a
   } catch (error) {
     console.warn("Cache set failed:", error);
   }
-}
-
-export { getCached, setCached, generateCacheKey };
+};
 ```
 
 ### 2.3 Create Cache Invalidation Logic
@@ -199,7 +197,7 @@ import redis from "./redis";
 import { generateCacheKey } from "./main";
 
 // Invalidate cache entries by filter combinations for all languages
-async function invalidateByFilters(filters: Record<string, any>): Promise<void> {
+export const invalidateByFilters = async (filters: Record<string, any>): Promise<void> => {
   try {
     // Invalidate for all supported languages
     const languages = ["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"];
@@ -211,7 +209,7 @@ async function invalidateByFilters(filters: Record<string, any>): Promise<void> 
   } catch (error) {
     console.warn("Cache invalidation failed:", error);
   }
-}
+};
 
 interface Dispositif {
   _id: string;
@@ -222,7 +220,7 @@ interface Dispositif {
   type?: string;
 }
 
-async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
+export const invalidateOnDispoChange = async (dispositif: Dispositif): Promise<void> => {
   try {
     // Create filter combinations that would match this dispositif
     const filters = {
@@ -247,9 +245,7 @@ async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
       error: error instanceof Error ? error.message : "Unknown error",
     });
   }
-}
-
-export { invalidateByFilters, invalidateOnDispoChange };
+};
 ```
 
 ### 2.4 Create Public Interface
