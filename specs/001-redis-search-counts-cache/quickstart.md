@@ -108,13 +108,20 @@ gcloud monitoring metrics-descriptors list \
 
 #### 2.1.1 Create Cloud Logging Logger
 
-**File**: `apps/client/src/libs/logger.ts`
+**File**: `packages/infra/src/logger/gcp-logger.ts`
 
-First install the required dependencies in the client app:
+First install the required dependencies in the infra package:
 
 ```bash
-cd apps/client
-pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit @refugies-info/infra
+cd packages/infra
+pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit
+```
+
+Then add the infra package as a dependency to both apps:
+
+```bash
+cd apps/client && pnpm add @refugies-info/infra@workspace:*
+cd apps/server && pnpm add @refugies-info/infra@workspace:*
 ```
 
 **Note**: `@google-cloud/pino-logging-gcp-config` is the official Google package for proper Cloud Logging integration. The older `pino-stackdriver` package is deprecated. `@refugies-info/infra` is our shared infrastructure package containing cache and logging utilities.
