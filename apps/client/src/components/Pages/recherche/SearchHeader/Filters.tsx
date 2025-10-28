@@ -1,17 +1,22 @@
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedValueSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
 import { useSearchCounts } from "../SearchCountsContext";
 import ThemeMenu from "../ThemeMenu";
@@ -31,8 +36,9 @@ const Filters = (props: Props) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const dispositifs = useSelector(activeDispositifsSelector);
+  const searchResults = useSelector(searchResultsSelector);
   const stylesDisabled = useStylesDisabled();
-
+  const announce = useAnnounce();
   const eventName = useSearchEventName();
 
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
@@ -44,13 +50,53 @@ const Filters = (props: Props) => {
   }, [query.departments, dispositifs]);
 
   // KEYWORD
+  const [insideSearchInput, setInsideSearchInput] = useState(false);
+  const [currentSearchInputValue, setCurrentSearchInputValue] = useState("");
   const onChangeSearchInput = useCallback(
     (e: any) => {
+      setCurrentSearchInputValue(e.target.value);
       dispatch(addToQueryActionCreator({ search: e.target.value }));
       Event(eventName, "use keyword filter", "use searchbar");
     },
     [dispatch, eventName],
   );
+
+  const onFocusSearchInput = useCallback(() => {
+    setInsideSearchInput(true);
+  }, []);
+
+  const onBlurSearchInput = useCallback(() => {
+    setInsideSearchInput(false);
+  }, []);
+
+  useEffect(() => {
+    if (!insideSearchInput) return;
+
+    if (currentSearchInputValue.length === 0) {
+      announce(
+        t("Recherche.emptySearch", "Recherche par mot clé vide. {{count}} fiches chargées", {
+          count: searchResults.matches.length,
+          search: currentSearchInputValue,
+        }),
+        {
+          priority: "interrupt",
+          delay: 100,
+        },
+      );
+      return;
+    }
+
+    announce(
+      t("Recherche.resultsForYourSearch", "{{count}} résultats trouvés pour votre recherche {{search}}", {
+        count: searchResults.matches.length,
+        search: currentSearchInputValue,
+      }),
+      {
+        priority: "interrupt",
+        delay: 1000,
+      },
+    );
+  }, [announce, searchResults.matches.length, t, currentSearchInputValue, insideSearchInput]);
 
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
@@ -96,7 +142,12 @@ const Filters = (props: Props) => {
 
   return (
     <Container className={cls(styles.container, isSticky && styles.sticky)}>
-      <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
+      <SearchInput
+        onFocus={onFocusSearchInput}
+        onBlur={onBlurSearchInput}
+        className={styles.searchZone}
+        onChange={onChangeSearchInput}
+      />
       <DropdownProvider>
         <div className={styles.filtersBar}>
           <Filter

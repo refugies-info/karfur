@@ -1,6 +1,6 @@
 import { DispositifStatus, DispositifStatusRequest } from "@refugies-info/api-types";
-import logger from "~/logger";
 import { notifyGoogleUrlDeleted } from "~/libs/googleIndexingApi";
+import logger from "~/logger";
 import {
   deleteDispositifInDb,
   publishDispositif,
@@ -27,7 +27,9 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
         logger.error("[updateDispositifStatus] Failed to notify Google", {
           id,
           error: error instanceof Error ? error.message : String(error),
-          ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
+          ...(process.env.NODE_ENV !== "production" &&
+            process.env.NODE_ENV !== "staging" &&
+            error instanceof Error && { stack: error.stack }),
         }),
       );
     }
@@ -45,7 +47,9 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
         logger.error("[updateDispositifStatus] Failed to notify Google", {
           id,
           error: error instanceof Error ? error.message : String(error),
-          ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
+          ...(process.env.NODE_ENV !== "production" &&
+            process.env.NODE_ENV !== "staging" &&
+            error instanceof Error && { stack: error.stack }),
         }),
       );
     }

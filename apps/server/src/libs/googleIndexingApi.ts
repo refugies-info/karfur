@@ -1,4 +1,4 @@
-import { google, Auth } from "googleapis";
+import { Auth, google } from "googleapis";
 import logger from "~/logger";
 
 /**
@@ -66,7 +66,9 @@ export const notifyGoogleUrlDeleted = async (url: string): Promise<boolean> => {
     logger.error("[notifyGoogleUrlDeleted] Error notifying Google", {
       url,
       error: error instanceof Error ? error.message : String(error),
-      ...(process.env.NODE_ENV !== "production" && process.env.NODE_ENV !== "staging" && error instanceof Error && { stack: error.stack }),
+      ...(process.env.NODE_ENV !== "production" &&
+        process.env.NODE_ENV !== "staging" &&
+        error instanceof Error && { stack: error.stack }),
     });
     return false;
   }

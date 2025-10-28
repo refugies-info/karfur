@@ -92,30 +92,6 @@ const SearchResults = (props: Props) => {
     }
   }, [announce, remainingItems, page, t]);
 
-  useEffect(() => {
-    const nbResults = dispositifs.length;
-    if (query.search.length === 0) {
-      announce(
-        t("Recherche.emptySearch", "Recherche par mot clé vide. {{count}} fiches chargées", { count: nbResults }),
-        {
-          priority: "interrupt",
-          delay: 1000,
-        },
-      );
-      return;
-    }
-    announce(
-      t("Recherche.resultsForYourSearch", "{{count}} résultats trouvés pour votre recherche {{search}}", {
-        count: nbResults,
-        search: query.search,
-      }),
-      {
-        priority: "interrupt",
-        delay: 1000,
-      },
-    );
-  }, [dispositifs, announce, query, t]);
-
   return (
     <section className={styles.wrapper} aria-labelledby="resultats">
       <Container className={styles.container}>
