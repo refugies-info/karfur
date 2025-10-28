@@ -191,26 +191,37 @@ export default logger;
 
 #### 2.1.2 Create Cloud Monitoring Dashboard
 
+**File**: `apps/client/monitoring/search-counts-dashboard.json`
+
+Create the dashboard configuration and deploy it:
+
 ```bash
-# Create dashboard with Memorystore metrics
-gcloud monitoring dashboards create --config='{
-  "displayName": "Search Counts Cache",
-  "mosaicLayout": {
-    "columns": 12,
-    "tiles": [
+# Create monitoring directory
+mkdir -p apps/client/monitoring
+
+# Create dashboard configuration file
+cat > apps/client/monitoring/search-counts-dashboard.json << 'EOF'
+{
+  "displayName": "Search Counts Cache Performance",
+  "gridLayout": {
+    "columns": "12",
+    "widgets": [
       {
-        "width": 6,
-        "height": 4,
-        "widget": {
-          "title": "Redis Memory Usage",
-          "xyChart": {
-            "dataSets": [{
-              "timeSeriesQuery": {
-                "timeSeriesFilter": {
-                  "filter": "metric.type=\"redis.googleapis.com/memory/usage\" resource.type=\"redis_instance\""
-                }
+        "title": "Redis Memory Usage",
+        "xyChart": {
+          "dataSets": [{
+            "timeSeriesQuery": {
+              "prometheusQueryEndpoint": {
+                "query": "redis_memory_usage_bytes"
               }
-            }]
+            },
+            "plotType": "LINE",
+            "legendTemplate": "Instance {{instance}}"
+          }],
+          "timeshiftDuration": "0s",
+          "yAxis": {
+            "label": "Memory (bytes)",
+            "scale": "LINEAR"
           }
         }
       },
@@ -232,9 +243,42 @@ gcloud monitoring dashboards create --config='{
         }
       }
     ]
-  }
-}'
+  ```
+
+# Deploy the dashboard to Google Cloud Monitoring
+gcloud monitoring dashboards create --config-file=apps/client/monitoring/search-counts-dashboard.json
 ```
+
+**How the Dashboard JSON Works:**
+
+The JSON file contains:
+- **Dashboard metadata** (name, layout)
+- **Widget definitions** (charts, metrics, alerts)
+- **Time series queries** (what metrics to display)
+- **Visualization settings** (colors, thresholds, axes)
+
+**Deployment Methods:**
+
+1. **gcloud CLI** (recommended for automation):
+   ```bash
+   gcloud monitoring dashboards create --config-file=dashboard.json
+   ```
+
+2. **Cloud Console UI** (for manual creation):
+   - Navigate to Monitoring → Dashboards
+   - Click "Create Dashboard"
+   - Copy-paste JSON configuration
+
+3. **REST API** (for programmatic creation):
+   ```bash
+   curl -X POST \
+     "https://monitoring.googleapis.com/v1/projects/${PROJECT_ID}/dashboards" \
+     -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+     -H "Content-Type: application/json" \
+     -d @dashboard.json
+   ```
+
+The dashboard will appear in your Cloud Console at Monitoring → Dashboards.
 
 #### 2.1.3 Set Up Cloud Logging Queries
 
