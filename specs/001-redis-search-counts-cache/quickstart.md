@@ -114,18 +114,23 @@ First install the required dependencies in the client app:
 
 ```bash
 cd apps/client
-pnpm add ioredis pino pino-stackdriver @upstash/ratelimit
+pnpm add ioredis pino @google-cloud/pino-logging-gcp-config @upstash/ratelimit
 ```
 
-```typescript
-import pino from "pino";
+**Note**: `@google-cloud/pino-logging-gcp-config` is the official Google package for proper Cloud Logging integration. The older `pino-stackdriver` package is deprecated.
 
-const logger = pino({
-  level: process.env.LOG_LEVEL || "info",
-  transport: {
-    target: "pino-stackdriver",
+```typescript
+import pino from 'pino';
+import { createGcpLoggingPinoConfig } from '@google-cloud/pino-logging-gcp-config';
+
+const logger = pino(createGcpLoggingPinoConfig({
+  serviceContext: {
+    service: 'search-counts-cache', // Name of your service
+    version: '1.0.0', // Your app version
   },
-});
+}, {
+  level: process.env.LOG_LEVEL || 'info',
+}));
 
 export default logger;
 ```
