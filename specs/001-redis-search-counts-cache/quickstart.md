@@ -104,7 +104,7 @@ gcloud monitoring metrics-descriptors list \
 
 ### 2.1 Create Redis Connection Module
 
-**File**: `apps/client/src/libs/redis.ts`
+**File**: `apps/client/src/libs/cache/redis.ts`
 
 ```typescript
 import Redis from "ioredis";
@@ -133,7 +133,7 @@ export default redis;
 
 ### 2.2 Create Cache Abstraction Layer
 
-**File**: `apps/client/src/libs/cache.ts`
+**File**: `apps/client/src/libs/cache/main.ts`
 
 ```typescript
 import redis from "./redis";
@@ -206,11 +206,10 @@ export { getCached, setCached, invalidateByFilters, generateCacheKey };
 
 ### 2.3 Create Cache Invalidation Logic
 
-**File**: `apps/client/src/libs/cacheInvalidation.ts`
+**File**: `apps/client/src/libs/cache/invalidation.ts`
 
 ```typescript
-import { invalidateByFilters } from "./cache";
-import logger from "./logger";
+import { invalidateByFilters } from "./main";
 
 interface Dispositif {
   _id: string;
@@ -234,14 +233,14 @@ async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
 
     await invalidateByFilters(filters);
 
-    logger.info({
+    console.log({
       operation: "cache_invalidate",
       trigger: "dispositif_changed",
       dispositif_id: dispositif._id,
       keys_invalidated: 1,
     });
   } catch (error) {
-    logger.error({
+    console.error({
       operation: "cache_invalidate",
       error: error instanceof Error ? error.message : "Unknown error",
     });
@@ -249,6 +248,21 @@ async function invalidateOnDispoChange(dispositif: Dispositif): Promise<void> {
 }
 
 export { invalidateOnDispoChange };
+```
+
+### 2.4 Create Public Interface
+
+**File**: `apps/client/src/libs/cache/index.ts`
+
+```typescript
+// Re-export all cache functions for clean public interface
+export { getCached, setCached, invalidateByFilters, generateCacheKey } from "./main";
+export { invalidateOnDispoChange } from "./invalidation";
+export { default as redis } from "./redis";
+
+// Export types
+export type { CacheEntry } from "./main";
+export type { Dispositif } from "./invalidation";
 ```
 
 ---
@@ -282,10 +296,11 @@ The API route is already implemented in the codebase. It provides:
 
 **Next Steps for Caching Integration**:
 
-1. Add Redis caching layer around `computeSearchCounts()`
-2. Implement cache invalidation on dispositif mutations
-3. Add rate limiting via Cloud Load Balancer
-4. Add structured logging for monitoring
+1. Import cache functions from `~/libs/cache`
+2. Add Redis caching layer around `computeSearchCounts()`
+3. Implement cache invalidation on dispositif mutations  
+4. Add rate limiting via @upstash/ratelimit
+5. Add structured logging for monitoring
 
 ---
 
