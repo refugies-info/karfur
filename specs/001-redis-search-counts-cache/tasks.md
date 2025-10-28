@@ -31,6 +31,7 @@
 - [ ] T003 [P] Set up environment variables in `.env.local` and deployment configuration (REDIS_HOST, REDIS_PORT, REDIS_PASSWORD, CACHE_TTL_SECONDS)
 - [ ] T004 [P] Install dependencies in client app: `cd apps/client && pnpm add ioredis pino pino-stackdriver @upstash/ratelimit`
 - [ ] T005 [P] Create cache library folder at `apps/client/src/libs/cache/` with structure: `src/`, `index.ts` (public interface), `redis.ts` (connection), `main.ts` (core abstraction), `invalidation.ts` (selective logic)
+- [ ] T006 [P] Create logger module in `apps/client/src/libs/logger.ts` with pino configuration, pino-stackdriver transport, and structured logging setup for Cloud Logging
 
 ---
 
@@ -40,11 +41,11 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T006 Create Redis connection module in `apps/client/src/libs/cache/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
-- [ ] T007 [P] Create core cache abstraction in `apps/client/src/libs/cache/main.ts` with get/set/delete operations, TTL handling, graceful fallback to MongoDB, and performance logging
-- [ ] T008 [P] Create selective cache invalidation module in `apps/client/src/libs/cache/invalidation.ts` with attribute matching logic, multi-language support, and bulk invalidation capabilities
-- [ ] T009 [P] Create TypeScript types for cache operations in `apps/client/src/libs/cache/types.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
-- [ ] T010 [P] Create public interface exports in `apps/client/src/libs/cache/index.ts` and add documentation
+- [ ] T007 Create Redis connection module in `apps/client/src/libs/cache/redis.ts` with connection pooling, retry strategy, error handling, and event listeners
+- [ ] T008 [P] Create core cache abstraction in `apps/client/src/libs/cache/main.ts` with get/set/delete operations, TTL handling, graceful fallback to MongoDB, and performance logging
+- [ ] T009 [P] Create selective cache invalidation module in `apps/client/src/libs/cache/invalidation.ts` with attribute matching logic, multi-language support, and bulk invalidation capabilities
+- [ ] T010 [P] Create TypeScript types for cache operations in `apps/client/src/libs/cache/types.ts` (CacheEntry, CacheKey, SearchCountsResponse, CacheMetrics)
+- [ ] T011 [P] Create public interface exports in `apps/client/src/libs/cache/index.ts` and add documentation
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
