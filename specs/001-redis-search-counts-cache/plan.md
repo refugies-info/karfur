@@ -76,13 +76,14 @@ packages/infra/
 └── tests/
     ├── unit/
     │   ├── cache/
-    │   │   ├── redis.test.ts
-    │   │   ├── main.test.ts
-    │   │   └── invalidation.test.ts
-    │   └── logger/
-    │       └── gcp-logger.test.ts
-    └── integration/
-        └── cache-invalidation.test.ts
+    │   │   ├── redis.test.ts          # Redis connection handling
+    │   │   ├── main.test.ts           # Core cache operations
+    │   │   ├── invalidation.test.ts   # Selective invalidation logic
+    │   │   └── types.test.ts          # TypeScript type safety
+    │   ├── logger/
+    │   │   └── gcp-logger.test.ts     # GCP logging integration
+    │   └── integration/
+    │       └── package-integration.test.ts # End-to-end package usage
 
 apps/client/
 ├── src/

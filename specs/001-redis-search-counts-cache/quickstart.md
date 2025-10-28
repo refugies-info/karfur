@@ -462,6 +462,16 @@ import { invalidateByFilters } from '@refugies-info/infra/cache';
 import { logger } from '@refugies-info/infra/logger';
 ```
 
+**Testing:**
+
+The shared package includes comprehensive test coverage:
+- Unit tests for each module (`packages/infra/src/**/__tests__/`)
+- Integration tests for package-level functionality
+- Type safety tests for TypeScript interfaces
+- Mock Redis and GCP logging for test isolation
+
+Run tests with: `cd packages/infra && pnpm test`
+
 ---
 
 ## Step 3: Implement API Route (Days 4-5)
