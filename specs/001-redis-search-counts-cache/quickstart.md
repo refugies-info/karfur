@@ -280,24 +280,94 @@ The JSON file contains:
 
 The dashboard will appear in your Cloud Console at Monitoring → Dashboards.
 
-#### 2.1.3 Set Up Cloud Logging Queries
+#### 2.1.3 Cloud Logging Queries for Analysis
 
+**File**: `apps/client/docs/MONITORING_QUERIES.md`
+
+Create documentation with pre-built queries for log analysis:
+
+```bash
+# Create docs directory
+mkdir -p apps/client/docs
+
+# Create monitoring queries documentation
+cat > apps/client/docs/MONITORING_QUERIES.md << 'EOF'
+# Cloud Monitoring Queries for Search Counts Cache
+
+## How to Use These Queries
+
+### Method 1: Cloud Logging Console (Interactive)
+1. Navigate to Cloud Logging → Log Explorer
+2. Copy and paste each query into the query editor
+3. Run query to analyze real-time data
+4. Click "Save query" to save for future use
+
+### Method 2: Saved Queries (Quick Access)
+1. In Log Explorer, click "Saved queries"
+2. Click "New query" and paste the query
+3. Name it (e.g., "Cache Hit Rate Analysis")
+4. Access quickly from the dropdown menu
+
+### Method 3: gcloud CLI (Automation)
+```bash
+gcloud logging read "YOUR_QUERY_HERE" --format=json --limit=100
+```
+
+## Pre-built Queries
+
+### Cache Hit Rate Analysis
 ```sql
--- Cache hit rate (run in Cloud Logging)
 SELECT
   TIMESTAMP_TRUNC(timestamp, MINUTE) as minute,
   COUNT(*) as total_requests,
-  COUNTIF(cache_hit = true) as cache_hits,
-  ROUND(100 * COUNTIF(cache_hit = true) / COUNT(*), 2) as hit_rate_percent
-FROM `project.dataset.logs`
-WHERE operation = 'api_response'
-  AND endpoint = '/api/search/counts'
+  COUNTIF(jsonPayload.cache_hit = true) as cache_hits,
+  ROUND(100 * COUNTIF(jsonPayload.cache_hit = true) / COUNT(*), 2) as hit_rate_percent
+FROM \`project.dataset.logs\`
+WHERE jsonPayload.operation = "api_response"
+  AND jsonPayload.endpoint = "/api/search/counts"
   AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
 GROUP BY minute
 ORDER BY minute DESC
 ```
 
----
+### Latency Tracking
+```sql
+SELECT
+  jsonPayload.latency_ms,
+  COUNT(*) as frequency
+FROM \`project.dataset.logs\`
+WHERE jsonPayload.operation = "api_response"
+  AND jsonPayload.endpoint = "/api/search/counts"
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOURS)
+GROUP BY jsonPayload.latency_ms
+ORDER BY frequency DESC
+```
+
+### Database Load Reduction
+```sql
+SELECT
+  TIMESTAMP_TRUNC(timestamp, HOUR) as hour,
+  COUNT(*) as total_requests,
+  COUNTIF(jsonPayload.cache_hit = false) as db_queries,
+  ROUND(100 * COUNTIF(jsonPayload.cache_hit = false) / COUNT(*), 2) as db_query_percent
+FROM \`project.dataset.logs\`
+WHERE jsonPayload.operation = "api_response"
+  AND jsonPayload.endpoint = "/api/search/counts"
+  AND timestamp >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 7 DAYS)
+GROUP BY hour
+ORDER BY hour DESC
+```
+EOF
+```
+
+**Query Usage in Cloud Console:**
+
+1. **Interactive Analysis**: Run queries in Cloud Logging console for real-time troubleshooting
+2. **Saved Queries**: Save frequently used queries for quick access  
+3. **Alert Integration**: Use query results to set up log-based metrics and alerts
+4. **Dashboard Integration**: Add query results as panels in custom dashboards
+
+**Unlike dashboard JSON, these queries are for human analysis, not automated deployment.**
 
 #### 2.2.1 Create Redis Connection Module
 

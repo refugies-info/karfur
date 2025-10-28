@@ -135,7 +135,7 @@
 ### Implementation
 
 - [ ] T029 Create Cloud Monitoring dashboard at `apps/client/monitoring/search-counts-dashboard.json` and deploy with `gcloud monitoring dashboards create --config-file=apps/client/monitoring/search-counts-dashboard.json` showing Memorystore metrics (memory usage, commands/sec, eviction rate, replication lag), cache hit rates, latency (p50, p95, p99), database query impact, and connection status
-- [ ] T030 [P] Configure Cloud Logging queries at `apps/client/docs/MONITORING_QUERIES.md` for cache hit rate analysis, latency tracking, database load reduction measurement, and rate limit violation tracking
+- [ ] T030 [P] Configure Cloud Logging queries at `apps/client/docs/MONITORING_QUERIES.md` for cache hit rate analysis, latency tracking, database load reduction measurement, and rate limit violation tracking. These queries can be run directly in the Cloud Logging console or saved as saved queries for repeated analysis.
 - [ ] T031 [P] Set up alerting rules in Cloud Monitoring for anomalies: Redis connection failures, cache hit rate <80%, response latency >150ms, database load increase >20%
 
 **Checkpoint**: Production monitoring in place. Visibility into cache performance, database impact, and system health.
