@@ -28,7 +28,7 @@
     "@lottiefiles/dotlottie-react": "^0.13.5",
     "clsx": "^2.1.1",
     "next-i18next": "^15.3.0",
-    "react": "18.3.1",
+    "react": "19.2.0",
     "react-dom": "18.3.1",
     "react-leaflet-cluster": "^2.1.0",
     "tailwind-merge": "^2.6.0"
@@ -39,7 +39,7 @@
     "@types/fs-extra": "^11.0.4",
     "@types/leaflet": "^1.9.20",
     "@types/leaflet.markercluster": "^1.5.5",
-    "@types/react": "18.3.1",
+    "@types/react": "19.2.2",
     "eslint": "^9.34.0",
     "eslint-config-turbo": "2.5.4",
     "tailwindcss": "^4.1.12",
