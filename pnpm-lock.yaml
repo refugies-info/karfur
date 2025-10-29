@@ -233,8 +233,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       react-hook-form:
-        specifier: ^7.62.0
-        version: 7.62.0(react@18.3.1)
+        specifier: ^7.65.0
+        version: 7.65.0(react@18.3.1)
       react-i18next:
         specifier: ^15.7.3
         version: 15.7.3(i18next@23.16.8)(react-dom@18.3.1(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)(typescript@5.9.2)
@@ -10966,8 +10966,8 @@ packages:
   react-ga4@2.1.0:
     resolution: {integrity: sha512-ZKS7PGNFqqMd3PJ6+C2Jtz/o1iU9ggiy8Y8nUeksgVuvNISbmrQtJiZNvC/TjDsqD0QlU5Wkgs7i+w9+OjHhhQ==}
 
-  react-hook-form@7.62.0:
-    resolution: {integrity: sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==}
+  react-hook-form@7.65.0:
+    resolution: {integrity: sha512-xtOzDz063WcXvGWaHgLNrNzlsdFgtUWcb32E6WFaGTd7kPZG3EeDusjdZfUsPwKCKVXy1ZlntifaHZ4l8pAsmw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -25973,7 +25973,7 @@ snapshots:
 
   react-ga4@2.1.0: {}
 
-  react-hook-form@7.62.0(react@18.3.1):
+  react-hook-form@7.65.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
