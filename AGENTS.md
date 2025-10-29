@@ -51,6 +51,8 @@ This document provides comprehensive guidance for AI agents (including Claude, C
 - Use `React.forwardRef` for all components wrapping DSFR elements or native HTML
 - Test keyboard navigation and tab order
 - Verify ARIA labels and roles are correct
+- Ensure every live page update is vocalised for assistive technologies
+- Always use the `useAnnounce` hook for centralized vocalisation of dynamic updates
 
 ### II. Multilingual by Design
 
@@ -78,6 +80,8 @@ This document provides comprehensive guidance for AI agents (including Claude, C
 - Use `pnpm` for all package operations (never `npm` or `yarn`)
 - Shared types go in `@refugies-info/api-types`
 - Shared UI components go in `@refugies-info/ui`
+- Document every new UI component with an accompanying Storybook story
+- Follow the [Component Composition Guide](documentation/client/component-composition.md) when designing reusable UI
 - Cross-package dependencies must be explicit and properly versioned
 - Use the `~` alias for imports from the lib directory (e.g., `~/lib/search-helpers`)
 
@@ -305,6 +309,8 @@ import { SearchForm } from "./SearchForm";
 - Complex animations or keyframes
 - Global styles applied consistently across the app
 - When Tailwind classes cannot achieve the desired styling
+
+**Component architecture:** Prioritize reusable components, leverage Context for shared state, and avoid unnecessary props drilling.
 
 ---
 
@@ -615,7 +621,7 @@ When creating components:
 </div>
 
 // ✅ GOOD: Form with labels
-<label htmlFor="search">Search dispositifs</label>
+<label htmlFor="search">Search dispositifs
 <input
   id="search"
   type="text"
@@ -623,6 +629,7 @@ When creating components:
   placeholder="Enter keywords"
 />
 <span id="search-help">Search by name, category, or location</span>
+</label>
 
 // ❌ BAD: No label association
 <input type="text" placeholder="Search" />
@@ -657,6 +664,23 @@ export function SearchForm() {
 
 // ❌ BAD: Hardcoded text
 <input placeholder="Search dispositifs" />
+```
+
+**Adding translation keys (`common.json`):**
+```json
+// ✅ GOOD: Add new keys with descriptive namespaces
+{
+  "search": {
+    "placeholder": "Search dispositifs",
+    "button": "Find resources"
+  }
+}
+
+// ❌ BAD: Scatter unrelated keys at the root level
+{
+  "placeholder": "Search dispositifs",
+  "searchButton": "Find resources"
+}
 ```
 
 **Handling Variable Text Lengths:**
