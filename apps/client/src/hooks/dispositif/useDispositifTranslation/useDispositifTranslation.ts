@@ -10,6 +10,7 @@ import get from "lodash/get";
 import { useRouter } from "next/router";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
+import { DISPOSITIF_FORM_CONSTANTS } from "~/constants/dispositif";
 import { useUser } from "~/hooks";
 import { TranslateForm } from "../useDispositifTranslateForm";
 import {
@@ -177,7 +178,7 @@ const useDispositifTranslation = (
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque") || section.includes("administrationName"),
-        maxLength: section.includes("abstract") ? 200 : undefined,
+        maxLength: section.includes("abstract") ? DISPOSITIF_FORM_CONSTANTS.ABSTRACT_MAX_LENGTH : undefined,
       };
     },
     [defaultTraduction, translations, language, validate, deleteTrad, data, user, validator, hasChangeForm],
