@@ -20,6 +20,9 @@
   align-items: flex-start;
   align-self: stretch;
   gap: 0.5rem;
-  max-height: 300px;
-  overflow-y: auto;
+
+  @media (width >= 768px) {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }

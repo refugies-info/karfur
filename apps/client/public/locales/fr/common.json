@@ -143,7 +143,8 @@
     "seeAllButtonWithCount": "Voir les {{count}} fiches",
     "tooltipAucuneFicheCorrespondante": "Aucune fiche ne correspond à ce critère. Ajustez vos autres filtres pour filtrer sur ce critère spécifique.",
     "noResultTitle": "Oups ! Il n’y a aucun résultat avec vos critères de recherche.",
-    "noResultOther": "Ces fiches peuvent aussi vous intéresser"
+    "noResultOther": "Ces fiches peuvent aussi vous intéresser",
+    "filtersDialogDescription": "Choisissez vos filtres et options de tri pour affiner les résultats de recherche."
   },
   "Widget": {
     "fiches": "Fiches",
