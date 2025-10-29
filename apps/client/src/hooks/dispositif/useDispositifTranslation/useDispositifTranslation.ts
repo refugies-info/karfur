@@ -177,7 +177,7 @@ const useDispositifTranslation = (
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque") || section.includes("administrationName"),
-        maxLength: section.includes("abstract") ? 110 : undefined,
+        maxLength: section.includes("abstract") ? 200 : undefined,
       };
     },
     [defaultTraduction, translations, language, validate, deleteTrad, data, user, validator, hasChangeForm],

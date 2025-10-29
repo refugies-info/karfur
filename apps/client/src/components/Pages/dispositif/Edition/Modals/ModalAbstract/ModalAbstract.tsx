@@ -19,7 +19,7 @@ interface Props {
   toggle: () => void;
 }
 
-const MAX_LENGTH = 110;
+const MAX_LENGTH = 200;
 
 const ModalAbstract = (props: Props) => {
   const formContext = useFormContext<CreateDispositifRequest>();
@@ -38,7 +38,7 @@ const ModalAbstract = (props: Props) => {
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
-        <p>Le résumé doit faire moins de 110 caractères.</p>
+        <p>Le résumé doit faire moins de 200 caractères.</p>
         <div className="flex">
           <div>
             <div className={styles.text}>
@@ -57,7 +57,7 @@ const ModalAbstract = (props: Props) => {
                   fill={fr.colors.decisions.background.actionHigh.error.default}
                   className="me-2"
                 />
-                {remainingChars} sur 110 caractères restants
+                {remainingChars} sur 200 caractères restants
               </p>
             </div>
           </div>
