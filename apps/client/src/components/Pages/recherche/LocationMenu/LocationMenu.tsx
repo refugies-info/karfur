@@ -11,6 +11,7 @@ import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDi
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 import {
+  normalizeString,
   sortByRelevance,
   transformDepartmentResult,
   transformMunicipalityResult,
@@ -87,15 +88,6 @@ const LocationMenu: React.FC<Props> = () => {
   const departmentCounts = useMemo(() => dispositifs ?? [], [dispositifs]);
 
   const fetchSuggestions = useCallback(async (search: string): Promise<UnifiedSearchResult[]> => {
-    const normalizeString = (str: string) =>
-      str
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[^a-z0-9\s-]/g, "")
-        .replace(/[\s-]+/g, " ")
-        .trim();
-
     const normalizedSearch = normalizeString(search);
     const apiSearchQuery = normalizedSearch.replace(/ /g, "%20");
 

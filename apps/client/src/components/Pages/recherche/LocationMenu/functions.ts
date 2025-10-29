@@ -105,12 +105,9 @@ export function transformDepartmentResult(dept: DepartmentApiResponse): UnifiedS
 }
 
 /**
- * Sort results by relevance
- */
-/**
  * Normalize string for comparison (remove accents, normalize spaces/hyphens, and lowercase)
  */
-function normalizeString(str: string): string {
+export function normalizeString(str: string): string {
   return str
     .toLowerCase()
     .normalize("NFD") // Normalize to decomposed form
@@ -120,65 +117,45 @@ function normalizeString(str: string): string {
     .trim(); // Remove leading/trailing spaces
 }
 
+/**
+ * Sort results by relevance
+ */
+
 export function sortByRelevance(results: UnifiedSearchResult[], query: string): UnifiedSearchResult[] {
+  const queryNormalized = normalizeString(query);
+  const queryLower = query.toLowerCase();
+
+  const getScore = (result: UnifiedSearchResult): number => {
+    const name = result.displayName.toLowerCase();
+    const nameNormalized = normalizeString(result.displayName);
+
+    if (result.type === "department" && (name === queryLower || nameNormalized === queryNormalized)) return 8; // Correspondance exacte département
+    if (result.type === "city" && (name === queryLower || nameNormalized === queryNormalized)) return 7; // Correspondance exacte ville
+    if (result.type === "department" && (name.startsWith(queryLower) || nameNormalized.startsWith(queryNormalized)))
+      return 6; // Le département commence par
+    if (result.type === "city" && (name.startsWith(queryLower) || nameNormalized.startsWith(queryNormalized))) return 5; // La ville commence par
+    if (result.type === "department" && (name.includes(queryLower) || nameNormalized.includes(queryNormalized)))
+      return 4; // Le département contient
+    if (result.type === "city" && (name.includes(queryLower) || nameNormalized.includes(queryNormalized))) return 3; // La ville contient
+    return 0;
+  };
+
   return results.sort((a, b) => {
-    const queryNormalized = normalizeString(query);
-    const queryLower = query.toLowerCase();
-    const aName = a.displayName.toLowerCase();
-    const bName = b.displayName.toLowerCase();
-    const aNameNormalized = normalizeString(a.displayName);
-    const bNameNormalized = normalizeString(b.displayName);
+    const scoreA = getScore(a);
+    const scoreB = getScore(b);
 
-    // Priority 1: Exact department match (highest priority) - try both exact and normalized
-    const aDeptExact = a.type === "department" && (aName === queryLower || aNameNormalized === queryNormalized);
-    const bDeptExact = b.type === "department" && (bName === queryLower || bNameNormalized === queryNormalized);
-    if (aDeptExact && !bDeptExact) return -1;
-    if (!aDeptExact && bDeptExact) return 1;
-
-    // Priority 2: Exact city match (lower than department exact)
-    const aCityExact = a.type === "city" && (aName === queryLower || aNameNormalized === queryNormalized);
-    const bCityExact = b.type === "city" && (bName === queryLower || bNameNormalized === queryNormalized);
-    if (aCityExact && !bCityExact) return -1;
-    if (!aCityExact && bCityExact) return 1;
-
-    // Priority 3: Department starts with query (high priority) - try both original and normalized
-    const aDeptStarts =
-      a.type === "department" && (aName.startsWith(queryLower) || aNameNormalized.startsWith(queryNormalized));
-    const bDeptStarts =
-      b.type === "department" && (bName.startsWith(queryLower) || bNameNormalized.startsWith(queryNormalized));
-    if (aDeptStarts && !bDeptStarts) return -1;
-    if (!aDeptStarts && bDeptStarts) return 1;
-
-    // Priority 4: City starts with query
-    const aCityStarts =
-      a.type === "city" && (aName.startsWith(queryLower) || aNameNormalized.startsWith(queryNormalized));
-    const bCityStarts =
-      b.type === "city" && (bName.startsWith(queryLower) || bNameNormalized.startsWith(queryNormalized));
-    if (aCityStarts && !bCityStarts) return -1;
-    if (!aCityStarts && bCityStarts) return 1;
-
-    // Priority 5: Department contains query (still higher priority than city contains)
-    const aDeptContains =
-      a.type === "department" && (aName.includes(queryLower) || aNameNormalized.includes(queryNormalized));
-    const bDeptContains =
-      b.type === "department" && (bName.includes(queryLower) || bNameNormalized.includes(queryNormalized));
-    if (aDeptContains && !bDeptContains && b.type === "city") return -1;
-    if (!aDeptContains && bDeptContains && a.type === "city") return 1;
-
-    // Priority 6: City contains query
-    const aCityContains =
-      a.type === "city" && (aName.includes(queryLower) || aNameNormalized.includes(queryNormalized));
-    const bCityContains =
-      b.type === "city" && (bName.includes(queryLower) || bNameNormalized.includes(queryNormalized));
-    if (aCityContains && !bCityContains) return -1;
-    if (!aCityContains && bCityContains) return 1;
-
-    // Priority 7: Department with shorter name gets priority (Rhône before Bouches-du-Rhône)
-    if (a.type === "department" && b.type === "department") {
-      return a.displayName.length - b.displayName.length;
+    if (scoreA !== scoreB) {
+      return scoreB - scoreA; // Score plus élevé en premier
     }
 
-    // Priority 8: Alphabetical as final tiebreaker
+    // Priorité 7: Les départements avec un nom plus court ont la priorité
+    if (a.type === "department" && b.type === "department") {
+      if (a.displayName.length !== b.displayName.length) {
+        return a.displayName.length - b.displayName.length;
+      }
+    }
+
+    // Priorité 8: Ordre alphabétique pour départager
     return a.displayName.localeCompare(b.displayName);
   });
 }
