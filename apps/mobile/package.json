@@ -76,7 +76,7 @@
     "uuid": "^11.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.3",
+    "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.3",
     "@babel/runtime": "^7.28.3",
     "@react-native/assets-registry": "^0.81.1",
