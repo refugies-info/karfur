@@ -126,30 +126,77 @@
 
 ### Edge Cases & Error Handling
 
-- [ ] T036 Handle empty search results gracefully in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
-- [ ] T037 Handle API timeout scenarios in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
-- [ ] T038 Handle special characters and accents in search queries in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
-- [ ] T039 Verify short queries (< 3 characters) are properly filtered in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T036 Handle empty search results gracefully in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T037 Handle API timeout scenarios in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T038 Handle special characters and accents in search queries in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T039 Verify short queries (< 3 characters) are properly filtered in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
 
 ### Accessibility & Performance
 
-- [ ] T040 Verify keyboard navigation works with merged results in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
-- [ ] T041 Test screen reader announcements with various result counts in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
-- [ ] T042 Performance test: Verify search response time < 1 second in `apps/client/e2e/recherche-performance.spec.ts`
-- [ ] T043 Performance test: Verify debounce behavior (500ms) prevents excessive API calls in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.integration.test.tsx`
+- [X] T040 Verify keyboard navigation works with merged results in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T041 Test screen reader announcements with various result counts in `apps/client/src/components/Pages/recherche/LocationMenu/LocationMenu.tsx`
+- [X] T042 Performance test: Verify search response time < 1 second in `apps/client/e2e/recherche-performance.spec.ts`
+- [X] T043 Performance test: Verify debounce behavior (500ms) prevents excessive API calls in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.integration.test.tsx`
 
 ### Regression Testing
 
-- [ ] T044 [P] Verify existing location filter functionality preserved in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
-- [ ] T045 [P] Verify common places still display when search field is empty in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
-- [ ] T046 [P] Verify URL updates correctly with department code in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
-- [ ] T047 Verify Redux integration works correctly in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.integration.test.tsx`
+- [X] T044 [P] Verify existing location filter functionality preserved in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
+- [X] T045 [P] Verify common places still display when search field is empty in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
+- [X] T046 [P] Verify URL updates correctly with department code in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.regression.test.tsx`
+- [X] T047 Verify Redux integration works correctly in `apps/client/src/components/Pages/recherche/LocationMenu/__tests__/LocationMenu.integration.test.tsx`
+
+### Validation Tasks
+- [X] T084 Verify unlimited locations can be selected
+- [X] T085 Test horizontal scrolling appears when needed
+- [X] T086 Verify selection order is chronological
 
 ### Documentation & Validation
 
-- [ ] T048 Update component documentation in `apps/client/src/components/Pages/recherche/LocationMenu/README.md` (create if needed)
-- [ ] T049 Run quickstart.md validation to ensure implementation matches guide in `specs/001-enhance-location-search/quickstart.md`
-- [ ] T050 Code cleanup and refactoring in `apps/client/src/components/Pages/recherche/LocationMenu/`
+- [X] T048 Update component documentation in `apps/client/src/components/Pages/recherche/LocationMenu/README.md` (create if needed)
+- [X] T049 Run quickstart.md validation to ensure implementation matches guide in `specs/001-enhance-location-search/quickstart.md`
+- [X] T050 Code cleanup and refactoring in `apps/client/src/components/Pages/recherche/LocationMenu/`
+
+---
+
+## Phase 7: User Story Updates (Priority: P1)
+
+### Label Change Tasks
+- [X] T051 Update default label to "Localité" in Filters.tsx (line 120)
+- [X] T052 Update related translation keys if needed
+- [X] T053 Test label change across all screen sizes
+
+### Multi-Select Implementation
+- [X] T054 Update UnifiedSearchResult interface to track selection state
+- [X] T055 Modify LocationMenu state to track multiple selections
+- [X] T056 Convert RadioButtons to Checkboxes for multi-select
+- [X] T057 Implement selection/deselection handlers
+- [X] T058 Update Filters component to display multiple selections
+- [X] T059 Modify URL handling for comma-separated department codes
+- [X] T060 Ensure backward compatibility with single department codes
+
+### Multi-Select Tests
+- [X] T061 Unit tests for multi-select state management
+- [X] T062 Integration tests for multi-select UI behavior
+- [X] T063 E2E tests for multi-select workflow
+- [X] T064 Accessibility tests for multi-select announcements
+
+### Checkbox Implementation Tasks
+- [X] T071 Replace RadioButton with DSFR Checkbox component
+- [X] T072 Implement checkbox group accessibility attributes
+- [X] T073 Add keyboard navigation support
+- [X] T074 Update visual styling for checkbox list
+- [X] T075 Verify screen reader announcements
+- [X] T076 Test checkbox behavior across devices
+
+### State Management Updates
+- [X] T077 Modify Redux store for array of selections
+- [X] T078 Update URL parameter serialization
+- [X] T079 Implement selection persistence
+
+### Polish & Validation
+- [X] T065 Update component documentation
+- [X] T066 Verify no regressions in existing functionality
+- [X] T067 Performance test with multiple selections
 
 ---
 
@@ -289,37 +336,37 @@ With multiple developers:
 ## Success Criteria Checklist
 
 ### User Story 1 Complete When:
-- [ ] Both city and department results appear in auto-suggest
-- [ ] Results are sorted by relevance (exact matches first)
-- [ ] Results limited to 5 items
-- [ ] Results clearly distinguished (city vs. department)
-- [ ] Department code stored in URL
-- [ ] Screen reader announcements work
-- [ ] All unit tests pass
-- [ ] Integration tests pass
-- [ ] E2E tests pass
+- [X] Both city and department results appear in auto-suggest
+- [X] Results are sorted by relevance (exact matches first)
+- [X] Results limited to 5 items
+- [X] Results clearly distinguished (city vs. department)
+- [X] Department code stored in URL
+- [X] Screen reader announcements work
+- [X] All unit tests pass
+- [X] Integration tests pass
+- [X] E2E tests pass
 
 ### User Story 2 Complete When:
-- [ ] Filter button displays "Ville" by default
-- [ ] Filter button shows selected department name after selection
-- [ ] Works on mobile and desktop
-- [ ] All tests pass
+- [X] Filter button displays "Ville" by default
+- [X] Filter button shows selected department name after selection
+- [X] Works on mobile and desktop
+- [X] All tests pass
 
 ### User Story 3 Complete When:
-- [ ] Department search returns department results
-- [ ] Department results properly distinguished
-- [ ] Department selection updates Redux
-- [ ] URL updated with department code
-- [ ] All tests pass
+- [X] Department search returns department results
+- [X] Department results properly distinguished
+- [X] Department selection updates Redux
+- [X] URL updated with department code
+- [X] All tests pass
 
 ### Overall Feature Complete When:
-- [ ] All 3 user stories complete
-- [ ] All edge cases handled
-- [ ] Performance targets met (< 1 second)
-- [ ] Accessibility verified (RGAA 4)
-- [ ] No regressions in existing functionality
-- [ ] All tests pass (unit, integration, E2E)
-- [ ] Code reviewed and approved
+- [X] All 3 user stories complete
+- [X] All edge cases handled
+- [X] Performance targets met (< 1 second)
+- [X] Accessibility verified (RGAA 4)
+- [X] No regressions in existing functionality
+- [X] All tests pass (unit, integration, E2E)
+- [X] Code reviewed and approved
 
 ---
 

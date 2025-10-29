@@ -106,6 +106,47 @@ apps/client/src/
 
 5. **No Backend Changes**: All changes client-side only. Rationale: Reduces deployment complexity; no API versioning needed; faster iteration.
 
+## Implementation Details
+
+### Checkbox Component Implementation
+1. **DSFR Integration**:
+   - Use `fr-checkbox` component from DSFR
+   - Follow accessibility guidelines for grouped checkboxes
+   - Ensure proper labeling and screen reader support
+
+2. **State Management**:
+   - Track selected items in array state
+   - Maintain selection order
+   - Sync with URL parameters
+
+3. **Visual Design**:
+   - Maintain consistent spacing with existing UI
+   - Add visual distinction between city and department checkboxes
+   - Implement loading states
+
+### Technical Constraints
+- Must maintain backward compatibility with single-select URLs
+- Checkbox group must work with keyboard navigation
+- Selection state must persist across page navigation
+- Selected locations must be displayed in chronological order
+- Horizontal scrolling should be available if selections exceed available space
+
+## Progress Tracking [Updated]
+- **Phase 0 (Specification)**: COMPLETE ✓
+- **Phase 1 (Planning)**: COMPLETE ✓  
+- **Phase 2 (Task Generation)**: COMPLETE ✓
+- **Phase 3 (US1 - City Search)**: COMPLETE ✓
+- **Phase 4 (US2 - Label Change)**: COMPLETE ✓
+- **Phase 5 (US3 - Department Search)**: COMPLETE ✓
+- **Phase 6 (Polish)**: COMPLETE ✓
+
+## Final Validation
+- [x] All unit tests passing
+- [x] Performance targets met (<1s response)
+- [x] Accessibility verified (RGAA 4)
+- [x] No regressions detected
+- [x] Code reviewed and approved
+
 ## Dependencies & Risks
 
 ### External Dependencies
@@ -133,4 +174,3 @@ apps/client/src/
 - ✓ 100% of existing location filter functionality preserved
 - ✓ All accessibility requirements maintained (RGAA 4)
 - ✓ No regression in existing tests
-

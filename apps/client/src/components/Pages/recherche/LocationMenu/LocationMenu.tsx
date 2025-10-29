@@ -1,13 +1,11 @@
-import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
+import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import debounce from "lodash/debounce";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentNameFromCode } from "~/lib/departments";
-import { filterByType } from "~/lib/recherche/filterContents";
-import { getCountDispositifsForDepartment, getDepartmentsNotDeployed } from "~/lib/recherche/functions";
+import { getCountDispositifsForDepartment } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -21,6 +19,8 @@ import {
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
 import styles from "./LocationMenu.module.css";
 import SearchMenuItem from "./SearchMenuItem";
+
+type ScreenReaderAnnounceOptions = NonNullable<Parameters<ReturnType<typeof useAnnounce>>[1]>;
 
 const commonPlaces = [
   { placeName: "Paris", deptNo: "75", deptName: "Paris" },
@@ -42,247 +42,258 @@ interface Props {
 const LocationMenu: React.FC<Props> = () => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const searchResults = useSelector(searchResultsSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
   const { t } = useTranslation();
-  const searchResults = useSelector(searchResultsSelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
 
   const [locationSearch, setLocationSearch] = useState("");
   const [suggestions, setSuggestions] = useState<UnifiedSearchResult[]>([]);
   const [pendingAnnounce, setPendingAnnounce] = useState(false);
-  const [lastAnnouncedDepartment, setLastAnnouncedDepartment] = useState<string>("");
-  const [lastAnnouncedCount, setLastAnnouncedCount] = useState<number>(-1);
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs ?? []),
+  const previousMatchesRef = useRef(searchResults.matches);
+
+  const decodeDepartment = useCallback((value: string) => {
+    let decoded = value;
+    try {
+      decoded = decodeURIComponent(value);
+    } catch (error) {
+      decoded = value;
+    }
+    return decoded
+      .replace(/&#39;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, "&");
+  }, []);
+
+  const getNormalizedDepartments = useCallback(
+    (departments: string[]) => {
+      const seen = new Set<string>();
+      const normalized: string[] = [];
+
+      departments.forEach((dept) => {
+        const decoded = decodeDepartment(dept);
+        if (!seen.has(decoded)) {
+          seen.add(decoded);
+          normalized.push(decoded);
+        }
+      });
+
+      return normalized;
+    },
+    [decodeDepartment],
   );
 
-  const filteredResults = useMemo(() => {
-    return {
-      matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
-      suggestions: searchResults.suggestions,
-    };
-  }, [query.type, searchResults]);
+  const departmentCounts = useMemo(() => dispositifs ?? [], [dispositifs]);
 
-  const onChangeDepartmentInput = useCallback(
-    (e: any) => {
-      const search = e.target.value;
+  const fetchSuggestions = useCallback(async (search: string): Promise<UnifiedSearchResult[]> => {
+    const normalizeString = (str: string) =>
+      str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/[\s-]+/g, " ")
+        .trim();
+
+    const normalizedSearch = normalizeString(search);
+    const apiSearchQuery = normalizedSearch.replace(/ /g, "%20");
+
+    const [municipalityData, departmentData] = await Promise.all([
+      fetch(`https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`)
+        .then((response) => response.json())
+        .catch(() => ({ features: [] })),
+      fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
+        .then((response) => response.json())
+        .catch(() => []),
+    ]);
+
+    const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
+    const departmentResults = (departmentData || []).map(transformDepartmentResult);
+    const allResults = [...municipalityResults, ...departmentResults];
+    const sortedResults = sortByRelevance(allResults, search);
+
+    return sortedResults.slice(0, 5);
+  }, []);
+
+  const announceResults = useCallback(
+    (count: number, options?: ScreenReaderAnnounceOptions) => {
+      const announceOptions: ScreenReaderAnnounceOptions = {
+        delay: 1000,
+        priority: "interrupt",
+        ...(options ?? {}),
+      };
+
+      announce(
+        t("Recherche.citySelectionsResults", {
+          count,
+        }),
+        announceOptions,
+      );
+    },
+    [announce, t],
+  );
+
+  const handleSearchChange = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const search = event.target.value;
       setLocationSearch(search);
-      if (search.length > 2) {
-        // Helper function to normalize string (same as in functions.ts)
-        const normalizeString = (str: string) =>
-          str
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .replace(/[^a-z0-9\s-]/g, "")
-            .replace(/[\s-]+/g, " ")
-            .trim();
 
-        // For department API, use normalized query to handle accent and hyphen issues
-        const normalizedSearch = normalizeString(search);
-        // Convert spaces back to %20 for URL encoding (not to hyphens)
-        const apiSearchQuery = normalizedSearch.replace(/ /g, "%20");
-
-        // Parallel API calls to both municipality and department APIs
-        Promise.all([
-          fetch(`https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`)
-            .then((response) => response.json())
-            .catch(() => ({ features: [] })),
-          // Try normalized search for departments to handle accent and hyphen issues
-          fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
-            .then((response) => response.json())
-            .catch(() => []),
-        ])
-          .then(([municipalityData, departmentData]) => {
-            // Transform municipality results
-            const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
-
-            // Transform department results
-            const departmentResults = (departmentData || []).map(transformDepartmentResult);
-
-            // Merge and sort results
-            const allResults = [...municipalityResults, ...departmentResults];
-            const sortedResults = sortByRelevance(allResults, search);
-            const limitedResults = sortedResults.slice(0, 5);
-
-            setSuggestions(limitedResults);
-            announce(
-              t("Recherche.citySelectionsResults", {
-                count: limitedResults.length,
-              }),
-              { delay: 1000, priority: "interrupt" },
-            );
-          })
-          .catch((error) => {
-            setSuggestions([]);
-            announce(
-              t("Recherche.citySelectionsResults", {
-                count: 0,
-              }),
-              { delay: 1000, priority: "interrupt" },
-            );
-          });
-      } else {
-        announce(
-          t("Recherche.citySelectionsResults", {
-            count: 0,
-          }),
-          {
-            delay: 1000,
-            priority: "interrupt",
-          },
-        );
+      if (search.length <= 2) {
         setSuggestions([]);
+        announceResults(0);
+        return;
+      }
+
+      try {
+        const results = await fetchSuggestions(search);
+        setSuggestions(results);
+        announceResults(results.length);
+      } catch (error) {
+        setSuggestions([]);
+        announceResults(0);
       }
     },
-    [setLocationSearch, announce, t],
+    [announceResults, fetchSuggestions],
   );
 
-  const debouncedOnChangeDepartmentInput = useMemo(
-    () => debounce(onChangeDepartmentInput, 500),
-    [onChangeDepartmentInput],
-  );
+  const debouncedSearchChange = useMemo(() => debounce(handleSearchChange, 500), [handleSearchChange]);
 
-  const onSelectPrediction = useCallback(
+  const toggleDepartmentSelection = useCallback(
+    (deptName: string) => {
+      setPendingAnnounce(true);
+
+      const normalizedTarget = decodeDepartment(deptName);
+      const currentDepartments = query.departments || [];
+      const hasDepartment = currentDepartments.some((dept) => decodeDepartment(dept) === normalizedTarget);
+
+      const updatedDepartments = hasDepartment
+        ? currentDepartments.filter((dept) => decodeDepartment(dept) !== normalizedTarget)
+        : [...currentDepartments, normalizedTarget];
+
+      // Announce when clearing last department
+      if (hasDepartment && updatedDepartments.length === 0) {
+        announce(t("Recherche.departmentsCleared", "Filtre de localité effacé"));
+      }
+
+      dispatch(
+        addToQueryActionCreator({
+          departments: getNormalizedDepartments(updatedDepartments),
+          sort: "location",
+        }),
+      );
+    },
+    [dispatch, query.departments, decodeDepartment, getNormalizedDepartments, announce, t],
+  );
+  const handleResultToggle = useCallback(
     (result: UnifiedSearchResult) => {
-      Event(eventName, "choose location option", result.label);
+      Event(eventName, "toggle location option", result.label);
       Event(eventName, "click filter", "location");
-
-      setPendingAnnounce(true);
-
-      dispatch(
-        addToQueryActionCreator({
-          departments: [result.deptName],
-          sort: "location",
-        }),
-      );
+      toggleDepartmentSelection(result.deptName);
     },
-    [dispatch, eventName],
+    [eventName, toggleDepartmentSelection],
   );
 
-  const onSelectCommonPlace = useCallback(
-    (depName: string) => {
-      Event(eventName, "choose location suggestion", depName);
-      setPendingAnnounce(true);
-
-      dispatch(
-        addToQueryActionCreator({
-          departments: [depName],
-          sort: "location",
-        }),
-      );
+  const handleCommonPlaceSelect = useCallback(
+    (deptName: string) => {
+      Event(eventName, "choose location suggestion", deptName);
+      toggleDepartmentSelection(deptName);
     },
-    [dispatch, eventName],
+    [eventName, toggleDepartmentSelection],
   );
 
+  const resultsCount = searchResults.matches.length;
+
   useEffect(() => {
-    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs ?? []));
-  }, [query.departments, dispositifs]);
-
-  // Vocalization effect - announces department selection and results
-  useEffect(() => {
-    if (!pendingAnnounce) return;
-
-    const currentDepartment = query.departments[0] || "";
-    // Get the actual count of dispositifs for the selected department
-    const currentCount = currentDepartment ? getCountDispositifsForDepartment(currentDepartment, dispositifs ?? []) : 0;
-
-    // Skip if we've already announced this exact state
-    if (currentDepartment === lastAnnouncedDepartment && currentCount === lastAnnouncedCount) {
-      setPendingAnnounce(false);
+    if (!pendingAnnounce) {
+      previousMatchesRef.current = searchResults.matches;
       return;
     }
 
-    if (!currentDepartment) {
-      setPendingAnnounce(false);
-      return;
-    }
+    const hasNewResults = previousMatchesRef.current !== searchResults.matches;
+    if (!hasNewResults) return;
 
-    const decodedDept = decodeURIComponent(currentDepartment);
-    // Check if department is not deployed (< 10 dispositifs)
-    const isNotDeployed = currentCount < 10;
+    previousMatchesRef.current = searchResults.matches;
 
-    // Announce not deployed status
-    if (isNotDeployed) {
-      const message = t("Recherche.notDeployedText", {
-        department: decodedDept,
-      });
-      announce(message, {
-        delay: 1000,
-        priority: "interrupt",
-      });
-    }
-    // Announce results count for deployed departments
-    else if (currentCount > 0) {
-      const message = t("Recherche.selectDepartement", "Département {{dept}} sélectionné {{count}} fiches chargées", {
-        dept: decodedDept,
-        count: currentCount,
-      });
-      announce(message, {
-        delay: 1000,
-        priority: "interrupt",
-      });
-    }
+    const currentDepartments = query.departments || [];
+    const totalCount = searchResults.matches.length;
 
-    // Update tracking state
-    setLastAnnouncedDepartment(currentDepartment);
-    setLastAnnouncedCount(currentCount);
+    const departmentNames = currentDepartments.map((dept) => decodeDepartment(dept)).join(", ");
+    announce(
+      t("Recherche.selectDepartement", "Département {{dept}} sélectionné {{count}} fiches chargées", {
+        dept: departmentNames,
+        count: totalCount,
+        interpolation: { escapeValue: false },
+      }),
+      { delay: 1000, priority: "interrupt" },
+    );
+
+    currentDepartments.forEach((dept) => {
+      const count = getCountDispositifsForDepartment(dept, departmentCounts);
+      if (count < 10) {
+        announce(
+          t(
+            "Recherche.notDeployedText",
+            "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
+            {
+              department: decodeDepartment(dept),
+              interpolation: { escapeValue: false },
+            },
+          ),
+          { delay: 1000, priority: "interrupt" },
+        );
+      }
+    });
     setPendingAnnounce(false);
-  }, [
-    pendingAnnounce,
-    query.departments,
-    dispositifs,
-    departmentsNotDeployed,
-    lastAnnouncedDepartment,
-    lastAnnouncedCount,
-    announce,
-    t,
-  ]);
+  }, [pendingAnnounce, query.departments, departmentCounts, announce, t, decodeDepartment, searchResults.matches]);
+
+  const renderSuggestions = () => (
+    <Checkbox
+      legend="Résultats de recherche"
+      className="[&_legend]:sr-only"
+      options={suggestions.map((result) => {
+        const isChecked =
+          query.departments?.some((dept) => decodeDepartment(dept) === decodeDepartment(result.deptName)) || false;
+        const typeLabel = result.type === "department" ? " (Département)" : "";
+
+        return {
+          label: `${result.displayName} (${result.deptCode})${typeLabel}`,
+          nativeInputProps: {
+            checked: isChecked,
+            onChange: () => handleResultToggle(result),
+          },
+        };
+      })}
+    />
+  );
+
+  const renderCommonPlaces = () => (
+    <Checkbox
+      legend="Villes courantes"
+      className="[&_legend]:sr-only"
+      options={commonPlaces.map(({ deptNo, placeName, deptName }) => {
+        const decodedDeptName = decodeDepartment(deptName);
+        const isChecked = query.departments?.some((dept) => decodeDepartment(dept) === decodedDeptName) || false;
+
+        return {
+          label: `${placeName} ${deptNo}`,
+          nativeInputProps: {
+            checked: isChecked,
+            onChange: () => handleCommonPlaceSelect(deptName),
+          },
+        };
+      })}
+    />
+  );
 
   return (
     <div className={styles.container}>
       <GeoLocationMenuItem />
-      <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
+      <SearchMenuItem onChange={debouncedSearchChange} />
 
       <div className={styles.places}>
-        {locationSearch !== "" && (
-          <RadioButtons
-            name="radio"
-            legend="Résultats de recherche"
-            className="[&_legend]:sr-only"
-            options={suggestions.slice(0, 5).map((result) => {
-              const isChecked = result.deptName === query.departments[0];
-              const typeLabel = result.type === "department" ? " (Département)" : "";
-
-              return {
-                label: `${result.displayName} (${result.deptCode})${typeLabel}`,
-                nativeInputProps: {
-                  checked: isChecked,
-                  onChange: () => onSelectPrediction(result),
-                },
-              };
-            })}
-          />
-        )}
-        {locationSearch === "" && (
-          <RadioButtons
-            name="radio"
-            legend="Villes courantes"
-            className="[&_legend]:sr-only"
-            options={commonPlaces.map(({ deptNo, placeName, deptName }) => {
-              const isChecked = query?.departments[0] === deptName;
-
-              return {
-                label: `${placeName} ${deptNo}`,
-                nativeInputProps: {
-                  checked: isChecked,
-                  onChange: () => onSelectCommonPlace(getDepartmentNameFromCode(deptNo)),
-                },
-              };
-            })}
-          />
-        )}
+        {locationSearch !== "" && renderSuggestions()}
+        {locationSearch === "" && renderCommonPlaces()}
       </div>
     </div>
   );

@@ -37,21 +37,34 @@ export interface DepartmentApiResponse {
 
 // Unified Search Result Interface
 export interface UnifiedSearchResult {
-  // Display information
-  label: string;
-  displayName: string;
+  /**
+   * Display information
+   */
+  label: string; // e.g., "Paris (75)" or "Rhône (dept)"
+  displayName: string; // e.g., "Paris" or "Rhône"
 
-  // Department information (always present)
-  deptCode: string;
-  deptName: string;
+  /**
+   * Department information (always present)
+   */
+  deptCode: string; // e.g., "75", "69" (used for final filter)
+  deptName: string; // e.g., "Île-de-France", "Rhône"
 
-  // Source information
-  type: "city" | "department";
-  source: "municipality" | "department";
+  /**
+   * Source information
+   */
+  type: "city" | "department"; // Distinguishes result type
+  source: "municipality" | "department"; // API source
 
-  // Optional metadata
-  postalCode?: string;
-  region?: string;
+  /**
+   * Selection state
+   */
+  isSelected: boolean; // Tracks if this location is selected
+
+  /**
+   * Optional metadata
+   */
+  postalCode?: string; // e.g., "75001" (only for cities)
+  region?: string; // e.g., "Île-de-France" (from department API)
 }
 
 /**
@@ -71,6 +84,7 @@ export function transformMunicipalityResult(feature: MunicipalityFeature): Unifi
     source: "municipality",
     postalCode: postalCode,
     region: contextParts[2] || undefined,
+    isSelected: false,
   };
 }
 
@@ -86,6 +100,7 @@ export function transformDepartmentResult(dept: DepartmentApiResponse): UnifiedS
     type: "department",
     source: "department",
     region: dept.region,
+    isSelected: false,
   };
 }
 
