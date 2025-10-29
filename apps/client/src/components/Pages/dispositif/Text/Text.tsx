@@ -1,6 +1,6 @@
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { cn } from "~/lib/classname";
 import {
   CalloutSegment,
@@ -31,27 +31,57 @@ const Text = (props: Props) => {
 
   // Wrap content of li elements with value attribute in a div
   const transformListItems = (html: string): string => {
-    return html.replace(
-      /<li\s+value="(\d+)"([^>]*)>([\s\S]*?)<\/li>/gi,
-      (match: string, value: string, attrs: string, content: string) => {
-        const trimmedContent = content.trim();
-        // Skip if already wrapped in a div
-        if (trimmedContent.startsWith("<div>") && trimmedContent.endsWith("</div>")) {
-          return match;
+    if (typeof window === "undefined" || typeof window.DOMParser === "undefined") {
+      return html;
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const listItems = doc.querySelectorAll("li[value]");
+
+    listItems.forEach((li) => {
+      const firstElement = li.firstElementChild;
+      const hasOnlyWhitespaceTextNodes = Array.from(li.childNodes).every((node) => {
+        if (node.nodeType !== Node.TEXT_NODE) {
+          return true;
         }
-        return `<li value="${value}"${attrs}><div>${content}</div></li>`;
-      },
-    );
+        return node.textContent?.trim() === "";
+      });
+
+      if (
+        firstElement?.tagName.toLowerCase() === "div" &&
+        Array.from(li.children).length === 1 &&
+        hasOnlyWhitespaceTextNodes
+      ) {
+        return;
+      }
+
+      const wrapper = doc.createElement("div");
+      while (li.firstChild) {
+        wrapper.appendChild(li.firstChild);
+      }
+      li.appendChild(wrapper);
+    });
+
+    return doc.body.innerHTML;
   };
 
-  const convertedContent = props.html
-    ? transformListItems(
-        translationParsing(props.children || "", [
-          { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
-          { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
-        ]),
-      )
-    : props.children;
+  const convertedContent = useMemo(() => {
+    if (!props.html) {
+      return props.children;
+    }
+
+    const translated = translationParsing(props.children || "", [
+      { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
+      { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
+    ]);
+
+    if (!hasMounted) {
+      return translated;
+    }
+
+    return transformListItems(translated);
+  }, [hasMounted, props.children, props.html, t]);
 
   // Use simple content for server-side rendering or before mounting
   const { contentSegments } =
