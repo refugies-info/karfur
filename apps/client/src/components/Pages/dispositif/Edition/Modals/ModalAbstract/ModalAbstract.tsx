@@ -38,7 +38,7 @@ const ModalAbstract = (props: Props) => {
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
-        <p>Le résumé doit faire moins de 200 caractères.</p>
+        <p>{`Le résumé doit faire moins de ${MAX_LENGTH} caractères.`}</p>
         <div className="flex">
           <div>
             <div className={styles.text}>
