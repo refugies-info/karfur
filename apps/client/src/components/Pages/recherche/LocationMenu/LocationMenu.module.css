@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
+  min-width: 22rem;
 }
 
 .departments {
@@ -20,4 +21,7 @@
   align-items: flex-start;
   align-self: stretch;
   gap: 0.5rem;
+  max-height: 35rem;
+  overflow-y: auto;
+  padding: 0.5rem;
 }

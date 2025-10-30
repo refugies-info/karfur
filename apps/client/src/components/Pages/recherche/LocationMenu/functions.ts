@@ -1,17 +1,3 @@
-export const getPlaceName = (feature: any): string => {
-  const { properties } = feature;
-  const placeName = properties.name;
-  if (placeName) {
-    if (properties.type === "municipality") {
-      return `${placeName} (ville)`;
-    }
-    if (properties.type === "administrativearea") {
-      return `${placeName} (département)`;
-    }
-  }
-  return properties.label;
-};
-
 // API Response Interfaces
 export interface MunicipalityApiResponse {
   features: MunicipalityFeature[];
@@ -105,38 +91,77 @@ export function transformDepartmentResult(dept: DepartmentApiResponse): UnifiedS
 }
 
 /**
- * Normalize string for comparison (remove accents, normalize spaces/hyphens, and lowercase)
+ * Fetches the department for a given city using the geo API
  */
-export function normalizeString(str: string): string {
-  return str
-    .toLowerCase()
-    .normalize("NFD") // Normalize to decomposed form
-    .replace(/[\u0300-\u036f]/g, "") // Remove diacritics
-    .replace(/[^a-z0-9\s-]/g, "") // Remove special characters except spaces and hyphens
-    .replace(/[\s-]+/g, " ") // Normalize multiple spaces/hyphens to single space
-    .trim(); // Remove leading/trailing spaces
-}
+export const getDepartmentForCity = async (cityName: string): Promise<string | null> => {
+  try {
+    const response = await fetch(
+      `https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(cityName)}&type=municipality`,
+    );
+    const data = await response.json();
+
+    if (data?.features?.[0]?.properties?.context) {
+      // Extract department code from the context (usually in format "XX, Region")
+      const context = data.features[0].properties.context;
+      const departmentCode = context.split(",")[0].trim();
+
+      // Get department name from the code
+      const deptResponse = await fetch(`https://geo.api.gouv.fr/departements/${departmentCode}`);
+      const deptData = await deptResponse.json();
+
+      return deptData?.nom ? deptData.nom : null;
+    }
+    return null;
+  } catch (error) {
+    // Log error in production
+    if (process.env.NODE_ENV !== "production") {
+      // eslint-disable-next-line no-console
+      console.error("Error fetching department for city:", error);
+    }
+    return null;
+  }
+};
+
+/**
+ * Get all cities for a given department (preserving original case)
+ * @param departmentName The department name (can be in any case)
+ * @returns Array of city names in their original case
+ */
+export const getCitiesForDepartment = async (departmentName: string): Promise<string[]> => {
+  try {
+    // First, get the department code from the name
+    const deptResponse = await fetch(`https://geo.api.gouv.fr/departements?nom=${encodeURIComponent(departmentName)}`);
+    const deptData = await deptResponse.json();
+
+    if (!deptData || deptData.length === 0) return [];
+
+    const departmentCode = deptData[0].code;
+
+    // Then get all cities for that department
+    const citiesResponse = await fetch(`https://geo.api.gouv.fr/departements/${departmentCode}/communes`);
+    const citiesData = await citiesResponse.json();
+
+    return citiesData.map((city: any) => city.nom);
+  } catch (error) {
+    return [];
+  }
+};
 
 /**
  * Sort results by relevance
  */
-
 export function sortByRelevance(results: UnifiedSearchResult[], query: string): UnifiedSearchResult[] {
-  const queryNormalized = normalizeString(query);
   const queryLower = query.toLowerCase();
 
   const getScore = (result: UnifiedSearchResult): number => {
     const name = result.displayName.toLowerCase();
-    const nameNormalized = normalizeString(result.displayName);
 
-    if (result.type === "department" && (name === queryLower || nameNormalized === queryNormalized)) return 8; // Correspondance exacte département
-    if (result.type === "city" && (name === queryLower || nameNormalized === queryNormalized)) return 7; // Correspondance exacte ville
-    if (result.type === "department" && (name.startsWith(queryLower) || nameNormalized.startsWith(queryNormalized)))
-      return 6; // Le département commence par
-    if (result.type === "city" && (name.startsWith(queryLower) || nameNormalized.startsWith(queryNormalized))) return 5; // La ville commence par
-    if (result.type === "department" && (name.includes(queryLower) || nameNormalized.includes(queryNormalized)))
-      return 4; // Le département contient
-    if (result.type === "city" && (name.includes(queryLower) || nameNormalized.includes(queryNormalized))) return 3; // La ville contient
+    if (result.type === "department" && name === queryLower) return 8; // Correspondance exacte département
+    if (result.type === "city" && name === queryLower) return 7; // Correspondance exacte ville
+    if (result.type === "department" && name.startsWith(queryLower)) return 6; // Le département commence par
+    if (result.type === "city" && name.startsWith(queryLower)) return 5; // La ville commence par
+    if (result.type === "department" && name.includes(queryLower)) return 4; // Le département contient
+    if (result.type === "city" && name.includes(queryLower)) return 3; // La ville contient
     return 0;
   };
 

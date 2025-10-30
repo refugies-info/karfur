@@ -13,6 +13,7 @@ export type Results = {
 export type SearchQuery = {
   search: string;
   departments: string[];
+  cities: string[];
   themes: Id[];
   needs: Id[];
   age: AgeOptions[];
@@ -39,6 +40,7 @@ const initialSearchResultsState: SearchResultsState = {
   query: {
     search: "",
     departments: [],
+    cities: [],
     themes: [],
     needs: [],
     age: [],

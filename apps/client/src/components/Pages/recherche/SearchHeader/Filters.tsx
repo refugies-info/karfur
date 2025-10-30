@@ -109,8 +109,8 @@ const Filters = (props: Props) => {
   }, [t, themeDisplayedValue]);
 
   // LOCATION
-  const resetDepartment = useCallback(() => {
-    dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
+  const resetLocation = useCallback(() => {
+    dispatch(addToQueryActionCreator({ departments: [], cities: [], sort: "default" }));
     announce(t("Recherche.departmentsCleared", "Filtre de localité effacé"));
   }, [dispatch, announce, t]);
 
@@ -188,7 +188,7 @@ const Filters = (props: Props) => {
             label={locationLabel}
             externalMenu={{
               value: decodedDepartments,
-              reset: resetDepartment,
+              reset: resetLocation,
               menu: <LocationMenu />,
             }}
             gaType="department"
