@@ -67,7 +67,8 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
       if (dep === "france" || dep === "online" || dep.includes(" - ")) return dep;
       return new RegExp(` \\- ${escapeRegExp(dep)}$`, "i");
     });
-    match["metadatas.location"] = { $in: tokensOrRegexes };
+    // Fiches "toute la france" should always appear when filtering by department
+    match["metadatas.location"] = { $in: [...tokensOrRegexes, "france"] };
   }
 
   const themes = (queryParams.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
