@@ -111,7 +111,7 @@ const Filters = (props: Props) => {
   // LOCATION
   const resetLocation = useCallback(() => {
     dispatch(addToQueryActionCreator({ departments: [], cities: [], sort: "default" }));
-    announce(t("Recherche.departmentsCleared", "Filtre de localité effacé"));
+    announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
   }, [dispatch, announce, t]);
 
   const { isTablet } = useWindowSize();
@@ -137,7 +137,7 @@ const Filters = (props: Props) => {
 
   const locationLabel = useMemo(() => {
     if (decodedDepartments.length === 0) {
-      return t("Recherche.filterLocation", "Localité");
+      return t("Recherche.filterLocation", "Localisation");
     }
 
     const firstDepartment = decodedDepartments[0];

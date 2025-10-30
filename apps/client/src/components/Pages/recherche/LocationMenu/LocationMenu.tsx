@@ -216,7 +216,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
 
           // Announce when clearing last department
           if (updatedDepartments.length === 0) {
-            announce(t("Recherche.departmentsCleared", "Filtre de localité effacé"));
+            announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
           }
         } else {
           // When adding a department
@@ -382,7 +382,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     return (
       <>
         <Checkbox
-          legend={t("Recherche.selectedLocations", "Localités sélectionnées")}
+          legend={t("Recherche.selectedLocations", "Localisations sélectionnées")}
           className="border-default-grey !mb-0 w-full"
           options={selectedLocations}
         />
