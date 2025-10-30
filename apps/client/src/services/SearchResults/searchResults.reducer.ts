@@ -13,7 +13,7 @@ export type Results = {
 export type SearchQuery = {
   search: string;
   departments: string[];
-  cities: string[];
+  cities?: string[];
   themes: Id[];
   needs: Id[];
   age: AgeOptions[];
