@@ -15,7 +15,13 @@
       "name": "Next.js: debug full stack",
       "type": "node-terminal",
       "request": "launch",
-      "command": "pnpm dev --filter @refugies-info/server --filter @refugies-info/client --filter @refugies-info/ui"
+      "command": "pnpm dev --filter @refugies-info/server --filter @refugies-info/client --filter @refugies-info/ui",
+      "serverReadyAction": {
+        "pattern": "- Local:.+(https?://.+)",
+        "uriFormat": "%s",
+        "action": "debugWithChrome",
+        "webRoot": "${workspaceFolder}/apps/client"
+      }
     },
     {
       "name": "Debug server",
