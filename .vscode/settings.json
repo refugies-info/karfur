@@ -50,5 +50,7 @@
     "typescriptreact": "javascript",
     "html": "html"
   },
-  "tailwindCSS.emmetCompletions": true
+  "tailwindCSS.emmetCompletions": true,
+  "debug.javascript.autoAttachFilter": "disabled"
+
 }
