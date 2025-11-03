@@ -130,22 +130,26 @@ const PlanDuSite = () => {
         {
           id: "accessibility",
           label: t("sitemap.links.accessibility", "Déclaration d'accessibilité"),
-          href: "/accessibilite",
+          href: "/declaration-accessibilite",
+          isExternal: true,
         },
         {
           id: "legalNotice",
           label: t("sitemap.links.legalNotice", "Mentions légales"),
           href: "/mentions-legales",
+          isExternal: true,
         },
         {
-          id: "personalData",
-          label: t("sitemap.links.personalData", "Données personnelles"),
-          href: "/donnees-personnelles",
+          id: "privacyPolicy",
+          label: t("sitemap.links.privacyPolicy", "Politique de confidentialité"),
+          href: "/politique-de-confidentialite",
+          isExternal: true,
         },
         {
           id: "statistics",
           label: t("sitemap.links.statistics", "Statistiques"),
-          href: "/statistiques",
+          href: "https://kit.refugies.info/stats/",
+          isExternal: true,
         },
       ],
     },
@@ -156,7 +160,7 @@ const PlanDuSite = () => {
         {
           id: "youtube",
           label: t("sitemap.links.youtube", "Chaîne YouTube"),
-          href: "https://www.youtube.com/refugiesinfo",
+          href: "https://www.youtube.com/channel/UCdj-KP_whcRiS5XWoAa8HXw",
           isExternal: true,
         },
         {
@@ -168,13 +172,13 @@ const PlanDuSite = () => {
         {
           id: "linkedin",
           label: t("sitemap.links.linkedin", "LinkedIn"),
-          href: "https://www.linkedin.com/company/refugies-info",
+          href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s-info/",
           isExternal: true,
         },
         {
           id: "instagram",
           label: t("sitemap.links.instagram", "Instagram"),
-          href: "https://www.instagram.com/refugies_info/",
+          href: "https://www.instagram.com/refugies.info",
           isExternal: true,
         },
       ],
