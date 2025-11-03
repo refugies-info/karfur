@@ -6,7 +6,7 @@ export type BreadcrumbSegment = {
   linkProps: {
     href: string;
     className?: string;
-    [key: string]: any;
+    [key: string]: string | undefined;
   };
 };
 
