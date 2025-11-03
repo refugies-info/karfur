@@ -104,18 +104,9 @@ const PolitiqueConfidentialite = () => {
   );
 };
 
-PolitiqueConfidentialite.getLayout = (page: ReactElement) => {
-  return (
-    <LegalPagesLayout
-      BreadcrumbProps={{
-        segments: [],
-        currentPageLabel: "Politique de confidentialité",
-      }}
-    >
-      {page}
-    </LegalPagesLayout>
-  );
-};
+PolitiqueConfidentialite.getLayout = (page: ReactElement) => (
+  <LegalPagesLayout title="Politique de confidentialité">{page}</LegalPagesLayout>
+);
 export const getStaticProps = defaultStaticProps;
 
 export default PolitiqueConfidentialite;

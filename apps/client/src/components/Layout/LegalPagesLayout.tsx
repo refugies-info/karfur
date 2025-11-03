@@ -7,15 +7,16 @@ import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 interface LegalPagesLayoutProps {
   children: React.ReactNode;
   history?: string[];
-  BreadcrumbProps?: Omit<UIBreadcrumbProps, "className">;
+  title: string;
+  BreadcrumbProps?: Omit<UIBreadcrumbProps, "className" | "currentPageLabel">;
 }
 
 export default function LegalPagesLayout({
   children,
   history = [],
+  title,
   BreadcrumbProps = {
     segments: [],
-    currentPageLabel: "",
   },
 }: LegalPagesLayoutProps) {
   const router = useRouter();
@@ -26,13 +27,7 @@ export default function LegalPagesLayout({
       <div>
         <HelpNotice className="w-screen" />
         <div className="fr-container w-full">
-          {BreadcrumbProps && (
-            <Breadcrumb
-              className="w-full"
-              segments={BreadcrumbProps.segments || []}
-              currentPageLabel={BreadcrumbProps.currentPageLabel || ""}
-            />
-          )}
+          <Breadcrumb className="w-full" segments={BreadcrumbProps.segments} currentPageLabel={title} />
           <main className="mx-auto mb-10 w-full max-w-3xl">{children}</main>
         </div>
       </div>

@@ -1,8 +1,7 @@
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
-import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";
 
@@ -22,7 +21,6 @@ interface SitemapSection {
 }
 
 const PlanDuSite = () => {
-  const locale = useLocale();
   const { t } = useTranslation();
 
   const sitemapData: SitemapSection[] = [
@@ -64,7 +62,7 @@ const PlanDuSite = () => {
         {
           id: "localDevices",
           label: t("sitemap.links.localDevices", "Dispositifs locaux"),
-          href: "/publier",
+          href: "/recherche?type=dispositif",
           isExternal: true,
         },
         {
@@ -94,7 +92,7 @@ const PlanDuSite = () => {
             {
               id: "orderPosters",
               label: t("sitemap.links.orderPosters", "Commander des affiches et dépliants"),
-              href: "https://kit.refugies.info/presse/",
+              href: "https://kit.refugies.info/flyers/",
               isExternal: true,
             },
             {
@@ -235,21 +233,19 @@ const PlanDuSite = () => {
   );
 };
 
-PlanDuSite.getLayout = (page: ReactElement) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+/**
+ * Dedicated layout component that handles translations and page title.
+ * Separated from main component to ensure proper hook usage and improve maintainability.
+ * This pattern is used because Next.js page components require special handling for hooks in getLayout.
+ */
+const PlanDuSiteLayout = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation();
-
-  return (
-    <LegalPagesLayout
-      BreadcrumbProps={{
-        segments: [],
-        currentPageLabel: t("sitemap.title", "Plan du site"),
-      }}
-    >
-      {page}
-    </LegalPagesLayout>
-  );
+  return <LegalPagesLayout title={t("sitemap.title", "Plan du site")}>{children}</LegalPagesLayout>;
 };
+
+// Using Next.js layout pattern with a separate component to avoid hook usage in static method
+// This ensures proper React hooks behavior and server-side rendering compatibility
+PlanDuSite.getLayout = (page: ReactElement) => <PlanDuSiteLayout>{page}</PlanDuSiteLayout>;
 
 export const getStaticProps = defaultStaticProps;
 

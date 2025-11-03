@@ -84,18 +84,9 @@ const MentionsLegales = () => {
   );
 };
 
-MentionsLegales.getLayout = (page: ReactElement) => {
-  return (
-    <LegalPagesLayout
-      BreadcrumbProps={{
-        segments: [],
-        currentPageLabel: "Mentions légales",
-      }}
-    >
-      {page}
-    </LegalPagesLayout>
-  );
-};
+MentionsLegales.getLayout = (page: ReactElement) => (
+  <LegalPagesLayout title="Mentions légales">{page}</LegalPagesLayout>
+);
 export const getStaticProps = defaultStaticProps;
 
 export default MentionsLegales;
