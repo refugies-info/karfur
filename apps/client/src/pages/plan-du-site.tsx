@@ -1,7 +1,7 @@
-import { Breadcrumb } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import SEO from "~/components/Seo";
+import { ReactElement } from "react";
+import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
 import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";
@@ -204,38 +204,50 @@ const PlanDuSite = () => {
   };
 
   return (
-    <div className="fr-container w-full">
-      <SEO title={t("sitemap.title", "Plan du site")} />
-      <Breadcrumb className="w-full" segments={[]} currentPageLabel={t("sitemap.title", "Plan du site")} />
-      <main className="mx-auto mb-10 w-full max-w-3xl">
-        <h1 className="mb-8 md:mb-20">{t("sitemap.title", "Plan du site")}</h1>
+    <>
+      <h1 className="mb-8 md:mb-20">{t("sitemap.title", "Plan du site")}</h1>
 
-        <div className="space-y-10 md:space-y-20">
-          {sitemapData.map((section) => (
-            <div key={section.id} className="border-default-grey border p-4 md:p-10">
-              <h2>{section.title}</h2>
+      <div className="space-y-10 md:space-y-20">
+        {sitemapData.map((section) => (
+          <div key={section.id} className="border-default-grey border p-4 md:p-10">
+            <h2>{section.title}</h2>
 
-              <ul className="space-y-2">
-                {section.links.map((link) => (
-                  <li key={link.id} className="text-base">
-                    {renderLink(link)}
-                    {link.children && (
-                      <ul className="mb-0 space-y-2">
-                        {link.children.map((childLink) => (
-                          <li key={childLink.id} className="text-base">
-                            {renderLink(childLink)}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+            <ul className="space-y-2">
+              {section.links.map((link) => (
+                <li key={link.id} className="text-base">
+                  {renderLink(link)}
+                  {link.children && (
+                    <ul className="mb-0 space-y-2">
+                      {link.children.map((childLink) => (
+                        <li key={childLink.id} className="text-base">
+                          {renderLink(childLink)}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+PlanDuSite.getLayout = (page: ReactElement) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { t } = useTranslation();
+
+  return (
+    <LegalPagesLayout
+      BreadcrumbProps={{
+        segments: [],
+        currentPageLabel: t("sitemap.title", "Plan du site"),
+      }}
+    >
+      {page}
+    </LegalPagesLayout>
   );
 };
 
