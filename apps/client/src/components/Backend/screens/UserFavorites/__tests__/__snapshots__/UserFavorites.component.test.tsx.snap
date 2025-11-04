@@ -445,36 +445,46 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
       class="cards"
     >
       <div>
-        <div
-          class="wrapper"
+        <article
+          aria-labelledby="id1"
+          class="[object Object]"
         >
+          <a
+            class="absolute inset-0"
+            href="/dispositif/id1"
+          >
+            tinfo1
+          </a>
+          <p
+            class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
+            id="fr-badge-:r0:"
+          >
+            Lieu d'action
+          </p>
           <div
-            class="fr-card fr-enlarge-link container"
+            class="[object Object]"
           >
             <div
-              class="fr-card__body body"
+              class="[object Object]"
             >
               <div
-                class="fr-card__content content"
+                class="[object Object]"
               >
                 <div
                   class="text"
                 >
                   <h3
                     class="fr-card__title"
+                    id="id1"
                   >
-                    <a
-                      href="/dispositif/id1"
+                    <span
+                      class="[object Object]"
                     >
-                      <span
-                        class="title three_lines"
-                      >
-                        tinfo1
-                      </span>
-                    </a>
+                      tinfo1
+                    </span>
                   </h3>
                   <p
-                    class="fr-card__desc desc"
+                    class="[object Object]"
                   >
                     abstract1
                   </p>
@@ -501,19 +511,19 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   <div
                     class="mb-2 flex gap-2"
                   >
-                    <div
+                    <span
                       class="container theme-badge"
                       style="background-color: rgb(214, 205, 228);"
                     >
                       Français
-                    </div>
+                    </span>
                   </div>
                 </div>
                 <div
                   class="end"
                 >
                   <div
-                    class="info flex gap-2"
+                    class="[object Object]"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -540,65 +550,51 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   width="280"
                 />
               </div>
-              <ul
-                class="fr-badges-group"
-              >
-                <li>
-                  <p
-                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                    id="fr-badge-:r0:"
-                  >
-                    Lieu d'action
-                  </p>
-                </li>
-              </ul>
             </div>
           </div>
-          <button
-            class="btn active favorite btn btn-secondary"
-            title="Dispositif.removeFromFavorites"
-            type="button"
-          >
-            <i
-              class="fr-icon-star-fill"
-            />
-            <span>
-              Dispositif.removeFromFavorites
-            </span>
-          </button>
-        </div>
+        </article>
       </div>
       <div>
-        <div
-          class="wrapper"
+        <article
+          aria-labelledby="id2"
+          class="[object Object]"
         >
+          <a
+            class="absolute inset-0"
+            href="/dispositif/id2"
+          >
+            tinfo2
+          </a>
+          <p
+            class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
+            id="fr-badge-:r1:"
+          >
+            Lieu d'action
+          </p>
           <div
-            class="fr-card fr-enlarge-link container"
+            class="[object Object]"
           >
             <div
-              class="fr-card__body body"
+              class="[object Object]"
             >
               <div
-                class="fr-card__content content"
+                class="[object Object]"
               >
                 <div
                   class="text"
                 >
                   <h3
                     class="fr-card__title"
+                    id="id2"
                   >
-                    <a
-                      href="/dispositif/id2"
+                    <span
+                      class="[object Object]"
                     >
-                      <span
-                        class="title three_lines"
-                      >
-                        tinfo2
-                      </span>
-                    </a>
+                      tinfo2
+                    </span>
                   </h3>
                   <p
-                    class="fr-card__desc desc"
+                    class="[object Object]"
                   >
                     abstract2
                   </p>
@@ -625,19 +621,19 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   <div
                     class="mb-2 flex gap-2"
                   >
-                    <div
+                    <span
                       class="container theme-badge"
                       style="background-color: rgb(202, 190, 187);"
                     >
                       Administratif
-                    </div>
+                    </span>
                   </div>
                 </div>
                 <div
                   class="end"
                 >
                   <div
-                    class="info flex gap-2"
+                    class="[object Object]"
                   />
                   <i
                     class="fr-icon-arrow-right-line"
@@ -664,65 +660,51 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   width="280"
                 />
               </div>
-              <ul
-                class="fr-badges-group"
-              >
-                <li>
-                  <p
-                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_department"
-                    id="fr-badge-:r1:"
-                  >
-                    Lieu d'action
-                  </p>
-                </li>
-              </ul>
             </div>
           </div>
-          <button
-            class="btn active favorite btn btn-secondary"
-            title="Dispositif.removeFromFavorites"
-            type="button"
-          >
-            <i
-              class="fr-icon-star-fill"
-            />
-            <span>
-              Dispositif.removeFromFavorites
-            </span>
-          </button>
-        </div>
+        </article>
       </div>
       <div>
-        <div
-          class="wrapper"
+        <article
+          aria-labelledby="id3"
+          class="[object Object]"
         >
+          <a
+            class="absolute inset-0"
+            href="/demarche/id3"
+          >
+            tinfo3
+          </a>
+          <p
+            class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
+            id="fr-badge-:r2:"
+          >
+            Dispositif.demarche
+          </p>
           <div
-            class="fr-card fr-enlarge-link container"
+            class="[object Object]"
           >
             <div
-              class="fr-card__body body"
+              class="[object Object]"
             >
               <div
-                class="fr-card__content content"
+                class="[object Object]"
               >
                 <div
                   class="text"
                 >
                   <h3
                     class="fr-card__title"
+                    id="id3"
                   >
-                    <a
-                      href="/demarche/id3"
+                    <span
+                      class="[object Object]"
                     >
-                      <span
-                        class="title three_lines"
-                      >
-                        tinfo3
-                      </span>
-                    </a>
+                      tinfo3
+                    </span>
                   </h3>
                   <p
-                    class="fr-card__desc desc"
+                    class="[object Object]"
                   >
                     abstract3
                   </p>
@@ -749,12 +731,12 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   <div
                     class="mb-2 flex gap-2"
                   >
-                    <div
+                    <span
                       class="container theme-badge"
                       style="background-color: rgb(193, 227, 242);"
                     >
                       Logement
-                    </div>
+                    </span>
                   </div>
                 </div>
                 <div
@@ -785,33 +767,9 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   width="280"
                 />
               </div>
-              <ul
-                class="fr-badges-group"
-              >
-                <li>
-                  <p
-                    class="fr-badge fr-badge--sm fr-badge--no-icon badge_demarche"
-                    id="fr-badge-:r2:"
-                  >
-                    Dispositif.demarche
-                  </p>
-                </li>
-              </ul>
             </div>
           </div>
-          <button
-            class="btn active favorite btn btn-secondary"
-            title="Dispositif.removeFromFavorites"
-            type="button"
-          >
-            <i
-              class="fr-icon-star-fill"
-            />
-            <span>
-              Dispositif.removeFromFavorites
-            </span>
-          </button>
-        </div>
+        </article>
       </div>
     </div>
   </div>
