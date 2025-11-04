@@ -12,18 +12,14 @@ const NotFound = () => {
   return (
     <>
       <SEO title={t("404.title", "Erreur 404")} />
-      <div className="bg-alt-blue-france grid w-full items-center justify-center">
-        <div className="flex flex-col items-center">
-          <h1 className="text-center">{t("404.title", "Erreur 404")}</h1>
-          <p className="text-center">
-            {t("404.text1", "Oups, un problème est survenu.")} <br />{" "}
-            {t("404.text2", "Veuillez réessayer ou revenez dans quelques minutes.")}
-          </p>
-          <Button className="m-auto" linkProps={{ href: "/" }} iconId="ri-home-4-line" iconPosition="right">
-            {t("404.cta", "Retour à la page d’accueil")}
-          </Button>
-          <Image className="mt-10 md:mt-20" src="/images/404/illustration_404.svg" alt="" width={316} height={224} />
-        </div>
+      <div className="flex flex-col items-center">
+        <h1 className="text-center">{t("404.title", "Erreur 404")}</h1>
+        <p className="mb-0 text-center">{t("404.text1", "Oups, un problème est survenu.")} </p>
+        <p className="text-center">{t("404.text2", "Le lien est peut-être incorrect ou la page a été déplacée.")}</p>
+        <Button className="m-auto" linkProps={{ href: "/" }} iconId="ri-home-4-line" iconPosition="right">
+          {t("404.cta", "Retour à la page d’accueil")}
+        </Button>
+        <Image className="mt-10 md:mt-20" src="/images/404/illustration_404.svg" alt="" width={316} height={224} />
       </div>
     </>
   );

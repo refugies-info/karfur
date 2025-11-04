@@ -788,7 +788,7 @@
   "404": {
     "title": "Erreur 404",
     "text1": "Oups, un problème est survenu.",
-    "text2": "Veuillez réessayer ou revenez dans quelques minutes.",
+    "text2": "Le lien est peut-être incorrect ou la page a été déplacée.",
     "cta": "Retour à la page d’accueil"
   },
   "sitemap": {
