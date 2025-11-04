@@ -785,6 +785,45 @@
     "navbarItem8": "Voir les statistiques",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
   },
+  "sitemap": {
+    "title": "Plan du site",
+    "sections": {
+      "mainNavigation": "Navigation principale",
+      "quickLinks": "Liens d'accès rapide",
+      "socialNetworks": "Réseaux sociaux"
+    },
+    "links": {
+      "home": "Accueil",
+      "findInformation": "Trouver de l'information",
+      "publishSheet": "Publier une fiche",
+      "translateSheet": "Traduire une fiche",
+      "login": "Connexion",
+      "procedures": "Fiches démarches",
+      "localDevices": "Dispositifs locaux",
+      "act": "AGIR",
+      "missionImpact": "Mission et impact",
+      "freeResources": "Ressources gratuites",
+      "communicationKit": "Kit de communication",
+      "orderPosters": "Commander des affiches et dépliants",
+      "forPress": "Pour la presse",
+      "forAmbassadors": "Pour les ambassadeurs",
+      "forUkraine": "Pour l'Ukraine",
+      "installApp": "Installer l'application",
+      "helpCenter": "Centre d'aide",
+      "accessibility": "Déclaration d'accessibilité",
+      "legalNotice": "Mentions légales",
+      "privacyPolicy": "Politique de confidentialité",
+      "statistics": "Statistiques",
+      "youtube": "Chaîne YouTube",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "signup": "Inscription",
+      "postersLeaflets": "Affiches et dépliants",
+      "talkAboutUs": "Parler de nous",
+      "translate": "Traduire"
+    }
+  },
   "ui": {
     "carrouselSeemore": "Voir tout",
     "carrouselPrev": "Faire défiler à gauche",
