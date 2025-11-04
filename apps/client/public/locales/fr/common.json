@@ -39,7 +39,8 @@
     "ressourcesImgAlt": "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
     "resourcesCTA": "Voir les outils",
     "webinaireCTA": "Participer à un webinaire",
-    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !"
+    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
+    "StructuresLogosVocalisation": "Nos partenaires :"
   },
   "Recherche": {
     "pageTitle": "Recherche",
@@ -283,7 +284,9 @@
     "freeApp": "Application gratuite",
     "downloadAppButton": "Télécharger",
     "more_1_year": "Mise à jour il y a plus d’un an",
-    "toastShareCopied": "Lien copié !"
+    "toastShareCopied": "Lien copié !",
+    "themeName": "Thématique {{title}}",
+    "themeOthers": "et {{count}} autres thématiques"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",
@@ -826,8 +829,9 @@
   },
   "ui": {
     "carrouselSeemore": "Voir tout",
-    "carrouselPrev": "Faire défiler à gauche",
-    "carrouselNext": "Faire défiler à droite",
+    "carrouselPrev": "Faire défiler la liste à gauche",
+    "carrouselNext": "Faire défiler la liste à droite",
+    "countSeparator": "sur",
     "northStar_title": "Cette page est-elle utile ? ✨",
     "northStar_no": "Non",
     "northStar_yes": "Oui",
