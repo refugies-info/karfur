@@ -100,16 +100,11 @@ const Text = (props: Props) => {
           return <div key={`text-${index}`} dangerouslySetInnerHTML={{ __html: textSegment.content }} />;
         } else if (segment.type === "callout") {
           const calloutSegment = segment as CalloutSegment;
-          const iconId = calloutSegment.calloutType === "important" ? "fr-icon-warning-fill" : "ri-information-line";
 
           return (
-            <CallOut
-              key={`callout-${calloutSegment.calloutType}-${index}`}
-              title={calloutSegment.title}
-              iconId={iconId}
-              colorVariant={calloutSegment.calloutType === "important" ? "yellow-tournesol" : "blue-cumulus"}
-            >
-              <span className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
+            <CallOut key={`callout-${calloutSegment.calloutType}-${index}`} className="p-4 ps-6">
+              <b className="mb-2 block text-xl">{calloutSegment.title}</b>
+              <div className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
             </CallOut>
           );
         }
