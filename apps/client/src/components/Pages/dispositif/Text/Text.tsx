@@ -1,6 +1,6 @@
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
 import { useTranslation } from "next-i18next";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { cn } from "~/lib/classname";
 import {
   CalloutSegment,
@@ -29,12 +29,59 @@ const Text = (props: Props) => {
     setHasMounted(true);
   }, []);
 
-  const convertedContent = props.html
-    ? translationParsing(props.children || "", [
-        { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
-        { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
-      ])
-    : props.children;
+  // Wrap content of li elements with value attribute in a div
+  const transformListItems = (html: string): string => {
+    if (typeof window === "undefined" || typeof window.DOMParser === "undefined") {
+      return html;
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const listItems = doc.querySelectorAll("li[value]");
+
+    listItems.forEach((li) => {
+      const firstElement = li.firstElementChild;
+      const hasOnlyWhitespaceTextNodes = Array.from(li.childNodes).every((node) => {
+        if (node.nodeType !== Node.TEXT_NODE) {
+          return true;
+        }
+        return node.textContent?.trim() === "";
+      });
+
+      if (
+        firstElement?.tagName.toLowerCase() === "div" &&
+        Array.from(li.children).length === 1 &&
+        hasOnlyWhitespaceTextNodes
+      ) {
+        return;
+      }
+
+      const wrapper = doc.createElement("div");
+      while (li.firstChild) {
+        wrapper.appendChild(li.firstChild);
+      }
+      li.appendChild(wrapper);
+    });
+
+    return doc.body.innerHTML;
+  };
+
+  const convertedContent = useMemo(() => {
+    if (!props.html) {
+      return props.children;
+    }
+
+    const translated = translationParsing(props.children || "", [
+      { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
+      { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
+    ]);
+
+    if (!hasMounted) {
+      return translated;
+    }
+
+    return transformListItems(translated);
+  }, [hasMounted, props.children, props.html, t]);
 
   // Use simple content for server-side rendering or before mounting
   const { contentSegments } =
