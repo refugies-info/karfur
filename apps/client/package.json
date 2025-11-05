@@ -130,7 +130,7 @@
     "@types/react-dom": "18.3.5",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-mock-store": "^1.0.3",
-    "@types/sortablejs": "^1.13.0",
+    "@types/sortablejs": "^1.15.9",
     "@types/uuid": "^10.0.0",
     "cssnano": "^7.1.1",
     "csvtojson": "^2.0.14",
