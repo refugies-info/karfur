@@ -1,3 +1,18 @@
+/**
+ * PRODUCTION COUNT DISABLING FEATURE - REMOVAL GUIDE
+ *
+ * Related file: /apps/client/src/components/Pages/recherche/ResultsFilter/ResultsFilter.tsx
+ *
+ * To remove the count disabling feature on production:
+ * 1. Delete line 76: const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
+ * 2. Line ~184: Change "const isDisabled = isProduction ? false : option.count === 0;" to "const isDisabled = option.count === 0;"
+ * 3. Line ~250: Change "{!isProduction && <div className={styles.count}>...}" to "<div className={styles.count}>..."
+ * 4. Line ~254: Remove "{!isProduction && (" wrapper around Tooltip component
+ * 5. Line ~310: Change "const isDisabled = isProduction ? false : option.count === 0;" to "const isDisabled = option.count === 0;"
+ * 6. Line ~323: Change "{!isProduction && <div className={styles.count}>...}" to "<div className={styles.count}>..."
+ * 7. Line ~325: Remove "{!isProduction && (" wrapper around Tooltip component
+ */
+
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
@@ -73,6 +88,7 @@ const Filter = ({
   className,
   autoFocus,
 }: Props) => {
+  const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
   const { t } = useTranslation() as { t: TranslationFunction };
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -141,7 +157,9 @@ const Filter = ({
     const querySelected = processedMenuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
     if (Array.isArray(querySelected)) {
       return querySelected.map((selected) => {
-        const val = processedMenuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
+        const val = processedMenuItems
+          .flatMap((item) => item.options.find((a) => a.key === selected)?.value)
+          .filter(Boolean);
         return val.length > 0 ? t(val[0] as any) : null;
       });
     }
@@ -176,7 +194,7 @@ const Filter = ({
                     {item.options.map((option, o) => {
                       const currentmenu = menuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
-                      const isDisabled = option.count === 0;
+                      const isDisabled = isProduction ? false : option.count === 0;
                       return (
                         <span key={option.key}>
                           <input
@@ -227,7 +245,7 @@ const Filter = ({
                         {item.options.map((option, o) => {
                           const currentmenu = menuItems[i];
                           const isSelected = currentmenu.selected.includes(option.key);
-                          const isDisabled = option.count === 0;
+                          const isDisabled = isProduction ? false : option.count === 0;
                           return (
                             <>
                               <Checkbox
@@ -244,11 +262,13 @@ const Filter = ({
                                 <div onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                                   {currentmenu.translateOptions ? t(option.value) : option.value}
                                 </div>
-                                <div className={styles.count}>{option.count ?? ""}</div>
+                                {!isProduction && <div className={styles.count}>{option.count ?? ""}</div>}
                               </Checkbox>
-                              <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                                <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                              </Tooltip>
+                              {!isProduction && (
+                                <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                                  <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                                </Tooltip>
+                              )}
                             </>
                           );
                         })}
@@ -302,7 +322,7 @@ const Filter = ({
                     item.options.map((option, o) => {
                       const currentmenu = processedMenuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
-                      const isDisabled = option.count === 0;
+                      const isDisabled = isProduction ? false : option.count === 0;
                       return (
                         <div key={o} className={cls(styles.item, currentmenu.menuItemStyles)}>
                           <>
@@ -315,11 +335,13 @@ const Filter = ({
                               <div className={styles.label}>
                                 {currentmenu.translateOptions ? t(option.value) : option.value}
                               </div>
-                              <div className={styles.count}>{option.count ?? ""}</div>
+                              {!isProduction && <div className={styles.count}>{option.count ?? ""}</div>}
                             </Checkbox>
-                            <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
-                              <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                            </Tooltip>
+                            {!isProduction && (
+                              <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                                <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
+                              </Tooltip>
+                            )}
                           </>
                         </div>
                       );
