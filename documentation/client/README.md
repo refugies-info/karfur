@@ -100,7 +100,7 @@ Follow the [technical standards](general.md) to keep the codebase clean.
 
 Here are some more specific guides:
 
-- [component architecture](component-architecture.md)
+- [component composition](component-composition.md)
 - [routing](routing.md)
 - [styling](styling.md)
 
