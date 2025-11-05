@@ -785,6 +785,12 @@
     "navbarItem8": "Voir les statistiques",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
   },
+  "404": {
+    "title": "Erreur 404",
+    "text1": "Oups, un problème est survenu.",
+    "text2": "Le lien est peut-être incorrect ou la page a été déplacée.",
+    "cta": "Retour à la page d’accueil"
+  },
   "sitemap": {
     "title": "Plan du site",
     "sections": {
