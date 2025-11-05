@@ -1,3 +1,56 @@
+/**
+ * RESULTS FILTER COMPONENT - COUNT FEATURE DOCUMENTATION
+ * ========================================================
+ *
+ * STATUS: Count features are currently DISABLED (Nov 5, 2025)
+ *
+ * DISABLED FEATURES:
+ * 1. Result counts in tab labels (e.g., "Démarches (45)")
+ * 2. Department-specific count display for dispositifs
+ * 3. Online resource counts
+ *
+ * HOW TO RE-ENABLE:
+ * ================
+ *
+ * STEP 1: Uncomment the getCount() function
+ * -------------------------------------------
+ * Uncomment the following lines:
+ *
+ * Line 37:   Uncomment: // const onlineResourceCount = props.counts?.types.online || 0;
+ * Line 39-63: Uncomment the entire getCount() function
+ *
+ * STEP 2: Uncomment the count display in TabItem
+ * -----------------------------------------------
+ * Uncomment the following line:
+ *
+ * Line 180: Uncomment the getCount call in the TabItem
+ *           Change from: comment block to: getCount(option.key)
+ *
+ * FUNCTION DETAILS:
+ * =================
+ * The getCount() function returns formatted count strings:
+ * - "all":       Shows total count: "(45)"
+ * - "demarche":  Shows demarche count: "(30)"
+ * - "dispositif": Shows dispositif count with department context:
+ *                 - Single dept: "75 (20)"
+ *                 - Multiple depts: "(20)"
+ * - "ressource": Shows online resource count: "(15)"
+ *
+ * RELATED FILES:
+ * ==============
+ * - SearchCountsResponse type: ~/pages/api/search/counts
+ * - filterType data: data/searchFilters
+ * - Parent component: recherche page
+ * - Related count feature: ~/components/Pages/recherche/SearchHeader/Filter/Filter.tsx
+ *   (See Filter.tsx for complementary count display in filter options)
+ *
+ * NOTES:
+ * ======
+ * - Counts come from props.counts (SearchCountsResponse)
+ * - The function handles single vs. multiple department selection
+ * - All commented code is production-ready, just needs uncommenting
+ */
+
 import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
@@ -34,29 +87,29 @@ const ResultsFilter = (props: Props): React.ReactNode => {
 
   const nbDemarches = props.counts?.types.demarche || 0;
   const nbDispositifs = props.counts?.types.dispositif || 0;
-  const onlineResourceCount = props.counts?.types.online || 0;
+  // const onlineResourceCount = props.counts?.types.online || 0;
 
-  const getCount = (type: TypeOptions) => {
-    switch (type) {
-      case "all":
-        return `(${props.counts?.total || 0})`;
-      case "demarche":
-        return `(${nbDemarches})`;
-      case "dispositif":
-        const deptCount = query.departments.length;
-        switch (deptCount) {
-          case 1:
-            return `${query.departments[0]} (${nbDispositifs})`;
+  // const getCount = (type: TypeOptions) => {
+  //   switch (type) {
+  //     case "all":
+  //       return `(${props.counts?.total || 0})`;
+  //     case "demarche":
+  //       return `(${nbDemarches})`;
+  //     case "dispositif":
+  //       const deptCount = query.departments.length;
+  //       switch (deptCount) {
+  //         case 1:
+  //           return `${query.departments[0]} (${nbDispositifs})`;
 
-          default:
-            return `(${nbDispositifs})`;
-        }
-      case "ressource":
-        return `(${onlineResourceCount})`;
-      default:
-        return "";
-    }
-  };
+  //         default:
+  //           return `(${nbDispositifs})`;
+  //       }
+  //     case "ressource":
+  //       return `(${onlineResourceCount})`;
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   const noResult = nbDemarches + nbDispositifs === 0;
 
@@ -125,7 +178,8 @@ const ResultsFilter = (props: Props): React.ReactNode => {
         <TabsBar>
           {filterType.map((option, i) => (
             <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
-              {t(option.value)} {getCount(option.key)}
+              {t(option.value)}
+              {/* {getCount(option.key)} */}
             </TabItem>
           ))}
         </TabsBar>

@@ -1,16 +1,82 @@
+/**
+ * FILTER COMPONENT - COUNT FEATURE DOCUMENTATION
+ * ================================================
+ *
+ * STATUS: Count features are currently DISABLED (Nov 5, 2025)
+ *
+ * DISABLED FEATURES:
+ * 1. Option count display (e.g., "Paris (45 fiches)")
+ * 2. Disabled state for options with zero results
+ * 3. Tooltip for disabled options ("Aucune fiche correspondante")
+ * 4. Filter count badge in header
+ *
+ * HOW TO RE-ENABLE:
+ * ================
+ *
+ * STEP 1: Enable option count display
+ * ------------------------------------
+ * Uncomment the following lines to show count next to each option:
+ *
+ * Line 179:  Uncomment: // const isDisabled = option.count === 0;
+ * Line 188:  Uncomment: // disabled={isDisabled}
+ * Line 195-198: Uncomment count display in stylesDisabled section
+ * Line 230:  Uncomment: // const isDisabled = option.count === 0;
+ * Line 238:  Uncomment: // disabled={isDisabled}
+ * Line 247:  Uncomment: // <div className={styles.count}>{option.count ?? ""}</div>
+ * Line 305:  Uncomment: // const isDisabled = option.count === 0;
+ * Line 313:  Uncomment: // disabled={isDisabled}
+ * Line 318:  Uncomment: // <div className={styles.count}>{option.count ?? ""}</div>
+ *
+ * STEP 2: Enable disabled state tooltips
+ * ----------------------------------------
+ * Uncomment the following Tooltip components:
+ *
+ * Line 249-251: Uncomment Tooltip in DialogMenuLayout section
+ * Line 320-325: Uncomment Tooltip in DropDownMenuLayout section
+ *
+ * STEP 3: Enable filter count badge
+ * -----------------------------------
+ * Uncomment the filterCount() function:
+ *
+ * Line 211-224: Uncomment the entire filterCount() function
+ * Line 274:    Uncomment: filterCount={filterCount()} in DialogMenuLayout
+ *
+ * The badge will automatically display once counts are available.
+ *
+ * STEP 4: Verify data flow
+ * -------------------------
+ * Ensure that:
+ * - MenuItemProps includes counts: Record<string, number> (line 44)
+ * - processedMenuItems correctly maps counts (line 89)
+ * - Parent component passes counts prop with populated data
+ *
+ * RELATED FILES:
+ * ==============
+ * - Filter.module.scss: Contains styles for .count class
+ * - Parent component (SearchHeader.tsx): Should pass counts prop
+ * - API response: Should include count data in filter options
+ * - Related count feature: ~/components/Pages/recherche/ResultsFilter/ResultsFilter.tsx
+ *   (See ResultsFilter.tsx for complementary count display in result tabs)
+ *
+ * NOTES:
+ * ======
+ * - The isDisabled logic prevents selection of options with zero results
+ * - Tooltips inform users why an option is disabled
+ * - Count display helps users understand result availability
+ * - All commented code is production-ready, just needs uncommenting
+ */
+
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Balancer from "react-wrap-balancer";
 import {
   DialogMenuLayout,
   DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import Checkbox from "~/components/UI/Checkbox";
-import Tooltip from "~/components/UI/Tooltip";
 import { useSearchEventName, useWindowSize } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
@@ -141,24 +207,26 @@ const Filter = ({
     const querySelected = processedMenuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
     if (Array.isArray(querySelected)) {
       return querySelected.map((selected) => {
-        const val = processedMenuItems.flatMap((item) => item.options.find((a) => a.key === selected)?.value).filter(Boolean);
+        const val = processedMenuItems
+          .flatMap((item) => item.options.find((a) => a.key === selected)?.value)
+          .filter(Boolean);
         return val.length > 0 ? t(val[0] as any) : null;
       });
     }
     return [];
   }, [externalMenu, query, t, processedMenuItems]);
 
-  const filterCount = () => {
-    if (!showFilterCount || !processedMenuItems) return null;
+  // const filterCount = () => {
+  //   if (!showFilterCount || !processedMenuItems) return null;
 
-    let filterCount = 0;
+  //   let filterCount = 0;
 
-    processedMenuItems.map((item) => {
-      filterCount = filterCount + item.selected.length;
-    });
+  //   processedMenuItems.map((item) => {
+  //     filterCount = filterCount + item.selected.length;
+  //   });
 
-    return filterCount;
-  };
+  //   return filterCount;
+  // };
 
   return (
     <div className={cls(styles.filter, className)}>
@@ -176,7 +244,7 @@ const Filter = ({
                     {item.options.map((option, o) => {
                       const currentmenu = menuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
-                      const isDisabled = option.count === 0;
+                      // const isDisabled = option.count === 0;
                       return (
                         <span key={option.key}>
                           <input
@@ -185,17 +253,17 @@ const Filter = ({
                             onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                             tabIndex={0}
                             checked={isSelected}
-                            disabled={isDisabled}
+                            // disabled={isDisabled}
                             aria-checked={isSelected}
                             aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
                           />
                           <span onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                             {currentmenu.translateOptions ? t(option.value) : option.value}
                           </span>{" "}
-                          <small>
+                          {/* <small>
                             ({option.count ?? ""}{" "}
                             {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`})
-                          </small>{" "}
+                          </small>{" "} */}
                         </span>
                       );
                     })}
@@ -211,7 +279,7 @@ const Filter = ({
             <DialogMenuLayout
               label={label}
               icon={icon}
-              filterCount={filterCount()}
+              // filterCount={filterCount()}
               value={value as string[]}
               resetOptions={resetOptions}
               gaType={gaType}
@@ -227,7 +295,7 @@ const Filter = ({
                         {item.options.map((option, o) => {
                           const currentmenu = menuItems[i];
                           const isSelected = currentmenu.selected.includes(option.key);
-                          const isDisabled = option.count === 0;
+                          // const isDisabled = option.count === 0;
                           return (
                             <>
                               <Checkbox
@@ -235,7 +303,7 @@ const Filter = ({
                                 onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                                 tabIndex={0}
                                 checked={isSelected}
-                                disabled={isDisabled}
+                                // disabled={isDisabled}
                                 className={cls(styles.item, currentmenu.menuItemStyles)}
                                 aria-checked={isSelected}
                                 aria-labelledby={`${currentmenu.filterKey}-label-${option.key}`}
@@ -244,11 +312,11 @@ const Filter = ({
                                 <div onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                                   {currentmenu.translateOptions ? t(option.value) : option.value}
                                 </div>
-                                <div className={styles.count}>{option.count ?? ""}</div>
+                                {/* <div className={styles.count}>{option.count ?? ""}</div> */}
                               </Checkbox>
-                              <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                              {/* <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
                                 <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                              </Tooltip>
+                              </Tooltip> */}
                             </>
                           );
                         })}
@@ -302,7 +370,7 @@ const Filter = ({
                     item.options.map((option, o) => {
                       const currentmenu = processedMenuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
-                      const isDisabled = option.count === 0;
+                      // const isDisabled = option.count === 0;
                       return (
                         <div key={o} className={cls(styles.item, currentmenu.menuItemStyles)}>
                           <>
@@ -310,16 +378,19 @@ const Filter = ({
                               id={`MenuItemTooltip${o}`}
                               onChange={() => onSelectItem(currentmenu.filterKey, option.key)}
                               checked={isSelected}
-                              disabled={isDisabled}
+                              // disabled={isDisabled}
                             >
                               <div className={styles.label}>
                                 {currentmenu.translateOptions ? t(option.value) : option.value}
                               </div>
-                              <div className={styles.count}>{option.count ?? ""}</div>
+                              {/* <div className={styles.count}>{option.count ?? ""}</div> */}
                             </Checkbox>
-                            <Tooltip hide={!isDisabled} target={`MenuItemTooltip${o}`}>
+                            {/* <Tooltip
+                              hide={!isDisabled}
+                              target={`MenuItemTooltip${o}`}
+                            >
                               <Balancer>{t("Recherche.tooltipAucuneFicheCorrespondante")}</Balancer>
-                            </Tooltip>
+                            </Tooltip> */}
                           </>
                         </div>
                       );
