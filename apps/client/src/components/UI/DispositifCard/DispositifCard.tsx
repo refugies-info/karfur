@@ -83,7 +83,6 @@ const DispositifCard = (props: Props) => {
             <div className={styles.text}>
               <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
                 <Link
-                  // className="absolute inset-0"
                   target={props.targetBlank ? "_blank" : undefined}
                   rel={props.targetBlank ? "noopener noreferrer" : undefined}
                   href={
