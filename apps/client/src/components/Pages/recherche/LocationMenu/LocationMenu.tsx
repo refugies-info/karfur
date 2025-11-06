@@ -1,19 +1,29 @@
-import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
+import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
+import { cn } from "@refugies-info/ui";
 import debounce from "lodash/debounce";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
-import { getDepartmentNameFromCode } from "~/lib/departments";
-import { filterByType } from "~/lib/recherche/filterContents";
+import { getCountDispositifsForDepartment } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
+import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
-import { getPlaceName } from "./functions";
+import {
+  getCitiesForDepartment,
+  getDepartmentForCity,
+  sortByRelevance,
+  transformDepartmentResult,
+  transformMunicipalityResult,
+  UnifiedSearchResult,
+} from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
 import styles from "./LocationMenu.module.css";
 import SearchMenuItem from "./SearchMenuItem";
+
+type ScreenReaderAnnounceOptions = NonNullable<Parameters<ReturnType<typeof useAnnounce>>[1]>;
 
 const commonPlaces = [
   { placeName: "Paris", deptNo: "75", deptName: "Paris" },
@@ -32,180 +42,363 @@ interface Props {
   mobile?: boolean;
 }
 
-const LocationMenu: React.FC<Props> = () => {
+const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
+  const searchResults = useSelector(searchResultsSelector);
+  const dispositifs = useSelector(activeDispositifsSelector);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
   const { t } = useTranslation();
-  const searchResults = useSelector(searchResultsSelector);
 
   const [locationSearch, setLocationSearch] = useState("");
-  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [suggestions, setSuggestions] = useState<UnifiedSearchResult[]>([]);
   const [pendingAnnounce, setPendingAnnounce] = useState(false);
-  const [previousDepartment, setPreviousDepartment] = useState<string>("");
-  const [previousResultsCount, setPreviousResultsCount] = useState<number>(0);
+  const previousMatchesRef = useRef(searchResults.matches);
 
-  const filteredResults = useMemo(() => {
-    return {
-      matches: searchResults.matches.filter((dispositif) => filterByType(dispositif, query.type)),
-      suggestions: searchResults.suggestions,
-    };
-  }, [query.type, searchResults]);
+  // Helper function to decode location names consistently
+  const decodeLocation = useCallback((value: string): string => {
+    if (!value) return "";
+    let decoded = value;
+    try {
+      decoded = decodeURIComponent(value);
+    } catch (e) {
+      decoded = value;
+    }
+    return decoded
+      .replace(/&#39;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, "&");
+  }, []);
 
-  const onChangeDepartmentInput = useCallback(
-    (e: any) => {
-      const search = e.target.value;
+  // Helper function to normalize location names for comparison
+  const getNormalizedLocations = useCallback(
+    (locations: string[]): string[] => {
+      const seen = new Set<string>();
+      const normalized: string[] = [];
+
+      locations.forEach((loc) => {
+        const decoded = decodeLocation(loc);
+        if (!seen.has(decoded)) {
+          seen.add(decoded);
+          normalized.push(decoded);
+        }
+      });
+
+      return normalized;
+    },
+    [decodeLocation],
+  );
+
+  const departmentCounts = useMemo(() => dispositifs ?? [], [dispositifs]);
+
+  const fetchSuggestions = useCallback(async (search: string): Promise<UnifiedSearchResult[]> => {
+    const apiSearchQuery = search.replace(/ /g, "%20");
+
+    const [municipalityData, departmentData] = await Promise.all([
+      fetch(`https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`)
+        .then((response) => response.json())
+        .catch(() => ({ features: [] })),
+      fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
+        .then((response) => response.json())
+        .catch(() => []),
+    ]);
+
+    const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
+    const departmentResults = (departmentData || []).map(transformDepartmentResult);
+    const allResults = [...municipalityResults, ...departmentResults];
+    const sortedResults = sortByRelevance(allResults, search);
+
+    return sortedResults.slice(0, 5);
+  }, []);
+
+  const announceResults = useCallback(
+    (count: number, options?: ScreenReaderAnnounceOptions) => {
+      const announceOptions: ScreenReaderAnnounceOptions = {
+        delay: 1000,
+        priority: "interrupt",
+        ...(options ?? {}),
+      };
+
+      announce(
+        t("Recherche.citySelectionsResults", {
+          count,
+        }),
+        announceOptions,
+      );
+    },
+    [announce, t],
+  );
+
+  const handleSearchChange = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const search = event.target.value;
       setLocationSearch(search);
-      if (search.length > 2) {
-        fetch(`https://data.geopf.fr/geocodage/search?q=${search}&type=municipality`)
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.features) {
-              setSuggestions(data.features);
-              announce(
-                t("Recherche.citySelectionsResults", {
-                  count: data.features.length,
-                }),
-                { delay: 1000, priority: "interrupt" },
-              );
-            }
-          });
-      } else {
-        announce(
-          t("Recherche.citySelectionsResults", {
-            count: 0,
-          }),
-          {
-            delay: 1000,
-            priority: "interrupt",
-          },
-        );
+
+      if (search.length <= 2) {
         setSuggestions([]);
+        announceResults(0);
+        return;
+      }
+
+      try {
+        const results = await fetchSuggestions(search);
+        setSuggestions(results);
+        announceResults(results.length);
+      } catch (error) {
+        setSuggestions([]);
+        announceResults(0);
       }
     },
-    [setLocationSearch, announce, t],
+    [announceResults, fetchSuggestions],
   );
 
-  const debouncedOnChangeDepartmentInput = useMemo(
-    () => debounce(onChangeDepartmentInput, 500),
-    [onChangeDepartmentInput],
-  );
+  const debouncedSearchChange = useMemo(() => debounce(handleSearchChange, 500), [handleSearchChange]);
 
-  const onSelectPrediction = useCallback(
-    (place: any) => {
-      Event(eventName, "choose location option", place.properties.label);
-      Event(eventName, "click filter", "location");
-      const contextParts = place.properties.context.split(", ");
+  // Use the existing decodeLocation function for consistency
 
-      setPreviousResultsCount(filteredResults.matches.length);
+  const toggleSelection = useCallback(
+    async (location: string, isCity: boolean) => {
       setPendingAnnounce(true);
+      const normalizedLocation = decodeLocation(location);
 
-      if (contextParts.length > 1) {
-        const depName = contextParts[1];
+      if (isCity) {
+        // Handle city selection/deselection
+        const currentCities = query.cities || [];
+        const cityExists = currentCities.some((city) => decodeLocation(city) === normalizedLocation);
+        const updatedCities = cityExists
+          ? currentCities.filter((city) => decodeLocation(city) !== normalizedLocation)
+          : [...currentCities, normalizedLocation];
+
+        // Get the department for this city
+        const department = await getDepartmentForCity(normalizedLocation);
+
+        // If adding a city, ensure its department is in the departments list
+        let updatedDepartments = query.departments || [];
+        if (!cityExists && department) {
+          const deptExists = updatedDepartments.some((dept: string) => decodeLocation(dept) === department);
+          if (!deptExists) {
+            updatedDepartments = [...updatedDepartments, department];
+          }
+        }
+        // Note: We don't remove the department when deselecting a city (requirement #2)
+
         dispatch(
           addToQueryActionCreator({
-            departments: [depName],
+            cities: getNormalizedLocations(updatedCities),
+            departments: getNormalizedLocations(updatedDepartments),
             sort: "location",
           }),
         );
+      } else {
+        // Handle department selection/deselection
+        const currentDepartments = query.departments || [];
+        const deptExists = currentDepartments.some((dept: string) => decodeLocation(dept) === normalizedLocation);
+
+        if (deptExists) {
+          // When removing a department, also remove all its cities
+          const updatedDepartments = currentDepartments.filter(
+            (dept: string) => decodeLocation(dept) !== normalizedLocation,
+          );
+
+          // Get all cities that belong to this department
+          const citiesToRemove = await getCitiesForDepartment(location);
+          const currentCities = query.cities || [];
+          const updatedCities = currentCities.filter((city: string) => !citiesToRemove.includes(decodeLocation(city)));
+
+          dispatch(
+            addToQueryActionCreator({
+              departments: getNormalizedLocations(updatedDepartments),
+              cities: getNormalizedLocations(updatedCities),
+              sort: "location",
+            }),
+          );
+
+          // Announce when clearing last department
+          if (updatedDepartments.length === 0) {
+            announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
+          }
+        } else {
+          // When adding a department
+          const updatedDepartments = [...currentDepartments, normalizedLocation];
+          dispatch(
+            addToQueryActionCreator({
+              departments: getNormalizedLocations(updatedDepartments),
+              sort: "location",
+            }),
+          );
+        }
       }
     },
-    [dispatch, eventName, filteredResults.matches.length],
+    [dispatch, query.departments, query.cities, decodeLocation, getNormalizedLocations, announce, t],
   );
 
-  const onSelectCommonPlace = useCallback(
-    (depName: string) => {
-      Event(eventName, "choose location suggestion", depName);
-      setPreviousResultsCount(filteredResults.matches.length);
-      setPendingAnnounce(true);
+  const handleResultToggle = useCallback(
+    (result: UnifiedSearchResult) => {
+      Event(eventName, "toggle location option", result.label);
+      Event(eventName, "click filter", "location");
+      // Pass true for cities, false for departments
+      toggleSelection(result.type === "department" ? result.deptName : result.displayName, result.type === "city");
+    },
+    [toggleSelection, eventName],
+  );
 
-      dispatch(
-        addToQueryActionCreator({
-          departments: [depName],
-          sort: "location",
-        }),
+  const handleCommonPlaceSelect = useCallback(
+    (deptName: string, placeName?: string) => {
+      Event(eventName, "choose location suggestion", deptName);
+      toggleSelection(
+        placeName || deptName,
+        !!placeName, // true if placeName exists (city), false otherwise (department)
       );
     },
-    [dispatch, eventName, filteredResults.matches.length],
+    [eventName, toggleSelection],
   );
 
   useEffect(() => {
-    const currentDepartment = query.departments[0] || "";
-    if (pendingAnnounce && currentDepartment && currentDepartment !== previousDepartment) {
-      setPreviousDepartment(currentDepartment);
+    if (!pendingAnnounce) {
+      previousMatchesRef.current = searchResults.matches;
+      return;
     }
-  }, [query.departments, pendingAnnounce, previousDepartment]);
 
-  useEffect(() => {
-    if (!pendingAnnounce) return undefined;
+    const hasNewResults = previousMatchesRef.current !== searchResults.matches;
+    if (!hasNewResults) return;
 
-    const currentDepartment = query.departments[0] || "";
-    const currentCount = filteredResults.matches.length;
+    previousMatchesRef.current = searchResults.matches;
 
-    if (currentDepartment && currentCount > 0 && currentCount !== previousResultsCount) {
-      const decodedDept = decodeURIComponent(currentDepartment);
-      const message = t("Recherche.selectDepartement", "Département {{dept}} sélectionné {{count}} fiches chargées", {
-        dept: decodedDept,
-        count: currentCount,
-      });
-      const parser = new DOMParser();
-      const decodedMessage = parser.parseFromString(message, "text/html").documentElement.textContent || message;
-      announce(decodedMessage, {
-        delay: 1000,
+    const currentDepartments = query.departments || [];
+    const currentCities = query.cities || [];
+
+    announce(
+      t("Recherche.loadedSheets", "{{count}} fiches chargées", {
+        count: searchResults.matches.length,
+      }),
+      {
         priority: "interrupt",
-      });
+        delay: 1000,
+      },
+    );
 
-      setPreviousResultsCount(currentCount);
-      setPendingAnnounce(false);
+    currentDepartments.forEach((dept) => {
+      const count = getCountDispositifsForDepartment(dept, departmentCounts);
+      if (count < 10) {
+        announce(
+          t(
+            "Recherche.notDeployedText",
+            "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
+            {
+              department: decodeLocation(dept),
+              interpolation: { escapeValue: false },
+            },
+          ),
+        );
+      }
+    });
+    setPendingAnnounce(false);
+  }, [
+    pendingAnnounce,
+    query.departments,
+    query.cities,
+    departmentCounts,
+    announce,
+    t,
+    decodeLocation,
+    searchResults.matches,
+  ]);
+
+  const renderSuggestions = () => (
+    <Checkbox
+      legend="Résultats de recherche"
+      className="w-full"
+      options={suggestions.map((result) => {
+        const typeLabel = result.type === "department" ? " (Département)" : "";
+
+        let isChecked = false;
+        if (result.type === "department") {
+          isChecked =
+            query.departments?.some((dept) => decodeLocation(dept) === decodeLocation(result.deptName)) || false;
+        } else {
+          isChecked =
+            query.cities?.some((city) => decodeLocation(city) === decodeLocation(result.displayName)) || false;
+        }
+
+        return {
+          label: `${result.displayName} (${result.deptCode})${typeLabel}`,
+          nativeInputProps: {
+            checked: isChecked,
+            onChange: () => handleResultToggle(result),
+          },
+        };
+      })}
+    />
+  );
+
+  const renderCommonPlaces = () => {
+    const selectedCities = query.cities || [];
+    const options = commonPlaces.map(({ deptNo, placeName, deptName }) => {
+      const decodedCityName = decodeLocation(placeName);
+      const isChecked = selectedCities.some((city) => decodeLocation(city) === decodedCityName);
+
+      return {
+        label: `${placeName} (${deptNo})`,
+        nativeInputProps: {
+          checked: isChecked,
+          onChange: () => handleCommonPlaceSelect(deptName, placeName),
+        },
+      };
+    });
+
+    if (options.length === 0) {
+      return null;
     }
-    return undefined;
-  }, [filteredResults.matches.length, announce, t, query.departments, pendingAnnounce, previousResultsCount]);
+
+    return <Checkbox className="w-full" legend={t("Recherche.commonPlaces", "Villes courantes")} options={options} />;
+  };
+
+  const renderSelectedLocations = () => {
+    const selectedDepartments = (query?.departments || []).map((dept: string) => ({
+      label: `${decodeLocation(dept)} (${t("Recherche.department", "Département")})`,
+      nativeInputProps: {
+        name: `department-${dept}`,
+        checked: true,
+        onChange: () => toggleSelection(dept, false),
+      },
+    }));
+
+    const selectedCities = (query?.cities || []).map((city: string) => ({
+      label: `${decodeLocation(city)} (${t("Recherche.city", "Ville")})`,
+      nativeInputProps: {
+        name: `city-${city}`,
+        checked: true,
+        onChange: () => toggleSelection(city, true),
+      },
+    }));
+
+    const selectedLocations = [...selectedDepartments, ...selectedCities];
+
+    if (selectedLocations.length === 0) {
+      return null;
+    }
+
+    return (
+      <>
+        <Checkbox
+          legend={t("Recherche.selectedLocations", "Localisations sélectionnées")}
+          className="border-default-grey !mb-0 w-full"
+          options={selectedLocations}
+        />
+      </>
+    );
+  };
 
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container)}>
       <GeoLocationMenuItem />
-      <SearchMenuItem onChange={debouncedOnChangeDepartmentInput} />
+      <SearchMenuItem onChange={debouncedSearchChange} />
 
       <div className={styles.places}>
-        {locationSearch !== "" && (
-          <RadioButtons
-            name="radio"
-            legend="Résultats de recherche"
-            className="[&_legend]:sr-only"
-            options={suggestions.slice(0, 5).map((p, i) => {
-              const placeName = getPlaceName(p);
-              const deptNo = p.properties.context.split(",")[0];
-              const isChecked = p.properties.context.includes(query.departments[0]);
-
-              return {
-                label: `${placeName} ${deptNo}`,
-                nativeInputProps: {
-                  checked: isChecked,
-                  onChange: () => onSelectPrediction(p),
-                },
-              };
-            })}
-          />
-        )}
-        {locationSearch === "" && (
-          <RadioButtons
-            name="radio"
-            legend="Villes courantes"
-            className="[&_legend]:sr-only"
-            options={commonPlaces.map(({ deptNo, placeName, deptName }) => {
-              const isChecked = query?.departments[0] === deptName;
-
-              return {
-                label: `${placeName} ${deptNo}`,
-                nativeInputProps: {
-                  checked: isChecked,
-                  onChange: () => onSelectCommonPlace(getDepartmentNameFromCode(deptNo)),
-                },
-              };
-            })}
-          />
-        )}
+        {locationSearch !== "" && renderSuggestions()}
+        {renderSelectedLocations()}
+        {locationSearch === "" && renderCommonPlaces()}
       </div>
     </div>
   );

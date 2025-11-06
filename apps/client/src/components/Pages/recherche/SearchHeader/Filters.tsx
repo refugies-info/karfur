@@ -109,19 +109,45 @@ const Filters = (props: Props) => {
   }, [t, themeDisplayedValue]);
 
   // LOCATION
-  const resetDepartment = useCallback(() => {
-    dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
-  }, [dispatch]);
+  const resetLocation = useCallback(() => {
+    dispatch(addToQueryActionCreator({ departments: [], cities: [], sort: "default" }));
+    announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
+  }, [dispatch, announce, t]);
 
   const { isTablet } = useWindowSize();
 
+  const decodeDepartmentValue = (value: string) => {
+    try {
+      const decoded = decodeURIComponent(value);
+      return decoded
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, "&");
+    } catch (e) {
+      return value
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, "&");
+    }
+  };
+
+  const decodedDepartments = useMemo(() => {
+    return query.departments.map((dep) => decodeDepartmentValue(dep));
+  }, [query.departments]);
+
   const locationLabel = useMemo(() => {
-    return query.departments.length === 0
-      ? t("Recherche.filterLocation", "Département")
-      : departmentsNotDeployed.length > 0 && isTablet
-        ? `${query.departments[0]} ⚠️`
-        : query.departments[0];
-  }, [t, query.departments, departmentsNotDeployed, isTablet]);
+    if (decodedDepartments.length === 0) {
+      return t("Recherche.filterLocation", "Localisation");
+    }
+
+    const firstDepartment = decodedDepartments[0];
+
+    if (departmentsNotDeployed.length > 0 && isTablet) {
+      return `${firstDepartment} ⚠️`;
+    }
+
+    return firstDepartment;
+  }, [t, decodedDepartments, departmentsNotDeployed, isTablet]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -161,8 +187,8 @@ const Filters = (props: Props) => {
             }
             label={locationLabel}
             externalMenu={{
-              value: query.departments,
-              reset: resetDepartment,
+              value: decodedDepartments,
+              reset: resetLocation,
               menu: <LocationMenu />,
             }}
             gaType="department"

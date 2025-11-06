@@ -38,7 +38,7 @@ export const getThemesDisplayed = (
  * @param dispositifs - list of dispositifs
  * @returns number
  */
-const getCountDispositifsForDepartment = (department: string, dispositifs: SimpleDispositif[]): number => {
+export const getCountDispositifsForDepartment = (department: string, dispositifs: SimpleDispositif[]): number => {
   return [...dispositifs].filter((dispositif) => {
     const location = dispositif.metadatas?.location;
     if (!location || !Array.isArray(location)) return false;
