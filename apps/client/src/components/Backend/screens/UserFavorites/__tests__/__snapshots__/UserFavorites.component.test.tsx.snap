@@ -449,12 +449,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           aria-labelledby="id1"
           class="[object Object]"
         >
-          <a
-            class="absolute inset-0"
-            href="/dispositif/id1"
-          >
-            tinfo1
-          </a>
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
             id="fr-badge-:r0:"
@@ -477,11 +471,15 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                     id="id1"
                   >
-                    <span
-                      class="[object Object]"
+                    <a
+                      href="/dispositif/id1"
                     >
-                      tinfo1
-                    </span>
+                      <span
+                        class="[object Object]"
+                      >
+                        tinfo1
+                      </span>
+                    </a>
                   </h3>
                   <p
                     class="[object Object]"
@@ -559,12 +557,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           aria-labelledby="id2"
           class="[object Object]"
         >
-          <a
-            class="absolute inset-0"
-            href="/dispositif/id2"
-          >
-            tinfo2
-          </a>
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
             id="fr-badge-:r1:"
@@ -587,11 +579,15 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                     id="id2"
                   >
-                    <span
-                      class="[object Object]"
+                    <a
+                      href="/dispositif/id2"
                     >
-                      tinfo2
-                    </span>
+                      <span
+                        class="[object Object]"
+                      >
+                        tinfo2
+                      </span>
+                    </a>
                   </h3>
                   <p
                     class="[object Object]"
@@ -669,12 +665,6 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           aria-labelledby="id3"
           class="[object Object]"
         >
-          <a
-            class="absolute inset-0"
-            href="/demarche/id3"
-          >
-            tinfo3
-          </a>
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
             id="fr-badge-:r2:"
@@ -697,11 +687,15 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="fr-card__title"
                     id="id3"
                   >
-                    <span
-                      class="[object Object]"
+                    <a
+                      href="/demarche/id3"
                     >
-                      tinfo3
-                    </span>
+                      <span
+                        class="[object Object]"
+                      >
+                        tinfo3
+                      </span>
+                    </a>
                   </h3>
                   <p
                     class="[object Object]"
