@@ -19,7 +19,7 @@
     "typescript-eslint": "^8.41.0"
   },
   "dependencies": {
-    "mongoose": "^8.18.1"
+    "mongoose": "^8.19.1"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,6 @@
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.18.0"
+    "pnpm": "10.20.0"
   }
 }

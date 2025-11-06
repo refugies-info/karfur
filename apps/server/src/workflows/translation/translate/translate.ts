@@ -2,17 +2,15 @@ import { v2 } from "@google-cloud/translate";
 import { Languages } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 
-const projectId = "traduction-1551702821050";
-
 const { Translate } = v2;
 
 const translator = new Translate({
-  projectId: projectId,
+  projectId: process.env.GCLOUD_PROJECT_ID,
   credentials: {
     type: "service_account",
-    project_id: "traduction-1551702821050",
+    project_id: process.env.GCLOUD_PROJECT_ID,
     private_key_id: process.env.GCLOUD_PRIVATE_KEY_ID,
-    private_key: process.env.GCLOUD_PKEY.replace(/\\n/g, "\n"),
+    private_key: process.env.GCLOUD_PKEY?.replace(/\\n/g, "\n"),
     client_email: process.env.GCLOUD_CLIENT_EMAIL,
     client_id: process.env.GCLOUD_CLIENT_ID,
   },

@@ -5,9 +5,10 @@ interface NoticeContentItem {
   title?: string;
   link: string;
   text: string;
+  className?: string;
 }
 
-export const HelpNotice = () => {
+export const HelpNotice = ({ className }: { className?: string }) => {
   const noticeContent = {
     fr: {
       title: "Réfugiés.info a été nommé Service numérique à impact national ! ",
@@ -52,6 +53,7 @@ export const HelpNotice = () => {
   return (
     <Notice
       isClosable
+      className={className}
       title={
         <>
           {content.title && content.title}

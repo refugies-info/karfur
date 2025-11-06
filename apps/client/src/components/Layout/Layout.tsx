@@ -38,11 +38,13 @@ import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
 import styles from "./Layout.module.scss";
 
+import { cn } from "@refugies-info/ui";
 import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
 
 interface Props {
   children: any;
   history: string[];
+  className?: string;
 }
 
 // TODO : refator to avoid  overcomplex code to show MobileModal + move it's logic to it's own component
@@ -258,7 +260,7 @@ const Layout = (props: Props) => {
       <DownloadAppBanner />
       <Navbar />
       <div id="contenu" className={styles.main}>
-        <main className={styles.content}>{props.children}</main>
+        <main className={cn(styles.content, props.className)}>{props.children}</main>
       </div>
       <Footer />
       <AutoAddFavorite />

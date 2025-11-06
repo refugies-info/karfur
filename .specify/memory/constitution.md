@@ -1,8 +1,8 @@
 <!--
 Sync Impact Report:
-Version change: 1.3.1 → 1.4.0
-Added sections: UI Composition Standards
-Templates requiring updates: None
+Version change: 1.4.0 → 1.4.1
+Modified sections: UI Composition Standards (added reference to component composition guide)
+Templates requiring updates: AGENTS.md 
 Follow-up TODOs: None
 -->
 
@@ -57,6 +57,8 @@ All user interfaces MUST be designed with a mobile-first approach and be fully r
 **Frameworks**: Adherence to the primary frameworks for each application (Express for `server`, Next.js for `client`, React Native for `mobile`) is required unless a migration is formally approved.
 
 ## UI Composition Standards
+
+Refer to the [Component Composition Guide](../../documentation/client/component-composition.md) for implementation patterns, examples, and testing checklists that operationalize these standards.
 
 ### I. React DSFR as the Foundation
 - All UI components MUST use [react-dsfr](https://github.com/codegouvfr/react-dsfr) as the primary base.
@@ -122,4 +124,4 @@ This constitution supersedes all other development practices. All pull requests 
 
 **Compliance Review**: The CTO is the DRI for ensuring the following reviews occur: monthly review of adherence to principles, quarterly assessment of technical debt and migration progress, and an annual accessibility audit by external experts.
 
-**Version**: 1.4.0 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-10-01
+**Version**: 1.4.1 | **Ratified**: 2025-01-29 | **Last Amended**: 2025-10-29

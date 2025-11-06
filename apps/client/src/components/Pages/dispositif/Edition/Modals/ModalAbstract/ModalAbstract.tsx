@@ -7,6 +7,7 @@ import BaseModal from "~/components/UI/BaseModal";
 import DispositifCard from "~/components/UI/DispositifCard";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
+import { DISPOSITIF_FORM_CONSTANTS } from "~/constants/dispositif";
 import { useContentType } from "~/hooks/dispositif";
 import { SimpleFooter } from "../components";
 import { help } from "./data";
@@ -19,7 +20,7 @@ interface Props {
   toggle: () => void;
 }
 
-const MAX_LENGTH = 110;
+const { ABSTRACT_MAX_LENGTH } = DISPOSITIF_FORM_CONSTANTS;
 
 const ModalAbstract = (props: Props) => {
   const formContext = useFormContext<CreateDispositifRequest>();
@@ -32,13 +33,13 @@ const ModalAbstract = (props: Props) => {
     props.toggle();
   };
 
-  const remainingChars = useMemo(() => MAX_LENGTH - (abstract || "").length, [abstract]);
+  const remainingChars = useMemo(() => ABSTRACT_MAX_LENGTH - (abstract || "").length, [abstract]);
   const sponsor = useSponsorData(values, typeContenu);
 
   return (
     <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajoutez un résumé">
       <div>
-        <p>Le résumé doit faire moins de 110 caractères.</p>
+        <p>{`Le résumé doit faire moins de ${ABSTRACT_MAX_LENGTH} caractères.`}</p>
         <div className="flex">
           <div>
             <div className={styles.text}>
@@ -47,7 +48,7 @@ const ModalAbstract = (props: Props) => {
                 placeholder="Résumez votre action en quelques mots"
                 value={abstract}
                 className={styles.input}
-                maxLength={MAX_LENGTH}
+                maxLength={ABSTRACT_MAX_LENGTH}
               />
 
               <p className={styles.help}>
@@ -57,7 +58,7 @@ const ModalAbstract = (props: Props) => {
                   fill={fr.colors.decisions.background.actionHigh.error.default}
                   className="me-2"
                 />
-                {remainingChars} sur 110 caractères restants
+                {remainingChars} sur 200 caractères restants
               </p>
             </div>
           </div>

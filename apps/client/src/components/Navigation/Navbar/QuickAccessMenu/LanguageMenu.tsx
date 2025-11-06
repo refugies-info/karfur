@@ -1,9 +1,10 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useWindowSize } from "@refugies-info/ui";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { DropdownContent, DropdownRoot, DropdownTrigger } from "~/components/UI/DropDown/DropDown";
 import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
@@ -11,7 +12,6 @@ import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
-import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   variant?: "flag";
@@ -51,6 +51,7 @@ const LanguageMenu = ({
   const { t } = useTranslation();
 
   const dropdownRef = useRef<{ closeDropdown: () => void }>(null);
+  const descriptionId = useId();
 
   const handleToggleMobileMenu = () => {
     const dsfrMenu = document.getElementById("header-menu-modal-fr-header");
@@ -139,7 +140,10 @@ const LanguageMenu = ({
                 }
               `}</style>
               <Dialog.Portal>
-                <Dialog.Content className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white">
+                <Dialog.Content
+                  className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white"
+                  aria-describedby={descriptionId}
+                >
                   <Dialog.Title className="border-default-grey sticky top-0 z-50 mb-6 flex items-center justify-between border-b bg-white p-4 py-5">
                     {t("Dispositif.readIn", "Lire la fiche en")}
                     <Dialog.Close asChild>
@@ -151,7 +155,7 @@ const LanguageMenu = ({
                       />
                     </Dialog.Close>
                   </Dialog.Title>
-                  <Dialog.Description className="px-2">
+                  <Dialog.Description className="px-2" id={descriptionId}>
                     <LanguageSelector
                       onChangeLang={handleToggleDesktopDopdown}
                       type={languageSelectorType}

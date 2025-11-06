@@ -10,7 +10,8 @@ FROM node:22.14.0-alpine AS base
 FROM base AS tools
 
   # Enable corepack and prepare pnpm globally
-  RUN corepack enable && corepack prepare pnpm@10.18.0 --activate
+  RUN corepack enable
+  RUN corepack prepare pnpm@10.20.0 --activate
 
   # Install turbo globally
   ENV PNPM_HOME="/root/.local/share/pnpm"
