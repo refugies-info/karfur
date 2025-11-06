@@ -71,23 +71,8 @@ const DispositifCard = (props: Props) => {
   return (
     <article
       aria-labelledby={props.dispositif._id.toString()}
-      className={cn(styles.wrapper, props.className, "relative")}
+      className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
     >
-      <Link
-        className="absolute inset-0"
-        target={props.targetBlank ? "_blank" : undefined}
-        rel={props.targetBlank ? "noopener noreferrer" : undefined}
-        href={
-          props.demoCard
-            ? "#"
-            : {
-                pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
-                query: { id: props.dispositif._id.toString(), ...utmParams },
-              }
-        }
-      >
-        {safeTitreInformatif}
-      </Link>
       <Badge small className={cn(badge.className, "absolute top-2 left-2 z-20")}>
         {isOnline && <i className="ri-at-line me-1"></i>}
         {badge.text}
@@ -97,10 +82,24 @@ const DispositifCard = (props: Props) => {
           <div className={cn("fr-card__content", styles.content)}>
             <div className={styles.text}>
               <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
-                <span
-                  className={cn(styles.title, styles.three_lines)}
-                  dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
-                ></span>
+                <Link
+                  // className="absolute inset-0"
+                  target={props.targetBlank ? "_blank" : undefined}
+                  rel={props.targetBlank ? "noopener noreferrer" : undefined}
+                  href={
+                    props.demoCard
+                      ? "#"
+                      : {
+                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
+                          query: { id: props.dispositif._id.toString(), ...utmParams },
+                        }
+                  }
+                >
+                  <span
+                    className={cn(styles.title, styles.three_lines)}
+                    dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+                  ></span>
+                </Link>
               </h3>
               <p className={cn("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
