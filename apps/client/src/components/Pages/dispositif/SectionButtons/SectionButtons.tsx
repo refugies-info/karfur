@@ -2,13 +2,13 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Tooltip from "@codegouvfr/react-dsfr/Tooltip";
 import { InfoSection } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from "~/components/UI/Toast";
 import { useLocale } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import { pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
 import { Event } from "~/lib/tracking";
@@ -63,13 +63,21 @@ const SectionButtons = ({ id, content, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const [showToast, setShowToast] = useState(false);
   const [showReactionModal, setShowReactionModal] = useState(false);
+  const reactionButtonRef = useRef<HTMLButtonElement>(null);
   const tooltipId = `section_${id.replace(".", "_")}`;
   const ttsEnabled = useMemo(() => hasTTSAvailable.includes(locale), [locale]);
+
+  const handleModalCallBack = () => {
+    setShowToast(true);
+    // Focus is now handled by Radix's onCloseAutoFocus
+    // Announcement is now handled inside ReactionModal before closing
+  };
 
   return (
     <div className={cn("flex items-center print:hidden", className)}>
       <Tooltip kind="hover" title={t("Dispositif.react")}>
         <Button
+          ref={reactionButtonRef}
           id={tooltipId}
           iconId="ri-message-2-line"
           onClick={() => setShowReactionModal(true)}
@@ -103,14 +111,14 @@ const SectionButtons = ({ id, content, className }: Props) => {
         </Tooltip>
       ) : null}
 
-      {showReactionModal && (
-        <ReactionModal
-          sectionKey={id}
-          toggle={() => setShowReactionModal((o) => !o)}
-          dispositifId={dispositif?._id}
-          callback={() => setShowToast(true)}
-        />
-      )}
+      <ReactionModal
+        open={showReactionModal}
+        sectionKey={id}
+        toggle={() => setShowReactionModal((o) => !o)}
+        dispositifId={dispositif?._id}
+        callback={handleModalCallBack}
+        triggerRef={reactionButtonRef}
+      />
       <Toast open={showToast} closeCallback={() => setShowToast(false)}>
         {t("Dispositif.reactFeedbackMessage")}
       </Toast>
