@@ -1,3 +1,5 @@
+import Button from "@codegouvfr/react-dsfr/Button";
+import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Modal } from "@refugies-info/ui";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useRef, useState } from "react";
@@ -66,19 +68,15 @@ export const Basic: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Modal
-        </button>
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="Basic Modal">
           <p className="mb-4">This is a basic modal with simple content.</p>
-          <button onClick={() => setOpen(false)} className="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
+          <Button priority="secondary" onClick={() => setOpen(false)}>
             Close
-          </button>
+          </Button>
         </Modal>
       </div>
     );
@@ -95,13 +93,9 @@ export const WithDescription: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Modal with Description
-        </button>
+        </Button>
 
         <Modal
           open={open}
@@ -112,15 +106,10 @@ export const WithDescription: Story = {
         >
           <p className="mb-4">Are you sure you want to proceed with this action?</p>
           <div className="flex gap-2">
-            <button onClick={() => setOpen(false)} className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700">
-              Confirm
-            </button>
-            <button
-              onClick={() => setOpen(false)}
-              className="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
-            >
+            <Button onClick={() => setOpen(false)}>Confirm</Button>
+            <Button priority="secondary" onClick={() => setOpen(false)}>
               Cancel
-            </button>
+            </Button>
           </div>
         </Modal>
       </div>
@@ -138,19 +127,15 @@ export const WithoutCloseButton: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Modal (No Close Button)
-        </button>
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="No Close Button" hideCloseButton>
           <p className="mb-4">This modal has no close button. You must use ESC or click outside to close.</p>
-          <button onClick={() => setOpen(false)} className="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700">
+          <Button priority="secondary" onClick={() => setOpen(false)}>
             Close Programmatically
-          </button>
+          </Button>
         </Modal>
       </div>
     );
@@ -167,13 +152,9 @@ export const SmallSize: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Small Modal
-        </button>
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="Small Modal" maxWidth="sm">
           <p>This modal has a smaller max-width.</p>
@@ -193,13 +174,9 @@ export const LargeSize: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Large Modal
-        </button>
+        </Button>
 
         <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="Large Modal" maxWidth="4xl">
           <p className="mb-4">This modal has a larger max-width for more content.</p>
@@ -231,13 +208,9 @@ export const WithForm: Story = {
 
     return (
       <div>
-        <button
-          ref={triggerRef}
-          onClick={() => setOpen(true)}
-          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-        >
+        <Button ref={triggerRef} onClick={() => setOpen(true)}>
           Open Form Modal
-        </button>
+        </Button>
 
         <Modal
           open={open}
@@ -247,43 +220,31 @@ export const WithForm: Story = {
           description="Fill out the form below to get in touch"
         >
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="name" className="mb-1 block text-sm font-medium">
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full rounded border border-gray-300 px-3 py-2"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="email" className="mb-1 block text-sm font-medium">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full rounded border border-gray-300 px-3 py-2"
-                required
-              />
-            </div>
+            <Input
+              label="Name"
+              nativeInputProps={{
+                id: "name",
+                type: "text",
+                value: formData.name,
+                onChange: (e) => setFormData({ ...formData, name: e.target.value }),
+                required: true,
+              }}
+            />
+            <Input
+              label="Email"
+              nativeInputProps={{
+                id: "email",
+                type: "email",
+                value: formData.email,
+                onChange: (e) => setFormData({ ...formData, email: e.target.value }),
+                required: true,
+              }}
+            />
             <div className="flex gap-2">
-              <button type="submit" className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="rounded bg-gray-600 px-4 py-2 text-white hover:bg-gray-700"
-              >
+              <Button type="submit">Submit</Button>
+              <Button type="button" priority="secondary" onClick={() => setOpen(false)}>
                 Cancel
-              </button>
+              </Button>
             </div>
           </form>
         </Modal>
