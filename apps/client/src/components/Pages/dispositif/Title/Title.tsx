@@ -15,7 +15,7 @@ const Title = () => {
   const pageContext = useContext(PageContext);
 
   return (
-    <h1 className="text-title-xl text-title-grey">
+    <h1 className="text-title-xl text-title-grey" id="main-title">
       {pageContext.mode !== "edit" ? (
         <Text id="titreInformatif">{dispositif?.titreInformatif || ""}</Text>
       ) : (
