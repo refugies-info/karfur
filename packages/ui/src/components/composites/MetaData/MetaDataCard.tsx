@@ -1,6 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, useMemo } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 type MetaDataCardProps = HTMLAttributes<HTMLDivElement> & {
   title?: string;
@@ -23,6 +24,7 @@ export const MetaDataCard = ({
   titleAs = "h2",
   ...props
 }: MetaDataCardProps) => {
+  const uuid = useMemo(() => uuidv4(), []);
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.();
@@ -45,7 +47,12 @@ export const MetaDataCard = ({
       {...props}
     >
       <div className="flex items-center justify-between">
-        {title && React.createElement(titleAs, { className: "text-title-md md:text-title-xxs font-bold" }, title)}
+        {title &&
+          React.createElement(
+            titleAs,
+            { id: `metadata-title-${uuid}`, className: "text-title-md md:text-title-xxs font-bold" },
+            title,
+          )}
         {(onClick || onDelete) && (
           <span className="ml-auto flex self-start">
             {onClick && (
@@ -80,7 +87,9 @@ export const MetaDataCard = ({
           </span>
         )}
       </div>
-      {children}
+      <ul className="list-none p-0" aria-labelledby={`metadata-title-${uuid}`}>
+        {children}
+      </ul>
     </div>
   );
 };
