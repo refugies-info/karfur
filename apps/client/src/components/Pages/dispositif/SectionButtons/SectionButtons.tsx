@@ -114,7 +114,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
       <ReactionModal
         open={showReactionModal}
         sectionKey={id}
-        toggle={() => setShowReactionModal((o) => !o)}
+        onOpenChange={setShowReactionModal}
         dispositifId={dispositif?._id}
         callback={handleModalCallBack}
         triggerRef={reactionButtonRef}
