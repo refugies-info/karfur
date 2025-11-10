@@ -1,9 +1,9 @@
 import { ContentType, InfoSections } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
-import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";

@@ -1,13 +1,22 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
-import React, { forwardRef, useCallback, useEffect, useId, useImperativeHandle, useMemo, useRef, useState } from "react";
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 type CarrouselTexts = {
   title?: string | null;
   seeMore?: string;
   prev?: string;
   next?: string;
+  countSeparator?: string;
 };
 
 const defaultTexts: Required<CarrouselTexts> = {
@@ -15,6 +24,7 @@ const defaultTexts: Required<CarrouselTexts> = {
   seeMore: "Voir plus",
   prev: "Faire défiler à gauche",
   next: "Faire défiler à droite",
+  countSeparator: "sur",
 };
 
 type CarrouselProps = {
@@ -51,8 +61,8 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
     }: CarrouselProps,
     ref,
   ) => {
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const scrollContainerRef = useRef<HTMLUListElement>(null);
+    const slideRefs = useRef<(HTMLLIElement | null)[]>([]);
     const [currentSlide, setCurrentSlide] = useState(0);
     const [canScrollNext, setCanScrollNext] = useState(true);
     const [canScrollPrev, setCanScrollPrev] = useState(false);
@@ -187,53 +197,6 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
       [currentSlide, childrenArray.length, scrollToSlide],
     );
 
-    // Use ref to track if scroll animation is in progress
-    const isScrollingRef = useRef<boolean>(false);
-
-    const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent) => {
-        // Prevent navigation if a scroll animation is already in progress
-        if (isScrollingRef.current) {
-          e.preventDefault();
-          return;
-        }
-
-        switch (e.key) {
-          case "ArrowLeft":
-            e.preventDefault();
-            if (currentSlide > 0) {
-              // Set scrolling flag to true
-              isScrollingRef.current = true;
-
-              // Use smooth scrolling for better UX
-              scrollToSlide(currentSlide - 1, true);
-
-              // Reset the scrolling flag after animation completes
-              setTimeout(() => {
-                isScrollingRef.current = false;
-              }, 300); // Matches typical scroll animation duration
-            }
-            break;
-          case "ArrowRight":
-            e.preventDefault();
-            if (currentSlide < childrenArray.length - 1) {
-              // Set scrolling flag to true
-              isScrollingRef.current = true;
-
-              // Use smooth scrolling for better UX
-              scrollToSlide(currentSlide + 1, true);
-
-              // Reset the scrolling flag after animation completes
-              setTimeout(() => {
-                isScrollingRef.current = false;
-              }, 300); // Matches typical scroll animation duration
-            }
-            break;
-        }
-      },
-      [currentSlide, childrenArray.length, scrollToSlide],
-    );
-
     useEffect(() => {
       const container = scrollContainerRef.current;
       if (!container) return;
@@ -298,16 +261,18 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
       <section
         className={cn("relative w-full max-md:pb-14", className)}
         role="region"
-        aria-roledescription="carousel"
-        aria-label={t.title || "Carousel de contenu"}
-        onKeyDown={handleKeyDown}
+        aria-labelledby={componentId}
         dir={dir}
       >
         <div className="container mx-auto mb-8 flex w-full gap-4 lg:justify-between">
-          {t.title && <h2 className="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]">{t.title}</h2>}
-          <nav className="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0">
+          {t.title && (
+            <h2 id={componentId} className="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]">
+              {t.title}
+            </h2>
+          )}
+          <div className="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0">
             <Button
-              aria-label={`${t.prev} (${prevSlide + 1} / ${childrenArray.length}`}
+              aria-label={`${t.prev} (${prevSlide + 1} ${t.countSeparator} ${childrenArray.length})`}
               onClick={handlePrevClick}
               priority="tertiary"
               iconId={dir === "rtl" ? "fr-icon-arrow-right-line" : "fr-icon-arrow-left-line"}
@@ -315,7 +280,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
               disabled={!canScrollPrev}
             />
             <Button
-              aria-label={`${t.next} (${nextSlide + 1} / ${childrenArray.length}`}
+              aria-label={`${t.next} (${nextSlide + 1} ${t.countSeparator} ${childrenArray.length})`}
               onClick={handleNextClick}
               disabled={!canScrollNext}
               priority="tertiary"
@@ -327,50 +292,44 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
                 {t.seeMore}
               </Button>
             )}
-          </nav>
+          </div>
         </div>
 
-        <div
+        <ul
           ref={scrollContainerRef}
           className={cn(
-            "carrousel noscrollbar m-auto flex gap-4",
+            "carrousel noscrollbar m-auto flex list-none gap-4 p-0",
             "snap-x snap-mandatory overflow-x-auto scroll-smooth",
             "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
             enableContainerPadding &&
               "scroll-ps-[max(1rem,calc((100vw-76rem)/2))] ps-[max(1rem,calc((100vw-76rem)/2))]",
             "ltr:pr-4 rtl:pl-4",
-            "cursor-grab active:cursor-grabbing",
             containerClassName,
           )}
-          aria-live="polite"
-          aria-atomic="true"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
             WebkitOverflowScrolling: "touch",
-            willChange: "transform",
             scrollBehavior: "smooth",
             overscrollBehaviorX: "contain",
-            direction: dir, // Set the direction explicitly
+            direction: dir,
           }}
+          aria-labelledby={componentId}
+          role="list"
         >
           {React.Children.map(children, (child, index) => (
-            <div
+            <li
               ref={(el) => {
                 slideRefs.current[index] = el;
               }}
               id={`slide-${componentId}-${index}`}
               className="min-w-max shrink-0 snap-start"
-              role="group"
-              aria-roledescription="slide"
-              aria-label={`Slide ${index + 1} sur ${childrenArray.length}`}
-              tabIndex={0}
-              aria-current={currentSlide === index ? "true" : undefined}
+              role="listitem"
             >
               {child}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     );
   },

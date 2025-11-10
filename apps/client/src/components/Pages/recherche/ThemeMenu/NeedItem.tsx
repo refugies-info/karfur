@@ -1,61 +1,42 @@
-import { GetNeedResponse, Id } from "@refugies-info/api-types";
+import { GetNeedResponse } from "@refugies-info/api-types";
+import { cn } from "@refugies-info/ui";
+import { useTranslation } from "next-i18next";
 import React, { useContext } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
-import Checkbox from "~/components/UI/Checkbox";
-import { useLocale, useSearchEventName } from "~/hooks";
-import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
-import { Event } from "~/lib/tracking";
-import { needsSelector } from "~/services/Needs/needs.selectors";
-import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { useLocale } from "~/hooks";
+import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./NeedItem.module.css";
 
 interface Props {
-  need: GetNeedResponse;
+  need?: GetNeedResponse;
+  label?: string;
+  count?: number | string;
 }
 
-const NeedItem: React.FC<Props> = ({ need }) => {
+const NeedItem: React.FC<Props> = ({ need, label, count: customCount }) => {
   const locale = useLocale();
-  const dispatch = useDispatch();
-  const query = useSelector(searchQuerySelector);
-  const allNeeds = useSelector(needsSelector);
-  const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
-  const eventName = useSearchEventName();
+  const { nbDispositifsByNeed, selectedThemeId } = useContext(ThemeMenuContext);
+  const { t } = useTranslation();
+  const themes = useSelector(themesSelector);
 
-  const selectNeed = (id: Id) => {
-    let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
+  const displayLabel = label || (need ? need[locale]?.text || "" : "");
+  const displayCount = customCount !== undefined ? customCount : need ? nbDispositifsByNeed[need._id.toString()] : "";
+  const countNumber = typeof displayCount === "string" ? parseInt(displayCount, 10) || 0 : displayCount;
 
-    if (allSelectedNeeds.includes(id)) {
-      // if need selected, remove
-      allSelectedNeeds = allSelectedNeeds.filter((n) => n !== id);
-    } else {
-      // if not selected, add
-      allSelectedNeeds = [...allSelectedNeeds, id];
-      Event(eventName, "use theme filter", "select one need");
-    }
+  const selectedTheme = themes.find((theme) => theme._id === selectedThemeId);
+  const themeName = selectedTheme?.short?.[locale] || selectedTheme?.name?.[locale] || "";
 
-    const res = getThemesFromNeeds(allSelectedNeeds, allNeeds);
-    dispatch(
-      addToQueryActionCreator({
-        needs: res.needs,
-        themes: res.themes,
-      }),
-    );
-  };
-
-  const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
+  const ariaLabel =
+    displayLabel === "Tous"
+      ? t("Recherche.needAllSheets", { count: countNumber, theme: themeName })
+      : `${displayLabel} ${t("Recherche.needSheetsCount", { count: countNumber })}`;
 
   return (
-    <Checkbox
-      checked={selected}
-      onChange={() => selectNeed(need._id)}
-      className={styles.container}
-      labelClassName={styles.labelWrapper}
-    >
-      <span className={styles.label}>{need[locale]?.text || ""}</span>{" "}
-      <span className={styles.count}>{nbDispositifsByNeed[need._id.toString()]}</span>
-    </Checkbox>
+    <span className={cn("space-between flex w-full")} aria-label={ariaLabel}>
+      <span className={styles.label}>{displayLabel}</span>{" "}
+      <span className={cn("ms-auto", styles.count)}>{displayCount}</span>
+    </span>
   );
 };
 

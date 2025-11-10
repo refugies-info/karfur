@@ -15,45 +15,55 @@ import { useTranslation } from "next-i18next";
 
 const StructuresLogos = () => {
   const { t } = useTranslation();
-  const logos: { image: StaticImageData; alt: string }[] = [
+  const logos: { image: StaticImageData; alt: string; title: string }[] = [
     {
       image: FTDA,
+      title: "France Terre d'Asile",
       alt: "",
     },
     {
       image: SOS,
+      title: "Groupe SOS",
       alt: "",
     },
     {
       image: FranceTravail,
+      title: "France Travail",
       alt: "",
     },
     {
       image: COS,
+      title: "Fondation COS",
       alt: "",
     },
     {
       image: FH,
+      title: "France Horizon",
       alt: "",
     },
     {
       image: Coallia,
+      title: "Coallia",
       alt: "",
     },
     {
       image: PierreValdo,
+      title: "Entraide Pierre Valdo",
       alt: "",
     },
     {
       image: HIS,
+      title: "GIP Habitat et Interventions Sociales",
       alt: "",
     },
     {
       image: ForumRefugie,
+      title: "Forum Refugiés",
       alt: "",
     },
     {
       image: FederationActeurs,
+      title: "Fédération des Acteurs de la Solidarité",
       alt: "",
     },
   ];
@@ -70,6 +80,9 @@ const StructuresLogos = () => {
           "Homepage.StructuresLogosText",
           "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
         )}
+      </p>
+      <p className="sr-only">
+        {t("Homepage.StructuresLogosVocalisation", "Nos partenaires :")} {logos.map((logo) => logo.title).join(", ")}
       </p>
     </section>
   );

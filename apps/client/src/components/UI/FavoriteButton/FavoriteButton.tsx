@@ -50,9 +50,7 @@ export const FavoriteButton = (props: Props) => {
         <span>{isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}</span>
       </Button>
 
-      {showFavoriteModal && (
-        <BookmarkedModal show={true} toggle={() => setShowFavoriteModal((o) => !o)} dispositifId={props.contentId} />
-      )}
+      <BookmarkedModal open={showFavoriteModal} onOpenChange={setShowFavoriteModal} dispositifId={props.contentId} />
       <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
         {showFavoriteToast === "added"
           ? t("Dispositif.messageAddedToFavorites")

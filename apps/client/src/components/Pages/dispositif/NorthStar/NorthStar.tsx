@@ -1,10 +1,11 @@
 "use client";
 
-import { Vote } from "@refugies-info/ui";
+import { useWindowSize, Vote } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
 import { customEvent } from "~/lib/tracking";
@@ -12,7 +13,6 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 import { themeSelector } from "~/services/Themes/themes.selectors";
 import { userSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
-import { useWindowSize } from "@refugies-info/ui";
 
 const NorthStar = () => {
   const dispositif = useSelector(selectedDispositifSelector);
@@ -21,6 +21,7 @@ const NorthStar = () => {
   const anonymousUserId = useAnonymousUserId();
   const theme = useSelector(themeSelector(dispositif?.theme));
   const { t } = useTranslation();
+  const announce = useAnnounce();
 
   const { isDesktop, isLargeDesktop } = useWindowSize();
 
@@ -65,9 +66,7 @@ const NorthStar = () => {
         didVote ||
         (userId || anonymousUserId
           ? dispositif.avis?.find(
-              (a) =>
-                (userId && a.userId === userId) ||
-                (anonymousUserId && a.anonymousUserId === anonymousUserId),
+              (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {
@@ -157,6 +156,7 @@ const NorthStar = () => {
         onCancelNo={onCancel}
         isSticky={!isLargeDesktop}
         error={error}
+        onVoteAnnounce={announce}
       />
       <Toast open={showErrorToast} closeCallback={() => setShowErrorToast(false)} type="error">
         {t("ui.northStar_error", "Une erreur est survenue lors de la soumission de votre avis")}

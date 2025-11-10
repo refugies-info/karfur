@@ -26,12 +26,14 @@
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
     "@lottiefiles/dotlottie-react": "^0.13.5",
+    "@radix-ui/react-dialog": "^1.1.4",
     "clsx": "^2.1.1",
     "next-i18next": "^15.3.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-leaflet-cluster": "^2.1.0",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",

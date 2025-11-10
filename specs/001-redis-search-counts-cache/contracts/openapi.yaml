@@ -1,0 +1,368 @@
+openapi: 3.1.0
+info:
+  title: Search Counts API
+  description: Get aggregated counts of dispositifs by various filters with Redis caching
+  version: 1.0.0
+  contact:
+    name: Refugies.info Team
+    url: https://refugies.info
+
+servers:
+  - url: https://api.refugies.info
+    description: Production
+  - url: https://api.staging.refugies.info
+    description: Staging
+  - url: http://localhost:3000
+    description: Development
+
+paths:
+  /api/search/counts:
+    get:
+      summary: Get search counts by filters
+      description: |
+        Returns aggregated counts of dispositifs matching the provided filters.
+        Results are cached for 5-15 minutes to improve performance.
+        
+        **Rate Limiting**: 10 requests per second per IP address.
+        
+        **Cache Behavior**:
+        - First request: Queries MongoDB, caches result (200-500ms)
+        - Subsequent requests: Served from Redis cache (<100ms)
+        - Cache invalidated when dispositif data changes
+      operationId: getSearchCounts
+      tags:
+        - Search
+      parameters:
+        - name: language
+          in: query
+          required: true
+          description: Supported language code (i18n code)
+          schema:
+            type: string
+            enum: [fr, en, uk, ti, ar, ps, ru, fa]
+          example: fr
+        
+        - name: themes
+          in: query
+          required: false
+          description: Comma-separated theme MongoDB ObjectIds to filter by
+          schema:
+            type: string
+          example: "63286a015d31b2c0cad9960f,63286a015d31b2c0cad9960c"
+        
+        - name: needs
+          in: query
+          required: false
+          description: Comma-separated need MongoDB ObjectIds to filter by
+          schema:
+            type: string
+          example: "613721a409c5190dfa70d053,613721a409c5190dfa70d052"
+        
+        - name: frenchLevel
+          in: query
+          required: false
+          description: Comma-separated French proficiency levels
+          schema:
+            type: string
+            enum: [alpha, A1, A2, B1, B2, C1, C2]
+          example: "A1,A2"
+        
+        - name: status
+          in: query
+          required: false
+          description: Comma-separated refugee/reader status filters
+          schema:
+            type: string
+            enum: [asile, refugie, subsidiaire, apatride, temporaire, french]
+          example: "refugie,asile"
+        
+        - name: public
+          in: query
+          required: false
+          description: Comma-separated public type filters (target audience)
+          schema:
+            type: string
+            enum: [family, women, youths, gender, senior]
+          example: "family,women"
+        
+        - name: age
+          in: query
+          required: false
+          description: Comma-separated age group filters
+          schema:
+            type: string
+            enum: ["-18", "18-25", "+25"]
+          example: "-18,18-25"
+        
+        - name: departments
+          in: query
+          required: false
+          description: Comma-separated department codes or location filters
+          schema:
+            type: string
+          example: "75,92,france"
+        
+        - name: sort
+          in: query
+          required: false
+          description: Sort order for results
+          schema:
+            type: string
+            enum: [default, date, view, theme, location]
+          example: "date"
+        
+        - name: search
+          in: query
+          required: false
+          description: Free-text search query
+          schema:
+            type: string
+          example: "paris"
+      
+      responses:
+        '200':
+          description: Successful response with counts
+          headers:
+            X-Cache-Hit:
+              schema:
+                type: boolean
+              description: Whether result was served from cache
+            X-Cache-Age:
+              schema:
+                type: integer
+              description: Age of cached result in seconds
+            X-Cache-TTL:
+              schema:
+                type: integer
+              description: Time-to-live of cached result in seconds
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+              description: Rate limit (requests per second)
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining requests in current window
+            X-RateLimit-Reset:
+              schema:
+                type: string
+                format: date-time
+              description: When rate limit resets
+          
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchCountsResponse'
+              example:
+                total: 1250
+                themes:
+                  63286a015d31b2c0cad9960f: 450
+                  63286a015d31b2c0cad9960a: 380
+                  63286a015d31b2c0cad9960c: 420
+                needs:
+                  613721a409c5190dfa70d053: 320
+                  613721a409c5190dfa70d052: 280
+                  614d9a3e95b9b700142ef6c4: 650
+                frenchLevels:
+                  A1: 200
+                  A2: 350
+                  B1: 400
+                  B2: 300
+                ageRanges:
+                  "-18": 150
+                  "18-25": 400
+                  "+25": 700
+                publics:
+                  family: 300
+                  women: 250
+                  youths: 200
+                  senior: 150
+                  gender: 100
+                languages:
+                  fr: 800
+                  en: 200
+                  ar: 150
+                  uk: 100
+                statuses:
+                  asile: 400
+                  refugie: 500
+                  subsidiaire: 200
+                  apatride: 50
+                  temporaire: 75
+                  french: 25
+                types:
+                  dispositif: 900
+                  demarche: 250
+                  online: 100
+        
+        '400':
+          description: Bad request - invalid parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Bad Request"
+                message: "Invalid language: 'xx'. Supported: fr, en, uk, ti, ar, ps, ru, fa"
+        
+        '429':
+          description: Too many requests - rate limit exceeded
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+              description: Seconds to wait before retrying
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Too Many Requests"
+                message: "Rate limit exceeded: 10 requests per second per IP"
+                retryAfter: 60
+        
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "Internal Server Error"
+                message: "Failed to fetch search counts"
+
+components:
+  schemas:
+    SearchCountsResponse:
+      type: object
+      required:
+        - total
+        - themes
+        - needs
+        - frenchLevels
+        - ageRanges
+        - publics
+        - languages
+        - statuses
+        - types
+      properties:
+        total:
+          type: integer
+          description: Total number of matching dispositifs
+          example: 1250
+        
+        themes:
+          type: object
+          description: Counts grouped by theme MongoDB ObjectId
+          additionalProperties:
+            type: integer
+          example:
+            "63286a015d31b2c0cad9960f": 450
+            "63286a015d31b2c0cad9960a": 380
+            "63286a015d31b2c0cad9960c": 420
+        
+        needs:
+          type: object
+          description: Counts grouped by need MongoDB ObjectId
+          additionalProperties:
+            type: integer
+          example:
+            "613721a409c5190dfa70d053": 320
+            "613721a409c5190dfa70d052": 280
+            "614d9a3e95b9b700142ef6c4": 650
+        
+        frenchLevels:
+          type: object
+          description: Counts grouped by French proficiency level
+          additionalProperties:
+            type: integer
+          example:
+            A1: 200
+            A2: 350
+            B1: 400
+            B2: 300
+        
+        ageRanges:
+          type: object
+          description: Counts grouped by age range
+          additionalProperties:
+            type: integer
+          example:
+            "-18": 150
+            "18-25": 400
+            "+25": 700
+        
+        publics:
+          type: object
+          description: Counts grouped by target audience
+          additionalProperties:
+            type: integer
+          example:
+            family: 300
+            women: 250
+            youths: 200
+            senior: 150
+            gender: 100
+        
+        languages:
+          type: object
+          description: Counts grouped by language
+          additionalProperties:
+            type: integer
+          example:
+            fr: 800
+            en: 200
+            ar: 150
+            uk: 100
+        
+        statuses:
+          type: object
+          description: Counts grouped by refugee/reader status
+          additionalProperties:
+            type: integer
+          example:
+            asile: 400
+            refugie: 500
+            subsidiaire: 200
+            apatride: 50
+            temporaire: 75
+            french: 25
+        
+        types:
+          type: object
+          description: Counts grouped by dispositif type
+          properties:
+            dispositif:
+              type: integer
+              example: 900
+            demarche:
+              type: integer
+              example: 250
+            online:
+              type: integer
+              example: 100
+    
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - message
+      properties:
+        error:
+          type: string
+          description: Error type
+          example: "Bad Request"
+        
+        message:
+          type: string
+          description: Error message
+          example: "Invalid language parameter"
+        
+        retryAfter:
+          type: integer
+          description: Seconds to wait before retrying (only for 429)
+          example: 60
+
+tags:
+  - name: Search
+    description: Search and count dispositifs

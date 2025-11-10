@@ -22,8 +22,8 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
   };
 
   return (
-    <div
-      onClick={handleClick}
+    <li
+      onClick={onClick && handleClick}
       className={cn(
         "relative mb-4 flex items-start gap-2",
         onClick && "cursor-pointer",
@@ -32,9 +32,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
       )}
     >
       {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
-      {logoImage && (
-        <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt={logoImage?.alt || ""} />
-      )}
+      {logoImage && <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt="" />}
       <div className="md:flex md:flex-col ltr:text-left rtl:text-right">
         {title && (
           <h3 className="text-corps-md md:text-corps-sm mb-0 max-sm:float-left max-sm:mr-1 max-sm:inline max-sm:w-fit max-sm:after:content-['_:']">
@@ -42,7 +40,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
           </h3>
         )}
         {children && (
-          <div
+          <p
             className={cn(
               "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
               "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
@@ -51,7 +49,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
             )}
           >
             {children}
-          </div>
+          </p>
         )}
       </div>
       {onClick && (
@@ -66,10 +64,11 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
             className="min-h-0 flex-none p-1 before:m-0"
             aria-label="Modifier"
             title="Modifier"
+            onClick={onClick}
           />
         </span>
       )}
-    </div>
+    </li>
   );
 };
 
