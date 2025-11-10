@@ -10,7 +10,7 @@
   "scripts": {
     "build": "pnpm gen:tsoa && pnpm build:ncc",
     "build:dev": "pnpm gen:tsoa && tsc",
-    "build:ncc": "node --max-old-space-size=4096 ../../node_modules/.bin/ncc build src/server.ts -o dist",
+    "build:ncc": "NODE_OPTIONS='--max-old-space-size=4096' ncc build src/server.ts -o dist",
     "check:types": "pnpm gen:tsoa && tsc --noEmit",
     "dev": "pnpm build:dev && concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
     "gen:tsoa": "tsoa spec-and-routes",
