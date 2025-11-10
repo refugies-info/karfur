@@ -41,6 +41,9 @@ FROM tools AS installer
   # Set working directory
   WORKDIR /app
 
+  # Set Node.js memory limit for build process
+  ENV NODE_OPTIONS="--max-old-space-size=4096"
+
   # First install the dependencies (as they change less often)
   COPY --from=builder /app/out/json/ .
 
