@@ -15,6 +15,7 @@ type VoteProps = {
   onCancelYes?: () => void;
   onCancelNo?: () => void;
   onVoteUpdate?: (vote: boolean) => void;
+  onVoteAnnounce?: (message: string) => void;
   error?: boolean | null;
 };
 
@@ -32,6 +33,7 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
       onCancelYes,
       onCancelNo,
       onVoteUpdate,
+      onVoteAnnounce,
       isSticky = false,
       error = false,
     },
@@ -144,6 +146,7 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
         handleClickNo={handleClickNo}
         hasVoted={!error && hasVoted}
         thumbUpRef={thumbUpRef}
+        onVoteAnnounce={onVoteAnnounce}
       />
     );
   },

@@ -269,6 +269,8 @@
     "suggestionTitle": "Vous avez une suggestion ?",
     "suggestionSubtitle": "Signalez-nous toute erreur ou suggestion de modification. Nous en tiendrons compte pour améliorer la page.",
     "suggestionLabel": "Ma suggestion (Obligatoire)",
+    "suggestionErrorTitle": "Oups, une erreur s'est produite",
+    "suggestionErrorText": "Veuillez réessayer ou contacter un administrateur",
     "tooltipShareEmail": "Envoyer par email",
     "tooltipShareCopy": "Copier le lien de la fiche",
     "tooltipSharePrint": "Créer un PDF à imprimer",

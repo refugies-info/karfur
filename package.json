@@ -125,7 +125,7 @@
     "stylelint": "^16.23.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.20.5",
-    "turbo": "2.5.8",
+    "turbo": "2.6.0",
     "typescript": "^5.9.2"
   },
   "volta": {
