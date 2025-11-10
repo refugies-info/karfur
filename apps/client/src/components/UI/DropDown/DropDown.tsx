@@ -47,8 +47,19 @@ export const DropdownRoot = memo(
       (newIsOpen: boolean) => {
         setIsOpen(newIsOpen);
         onOpenChange?.(newIsOpen);
+
+        // Restore focus to trigger button when closing
+        if (!newIsOpen) {
+          const triggerButton = document.getElementById(triggerId);
+          if (triggerButton) {
+            // Use setTimeout to ensure focus happens after state updates
+            setTimeout(() => {
+              triggerButton.focus();
+            }, 0);
+          }
+        }
       },
-      [onOpenChange],
+      [onOpenChange, triggerId],
     );
 
     useImperativeHandle(ref, () => ({
@@ -223,8 +234,6 @@ export const DropdownContent = memo(
         if (!isOpen || !autoFocusFirst || !isFirstRender.current) return;
 
         const currentRef = typeof combinedRef === "function" ? null : combinedRef?.current;
-        // eslint-disable-next-line no-console
-        console.log(currentRef);
         if (currentRef) {
           const focusableElements = currentRef.querySelectorAll<HTMLElement>(
             'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',

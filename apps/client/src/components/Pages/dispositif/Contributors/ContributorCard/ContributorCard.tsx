@@ -20,7 +20,7 @@ const ContributorCard = ({ user }: Props) => {
         src={user.picture?.secure_url || DefaultAvatar}
         width={64}
         height={64}
-        alt={user.username || "user picture"}
+        alt=""
         className="mx-auto h-16 w-16 rounded-full object-cover"
       />
       <span className="text-default-grey mb-2 w-full text-center text-sm font-medium">

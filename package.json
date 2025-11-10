@@ -119,23 +119,23 @@
     "mongo-migrate-ts": "^1.6.3",
     "mongodb": "^6.20.0",
     "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.2.0",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "rimraf": "^6.0.1",
     "stylelint": "^16.23.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tsx": "^4.20.5",
-    "turbo": "2.5.8",
+    "turbo": "2.6.0",
     "typescript": "^5.9.2"
   },
   "volta": {
     "node": "22.14.0",
-    "pnpm": "10.18.0"
+    "pnpm": "10.20.0"
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx}": "prettier --write",
     "**/common.json": "prettier --write"
   },
-  "packageManager": "pnpm@10.18.0"
+  "packageManager": "pnpm@10.20.0"
 }
