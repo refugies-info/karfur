@@ -40,7 +40,7 @@
     "express": "^4.21.2",
     "express-form-data": "^3.0.1",
     "google-auth-library": "^9.15.0",
-    "googleapis": "^164.1.0",
+    "googleapis": "^165.0.0",
     "jwt-simple": "^0.5.5",
     "lodash": "^4.17.21",
     "microsoft-cognitiveservices-speech-sdk": "^1.45.0",
