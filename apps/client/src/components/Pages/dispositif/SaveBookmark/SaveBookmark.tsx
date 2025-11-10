@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Bookmark } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
 import Toast from "~/components/UI/Toast";
@@ -19,6 +19,7 @@ export default function SaveBookmark() {
 
   // favorites
   const [showNoAuthModal, setShowNoAuthModal] = useState(false);
+  const bookmarkButtonRef = useRef<HTMLButtonElement>(null);
   const noAuthModalToggle = useCallback(() => setShowNoAuthModal((o) => !o), []);
 
   const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
@@ -42,6 +43,7 @@ export default function SaveBookmark() {
     <div>
       <Tooltip kind="hover" title={isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}>
         <Button
+          ref={bookmarkButtonRef}
           priority="tertiary no outline"
           onClick={toggleFavorite}
           size="small"
@@ -57,7 +59,14 @@ export default function SaveBookmark() {
           ? t("Dispositif.messageAddedToFavorites")
           : t("Dispositif.messageRemovedFromFavorites")}
       </Toast>
-      {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />}
+      {!isAuth && (
+        <BookmarkedModal
+          open={showNoAuthModal}
+          onOpenChange={setShowNoAuthModal}
+          dispositifId={dispositif?._id}
+          triggerRef={bookmarkButtonRef}
+        />
+      )}
     </div>
   );
 }
