@@ -5,6 +5,7 @@
 @import "./dsfr-customisations.css";
 @import "./container.css";
 @import "./prose.css";
+@import "./prism-dark-theme.css";
 @source "../components/";
 @plugin "@tailwindcss/typography";
 
