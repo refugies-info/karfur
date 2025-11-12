@@ -32,7 +32,9 @@ export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): S
         ) {
           yield put(
             addToQueryActionCreator({
-              departments: (data.departments || [])?.map((dep) => dep.split(" - ")[1]),
+              departments: (data.departments || [])
+                ?.map((dep) => dep.split(" - ")[1])
+                .filter((dep) => dep !== undefined),
               sort: "default",
             }),
           );
