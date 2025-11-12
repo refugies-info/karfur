@@ -6,6 +6,7 @@ import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { FC, useCallback, useEffect, useState } from "react";
+import { sanitizeContent } from "~/lib/sanitizeContent";
 
 import Button from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
@@ -96,9 +97,10 @@ const RichTextInput: FC<Props> = (props: Props) => {
    */
   const handleSourceChange = useCallback(
     (html: string) => {
-      setSourceText(html);
+      const sanitizedHtml = sanitizeContent(html);
+      setSourceText(sanitizedHtml);
       if (props.onChange) {
-        props.onChange(html);
+        props.onChange(sanitizedHtml);
       }
     },
     [props],
