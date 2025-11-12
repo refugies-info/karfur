@@ -79,7 +79,7 @@
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.3",
     "@babel/runtime": "^7.28.3",
-    "@react-native/assets-registry": "^0.81.1",
+    "@react-native/assets-registry": "^0.82.1",
     "@react-native/eslint-plugin": "^0.80.2",
     "@react-navigation/core": "^7.12.4",
     "@refugies-info/api-types": "workspace:*",
