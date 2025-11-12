@@ -155,7 +155,7 @@
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
     "typescript-plugin-css-modules": "^5.2.0",
-    "wait-on": "^8.0.4"
+    "wait-on": "^9.0.3"
   },
   "volta": {
     "node": "22.14.0",
