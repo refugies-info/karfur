@@ -21,14 +21,14 @@
       --base-font-size: 1rem;
 
       list-style: none;
-      counter-reset: item;
+      counter-reset: item !important;
 
       /* Small left margin for alignment with paragraph */
       padding-inline-start: 0 !important;
 
       /* nested lists keep cumulative indentation */
       ol {
-        counter-reset: item;
+        counter-reset: item !important;
         padding-inline-start: 0;
         margin: 0 0 0 1.5rem; /* equivalent to u(6) */
       }

@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { memo, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +14,6 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "@refugies-info/ui";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
@@ -91,30 +91,6 @@ const SearchResults = (props: Props) => {
       });
     }
   }, [announce, remainingItems, page, t]);
-
-  useEffect(() => {
-    const nbResults = dispositifs.length;
-    if (query.search.length === 0) {
-      announce(
-        t("Recherche.emptySearch", "Recherche par mot clé vide. {{count}} fiches chargées", { count: nbResults }),
-        {
-          priority: "interrupt",
-          delay: 1000,
-        },
-      );
-      return;
-    }
-    announce(
-      t("Recherche.resultsForYourSearch", "{{count}} résultats trouvés pour votre recherche {{search}}", {
-        count: nbResults,
-        search: query.search,
-      }),
-      {
-        priority: "interrupt",
-        delay: 1000,
-      },
-    );
-  }, [dispositifs, announce, query, t]);
 
   return (
     <section className={styles.wrapper} aria-labelledby="resultats">

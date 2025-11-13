@@ -1,17 +1,16 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
-import FavoriteButton from "~/components/UI/FavoriteButton";
 import Image from "~/components/UI/Image";
 import { useLocale, useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
-import { cls } from "~/lib/classname";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
 import { getRelativeTimeString } from "~/lib/getRelativeDate";
 import { getTheme } from "~/lib/getTheme";
@@ -19,7 +18,6 @@ import { getPath } from "~/routes";
 import styles from "~/scss/components/contentCard.module.scss";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
-
 interface Props {
   dispositif: SimpleDispositif;
   selectedDepartment?: string;
@@ -71,12 +69,19 @@ const DispositifCard = (props: Props) => {
   const defaultImage = isDispositif ? defaultStructureImage : demarcheIcon;
 
   return (
-    <div className={cls(styles.wrapper, props.className)}>
-      <div className={cls("fr-card fr-enlarge-link", styles.container)}>
-        <div className={cls("fr-card__body", styles.body)}>
-          <div className={cls("fr-card__content", styles.content)}>
+    <article
+      aria-labelledby={props.dispositif._id.toString()}
+      className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
+    >
+      <Badge small className={cn(badge.className, "absolute top-2 left-2 z-20")}>
+        {isOnline && <i className="ri-at-line me-1"></i>}
+        {badge.text}
+      </Badge>
+      <div className={cn("fr-card", styles.container)}>
+        <div className={cn("fr-card__body", styles.body)}>
+          <div className={cn("fr-card__content", styles.content)}>
             <div className={styles.text}>
-              <h3 className="fr-card__title">
+              <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
                 <Link
                   target={props.targetBlank ? "_blank" : undefined}
                   rel={props.targetBlank ? "noopener noreferrer" : undefined}
@@ -90,12 +95,12 @@ const DispositifCard = (props: Props) => {
                   }
                 >
                   <span
-                    className={cls(styles.title, styles.three_lines)}
+                    className={cn(styles.title, styles.three_lines)}
                     dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
                   ></span>
                 </Link>
               </h3>
-              <p className={cls("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
+              <p className={cn("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
             </div>
 
             <div className="fr-card__start relative">
@@ -128,7 +133,7 @@ const DispositifCard = (props: Props) => {
             <div className={styles.end}>
               {isDispositif ? (
                 <>
-                  <div className={cls(styles.info, "flex gap-2")}>
+                  <div className={cn(styles.info, "flex gap-2")}>
                     {price && (
                       <span className="shrink-0">
                         <i className="fr-icon-money-euro-circle-line me-2" />
@@ -146,7 +151,7 @@ const DispositifCard = (props: Props) => {
               ) : (
                 <>
                   {props.dispositif.lastModificationDate && (
-                    <div className={styles.info}>
+                    <div className={cn(styles.info)}>
                       <span className="shrink">
                         <i className="fr-icon-time-line me-2" />
                         <span>{getRelativeTimeString(new Date(props.dispositif.lastModificationDate), locale, t)}</span>
@@ -174,19 +179,9 @@ const DispositifCard = (props: Props) => {
               <div className={styles.placeholder_img}></div>
             )}
           </div>
-          <ul className="fr-badges-group">
-            <li>
-              <Badge small className={badge.className}>
-                {isOnline && <i className="ri-at-line me-1"></i>}
-                {badge.text}
-              </Badge>
-            </li>
-          </ul>
         </div>
       </div>
-
-      {!props.demoCard && <FavoriteButton contentId={props.dispositif._id} className={styles.favorite} />}
-    </div>
+    </article>
   );
 };
 

@@ -1,4 +1,4 @@
-import { searchClient } from "@algolia/client-search";
+import { searchClient, type SearchClient } from "@algolia/client-search";
 import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
 import { ParsedUrlQuery } from "querystring";
@@ -67,7 +67,8 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
       if (dep === "france" || dep === "online" || dep.includes(" - ")) return dep;
       return new RegExp(` \\- ${escapeRegExp(dep)}$`, "i");
     });
-    match["metadatas.location"] = { $in: tokensOrRegexes };
+    // Fiches "toute la france" should always appear when filtering by department
+    match["metadatas.location"] = { $in: [...tokensOrRegexes, "france"] };
   }
 
   const themes = (queryParams.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
@@ -174,8 +175,8 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   if (languages.length > 0) {
     const languageConditions = languages.map((lang) => ({
       // translations is an object whose keys are language codes (e.g., fr, en)
-      [// We must check the existence of the nested key rather than a top-level field
-      `translations.${lang}`]: { $exists: true },
+      // We must check the existence of the nested key rather than a top-level field
+      [`translations.${lang}`]: { $exists: true },
     }));
     // Ensure language conditions are ANDed with other filters while ORed among themselves
     match.$and = (match.$and || []).concat([{ $or: languageConditions }]);
@@ -184,7 +185,10 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   return match;
 };
 
-export const getSearchClient = () => {
+export const getSearchClient = (): {
+  algoliaClient: SearchClient;
+  indexName: string;
+} => {
   const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
   const indexName =
     (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"

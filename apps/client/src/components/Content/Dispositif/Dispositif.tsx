@@ -2,6 +2,7 @@ import { ContentType } from "@refugies-info/api-types";
 import { useContext, useMemo, useRef } from "react";
 
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
@@ -16,7 +17,6 @@ import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -73,6 +73,7 @@ const Dispositif = (props: Props) => {
           <article
             className="z-10 order-2 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
             dir={isRTL ? undefined : "ltr"}
+            aria-labelledby="main-title"
           >
             {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
               <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />

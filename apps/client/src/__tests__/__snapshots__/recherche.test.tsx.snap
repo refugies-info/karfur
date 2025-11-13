@@ -46,275 +46,282 @@ exports[`recherche renders search results 1`] = `
         </div>
       </div>
     </div>
-    <div
-      class="title"
+    <header
+      aria-labelledby="search-title"
+      role="banner"
     >
       <div
-        class="container"
+        class="title"
       >
-        <h1>
-          Recherche.title
-        </h1>
-        <p>
-          Recherche.subtitle
-        </p>
+        <div
+          class="container"
+        >
+          <h1
+            id="search-title"
+          >
+            Recherche.title
+          </h1>
+          <p>
+            Recherche.subtitle
+          </p>
+        </div>
       </div>
-    </div>
-    <div
-      class="stickybar"
-    >
       <div
-        class="container container"
+        class="stickybar"
       >
         <div
-          class="fr-input-group $$typeof type props _owner _store"
-        >
-          <label
-            class="fr-label"
-            for="input-:r1:"
-          >
-            Recherche.keyword
-            <span
-              class="fr-hint-text"
-            />
-          </label>
-          <div
-            class="fr-input-wrap fr-icon-search-line"
-          >
-            <input
-              class="fr-input"
-              id="input-:r1:"
-              placeholder="Recherche.keyword"
-              type="text"
-              value=""
-            />
-          </div>
-          <div
-            aria-live="polite"
-            class="fr-messages-group"
-            id="input-:r1:-messages-group"
-          />
-        </div>
-        <div
-          class="filtersBar"
+          class="container container"
         >
           <div
-            class="filter"
+            class="fr-input-group $$typeof type props _owner _store"
           >
-            <div
-              class="menuContainer"
+            <label
+              class="fr-label"
+              for="input-:r1:"
             >
-              <div
-                class="container"
-              >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
-                >
-                  <span
-                    class="label"
-                  >
-                    Recherche.filterLocation
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
-              </div>
+              Recherche.keyword
+              <span
+                class="fr-hint-text"
+              />
+            </label>
+            <div
+              class="fr-input-wrap fr-icon-search-line"
+            >
+              <input
+                class="fr-input"
+                id="input-:r1:"
+                placeholder="Recherche.keyword"
+                type="search"
+                value=""
+              />
             </div>
+            <div
+              aria-live="polite"
+              class="fr-messages-group"
+              id="input-:r1:-messages-group"
+            />
           </div>
           <div
-            class="filter"
+            class="filtersBar"
           >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button values"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label limitedWidth"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
                   >
-                    Français
-                  </span>
-                </button>
-                <button
-                  class="clear"
-                  title="Recherche.resetButton"
-                >
-                  <i
-                    class="ri-close-circle-fill"
-                  />
-                </button>
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterLocation
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter filter filterHiddenOnMobile"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button values"
                   >
-                    Recherche.filterStatus
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
+                    <span
+                      class="label limitedWidth"
+                    >
+                      Français
+                    </span>
+                  </button>
+                  <button
+                    class="clear"
+                    title="Recherche.resetButton Français"
+                  >
+                    <i
+                      class="ri-close-circle-fill"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter filter filterHiddenOnMobile"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50 filter filterHiddenOnMobile"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
                   >
-                    Recherche.filterPublic
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterStatus
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter filter filterHiddenOnMobile"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50 filter filterHiddenOnMobile"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
                   >
-                    Recherche.filterAge
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterPublic
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter filter filterHiddenOnMobile"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50 filter filterHiddenOnMobile"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
                   >
-                    Recherche.filterFrenchLevel
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterAge
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter filter filterHiddenOnMobile"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50 filter filterHiddenOnMobile"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <span
-                    class="label"
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
                   >
-                    Recherche.filterLanguage
-                  </span>
-                   
-                  <i
-                    class="ri-arrow-down-s-line"
-                  />
-                </button>
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterFrenchLevel
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            class="filter collapsedFiltersButton"
-          >
             <div
-              class="menuContainer"
+              class="filter [&:has(.open)]:z-50 filter filterHiddenOnMobile"
             >
               <div
-                class="container"
+                class="[object Object]"
               >
-                <button
-                  aria-expanded="false"
-                  aria-haspopup="menu"
-                  class="button"
+                <div
+                  class="container"
                 >
-                  <i
-                    class="ri-equalizer-line"
-                  />
-                </button>
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
+                  >
+                    <span
+                      class="label"
+                    >
+                      Recherche.filterLanguage
+                    </span>
+                     
+                    <i
+                      class="ri-arrow-down-s-line"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="filter [&:has(.open)]:z-50 collapsedFiltersButton"
+            >
+              <div
+                class="[object Object]"
+              >
+                <div
+                  class="container"
+                >
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="menu"
+                    class="button"
+                  >
+                    <i
+                      class="ri-equalizer-line"
+                    />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </header>
     <section
       aria-labelledby="resultats"
       class="wrapper"

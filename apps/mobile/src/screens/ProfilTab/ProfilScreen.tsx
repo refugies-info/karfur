@@ -177,7 +177,7 @@ export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "Pro
 
         <ProfilDetailButton
           iconName="gift-outline"
-          label="Partager l'application"
+          label={t("Toolbar.shareApplication", "Partager l'application")}
           onPress={() => navigation.navigate("ShareScreen")}
           iconRight="navigate"
           purpleVariant

@@ -1,20 +1,19 @@
 import Link from "next/link";
+import { ReactElement } from "react";
 import { getPath } from "routes";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice/HelpNotice";
+import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
 import SEO from "~/components/Seo";
 import { useLocale } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
-import styles from "~/scss/pages/legal-pages.module.scss";
 
 const PolitiqueConfidentialite = () => {
   const locale = useLocale();
 
   return (
     <div className="w-full">
-      <HelpNotice />
-      <div className={styles.legal_pages + " animated fadeIn texte-small"}>
+      <div className={"animated fadeIn texte-small"}>
         <SEO title="Politique de confidentialité" />
-        <h1>Politique de confidentialité</h1>
+        <h1 className="mb-8 md:mb-20">Politique de confidentialité</h1>
         <h2>Qui sommes-nous ?</h2>
         <p>
           Ce site est édité par <strong>Refugies.info</strong>. Visitez la page{" "}
@@ -105,6 +104,9 @@ const PolitiqueConfidentialite = () => {
   );
 };
 
+PolitiqueConfidentialite.getLayout = (page: ReactElement) => (
+  <LegalPagesLayout title="Politique de confidentialité">{page}</LegalPagesLayout>
+);
 export const getStaticProps = defaultStaticProps;
 
 export default PolitiqueConfidentialite;
