@@ -26,6 +26,7 @@
       "unrs-resolver"
     ],
     "overrides": {
+      "@codegouvfr/react-dsfr": "1.20.2",
       "debug": "4.4.1",
       "expo-dev-menu": "6.0.21",
       "form-data": ">=4.0.4",
@@ -35,7 +36,7 @@
       "stylus": "npm:noop3@^1000.0.0",
       "tmp": ">=0.2.4",
       "undici": ">=6.21.2",
-      "@codegouvfr/react-dsfr": "1.20.2"
+      "validator": ">=13.15.20"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
