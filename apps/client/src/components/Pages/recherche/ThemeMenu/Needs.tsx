@@ -123,7 +123,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
       >
         <Checkbox
           legend={t("Recherche.theme", "Thème")}
-          className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b [&_legend]:sr-only"
+          className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b [&_legend]:sr-only [&_legend]:hidden"
           options={[
             {
               label: (
@@ -133,8 +133,10 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
                 />
               ),
               nativeInputProps: {
-                checked: allNeedsSelected,
-                onChange: toggleAllNeeds,
+                "checked": allNeedsSelected,
+                "onChange": toggleAllNeeds,
+                "className": "!border",
+                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", "fiches")}`,
               },
             },
             ...displayedNeeds.map((need) => {
@@ -143,8 +145,10 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
               return {
                 label: <NeedItem need={need} />,
                 nativeInputProps: {
-                  checked: selected,
-                  onChange: () => selectNeed(need._id),
+                  "checked": selected,
+                  "onChange": () => selectNeed(need._id),
+                  "className": "!border",
+                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")})`,
                 },
               };
             }),
