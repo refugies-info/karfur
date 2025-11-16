@@ -14,7 +14,7 @@ interface Props {
   callback: () => void;
   dispositifId?: Id;
   sectionKey: string;
-  triggerRef?: RefObject<HTMLButtonElement>;
+  triggerRef?: RefObject<HTMLButtonElement | null>;
 }
 
 const ReactionModal = (props: Props) => {

@@ -82,7 +82,7 @@ export interface ModalProps {
    * Optional ref to the trigger element
    * Focus will return to this element when modal closes
    */
-  triggerRef?: RefObject<HTMLElement>;
+  triggerRef?: RefObject<HTMLElement | null>;
 
   /**
    * Optional callback fired when modal opens and focus is set
