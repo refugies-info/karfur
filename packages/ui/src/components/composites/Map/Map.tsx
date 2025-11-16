@@ -6,11 +6,18 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContext } from "./MapContext";
 import { MapPanel } from "./MapPanel";
 
+import { LeafletMap, LeafletMapProps } from "./LeafletMap";
+
+type LeafletMapComponent = React.FC<LeafletMapProps>;
+
 // Dynamically import LeafletMap component with SSR disabled
-const DynamicLeafletMap = dynamic(() => import("./LeafletMap.tsx").then((mod) => mod.LeafletMap), {
-  ssr: false,
-  loading: () => <div className="flex h-full items-center justify-center">Chargement de la carte...</div>,
-});
+const DynamicLeafletMap = dynamic<LeafletMapProps>(
+  () => import("./LeafletMap").then((mod) => mod.LeafletMap as LeafletMapComponent),
+  {
+    ssr: false,
+    loading: () => <div className="flex h-full items-center justify-center">Chargement de la carte...</div>,
+  },
+);
 
 type MapProps = {
   className?: string;

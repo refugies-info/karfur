@@ -30,7 +30,7 @@ const markerIcon = L.divIcon({
 
 L.Marker.prototype.options.icon = markerIcon;
 
-type LeafletMapProps = {
+export type LeafletMapProps = {
   className?: string;
 };
 

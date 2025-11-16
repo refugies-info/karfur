@@ -1,13 +1,10 @@
 import { Breadcrumb as DsfrBreadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import { HTMLAnchorProps } from "react";
 import { type ReactNode } from "react";
 
 export type BreadcrumbSegment = {
   label: ReactNode;
-  linkProps: {
-    href: string;
-    className?: string;
-    [key: string]: string | undefined;
-  };
+  linkProps: Omit<HTMLAnchorProps, "children">;
 };
 
 export interface BreadcrumbProps {
@@ -29,7 +26,7 @@ export const Breadcrumb = ({
         <i className="ri-home-4-line" />
       </span>
     ),
-    linkProps: { href: "/", className: "bg-none" },
+    linkProps: { href: "/" },
   };
 
   const allSegments = [homeSegment, ...segments];
