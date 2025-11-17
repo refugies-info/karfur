@@ -19,7 +19,7 @@
     "typescript-eslint": "^8.41.0"
   },
   "dependencies": {
-    "mongoose": "^8.19.1"
+    "mongoose": "^8.19.4"
   },
   "repository": {
     "type": "git",
