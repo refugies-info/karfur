@@ -30,7 +30,7 @@ _Goal: Frontend receives and displays origin metadata for Dispositifs._
   - `origin` field persistence and retrieval (default "RI" on creation, explicit "RCO")
   - `origin` field is returned in `createDispositif` and `updateDispositif` responses
   - `origin` field is immutable on updates
-- [ ] T010 [US1] Implement UI badge for RCO origin in `apps/client/src/components/UI/DispositifCard/DispositifCard.tsx`
+- [ ] T010 [US1] Implement UI badge for RCO origin in `apps/client/src/components/UI/DispositifCard/DispositifCard.tsx`. MUST use DSFR badge styles and include accessible label (sr-only or aria-label).
 - [ ] T011 [US1] Update Dispositif Detail page in `apps/client/src/pages/dispositif/[id]/index.tsx` to display origin information if required by design
 
 ## Phase 4: User Story 3 - Frontend client maintains backward compatibility (P3)
@@ -38,7 +38,7 @@ _Goal: Frontend receives and displays origin metadata for Dispositifs._
 _Goal: Ensure legacy data and clients continue to function without errors._
 
 - [ ] T012 [P] [US3] Add test case to `apps/server/src/modules/dispositif/__tests__/dispositif.origin.test.ts` ensuring documents missing `origin` field return "RI" in API responses
-- [ ] T013 [US3] Manually verify no regressions in search/catalogue pages for existing content
+- [ ] T013 [US3] Manually verify no regressions in search/catalogue pages for existing content (Smoke test: Load homepage, perform search, view detail page of legacy item).
 
 ## Phase 5: Polish & Cross-Cutting
 
@@ -47,6 +47,8 @@ _Final cleanup and verification._
 - [ ] T014 Ensure all new types are exported and usable across the monorepo
 - [ ] T015 Run full test suite `pnpm test` to ensure no regressions in unrelated modules
 - [ ] T016 [Mobile] Placeholder: Verify impact on mobile app and plan UI updates for origin display
+- [ ] T017 [Docs] Verify generated API documentation (Swagger/OpenAPI) reflects the new `origin` field (FR-007)
+- [ ] T018 [Analytics] Update `exportFiches` and `getStatistics` to include `origin` field in read-only outputs (FR-005)
 
 ## Dependencies
 
