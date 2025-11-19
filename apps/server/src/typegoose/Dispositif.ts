@@ -282,6 +282,9 @@ export class Dispositif extends Base {
   @prop()
   public webOnly: boolean;
 
+  @prop({ default: "RI" })
+  public origin: "RI" | "RCO";
+
   @prop()
   public translations!: PartialRecord<Languages, TranslationContent>;
   @prop({ _id: false })

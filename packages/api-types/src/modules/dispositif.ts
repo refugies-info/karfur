@@ -176,6 +176,7 @@ interface DispositifResponse {
   typeContenu: ContentType;
   status: DispositifStatus;
   hasDraftVersion: boolean;
+  origin?: "RI" | "RCO";
 }
 
 /**
@@ -254,6 +255,7 @@ export type GetDispositifResponse = {
   lastModificationDate?: Date;
   externalLink?: string;
   hasDraftVersion: boolean;
+  origin?: "RI" | "RCO";
 };
 
 /**

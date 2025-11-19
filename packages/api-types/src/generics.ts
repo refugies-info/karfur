@@ -252,4 +252,5 @@ export interface SimpleDispositif {
   availableLanguages: string[];
   hasDraftVersion: boolean;
   themeSortIndex: number;
+  origin?: "RI" | "RCO";
 }

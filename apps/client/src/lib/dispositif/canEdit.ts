@@ -4,6 +4,7 @@ import { isStatus } from "./isStatus";
 
 export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserInfoResponse | null) => {
   if (!user || !dispositif) return false;
+  if (dispositif.origin === "RCO") return false;
   if (hasRole(user, RoleName.ADMIN)) return true;
 
   const firstDraftVersion = isStatus(dispositif.status, DispositifStatus.DRAFT); // the never published draft

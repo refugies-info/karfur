@@ -15,6 +15,7 @@ import {
 } from "~/components/Pages/dispositif/Edition";
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
+import RCOPlaceholder from "~/components/Pages/dispositif/RCOPlaceholder";
 import SEO from "~/components/Seo";
 import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
 import { cn } from "~/lib/classname";
@@ -75,22 +76,32 @@ const Dispositif = (props: Props) => {
             dir={isRTL ? undefined : "ltr"}
             aria-labelledby="main-title"
           >
-            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-              <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
-            ))}
-            {/* TODO: adapt the Map component to be used in edit mode */}
-            {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
-            {isViewMode && isMobile && (
-              <Button
-                linkProps={{ href: "#top" }}
-                iconId="fr-icon-arrow-up-line"
-                priority="tertiary no outline"
-                className="w-full bg-white py-8 underline print:!hidden"
-              >
-                {t("topLink")}
-              </Button>
+            {dispositif?.origin === "RCO" ? (
+              <RCOPlaceholder />
+            ) : (
+              <>
+                {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+                  <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
+                ))}
+                {/* TODO: adapt the Map component to be used in edit mode */}
+                {isViewMode ? (
+                  (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} />
+                ) : (
+                  <MapEdit />
+                )}
+                {isViewMode && isMobile && (
+                  <Button
+                    linkProps={{ href: "#top" }}
+                    iconId="fr-icon-arrow-up-line"
+                    priority="tertiary no outline"
+                    className="w-full bg-white py-8 underline print:!hidden"
+                  >
+                    {t("topLink")}
+                  </Button>
+                )}
+                {isViewMode && <Contributors />}
+              </>
             )}
-            {isViewMode && <Contributors />}
           </article>
 
           {(isDesktop || isLargeDesktop) && (
