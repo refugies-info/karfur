@@ -1,1 +1,49 @@
-1. Follow the formatting rules established in .prettierrc when generating code.
+# Workspace Rules
+
+## Tech Stack & Standards
+
+- **Framework:** Next.js / React / Turborepo Monorepo.
+- **Styling:** - Use Tailwind CSS utility classes by default.
+  - Use `!` modifier for precedence conflicts before complex logic.
+  - Only use SCSS/CSS for complex animations or global styles not possible with Tailwind.
+  - Avoid fragile CSS selectors (e.g., `ol li[value="2"]`).
+- **Testing:** - Prefer state-based "narrow integration tests" over heavy mocks.
+  - Setup real state (e.g., test DB), run function, assert resulting state.
+- **Commits:** Follow Conventional Commits v1.0.0. Scopes: `api-types`, `client`, `server`, `mobile`, `storybook`, `ui`, `workspace`.
+
+## 🔧 Strict Configuration Enforcements
+
+- **Import Aliases:** - **Rule:** ALWAYS use the `~` alias (e.g., `~/lib/utils`) for internal imports.
+  - **Constraint:** NEVER use deep relative paths (e.g., `../../../lib`).
+  - **Reference:** See `compilerOptions.paths` in `tsconfig.json` for valid mappings.
+
+- **Package Management:**
+  - **Rule:** EXCLUSIVELY use `pnpm` for all package operations.
+  - **Constraint:** Do not suggest `npm` or `yarn` commands.
+  - **Reference:** Enforced by `pnpm-lock.yaml` and `package.json` engines.
+
+- **Code Formatting:**
+  - **Rule:** All generated code must strictly adhere to Prettier standards.
+  - **Constraint:** Do not rely on default formatting; check specific overrides (e.g., semi, quotes).
+  - **Reference:** Consult `.prettierrc` for the exact configuration before generating large code blocks.
+
+- **Monorepo Structure:**
+  - **Rule:** Respect the Turborepo boundaries. Shared UI goes in `packages/ui`, apps in `apps/*`.
+  - **Reference:** See `turbo.json` and `pnpm-workspace.yaml` for the dependency graph.
+
+## Development Workflow
+
+- **Imports:** Use static imports by default for performance and type safety.
+- **Migrations:** Manage via `pnpm migrate`. Create new: `pnpm migrate new --name <name>`.
+- **Database:** When generating MongoDB queries, format them for direct copy-paste into MongoDB Atlas.
+- **Tooling:** - Use `pnpm clean:modules` to wipe node_modules.
+  - Use `pnpm.overrides` for dependency resolution conflicts.
+  - To inspect MongoDB collections, use the MongoDB MCP tool with db `heroku_wbj38s57`.
+
+## Project Principles
+
+1. Accessibility First
+2. Multilingual by Design
+3. Progressive Migration Strategy
+4. Monorepo Consistency
+5. Government Standards (DSFR) Compliance
