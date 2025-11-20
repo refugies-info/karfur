@@ -214,6 +214,14 @@ export class Dispositif extends Base {
   @prop()
   updatedAt?: Date;
 
+  @prop({
+    enum: ["RI", "RCO"],
+    default: "RI",
+    required: true,
+    immutable: true,
+  })
+  public origin!: "RI" | "RCO";
+
   @prop({ ref: () => Structure })
   public mainSponsor?: Ref<Structure, StructureId>;
   @prop({ ref: () => Theme })

@@ -1,6 +1,11 @@
 import eslint from "@eslint/js";
 import reactNativePlugin from "@react-native/eslint-plugin";
+import { dirname } from "path";
 import tseslint from "typescript-eslint";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 export default tseslint.config(
   // Base configurations
@@ -12,8 +17,8 @@ export default tseslint.config(
     files: ["**/*.js", "**/*.jsx"],
     languageOptions: {
       globals: {
-        __DEV__: "readonly"
-      }
+        __DEV__: "readonly",
+      },
     },
     rules: {
       "no-unused-vars": "warn",
@@ -35,6 +40,9 @@ export default tseslint.config(
         global: "readonly",
         process: "readonly",
         console: "readonly",
+      },
+      parserOptions: {
+        tsconfigRootDir: __dirname,
       },
     },
     rules: {

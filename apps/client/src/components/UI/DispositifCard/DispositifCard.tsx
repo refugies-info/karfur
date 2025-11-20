@@ -40,8 +40,10 @@ const DispositifCard = (props: Props) => {
   const commitment = props.dispositif.metadatas?.commitment;
   const price = props.dispositif.metadatas?.price;
   const isOnline = props.dispositif.metadatas?.location === "online";
+  const isRCO = props.dispositif.origin === "RCO";
 
   const badge = useMemo((): { className: string; text: string | null } => {
+    if (isRCO) return { text: "Généré par IA", className: styles.badge_rco };
     if (!isDispositif) return { text: t("Dispositif.demarche", "Démarche"), className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
     if (!location) return { text: "Lieu d'action", className: styles.badge_department };
@@ -73,7 +75,11 @@ const DispositifCard = (props: Props) => {
       aria-labelledby={props.dispositif._id.toString()}
       className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
     >
-      <Badge small className={cn(badge.className, "absolute top-2 left-2 z-20")}>
+      <Badge
+        small
+        className={cn(badge.className, "absolute top-2 left-2 z-20")}
+        aria-label={isRCO ? "Contenu généré par intelligence artificielle" : undefined}
+      >
         {isOnline && <i className="ri-at-line me-1"></i>}
         {badge.text}
       </Badge>

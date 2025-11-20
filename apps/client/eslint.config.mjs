@@ -42,6 +42,7 @@ const config = [
         ecmaFeatures: {
           jsx: true,
         },
+        tsconfigRootDir: __dirname,
       },
     },
 

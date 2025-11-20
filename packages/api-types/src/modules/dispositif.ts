@@ -2,6 +2,7 @@ import {
   ContentStructure,
   ContentType,
   DemarcheAdministration,
+  DispositifOrigin,
   DispositifStatus,
   Id,
   InfoSection,
@@ -38,6 +39,7 @@ export interface CountDispositifsRequest {
   type: ContentType;
   publishedOnly: boolean;
   themeId?: string;
+  origin?: DispositifOrigin;
 }
 
 /**
@@ -48,6 +50,7 @@ export interface GetDispositifsRequest {
   locale: string;
   limit?: number;
   sort?: string;
+  origin?: DispositifOrigin;
 }
 
 /**
@@ -87,6 +90,7 @@ export interface ContentForApp {
    * The actual locale returned by the server
    */
   locale: Languages;
+  origin: DispositifOrigin;
 }
 
 export type GetContentsForAppResponse = {
@@ -169,6 +173,7 @@ export interface DispositifRequest {
   administration?: DemarcheAdministration;
   metadatas?: Metadatas;
   map?: Poi[] | null;
+  origin?: DispositifOrigin;
 }
 interface DispositifResponse {
   id: Id;
@@ -176,6 +181,7 @@ interface DispositifResponse {
   typeContenu: ContentType;
   status: DispositifStatus;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 }
 
 /**
@@ -254,6 +260,7 @@ export type GetDispositifResponse = {
   lastModificationDate?: Date;
   externalLink?: string;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 };
 
 /**
@@ -376,6 +383,7 @@ export interface GetAllDispositifsResponse {
   webOnly: boolean;
   creatorId: SimpleUser;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 }
 
 /**
