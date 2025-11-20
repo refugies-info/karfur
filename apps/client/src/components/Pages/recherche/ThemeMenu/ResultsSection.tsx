@@ -2,7 +2,7 @@ import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
@@ -15,6 +15,7 @@ import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import NeedItem from "./NeedItem";
 import styles from "./ResultsSection.module.css";
+import { ThemeMenuContext } from "./ThemeMenuContext";
 
 interface Props {
   theme: GetThemeResponse;
@@ -30,13 +31,7 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
   const { t } = useTranslation();
   const announce = useAnnounce();
   const dispositifs = useSelector(activeDispositifsSelector);
-
-  // Calculate count of dispositifs for each need
-  const nbDispositifsByNeed: Record<string, number> = {};
-  needs.forEach((need) => {
-    const results = queryDispositifs({ ...query, needs: [need._id], themes: [] }, dispositifs, allNeeds);
-    nbDispositifsByNeed[need._id.toString()] = results.matches.length;
-  });
+  const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];

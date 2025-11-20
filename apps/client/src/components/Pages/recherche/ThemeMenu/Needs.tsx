@@ -122,8 +122,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
         ref={needsContainerRef}
       >
         <Checkbox
-          legend={t("Recherche.theme", "Thème")}
-          className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b [&_legend]:sr-only [&_legend]:hidden"
+          className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b"
           options={[
             {
               label: (
@@ -148,7 +147,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
                   "checked": selected,
                   "onChange": () => selectNeed(need._id),
                   "className": "!border",
-                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")})`,
+                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
                 },
               };
             }),
