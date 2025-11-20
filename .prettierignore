@@ -1,5 +1,5 @@
 # Ignore directories from formatting
-/.kilocode
+/.gemini
 /.specify
 /.windsurf
 node_modules/
