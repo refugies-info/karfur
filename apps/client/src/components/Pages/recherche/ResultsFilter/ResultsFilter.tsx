@@ -2,7 +2,7 @@ import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
@@ -13,7 +13,7 @@ import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/qu
 import { Event } from "~/lib/tracking";
 import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./ResultsFilter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
@@ -28,7 +28,6 @@ const ResultsFilter = (props: Props): React.ReactNode => {
 
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const filteredResult = useSelector(searchResultsSelector);
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
 
@@ -89,12 +88,6 @@ const ResultsFilter = (props: Props): React.ReactNode => {
     [dispatch, eventName],
   );
 
-  useEffect(() => {
-    if (open) {
-      // Focus is managed by Radix UI
-    }
-  }, [open]);
-
   const filteredSortOptions = useMemo(() => {
     return sortOptions.filter((option) => {
       const rule = getDisplayRuleForQuery(query, option.key);
@@ -110,12 +103,16 @@ const ResultsFilter = (props: Props): React.ReactNode => {
     return sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort));
   }, [query.sort, defaultSortOption]);
 
+  const getCurrentSortKey = useMemo(() => {
+    return query.sort === "default" ? defaultSortOption : query.sort;
+  }, [query.sort, defaultSortOption]);
+
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
       <div className={styles.grid}>
         <TabsBar>
-          {filterType.map((option, i) => (
-            <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+          {filterType.map((option) => (
+            <TabItem key={option.key} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
               {t(option.value)} {getCount(option.key)}
             </TabItem>
           ))}
@@ -128,8 +125,8 @@ const ResultsFilter = (props: Props): React.ReactNode => {
                   selectSort(e.target.value as SortOptions);
                 }}
               >
-                {filteredSortOptions.map((option, i) => {
-                  const isSelected = (query.sort === "default" ? defaultSortOption : query.sort) === option.key;
+                {filteredSortOptions.map((option) => {
+                  const isSelected = getCurrentSortKey === option.key;
                   return (
                     <option key={option.key} value={option.key} selected={isSelected}>
                       {t(option.value)}
@@ -152,7 +149,7 @@ const ResultsFilter = (props: Props): React.ReactNode => {
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
                     {filteredSortOptions.map((option) => {
-                      const isSelected = (query.sort === "default" ? defaultSortOption : query.sort) === option.key;
+                      const isSelected = getCurrentSortKey === option.key;
                       const optionLabel = t(option.value);
                       return (
                         <DropdownMenu.Item
