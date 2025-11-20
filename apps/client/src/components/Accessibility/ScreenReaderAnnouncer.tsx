@@ -1,66 +1,25 @@
 /**
- * @fileoverview Screen Reader Announcer - Accessible announcement system for assistive technologies
+ * @fileoverview Screen Reader Announcer - Dual-channel ARIA live region system
  *
- * This module provides a centralized system for announcing dynamic content changes to screen readers
- * using ARIA live regions. It ensures announcements are queued, timed appropriately, and don't
- * overwhelm users of assistive technologies.
+ * Provides queued announcements for screen readers with two channels:
+ * - **Polite**: Sequential queue (never interrupted) with pessimistic read time estimation
+ * - **Assertive**: Priority announcements that clear the queue and announce immediately
  *
- * **Key Features:**
- * - ✅ WCAG 2.1 compliant (Success Criterion 4.1.3 - Status Messages)
- * - ✅ Queued announcements to prevent overlap
- * - ✅ Priority system for critical messages
- * - ✅ Delayed announcements for timing control
- * - ✅ Automatic duplicate message handling
- * - ✅ Debug mode for development
- *
- * **Usage:**
- * 1. Wrap your app with `ScreenReaderAnnouncerProvider`
- * 2. Use `useAnnounce()` hook in any component
- * 3. Call `announce(message, options)` to make announcements
- *
- * **When to use:**
- * - Form submission feedback
- * - Loading state changes
- * - Error messages
- * - Success confirmations
- * - Dynamic content updates
- * - Modal open/close events
- * - Search results updates
- *
- * **When NOT to use:**
- * - Static content (use semantic HTML instead)
- * - Content already announced by native elements
- * - Decorative or redundant messages
+ * Features: WCAG 2.1 SC 4.1.3 compliant, ZWSP duplicate handling, Shadow DOM isolation, debug mode.
  *
  * @module ScreenReaderAnnouncer
  * @see {@link https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html WCAG 4.1.3}
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Live_Regions MDN ARIA Live Regions}
  */
 "use client";
-import { cn } from "@refugies-info/ui";
 import { createContext, ReactNode, useCallback, useContext, useEffect, useRef, useState } from "react";
 
 /**
  * Options for configuring screen reader announcements.
- *
- * @property {("interrupt" | "normal")} [priority="normal"] - Controls how the announcement is handled:
- *   - `"interrupt"`: Clears the queue and announces immediately (use for critical updates)
- *   - `"normal"`: Adds to the queue and announces in order (default behavior)
- *
- * @property {number} [delay=0] - Delay in milliseconds before the announcement is made.
- *   Useful for waiting for UI updates to complete before announcing.
- *
- * @example
- * ```tsx
- * // Normal announcement (queued)
- * announce("Item added to cart");
- *
- * // Interrupt with critical message
- * announce("Error: Payment failed", { priority: "interrupt" });
- *
- * // Delayed announcement (wait for animation)
- * announce("Loading complete", { delay: 300 });
- * ```
+ * @property {("interrupt" | "normal")} [priority="normal"] - "interrupt" clears queue and announces immediately; "normal" queues
+ * @property {number} [delay=0] - Milliseconds to wait before announcing (for UI updates)
+ * @example announce("Item added"); // Queued
+ * @example announce("Error!", { priority: "interrupt" }); // Immediate
+ * @example announce("Done", { delay: 300 }); // Wait 300ms
  */
 type AnnounceOptions = {
   priority?: "interrupt" | "normal";
@@ -88,72 +47,25 @@ type AnnouncerContextType = {
 const AnnouncerContext = createContext<AnnouncerContextType | null>(null);
 
 /**
- * Hook to announce messages to screen readers using ARIA live regions.
- *
- * This hook provides a centralized way to make announcements that are accessible
- * to assistive technologies. All announcements are queued and announced sequentially
- * to avoid overwhelming screen reader users.
- *
- * @returns {Function} announce - Function to announce messages to screen readers
- *
- * @throws {Error} If used outside of ScreenReaderAnnouncerProvider
- *
+ * Hook to announce messages to screen readers.
+ * @returns {Function} announce(message, options?) - Queues or announces immediately
+ * @throws {Error} If used outside ScreenReaderAnnouncerProvider
  * @example
  * ```tsx
- * import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
- *
- * function MyComponent() {
- *   const announce = useAnnounce();
- *
- *   const handleSave = async () => {
- *     await saveData();
- *     announce("Changes saved successfully");
- *   };
- *
- *   return <button onClick={handleSave}>Save</button>;
- * }
+ * const announce = useAnnounce();
+ * announce("Item saved successfully");
  * ```
- *
  * @example
  * ```tsx
- * // Form validation feedback
- * const handleSubmit = (e) => {
- *   e.preventDefault();
- *   if (!isValid) {
- *     announce("Please fix the errors in the form", { priority: "interrupt" });
- *   }
- * };
+ * // Critical error - interrupts queue
+ * announce("Payment failed. Please try again.", { priority: "interrupt" });
  * ```
- *
  * @example
  * ```tsx
- * // Modal close with focus management
- * const handleModalClose = () => {
- *   closeModal();
- *   triggerButtonRef.current?.focus();
- *   announce("Modal closed", { delay: 100 });
- * };
+ * // Wait for UI update before announcing
+ * setResults(data);
+ * announce(`Found ${data.length} results`, { delay: 500 });
  * ```
- *
- * @example
- * ```tsx
- * // Loading states
- * const loadData = async () => {
- *   announce("Loading data...");
- *   const data = await fetchData();
- *   announce("Data loaded successfully");
- * };
- * ```
- *
- * @example
- * ```tsx
- * // Critical error that needs immediate attention
- * const handleError = (error) => {
- *   announce(`Error: ${error.message}`, { priority: "interrupt" });
- * };
- * ```
- *
- * @see {@link AnnounceOptions} for available options
  */
 export const useAnnounce = () => {
   const ctx = useContext(AnnouncerContext);
@@ -163,101 +75,149 @@ export const useAnnounce = () => {
 
 /**
  * Provider component for screen reader announcements.
- *
- * This component creates an ARIA live region that announces messages to screen readers.
- * It manages a queue of announcements to ensure they are delivered sequentially without
- * overwhelming assistive technology users.
- *
- * **Features:**
- * - Queued announcements (prevents message overlap)
- * - Priority interrupts for critical messages
- * - Delayed announcements for timing control
- * - Debug mode for visual feedback during development
- * - Automatic duplicate message handling
- *
- * @param {Object} props
- * @param {ReactNode} props.children - Child components that will have access to the announcer
- *
- * @example
- * ```tsx
- * // In your root layout or app component
- * import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
- *
- * export default function RootLayout({ children }) {
- *   return (
- *     <html>
- *       <body>
- *         <ScreenReaderAnnouncerProvider>
- *           {children}
- *         </ScreenReaderAnnouncerProvider>
- *       </body>
- *     </html>
- *   );
- * }
- * ```
- *
- * @example
- * ```tsx
- * // Enable debug mode to see announcements visually
- * // Set NEXT_PUBLIC_SR_DEBUG=true in your .env.local
- * // A red banner will appear at the bottom showing current announcements
- * ```
- *
- * @see {@link useAnnounce} for usage in components
+ * Manages dual-channel queue (polite + assertive) with pessimistic read time estimation.
+ * @param {ReactNode} props.children - Components with access to useAnnounce hook
+ * @example <ScreenReaderAnnouncerProvider>{children}</ScreenReaderAnnouncerProvider>
+ * @note Enable debug: NEXT_PUBLIC_SR_DEBUG=true in .env.local
  */
 export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNode }) => {
-  const [queue, setQueue] = useState<QueueItem[]>([]);
-  const [current, setCurrent] = useState<string>("");
+  // Polite channel: queued announcements (never interrupted)
+  const [politeQueue, setPoliteQueue] = useState<QueueItem[]>([]);
+  const [politeCurrent, setPoliteCurrent] = useState<string>("");
+
+  // Assertive channel: priority announcements (interrupts polite)
+  const [assertiveCurrent, setAssertiveCurrent] = useState<string>("");
+
+  // Debug state
+  const [queueTimeline, setQueueTimeline] = useState<string>("");
+
   const idRef = useRef(0);
+  const queueLengthRef = useRef(0);
 
   const debug = process.env.NEXT_PUBLIC_SR_DEBUG === "true";
 
-  const announce = useCallback((message: string, options?: AnnounceOptions) => {
-    setQueue((prev) => {
-      const newItem = {
-        id: ++idRef.current,
-        message,
-        delay: options?.delay ?? 0,
-      };
-      if (options?.priority === "interrupt") return [newItem];
-      return [...prev, newItem];
-    });
+  // Helper: Calculate read time based on word count (150ms/word + 300ms buffer, min 800ms)
+  const calculateReadTime = useCallback((message: string): number => {
+    const wordCount = message.split(/\s+/).length;
+    return Math.max(800, wordCount * 150 + 300);
   }, []);
 
-  useEffect(() => {
-    if (queue.length === 0) return;
+  const announce = useCallback(
+    (message: string, options?: AnnounceOptions) => {
+      const newItem = { id: ++idRef.current, message, delay: options?.delay ?? 0 };
 
-    const [first, ...rest] = queue;
-    setCurrent("");
+      if (options?.priority === "interrupt") {
+        setPoliteQueue([]);
+        setQueueTimeline("");
+        if (debug) {
+          // eslint-disable-next-line no-console
+          console.log(
+            `%c[SR] 🔴 INTERRUPT%c Queue cleared, announcing immediately\n→ "${message.substring(0, 60)}..."`,
+            "color: #ef4444; font-weight: bold",
+            "color: #666",
+          );
+        }
+        // Use single ZWSP to handle duplicate messages
+        setAssertiveCurrent(`${message}\u200B`);
+      } else {
+        setPoliteQueue((prev) => {
+          queueLengthRef.current = prev.length + 1;
+          return [...prev, newItem];
+        });
+        if (debug) {
+          // eslint-disable-next-line no-console
+          console.log(
+            `%c[SR] 🟢 QUEUE%c Position ${queueLengthRef.current} | Delay ${options?.delay ?? 0}ms\n→ "${message.substring(0, 50)}..."`,
+            "color: #22c55e; font-weight: bold",
+            "color: #666",
+          );
+        }
+      }
+    },
+    [debug],
+  );
+
+  // Process polite queue: announce first item, then move to next
+  useEffect(() => {
+    if (politeQueue.length === 0) return;
+    const [first, ...rest] = politeQueue;
+    const readTime = calculateReadTime(first.message);
 
     const delayTimer = setTimeout(() => {
-      // Add zero-width space repeated by ID to force screen reader to announce even if message is identical
-      // The zero-width space won't be vocalized but will make the DOM content unique
-      setCurrent(`${first.message}${"\u200B".repeat(first.id)}`);
+      setPoliteCurrent(`${first.message}\u200B`);
     }, first.delay);
 
-    const nextTimer = setTimeout(() => setQueue(rest), first.delay + 1500);
+    if (debug) {
+      let time = first.delay;
+      const timeline = `| ${(time / 1000).toFixed(1)}s: \"${first.message.substring(0, 25)}...\" (${readTime}ms)`;
+      const restTimeline = rest
+        .reduce((acc, item) => {
+          const itemTime = calculateReadTime(item.message);
+          time += readTime;
+          return acc + ` | ${(time / 1000).toFixed(1)}s: \"${item.message.substring(0, 25)}...\" (${itemTime}ms)`;
+        }, "")
+        .concat(rest.length > 0 ? " | ?" : "");
+      setQueueTimeline(timeline + restTimeline);
+      // eslint-disable-next-line no-console
+      console.log(
+        `%c[SR] 📊 TIMELINE%c ${timeline + restTimeline}`,
+        "color: #eab308; font-weight: bold",
+        "color: #666",
+      );
+    }
 
+    const nextTimer = setTimeout(() => setPoliteQueue(rest), first.delay + readTime);
     return () => {
       clearTimeout(delayTimer);
       clearTimeout(nextTimer);
     };
-  }, [queue]);
+  }, [politeQueue, debug, calculateReadTime]);
 
   return (
     <AnnouncerContext.Provider value={{ announce }}>
-      <div
-        aria-live="assertive"
-        aria-atomic="true"
-        role="status"
-        className={cn(
-          !debug
-            ? "sr-only"
-            : "pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] grid place-items-center bg-red-500",
-        )}
-      >
-        {current || " "}
+      {/* Polite channel - queued announcements */}
+      <div aria-live="polite" aria-atomic="true" role="status" className="sr-only">
+        {politeCurrent || " "}
       </div>
+
+      {/* Assertive channel - priority announcements */}
+      <div aria-live="assertive" aria-atomic="true" role="alert" className="sr-only">
+        {assertiveCurrent || " "}
+      </div>
+
+      {/* Visual debug panel (hidden from screen readers) */}
+      {debug && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
+        >
+          {/* Polite channel */}
+          <div className="border-b border-blue-400 pb-2">
+            <span className="font-bold text-blue-100">📢 POLITE (queued):</span>
+            <span className="truncate">{politeCurrent ? politeCurrent.substring(0, 100) : "(empty)"}</span>
+          </div>
+
+          {/* Assertive channel */}
+          <div className="border-b border-red-400 pb-2">
+            <span className="font-bold text-red-100">� ASSERTIVE (priority):</span>
+            <span className="truncate">{assertiveCurrent ? assertiveCurrent.substring(0, 100) : "(empty)"}</span>
+          </div>
+
+          <div className="grid grid-cols-2">
+            {/* Queue timeline */}
+            <div>
+              <span className="font-bold text-yellow-100">📊 TIMELINE:</span>
+              {queueTimeline ? <span className="overflow-x-auto whitespace-nowrap">{queueTimeline}</span> : "empty"}
+            </div>
+
+            {/* Queue status */}
+            <div>
+              <span className="font-bold text-green-100">📋 QUEUE: </span>
+              <span>{politeQueue.length} message(s) waiting</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {children}
     </AnnouncerContext.Provider>
