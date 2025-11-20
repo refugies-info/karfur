@@ -2,8 +2,9 @@ import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { useSearchEventName } from "~/hooks";
@@ -25,6 +26,7 @@ interface Props {
 const ResultsFilter = (props: Props): React.ReactNode => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const stylesDisabled = useStylesDisabled();
+  const announce = useAnnounce();
 
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -70,43 +72,31 @@ const ResultsFilter = (props: Props): React.ReactNode => {
 
   const toggleSort = useCallback(() => {
     setOpen((o) => {
-      if (!o) Event(eventName, "open filter", "sort");
-      return !o;
+      const newState = !o;
+      if (newState) {
+        Event(eventName, "open filter", "sort");
+      } else {
+        Event(eventName, "close filter", "sort");
+      }
+      return newState;
     });
   }, [eventName]);
 
   const selectSort = useCallback(
     (key: SortOptions) => {
+      const selectedOption = sortOptions.find((opt) => opt.key === key);
+      const selectedLabel = selectedOption ? t(selectedOption.value) : key;
       dispatch(addToQueryActionCreator({ sort: key }));
-      Event(eventName, "click sort option", key);
+      Event(eventName, "use sort filter", key);
     },
     [dispatch, eventName],
   );
 
-  const menuItemRefs = useRef<(HTMLDivElement | null)[]>([]);
   useEffect(() => {
     if (open) {
-      menuItemRefs.current[0]?.focus();
+      // Focus is managed by Radix UI
     }
   }, [open]);
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number): void => {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      const direction = event.shiftKey ? -1 : 1;
-      const itemsCount = menuItemRefs.current.length;
-      let nextIndex = (index + direction + itemsCount) % itemsCount;
-
-      // Find the next focusable item
-      while (nextIndex !== index) {
-        if (menuItemRefs.current[nextIndex]) {
-          menuItemRefs.current[nextIndex]?.focus();
-          break;
-        }
-        nextIndex = (nextIndex + direction + itemsCount) % itemsCount;
-      }
-    }
-  };
 
   const filteredSortOptions = useMemo(() => {
     return sortOptions.filter((option) => {
@@ -149,7 +139,11 @@ const ResultsFilter = (props: Props): React.ReactNode => {
             ) : (
               <DropdownMenu.Root open={open} modal={false} onOpenChange={toggleSort}>
                 <DropdownMenu.Trigger className={styles.sort_button} asChild>
-                  <button aria-haspopup="true" aria-expanded={open}>
+                  <button
+                    aria-haspopup="true"
+                    aria-expanded={open}
+                    aria-label={`${t(sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort))?.value || "")}, ${t("selected")}`}
+                  >
                     <span className={styles.sort_label}>
                       {t(
                         sortOptions.find(
@@ -164,18 +158,19 @@ const ResultsFilter = (props: Props): React.ReactNode => {
                   <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
                     {filteredSortOptions.map((option, i) => {
                       const isSelected = (query.sort === "default" ? defaultSortOption : query.sort) === option.key;
+                      const optionLabel = t(option.value);
                       return (
                         <DropdownMenu.Item
                           key={i}
-                          onSelect={() => selectSort(option.key)}
-                          className={cls(styles.sort_menu_item)}
-                          ref={(el) => {
-                            menuItemRefs.current[i] = el;
+                          onSelect={(e) => {
+                            e.preventDefault();
+                            selectSort(option.key);
                           }}
-                          onKeyDown={(e) => handleKeyDown(e, i)}
-                          tabIndex={0}
+                          className={cls(styles.sort_menu_item)}
+                          aria-label={isSelected ? `${optionLabel}, coché` : optionLabel}
+                          aria-current={isSelected ? "true" : undefined}
                         >
-                          {t(option.value)}
+                          {optionLabel}
                           {isSelected && <EVAIcon name="checkmark-outline" fill="blue" size={20} />}
                         </DropdownMenu.Item>
                       );
