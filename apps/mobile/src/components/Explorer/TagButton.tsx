@@ -38,8 +38,8 @@ const StyledContainer = styled(LinearGradient)<{ inline?: boolean }>`
 
 const StyledText = styled(TextDSFR_L_Bold)<{ color?: string }>`
   color: ${({ color, theme }) => (color ? color : theme.colors.white)};
-  margin-left: ${({ theme }) => (theme.isRTL ? theme.margin : 0)}px;
-  margin-right: ${({ theme }) => (theme.isRTL ? 0 : theme.margin)}px;
+  margin-left: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
+  margin-right: ${({ theme }) => (theme.i18n.isRTL ? 0 : theme.margin)}px;
   flex-shrink: 1;
 `;
 

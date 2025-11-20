@@ -20,7 +20,7 @@ type VoteProps = {
 };
 
 type VoteRef = {
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
 };
 
 export const Vote = forwardRef<VoteRef, VoteProps>(

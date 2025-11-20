@@ -47,7 +47,7 @@ export interface PageProps<T = unknown> extends Partial<HeaderProps> {
   Skeleton?: ComponentType;
   title?: string;
   contentContainerStyle?: ViewStyle;
-  scrollview?: React.RefObject<ScrollView | FlatList>; // given by parent if we need to control scroll
+  scrollview?: React.RefObject<ScrollView | FlatList | null>; // given by parent if we need to control scroll
   flatList?: FlatListProps<T>;
 }
 

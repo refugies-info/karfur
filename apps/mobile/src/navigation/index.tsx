@@ -47,8 +47,8 @@ import { OnboardingStackNavigator } from "./OnboardingNavigator";
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
-  const responseListener = useRef<EventSubscription>();
-  const notificationsListener = useRef<EventSubscription>();
+  const responseListener = useRef<EventSubscription | undefined>(undefined);
+  const notificationsListener = useRef<EventSubscription | undefined>(undefined);
   const navigationRef = useRef<NavigationContainerRef<NavigationRootStackParamList>>(null);
   const queryClient = useQueryClient();
   const [navigationReady, setNavigationReady] = useState(false);
@@ -176,6 +176,8 @@ export const RootNavigator = () => {
       shouldShowAlert: true,
       shouldPlaySound: false,
       shouldSetBadge: false,
+      shouldShowBanner: false,
+      shouldShowList: false,
     }),
   });
 

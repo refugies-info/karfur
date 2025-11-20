@@ -17,7 +17,7 @@ export const AnnotationsOverlay = ({ children, className, annotations }: Annotat
 
   return (
     <figure className={cn("relative", className)}>
-      {React.cloneElement(children, { "aria-describedby": `${uid}-annotations` })}
+      {React.cloneElement(children, { "aria-describedby": `${uid}-annotations` } as React.HTMLAttributes<HTMLElement>)}
       <figcaption id={`${uid}-annotations`}>
         {annotations.map(({ text, className }) => (
           <span key={text} className={cn("font-caveat absolute block text-lg leading-4 font-bold", className)}>

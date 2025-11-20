@@ -4,7 +4,7 @@ import { RefObject, useEffect } from "react";
  * Hook to ensure all links with the rtri-link class open in a new tab
  * @param containerRef Optional reference to the container element to scope the event delegation
  */
-export const useRtriLinks = (containerRef?: RefObject<HTMLElement>) => {
+export const useRtriLinks = (containerRef?: RefObject<HTMLElement | null>) => {
   useEffect(() => {
     const handleLinkEvent = (event: MouseEvent) => {
       // Ensure target is an Element before using closest

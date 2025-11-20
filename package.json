@@ -14,6 +14,7 @@
   ],
   "pnpm": {
     "onlyBuiltDependencies": [
+      "@firebase/util",
       "@parcel/watcher",
       "@tailwindcss/oxide",
       "core-js",
@@ -28,7 +29,6 @@
     "overrides": {
       "@codegouvfr/react-dsfr": "1.20.2",
       "debug": "4.4.1",
-      "expo-dev-menu": "6.0.21",
       "form-data": ">=4.0.4",
       "image-size": "^1.2.1",
       "pbkdf2": ">=3.1.3",
