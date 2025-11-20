@@ -517,8 +517,8 @@ importers:
         specifier: ~7.0.5
         version: 7.0.5(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
       expo-location:
-        specifier: ~18.0.8
-        version: 18.0.10(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
+        specifier: ~19.0.7
+        version: 19.0.7(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))
       expo-notifications:
         specifier: ~0.31.4
         version: 0.31.4(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
@@ -7384,8 +7384,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  expo-location@18.0.10:
-    resolution: {integrity: sha512-R0Iioz0UZ9Ts8TACPngh8uDFbajJhVa5/igLqWB8Pq/gp8UHuwj7PC8XbZV7avsFoShYjaxrOhf4U7IONeKLgg==}
+  expo-location@19.0.7:
+    resolution: {integrity: sha512-YNkh4r9E6ECbPkBCAMG5A5yHDgS0pw+Rzyd0l2ZQlCtjkhlODB55nMCKr5CZnUI0mXTkaSm8CwfoCO8n2MpYfg==}
     peerDependencies:
       expo: '*'
 
@@ -21622,7 +21622,7 @@ snapshots:
       - expo
       - supports-color
 
-  expo-location@18.0.10(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)):
+  expo-location@19.0.7(expo@52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)):
     dependencies:
       expo: 52.0.47(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(react-native-webview@13.13.5(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1))(react-native@0.77.0(@babel/core@7.28.5)(@babel/preset-env@7.28.3(@babel/core@7.28.5))(@types/react@18.3.12)(react@18.3.1))(react@18.3.1)
 
