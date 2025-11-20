@@ -4,7 +4,6 @@ import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFi
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
 import { useSearchEventName } from "~/hooks";
@@ -26,7 +25,6 @@ interface Props {
 const ResultsFilter = (props: Props): React.ReactNode => {
   const { t } = useTranslation() as { t: TranslationFunction };
   const stylesDisabled = useStylesDisabled();
-  const announce = useAnnounce();
 
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
@@ -84,10 +82,9 @@ const ResultsFilter = (props: Props): React.ReactNode => {
 
   const selectSort = useCallback(
     (key: SortOptions) => {
-      const selectedOption = sortOptions.find((opt) => opt.key === key);
-      const selectedLabel = selectedOption ? t(selectedOption.value) : key;
       dispatch(addToQueryActionCreator({ sort: key }));
       Event(eventName, "use sort filter", key);
+      setOpen(false);
     },
     [dispatch, eventName],
   );
@@ -108,6 +105,10 @@ const ResultsFilter = (props: Props): React.ReactNode => {
   const defaultSortOption = useMemo(() => {
     return getDefaultSortOption(query);
   }, [query]);
+
+  const currentSortOption = useMemo(() => {
+    return sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort));
+  }, [query.sort, defaultSortOption]);
 
   return (
     <div className={cls(styles.container, noResult && styles.no_result)}>
@@ -142,32 +143,23 @@ const ResultsFilter = (props: Props): React.ReactNode => {
                   <button
                     aria-haspopup="true"
                     aria-expanded={open}
-                    aria-label={`${t(sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort))?.value || "")}, ${t("selected")}`}
+                    aria-label={`${t(currentSortOption?.value || "")}, ${t("selected")}`}
                   >
-                    <span className={styles.sort_label}>
-                      {t(
-                        sortOptions.find(
-                          (opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort),
-                        )?.value || "",
-                      )}
-                    </span>
+                    <span className={styles.sort_label}>{t(currentSortOption?.value || "")}</span>
                     <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
                   </button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>
                   <DropdownMenu.Content sideOffset={10} className={styles.sort_menu_content}>
-                    {filteredSortOptions.map((option, i) => {
+                    {filteredSortOptions.map((option) => {
                       const isSelected = (query.sort === "default" ? defaultSortOption : query.sort) === option.key;
                       const optionLabel = t(option.value);
                       return (
                         <DropdownMenu.Item
-                          key={i}
-                          onSelect={(e) => {
-                            e.preventDefault();
-                            selectSort(option.key);
-                          }}
+                          key={option.key}
+                          onSelect={() => selectSort(option.key)}
                           className={cls(styles.sort_menu_item)}
-                          aria-label={isSelected ? `${optionLabel}, coché` : optionLabel}
+                          aria-label={isSelected ? `${optionLabel}, ${t("selected")}` : optionLabel}
                           aria-current={isSelected ? "true" : undefined}
                         >
                           {optionLabel}
