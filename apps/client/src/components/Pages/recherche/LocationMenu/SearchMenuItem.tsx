@@ -24,7 +24,7 @@ const SearchMenuItem = memo<Props>(({ onChange }) => {
   );
 
   return (
-    <form className="w-full min-w-52" onSubmit={(e) => e.preventDefault()}>
+    <form className="w-full min-w-52" role="search" onSubmit={(e) => e.preventDefault()}>
       <Input
         iconId="fr-icon-search-line"
         className={inputClassName}
