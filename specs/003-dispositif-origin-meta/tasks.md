@@ -17,6 +17,8 @@ _Core data model and type updates required for all user stories._
 - [ ] T002 Update `DispositifResponse`, `GetDispositifResponse`, and `GetAllDispositifsResponse` interfaces in `packages/api-types/src/modules/dispositif.ts` to include `origin` field
 - [ ] T003 Update `SimpleDispositif` interface in `packages/api-types/src/generics.ts` to include `origin` field
 - [ ] T004 Update Mongoose schema in `apps/server/src/typegoose/Dispositif.ts` to add `origin` property (enum: ["RI", "RCO"], default: "RI", immutable: true)
+- [ ] T004a Run `pnpm migrate new --name backfill-origin-ri` to generate migration file
+- [ ] T004b Implement migration logic in `migrations/<timestamp>_backfill-origin-ri.ts` to set `origin: "RI"` on all existing documents in `dispositifs` collection
 - [ ] T005 Update `getSimpleDispositifs` in `apps/server/src/modules/dispositif/dispositif.repository.ts` to serialize `origin` (defaulting to "RI")
 - [ ] T006 Update `getStructureDispositifs` in `apps/server/src/modules/dispositif/dispositif.repository.ts` to serialize `origin` (defaulting to "RI")
 - [ ] T007 Update `createDispositif` workflow in `apps/server/src/workflows/dispositif/createDispositif/createDispositif.ts` to include `origin` in the returned response
