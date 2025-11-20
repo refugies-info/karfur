@@ -1,0 +1,4 @@
+# Ignore directories from linting
+/.kilocode
+/.specify
+/.windsurf

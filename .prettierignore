@@ -1,0 +1,4 @@
+# Ignore directories from formatting
+/.kilocode
+/.specify
+/.windsurf
