@@ -1,24 +1,11 @@
-import { ContentType, DispositifStatus } from "@refugies-info/api-types";
+import { ContentType, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
 
-export const lastDemarches = [
+export const lastDemarches: SimpleDispositif[] = [
   {
     _id: "6392ff59bcd2075a379203a9",
     titreMarque: "",
     titreInformatif: "Déclarer un changement de situation sur Étrangers en France",
     abstract: "Déclarer sur le site de l'ANEF votre nouvelle adresse, la perte ou le vol de votre carte de séjour, ...",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -27,21 +14,10 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 16,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960b",
     secondaryThemes: ["63450dd43e23cd7181ba0b26", "63286a015d31b2c0cad9960c"],
     status: DispositifStatus.ACTIVE,
     nbMots: 1803,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-12-12T16:21:19.179Z"),
     nbVues: 32,
@@ -59,25 +35,13 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63972dcb98b670cc4bae76e6",
     titreMarque: "",
     titreInformatif: "Faire une demande de DCEM",
     abstract: "Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -86,21 +50,10 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Moins de ** ans",
-        bottomValue: -1,
-        topValue: 18,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960d",
     secondaryThemes: ["63450dd43e23cd7181ba0b26", "63286a015d31b2c0cad9960b"],
     status: DispositifStatus.ACTIVE,
     nbMots: 1894,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-12-12T16:01:03.274Z"),
     nbVues: 27,
@@ -117,28 +70,12 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "5e1c8c0e0742580052a33972",
     titreInformatif: "Demander le RSA",
     abstract: "Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-          },
-          {},
-        ],
-      },
-    ],
-    avancement: {
-      fr: 1,
-      uk: 1,
-      ti: 1,
-    },
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
     nbMots: 1967,
@@ -156,13 +93,6 @@ export const lastDemarches = [
     nbVuesMobile: 0,
     availableLanguages: [],
     hasDraftVersion: false,
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 25,
-        topValue: 999,
-      },
-    ],
     nbVues: 3816,
     needs: ["613721a409c5190dfa70d052", "613721a409c5190dfa70d069"],
     lastModificationDate: new Date("2022-12-09T15:17:27.411Z"),
@@ -170,25 +100,13 @@ export const lastDemarches = [
     theme: "63286a015d31b2c0cad9960b",
     titreMarque: "",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "637781c6896812af208f3495",
     titreMarque: "",
     titreInformatif: "Avoir le Diplôme d’accès aux études universitaires (DAEU)",
     abstract: "Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -197,21 +115,9 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 20,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: [],
     status: DispositifStatus.ACTIVE,
     nbMots: 1471,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-11-18T14:31:37.504Z"),
     nbVues: 127,
@@ -224,33 +130,13 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "6123a82c6bf6bc00148a5176",
     titreInformatif: "Faire une demande DAHO ou DALO",
     abstract:
       "Droit à un hébergement (DAHO) ou un logement (DALO) en urgence si les premières demandes n'ont pas réussi.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-          },
-          {},
-        ],
-      },
-    ],
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-      ru: 1,
-      en: 1,
-      ps: 1,
-      uk: 1,
-    },
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
     sponsor: {
@@ -261,13 +147,6 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     lastModificationDate: new Date("2022-11-10T12:57:27.566Z"),
     nbMots: 1124,
     created_at: new Date("2021-08-23T13:52:44.614Z"),
@@ -282,32 +161,12 @@ export const lastDemarches = [
     theme: "63286a015d31b2c0cad9960c",
     titreMarque: "",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "5dd7c4b06f0ac0004c87c88d",
     titreInformatif: "Payer les impôts sur le revenu",
     abstract: "Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-          },
-          {},
-        ],
-      },
-    ],
-    avancement: {
-      fr: 1,
-      ps: 1,
-      en: 1,
-      ti: 1,
-      fa: 1,
-      ru: 1,
-      uk: 1,
-    },
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
     sponsor: {
@@ -325,13 +184,6 @@ export const lastDemarches = [
     nbVuesMobile: 0,
     availableLanguages: [],
     hasDraftVersion: false,
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     nbVues: 1945,
     needs: ["613721a409c5190dfa70d069"],
     lastModificationDate: new Date("2022-11-04T13:44:23.143Z"),
@@ -339,6 +191,7 @@ export const lastDemarches = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960b",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63528e00976acb4f7bcd37ad",
@@ -346,19 +199,6 @@ export const lastDemarches = [
     titreInformatif: "Faire et utiliser une e-photo",
     abstract:
       "Une e-photo est demandée pour les documents officiels. Explications pour la faire et l'utiliser sur internet.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -367,25 +207,10 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 16,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960b",
     secondaryThemes: ["63286a015d31b2c0cad9960d"],
     status: DispositifStatus.ACTIVE,
     nbMots: 854,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ti: 1,
-      ru: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-10-31T11:36:05.885Z"),
     nbVues: 686,
@@ -397,6 +222,7 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63401d8783f485a025e88388",
@@ -404,19 +230,6 @@ export const lastDemarches = [
     titreInformatif: "Créer un compte personnel sur le site Étrangers en France",
     abstract:
       "En créant un compte personnel, vous pourrez faire vos démarches en ligne (titre de séjour, naturalisation,...)",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -425,26 +238,10 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 16,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960b",
     secondaryThemes: [],
     status: DispositifStatus.ACTIVE,
     nbMots: 1054,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      ti: 1,
-      fa: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-10-25T09:02:17.970Z"),
     nbVues: 1067,
@@ -456,6 +253,7 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "630337ddf2087e2b25ac7609",
@@ -463,19 +261,6 @@ export const lastDemarches = [
     titreInformatif: "Avoir un Passe Navigo pour prendre les transports en Île-de-France",
     abstract:
       "Une carte et un abonnement pour prendre le métro, le bus, le tramway, le RER, le train, en région parisienne.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -484,24 +269,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 988,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-      ar: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-10-07T09:34:05.513Z"),
     nbVues: 145,
@@ -515,24 +284,13 @@ export const lastDemarches = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62f265d81119eede87fb1ae2",
     titreMarque: "",
     titreInformatif: "Demander des aides au logement",
     abstract: "La CAF peut vous donner des aides (APL, ALF, ALS) pour payer votre logement, selon votre situation.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -541,24 +299,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: -1,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 702,
-    avancement: {
-      fr: 1,
-      uk: 1,
-      ti: 1,
-      fa: 1,
-      ar: 1,
-      ru: 1,
-      en: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-11-07T00:28:38.814Z"),
     nbVues: 625,
@@ -577,26 +319,13 @@ export const lastDemarches = [
     secondaryThemes: ["63286a015d31b2c0cad9960b", "63450dd43e23cd7181ba0b26"],
     theme: "63286a015d31b2c0cad9960c",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62b9809b796009107a932cbc",
     titreMarque: "",
     titreInformatif: "Demander la fabrication du permis de conduire",
     abstract: "Après la réussite du permis, les étapes pour demander la fabrication directement sur le site de l'ANTS",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -605,24 +334,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 16,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 717,
-    avancement: {
-      fr: 1,
-      ti: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-07-13T17:16:47.752Z"),
     nbVues: 202,
@@ -636,25 +349,13 @@ export const lastDemarches = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62bab2e7b47f6b02fa9783f2",
     titreMarque: "",
     titreInformatif: "Ouvrir un contrat de gaz ou d'électricité",
     abstract: "Un contrat est nécessaire pour utiliser l’électricité ou le gaz chez vous",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -663,24 +364,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 1161,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-      ar: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-06-28T12:39:02.089Z"),
     nbVues: 177,
@@ -694,6 +379,7 @@ export const lastDemarches = [
     secondaryThemes: ["63286a015d31b2c0cad9960b"],
     theme: "63286a015d31b2c0cad9960c",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62b5cc16092a73346b4a9a11",
@@ -701,19 +387,6 @@ export const lastDemarches = [
     titreInformatif: "Immatriculer une voiture",
     abstract:
       "Découvrez comment avoir le certificat d’immatriculation, qui est comme la carte d’identité de votre voiture",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -722,24 +395,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 735,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-      ar: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-06-27T09:08:13.084Z"),
     nbVues: 120,
@@ -753,6 +410,7 @@ export const lastDemarches = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62a897aceece9a373f34ee49",
@@ -760,19 +418,6 @@ export const lastDemarches = [
     titreInformatif: "Acheter une voiture",
     abstract:
       "Comment et où acheter une voiture neuve ou d'occasion, l'immatriculer et l'assurer, les contrôles techniques..",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -781,24 +426,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 1765,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ar: 1,
-      ti: 1,
-      ru: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-11-07T01:11:05.359Z"),
     nbVues: 354,
@@ -812,25 +441,13 @@ export const lastDemarches = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "62a8ae34eece9a373f350351",
     titreMarque: "",
     titreInformatif: "Assurer une voiture",
     abstract: "Découvrez comment faire pour assurer votre voiture en France.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            content: "",
-          },
-          {},
-        ],
-      },
-    ],
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
@@ -839,24 +456,8 @@ export const lastDemarches = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     status: DispositifStatus.ACTIVE,
     nbMots: 746,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      ti: 1,
-      ru: 1,
-      fa: 1,
-      en: 1,
-      uk: 1,
-    },
     typeContenu: ContentType.DEMARCHE,
     lastModificationDate: new Date("2022-06-17T14:41:40.302Z"),
     nbVues: 290,
@@ -870,42 +471,16 @@ export const lastDemarches = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
+    origin: "RI",
   },
 ];
 
-export const lastDispositifs = [
+export const lastDispositifs: SimpleDispositif[] = [
   {
     _id: "6317279072a7091286cfaf24",
     titreMarque: "BIENVENU.E",
     titreInformatif: "Être accompagné pour entrer dans la vie professionnelle",
     abstract: "Un programme pour progresser en français, découvrir des métiers et rencontrer des entreprises",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "2 à 5 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["69 - Rhône"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "FACE GRAND LYON",
       picture: {
@@ -914,20 +489,8 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
-    niveauFrancais: ["Intermédiaire"],
     status: DispositifStatus.ACTIVE,
     nbMots: 197,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-12-13T19:04:42.427Z"),
     nbVues: 5,
@@ -941,39 +504,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "638dcbbaf0b1a31177cf9602",
     titreMarque: "TREMPLIN",
     titreInformatif: "Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration",
     abstract: "Apprendre le vocabulaire professionnel et les compétences techniques dans des secteurs qui recrutent",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "1 à 3 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["95 - Val-d'Oise", "75 - Paris"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "ABC FORMATION",
       picture: {
@@ -982,21 +519,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: ["63286a015d31b2c0cad9960e", "63286a015d31b2c0cad99610"],
-    niveauFrancais: ["Débutant"],
     status: DispositifStatus.ACTIVE,
     nbMots: 225,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-12-13T15:50:32.338Z"),
     nbVues: 21,
@@ -1014,43 +539,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "638613c54730d143903ca9ca",
     titreMarque: "Réseau Alpha",
     titreInformatif: "Trouver une formation de français en Ile-de-France",
     abstract: "Réseau Alpha propose une cartographie des cours et formations de français en Ile-de-France.",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {},
-          {},
-          {
-            title: "Zone d'action",
-            departments: [
-              "75 - Paris",
-              "77 - Seine-et-Marne",
-              "78 - Yvelines",
-              "91 - Essonne",
-              "92 - Hauts-de-Seine",
-              "93 - Seine-Saint-Denis",
-              "94 - Val-de-Marne",
-              "95 - Val-d'Oise",
-            ],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Réseau Alpha",
       picture: {
@@ -1059,21 +554,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: [],
-    niveauFrancais: ["Débutant", "Intermédiaire", "Avancé", "Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 218,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-12-09T13:33:22.074Z"),
     nbVues: 50,
@@ -1092,45 +575,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63873a586fd089c3dad298f2",
     titreMarque: "l'association AIME",
     titreInformatif: "Faire une mission de service civique pour jeunes réfugiés",
     abstract: "Missions rémunérées ouvertes spécialement aux jeunes réfugiés en Ile-de-France (de 18 à 25 ans).",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "6 à 12 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: [
-              "75 - Paris",
-              "93 - Seine-Saint-Denis",
-              "92 - Hauts-de-Seine",
-              "91 - Essonne",
-              "77 - Seine-et-Marne",
-            ],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "AIME ONG",
       picture: {
@@ -1139,24 +590,10 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "De ** à ** ans",
-        bottomValue: 18,
-        topValue: 25,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960e",
     secondaryThemes: ["63286a015d31b2c0cad99615"],
-    niveauFrancais: ["Intermédiaire"],
     status: DispositifStatus.ACTIVE,
     nbMots: 184,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ps: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-12-01T13:59:45.677Z"),
     nbVues: 35,
@@ -1168,40 +605,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "635a71c8d43c4d1a3f25227f",
     titreMarque: "DIU Passerelle - DILAMI",
     titreInformatif: "Apprendre le français à l'université",
     abstract: "Avoir un diplôme reconnu de l'université de Toulouse pour continuer ses études en France ou travailler.",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "10 mois&nbsp;",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["31 - Haute-Garonne"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Université fédérale de Toulouse",
       picture: {
@@ -1210,24 +620,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: ["63286a015d31b2c0cad9960a", "63286a015d31b2c0cad99615"],
-    niveauFrancais: ["Débutant"],
     status: DispositifStatus.ACTIVE,
     nbMots: 325,
-    avancement: {
-      fr: 1,
-      ti: 1,
-      fa: 1,
-      ps: 1,
-      en: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-25T15:29:44.826Z"),
     nbVues: 45,
@@ -1246,34 +641,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "6376470705f74970c5342371",
     titreMarque: "Espace France Services FACE Vendée",
     titreInformatif: "Avoir de l'aide pour faire ses démarches",
     abstract: "Avoir un accompagnement pour faire ses démarches administratives et utiliser un ordinateur.",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Zone d'action",
-            departments: ["85 - Vendée"],
-            free: true,
-            contentTitle: "Sélectionner",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "FACE Vendée",
       picture: {
@@ -1282,23 +656,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: [],
-    niveauFrancais: ["Intermédiaire"],
     status: DispositifStatus.ACTIVE,
     nbMots: 85,
-    avancement: {
-      fr: 1,
-      fa: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-21T10:12:16.925Z"),
     nbVues: 30,
@@ -1311,48 +671,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "634d28bd9d3bda3be5cfd979",
     titreMarque: "Habitat et Humanisme Urgence",
     titreInformatif: "Apprendre le français pour le code de la route",
     abstract: "Une formation intensive de 100h de français pour préparer l'examen du code de la route",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "4 semaines <br>",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: [
-              "75 - Paris",
-              "77 - Seine-et-Marne",
-              "78 - Yvelines",
-              "91 - Essonne",
-              "92 - Hauts-de-Seine",
-              "93 - Seine-Saint-Denis",
-              "94 - Val-de-Marne",
-              "95 - Val-d'Oise",
-            ],
-            free: true,
-            contentTitle: "Sélectionner",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Habitat et Humanisme",
       picture: {
@@ -1361,23 +686,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: ["63286a015d31b2c0cad9960d"],
-    niveauFrancais: ["Intermédiaire"],
     status: DispositifStatus.ACTIVE,
     nbMots: 134,
-    avancement: {
-      fr: 1,
-      ti: 1,
-      fa: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-15T17:02:06.010Z"),
     nbVues: 116,
@@ -1390,34 +701,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "6332c0e6a36f411314ba4ca3",
     titreMarque: "fable-Lab",
     titreInformatif: "Apprendre du vocabulaire avec des images",
     abstract: "Des livres de vocabulaire avec des images pour apprendre et mémoriser facilement les mots en français",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["All"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "fable-Lab",
       picture: {
@@ -1426,22 +716,10 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: -1,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960a",
     secondaryThemes: [],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 332,
-    avancement: {
-      fr: 1,
-      ti: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-12-14T10:37:30.248Z"),
     nbVues: 255,
@@ -1453,6 +731,7 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "636cd4572c725bfbf72d6302",
@@ -1460,33 +739,6 @@ export const lastDispositifs = [
     titreInformatif: "Prendre des cours de français à Pantin",
     abstract:
       "La formation d'Habitat-Cité vous permettra d'améliorer votre niveau de français et de rechercher un emploi.",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "6 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["93 - Seine-Saint-Denis"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Habitat-Cité",
       picture: {
@@ -1495,25 +747,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: ["63286a015d31b2c0cad9960e", "63286a015d31b2c0cad9960b"],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 173,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-10T14:39:22.121Z"),
     nbVues: 65,
@@ -1533,39 +769,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63231e68d585c0849a9bb2b1",
     titreMarque: "Unis-Cité Drôme Ardèche",
     titreInformatif: "Faire un service civique à Valence",
     abstract: "Engagement de 8 mois pour des missions de solidarité accessible aux 18-25 ans.",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {
-            title: "Zone d'action",
-            departments: ["26 - Drôme"],
-            free: true,
-            contentTitle: "Sélectionner",
-          },
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "8 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: "0",
-            contentTitle: "une seule fois",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Unis-Cité",
       picture: {
@@ -1574,24 +784,8 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
-    niveauFrancais: ["Débutant"],
     status: DispositifStatus.ACTIVE,
     nbMots: 129,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-10T12:19:42.259Z"),
     nbVues: 39,
@@ -1605,6 +799,7 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "634e7269313f6183f3510709",
@@ -1612,33 +807,6 @@ export const lastDispositifs = [
     titreInformatif: "Etre accompagné pour construire un projet professionnel",
     abstract:
       "Des cours d'anglais et de français, et des conseils de professionnels pour se préparer à trouver un travail",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "3 mois",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["21 - Côte-d'Or"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "BSB(Re)Connect",
       picture: {
@@ -1647,26 +815,10 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960e",
     secondaryThemes: ["63286a015d31b2c0cad9960a", "63286a015d31b2c0cad99615"],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 162,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-10T11:34:22.589Z"),
     nbVues: 58,
@@ -1683,34 +835,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "634fba2814dbd7acb5c4f759",
     titreMarque: "Unis-Cité Val d'Oise",
     titreInformatif: "Faire un service civique dans le Val d'Oise",
     abstract: "Un service civique de 8 mois pour les 16-25 ans (30 ans pour les personnes en situation de handicap)",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["95 - Val-d'Oise"],
-            free: true,
-            contentTitle: "Sélectionner",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Unis-Cité",
       picture: {
@@ -1719,25 +850,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 16,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: [],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 155,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-09T17:09:58.793Z"),
     nbVues: 48,
@@ -1750,6 +865,7 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "6317495572a7091286cfbd68",
@@ -1757,34 +873,6 @@ export const lastDispositifs = [
     titreInformatif: "Être accompagné pour travailler dans la restauration",
     abstract:
       "Stamtish est une association qui aide les personnes réfugiées à réaliser leur projet dans la restauration",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "Selon les besoins",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["67 - Bas-Rhin"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Stamtish",
       picture: {
@@ -1793,24 +881,8 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 252,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-09T16:38:17.205Z"),
     nbVues: 24,
@@ -1830,34 +902,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "6336f551bf68aaed7fe0f8b4",
     titreMarque: "le CRIA41",
     titreInformatif: "Apprendre le français avec un professeur",
     abstract: "Cours de français tous niveaux de infra A1 à B2, avec un professeur à Blois",
-    contenu: [
-      {},
-      {
-        children: [
-          {
-            title: "Zone d'action",
-            departments: ["41 - Loir-et-Cher"],
-            free: true,
-            contentTitle: "Sélectionner",
-          },
-          {},
-          {},
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher ",
       picture: {
@@ -1866,26 +917,10 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     theme: "63286a015d31b2c0cad9960a",
     secondaryThemes: [],
-    niveauFrancais: ["Tous les niveaux"],
     status: DispositifStatus.ACTIVE,
     nbMots: 168,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-07T17:32:26.358Z"),
     nbVues: 242,
@@ -1897,39 +932,13 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
   {
     _id: "63623b16a2a5bf7006723347",
     titreMarque: "la Prépa web Refugeeks²",
     titreInformatif: "Faire une formation en développement web",
     abstract: "Une formation de 7 semaines (technique + français) pour découvrir le métier de développeur web",
-    contenu: [
-      {},
-      {
-        children: [
-          {},
-          {},
-          {
-            title: "Durée",
-            contentTitle: "7 semaines&nbsp;",
-          },
-          {},
-          {
-            title: "Combien ça coûte ?",
-            free: true,
-            price: 0,
-            contentTitle: "une seule fois",
-          },
-          {
-            title: "Zone d'action",
-            departments: ["59 - Nord"],
-            free: true,
-            contentTitle: "Sélectionner",
-            content: "",
-          },
-        ],
-      },
-    ],
     sponsor: {
       nom: "Simplon.co",
       picture: {
@@ -1938,25 +947,9 @@ export const lastDispositifs = [
         imgId: "",
       },
     },
-    audienceAge: [
-      {
-        contentTitle: "Plus de ** ans",
-        bottomValue: 18,
-        topValue: 999,
-      },
-    ],
     secondaryThemes: ["63286a015d31b2c0cad9960a", "63286a015d31b2c0cad9960e"],
-    niveauFrancais: ["Intermédiaire"],
     status: DispositifStatus.ACTIVE,
     nbMots: 298,
-    avancement: {
-      fr: 1,
-      ar: 1,
-      fa: 1,
-      ru: 1,
-      ti: 1,
-      ps: 1,
-    },
     typeContenu: ContentType.DISPOSITIF,
     lastModificationDate: new Date("2022-11-04T14:59:45.371Z"),
     nbVues: 43,
@@ -1975,5 +968,6 @@ export const lastDispositifs = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: "RI",
   },
 ];
