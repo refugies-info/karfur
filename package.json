@@ -113,7 +113,7 @@
     "@refugies-info/api-types": "*",
     "@types/node": "^22.18.0",
     "check-dependency-version-consistency": "^4.1.1",
-    "dotenv": "^16.6.1",
+    "dotenv": "^17.2.3",
     "husky": ">=9.1.6",
     "knip": "^5.63.0",
     "lint-staged": "^15.5.2",
