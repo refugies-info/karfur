@@ -81,7 +81,7 @@ The Next.js frontend that consumes server APIs must continue to function without
 - **FR-002**: Historical dispositifs without `origin` MUST automatically resolve to `RI` (default) in both database migration and read-model serializers so no nulls leak to clients.
 - **FR-003**: All dispositif creation pipelines (manual editorial, imports, future AI-assisted flows) MUST result in a stored origin value at creation time; updates MUST forbid changing origin after initial assignment to preserve provenance. Existing pipelines may remain unchanged if the backend layer injects the correct default (`RI`) whenever no origin is supplied.
 - **FR-004**: Every API and query that currently returns dispositifs to the frontend (catalogue lists, detail pages, search endpoints, favorites, recommendations, sitemap builders) MUST include the `origin` field in their payloads and type contracts.
-- **FR-005**: Internal dashboards, exports, and analytics queries involving dispositifs MUST expose the origin field for filtering, aggregation, or display without additional joins. (Exclusion logic for `origin = "RCO"` will be handled in a future specification.)
+- **FR-005**: Exports and analytics queries involving dispositifs MUST expose the origin field for filtering and aggregation. (Note: Backoffice UI updates to display this field are explicitly out of scope for this iteration).
 - **FR-006**: Validation layers MUST reject requests containing origin values outside the enum, and error messaging MUST explain acceptable values for client developers.
 - **FR-007**: Documentation for API consumers and frontend types MUST be updated so the new field is discoverable and included in type-safe interfaces.
 

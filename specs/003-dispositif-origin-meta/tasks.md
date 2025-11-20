@@ -35,8 +35,8 @@ _Goal: Frontend receives and displays origin metadata for Dispositifs._
   - `origin` field persistence and retrieval (default "RI" on creation, explicit "RCO")
   - `origin` field is returned in `createDispositif` and `updateDispositif` responses
   - `origin` field is immutable on updates
-- [ ] T010 [US1] Implement UI badge for RCO origin in `apps/client/src/components/UI/DispositifCard/DispositifCard.tsx`. MUST use DSFR badge styles and include accessible label (sr-only or aria-label).
-- [ ] T011 [US1] Update Dispositif Detail page in `apps/client/src/pages/dispositif/[id]/index.tsx` to display origin information if required by design
+- [ ] T010 [US1] Implement UI badge for RCO origin in `apps/client/src/components/UI/DispositifCard/DispositifCard.tsx`. MUST use DSFR badge styles and include accessible label (sr-only or aria-label). (Note: No translation keys needed as RCO content is French-only).
+- [ ] T011 [US1] Update Dispositif Detail page in `apps/client/src/pages/dispositif/[id]/index.tsx` to display origin information.
 
 ## Phase 4: User Story 3 - Frontend client maintains backward compatibility (P3)
 
@@ -51,7 +51,10 @@ _Final cleanup and verification._
 
 - [ ] T014 Ensure all new types are exported and usable across the monorepo
 - [ ] T015 Run full test suite `pnpm test` to ensure no regressions in unrelated modules
-- [ ] T016 [Mobile] Placeholder: Verify impact on mobile app and plan UI updates for origin display
+- [ ] T016 [Mobile] Update `Dispositif` type definition in `apps/mobile` to include `origin` field (sync with `api-types`)
+- [ ] T016a [Mobile] Create `OriginBadge` component in `apps/mobile/src/components/OriginBadge.tsx` (using DSFR colors/styles adapted for RN)
+- [ ] T016b [Mobile] Update search result items (e.g., `src/components/Search/Hit.tsx`) to display `OriginBadge` when `origin === "RCO"`
+- [ ] T016c [Mobile] Update Dispositif Detail screen to display `OriginBadge`
 - [ ] T017 [Docs] Verify generated API documentation (Swagger/OpenAPI) reflects the new `origin` field (FR-007)
 - [ ] T018 [Analytics] Update `exportFiches` and `getStatistics` to include `origin` field in read-only outputs (FR-005)
 
