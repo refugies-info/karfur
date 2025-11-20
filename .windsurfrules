@@ -46,4 +46,4 @@
 
 - **Convention:** Conventional Commits v1.0.0.
 - **Allowed Scopes:** `api-types`, `client`, `server`, `mobile`, `storybook`, `ui`, `workspace`.
-- **Types:** `feat`, `fix`, `chore`, `refactor`, `docs`, `test`.
+- **Types:** `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `style`, ...
