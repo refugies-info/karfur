@@ -1,5 +1,6 @@
 import { ContentType, DispositifStatus, RoleName } from "@refugies-info/api-types";
 import { fixtures } from "~/__fixtures__";
+import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { DispositifModel, RoleModel, UserModel } from "~/typegoose";
 import { createDispositif } from "~/workflows/dispositif/createDispositif/createDispositif";
 import { updateDispositif } from "~/workflows/dispositif/updateDispositif/updateDispositif";
@@ -34,7 +35,6 @@ describe("Dispositif Origin", () => {
       {
         typeContenu: ContentType.DISPOSITIF,
         titreInformatif: "Test Dispositif RCO",
-        // @ts-ignore
         origin: "RCO",
       },
       user._id,
@@ -73,7 +73,6 @@ describe("Dispositif Origin", () => {
       {
         typeContenu: ContentType.DISPOSITIF,
         titreInformatif: "Test Dispositif",
-        // @ts-ignore
         origin: "RI",
       },
       user._id,
@@ -82,7 +81,6 @@ describe("Dispositif Origin", () => {
     await updateDispositif(
       createResult.data.id.toString(),
       {
-        // @ts-ignore
         origin: "RCO",
       },
       user,
@@ -106,7 +104,7 @@ describe("Dispositif Origin", () => {
     await DispositifModel.updateOne({ _id: dispositif._id }, { $unset: { origin: "" } });
 
     // Test that serialization defaults missing origin to "RI"
-    const getDispositifById = require("~/modules/dispositif/dispositif.repository").getDispositifById;
+
     const foundDispositif = await getDispositifById(dispositif._id.toString());
 
     // The origin should default to "RI" in the serialization
