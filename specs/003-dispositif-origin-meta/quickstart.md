@@ -235,13 +235,20 @@ describe("Dispositif Schema - Origin Field", () => {
     expect(() => doc.validate()).toThrow();
   });
 
-  it("should prevent origin updates", async () => {
+  it("should prevent origin updates on a saved document", async () => {
+    // Create and save the initial document
     const doc = new DispositifModel({
       titreInformatif: "Test",
       origin: "RI",
     });
-    doc.origin = "RCO";
-    expect(() => doc.validate()).toThrow(); // immutable
+    await doc.save();
+
+    // Fetch the saved document, modify origin, and try to save again
+    const savedDoc = await DispositifModel.findById(doc._id);
+    savedDoc.origin = "RCO";
+
+    // The save() operation should be rejected
+    await expect(savedDoc.save()).rejects.toThrow();
   });
 });
 ```

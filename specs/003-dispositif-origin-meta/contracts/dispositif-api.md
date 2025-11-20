@@ -90,6 +90,7 @@ interface GetDispositifsRequest {
   locale: string;
   limit?: number;
   sort?: string;
+  origin?: "RI" | "RCO";
 }
 ```
 
@@ -187,6 +188,7 @@ interface SearchDispositifsRequest {
   locale: string;
   limit?: number;
   offset?: number;
+  origin?: "RI" | "RCO";
 }
 ```
 

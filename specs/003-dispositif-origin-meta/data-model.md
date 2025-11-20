@@ -228,21 +228,29 @@ Immutability ensures provenance integrity:
 
 ## Migration & Backfill Strategy
 
-### No Immediate Backfill Required
+### Migration Required
 
-**Approach**: Lazy read-time default (see `research.md`)
+**Approach**: Proactive backfill migration (see `tasks.md` T004a, T004b)
 
-1. Existing documents without `origin` field will use `"RI"` default during serialization
-2. No bulk update operation needed
-3. Optional future backfill script can be created if needed for analytics
+1. **Migration Creation**: Use `pnpm migrate new --name backfill-origin-ri` to generate migration file
+2. **Backfill Logic**: Set `origin: "RI"` for all existing documents in `dispositifs` collection
+3. **Execution**: Run migration before importing any `origin: "RCO"` content
+4. **Verification**: Ensure all documents have `origin` field explicitly set
 
-### Optional Future Backfill (if needed)
+### Migration Implementation
 
 ```typescript
-// apps/server/src/migrations/backfill-dispositif-origin.ts
-async function backfillDispositifOrigin() {
-  const result = await DispositifModel.updateMany({ origin: { $exists: false } }, { $set: { origin: "RI" } });
+// migrations/<timestamp>_backfill-origin-ri.ts
+export async function up(db: Db): Promise<void> {
+  const result = await db
+    .collection("dispositifs")
+    .updateMany({ origin: { $exists: false } }, { $set: { origin: "RI" } });
   console.log(`Backfilled ${result.modifiedCount} dispositifs with origin: RI`);
+}
+
+export async function down(db: Db): Promise<void> {
+  // Optional: Remove origin field for rollback
+  await db.collection("dispositifs").updateMany({ origin: "RI" }, { $unset: { origin: "" } });
 }
 ```
 
@@ -250,14 +258,14 @@ async function backfillDispositifOrigin() {
 
 ## Summary
 
-| Aspect                  | Details                     |
-| ----------------------- | --------------------------- |
-| **New Field**           | `origin: "RI" \| "RCO"`     |
-| **Type**                | Enum                        |
-| **Default**             | `"RI"`                      |
-| **Immutable**           | Yes                         |
-| **Indexed**             | No (can add later)          |
-| **Backward Compatible** | Yes (lazy default)          |
-| **Migration Required**  | No (lazy read-time default) |
-| **New Relationships**   | None                        |
-| **Breaking Changes**    | None                        |
+| Aspect                  | Details                      |
+| ----------------------- | ---------------------------- |
+| **New Field**           | `origin: "RI" \| "RCO"`      |
+| **Type**                | Enum                         |
+| **Default**             | `"RI"`                       |
+| **Immutable**           | Yes                          |
+| **Indexed**             | No (can add later)           |
+| **Backward Compatible** | Yes (with migration)         |
+| **Migration Required**  | Yes (backfill existing docs) |
+| **New Relationships**   | None                         |
+| **Breaking Changes**    | None                         |
