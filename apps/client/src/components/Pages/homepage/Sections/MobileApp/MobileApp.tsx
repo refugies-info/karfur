@@ -22,21 +22,19 @@ const MobileApp = () => {
 
   const storeLinks = useMemo(
     () => (
-      <>
-        <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
-          <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
-            <Image src={appStoreBadge} alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")} fill />
-          </a>
-          <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-            <Image
-              src={playStoreBadge}
-              width={128}
-              height={40}
-              alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
-            />
-          </a>
-        </p>
-      </>
+      <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
+        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
+          <Image src={appStoreBadge} alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")} fill />
+        </a>
+        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
+          <Image
+            src={playStoreBadge}
+            width={128}
+            height={40}
+            alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+          />
+        </a>
+      </p>
     ),
     [appStoreBadge, playStoreBadge, t],
   );
