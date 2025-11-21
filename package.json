@@ -106,7 +106,7 @@
     "update-dependencies": "pnpm update -i --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook"
   },
   "engines": {
-    "node": "22.14.0"
+    "node": "24.11.1"
   },
   "devDependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
@@ -130,7 +130,7 @@
     "typescript": "^5.9.2"
   },
   "volta": {
-    "node": "22.14.0",
+    "node": "24.11.1",
     "pnpm": "10.23.0"
   },
   "lint-staged": {

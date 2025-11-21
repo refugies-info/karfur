@@ -106,10 +106,10 @@
   "version": "0.0.0",
   "name": "@refugies-info/mobile",
   "engines": {
-    "node": "22.14.0"
+    "node": "24.11.1"
   },
   "volta": {
-    "node": "22.14.0",
+    "node": "24.11.1",
     "pnpm": "10.23.0"
   }
 }

@@ -25,6 +25,7 @@ This document provides comprehensive guidance for AI agents (including Claude, C
 **Réfugiés.info** is a French government digital service (DIAIR) designed to help refugees navigate administrative processes and access integration resources. The platform serves vulnerable populations across 8 languages (French + 7 refugee languages) and is built on a modern TypeScript monorepo.
 
 **Key Facts:**
+
 - **License**: MIT
 - **Governance**: French Ministry of Interior (Ministère de l'Intérieur)
 - **Compliance**: RGAA 4 (French accessibility standards), GDPR, DSFR (French government design system)
@@ -47,6 +48,7 @@ This document provides comprehensive guidance for AI agents (including Claude, C
 - All PRs with user-facing changes require accessibility review
 
 **When working on code:**
+
 - Never remove focus styles without providing alternatives
 - Use `React.forwardRef` for all components wrapping DSFR elements or native HTML
 - Test keyboard navigation and tab order
@@ -172,7 +174,7 @@ pnpm clean:cache           # Clear build artifacts
 
 ### Core Requirements
 
-- **Node.js**: 22.x LTS (currently 22.14.0)
+- **Node.js**: 22.x LTS (currently 24.11.1)
 - **Language**: TypeScript (all new code MUST be TypeScript)
 - **Package Manager**: pnpm 10.18.0
 - **Build Tool**: Turborepo
@@ -224,6 +226,7 @@ All code MUST be formatted with Prettier using the project's `.prettierrc`:
 ```
 
 **Key Rules:**
+
 - 120 character line width
 - 2-space indentation
 - Trailing commas on all multi-line structures
@@ -248,6 +251,7 @@ All commits MUST follow the Conventional Commits specification (v1.0.0):
 **Scopes:** `api-types`, `client`, `server`, `mobile`, `storybook`, `ui`, `workspace`
 
 **Example:**
+
 ```
 feat(client): add search filters with Redis caching
 
@@ -306,6 +310,7 @@ import { SearchForm } from "./SearchForm";
 ```
 
 **When to use SCSS/CSS:**
+
 - Complex animations or keyframes
 - Global styles applied consistently across the app
 - When Tailwind classes cannot achieve the desired styling
@@ -321,6 +326,7 @@ import { SearchForm } from "./SearchForm";
 The project uses **Husky** to enforce code quality before commits:
 
 **What runs automatically on `git commit`:**
+
 1. **lint-staged** - Runs linters/formatters on staged files only:
    - `prettier --write` on `*.{js,jsx,ts,tsx}` files (auto-formats code)
    - `stylelint --fix` on `*.{css,scss}` files (auto-fixes style issues)
@@ -330,6 +336,7 @@ The project uses **Husky** to enforce code quality before commits:
 **If either check fails, the commit is blocked.** Fix the issues and try again.
 
 **Bypassing hooks (use sparingly):**
+
 ```bash
 git commit --no-verify  # Skip all pre-commit hooks
 ```
@@ -358,12 +365,14 @@ git commit --no-verify  # Skip all pre-commit hooks
 ### When Making Code Changes
 
 **Before implementing:**
+
 1. Read the Constitution to understand non-negotiables
 2. Check if similar patterns exist in the codebase
 3. Verify the change aligns with the tech stack
 4. Consider accessibility implications
 
 **During implementation:**
+
 1. Keep changes focused and minimal
 2. Follow existing code style and patterns
 3. Add descriptive comments for complex logic
@@ -371,6 +380,7 @@ git commit --no-verify  # Skip all pre-commit hooks
 5. Test in multiple languages (if user-facing)
 
 **After implementation:**
+
 1. Run full test suite: `pnpm test`
 2. Run linting: `pnpm lint`
 3. Type check: `pnpm check:types`
@@ -392,6 +402,7 @@ Follow **narrow integration testing principles** over heavy mocking:
 This approach is superior to tests reliant on mocks and spies because it tests real behavior.
 
 **Example Pattern:**
+
 ```typescript
 describe("dispositif.service", () => {
   it("should update dispositif status and notify Google", async () => {
@@ -460,6 +471,7 @@ pnpm test:client -- --watch  # Watch mode
 6. **Test accessibility** (keyboard, screen reader, focus management)
 
 **Component Template:**
+
 ```typescript
 import React from "react";
 import { Button as DSFRButton } from "@codegouvfr/react-dsfr/Button";
@@ -486,14 +498,16 @@ CustomButton.displayName = "CustomButton";
 ### Working with MongoDB
 
 **Connection & Queries:**
+
 - Use MongoDB Atlas console for query testing
 - Provide queries in format that can be copy-pasted into Atlas
 - Use proper MongoDB syntax (not JavaScript)
 
 **Example Query:**
+
 ```javascript
 // Find all archived dispositifs
-db.dispositifs.find({ status: "ARCHIVED" })
+db.dispositifs.find({ status: "ARCHIVED" });
 ```
 
 ### Handling Multilingual Content
@@ -507,6 +521,7 @@ db.dispositifs.find({ status: "ARCHIVED" })
 ### Managing Dependencies
 
 **Adding packages:**
+
 ```bash
 pnpm add package-name              # Add to current workspace
 pnpm add -w package-name           # Add to root
@@ -515,6 +530,7 @@ pnpm add --filter @refugies-info/server package-name  # Add to specific workspac
 ```
 
 **Updating packages:**
+
 ```bash
 pnpm update -i                     # Interactive update
 pnpm update package-name@latest    # Update specific package
@@ -522,6 +538,7 @@ pnpm update package-name@latest    # Update specific package
 
 **Handling overrides:**
 Use `pnpm.overrides` in root `package.json` for version conflicts:
+
 ```json
 {
   "pnpm": {
@@ -653,6 +670,7 @@ When creating components:
 ### Implementation Guidelines
 
 **Text Externalization:**
+
 ```typescript
 // ✅ GOOD: Use i18n
 import { useTranslation } from "react-i18next";
@@ -667,6 +685,7 @@ export function SearchForm() {
 ```
 
 **Adding translation keys (`common.json`):**
+
 ```json
 // ✅ GOOD: Add new keys with descriptive namespaces
 {
@@ -684,12 +703,14 @@ export function SearchForm() {
 ```
 
 **Handling Variable Text Lengths:**
+
 - German/French can be 20-30% longer than English
 - Use flexible layouts (flexbox, grid)
 - Avoid fixed widths for text containers
 - Test with longest translations
 
 **RTL Language Support:**
+
 ```css
 /* ✅ GOOD: Use logical properties */
 .container {
@@ -707,6 +728,7 @@ export function SearchForm() {
 ```
 
 **Testing Multilingual Features:**
+
 - Test with all 8 languages
 - Verify text doesn't overflow
 - Check RTL rendering (Arabic, Dari, Pashto)
