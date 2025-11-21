@@ -1,4 +1,10 @@
-import { ContentType, CreateDispositifRequest, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
+import {
+  ContentType,
+  CreateDispositifRequest,
+  DispositifOrigin,
+  DispositifStatus,
+  SimpleDispositif,
+} from "@refugies-info/api-types";
 import { DeepPartialSkipArrayKey } from "react-hook-form";
 
 export const getDefaultDispositif = (
@@ -37,6 +43,6 @@ export const getDefaultDispositif = (
     needs: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: formValues?.origin || "RI",
+    origin: formValues?.origin || DispositifOrigin.RI,
   };
 };
