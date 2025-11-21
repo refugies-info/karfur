@@ -32,29 +32,31 @@ const LinkedThemes = ({ className }: { className?: string }) => {
           />
         </li>
       )}
-      {secondaryThemes.map((theme, i) => (
-        <li key={i} className="">
-          <SearchThemeButton
-            theme={theme}
-            href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
-            value={jsUcfirst(theme.short[locale] || "")}
-            onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
-          />
-        </li>
-      ))}
-      {needs.map((need, i) => {
-        const theme = themes.find((t) => t._id === need.theme._id);
-        return (
-          <li key={i}>
+      {Array.isArray(secondaryThemes) &&
+        secondaryThemes.map((theme, i) => (
+          <li key={i} className="">
             <SearchThemeButton
-              theme={theme!}
-              href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
-              value={need[locale]?.text || need.fr.text}
-              onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
+              theme={theme}
+              href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+              value={jsUcfirst(theme.short[locale] || "")}
+              onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
             />
           </li>
-        );
-      })}
+        ))}
+      {Array.isArray(needs) &&
+        needs.map((need, i) => {
+          const theme = themes.find((t) => t._id === need.theme._id);
+          return (
+            <li key={i}>
+              <SearchThemeButton
+                theme={theme!}
+                href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
+                value={need[locale]?.text || need.fr.text}
+                onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
+              />
+            </li>
+          );
+        })}
     </ul>
   );
 };

@@ -179,6 +179,7 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: "RI",
 };
 
 const formattedUserStructureContrib1: FormattedUserContribution = {
@@ -211,6 +212,7 @@ const userStructureContrib2: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: "RI",
 };
 
 const userStructureContrib3: GetStructureDispositifResponse = {
@@ -229,6 +231,7 @@ const userStructureContrib3: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: "RI",
 };
 
 const userStructureContrib4: GetStructureDispositifResponse = {
@@ -247,6 +250,7 @@ const userStructureContrib4: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: "RI",
 };
 
 const formattedUserStructureContrib4: FormattedUserContribution = {
@@ -279,6 +283,7 @@ const userStructureContrib5: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: "RI",
 };
 
 const userStructureContrib = [

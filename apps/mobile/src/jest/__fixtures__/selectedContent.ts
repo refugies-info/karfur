@@ -243,4 +243,5 @@ export const selectedContent: GetDispositifResponse = {
   ],
   status: DispositifStatus.ACTIVE,
   theme: "63450dd43e23cd7181ba0b26",
+  origin: "RI" as const,
 };

@@ -433,10 +433,7 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   } else {
     // not first publication
     try {
-      if (
-        draftVersionStatus === DispositifStatus.UPDATE_TO_VALIDATE ||
-        draftVersionStatus === DispositifStatus.DRAFT
-      ) {
+      if (draftVersionStatus === DispositifStatus.UPDATE_TO_VALIDATE || draftVersionStatus === DispositifStatus.DRAFT) {
         await Promise.all([
           notifyChange(NotifType.VALIDATED_AND_PUBLISHED, dispositifId, userId),
           sendMailWhenDispositifPublishedAfterUpdate(updatedDispositif),
@@ -518,6 +515,11 @@ export const buildNewDispositif = async (
   }
   if (formContent.administration)
     editedDispositif.administrationLogo = pictureToImageSchema(formContent.administration.logo);
+
+  // Handle origin field for device origin metadata
+  if ("origin" in formContent && formContent.origin) {
+    editedDispositif.origin = formContent.origin;
+  }
 
   return editedDispositif;
 };

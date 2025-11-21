@@ -122,6 +122,7 @@ export const getSimpleDispositifs = async (
       hasDraftVersion: 1,
       administrationLogo: 1,
       typeContenu: 1,
+      origin: 1,
     },
     "",
     limit,
@@ -137,6 +138,7 @@ export const getSimpleDispositifs = async (
         availableLanguages: Object.keys(dispositif.translations),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
+        origin: dispositif.origin ?? "RI",
         sponsor: null as Partial<typeof dispositif.mainSponsor>,
       };
       if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {
@@ -176,6 +178,7 @@ export const getStructureDispositifs = async (
       suggestions: 1,
       administrationLogo: 1,
       typeContenu: 1,
+      origin: 1,
     },
     "suggestions.userId",
     limit,
@@ -219,6 +222,7 @@ export const getStructureDispositifs = async (
           nbMercis: dispositif.merci.length,
           suggestions,
           themeSortIndex: dispositif.sortThemeIndex,
+          origin: dispositif.origin ?? "RI",
           sponsor: null as Partial<typeof dispositif.mainSponsor>,
         };
         if (dispositif.typeContenu === ContentType.DISPOSITIF && dispositif.mainSponsor) {

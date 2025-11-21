@@ -142,6 +142,7 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
       nbVues: 1,
       nbVuesMobile: 1,
       needs: 1,
+      origin: 1,
       secondaryThemes: 1,
       theme: 1,
       translations: 1,

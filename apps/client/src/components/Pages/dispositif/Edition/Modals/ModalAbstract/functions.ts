@@ -37,5 +37,6 @@ export const getDefaultDispositif = (
     needs: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
+    origin: formValues?.origin || "RI",
   };
 };
