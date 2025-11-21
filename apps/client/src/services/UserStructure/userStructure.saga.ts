@@ -23,6 +23,9 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     const { structureId, shouldRedirect } = action.payload;
     if (!structureId) return;
     const data: GetStructureResponse = yield call(API.getStructureById, structureId.toString(), "fr");
+    if (data && data.dispositifsAssocies) {
+      data.dispositifsAssocies = data.dispositifsAssocies.filter((d) => (d as any).origin === "RI");
+    }
     yield put(setUserStructureActionCreator(data));
     const user: UserState = yield select(userSelector);
     const userId = user.userId;

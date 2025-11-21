@@ -12,7 +12,8 @@ export function* fetchAllDispositifs(): SagaIterator {
     logger.info("[fetchAllDispositifs saga]");
     yield put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
     const data: GetAllDispositifsResponse[] = yield call(API.getAllDispositifs);
-    yield put(setAllDispositifsActionsCreator(data));
+    const filteredData = data.filter((d) => d.origin === "RI");
+    yield put(setAllDispositifsActionsCreator(filteredData));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
   } catch (error) {
     logger.error("[fetchAllDispositifs saga] Error while fetching dispositifs", { error });

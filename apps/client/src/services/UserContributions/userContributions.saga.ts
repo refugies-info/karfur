@@ -16,7 +16,8 @@ export function* fetchUserContributions(): SagaIterator {
     logger.info("[fetchUserContributions] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
     const data: GetUserContributionsResponse[] = yield call(API.getUserContributions);
-    yield put(setUserContributionsActionCreator(data));
+    const filteredData = data.filter((d) => ((d as any).dispositif || d).origin === "RI");
+    yield put(setUserContributionsActionCreator(filteredData));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   } catch (error) {
     logger.error("[fetchUserContributions] saga error", { error });
