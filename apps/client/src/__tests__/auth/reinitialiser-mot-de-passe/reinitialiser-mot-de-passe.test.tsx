@@ -21,8 +21,8 @@ describe("auth/reinitialiser-mot-de-passe", () => {
         ...initialMockStore,
       },
     });
-    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeInTheDocument();
-    expect(screen.getByLabelText(/adresse mail/i)).toHaveValue("");
+    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeTruthy();
+    expect(screen.getByLabelText(/adresse mail/i)).toHaveProperty("value", "");
   });
 
   it("renders page if email", async () => {
@@ -33,7 +33,7 @@ describe("auth/reinitialiser-mot-de-passe", () => {
         ...initialMockStore,
       },
     });
-    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeInTheDocument();
-    expect(screen.getByLabelText(/adresse mail/i)).toHaveValue("test@example.com");
+    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeTruthy();
+    expect(screen.getByLabelText(/adresse mail/i)).toHaveProperty("value", "test@example.com");
   });
 });
