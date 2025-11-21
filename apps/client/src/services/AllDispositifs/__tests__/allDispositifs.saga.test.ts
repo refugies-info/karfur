@@ -19,8 +19,26 @@ describe("[Saga] All dispositifs", () => {
         .put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()
         .call(API.getAllDispositifs)
-        .next([{ id: "id" }])
-        .put(setAllDispositifsActionsCreator([{ id: "id" }]))
+        .next([{ id: "id", origin: "RI" }])
+        .put(setAllDispositifsActionsCreator([{ id: "id", origin: "RI" }]))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
+        .next()
+        .isDone();
+    });
+
+    it("should filter out RCO dispositifs", () => {
+      const mockData = [
+        { id: "id1", origin: "RI" },
+        { id: "id2", origin: "RCO" },
+      ];
+      testSaga(fetchAllDispositifs)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
+        .next()
+        .call(API.getAllDispositifs)
+        .next(mockData)
+        .put(setAllDispositifsActionsCreator([{ id: "id1", origin: "RI" }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()
