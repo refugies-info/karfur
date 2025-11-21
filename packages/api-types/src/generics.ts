@@ -155,7 +155,10 @@ export enum DispositifStatus {
 }
 
 // Dispositif origin type for distinguishing editorial vs AI-generated content
-export type DispositifOrigin = "RI" | "RCO";
+export enum DispositifOrigin {
+  RI = "RI",
+  RCO = "RCO",
+}
 
 export interface InfoSection {
   title: string;

@@ -1,4 +1,9 @@
-import { GetStructureResponse, PatchStructureRequest, PatchStructureRolesRequest } from "@refugies-info/api-types";
+import {
+  DispositifOrigin,
+  GetStructureResponse,
+  PatchStructureRequest,
+  PatchStructureRolesRequest,
+} from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import Router from "next/router";
 import { SagaIterator } from "redux-saga";
@@ -24,7 +29,7 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
     if (!structureId) return;
     const data: GetStructureResponse = yield call(API.getStructureById, structureId.toString(), "fr");
     if (data && data.dispositifsAssocies) {
-      data.dispositifsAssocies = data.dispositifsAssocies.filter((d) => (d as any).origin === "RI");
+      data.dispositifsAssocies = data.dispositifsAssocies.filter((d) => d.origin === DispositifOrigin.RI);
     }
     yield put(setUserStructureActionCreator(data));
     const user: UserState = yield select(userSelector);

@@ -280,6 +280,7 @@ export interface GetUserContributionsResponse {
   status: DispositifStatus;
   hasDraftVersion: boolean;
   // TODO: add administration?
+  origin: DispositifOrigin;
 }
 
 /**
