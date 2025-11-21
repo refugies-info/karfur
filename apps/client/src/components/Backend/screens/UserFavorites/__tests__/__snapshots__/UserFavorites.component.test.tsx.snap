@@ -491,6 +491,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -601,6 +602,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -711,6 +713,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
