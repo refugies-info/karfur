@@ -217,6 +217,7 @@ export class Dispositif extends Base {
 
   @prop({
     enum: DispositifOrigin,
+    type: String,
     default: "RI",
     required: true,
     immutable: true,
