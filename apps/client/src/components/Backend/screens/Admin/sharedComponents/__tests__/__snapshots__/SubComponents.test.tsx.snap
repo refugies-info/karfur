@@ -456,61 +456,6 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   >
      
   </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
-  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -560,61 +505,6 @@ exports[`should render StyledStatus Brouillon  1`] = `
     role="alert"
   >
      
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
   </div>
   .c0 {
   font-weight: bold;
@@ -666,61 +556,6 @@ exports[`should render StyledStatus En attente admin  1`] = `
   >
      
   </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
-  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -770,61 +605,6 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
     role="alert"
   >
      
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
   </div>
   .c0 {
   font-weight: bold;
@@ -876,61 +656,6 @@ exports[`should render StyledStatus Supprimé  1`] = `
   >
      
   </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
-  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -980,61 +705,6 @@ exports[`should render StyledStatus actif  1`] = `
     role="alert"
   >
      
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
   </div>
   .c0 {
   font-weight: bold;
@@ -1086,61 +756,6 @@ exports[`should render StyledStatus en attente  1`] = `
   >
      
   </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
-  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -1190,61 +805,6 @@ exports[`should render StyledStatus no corresponding status  1`] = `
     role="alert"
   >
      
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
   </div>
   .c0 {
   font-weight: bold;
@@ -1296,61 +856,6 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
   >
      
   </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
-  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -1400,61 +905,6 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
     role="alert"
   >
      
-  </div>
-  <div
-    aria-hidden="true"
-    class="pointer-events-none fixed right-0 bottom-0 left-0 z-[10000] flex flex-col gap-2 bg-gray-800 p-3 text-center font-mono text-xs text-white"
-  >
-    <div
-      class="border-b border-blue-400 pb-2"
-    >
-      <span
-        class="font-bold text-blue-100"
-      >
-        📢 POLITE (queued):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="border-b border-red-400 pb-2"
-    >
-      <span
-        class="font-bold text-red-100"
-      >
-        � ASSERTIVE (priority):
-      </span>
-      <span
-        class="truncate"
-      >
-        (empty)
-      </span>
-    </div>
-    <div
-      class="grid grid-cols-2"
-    >
-      <div>
-        <span
-          class="font-bold text-yellow-100"
-        >
-          📊 TIMELINE:
-        </span>
-        empty
-      </div>
-      <div>
-        <span
-          class="font-bold text-green-100"
-        >
-          📋 QUEUE: 
-        </span>
-        <span>
-          0 message(s) waiting
-        </span>
-      </div>
-    </div>
   </div>
   .c0 {
   font-weight: bold;

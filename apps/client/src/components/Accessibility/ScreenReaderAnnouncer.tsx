@@ -94,7 +94,12 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
   const idRef = useRef(0);
   const queueLengthRef = useRef(0);
 
-  const debug = process.env.NEXT_PUBLIC_SR_DEBUG === "true";
+  const isJsdom = typeof navigator !== "undefined" && /jsdom/i.test(navigator.userAgent ?? "");
+  const debug =
+    process.env.NEXT_PUBLIC_SR_DEBUG === "true" &&
+    process.env.NODE_ENV !== "test" &&
+    !process.env.JEST_WORKER_ID &&
+    !isJsdom;
 
   // Helper: Calculate read time based on word count (150ms/word + 300ms buffer, min 800ms)
   const calculateReadTime = useCallback((message: string): number => {
