@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { AnnotationsOverlay } from "@refugies-info/ui";
+import { AnnotationsOverlay, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
@@ -8,7 +8,6 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -23,16 +22,23 @@ const MobileApp = () => {
 
   const storeLinks = useMemo(
     () => (
-      <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
-        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
-          <Image src={appStoreBadge} alt="Get it on App Store" fill />
-        </a>
-        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-          <Image src={playStoreBadge} width={128} height={40} alt="Get it on Play Store" />
-        </a>
-      </p>
+      <>
+        <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
+          <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
+            <Image src={appStoreBadge} alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")} fill />
+          </a>
+          <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
+            <Image
+              src={playStoreBadge}
+              width={128}
+              height={40}
+              alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+            />
+          </a>
+        </p>
+      </>
     ),
-    [appStoreBadge, playStoreBadge],
+    [appStoreBadge, playStoreBadge, t],
   );
 
   const handleOpenStoreLink = (storelink: string) => {
@@ -43,6 +49,8 @@ const MobileApp = () => {
     <section
       id="application"
       className="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+      role="region"
+      aria-label={t("MobileApp.sectionLabel", "Section application mobile")}
     >
       <div className="flex h-full flex-col items-center justify-center gap-10">
         <AnnotationsOverlay
@@ -69,6 +77,13 @@ const MobileApp = () => {
         >
           <Image src={application} fill className="object-contain" alt="" />
         </AnnotationsOverlay>
+        <p className="sr-only">
+          {t(
+            "MobileApp.description",
+            "Téléchargez l'application mobile pour accéder à toutes les fonctionnalités de partage, de changement de langue, de langage clair et de vocalisation centralisées dans une seule application.",
+          )}
+        </p>
+
         {storeLinks}
       </div>
       <div className="">
