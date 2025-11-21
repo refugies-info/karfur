@@ -130,6 +130,7 @@ exports[`auth/reinitialiser-mot-de-passe renders page if no email 1`] = `
           id="input-:r1:"
           name="email"
           type="email"
+          value=""
         />
         <div
           aria-live="polite"
