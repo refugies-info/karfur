@@ -110,11 +110,11 @@ const DispositifCard = (props: Props) => {
             </div>
 
             <div className="fr-card__start relative">
-              <div className={styles.sponsor}>
+              <div className={styles.sponsor} aria-hidden="true">
                 <Image
                   className="h-[3rem] object-contain"
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
-                  alt={props.dispositif?.sponsor?.nom || ""}
+                  alt=""
                   width={48}
                   height={48}
                 />
