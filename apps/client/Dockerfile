@@ -11,7 +11,7 @@ FROM base AS tools
 
   # Enable corepack and prepare pnpm globally
   RUN corepack enable
-  RUN corepack prepare pnpm@10.20.0 --activate
+  RUN corepack prepare pnpm@10.23.0 --activate
 
   # Install turbo globally
   ENV PNPM_HOME="/root/.local/share/pnpm"
