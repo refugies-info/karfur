@@ -37,7 +37,7 @@
     "expo-notifications": "~0.31.4",
     "expo-speech": "~13.1.7",
     "expo-status-bar": "~2.2.3",
-    "expo-system-ui": "~5.0.11",
+    "expo-system-ui": "~6.0.8",
     "expo-updates": "~0.28.17",
     "i18next": "^23.16.3",
     "instantsearch.js": "^4.79.2",
