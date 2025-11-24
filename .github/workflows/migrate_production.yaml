@@ -43,7 +43,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Setup AtlasCLI
-        uses: mongodb/atlas-github-action@v0.2.1
+        uses: mongodb/atlas-github-action@v0.2.2
 
       - name: Setup IP environment variable
         run: echo "IP=$(curl -s https://api.ipify.org)" >> $GITHUB_ENV
