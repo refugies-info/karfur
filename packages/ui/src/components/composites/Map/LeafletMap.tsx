@@ -43,6 +43,8 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   const { isMobile } = useWindowSize();
 
+  const [mapKey] = useState(() => Math.random().toString(36));
+
   useEffect(() => {
     Object.entries(markersRef.current).forEach(([title, marker]) => {
       const markerElement = marker.getElement();
@@ -187,7 +189,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   }, [mapData, handleMarkerClick, popupEventHandlers]);
 
   return (
-    <div className={className}>
+    <div className={className} key={mapKey}>
       <MapContainer
         ref={mapRef}
         center={center}
