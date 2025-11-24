@@ -106,6 +106,7 @@ export const formatContributions = (
             nom: userStructure.nom || "",
           },
           hasDraftVersion: dispositif.hasDraftVersion,
+          origin: dispositif.origin,
         });
       });
   }

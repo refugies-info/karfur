@@ -1,4 +1,4 @@
-import { ContentType, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
 
 export const lastDemarches: SimpleDispositif[] = [
   {
@@ -35,7 +35,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63972dcb98b670cc4bae76e6",
@@ -70,7 +70,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "5e1c8c0e0742580052a33972",
@@ -100,7 +100,7 @@ export const lastDemarches: SimpleDispositif[] = [
     theme: "63286a015d31b2c0cad9960b",
     titreMarque: "",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "637781c6896812af208f3495",
@@ -130,7 +130,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "6123a82c6bf6bc00148a5176",
@@ -161,7 +161,7 @@ export const lastDemarches: SimpleDispositif[] = [
     theme: "63286a015d31b2c0cad9960c",
     titreMarque: "",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "5dd7c4b06f0ac0004c87c88d",
@@ -191,7 +191,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960b",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63528e00976acb4f7bcd37ad",
@@ -222,7 +222,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63401d8783f485a025e88388",
@@ -253,7 +253,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "630337ddf2087e2b25ac7609",
@@ -284,7 +284,7 @@ export const lastDemarches: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62f265d81119eede87fb1ae2",
@@ -319,7 +319,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: ["63286a015d31b2c0cad9960b", "63450dd43e23cd7181ba0b26"],
     theme: "63286a015d31b2c0cad9960c",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62b9809b796009107a932cbc",
@@ -349,7 +349,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62bab2e7b47f6b02fa9783f2",
@@ -379,7 +379,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: ["63286a015d31b2c0cad9960b"],
     theme: "63286a015d31b2c0cad9960c",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62b5cc16092a73346b4a9a11",
@@ -410,7 +410,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62a897aceece9a373f34ee49",
@@ -441,7 +441,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "62a8ae34eece9a373f350351",
@@ -471,7 +471,7 @@ export const lastDemarches: SimpleDispositif[] = [
     secondaryThemes: [],
     theme: "63286a015d31b2c0cad9960d",
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
 ];
 
@@ -504,7 +504,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "638dcbbaf0b1a31177cf9602",
@@ -539,7 +539,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "638613c54730d143903ca9ca",
@@ -575,7 +575,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63873a586fd089c3dad298f2",
@@ -605,7 +605,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "635a71c8d43c4d1a3f25227f",
@@ -641,7 +641,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "6376470705f74970c5342371",
@@ -671,7 +671,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "634d28bd9d3bda3be5cfd979",
@@ -701,7 +701,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "6332c0e6a36f411314ba4ca3",
@@ -731,7 +731,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "636cd4572c725bfbf72d6302",
@@ -769,7 +769,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63231e68d585c0849a9bb2b1",
@@ -799,7 +799,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "634e7269313f6183f3510709",
@@ -835,7 +835,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "634fba2814dbd7acb5c4f759",
@@ -865,7 +865,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "6317495572a7091286cfbd68",
@@ -902,7 +902,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "6336f551bf68aaed7fe0f8b4",
@@ -932,7 +932,7 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
   {
     _id: "63623b16a2a5bf7006723347",
@@ -968,6 +968,6 @@ export const lastDispositifs: SimpleDispositif[] = [
     availableLanguages: [],
     hasDraftVersion: false,
     themeSortIndex: 0,
-    origin: "RI",
+    origin: DispositifOrigin.RI,
   },
 ];

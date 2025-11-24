@@ -1,4 +1,5 @@
 //@ts-nocheck
+import { DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
@@ -26,8 +27,26 @@ describe("[Saga] UserContributions", () => {
         .put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()
         .call(API.getUserContributions)
-        .next([{ _id: "id" }])
-        .put(setUserContributionsActionCreator([{ _id: "id" }]))
+        .next([{ _id: "id", origin: DispositifOrigin.RI }])
+        .put(setUserContributionsActionCreator([{ _id: "id", origin: DispositifOrigin.RI }]))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
+        .next()
+        .isDone();
+    });
+
+    it("should filter out RCO contributions", () => {
+      const mockData = [
+        { _id: "id1", origin: DispositifOrigin.RI },
+        { _id: "id2", origin: DispositifOrigin.RCO },
+      ];
+      testSaga(fetchUserContributions)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
+        .next()
+        .call(API.getUserContributions)
+        .next(mockData)
+        .put(setUserContributionsActionCreator([{ _id: "id1", origin: DispositifOrigin.RI }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS))
         .next()

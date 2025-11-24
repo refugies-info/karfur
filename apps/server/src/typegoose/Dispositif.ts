@@ -3,6 +3,7 @@ import {
   commitmentDetailsType,
   conditionType,
   ContentType,
+  DispositifOrigin,
   DispositifStatus,
   frenchLevelType,
   frequencyDetailsType,
@@ -215,12 +216,13 @@ export class Dispositif extends Base {
   updatedAt?: Date;
 
   @prop({
-    enum: ["RI", "RCO"],
+    enum: DispositifOrigin,
+    type: String,
     default: "RI",
     required: true,
     immutable: true,
   })
-  public origin!: "RI" | "RCO";
+  public origin!: DispositifOrigin;
 
   @prop({ ref: () => Structure })
   public mainSponsor?: Ref<Structure, StructureId>;

@@ -22,7 +22,7 @@ export const getUserContributions = async (userId: UserId): ResponseWithData<Get
   const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
 
   const res: GetUserContributionsResponse[] = dispositifs.map((d) => ({
-    ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues"]),
+    ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues", "origin"]),
     ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
     nbMercis: d.merci.length,
     hasDraftVersion: !!d.hasDraftVersion,

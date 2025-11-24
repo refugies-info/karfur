@@ -1,4 +1,4 @@
-import { ContentType, DispositifStatus, RoleName } from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin, DispositifStatus, RoleName } from "@refugies-info/api-types";
 import { fixtures } from "~/__fixtures__";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { DispositifModel, RoleModel, UserModel } from "~/typegoose";
@@ -35,12 +35,12 @@ describe("Dispositif Origin", () => {
       {
         typeContenu: ContentType.DISPOSITIF,
         titreInformatif: "Test Dispositif RCO",
-        origin: "RCO",
+        origin: DispositifOrigin.RCO,
       },
       user._id,
     );
 
-    expect(result.data.origin).toBe("RCO");
+    expect(result.data.origin).toBe(DispositifOrigin.RCO);
 
     const dispositif = await DispositifModel.findById(result.data.id);
     expect(dispositif?.origin).toBe("RCO");
@@ -73,7 +73,7 @@ describe("Dispositif Origin", () => {
       {
         typeContenu: ContentType.DISPOSITIF,
         titreInformatif: "Test Dispositif",
-        origin: "RI",
+        origin: DispositifOrigin.RI,
       },
       user._id,
     );
@@ -81,13 +81,13 @@ describe("Dispositif Origin", () => {
     await updateDispositif(
       createResult.data.id.toString(),
       {
-        origin: "RCO",
+        origin: DispositifOrigin.RCO,
       },
       user,
     );
 
     const dispositif = await DispositifModel.findById(createResult.data.id);
-    expect(dispositif?.origin).toBe("RI");
+    expect(dispositif?.origin).toBe(DispositifOrigin.RI);
   });
 
   it("should default missing origin to RI in API responses", async () => {
@@ -108,6 +108,6 @@ describe("Dispositif Origin", () => {
     const foundDispositif = await getDispositifById(dispositif._id.toString());
 
     // The origin should default to "RI" in the serialization
-    expect(foundDispositif?.origin).toBe("RI");
+    expect(foundDispositif?.origin).toBe(DispositifOrigin.RI);
   });
 });
