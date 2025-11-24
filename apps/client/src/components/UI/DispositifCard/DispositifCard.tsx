@@ -80,7 +80,7 @@ const DispositifCard = (props: Props) => {
         className={cn(badge.className, "absolute top-2 left-2 z-20")}
         aria-label={isRCO ? "Contenu généré par intelligence artificielle" : undefined}
       >
-        {isOnline && <i className="ri-at-line me-1"></i>}
+        {isOnline && <i className="ri-at-line me-1" aria-hidden="true"></i>}
         {badge.text}
       </Badge>
       <div className={cn("fr-card", styles.container)}>
@@ -110,11 +110,11 @@ const DispositifCard = (props: Props) => {
             </div>
 
             <div className="fr-card__start relative">
-              <div className={styles.sponsor}>
+              <div className={styles.sponsor} aria-hidden="true">
                 <Image
                   className="h-[3rem] object-contain"
                   src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
-                  alt={props.dispositif?.sponsor?.nom || ""}
+                  alt=""
                   width={48}
                   height={48}
                 />
@@ -122,14 +122,14 @@ const DispositifCard = (props: Props) => {
               <div className="mb-2 flex gap-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                  <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
+                  <NewThemeBadge aria-hidden="true" theme={props.dispositif.secondaryThemes?.length || 0} />
                 )}
               </div>
 
               {props.dispositif?.sponsor?.nom && (
                 <div className={styles.info}>
                   <span>
-                    <i className="fr-icon-building-line me-2" />
+                    <i className="fr-icon-building-line me-2" aria-hidden="true" />
                     <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
                   </span>
                 </div>
@@ -142,13 +142,13 @@ const DispositifCard = (props: Props) => {
                   <div className={cn(styles.info, "flex gap-2")}>
                     {price && (
                       <span className="shrink-0">
-                        <i className="fr-icon-money-euro-circle-line me-2" />
+                        <i className="fr-icon-money-euro-circle-line me-2" aria-hidden="true" />
                         <span>{getPriceText(price, t)}</span>
                       </span>
                     )}
                     {commitment && (
                       <span className="shrink">
-                        <i className="fr-icon-time-line me-2" />
+                        <i className="fr-icon-time-line me-2" aria-hidden="true" />
                         <span>{getCommitmentText(commitment, t, true)}</span>
                       </span>
                     )}
@@ -159,18 +159,18 @@ const DispositifCard = (props: Props) => {
                   {props.dispositif.lastModificationDate && (
                     <div className={cn(styles.info)}>
                       <span className="shrink">
-                        <i className="fr-icon-time-line me-2" />
+                        <i className="fr-icon-time-line me-2" aria-hidden="true" />
                         <span>{getRelativeTimeString(new Date(props.dispositif.lastModificationDate), locale, t)}</span>
                       </span>
                     </div>
                   )}
                 </>
               )}
-              {!props.demoCard && <i className="fr-icon-arrow-right-line" />}
+              {!props.demoCard && <i className="fr-icon-arrow-right-line" aria-hidden="true" />}
             </div>
           </div>
         </div>
-        <div className="fr-card__header">
+        <div className="fr-card__header" aria-hidden="true">
           <div className="fr-card__img">
             {cardImageUrl ? (
               <Image

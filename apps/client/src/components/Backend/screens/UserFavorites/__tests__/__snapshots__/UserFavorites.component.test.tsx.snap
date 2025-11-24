@@ -491,6 +491,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -524,12 +525,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="[object Object]"
                   />
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
@@ -599,6 +602,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -632,12 +636,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="[object Object]"
                   />
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
@@ -707,6 +713,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -737,12 +744,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
