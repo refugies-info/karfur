@@ -362,6 +362,7 @@ exports[`recherche renders search results 1`] = `
             <button
               aria-expanded="false"
               aria-haspopup="true"
+              aria-label="Filters.sortView, selected"
               class="sort_button"
               data-state="closed"
               id="radix-:r2:"
