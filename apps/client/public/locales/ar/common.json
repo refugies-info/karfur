@@ -571,11 +571,11 @@
     "carrouselSeemore": "مشاهدة الكل",
     "carrouselPrev": "اظهار النتائج على اليسار",
     "carrouselNext": "اظهار النتائج على اليمين",
-    "northStar_title": "هل رأيت أن الصفحة مفيدة ؟ ✨",
+    "northStar_title": "هل رأيت أن الصفحة مفيدة ؟ ",
     "northStar_no": "لا",
     "northStar_yes": "نعم",
     "northStar_notUseful": "غير مفيدة",
     "northStar_useful": "هل ذلك مفيد ؟ ✨",
-    "northStar_thanks": "شكراً لك لرأيك 😊"
+    "northStar_thanks": "شكراً لك لرأيك"
   }
 }

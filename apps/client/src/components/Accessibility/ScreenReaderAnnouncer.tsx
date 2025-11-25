@@ -122,8 +122,14 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
             "color: #666",
           );
         }
-        // Use single ZWSP to handle duplicate messages
-        setAssertiveCurrent(`${message}\u200B`);
+        // Handle duplicate messages by toggling ZWSP
+        setAssertiveCurrent((prev) => {
+          const cleanPrev = prev.replace(/\u200B$/, "");
+          if (cleanPrev === message) {
+            return prev.endsWith("\u200B") ? message : `${message}\u200B`;
+          }
+          return `${message}\u200B`;
+        });
       } else {
         setPoliteQueue((prev) => {
           queueLengthRef.current = prev.length + 1;
@@ -149,7 +155,13 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
     const readTime = calculateReadTime(first.message);
 
     const delayTimer = setTimeout(() => {
-      setPoliteCurrent(`${first.message}\u200B`);
+      setPoliteCurrent((prev) => {
+        const cleanPrev = prev.replace(/\u200B$/, "");
+        if (cleanPrev === first.message) {
+          return prev.endsWith("\u200B") ? first.message : `${first.message}\u200B`;
+        }
+        return `${first.message}\u200B`;
+      });
     }, first.delay);
 
     if (debug) {

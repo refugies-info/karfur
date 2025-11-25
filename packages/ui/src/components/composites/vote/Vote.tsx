@@ -6,6 +6,11 @@ import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } f
 import VoteLayoutStandard from "./VoteLayoutStandard";
 import VoteLayoutSticky from "./VoteLayoutSticky";
 
+type AnnounceOptions = {
+  priority?: "interrupt" | "normal";
+  delay?: number;
+};
+
 type VoteProps = {
   className?: string;
   currentVote?: boolean | null;
@@ -15,7 +20,7 @@ type VoteProps = {
   onCancelYes?: () => void;
   onCancelNo?: () => void;
   onVoteUpdate?: (vote: boolean) => void;
-  onVoteAnnounce?: (message: string) => void;
+  onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
   error?: boolean | null;
 };
 
@@ -137,6 +142,8 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
         handleClickYes={handleClickYes}
         handleClickNo={handleClickNo}
         thumbUpRef={thumbUpRef}
+        hasVoted={!error && hasVoted}
+        onVoteAnnounce={onVoteAnnounce}
       />
     ) : (
       <VoteLayoutStandard

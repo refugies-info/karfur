@@ -850,13 +850,14 @@
     "carrouselPrev": "Faire défiler la liste à gauche",
     "carrouselNext": "Faire défiler la liste à droite",
     "countSeparator": "sur",
-    "northStar_title": "Cette page est-elle utile ? ✨",
+    "northStar_title": "Cette page est-elle utile ?",
     "northStar_no": "Non",
     "northStar_yes": "Oui",
     "northStar_notUseful": "Pas utile",
     "northStar_useful": "C'est utile ? ✨",
-    "northStar_thanks": "Merci pour votre retour 😊",
-    "northStar_error": "Une erreur est survenue lors de la soumission de votre avis"
+    "northStar_thanks": "Merci pour votre retour",
+    "northStar_error": "Une erreur est survenue lors de la soumission de votre avis",
+    "northStar_vote_cancelled": "Votre vote a été retiré"
   },
   "breadcrumbs": "Fil d'Ariane"
 }

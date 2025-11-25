@@ -3,17 +3,34 @@ import { cn, ThumbUpAnimated, ThumbUpAnimatedRef } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React, { forwardRef } from "react";
 
+type AnnounceOptions = {
+  priority?: "interrupt" | "normal";
+  delay?: number;
+};
+
 type VoteLayoutStickyProps = {
   className?: string;
   vote?: boolean | null;
   handleClickYes: () => void;
   handleClickNo: () => void;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
+  hasVoted: boolean;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
 const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
-  ({ className, vote, handleClickYes, handleClickNo, thumbUpRef }, ref) => {
+  ({ className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef, onVoteAnnounce }, ref) => {
     const { t } = useTranslation();
+    const prevHasVoted = React.useRef(hasVoted);
+
+    React.useEffect(() => {
+      if (hasVoted && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_thanks", "Merci pour votre retour"), { priority: "interrupt" });
+      } else if (!hasVoted && prevHasVoted.current && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
+      }
+      prevHasVoted.current = hasVoted;
+    }, [hasVoted, vote, onVoteAnnounce, t]);
 
     return (
       <div

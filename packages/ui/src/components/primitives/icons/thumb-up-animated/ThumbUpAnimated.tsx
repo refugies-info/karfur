@@ -71,7 +71,7 @@ export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedPro
     };
 
     return (
-      <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)}>
+      <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)} aria-hidden="true">
         <DotLottieReact
           src={ThumbUpAnimation}
           autoplay={false}
