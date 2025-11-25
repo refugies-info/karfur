@@ -43,15 +43,6 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   const { isMobile } = useWindowSize();
 
-  // Force a new container on every mount to avoid "Map container is already initialized"
-  const [mapKey] = useState(() => `map-${Math.random().toString(36).substr(2, 9)}`);
-
-  useEffect(() => {
-    return () => {
-      mapRef.current?.remove();
-    };
-  }, []);
-
   useEffect(() => {
     Object.entries(markersRef.current).forEach(([title, marker]) => {
       const markerElement = marker.getElement();
@@ -196,7 +187,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   }, [mapData, handleMarkerClick, popupEventHandlers]);
 
   return (
-    <div className={className} key={mapKey}>
+    <div className={className}>
       <MapContainer
         ref={mapRef}
         center={center}
