@@ -14,7 +14,7 @@ type VoteLayoutStickyProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
   onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
@@ -30,7 +30,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
         onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
       }
       prevHasVoted.current = hasVoted;
-    }, [hasVoted, onVoteAnnounce, t]);
+    }, [hasVoted, vote, onVoteAnnounce, t]);
 
     return (
       <div

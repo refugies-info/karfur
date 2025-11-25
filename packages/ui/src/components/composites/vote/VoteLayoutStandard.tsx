@@ -14,7 +14,7 @@ type VoteLayoutStandardProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
   onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
@@ -22,9 +22,13 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
   ({ className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef, onVoteAnnounce }, ref) => {
     const { t } = useTranslation();
     const prevHasVoted = useRef(hasVoted);
+    const prevHasVoted = useRef(hasVoted);
 
     useEffect(() => {
       if (hasVoted && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_thanks", "Merci pour votre retour"), { priority: "interrupt" });
+      } else if (!hasVoted && prevHasVoted.current && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
         onVoteAnnounce(t("ui.northStar_thanks", "Merci pour votre retour"), { priority: "interrupt" });
       } else if (!hasVoted && prevHasVoted.current && onVoteAnnounce) {
         onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
@@ -37,6 +41,9 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         <p className="mb-2 text-xl font-bold">
           {t("ui.northStar_title", "Cette page vous a-t-elle été utile ?")} <span aria-hidden="true">✨</span>
         </p>
+        <p className="mb-2 text-xl font-bold">
+          {t("ui.northStar_title", "Cette page vous a-t-elle été utile ?")} <span aria-hidden="true">✨</span>
+        </p>
 
         <div className="grid grid-cols-2 gap-2">
           <Button
@@ -45,6 +52,11 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             className={cn("flex h-[1.7rem] w-full items-end gap-2 transition-all")}
             size="small"
           >
+            <div className="relative" aria-hidden="true">
+              <span
+                aria-hidden="true"
+                className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}
+              ></span>
             <div className="relative" aria-hidden="true">
               <span
                 aria-hidden="true"
@@ -75,7 +87,9 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             vote === true && "delay-1000",
           )}
           aria-hidden="true"
+          aria-hidden="true"
         >
+          {t("ui.northStar_thanks", "Merci pour votre retour")} ☺️
           {t("ui.northStar_thanks", "Merci pour votre retour")} ☺️
         </p>
       </div>
