@@ -14,7 +14,7 @@ type VoteLayoutStickyProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
   onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
