@@ -858,5 +858,6 @@
     "northStar_thanks": "Merci pour votre retour",
     "northStar_error": "Une erreur est survenue lors de la soumission de votre avis",
     "northStar_vote_cancelled": "Votre vote a été retiré"
-  }
+  },
+  "breadcrumbs": "Fil d'Ariane"
 }
