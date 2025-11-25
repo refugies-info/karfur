@@ -572,11 +572,11 @@
     "carrouselSeemore": "مشاهده همه",
     "carrouselPrev": "پیمایش به چپ",
     "carrouselNext": "پیمایش به راست",
-    "northStar_title": "آیا این صفحه برایتان مفید بود؟ ✨",
+    "northStar_title": "آیا این صفحه برایتان مفید بود؟",
     "northStar_no": "خیر",
     "northStar_yes": "بله",
     "northStar_notUseful": "مفید نبود",
     "northStar_useful": "آیا مفید بود؟ ✨",
-    "northStar_thanks": "از نظر شما سپاسگزاریم 😊"
+    "northStar_thanks": "از نظر شما سپاسگزاریم"
   }
 }

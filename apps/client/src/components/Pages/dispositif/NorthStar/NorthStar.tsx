@@ -106,7 +106,10 @@ const NorthStar = () => {
 
   const onCancel = () => {
     if (!dispositif) return;
-    API.deleteDispositifAvis(dispositif._id.toString())
+    API.deleteDispositifAvis(dispositif._id.toString(), {
+      anonymousUserId: anonymousUserId || undefined,
+      userId: userId || undefined,
+    })
       .then(() => {
         sendTrackEvent(null);
         setDidVote(false);
