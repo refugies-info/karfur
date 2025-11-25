@@ -4,9 +4,17 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -668,9 +676,17 @@ exports[`UserStructure should render correctly when loading 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -831,9 +847,17 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -883,9 +907,17 @@ exports[`UserStructure should render correctly when structure with membres when 
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -1377,9 +1409,17 @@ exports[`UserStructure should render correctly when structure with membres when 
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>

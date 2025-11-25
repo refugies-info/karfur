@@ -4,9 +4,17 @@ exports[`user translation should redirect if user has language but not langue in
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -255,9 +263,17 @@ exports[`user translation should redirect if user has no language but langue in 
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -506,9 +522,17 @@ exports[`user translation should render correctly with expert, admin 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -631,9 +655,17 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -756,9 +788,17 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -881,9 +921,17 @@ exports[`user translation should return loader langue in url = first selected la
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>

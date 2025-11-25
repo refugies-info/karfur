@@ -4,9 +4,17 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -209,9 +217,17 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -791,9 +807,17 @@ exports[`userContributions should render correctly when contributions 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -2601,9 +2625,17 @@ exports[`userContributions should render correctly when loading 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
