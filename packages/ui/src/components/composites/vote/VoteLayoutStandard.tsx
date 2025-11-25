@@ -30,7 +30,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
       }
       prevHasVoted.current = hasVoted;
-    }, [hasVoted, vote, onVoteAnnounce, t]);
+    }, [hasVoted, onVoteAnnounce, t]);
 
     return (
       <div ref={ref} className={cn("mb-4 flex flex-col gap-2 rounded-sm bg-white p-4 shadow-lg", className)}>

@@ -30,7 +30,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
         onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
       }
       prevHasVoted.current = hasVoted;
-    }, [hasVoted, vote, onVoteAnnounce, t]);
+    }, [hasVoted, onVoteAnnounce, t]);
 
     return (
       <div
