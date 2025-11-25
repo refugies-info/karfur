@@ -1,5 +1,5 @@
 import { activatedLanguages } from "data/activatedLanguages";
-import { forwardRef, useEffect, useRef } from "react";
+import { HTMLAttributes, forwardRef, useEffect, useRef } from "react";
 import {
   AccessibleNavigation,
   AccessibleNavigationItem,
@@ -7,7 +7,7 @@ import {
 import { LanguageItem } from "~/components/UI/LanguageSelector/LanguageItem";
 import { useLocale } from "~/hooks";
 
-interface LanguageSelectProps {
+interface LanguageSelectProps extends HTMLAttributes<HTMLDivElement> {
   onChangeLang?: () => void;
   type?: "global" | "page";
   itemsDesign?: "radio" | "default";

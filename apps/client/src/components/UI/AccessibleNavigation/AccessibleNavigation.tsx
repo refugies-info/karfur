@@ -31,11 +31,12 @@ const AccessibleNavigationContext = createContext<AccessibleNavigationContextPro
 
 const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProps>(
   (
-    { children, orientation = "vertical", className, onEscape, onNavigateOut, "aria-label": ariaLabel, ...props },
+    { children, orientation = "vertical", className, onEscape, onNavigateOut, "aria-label": ariaLabel, role, ...props },
     ref,
   ) => {
     const navRef = useRef<HTMLDivElement | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const isPresentation = role === "presentation" || role === "none";
 
     // Here we can't use ref directly if we want the querySelector to work
     useImperativeHandle(ref, () => navRef.current as HTMLDivElement);
@@ -108,9 +109,9 @@ const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProp
       <AccessibleNavigationContext.Provider value={contextValue}>
         <div
           ref={navRef}
-          role="menubar"
-          aria-orientation={orientation}
-          aria-label={ariaLabel}
+          role={role || "menubar"}
+          aria-orientation={isPresentation ? undefined : orientation}
+          aria-label={isPresentation ? undefined : ariaLabel}
           className={className}
           onKeyDown={handleKeyDown}
           {...props}
