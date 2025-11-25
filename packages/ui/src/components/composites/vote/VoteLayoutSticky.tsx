@@ -14,7 +14,7 @@ type VoteLayoutStickyProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
   onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
@@ -53,7 +53,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             <div className="relative">
               <span className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}></span>
               <ThumbUpAnimated
-                ref={thumbUpRef}
+                ref={thumbUpRef as React.RefObject<ThumbUpAnimatedRef>}
                 className={cn("absolute bottom-0", vote === true ? "opacity-100" : "opacity-0")}
                 themeId="light"
               />
