@@ -46,7 +46,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
         <nav aria-label={t("breadcrumbs", "Fil d'Ariane")}>
           <ol className="!m-0 flex !list-none flex-wrap items-center !p-0 [&>li]:!list-none [&>li]:before:!content-none [&>li::marker]:!content-none">
             <li>
-              <Link href={getPath("/", "fr")} className="" title={t("homepage")}>
+              <Link href={getPath("/", locale)} className="" title={t("homepage")}>
                 <i className="ri-home-4-line text-mention-grey !bg-transparent !bg-none text-xs [&::before]:![--icon-size:1.25rem]" />
                 <span className="sr-only">{t("homepage")}</span>
               </Link>
@@ -58,7 +58,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
 
             <li>
               <Link
-                href={getPath("/recherche", "fr", `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
+                href={getPath("/recherche", locale, `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
                 className="text-mention-grey !bg-transparent !bg-none underline decoration-current underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
               >
                 {dispositif.typeContenu === ContentType.DISPOSITIF
@@ -75,7 +75,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
               <>
                 <li>
                   <Link
-                    href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+                    href={getPath("/recherche", locale, `?${buildUrlQuery({ themes: [theme._id] })}`)}
                     className="text-mention-grey !bg-transparent !bg-none underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
                   >
                     {theme.short[locale] || theme.short.fr}
@@ -91,7 +91,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
               <>
                 <li>
                   <Link
-                    href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
+                    href={getPath("/recherche", locale, `?${buildUrlQuery({ needs: [need._id] })}`)}
                     className="text-mention-grey !bg-transparent !bg-none underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
                   >
                     {need[locale]?.text || need.fr.text}
