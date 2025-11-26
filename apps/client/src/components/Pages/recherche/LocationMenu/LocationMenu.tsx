@@ -115,8 +115,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const announceResults = useCallback(
     (count: number, options?: ScreenReaderAnnounceOptions) => {
       const announceOptions: ScreenReaderAnnounceOptions = {
-        delay: 1000,
-        priority: "interrupt",
+        delay: 1500,
         ...(options ?? {}),
       };
 
@@ -216,7 +215,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
 
           // Announce when clearing last department
           if (updatedDepartments.length === 0) {
-            announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
+            announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"), {
+              delay: 500,
+            });
           }
         } else {
           // When adding a department
@@ -273,12 +274,11 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         count: searchResults.matches.length,
       }),
       {
-        priority: "interrupt",
         delay: 1000,
       },
     );
 
-    currentDepartments.forEach((dept) => {
+    currentDepartments.forEach((dept, index) => {
       const count = getCountDispositifsForDepartment(dept, departmentCounts);
       if (count < 10) {
         announce(

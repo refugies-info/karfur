@@ -522,6 +522,13 @@ export const operators: Operator[] = [
     phone: "06 85 78 95 84",
   },
   {
+    dispositifId: "67d82bc3c256d41cb5758ae5",
+    department: "77 - Seine-et-Marne",
+    operator: "FTDA",
+    email: "agir77@france-terre-asile.org",
+    phone: "01 84 81 00 66",
+  },
+  {
     dispositifId: "660d1f36de63124662360662",
     department: "78 - Yvelines",
     operator: "Coallia",
@@ -619,6 +626,13 @@ export const operators: Operator[] = [
     department: "92 - Hauts-de-Seine",
     operator: "FTDA",
     email: "agir92@france-terre-asile.org",
+  },
+  {
+    dispositifId: "67d82e1ac256d41cb5758ae8",
+    department: "93 - Seine-Saint-Denis",
+    operator: "FTDA",
+    email: "agir93@france-terre-asile.org",
+    phone: "06 61 89 39 83",
   },
   {
     dispositifId: "660d1f37de63124662360674",

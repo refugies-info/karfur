@@ -572,11 +572,11 @@
     "carrouselSeemore": "Посмотреть все",
     "carrouselPrev": "Листать влево",
     "carrouselNext": "Листать вправо",
-    "northStar_title": "Была ли эта страница полезна? ✨",
+    "northStar_title": "Была ли эта страница полезна?",
     "northStar_no": "Нет",
     "northStar_yes": "Да",
     "northStar_notUseful": "Бесполезна",
     "northStar_useful": "Это полезно? ✨",
-    "northStar_thanks": "Спасибо за ваш отзыв 😊"
+    "northStar_thanks": "Спасибо за ваш отзыв"
   }
 }

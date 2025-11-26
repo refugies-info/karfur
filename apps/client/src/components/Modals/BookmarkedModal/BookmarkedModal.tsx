@@ -12,7 +12,7 @@ interface Props {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   dispositifId?: Id;
-  triggerRef?: RefObject<HTMLButtonElement>;
+  triggerRef?: RefObject<HTMLButtonElement | null>;
 }
 
 const BookmarkedModal = (props: Props) => {

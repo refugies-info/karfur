@@ -55,7 +55,7 @@ const Layout = (props: Props) => {
 
   // Use refs to track modal state and timeout
   const manuallyClosedRef = useRef<boolean>(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -259,9 +259,9 @@ const Layout = (props: Props) => {
       {!showLangModal && <ConsentBannerAndConsentManagement />}
       <DownloadAppBanner />
       <Navbar />
-      <div id="contenu" className={styles.main}>
-        <main className={cn(styles.content, props.className)}>{props.children}</main>
-      </div>
+      <main id="contenu" className={cn(styles.content, props.className)}>
+        {props.children}
+      </main>
       <Footer />
       <AutoAddFavorite />
 

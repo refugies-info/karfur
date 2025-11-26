@@ -572,11 +572,11 @@
     "carrouselSeemore": "Переглянути все",
     "carrouselPrev": "Прогорнути вліво",
     "carrouselNext": "Прогорнути вправо",
-    "northStar_title": "Чи була ця сторінка для вас корисною? ✨",
+    "northStar_title": "Чи була ця сторінка для вас корисною?",
     "northStar_no": "Ні",
     "northStar_yes": "Так",
     "northStar_notUseful": "Не корисна",
     "northStar_useful": "Чи це для вас корисно? ✨",
-    "northStar_thanks": "Дякуємо за ваш відгук 😊"
+    "northStar_thanks": "Дякуємо за ваш відгук"
   }
 }

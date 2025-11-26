@@ -50,6 +50,7 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
           "mainSponsor",
           "themesSelectedByAuthor",
           "webOnly",
+          "origin",
         ]),
       };
     }),

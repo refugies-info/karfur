@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
 import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
@@ -19,8 +20,26 @@ describe("[Saga] All dispositifs", () => {
         .put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()
         .call(API.getAllDispositifs)
-        .next([{ id: "id" }])
-        .put(setAllDispositifsActionsCreator([{ id: "id" }]))
+        .next([{ id: "id", origin: DispositifOrigin.RI }])
+        .put(setAllDispositifsActionsCreator([{ id: "id", origin: DispositifOrigin.RI }]))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
+        .next()
+        .isDone();
+    });
+
+    it("should filter out RCO dispositifs", () => {
+      const mockData = [
+        { id: "id1", origin: DispositifOrigin.RI },
+        { id: "id2", origin: DispositifOrigin.RCO },
+      ];
+      testSaga(fetchAllDispositifs)
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
+        .next()
+        .call(API.getAllDispositifs)
+        .next(mockData)
+        .put(setAllDispositifsActionsCreator([{ id: "id1", origin: DispositifOrigin.RI }]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()

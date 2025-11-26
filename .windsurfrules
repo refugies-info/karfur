@@ -1,1 +1,49 @@
-1. Follow the formatting rules established in .prettierrc when generating code.
+# Refugies.info Project Rules & Context
+
+## 🧠 Project Architecture
+
+- **Type:** Turborepo Monorepo.
+- **Stack:** Next.js, React, TypeScript, Tailwind CSS, Node.js 22.x (LTS).
+- **Principles:** 1. Accessibility First 2. Multilingual by Design 3. Progressive Migration Strategy 4. Monorepo Consistency 5. Government Standards (DSFR) Compliance.
+
+## 🔧 Strict Configuration Enforcements
+
+- **Package Manager:** EXCLUSIVELY use `pnpm`. Never suggest `npm` or `yarn`.
+  - Use `pnpm clean:modules` for deep cleaning.
+  - Use `pnpm.overrides` in package.json for dependency resolutions.
+- **Imports:** ALWAYS use static imports (performance/types).
+  - ALWAYS use the `~` alias (e.g., `~/lib/utils`) defined in `tsconfig.json`.
+  - NEVER use deep relative paths (e.g., `../../../lib`).
+- **Formatting:** Strictly follow `.prettierrc` (printWidth 120, no semi, etc.).
+  - Consult the file directly if unsure about specific syntax styles.
+
+## 🎨 Styling Standards
+
+- **Tailwind First:** Use Tailwind CSS utility classes for 95% of styling.
+  - Use the `!` modifier (e.g., `!mt-0`) to resolve precedence issues before adding complex logic.
+- **SCSS/CSS Constraints:**
+  - Only use SCSS for complex animations or global styles that Tailwind cannot handle.
+  - **Spacing:** The `u()` SCSS function converts units to pixels: `u(1)=4px`, `u(4)=16px`.
+  - **Selectors:** Avoid fragile selectors like `ol li[value="2"]`. Use generic classes.
+
+## 🧪 Testing & Quality
+
+- **Strategy:** Prefer state-based "narrow integration tests" over heavy mocking.
+  - _Pattern:_ Setup real state (e.g., test DB) -> Run function -> Assert resulting state.
+- **Reference:** See `dispositif.service.additional.tests.ts` for the canonical example.
+
+## 🛠️ Tooling & Scripts
+
+- **Feature Creation:** Script: `.specify/scripts/bash/create-new-feature.sh`
+  - Usage: `... --json --short-name <short-name> "<description>"`
+  - Format: `short-name` must be 2–4 hyphen-separated words.
+- **Database (MongoDB):**
+  - Queries generated must be formatted for direct copy-paste into MongoDB Atlas web console.
+  - Tooling: Use MongoDB MCP tool with database `heroku_wbj38s57` to inspect collections.
+- **Migrations:** Create via: `pnpm migrate new --name <migration_name>` (saves to `/migrations`).
+
+## 📦 Git & Commits
+
+- **Convention:** Conventional Commits v1.0.0.
+- **Allowed Scopes:** `api-types`, `client`, `server`, `mobile`, `storybook`, `ui`, `workspace`.
+- **Types:** `feat`, `fix`, `chore`, `refactor`, `docs`, `test`, `style`, ...

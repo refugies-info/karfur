@@ -154,6 +154,12 @@ export enum DispositifStatus {
   ARCHIVED = "Archivé",
 }
 
+// Dispositif origin type for distinguishing editorial vs AI-generated content
+export enum DispositifOrigin {
+  RI = "RI",
+  RCO = "RCO",
+}
+
 export interface InfoSection {
   title: string;
   text: RichText;
@@ -252,4 +258,5 @@ export interface SimpleDispositif {
   availableLanguages: string[];
   hasDraftVersion: boolean;
   themeSortIndex: number;
+  origin: DispositifOrigin;
 }

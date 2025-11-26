@@ -258,12 +258,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
     }, [handleScroll, checkScrollability]);
 
     return (
-      <section
-        className={cn("relative w-full max-md:pb-14", className)}
-        role="region"
-        aria-labelledby={componentId}
-        dir={dir}
-      >
+      <section className={cn("relative w-full max-md:pb-14", className)} dir={dir}>
         <div className="container mx-auto mb-8 flex w-full gap-4 lg:justify-between">
           {t.title && (
             <h2 id={componentId} className="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]">
@@ -314,7 +309,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
             overscrollBehaviorX: "contain",
             direction: dir,
           }}
-          aria-labelledby={componentId}
+          aria-labelledby={t.title ? componentId : undefined}
           role="list"
         >
           {React.Children.map(children, (child, index) => (
