@@ -32,16 +32,16 @@
       "caniuse-lite": "1.0.30001755",
       "debug": "4.4.1",
       "electron-to-chromium": "1.5.255",
-      "form-data": ">=4.0.4",
-      "glob": ">=10.5.0",
+      "form-data": "^4.0.4",
+      "glob": "^10.5.0",
       "image-size": "^1.2.1",
-      "js-yaml": ">=3.14.2",
-      "pbkdf2": ">=3.1.3",
-      "sha.js": ">=2.4.12",
+      "js-yaml": "^3.14.2",
+      "pbkdf2": "^3.1.3",
+      "sha.js": "^2.4.12",
       "stylus": "npm:noop3@^1000.0.0",
-      "tmp": ">=0.2.4",
-      "undici": ">=6.21.2",
-      "validator": ">=13.15.20"
+      "tmp": "^0.2.4",
+      "undici": "6.21.2",
+      "validator": "^13.15.20"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
