@@ -35,11 +35,12 @@ const ThemeItem: React.FC<ThemeItemProps> = ({ color, id, label, needCount, sele
       aria-controls={`tabpanel-${id}`}
       id={`tab-${id}`}
       tabIndex={selected ? 0 : isFirst ? 0 : -1}
+      aria-label={ariaLabel}
     >
-      <div className={styles.zone} aria-label={ariaLabel}>
+      <div className={styles.zone}>
         <span className={styles.label}>{label}</span>
         {needCount && needCount > 0 && (
-          <div className={styles.countContainer}>
+          <div className={styles.countContainer} aria-hidden="true">
             <span
               style={{
                 color: selected ? color : "white",

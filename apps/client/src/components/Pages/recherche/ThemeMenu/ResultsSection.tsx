@@ -2,7 +2,7 @@ import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
@@ -15,6 +15,7 @@ import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import NeedItem from "./NeedItem";
 import styles from "./ResultsSection.module.css";
+import { ThemeMenuContext } from "./ThemeMenuContext";
 
 interface Props {
   theme: GetThemeResponse;
@@ -30,6 +31,7 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
   const { t } = useTranslation();
   const announce = useAnnounce();
   const dispositifs = useSelector(activeDispositifsSelector);
+  const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
 
   const selectNeed = (id: Id) => {
     let allSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
@@ -62,25 +64,24 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.theme}>{theme.short[locale]}</div>
       <div
         className={cn(
-          "w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full",
+          "w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full [&_fieldset_legend]:px-0 [&_fieldset_legend]:py-4 [&_fieldset_legend]:pb-2",
           styles.needs,
           needs.length === 0 && styles.needsEmpty,
         )}
       >
         <Checkbox
           legend={theme.short[locale]}
-          className="[&_legend]:sr-only"
           options={needs.map((need) => {
             const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
 
             return {
               label: <NeedItem need={need} />,
               nativeInputProps: {
-                checked: selected,
-                onChange: () => selectNeed(need._id),
+                "checked": selected,
+                "onChange": () => selectNeed(need._id),
+                "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
               },
             };
           })}
