@@ -572,11 +572,11 @@
     "carrouselSeemore": "ټول کتل",
     "carrouselPrev": "کیڼ اړخ ته سکرول کول",
     "carrouselNext": "ښي خوا ته سکرول کول",
-    "northStar_title": "ایا دا پاڼه ګټوره ده ؟ ✨",
+    "northStar_title": "ایا دا پاڼه ګټوره ده ؟",
     "northStar_no": "نه",
     "northStar_yes": "هو",
     "northStar_notUseful": "ګټوره نه ده",
     "northStar_useful": "ایا دا ګټور دی؟",
-    "northStar_thanks": "ستاسو د نظر ورکول څخه مننه 😊"
+    "northStar_thanks": "ستاسو د نظر ورکول څخه مننه "
   }
 }
