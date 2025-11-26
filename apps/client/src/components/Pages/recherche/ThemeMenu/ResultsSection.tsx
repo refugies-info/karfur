@@ -66,7 +66,7 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
     <div className={styles.container}>
       <div
         className={cn(
-          "w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full",
+          "w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full [&_fieldset_legend]:px-0 [&_fieldset_legend]:py-4 [&_fieldset_legend]:pb-2",
           styles.needs,
           needs.length === 0 && styles.needsEmpty,
         )}
