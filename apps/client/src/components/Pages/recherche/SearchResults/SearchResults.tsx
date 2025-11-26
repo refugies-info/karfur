@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { memo, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +14,6 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "@refugies-info/ui";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";

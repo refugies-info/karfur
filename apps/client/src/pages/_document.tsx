@@ -6,7 +6,7 @@ const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi
 
 export default function Document(props: DocumentProps) {
   return (
-    <Html {...getColorSchemeHtmlAttributes(props)} className={`scroll-smooth ${caveat.variable}`}>
+    <Html {...getColorSchemeHtmlAttributes(props)} className={caveat.variable}>
       <Head>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />

@@ -54,17 +54,17 @@
     "next-sitemap": "^4.2.3",
     "query-string": "^9.2.2",
     "rc-time-picker": "^3.7.3",
-    "react": "18.3.1",
+    "react": "19.0.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-autosuggest": "^10.1.0",
     "react-countup": "^6.4.0",
     "react-device-detect": "^2.2.2",
-    "react-dom": "18.3.1",
+    "react-dom": "19.0.0",
     "react-ga4": "^2.1.0",
     "react-hook-form": "^7.62.0",
     "react-i18next": "^15.7.3",
     "react-intersection-observer": "^9.16.0",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^5.0.0",
     "react-loading-skeleton": "^3.5.0",
     "react-notifications": "^1.7.3",
     "react-redux": "^9.1.2",
@@ -123,11 +123,11 @@
     "@types/history": "^4.7.1",
     "@types/jest": "^29.5.14",
     "@types/js-cookie": "^3.0.6",
-    "@types/leaflet": "^1.9.12",
-    "@types/lodash": "^4.17.20",
-    "@types/react": "18.3.12",
+    "@types/leaflet": "^1.9.21",
+    "@types/lodash": "^4.17.21",
+    "@types/react": "19.0.14",
     "@types/react-autosuggest": "^10.1.5",
-    "@types/react-dom": "18.3.5",
+    "@types/react-dom": "19.2.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-mock-store": "^1.0.3",
     "@types/sortablejs": "^1.15.9",
@@ -155,10 +155,10 @@
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2",
     "typescript-plugin-css-modules": "^5.2.0",
-    "wait-on": "^8.0.4"
+    "wait-on": "^9.0.3"
   },
   "volta": {
-    "node": "22.14.0",
-    "pnpm": "10.20.0"
+    "node": "24.11.1",
+    "pnpm": "10.23.0"
   }
 }

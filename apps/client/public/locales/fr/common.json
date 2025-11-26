@@ -1,4 +1,10 @@
 {
+  "404": {
+    "title": "Erreur 404",
+    "text1": "Oups, un problème est survenu.",
+    "text2": "Le lien est peut-être incorrect ou la page a été déplacée.",
+    "cta": "Retour à la page d’accueil"
+  },
   "Header": {
     "serviceName": "Réfugiés.info",
     "serviceTagline": "L'information pour les réfugiés en France",
@@ -486,6 +492,7 @@
   "Suivant": "Suivant",
   "Envoyer": "Envoyer",
   "send_in_progress": "Envoi en cours...",
+  "selected": "sélectionné",
   "callout_info": "Bon à savoir",
   "callout_important": "Important",
   "La Mednum": "La Mednum",
@@ -633,7 +640,11 @@
     "AnnotationsLangsimple": "Langage clair",
     "AnnotationsEasyfrench": "Français facile",
     "AnnotationsVocalize": "Vocalisation des contenus",
-    "AnnotationsListen": "Écoute"
+    "AnnotationsListen": "Écoute",
+    "appStoreBadge": "Télécharger sur l'app store apple",
+    "playStoreBadge": "Télécharger sur Google Play",
+    "description": "Téléchargez l'application mobile pour accéder à toutes les fonctionnalités de partage, de changement de langue, de langage clair et de vocalisation centralisées dans une seule application.",
+    "sectionLabel": "Section application mobile"
   },
   "WorkTogether": {
     "title": "Travaillons ensemble ! Vous êtes... ? ",
@@ -795,12 +806,6 @@
     "navbarItem8": "Voir les statistiques",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
   },
-  "404": {
-    "title": "Erreur 404",
-    "text1": "Oups, un problème est survenu.",
-    "text2": "Le lien est peut-être incorrect ou la page a été déplacée.",
-    "cta": "Retour à la page d’accueil"
-  },
   "sitemap": {
     "title": "Plan du site",
     "sections": {
@@ -845,12 +850,14 @@
     "carrouselPrev": "Faire défiler la liste à gauche",
     "carrouselNext": "Faire défiler la liste à droite",
     "countSeparator": "sur",
-    "northStar_title": "Cette page est-elle utile ? ✨",
+    "northStar_title": "Cette page est-elle utile ?",
     "northStar_no": "Non",
     "northStar_yes": "Oui",
     "northStar_notUseful": "Pas utile",
     "northStar_useful": "C'est utile ? ✨",
-    "northStar_thanks": "Merci pour votre retour 😊",
-    "northStar_error": "Une erreur est survenue lors de la soumission de votre avis"
-  }
+    "northStar_thanks": "Merci pour votre retour",
+    "northStar_error": "Une erreur est survenue lors de la soumission de votre avis",
+    "northStar_vote_cancelled": "Votre vote a été retiré"
+  },
+  "breadcrumbs": "Fil d'Ariane"
 }

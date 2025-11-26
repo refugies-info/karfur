@@ -114,6 +114,7 @@ const LanguageMenu = ({
               type={languageSelectorType}
               availableLanguages={availableLanguages}
               itemsDesign={itemsDesign}
+              role="presentation"
             />
           </DropdownContent>
         </DropdownRoot>

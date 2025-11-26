@@ -87,6 +87,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
+        origin: "RI",
       },
     });
   });
@@ -164,6 +165,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Actif",
         hasDraftVersion: true,
+        origin: "RI",
       },
     });
   });
@@ -237,6 +239,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
+        origin: "RI",
       },
     });
   });
@@ -322,6 +325,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
+        origin: "RI",
       },
     });
   });
@@ -399,6 +403,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: true,
+        origin: "RI",
       },
     });
   });
@@ -464,6 +469,7 @@ describe("updateDispositif", () => {
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
+        origin: "RI",
       },
     });
   });

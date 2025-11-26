@@ -1,26 +1,27 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
-  "globalDependencies": [
-    "NODE_ENV"
-  ],
+  "globalDependencies": ["NODE_ENV"],
   "tasks": {
     "//#update-icons": {
       "cache": false,
-      "outputs": ["node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"]
+      "outputs": ["node_modules/@codegouvfr/react-dsfr/dist/utility/icons/icons.css"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/ui#build": {
       "dependsOn": [],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/storybook#build": {
       "dependsOn": ["^build"],
-      "outputs": ["storybook-static/**"]
+      "outputs": ["storybook-static/**"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/client#build": {
       "dependsOn": ["//#update-icons", "@refugies-info/ui#build"],
       "env": ["NEXT_PUBLIC_*"],
-      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "@refugies-info/server#build": {
@@ -62,23 +63,24 @@
         "SMS_SENDER",
         "TTS_KEY_1"
       ],
-      "inputs": ["$TURBO_DEFAULT$", ".env"],
+      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"],
       "outputs": ["dist/**"]
     },
     "check:types": {
-      "dependsOn": ["^check:types"]
+      "dependsOn": ["^check:types"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/client#dev": {
       "dependsOn": ["//#update-icons"],
       "persistent": true,
       "cache": false,
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
+      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/storybook#dev": {
       "dependsOn": ["//#update-icons"],
       "persistent": true,
       "cache": false,
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
+      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "@refugies-info/ui#dev": {
       "cache": false,
@@ -87,17 +89,20 @@
     "dev": {
       "persistent": true,
       "cache": false,
-      "inputs": ["$TURBO_DEFAULT$", ".env"]
+      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "test": {
       "cache": false,
-      "dependsOn": ["@refugies-info/ui#build", "^test"]
+      "dependsOn": ["@refugies-info/ui#build", "^test"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     },
     "lint:fix": {
-      "dependsOn": ["^lint:fix"]
+      "dependsOn": ["^lint:fix"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     }
   }
 }

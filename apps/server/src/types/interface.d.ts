@@ -128,4 +128,5 @@ export interface AlgoliaObject extends Record<string, unknown> {
   priority: number;
   webOnly: boolean;
   location?: "0_localized" | "1_france" | "2_online";
+  origin?: "RI" | "RCO";
 }
