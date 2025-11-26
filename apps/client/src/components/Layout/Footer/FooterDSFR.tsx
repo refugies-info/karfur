@@ -1,5 +1,6 @@
 "use client";
 import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,7 +14,6 @@ import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import styles from "./FooterDSFR.module.scss";
-import { useWindowSize } from "@refugies-info/ui";
 
 const Footer = () => {
   const locale = useLocale();
@@ -108,14 +108,15 @@ const Footer = () => {
                 },
                 text: t("Footer.procedures", "Les fiches démarches"),
               },
-              {
-                linkProps: {
-                  href: getPath("/annuaire", locale),
-                  hrefLang: locale,
-                  prefetch: false,
-                },
-                text: t("Footer.directory", "L’annuaire des acteurs"),
-              },
+              // Temporary disabled
+              // {
+              //   linkProps: {
+              //     href: getPath("/annuaire", locale),
+              //     hrefLang: locale,
+              //     prefetch: false,
+              //   },
+              //   text: t("Footer.directory", "L’annuaire des acteurs"),
+              // },
             ],
           },
           {
