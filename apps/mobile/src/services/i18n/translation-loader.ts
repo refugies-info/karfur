@@ -5,15 +5,13 @@ import * as config from "~/config/i18n";
 const translationLoader: BackendModule = {
   type: "backend",
   init: () => {},
-  read: function (language: string, namespace: string, callback: ReadCallback) {
-    let resource,
-      error: CallbackError | null = null;
+  read: async function (language: string, namespace: string, callback: ReadCallback) {
     try {
-      resource = config.supportedLocales[language as Languages].translationFileLoader();
-    } catch (_error) {
-      error = _error as CallbackError;
+      const resource = await config.supportedLocales[language as Languages].translationFileLoader();
+      callback(null, resource.default);
+    } catch (error) {
+      callback(error as CallbackError, false);
     }
-    callback(error, resource);
   },
 };
 export default translationLoader;

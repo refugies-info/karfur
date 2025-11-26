@@ -93,9 +93,9 @@ import {
   UpdateUserResponse,
   WidgetRequest,
 } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import axios, { Canceler } from "axios";
 import Swal from "sweetalert2";
-import { isInBrowser } from "@refugies-info/ui";
 import { APIResponse } from "~/types/interface";
 import { getAuthToken, removeAuthToken } from "~/utils/authToken";
 import { logger } from "../logger";
@@ -367,9 +367,9 @@ const API = {
     const headers = getHeaders();
     return instance.patch<any, null>(`/dispositifs/${id}/avis`, body, { headers }).then(() => null);
   },
-  deleteDispositifAvis: (id: string): Promise<null> => {
+  deleteDispositifAvis: (id: string, body: { anonymousUserId?: string; userId?: Id } = {}): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete<any, null>(`/dispositifs/${id}/avis`, { headers }).then(() => null);
+    return instance.delete<any, null>(`/dispositifs/${id}/avis`, { headers, data: body }).then(() => null);
   },
   addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();

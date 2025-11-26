@@ -79,6 +79,7 @@ export const formatForAlgolia = (
       priority: dispositif.typeContenu === "dispositif" ? 30 : 40,
       webOnly: dispositif.webOnly || false,
       location,
+      origin: dispositif.origin ?? "RI",
     };
   } else if (type === "need") {
     const need = content as Need;

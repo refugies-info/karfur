@@ -226,3 +226,8 @@ export const filterByType = ({ typeContenu, metadatas }: SimpleDispositif, type:
       return metadatas?.location === "online";
   }
 };
+
+export const filterByOrigin = (dispositif: SimpleDispositif, originFilters: ("RI" | "RCO")[]) => {
+  if (originFilters.length === 0) return true;
+  return originFilters.includes(dispositif.origin);
+};

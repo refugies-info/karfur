@@ -155,6 +155,7 @@ export const updateDispositif = async (
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
       hasDraftVersion: needsDraftVersion || !!draftOldDispositif,
+      origin: newDispositif.origin,
     },
   };
 };

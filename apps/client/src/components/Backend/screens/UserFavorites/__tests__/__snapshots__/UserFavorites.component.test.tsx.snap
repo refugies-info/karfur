@@ -4,9 +4,17 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -343,9 +351,17 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -491,6 +507,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -524,12 +541,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="[object Object]"
                   />
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
@@ -599,6 +618,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -632,12 +652,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                     class="[object Object]"
                   />
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
@@ -707,6 +729,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="fr-card__start relative"
                 >
                   <div
+                    aria-hidden="true"
                     class="sponsor"
                   >
                     <img
@@ -737,12 +760,14 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
                   class="end"
                 >
                   <i
+                    aria-hidden="true"
                     class="fr-icon-arrow-right-line"
                   />
                 </div>
               </div>
             </div>
             <div
+              aria-hidden="true"
               class="fr-card__header"
             >
               <div
@@ -784,9 +809,17 @@ exports[`UserFavorites should render correctly when loading 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>

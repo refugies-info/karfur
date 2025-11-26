@@ -75,9 +75,19 @@ const Dispositif = (props: Props) => {
             dir={isRTL ? undefined : "ltr"}
             aria-labelledby="main-title"
           >
-            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-              <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
-            ))}
+            {dispositif?.origin === "RCO" ? (
+              <div className="fr-callout fr-callout--info">
+                <p className="fr-callout__text">
+                  Ce contenu est généré par intelligence artificielle et est actuellement en cours de validation. Les
+                  informations présentées sont fournies à titre indicatif et peuvent ne pas refléter la situation
+                  actuelle des dispositifs d'aide.
+                </p>
+              </div>
+            ) : (
+              CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+                <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
+              ))
+            )}
             {/* TODO: adapt the Map component to be used in edit mode */}
             {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
             {isViewMode && isMobile && (

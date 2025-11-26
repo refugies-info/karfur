@@ -1,3 +1,4 @@
+import { screen } from "@testing-library/react";
 import "jest-styled-components";
 import mockRouter from "next-router-mock";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
@@ -14,22 +15,25 @@ describe("auth/reinitialiser-mot-de-passe", () => {
   });
 
   it("renders page if no email", () => {
-    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+    wrapWithProvidersAndRenderForTesting({
       Component: pageComponent,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeTruthy();
+    expect(screen.getByLabelText(/adresse mail/i)).toHaveProperty("value", "");
   });
+
   it("renders page if email", async () => {
     await mockRouter.push("/auth/reinitialiser-mot-de-passe?email=test@example.com");
-    const { asFragment } = wrapWithProvidersAndRenderForTesting({
+    wrapWithProvidersAndRenderForTesting({
       Component: pageComponent,
       reduxState: {
         ...initialMockStore,
       },
     });
-    expect(asFragment()).toMatchSnapshot();
+    expect(screen.getByRole("heading", { name: /mot de passe oublié/i })).toBeTruthy();
+    expect(screen.getByLabelText(/adresse mail/i)).toHaveProperty("value", "test@example.com");
   });
 });

@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { DispositifOrigin } from "@refugies-info/api-types";
 import mockRouter from "next-router-mock";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
@@ -129,6 +130,36 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "id" })
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+    it("should filter out RCO dispositifsAssocies", () => {
+      const mockData = {
+        membres: [],
+        dispositifsAssocies: [
+          { _id: "id1", origin: DispositifOrigin.RI },
+          { _id: "id2", origin: DispositifOrigin.RCO },
+        ],
+      };
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", "fr")
+        .next(mockData)
+        .put(
+          setUserStructureActionCreator({
+            membres: [],
+            dispositifsAssocies: [{ _id: "id1", origin: DispositifOrigin.RI }],
+          }),
+        )
+        .next()
+        .select(userSelector)
+        .next({ userId: "userId" })
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();

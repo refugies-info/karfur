@@ -75,6 +75,7 @@ export const createDispositif = async (
       typeContenu: dispositif.typeContenu,
       status: dispositif.status,
       hasDraftVersion: false,
+      origin: dispositif.origin,
     },
   };
 };

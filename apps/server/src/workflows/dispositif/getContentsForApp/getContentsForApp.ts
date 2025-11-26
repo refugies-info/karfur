@@ -37,6 +37,7 @@ const present =
       typeContenu: dispositif.typeContenu,
       sponsorUrl,
       locale: realLocale,
+      origin: dispositif.origin,
     };
   };
 
