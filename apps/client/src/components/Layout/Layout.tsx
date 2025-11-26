@@ -259,9 +259,9 @@ const Layout = (props: Props) => {
       {!showLangModal && <ConsentBannerAndConsentManagement />}
       <DownloadAppBanner />
       <Navbar />
-      <div id="contenu" className={styles.main}>
-        <main className={cn(styles.content, props.className)}>{props.children}</main>
-      </div>
+      <main id="contenu" className={cn(styles.content, props.className)}>
+        {props.children}
+      </main>
       <Footer />
       <AutoAddFavorite />
 
