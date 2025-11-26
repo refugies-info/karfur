@@ -1,3 +1,27 @@
+# =============================================================================
+# pnpm Workspace Configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Monorepo Structure
+# -----------------------------------------------------------------------------
+
+# Define which directories contain workspace packages.
+# Turborepo orchestrates builds across these packages.
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - "apps/*" # Next.js client, Express server, React Native mobile, Storybook
+  - "packages/*" # Shared: api-types, ui, typescript-config
+
+# -----------------------------------------------------------------------------
+# Supply Chain Security
+# -----------------------------------------------------------------------------
+
+# Only allow package versions that have been published for at least 7 days
+# (10080 minutes). Mitigates attacks using freshly published malicious versions.
+# See: https://pnpm.io/settings#minimumreleaseage
+minimumReleaseAge: 10080
+
+# Prevent downgrading packages to older versions during updates.
+# Protects against attacks that republish older vulnerable versions.
+# See: https://pnpm.io/settings#trustpolicy
+trustPolicy: no-downgrade
