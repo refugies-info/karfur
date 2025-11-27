@@ -82,7 +82,7 @@
     "test:server": "turbo test --filter=@refugies-info/server -- $*",
     "test:mobile": "turbo test --filter=@refugies-info/mobile -- $*",
     "format": "biome format --write .",
-    "lint": "turbo lint",
+    "lint": "biome check --write .",
     "lint:api-types": "turbo lint --filter=@refugies-info/api-types",
     "lint:client": "turbo lint --filter=@refugies-info/client",
     "lint:server": "turbo lint --filter=@refugies-info/server",
