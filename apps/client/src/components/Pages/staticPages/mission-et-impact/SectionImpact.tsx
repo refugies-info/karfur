@@ -32,6 +32,7 @@ export const SectionImpact = () => {
               }}
               imageAlt=""
               title="Livret d'impact"
+              aria-label="Livret d'impact - cliquez pour le télécharger"
               desc="Mai 2024"
               endDetail="PDF - 61,88 Ko"
               className="fr-card--download mt-10 max-w-[24rem] md:mt-14"
