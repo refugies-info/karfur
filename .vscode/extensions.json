@@ -6,11 +6,11 @@
     "vivaxy.vscode-conventional-commits",
     "github.vscode-pull-request-github",
     "lokalise.i18n-ally",
-    "esbenp.prettier-vscode",
     "dgeibi.alias-tool",
     "deque-systems.vscode-axe-linter",
     "stylelint.vscode-stylelint",
-    "bradlc.vscode-tailwindcss"
+    "bradlc.vscode-tailwindcss",
+    "biomejs.biome"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
