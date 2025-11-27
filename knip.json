@@ -3,7 +3,9 @@
   "include": ["dependencies"],
   "workspaces": {
     ".": {
-      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"]
+      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"],
+      "ignoreDependencies": ["@biomejs/biome"],
+      "ignore": ["specs/**"]
     },
     "apps/client": {
       "entry": ["next-sitemap.config.js"],
@@ -11,8 +13,6 @@
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
-        "eslint-config-next",
-        "eslint-config-turbo",
         "flag-icons",
         "react-anchor-link-smooth-scroll",
         "remixicon",
@@ -22,41 +22,33 @@
       ]
     },
     "apps/mobile": {
-      "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
+      "entry": [
+        "build-scripts/*.js",
+        "src/translations/scripts/*.mjs",
+        "src/translations/scripts/*.js",
+        "src/utils/*.js"
+      ],
       "ignoreDependencies": [
         "@babel/preset-env",
         "@babel/runtime",
         "@react-native/assets-registry",
         "@types/styled-components-react-native",
-        "papaparse",
         "use-sync-external-store"
       ]
     },
     "apps/server": {
-      "entry": ["src/server.ts"],
-      "ignoreDependencies": [
-        "@tsoa/runtime",
-        "eslint-config-turbo",
-        "path-to-regexp",
-        "ts-node",
-        "tsconfig-paths"
-      ],
+      "entry": ["src/server.ts", "src/scripts/*.js"],
+      "ignoreDependencies": ["@tsoa/runtime", "path-to-regexp", "ts-node", "tsconfig-paths"],
       "ignore": ["dist/**"]
     },
     "packages/api-types": {
-      "ignoreDependencies": ["eslint-config-turbo"]
+      "ignoreDependencies": []
     },
     "apps/storybook": {
-      "ignoreDependencies": [
-        "@tailwindcss/typography",
-        "eslint-config-next",
-        "eslint-config-turbo",
-        "eslint-plugin-storybook",
-        "tailwindcss"
-      ]
+      "ignoreDependencies": ["@tailwindcss/typography", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["eslint-config-turbo", "tailwindcss"]
+      "ignoreDependencies": ["tailwindcss"]
     }
   }
 }

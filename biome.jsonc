@@ -1,0 +1,115 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+  // Version Control System integration
+  "vcs": {
+    // Enable VCS integration
+    "enabled": true,
+    // Use Git as the VCS client
+    "clientKind": "git",
+    // Respect .gitignore files
+    "useIgnoreFile": true
+  },
+  // File handling configuration
+  "files": {
+    // Process unknown file types if possible
+    "ignoreUnknown": false,
+    // Files to include in linting/formatting
+    "includes": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json", "**/*.jsonc"]
+  },
+  // Global formatter settings
+  "formatter": {
+    // Enable the formatter
+    "enabled": true,
+    // Do not format files with syntax errors
+    "formatWithErrors": false,
+    // Use spaces for indentation
+    "indentStyle": "space",
+    // Indent with 2 spaces
+    "indentWidth": 2,
+    // Use Line Feed (\n) for line endings
+    "lineEnding": "lf",
+    // Maximum line width before wrapping
+    "lineWidth": 120,
+    // Automatically decide attribute positioning
+    "attributePosition": "auto"
+  },
+  // Linter configuration
+  "linter": {
+    // Enable the linter
+    "enabled": true,
+    "rules": {
+      // Enable recommended ruleset
+      "recommended": true,
+      "style": {
+        // Disable enforcement of block statements
+        "useBlockStatements": "off",
+        // Error on useless else blocks
+        "noUselessElse": "error"
+      },
+      "suspicious": {
+        // Error on console.log usage
+        "noConsole": "error",
+        // Warn on debugger usage
+        "noDebugger": "warn",
+        // Error on loose equality (==)
+        "noDoubleEquals": "error"
+      },
+      "correctness": {
+        // Error on unused variables
+        "noUnusedVariables": "error",
+        // Error on using variables before declaration
+        "noInvalidUseBeforeDeclaration": "error"
+      }
+    }
+  },
+  // JavaScript/TypeScript specific settings
+  "javascript": {
+    "formatter": {
+      // Use double quotes for strings
+      "quoteStyle": "double",
+      // Use double quotes for JSX attributes
+      "jsxQuoteStyle": "double",
+      // Always use semicolons
+      "semicolons": "always",
+      // Always use parentheses for arrow function arguments
+      "arrowParentheses": "always",
+      // Add spaces inside object brackets
+      "bracketSpacing": true,
+      // Put closing bracket on a new line for multi-line objects
+      "bracketSameLine": false,
+      // Only quote object properties when necessary
+      "quoteProperties": "asNeeded",
+      // Add trailing commas wherever possible
+      "trailingCommas": "all"
+    }
+  },
+  // Overrides for specific file paths
+  "overrides": [
+    {
+      "includes": ["apps/mobile/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            // Downgrade console usage to warning for mobile app
+            "noConsole": "warn"
+          },
+          "correctness": {
+            // Downgrade unused variables to warning for mobile app
+            "noUnusedVariables": "warn"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["apps/client/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            // Disable unused variable check for client app
+            "noUnusedVariables": "off"
+          }
+        }
+      }
+    }
+  ]
+}
