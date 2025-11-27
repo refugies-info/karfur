@@ -60,6 +60,7 @@
     "build:mobile:android": "cd apps/mobile && eas build --profile development --platform android",
     "build:mobile:ios": "cd apps/mobile && eas build --profile development --platform ios",
     "check:dependency-version-consistency": "pnpm check-dependency-version-consistency .",
+    "check:outdated": "pnpx taze -r",
     "check:types": "turbo check:types",
     "check:types:api-types": "turbo check:types --filter=@refugies-info/api-types",
     "check:types:client": "turbo check:types --filter=@refugies-info/client",
@@ -80,6 +81,7 @@
     "test:client": "turbo test --filter=@refugies-info/client -- $*",
     "test:server": "turbo test --filter=@refugies-info/server -- $*",
     "test:mobile": "turbo test --filter=@refugies-info/mobile -- $*",
+    "format": "biome format --write .",
     "lint": "turbo lint",
     "lint:api-types": "turbo lint --filter=@refugies-info/api-types",
     "lint:client": "turbo lint --filter=@refugies-info/client",
@@ -108,7 +110,7 @@
     "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
     "knip": "knip",
-    "update-dependencies": "pnpm update -i --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook"
+    "update-dependencies": ""
   },
   "engines": {
     "node": "24.11.1"
