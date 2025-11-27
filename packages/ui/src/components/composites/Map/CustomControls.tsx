@@ -9,7 +9,7 @@ export default function CustomControls() {
   const map = useMap();
   const { isFullscreen, setIsFullscreen } = useMapContext();
   const { isMobile, isTablet } = useWindowSize();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isRTL = useRTL(i18n.language);
   const [message, setMessage] = useState<string | null>(null);
   const isFirstRender = useRef(true);
@@ -19,12 +19,12 @@ export default function CustomControls() {
       isFirstRender.current = false;
       return;
     }
-    setMessage(`Mode plein écran: ${isFullscreen ? "Activé" : "Désactivé"}`);
+    setMessage(t("map.fullscreen_status", { status: isFullscreen ? t("map.enabled") : t("map.disabled") }));
   }, [isFullscreen]);
 
   useEffect(() => {
     const onZoom = () => {
-      setMessage(`Niveau de zoom: ${map.getZoom().toString()}`);
+      setMessage(t("map.zoom_level", { level: map.getZoom().toString() }));
     };
     map.on("zoom", onZoom);
 
@@ -40,7 +40,7 @@ export default function CustomControls() {
         priority="tertiary"
         size="small"
         title="Zoom in"
-        aria-label="Zoomer"
+        aria-label={t("map.zoom_in")}
         onClick={() => map.zoomIn()}
         className="!min-h-0 !min-w-0 bg-white !p-2"
       />
@@ -49,7 +49,7 @@ export default function CustomControls() {
         priority="tertiary"
         size="small"
         title="Zoom out"
-        aria-label="Dézoomer"
+        aria-label={t("map.zoom_out")}
         onClick={() => map.zoomOut()}
         className="!min-h-0 !min-w-0 border-t-0 bg-white !p-2"
       />
@@ -57,8 +57,8 @@ export default function CustomControls() {
         iconId="fr-icon-fullscreen-line"
         priority="tertiary"
         size="small"
-        title={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-        aria-label={isFullscreen ? "Quitter le plein écran" : "Passer en plein écran"}
+        title={isFullscreen ? t("map.exit_fullscreen") : t("map.enter_fullscreen")}
+        aria-label={isFullscreen ? t("map.exit_fullscreen") : t("map.enter_fullscreen")}
         onClick={() => setIsFullscreen(!isFullscreen)}
         aria-hidden={isMobile || isTablet}
         className="hidden !min-h-0 !min-w-0 border-t-0 bg-white !p-2 lg:block"
