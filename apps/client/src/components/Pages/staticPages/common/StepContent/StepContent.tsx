@@ -1,9 +1,9 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import React, { useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
-import { useWindowSize } from "@refugies-info/ui";
 import { cls } from "~/lib/classname";
 
 interface Props {
@@ -83,9 +83,9 @@ const StepContent = (props: Props) => {
               </ul>
             </div>
           ) : (
-            <p key={i} className="text-large mb-6">
+            <div key={i} className="text-large mb-6">
               {text}
-            </p>
+            </div>
           ),
         )}
         {props.cta && (
