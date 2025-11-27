@@ -6,6 +6,9 @@ module.exports = {
   output: "standalone",
   outputFileTracingRoot: path.join(__dirname, "../../"),
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   i18n,
   images: {
     remotePatterns: [
