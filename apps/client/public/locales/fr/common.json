@@ -301,6 +301,17 @@
     "themeName": "Thématique {{title}}",
     "themeOthers": "et {{count}} autres thématiques"
   },
+  "map": {
+    "fullscreen_status": "Mode plein écran: {{status}}",
+    "enabled": "Activé",
+    "disabled": "Désactivé",
+    "zoom_level": "Niveau de zoom: {{level}}",
+    "zoom_in": "Zoomer",
+    "zoom_out": "Dézoomer",
+    "enter_fullscreen": "Passer en plein écran",
+    "exit_fullscreen": "Quitter le plein écran",
+    "interactive_map": "Carte interactive des résultats"
+  },
   "Infocards": {
     "availability": "Disponibilité demandée",
     "commitment": "Durée totale",
