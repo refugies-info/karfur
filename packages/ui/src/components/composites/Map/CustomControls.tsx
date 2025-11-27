@@ -23,9 +23,14 @@ export default function CustomControls() {
   }, [isFullscreen]);
 
   useEffect(() => {
-    map.on("zoom", () => {
+    const onZoom = () => {
       setMessage(`Niveau de zoom: ${map.getZoom().toString()}`);
-    });
+    };
+    map.on("zoom", onZoom);
+
+    return () => {
+      map.off("zoom", onZoom);
+    };
   }, [map]);
 
   return (
