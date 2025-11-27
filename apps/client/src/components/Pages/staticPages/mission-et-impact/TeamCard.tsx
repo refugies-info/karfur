@@ -24,16 +24,15 @@ export const TeamCard = (props: Props) => {
             </a>
           </h3>
           <p className={cn("fr-card__desc", "mt-2")}>{props.position}</p>
-          <i className="fr-icon-arrow-right-line text-title-blue-france relative order-last mt-auto flex justify-end before:h-4 before:w-4" />
+          <i
+            aria-hidden={true}
+            className="fr-icon-arrow-right-line text-title-blue-france relative order-last mt-auto flex justify-end before:h-4 before:w-4"
+          />
         </div>
       </div>
-      <div className={cn("fr-card__header", "min-h-[12.25rem] w-[10rem] flex-none lg:w-[14.6rem]")}>
+      <div className={cn("fr-card__header", "min-h-[12.25rem] w-[10rem] flex-none lg:w-[14.6rem]")} aria-hidden={true}>
         <div className={cn("fr-card__img", "h-full")}>
-          <Image
-            src={props.image}
-            alt={`${props.name} - ${props.position}`}
-            className={cn("fr-responsive-img", "h-full object-cover")}
-          />
+          <Image src={props.image} alt="" className={cn("fr-responsive-img", "h-full object-cover")} />
         </div>
       </div>
     </div>
