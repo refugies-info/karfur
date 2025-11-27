@@ -11,14 +11,13 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import CustomControls from "./CustomControls";
 import { useMapContext } from "./MapContext";
-import PopupContent from "./PopupContent";
 
 // Create a single marker icon with Tailwind classes to control its appearance
 const markerIcon = L.divIcon({
   className: "custom-marker",
   html: `
     <div class="relative w-full h-full marker-container group origin-bottom transition-all duration-250 ease-in-out [&.active]:scale-150">
-      <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg aria-hidden="true" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="fill-[#000091] group-[.active]:fill-[#1212FF] transition-all duration-250 ease-in-out" d="M18.364 17.3639L12 23.7279L5.636 17.3639C4.37734 16.1052 3.52019 14.5016 3.17293 12.7558C2.82567 11.0099 3.00391 9.20035 3.6851 7.55582C4.36629 5.91129 5.51984 4.50569 6.99988 3.51677C8.47992 2.52784 10.22 2 12 2C13.78 2 15.5201 2.52784 17.0001 3.51677C18.4802 4.50569 19.6337 5.91129 20.3149 7.55582C20.9961 9.20035 21.1743 11.0099 20.8271 12.7558C20.4798 14.5016 19.6227 16.1052 18.364 17.3639ZM12 12.9999C12.5304 12.9999 13.0391 12.7892 13.4142 12.4141C13.7893 12.0391 14 11.5304 14 10.9999C14 10.4695 13.7893 9.96078 13.4142 9.58571C13.0391 9.21064 12.5304 8.99992 12 8.99992C11.4696 8.99992 10.9609 9.21064 10.5858 9.58571C10.2107 9.96078 10 10.4695 10 10.9999C10 11.5304 10.2107 12.0391 10.5858 12.4141C10.9609 12.7892 11.4696 12.9999 12 12.9999Z"/>
       </svg>
     </div>
@@ -125,12 +124,18 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   const handleMarkerClick = useCallback(
     (e: L.LeafletMouseEvent, poi: Poi) => {
+      if (e.originalEvent) {
+        e.originalEvent.stopPropagation();
+        e.originalEvent.preventDefault();
+      }
       const map = mapRef.current;
       const marker = markersRef.current[poi.title];
 
       if (!map || !marker) return;
 
-      e.originalEvent.stopPropagation();
+      if (e.originalEvent) {
+        e.originalEvent.stopPropagation();
+      }
 
       const focusAndNotify = () => {
         handleFocusLocation(poi);
@@ -149,7 +154,17 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
 
   const popupEventHandlers = useMemo(
     () => ({
-      add: (poi: Poi) => () => setActiveMarker(poi.title),
+      add: (poi: Poi) => (e: L.LeafletEvent) => {
+        setActiveMarker(poi.title);
+        const popup = e.target as L.Popup;
+        const element = popup.getElement();
+        if (element) {
+          const closeButton = element.querySelector(".leaflet-popup-close-button") as HTMLAnchorElement;
+          if (closeButton) {
+            closeButton.setAttribute("class", "hidden");
+          }
+        }
+      },
       remove: () => () => setActiveMarker(null),
     }),
     [],
@@ -163,8 +178,40 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         <Marker
           key={`${poi.title}-${i}`}
           position={position}
+          title={poi.title}
           ref={(ref) => {
-            if (ref && markersRef.current) markersRef.current[poi.title] = ref;
+            if (ref) {
+              if (markersRef.current) markersRef.current[poi.title] = ref;
+
+              const setAttributes = () => {
+                const element = ref.getElement();
+                if (element) {
+                  if (poi.title) {
+                    element.setAttribute("aria-label", poi.title);
+                  }
+                  element.setAttribute("role", "button");
+                  // Ensure keyboard accessibility
+                  element.setAttribute("tabindex", "0");
+                  element.onkeydown = (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      // Pass a mocked event object that mimics LeafletMouseEvent structure partially
+                      // or at least provides what handleMarkerClick needs (originalEvent)
+                      ref.fire("click", {
+                        originalEvent: e,
+                        latlng: ref.getLatLng(),
+                      });
+                    }
+                  };
+                }
+              };
+
+              if (ref.getElement()) {
+                setAttributes();
+              } else {
+                ref.on("add", setAttributes);
+              }
+            }
           }}
           opacity={0.8}
           eventHandlers={{
@@ -179,7 +226,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
               remove: popupEventHandlers.remove(),
             }}
           >
-            <PopupContent poi={poi} />
+            <span className="text-title-xs font-semibold">{poi.title}</span>
           </Popup>
         </Marker>
       );
@@ -187,7 +234,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   }, [mapData, handleMarkerClick, popupEventHandlers]);
 
   return (
-    <div className={className}>
+    <div className={className} role="region" aria-label="Carte interactive des résultats">
       <MapContainer
         ref={mapRef}
         center={center}
@@ -213,7 +260,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
           updateWhenZooming={true}
           maxNativeZoom={16}
           tileSize={256}
-          attribution="&copy; <a href='https://www.stadiamaps.com/' target='_blank'>Stadia Maps</a> &copy; <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+          attribution="<div aria-hidden='true'>&copy; <a href='https://www.stadiamaps.com/' target='_blank'>Stadia Maps</a> &copy; <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors</div>"
         />
         <MarkerClusterGroup
           ref={clusterGroupRef}
