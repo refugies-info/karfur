@@ -309,7 +309,8 @@
     "zoom_in": "Zoomer",
     "zoom_out": "Dézoomer",
     "enter_fullscreen": "Passer en plein écran",
-    "exit_fullscreen": "Quitter le plein écran"
+    "exit_fullscreen": "Quitter le plein écran",
+    "interactive_map": "Carte interactive des résultats"
   },
   "Infocards": {
     "availability": "Disponibilité demandée",

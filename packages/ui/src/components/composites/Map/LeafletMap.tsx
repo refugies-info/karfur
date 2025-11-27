@@ -6,6 +6,7 @@ import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet/dist/leaflet.css";
+import { useTranslation } from "next-i18next";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -39,6 +40,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   const clusterGroupRef = useRef<L.MarkerClusterGroup | null>(null);
   const markersRef = useRef<{ [key: string]: L.Marker }>({});
   const [activeMarker, setActiveMarker] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const { isMobile } = useWindowSize();
 
@@ -132,10 +134,6 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
       const marker = markersRef.current[poi.title];
 
       if (!map || !marker) return;
-
-      if (e.originalEvent) {
-        e.originalEvent.stopPropagation();
-      }
 
       const focusAndNotify = () => {
         handleFocusLocation(poi);
@@ -234,7 +232,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   }, [mapData, handleMarkerClick, popupEventHandlers]);
 
   return (
-    <div className={className} role="region" aria-label="Carte interactive des résultats">
+    <div className={className} role="region" aria-label={t("map.interactive_map")}>
       <MapContainer
         ref={mapRef}
         center={center}
