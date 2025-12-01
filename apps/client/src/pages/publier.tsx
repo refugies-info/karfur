@@ -1,5 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -38,7 +39,6 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import { useWindowSize } from "@refugies-info/ui";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
@@ -258,7 +258,7 @@ const RecensezVotreAction = (props: Props) => {
             <Title2>Quelles sont les étapes pour publier une fiche ?</Title2>
             <StepContent
               step={1}
-              title="Créez <strong>votre compte</strong> Réfugiés.info"
+              title="Créez votre compte Réfugiés.info"
               texts={[
                 "Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.",
               ]}
@@ -268,7 +268,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={2}
-              title="<strong>Rédigez</strong> votre fiche"
+              title="Rédigez votre fiche"
               texts={[
                 "Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.",
                 "Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.",
@@ -282,7 +282,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={3}
-              title="Ajoutez la <strong>structure responsable</strong>"
+              title="Ajoutez la structure responsable"
               texts={[
                 "À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.",
               ]}
@@ -291,18 +291,18 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={4}
-              title="L’équipe éditoriale de Réfugiés.info <strong>relit et publie</strong> votre fiche"
+              title="L’équipe éditoriale de Réfugiés.info relit et publie votre fiche"
               texts={[
                 "Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.",
                 "Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.",
               ]}
               image={StepImage4}
-              buttonStep="Votre fiche est publiée ! 🎉"
+              buttonStep="Votre fiche est publiée ! 🎉"
               width={440}
             />
             <StepContent
               step={5}
-              title="<strong>Traduction en 7 langues</strong> de votre fiche"
+              title="Traduction en 7 langues de votre fiche"
               texts={[
                 "Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.",
                 "Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.",
@@ -312,7 +312,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={6}
-              title="<strong>Mettez à jour</strong> votre action régulièrement"
+              title="Mettez à jour votre action régulièrement"
               texts={[
                 "Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.",
                 "Attention, une action obsolète sera supprimée par l’équipe éditoriale.",
