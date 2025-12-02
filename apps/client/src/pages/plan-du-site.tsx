@@ -172,7 +172,7 @@ const PlanDuSite = () => {
         {
           id: "linkedin",
           label: t("sitemap.links.linkedin", "LinkedIn"),
-          href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s-info/",
+          href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s.info",
           isExternal: true,
         },
         {

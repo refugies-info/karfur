@@ -1,7 +1,9 @@
+import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import { Poi } from "@refugies-info/api-types";
 import { cn, useRTL } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { memo } from "react";
+import { memo, useState } from "react";
+import AdressContent from "./AdressContent";
 import { useMapContext } from "./MapContext";
 
 type MapPanelItemProps = {
@@ -10,37 +12,47 @@ type MapPanelItemProps = {
   className?: string;
 };
 
+const AccordionLabel = ({ title, city }: { title: string; city?: string | null }) => {
+  return (
+    <div className="w-full">
+      <span className="text-title-xs mb-2 font-semibold">{title}</span>
+      {city && (
+        <p className="text-default-grey text-corps-sm mb-0 print:hidden">
+          <i className="fr-icon-building-line before:scale-75" />
+          {city}
+        </p>
+      )}
+    </div>
+  );
+};
+
 function MapPanelItem({ id, poi, className }: MapPanelItemProps) {
   const { focusLocation, focusedPoi } = useMapContext();
   const { i18n } = useTranslation();
   const isRTL = useRTL(i18n.language);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <button
+    <Accordion
       id={id}
       className={cn(
-        "border-default-grey w-full cursor-pointer border p-4 text-left hover:bg-gray-100",
+        "border-default-grey h-full w-full cursor-pointer border text-left hover:bg-gray-100 [&:before]:h-0",
         focusedPoi?.title === poi.title && "bg-action-low-blue-france border-default-blue-france",
         isRTL ? "text-right" : "text-left",
+        "[&_.fr-collapse]:m-0 [&_.fr-collapse]:p-0",
         className,
       )}
-      onClick={() => {
-        focusLocation?.(poi);
+      onExpandedChange={(value) => {
+        setExpanded(value);
+        if (value) {
+          focusLocation?.(poi);
+        }
       }}
+      expanded={expanded}
+      label={<AccordionLabel title={poi.title} city={poi?.city} />}
     >
-      <h3 className="text-title-xs mb-2">{poi.title}</h3>
-      {poi.city && (
-        <p className="text-default-grey text-corps-sm mb-0 print:hidden">
-          <i className="fr-icon-building-line before:scale-75" />
-          {poi.city}
-        </p>
-      )}
-      {poi.address && (
-        <p className="hidden print:block" aria-hidden="true">
-          {poi.address}
-        </p>
-      )}
-    </button>
+      <AdressContent poi={poi} />
+    </Accordion>
   );
 }
 
