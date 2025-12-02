@@ -1,3 +1,13 @@
+/**
+ * PRODUCTION COUNT DISABLING FEATURE - REMOVAL GUIDE
+ *
+ * Related file: /apps/client/src/components/Pages/recherche/SearchHeader/Filter/Filter.tsx
+ *
+ * To remove the count disabling feature on production:
+ * 1. Delete line 26: const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
+ * 2. Line ~129: Change "{t(option.value)}\n{!isProduction && getCount(option.key)}" to "{t(option.value)} {getCount(option.key)}"
+ */
+
 import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
@@ -23,6 +33,7 @@ interface Props {
 }
 
 const ResultsFilter = (props: Props): React.ReactNode => {
+  const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
   const { t } = useTranslation() as { t: TranslationFunction };
   const stylesDisabled = useStylesDisabled();
 
@@ -125,7 +136,8 @@ const ResultsFilter = (props: Props): React.ReactNode => {
         <TabsBar>
           {filterType.map((option, i) => (
             <TabItem key={i} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
-              {t(option.value)} {getCount(option.key)}
+              {t(option.value)}
+              {!isProduction && getCount(option.key)}
             </TabItem>
           ))}
         </TabsBar>
