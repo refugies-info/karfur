@@ -49,7 +49,7 @@ const TranslationEditField = ({
             fill={fr.colors.decisions.background.actionHigh.error.default}
             className="me-2"
           />
-          {remainingChars} sur 110 caractères restants
+          {remainingChars} sur {maxLength} caractères restants
         </p>
       )}
     </>

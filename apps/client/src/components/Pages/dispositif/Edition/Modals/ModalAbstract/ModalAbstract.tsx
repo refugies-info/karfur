@@ -58,7 +58,7 @@ const ModalAbstract = (props: Props) => {
                   fill={fr.colors.decisions.background.actionHigh.error.default}
                   className="me-2"
                 />
-                {remainingChars} sur 200 caractères restants
+                {remainingChars} sur {ABSTRACT_MAX_LENGTH} caractères restants
               </p>
             </div>
           </div>
