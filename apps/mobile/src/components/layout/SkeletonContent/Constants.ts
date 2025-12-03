@@ -1,6 +1,7 @@
-import { PropsWithChildren } from "react";
-import { StyleProp, ViewStyle } from "react-native";
-import Animated, { Easing } from "react-native-reanimated";
+import type { PropsWithChildren } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
+import type Animated from "react-native-reanimated";
+import { Easing } from "react-native-reanimated";
 
 export interface ICustomViewStyle extends ViewStyle {
   children?: ICustomViewStyle[];

@@ -1,5 +1,5 @@
-import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { TFunction } from "i18next";
+import type { conditionType, Metadatas } from "@refugies-info/api-types";
+import type { TFunction } from "i18next";
 import { Image } from "react-native";
 import ImgCb from "~/theme/images/infocards/conditions/conditions-cb.svg";
 import ImgDriver from "~/theme/images/infocards/conditions/conditions-driver.svg";
@@ -43,14 +43,22 @@ const getAge = (data: Metadatas["age"], t: TFunction) => {
   if (!data) return t("content_screen.all_ages");
   if (data.type === "moreThan") {
     const result =
-      t("content_screen.more_than", "Plus de") + " " + data.ages[0] + " " + t("content_screen.years", "ans");
+      t("content_screen.more_than", "Plus de") +
+      " " +
+      data.ages[0] +
+      " " +
+      t("content_screen.years", "ans");
 
     return result;
   }
 
   if (data.type === "lessThan") {
     const result =
-      t("content_screen.less_than", "Moins de") + " " + data.ages[0] + " " + t("content_screen.years", "ans");
+      t("content_screen.less_than", "Moins de") +
+      " " +
+      data.ages[0] +
+      " " +
+      t("content_screen.years", "ans");
 
     return result;
   }
@@ -149,7 +157,9 @@ export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t:
         ].join(", ");
       }
       return capitalizeFirstLetter(
-        metadatas.publicStatus?.map((status) => t(`content_screen.status_${status}`, status)).join(", ") || "",
+        metadatas.publicStatus
+          ?.map((status) => t(`content_screen.status_${status}`, status))
+          .join(", ") || "",
       );
     case "public":
       return metadatas.public?.join(", ");

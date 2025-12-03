@@ -1,6 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { forwardRef, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -119,7 +119,11 @@ const LanguageItem = memo(
                 <Tag>{t("LanguageDropdown.not_listenable", "Non écoutable")}</Tag>
               )}{" "}
               <span dir="ltr" className="ms-auto">
-                <Badge as="span" noIcon severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}>
+                <Badge
+                  as="span"
+                  noIcon
+                  severity={getAvancementTrad(item.i18nCode) === 1 ? "success" : "new"}
+                >
                   {Math.round(getAvancementTrad(item.i18nCode) * 100) + " %"}
                 </Badge>
               </span>
@@ -127,7 +131,11 @@ const LanguageItem = memo(
           )}
           {type === "page" && (
             <span dir="ltr" className="ms-auto">
-              <i className={cn(disabled ? "ri-progress-5-line" : "fr-icon-success-fill !text-default-success")} />
+              <i
+                className={cn(
+                  disabled ? "ri-progress-5-line" : "fr-icon-success-fill !text-default-success",
+                )}
+              />
             </span>
           )}
         </button>

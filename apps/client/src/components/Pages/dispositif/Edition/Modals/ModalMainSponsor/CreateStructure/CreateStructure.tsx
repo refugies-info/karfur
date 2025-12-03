@@ -1,5 +1,5 @@
-import { MainSponsor } from "@refugies-info/api-types";
-import React from "react";
+import type { MainSponsor } from "@refugies-info/api-types";
+import type React from "react";
 import { SponsorForm } from "../../components";
 
 interface Props {

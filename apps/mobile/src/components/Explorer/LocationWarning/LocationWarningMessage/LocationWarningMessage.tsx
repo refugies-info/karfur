@@ -1,4 +1,4 @@
-import { GestureResponderEvent, Pressable } from "react-native";
+import { type GestureResponderEvent, Pressable } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -31,7 +31,12 @@ interface LocalizedWarningMessageProps {
   totalContent: number;
 }
 
-const LocationWarningMessage = ({ city, onClose, onPress, totalContent }: LocalizedWarningMessageProps) => {
+const LocationWarningMessage = ({
+  city,
+  onClose,
+  onPress,
+  totalContent,
+}: LocalizedWarningMessageProps) => {
   const { t } = useTranslationWithRTL();
   const theme = useTheme();
 

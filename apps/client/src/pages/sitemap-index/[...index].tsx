@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import { getServerSideSitemapIndexLegacy, getServerSideSitemapLegacy } from "next-sitemap";
 import { extractIndexFromUrl } from "~/lib/sitemap/extractIndexFromUrl";
 import { getAllUrls } from "~/lib/sitemap/getAllUrls";
@@ -18,7 +18,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (index.length === 1) {
     return getServerSideSitemapIndexLegacy(
       ctx,
-      TYPES.map((type) => `${SITE_URL}/sitemap-index/sitemap-index-${locale}/sitemap-index-${type}.xml`),
+      TYPES.map(
+        (type) => `${SITE_URL}/sitemap-index/sitemap-index-${locale}/sitemap-index-${type}.xml`,
+      ),
     );
   }
 

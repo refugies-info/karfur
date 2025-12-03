@@ -1,4 +1,4 @@
-import { Step } from "../CustomNavbarEdit/functions";
+import type { Step } from "../CustomNavbarEdit/functions";
 
 export const stepTranslations: Record<Step, string> = {
   // no translation available

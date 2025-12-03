@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { structureTypes } from "data/structureTypes";
 import { useState } from "react";
 import styled from "styled-components";
@@ -114,7 +114,9 @@ export const Step2 = (props: Props) => {
   };
 
   const availableStructureTypes = structureTypes.filter((structureType) =>
-    props.structure && props.structure.structureTypes ? !props.structure.structureTypes.includes(structureType) : true,
+    props.structure && props.structure.structureTypes
+      ? !props.structure.structureTypes.includes(structureType)
+      : true,
   );
 
   const getUpdatedWebsites = (websites: string[], index: number) =>
@@ -122,7 +124,9 @@ export const Step2 = (props: Props) => {
 
   const removeWebsite = (index: number) => {
     const updatedWebsites =
-      props.structure && props.structure.websites ? getUpdatedWebsites(props.structure.websites, index) : [];
+      props.structure && props.structure.websites
+        ? getUpdatedWebsites(props.structure.websites, index)
+        : [];
     props.setStructure({ ...props.structure, websites: updatedWebsites });
     setshow1WebsiteInput(false);
     setshow2WebsiteInput(false);
@@ -144,36 +148,12 @@ export const Step2 = (props: Props) => {
           marginBottom: "16px",
         }}
       >
-        {props.structure && props.structure.structureTypes && props.structure.structureTypes.length > 0 && (
-          <>
-            <SelectedContainer>
-              {props.structure.structureTypes[0]}
-              <div style={{ cursor: "pointer" }}>
-                <EVAIcon
-                  name="close"
-                  fill={"#ffffff"}
-                  className="ms-2"
-                  onClick={() =>
-                    removeDropdowElement(
-                      props.structure && props.structure.structureTypes ? props.structure.structureTypes[0] : "",
-                    )
-                  }
-                />
-              </div>
-            </SelectedContainer>
-            {props.structure.structureTypes.length === 1 ? (
-              <div>
-                <AddButton onClick={toggleDropDown} type="type" />
-                {dropdownOpen && (
-                  <CustomDropDown
-                    elementList={availableStructureTypes}
-                    onDropdownElementClick={onDropdownElementClick}
-                  />
-                )}
-              </div>
-            ) : (
+        {props.structure &&
+          props.structure.structureTypes &&
+          props.structure.structureTypes.length > 0 && (
+            <>
               <SelectedContainer>
-                {props.structure.structureTypes[1]}
+                {props.structure.structureTypes[0]}
                 <div style={{ cursor: "pointer" }}>
                   <EVAIcon
                     name="close"
@@ -181,23 +161,57 @@ export const Step2 = (props: Props) => {
                     className="ms-2"
                     onClick={() =>
                       removeDropdowElement(
-                        props.structure && props.structure.structureTypes ? props.structure.structureTypes[1] : "",
+                        props.structure && props.structure.structureTypes
+                          ? props.structure.structureTypes[0]
+                          : "",
                       )
                     }
                   />
                 </div>
               </SelectedContainer>
-            )}
-          </>
-        )}
-        {props.structure && (!props.structure.structureTypes || props.structure.structureTypes.length === 0) && (
-          <>
-            <AddButton onClick={toggleDropDown} type="type" />
-            {dropdownOpen && (
-              <CustomDropDown elementList={availableStructureTypes} onDropdownElementClick={onDropdownElementClick} />
-            )}
-          </>
-        )}
+              {props.structure.structureTypes.length === 1 ? (
+                <div>
+                  <AddButton onClick={toggleDropDown} type="type" />
+                  {dropdownOpen && (
+                    <CustomDropDown
+                      elementList={availableStructureTypes}
+                      onDropdownElementClick={onDropdownElementClick}
+                    />
+                  )}
+                </div>
+              ) : (
+                <SelectedContainer>
+                  {props.structure.structureTypes[1]}
+                  <div style={{ cursor: "pointer" }}>
+                    <EVAIcon
+                      name="close"
+                      fill={"#ffffff"}
+                      className="ms-2"
+                      onClick={() =>
+                        removeDropdowElement(
+                          props.structure && props.structure.structureTypes
+                            ? props.structure.structureTypes[1]
+                            : "",
+                        )
+                      }
+                    />
+                  </div>
+                </SelectedContainer>
+              )}
+            </>
+          )}
+        {props.structure &&
+          (!props.structure.structureTypes || props.structure.structureTypes.length === 0) && (
+            <>
+              <AddButton onClick={toggleDropDown} type="type" />
+              {dropdownOpen && (
+                <CustomDropDown
+                  elementList={availableStructureTypes}
+                  onDropdownElementClick={onDropdownElementClick}
+                />
+              )}
+            </>
+          )}
       </div>
       <Title>Site internet de votre structure</Title>
       <div style={{ marginBottom: "16px" }}>
@@ -255,7 +269,9 @@ export const Step2 = (props: Props) => {
             </DeleteIconContainer>
           </div>
         )}
-        {websites.length === 0 && !show1WebsiteInput && <AddButton type="site" onClick={toggle1WebSiteInput} />}
+        {websites.length === 0 && !show1WebsiteInput && (
+          <AddButton type="site" onClick={toggle1WebSiteInput} />
+        )}
       </div>
       <Title>Lien vers le profil X (ex-Twitter)</Title>
       <div

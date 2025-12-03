@@ -1,5 +1,5 @@
-import { RoleName, UpdateUserRequest } from "@refugies-info/api-types";
-import { DocumentType } from "@typegoose/typegoose";
+import { RoleName, type UpdateUserRequest } from "@refugies-info/api-types";
+import type { DocumentType } from "@typegoose/typegoose";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
 import { UnauthorizedError } from "~/errors";
@@ -8,14 +8,18 @@ import { uniqIds } from "~/libs/uniqIds";
 import logger from "~/logger";
 import { getRoles } from "~/modules/role/role.repository";
 import { loginExceptionsManager } from "~/modules/users/auth";
-import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
 import { getUserById, getUserFromDB, updateUserInDB } from "~/modules/users/users.repository";
-import { ObjectId, User } from "~/typegoose";
+import { ObjectId, type User } from "~/typegoose";
 import { changePassword } from "../changePassword";
 import { log } from "./log";
 
-const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: DocumentType<User>, userReq: User) => {
+const updateAsAdmin = async (
+  request: UpdateUserRequest["user"],
+  userFromDB: DocumentType<User>,
+  userReq: User,
+) => {
   const roles = await getRoles();
   let newUser: Partial<User> = {};
   const isRequestorAdmin = userReq.isAdmin();
@@ -32,7 +36,10 @@ const updateAsAdmin = async (request: UpdateUserRequest["user"], userFromDB: Doc
   const currentRoles = userFromDB.roles;
 
   const newRoles = currentRoles.filter(
-    (role) => role && role.toString() !== adminRole._id.toString() && role.toString() !== expertRole._id.toString(),
+    (role) =>
+      role &&
+      role.toString() !== adminRole._id.toString() &&
+      role.toString() !== expertRole._id.toString(),
   );
 
   // add role admin
@@ -87,7 +94,9 @@ const updateAsMyself = async (
     const caregiverRole = roles.find((r) => r.nom === RoleName.CAREGIVER);
     if (request.partner === "") {
       // remove partner -> remove TS role
-      const newRoles = userFromDB.roles.filter((r) => r && r._id && r._id.toString() !== caregiverRole._id.toString());
+      const newRoles = userFromDB.roles.filter(
+        (r) => r && r._id && r._id.toString() !== caregiverRole._id.toString(),
+      );
       newUser.roles = newRoles;
     } else {
       // add partner -> add ts role
@@ -109,7 +118,9 @@ const updateAsMyself = async (
   }
   if (request.roles) {
     const newRoles = request.roles
-      .filter((r) => [RoleName.USER, RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r)) // only these roles allowed
+      .filter((r) =>
+        [RoleName.USER, RoleName.CONTRIB, RoleName.TRAD, RoleName.CAREGIVER].includes(r),
+      ) // only these roles allowed
       .map((r) => roles.find((role) => role.nom === r)?._id)
       .filter((r) => !!r);
     newUser.roles = uniqIds(newRoles); // keep only roles from request. Needed to fix bug in page "inscription/objectif"
@@ -134,7 +145,11 @@ const updateAsMyself = async (
   return { newUser, refreshToken };
 };
 
-export const updateUser = async (id: string, body: UpdateUserRequest, userReq: User): Promise<string | null> => {
+export const updateUser = async (
+  id: string,
+  body: UpdateUserRequest,
+  userReq: User,
+): Promise<string | null> => {
   const { action } = body;
   logger.info("[updateUser] call received", { user: body.user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });

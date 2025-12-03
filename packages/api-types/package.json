@@ -5,7 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint . --ext ts,tsx,js --quiet --cache",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
     "check:types": "tsc",
     "test": "echo 'No tests to run'"
   },
@@ -13,10 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "eslint": "^9.34.0",
-    "eslint-config-turbo": "2.5.4",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.41.0"
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "mongoose": "^8.19.4"

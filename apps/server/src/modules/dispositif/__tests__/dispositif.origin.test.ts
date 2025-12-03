@@ -1,4 +1,9 @@
-import { ContentType, DispositifOrigin, DispositifStatus, RoleName } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifOrigin,
+  DispositifStatus,
+  RoleName,
+} from "@refugies-info/api-types";
 import { fixtures } from "~/__fixtures__";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { DispositifModel, RoleModel, UserModel } from "~/typegoose";

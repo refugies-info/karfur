@@ -1,10 +1,10 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
-import { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
+import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
+import type { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
 import API from "~/utils/API";
 import PageContext from "~/utils/pageContext";
 

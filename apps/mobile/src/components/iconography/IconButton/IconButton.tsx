@@ -1,4 +1,4 @@
-import { GestureResponderEvent } from "react-native";
+import type { GestureResponderEvent } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import Icon from "../Icon";
 
@@ -43,7 +43,12 @@ const IconButton = ({
       onPress={onPress}
       outlined={outlined}
     >
-      <Icon color={color || theme.colors.black} loading={loading} name={iconName} size={ICON_SIZE} />
+      <Icon
+        color={color || theme.colors.black}
+        loading={loading}
+        name={iconName}
+        size={ICON_SIZE}
+      />
     </ButtonContainer>
   );
 };

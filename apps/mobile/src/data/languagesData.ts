@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 
 export const activatedLanguages: {
   langueFr: string;

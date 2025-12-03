@@ -7,8 +7,8 @@ import {
 } from "~/modules/dispositif/dispositif.repository";
 import { sendUpdateReminderMailService } from "~/modules/mail/mail.service";
 import { getUserById } from "~/modules/users/users.repository";
-import { Dispositif } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Dispositif } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const sendReminderMailToUpdateContents = async (): Response => {
@@ -20,9 +20,14 @@ export const sendReminderMailToUpdateContents = async (): Response => {
 
   const nbDaysBeforeReminder = 90;
 
-  const filteredDispositifs = filterDispositifsForUpdateReminders(dispositifs, nbDaysBeforeReminder);
+  const filteredDispositifs = filterDispositifsForUpdateReminders(
+    dispositifs,
+    nbDaysBeforeReminder,
+  );
 
-  logger.info(`[sendReminderMailToUpdateContents] find ${filteredDispositifs.length} reminders to send`);
+  logger.info(
+    `[sendReminderMailToUpdateContents] find ${filteredDispositifs.length} reminders to send`,
+  );
 
   const filteredDispositifWithTitreInfoFormated = filteredDispositifs.map((dispo) => ({
     // FIXME ...dispo.toJSON({ flattenMaps: false }),

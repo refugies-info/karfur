@@ -1,11 +1,13 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
 import { areDispositifsAssociesPopulate } from "../../types/typeGuards";
-import { RootState } from "../rootReducer";
+import type { RootState } from "../rootReducer";
 
-export const userStructureSelector = (state: RootState): GetStructureResponse | null => state.userStructure;
+export const userStructureSelector = (state: RootState): GetStructureResponse | null =>
+  state.userStructure;
 
-const selectUserStructureDisposAssociesSelector = (state: RootState) => state.userStructure?.dispositifsAssocies;
+const selectUserStructureDisposAssociesSelector = (state: RootState) =>
+  state.userStructure?.dispositifsAssocies;
 
 export const userStructureDisposAssociesSelector = createSelector(
   [selectUserStructureDisposAssociesSelector],

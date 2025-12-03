@@ -1,29 +1,29 @@
 import {
   ContentType,
-  DemarcheContent,
+  type DemarcheContent,
   DispositifStatus,
-  Id,
-  Languages,
-  Picture,
-  Suggestion as SuggestionAPIType,
+  type Id,
+  type Languages,
+  type Picture,
+  type Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
 import { omit, pick, union, uniq } from "lodash";
 import { map } from "lodash/fp";
-import { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { cleanupAvis } from "~/libs/cleanupAvis";
-import { DispositifAbstracts } from "~/modules/dispositif/types";
+import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import {
-  Dispositif,
+  type Dispositif,
   DispositifDraftModel,
-  DispositifId,
+  type DispositifId,
   DispositifModel,
-  Need,
+  type Need,
   ObjectId,
-  Theme,
-  UserId,
+  type Theme,
+  type UserId,
 } from "~/typegoose";
-import { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
-import { DeleteResult } from "~/types/interface";
+import type { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
+import type { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
 
 export const getDispositifsFromDB = async () =>
@@ -146,7 +146,8 @@ export const getSimpleDispositifs = async (
       }
       if (
         dispositif.typeContenu === ContentType.DEMARCHE &&
-        (dispositif.administrationLogo || (translation.content as DemarcheContent).administrationName)
+        (dispositif.administrationLogo ||
+          (translation.content as DemarcheContent).administrationName)
       ) {
         resDisp.sponsor = {
           nom: (translation.content as DemarcheContent).administrationName,
@@ -209,7 +210,8 @@ export const getStructureDispositifs = async (
         const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
           return {
             ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
-            username: usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
+            username:
+              usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
           };
         });
         const resDisp = {
@@ -230,7 +232,8 @@ export const getStructureDispositifs = async (
         }
         if (
           dispositif.typeContenu === ContentType.DEMARCHE &&
-          (dispositif.administrationLogo || (translation.content as DemarcheContent).administrationName)
+          (dispositif.administrationLogo ||
+            (translation.content as DemarcheContent).administrationName)
         ) {
           resDisp.sponsor = {
             nom: (translation.content as DemarcheContent).administrationName,
@@ -244,7 +247,10 @@ export const getStructureDispositifs = async (
 
 export const updateDispositifInDB = async (
   dispositifId: DispositifId,
-  modifiedDispositif: Partial<Dispositif> | { $pull: { [x: string]: { suggestionId: string } } } | { $push: unknown },
+  modifiedDispositif:
+    | Partial<Dispositif>
+    | { $pull: { [x: string]: { suggestionId: string } } }
+    | { $push: unknown },
   updateDraft: boolean = false,
 ): Promise<Dispositif> => {
   return updateDraft
@@ -261,7 +267,10 @@ export const updateDispositifInDB = async (
 export const deleteDraftDispositif = async (id: DispositifId): Promise<DeleteResult> =>
   DispositifDraftModel.deleteOne({ _id: id });
 
-export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: Merci): Promise<Dispositif> =>
+export const addMerciDispositifInDB = async (
+  dispositifId: DispositifId,
+  merci: Merci,
+): Promise<Dispositif> =>
   DispositifModel.findOneAndUpdate(
     { _id: dispositifId },
     { $push: { merci } },
@@ -271,7 +280,10 @@ export const addMerciDispositifInDB = async (dispositifId: DispositifId, merci: 
     },
   );
 
-export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Avis): Promise<Dispositif> => {
+export const addAvisDispositifInDB = async (
+  dispositifId: DispositifId,
+  avis: Avis,
+): Promise<Dispositif> => {
   return DispositifModel.findOneAndUpdate(
     { _id: dispositifId },
     { $push: { avis: cleanupAvis(avis) } },
@@ -285,7 +297,10 @@ export const addAvisDispositifInDB = async (dispositifId: DispositifId, avis: Av
 export const addNewParticipant = async (dispositifId: DispositifId, userId: Id) =>
   DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $addToSet: { participants: userId } });
 
-export const removeMerciDispositifInDB = async (dispositifId: DispositifId, userId: UserId): Promise<Dispositif> => {
+export const removeMerciDispositifInDB = async (
+  dispositifId: DispositifId,
+  userId: UserId,
+): Promise<Dispositif> => {
   if (userId) {
     // remove merci of user
     return DispositifModel.findOneAndUpdate(
@@ -319,7 +334,11 @@ export const removeAvisDispositifInDB = async (
   if (userId !== undefined) pullQuery.userId = userId;
   if (anonymousUserId !== undefined) pullQuery.anonymousUserId = anonymousUserId;
 
-  return DispositifModel.findOneAndUpdate({ _id: dispositifId }, { $pull: { avis: pullQuery } }, { new: true });
+  return DispositifModel.findOneAndUpdate(
+    { _id: dispositifId },
+    { $pull: { avis: pullQuery } },
+    { new: true },
+  );
 };
 
 export const addSuggestionDispositifInDB = async (
@@ -366,7 +385,9 @@ export const updateAvisDispositifInDB = async (
       );
     }
     if (avisIndex === -1 && updatedAvis.anonymousUserId) {
-      avisIndex = dispositif.avis.findIndex((avis) => avis.anonymousUserId === updatedAvis.anonymousUserId.toString());
+      avisIndex = dispositif.avis.findIndex(
+        (avis) => avis.anonymousUserId === updatedAvis.anonymousUserId.toString(),
+      );
     }
     if (avisIndex === -1) return { modifiedCount: 0 };
 
@@ -398,7 +419,10 @@ export const incrementDispositifViews = async (
 };
 
 export const getActiveDispositifsFromDBWithoutPopulate = (needFields: ProjectionType<Dispositif>) =>
-  DispositifModel.find({ status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF }, needFields);
+  DispositifModel.find(
+    { status: DispositifStatus.ACTIVE, typeContenu: ContentType.DISPOSITIF },
+    needFields,
+  );
 
 export const getDraftDispositifs = () =>
   DispositifModel.find(
@@ -413,9 +437,12 @@ export const getDraftDispositifs = () =>
     },
   ).populate("creatorId");
 
-export const modifyReadSuggestionInDispositif = async (dispositifId: DispositifId, suggestionId: string) =>
+export const modifyReadSuggestionInDispositif = async (
+  dispositifId: DispositifId,
+  suggestionId: string,
+) =>
   await DispositifModel.findOneAndUpdate(
-    { "_id": dispositifId, "suggestions.suggestionId": suggestionId },
+    { _id: dispositifId, "suggestions.suggestionId": suggestionId },
     { $set: { ["suggestions.$.read"]: true } },
   );
 
@@ -442,7 +469,10 @@ export const getDraftDispositifById = async (
  * @param neededFields The fields to return in the dispositif
  * @returns A list of dispositifs with the specified fields
  */
-export const getDispositifsWithCreatorId = async (creatorId: UserId, neededFields: DispositifFieldsRequest) => {
+export const getDispositifsWithCreatorId = async (
+  creatorId: UserId,
+  neededFields: DispositifFieldsRequest,
+) => {
   const user = await getUsersById([creatorId] as UserId[], {
     _id: 1,
     structures: 1,
@@ -508,11 +538,16 @@ export const getDispositifsWithCreatorId = async (creatorId: UserId, neededField
   return await DispositifModel.aggregate(pipeline);
 };
 
-export const getDispositifByIdWithMainSponsor = async (id: DispositifId, neededFields: ProjectionType<Dispositif>) => {
+export const getDispositifByIdWithMainSponsor = async (
+  id: DispositifId,
+  neededFields: ProjectionType<Dispositif>,
+) => {
   if (neededFields === "all") {
     return await DispositifModel.findOne({ _id: id }).populate("mainSponsor theme secondaryThemes");
   }
-  return await DispositifModel.findOne({ _id: id }, neededFields).populate("mainSponsor theme secondaryThemes");
+  return await DispositifModel.findOne({ _id: id }, neededFields).populate(
+    "mainSponsor theme secondaryThemes",
+  );
 };
 
 export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositif[]> =>
@@ -532,12 +567,16 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
 export const getActiveContents = async (neededFields: ProjectionType<Dispositif>) =>
   DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
 
-export const getActiveContentsFiltered = (neededFields: ProjectionType<Dispositif>, query: unknown) =>
-  DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
+export const getActiveContentsFiltered = (
+  neededFields: ProjectionType<Dispositif>,
+  query: unknown,
+) => DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
 
-export const getDispositifByIdWithAllFields = (id: DispositifId) => DispositifModel.findOne({ _id: id });
+export const getDispositifByIdWithAllFields = (id: DispositifId) =>
+  DispositifModel.findOne({ _id: id });
 
-export const createDispositifInDB = async (dispositif: Partial<Dispositif>) => DispositifModel.create(dispositif);
+export const createDispositifInDB = async (dispositif: Partial<Dispositif>) =>
+  DispositifModel.create(dispositif);
 
 export const getNbMercis = async () => {
   return DispositifModel.aggregate([
@@ -598,7 +637,8 @@ export const getNbUpdatedRecently = async (date: Date) => {
   });
 };
 
-export const getCountDispositifs = async (query: FilterQuery<Dispositif>) => DispositifModel.countDocuments(query);
+export const getCountDispositifs = async (query: FilterQuery<Dispositif>) =>
+  DispositifModel.countDocuments(query);
 
 export const deleteNeedFromDispositifs = async (needId: string) => {
   return DispositifModel.updateMany({ needs: needId }, { $pull: { needs: needId } });

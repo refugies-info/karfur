@@ -1,6 +1,6 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { LanguagesActions } from "./languages.actions";
+import type { LanguagesActions } from "./languages.actions";
 
 export interface LanguageState {
   availableLanguages: GetLanguagesResponse[];
@@ -10,9 +10,12 @@ export const initialLanguageState = {
   availableLanguages: [],
 };
 
-export const languagesReducer = createReducer<LanguageState, LanguagesActions>(initialLanguageState, {
-  SET_LANGUAGES: (state, action) => ({
-    ...state,
-    availableLanguages: action.payload,
-  }),
-});
+export const languagesReducer = createReducer<LanguageState, LanguagesActions>(
+  initialLanguageState,
+  {
+    SET_LANGUAGES: (state, action) => ({
+      ...state,
+      availableLanguages: action.payload,
+    }),
+  },
+);

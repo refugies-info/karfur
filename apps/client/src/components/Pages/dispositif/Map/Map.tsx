@@ -1,5 +1,5 @@
-import { Poi } from "@refugies-info/api-types";
-import L from "leaflet";
+import type { Poi } from "@refugies-info/api-types";
+import type L from "leaflet";
 import dynamic from "next/dynamic";
 import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -33,7 +33,11 @@ const Map = () => {
 
   return (
     <div className={styles.container}>
-      <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={popup?.id || null} />
+      <Sidebar
+        markers={markers}
+        onSelectMarker={selectMarker}
+        selectedMarkerId={popup?.id || null}
+      />
       <DynamicMap
         markers={markers}
         popup={popup}

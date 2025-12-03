@@ -1,4 +1,4 @@
-import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 export const getInitialTheme = (
   allNeeds: GetNeedResponse[],

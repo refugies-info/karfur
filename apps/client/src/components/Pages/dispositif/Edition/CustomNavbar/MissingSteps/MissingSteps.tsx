@@ -3,10 +3,10 @@ import { useCallback, useContext } from "react";
 import { UserTradStatus } from "~/components/Pages/dispositif/Translation/TranslationInput/functions";
 import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import Badge from "~/components/UI/Badge";
-import { Step as TranslateStep } from "~/hooks/dispositif";
+import type { Step as TranslateStep } from "~/hooks/dispositif";
 import { cls } from "~/lib/classname";
 import PageContext from "~/utils/pageContext";
-import { Step as EditStep } from "../CustomNavbarEdit/functions";
+import type { Step as EditStep } from "../CustomNavbarEdit/functions";
 import { stepTranslations } from "./data";
 import styles from "./MissingSteps.module.scss";
 
@@ -61,7 +61,9 @@ const MissingSteps = (props: Props) => {
                 Manquant
               </Badge>
             ) : (
-              <TranslationStatus status={item.status === "error" ? UserTradStatus.MISSING : UserTradStatus.PENDING} />
+              <TranslationStatus
+                status={item.status === "error" ? UserTradStatus.MISSING : UserTradStatus.PENDING}
+              />
             )}
           </span>
         </button>

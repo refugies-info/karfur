@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import uniqueId from "lodash/uniqueId";
-import React, { useMemo, useState } from "react";
+import type React from "react";
+import { useMemo, useState } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import Tooltip from "~/components/UI/Tooltip";

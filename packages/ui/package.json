@@ -21,7 +21,8 @@
     "clean": "rm -rf dist",
     "dev": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css --watch",
     "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts",
-    "lint": "eslint . --ext ts,tsx,js --quiet --cache"
+    "lint": "biome lint .",
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
@@ -43,11 +44,8 @@
     "@types/leaflet.markercluster": "^1.5.5",
     "@types/react": "19.0.14",
     "@types/react-dom": "19.2.1",
-    "eslint": "^9.34.0",
-    "eslint-config-turbo": "2.5.4",
     "tailwindcss": "^4.1.12",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.41.0"
+    "typescript": "^5.9.2"
   }
 }

@@ -1,4 +1,4 @@
-import { DispositifStatus, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { DispositifStatus, type UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useContext, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -27,7 +27,8 @@ const CardDemarcheAdministration = ({ formData }: Props) => {
   const isAllowedToEdit = useMemo(() => {
     return (
       user.admin ||
-      (!isStatus(dispositifSelector?.status, DispositifStatus.ACTIVE) && !dispositifSelector?.hasDraftVersion)
+      (!isStatus(dispositifSelector?.status, DispositifStatus.ACTIVE) &&
+        !dispositifSelector?.hasDraftVersion)
     );
   }, [user, dispositifSelector]);
 

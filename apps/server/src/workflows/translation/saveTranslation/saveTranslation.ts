@@ -1,9 +1,9 @@
-import { ContentType, SaveTranslationRequest } from "@refugies-info/api-types";
+import { ContentType, type SaveTranslationRequest } from "@refugies-info/api-types";
 import { isUndefined } from "lodash";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { updateIndicator } from "~/modules/indicators/indicators.service";
 import { getOtherValidationForDispositif } from "~/modules/traductions/traductions.repository";
-import { ObjectId, Traductions, TraductionsModel, User } from "~/typegoose";
+import { ObjectId, Traductions, TraductionsModel, type User } from "~/typegoose";
 import { TraductionsType } from "~/typegoose/Traductions";
 
 const saveTranslation = (
@@ -27,13 +27,20 @@ const saveTranslation = (
     _traduction.userId = user._id;
 
     // ensure titreMarque is saved empty for demarches, to calculate progress properly
-    if (dispositif.typeContenu === ContentType.DEMARCHE && isUndefined(_traduction.translated.content.titreMarque)) {
+    if (
+      dispositif.typeContenu === ContentType.DEMARCHE &&
+      isUndefined(_traduction.translated.content.titreMarque)
+    ) {
       _traduction.translated.content.titreMarque = "";
     }
 
     // copy toReviewCache from other traductions if it exists
     if (user.isExpert()) {
-      const otherValidation = await getOtherValidationForDispositif(language, dispositifId, user._id);
+      const otherValidation = await getOtherValidationForDispositif(
+        language,
+        dispositifId,
+        user._id,
+      );
       if (otherValidation?.toReviewCache) {
         _traduction.toReviewCache = otherValidation.toReviewCache;
       }

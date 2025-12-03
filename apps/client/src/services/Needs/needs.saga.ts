@@ -1,18 +1,22 @@
-import { GetNeedResponse, UpdatePositionsNeedResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type { GetNeedResponse, UpdatePositionsNeedResponse } from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { CREATE_NEED, DELETE_NEED, GET_NEEDS, ORDER_NEEDS, SAVE_NEED } from "./needs.actionTypes";
 import {
-  createNeedActionCreator,
-  deleteNeedActionCreator,
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
+import {
+  type createNeedActionCreator,
+  type deleteNeedActionCreator,
   fetchNeedsActionCreator,
-  orderNeedsActionCreator,
-  saveNeedActionCreator,
+  type orderNeedsActionCreator,
+  type saveNeedActionCreator,
   setNeedsActionCreator,
 } from "./needs.actions";
+import { CREATE_NEED, DELETE_NEED, GET_NEEDS, ORDER_NEEDS, SAVE_NEED } from "./needs.actionTypes";
 import { needsSelector } from "./needs.selectors";
 
 export function* fetchNeeds(): SagaIterator {

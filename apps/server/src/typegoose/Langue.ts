@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { Base } from "./Base";
 

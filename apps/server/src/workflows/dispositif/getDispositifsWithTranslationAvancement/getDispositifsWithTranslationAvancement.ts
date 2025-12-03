@@ -1,6 +1,6 @@
 import {
-  GetDispositifsWithTranslationAvancementResponse,
-  Languages,
+  type GetDispositifsWithTranslationAvancementResponse,
+  type Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
 import { isEmpty, some } from "lodash";
@@ -8,8 +8,8 @@ import { countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { getActiveContents } from "~/modules/dispositif/dispositif.repository";
 import { getTraductionsByLanguage } from "~/modules/traductions/traductions.repository";
-import { Dispositif } from "~/typegoose";
-import { TranslationContent } from "~/typegoose/Dispositif";
+import type { Dispositif } from "~/typegoose";
+import type { TranslationContent } from "~/typegoose/Dispositif";
 import { TraductionsType } from "~/typegoose/Traductions";
 
 /* TODO: test this */
@@ -63,7 +63,9 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
 
   activeDispositifs.forEach((dispositif: Dispositif) => {
     if (dispositif.webOnly) return; // do not translate webonly content
-    const correspondingTrads = traductions.filter((trad) => trad.dispositifId.toString() === dispositif._id.toString());
+    const correspondingTrads = traductions.filter(
+      (trad) => trad.dispositifId.toString() === dispositif._id.toString(),
+    );
 
     const lastTradUpdatedAt = Math.max(
       0,
@@ -71,7 +73,11 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
       ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0),
     );
     const avancementTrad = getNbWordsDone(correspondingTrads, false, dispositif.translations.fr);
-    const avancementValidation = getNbWordsDone(correspondingTrads, true, dispositif.translations.fr);
+    const avancementValidation = getNbWordsDone(
+      correspondingTrads,
+      true,
+      dispositif.translations.fr,
+    );
 
     const dispositifData = {
       _id: dispositif._id.toString(),
@@ -101,7 +107,12 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
     /**
      * Si une traduction est à revoir
      */
-    if (some(correspondingTrads, (trad) => trad.type === TraductionsType.VALIDATION && !isEmpty(trad.toReview))) {
+    if (
+      some(
+        correspondingTrads,
+        (trad) => trad.type === TraductionsType.VALIDATION && !isEmpty(trad.toReview),
+      )
+    ) {
       return results.push({
         ...dispositifData,
         tradStatus: TraductionsStatus.TO_REVIEW,

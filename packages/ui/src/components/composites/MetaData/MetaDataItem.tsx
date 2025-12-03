@@ -1,8 +1,8 @@
-import { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
+import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
 import Image from "next/image";
-import React from "react";
+import type React from "react";
 
 type MetaDataItemProps = {
   className?: string;
@@ -15,7 +15,15 @@ type MetaDataItemProps = {
   | { icon?: never; logoImage: { url: string; alt?: string } }
   | { icon?: never; logoImage?: never }
 );
-export const MetaDataItem = ({ icon, logoImage, className, title, children, onClick, state }: MetaDataItemProps) => {
+export const MetaDataItem = ({
+  icon,
+  logoImage,
+  className,
+  title,
+  children,
+  onClick,
+  state,
+}: MetaDataItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.();
@@ -31,8 +39,15 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
         className,
       )}
     >
-      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
-      {logoImage && <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt="" />}
+      {icon &&
+        (typeof icon === "string" ? (
+          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} />
+        ) : (
+          icon
+        ))}
+      {logoImage && (
+        <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt="" />
+      )}
       <div className="md:flex md:flex-col ltr:text-left rtl:text-right">
         {title && (
           <h3 className="text-corps-md md:text-corps-sm mb-0 max-sm:float-left max-sm:mr-1 max-sm:inline max-sm:w-fit max-sm:after:content-['_:']">

@@ -1,6 +1,6 @@
-import {
-  commitmentDetailsType,
+import type {
   CreateDispositifRequest,
+  commitmentDetailsType,
   frequencyDetailsType,
   frequencyUnitType,
   Metadatas,
@@ -61,9 +61,11 @@ const ModalAvailability = (props: Props) => {
   const [commitmentTimeUnit, setCommitmentTimeUnit] = useState<timeUnitType>(
     getValues("metadatas.commitment.timeUnit") || "months",
   );
-  const [noCommitment, setNoCommitment] = useState<boolean>(getValues("metadatas.commitment") === null);
+  const [noCommitment, setNoCommitment] = useState<boolean>(
+    getValues("metadatas.commitment") === null,
+  );
   const validateCommitment = () => {
-    let commitment: Metadatas["commitment"] = undefined;
+    let commitment: Metadatas["commitment"];
     if (noCommitment) commitment = null;
     else if (!noCommitment && !isCommitmentHoursKo(commitmentHours, commitmentAmountDetails)) {
       commitment = {
@@ -88,9 +90,11 @@ const ModalAvailability = (props: Props) => {
   const [frequencyUnit, setFrequencyUnit] = useState<frequencyUnitType>(
     getValues("metadatas.frequency.frequencyUnit") || "day",
   );
-  const [noFrequency, setNoFrequency] = useState<boolean>(getValues("metadatas.frequency") === null);
+  const [noFrequency, setNoFrequency] = useState<boolean>(
+    getValues("metadatas.frequency") === null,
+  );
   const validateFrequency = () => {
-    let frequency: Metadatas["frequency"] = undefined;
+    let frequency: Metadatas["frequency"];
     if (noFrequency) frequency = null;
     if (!noFrequency && !!frequencyHours) {
       frequency = {
@@ -104,10 +108,14 @@ const ModalAvailability = (props: Props) => {
   };
 
   // timeSlots
-  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(getValues("metadatas.timeSlots"));
+  const [timeSlots, setTimeSlots] = useState<timeSlotType[] | null | undefined>(
+    getValues("metadatas.timeSlots"),
+  );
   const selectTimeSlot = useCallback((option: timeSlotType) => {
     setTimeSlots((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+      options?.includes(option)
+        ? options.filter((o) => o !== option)
+        : [...(options || []), option],
     );
   }, []);
   const validateTimeSlots = () => {
@@ -135,7 +143,14 @@ const ModalAvailability = (props: Props) => {
       !noFrequency && !frequencyHours,
       timeSlots === undefined || timeSlots?.length === 0,
     ];
-  }, [noCommitment, commitmentAmountDetails, commitmentHours, noFrequency, frequencyHours, timeSlots]);
+  }, [
+    noCommitment,
+    commitmentAmountDetails,
+    commitmentHours,
+    noFrequency,
+    frequencyHours,
+    timeSlots,
+  ]);
 
   const navigateToStep = useCallback(() => {
     const firstEmpty = emptySteps.indexOf(true);
@@ -181,7 +196,9 @@ const ModalAvailability = (props: Props) => {
                     type="number"
                     placeholder={"0"}
                     value={getInputValue(commitmentHours?.[1])}
-                    onChange={(e: any) => setCommitmentHours(getInputValues([commitmentHours?.[0], e.target.value]))}
+                    onChange={(e: any) =>
+                      setCommitmentHours(getInputValues([commitmentHours?.[0], e.target.value]))
+                    }
                     className="spinner"
                   />
                 </>
@@ -257,7 +274,15 @@ const ModalAvailability = (props: Props) => {
             onSelect={() => {
               includesAllDays(timeSlots)
                 ? setTimeSlots([])
-                : setTimeSlots(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]);
+                : setTimeSlots([
+                    "monday",
+                    "tuesday",
+                    "wednesday",
+                    "thursday",
+                    "friday",
+                    "saturday",
+                    "sunday",
+                  ]);
             }}
             className="mb-2"
           />

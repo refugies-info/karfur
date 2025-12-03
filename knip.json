@@ -11,14 +11,14 @@
         "@tailwindcss/typography",
         "bootstrap",
         "cssnano",
-        "eslint-config-next",
-        "eslint-config-turbo",
         "flag-icons",
         "react-anchor-link-smooth-scroll",
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules"
+        "typescript-plugin-css-modules",
+        "csvtojson",
+        "papaparse"
       ]
     },
     "apps/mobile": {
@@ -34,29 +34,17 @@
     },
     "apps/server": {
       "entry": ["src/server.ts"],
-      "ignoreDependencies": [
-        "@tsoa/runtime",
-        "eslint-config-turbo",
-        "path-to-regexp",
-        "ts-node",
-        "tsconfig-paths"
-      ],
+      "ignoreDependencies": ["@tsoa/runtime", "path-to-regexp", "ts-node", "tsconfig-paths"],
       "ignore": ["dist/**"]
     },
     "packages/api-types": {
-      "ignoreDependencies": ["eslint-config-turbo"]
+      "ignoreDependencies": []
     },
     "apps/storybook": {
-      "ignoreDependencies": [
-        "@tailwindcss/typography",
-        "eslint-config-next",
-        "eslint-config-turbo",
-        "eslint-plugin-storybook",
-        "tailwindcss"
-      ]
+      "ignoreDependencies": ["@tailwindcss/typography", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["eslint-config-turbo", "tailwindcss"]
+      "ignoreDependencies": ["tailwindcss", "@types/fs-extra"]
     }
   }
 }

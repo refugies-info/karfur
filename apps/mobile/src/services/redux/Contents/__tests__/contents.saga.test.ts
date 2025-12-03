@@ -4,7 +4,11 @@ import util from "util";
 import { getContentsForApp, getNbContents } from "~/utils/API";
 import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
 import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
@@ -22,7 +26,11 @@ describe("[Saga] contents", () => {
 
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
-      testSaga(latestActionsSaga).next().takeLatest("FETCH_CONTENTS", fetchContents).next().isDone();
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_CONTENTS", fetchContents)
+        .next()
+        .isDone();
     });
   });
 

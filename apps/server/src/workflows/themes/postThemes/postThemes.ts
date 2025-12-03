@@ -1,10 +1,13 @@
-import { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import type { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
-import { getAllAppUsers, updateNotificationsSettings } from "~/modules/appusers/appusers.repository";
+import {
+  getAllAppUsers,
+  updateNotificationsSettings,
+} from "~/modules/appusers/appusers.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { createTheme } from "~/modules/themes/themes.repository";
-import { AppUser, Theme } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { AppUser, Theme } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const hasOneNotificationEnabled = (user: AppUser) =>
   user.notificationsSettings.demarches ||
@@ -15,7 +18,10 @@ export const hasOneNotificationEnabled = (user: AppUser) =>
 export const addThemeInNotificationSettingsForUser = (theme: Theme) => (user: AppUser) =>
   updateNotificationsSettings(user.uid, {
     ...user.notificationsSettings,
-    themes: { ...user.notificationsSettings.themes, [`${theme._id}`]: hasOneNotificationEnabled(user) },
+    themes: {
+      ...user.notificationsSettings.themes,
+      [`${theme._id}`]: hasOneNotificationEnabled(user),
+    },
   });
 
 const updateUsersNotificationsSettings = async (theme: Theme) => {
@@ -34,6 +40,9 @@ export const postThemes = async (theme: ThemeRequest): ResponseWithData<PostThem
 
   return {
     text: "success",
-    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) } as unknown as PostThemeResponse,
+    data: {
+      ...dbTheme.toObject(),
+      active: dbTheme.isActive(activeLanguages),
+    } as unknown as PostThemeResponse,
   };
 };

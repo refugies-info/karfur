@@ -88,7 +88,10 @@ export const useWindowSize = () => {
       handleFontSizeChange();
 
       resizeObserver.observe(document.documentElement);
-      mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
+      mutationObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["style", "class"],
+      });
       mutationObserver.observe(document.head, { childList: true, subtree: true });
 
       window.addEventListener("resize", handleResize);
@@ -143,7 +146,8 @@ export const useWindowSize = () => {
       } else {
         const isHiDPI =
           window.matchMedia &&
-          window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)").matches;
+          window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)")
+            .matches;
 
         let currentZoom;
         if (isHiDPI) {

@@ -1,9 +1,10 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import { ContentForApp, Id, Languages } from "@refugies-info/api-types";
-import React, { useEffect, useMemo } from "react";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { ContentForApp, Id, Languages } from "@refugies-info/api-types";
+import type React from "react";
+import { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { HeaderContentProps, Page } from "~/components";
+import { type HeaderContentProps, Page } from "~/components";
 import { ContentSummary } from "~/components/Contents/ContentSummary";
 import { HeaderContentContentsScreen } from "~/components/layout/Header/HeaderContentContentsScreen";
 import { TextDSFR_XL } from "~/components/StyledText";
@@ -17,7 +18,7 @@ import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.
 import { needNameSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { addNeedView } from "~/utils/API";
 
 const SectionHeaderText = styled(TextDSFR_XL)<{ color: string }>`
@@ -41,7 +42,8 @@ const sortContents = (contents: ContentForApp[]) => {
 };
 
 const getTranslatedContents = (contents: ContentForApp[], currentLanguage: Languages | null) => {
-  if (!currentLanguage || currentLanguage === "fr") return { translatedContents: contents, nonTranslatedContents: [] };
+  if (!currentLanguage || currentLanguage === "fr")
+    return { translatedContents: contents, nonTranslatedContents: [] };
   const translatedContents: ContentForApp[] = [];
   const nonTranslatedContents: ContentForApp[] = [];
   contents.forEach((content) => {
@@ -70,7 +72,10 @@ const getContentsToDisplay = (contentsId: string[], contents: ContentForApp[]) =
   return result;
 };
 
-export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
+export const ContentsScreen = ({
+  navigation,
+  route,
+}: StackScreenProps<ExplorerParamList, "ContentsScreen">) => {
   const { theme, needId, backScreen } = route.params;
   const { t } = useTranslationWithRTL();
 
@@ -82,7 +87,10 @@ export const ContentsScreen = ({ navigation, route }: StackScreenProps<ExplorerP
   // Loading
   const isLoadingContents = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS));
   const isLoadingNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
-  const isLoading = useMemo(() => isLoadingContents || isLoadingNeeds, [isLoadingContents, isLoadingNeeds]);
+  const isLoading = useMemo(
+    () => isLoadingContents || isLoadingNeeds,
+    [isLoadingContents, isLoadingNeeds],
+  );
 
   // Content
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);

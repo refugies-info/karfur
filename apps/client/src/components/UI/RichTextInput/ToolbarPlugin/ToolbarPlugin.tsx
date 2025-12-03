@@ -1,5 +1,10 @@
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import { $isListNode, INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND, ListNode } from "@lexical/list";
+import {
+  $isListNode,
+  INSERT_ORDERED_LIST_COMMAND,
+  INSERT_UNORDERED_LIST_COMMAND,
+  ListNode,
+} from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $isDecoratorBlockNode } from "@lexical/react/LexicalDecoratorBlockNode";
 import { $createHeadingNode, $isHeadingNode } from "@lexical/rich-text";
@@ -21,7 +26,7 @@ import {
   CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   FORMAT_TEXT_COMMAND,
-  NodeKey,
+  type NodeKey,
   REDO_COMMAND,
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND,
@@ -30,8 +35,12 @@ import { useCallback, useEffect, useState } from "react";
 import { isMacOs } from "react-device-detect";
 import { cls } from "~/lib/classname";
 import { getSelectedNode } from "../lib";
-import { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND } from "../plugins/CalloutPlugin";
-import { CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
+import {
+  $isCalloutNode,
+  INSERT_CALLOUT_COMMAND,
+  REMOVE_CALLOUT_COMMAND,
+} from "../plugins/CalloutPlugin";
+import { type CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
 import ToolbarButton from "./ToolbarButton";
 import ToolbarDropdown from "./ToolbarDropdown";
 import styles from "./ToolbarPlugin.module.scss";
@@ -197,7 +206,11 @@ export default function ToolbarPlugin() {
           if (parent?.getType() === "root") {
             selection.insertText(" ");
           }
-          editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: "", rel: "noreferrer", target: "_blank" });
+          editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
+            url: "",
+            rel: "noreferrer",
+            target: "_blank",
+          });
         }
         return true;
       });
@@ -337,7 +350,9 @@ export default function ToolbarPlugin() {
           disabled={!isEditable}
           name="callout-menu"
           title="Insérer un bloc"
-          toggleElement={<ToolbarButton title="Insérer" icon="ri-add-line" text="Insérer" noButton />}
+          toggleElement={
+            <ToolbarButton title="Insérer" icon="ri-add-line" text="Insérer" noButton />
+          }
           items={[
             {
               text: "Bloc Important",

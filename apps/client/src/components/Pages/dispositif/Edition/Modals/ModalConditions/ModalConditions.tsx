@@ -1,4 +1,4 @@
-import { conditionType, CreateDispositifRequest } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, conditionType } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
@@ -17,11 +17,16 @@ interface Props {
 const ModalConditions = (props: Props) => {
   const { t } = useTranslation();
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const [selected, setSelected] = useState<conditionType[] | null>( // if undefined, nothing selected. Else, data or null
-    getValues("metadatas.conditions") === undefined ? [] : getValues("metadatas.conditions") || null,
+  const [selected, setSelected] = useState<conditionType[] | null>(
+    // if undefined, nothing selected. Else, data or null
+    getValues("metadatas.conditions") === undefined
+      ? []
+      : getValues("metadatas.conditions") || null,
   );
   const toggleItem = (item: conditionType) =>
-    setSelected((items) => (items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item]));
+    setSelected((items) =>
+      items?.includes(item) ? items.filter((i) => i !== item) : [...(items || []), item],
+    );
 
   const validate = () => {
     if (selected !== undefined) {
@@ -38,7 +43,10 @@ const ModalConditions = (props: Props) => {
       title="Faut-il remplir des conditions obligatoires ?"
     >
       <div>
-        <p>Ajoutez des prérequis seulement s’ils sont vraiment nécessaires pour accéder à votre action.</p>
+        <p>
+          Ajoutez des prérequis seulement s’ils sont vraiment nécessaires pour accéder à votre
+          action.
+        </p>
         <div>
           {entries<Record<conditionType, any>>(dropdownOptions).map(([key, image]) => (
             <ChoiceButton

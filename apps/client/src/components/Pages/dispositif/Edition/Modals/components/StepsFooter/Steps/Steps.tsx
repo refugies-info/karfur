@@ -14,7 +14,11 @@ const Steps = (props: Props) => {
       {steps.map((_, i) => (
         <div
           key={i}
-          className={cls(styles.step, i + 1 === props.step && styles.current, props.step > i + 1 && styles.done)}
+          className={cls(
+            styles.step,
+            i + 1 === props.step && styles.current,
+            props.step > i + 1 && styles.done,
+          )}
         >
           {i + 1}
         </div>

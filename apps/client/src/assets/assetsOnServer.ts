@@ -14,18 +14,22 @@ export const assetsOnServer = {
       francais: {
         certificationFLE: bucketUrlAnnuaireActivites + "Fran%C3%A7ais/CertificationFLE.svg",
         coursFrancais: bucketUrlAnnuaireActivites + "Fran%C3%A7ais/CoursFrançais.svg",
-        supportAutoApprentissage: bucketUrlAnnuaireActivites + "Fran%C3%A7ais/SupportAutoApprentissage.svg",
-        ateliersSocioLinguistique: bucketUrlAnnuaireActivites + "Fran%C3%A7ais/AteliersSocio-linguistique.svg",
+        supportAutoApprentissage:
+          bucketUrlAnnuaireActivites + "Fran%C3%A7ais/SupportAutoApprentissage.svg",
+        ateliersSocioLinguistique:
+          bucketUrlAnnuaireActivites + "Fran%C3%A7ais/AteliersSocio-linguistique.svg",
       },
       administratif: {
         accompagnementGlobal: bucketUrlAnnuaireActivites + "Administratif/AccompagnementGlobal.svg",
-        accompagnementJuridique: bucketUrlAnnuaireActivites + "Administratif/AccompagnementJuridique.svg",
+        accompagnementJuridique:
+          bucketUrlAnnuaireActivites + "Administratif/AccompagnementJuridique.svg",
         accueilMineurs: bucketUrlAnnuaireActivites + "Administratif/AccueilMineurs.svg",
         domiciliationPostale: bucketUrlAnnuaireActivites + "Administratif/DomiciliationPostale.svg",
         interprétariat: bucketUrlAnnuaireActivites + "Administratif/Interpretariat.svg",
       },
       logement: {
-        accompagnementVersLogement: bucketUrlAnnuaireActivites + "Logement/AccompagnementVersLogement.svg",
+        accompagnementVersLogement:
+          bucketUrlAnnuaireActivites + "Logement/AccompagnementVersLogement.svg",
         centreHébergement: bucketUrlAnnuaireActivites + "Logement/CentreHebergement.svg",
         colocationSolidaire: bucketUrlAnnuaireActivites + "Logement/ColocationSolidaire.svg",
         hébergementCitoyen: bucketUrlAnnuaireActivites + "Logement/HebergementCitoyen.svg",
@@ -34,8 +38,10 @@ export const assetsOnServer = {
         résidenceSociale: bucketUrlAnnuaireActivites + "Logement/ResidenceSociale.svg",
       },
       insertionPro: {
-        accompagnementVersLemploi: bucketUrlAnnuaireActivites + "InsertionPro/AccompagnementVersLemploi.svg",
-        bilanDéfinitionProjet: bucketUrlAnnuaireActivites + "InsertionPro/BilanDefinitionProjet.svg",
+        accompagnementVersLemploi:
+          bucketUrlAnnuaireActivites + "InsertionPro/AccompagnementVersLemploi.svg",
+        bilanDéfinitionProjet:
+          bucketUrlAnnuaireActivites + "InsertionPro/BilanDefinitionProjet.svg",
         coaching: bucketUrlAnnuaireActivites + "InsertionPro/Coaching.svg",
         miseEnRelation: bucketUrlAnnuaireActivites + "InsertionPro/MiseEnRelation.svg",
       },
@@ -47,12 +53,15 @@ export const assetsOnServer = {
       formationPro: {
         alternance: bucketUrlAnnuaireActivites + "FormationPro/Alternance.svg",
         apprentissage: bucketUrlAnnuaireActivites + "FormationPro/Apprentissage.svg",
-        formationsCertifiantes: bucketUrlAnnuaireActivites + "FormationPro/FormationsCertifiantes.svg",
-        formationsNonCertifiantes: bucketUrlAnnuaireActivites + "FormationPro/FormationsNonCertifiantes.svg",
+        formationsCertifiantes:
+          bucketUrlAnnuaireActivites + "FormationPro/FormationsCertifiantes.svg",
+        formationsNonCertifiantes:
+          bucketUrlAnnuaireActivites + "FormationPro/FormationsNonCertifiantes.svg",
       },
       etudes: {
         autoApprentissage: bucketUrlAnnuaireActivites + "Etudes/AutoApprentissage.svg",
-        diplômeUniversitairePasserelle: bucketUrlAnnuaireActivites + "Etudes/DiplomeUniversitairePasserelle.svg",
+        diplômeUniversitairePasserelle:
+          bucketUrlAnnuaireActivites + "Etudes/DiplomeUniversitairePasserelle.svg",
         formationContinue: bucketUrlAnnuaireActivites + "Etudes/FormationContinue.svg",
         formationInitiale: bucketUrlAnnuaireActivites + "Etudes/FormationInitiale.svg",
         formationsCiviques: bucketUrlAnnuaireActivites + "Etudes/FormationsCiviques.svg",
@@ -71,9 +80,12 @@ export const assetsOnServer = {
         visiteVille: bucketUrlAnnuaireActivites + "Culture/VisiteVille.svg",
       },
       benevolat: {
-        missionsPonctuelles: bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/MissionsPonctuelles.svg",
-        serviceCiviqueFrançais: bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/ServiceCiviqueFrançais.svg",
-        serviceCiviqueRéfugiés: bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/ServiceCiviqueRefugies.svg",
+        missionsPonctuelles:
+          bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/MissionsPonctuelles.svg",
+        serviceCiviqueFrançais:
+          bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/ServiceCiviqueFrançais.svg",
+        serviceCiviqueRéfugiés:
+          bucketUrlAnnuaireActivites + "B%C3%A9n%C3%A9volat/ServiceCiviqueRefugies.svg",
       },
       rencontre: {
         parrainage: bucketUrlAnnuaireActivites + "Rencontre/Parrainage.svg",

@@ -13,10 +13,10 @@ import {
   EditButton,
   LanguageBadge,
   ModalDeleteAccount,
-  modalDeleteAccount,
   ModalDepartments,
-  modalDepartments,
   ModalLanguage,
+  modalDeleteAccount,
+  modalDepartments,
   modalLanguage,
   Tag,
   UserProfileForm,
@@ -181,8 +181,8 @@ export const UserProfile = (props: Props) => {
               <ToggleSwitch
                 label={
                   <span>
-                    <strong>La lettre d’information de Réfugiés.info</strong> : actualités, nouveaux contenus, mises à
-                    jour, événements.
+                    <strong>La lettre d’information de Réfugiés.info</strong> : actualités, nouveaux
+                    contenus, mises à jour, événements.
                   </span>
                 }
                 helperText="Maximum 1 fois par mois"

@@ -1,9 +1,9 @@
-import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import type { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
 import { RoleName } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
-import { PathNames } from "routes";
+import type { PathNames } from "routes";
 import {
   userStructureDisposAssociesSelector,
   userStructureHasResponsibleSeenNotification,
@@ -19,7 +19,10 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
   // notifs
   const dispositifsAssocies = useSelector(userStructureDisposAssociesSelector);
   const hasResponsibleSeenNotification = useSelector(userStructureHasResponsibleSeenNotification);
-  const nbNewNotifications = getNbNewNotifications(dispositifsAssocies, hasResponsibleSeenNotification);
+  const nbNewNotifications = getNbNewNotifications(
+    dispositifsAssocies,
+    hasResponsibleSeenNotification,
+  );
 
   // logout
   const disconnect = () => {

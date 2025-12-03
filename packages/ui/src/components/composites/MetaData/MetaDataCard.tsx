@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
-import React, { HTMLAttributes, useMemo } from "react";
+import React, { type HTMLAttributes, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 type MetaDataCardProps = HTMLAttributes<HTMLDivElement> & {
@@ -50,7 +50,10 @@ export const MetaDataCard = ({
         {title &&
           React.createElement(
             titleAs,
-            { id: `metadata-title-${uuid}`, className: "text-title-md md:text-title-xxs font-bold" },
+            {
+              id: `metadata-title-${uuid}`,
+              className: "text-title-md md:text-title-xxs font-bold",
+            },
             title,
           )}
         {(onClick || onDelete) && (

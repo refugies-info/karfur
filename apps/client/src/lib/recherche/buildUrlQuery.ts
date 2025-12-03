@@ -1,5 +1,5 @@
 import qs from "query-string";
-import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
+import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 
 export const buildUrlQuery = (query: Partial<SearchQuery>, utmQuery?: any): string => {
   const newQuery = { ...query, ...(utmQuery || {}) };

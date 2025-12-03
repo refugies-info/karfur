@@ -1,4 +1,4 @@
-import { FrIconClassName } from "@codegouvfr/react-dsfr";
+import type { FrIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { useCallback } from "react";
@@ -33,7 +33,7 @@ const SecondaryNavbar = (props: Props) => {
         <div className={styles.nav}>
           <SegmentedControl
             hideLegend
-            //@ts-ignore
+            //@ts-expect-error
             segments={props.leftLinks.map((link) => ({
               label: link.text,
               nativeInputProps: {

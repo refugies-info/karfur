@@ -1,9 +1,13 @@
-import { CountDispositifsRequest, DispositifStatus, GetCountDispositifsResponse } from "@refugies-info/api-types";
-import { FilterQuery } from "mongoose";
+import {
+  type CountDispositifsRequest,
+  DispositifStatus,
+  type GetCountDispositifsResponse,
+} from "@refugies-info/api-types";
+import type { FilterQuery } from "mongoose";
 import logger from "~/logger";
 import { getCountDispositifs as countDispositifs } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { Dispositif } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getCountDispositifs = async (
   query: CountDispositifsRequest,

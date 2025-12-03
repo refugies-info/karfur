@@ -1,1 +1,1 @@
-export { UriImageProps, default } from "./UriImage";
+export { default, UriImageProps } from "./UriImage";

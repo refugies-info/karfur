@@ -1,7 +1,7 @@
 import { $generateHtmlFromNodes, $generateNodesFromDOM } from "@lexical/html";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
-import { $createParagraphNode, $getRoot, EditorState, LexicalEditor } from "lexical";
+import { $createParagraphNode, $getRoot, type EditorState, type LexicalEditor } from "lexical";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -48,7 +48,13 @@ const OnHtmlChangePlugin = ({ value, onHtmlChanged }: Props) => {
     });
   };
 
-  return <OnChangePlugin onChange={onChange} ignoreHistoryMergeTagChange={true} ignoreSelectionChange={true} />;
+  return (
+    <OnChangePlugin
+      onChange={onChange}
+      ignoreHistoryMergeTagChange={true}
+      ignoreSelectionChange={true}
+    />
+  );
 };
 
 export default OnHtmlChangePlugin;

@@ -1,6 +1,6 @@
 import logger from "~/logger";
-import { Structure, User, UserId } from "~/typegoose";
-import { Membre, StructureId } from "~/typegoose/Structure";
+import type { Structure, User, UserId } from "~/typegoose";
+import type { Membre, StructureId } from "~/typegoose/Structure";
 import { getStructureFromDB } from "./structure.repository";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
@@ -12,7 +12,10 @@ const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {
   return membreInStructure.length > 0;
 };
 
-export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: StructureId, currentUser: User) => {
+export const checkIfUserIsAuthorizedToModifyStructure = async (
+  structureId: StructureId,
+  currentUser: User,
+) => {
   logger.info("[checkIfUserIsAuthorizedToModifyStructure] received", {
     id: structureId,
   });
@@ -26,7 +29,10 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (structureId: Stru
   }
 
   // user is administrateur or contributeur of the structure
-  const isUserRespoOrContribBoolean = isUserRespoOrContrib(fetchedStructure.membres, currentUser._id);
+  const isUserRespoOrContribBoolean = isUserRespoOrContrib(
+    fetchedStructure.membres,
+    currentUser._id,
+  );
 
   if (!currentUser.isAdmin() && !isUserRespoOrContribBoolean) {
     logger.info("[checkIfUserIsAuthorizedToModifyStructure] user not authorized", {
@@ -58,7 +64,10 @@ export const getStructureMembers = async (structureId: StructureId) => {
  * @param userId
  * @returns
  */
-export const userRespoStructureId = async (structures: StructureId[], userId: UserId): Promise<StructureId | null> => {
+export const userRespoStructureId = async (
+  structures: StructureId[],
+  userId: UserId,
+): Promise<StructureId | null> => {
   for (const structureId of structures) {
     const membres = await getStructureMembers(structureId);
     if (!membres) continue;

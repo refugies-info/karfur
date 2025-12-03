@@ -1,4 +1,9 @@
-import { GetAllDispositifsResponse, GetThemeResponse, Id, SimpleUser } from "@refugies-info/api-types";
+import type {
+  GetAllDispositifsResponse,
+  GetThemeResponse,
+  Id,
+  SimpleUser,
+} from "@refugies-info/api-types";
 
 export type Dispositif = {
   _id: Id;
@@ -17,12 +22,14 @@ export const getDispositifsWithAllInformationRequired = (
   allDispositifs: GetAllDispositifsResponse[],
   themes: GetThemeResponse[],
 ): Dispositif[] => {
-  let dispositifsWithAllInformation: Dispositif[] = [];
+  const dispositifsWithAllInformation: Dispositif[] = [];
   dispositifsIds.forEach((dispositifId, index) => {
-    let simplifiedDispositif = allDispositifs.find((dispositif) => dispositif._id === dispositifId);
+    const simplifiedDispositif = allDispositifs.find(
+      (dispositif) => dispositif._id === dispositifId,
+    );
     if (simplifiedDispositif) {
       const theme = themes.find((t) => simplifiedDispositif?.theme === t._id);
-      let element: Dispositif = {
+      const element: Dispositif = {
         titreInformatif: simplifiedDispositif.titreInformatif,
         creator: simplifiedDispositif.creatorId,
         created_at: simplifiedDispositif.created_at,
@@ -36,5 +43,7 @@ export const getDispositifsWithAllInformationRequired = (
       dispositifsWithAllInformation.push(element);
     }
   });
-  return dispositifsWithAllInformation.sort((a, b) => a.titreInformatif.localeCompare(b.titreInformatif));
+  return dispositifsWithAllInformation.sort((a, b) =>
+    a.titreInformatif.localeCompare(b.titreInformatif),
+  );
 };

@@ -1,5 +1,5 @@
-import { GetNeedResponse, Id } from "@refugies-info/api-types";
-import { RootState } from "../rootReducer";
+import type { GetNeedResponse, Id } from "@refugies-info/api-types";
+import type { RootState } from "../rootReducer";
 
 export const needsSelector = (state: RootState): GetNeedResponse[] => state.needs;
 

@@ -1,4 +1,4 @@
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";

@@ -3,10 +3,10 @@ import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { cn } from "~/lib/classname";
 import {
-  CalloutSegment,
+  type CalloutSegment,
   getCalloutTranslationKey,
   htmlParsing,
-  TextSegment,
+  type TextSegment,
   translationParsing,
 } from "~/lib/contentParsing";
 import PageContext from "~/utils/pageContext";
@@ -141,7 +141,10 @@ const Text = (props: Props) => {
 
     const translated = translationParsing(props.children || "", [
       { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
-      { nodeAttr: /data-callout=["']important["']/, translation: t(getCalloutTranslationKey("important")) },
+      {
+        nodeAttr: /data-callout=["']important["']/,
+        translation: t(getCalloutTranslationKey("important")),
+      },
     ]);
 
     if (!hasMounted) {
@@ -162,19 +165,28 @@ const Text = (props: Props) => {
   return props.html ? (
     <div
       data-section={props.id}
-      className={cn(styles.content, pageContext.activeSection === props.id && styles.highlighted, props.className)}
+      className={cn(
+        styles.content,
+        pageContext.activeSection === props.id && styles.highlighted,
+        props.className,
+      )}
     >
       {contentSegments.map((segment, index) => {
         if (segment.type === "text") {
           const textSegment = segment as TextSegment;
-          return <div key={`text-${index}`} dangerouslySetInnerHTML={{ __html: textSegment.content }} />;
+          return (
+            <div key={`text-${index}`} dangerouslySetInnerHTML={{ __html: textSegment.content }} />
+          );
         } else if (segment.type === "callout") {
           const calloutSegment = segment as CalloutSegment;
 
           return (
             <CallOut key={`callout-${calloutSegment.calloutType}-${index}`} className="p-4 ps-6">
               <b className="mb-2 block text-xl">{calloutSegment.title}</b>
-              <div className="not-prose" dangerouslySetInnerHTML={{ __html: calloutSegment.content }} />
+              <div
+                className="not-prose"
+                dangerouslySetInnerHTML={{ __html: calloutSegment.content }}
+              />
             </CallOut>
           );
         }
@@ -183,7 +195,10 @@ const Text = (props: Props) => {
     </div>
   ) : (
     <>
-      <span className={pageContext.activeSection === props.id ? styles.highlighted : ""} data-section={props.id}>
+      <span
+        className={pageContext.activeSection === props.id ? styles.highlighted : ""}
+        data-section={props.id}
+      >
         {convertedContent}
       </span>
     </>

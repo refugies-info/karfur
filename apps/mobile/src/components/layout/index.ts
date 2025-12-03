@@ -1,5 +1,5 @@
 export { default as Card } from "./Card";
-export { default as Columns, ColumnsSpacing } from "./Columns";
+export { ColumnsSpacing, default as Columns } from "./Columns";
 export { default as Content } from "./Content";
 export * from "./Header";
 export { default as Page } from "./Page";

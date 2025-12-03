@@ -9,7 +9,12 @@ interface Props {
 
 const DeleteContentModal = (props: Props) => {
   return (
-    <BaseModal show={props.show} toggle={props.toggle} title="Êtes-vous sûr de vouloir supprimer ce partenaire ?" small>
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      title="Êtes-vous sûr de vouloir supprimer ce partenaire ?"
+      small
+    >
       <div>
         <p>Si vous le supprimez, le contenu (nom, logo, site internet) sera perdu.</p>
 

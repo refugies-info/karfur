@@ -1,6 +1,6 @@
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { ReactElement, ReactNode } from "react";
+import { useTranslation } from "next-i18next";
+import type { ReactElement, ReactNode } from "react";
 import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";

@@ -6,15 +6,18 @@ type SectionUrlCorrespondencies = {
 export const sectionUrlCorrespondencies: SectionUrlCorrespondencies[] = [
   {
     section: "Tags",
-    tutoUrl: "https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq",
   },
   {
     section: "Titre",
-    tutoUrl: "https://help.refugies.info/fr/article/choisir-le-titre-et-le-nom-creer-une-fiche-dispositif-110-1dybpzl",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/choisir-le-titre-et-le-nom-creer-une-fiche-dispositif-110-1dybpzl",
   },
   {
     section: "C'est quoi ?",
-    tutoUrl: "https://help.refugies.info/fr/article/rediger-un-resume-creer-une-fiche-dispositif-310-4tbam6",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/rediger-un-resume-creer-une-fiche-dispositif-310-4tbam6",
   },
   {
     section: "C'est pour qui ?",
@@ -33,7 +36,8 @@ export const sectionUrlCorrespondencies: SectionUrlCorrespondencies[] = [
   },
   {
     section: "Map",
-    tutoUrl: "https://help.refugies.info/fr/article/localiser-votre-dispositif-creer-une-fiche-dispositif-710-81ce2s",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/localiser-votre-dispositif-creer-une-fiche-dispositif-710-81ce2s",
   },
   {
     section: "Sponsors",
@@ -42,7 +46,8 @@ export const sectionUrlCorrespondencies: SectionUrlCorrespondencies[] = [
   },
   {
     section: "ResponsabilitéFiche",
-    tutoUrl: "https://help.refugies.info/fr/article/8-sur-10-structure-responsable-et-partenaires-5qxsto",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/8-sur-10-structure-responsable-et-partenaires-5qxsto",
   },
   {
     section: "WebsiteLink",
@@ -64,18 +69,22 @@ export const sectionUrlCorrespondencies: SectionUrlCorrespondencies[] = [
   },
   {
     section: "Mes fiches",
-    tutoUrl: "https://help.refugies.info/fr/article/quel-est-mon-impact-en-tant-que-contributeur-1p0suam",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/quel-est-mon-impact-en-tant-que-contributeur-1p0suam",
   },
   {
     section: "Statut des fiches",
-    tutoUrl: "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/comprendre-le-processus-de-publication-des-fiches-1alq0ht",
   },
   {
     section: "Traduction",
-    tutoUrl: "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/comment-traduire-une-page-sur-refugiesinfo-1nnffof",
   },
   {
     section: "Traduction besoin",
-    tutoUrl: "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/experts-traduire-les-besoins-pour-lapplication-mobile-1fpz5wg",
   },
 ];

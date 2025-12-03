@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import styled from "styled-components";
 import placeholder from "~/assets/placeholder_annuaire.png";
 import Image from "~/components/UI/Image";
@@ -88,10 +88,18 @@ export const ActivityCard = (props: Props) => {
       isLectureMode={props.isLectureMode}
     >
       <ImageContainer>
-        {!props.image && <ActivityImage src={placeholder} alt="placeholder" style={{ objectFit: "contain" }} />}
+        {!props.image && (
+          <ActivityImage src={placeholder} alt="placeholder" style={{ objectFit: "contain" }} />
+        )}
         <div>
           {props.image && (
-            <Image src={props.image} alt={props.activity} width={144} height={100} style={{ objectFit: "contain" }} />
+            <Image
+              src={props.image}
+              alt={props.activity}
+              width={144}
+              height={100}
+              style={{ objectFit: "contain" }}
+            />
           )}
         </div>
       </ImageContainer>

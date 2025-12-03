@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DotLottieReact, DotLottieReactProps } from "@lottiefiles/dotlottie-react";
+import { DotLottieReact, type DotLottieReactProps } from "@lottiefiles/dotlottie-react";
 import { cn } from "@refugies-info/ui";
 import { forwardRef, useImperativeHandle, useState } from "react";
 

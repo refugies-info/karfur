@@ -1,9 +1,9 @@
-import { DownloadAppRequest } from "@refugies-info/api-types";
+import type { DownloadAppRequest } from "@refugies-info/api-types";
 import { InvalidRequestError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { sendSMS } from "~/services";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const downloadApp = async (body: DownloadAppRequest): Response => {
   logger.info("[downloadApp] received", body);

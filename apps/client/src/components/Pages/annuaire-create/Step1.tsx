@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { Input, Spinner } from "reactstrap";
 import styled from "styled-components";
@@ -84,7 +84,7 @@ export const Step1 = (props: Props) => {
   const handleFileInputChange = (event: any) => {
     setUploading(true);
     const formData = new FormData();
-    // @ts-ignore
+    // @ts-expect-error
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)
@@ -102,7 +102,8 @@ export const Step1 = (props: Props) => {
       .catch(handleApiDefaultError);
     props.setHasModifications(true);
   };
-  const secureUrl = props.structure && props.structure.picture && props.structure.picture.secure_url;
+  const secureUrl =
+    props.structure && props.structure.picture && props.structure.picture.secure_url;
 
   return (
     <MainContainer className="step1">
@@ -144,12 +145,24 @@ export const Step1 = (props: Props) => {
               style={{ objectFit: "contain" }}
             />
           ) : (
-            <Image src={PlaceholderLogo} alt="defautl logo" width={200} height={200} style={{ objectFit: "contain" }} />
+            <Image
+              src={PlaceholderLogo}
+              alt="defautl logo"
+              width={200}
+              height={200}
+              style={{ objectFit: "contain" }}
+            />
           )}
         </LogoWrapper>
         <RightLogoContainer>
           <FButton type="fill-dark" name="upload-outline" className="relative">
-            <FileInput type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
+            <FileInput
+              type="file"
+              id="picture"
+              name="structure"
+              accept="image/*"
+              onChange={handleFileInputChange}
+            />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Choisir</span>}
 
             {uploading && <Spinner color="success" className="ms-2" />}

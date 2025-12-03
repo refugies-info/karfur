@@ -1,5 +1,5 @@
 import { G, Path, Svg } from "react-native-svg";
-import { IconProps } from "./IconProps";
+import type { IconProps } from "./IconProps";
 
 const Commitment = ({ color, width = 32, height = 32 }: IconProps) => (
   <Svg fill="none" height={height} viewBox="0 0 56 56" width={width}>

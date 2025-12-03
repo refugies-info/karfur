@@ -1,17 +1,25 @@
-import { ContentType, Id } from "@refugies-info/api-types";
+import { ContentType, type Id } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import { useCallback, useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import FButton from "~/components/UI/FButton";
 import FInput from "~/components/UI/FInput/FInput";
-import { isInBrowser } from "@refugies-info/ui";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { createWidgetActionCreator, fetchWidgetsActionCreator } from "~/services/Widgets/widgets.actions";
+import {
+  createWidgetActionCreator,
+  fetchWidgetsActionCreator,
+} from "~/services/Widgets/widgets.actions";
 import { widgetSelector, widgetsSelector } from "~/services/Widgets/widgets.selectors";
-import { FigureContainer, StyledHeader, StyledHeaderInner, StyledTitle } from "../sharedComponents/StyledAdmin";
+import {
+  FigureContainer,
+  StyledHeader,
+  StyledHeaderInner,
+  StyledTitle,
+} from "../sharedComponents/StyledAdmin";
 import { LanguageInput } from "./components/LanguageInput";
 import { LocationInput } from "./components/LocationInput";
 import { ThemesInput } from "./components/ThemesInput";
@@ -110,11 +118,14 @@ export const Widgets = () => {
 
               <ThemesInput
                 selectedThemes={selectedThemes}
-                //@ts-ignore
+                //@ts-expect-error
                 setSelectedThemes={setSelectedThemes}
               />
 
-              <LocationInput selectedDepartment={selectedDepartment} setSelectedDepartment={setSelectedDepartment} />
+              <LocationInput
+                selectedDepartment={selectedDepartment}
+                setSelectedDepartment={setSelectedDepartment}
+              />
 
               <TypeContenuInput
                 selectedTypeContenu={selectedTypeContenu}
@@ -152,7 +163,13 @@ export const Widgets = () => {
           <Col>
             {isFetching ? (
               <SkeletonTheme baseColor="#CDCDCD">
-                <Skeleton width="100%" height={72} count={3} className="mb-4" style={{ borderRadius: 12 }} />
+                <Skeleton
+                  width="100%"
+                  height={72}
+                  count={3}
+                  className="mb-4"
+                  style={{ borderRadius: 12 }}
+                />
               </SkeletonTheme>
             ) : (
               (widgets || []).map((widget) => (
@@ -163,7 +180,11 @@ export const Widgets = () => {
         </Row>
       </div>
 
-      <EditWidgetModal show={showEditModal} toggle={() => toggleModal(null)} widget={selectedWidget} />
+      <EditWidgetModal
+        show={showEditModal}
+        toggle={() => toggleModal(null)}
+        widget={selectedWidget}
+      />
 
       {isInBrowser() && NotificationContainer !== null && <NotificationContainer />}
     </div>

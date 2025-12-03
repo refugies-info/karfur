@@ -1,4 +1,4 @@
-import { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, Metadatas, priceDetails } from "@refugies-info/api-types";
 import { useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { Col, Row } from "reactstrap";
@@ -30,8 +30,12 @@ const ModalPrice = (props: Props) => {
   const [selectedRecurent, setSelectedRecurent] = useState<priceDetails>(
     getValues("metadatas.price.details") || "once",
   );
-  const [priceStart, setPriceStart] = useState<number | undefined>(getValues("metadatas.price.values.0") || undefined);
-  const [priceEnd, setPriceEnd] = useState<number | undefined>(getValues("metadatas.price.values.1") || undefined);
+  const [priceStart, setPriceStart] = useState<number | undefined>(
+    getValues("metadatas.price.values.0") || undefined,
+  );
+  const [priceEnd, setPriceEnd] = useState<number | undefined>(
+    getValues("metadatas.price.values.1") || undefined,
+  );
 
   const validate = () => {
     if (selected !== undefined) {
@@ -137,7 +141,9 @@ const ModalPrice = (props: Props) => {
                     type="number"
                     placeholder={"0"}
                     value={priceStart || ""}
-                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
+                    onChange={(e: any) =>
+                      isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null
+                    }
                     className="spinner"
                   />
                 </span>
@@ -158,7 +164,9 @@ const ModalPrice = (props: Props) => {
                     type="number"
                     placeholder={"0"}
                     value={priceStart || ""}
-                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null)}
+                    onChange={(e: any) =>
+                      isPriceValue(e.target.value) ? setPriceStart(e.target.value) : null
+                    }
                     className="spinner"
                   />
                 </span>
@@ -168,7 +176,9 @@ const ModalPrice = (props: Props) => {
                     type="number"
                     placeholder={"0"}
                     value={priceEnd || ""}
-                    onChange={(e: any) => (isPriceValue(e.target.value) ? setPriceEnd(e.target.value) : null)}
+                    onChange={(e: any) =>
+                      isPriceValue(e.target.value) ? setPriceEnd(e.target.value) : null
+                    }
                     className="spinner"
                   />
                 </span>

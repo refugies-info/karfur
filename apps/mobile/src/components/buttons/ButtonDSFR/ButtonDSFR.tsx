@@ -1,5 +1,10 @@
 import { useMemo } from "react";
-import { StyleProp, TouchableOpacity, TouchableOpacityProps, ViewStyle } from "react-native";
+import {
+  type StyleProp,
+  TouchableOpacity,
+  type TouchableOpacityProps,
+  type ViewStyle,
+} from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
 import { Columns, ColumnsSpacing } from "../../layout";
@@ -76,7 +81,10 @@ const Button = ({
         return "transparent";
     }
   }, [priority]);
-  const color = useMemo(() => (priority === "primary" ? theme.colors.white : theme.colors.dsfr_action), [priority]);
+  const color = useMemo(
+    () => (priority === "primary" ? theme.colors.white : theme.colors.dsfr_action),
+    [priority],
+  );
   const borderColor = useMemo(() => {
     switch (priority) {
       case "primary":
@@ -91,7 +99,8 @@ const Button = ({
   }, [priority]);
 
   const icon = useMemo(
-    () => (iconName ? <Icon color={color} loading={loading} name={iconName} size={ICON_SIZE} /> : null),
+    () =>
+      iconName ? <Icon color={color} loading={loading} name={iconName} size={ICON_SIZE} /> : null,
     [iconName, color, loading],
   );
 

@@ -30,6 +30,9 @@ importers:
 
   .:
     devDependencies:
+      '@biomejs/biome':
+        specifier: 2.3.7
+        version: 2.3.7
       '@codegouvfr/react-dsfr':
         specifier: 1.20.2
         version: 1.20.2(patch_hash=ccdb6ee3a9458eeb45869cf78316c98ef03e5884200760879b187f88fa121aff)
@@ -60,15 +63,6 @@ importers:
       mongodb:
         specifier: ^6.20.0
         version: 6.20.0(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
-      prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
-      prettier-plugin-organize-imports:
-        specifier: ^4.3.0
-        version: 4.3.0(prettier@3.6.2)(typescript@5.9.2)
-      prettier-plugin-tailwindcss:
-        specifier: ^0.6.14
-        version: 0.6.14(prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2)
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -203,7 +197,7 @@ importers:
         version: 15.5.2(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       next-redux-wrapper:
         specifier: ^8.0.0
         version: 8.1.0(next@15.5.2(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-redux@9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
@@ -301,12 +295,6 @@ importers:
         specifier: ^11.0.3
         version: 11.1.0
     devDependencies:
-      '@eslint/eslintrc':
-        specifier: ^3.3.1
-        version: 3.3.1
-      '@eslint/js':
-        specifier: ^9.37.0
-        version: 9.37.0
       '@redux-devtools/extension':
         specifier: ^3.2.1
         version: 3.3.0(redux@5.0.1)
@@ -373,18 +361,6 @@ importers:
       csvtojson:
         specifier: ^2.0.14
         version: 2.0.14
-      eslint:
-        specifier: ^9.34.0
-        version: 9.35.0(jiti@2.6.1)
-      eslint-config-next:
-        specifier: ^15.5.2
-        version: 15.5.2(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2)
-      eslint-config-turbo:
-        specifier: 2.5.4
-        version: 2.5.4(eslint@9.35.0(jiti@2.6.1))(turbo@2.6.0)
-      eslint-plugin-react:
-        specifier: ^7.37.5
-        version: 7.37.5(eslint@9.35.0(jiti@2.6.1))
       fast-check:
         specifier: ^4.2.0
         version: 4.3.0
@@ -980,18 +956,9 @@ importers:
       '@refugies-info/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      eslint:
-        specifier: ^9.34.0
-        version: 9.35.0(jiti@2.6.1)
-      eslint-config-turbo:
-        specifier: 2.5.4
-        version: 2.5.4(eslint@9.35.0(jiti@2.6.1))(turbo@2.6.0)
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
-      typescript-eslint:
-        specifier: ^8.41.0
-        version: 8.43.0(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2)
 
   packages/typescript-config: {}
 
@@ -1011,7 +978,7 @@ importers:
         version: 2.1.1
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -1969,6 +1936,63 @@ packages:
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
 
+  '@biomejs/biome@2.3.7':
+    resolution: {integrity: sha512-CTbAS/jNAiUc6rcq94BrTB8z83O9+BsgWj2sBCQg9rD6Wkh2gjfR87usjx0Ncx0zGXP1NKgT7JNglay5Zfs9jw==}
+    engines: {node: '>=14.21.3'}
+    hasBin: true
+
+  '@biomejs/cli-darwin-arm64@2.3.7':
+    resolution: {integrity: sha512-LirkamEwzIUULhXcf2D5b+NatXKeqhOwilM+5eRkbrnr6daKz9rsBL0kNZ16Hcy4b8RFq22SG4tcLwM+yx/wFA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@biomejs/cli-darwin-x64@2.3.7':
+    resolution: {integrity: sha512-Q4TO633kvrMQkKIV7wmf8HXwF0dhdTD9S458LGE24TYgBjSRbuhvio4D5eOQzirEYg6eqxfs53ga/rbdd8nBKg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@biomejs/cli-linux-arm64-musl@2.3.7':
+    resolution: {integrity: sha512-/afy8lto4CB8scWfMdt+NoCZtatBUF62Tk3ilWH2w8ENd5spLhM77zKlFZEvsKJv9AFNHknMl03zO67CiklL2Q==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@biomejs/cli-linux-arm64@2.3.7':
+    resolution: {integrity: sha512-inHOTdlstUBzgjDcx0ge71U4SVTbwAljmkfi3MC5WzsYCRhancqfeL+sa4Ke6v2ND53WIwCFD5hGsYExoI3EZQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@biomejs/cli-linux-x64-musl@2.3.7':
+    resolution: {integrity: sha512-CQUtgH1tIN6e5wiYSJqzSwJumHYolNtaj1dwZGCnZXm2PZU1jOJof9TsyiP3bXNDb+VOR7oo7ZvY01If0W3iFQ==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@biomejs/cli-linux-x64@2.3.7':
+    resolution: {integrity: sha512-fJMc3ZEuo/NaMYo5rvoWjdSS5/uVSW+HPRQujucpZqm2ZCq71b8MKJ9U4th9yrv2L5+5NjPF0nqqILCl8HY/fg==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@biomejs/cli-win32-arm64@2.3.7':
+    resolution: {integrity: sha512-aJAE8eCNyRpcfx2JJAtsPtISnELJ0H4xVVSwnxm13bzI8RwbXMyVtxy2r5DV1xT3WiSP+7LxORcApWw0LM8HiA==}
+    engines: {node: '>=14.21.3'}
+    cpu: [arm64]
+    os: [win32]
+
+  '@biomejs/cli-win32-x64@2.3.7':
+    resolution: {integrity: sha512-pulzUshqv9Ed//MiE8MOUeeEkbkSHVDVY5Cz5wVAnH1DUqliCQG3j6s1POaITTFqFfo7AVIx2sWdKpx/GS+Nqw==}
+    engines: {node: '>=14.21.3'}
+    cpu: [x64]
+    os: [win32]
+
   '@chromatic-com/storybook@4.1.3':
     resolution: {integrity: sha512-hc0HO9GAV9pxqDE6fTVOV5KeLpTiCfV8Jrpk5ogKLiIgeq2C+NPjpt74YnrZTjiK8E19fYcMP+2WY9ZtX7zHmw==}
     engines: {node: '>=20.0.0', yarn: '>=1.22.18'}
@@ -2256,10 +2280,6 @@ packages:
 
   '@eslint/js@9.35.0':
     resolution: {integrity: sha512-30iXE9whjlILfWobBkNerJo+TXYsgVM5ERQwMcMKCHckHflCmf7wXDAHlARoWnh0s1U72WqlbeyE7iAcCzuCPw==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  '@eslint/js@9.37.0':
-    resolution: {integrity: sha512-jaS+NJ+hximswBG6pjNX0uEJZkrT0zwpVi3BA3vX22aFGjJjmgSTSmPpZCRKmoBL5VY/M6p0xsSJx7rk7sy5gg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.6':
@@ -3310,9 +3330,6 @@ packages:
 
   '@next/eslint-plugin-next@14.2.32':
     resolution: {integrity: sha512-tyZMX8g4cWg/uPW4NxiJK13t62Pab47SKGJGVZJa6YtFwtfrXovH4j1n9tdpRdXW03PGQBugYEVGM7OhWfytdA==}
-
-  '@next/eslint-plugin-next@15.5.2':
-    resolution: {integrity: sha512-lkLrRVxcftuOsJNhWatf1P2hNVfh98k/omQHrCEPPriUypR6RcS13IvLdIrEvkm9AH2Nu2YpR5vLqBuy6twH3Q==}
 
   '@next/swc-darwin-arm64@15.5.2':
     resolution: {integrity: sha512-8bGt577BXGSd4iqFygmzIfTYizHb0LGWqH+qgIF/2EDxS5JsSdERJKA8WgwDyNBZgTIIA4D8qUtoQHmxIIquoQ==}
@@ -6953,15 +6970,6 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-next@15.5.2:
-    resolution: {integrity: sha512-3hPZghsLupMxxZ2ggjIIrat/bPniM2yRpsVPVM40rp8ZMzKWOJp2CGWn7+EzoV2ddkUr5fxNfHpF+wU1hGt/3g==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
-      typescript: '>=3.3.1'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
   eslint-config-turbo@2.5.4:
     resolution: {integrity: sha512-OpjpDLXIaus0N/Y+pMj17K430xjpd6WTo0xPUESqYZ9BkMngv2n0ZdjktgJTbJVnDmK7gHrXgJAljtdIMcYBIg==}
     peerDependencies:
@@ -7032,12 +7040,6 @@ packages:
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0
-
-  eslint-plugin-react-hooks@5.2.0:
-    resolution: {integrity: sha512-+f15FfK64YQwZdJNELETdn5ibXEUQmW1DZL6KXhNnc2heoy/sg9VJJeT7n8TlMWouzWqSWavFkIhHyIbIAEapg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
   eslint-plugin-react@7.37.5:
     resolution: {integrity: sha512-Qteup0SqU15kdocexFNAJMvCJEfa2xUKNV4CC1xsVMrIIqEy3SQ/rqyxCWNzfrd3/ldy6HMlD2e0JDVpDg2qIA==}
@@ -7391,10 +7393,6 @@ packages:
 
   fast-fifo@1.3.2:
     resolution: {integrity: sha512-/d9sfos4yxzpwkDkuN7k2SqFKtYNmCTzgfEpz82x34IM9/zc8KGxQoXg1liNC/izpRM/MBdt44Nmx41ZWqk+FQ==}
-
-  fast-glob@3.3.1:
-    resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
-    engines: {node: '>=8.6.0'}
 
   fast-glob@3.3.3:
     resolution: {integrity: sha512-7MptL8U0cqcFdzIzwOTHoilX9x5BrNqye7Z/LuC7kCMRio1EMSyqRK3BEAUD7sXRq4iT4AzTVuZdhgQ2TCvYLg==}
@@ -10262,77 +10260,6 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-
-  prettier-plugin-organize-imports@4.3.0:
-    resolution: {integrity: sha512-FxFz0qFhyBsGdIsb697f/EkvHzi5SZOhWAjxcx2dLt+Q532bAlhswcXGYB1yzjZ69kW8UoadFBw7TyNwlq96Iw==}
-    peerDependencies:
-      prettier: '>=2.0'
-      typescript: '>=2.9'
-      vue-tsc: ^2.1.0 || 3
-    peerDependenciesMeta:
-      vue-tsc:
-        optional: true
-
-  prettier-plugin-tailwindcss@0.6.14:
-    resolution: {integrity: sha512-pi2e/+ZygeIqntN+vC573BcW5Cve8zUB0SSAGxqpB4f96boZF4M3phPVoOFCeypwkpRYdi7+jQ5YJJUwrkGUAg==}
-    engines: {node: '>=14.21.3'}
-    peerDependencies:
-      '@ianvs/prettier-plugin-sort-imports': '*'
-      '@prettier/plugin-hermes': '*'
-      '@prettier/plugin-oxc': '*'
-      '@prettier/plugin-pug': '*'
-      '@shopify/prettier-plugin-liquid': '*'
-      '@trivago/prettier-plugin-sort-imports': '*'
-      '@zackad/prettier-plugin-twig': '*'
-      prettier: ^3.0
-      prettier-plugin-astro: '*'
-      prettier-plugin-css-order: '*'
-      prettier-plugin-import-sort: '*'
-      prettier-plugin-jsdoc: '*'
-      prettier-plugin-marko: '*'
-      prettier-plugin-multiline-arrays: '*'
-      prettier-plugin-organize-attributes: '*'
-      prettier-plugin-organize-imports: '*'
-      prettier-plugin-sort-imports: '*'
-      prettier-plugin-style-order: '*'
-      prettier-plugin-svelte: '*'
-    peerDependenciesMeta:
-      '@ianvs/prettier-plugin-sort-imports':
-        optional: true
-      '@prettier/plugin-hermes':
-        optional: true
-      '@prettier/plugin-oxc':
-        optional: true
-      '@prettier/plugin-pug':
-        optional: true
-      '@shopify/prettier-plugin-liquid':
-        optional: true
-      '@trivago/prettier-plugin-sort-imports':
-        optional: true
-      '@zackad/prettier-plugin-twig':
-        optional: true
-      prettier-plugin-astro:
-        optional: true
-      prettier-plugin-css-order:
-        optional: true
-      prettier-plugin-import-sort:
-        optional: true
-      prettier-plugin-jsdoc:
-        optional: true
-      prettier-plugin-marko:
-        optional: true
-      prettier-plugin-multiline-arrays:
-        optional: true
-      prettier-plugin-organize-attributes:
-        optional: true
-      prettier-plugin-organize-imports:
-        optional: true
-      prettier-plugin-sort-imports:
-        optional: true
-      prettier-plugin-style-order:
-        optional: true
-      prettier-plugin-svelte:
-        optional: true
 
   prettier@3.6.2:
     resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
@@ -14076,6 +14003,41 @@ snapshots:
 
   '@bcoe/v8-coverage@0.2.3': {}
 
+  '@biomejs/biome@2.3.7':
+    optionalDependencies:
+      '@biomejs/cli-darwin-arm64': 2.3.7
+      '@biomejs/cli-darwin-x64': 2.3.7
+      '@biomejs/cli-linux-arm64': 2.3.7
+      '@biomejs/cli-linux-arm64-musl': 2.3.7
+      '@biomejs/cli-linux-x64': 2.3.7
+      '@biomejs/cli-linux-x64-musl': 2.3.7
+      '@biomejs/cli-win32-arm64': 2.3.7
+      '@biomejs/cli-win32-x64': 2.3.7
+
+  '@biomejs/cli-darwin-arm64@2.3.7':
+    optional: true
+
+  '@biomejs/cli-darwin-x64@2.3.7':
+    optional: true
+
+  '@biomejs/cli-linux-arm64-musl@2.3.7':
+    optional: true
+
+  '@biomejs/cli-linux-arm64@2.3.7':
+    optional: true
+
+  '@biomejs/cli-linux-x64-musl@2.3.7':
+    optional: true
+
+  '@biomejs/cli-linux-x64@2.3.7':
+    optional: true
+
+  '@biomejs/cli-win32-arm64@2.3.7':
+    optional: true
+
+  '@biomejs/cli-win32-x64@2.3.7':
+    optional: true
+
   '@chromatic-com/storybook@4.1.3(storybook@10.0.8(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))':
     dependencies:
       '@neoconfetti/react': 1.0.0
@@ -14301,8 +14263,6 @@ snapshots:
   '@eslint/js@8.57.1': {}
 
   '@eslint/js@9.35.0': {}
-
-  '@eslint/js@9.37.0': {}
 
   '@eslint/object-schema@2.1.6': {}
 
@@ -15918,10 +15878,6 @@ snapshots:
   '@next/eslint-plugin-next@14.2.32':
     dependencies:
       glob: 10.5.0
-
-  '@next/eslint-plugin-next@15.5.2':
-    dependencies:
-      fast-glob: 3.3.1
 
   '@next/swc-darwin-arm64@15.5.2':
     optional: true
@@ -20074,26 +20030,6 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
-  eslint-config-next@15.5.2(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2):
-    dependencies:
-      '@next/eslint-plugin-next': 15.5.2
-      '@rushstack/eslint-patch': 1.12.0
-      '@typescript-eslint/eslint-plugin': 8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2))(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2)
-      '@typescript-eslint/parser': 8.43.0(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2)
-      eslint: 9.35.0(jiti@2.6.1)
-      eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.6.1))
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0(jiti@2.6.1))(typescript@5.9.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.35.0(jiti@2.6.1))
-      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.35.0(jiti@2.6.1))
-      eslint-plugin-react: 7.37.5(eslint@9.35.0(jiti@2.6.1))
-      eslint-plugin-react-hooks: 5.2.0(eslint@9.35.0(jiti@2.6.1))
-    optionalDependencies:
-      typescript: 5.9.2
-    transitivePeerDependencies:
-      - eslint-import-resolver-webpack
-      - eslint-plugin-import-x
-      - supports-color
-
   eslint-config-turbo@2.5.4(eslint@9.35.0(jiti@2.6.1))(turbo@2.6.0):
     dependencies:
       eslint: 9.35.0(jiti@2.6.1)
@@ -20189,10 +20125,6 @@ snapshots:
       string.prototype.includes: 2.0.1
 
   eslint-plugin-react-hooks@5.0.0-canary-7118f5dd7-20230705(eslint@9.35.0(jiti@2.6.1)):
-    dependencies:
-      eslint: 9.35.0(jiti@2.6.1)
-
-  eslint-plugin-react-hooks@5.2.0(eslint@9.35.0(jiti@2.6.1)):
     dependencies:
       eslint: 9.35.0(jiti@2.6.1)
 
@@ -20731,14 +20663,6 @@ snapshots:
   fast-deep-equal@3.1.3: {}
 
   fast-fifo@1.3.2: {}
-
-  fast-glob@3.3.1:
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.8
 
   fast-glob@3.3.3:
     dependencies:
@@ -23561,7 +23485,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-i18next@15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0):
+  next-i18next@15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.2(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.28.4
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.0.14)
@@ -24296,18 +24220,8 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.9.2):
-    dependencies:
-      prettier: 3.6.2
-      typescript: 5.9.2
-
-  prettier-plugin-tailwindcss@0.6.14(prettier-plugin-organize-imports@4.3.0(prettier@3.6.2)(typescript@5.9.2))(prettier@3.6.2):
-    dependencies:
-      prettier: 3.6.2
-    optionalDependencies:
-      prettier-plugin-organize-imports: 4.3.0(prettier@3.6.2)(typescript@5.9.2)
-
-  prettier@3.6.2: {}
+  prettier@3.6.2:
+    optional: true
 
   pretty-bytes@5.6.0: {}
 

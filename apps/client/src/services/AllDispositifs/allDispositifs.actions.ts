@@ -1,5 +1,5 @@
-import { GetAllDispositifsResponse } from "@refugies-info/api-types";
-import { ActionType, action } from "typesafe-actions";
+import type { GetAllDispositifsResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_ALL_DISPOSITIFS, SET_ALL_DISPOSITIFS } from "./allDispositifs.actionTypes";
 
 export const setAllDispositifsActionsCreator = (value: GetAllDispositifsResponse[]) =>

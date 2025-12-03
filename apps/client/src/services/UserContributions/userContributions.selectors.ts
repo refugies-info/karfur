@@ -1,4 +1,5 @@
-import { RootState } from "../rootReducer";
-import { UserContributionsState } from "./userContributions.reducer";
+import type { RootState } from "../rootReducer";
+import type { UserContributionsState } from "./userContributions.reducer";
 
-export const userContributionsSelector = (state: RootState): UserContributionsState => state.userContributions;
+export const userContributionsSelector = (state: RootState): UserContributionsState =>
+  state.userContributions;

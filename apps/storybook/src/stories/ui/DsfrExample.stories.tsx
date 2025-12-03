@@ -63,7 +63,12 @@ export const Alerts: StoryObj = {
         description="Ceci est une alerte d'information"
         className={cn("fr-mb-2w")}
       />
-      <Alert severity="success" title="Succès" description="Ceci est une alerte de succès" className={cn("fr-mb-2w")} />
+      <Alert
+        severity="success"
+        title="Succès"
+        description="Ceci est une alerte de succès"
+        className={cn("fr-mb-2w")}
+      />
       <Alert
         severity="warning"
         title="Avertissement"
@@ -81,8 +86,9 @@ export const Accordions: StoryObj = {
       <h2 className={cn("fr-h2", "fr-mb-2w")}>Accordions</h2>
       <Accordion label="Cliquez pour ouvrir l'accordéon">
         <p>
-          Contenu de l&apos;accordéon. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
-          Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+          Contenu de l&apos;accordéon. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+          non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed,
+          dolor.
         </p>
       </Accordion>
     </div>
@@ -182,10 +188,19 @@ export const FormElements: StoryObj = {
       <h2 className={cn("fr-h2", "fr-mb-2w")}>Form Elements</h2>
 
       <h3 className={cn("fr-h3", "fr-mb-1w")}>Input</h3>
-      <Input label="Champ de texte" hintText="Texte d'aide pour ce champ" className={cn("fr-mb-3w")} />
+      <Input
+        label="Champ de texte"
+        hintText="Texte d'aide pour ce champ"
+        className={cn("fr-mb-3w")}
+      />
 
       <h3 className={cn("fr-h3", "fr-mb-1w")}>Select</h3>
-      <Select label="Sélection" hint="Choisissez une option" className={cn("fr-mb-3w")} nativeSelectProps={{}}>
+      <Select
+        label="Sélection"
+        hint="Choisissez une option"
+        className={cn("fr-mb-3w")}
+        nativeSelectProps={{}}
+      >
         <option value="">Sélectionnez une option</option>
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>

@@ -1,8 +1,13 @@
-import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
-import * as express from "express";
+import type {
+  GetWidgetResponse,
+  PatchWidgetResponse,
+  PostWidgetResponse,
+  WidgetRequest,
+} from "@refugies-info/api-types";
+import type * as express from "express";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 import { validateId } from "~/libs/validateId";
-import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import type { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { deleteWidget } from "~/workflows/widget/deleteWidget";
 import { getWidgets } from "~/workflows/widget/getWidgets";
 import { patchWidget } from "~/workflows/widget/patchWidget";
@@ -24,7 +29,10 @@ export class WidgetController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async post(@Body() body: WidgetRequest, @Request() request: IRequest): ResponseWithData<PostWidgetResponse> {
+  public async post(
+    @Body() body: WidgetRequest,
+    @Request() request: IRequest,
+  ): ResponseWithData<PostWidgetResponse> {
     return postWidgets(body, request.userId);
   }
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactElement, useMemo } from "react";
+import { type ReactElement, useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 
@@ -46,7 +46,9 @@ const Card = (props: Props) => {
           {props.imageComponent}
         </div>
         <h3 className="text-h6 md:text-h5 text-title-blue-france my-3">{props.title}</h3>
-        <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>{props.children}</div>
+        <div className={cls("[&_p]:text-large", props.footerBottom && "flex-grow")}>
+          {props.children}
+        </div>
         {props.footer && <div>{props.footer}</div>}
       </div>
     ),

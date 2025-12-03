@@ -38,7 +38,9 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     for (const themeId of query.themes) {
       const theme = themes.find((t) => t._id === themeId);
       if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
+        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter(
+          (need) => need.theme._id === themeId,
+        ).length;
       }
     }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);

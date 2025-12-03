@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useState } from "react";
+import { type ReactElement, useEffect, useState } from "react";
 import CheckCode from "~/components/Pages/auth/CheckCode";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";

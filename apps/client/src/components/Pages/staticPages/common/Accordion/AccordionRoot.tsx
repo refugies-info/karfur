@@ -1,5 +1,5 @@
 import * as AccordionRadix from "@radix-ui/react-accordion";
-import React from "react";
+import type React from "react";
 
 interface Props {
   multiOpen?: boolean;
@@ -20,7 +20,9 @@ const AccordionRoot = (props: Props) => {
   ) : (
     <AccordionRadix.Root
       type="single"
-      onValueChange={(value: string | string[]) => props.setOpen([Number.parseInt(value as string)])}
+      onValueChange={(value: string | string[]) =>
+        props.setOpen([Number.parseInt(value as string)])
+      }
       defaultValue={props.initOpen ? "0" : undefined}
     >
       {props.children}

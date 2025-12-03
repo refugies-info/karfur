@@ -1,5 +1,5 @@
-import { NavigationProp } from "@react-navigation/native";
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { NavigationProp } from "@react-navigation/native";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import { LinearGradient } from "expo-linear-gradient";
 import * as React from "react";
 import { TouchableOpacity, View } from "react-native";
@@ -8,7 +8,7 @@ import styled from "styled-components/native";
 import { firstLetterUpperCase } from "~/libs";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { RTLView } from "../BasicComponents";
@@ -80,7 +80,9 @@ const CarousselCardComponent = (props: Props) => {
           <TagImage appImage={props.theme.appImage} />
         </View>
         <StyledContainer backgroundColor={props.theme.colors.color100}>
-          <StyledText>{firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}</StyledText>
+          <StyledText>
+            {firstLetterUpperCase(props.theme.name[currentLanguageI18nCode || "fr"])}
+          </StyledText>
           {props.theme.icon && <StreamlineIcon icon={props.theme.icon} size={20} />}
         </StyledContainer>
       </CardGradient>

@@ -1,7 +1,7 @@
 import logger from "~/logger";
 import { deleteThemeById } from "~/modules/themes/themes.repository";
 import { AppUserModel } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const deleteTheme = async (id: string): Response => {
   logger.info("[deleteTheme] received", id);

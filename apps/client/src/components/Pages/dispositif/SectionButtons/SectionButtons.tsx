@@ -1,7 +1,7 @@
 "use client";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Tooltip from "@codegouvfr/react-dsfr/Tooltip";
-import { InfoSection } from "@refugies-info/api-types";
+import type { InfoSection } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { hasTTSAvailable } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
@@ -103,7 +103,11 @@ const SectionButtons = ({ id, content, className }: Props) => {
               className={cn(
                 "bg-action-high-blue-france rounded-full px-1 py-1 text-white lg:px-1.5 lg:py-0",
                 "lg:[&::before]:![--icon-size:0.75rem]",
-                isLoadingTts ? "fr-icon-refresh-line animate-spin" : isPlaying ? "ri-pause-fill" : "ri-play-fill",
+                isLoadingTts
+                  ? "fr-icon-refresh-line animate-spin"
+                  : isPlaying
+                    ? "ri-pause-fill"
+                    : "ri-play-fill",
               )}
             />
             {isMobile || isTablet ? t("listen") : ""}

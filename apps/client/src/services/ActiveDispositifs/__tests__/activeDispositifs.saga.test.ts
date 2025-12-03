@@ -2,11 +2,19 @@
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
 import { languei18nSelector } from "../../Langue/langue.selectors";
-import { LoadingStatusKey, finishLoading, setError, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  setError,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import { setActiveDispositifsActionsCreator } from "../activeDispositifs.actions";
 import { UPDATE_DISPOSITIF_REACTION } from "../activeDispositifs.actionTypes";
-import latestActionsSaga, { fetchActiveDispositifs, updateDispositifReaction } from "../activeDispositifs.saga";
+import latestActionsSaga, {
+  fetchActiveDispositifs,
+  updateDispositifReaction,
+} from "../activeDispositifs.saga";
 
 describe("[Saga] Active dispositifs", () => {
   describe("pilot", () => {
@@ -49,7 +57,9 @@ describe("[Saga] Active dispositifs", () => {
         .throw(new Error("error"))
         .put(setActiveDispositifsActionsCreator([]))
         .next()
-        .put(setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"))
+        .put(
+          setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"),
+        )
         .next()
         .isDone();
     });

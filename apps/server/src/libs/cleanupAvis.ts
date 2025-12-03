@@ -1,4 +1,4 @@
-import { Avis } from "~/typegoose/Dispositif";
+import type { Avis } from "~/typegoose/Dispositif";
 
 export const cleanupAvis = (avis: Avis) => {
   if (avis.userId === undefined) delete avis.userId;

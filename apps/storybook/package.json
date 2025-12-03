@@ -7,7 +7,9 @@
     "build": "storybook build",
     "dev": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006 --debug-webpack",
-    "storybook:publish": "dotenv-run-script chromatic"
+    "storybook:publish": "dotenv-run-script chromatic",
+    "lint": "biome lint .",
+    "format": "biome format --write ."
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
@@ -30,14 +32,9 @@
     "@types/react-dom": "19.2.1",
     "chromatic": "^13.1.4",
     "dotenv-run-script": "^0.4.1",
-    "eslint": "^9.34.0",
-    "eslint-config-next": "^14.2.32",
-    "eslint-config-turbo": "^2.5.6",
-    "eslint-plugin-storybook": "^10.0.8",
     "postcss": "^8.5.6",
     "storybook": "^10.0.8",
     "tailwindcss": "^4.1.12",
-    "typescript": "^5.9.2",
-    "typescript-eslint": "^8.41.0"
+    "typescript": "^5.9.2"
   }
 }

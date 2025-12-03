@@ -1,24 +1,35 @@
-import { GetStructureResponse, PatchStructureRequest } from "@refugies-info/api-types";
+import type { GetStructureResponse, PatchStructureRequest } from "@refugies-info/api-types";
 import pick from "lodash/pick";
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { FETCH_SELECTED_STRUCTURE, UPDATE_SELECTED_STRUCTURE } from "./selectedStructure.actionTypes";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import {
   fetchSelectedStructureActionCreator,
   setSelectedStructureActionCreator,
-  updateSelectedStructureActionCreator,
+  type updateSelectedStructureActionCreator,
 } from "./selectedStructure.actions";
+import {
+  FETCH_SELECTED_STRUCTURE,
+  UPDATE_SELECTED_STRUCTURE,
+} from "./selectedStructure.actionTypes";
 import { selectedStructureSelector } from "./selectedStructure.selector";
 
-export function* fetchSelectedStructure(action: ReturnType<typeof fetchSelectedStructureActionCreator>): SagaIterator {
+export function* fetchSelectedStructure(
+  action: ReturnType<typeof fetchSelectedStructureActionCreator>,
+): SagaIterator {
   try {
     const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
     logger.info("[fetchSelectedStructure] fetching structure", { id, locale });
-    const data: GetStructureResponse = yield call(API.getStructureById, id, locale, { token: action.payload.token });
+    const data: GetStructureResponse = yield call(API.getStructureById, id, locale, {
+      token: action.payload.token,
+    });
     yield put(setSelectedStructureActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {

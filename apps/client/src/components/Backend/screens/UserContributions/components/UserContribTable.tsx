@@ -1,9 +1,9 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import Link from "next/link";
 import { Table } from "reactstrap";
 import styles from "~/scss/components/adminTable.module.scss";
 import { DeleteButton, SeeButton, Title } from "../../Admin/sharedComponents/SubComponents";
-import { FormattedUserContribution } from "../types";
+import type { FormattedUserContribution } from "../types";
 import { ContribStyledStatus, Responsabilite, StatutHeader, TypeContenu } from "./SubComponents";
 
 const headers = ["Type", "Titre", "Responsabilité", "Statut", "Merci", "Vues"];
@@ -48,7 +48,10 @@ export const UserContribTable = (props: Props) => (
             </td>
             <td className="align-middle">
               <Link href={burl}>
-                <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+                <Title
+                  titreInformatif={element.titreInformatif}
+                  titreMarque={element.titreMarque || null}
+                />
               </Link>
             </td>
 
@@ -105,7 +108,9 @@ export const UserContribTable = (props: Props) => (
                 <SeeButton burl={burl} />
                 <DeleteButton
                   testId={`delete-button-${element._id}`}
-                  onClick={(event: any) => props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)}
+                  onClick={(event: any) =>
+                    props.deleteDispositif(event, element._id, element.isAuthorizedToDelete)
+                  }
                   disabled={!element.isAuthorizedToDelete}
                 />
               </div>

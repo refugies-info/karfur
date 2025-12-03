@@ -1,4 +1,4 @@
-import {
+import type {
   ContentType,
   GetDispositifsWithTranslationAvancementResponse,
   GetNeedResponse,
@@ -7,7 +7,10 @@ import {
 } from "@refugies-info/api-types";
 import { NeedTradStatus } from "../../types";
 
-const filterDataExpert = (data: GetDispositifsWithTranslationAvancementResponse[], isExpert: boolean) => {
+const filterDataExpert = (
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  isExpert: boolean,
+) => {
   if (isExpert) return data;
   return data.filter((trad) => ["TO_TRANSLATE", "VALIDATED"].includes(trad.tradStatus));
 };
@@ -52,7 +55,10 @@ const filterDataOnTypeContenu = (
   return data.filter((trad) => trad.type === typeContenuFilter);
 };
 
-const filterDataBySearch = (data: GetDispositifsWithTranslationAvancementResponse[], search: string) => {
+const filterDataBySearch = (
+  data: GetDispositifsWithTranslationAvancementResponse[],
+  search: string,
+) => {
   if (!search) {
     return data;
   }

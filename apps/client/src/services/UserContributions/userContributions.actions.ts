@@ -1,5 +1,5 @@
-import { GetUserContributionsResponse, Id } from "@refugies-info/api-types";
-import { ActionType, action } from "typesafe-actions";
+import type { GetUserContributionsResponse, Id } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import {
   DELETE_DISPOSITIF,
   FETCH_USER_CONTRIBUTIONS,

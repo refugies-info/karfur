@@ -1,13 +1,13 @@
-import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
 import { Checkbox } from "@codegouvfr/react-dsfr/Checkbox";
 import Input from "@codegouvfr/react-dsfr/Input";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
-import { RegisterRequest } from "@refugies-info/api-types";
+import type { RegisterRequest } from "@refugies-info/api-types";
 import { logger } from "logger";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { ReactElement, useMemo, useState } from "react";
+import { useTranslation } from "next-i18next";
+import { type ReactElement, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { Spinner } from "reactstrap";
@@ -74,7 +74,12 @@ const AuthLogin = () => {
   return (
     <div className={cls(styles.container, styles.half)}>
       <SEO title="Bienvenue" />
-      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+      <Button
+        priority="tertiary"
+        size="small"
+        iconId="fr-icon-arrow-left-line"
+        onClick={() => router.back()}
+      >
         Retour
       </Button>
 
@@ -114,7 +119,11 @@ const AuthLogin = () => {
             message: t(criteria.label),
             severity: !password ? "info" : criteria.isOk ? "valid" : "error",
           }))}
-          nativeInputProps={{ name: "password", value: password, onChange: (e: any) => setPassword(e.target.value) }}
+          nativeInputProps={{
+            name: "password",
+            value: password,
+            onChange: (e: any) => setPassword(e.target.value),
+          }}
           className="mb-0"
         />
 

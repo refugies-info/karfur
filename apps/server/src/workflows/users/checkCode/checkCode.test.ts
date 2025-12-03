@@ -1,6 +1,6 @@
 import * as auth from "~/modules/users/auth";
-import * as login2FA from "~/modules/users/login2FA";
 import { LoginErrorType } from "~/modules/users/LoginError";
+import * as login2FA from "~/modules/users/login2FA";
 import { checkCode } from "./checkCode";
 
 jest.mock("../../../modules/users/login2FA", () => ({

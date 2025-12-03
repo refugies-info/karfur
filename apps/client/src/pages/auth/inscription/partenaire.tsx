@@ -4,7 +4,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { partners } from "data/structurePartners";
 import { logger } from "logger";
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useMemo, useState } from "react";
+import { type ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 import NoIcon from "~/assets/auth/no-icon.svg";
 import Layout from "~/components/Pages/auth/Layout";
@@ -24,7 +24,10 @@ const AuthLogin = () => {
   const [error, setError] = useState("");
   const [partner, setPartner] = useState<string | null>(null);
   const { userId, userDetails, getStepCount, next } = useRegisterFlow("partenaire", true);
-  const stepCount = useMemo(() => getStepCount(partner === "" ? null : [RoleName.CAREGIVER]), [partner, getStepCount]);
+  const stepCount = useMemo(
+    () => getStepCount(partner === "" ? null : [RoleName.CAREGIVER]),
+    [partner, getStepCount],
+  );
 
   useEffect(() => {
     if (userDetails?.partner) setPartner(userDetails.partner);
@@ -61,8 +64,8 @@ const AuthLogin = () => {
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Faites-vous partie de l’une des structures suivantes&nbsp;?</h1>
           <p className={styles.subtitle}>
-            Nous avons un partenariat national avec ces structures. Si vous n’en faites pas partie, cochez « Aucune de
-            ces structures ».
+            Nous avons un partenariat national avec ces structures. Si vous n’en faites pas partie,
+            cochez « Aucune de ces structures ».
           </p>
         </div>
 
@@ -74,7 +77,12 @@ const AuthLogin = () => {
             options={[
               ...partners.map((option) => ({
                 illustration: (
-                  <Image alt="illustration" src={option.image} width={option.width} height={option.height} />
+                  <Image
+                    alt="illustration"
+                    src={option.image}
+                    width={option.width}
+                    height={option.height}
+                  />
                 ),
                 label: option.name,
                 nativeInputProps: {

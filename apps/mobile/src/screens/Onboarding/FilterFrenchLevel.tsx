@@ -1,5 +1,5 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { MobileFrenchLevel } from "@refugies-info/api-types";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Rows } from "~/components";
@@ -12,9 +12,11 @@ import {
   saveUserFrenchLevelActionCreator,
 } from "~/services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "~/services/redux/User/user.selectors";
-import { OnboardingParamList } from "~/types/navigation";
+import type { OnboardingParamList } from "~/types/navigation";
 
-export const FilterFrenchLevel = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
+export const FilterFrenchLevel = ({
+  navigation,
+}: StackScreenProps<OnboardingParamList, "FilterFrenchLevel">) => {
   const dispatch = useDispatch();
 
   const [selectedFrenchLevel, setSelectedFrenchLevel] = useState<null | MobileFrenchLevel>(null);
@@ -22,14 +24,19 @@ export const FilterFrenchLevel = ({ navigation }: StackScreenProps<OnboardingPar
 
   useEffect(() => {
     if (userFrenchLevel) {
-      const formattedLevel = frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel);
+      const formattedLevel = frenchLevelFilters.find(
+        (frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel,
+      );
       if (formattedLevel) {
         setSelectedFrenchLevel(formattedLevel.key);
       }
     }
   }, [userFrenchLevel]);
 
-  const navigateToNextScreen = useCallback(() => navigation.navigate("ActivateNotificationsScreen"), [navigation]);
+  const navigateToNextScreen = useCallback(
+    () => navigation.navigate("ActivateNotificationsScreen"),
+    [navigation],
+  );
 
   const onSkip = useCallback(() => {
     dispatch(removeUserFrenchLevelActionCreator(false));

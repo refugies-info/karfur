@@ -3,7 +3,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { noVoiceover } from "~/libs/noVoiceover";
 import NoVoiceover from "~/theme/images/profile/no-voiceover.svg";
 import { RTLView } from "../../BasicComponents";
-import { ChoiceButton, ChoiceButtonProps } from "../../formulaire";
+import { ChoiceButton, type ChoiceButtonProps } from "../../formulaire";
 import Columns from "../../layout/Columns";
 import { TextDSFR_MD, TextDSFR_MD_Med } from "../../StyledText";
 import { Flag } from "../Flag";
@@ -72,7 +72,12 @@ const LanguageDetailsButton = ({
           <StyledText>{!isRTL ? " - " + langueFr : langueFr + " - "}</StyledText>
         </RTLView>
         {noVoiceoverIcon && (
-          <NoVoiceover width={24} height={24} accessible={true} accessibilityLabel="Vocalisation non disponible" />
+          <NoVoiceover
+            width={24}
+            height={24}
+            accessible={true}
+            accessibilityLabel="Vocalisation non disponible"
+          />
         )}
       </Columns>
     </ChoiceButton>

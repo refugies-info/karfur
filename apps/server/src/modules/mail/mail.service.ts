@@ -1,6 +1,6 @@
 import { sendMail } from "~/connectors/sendgrid/sendMail";
 import logger from "~/logger";
-import { DispositifId, UserId } from "~/typegoose";
+import type { DispositifId, UserId } from "~/typegoose";
 import { consentsToEmail } from "./helpers";
 import { addMailEvent } from "./mail.repository";
 
@@ -33,7 +33,11 @@ export const sendWelcomeMail = async (email: string, firstName: string, userId: 
   }
 };
 
-export const sendResetPasswordMail = async (userId: string, lien_reinitialisation: string, email: string) => {
+export const sendResetPasswordMail = async (
+  userId: string,
+  lien_reinitialisation: string,
+  email: string,
+) => {
   try {
     logger.info("[sendResetPasswordMail] received", { email });
     const dynamicData = {
@@ -193,7 +197,8 @@ export const sendMultipleDraftsReminderMailService = async (
           firstName,
         },
       };
-      const templateName = reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
+      const templateName =
+        reminder === "first" ? "multipleDraftsReminder" : "secondMultipleDraftReminder";
       sendMail(templateName, dynamicData);
       await addMailEvent({ templateName, email, userId });
       return;
@@ -204,7 +209,9 @@ export const sendMultipleDraftsReminderMailService = async (
       });
     }
   } else {
-    logger.info("[sendMultipleDraftsReminderMailService] user has not consented to email", { email });
+    logger.info("[sendMultipleDraftsReminderMailService] user has not consented to email", {
+      email,
+    });
   }
 };
 
@@ -267,7 +274,9 @@ interface PublishedFicheMailToCreatorData {
   dispositifId: DispositifId;
   userId: UserId;
 }
-export const sendPublishedFicheMailToCreatorService = async (data: PublishedFicheMailToCreatorData) => {
+export const sendPublishedFicheMailToCreatorService = async (
+  data: PublishedFicheMailToCreatorData,
+) => {
   if (consentsToEmail(data.userId, "publishedFicheToCreator")) {
     try {
       logger.info("[sendPublishedFicheMailToCreatorService] received ");
@@ -301,7 +310,9 @@ export const sendPublishedFicheMailToCreatorService = async (data: PublishedFich
       });
     }
   } else {
-    logger.info("[sendPublishedFicheMailToCreatorService] user has not consented to email", { email: data.email });
+    logger.info("[sendPublishedFicheMailToCreatorService] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -315,7 +326,9 @@ interface PublishedTradMailToStructure {
   email: string;
   firstName: string;
 }
-export const sendPublishedTradMailToStructureService = async (data: PublishedTradMailToStructure) => {
+export const sendPublishedTradMailToStructureService = async (
+  data: PublishedTradMailToStructure,
+) => {
   if (consentsToEmail(data.userId, "publishedTradForStructure")) {
     try {
       logger.info("[sendPublishedTradMailToStructure] received");
@@ -351,7 +364,9 @@ export const sendPublishedTradMailToStructureService = async (data: PublishedTra
       });
     }
   } else {
-    logger.info("[sendPublishedTradMailToStructure] user has not consented to email", { email: data.email });
+    logger.info("[sendPublishedTradMailToStructure] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -398,7 +413,9 @@ export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => 
       });
     }
   } else {
-    logger.info("[sendNewFicheEnAttenteMail] user has not consented to email", { email: data.email });
+    logger.info("[sendNewFicheEnAttenteMail] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -413,7 +430,9 @@ interface PublishedTradMailToTraductors {
   langue: string;
   isDispositif: boolean;
 }
-export const sendPublishedTradMailToTraductorsService = async (data: PublishedTradMailToTraductors) => {
+export const sendPublishedTradMailToTraductorsService = async (
+  data: PublishedTradMailToTraductors,
+) => {
   if (consentsToEmail(data.userId, "publishedTradForTraductors")) {
     try {
       logger.info("[sendPublishedTradMailToTraductorsService] received");
@@ -450,7 +469,9 @@ export const sendPublishedTradMailToTraductorsService = async (data: PublishedTr
       });
     }
   } else {
-    logger.info("[sendPublishedTradMailToTraductorsService] user has not consented to email", { email: data.email });
+    logger.info("[sendPublishedTradMailToTraductorsService] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -504,7 +525,9 @@ export const sendAdminImprovementsMailService = async (data: AdminImprovementsMa
       });
     }
   } else {
-    logger.info("[sendAdminImprovementsMailService] user has not consented to email", { email: data.email });
+    logger.info("[sendAdminImprovementsMailService] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -546,7 +569,9 @@ export const sendNewMemberMailService = async (data: NewMemberMail) => {
       });
     }
   } else {
-    logger.info("[sendNewMemberMailService] user has not consented to email", { email: data.email });
+    logger.info("[sendNewMemberMailService] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 
@@ -662,7 +687,9 @@ export const sendValidatedAndPublishedMailService = async (data: ValidatedAndPub
       });
     }
   } else {
-    logger.info("[sendValidatedAndPublishedMailService] user has not consented to email", { email: data.email });
+    logger.info("[sendValidatedAndPublishedMailService] user has not consented to email", {
+      email: data.email,
+    });
   }
 };
 

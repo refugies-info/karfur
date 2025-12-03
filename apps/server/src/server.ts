@@ -1,6 +1,5 @@
-"use strict";
-
 import { config } from "dotenv";
+
 config();
 
 import cloudinary from "cloudinary";
@@ -35,7 +34,10 @@ const connectWithRetry = async () => {
     .connect(db_path)
     .then(() => logger.info("[mongoose] Connected to mongoDB"))
     .catch((e) => {
-      logger.error("[mongoose] Error while DB connecting. Retrying in 5 seconds...", { message: e.message, error: e });
+      logger.error("[mongoose] Error while DB connecting. Retrying in 5 seconds...", {
+        message: e.message,
+        error: e,
+      });
       setTimeout(connectWithRetry, 5000);
     });
 };
@@ -54,7 +56,7 @@ app.use(formData.parse());
 app.use(cors());
 
 //Définition des CORS
-app.use(function (_, res, next) {
+app.use((_, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
   res.setHeader(
     "Access-Control-Allow-Origin",

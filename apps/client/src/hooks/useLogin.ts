@@ -29,7 +29,8 @@ const useLogin = () => {
   const handleError = useCallback(
     (errorCode: string | undefined, email: string, mfaCode: string | undefined): string | null => {
       if (errorCode === "NO_CODE_SUPPLIED") {
-        if (!email) return "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.";
+        if (!email)
+          return "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.";
         if (mfaCode) updateMfaCodeCookie(mfaCode);
         router.push(getPath("/auth/code-securite", "fr", `?email=${email}`));
         return null;

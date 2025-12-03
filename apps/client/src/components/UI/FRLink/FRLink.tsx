@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import Link, { LinkProps } from "next/link";
-import React, { useMemo } from "react";
+import Link, { type LinkProps } from "next/link";
+import type React from "react";
+import { useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import styles from "./FRLink.module.scss";
@@ -32,7 +33,11 @@ const FRLink = (props: Props) => {
   }, [props.icon, props.children]);
 
   return !props.href ? (
-    <button onClick={props.onClick} className={cls("fr-link", styles.link, props.className)} type="button">
+    <button
+      onClick={props.onClick}
+      className={cls("fr-link", styles.link, props.className)}
+      type="button"
+    >
       {content}
     </button>
   ) : (

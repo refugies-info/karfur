@@ -1,4 +1,4 @@
-import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
+import type { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import styles from "./DayHoursPrecisions.module.scss";
@@ -32,11 +32,26 @@ const getOpeningHours = (
 ) => {
   if (!from0 || !to0) return " : " + t("Annuaire.ouvert", "ouvert");
 
-  const firstPart = " " + t("Annuaire.de", "de") + " " + format(from0) + " " + t("Annuaire.a", "à") + " " + format(to0);
+  const firstPart =
+    " " +
+    t("Annuaire.de", "de") +
+    " " +
+    format(from0) +
+    " " +
+    t("Annuaire.a", "à") +
+    " " +
+    format(to0);
 
   if (!from1 || !to1) return firstPart;
   const secondPart =
-    " " + t("Annuaire.et de", "et de") + " " + format(from1) + " " + t("Annuaire.a", "à") + " " + format(to1);
+    " " +
+    t("Annuaire.et de", "et de") +
+    " " +
+    format(from1) +
+    " " +
+    t("Annuaire.a", "à") +
+    " " +
+    format(to1);
   return firstPart + secondPart;
 };
 
@@ -49,7 +64,8 @@ const Opened = (props: { day: string; details: DetailedOpeningHours }) => {
       <div style={{ marginBottom: "2px" }}>
         <EVAIcon name="checkmark-circle-2" fill="#4CAF50" className="me-2" />
       </div>
-      {t("StructureDay." + day, day) + getOpeningHours(details.from0, details.to0, details.from1, details.to1, t)}
+      {t("StructureDay." + day, day) +
+        getOpeningHours(details.from0, details.to0, details.from1, details.to1, t)}
     </div>
   );
 };

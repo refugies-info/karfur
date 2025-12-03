@@ -1,7 +1,7 @@
-import { DispositifStatus } from "@refugies-info/api-types";
+import type { DispositifStatus } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { createSnapshot } from "~/modules/snapshots/snapshots.repository";
-import { Dispositif, ObjectId, Snapshot, SnapshotModel, SnapshotType } from "~/typegoose";
+import { type Dispositif, ObjectId, Snapshot, SnapshotModel, type SnapshotType } from "~/typegoose";
 
 export const takeSnapshot = async (
   dispositif: Dispositif,
@@ -17,7 +17,9 @@ export const takeSnapshot = async (
   }
 
   // Find the highest version for the given dispositifId
-  const latestSnapshot = await SnapshotModel.findOne({ dispositifId: dispositif._id }).sort({ version: -1 }).lean();
+  const latestSnapshot = await SnapshotModel.findOne({ dispositifId: dispositif._id })
+    .sort({ version: -1 })
+    .lean();
   const newVersion = latestSnapshot ? latestSnapshot.version + 1 : 1;
 
   // Create snapshot

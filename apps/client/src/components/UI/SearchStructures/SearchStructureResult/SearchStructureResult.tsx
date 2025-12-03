@@ -1,4 +1,4 @@
-import { GetAllStructuresResponse } from "@refugies-info/api-types";
+import type { GetAllStructuresResponse } from "@refugies-info/api-types";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import { StyledStatusContainer } from "~/components/Backend/screens/Admin/sharedComponents/SubComponents";
@@ -40,7 +40,12 @@ const SearchStructureResult = ({
 
   return (
     <div
-      className={cls(styles.container, selected && styles.selected, onHold && styles.on_hold, className)}
+      className={cls(
+        styles.container,
+        selected && styles.selected,
+        onHold && styles.on_hold,
+        className,
+      )}
       onClick={_onClick}
     >
       {structure.picture?.secure_url ? (

@@ -1,4 +1,8 @@
-import { ContentType, DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifStatus,
+  type PublishDispositifRequest,
+} from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
@@ -17,9 +21,9 @@ import {
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
-import { Dispositif, Traductions, User } from "~/typegoose";
-import { TranslationContent } from "~/typegoose/Dispositif";
-import { Response } from "~/types/interface";
+import { type Dispositif, Traductions, type User } from "~/typegoose";
+import type { TranslationContent } from "~/typegoose/Dispositif";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 const hasChanges = (originalContent: TranslationContent, draftContent: TranslationContent) => {
@@ -52,7 +56,11 @@ const getWaitingStatus = async (
   return null;
 };
 
-export const publishDispositif = async (id: string, body: PublishDispositifRequest, user: User): Response => {
+export const publishDispositif = async (
+  id: string,
+  body: PublishDispositifRequest,
+  user: User,
+): Response => {
   logger.info("[publishDispositif] received", { id, body, user: user._id });
 
   const oldDispositif = await getDispositifById(
@@ -107,7 +115,10 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
     if (oldDispositif.hasDraftVersion) {
       // with a draft version => publish
       const isAdmin = user.isAdmin();
-      const hasTextChanges = hasChanges(oldDispositif.translations.fr, draftDispositif.translations.fr);
+      const hasTextChanges = hasChanges(
+        oldDispositif.translations.fr,
+        draftDispositif.translations.fr,
+      );
 
       if (isAdmin || !hasTextChanges) {
         // admin or no changes in translations -> publish
@@ -116,7 +127,12 @@ export const publishDispositif = async (id: string, body: PublishDispositifReque
         // else, wait for admin validation, set the draft's status to UPDATE_TO_VALIDATE
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);
         if (oldDispositif.typeContenu === ContentType.DISPOSITIF) {
-          await takeSnapshot(dispositif, "before", oldDispositif.status, DispositifStatus.UPDATE_TO_VALIDATE);
+          await takeSnapshot(
+            dispositif,
+            "before",
+            oldDispositif.status,
+            DispositifStatus.UPDATE_TO_VALIDATE,
+          );
         }
         await notifyChange(NotifType.TO_VALIDATE, id, user._id);
       }

@@ -30,7 +30,10 @@ const HeaderContentSearch = () => {
   };
   const navigation = useNavigation<SearchScreenNavigationProp>();
   return (
-    <FakeInput onPress={() => navigation.navigate("SearchResultsScreen")} accessibilityRole="button">
+    <FakeInput
+      onPress={() => navigation.navigate("SearchResultsScreen")}
+      accessibilityRole="button"
+    >
       <Icon name="search-outline" height={24} width={24} fill={theme.colors.darkGrey} />
       <FakeInputText>{t("search_screen.search", "Rechercher")}</FakeInputText>
     </FakeInput>

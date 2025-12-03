@@ -1,19 +1,19 @@
 import { createSelector } from "reselect";
-import { RootState } from "../rootReducer";
+import type { RootState } from "../rootReducer";
 
 const searchCountsStateSelector = (state: RootState) => state.searchCounts;
 
 export const searchCountsDataSelector = createSelector(
   [searchCountsStateSelector],
-  (state) => state.data
+  (state) => state.data,
 );
 
 export const searchCountsLoadingSelector = createSelector(
   [searchCountsStateSelector],
-  (state) => state.loading
+  (state) => state.loading,
 );
 
 export const searchCountsErrorSelector = createSelector(
   [searchCountsStateSelector],
-  (state) => state.error
+  (state) => state.error,
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Col, Row } from "reactstrap";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
 import YesIcon from "~/assets/dispositif/yes-icon.svg";
@@ -13,8 +13,8 @@ const MemberOfStructure = (props: Props) => {
   return (
     <div>
       <p>
-        Cochez oui si vous travaillez dans cette structure. Si vous avez rédigé cette fiche de votre propre initiative
-        ou par solidarité, cochez non.
+        Cochez oui si vous travaillez dans cette structure. Si vous avez rédigé cette fiche de votre
+        propre initiative ou par solidarité, cochez non.
       </p>
       <Row>
         <Col>

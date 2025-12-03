@@ -11,7 +11,15 @@
  * @see {@link https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html WCAG 4.1.3}
  */
 "use client";
-import { createContext, ReactNode, useCallback, useContext, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  type ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 /**
  * Options for configuring screen reader announcements.
@@ -166,12 +174,15 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
 
     if (debug) {
       let time = first.delay;
-      const timeline = `| ${(time / 1000).toFixed(1)}s: \"${first.message.substring(0, 25)}...\" (${readTime}ms)`;
+      const timeline = `| ${(time / 1000).toFixed(1)}s: "${first.message.substring(0, 25)}..." (${readTime}ms)`;
       const restTimeline = rest
         .reduce((acc, item) => {
           const itemTime = calculateReadTime(item.message);
           time += readTime;
-          return acc + ` | ${(time / 1000).toFixed(1)}s: \"${item.message.substring(0, 25)}...\" (${itemTime}ms)`;
+          return (
+            acc +
+            ` | ${(time / 1000).toFixed(1)}s: "${item.message.substring(0, 25)}..." (${itemTime}ms)`
+          );
         }, "")
         .concat(rest.length > 0 ? " | ?" : "");
       setQueueTimeline(timeline + restTimeline);
@@ -211,20 +222,28 @@ export const ScreenReaderAnnouncerProvider = ({ children }: { children: ReactNod
           {/* Polite channel */}
           <div className="border-b border-blue-400 pb-2">
             <span className="font-bold text-blue-100">📢 POLITE (queued):</span>
-            <span className="truncate">{politeCurrent ? politeCurrent.substring(0, 100) : "(empty)"}</span>
+            <span className="truncate">
+              {politeCurrent ? politeCurrent.substring(0, 100) : "(empty)"}
+            </span>
           </div>
 
           {/* Assertive channel */}
           <div className="border-b border-red-400 pb-2">
             <span className="font-bold text-red-100">� ASSERTIVE (priority):</span>
-            <span className="truncate">{assertiveCurrent ? assertiveCurrent.substring(0, 100) : "(empty)"}</span>
+            <span className="truncate">
+              {assertiveCurrent ? assertiveCurrent.substring(0, 100) : "(empty)"}
+            </span>
           </div>
 
           <div className="grid grid-cols-2">
             {/* Queue timeline */}
             <div>
               <span className="font-bold text-yellow-100">📊 TIMELINE:</span>
-              {queueTimeline ? <span className="overflow-x-auto whitespace-nowrap">{queueTimeline}</span> : "empty"}
+              {queueTimeline ? (
+                <span className="overflow-x-auto whitespace-nowrap">{queueTimeline}</span>
+              ) : (
+                "empty"
+              )}
             </div>
 
             {/* Queue status */}

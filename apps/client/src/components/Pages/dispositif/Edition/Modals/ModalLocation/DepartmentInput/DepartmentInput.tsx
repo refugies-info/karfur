@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import Input from "~/components/Pages/dispositif/Input";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useDepartmentAutocomplete } from "~/hooks";
@@ -66,7 +66,9 @@ const DepartmentInput = (props: Props) => {
           <RemovableItem
             key={i}
             text={formatDepartment(dep)}
-            onClick={() => props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))}
+            onClick={() =>
+              props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))
+            }
           />
         ))}
       </div>

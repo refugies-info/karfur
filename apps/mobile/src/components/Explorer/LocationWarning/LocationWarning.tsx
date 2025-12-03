@@ -2,7 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import useToggle from "react-use/lib/useToggle";
 import { nbContentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { saveUserLocalizedWarningHiddenActionCreator } from "~/services/redux/User/user.actions";
-import { isLocalizedWarningHiddenSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
+import {
+  isLocalizedWarningHiddenSelector,
+  userLocationSelector,
+} from "~/services/redux/User/user.selectors";
 import LocationWarningMessage from "./LocationWarningMessage";
 import LocationWarningModal from "./LocationWarningModal";
 

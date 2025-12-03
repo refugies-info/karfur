@@ -1,18 +1,17 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import { View } from "react-native";
 import { useQueryClient } from "react-query";
 import styled, { useTheme } from "styled-components/native";
-import { Notification } from "~/hooks/useNotifications";
-import { markNotificationAsSeen } from "~/utils/API";
+import { useDateDiffReadable } from "~/hooks";
+import type { Notification } from "~/hooks/useNotifications";
 
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-
-import { useDateDiffReadable } from "~/hooks";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
+import { markNotificationAsSeen } from "~/utils/API";
 import { CustomButton } from "../CustomButton";
-import { TextDSFR_MD, TextDSFR_XS } from "../StyledText";
 import { Columns, Rows, RowsSpacing } from "../layout";
+import { TextDSFR_MD, TextDSFR_XS } from "../StyledText";
 
 const Container = styled.TouchableOpacity<{ seen: boolean }>`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;

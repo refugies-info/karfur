@@ -1,31 +1,32 @@
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { NextParsedUrlQuery } from "next/dist/server/request-meta";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
+import type { NextParsedUrlQuery } from "next/dist/server/request-meta";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import qs from "query-string";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-
 import { getPath } from "routes";
-import { filterStructuresByKeword, filterStructuresByLoc, filterStructuresByType } from "~/lib/filterStructures";
-import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
-import { activeStructuresSelector } from "~/services/ActiveStructures/activeStructures.selector";
-import { wrapper } from "~/services/configureStore";
-
 import { Header } from "~/components/Pages/annuaire/index/Header";
 import { LetterSection } from "~/components/Pages/annuaire/index/LetterSection";
 import { NoResult } from "~/components/Pages/annuaire/index/NoResult";
 import SEO from "~/components/Seo";
-
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { useLocale } from "~/hooks";
-import { isInBrowser } from "@refugies-info/ui";
+import {
+  filterStructuresByKeword,
+  filterStructuresByLoc,
+  filterStructuresByType,
+} from "~/lib/filterStructures";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { Event } from "~/lib/tracking";
 import styles from "~/scss/pages/annuaire.module.scss";
+import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
+import { activeStructuresSelector } from "~/services/ActiveStructures/activeStructures.selector";
+import { wrapper } from "~/services/configureStore";
 
 const computeTypeFromUrl = (query: NextParsedUrlQuery) => {
-  let typeSelectedFromUrl: string[] = [];
+  const typeSelectedFromUrl: string[] = [];
   if (query.isAssociation) {
     typeSelectedFromUrl.push("Association");
   }
@@ -59,12 +60,16 @@ const Annuaire = () => {
   const locale = useLocale();
 
   const [keyword, setKeyword] = useState((router.query.keyword as string) || "");
-  const [typeSelected, setTypeSelected] = useState<string[]>(computeTypeFromUrl(router.query) || []);
+  const [typeSelected, setTypeSelected] = useState<string[]>(
+    computeTypeFromUrl(router.query) || [],
+  );
   const [ville, setVille] = useState((router.query.ville as string) || "");
   const [depName, setDepName] = useState((router.query.depName as string) || "");
   const [depNumber, setDepNumber] = useState((router.query.depNumber as string) || "");
   const [isCityFocus, setIsCityFocus] = useState(false);
-  const [isCitySelected, setIsCitySelected] = useState(!!router.query.depNumber || !!router.query.depName);
+  const [isCitySelected, setIsCitySelected] = useState(
+    !!router.query.depNumber || !!router.query.depName,
+  );
 
   const resetAllFilter = useCallback(() => {
     setIsCitySelected(false);
@@ -76,16 +81,19 @@ const Annuaire = () => {
     setKeyword("");
   }, []);
 
-  const defineLettersClickable = useCallback((sortedStructureByAlpha: GetActiveStructuresResponse[]) => {
-    let lettersClickable: string[] = [];
-    sortedStructureByAlpha.forEach((structure) => {
-      let letter = structure.nom[0];
-      if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
-        lettersClickable.push(letter.toLocaleUpperCase());
-      }
-    });
-    return lettersClickable;
-  }, []);
+  const defineLettersClickable = useCallback(
+    (sortedStructureByAlpha: GetActiveStructuresResponse[]) => {
+      const lettersClickable: string[] = [];
+      sortedStructureByAlpha.forEach((structure) => {
+        const letter = structure.nom[0];
+        if (!lettersClickable.includes(letter.toLocaleUpperCase())) {
+          lettersClickable.push(letter.toLocaleUpperCase());
+        }
+      });
+      return lettersClickable;
+    },
+    [],
+  );
 
   useEffect(() => {
     Event("ANNUAIRE_VIEW", "VIEW", "label");
@@ -113,7 +121,7 @@ const Annuaire = () => {
     };
 
     // build url
-    let query: {
+    const query: {
       depName?: string | undefined;
       depNumber?: string;
       keyword?: string;
@@ -166,7 +174,12 @@ const Annuaire = () => {
       (structure) => structure._id.toString() !== "5f69cb9c0aab6900460c0f3f",
     );
     const filterByType = filterStructuresByType(initialFilteredStructures, typeSelected);
-    const filterByTypeAndLoc = filterStructuresByLoc(filterByType, isCitySelected, depNumber, depName);
+    const filterByTypeAndLoc = filterStructuresByLoc(
+      filterByType,
+      isCitySelected,
+      depNumber,
+      depName,
+    );
     const filterByTypeAndLocAndKeyword = filterStructuresByKeword(filterByTypeAndLoc, keyword);
     const sortedStructureByAlpha = filterByTypeAndLocAndKeyword
       ? filterByTypeAndLocAndKeyword.sort((a, b) =>
