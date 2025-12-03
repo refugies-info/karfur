@@ -64,8 +64,10 @@ const vocab = [
 ];
 
 const wordArb = fc.constantFrom(...vocab);
-const wordsArb = (min: number, max: number) => fc.array(wordArb, { minLength: min, maxLength: max });
-const phraseArb = (min: number, max: number) => wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
+const wordsArb = (min: number, max: number) =>
+  fc.array(wordArb, { minLength: min, maxLength: max });
+const phraseArb = (min: number, max: number) =>
+  wordsArb(min, max).map((ws) => ws.join(" ").replace(/^\s+|\s+$/g, ""));
 
 // Arbitrary for the "age" field structure in metadatas
 const ageBetweenArb = fc
@@ -102,10 +104,18 @@ export type InsertableDispositif = {
   typeContenu: string;
 };
 
-export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, needIds: NeedSeedIds) => {
+export const makeDispositifArb = (
+  conn: Connection,
+  themeIds: ThemeSeedIds,
+  needIds: NeedSeedIds,
+) => {
   const enums = getEnumValues(conn);
-  const frenchLevelArb = fc.array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 }).map(uniq);
-  const publicArb = fc.array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 }).map(uniq);
+  const frenchLevelArb = fc
+    .array(fc.constantFrom(...enums.frenchLevels), { minLength: 1, maxLength: 3 })
+    .map(uniq);
+  const publicArb = fc
+    .array(fc.constantFrom(...enums.publics), { minLength: 1, maxLength: 2 })
+    .map(uniq);
   const refugeeStatusArb = fc
     .array(fc.constantFrom(...enums.refugeeStatuses), { minLength: 1, maxLength: 3 })
     .map(uniq);
@@ -119,7 +129,10 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
     const allThemes = [themeIds.TA, themeIds.TB, themeIds.TC];
     const otherThemes = allThemes.filter((t) => String(t) !== themeIdStr);
     const secondaryThemesArb = fc
-      .array(fc.constantFrom(...otherThemes), { minLength: 0, maxLength: Math.min(2, otherThemes.length) })
+      .array(fc.constantFrom(...otherThemes), {
+        minLength: 0,
+        maxLength: Math.min(2, otherThemes.length),
+      })
       .map(uniq);
 
     // Needs must be related to the primary theme or any of the secondaryThemes
@@ -137,7 +150,9 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
     });
 
     // Pick 1–3 languages and build translations with title/abstract per lang
-    const languagesArb = fc.array(fc.constantFrom(...enums.languages), { minLength: 1, maxLength: 3 }).map(uniq);
+    const languagesArb = fc
+      .array(fc.constantFrom(...enums.languages), { minLength: 1, maxLength: 3 })
+      .map(uniq);
 
     const recordArb = fc.record<InsertableDispositif>({
       theme: fc.constant(themeId),
@@ -165,7 +180,10 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
       translations: languagesArb.chain((langs) =>
         fc.record(
           Object.fromEntries(
-            langs.map((l) => [l, fc.record({ title: phraseArb(2, 6), abstract: phraseArb(6, 14) })]),
+            langs.map((l) => [
+              l,
+              fc.record({ title: phraseArb(2, 6), abstract: phraseArb(6, 14) }),
+            ]),
           ) as any,
         ),
       ),
@@ -203,7 +221,11 @@ export const makeDispositifArb = (conn: Connection, themeIds: ThemeSeedIds, need
   });
 };
 
-export async function seedRandomDispositifs(conn: Connection, count: number, seed?: number): Promise<number> {
+export async function seedRandomDispositifs(
+  conn: Connection,
+  count: number,
+  seed?: number,
+): Promise<number> {
   const themeIds = getThemeSeedIds();
   const needIds = getNeedSeedIds();
   const Dispositif = conn.model("Dispositif");

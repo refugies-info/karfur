@@ -19,7 +19,9 @@ export default function CustomControls() {
       isFirstRender.current = false;
       return;
     }
-    setMessage(t("map.fullscreen_status", { status: isFullscreen ? t("map.enabled") : t("map.disabled") }));
+    setMessage(
+      t("map.fullscreen_status", { status: isFullscreen ? t("map.enabled") : t("map.disabled") }),
+    );
   }, [isFullscreen]);
 
   useEffect(() => {

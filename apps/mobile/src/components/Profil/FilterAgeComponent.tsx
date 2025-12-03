@@ -1,4 +1,4 @@
-import { GetContentsForAppRequest } from "@refugies-info/api-types";
+import type { GetContentsForAppRequest } from "@refugies-info/api-types";
 import { View } from "react-native";
 import { FilterButton, RadioGroup, ReadableText } from "~/components";
 import { Explaination } from "~/components/Onboarding/Explaination";
@@ -19,7 +19,10 @@ export const FilterAgeComponent = (props: Props) => {
       <Title>
         <ReadableText>{t("onboarding_screens.age", "Quel âge as-tu ?")}</ReadableText>
       </Title>
-      <Explaination step={2} defaultText="C’est pour te montrer les démarches et les activités pour ton âge." />
+      <Explaination
+        step={2}
+        defaultText="C’est pour te montrer les démarches et les activités pour ton âge."
+      />
       <RadioGroup>
         {ageFilters.map((age) => (
           <FilterButton

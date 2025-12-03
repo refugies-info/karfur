@@ -1,8 +1,8 @@
-import { RoleName, TranslationStatisticsResponse } from "@refugies-info/api-types";
+import { RoleName, type TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
@@ -132,22 +132,23 @@ const RecensezVotreAction = (props: Props) => {
             <RowCards>
               <Card image={WhoIcon1} title="Maîtriser sa langue d’origine">
                 <p className="!mb-0">
-                  Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser l'écrit de votre
-                  langue d'origine : ukrainien, persan/dari, arabe, anglais, pachto, russe, tigrinya.
+                  Aucun justificatif n’est demandé, mais il est préférable de très bien maîtriser
+                  l'écrit de votre langue d'origine : ukrainien, persan/dari, arabe, anglais,
+                  pachto, russe, tigrinya.
                 </p>
               </Card>
 
               <Card image={CardIconCheck} title="Avoir le niveau B1 en français">
                 <p className="!mb-0">
-                  Il est nécessaire de bien savoir lire et écrire en français pour comprendre le texte d'origine et ne
-                  pas déformer le message.
+                  Il est nécessaire de bien savoir lire et écrire en français pour comprendre le
+                  texte d'origine et ne pas déformer le message.
                 </p>
               </Card>
 
               <Card image={WhoIcon3} title="Avoir accès à un ordinateur">
                 <p className="!mb-0">
-                  L’outil de traduction est disponible uniquement sur un ordinateur connecté à internet, vous ne pouvez
-                  pas y accéder avec votre téléphone.
+                  L’outil de traduction est disponible uniquement sur un ordinateur connecté à
+                  internet, vous ne pouvez pas y accéder avec votre téléphone.
                 </p>
               </Card>
             </RowCards>
@@ -160,7 +161,12 @@ const RecensezVotreAction = (props: Props) => {
             <Title2>On cherche des traducteurs en :</Title2>
             <div className="flex flex-wrap gap-6 md:justify-center">
               {translationNeeds.map((item, i) => (
-                <LanguageCard href="#register" key={i} languageId={item.languageId} need={item.need} />
+                <LanguageCard
+                  href="#register"
+                  key={i}
+                  languageId={item.languageId}
+                  need={item.need}
+                />
               ))}
             </div>
           </div>
@@ -233,15 +239,21 @@ const RecensezVotreAction = (props: Props) => {
                   Soyez fier de votre traduction et partagez la !
                 </Title2>
                 <p>
-                  Votre nom et votre photo sont visibles en bas de votre fiche, avec les autres contributeurs qui ont
-                  aidé à traduire.
+                  Votre nom et votre photo sont visibles en bas de votre fiche, avec les autres
+                  contributeurs qui ont aidé à traduire.
                 </p>
                 <p className="!mb-0">
                   N’hésitez pas à les partager à vos amis et vos proches, ça peut leur être utile.
                 </p>
               </div>
               <div className="flex-1">
-                <Image src={ShareImage} alt="" width={440} height={287} className="mx-auto object-contain" />
+                <Image
+                  src={ShareImage}
+                  alt=""
+                  width={440}
+                  height={287}
+                  className="mx-auto object-contain"
+                />
               </div>
             </div>
           </div>
@@ -261,15 +273,20 @@ const RecensezVotreAction = (props: Props) => {
                 link="https://help.refugies.info/fr/category/traduire-1dvep4w/"
               >
                 <p>
-                  Dans le centre d’aide, vous trouverez des vidéos et articles pour vous accompagner dans la traduction
-                  de votre fiche.
+                  Dans le centre d’aide, vous trouverez des vidéos et articles pour vous accompagner
+                  dans la traduction de votre fiche.
                 </p>
               </Card>
 
-              <Card image={CardIconCheck} title="Live chat" onClick={() => window.$crisp.push(["do", "chat:open"])}>
+              <Card
+                image={CardIconCheck}
+                title="Live chat"
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
+              >
                 <p>
-                  Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos
-                  questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
+                  Le live chat est accessible en bas à droite de votre écran (deux jours par
+                  semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai
+                  humain qui traite vos demandes !
                 </p>
               </Card>
             </RowCards>
@@ -304,7 +321,10 @@ const RecensezVotreAction = (props: Props) => {
                 {
                   title: "Est-ce que de nouvelles langues seront bientôt disponibles ?",
                   text: "Traduire Réfugiés.info dans une nouvelle langue est possible. La décision dépend de l’actualité et du volume de personnes que cette nouvelle langue pourrait intéresser. Si vous parlez une autre langue et souhaitez traduire du contenu pour le rendre accessible à votre communauté, remplissez ce formulaire.",
-                  cta: { text: "Remplir le formulaire", link: "https://airtable.com/shrQxPHedgZ5PuXot" },
+                  cta: {
+                    text: "Remplir le formulaire",
+                    link: "https://airtable.com/shrQxPHedgZ5PuXot",
+                  },
                 },
               ]}
               multiOpen

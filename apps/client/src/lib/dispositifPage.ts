@@ -1,4 +1,4 @@
-import { DispositifStatus, GetDispositifResponse, ViewsType } from "@refugies-info/api-types";
+import { DispositifStatus, type GetDispositifResponse, ViewsType } from "@refugies-info/api-types";
 import API from "~/utils/API";
 
 export const updateNbViews = (dispositif: GetDispositifResponse) => {

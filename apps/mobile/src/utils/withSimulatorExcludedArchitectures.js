@@ -2,6 +2,7 @@
 // import { withXcodeProject } from "@expo/config-plugins";
 // because it will break the build
 import expoConfigPlugins from "@expo/config-plugins";
+
 const { withXcodeProject } = expoConfigPlugins;
 
 /**

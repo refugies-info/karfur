@@ -2,7 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
 import { useRouter } from "next/router";
-import { ReactElement, useCallback, useState } from "react";
+import { type ReactElement, useCallback, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { getPath } from "routes";
 import GoogleIcon from "~/assets/auth/providers/google-icon.svg";
@@ -19,10 +19,10 @@ import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { getRegisterInfos } from "~/lib/loginRedirect";
 import { Event } from "~/lib/tracking";
 import { isValidEmail } from "~/lib/validateFields";
-import API from "~/utils/API";
-import { googleProvider } from "~/utils/googleSignIn";
 // import DataInclusionIcon from "~/assets/auth/providers/data-inclusion-icon.svg";
 import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
+import { googleProvider } from "~/utils/googleSignIn";
 
 const AuthEmail = () => {
   useAuthRedirect(false);
@@ -44,7 +44,13 @@ const AuthEmail = () => {
       try {
         Event("AUTH", "password login", "start");
         const res = await API.checkUserExists(email);
-        router.push(getPath("/auth/connexion", "fr", `?email=${email}${res.verificationCode ? "&2fa=true" : ""}`));
+        router.push(
+          getPath(
+            "/auth/connexion",
+            "fr",
+            `?email=${email}${res.verificationCode ? "&2fa=true" : ""}`,
+          ),
+        );
       } catch (e) {
         router.push(getPath("/auth/inscription", "fr", `?email=${email}`));
       }
@@ -77,14 +83,20 @@ const AuthEmail = () => {
           .catch((e) => {
             setIsLoading(false);
             const responseData = e.response?.data?.data;
-            const error = handleError(e.response?.data?.code, responseData?.email || "", responseData?.code);
+            const error = handleError(
+              e.response?.data?.code,
+              responseData?.email || "",
+              responseData?.code,
+            );
             if (error) setError(error);
           });
       },
       onError: (err) => {
         setIsLoading(false);
         logger.error("[loginGoogle] Failed to login with google", err);
-        setError("Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.");
+        setError(
+          "Erreur, vous n'êtes pas authentifié avec votre compte Google, veuillez réessayer.",
+        );
       },
     })();
   }, [logUser, start, handleError]);
@@ -106,7 +118,9 @@ const AuthEmail = () => {
           window.location.href = e.response.data.data.url;
         } else {
           setIsLoading(false);
-          setError("Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer.");
+          setError(
+            "Erreur, vous n'êtes pas authentifié avec votre compte Microsoft, veuillez réessayer.",
+          );
         }
       }
     }
@@ -124,7 +138,12 @@ const AuthEmail = () => {
         <Loader text="Connexion en cours..." />
       ) : (
         <>
-          <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+          <Button
+            priority="tertiary"
+            size="small"
+            iconId="fr-icon-arrow-left-line"
+            onClick={() => router.back()}
+          >
             Retour
           </Button>
           <div className={styles.title}>
@@ -166,7 +185,11 @@ const AuthEmail = () => {
             <Image src={GoogleIcon} width={24} height={24} alt="" className="me-2" />
             Google
           </Button>
-          <Button onClick={loginMicrosoft} className={cls(styles.button, "mb-4")} priority="tertiary">
+          <Button
+            onClick={loginMicrosoft}
+            className={cls(styles.button, "mb-4")}
+            priority="tertiary"
+          >
             <Image src={MicrosoftIcon} width={24} height={24} alt="" className="me-2" />
             <Image src={OutlookIcon} width={24} height={24} alt="" className="me-2" />
             Microsoft ou Outlook

@@ -1,8 +1,13 @@
-import { ContentType, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { fr } from "@codegouvfr/react-dsfr";
+import { ContentType, type UpdateDispositifRequest } from "@refugies-info/api-types";
+import { MetaDataCard } from "@refugies-info/ui";
 import { useCallback, useContext, useMemo } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import CardInfo from "~/components/Pages/dispositif/Metadatas/CardInfo";
+import CardMainSponsor from "~/components/Pages/dispositif/Metadatas/CardMainSponsor";
+import CardPublic from "~/components/Pages/dispositif/Metadatas/CardPublic";
+import EVAIcon from "~/components/UI/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
 import { cn } from "~/lib/classname";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -11,12 +16,6 @@ import CardConditions from "../../Metadatas/CardConditions";
 import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
 import CardTheme from "../../Metadatas/CardTheme";
 import AddContentButton from "../AddContentButton";
-
-import { fr } from "@codegouvfr/react-dsfr";
-import { MetaDataCard } from "@refugies-info/ui";
-import CardMainSponsor from "~/components/Pages/dispositif/Metadatas/CardMainSponsor";
-import CardPublic from "~/components/Pages/dispositif/Metadatas/CardPublic";
-import EVAIcon from "~/components/UI/EVAIcon";
 import {
   ModalAbstract,
   ModalAvailability,
@@ -49,7 +48,8 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
-  const { activeModal, setActiveModal, modalPage, setModalPage, formSubmitted } = useContext(PageContext);
+  const { activeModal, setActiveModal, modalPage, setModalPage, formSubmitted } =
+    useContext(PageContext);
   const toggleModal = useCallback(() => setActiveModal?.(null), [setActiveModal]);
 
   return (
@@ -57,10 +57,15 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
       <CardTheme formData={formData} />
       {contentType === ContentType.DEMARCHE && (
         <>
-          {values.administration !== undefined && (!!values.administration?.name || !!values?.administration?.logo) ? (
+          {values.administration !== undefined &&
+          (!!values.administration?.name || !!values?.administration?.logo) ? (
             <CardDemarcheAdministration formData={formData} />
           ) : (
-            <AddContentButton onClick={() => setActiveModal?.("Administration")} className="mb-6" size="md">
+            <AddContentButton
+              onClick={() => setActiveModal?.("Administration")}
+              className="mb-6"
+              size="md"
+            >
               <i className="fr-icon-image-line me-2" />
               Administration (optionnel)
             </AddContentButton>
@@ -72,7 +77,7 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
       <CardConditions id="step-conditions" formData={formData} />
       <p className="mb-0 font-bold">À faire en dernier</p>
       <div id="main-sponsor-card" />
-      {!!values.mainSponsor ? (
+      {values.mainSponsor ? (
         <CardMainSponsor formData={formData} id="step-mainSponsor" />
       ) : (
         <AddContentButton onClick={() => setActiveModal?.("MainSponsor")} size="md">

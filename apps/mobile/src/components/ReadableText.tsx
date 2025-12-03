@@ -1,10 +1,13 @@
 import { useIsFocused } from "@react-navigation/native";
-import React, { ReactNode, useEffect, useMemo, useRef, useState } from "react";
-import { View } from "react-native";
+import React, { type ReactNode, useEffect, useMemo, useRef, useState } from "react";
+import type { View } from "react-native";
 import { useDispatch } from "react-redux";
 import { generateId } from "~/libs/generateId";
-import { addToReadingList, removeFromReadingList } from "~/services/redux/VoiceOver/voiceOver.actions";
-import { ReadingItem, ReadingObject } from "~/types/interface";
+import {
+  addToReadingList,
+  removeFromReadingList,
+} from "~/services/redux/VoiceOver/voiceOver.actions";
+import type { ReadingItem, ReadingObject } from "~/types/interface";
 import { ReadableColoredText } from "./ReadableColoredText";
 
 interface Props {

@@ -6,6 +6,8 @@ interface Props {
   className?: string;
 }
 
-const Tag = (props: Props) => <div className={cls(styles.tag, props.className)}>{props.children}</div>;
+const Tag = (props: Props) => (
+  <div className={cls(styles.tag, props.className)}>{props.children}</div>
+);
 
 export default Tag;

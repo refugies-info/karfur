@@ -1,6 +1,6 @@
-import { LangueState } from "~/services/Langue/langue.reducer";
-import { SearchResultsState } from "~/services/SearchResults/searchResults.reducer";
-import { UserFavoritesState } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import type { LangueState } from "~/services/Langue/langue.reducer";
+import type { SearchResultsState } from "~/services/SearchResults/searchResults.reducer";
+import type { UserFavoritesState } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { activeThemesMock } from "./activeThemes";
 
 const initialMockUserState = {

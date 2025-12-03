@@ -1,7 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useSanitizedContent } from "~/hooks";
-import { Marker } from "../Map";
+import type { Marker } from "../Map";
 import styles from "./PopupContent.module.scss";
 
 interface Props {
@@ -14,7 +14,11 @@ const PopupContent = ({ marker, onClose }: Props) => {
   return (
     <div onClick={(e: any) => e.stopPropagation()} className={styles.popup}>
       <div className={styles.close} onClick={onClose}>
-        <EVAIcon name="close-outline" size={16} fill={fr.colors.decisions.text.actionHigh.blueFrance.default} />
+        <EVAIcon
+          name="close-outline"
+          size={16}
+          fill={fr.colors.decisions.text.actionHigh.blueFrance.default}
+        />
       </div>
       <p className={styles.title}>{marker.title}</p>
       <p className={styles.info}>

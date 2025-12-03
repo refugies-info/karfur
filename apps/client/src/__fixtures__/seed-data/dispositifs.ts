@@ -1,5 +1,5 @@
+import type mongoose from "mongoose";
 import type { Connection } from "mongoose";
-import mongoose from "mongoose";
 import { getNeedSeedIds, seedNeeds } from "./needs";
 import { getThemeSeedIds, seedThemes } from "./themes";
 
@@ -121,8 +121,14 @@ export const seedDispositifs = async (conn: Connection) => {
         updatedAt: new Date("2024-01-30"),
       },
       translations: {
-        fr: { title: "Formation professionnelle en ligne", abstract: "Cours professionnels en ligne pour adultes." },
-        en: { title: "Online professional training", abstract: "Professional online courses for adults." },
+        fr: {
+          title: "Formation professionnelle en ligne",
+          abstract: "Cours professionnels en ligne pour adultes.",
+        },
+        en: {
+          title: "Online professional training",
+          abstract: "Professional online courses for adults.",
+        },
       },
       status: "Actif",
       typeContenu: "online",
@@ -146,7 +152,10 @@ export const seedDispositifs = async (conn: Connection) => {
         updatedAt: new Date("2024-03-05"),
       },
       translations: {
-        fr: { title: "Démarche administrative en ligne", abstract: "Guide en ligne pour démarches administratives." },
+        fr: {
+          title: "Démarche administrative en ligne",
+          abstract: "Guide en ligne pour démarches administratives.",
+        },
       },
       status: "Actif",
       typeContenu: "demarche",

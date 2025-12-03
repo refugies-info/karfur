@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
-import { TextDSFR_S_Bold } from "../../StyledText";
 import { Icon } from "../../iconography";
+import { TextDSFR_S_Bold } from "../../StyledText";
 
 export const BadgeText = styled(TextDSFR_S_Bold)<{ color: string }>`
   color: ${({ color }) => color};

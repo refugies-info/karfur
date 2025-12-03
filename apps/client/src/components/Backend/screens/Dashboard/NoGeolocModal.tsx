@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { Modal } from "reactstrap";
 import styles from "./NoGeolocModal.module.scss";
 

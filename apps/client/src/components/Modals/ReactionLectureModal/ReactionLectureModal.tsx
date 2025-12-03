@@ -12,11 +12,17 @@ interface Props {
 }
 
 const ReactionLectureModal = (props: Props) => {
-  let suggestion = props.suggestion || {};
-  const getUserName = () => (suggestion.username ? suggestion.username : "Utilisateur non connecté");
+  const suggestion = props.suggestion || {};
+  const getUserName = () =>
+    suggestion.username ? suggestion.username : "Utilisateur non connecté";
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <div className={styles.close} onClick={props.toggle}>
         <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
       </div>

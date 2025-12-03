@@ -21,7 +21,13 @@
     "@refugies-info/client#build": {
       "dependsOn": ["//#update-icons", "@refugies-info/ui#build"],
       "env": ["NEXT_PUBLIC_*"],
-      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env",
+        "!**/.gemini/**",
+        "!**/.specify/**",
+        "!**/.windsurf/**"
+      ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "@refugies-info/server#build": {
@@ -63,7 +69,13 @@
         "SMS_SENDER",
         "TTS_KEY_1"
       ],
-      "inputs": ["$TURBO_DEFAULT$", ".env", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env",
+        "!**/.gemini/**",
+        "!**/.specify/**",
+        "!**/.windsurf/**"
+      ],
       "outputs": ["dist/**"]
     },
     "check:types": {

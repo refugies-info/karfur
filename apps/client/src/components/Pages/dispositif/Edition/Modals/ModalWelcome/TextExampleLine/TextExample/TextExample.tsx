@@ -11,7 +11,11 @@ const TextExample = (props: Props) => {
   return (
     <p className={cls(styles.container, styles[props.type])}>
       <span className={styles.icon}>
-        <EVAIcon name={props.type === "error" ? "close-outline" : "checkmark"} fill="white" size={16} />
+        <EVAIcon
+          name={props.type === "error" ? "close-outline" : "checkmark"}
+          fill="white"
+          size={16}
+        />
       </span>
       {props.text}
     </p>

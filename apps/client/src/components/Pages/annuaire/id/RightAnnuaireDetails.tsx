@@ -1,4 +1,4 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import DispositifCard from "~/components/UI/DispositifCard";
@@ -27,7 +27,9 @@ export const RightAnnuaireDetails = (props: Props) => {
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>{t("Annuaire.A lire", "À lire")}</h2>
-        <div className={`${styles.figure} ${nbActiveDispositifs === 0 ? styles.red : ""}`}>{nbActiveDispositifs}</div>
+        <div className={`${styles.figure} ${nbActiveDispositifs === 0 ? styles.red : ""}`}>
+          {nbActiveDispositifs}
+        </div>
       </div>
       <div className={styles.dispositifs}>
         {nbActiveDispositifs === 0 && (

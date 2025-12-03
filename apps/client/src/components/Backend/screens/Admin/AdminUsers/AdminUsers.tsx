@@ -1,4 +1,4 @@
-import { GetAllUsersResponse, Id } from "@refugies-info/api-types";
+import type { GetAllUsersResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
 import { useRouter } from "next/router";
@@ -20,13 +20,16 @@ import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs
 import { allActiveUsersSelector } from "~/services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { UserStatusType } from "~/types/interface";
+import type { UserStatusType } from "~/types/interface";
 import API from "~/utils/API";
 import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/ChangeStructureModale";
 import { ContentDetailsModal } from "../AdminContenu/ContentDetailsModal/ContentDetailsModal";
 import { ImprovementsMailModal } from "../AdminContenu/ImprovementsMailModal/ImprovementsMailModal";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
-import { RowContainer, StructureName } from "../AdminStructures/components/AdminStructureComponents";
+import {
+  RowContainer,
+  StructureName,
+} from "../AdminStructures/components/AdminStructureComponents";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { prepareDeleteContrib } from "../Needs/lib";
@@ -58,22 +61,32 @@ export const AdminUsers = () => {
   const router = useRouter();
   const locale = useRouterLocale();
   const initialFilters = getInitialFilters(router, "utilisateurs");
-  const [filter, setFilter] = useState<UserStatusType>((initialFilters.filter as UserStatusType) || "Admin");
+  const [filter, setFilter] = useState<UserStatusType>(
+    (initialFilters.filter as UserStatusType) || "Admin",
+  );
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
 
   // modals
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
-  const [showContentDetailsModal, setShowContentDetailsModal] = useState(!!initialFilters.selectedDispositifId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    !!initialFilters.selectedStructureId,
+  );
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(
+    !!initialFilters.selectedDispositifId,
+  );
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(
+    initialFilters.selectedStructureId,
+  );
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(
+    initialFilters.selectedDispositifId,
+  );
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [isExportLoading, setIsExportLoading] = useState(false);
 
@@ -108,8 +121,10 @@ export const AdminUsers = () => {
 
   const toggleNeedsChoiceModal = () => setShowNeedsChoiceModal(!showNeedsChoiceModal);
 
-  const toggleShowChangeStructureModal = () => setShowChangeStructureModal(!showChangeStructureModal);
-  const toggleImprovementsMailModal = () => setShowImprovementsMailModal(!showImprovementsMailModal);
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
 
   const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
@@ -131,7 +146,8 @@ export const AdminUsers = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
-  const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const setSelectedStructureIdAndToggleModal = (structureId: Id | null) => {
     setSelectedStructureId(structureId);
@@ -154,7 +170,7 @@ export const AdminUsers = () => {
     }
   };
   const filterAndSortUsers = (users: GetAllUsersResponse[]) => {
-    const usersFilteredBySearch = !!search
+    const usersFilteredBySearch = search
       ? users.filter(
           (user) =>
             (user.username &&
@@ -171,9 +187,13 @@ export const AdminUsers = () => {
     if (filter === "Admin") {
       filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Admin"));
     } else if (filter === "Respo") {
-      filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("Responsable"));
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        (user.roles || []).includes("Responsable"),
+      );
     } else if (filter === "Experts") {
-      filteredUsers = usersFilteredBySearch.filter((user) => (user.roles || []).includes("ExpertTrad"));
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        (user.roles || []).includes("ExpertTrad"),
+      );
     } else if (filter === "Traducteurs") {
       filteredUsers = usersFilteredBySearch.filter(
         (user) => user.selectedLanguages && user.selectedLanguages.length > 0,
@@ -189,29 +209,29 @@ export const AdminUsers = () => {
       };
 
     const usersToDisplay = filteredUsers.sort((a: GetAllUsersResponse, b: GetAllUsersResponse) => {
-      // @ts-ignore
-      const orderColumn: "pseudo" | "email" | "structure" | "created_at" = sortedHeader.orderColumn;
+      const orderColumn: "pseudo" | "email" | "structure" | "created_at" =
+        sortedHeader.orderColumn as any;
 
       if (!a.structures || !b.structures) return 0;
       if (orderColumn === "structure") {
-        const structureA = a.structures.length > 0 && a.structures[0].nom ? a.structures[0].nom : "";
-        const structureB = b.structures.length > 0 && b.structures[0].nom ? b.structures[0].nom : "";
+        const structureA =
+          a.structures.length > 0 && a.structures[0].nom ? a.structures[0].nom : "";
+        const structureB =
+          b.structures.length > 0 && b.structures[0].nom ? b.structures[0].nom : "";
 
         if (structureA > structureB) return sortedHeader.sens === "up" ? 1 : -1;
         return sortedHeader.sens === "up" ? -1 : 1;
       }
 
       if (orderColumn === "created_at") {
-        if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
+        if (moment(a.created_at).diff(moment(b.created_at)) > 0)
+          return sortedHeader.sens === "up" ? 1 : -1;
         return sortedHeader.sens === "up" ? -1 : 1;
       }
 
-      // @ts-ignore
-      const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
-      // @ts-ignore
+      const valueA = (a as any)[orderColumn] ? (a as any)[orderColumn].toLowerCase() : "";
       const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      // @ts-ignore
-      const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
+      const valueB = (b as any)[orderColumn] ? (b as any)[orderColumn].toLowerCase() : "";
       const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
       if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
 
@@ -248,7 +268,8 @@ export const AdminUsers = () => {
       return users.filter((user) => (user.roles || []).includes("ExpertTrad")).length;
     }
     if (status === "Traducteurs") {
-      return users.filter((user) => user.selectedLanguages && user.selectedLanguages.length > 0).length;
+      return users.filter((user) => user.selectedLanguages && user.selectedLanguages.length > 0)
+        .length;
     }
     if (status === "Rédacteurs") {
       return users.filter((user) => (user.roles || []).includes("Rédacteur")).length;
@@ -277,7 +298,6 @@ export const AdminUsers = () => {
           )}
           <CustomSearchBar
             value={search}
-            // @ts-ignore
             onChange={handleChange}
             placeholder="Rechercher un utilisateur..."
             withMargin={true}
@@ -324,10 +344,15 @@ export const AdminUsers = () => {
           <tbody>
             {usersToDisplay.map((element) => {
               const secureUrl =
-                element && element.picture && element.picture.secure_url ? element.picture.secure_url : marioProfile;
+                element && element.picture && element.picture.secure_url
+                  ? element.picture.secure_url
+                  : marioProfile;
               return (
                 <tr key={element._id.toString()}>
-                  <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
+                  >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
                         <Image
@@ -338,11 +363,16 @@ export const AdminUsers = () => {
                           height={40}
                           style={{ objectFit: "contain" }}
                         />
-                        <StructureName className="ms-4">{element.username || element.email}</StructureName>
+                        <StructureName className="ms-4">
+                          {element.username || element.email}
+                        </StructureName>
                       </RowContainer>
                     </div>
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
+                  >
                     <div style={{ maxWidth: "200px", wordWrap: "break-word" }}>{element.email}</div>
                   </td>
 
@@ -350,21 +380,30 @@ export const AdminUsers = () => {
                     className={"align-middle "}
                     onClick={() =>
                       setSelectedStructureIdAndToggleModal(
-                        //@ts-ignore
-                        element.structures && element.structures.length > 0 ? element.structures[0]._id : null,
+                        element.structures && element.structures.length > 0
+                          ? element.structures[0]._id
+                          : null,
                       )
                     }
                   >
-                    {element.structures && element.structures.length > 0 && element.structures[0].nom}
+                    {element.structures &&
+                      element.structures.length > 0 &&
+                      element.structures[0].nom}
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
+                  >
                     <div className={styles.item_container}>
                       {(element.roles || []).map((role) => (
                         <Role key={role} role={role} />
                       ))}
                     </div>
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
+                  >
                     <div className={styles.item_container}>
                       {(element.selectedLanguages || []).map((langue) => (
                         <LangueFlag langue={langue.langueFr} key={langue.langueCode} />
@@ -372,7 +411,10 @@ export const AdminUsers = () => {
                     </div>
                   </td>
 
-                  <td className="align-middle" onClick={() => setSelectedUserIdAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element._id)}
+                  >
                     {element.created_at ? moment(element.created_at).format("LLL") : "Non connue"}
                   </td>
                 </tr>
@@ -417,7 +459,12 @@ export const AdminUsers = () => {
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
-            prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, selectedContentId)
+            prepareDeleteContrib(
+              dispositifs,
+              setAllDispositifsActionsCreator,
+              dispatch,
+              selectedContentId,
+            )
           }
           toggleNeedsChoiceModal={toggleNeedsChoiceModal}
           toggleImprovementsMailModal={toggleImprovementsMailModal}

@@ -1,8 +1,7 @@
-import * as React from "react";
+import type { ContentForApp, GetContentsForAppResponse } from "@refugies-info/api-types";
+import type * as React from "react";
 import { useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
-
-import { ContentForApp, GetContentsForAppResponse } from "@refugies-info/api-types";
 import { Page, Rows } from "~/components";
 import { ContentSummary } from "~/components/Contents/ContentSummary";
 import { ErrorScreen } from "~/components/ErrorScreen";

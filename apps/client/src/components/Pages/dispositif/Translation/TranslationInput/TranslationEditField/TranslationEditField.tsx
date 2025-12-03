@@ -15,9 +15,20 @@ interface Props {
   className?: string;
 }
 
-const TranslationEditField = ({ isHTML, section, validate, isRTL, loading, maxLength, className }: Props) => {
+const TranslationEditField = ({
+  isHTML,
+  section,
+  validate,
+  isRTL,
+  loading,
+  maxLength,
+  className,
+}: Props) => {
   const value: string = useWatch({ name: `translated.${section}` });
-  const remainingChars = useMemo(() => (!maxLength ? null : maxLength - (value || "").length), [value, maxLength]);
+  const remainingChars = useMemo(
+    () => (!maxLength ? null : maxLength - (value || "").length),
+    [value, maxLength],
+  );
 
   return !isHTML ? (
     <>
@@ -43,7 +54,11 @@ const TranslationEditField = ({ isHTML, section, validate, isRTL, loading, maxLe
       )}
     </>
   ) : (
-    <RichTextInput value={value} onChange={(html) => validate(section, { text: html })} className={styles.richtext} />
+    <RichTextInput
+      value={value}
+      onChange={(html) => validate(section, { text: html })}
+      className={styles.richtext}
+    />
   );
 };
 

@@ -1,6 +1,6 @@
 import {
   ContentType,
-  GetDispositifsWithTranslationAvancementResponse,
+  type GetDispositifsWithTranslationAvancementResponse,
   TraductionsStatus,
 } from "@refugies-info/api-types";
 

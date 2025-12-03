@@ -1,8 +1,11 @@
-import { AdminCommentsRequest } from "@refugies-info/api-types";
+import type { AdminCommentsRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
-import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif, UserId } from "~/typegoose";
-import { Response } from "~/types/interface";
+import {
+  getDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import type { Dispositif, UserId } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const updateDispositifAdminComments = async (

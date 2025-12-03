@@ -38,7 +38,8 @@ interface Props {
 
 const StreamlineIcon = ({ name, isSelected }: { name: string; isSelected: boolean }) => {
   if (name === "galery" && isSelected) return <GalerieFill width={ICON_SIZE} height={ICON_SIZE} />;
-  if (name === "galery" && !isSelected) return <GalerieOutline width={ICON_SIZE} height={ICON_SIZE} />;
+  if (name === "galery" && !isSelected)
+    return <GalerieOutline width={ICON_SIZE} height={ICON_SIZE} />;
   if (name === "list" && isSelected) return <ListFill width={ICON_SIZE} height={ICON_SIZE} />;
   return <ListOutline width={ICON_SIZE} height={ICON_SIZE} />;
 };

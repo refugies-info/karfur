@@ -1,11 +1,11 @@
-import { GetStructureDispositifResponse } from "@refugies-info/api-types";
-import { FormattedNotification } from "./types";
+import type { GetStructureDispositifResponse } from "@refugies-info/api-types";
+import type { FormattedNotification } from "./types";
 
 export const formatNotifications = (
   dispositifs: GetStructureDispositifResponse[],
   hasResponsibleSeenAnnuaireNotif: boolean,
 ): FormattedNotification[] => {
-  let result: FormattedNotification[] = [];
+  const result: FormattedNotification[] = [];
   if (!hasResponsibleSeenAnnuaireNotif) {
     result.push({ type: "annuaire", read: false });
   }

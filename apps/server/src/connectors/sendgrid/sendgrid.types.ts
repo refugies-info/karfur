@@ -1,4 +1,4 @@
-import { templatesIds } from "./templatesIds";
+import type { templatesIds } from "./templatesIds";
 export declare type TemplateName = keyof typeof templatesIds;
 
 declare type Sender = {

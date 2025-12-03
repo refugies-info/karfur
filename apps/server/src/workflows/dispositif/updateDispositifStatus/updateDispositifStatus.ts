@@ -1,4 +1,4 @@
-import { DispositifStatus, DispositifStatusRequest } from "@refugies-info/api-types";
+import { DispositifStatus, type DispositifStatusRequest } from "@refugies-info/api-types";
 import { notifyGoogleUrlDeleted } from "~/libs/googleIndexingApi";
 import logger from "~/logger";
 import {
@@ -7,11 +7,15 @@ import {
   saveAndOverwriteDraft,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailWhenDispositifArchived } from "~/modules/mail/sendMailWhenDispositifArchived";
-import { Dispositif, ObjectId, User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import { type Dispositif, ObjectId, type User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const updateDispositifStatus = async (id: string, body: DispositifStatusRequest, user: User): Response => {
+export const updateDispositifStatus = async (
+  id: string,
+  body: DispositifStatusRequest,
+  user: User,
+): Response => {
   logger.info("[updateDispositifStatus]", { id, body });
   await log(id, body.status, user._id);
 

@@ -1,13 +1,24 @@
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
+import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
-import { LayoutProps, useDropdownContext } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
+import {
+  type LayoutProps,
+  useDropdownContext,
+} from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import styles from "./DropDownMenuLayout.module.scss";
 
-export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, gaType, children }: LayoutProps) {
+export function DropDownMenuLayout({
+  label,
+  tooltip,
+  value,
+  icon,
+  resetOptions,
+  gaType,
+  children,
+}: LayoutProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const eventName = useSearchEventName();
@@ -91,7 +102,13 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
-      if (open && dropdownNode && buttonNode && !dropdownNode.contains(target) && !buttonNode.contains(target)) {
+      if (
+        open &&
+        dropdownNode &&
+        buttonNode &&
+        !dropdownNode.contains(target) &&
+        !buttonNode.contains(target)
+      ) {
         setOpen(false);
         setOpenDropdownId(null);
       }
@@ -145,7 +162,12 @@ export function DropDownMenuLayout({ label, tooltip, value, icon, resetOptions, 
       </DropdownButton>
 
       {open && (
-        <div className={styles.menu} ref={dropdownRef} role="menu" onKeyDown={handleDropdownKeyDown}>
+        <div
+          className={styles.menu}
+          ref={dropdownRef}
+          role="menu"
+          onKeyDown={handleDropdownKeyDown}
+        >
           {children}
         </div>
       )}

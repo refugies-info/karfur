@@ -31,7 +31,10 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
   const selectOptions = useMemo(
     () =>
       languages.map((lang) => {
-        return { ...lang, disabled: !(dispositif?.availableLanguages || []).includes(lang.i18nCode) };
+        return {
+          ...lang,
+          disabled: !(dispositif?.availableLanguages || []).includes(lang.i18nCode),
+        };
       }),
     [languages, dispositif],
   );
@@ -76,7 +79,11 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
       <Input
         id="sms-phone-input"
         ref={ref}
-        nativeInputProps={{ type: "tel", name: "tel", onChange: (e: any) => setTel(e.target.value) }}
+        nativeInputProps={{
+          type: "tel",
+          name: "tel",
+          onChange: (e: any) => setTel(e.target.value),
+        }}
         label={t("MobileApp.phoneLabel", "Numéro de téléphone (requis)")}
         state={error ? "error" : "default"}
         stateRelatedMessage={errorMessage}

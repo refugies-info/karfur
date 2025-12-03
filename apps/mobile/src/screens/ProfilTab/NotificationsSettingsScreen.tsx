@@ -1,29 +1,26 @@
 import { useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components/native";
-import { styles } from "~/theme";
-
-import { currentI18nCodeSelector, userLocationSelector } from "~/services/redux/User/user.selectors";
-
-import { useNotificationsSettings } from "~/hooks/useNotificationSettings";
-import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-
-import { firstLetterUpperCase } from "~/libs";
-
-import { ToggleButton } from "~/components/UI/ToggleButton";
-
-import { StackNavigationProp } from "@react-navigation/stack";
 import { Page, RadioGroup, Separator, TextDSFR_L_Bold, TextDSFR_MD } from "~/components";
 import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
-import { themesSelector } from "~/services/redux/Themes/themes.selectors";
-import { ProfileParamList } from "~/types/navigation";
-
+import { ToggleButton } from "~/components/UI/ToggleButton";
+import { useNotificationsSettings } from "~/hooks/useNotificationSettings";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { firstLetterUpperCase } from "~/libs";
 import { getImageUri } from "~/libs/getImageUri";
+import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import {
+  currentI18nCodeSelector,
+  userLocationSelector,
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
 import DemarcheIcon from "~/theme/images/profile/demarches-icon.svg";
 import LocalIcon from "~/theme/images/profile/local-icon.svg";
+import type { ProfileParamList } from "~/types/navigation";
 
 const stylesheet = StyleSheet.create({
   toggleContainer: {
@@ -48,14 +45,17 @@ const SectionSubtitle = styled(TextDSFR_MD)`
 
 export const NotificationsSettingsScreen = () => {
   const { t } = useTranslationWithRTL();
-  const navigation = useNavigation<StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">>();
+  const navigation =
+    useNavigation<StackNavigationProp<ProfileParamList, "NotificationsSettingsScreen">>();
   const theme = useTheme();
   const [settings, updateSettings] = useNotificationsSettings();
   const location = useSelector(userLocationSelector);
   const themes = useSelector(themesSelector);
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
 
-  const [hasSetLocation, setHasSetLocation] = useState(!!(location && location.department && location.city));
+  const [hasSetLocation, setHasSetLocation] = useState(
+    !!(location && location.department && location.city),
+  );
   useEffect(() => {
     const newHasSetLocation = !!(location && location.department && location.city);
     if (hasSetLocation !== newHasSetLocation) {
@@ -65,7 +65,8 @@ export const NotificationsSettingsScreen = () => {
     }
   }, [location]);
 
-  const themesDisabled = !!settings && !settings?.global && !settings?.local && !settings?.demarches;
+  const themesDisabled =
+    !!settings && !settings?.global && !settings?.local && !settings?.demarches;
 
   const updateLocalSettings = async (state: boolean) => {
     if (!hasSetLocation) {
@@ -115,7 +116,9 @@ export const NotificationsSettingsScreen = () => {
           </RadioGroup>
           <RadioGroup style={stylesheet.toggleContainer}>
             <SectionTitle accessibilityRole="header">{t("notifications.themes")}</SectionTitle>
-            <SectionSubtitle>Choisis les thèmes pour lesquels tu souhaites recevoir des notifications.</SectionSubtitle>
+            <SectionSubtitle>
+              Choisis les thèmes pour lesquels tu souhaites recevoir des notifications.
+            </SectionSubtitle>
             {themes.map((theme, index) => (
               <View key={index}>
                 <ToggleButton
@@ -130,7 +133,11 @@ export const NotificationsSettingsScreen = () => {
                   disabled={themesDisabled}
                 />
                 {index < themes.length - 1 && (
-                  <Separator spacing={SeparatorSpacing.NoSpace} fullWidth key={`separator-${theme.name.fr}`} />
+                  <Separator
+                    spacing={SeparatorSpacing.NoSpace}
+                    fullWidth
+                    key={`separator-${theme.name.fr}`}
+                  />
                 )}
               </View>
             ))}

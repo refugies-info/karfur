@@ -1,13 +1,19 @@
 import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
-import { ContentType, GetTraductionsForReview, Languages, TranslationContent } from "@refugies-info/api-types";
+import type {
+  ContentType,
+  GetTraductionsForReview,
+  Languages,
+  TranslationContent,
+} from "@refugies-info/api-types";
 import { useRouter } from "next/router";
-import React, { useCallback, useContext, useMemo } from "react";
+import type React from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { useAsyncFn, useToggle } from "react-use";
 import Button from "~/components/UI/Button";
 import Camembert from "~/components/UI/Camembert";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useUser } from "~/hooks";
-import { Progress } from "~/hooks/dispositif";
+import type { Progress } from "~/hooks/dispositif";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
@@ -18,6 +24,7 @@ import StepBar from "../StepBar";
 import PublishModal from "./PublishModal";
 import QuitModal from "./QuitModal";
 import useAutosave from "./useAutosave";
+
 interface Props {
   typeContenu: ContentType;
   defaultTranslation?: TranslationContent;

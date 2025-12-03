@@ -1,5 +1,5 @@
-import fs from "fs";
 import { console } from "node:console";
+import fs from "fs";
 import Papa from "papaparse";
 
 const convertJsonToCsvFr = () => {

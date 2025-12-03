@@ -1,0 +1,123 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "maxSize": 2097152,
+    "includes": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.json", "**/*.jsonc"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "off",
+        "noConfusingVoidType": "off",
+        "noThenProperty": "off",
+        "noShadowRestrictedNames": "off",
+        "useIterableCallbackReturn": "off",
+        "noImplicitAnyLet": "off",
+        "noDocumentCookie": "off",
+        "noAssignInExpressions": "off",
+        "noSparseArray": "off",
+        "noRedeclare": "off",
+        "noIrregularWhitespace": "off",
+        "noDoubleEquals": "off",
+        "noDebugger": "off"
+      },
+      "style": {
+        "useTemplate": "off",
+        "useNodejsImportProtocol": "off",
+        "noNonNullAssertion": "off",
+        "noDescendingSpecificity": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off",
+        "noUnusedFunctionParameters": "off",
+        "noUnusedVariables": "off",
+        "useHookAtTopLevel": "off",
+        "useParseIntRadix": "off",
+        "noInnerDeclarations": "off",
+        "noUnusedImports": "off",
+        "noVoidTypeReturn": "off"
+      },
+      "complexity": {
+        "useOptionalChain": "off",
+        "noUselessFragments": "off",
+        "useLiteralKeys": "off",
+        "noBannedTypes": "off",
+        "noUselessTernary": "off",
+        "noImportantStyles": "off",
+        "useIndexOf": "off",
+        "noUselessConstructor": "off",
+        "noStaticOnlyClass": "off",
+        "useDateNow": "off",
+        "noCommaOperator": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "useButtonType": "off",
+        "noStaticElementInteractions": "off",
+        "noLabelWithoutControl": "off",
+        "useSemanticElements": "off",
+        "noAutofocus": "off",
+        "noSvgWithoutTitle": "off",
+        "useValidAnchor": "off",
+        "useAriaPropsSupportedByRole": "off",
+        "noRedundantRoles": "off",
+        "useKeyWithMouseEvents": "off",
+        "useIframeTitle": "off",
+        "noPositiveTabindex": "off",
+        "noNoninteractiveTabindex": "off",
+        "noInteractiveElementToNoninteractiveRole": "off"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/*.css", "**/*.scss"],
+      "linter": { "enabled": false },
+      "formatter": { "enabled": false },
+      "css": { "parser": { "cssModules": true } }
+    }
+  ],
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
+}

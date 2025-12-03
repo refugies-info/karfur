@@ -1,4 +1,4 @@
-import { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
+import type { GetLanguagesResponse, TraductionsStatus } from "@refugies-info/api-types";
 import styled from "styled-components";
 import { Progress } from "~/components/UI/Progress";
 import { colorAvancement } from "~/lib/colors";
@@ -31,7 +31,10 @@ const Title = styled.div<TitleProps>`
     props.isSelected && props.hasMultipleLanguages ? "underline" : "none"};
 `;
 export const LanguageTitle = (props: Props) => (
-  <MainContainer className={styles.language_title} hasMultipleLanguages={props.hasMultipleLanguages}>
+  <MainContainer
+    className={styles.language_title}
+    hasMultipleLanguages={props.hasMultipleLanguages}
+  >
     {props.isSelected ? (
       <span
         className={styles.selected + " fi fi-" + props.language.langueCode}
@@ -80,11 +83,16 @@ export const ProgressWithValue = (props: ProgressProps) => {
     <ProgressContainer>
       {!props.isExpert && (
         <div style={{ width: "100%" }}>
-          <Progress color={colorAvancement(props.avancementTrad, "bg")} value={props.avancementTrad * 100} />
+          <Progress
+            color={colorAvancement(props.avancementTrad, "bg")}
+            value={props.avancementTrad * 100}
+          />
         </div>
       )}
       <TextProgress>
-        <div className={colorAvancement(props.avancementTrad, "text")}>{getAvancement(props.avancementTrad)} %</div>
+        <div className={colorAvancement(props.avancementTrad, "text")}>
+          {getAvancement(props.avancementTrad)} %
+        </div>
       </TextProgress>
     </ProgressContainer>
   );

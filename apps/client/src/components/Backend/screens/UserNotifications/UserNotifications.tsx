@@ -25,7 +25,7 @@ import {
 import { colors } from "~/utils/colors";
 import { Notification } from "./components/Notification";
 import { formatNotifications } from "./lib";
-import { FormattedNotification } from "./types";
+import type { FormattedNotification } from "./types";
 
 const MainContainer = styled.div`
   background: ${colors.lightGrey};
@@ -176,7 +176,9 @@ const UserNotifications = (props: Props) => {
   };
 
   const updateStructureWithNotificationSeen = () => {
-    dispatch(updateUserStructureActionCreator({ structure: { hasResponsibleSeenNotification: true } }));
+    dispatch(
+      updateUserStructureActionCreator({ structure: { hasResponsibleSeenNotification: true } }),
+    );
     Swal.fire({
       title: "Yay...",
       text: "La notification a été supprimée",
@@ -207,7 +209,12 @@ const UserNotifications = (props: Props) => {
           <CenterContainer>
             <Title>Aucune notification ! </Title>
             <div style={{ marginTop: "32px", marginBottom: "20px" }}>
-              <Image src={assetsOnServer.middleOffice.noNotification} alt="no-notification" width={400} height={289} />
+              <Image
+                src={assetsOnServer.middleOffice.noNotification}
+                alt="no-notification"
+                width={400}
+                height={289}
+              />
             </div>
           </CenterContainer>
         </MainContainer>

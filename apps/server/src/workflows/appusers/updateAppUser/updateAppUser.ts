@@ -1,10 +1,13 @@
-import { AppUserRequest, PostAppUserResponse } from "@refugies-info/api-types";
+import type { AppUserRequest, PostAppUserResponse } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { updateOrCreateAppUser } from "~/modules/appusers/appusers.repository";
 import { getAllThemes } from "~/modules/themes/themes.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
-export const updateAppUser = async (appUid: string, body: AppUserRequest): ResponseWithData<PostAppUserResponse> => {
+export const updateAppUser = async (
+  appUid: string,
+  body: AppUserRequest,
+): ResponseWithData<PostAppUserResponse> => {
   logger.info("[updateAppUser] received");
 
   const themes = await getAllThemes();

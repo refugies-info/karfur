@@ -1,5 +1,5 @@
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db } from "mongodb";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import type { Db } from "mongodb";
 
 export class Migration1745023411000 implements MigrationInterface {
   public async up(db: Db): Promise<void | never> {

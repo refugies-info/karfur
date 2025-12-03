@@ -2,11 +2,11 @@ import {
   ContentType,
   DispositifOrigin,
   DispositifStatus,
-  GetStructureDispositifResponse,
-  GetUserContributionsResponse,
+  type GetStructureDispositifResponse,
+  type GetUserContributionsResponse,
 } from "@refugies-info/api-types";
 import { formatContributions } from "../functions";
-import { FormattedUserContribution } from "../types";
+import type { FormattedUserContribution } from "../types";
 
 const userContrib1: GetUserContributionsResponse = {
   _id: "id1",
@@ -171,7 +171,14 @@ const formattedUserContrib6: FormattedUserContribution = {
   origin: DispositifOrigin.RI,
 };
 
-const userContribs = [userContrib1, userContrib2, userContrib3, userContrib4, userContrib5, userContrib6];
+const userContribs = [
+  userContrib1,
+  userContrib2,
+  userContrib3,
+  userContrib4,
+  userContrib5,
+  userContrib6,
+];
 
 const userStructureContrib1: GetStructureDispositifResponse = {
   _id: "id1s",

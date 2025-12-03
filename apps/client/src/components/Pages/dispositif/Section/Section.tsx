@@ -1,7 +1,8 @@
-import { ContentType, InfoSections } from "@refugies-info/api-types";
+import { ContentType, type InfoSections } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { useContext, useMemo } from "react";
+import type React from "react";
+import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { cn } from "~/lib/classname";
@@ -12,6 +13,7 @@ import Accordions from "../Accordions";
 import RichText from "../RichText";
 import SectionButtons from "../SectionButtons";
 import SectionTitle from "../SectionTitle";
+
 interface Props {
   sectionKey: "what" | "why" | "how" | "next";
   contentType?: ContentType;

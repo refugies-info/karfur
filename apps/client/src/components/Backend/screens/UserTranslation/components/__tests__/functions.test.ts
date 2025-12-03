@@ -1,4 +1,14 @@
-import { data, data1, data2, data3, data4, data5, data6, data7, data8 } from "../__fixtures__/dispositifs";
+import {
+  data,
+  data1,
+  data2,
+  data3,
+  data4,
+  data5,
+  data6,
+  data7,
+  data8,
+} from "../__fixtures__/dispositifs";
 import { sortData } from "../functions";
 
 describe("sortData", () => {

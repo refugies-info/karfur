@@ -1,4 +1,11 @@
-import { Id, Picture, RoleName, SimpleDispositif, UserStatus, UserStructure } from "../generics";
+import type {
+  Id,
+  Picture,
+  RoleName,
+  SimpleDispositif,
+  UserStatus,
+  UserStructure,
+} from "../generics";
 
 interface AuthPassword {
   email: string;
@@ -119,7 +126,7 @@ export interface UpdateUserRequest {
     password?: {
       oldPassword: string;
       newPassword: string;
-    }
+    };
   };
   action: "modify-with-roles" | "modify-my-details";
 }
@@ -130,7 +137,6 @@ export interface UpdateUserRequest {
 export interface UpdateUserResponse {
   token?: string; // if user reset password
 }
-
 
 /**
  * @url GET /user

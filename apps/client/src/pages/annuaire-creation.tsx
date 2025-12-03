@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +41,9 @@ const AnnuaireCreate = () => {
 
   const isLoadingFetch = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
 
-  const isLoadingUpdate = useSelector(isLoadingSelector(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE));
+  const isLoadingUpdate = useSelector(
+    isLoadingSelector(LoadingStatusKey.UPDATE_SELECTED_STRUCTURE),
+  );
   const isLoading = isLoadingUpdate || isLoadingFetch;
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
@@ -111,7 +113,12 @@ const AnnuaireCreate = () => {
 
               {step < 6 ? (
                 isLoading ? (
-                  <FButton type={"validate"} className="ms-2" onClick={onStepValidate} disabled={true}>
+                  <FButton
+                    type={"validate"}
+                    className="ms-2"
+                    onClick={onStepValidate}
+                    disabled={true}
+                  >
                     <Spinner className="me-2" size="sm" />
                     Suivant
                   </FButton>
@@ -139,7 +146,9 @@ const AnnuaireCreate = () => {
             </div>
           </div>
         </div>
-        {showModifications && hasModifications && <Modifications hasModifications={hasModifications} />}
+        {showModifications && hasModifications && (
+          <Modifications hasModifications={hasModifications} />
+        )}
       </div>
 
       <div className={styles.right}>
@@ -147,20 +156,40 @@ const AnnuaireCreate = () => {
           <>
             <AnnuaireGauge step={step} />
             {step === 1 && (
-              <Step1 structure={structure} setStructure={setStructure} setHasModifications={setHasModifications} />
+              <Step1
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
             )}
             {step === 2 && (
-              <Step2 structure={structure} setStructure={setStructure} setHasModifications={setHasModifications} />
+              <Step2
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
             )}
             {step === 3 && (
-              <Step3 structure={structure} setStructure={setStructure} setHasModifications={setHasModifications} />
+              <Step3
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
             )}
 
             {step === 4 && (
-              <Step4 structure={structure} setStructure={setStructure} setHasModifications={setHasModifications} />
+              <Step4
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
             )}
             {step === 5 && (
-              <Step5 structure={structure} setStructure={setStructure} setHasModifications={setHasModifications} />
+              <Step5
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
             )}
             {step === 6 && <Step6 structureId={structure ? structure._id : ""} />}
           </>
@@ -171,7 +200,9 @@ const AnnuaireCreate = () => {
           </div>
         )}
       </div>
-      {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutorielModal} section={"Annuaire"} />}
+      {showTutoModal && (
+        <FrameModal show={showTutoModal} toggle={toggleTutorielModal} section={"Annuaire"} />
+      )}
     </div>
   );
 };

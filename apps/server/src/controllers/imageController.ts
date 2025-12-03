@@ -1,9 +1,9 @@
-import { PostImageResponse } from "@refugies-info/api-types";
-import * as express from "express";
+import type { PostImageResponse } from "@refugies-info/api-types";
+import type * as express from "express";
 import { Controller, Post, Request, Route, Security } from "tsoa";
 
-import { ResponseWithData } from "~/types/interface";
-import { postImages, UploadedFile } from "~/workflows/images/postImages";
+import type { ResponseWithData } from "~/types/interface";
+import { postImages, type UploadedFile } from "~/workflows/images/postImages";
 
 @Route("images")
 export class ImageController extends Controller {

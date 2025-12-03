@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
-import { StyleProp, View, ViewStyle } from "react-native";
+import type { PropsWithChildren } from "react";
+import { type StyleProp, View, type ViewStyle } from "react-native";
 import styled from "styled-components/native";
-import { ColumnsSpacing } from "../../Columns";
+import type { ColumnsSpacing } from "../../Columns";
 
 // We should use type-converting comparison (eqeq aka ==) because parseFloat will compute an invalid Float for case like: "8px" => 8
 const isFloat = (value: unknown) => parseFloat(String(value)) == value;
@@ -14,7 +14,9 @@ interface Props {
   marginBottom?: "nospace" | "default" | "text";
 }
 // TODO: marginBotton and marginRight API are perfectible: it's already declared as an update tech task in our backlog !
-const FlexItem = styled(({ style, children }: PropsWithChildren<Props>) => <View style={style}>{children}</View>)<{
+const FlexItem = styled(({ style, children }: PropsWithChildren<Props>) => (
+  <View style={style}>{children}</View>
+))<{
   flex?: string;
   marginBottom?: "nospace" | "default" | "text";
   marginRight?: string;
@@ -24,9 +26,11 @@ const FlexItem = styled(({ style, children }: PropsWithChildren<Props>) => <View
   ${({ marginBottom, theme }) => marginBottom && `margin-bottom: ${theme.layout.rows[marginBottom]}`};
   ${({ marginHorizontal, RTLBehaviour, theme }) =>
     marginHorizontal &&
-    (theme.i18n.isRTL && RTLBehaviour
-      ? `margin-left: ${theme.layout.columns[marginHorizontal]}`
-      : `margin-right: ${theme.layout.columns[marginHorizontal]}`)};
+    (
+      theme.i18n.isRTL && RTLBehaviour
+        ? `margin-left: ${theme.layout.columns[marginHorizontal]}`
+        : `margin-right: ${theme.layout.columns[marginHorizontal]}`
+    )};
 `;
 
 export default FlexItem;

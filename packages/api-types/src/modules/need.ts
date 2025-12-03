@@ -1,4 +1,4 @@
-import { Id, Picture, SimpleTheme } from "../generics";
+import type { Id, Picture, SimpleTheme } from "../generics";
 
 export interface NeedTranslation {
   text: string;

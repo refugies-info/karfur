@@ -6,7 +6,7 @@ import styled from "styled-components";
 import CustomTabPane from "~/components/Backend/CustomTabPane";
 import EVAIcon from "~/components/UI/EVAIcon";
 import useRouterLocale from "~/hooks/useRouterLocale";
-import { getInitialTab, setSavedQuery, TabQuery } from "~/lib/getAdminUrlParams";
+import { getInitialTab, setSavedQuery, type TabQuery } from "~/lib/getAdminUrlParams";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
@@ -15,7 +15,10 @@ import {
   fetchAllStructuresActionsCreator,
   setAllStructuresActionCreator,
 } from "~/services/AllStructures/allStructures.actions";
-import { fetchAllUsersActionsCreator, setAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions";
+import {
+  fetchAllUsersActionsCreator,
+  setAllUsersActionsCreator,
+} from "~/services/AllUsers/allUsers.actions";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { colors } from "~/utils/colors";
 import styles from "./Admin.module.scss";
@@ -123,7 +126,11 @@ export const Admin = (props: Props) => {
     <div className={styles.admin + " animated fadeIn"}>
       <Nav className="m-0 flex list-none p-0 pl-4">
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "contenus"} onClick={() => toggleTab("contenus")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "contenus"}
+            onClick={() => toggleTab("contenus")}
+          >
             <Onglet
               iconSelected="file-add"
               iconNotSelected="file-add-outline"
@@ -133,7 +140,11 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "structures"} onClick={() => toggleTab("structures")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "structures"}
+            onClick={() => toggleTab("structures")}
+          >
             <Onglet
               iconSelected="shopping-bag"
               iconNotSelected="shopping-bag-outline"
@@ -143,7 +154,11 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "utilisateurs"} onClick={() => toggleTab("utilisateurs")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "utilisateurs"}
+            onClick={() => toggleTab("utilisateurs")}
+          >
             <Onglet
               iconSelected="person"
               iconNotSelected="person-outline"
@@ -153,7 +168,11 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "categories"} onClick={() => toggleTab("categories")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "categories"}
+            onClick={() => toggleTab("categories")}
+          >
             <Onglet
               iconSelected="settings-2"
               iconNotSelected="settings-2-outline"
@@ -163,7 +182,11 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "divers"} onClick={() => toggleTab("divers")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "divers"}
+            onClick={() => toggleTab("divers")}
+          >
             <Onglet
               iconSelected="pie-chart"
               iconNotSelected="pie-chart-outline"
@@ -173,7 +196,11 @@ export const Admin = (props: Props) => {
           </NavLink>
         </NavItem>
         <NavItem className="list-none">
-          <NavLink className="mr-4 p-0" active={activeTab === "widgets"} onClick={() => toggleTab("widgets")}>
+          <NavLink
+            className="mr-4 p-0"
+            active={activeTab === "widgets"}
+            onClick={() => toggleTab("widgets")}
+          >
             <Onglet
               iconSelected="code"
               iconNotSelected="code-outline"

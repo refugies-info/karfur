@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useState } from "react";
+import { type ReactElement, useCallback, useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import ToolbarButton from "../ToolbarButton";
 import styles from "./ToolbarDropdown.module.scss";

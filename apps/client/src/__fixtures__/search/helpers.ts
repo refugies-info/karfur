@@ -1,8 +1,13 @@
+import type mongoose from "mongoose";
 import type { Connection } from "mongoose";
-import mongoose from "mongoose";
-import { LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
-import { getNeedSeedIds, getThemeSeedIds, makeNeedsList, registerTestSchemas } from "~/__fixtures__/seed-data";
-import { QueryParams } from "~/lib/search-helpers";
+import { type LegacyQuery, legacyFacetCounts } from "~/__fixtures__/search/legacy-counts";
+import {
+  getNeedSeedIds,
+  getThemeSeedIds,
+  makeNeedsList,
+  registerTestSchemas,
+} from "~/__fixtures__/seed-data";
+import type { QueryParams } from "~/lib/search-helpers";
 import { computeSearchCounts } from "~/pages/api/search/counts";
 
 // Mock Algolia client to reflect @algolia/client-search usage and avoid real network
@@ -128,7 +133,9 @@ export const getAllDispositifs = async (conn: Connection) => {
     ...d,
     _id: d._id.toString(),
     theme: d.theme ? d.theme.toString() : null,
-    secondaryThemes: Array.isArray(d.secondaryThemes) ? d.secondaryThemes.map((x: any) => x.toString()) : [],
+    secondaryThemes: Array.isArray(d.secondaryThemes)
+      ? d.secondaryThemes.map((x: any) => x.toString())
+      : [],
     needs: Array.isArray(d.needs) ? d.needs.map((x: any) => x.toString()) : [],
     availableLanguages: (() => {
       const tr = d?.translations;
@@ -152,7 +159,8 @@ export const runFacetTests = (
   for (const c of cases) {
     test(c.name, async () => {
       const params = toParams(c.params);
-      const conn = typeof connOrGetter === "function" ? (connOrGetter as () => Connection)() : connOrGetter;
+      const conn =
+        typeof connOrGetter === "function" ? (connOrGetter as () => Connection)() : connOrGetter;
       const api = await computeSearchCounts(conn, params);
 
       const all = await getAllDispositifs(conn);
@@ -173,7 +181,8 @@ export const makeCase = (name: string, params: Partial<QueryParams>) => ({
 // Title helpers
 export const singleTitles: Record<string, string> = {
   departments: "departments facet matches legacy when department filter applied (skip location)",
-  frenchLevel: "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
+  frenchLevel:
+    "frenchLevel facet matches legacy when frenchLevel filter applied (skip frenchLevel)",
   language: "language facet matches legacy when language filter applied (skip language)",
   public: "public facet matches legacy when public filter applied (skip public)",
   status: "status facet matches legacy when status filter applied (skip status)",
@@ -322,7 +331,11 @@ export const resetDatabase = async (conn: Connection): Promise<void> => {
   await db.dropDatabase();
 };
 
-export const getOrRegisterModel = (conn: mongoose.Connection, modelName: string, schema: mongoose.Schema) => {
+export const getOrRegisterModel = (
+  conn: mongoose.Connection,
+  modelName: string,
+  schema: mongoose.Schema,
+) => {
   try {
     return conn.model(modelName);
   } catch {

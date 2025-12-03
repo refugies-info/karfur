@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { useContext, useMemo } from "react";
 import { Col, Row } from "reactstrap";
 import PublishImage from "~/assets/dispositif/publish-image.svg";
@@ -9,11 +9,11 @@ import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Image from "~/components/UI/Image";
 import { useLanguages, useUser } from "~/hooks";
-import { Step } from "~/hooks/dispositif";
+import type { Step } from "~/hooks/dispositif";
 import PageContext from "~/utils/pageContext";
 import MissingSteps from "../../MissingSteps";
 import StepBar from "../../StepBar";
-import { ContentKey, contentTitle, getContentIntro } from "./data";
+import { type ContentKey, contentTitle, getContentIntro } from "./data";
 import styles from "./QuitModal.module.scss";
 
 interface Props {

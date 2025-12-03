@@ -1,14 +1,14 @@
 import msal from "@azure/msal-node";
-import { LoginRequest, LoginResponse, UserStatus } from "@refugies-info/api-types";
-import { DocumentType } from "@typegoose/typegoose";
+import { type LoginRequest, type LoginResponse, UserStatus } from "@refugies-info/api-types";
+import type { DocumentType } from "@typegoose/typegoose";
 import { OAuth2Client } from "google-auth-library";
 import logger from "~/logger";
 import { loginExceptionsManager, logUser, needs2FA } from "~/modules/users/auth";
-import { requestEmailLogin } from "~/modules/users/login2FA";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { requestEmailLogin } from "~/modules/users/login2FA";
 import { getUserByEmailFromDB, updateUserInDB } from "~/modules/users/users.repository";
 import { registerUser } from "~/modules/users/users.service";
-import { User } from "~/typegoose/User";
+import type { User } from "~/typegoose/User";
 
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -26,7 +26,10 @@ const cca = new msal.ConfidentialClientApplication({
 const MICROSOFT_REDIRECT_URL = process.env.FRONT_SITE_URL + "/fr/auth/microsoft-login";
 const MICROSOFT_SCOPES = ["User.Read"];
 
-export const authWithPassword = async (user: DocumentType<User>, password: string): Promise<boolean> => {
+export const authWithPassword = async (
+  user: DocumentType<User>,
+  password: string,
+): Promise<boolean> => {
   logger.info("[authWithPassword] start", { email: user.email });
 
   if (!user.authenticate(password)) {
@@ -38,7 +41,9 @@ export const authWithPassword = async (user: DocumentType<User>, password: strin
   return true;
 };
 
-export const authWithGoogle = async (loginRequest: LoginRequest): Promise<{ email: string; name: string } | null> => {
+export const authWithGoogle = async (
+  loginRequest: LoginRequest,
+): Promise<{ email: string; name: string } | null> => {
   logger.info("[authWithGoogle] start");
   const { tokens } = await oauth2Client.getToken(loginRequest.authGoogle.authCode);
   const res = await oauth2Client.verifyIdToken({ idToken: tokens.id_token });

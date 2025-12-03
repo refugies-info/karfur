@@ -51,29 +51,32 @@ export const useNotificationsSettings = (): [
       logSettingsUpdate(key, value);
       const payload: Partial<NotificationsSettings> = {};
       set(payload, key, value);
-      queryClient.setQueryData("notificationsSettings", (current: NotificationsSettings | undefined) => {
-        if (!current) {
-          // Return default state if no current data exists
-          return {
-            themes: {},
-            global: false,
-            local: false,
-            demarches: false,
-            ...payload,
-          };
-        }
+      queryClient.setQueryData(
+        "notificationsSettings",
+        (current: NotificationsSettings | undefined) => {
+          if (!current) {
+            // Return default state if no current data exists
+            return {
+              themes: {},
+              global: false,
+              local: false,
+              demarches: false,
+              ...payload,
+            };
+          }
 
-        if (payload.themes) {
-          return {
-            ...current,
-            themes: {
-              ...current.themes,
-              ...payload.themes,
-            },
-          };
-        }
-        return { ...current, ...payload };
-      });
+          if (payload.themes) {
+            return {
+              ...current,
+              themes: {
+                ...current.themes,
+                ...payload.themes,
+              },
+            };
+          }
+          return { ...current, ...payload };
+        },
+      );
       await mutation.mutateAsync(payload);
     } catch (err) {
       queryClient.invalidateQueries("notificationsSettings");

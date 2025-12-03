@@ -3,6 +3,7 @@ import { initialRootStateFactory } from "~/services/redux/reducers";
 import { mockedThemesData } from "../../../jest/__fixtures__/themes";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { SearchScreen } from "../SearchScreen";
+
 jest.mock("@react-navigation/core");
 
 jest.useFakeTimers();

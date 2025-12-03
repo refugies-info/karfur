@@ -16,7 +16,11 @@ interface Props {
 const NbResults = (props: Props) => {
   const { t } = useTranslationWithRTL();
 
-  return <StyledTextBold>{t("search_screen.results", "résultats", { nbResults: props.nbResults })}</StyledTextBold>;
+  return (
+    <StyledTextBold>
+      {t("search_screen.results", "résultats", { nbResults: props.nbResults })}
+    </StyledTextBold>
+  );
 };
 
 export default NbResults;

@@ -1,5 +1,5 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
@@ -37,7 +37,9 @@ const Banner = (props: Props) => {
         styles.banner,
         pageContext.mode === "translate" && styles.translate,
       )}
-      style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
+      style={
+        theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}
+      }
     >
       <div>
         {isNotTranslated && (

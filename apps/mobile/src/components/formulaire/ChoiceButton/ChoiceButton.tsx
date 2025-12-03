@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react";
-import { ViewStyle } from "react-native";
+import type { PropsWithChildren } from "react";
+import type { ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";

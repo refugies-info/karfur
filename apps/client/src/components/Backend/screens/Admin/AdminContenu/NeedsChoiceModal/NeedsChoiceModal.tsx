@@ -1,4 +1,9 @@
-import { DispositifThemeNeedsRequest, GetAllDispositifsResponse, GetNeedResponse, Id } from "@refugies-info/api-types";
+import type {
+  DispositifThemeNeedsRequest,
+  GetAllDispositifsResponse,
+  GetNeedResponse,
+  Id,
+} from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
@@ -124,7 +129,11 @@ export const NeedsChoiceModal = (props: Props) => {
 
   useEffect(() => {
     // if theme removed from selected, remove it from primary
-    if (primaryTheme && !selectedThemes.includes(primaryTheme) && !selectedThemesByAuthor?.includes(primaryTheme)) {
+    if (
+      primaryTheme &&
+      !selectedThemes.includes(primaryTheme) &&
+      !selectedThemesByAuthor?.includes(primaryTheme)
+    ) {
       setPrimaryTheme(undefined);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -134,7 +143,9 @@ export const NeedsChoiceModal = (props: Props) => {
     // handle errors
     const hasThemeWithoutNeed = () => {
       const allSelectedThemes = [...selectedThemes, ...(selectedThemesByAuthor || [])];
-      const allSelectedNeeds = selectedNeeds.map((needId) => allNeeds.find((n) => n._id === needId));
+      const allSelectedNeeds = selectedNeeds.map((needId) =>
+        allNeeds.find((n) => n._id === needId),
+      );
       return allSelectedThemes.find((themeId) => {
         return !allSelectedNeeds.find((need) => need?.theme._id === themeId);
       });
@@ -210,7 +221,12 @@ export const NeedsChoiceModal = (props: Props) => {
             <FButton type="white" name="close-outline" className="me-2" onClick={props.toggleModal}>
               Annuler
             </FButton>
-            <FButton type="validate" name="checkmark-outline" onClick={onValidate} disabled={!!errorMessage}>
+            <FButton
+              type="validate"
+              name="checkmark-outline"
+              onClick={onValidate}
+              disabled={!!errorMessage}
+            >
               Valider
             </FButton>
           </div>

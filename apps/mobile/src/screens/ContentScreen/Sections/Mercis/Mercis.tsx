@@ -1,12 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { GetDispositifResponse } from "@refugies-info/api-types";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
 import { useEffect, useMemo, useState } from "react";
-import styled, { useTheme } from "styled-components/native";
-import { Button, Card, Columns, Rows, RowsSpacing, SectionTitle, TextDSFR_MD } from "~/components";
-
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import useAsyncFn from "react-use/lib/useAsyncFn";
+import styled, { useTheme } from "styled-components/native";
+import { Button, Card, Columns, Rows, RowsSpacing, SectionTitle, TextDSFR_MD } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import { currentI18nCodeSelector } from "~/services";
 import { setSelectedContentActionCreator } from "~/services/redux/SelectedContent/selectedContent.actions";
@@ -41,7 +40,10 @@ const Mercis = ({ dispositif }: MercisProps) => {
   const currentLanguage = useSelector(currentI18nCodeSelector) || "fr";
 
   const [thanks, setThanks] = useState<string[]>([]);
-  const hasThanked = useMemo(() => thanks.includes(dispositif._id.toString()), [thanks, dispositif._id]);
+  const hasThanked = useMemo(
+    () => thanks.includes(dispositif._id.toString()),
+    [thanks, dispositif._id],
+  );
 
   useEffect(() => {
     AsyncStorage.getItem("THANKS").then((thanks) => setThanks((thanks || "")?.split(",")));

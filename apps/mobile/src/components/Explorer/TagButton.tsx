@@ -1,11 +1,11 @@
-import { Picture } from "@refugies-info/api-types";
-import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
+import type { Picture } from "@refugies-info/api-types";
+import { LinearGradient, type LinearGradientPoint } from "expo-linear-gradient";
 import isArray from "lodash/isArray";
 import * as React from "react";
-import { StyleProp, View, ViewStyle } from "react-native";
+import { type StyleProp, View, type ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { TagImage } from "~/components/Explorer/TagImage";
-import { SearchItem } from "~/components/Search/types";
+import type { SearchItem } from "~/components/Search/types";
 import { firstLetterUpperCase } from "~/libs";
 import { styles } from "~/theme";
 import { RTLTouchableOpacity } from "../BasicComponents";

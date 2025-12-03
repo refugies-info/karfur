@@ -24,7 +24,10 @@ export const PseudoModal = ({ successCallback }: Props) => {
 
   return (
     <pseudoModal.Component title="Choisissez un pseudonyme">
-      <p>Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.</p>
+      <p>
+        Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et
+        sa traduction.
+      </p>
       <EditPseudo successCallback={onSuccess} />
     </pseudoModal.Component>
   );

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import type React from "react";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./ThemeItem.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
@@ -12,11 +13,20 @@ type ThemeItemProps = {
   isFirst: boolean;
 };
 
-const ThemeItem: React.FC<ThemeItemProps> = ({ color, id, label, needCount, selected, isFirst }) => {
+const ThemeItem: React.FC<ThemeItemProps> = ({
+  color,
+  id,
+  label,
+  needCount,
+  selected,
+  isFirst,
+}) => {
   const { setSelectedThemeId } = useContext(ThemeMenuContext);
   const { t } = useTranslation();
 
-  const ariaLabel = needCount ? `${label} ${t("Recherche.selectedFiltersCount", { count: needCount })}` : label;
+  const ariaLabel = needCount
+    ? `${label} ${t("Recherche.selectedFiltersCount", { count: needCount })}`
+    : label;
 
   return (
     <button

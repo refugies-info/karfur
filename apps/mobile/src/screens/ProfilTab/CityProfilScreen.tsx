@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
@@ -10,9 +10,11 @@ import {
   saveUserLocationActionCreator,
 } from "~/services/redux/User/user.actions";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 
-export const CityProfilScreen = ({ navigation }: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
+export const CityProfilScreen = ({
+  navigation,
+}: StackScreenProps<ProfileParamList, "CityProfilScreen">) => {
   const { t } = useTranslationWithRTL();
   const dispatch = useDispatch();
   const theme = useTheme();

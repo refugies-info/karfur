@@ -38,10 +38,10 @@ export const addToNewsletter = async (email: string) => {
   createContactRequest.listIds = [RI_CONTACTS_LIST];
 
   await apiInstance.createContact(createContactRequest).then(
-    function () {
+    () => {
       logger.info("[setMail] API called successfully.");
     },
-    function (error: unknown) {
+    (error: unknown) => {
       logger.error("[setMail] Error while creating contact", String(error));
       if (
         typeof error === "object" &&
@@ -54,7 +54,10 @@ export const addToNewsletter = async (email: string) => {
         error.response.statusCode === 400 &&
         error.response.body.message === "Contact already exist"
       )
-        throw new InvalidRequestError("This email is already in the list.", "CONTACT_ALREADY_EXIST");
+        throw new InvalidRequestError(
+          "This email is already in the list.",
+          "CONTACT_ALREADY_EXIST",
+        );
       throw new Error("Error while creating contact");
     },
   );

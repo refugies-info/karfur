@@ -1,5 +1,10 @@
 const { i18n } = require("./next-i18next.config");
-const { translatedRedirects, oldPathsRedirects, partnersRedirect, rewrites } = require("./redirects.js");
+const {
+  translatedRedirects,
+  oldPathsRedirects,
+  partnersRedirect,
+  rewrites,
+} = require("./redirects.js");
 const path = require("path");
 
 module.exports = {

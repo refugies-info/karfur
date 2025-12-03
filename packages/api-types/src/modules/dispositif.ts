@@ -1,4 +1,4 @@
-import {
+import type {
   ContentStructure,
   ContentType,
   DemarcheAdministration,
@@ -21,7 +21,13 @@ export enum ViewsType {
   MOBILE = "mobile",
   FAVORITE = "favorite",
 }
-type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
+type Facets =
+  | "nbMercis"
+  | "nbVues"
+  | "nbVuesMobile"
+  | "nbDispositifs"
+  | "nbDemarches"
+  | "nbUpdatedRecently";
 
 export type Suggestion = {
   created_at: Date;
@@ -251,7 +257,13 @@ export type GetDispositifResponse = {
   sponsors?: (Sponsor | ContentStructure)[];
   participants: SimpleUser[];
   merci: { created_at: Date; userId?: Id }[];
-  avis: { created_at: Date; userId?: Id; anonymousUserId?: string; avis: boolean; language: string }[];
+  avis: {
+    created_at: Date;
+    userId?: Id;
+    anonymousUserId?: string;
+    avis: boolean;
+    language: string;
+  }[];
   creatorId: { _id: Id; username?: string };
   metadatas: Metadatas;
   map: Poi[] | null;

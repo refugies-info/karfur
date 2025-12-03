@@ -3,7 +3,12 @@ import { Checkbox as DsfrCheckbox } from "@codegouvfr/react-dsfr/Checkbox";
 import RadioButtons from "@codegouvfr/react-dsfr/RadioButtons";
 import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { useWindowSize } from "@refugies-info/ui";
-import { AgeOptions, FrenchOptions, SortOptions, sortOptions } from "data/searchFilters";
+import {
+  type AgeOptions,
+  type FrenchOptions,
+  type SortOptions,
+  sortOptions,
+} from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import React, { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,8 +26,11 @@ import { Event } from "~/lib/tracking";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import { searchQuerySelector, themesDisplayedSelector } from "~/services/SearchResults/searchResults.selector";
+import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
+import {
+  searchQuerySelector,
+  themesDisplayedSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import styles from "./Filter.module.scss";
 
 type TranslationFunction = (key: string, options?: object) => string;
@@ -124,7 +132,10 @@ const Filter = ({
     // Calculate count using the updated query (after selection/deselection)
     const updatedQuery = { ...query, [filterKey]: newSelected };
     const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
-    announce(t("Recherche.updatedFilters", { count: results.matches.length }), { priority: "interrupt", delay: 1000 });
+    announce(t("Recherche.updatedFilters", { count: results.matches.length }), {
+      priority: "interrupt",
+      delay: 1000,
+    });
   };
 
   const resetOptions = () => {
@@ -151,7 +162,9 @@ const Filter = ({
 
   const value = useMemo(() => {
     if (externalMenu) return externalMenu.value;
-    const querySelected = processedMenuItems.flatMap((item) => (query[item.filterKey] ? query[item.filterKey] : null));
+    const querySelected = processedMenuItems.flatMap((item) =>
+      query[item.filterKey] ? query[item.filterKey] : null,
+    );
     if (Array.isArray(querySelected)) {
       return querySelected.map((selected) => {
         const val = processedMenuItems
@@ -209,7 +222,8 @@ const Filter = ({
                           </span>{" "}
                           <small>
                             ({option.count ?? ""}{" "}
-                            {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`})
+                            {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`}
+                            )
                           </small>{" "}
                         </span>
                       );
@@ -293,7 +307,12 @@ const Filter = ({
                 ? externalMenu.menu
                 : processedMenuItems.map((item, i) => {
                     return (
-                      <FilterCheckboxes key={i} options={item.options} currentmenu={item} onSelectItem={onSelectItem} />
+                      <FilterCheckboxes
+                        key={i}
+                        options={item.options}
+                        currentmenu={item}
+                        onSelectItem={onSelectItem}
+                      />
                     );
                   })}
             </DropDownMenuLayout>
@@ -340,18 +359,24 @@ const FilterCheckboxes = ({
               {currentmenu.translateOptions ? t(option.value as any) : option.value}{" "}
               {isDisabled ? (
                 <div className="text-mention-grey ms-auto block p-2 ps-3 pe-1 pt-[0.35rem] text-xs">
-                  <Tooltip kind="hover" aria-hidden="true" title={t("Recherche.tooltipAucuneFicheCorrespondante")}>
+                  <Tooltip
+                    kind="hover"
+                    aria-hidden="true"
+                    title={t("Recherche.tooltipAucuneFicheCorrespondante")}
+                  >
                     {option.count ?? ""}
                   </Tooltip>
                 </div>
               ) : (
-                <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">{option.count ?? ""}</span>
+                <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">
+                  {option.count ?? ""}
+                </span>
               )}
             </span>
           ),
           nativeInputProps: {
-            "checked": isSelected,
-            "onChange": () => (isDisabled ? null : onSelectItem(currentmenu.filterKey, option.key)),
+            checked: isSelected,
+            onChange: () => (isDisabled ? null : onSelectItem(currentmenu.filterKey, option.key)),
             "aria-disabled": isDisabled,
           },
         };

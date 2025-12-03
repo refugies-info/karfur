@@ -1,6 +1,4 @@
-import { Body, Controller, Delete, Get, Post, Queries, Query, Request, Route, Security } from "tsoa";
-
-import {
+import type {
   DeleteTranslationsRequest,
   GetDefaultTraductionResponse,
   GetProgressionRequest,
@@ -15,8 +13,20 @@ import {
   TranslationStatisticsRequest,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Queries,
+  Query,
+  Request,
+  Route,
+  Security,
+} from "tsoa";
 import logger from "~/logger";
-import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import type { IRequest, Response, ResponseWithData } from "~/types/interface";
 import {
   deleteTranslations,
   getDefaultTraduction,
@@ -56,7 +66,9 @@ export class TranslationController extends Controller {
    */
   @Get("/")
   @Security("jwt")
-  public getDefaultTraduction(@Query() dispositif: string): ResponseWithData<GetDefaultTraductionResponse> {
+  public getDefaultTraduction(
+    @Query() dispositif: string,
+  ): ResponseWithData<GetDefaultTraductionResponse> {
     return getDefaultTraduction(dispositif).then((translation) => ({
       text: "success",
       data: { translation },
@@ -78,10 +90,12 @@ export class TranslationController extends Controller {
     @Query() language: string,
     @Request() request: IRequest,
   ): ResponseWithData<GetTraductionsForReviewResponse> {
-    return getTraductionsForReview(dispositif, language as Languages, request.user).then((traductions) => ({
-      text: "success",
-      data: traductions,
-    }));
+    return getTraductionsForReview(dispositif, language as Languages, request.user).then(
+      (traductions) => ({
+        text: "success",
+        data: traductions,
+      }),
+    );
   }
 
   /**
@@ -106,10 +120,12 @@ export class TranslationController extends Controller {
     @Queries() queries?: GetProgressionRequest,
   ): ResponseWithData<GetProgressionResponse> {
     logger.info("[get_progression] received");
-    return getProgression((queries.userId || req.user._id).toString(), !!queries.onlyTotal).then((progression) => ({
-      text: "success",
-      data: progression,
-    }));
+    return getProgression((queries.userId || req.user._id).toString(), !!queries.onlyTotal).then(
+      (progression) => ({
+        text: "success",
+        data: progression,
+      }),
+    );
   }
 
   @Get("/statistics")
@@ -127,7 +143,10 @@ export class TranslationController extends Controller {
     jwt: ["expert"],
     fromSite: [],
   })
-  public publishTranslation(@Body() body: PublishTranslationRequest, @Request() request: IRequest): Response {
+  public publishTranslation(
+    @Body() body: PublishTranslationRequest,
+    @Request() request: IRequest,
+  ): Response {
     return publishTranslation(body, request.user).then(() => ({ text: "success" }));
   }
 

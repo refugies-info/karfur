@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { CreateDispositifRequest } from "@refugies-info/api-types";
+import type { CreateDispositifRequest } from "@refugies-info/api-types";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import ArrowRight from "~/assets/dispositif/arrow-right.svg";
@@ -69,7 +69,10 @@ const ModalAbstract = (props: Props) => {
           </div>
 
           <div>
-            <DispositifCard dispositif={{ ...getDefaultDispositif(values, sponsor), abstract }} demoCard />
+            <DispositifCard
+              dispositif={{ ...getDefaultDispositif(values, sponsor), abstract }}
+              demoCard
+            />
           </div>
         </div>
 

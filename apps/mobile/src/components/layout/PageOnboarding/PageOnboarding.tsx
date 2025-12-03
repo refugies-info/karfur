@@ -1,6 +1,6 @@
-import React, { ReactNode, useCallback, useEffect, useMemo } from "react";
+import React, { type ReactNode, useCallback, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
-import { ScrollView, View } from "react-native";
+import { type ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -117,7 +117,9 @@ const PageOnboarding = ({
               testID="test-next-button"
             ></ButtonDSFR>
           )}
-          <ReadButtonContainer>{!noReadButton && <ReadButton bottomInset={0} white bold />}</ReadButtonContainer>
+          <ReadButtonContainer>
+            {!noReadButton && <ReadButton bottomInset={0} white bold />}
+          </ReadButtonContainer>
           {onNext && (
             <ButtonDSFR
               accessibilityLabel={t("onboarding_screens.next_button")}

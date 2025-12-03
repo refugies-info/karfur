@@ -1,7 +1,7 @@
-import { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
+import type { GetNeedResponse, NeedTranslation } from "@refugies-info/api-types";
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { HeaderContentProps, Page } from "~/components";
+import { type HeaderContentProps, Page } from "~/components";
 import { ErrorScreen } from "~/components/ErrorScreen";
 import HeaderContentTitle from "~/components/layout/Header/HeaderContentTitle";
 import { NeedsSummary } from "~/components/Needs/NeedsSummary";
@@ -13,7 +13,7 @@ import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.
 import { needsSelector } from "~/services/redux/Needs/needs.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerScreenProps } from "~/types/navigation";
+import type { ExplorerScreenProps } from "~/types/navigation";
 
 const computeNeedsToDisplay = (
   allNeeds: GetNeedResponse[],
@@ -55,7 +55,10 @@ export const NeedsScreen = ({ navigation, route }: ExplorerScreenProps<"NeedsScr
   // Loading
   const isLoadingContents = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_CONTENTS));
   const isLoadingNeeds = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_NEEDS));
-  const isLoading = useMemo(() => isLoadingContents || isLoadingNeeds, [isLoadingContents, isLoadingNeeds]);
+  const isLoading = useMemo(
+    () => isLoadingContents || isLoadingNeeds,
+    [isLoadingContents, isLoadingNeeds],
+  );
 
   // Content
   const currentLanguageI18nCode = useSelector(currentI18nCodeSelector);
@@ -66,9 +69,13 @@ export const NeedsScreen = ({ navigation, route }: ExplorerScreenProps<"NeedsScr
     const needsToDisplay = computeNeedsToDisplay(allNeeds, groupedContents, theme._id.toString());
 
     return needsToDisplay.map((need: GetNeedResponse) => {
-      const needTranslation = need[currentLanguageI18nCode as keyof GetNeedResponse] as NeedTranslation;
-      const needText = currentLanguageI18nCode && needTranslation?.text ? needTranslation.text : need.fr.text;
-      const needSubtitle = currentLanguageI18nCode && needTranslation?.subtitle ? needTranslation.subtitle : undefined;
+      const needTranslation = need[
+        currentLanguageI18nCode as keyof GetNeedResponse
+      ] as NeedTranslation;
+      const needText =
+        currentLanguageI18nCode && needTranslation?.text ? needTranslation.text : need.fr.text;
+      const needSubtitle =
+        currentLanguageI18nCode && needTranslation?.subtitle ? needTranslation.subtitle : undefined;
       return { ...need, needText, needSubtitle };
     });
   }, [allNeeds, groupedContents, theme._id, currentLanguageI18nCode]);
@@ -77,7 +84,11 @@ export const NeedsScreen = ({ navigation, route }: ExplorerScreenProps<"NeedsScr
   React.useEffect(() => registerBackButton(backScreen, navigation), []);
 
   const Component: React.FC<HeaderContentProps> = (props) => (
-    <HeaderContentTitle title={theme.name[currentLanguageI18nCode || "fr"]} titleIcon={theme.icon} {...props} />
+    <HeaderContentTitle
+      title={theme.name[currentLanguageI18nCode || "fr"]}
+      titleIcon={theme.icon}
+      {...props}
+    />
   );
   if (needsWithText.length === 0 && !isLoading) {
     return (

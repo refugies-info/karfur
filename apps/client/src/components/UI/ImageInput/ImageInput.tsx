@@ -1,4 +1,4 @@
-import { Picture } from "@refugies-info/api-types";
+import type { Picture } from "@refugies-info/api-types";
 import { useState } from "react";
 import { Col, Input, Row, Spinner } from "reactstrap";
 import emptyImage from "~/assets/empty-image.svg";
@@ -25,7 +25,7 @@ const AdminThemeButton = (props: Props) => {
   const handleFileInputChange = (event: any) => {
     setUploading(true);
     const formData = new FormData();
-    // @ts-ignore
+    // @ts-expect-error
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)
@@ -42,7 +42,10 @@ const AdminThemeButton = (props: Props) => {
 
   return (
     <>
-      <Row className={cls(props.darkBackground && styles.dark)} style={{ minHeight: props.minHeight || 0 }}>
+      <Row
+        className={cls(props.darkBackground && styles.dark)}
+        style={{ minHeight: props.minHeight || 0 }}
+      >
         <Col className={styles.col}>
           <div>
             <div
@@ -76,7 +79,11 @@ const AdminThemeButton = (props: Props) => {
                   accept="image/*"
                   onChange={handleFileInputChange}
                 />
-                {props.image?.secure_url ? <span>Choisir une autre image</span> : <span>Choisir une image</span>}
+                {props.image?.secure_url ? (
+                  <span>Choisir une autre image</span>
+                ) : (
+                  <span>Choisir une image</span>
+                )}
               </FButton>
               <p className={styles.help}>{props.dimensionsHelp}</p>
             </div>

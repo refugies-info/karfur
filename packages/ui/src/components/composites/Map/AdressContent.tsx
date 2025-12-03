@@ -1,4 +1,4 @@
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { CopyButton } from "./CopyButton";
 

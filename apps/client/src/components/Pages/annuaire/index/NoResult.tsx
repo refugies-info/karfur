@@ -20,7 +20,12 @@ export const NoResult = (props: any) => {
           )}{" "}
         </p>
         <div className={styles.buttons}>
-          <FButton type="dark" name="refresh-outline" className="me-2" onClick={props.resetAllFilter}>
+          <FButton
+            type="dark"
+            name="refresh-outline"
+            className="me-2"
+            onClick={props.resetAllFilter}
+          >
             Recommencer
           </FButton>
         </div>

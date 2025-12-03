@@ -9,7 +9,11 @@ import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { Event } from "~/lib/tracking";
 import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { secondaryThemesSelector, themeSelector, themesSelector } from "~/services/Themes/themes.selectors";
+import {
+  secondaryThemesSelector,
+  themeSelector,
+  themesSelector,
+} from "~/services/Themes/themes.selectors";
 
 const LinkedThemes = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
@@ -21,7 +25,10 @@ const LinkedThemes = ({ className }: { className?: string }) => {
   const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
 
   return (
-    <ul className={cn("flex list-none flex-wrap gap-2", className)} aria-label={t("Dispositif.linkedThemes")}>
+    <ul
+      className={cn("flex list-none flex-wrap gap-2", className)}
+      aria-label={t("Dispositif.linkedThemes")}
+    >
       {theme && (
         <li>
           <SearchThemeButton

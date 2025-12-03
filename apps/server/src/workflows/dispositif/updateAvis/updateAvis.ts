@@ -2,9 +2,12 @@ import { DispositifStatus } from "@refugies-info/api-types";
 import { Types } from "mongoose";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
-import { getDispositifById, updateAvisDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { Avis } from "~/typegoose/Dispositif";
-import { Response } from "~/types/interface";
+import {
+  getDispositifById,
+  updateAvisDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import type { Avis } from "~/typegoose/Dispositif";
+import type { Response } from "~/types/interface";
 
 export const updateAvis = async (
   id: string,

@@ -1,10 +1,19 @@
-import { Id, UserStatus } from "@refugies-info/api-types";
-import { FilterQuery, ProjectionType, Types } from "mongoose";
-import { LangueId, ObjectId, Role, Structure, StructureId, User, UserModel } from "~/typegoose";
-import { Favorite, UserId } from "~/typegoose/User";
+import { type Id, UserStatus } from "@refugies-info/api-types";
+import type { FilterQuery, ProjectionType, Types } from "mongoose";
+import {
+  type LangueId,
+  ObjectId,
+  type Role,
+  type Structure,
+  type StructureId,
+  type User,
+  UserModel,
+} from "~/typegoose";
+import type { Favorite, UserId } from "~/typegoose/User";
 
 // find one
-export const getUserById = async (id: Id, neededFields: ProjectionType<User>) => UserModel.findById(id, neededFields);
+export const getUserById = async (id: Id, neededFields: ProjectionType<User>) =>
+  UserModel.findById(id, neededFields);
 
 export const getUserByIdWithStructures = async (id: Id, neededFields: ProjectionType<User>) =>
   UserModel.findById(id, neededFields).populate<{ structures: { nom: string }[] }>([
@@ -91,7 +100,11 @@ export const createUser = (user: {
   last_connected: Date;
 }) => UserModel.create(user);
 
-export const addRoleAndContribToUser = (userId: Id, roleId: Types.ObjectId, contribId: Types.ObjectId) =>
+export const addRoleAndContribToUser = (
+  userId: Id,
+  roleId: Types.ObjectId,
+  contribId: Types.ObjectId,
+) =>
   UserModel.findByIdAndUpdate(
     { _id: userId },
     {

@@ -1,4 +1,5 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
-import { RootState } from "../rootReducer";
+import type { SimpleDispositif } from "@refugies-info/api-types";
+import type { RootState } from "../rootReducer";
 
-export const activeDispositifsSelector = (state: RootState): SimpleDispositif[] => state.activeDispositifs ?? [];
+export const activeDispositifsSelector = (state: RootState): SimpleDispositif[] =>
+  state.activeDispositifs ?? [];

@@ -1,5 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
+import {
+  type ContentType,
+  type CreateDispositifRequest,
+  DispositifStatus,
+} from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
@@ -32,7 +36,9 @@ const CustomNavbarEdit = (props: Props) => {
   const router = useRouter();
   const values = useWatch<CreateDispositifRequest>();
   const dispositif = useSelector(selectedDispositifSelector);
-  const [progress, setProgress] = useState<number>(calculateProgressEdit(values, props.typeContenu));
+  const [progress, setProgress] = useState<number>(
+    calculateProgressEdit(values, props.typeContenu),
+  );
 
   const initialLocale = useLocale();
   const [showLanguageWarning, setShowLanguageWarning] = useState(initialLocale !== "fr");
@@ -75,7 +81,10 @@ const CustomNavbarEdit = (props: Props) => {
         // no status
         !dispositif?.status ||
         // waiting and complete
-        (isStatus(dispositif.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]) &&
+        (isStatus(dispositif.status, [
+          DispositifStatus.WAITING_ADMIN,
+          DispositifStatus.WAITING_STRUCTURE,
+        ]) &&
           isComplete) ||
         // deleted or rejected
         isStatus(dispositif.status, [DispositifStatus.DELETED, DispositifStatus.KO_STRUCTURE])
@@ -99,7 +108,11 @@ const CustomNavbarEdit = (props: Props) => {
     async (keepTranslations: boolean) => {
       if (!dispositif?._id) return;
       API.publishDispositif(dispositif._id, { keepTranslations }).catch(() => {
-        Swal.fire("Oh non...", "Une erreur s'est produite. Veuillez réessayer ou contacter un administrateur", "error");
+        Swal.fire(
+          "Oh non...",
+          "Une erreur s'est produite. Veuillez réessayer ou contacter un administrateur",
+          "error",
+        );
       });
     },
     [dispositif],
@@ -121,9 +134,14 @@ const CustomNavbarEdit = (props: Props) => {
         <div className={styles.warning}>
           <div className={cls("fr-container", styles.inner)}>
             <span>
-              <EVAIcon name="info" size={24} fill={fr.colors.decisions.text.default.info.default} className="me-4" />
-              L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de rédiger dans une autre
-              langue.
+              <EVAIcon
+                name="info"
+                size={24}
+                fill={fr.colors.decisions.text.default.info.default}
+                className="me-4"
+              />
+              L’éditeur de fiche est disponible uniquement en français. Il n’est pas possible de
+              rédiger dans une autre langue.
             </span>
             <button
               onClick={(e: any) => {
@@ -131,7 +149,11 @@ const CustomNavbarEdit = (props: Props) => {
                 setShowLanguageWarning(false);
               }}
             >
-              <EVAIcon name="close-outline" size={16} fill={fr.colors.decisions.text.default.info.default} />
+              <EVAIcon
+                name="close-outline"
+                size={16}
+                fill={fr.colors.decisions.text.default.info.default}
+              />
             </button>
           </div>
         </div>

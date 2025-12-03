@@ -9,7 +9,7 @@ import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-na
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { Reader, getTtsReader } from "~/libs/ttsReader";
+import { getTtsReader, type Reader } from "~/libs/ttsReader";
 import { logger } from "~/logger";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { setReadingItem, setShouldStop } from "~/services/redux/VoiceOver/voiceOver.actions";
@@ -23,7 +23,7 @@ import {
 import { styles } from "~/theme";
 import { PauseIcon, PlayIcon } from "~/theme/images/voiceover";
 import bgVoiceover from "~/theme/images/voiceover/bg_voiceover.png";
-import { ReadingItem } from "~/types/interface";
+import type { ReadingItem } from "~/types/interface";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { TextDSFR_MD_Bold, TextDSFR_XS, TextDSFR_XS_Med } from "../StyledText";
@@ -377,9 +377,13 @@ export const ReadButton = (props: Props) => {
         </PlayButtonWrapper>
         {fontScale < 1.3 &&
           (props.bold ? (
-            <TextDSFR_XS_Med style={{ color: colors.text }}>{t("tab_bar.listen", "Écouter")}</TextDSFR_XS_Med>
+            <TextDSFR_XS_Med style={{ color: colors.text }}>
+              {t("tab_bar.listen", "Écouter")}
+            </TextDSFR_XS_Med>
           ) : (
-            <TextDSFR_XS style={{ color: colors.text }}>{t("tab_bar.listen", "Écouter")}</TextDSFR_XS>
+            <TextDSFR_XS style={{ color: colors.text }}>
+              {t("tab_bar.listen", "Écouter")}
+            </TextDSFR_XS>
           ))}
       </PlayContainer>
       <Buttons style={[animatedStyle]}>

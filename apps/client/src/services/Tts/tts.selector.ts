@@ -1,4 +1,4 @@
-import { RootState } from "../rootReducer";
+import type { RootState } from "../rootReducer";
 
 export const ttsActiveSelector = (state: RootState): boolean => state.tts.ttsActive;
 

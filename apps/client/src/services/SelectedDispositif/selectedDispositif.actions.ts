@@ -1,5 +1,5 @@
-import { GetDispositifResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import {
   CLEAR_SELECTED_DISPOSITIF,
   FETCH_SELECTED_DISPOSITIF,
@@ -13,8 +13,10 @@ export const fetchSelectedDispositifActionCreator = (value: {
   token?: string;
 }) => action(FETCH_SELECTED_DISPOSITIF, value);
 
-export const setSelectedDispositifActionCreator = (value: GetDispositifResponse, reset: boolean = false) =>
-  action(SET_SELECTED_DISPOSITIF, { value, reset });
+export const setSelectedDispositifActionCreator = (
+  value: GetDispositifResponse,
+  reset: boolean = false,
+) => action(SET_SELECTED_DISPOSITIF, { value, reset });
 
 export const updateSelectedDispositifActionCreator = (value: Partial<GetDispositifResponse>) =>
   action(UPDATE_SELECTED_DISPOSITIF, value);

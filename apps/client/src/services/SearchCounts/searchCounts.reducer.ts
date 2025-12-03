@@ -1,6 +1,6 @@
-import { Reducer } from "redux";
-import { SearchCountsResponse } from "../../pages/api/search/counts";
-import { SearchQuery } from "../SearchResults/searchResults.reducer";
+import type { Reducer } from "redux";
+import type { SearchCountsResponse } from "../../pages/api/search/counts";
+import type { SearchQuery } from "../SearchResults/searchResults.reducer";
 
 // STATE
 export interface SearchCountsState {
@@ -21,13 +21,14 @@ const FETCH_SEARCH_COUNTS_SUCCESS = "FETCH_SEARCH_COUNTS_SUCCESS";
 const FETCH_SEARCH_COUNTS_FAILURE = "FETCH_SEARCH_COUNTS_FAILURE";
 
 // ACTIONS
-export const fetchSearchCountsRequest = (query: SearchQuery) => ({ type: FETCH_SEARCH_COUNTS_REQUEST, payload: query } as const);
+export const fetchSearchCountsRequest = (query: SearchQuery) =>
+  ({ type: FETCH_SEARCH_COUNTS_REQUEST, payload: query }) as const;
 export const fetchSearchCountsSuccess = (data: SearchCountsResponse) =>
-  ({ type: FETCH_SEARCH_COUNTS_SUCCESS, payload: data } as const);
+  ({ type: FETCH_SEARCH_COUNTS_SUCCESS, payload: data }) as const;
 export const fetchSearchCountsFailure = (error: string) =>
-  ({ type: FETCH_SEARCH_COUNTS_FAILURE, payload: error } as const);
+  ({ type: FETCH_SEARCH_COUNTS_FAILURE, payload: error }) as const;
 
-type SearchCountsAction = 
+type SearchCountsAction =
   | ReturnType<typeof fetchSearchCountsRequest>
   | ReturnType<typeof fetchSearchCountsSuccess>
   | ReturnType<typeof fetchSearchCountsFailure>;
@@ -35,7 +36,7 @@ type SearchCountsAction =
 // REDUCER
 const searchCountsReducer: Reducer<SearchCountsState, SearchCountsAction> = (
   state = initialSearchCountsState,
-  action
+  action,
 ) => {
   switch (action.type) {
     case FETCH_SEARCH_COUNTS_REQUEST:

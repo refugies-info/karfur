@@ -1,4 +1,4 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import { User } from "./User";

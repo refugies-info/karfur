@@ -1,8 +1,8 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { ContentType, SimpleDispositif } from "@refugies-info/api-types";
+import { ContentType, type SimpleDispositif } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
@@ -18,6 +18,7 @@ import { getPath } from "~/routes";
 import styles from "~/scss/components/contentCard.module.scss";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
+
 interface Props {
   dispositif: SimpleDispositif;
   selectedDepartment?: string;
@@ -44,15 +45,21 @@ const DispositifCard = (props: Props) => {
 
   const badge = useMemo((): { className: string; text: string | null } => {
     if (isRCO) return { text: "Généré par IA", className: styles.badge_rco };
-    if (!isDispositif) return { text: t("Dispositif.demarche", "Démarche"), className: styles.badge_demarche };
+    if (!isDispositif)
+      return { text: t("Dispositif.demarche", "Démarche"), className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
     if (!location) return { text: "Lieu d'action", className: styles.badge_department };
     if (!Array.isArray(location)) {
       if (location === "france")
-        return { text: jsUcfirst(t("Recherche.france", "toute la France")), className: styles.badge_department };
-      if (location === "online") return { text: jsUcfirst(t("Recherche.online")), className: styles.badge_online };
+        return {
+          text: jsUcfirst(t("Recherche.france", "toute la France")),
+          className: styles.badge_department,
+        };
+      if (location === "online")
+        return { text: jsUcfirst(t("Recherche.online")), className: styles.badge_online };
     }
-    if (props.selectedDepartment) return { text: props.selectedDepartment, className: styles.badge_department };
+    if (props.selectedDepartment)
+      return { text: props.selectedDepartment, className: styles.badge_department };
     if (Array.isArray(location) && location.length > 1)
       return {
         text: `${location.length} ${jsLcfirst(t("Dispositif.departements", "Départements"))}`,
@@ -60,7 +67,10 @@ const DispositifCard = (props: Props) => {
       };
 
     const splittedLocation = location[0].split(" - ");
-    return { text: `${splittedLocation[1]} ${splittedLocation[0]}`, className: styles.badge_department };
+    return {
+      text: `${splittedLocation[1]} ${splittedLocation[0]}`,
+      className: styles.badge_department,
+    };
   }, [props.dispositif.metadatas, props.selectedDepartment, isDispositif, t]);
 
   const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
@@ -106,7 +116,10 @@ const DispositifCard = (props: Props) => {
                   ></span>
                 </Link>
               </h3>
-              <p className={cn("fr-card__desc", styles.desc)} dangerouslySetInnerHTML={{ __html: safeAbstract }} />
+              <p
+                className={cn("fr-card__desc", styles.desc)}
+                dangerouslySetInnerHTML={{ __html: safeAbstract }}
+              />
             </div>
 
             <div className="fr-card__start relative">
@@ -122,7 +135,10 @@ const DispositifCard = (props: Props) => {
               <div className="mb-2 flex gap-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                  <NewThemeBadge aria-hidden="true" theme={props.dispositif.secondaryThemes?.length || 0} />
+                  <NewThemeBadge
+                    aria-hidden="true"
+                    theme={props.dispositif.secondaryThemes?.length || 0}
+                  />
                 )}
               </div>
 
@@ -160,7 +176,13 @@ const DispositifCard = (props: Props) => {
                     <div className={cn(styles.info)}>
                       <span className="shrink">
                         <i className="fr-icon-time-line me-2" aria-hidden="true" />
-                        <span>{getRelativeTimeString(new Date(props.dispositif.lastModificationDate), locale, t)}</span>
+                        <span>
+                          {getRelativeTimeString(
+                            new Date(props.dispositif.lastModificationDate),
+                            locale,
+                            t,
+                          )}
+                        </span>
                       </span>
                     </div>
                   )}
@@ -200,7 +222,8 @@ const propsAreEqual = (prevProps: Props, nextProps: Props): boolean => {
     prevDisp.titreInformatif === nextDisp.titreInformatif ||
     prevDisp.abstract === nextDisp.abstract ||
     (prevDisp?.titreMarque ? prevDisp.titreMarque === nextDisp?.titreMarque : true);
-  const sameDep = prevProps.selectedDepartment && prevProps.selectedDepartment === nextProps.selectedDepartment;
+  const sameDep =
+    prevProps.selectedDepartment && prevProps.selectedDepartment === nextProps.selectedDepartment;
 
   return !!sameDisp && !!sameText && !!sameDep;
 };

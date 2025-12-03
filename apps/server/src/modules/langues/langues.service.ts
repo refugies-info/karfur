@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import logger from "~/logger";
-import { Langue } from "~/typegoose";
+import type { Langue } from "~/typegoose";
 import { getActiveContents, getCountDispositifs } from "../dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB, updateLanguageAvancementInDB } from "./langues.repository";
 

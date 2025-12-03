@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import React from "react";
+import type React from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import styles from "./Input.module.scss";
@@ -22,7 +22,14 @@ interface Props {
 
 const Input = (props: Props) => {
   return (
-    <div className={cls(styles.container, props.valid && styles.valid, !!props.error && styles.error, props.className)}>
+    <div
+      className={cls(
+        styles.container,
+        props.valid && styles.valid,
+        !!props.error && styles.error,
+        props.className,
+      )}
+    >
       {props.label && (
         <label htmlFor={props.id}>
           {props.label}

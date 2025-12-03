@@ -20,7 +20,11 @@ export const DetailsModal = (props: Props) => {
       isOpen={props.show}
       toggle={props.toggleModal}
       size={props.size || "xl"}
-      className={cls(styles.modal, !props.size || props.size === "xl" ? styles.xl : "", props.className || "")}
+      className={cls(
+        styles.modal,
+        !props.size || props.size === "xl" ? styles.xl : "",
+        props.className || "",
+      )}
       contentClassName={cls(styles.modal_content, props.contentClassName || "")}
     >
       {props.isLoading ? (

@@ -1,6 +1,6 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { type CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { createStackNavigator, type StackScreenProps } from "@react-navigation/stack";
 import React from "react";
 
 import { ContentScreen, NearMeCardsScreen } from "~/screens";
@@ -8,7 +8,7 @@ import { ContentsScreen } from "~/screens/ContentsScreen";
 import { ExplorerScreen } from "~/screens/ExplorerTab/ExplorerScreen";
 import { NeedsScreen } from "~/screens/ExplorerTab/NeedsScreen";
 import { NotificationsScreen } from "~/screens/NotificationsScreen";
-import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
+import type { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList, "Explorer">,

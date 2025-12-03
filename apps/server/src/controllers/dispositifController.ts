@@ -1,4 +1,4 @@
-import {
+import type {
   AddSuggestionDispositifRequest,
   AddViewsRequest,
   AdminCommentsRequest,
@@ -30,11 +30,25 @@ import {
   UpdateDispositifRequest,
   UpdateDispositifResponse,
 } from "@refugies-info/api-types";
-import express from "express";
-import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
+import type express from "express";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Path,
+  Post,
+  Put,
+  Queries,
+  Query,
+  Request,
+  Route,
+  Security,
+} from "tsoa";
 import { validateId } from "~/libs/validateId";
 import logger from "~/logger";
-import { Response, ResponseWithData } from "~/types/interface";
+import type { Response, ResponseWithData } from "~/types/interface";
 
 import {
   addAvis,
@@ -72,7 +86,7 @@ import {
   updateDispositifTagsOrNeeds,
   updateNbVuesOrFavoritesOnContent,
 } from "~/workflows";
-import { DemarchesData, DispositifsData } from "~/workflows/dispositif/newsletter";
+import type { DemarchesData, DispositifsData } from "~/workflows/dispositif/newsletter";
 
 @Route("dispositifs")
 export class DispositifController extends Controller {
@@ -110,7 +124,9 @@ export class DispositifController extends Controller {
   }
 
   @Get("/statistics")
-  public async getStatistics(@Queries() query: GetStatisticsRequest): ResponseWithData<GetStatisticsResponse> {
+  public async getStatistics(
+    @Queries() query: GetStatisticsRequest,
+  ): ResponseWithData<GetStatisticsResponse> {
     return getStatistics(query);
   }
 
@@ -136,7 +152,9 @@ export class DispositifController extends Controller {
     jwt: ["admin"],
   })
   @Get("/count")
-  public async getCount(@Queries() query: CountDispositifsRequest): ResponseWithData<GetCountDispositifsResponse> {
+  public async getCount(
+    @Queries() query: CountDispositifsRequest,
+  ): ResponseWithData<GetCountDispositifsResponse> {
     return getCountDispositifs(query);
   }
 
@@ -254,7 +272,10 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Patch("/{id}/properties")
-  public async updateProperties(@Path() id: string, @Body() body: UpdateDispositifPropertiesRequest): Response {
+  public async updateProperties(
+    @Path() id: string,
+    @Body() body: UpdateDispositifPropertiesRequest,
+  ): Response {
     validateId(id, "dispositif");
     return updateDispositifProperties(id, body);
   }
@@ -389,7 +410,10 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Patch("/{id}/suggestion")
-  public async updateSuggestion(@Path() id: string, @Body() body: ReadSuggestionDispositifRequest): Response {
+  public async updateSuggestion(
+    @Path() id: string,
+    @Body() body: ReadSuggestionDispositifRequest,
+  ): Response {
     validateId(id, "dispositif");
     return patchSuggestion(id, body);
   }
@@ -418,7 +442,9 @@ export class DispositifController extends Controller {
     fromSite: [],
   })
   @Get("/newsletter/dispositifs/{departement}")
-  public async getNewsletterDispositifs(@Path() departement: string): ResponseWithData<DispositifsData> {
+  public async getNewsletterDispositifs(
+    @Path() departement: string,
+  ): ResponseWithData<DispositifsData> {
     return getNewsletterDispositifs(departement);
   }
 

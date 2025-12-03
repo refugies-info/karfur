@@ -1,8 +1,9 @@
-import { RootState } from "../reducers";
+import type { RootState } from "../reducers";
 
 export const readingListSelector = (state: RootState) => state.voiceOver.readingList;
 
-export const readingListLengthSelector = (state: RootState) => Object.keys(state.voiceOver.readingList || {}).length;
+export const readingListLengthSelector = (state: RootState) =>
+  Object.keys(state.voiceOver.readingList || {}).length;
 
 export const currentItemSelector = (state: RootState) => state.voiceOver.currentItem;
 

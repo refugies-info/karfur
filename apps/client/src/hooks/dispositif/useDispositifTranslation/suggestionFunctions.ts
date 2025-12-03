@@ -1,4 +1,4 @@
-import {
+import type {
   GetTraductionsForReview,
   GetTraductionsForReviewResponse,
   GetUserInfoResponse,
@@ -6,9 +6,9 @@ import {
 } from "@refugies-info/api-types";
 import get from "lodash/get";
 import isUndefined from "lodash/isUndefined";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { TranslateForm } from "../useDispositifTranslateForm";
-import { Suggestion } from "./useDispositifTranslation";
+import type { DeepPartialSkipArrayKey } from "react-hook-form";
+import type { TranslateForm } from "../useDispositifTranslateForm";
+import type { Suggestion } from "./useDispositifTranslation";
 
 type Validator = {
   id: string;
@@ -75,6 +75,9 @@ export const isInputHTML = (section: string): boolean => {
 /**
  * Get all suggestions except mine
  */
-export const getInitialTranslations = (userId: string, traductions: GetTraductionsForReviewResponse) => {
+export const getInitialTranslations = (
+  userId: string,
+  traductions: GetTraductionsForReviewResponse,
+) => {
   return traductions.filter((t) => t.author.id !== userId.toString());
 };

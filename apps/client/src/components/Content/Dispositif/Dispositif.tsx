@@ -1,9 +1,8 @@
-import { ContentType } from "@refugies-info/api-types";
-import { useContext, useMemo, useRef } from "react";
-
 import Button from "@codegouvfr/react-dsfr/Button";
+import { ContentType } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
+import { useContext, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
@@ -78,18 +77,27 @@ const Dispositif = (props: Props) => {
             {dispositif?.origin === "RCO" ? (
               <div className="fr-callout fr-callout--info">
                 <p className="fr-callout__text">
-                  Ce contenu est généré par intelligence artificielle et est actuellement en cours de validation. Les
-                  informations présentées sont fournies à titre indicatif et peuvent ne pas refléter la situation
-                  actuelle des dispositifs d'aide.
+                  Ce contenu est généré par intelligence artificielle et est actuellement en cours
+                  de validation. Les informations présentées sont fournies à titre indicatif et
+                  peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
                 </p>
               </div>
             ) : (
               CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-                <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
+                <Section
+                  key={i}
+                  sectionKey={section}
+                  contentType={typeContenu}
+                  className={cn(i === 0 && "z-10")}
+                />
               ))
             )}
             {/* TODO: adapt the Map component to be used in edit mode */}
-            {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
+            {isViewMode ? (
+              (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} />
+            ) : (
+              <MapEdit />
+            )}
             {isViewMode && isMobile && (
               <Button
                 linkProps={{ href: "#top" }}
@@ -108,7 +116,10 @@ const Dispositif = (props: Props) => {
               {isViewMode ? (
                 <LeftSidebar className="z-10 order-1 max-lg:hidden lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
-                <LeftSidebarEdition className="z-10 order-1 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
+                <LeftSidebarEdition
+                  className="z-10 order-1 lg:mt-[196px] lg:w-[20%]"
+                  typeContenu={typeContenu}
+                />
               )}
             </>
           )}

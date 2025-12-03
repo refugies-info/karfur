@@ -37,7 +37,9 @@ test("should render TypeContenu with demarche, not detailed vue", () => {
 });
 
 test("should render Title with titre marque", () => {
-  const { asFragment } = render(<Title titreInformatif="titre informatif" titreMarque="titre marque" />);
+  const { asFragment } = render(
+    <Title titreInformatif="titre informatif" titreMarque="titre marque" />,
+  );
   expect(asFragment()).toMatchSnapshot();
 });
 
@@ -172,7 +174,13 @@ test("should render StyledStatus no corresponding with override ", () => {
 test("should render StyledStatus no corresponding with color ", () => {
   const { asFragment } = wrapWithProvidersAndRenderForTesting({
     Component: StyledStatus,
-    compProps: { text: "Actif", overrideColor: false, textToDisplay: "test", textColor: "textColor", color: "color" },
+    compProps: {
+      text: "Actif",
+      overrideColor: false,
+      textToDisplay: "test",
+      textColor: "textColor",
+      color: "color",
+    },
     reduxState: {
       ...initialMockStore,
     },
@@ -232,16 +240,22 @@ test("should render FilterButton isSelected true", () => {
 });
 
 test("should render TabHeader up", () => {
-  const { asFragment } = render(<TabHeader name="test" order="true" isSortedHeader={true} sens="up" />);
+  const { asFragment } = render(
+    <TabHeader name="test" order="true" isSortedHeader={true} sens="up" />,
+  );
   expect(asFragment()).toMatchSnapshot();
 });
 
 test("should render TabHeader down", () => {
-  const { asFragment } = render(<TabHeader name="test" order="true" isSortedHeader={true} sens="down" />);
+  const { asFragment } = render(
+    <TabHeader name="test" order="true" isSortedHeader={true} sens="down" />,
+  );
   expect(asFragment()).toMatchSnapshot();
 });
 
 test("should render TabHeader no order", () => {
-  const { asFragment } = render(<TabHeader name="test" order={null} isSortedHeader={false} sens="down" />);
+  const { asFragment } = render(
+    <TabHeader name="test" order={null} isSortedHeader={false} sens="down" />,
+  );
   expect(asFragment()).toMatchSnapshot();
 });

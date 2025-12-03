@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useWatch } from "react-hook-form";
 import Banner from "../../Banner";
 

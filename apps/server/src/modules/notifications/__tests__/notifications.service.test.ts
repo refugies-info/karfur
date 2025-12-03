@@ -1,11 +1,11 @@
-import { ExpoPushMessage } from "expo-server-sdk";
+import type { ExpoPushMessage } from "expo-server-sdk";
 import { omit } from "lodash";
 import {
   AdminOptionsModel,
-  AppUser,
+  type AppUser,
   AppUserModel,
   DispositifModel,
-  Notification,
+  type Notification,
   NotificationModel,
 } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
@@ -76,7 +76,9 @@ describe("sendNotifications", () => {
   });
 
   it("sendNotifications if active", async () => {
-    jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: true }));
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: true }));
 
     const spy = jest.spyOn(notifications.expo, "chunkPushNotifications");
     const spySendNotif = jest.spyOn(notifications.expo, "sendPushNotificationsAsync");
@@ -86,7 +88,9 @@ describe("sendNotifications", () => {
   });
 
   it("sendNotifications if active", async () => {
-    jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: true }));
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: true }));
 
     const spy = jest.spyOn(notifications.expo, "chunkPushNotifications");
     const spySendNotif = jest.spyOn(notifications.expo, "sendPushNotificationsAsync");
@@ -96,7 +100,9 @@ describe("sendNotifications", () => {
   });
 
   it("sendNotifications called", async () => {
-    jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: true }));
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: true }));
 
     const spy = jest.spyOn(notifications.expo, "chunkPushNotifications");
     const spySendNotif = jest.spyOn(notifications.expo, "sendPushNotificationsAsync");
@@ -120,7 +126,9 @@ describe("sendNotifications", () => {
   });
 
   it("no sendNotifications if not active", async () => {
-    jest.spyOn(adminOptionsRepository, "getAdminOption").mockResolvedValue(new AdminOptionsModel({ value: false }));
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: false }));
 
     const spy = jest.spyOn(notifications.expo, "chunkPushNotifications");
     const spySendNotif = jest.spyOn(notifications.expo, "sendPushNotificationsAsync");
@@ -182,10 +190,14 @@ describe("sendDispositifNotifications", () => {
     // Mock function implementations
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
-    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
+    getAppUsersBatchMock
+      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
-    insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
+    insertNotificationsMock.mockResolvedValue(
+      savedNotifications.map((n) => new NotificationModel(n)),
+    );
     getNotificationsToSendMock.mockResolvedValue(messages);
     updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
 
@@ -225,7 +237,9 @@ describe("sendDispositifNotifications", () => {
       })),
     );
     expect(getNotificationsToSendMock).toHaveBeenCalled();
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, { notificationsSent: { [lang]: true } });
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, {
+      notificationsSent: { [lang]: true },
+    });
     // FIXME: randomly generated nested id
     expect(sendNotifications).toHaveBeenCalledWith(
       messages.map((m) => ({ ...m, data: { notificationId: expect.anything() } })),
@@ -356,10 +370,14 @@ describe("sendDemarcheNotifications", () => {
     const demarcheModel = new DispositifModel(fixtures.demarche);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
-    getAppUsersBatchMock.mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t))).mockResolvedValue([]);
+    getAppUsersBatchMock
+      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
-    insertNotificationsMock.mockResolvedValue(savedNotifications.map((n) => new NotificationModel(n)));
+    insertNotificationsMock.mockResolvedValue(
+      savedNotifications.map((n) => new NotificationModel(n)),
+    );
     getNotificationsToSendMock.mockResolvedValue(messages);
     updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
 

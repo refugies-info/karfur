@@ -1,5 +1,5 @@
-import { GetDispositifResponse, Languages } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetDispositifResponse, Languages } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_SELECTED_CONTENT, SET_SELECTED_CONTENT } from "./selectedContent.actionTypes";
 
 export const setSelectedContentActionCreator = (payload: {
@@ -7,8 +7,10 @@ export const setSelectedContentActionCreator = (payload: {
   locale: Languages;
 }) => action(SET_SELECTED_CONTENT, payload);
 
-export const fetchSelectedContentActionCreator = (payload: { contentId: string; locale: Languages }) =>
-  action(FETCH_SELECTED_CONTENT, payload);
+export const fetchSelectedContentActionCreator = (payload: {
+  contentId: string;
+  locale: Languages;
+}) => action(FETCH_SELECTED_CONTENT, payload);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {

@@ -1,4 +1,4 @@
-import { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, Poi } from "@refugies-info/api-types";
 import { cn, Map } from "@refugies-info/ui";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
@@ -25,7 +25,9 @@ const MapEdit = () => {
 
   const [selectedMarker, setSelectedMarker] = useState<number | null>(null);
   const [poiForm, setPoiForm] = useState<Partial<Poi> | null>(null);
-  const [focusLocation, setFocusLocation] = useState<((poi: Poi, zoomLevel?: number) => void) | null>(null);
+  const [focusLocation, setFocusLocation] = useState<
+    ((poi: Poi, zoomLevel?: number) => void) | null
+  >(null);
 
   useEffect(() => {
     if (hasMap || poiForm) {
@@ -148,14 +150,25 @@ const MapEdit = () => {
         className="border-default-grey z-20 col-span-3 items-center border-b p-2"
       />
 
-      {showSidebar && <Sidebar markers={markers} onSelectMarker={selectMarker} selectedMarkerId={selectedMarker} />}
+      {showSidebar && (
+        <Sidebar
+          markers={markers}
+          onSelectMarker={selectMarker}
+          selectedMarkerId={selectedMarker}
+        />
+      )}
 
-      <div onClick={() => setSelectedMarker(null)} className="relative z-1 col-span-2 h-full w-full">
+      <div
+        onClick={() => setSelectedMarker(null)}
+        className="relative z-1 col-span-2 h-full w-full"
+      >
         <Map
           mapData={markers || []}
           className="absolute inset-0 !shadow-none lg:h-full"
           title="Lieux d'accueil"
-          defaultFocusedPoi={selectedMarker !== null && markers ? markers[selectedMarker] : undefined}
+          defaultFocusedPoi={
+            selectedMarker !== null && markers ? markers[selectedMarker] : undefined
+          }
           showSidebar={false}
         />
       </div>
@@ -173,7 +186,11 @@ const MapEdit = () => {
         />
       )}
 
-      <DeleteModal show={showDeleteModal} toggle={() => setShowDeleteModal((o) => !o)} onValidate={deleteMap} />
+      <DeleteModal
+        show={showDeleteModal}
+        toggle={() => setShowDeleteModal((o) => !o)}
+        onValidate={deleteMap}
+      />
     </div>
   );
 };

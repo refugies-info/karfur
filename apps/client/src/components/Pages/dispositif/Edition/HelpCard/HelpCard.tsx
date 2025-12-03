@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import Image from "~/components/UI/Image";
 import styles from "./HelpCard.module.scss";

@@ -1,4 +1,4 @@
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { fork } from "redux-saga/effects";
 import dispositifsSaga from "./ActiveDispositifs/activeDispositifs.saga";
 import structuresNewSaga from "./ActiveStructures/activeStructures.saga";
@@ -9,6 +9,7 @@ import allUsersSaga from "./AllUsers/allUsers.saga";
 import dispositifsWithTranslationsStatus from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.saga";
 import langueSaga from "./Langue/langue.saga";
 import needs from "./Needs/needs.saga";
+import { searchCountsSaga } from "./SearchCounts/searchCounts.saga";
 import selectedDispositifSaga from "./SelectedDispositif/selectedDispositif.saga";
 import selectedStructureSaga from "./SelectedStructure/selectedStructure.saga";
 import themes from "./Themes/themes.saga";
@@ -17,7 +18,6 @@ import userContributionsSaga from "./UserContributions/userContributions.saga";
 import userFavoritesSaga from "./UserFavoritesInLocale/UserFavoritesInLocale.saga";
 import structuresSaga from "./UserStructure/userStructure.saga";
 import widgets from "./Widgets/widgets.saga";
-import { searchCountsSaga } from "./SearchCounts/searchCounts.saga";
 
 export function* rootSaga(): SagaIterator {
   yield fork(userSaga);

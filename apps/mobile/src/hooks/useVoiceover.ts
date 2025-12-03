@@ -1,6 +1,6 @@
 import { useIsFocused } from "@react-navigation/native";
-import { MutableRefObject, useCallback, useEffect } from "react";
-import { FlatList, ScrollView } from "react-native";
+import { type MutableRefObject, useCallback, useEffect } from "react";
+import type { FlatList, ScrollView } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { setScrollReading } from "~/services/redux/VoiceOver/voiceOver.actions";
 import { currentItemSelector } from "~/services/redux/VoiceOver/voiceOver.selectors";

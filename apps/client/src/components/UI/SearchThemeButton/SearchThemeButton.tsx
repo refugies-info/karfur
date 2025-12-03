@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import Image from "~/components/UI/Image";
@@ -16,9 +16,17 @@ const SearchThemeButton = (props: Props) => {
     () => (
       <span className="flex items-center justify-center gap-1 p-1 md:px-0.5 md:py-0.5">
         {props.theme?.icon?.secure_url && (
-          <Image src={props.theme.icon.secure_url} width="12" height="12" className="scale-120" alt="" />
+          <Image
+            src={props.theme.icon.secure_url}
+            width="12"
+            height="12"
+            className="scale-120"
+            alt=""
+          />
         )}
-        <span className="text-title-grey line-height-[1rem] font-normal md:text-[0.75rem]">{props.value}</span>
+        <span className="text-title-grey line-height-[1rem] font-normal md:text-[0.75rem]">
+          {props.value}
+        </span>
       </span>
     ),
     [props.theme, props.value],

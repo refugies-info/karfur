@@ -1,6 +1,6 @@
-import { GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { GetThemeResponse, Id } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
-import { RootState } from "../rootReducer";
+import type { RootState } from "../rootReducer";
 
 export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
 

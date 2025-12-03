@@ -1,12 +1,12 @@
 import {
-  DOMConversionMap,
-  DOMConversionOutput,
-  EditorConfig,
+  type DOMConversionMap,
+  type DOMConversionOutput,
+  type EditorConfig,
   ElementNode,
-  LexicalNode,
-  NodeKey,
-  SerializedElementNode,
-  Spread,
+  type LexicalNode,
+  type NodeKey,
+  type SerializedElementNode,
+  type Spread,
 } from "lexical";
 import { i18n } from "next-i18next";
 import { getCalloutTranslationKey } from "~/lib/contentParsing";

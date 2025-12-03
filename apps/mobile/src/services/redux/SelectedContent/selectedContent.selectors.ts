@@ -1,5 +1,5 @@
-import { GetDispositifResponse, Languages } from "@refugies-info/api-types";
-import { RootState } from "../reducers";
+import type { GetDispositifResponse, Languages } from "@refugies-info/api-types";
+import type { RootState } from "../reducers";
 
 export const selectedContentSelector =
   (langue: Languages | null) =>

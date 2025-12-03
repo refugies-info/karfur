@@ -1,6 +1,6 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
-import { ChangeEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { type ChangeEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName } from "~/hooks";
@@ -77,7 +77,9 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
       if (isInTabList && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
         event.preventDefault();
-        const tabs = Array.from(themesContainerRef.current?.querySelectorAll('[role="tab"]') || []) as HTMLElement[];
+        const tabs = Array.from(
+          themesContainerRef.current?.querySelectorAll('[role="tab"]') || [],
+        ) as HTMLElement[];
         const currentIndex = tabs.findIndex((tab) => tab === target);
 
         if (currentIndex !== -1) {
@@ -97,7 +99,9 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
       if (isInTabList && (event.key === "Home" || event.key === "End")) {
         event.preventDefault();
-        const tabs = Array.from(themesContainerRef.current?.querySelectorAll('[role="tab"]') || []) as HTMLElement[];
+        const tabs = Array.from(
+          themesContainerRef.current?.querySelectorAll('[role="tab"]') || [],
+        ) as HTMLElement[];
         const targetTab = event.key === "Home" ? tabs[0] : tabs[tabs.length - 1];
         if (targetTab) {
           targetTab.click();
@@ -125,7 +129,13 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
   return (
     <ThemeMenuContext.Provider
-      value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
+      value={{
+        nbDispositifsByNeed,
+        nbDispositifsByTheme,
+        search,
+        selectedThemeId,
+        setSelectedThemeId: onClickTheme,
+      }}
     >
       <div className={cls(!isMobile && styles.container, className)} ref={themesMenuContainerRef}>
         <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>

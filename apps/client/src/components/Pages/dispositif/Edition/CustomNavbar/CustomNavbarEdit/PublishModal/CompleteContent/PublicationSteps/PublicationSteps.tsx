@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import React from "react";
+import type React from "react";
 import Badge from "~/components/UI/Badge";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
@@ -31,7 +31,12 @@ const PublicationSteps = (props: Props) => {
             <p className={styles.title}>{item.title}</p>
             {item.subtitle && <div className={styles.subtitle}>{item.subtitle}</div>}
             {item.notification && (
-              <Badge severity="info" icon="ri-notification-4-line" small className={cls(styles.badge, "mt-2")}>
+              <Badge
+                severity="info"
+                icon="ri-notification-4-line"
+                small
+                className={cls(styles.badge, "mt-2")}
+              >
                 Notification par mail
               </Badge>
             )}

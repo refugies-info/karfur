@@ -23,7 +23,9 @@ interface Props {
 
 const LastModificationDateComponent = (props: Props) => {
   const { t } = useTranslationWithRTL();
-  const dateUpdate = props.lastModificationDate ? useDateDiffReadable(new Date(props.lastModificationDate)) : null;
+  const dateUpdate = props.lastModificationDate
+    ? useDateDiffReadable(new Date(props.lastModificationDate))
+    : null;
 
   if (!dateUpdate) return null;
   return (
