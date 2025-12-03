@@ -586,16 +586,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Une journée porte ouverte
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Des sessions annuelles de formation
                   </p>
                 </div>
@@ -641,16 +653,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Un service qui génère des bénéfices
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Une formation certifiante
                   </p>
                 </div>
@@ -696,16 +720,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Une formation généraliste
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Une formation avec cours de français
                   </p>
                 </div>
@@ -762,11 +798,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Créez 
-                <strong>
-                  votre compte
-                </strong>
-                 Réfugiés.info
+                Créez votre compte Réfugiés.info
               </h3>
               <div
                 class="text-large mb-6"
@@ -815,10 +847,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Rédigez
-                </strong>
-                 votre fiche
+                Rédigez votre fiche
               </h3>
               <div
                 class="text-large mb-6"
@@ -872,10 +901,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Ajoutez la 
-                <strong>
-                  structure responsable
-                </strong>
+                Ajoutez la structure responsable
               </h3>
               <div
                 class="text-large mb-6"
@@ -917,11 +943,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                L’équipe éditoriale de Réfugiés.info 
-                <strong>
-                  relit et publie
-                </strong>
-                 votre fiche
+                L’équipe éditoriale de Réfugiés.info relit et publie votre fiche
               </h3>
               <div
                 class="text-large mb-6"
@@ -936,7 +958,7 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Votre fiche est publiée ! 🎉
+                Votre fiche est publiée ! 🎉
               </div>
             </div>
             <div
@@ -973,10 +995,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Traduction en 7 langues
-                </strong>
-                 de votre fiche
+                Traduction en 7 langues de votre fiche
               </h3>
               <div
                 class="text-large mb-6"
@@ -1023,10 +1042,7 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Mettez à jour
-                </strong>
-                 votre action régulièrement
+                Mettez à jour votre action régulièrement
               </h3>
               <div
                 class="text-large mb-6"
