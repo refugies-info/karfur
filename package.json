@@ -103,6 +103,7 @@
     "eas:submit": "cd apps/mobile && eas submit --profile production",
     "eas:submit:android": "cd apps/mobile && eas submit --profile production --platform android",
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
+    "format": "turbo format",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm dev:storybook",
