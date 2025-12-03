@@ -10,9 +10,7 @@ git worktree add .worktrees/<worktree-name> <branch-name>
 2. Copy .env files from the main workspace
 <!-- turbo -->
 ```bash
-cp .env .worktrees/<worktree-name>/.env
-cp apps/client/.env .worktrees/<worktree-name>/apps/client/.env
-cp apps/server/.env .worktrees/<worktree-name>/apps/server/.env
+rsync -R .env apps/client/.env apps/server/.env .worktrees/<worktree-name>/
 ```
 
 3. Install dependencies
