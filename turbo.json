@@ -115,6 +115,10 @@
     "lint:fix": {
       "dependsOn": ["^lint:fix"],
       "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
+    },
+    "format": {
+      "dependsOn": ["^format"],
+      "inputs": ["$TURBO_DEFAULT$", "!**/.gemini/**", "!**/.specify/**", "!**/.windsurf/**"]
     }
   }
 }
