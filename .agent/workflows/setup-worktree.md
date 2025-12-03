@@ -8,7 +8,7 @@ git worktree add .worktrees/<worktree-name> <branch-name>
 ```
 
 2. Copy .env files from the main workspace
-// turbo
+<!-- turbo -->
 ```bash
 cp .env .worktrees/<worktree-name>/.env
 cp apps/client/.env .worktrees/<worktree-name>/apps/client/.env
