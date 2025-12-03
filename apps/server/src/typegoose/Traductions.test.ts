@@ -231,35 +231,34 @@ describe("Traductions", () => {
 
   describe("computeFinished", () => {
     it("should return true", () => {
-      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
       expect(
-        Traductions.computeFinished({ translations: { fr: trad } }, { translated: trad }),
+        Traductions.computeFinished(
+          { translations: { fr: trad } } as any,
+          { translated: trad } as any,
+        ),
       ).toEqual(true);
     });
     it("should return false", () => {
-      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
       expect(
         Traductions.computeFinished(
-          { translations: { fr: trad } },
-          { translated: { content: {} } },
+          { translations: { fr: trad } } as any,
+          { translated: { content: {} } } as any,
         ),
       ).toEqual(false);
     });
     it("should return false", () => {
       expect(
-        // @ts-expect-error because we inject a partial Dispositif & partial Traductions
         Traductions.computeFinished(
-          { translations: { fr: trad_complete } },
-          { translated: trad_avancement },
+          { translations: { fr: trad_complete } } as any,
+          { translated: trad_avancement } as any,
         ),
       ).toEqual(false);
     });
     it("should return true", () => {
       expect(
         Traductions.computeFinished(
-          // @ts-expect-error because we inject a partial Dispositif & partial Traductions
-          { translations: { fr: trad_adminNameNull } },
-          { translated: trad_adminNameNull_en },
+          { translations: { fr: trad_adminNameNull } } as any,
+          { translated: trad_adminNameNull_en } as any,
         ),
       ).toEqual(true);
     });

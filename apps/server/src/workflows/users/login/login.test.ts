@@ -32,8 +32,7 @@ describe("login", () => {
   it("password: user does not exist", async () => {
     const getUserMock = jest
       .spyOn(usersRep, "getUserByEmailFromDB")
-      //@ts-expect-error populate return type issue
-      .mockReturnValue({ populate: async (): Promise<User | null> => null });
+      .mockReturnValue({ populate: async (): Promise<User | null> => null } as any);
     const logUserMock = jest.spyOn(auth, "logUser");
 
     await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
@@ -43,12 +42,9 @@ describe("login", () => {
   });
 
   it("password: user deleted", async () => {
-    const getUserMock = jest
-      .spyOn(usersRep, "getUserByEmailFromDB")
-      //@ts-expect-error populate return type issue
-      .mockReturnValue({
-        populate: async (): Promise<User | null> => ({ status: UserStatus.DELETED }),
-      });
+    const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
+      populate: async (): Promise<User | null> => ({ status: UserStatus.DELETED }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser");
 
     await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
@@ -60,12 +56,10 @@ describe("login", () => {
   });
 
   it("password: no password -> sso", async () => {
-    const getUserMock = jest
-      .spyOn(usersRep, "getUserByEmailFromDB")
-      //@ts-expect-error populate return type issue
-      .mockReturnValue({
-        populate: async (): Promise<User | null> => ({ status: UserStatus.ACTIVE, password: null }),
-      });
+    const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
+      populate: async (): Promise<User | null> =>
+        ({ status: UserStatus.ACTIVE, password: null }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser");
 
     await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
@@ -78,13 +72,13 @@ describe("login", () => {
 
   it("password: wrong password", async () => {
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
-      populate: async (): Promise<User | null> => ({
-        status: UserStatus.ACTIVE,
-        password: "pwd2",
-        authenticate: () => false,
-      }),
-    });
+      populate: async (): Promise<User | null> =>
+        ({
+          status: UserStatus.ACTIVE,
+          password: "pwd2",
+          authenticate: () => false,
+        }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser");
 
     await endpoint.login({ authPassword: { email: "test@example.com", password: "pwd" } });
@@ -96,13 +90,13 @@ describe("login", () => {
   });
   it("password: right password, no 2FA", async () => {
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
-      populate: async (): Promise<User | null> => ({
-        status: UserStatus.ACTIVE,
-        password: "pwd2",
-        authenticate: () => true,
-      }),
-    });
+      populate: async (): Promise<User | null> =>
+        ({
+          status: UserStatus.ACTIVE,
+          password: "pwd2",
+          authenticate: () => true,
+        }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser").mockResolvedValue("token");
     const needs2FAMock = jest.spyOn(auth, "needs2FA").mockResolvedValue(false);
 
@@ -116,13 +110,13 @@ describe("login", () => {
   });
   it("password: right password with 2FA, no code", async () => {
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
-      populate: async (): Promise<User | null> => ({
-        status: UserStatus.ACTIVE,
-        password: "pwd2",
-        authenticate: () => true,
-      }),
-    });
+      populate: async (): Promise<User | null> =>
+        ({
+          status: UserStatus.ACTIVE,
+          password: "pwd2",
+          authenticate: () => true,
+        }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser").mockResolvedValue("token");
     const needs2FAMock = jest.spyOn(auth, "needs2FA").mockResolvedValue(true);
     const requestEmailLoginMock = jest.spyOn(login2FA, "requestEmailLogin").mockResolvedValue(true);
@@ -144,17 +138,15 @@ describe("login", () => {
       .spyOn(endpoint, "authWithGoogle")
       .mockResolvedValue({ email: "test@example.com", name: "test" });
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
       populate: async (): Promise<User | null> => null,
-    });
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser").mockResolvedValue("token");
     const needs2FAMock = jest.spyOn(auth, "needs2FA").mockResolvedValue(true);
     const requestEmailLoginMock = jest.spyOn(login2FA, "requestEmailLogin").mockResolvedValue(true);
     const updateUserMock = jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(null);
-    //@ts-expect-error return type issue
     const registerUserMock = jest
       .spyOn(usersServ, "registerUser")
-      .mockResolvedValue({ getToken: () => "token" });
+      .mockResolvedValue({ getToken: () => "token" } as any);
 
     const res = await endpoint.login({ authGoogle: { authCode: "code" }, role: RoleName.CONTRIB });
     expect(authWithGoogleMock).toHaveBeenCalled();
@@ -177,17 +169,15 @@ describe("login", () => {
       .spyOn(endpoint, "authWithMicrosoft")
       .mockResolvedValue("test@example.com");
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
       populate: async (): Promise<User | null> => null,
-    });
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser").mockResolvedValue("token");
     const needs2FAMock = jest.spyOn(auth, "needs2FA").mockResolvedValue(true);
     const requestEmailLoginMock = jest.spyOn(login2FA, "requestEmailLogin").mockResolvedValue(true);
     const updateUserMock = jest.spyOn(usersRep, "updateUserInDB").mockResolvedValue(null);
-    //@ts-expect-error return type issue
     const registerUserMock = jest
       .spyOn(usersServ, "registerUser")
-      .mockResolvedValue({ getToken: () => "token" });
+      .mockResolvedValue({ getToken: () => "token" } as any);
 
     const res = await endpoint.login({
       authMicrosoft: { authCode: "code" },
@@ -213,11 +203,11 @@ describe("login", () => {
       .spyOn(endpoint, "authWithMicrosoft")
       .mockResolvedValue("test@example.com");
     const getUserMock = jest.spyOn(usersRep, "getUserByEmailFromDB").mockReturnValue({
-      //@ts-expect-error populate return type issue
-      populate: async (): Promise<User | null> => ({
-        status: UserStatus.ACTIVE,
-      }),
-    });
+      populate: async (): Promise<User | null> =>
+        ({
+          status: UserStatus.ACTIVE,
+        }) as any,
+    } as any);
     const logUserMock = jest.spyOn(auth, "logUser").mockResolvedValue("token");
     const needs2FAMock = jest.spyOn(auth, "needs2FA").mockResolvedValue(false);
     const requestEmailLoginMock = jest.spyOn(login2FA, "requestEmailLogin").mockResolvedValue(true);

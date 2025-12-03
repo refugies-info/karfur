@@ -1,5 +1,6 @@
 import {
   ContentType,
+  DispositifOrigin,
   DispositifStatus,
   type GetDispositifResponse,
 } from "@refugies-info/api-types";
@@ -250,5 +251,5 @@ export const selectedContent: GetDispositifResponse = {
   ],
   status: DispositifStatus.ACTIVE,
   theme: "63450dd43e23cd7181ba0b26",
-  origin: "RI" as const,
+  origin: DispositifOrigin.RI,
 };

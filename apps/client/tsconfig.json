@@ -4,11 +4,15 @@
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
     "baseUrl": "src",
-    "lib": ["es6", "dom", "ES2021.String"],
+    "lib": ["es6", "dom", "ES2021.String", "ES2022"],
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "target": "ES2022",
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "paths": {

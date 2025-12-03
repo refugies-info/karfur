@@ -1,4 +1,4 @@
-import { ContentType } from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import util from "util";
 import { getContentsForApp, getNbContents } from "~/utils/API";
@@ -126,7 +126,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1Fr",
@@ -141,7 +141,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
             ],
           }),
@@ -287,7 +287,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1_ar",
@@ -302,7 +302,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
             ],
           }),
@@ -325,7 +325,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1_fr",
@@ -340,7 +340,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
-                origin: "RI" as const,
+                origin: DispositifOrigin.RI,
               },
             ],
           }),

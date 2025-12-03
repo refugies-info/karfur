@@ -35,10 +35,9 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
 
 const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
-  //@ts-expect-error type mismatch
-  return needs
-    .map((content) => formatForAlgolia(content, activeLanguages, "need"))
-    .filter((need) => !!need);
+  return (needs as any)
+    .map((content: any) => formatForAlgolia(content, activeLanguages, "need"))
+    .filter((need: any) => !!need);
 };
 
 const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
