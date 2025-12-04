@@ -84,15 +84,7 @@ export const UserStructureDetails = (props: Props) => {
         />
         <StructureName>{props.name}</StructureName>
         {isMember && (
-          <Link
-            legacyBehavior
-            href={{
-              pathname: getPath("/annuaire/[id]", locale),
-              query: { id: props.structureId.toString() },
-            }}
-            passHref
-            prefetch={false}
-          >
+          <Link legacyBehavior href={getPath("/recherche", locale)} passHref prefetch={false}>
             <FButton type="dark" name="book-outline" tag="a">
               Voir dans l'annuaire
             </FButton>

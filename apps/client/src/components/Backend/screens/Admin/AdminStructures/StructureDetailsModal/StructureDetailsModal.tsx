@@ -234,7 +234,7 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
                 type="dark"
                 name="eye-outline"
                 tag={"a"}
-                href={`/annuaire/${structure._id}`}
+                onClick={() => router.push("/recherche")}
                 target="_blank"
               >
                 Annuaire
@@ -329,7 +329,7 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
               logs={logs}
               openUserModal={props.setSelectedUserIdAndToggleModal}
               openContentModal={props.setSelectedContentIdAndToggleModal}
-              openAnnuaire={(id) => router.push(`/annuaire/${id}`)}
+              openAnnuaire={(id) => router.push("/recherche")}
             />
           </div>
         </div>

@@ -3,8 +3,7 @@
   "include": ["dependencies"],
   "workspaces": {
     ".": {
-      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"],
-      "ignoreDependencies": ["@biomejs/biome"]
+      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"]
     },
     "apps/client": {
       "entry": ["next-sitemap.config.js"],
@@ -45,7 +44,7 @@
       "ignoreDependencies": ["@tailwindcss/typography", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["tailwindcss", "@types/fs-extra"]
+      "ignoreDependencies": ["tailwindcss"]
     }
   }
 }

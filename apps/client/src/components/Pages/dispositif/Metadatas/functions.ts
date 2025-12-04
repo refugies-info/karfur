@@ -100,8 +100,7 @@ export const getConditionImage = (condition: conditionType) => {
 export const getSponsorLink = (sponsorId: string | undefined): LinkProps["href"] => {
   if (!sponsorId) return "#";
   return {
-    pathname: getPath("/annuaire/[id]", "fr"),
-    query: { id: sponsorId },
+    pathname: getPath("/recherche", "fr"),
   };
 };
 
