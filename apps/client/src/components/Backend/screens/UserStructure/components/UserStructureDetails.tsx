@@ -83,13 +83,6 @@ export const UserStructureDetails = (props: Props) => {
           style={{ objectFit: "contain" }}
         />
         <StructureName>{props.name}</StructureName>
-        {isMember && (
-          <Link legacyBehavior href={getPath("/recherche", locale)} passHref prefetch={false}>
-            <FButton type="dark" name="book-outline" tag="a">
-              Voir dans l'annuaire
-            </FButton>
-          </Link>
-        )}
       </StructurePictureContainer>
       <StructureContainer>
         <TitleContainer>
