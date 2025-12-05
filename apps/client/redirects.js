@@ -72,6 +72,7 @@ module.exports = {
     source: paths[0],
     destination: paths[1],
     permanent: true,
+    locale: false,
   })),
   rewrites: urlTranslations.map((paths) => ({
     source: `/:lang${ln}?${paths[1]}`, // all translated paths except /fr
