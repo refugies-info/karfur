@@ -188,7 +188,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         </div>
         <a
           class="btn dark"
-          href="/annuaire/structureId"
+          href="/recherche"
         >
           <span
             class="me-2 icon"
@@ -1066,7 +1066,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         </div>
         <a
           class="btn dark"
-          href="/annuaire/structureId"
+          href="/recherche"
         >
           <span
             class="me-2 icon"
@@ -1568,7 +1568,7 @@ exports[`UserStructure should render correctly when structure with membres when 
         </div>
         <a
           class="btn dark"
-          href="/annuaire/structureId"
+          href="/recherche"
         >
           <span
             class="me-2 icon"
