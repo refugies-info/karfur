@@ -92,9 +92,7 @@ const Sponsors = ({
                 />
               </>
             ) : (
-              <Link href="/recherche" className={cn("fr-link")}>
-                {(mainSponsor as ContentStructure)?.nom}
-              </Link>
+              <>{(mainSponsor as ContentStructure)?.nom}</>
             )}{" "}
             {hasSponsors && sponsors.length > 0 && ", "}
           </>
