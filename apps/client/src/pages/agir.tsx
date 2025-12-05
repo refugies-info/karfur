@@ -16,6 +16,7 @@ import IlluEmploi from "~/assets/agir/illu-emploi.svg";
 import IlluLogement from "~/assets/agir/illu-logement.svg";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
+import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
@@ -290,66 +291,66 @@ const Agir = () => {
           </div>
 
           <span id="map" className={styles.anchor} />
-          <div className="mt-10 lg:mt-20">
-            <h3 className={styles.h3}>Trouver l’opérateur de mon territoire</h3>
-            <p className="italic lg:w-1/2">
-              Sélectionner votre département sur la carte pour obtenir les coordonnées de
-              l’opérateur sur votre territoire.
-            </p>
-            <div className="grid lg:grid-cols-3">
-              <div className="lg:col-span-2">
-                <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
+          <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
+            <div className="mt-10 lg:mt-20">
+              <h3 className={styles.h3}>Trouver l'opérateur de mon territoire</h3>
+
+              <div className="grid gap-6 lg:grid-cols-3">
+                <div className="lg:col-span-2 max-sm:hidden">
                   <MapFrance />
-                </MapContext.Provider>
-              </div>
-              <div className="flex items-center lg:col-span-1">
-                {selectedDepartment && (
-                  <div className={styles.operator}>
-                    <div className={styles.head}>
-                      <span>{selectedDepartment}</span>
-                      {getDepartmentFromNumber(selectedDepartment).split(" - ")[1]}
-                    </div>
-                    {operatorData && (
-                      <div className={styles.content}>
-                        <div>
-                          <i className="ri-building-line me-2"></i> {operatorData.operator}
+                </div>
+                <div className="lg:col-span-1">
+                  <DepartmentSelect className="mb-4" />
+                  <div className="mt-6">
+                    {selectedDepartment && (
+                      <div className={styles.operator} aria-live="polite" aria-atomic="true">
+                        <div className={styles.head}>
+                          <span>{selectedDepartment}</span>
+                          {getDepartmentFromNumber(selectedDepartment).split(" - ")[1]}
                         </div>
-                        {operatorData.email && isValidEmail(operatorData.email) && (
-                          <div className="mt-4">
-                            <i className="ri-mail-line me-2"></i> {operatorData.email}
+                        {operatorData && (
+                          <div className={styles.content}>
+                            <div>
+                              <i className="ri-building-line me-2"></i> {operatorData.operator}
+                            </div>
+                            {operatorData.email && isValidEmail(operatorData.email) && (
+                              <div className="mt-4">
+                                <i className="ri-mail-line me-2"></i> {operatorData.email}
+                              </div>
+                            )}
+                            {operatorData.phone && (
+                              <div className="mt-4">
+                                <i className="ri-phone-line me-2"></i> {operatorData.phone}
+                              </div>
+                            )}
+                            {operatorData.dispositifId && (
+                              <Button
+                                size="small"
+                                priority="tertiary"
+                                iconId="fr-icon-arrow-right-line"
+                                iconPosition="right"
+                                className="mt-6"
+                                linkProps={{
+                                  href: {
+                                    pathname: getPath("/dispositif/[id]", "fr"),
+                                    query: { id: operatorData.dispositifId },
+                                  },
+                                  target: "_blank",
+                                  rel: "noopener noreferrer",
+                                }}
+                              >
+                                Découvrir la fiche
+                              </Button>
+                            )}
                           </div>
-                        )}
-                        {operatorData.phone && (
-                          <div className="mt-4">
-                            <i className="ri-phone-line me-2"></i> {operatorData.phone}
-                          </div>
-                        )}
-                        {operatorData.dispositifId && (
-                          <Button
-                            size="small"
-                            priority="tertiary"
-                            iconId="fr-icon-arrow-right-line"
-                            iconPosition="right"
-                            className="mt-6"
-                            linkProps={{
-                              href: {
-                                pathname: getPath("/dispositif/[id]", "fr"),
-                                query: { id: operatorData.dispositifId },
-                              },
-                              target: "_blank",
-                              rel: "noopener noreferrer",
-                            }}
-                          >
-                            Découvrir la fiche
-                          </Button>
                         )}
                       </div>
                     )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
-          </div>
+          </MapContext.Provider>
         </div>
       </Container>
       <span id="next" className={styles.anchor} />
