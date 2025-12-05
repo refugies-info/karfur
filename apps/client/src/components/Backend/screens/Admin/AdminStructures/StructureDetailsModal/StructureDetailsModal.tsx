@@ -228,18 +228,7 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
             >
               Membres
             </FButton>
-            {structure && structure.status === "Actif" && (
-              <FButton
-                className="me-2"
-                type="dark"
-                name="eye-outline"
-                tag={"a"}
-                onClick={() => router.push("/recherche")}
-                target="_blank"
-              >
-                Annuaire
-              </FButton>
-            )}
+
             <FButton
               className="me-2"
               type="white"
@@ -329,7 +318,6 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
               logs={logs}
               openUserModal={props.setSelectedUserIdAndToggleModal}
               openContentModal={props.setSelectedContentIdAndToggleModal}
-              openAnnuaire={(id) => router.push("/recherche")}
             />
           </div>
         </div>
