@@ -1,4 +1,5 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
+import crypto from "crypto";
 import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "~/lib/db";
@@ -9,7 +10,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const secret = req.headers["webhook-secret"];
-  if (secret !== process.env.WEBHOOK_SECRET) {
+  const expectedSecret = process.env.WEBHOOK_SECRET;
+
+  if (!secret || !expectedSecret || typeof secret !== "string") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  // Use timing-safe comparison to prevent timing attacks
+  const secretBuffer = Buffer.from(secret);
+  const expectedBuffer = Buffer.from(expectedSecret);
+
+  if (
+    secretBuffer.length !== expectedBuffer.length ||
+    !crypto.timingSafeEqual(secretBuffer, expectedBuffer)
+  ) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
