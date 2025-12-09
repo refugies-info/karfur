@@ -66,12 +66,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       lastModificationAuthor: user._id,
       // Ensure translations structure exists if partially provided
       translations: {
+        ...dispositif.translations,
         fr: {
           content: dispositif.translations?.fr?.content || {},
           created_at: new Date(),
           validatorId: user._id,
         },
-        ...dispositif.translations,
       },
     };
 
@@ -81,9 +81,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       message: "Dispositif created successfully",
       id: createdDispositif._id,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[Webhook] Error creating dispositif:", error);
-    return res.status(500).json({ message: "Internal Server Error", error: error.message });
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+    return res.status(500).json({ message: "Internal Server Error", error: errorMessage });
   }
 };
 
