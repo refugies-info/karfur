@@ -13,14 +13,14 @@ export type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./
 export { CloudinaryImageModel } from "./schemas/Image";
 export * from "./schemas/Indicator";
 export * from "./schemas/Langue";
-export * from "./schemas/Log"; // New export
+export * from "./schemas/Log";
 export * from "./schemas/MailEvent";
 export * from "./schemas/Need";
 export * from "./schemas/Notification";
 export * from "./schemas/Role";
-export * from "./schemas/Snapshot"; // New export
+export * from "./schemas/Snapshot";
 export * from "./schemas/Structure";
 export * from "./schemas/Theme";
-export * from "./schemas/Traductions"; // New export
+export * from "./schemas/Traductions";
 export * from "./schemas/User";
-export * from "./schemas/Widget"; // New export
+export * from "./schemas/Widget";
