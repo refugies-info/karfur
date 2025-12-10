@@ -206,7 +206,6 @@ const Layout = (props: Props) => {
   }, [user, isUserLoading, hasUserError, dispatch]);
 
   // THEMES
-  const themes = useSelector(themesSelector);
   const hasThemesLoaded = useSelector(hasThemesLoadedSelector);
   const isThemesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
   const hasThemesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_THEMES));
