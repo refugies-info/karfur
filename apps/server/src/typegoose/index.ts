@@ -7,12 +7,12 @@ import type { AppUser, AppUserType, NotificationsSettings } from "./AppUser";
 import { Dispositif, type DispositifId } from "./Dispositif";
 import type { Error, ErrorId, ErrorType } from "./Error";
 import type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./Image";
-import { Indicator } from "./Indicator";
+import type { Indicator, IndicatorId, IndicatorType } from "./Indicator";
 import type { Langue, LangueId } from "./Langue";
 import { Log, type LogId } from "./Log";
-import { MailEvent } from "./MailEvent";
+import type { MailEvent, MailEventId, MailEventType } from "./MailEvent";
 import type { Need, NeedId, NeedType } from "./Need";
-import { Notification } from "./Notification";
+import type { Notification, NotificationId, NotificationType } from "./Notification";
 import type { Role } from "./Role";
 import { Snapshot, type SnapshotType } from "./Snapshot";
 import type { Structure, StructureId } from "./Structure";
@@ -44,28 +44,22 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
   },
 });
 export const SnapshotModel = getModelForClass(Snapshot);
-export { CloudinaryImageModel, ErrorModel } from "@refugies-info/mongo";
-export const IndicatorModel = getModelForClass(Indicator);
-export { LangueModel } from "@refugies-info/mongo";
+export {
+  CloudinaryImageModel,
+  ErrorModel,
+  IndicatorModel,
+  LangueModel,
+  MailEventModel,
+  NeedModel,
+  NotificationModel,
+} from "@refugies-info/mongo";
 export const LogModel = getModelForClass(Log);
-export const MailEventModel = getModelForClass(MailEvent);
-export { NeedModel } from "@refugies-info/mongo";
-export const NotificationModel = getModelForClass(Notification);
 export { RoleModel, StructureModel, ThemeModel } from "@refugies-info/mongo";
 export const TraductionsModel = getModelForClass(Traductions);
 export { UserModel } from "@refugies-info/mongo";
 export const WidgetModel = getModelForClass(Widget);
 
-export {
-  Dispositif,
-  Indicator,
-  Log,
-  Notification,
-  Snapshot,
-  Traductions,
-  TraductionsStatus,
-  Widget,
-};
+export { Dispositif, Log, Snapshot, Traductions, TraductionsStatus, Widget };
 
 export type {
   AdminOptions,
@@ -80,13 +74,21 @@ export type {
   Error,
   ErrorId,
   ErrorType,
+  Indicator,
+  IndicatorId,
+  IndicatorType,
   Langue,
   LangueId,
   LogId,
   MailEvent,
+  MailEventId,
+  MailEventType,
   Need,
   NeedId,
   NeedType,
+  Notification,
+  NotificationId,
+  NotificationType,
   NotificationsSettings,
   Role,
   SnapshotType,
