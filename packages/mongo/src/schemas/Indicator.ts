@@ -16,7 +16,7 @@ export const IndicatorSchema = z.object({
 });
 
 export type IndicatorType = z.infer<typeof IndicatorSchema>;
-export type IndicatorId = Types.ObjectId | string;
+export type IndicatorId = Types.ObjectId;
 
 export interface Indicator extends Omit<IndicatorType, "userId" | "dispositifId">, Document {
   userId: UserId;

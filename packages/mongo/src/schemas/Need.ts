@@ -33,7 +33,7 @@ export const NeedSchema = z.object({
 });
 
 export type NeedType = z.infer<typeof NeedSchema>;
-export type NeedId = Types.ObjectId | string;
+export type NeedId = Types.ObjectId;
 
 export interface Need extends Omit<NeedType, "theme" | "image">, Document {
   theme: ThemeId;

@@ -11,7 +11,6 @@ export const AdminOptionsSchema = z.object({
 });
 
 export type AdminOptionsType = z.infer<typeof AdminOptionsSchema>;
-export type AdminOptionsId = Types.ObjectId | string;
 
 export interface AdminOptions extends AdminOptionsType, Document {}
 

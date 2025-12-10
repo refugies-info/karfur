@@ -73,7 +73,7 @@ export interface Theme extends Document {
   isActive(activeLanguages: Langue[]): boolean;
 }
 
-export type ThemeId = Theme["_id"] | Theme["id"];
+export type ThemeId = Theme["_id"];
 
 // Schema
 const ThemeMongooseSchema = zodSchema(ThemeZodSchema);

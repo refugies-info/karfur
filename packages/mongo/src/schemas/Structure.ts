@@ -127,7 +127,7 @@ export interface Structure extends Document {
   updatedAt?: Date;
 }
 
-export type StructureId = Structure["_id"] | Structure["id"];
+export type StructureId = Structure["_id"];
 
 // --- Schemas ---
 

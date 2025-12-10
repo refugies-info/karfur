@@ -20,7 +20,7 @@ export const SnapshotSchema = z.object({
 });
 
 export type SnapshotTypeObj = z.infer<typeof SnapshotSchema>;
-export type SnapshotId = Types.ObjectId | string;
+export type SnapshotId = Types.ObjectId;
 
 export interface Snapshot extends Omit<SnapshotTypeObj, "dispositifId">, Document {
   dispositifId: Types.ObjectId;

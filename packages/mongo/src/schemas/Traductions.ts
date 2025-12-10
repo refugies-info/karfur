@@ -38,7 +38,7 @@ export const TraductionsZodSchema = z.object({
 });
 
 export type TraductionsTypeObj = z.infer<typeof TraductionsZodSchema>;
-export type TraductionId = Types.ObjectId | string;
+export type TraductionId = Types.ObjectId;
 
 export interface Traductions
   extends Omit<TraductionsTypeObj, "dispositifId" | "userId" | "translated">,

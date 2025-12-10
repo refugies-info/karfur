@@ -16,7 +16,7 @@ export const MailEventSchema = z.object({
 });
 
 export type MailEventType = z.infer<typeof MailEventSchema>;
-export type MailEventId = Types.ObjectId | string;
+export type MailEventId = Types.ObjectId;
 
 export interface MailEvent extends Omit<MailEventType, "userId" | "dispositifId">, Document {
   userId?: UserId;

@@ -82,7 +82,7 @@ export interface User extends Document {
   getSelectedLanguagesButFrench(): Langue[];
 }
 
-export type UserId = Types.ObjectId | string;
+export type UserId = Types.ObjectId;
 
 const UserMongooseSchema = zodSchema(UserZodSchema);
 UserMongooseSchema.set("collection", "users");

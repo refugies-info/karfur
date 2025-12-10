@@ -204,7 +204,7 @@ export const DispositifZodSchema = z.object({
 });
 
 export type DispositifType = z.infer<typeof DispositifZodSchema>;
-export type DispositifId = Types.ObjectId | string;
+export type DispositifId = Types.ObjectId;
 
 export interface Dispositif
   extends Omit<

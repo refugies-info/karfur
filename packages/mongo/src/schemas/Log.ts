@@ -33,7 +33,7 @@ export const LogSchema = z.object({
 });
 
 export type LogType = z.infer<typeof LogSchema>;
-export type LogId = Types.ObjectId | string;
+export type LogId = Types.ObjectId;
 
 export interface Log extends Omit<LogType, "objectId" | "author" | "dynamicId" | "link">, Document {
   objectId: Types.ObjectId;
