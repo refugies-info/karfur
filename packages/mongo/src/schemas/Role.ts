@@ -1,6 +1,6 @@
 import { RoleName } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 export const RoleZodSchema = z.object({
@@ -12,19 +12,13 @@ export const RoleZodSchema = z.object({
 
 export type RoleType = z.infer<typeof RoleZodSchema>;
 
-export interface Role extends Document {
-  _id: Types.ObjectId;
-  nom: RoleName;
-  nomPublique?: string;
-  created_at?: Date;
-  updatedAt?: Date;
-}
+export type Role = z.infer<typeof RoleZodSchema> & Document;
 
 export type RoleId = Role["_id"] | Role["id"];
 
-const RoleSchema = zodSchema(RoleZodSchema);
-RoleSchema.path("nom").unique(true);
-RoleSchema.set("collection", "roles");
-RoleSchema.set("timestamps", { createdAt: "created_at" });
+export const RoleMongooseSchema = zodSchema(RoleZodSchema);
+RoleMongooseSchema.path("nom").unique(true);
+RoleMongooseSchema.set("collection", "roles");
+RoleMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const RoleModel = model<Role>("Role", RoleSchema as unknown as Schema<Role>);
+export const RoleModel = model("Role", RoleMongooseSchema);

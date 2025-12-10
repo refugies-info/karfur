@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 import type { UserId } from "./User";
@@ -32,15 +32,8 @@ export const LogSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type LogType = z.infer<typeof LogSchema>;
+export type Log = z.infer<typeof LogSchema> & Document;
 export type LogId = Types.ObjectId;
-
-export interface Log extends Omit<LogType, "objectId" | "author" | "dynamicId" | "link">, Document {
-  objectId: Types.ObjectId;
-  author?: UserId;
-  dynamicId?: Types.ObjectId;
-  link?: LogLink;
-}
 
 const LogMongooseSchema = zodSchema(LogSchema);
 LogMongooseSchema.set("collection", "logs");
@@ -71,4 +64,4 @@ if (linkPath && linkPath.schema) {
   }
 }
 
-export const LogModel = model<Log>("Log", LogMongooseSchema as unknown as Schema<Log>);
+export const LogModel = model("Log", LogMongooseSchema);

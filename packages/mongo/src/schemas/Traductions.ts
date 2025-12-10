@@ -1,7 +1,6 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import type { UserId } from "./User";
 
 export enum TraductionsType {
   SUGGESTION = "suggestion",
@@ -37,22 +36,11 @@ export const TraductionsZodSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type TraductionsTypeObj = z.infer<typeof TraductionsZodSchema>;
+export type Traductions = z.infer<typeof TraductionsZodSchema> & Document;
 export type TraductionId = Types.ObjectId;
-
-export interface Traductions
-  extends Omit<TraductionsTypeObj, "dispositifId" | "userId" | "translated">,
-    Document {
-  dispositifId: Types.ObjectId;
-  userId: UserId;
-  translated: Record<string, any>;
-}
 
 const TraductionsMongooseSchema = zodSchema(TraductionsZodSchema);
 TraductionsMongooseSchema.set("collection", "traductions");
 TraductionsMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const TraductionsModel = model<Traductions>(
-  "Traductions",
-  TraductionsMongooseSchema as unknown as Schema<Traductions>,
-);
+export const TraductionsModel = model("Traductions", TraductionsMongooseSchema);

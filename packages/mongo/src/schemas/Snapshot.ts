@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 // Needs strict imports or definitions if we want deep validation
@@ -19,18 +19,11 @@ export const SnapshotSchema = z.object({
   data: z.record(z.unknown()), // DispositifContent | DemarcheContent
 });
 
-export type SnapshotTypeObj = z.infer<typeof SnapshotSchema>;
+export type Snapshot = z.infer<typeof SnapshotSchema> & Document;
 export type SnapshotId = Types.ObjectId;
-
-export interface Snapshot extends Omit<SnapshotTypeObj, "dispositifId">, Document {
-  dispositifId: Types.ObjectId;
-}
 
 export const SnapshotMongooseSchema = zodSchema(SnapshotSchema);
 SnapshotMongooseSchema.set("collection", "snapshots");
 SnapshotMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const SnapshotModel = model<Snapshot>(
-  "Snapshot",
-  SnapshotMongooseSchema as unknown as Schema<Snapshot>,
-);
+export const SnapshotModel = model("Snapshot", SnapshotMongooseSchema);

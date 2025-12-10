@@ -1,8 +1,7 @@
 import type { Languages } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import type { UserId } from "./User";
 
 // Indicator Schema
 export const IndicatorSchema = z.object({
@@ -15,19 +14,11 @@ export const IndicatorSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type IndicatorType = z.infer<typeof IndicatorSchema>;
+export type Indicator = z.infer<typeof IndicatorSchema> & Document;
 export type IndicatorId = Types.ObjectId;
-
-export interface Indicator extends Omit<IndicatorType, "userId" | "dispositifId">, Document {
-  userId: UserId;
-  dispositifId: Types.ObjectId;
-}
 
 export const IndicatorMongooseSchema = zodSchema(IndicatorSchema);
 IndicatorMongooseSchema.set("collection", "indicators");
 IndicatorMongooseSchema.set("timestamps", true);
 
-export const IndicatorModel = model<Indicator>(
-  "Indicator",
-  IndicatorMongooseSchema as unknown as Schema<Indicator>,
-);
+export const IndicatorModel = model("Indicator", IndicatorMongooseSchema);

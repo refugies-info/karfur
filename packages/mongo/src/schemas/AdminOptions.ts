@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 // AdminOptions Schema
@@ -10,16 +10,11 @@ export const AdminOptionsSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type AdminOptionsType = z.infer<typeof AdminOptionsSchema>;
-
-export interface AdminOptions extends AdminOptionsType, Document {}
+export type AdminOptions = z.infer<typeof AdminOptionsSchema> & Document;
 
 export const AdminOptionsMongooseSchema = zodSchema(AdminOptionsSchema);
 AdminOptionsMongooseSchema.path("key").unique(true);
 AdminOptionsMongooseSchema.set("collection", "adminoptions");
 AdminOptionsMongooseSchema.set("timestamps", { createdAt: "created_at", updatedAt: "updatedAt" });
 
-export const AdminOptionsModel = model<AdminOptions>(
-  "AdminOptions",
-  AdminOptionsMongooseSchema as unknown as Schema<AdminOptions>,
-);
+export const AdminOptionsModel = model("AdminOptions", AdminOptionsMongooseSchema);

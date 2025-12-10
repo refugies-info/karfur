@@ -1,6 +1,5 @@
-import type { Languages } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 export const NotificationsSettingsZodSchema = z.object({
@@ -23,29 +22,8 @@ export const AppUserZodSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type AppUserType = z.infer<typeof AppUserZodSchema>;
-
-export interface NotificationsSettings {
-  global: boolean;
-  local: boolean;
-  demarches: boolean;
-  themes: { [key: string]: boolean };
-}
-
-export interface AppUser extends Document {
-  uid: string;
-  city?: string;
-  department?: string;
-  selectedLanguage?: Languages;
-  age?: string;
-  frenchLevel?: string;
-  expoPushToken?: string;
-  notificationsSettings?: NotificationsSettings;
-  created_at?: Date;
-  updatedAt?: Date;
-}
-
-export type AppUserId = AppUser["_id"] | AppUser["id"];
+export type AppUser = z.infer<typeof AppUserZodSchema> & Document;
+export type AppUserId = AppUser["_id"];
 
 const AppUserSchema = zodSchema(AppUserZodSchema);
 AppUserSchema.path("uid").unique(true);
@@ -63,4 +41,4 @@ if (nsPath && nsPath.schema) {
   nsPath.schema.set("_id", false);
 }
 
-export const AppUserModel = model<AppUser>("AppUser", AppUserSchema as unknown as Schema<AppUser>);
+export const AppUserModel = model("AppUser", AppUserSchema);

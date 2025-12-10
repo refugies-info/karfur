@@ -1,7 +1,6 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { model, type Schema, type Types } from "mongoose";
+import { model, type Types } from "mongoose";
 import { z } from "zod";
-import type { UserId } from "./User";
 
 // Error Schema
 export const ErrorSchema = z.object({
@@ -13,15 +12,11 @@ export const ErrorSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type ErrorType = z.infer<typeof ErrorSchema> & { _id: Types.ObjectId };
-export type ErrorId = Types.ObjectId | string;
-
-export interface Error extends Omit<ErrorType, "userId"> {
-  userId?: UserId;
-}
+export type Error = z.infer<typeof ErrorSchema> & Document;
+export type ErrorId = Types.ObjectId;
 
 export const ErrorMongooseSchema = zodSchema(ErrorSchema);
 ErrorMongooseSchema.set("collection", "errors");
 ErrorMongooseSchema.set("timestamps", true);
 
-export const ErrorModel = model<Error>("Error", ErrorMongooseSchema as unknown as Schema<Error>);
+export const ErrorModel = model("Error", ErrorMongooseSchema);

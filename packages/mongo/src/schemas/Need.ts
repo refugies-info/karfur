@@ -1,8 +1,7 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import { type ImageType, ImageZodSchema } from "./generics";
-import type { ThemeId } from "./Theme";
+import { ImageZodSchema } from "./generics";
 
 // NeedTranslation Schema
 export const NeedTranslationSchema = z.object({
@@ -32,13 +31,8 @@ export const NeedSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type NeedType = z.infer<typeof NeedSchema>;
+export type Need = z.infer<typeof NeedSchema> & Document;
 export type NeedId = Types.ObjectId;
-
-export interface Need extends Omit<NeedType, "theme" | "image">, Document {
-  theme: ThemeId;
-  image: ImageType;
-}
 
 export const NeedMongooseSchema = zodSchema(NeedSchema);
 NeedMongooseSchema.set("collection", "needs");
@@ -53,4 +47,4 @@ for (const path of subdocPaths) {
   }
 }
 
-export const NeedModel = model<Need>("Need", NeedMongooseSchema as unknown as Schema<Need>);
+export const NeedModel = model("Need", NeedMongooseSchema);
