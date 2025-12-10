@@ -28,7 +28,7 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
       const status = await getStatus(d);
       return {
         _id: d._id,
-        nbMercis: d.merci.length,
+        nbMercis: d.merci?.length || 0,
         hasDraftVersion: !!d.hasDraftVersion,
         status,
         ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
