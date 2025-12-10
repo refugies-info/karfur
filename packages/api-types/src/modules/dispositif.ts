@@ -276,10 +276,10 @@ export type GetDispositifResponse = BaseGetDispositifResponse &
   (
     | {
         markdown: string;
-        what?: string;
-        how?: InfoSections;
-        participants?: SimpleUser[];
-        merci?: { created_at: Date; userId?: Id }[];
+        what?: undefined;
+        how?: undefined;
+        participants?: undefined;
+        merci?: undefined;
       }
     | {
         markdown?: undefined;
