@@ -51,6 +51,11 @@ describe("Dispositif RCO", () => {
       metadatas: {
         location: ["France"],
       },
+      avis: [],
+      creatorId: { _id: "creatorId" },
+      map: [],
+      date: new Date(),
+      administration: {},
     };
 
     wrapWithProvidersAndRenderForTesting({
@@ -89,6 +94,16 @@ describe("Dispositif RCO", () => {
       metadatas: {
         location: ["France"],
       },
+      what: "what",
+      how: {},
+      participants: [],
+      merci: [],
+      avis: [],
+      sponsors: [],
+      creatorId: { _id: "creatorId" },
+      map: [],
+      date: new Date(),
+      administration: {},
     };
 
     wrapWithProvidersAndRenderForTesting({
