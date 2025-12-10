@@ -1,7 +1,7 @@
 import type { PatchWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
+import { ObjectId, type Widget } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { updateWidget } from "~/modules/widgets/widgets.repository";
-import { ObjectId, type Widget } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const patchWidget = async (

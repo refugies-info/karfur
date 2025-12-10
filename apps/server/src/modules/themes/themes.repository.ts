@@ -1,4 +1,4 @@
-import { type Theme, type ThemeId, ThemeModel, type ThemeType } from "~/typegoose";
+import { type Theme, type ThemeId, ThemeModel, type ThemeType } from "@refugies-info/mongo";
 import type { DeleteResult } from "~/types/interface";
 
 export const getTheme = (id: ThemeId) => ThemeModel.findOne({ _id: id });

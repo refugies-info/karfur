@@ -3,6 +3,8 @@ import {
   DispositifStatus,
   type PublishDispositifRequest,
 } from "@refugies-info/api-types";
+import type { TranslationContent } from "@refugies-info/mongo";
+import { type Dispositif, Traductions, type User } from "@refugies-info/mongo";
 import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
@@ -26,8 +28,6 @@ import {
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import { diffTraductions } from "~/modules/traductions/traductions.business";
-import { type Dispositif, Traductions, type User } from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

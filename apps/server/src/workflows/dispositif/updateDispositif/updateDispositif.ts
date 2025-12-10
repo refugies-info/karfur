@@ -4,6 +4,8 @@ import {
   type UpdateDispositifRequest,
   type UpdateDispositifResponse,
 } from "@refugies-info/api-types";
+import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
+import { type Dispositif, ObjectId, type StructureId, type User } from "@refugies-info/mongo";
 import { isString } from "lodash";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import { isToday } from "~/libs/isToday";
@@ -24,12 +26,6 @@ import {
   notifyChange,
 } from "~/modules/dispositif/dispositif.service";
 import { logContact } from "~/modules/dispositif/log";
-import { type Dispositif, ObjectId, type StructureId, type User } from "~/typegoose";
-import type {
-  DemarcheContent,
-  DispositifContent,
-  TranslationContent,
-} from "~/typegoose/Dispositif";
 import type { ResponseWithData } from "~/types/interface";
 import { log } from "./log";
 

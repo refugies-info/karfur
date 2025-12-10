@@ -1,10 +1,10 @@
 import { ContentType, type Metadatas } from "@refugies-info/api-types";
+import type { AppUserType, Dispositif, Theme } from "@refugies-info/mongo";
 import {
   getDispositifDepartements,
   getDispositifTheme,
   isDispositifTranslatedIn,
 } from "~/modules/dispositif/dispositif.business";
-import type { AppUserType, Dispositif, Theme } from "~/typegoose";
 
 const ALL = "france";
 

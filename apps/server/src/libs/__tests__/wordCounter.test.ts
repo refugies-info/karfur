@@ -1,9 +1,5 @@
-import { ObjectId } from "~/typegoose";
-import type {
-  DemarcheContent,
-  DispositifContent,
-  TranslationContent,
-} from "~/typegoose/Dispositif";
+import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
+import { ObjectId } from "@refugies-info/mongo";
 import {
   countDispositifWords,
   countDispositifWordsForSections,

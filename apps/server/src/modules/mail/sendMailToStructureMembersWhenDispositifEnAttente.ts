@@ -1,5 +1,5 @@
+import type { Dispositif, Structure } from "@refugies-info/mongo";
 import logger from "~/logger";
-import type { Dispositif, Structure } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { sendNewFicheEnAttenteMail } from "./mail.service";

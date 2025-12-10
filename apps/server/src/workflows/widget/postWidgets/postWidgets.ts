@@ -1,7 +1,7 @@
 import type { PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
+import { ObjectId, type Widget } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { createWidget } from "~/modules/widgets/widgets.repository";
-import { ObjectId, type Widget } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const postWidgets = async (

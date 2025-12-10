@@ -1,13 +1,13 @@
 import type { DispositifStatus } from "@refugies-info/api-types";
-import logger from "~/logger";
-import { createSnapshot } from "~/modules/snapshots/snapshots.repository";
 import {
   type Dispositif,
   ObjectId,
   type Snapshot,
   SnapshotModel,
   type SnapshotType,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
+import logger from "~/logger";
+import { createSnapshot } from "~/modules/snapshots/snapshots.repository";
 
 export const takeSnapshot = async (
   dispositif: Dispositif,

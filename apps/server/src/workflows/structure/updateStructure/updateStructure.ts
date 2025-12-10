@@ -1,9 +1,9 @@
 import type { PatchStructureRequest } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { getStructureFromDB, updateStructureInDB } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { addStructureForUsers, removeStructureOfAllUsers } from "~/modules/users/users.service";
-import type { User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

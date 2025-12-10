@@ -4,6 +4,13 @@ import type {
   Languages,
   TranslationContent,
 } from "@refugies-info/api-types";
+import {
+  type Dispositif,
+  DispositifModel,
+  ErrorModel,
+  type Traductions,
+  type UserId,
+} from "@refugies-info/mongo";
 import { cloneDeep, set } from "lodash";
 import logger from "~/logger";
 import { isDispositif } from "~/modules/dispositif/dispositif.business";
@@ -12,20 +19,12 @@ import {
   deleteLineBreaksInInfosections,
 } from "~/modules/dispositif/dispositif.service";
 import { getLanguageByCode } from "~/modules/langues/langues.repository";
-
 import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors";
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
 import { addTradToAirtable } from "~/modules/traductions/traductions.service";
-import {
-  type Dispositif,
-  DispositifModel,
-  ErrorModel,
-  type Traductions,
-  type UserId,
-} from "~/typegoose";
 import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {

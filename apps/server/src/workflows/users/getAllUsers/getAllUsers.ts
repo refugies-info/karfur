@@ -1,8 +1,8 @@
 import type { GetAllUsersResponse, UserStructure } from "@refugies-info/api-types";
+import type { Structure, UserId } from "@refugies-info/mongo";
 import pick from "lodash/pick";
 import logger from "~/logger";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
-import type { Structure, UserId } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getStructures = (userId: UserId, structures: Structure[]): UserStructure[] =>

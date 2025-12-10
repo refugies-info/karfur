@@ -1,11 +1,11 @@
 import type { Id, MainSponsorRequest } from "@refugies-info/api-types";
+import type { Dispositif } from "@refugies-info/mongo";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import {
   getDispositifById,
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

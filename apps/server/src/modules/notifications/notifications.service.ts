@@ -1,4 +1,11 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
+import {
+  type AppUser,
+  type Dispositif,
+  type DispositifId,
+  type Notification,
+  NotificationModel,
+} from "@refugies-info/mongo";
 import { Expo, type ExpoPushMessage, type ExpoPushTicket } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 import { availableLanguages } from "~/libs/getFormattedLocale";
@@ -14,13 +21,6 @@ import {
   getDispositifById,
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
-import {
-  type AppUser,
-  type Dispositif,
-  type DispositifId,
-  type Notification,
-  NotificationModel,
-} from "~/typegoose";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import {
   filterTargets,

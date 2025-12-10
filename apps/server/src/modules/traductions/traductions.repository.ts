@@ -1,15 +1,15 @@
 import type { Id, Languages } from "@refugies-info/api-types";
-import { uniq } from "lodash";
-import type { FilterQuery, ProjectionType } from "mongoose";
-import { computeTraductionFinished } from "~/modules/traductions/traductions.business";
 import {
   type Dispositif,
   type DispositifId,
   type Traductions,
   TraductionsModel,
+  TraductionsType,
   type UserId,
-} from "~/typegoose";
-import { TraductionsType } from "~/typegoose/Traductions";
+} from "@refugies-info/mongo";
+import { uniq } from "lodash";
+import type { FilterQuery, ProjectionType } from "mongoose";
+import { computeTraductionFinished } from "~/modules/traductions/traductions.business";
 import type { DeleteResult } from "~/types/interface";
 
 export const getTraductionsByLanguage = (

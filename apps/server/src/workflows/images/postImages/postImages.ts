@@ -1,8 +1,8 @@
 import type { PostImageResponse } from "@refugies-info/api-types";
+import { CloudinaryImageModel } from "@refugies-info/mongo";
 import cloudinary from "cloudinary";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
-import { CloudinaryImageModel } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 /**

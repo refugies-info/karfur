@@ -1,16 +1,16 @@
 import { DispositifStatus, type Languages } from "@refugies-info/api-types";
-import { isDocument } from "@typegoose/typegoose";
-import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
-import { MustBePopulatedError } from "~/errors";
-import { countDispositifWords } from "~/libs/wordCounter";
+import type { TranslationContent } from "@refugies-info/mongo";
 import {
   type Dispositif,
   type Traductions,
   TraductionsStatus,
   TraductionsType,
   type User,
-} from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
+} from "@refugies-info/mongo";
+import { isDocument } from "@typegoose/typegoose";
+import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
+import { MustBePopulatedError } from "~/errors";
+import { countDispositifWords } from "~/libs/wordCounter";
 
 export interface TraductionDiff {
   added: string[];

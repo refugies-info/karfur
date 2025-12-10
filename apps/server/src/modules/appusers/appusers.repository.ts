@@ -3,7 +3,7 @@ import {
   AppUserModel,
   type AppUserType,
   type NotificationsSettings,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
 
 export const getAllAppUsers = async () => AppUserModel.find();
 

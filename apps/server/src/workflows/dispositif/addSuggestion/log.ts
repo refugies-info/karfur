@@ -1,5 +1,5 @@
+import type { Dispositif, DispositifId } from "@refugies-info/mongo";
 import { addLog } from "~/modules/logs/logs.service";
-import type { Dispositif, DispositifId } from "~/typegoose";
 
 export const log = async (dispositif: Dispositif, dispositifId: DispositifId) => {
   await addLog(dispositifId, "Dispositif", "Nouvelle réaction sur la fiche", {

@@ -3,11 +3,10 @@ import type {
   GetUserFavoritesResponse,
   Languages,
 } from "@refugies-info/api-types";
+import type { Dispositif, Favorite, User } from "@refugies-info/mongo";
 import type { FilterQuery } from "mongoose";
 import logger from "~/logger";
 import { getSimpleDispositifs } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif, User } from "~/typegoose";
-import type { Favorite } from "~/typegoose/User";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getUserFavoritesInLocale = async (

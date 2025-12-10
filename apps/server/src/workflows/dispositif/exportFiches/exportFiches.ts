@@ -1,10 +1,10 @@
 import type { Languages } from "@refugies-info/api-types";
+import type { Dispositif, Langue, Need, Theme } from "@refugies-info/mongo";
 import type { FieldSet } from "airtable";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { getDispositifsForExport } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
-import type { Dispositif, Langue, Need, Theme } from "~/typegoose";
 import type { Response } from "~/types/interface";
 
 interface Result extends FieldSet {

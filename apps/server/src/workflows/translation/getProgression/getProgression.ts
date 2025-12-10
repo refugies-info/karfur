@@ -1,7 +1,7 @@
 import type { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
+import { IndicatorModel, ObjectId } from "@refugies-info/mongo";
 import { computeGlobalIndicator } from "~/controllers/traduction/lib";
 import logger from "~/logger";
-import { IndicatorModel, ObjectId } from "~/typegoose";
 
 export const computeIndicator = async (
   userId: string,

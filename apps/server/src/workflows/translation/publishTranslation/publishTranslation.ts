@@ -1,9 +1,9 @@
 import type { PublishTranslationRequest } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { UnauthorizedError } from "~/errors";
 import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { getValidation } from "~/modules/traductions/traductions.repository";
-import type { User } from "~/typegoose";
 import validateTranslation from "../validateTranslation";
 
 const publishTranslation = (

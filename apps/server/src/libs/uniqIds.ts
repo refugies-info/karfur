@@ -1,6 +1,7 @@
 // import type { Ref } from "@typegoose/typegoose";
+
+import { ObjectId } from "@refugies-info/mongo";
 import uniq from "lodash/uniq";
-import { ObjectId } from "~/typegoose";
 
 /**
  * Creates a duplicate-free version of an array of ObjectId

@@ -1,9 +1,9 @@
 import type { PostStructureRequest } from "@refugies-info/api-types";
+import { ObjectId, type Structure } from "@refugies-info/mongo";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { createStructureInDB } from "~/modules/structure/structure.repository";
 import { addStructureForUsers } from "~/modules/users/users.service";
-import { ObjectId, type Structure } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

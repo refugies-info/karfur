@@ -6,11 +6,7 @@ import {
   type Picture,
   type Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
-import { omit, pick, union, uniq } from "lodash";
-import { map } from "lodash/fp";
-import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
-import { cleanupAvis } from "~/libs/cleanupAvis";
-import type { DispositifAbstracts } from "~/modules/dispositif/types";
+import type { Avis, Merci, Suggestion } from "@refugies-info/mongo";
 import {
   type DemarcheContent,
   type Dispositif,
@@ -22,8 +18,12 @@ import {
   ObjectId,
   type Theme,
   type UserId,
-} from "~/typegoose";
-import type { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
+} from "@refugies-info/mongo";
+import { omit, pick, union, uniq } from "lodash";
+import { map } from "lodash/fp";
+import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { cleanupAvis } from "~/libs/cleanupAvis";
+import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import type { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
 

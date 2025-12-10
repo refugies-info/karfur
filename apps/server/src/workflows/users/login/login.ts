@@ -1,5 +1,6 @@
 import msal from "@azure/msal-node";
 import { type LoginRequest, type LoginResponse, UserStatus } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { OAuth2Client } from "google-auth-library";
 import logger from "~/logger";
 import { loginExceptionsManager, logUser, needs2FA } from "~/modules/users/auth";
@@ -7,7 +8,6 @@ import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
 import { requestEmailLogin } from "~/modules/users/login2FA";
 import { getUserByEmailFromDB, updateUserInDB } from "~/modules/users/users.repository";
 import { registerUser } from "~/modules/users/users.service";
-import type { User } from "~/typegoose/User";
 
 const oauth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,

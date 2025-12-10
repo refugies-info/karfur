@@ -1,12 +1,8 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
+import type { Dispositif, Need, Structure, Theme, User } from "@refugies-info/mongo";
 import { isDocument, isDocumentArray } from "@typegoose/typegoose";
 import { get, has } from "lodash";
 import { MustBePopulatedError } from "~/errors";
-import type { Dispositif } from "~/typegoose/Dispositif";
-import type { Need } from "~/typegoose/Need";
-import type { Structure } from "~/typegoose/Structure";
-import type { Theme } from "~/typegoose/Theme";
-import type { User } from "~/typegoose/User";
 
 export const getDispositifMainSponsor = (dispositif: Dispositif): Structure => {
   if (!dispositif.mainSponsor || !isDocument(dispositif.mainSponsor as any)) {

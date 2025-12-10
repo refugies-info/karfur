@@ -5,7 +5,7 @@ import {
   SnapshotModel,
   StructureModel,
   UserModel,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
 import { fixtures } from "../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 

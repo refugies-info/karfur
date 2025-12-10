@@ -1,8 +1,8 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import type { Dispositif, Structure, User } from "@refugies-info/mongo";
 import { UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
-import type { Dispositif, Structure, User } from "~/typegoose";
 
 // Dispositif edition
 export const isUserAuthorizedToModifyDispositif = (

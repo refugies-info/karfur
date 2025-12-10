@@ -1,11 +1,11 @@
 import type { AdminOptionRequest, PostAdminOptionResponse } from "@refugies-info/api-types";
+import { type AdminOptions, AdminOptionsModel } from "@refugies-info/mongo";
 import logger from "~/logger";
 import {
   createAdminOption,
   getAdminOption,
   updateAdminOption,
 } from "~/modules/adminOptions/adminOptions.repository";
-import { type AdminOptions, AdminOptionsModel } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const postAdminOptions = async (

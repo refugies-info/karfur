@@ -1,8 +1,8 @@
 import type { Languages, TranslatorFeedback } from "@refugies-info/api-types";
+import type { Dispositif, Theme, Traductions, User } from "@refugies-info/mongo";
 import { getAirtableTranslationTable } from "~/connectors/airtable/airtable";
 import { countDispositifWords, countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
-import type { Dispositif, Theme, Traductions, User } from "~/typegoose";
 
 const url = process.env.FRONT_SITE_URL;
 

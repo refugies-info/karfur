@@ -1,3 +1,4 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { filterDispositifsForUpdateReminders } from "~/modules/dispositif/dispositif.adapter";
@@ -8,7 +9,6 @@ import {
 } from "~/modules/dispositif/dispositif.repository";
 import { sendUpdateReminderMailService } from "~/modules/mail/mail.service";
 import { getUserById } from "~/modules/users/users.repository";
-import type { Dispositif } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

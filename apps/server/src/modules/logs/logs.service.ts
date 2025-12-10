@@ -1,6 +1,4 @@
 import type { GetLogResponse, Id } from "@refugies-info/api-types";
-import isEmpty from "lodash/isEmpty";
-import logger from "~/logger";
 import {
   type DispositifId,
   type LangueId,
@@ -8,7 +6,9 @@ import {
   ObjectId,
   type StructureId,
   type UserId,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
+import isEmpty from "lodash/isEmpty";
+import logger from "~/logger";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {

@@ -1,4 +1,5 @@
 import type { PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import type { AppUser, Theme } from "@refugies-info/mongo";
 import logger from "~/logger";
 import {
   getAllAppUsers,
@@ -6,7 +7,6 @@ import {
 } from "~/modules/appusers/appusers.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { createTheme } from "~/modules/themes/themes.repository";
-import type { AppUser, Theme } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const hasOneNotificationEnabled = (user: AppUser) =>

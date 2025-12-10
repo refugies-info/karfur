@@ -1,8 +1,8 @@
+import type { Dispositif, Theme, ThemeId, UserId } from "@refugies-info/mongo";
 import { isDocument, type Ref } from "@typegoose/typegoose";
 import logger from "~/logger";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import { addLog } from "~/modules/logs/logs.service";
-import type { Dispositif, Theme, ThemeId, UserId } from "~/typegoose";
 
 const getThemesIds = (
   themes: Ref<Theme, ThemeId> | Ref<Theme, ThemeId>[] | undefined,

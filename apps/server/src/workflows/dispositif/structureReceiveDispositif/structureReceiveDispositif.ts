@@ -3,6 +3,7 @@ import {
   DispositifStatus,
   type StructureReceiveDispositifRequest,
 } from "@refugies-info/api-types";
+import type { Dispositif, User } from "@refugies-info/mongo";
 import { InvalidRequestError, NotFoundError, UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
@@ -11,7 +12,6 @@ import {
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
-import type { Dispositif, User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

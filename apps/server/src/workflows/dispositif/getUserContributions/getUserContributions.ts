@@ -1,8 +1,8 @@
 import type { GetUserContributionsResponse } from "@refugies-info/api-types";
+import type { UserId } from "@refugies-info/mongo";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { getDispositifsWithCreatorId } from "~/modules/dispositif/dispositif.repository";
-import type { UserId } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getUserContributions = async (

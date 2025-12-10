@@ -1,7 +1,6 @@
+import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "@refugies-info/mongo";
 import { get } from "lodash";
-
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
-import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "~/typegoose";
 import type { AlgoliaObject } from "~/types/interface";
 
 const extractValuesPerLanguage = (

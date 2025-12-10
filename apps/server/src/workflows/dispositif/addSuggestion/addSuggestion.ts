@@ -1,12 +1,12 @@
 import type { AddSuggestionDispositifRequest } from "@refugies-info/api-types";
+import type { DemarcheContent, DispositifContent, Suggestion } from "@refugies-info/mongo";
+import { ObjectId } from "@refugies-info/mongo";
 import uniqid from "uniqid";
 import logger from "~/logger";
 import {
   addSuggestionDispositifInDB,
   getDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
-import type { DemarcheContent, DispositifContent, Suggestion } from "~/typegoose/Dispositif";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

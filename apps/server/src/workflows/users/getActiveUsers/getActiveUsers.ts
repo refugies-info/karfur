@@ -1,8 +1,8 @@
 import type { GetActiveUsersResponse } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
 import { getAllUsersFromDB } from "~/modules/users/users.repository";
-import type { User } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {

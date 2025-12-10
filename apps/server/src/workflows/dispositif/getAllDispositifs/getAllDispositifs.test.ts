@@ -1,6 +1,6 @@
 import { StructureStatus } from "@refugies-info/api-types";
+import { ObjectId } from "@refugies-info/mongo";
 import * as repository from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { getAllDispositifs } from "./getAllDispositifs";
 

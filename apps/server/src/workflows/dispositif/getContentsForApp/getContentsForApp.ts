@@ -5,9 +5,9 @@ import {
   type GetContentsForAppResponse,
   type Languages,
 } from "@refugies-info/api-types";
+import type { Dispositif } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
-import type { Dispositif } from "~/typegoose";
 import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
 const present =

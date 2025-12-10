@@ -1,4 +1,5 @@
 import { RoleName, type UpdateUserRequest } from "@refugies-info/api-types";
+import { ObjectId, type User } from "@refugies-info/mongo";
 // import type { DocumentType } from "@typegoose/typegoose";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
@@ -11,7 +12,6 @@ import { loginExceptionsManager } from "~/modules/users/auth";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
 import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
 import { getUserById, getUserFromDB, updateUserInDB } from "~/modules/users/users.repository";
-import { ObjectId, type User } from "~/typegoose";
 import { changePassword } from "../changePassword";
 import { log } from "./log";
 

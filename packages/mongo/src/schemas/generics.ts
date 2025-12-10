@@ -1,5 +1,7 @@
-import { Schema } from "mongoose";
+import { Schema, Types } from "mongoose";
 import { z } from "zod";
+
+export class ObjectId extends Types.ObjectId {}
 
 // Image Schema
 // Image Schema

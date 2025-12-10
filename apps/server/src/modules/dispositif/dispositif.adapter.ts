@@ -1,3 +1,4 @@
+import type { Dispositif, DispositifId, UserId } from "@refugies-info/mongo";
 import _, { get } from "lodash";
 import moment from "moment";
 import logger from "~/logger";
@@ -5,7 +6,6 @@ import {
   getDispositifCreator,
   getDispositifTranslated,
 } from "~/modules/dispositif/dispositif.business";
-import type { Dispositif, DispositifId, UserId } from "~/typegoose";
 import { departmentRegionCorrespondency, type RegionData } from "./data";
 
 export const filterDispositifsForDraftReminders = (

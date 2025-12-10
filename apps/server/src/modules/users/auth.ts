@@ -1,4 +1,5 @@
 import { UserStatus } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 // import type { DocumentType } from "@typegoose/typegoose";
 import {
   AuthenticationError,
@@ -8,7 +9,6 @@ import {
   UnauthorizedError,
 } from "~/errors";
 import logger from "~/logger";
-import type { User } from "~/typegoose";
 import { addLog } from "../logs/logs.service";
 import { userRespoStructureId } from "../structure/structure.service";
 import LoginError, { LoginErrorType } from "./LoginError";

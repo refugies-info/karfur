@@ -1,5 +1,5 @@
 import { type Id, UserStatus } from "@refugies-info/api-types";
-import type { FilterQuery, ProjectionType, Types } from "mongoose";
+import type { Favorite, UserId } from "@refugies-info/mongo";
 import {
   type LangueId,
   ObjectId,
@@ -8,8 +8,8 @@ import {
   type StructureId,
   type User,
   UserModel,
-} from "~/typegoose";
-import type { Favorite, UserId } from "~/typegoose/User";
+} from "@refugies-info/mongo";
+import type { FilterQuery, ProjectionType, Types } from "mongoose";
 
 // find one
 export const getUserById = async (id: Id, neededFields: ProjectionType<User>) =>

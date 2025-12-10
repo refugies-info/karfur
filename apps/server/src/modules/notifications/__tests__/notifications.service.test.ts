@@ -1,6 +1,4 @@
 import type { Languages } from "@refugies-info/api-types";
-import type { ExpoPushMessage } from "expo-server-sdk";
-import { omit } from "lodash";
 import {
   AdminOptionsModel,
   type AppUser,
@@ -9,7 +7,9 @@ import {
   DispositifModel,
   type Notification,
   NotificationModel,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
+import type { ExpoPushMessage } from "expo-server-sdk";
+import { omit } from "lodash";
 import { fixtures } from "../../../__fixtures__";
 import * as adminOptionsRepository from "../../adminOptions/adminOptions.repository";
 import * as appusersRepository from "../../appusers/appusers.repository";

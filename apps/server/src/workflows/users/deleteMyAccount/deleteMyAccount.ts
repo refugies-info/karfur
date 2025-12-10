@@ -1,7 +1,7 @@
+import type { User } from "@refugies-info/mongo";
 import { slackDeletedAccount } from "~/connectors/slack/sendSlackNotif";
 import { sendAccountDeletedMailService } from "~/modules/mail/mail.service";
 import { deleteUser } from "~/modules/users/users.service";
-import type { User } from "~/typegoose";
 
 export const deleteMyAccount = async (user: User) => {
   await deleteUser(user);

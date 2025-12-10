@@ -1,4 +1,4 @@
-import { ObjectId, ThemeModel } from "~/typegoose";
+import { ObjectId, ThemeModel } from "@refugies-info/mongo";
 
 export const theme = new ThemeModel();
 

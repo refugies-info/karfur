@@ -4,9 +4,9 @@ import {
   DispositifStatus,
   RoleName,
 } from "@refugies-info/api-types";
+import { DispositifModel, RoleModel, UserModel } from "@refugies-info/mongo";
 import { fixtures } from "~/__fixtures__";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
-import { DispositifModel, RoleModel, UserModel } from "~/typegoose";
 import { createDispositif } from "~/workflows/dispositif/createDispositif/createDispositif";
 import { updateDispositif } from "~/workflows/dispositif/updateDispositif/updateDispositif";
 

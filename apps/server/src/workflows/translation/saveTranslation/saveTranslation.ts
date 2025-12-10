@@ -1,4 +1,11 @@
 import { ContentType, type SaveTranslationRequest } from "@refugies-info/api-types";
+import {
+  ObjectId,
+  type Traductions,
+  TraductionsModel,
+  TraductionsType,
+  type User,
+} from "@refugies-info/mongo";
 import { isUndefined } from "lodash";
 import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
@@ -8,13 +15,6 @@ import {
   getTraductionWordsCount,
 } from "~/modules/traductions/traductions.business";
 import { getOtherValidationForDispositif } from "~/modules/traductions/traductions.repository";
-import {
-  ObjectId,
-  type Traductions,
-  TraductionsModel,
-  TraductionsType,
-  type User,
-} from "~/typegoose";
 
 const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,

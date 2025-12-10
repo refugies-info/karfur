@@ -3,13 +3,13 @@ import {
   type Statistics,
   type TranslationStatisticsRequest,
 } from "@refugies-info/api-types";
+import type { Dispositif } from "@refugies-info/mongo";
 import { cache } from "~/libs/cache";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
-import type { Dispositif } from "~/typegoose";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 const NB_WORDS_CACHE = "nbWordsCache";

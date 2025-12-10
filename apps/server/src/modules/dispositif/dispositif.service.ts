@@ -6,6 +6,26 @@ import {
   StructureStatus,
   type UpdateDispositifRequest,
 } from "@refugies-info/api-types";
+import type { TranslationContent } from "@refugies-info/mongo";
+import {
+  type DemarcheContent,
+  type Dispositif,
+  type DispositifContent,
+  DispositifDraftModel,
+  type DispositifId,
+  DispositifModel,
+  DispositifStatus,
+  type InfoSections,
+  LogModel,
+  ObjectId,
+  type Structure,
+  type Traductions,
+  TraductionsModel,
+  TraductionsStatus,
+  TraductionsType,
+  type User,
+  type UserId,
+} from "@refugies-info/mongo";
 import type { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
 import { type ProjectionType, Schema } from "mongoose";
@@ -28,26 +48,6 @@ import {
   computeTraductionFinished,
   diffTraductions,
 } from "~/modules/traductions/traductions.business";
-import {
-  type DemarcheContent,
-  type Dispositif,
-  type DispositifContent,
-  DispositifDraftModel,
-  type DispositifId,
-  DispositifModel,
-  DispositifStatus,
-  type InfoSections,
-  LogModel,
-  ObjectId,
-  type Structure,
-  type Traductions,
-  TraductionsModel,
-  TraductionsStatus,
-  TraductionsType,
-  type User,
-  type UserId,
-} from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";

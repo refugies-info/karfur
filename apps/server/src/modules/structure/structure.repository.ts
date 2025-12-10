@@ -1,7 +1,12 @@
 import type { Id, Metadatas, Picture } from "@refugies-info/api-types";
+import {
+  type Structure,
+  type StructureId,
+  StructureModel,
+  type UserId,
+} from "@refugies-info/mongo";
 import type { FilterQuery, ProjectionFields } from "mongoose";
 import logger from "~/logger";
-import { type Structure, type StructureId, StructureModel, type UserId } from "~/typegoose";
 
 export const getStructureFromDB = async (
   id: StructureId,

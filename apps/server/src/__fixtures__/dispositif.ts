@@ -1,5 +1,5 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
-import { Dispositif, ObjectId } from "~/typegoose";
+import { Dispositif, ObjectId } from "@refugies-info/mongo";
 
 export const dispositif: any = {};
 

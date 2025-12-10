@@ -60,7 +60,7 @@ import { sendCode } from "~/workflows/users/sendCode";
 import { setNewPassword } from "~/workflows/users/setNewPassword";
 import { updateUser } from "~/workflows/users/updateUser";
 
-// import { UserStatus } from "~/typegoose/User";
+// import { UserStatus } from "@refugies-info/mongo";
 
 // THIS NOT WORK BECAUSE TSOA NEED TO KNOW EVERY
 // EXTENDED TYPE (IE TYPEGOOSE TYPES) => HE CAN'T

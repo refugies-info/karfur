@@ -1,4 +1,5 @@
 import type { PatchStructureRolesRequest } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { sendNewMemberMailService } from "~/modules/mail/mail.service";
 import {
@@ -8,7 +9,6 @@ import {
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { getUserById } from "~/modules/users/users.repository";
 import { addStructureForUsers, removeStructureOfUser } from "~/modules/users/users.service";
-import type { User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

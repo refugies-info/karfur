@@ -1,9 +1,9 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import { DispositifModel, ObjectId, StructureModel } from "@refugies-info/mongo";
 import * as authorizations from "~/libs/checkAuthorizations";
 import * as repository from "~/modules/dispositif/dispositif.repository";
 import * as service from "~/modules/dispositif/dispositif.service";
 import * as logDispositif from "~/modules/dispositif/log";
-import { DispositifModel, ObjectId, StructureModel } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import * as log from "./log";
 import { updateDispositif } from "./updateDispositif";

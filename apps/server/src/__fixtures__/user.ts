@@ -1,5 +1,5 @@
 import { UserStatus } from "@refugies-info/api-types";
-import { ObjectId, UserModel } from "~/typegoose";
+import { ObjectId, UserModel } from "@refugies-info/mongo";
 
 export const user = new UserModel();
 

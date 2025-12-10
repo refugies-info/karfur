@@ -1,3 +1,4 @@
+import type { Dispositif, Traductions } from "@refugies-info/mongo";
 import { isEmpty } from "lodash";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
@@ -6,7 +7,6 @@ import {
   getDraftDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
 import { diffTraductions } from "~/modules/traductions/traductions.business";
-import type { Dispositif, Traductions } from "~/typegoose";
 
 export const getHasTextChanges = async (id: string): Promise<boolean> => {
   logger.info("[getHasTextChanges] called");

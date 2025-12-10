@@ -9,6 +9,7 @@ import {
   type SimpleUser,
   type Sponsor,
 } from "@refugies-info/api-types";
+import type { Dispositif, Role, Structure, User } from "@refugies-info/mongo";
 import { isDocument, isDocumentArray } from "@typegoose/typegoose";
 import pick from "lodash/pick";
 import type { ProjectionType } from "mongoose";
@@ -24,7 +25,6 @@ import {
   getDraftDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
 import { getRoles } from "~/modules/role/role.repository";
-import type { Dispositif, Role, Structure, User } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 const getRoleName = (id: string, roles: Role[]) =>

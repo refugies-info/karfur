@@ -1,3 +1,4 @@
+export { DispositifStatus } from "@refugies-info/api-types";
 export * from "./schemas/AdminOptions";
 export * from "./schemas/AppUser";
 export * from "./schemas/Dispositif";

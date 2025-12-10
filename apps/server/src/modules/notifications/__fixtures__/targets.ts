@@ -1,4 +1,4 @@
-import type { AppUserType } from "~/typegoose";
+import type { AppUserType } from "@refugies-info/mongo";
 
 export const targets: AppUserType[] = [
   {

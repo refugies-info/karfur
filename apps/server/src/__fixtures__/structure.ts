@@ -1,5 +1,5 @@
 import { StructureStatus } from "@refugies-info/api-types";
-import { ObjectId, type Structure, StructureModel } from "~/typegoose";
+import { ObjectId, type Structure, StructureModel } from "@refugies-info/mongo";
 
 export const structure: Structure = new StructureModel();
 
