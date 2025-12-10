@@ -10,7 +10,11 @@ export const getLanguages = async (): ResponseWithData<GetLanguagesResponse[]> =
 
   const result: GetLanguagesResponse[] = activeLanguages.map((ln) => ({
     _id: ln._id.toString(),
-    ...pick(ln, ["langueFr", "langueLoc", "langueCode", "i18nCode", "avancement"]),
+    langueFr: ln.langueFr,
+    langueLoc: ln.langueLoc,
+    langueCode: ln.langueCode,
+    i18nCode: ln.i18nCode,
+    avancement: ln.avancement,
     avancementTrad: ln.avancementTrad > 1 ? 1 : ln.avancementTrad,
   }));
 

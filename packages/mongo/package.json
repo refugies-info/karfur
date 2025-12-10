@@ -1,0 +1,20 @@
+{
+  "name": "@refugies-info/mongo",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "mongoose": "^8.1.1",
+    "zod": "^3.22.4",
+    "@refugies-info/api-types": "workspace:*"
+  },
+  "devDependencies": {
+    "@refugies-info/typescript-config": "workspace:*",
+    "@types/node": "^20.11.19",
+    "typescript": "^5.3.3"
+  }
+}

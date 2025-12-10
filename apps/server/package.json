@@ -27,6 +27,7 @@
     "@getbrevo/brevo": "^3.0.1",
     "@google-cloud/translate": "^8.5.1",
     "@refugies-info/api-types": "workspace:*",
+    "@refugies-info/mongo": "workspace:*",
     "@sendgrid/mail": "^8.1.4",
     "@slack/webhook": "^7.0.6",
     "@typegoose/typegoose": "^12.20.0",

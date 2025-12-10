@@ -8,7 +8,7 @@ import { Dispositif, type DispositifId } from "./Dispositif";
 import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
-import { Langue, type LangueId } from "./Langue";
+import type { Langue, LangueId } from "./Langue";
 import { Log, type LogId } from "./Log";
 import { MailEvent } from "./MailEvent";
 import { Need, type NeedId } from "./Need";
@@ -48,7 +48,7 @@ export const SnapshotModel = getModelForClass(Snapshot);
 export const ErrorModel = getModelForClass(Error);
 export const ImageModel = getModelForClass(Image);
 export const IndicatorModel = getModelForClass(Indicator);
-export const LangueModel = getModelForClass(Langue);
+export { LangueModel } from "@refugies-info/mongo";
 export const LogModel = getModelForClass(Log);
 export const MailEventModel = getModelForClass(MailEvent);
 export const NeedModel = getModelForClass(Need);
@@ -67,7 +67,6 @@ export {
   Error,
   Image,
   Indicator,
-  Langue,
   Log,
   MailEvent,
   Need,
@@ -85,6 +84,7 @@ export {
 
 export type {
   DispositifId,
+  Langue,
   LangueId,
   LogId,
   NeedId,

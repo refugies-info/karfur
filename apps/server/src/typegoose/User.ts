@@ -11,7 +11,7 @@ import passwordHash from "password-hash";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
 import type { ImageSchema } from "./generics";
-import { Langue } from "./Langue";
+import type { Langue } from "./Langue";
 import { Role } from "./Role";
 import { Structure } from "./Structure";
 
@@ -48,7 +48,7 @@ export class User extends Base {
   @prop({ ref: () => Role })
   public roles?: Ref<Role>[];
 
-  @prop({ ref: () => Langue })
+  @prop({ ref: "Langue" })
   public selectedLanguages?: Ref<Langue>[];
 
   // FIXME jointure ?
