@@ -1,9 +1,4 @@
-import {
-  ContentType,
-  DispositifOrigin,
-  DispositifStatus,
-  type Languages,
-} from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
@@ -208,13 +203,12 @@ export const DispositifZodSchema = z.object({
   administrationLogo: ImageZodSchema.nullable().optional(),
 });
 
-export type DispositifType = z.infer<typeof DispositifZodSchema> & { _id: Types.ObjectId };
+export type DispositifType = z.infer<typeof DispositifZodSchema>;
 export type DispositifId = Types.ObjectId | string;
 
 export interface Dispositif
   extends Omit<
       DispositifType,
-      | "_id"
       | "mainSponsor"
       | "theme"
       | "secondaryThemes"

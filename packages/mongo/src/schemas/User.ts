@@ -6,7 +6,7 @@ import passwordHash from "password-hash";
 import { z } from "zod";
 import { type Image, ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
-import { type Role, RoleModel } from "./Role";
+import type { Role } from "./Role";
 
 // Zod Schemas
 export const FavoriteZodSchema = z.object({
@@ -47,7 +47,6 @@ export interface Favorite {
 }
 
 export interface User extends Document {
-  _id: Types.ObjectId;
   username?: string;
   password?: string;
   email: string;

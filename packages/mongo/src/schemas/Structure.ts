@@ -3,7 +3,7 @@ import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 import { type Image, ImageZodSchema } from "./generics";
-import type { User, UserId } from "./User";
+import type { User } from "./User";
 
 // --- Zod Schemas ---
 
@@ -89,7 +89,6 @@ export interface OpeningHours {
 }
 
 export interface Structure extends Document {
-  _id: Types.ObjectId;
   membres?: Membre[];
   acronyme?: string;
   administrateur?: Types.ObjectId | User;

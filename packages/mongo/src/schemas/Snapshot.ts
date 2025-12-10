@@ -2,8 +2,6 @@ import { DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
-import type { StructureId } from "./Structure";
-import type { UserId } from "./User";
 
 // Needs strict imports or definitions if we want deep validation
 // For now, we use unknown for complex nested types or simple object structures
@@ -21,10 +19,10 @@ export const SnapshotSchema = z.object({
   data: z.record(z.unknown()), // DispositifContent | DemarcheContent
 });
 
-export type SnapshotTypeObj = z.infer<typeof SnapshotSchema> & { _id: Types.ObjectId };
+export type SnapshotTypeObj = z.infer<typeof SnapshotSchema>;
 export type SnapshotId = Types.ObjectId | string;
 
-export interface Snapshot extends Omit<SnapshotTypeObj, "_id" | "dispositifId">, Document {
+export interface Snapshot extends Omit<SnapshotTypeObj, "dispositifId">, Document {
   dispositifId: Types.ObjectId;
 }
 

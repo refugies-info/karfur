@@ -1,9 +1,7 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
-// import type { DispositifId } from "./Dispositif"; // Not yet available
-import type { LangueId } from "./Langue";
-import type { StructureId } from "./Structure";
+
 import type { UserId } from "./User";
 
 export const LogLinkSchema = z.object({
@@ -34,12 +32,10 @@ export const LogSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type LogType = z.infer<typeof LogSchema> & { _id: Types.ObjectId };
+export type LogType = z.infer<typeof LogSchema>;
 export type LogId = Types.ObjectId | string;
 
-export interface Log
-  extends Omit<LogType, "_id" | "objectId" | "author" | "dynamicId" | "link">,
-    Document {
+export interface Log extends Omit<LogType, "objectId" | "author" | "dynamicId" | "link">, Document {
   objectId: Types.ObjectId;
   author?: UserId;
   dynamicId?: Types.ObjectId;

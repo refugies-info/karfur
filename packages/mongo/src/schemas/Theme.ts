@@ -51,7 +51,6 @@ export interface ThemeColors {
 
 // Interface
 export interface Theme extends Document {
-  _id: Types.ObjectId;
   name: Record<string, string>;
   short: Record<string, string>;
   mainColor: string;

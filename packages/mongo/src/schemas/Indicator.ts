@@ -15,12 +15,10 @@ export const IndicatorSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type IndicatorType = z.infer<typeof IndicatorSchema> & { _id: Types.ObjectId };
+export type IndicatorType = z.infer<typeof IndicatorSchema>;
 export type IndicatorId = Types.ObjectId | string;
 
-export interface Indicator
-  extends Omit<IndicatorType, "_id" | "userId" | "dispositifId">,
-    Document {
+export interface Indicator extends Omit<IndicatorType, "userId" | "dispositifId">, Document {
   userId: UserId;
   dispositifId: Types.ObjectId;
 }

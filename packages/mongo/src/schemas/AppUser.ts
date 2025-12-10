@@ -33,7 +33,6 @@ export interface NotificationsSettings {
 }
 
 export interface AppUser extends Document {
-  _id: Types.ObjectId;
   uid: string;
   city?: string;
   department?: string;

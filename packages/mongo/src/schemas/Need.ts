@@ -1,7 +1,7 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
-import { type ImageSchema, type ImageType, ImageZodSchema } from "./generics";
+import { type ImageType, ImageZodSchema } from "./generics";
 import type { ThemeId } from "./Theme";
 
 // NeedTranslation Schema
@@ -32,10 +32,10 @@ export const NeedSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type NeedType = z.infer<typeof NeedSchema> & { _id: Types.ObjectId };
+export type NeedType = z.infer<typeof NeedSchema>;
 export type NeedId = Types.ObjectId | string;
 
-export interface Need extends Omit<NeedType, "_id" | "theme" | "image">, Document {
+export interface Need extends Omit<NeedType, "theme" | "image">, Document {
   theme: ThemeId;
   image: ImageType;
 }

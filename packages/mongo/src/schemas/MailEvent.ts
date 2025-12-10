@@ -15,10 +15,10 @@ export const MailEventSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type MailEventType = z.infer<typeof MailEventSchema> & { _id: Types.ObjectId };
+export type MailEventType = z.infer<typeof MailEventSchema>;
 export type MailEventId = Types.ObjectId | string;
 
-export interface MailEvent extends Omit<MailEventType, "userId" | "dispositifId"> {
+export interface MailEvent extends Omit<MailEventType, "userId" | "dispositifId">, Document {
   userId?: UserId;
   dispositifId?: DispositifId;
 }
