@@ -105,7 +105,7 @@ export const getContentById = async (
     hasDraftVersion: 1,
     administrationLogo: 1,
     origin: 1,
-    // @ts-expect-error
+
     "translations.fr.content.markdown": 1,
     "translations.en.content.markdown": 1,
     "translations.ar.content.markdown": 1,
@@ -200,7 +200,7 @@ export const getContentById = async (
       "creatorId",
       "origin",
     ]),
-  };
+  } as unknown as GetDispositifResponse;
 
   if (dispositif.typeContenu === ContentType.DEMARCHE) {
     response.administration = {
