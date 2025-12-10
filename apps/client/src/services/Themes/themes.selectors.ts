@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import type { RootState } from "../rootReducer";
 
 export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
+export const hasThemesLoadedSelector = (state: RootState): boolean => state.themes.hasLoaded;
 
 const selectActiveThemes = (state: RootState): GetThemeResponse[] => state.themes.activeThemes;
 const selectInactiveThemes = (state: RootState): GetThemeResponse[] => state.themes.inactiveThemes;
