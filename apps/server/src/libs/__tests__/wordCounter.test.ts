@@ -61,7 +61,7 @@ describe("countDispositifWords", () => {
         },
       },
     };
-    const res = countDispositifWords(content);
+    const res = countDispositifWords(content as any);
     expect(res).toEqual(41);
   });
 
@@ -86,7 +86,7 @@ describe("countDispositifWords", () => {
       },
       administrationName: "France Travail",
     };
-    const res = countDispositifWords(content);
+    const res = countDispositifWords(content as any);
     expect(res).toEqual(41);
   });
 });

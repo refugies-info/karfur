@@ -8,6 +8,10 @@ import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
 import {
+  getDispositifMainSponsor,
+  isDispositifTranslatedIn,
+} from "~/modules/dispositif/dispositif.business";
+import {
   addNewParticipant,
   getDispositifById,
   getDraftDispositifById,
@@ -37,10 +41,11 @@ const getWaitingStatus = async (
   oldDispositif: Dispositif,
   user: User,
 ): Promise<DispositifStatus | null> => {
-  const isInStructure = dispositif
-    .getMainSponsor()
-    ?.membres.find((membre) => membre.userId.toString() === user._id.toString());
-  const isNewStructure = dispositif.getMainSponsor()?.membres.length === 0;
+  const mainSponsor = getDispositifMainSponsor(dispositif);
+  const isInStructure = mainSponsor?.membres.find(
+    (membre) => membre.userId.toString() === user._id.toString(),
+  );
+  const isNewStructure = mainSponsor?.membres.length === 0;
   if (isInStructure || isNewStructure) {
     // dans la structure
     return DispositifStatus.WAITING_ADMIN;

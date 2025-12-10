@@ -16,7 +16,9 @@ const NB_WORDS_CACHE = "nbWordsCache";
 
 const countWordsInDispositif = (dispositif: Dispositif): number =>
   Object.entries(dispositif.translations)
-    .map(([ln, translation]) => (ln === "fr" ? 0 : countDispositifWords(translation.content)))
+    .map(([ln, translation]) =>
+      ln === "fr" ? 0 : countDispositifWords(translation.content as any),
+    )
     .reduce((acc, count) => acc + count, 0);
 
 const getTranslationStatistics = ({

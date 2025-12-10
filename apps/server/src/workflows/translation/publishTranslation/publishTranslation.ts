@@ -1,5 +1,6 @@
 import type { PublishTranslationRequest } from "@refugies-info/api-types";
 import { UnauthorizedError } from "~/errors";
+import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { getValidation } from "~/modules/traductions/traductions.repository";
 import type { User } from "~/typegoose";
@@ -11,7 +12,7 @@ const publishTranslation = (
 ): Promise<void> =>
   getDispositifById(dispositifId, { translations: 1, typeContenu: 1 }).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
-    if (dispositif.isTranslatedIn(language) && !userIsExpert) {
+    if (isDispositifTranslatedIn(dispositif, language) && !userIsExpert) {
       throw new Error(`Dispositif is already translated in ${language}`);
     }
     const traduction = await getValidation(language, dispositifId, user._id);

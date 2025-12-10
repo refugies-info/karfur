@@ -1,5 +1,6 @@
 import { get } from "lodash";
 
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "~/typegoose";
 import type { AlgoliaObject } from "~/types/interface";
 
@@ -71,7 +72,7 @@ export const formatForAlgolia = (
 
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
-    const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+    const mainSponsor = dispositif.mainSponsor ? getDispositifMainSponsor(dispositif) : null;
     const location = getLocation(dispositif);
 
     value = {

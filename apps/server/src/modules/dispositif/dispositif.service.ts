@@ -1,10 +1,7 @@
 import {
   ContentType,
   type CreateDispositifRequest,
-  type DemarcheContent,
-  type DispositifContent,
   type Id,
-  type InfoSections,
   type Languages,
   StructureStatus,
   type UpdateDispositifRequest,
@@ -18,6 +15,10 @@ import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizati
 import logger from "~/logger";
 import { pictureToImageSchema } from "~/mappers/image-mapper";
 import {
+  getDispositifSecondaryThemes,
+  getDispositifTheme,
+} from "~/modules/dispositif/dispositif.business";
+import {
   sendMailWhenDispositifPublished,
   sendMailWhenDispositifPublishedAfterUpdate,
 } from "~/modules/mail/sendMailWhenDispositifPublished";
@@ -28,11 +29,14 @@ import {
   diffTraductions,
 } from "~/modules/traductions/traductions.business";
 import {
+  type DemarcheContent,
   type Dispositif,
+  type DispositifContent,
   DispositifDraftModel,
   type DispositifId,
   DispositifModel,
   DispositifStatus,
+  type InfoSections,
   LogModel,
   ObjectId,
   type Structure,
@@ -72,8 +76,8 @@ interface DispositifToExport {
 }
 
 export const addDispositifToAirtable = (dispositif: Dispositif) => {
-  const theme = dispositif.getTheme();
-  const secondaryThemes = dispositif.getSecondaryThemes();
+  const theme = getDispositifTheme(dispositif);
+  const secondaryThemes = getDispositifSecondaryThemes(dispositif);
 
   const content: DispositifToExport = {
     fields: {
@@ -121,7 +125,7 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
       logger.error("[notifyChange] dispositif not found", { dispositifId });
       return null;
     }
-    const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
+    const theme = (getDispositifTheme(dispositif)?.name?.fr || "").toLowerCase();
     const contentTitle = `${
       dispositif.typeContenu === ContentType.DISPOSITIF
         ? dispositif.translations.fr.content.titreMarque + " - "

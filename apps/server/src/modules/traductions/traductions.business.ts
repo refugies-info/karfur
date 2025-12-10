@@ -3,7 +3,13 @@ import { isDocument } from "@typegoose/typegoose";
 import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 import { countDispositifWords } from "~/libs/wordCounter";
-import { type Dispositif, type Traductions, TraductionsStatus, TraductionsType } from "~/typegoose";
+import {
+  type Dispositif,
+  type Traductions,
+  TraductionsStatus,
+  TraductionsType,
+  type User,
+} from "~/typegoose";
 import type { TranslationContent } from "~/typegoose/Dispositif";
 
 export interface TraductionDiff {
@@ -69,11 +75,11 @@ export const getTraductionWordsCount = (traduction: Traductions): number => {
   return countDispositifWords(traduction.translated.content as any);
 };
 
-export const getTraductionUser = (traduction: Traductions) => {
+export const getTraductionUser = (traduction: Traductions): User => {
   if (!traduction.userId || !isDocument(traduction.userId)) {
     throw new MustBePopulatedError("userId");
   }
-  return traduction.userId;
+  return traduction.userId as unknown as User;
 };
 
 export const diffTraductions = (

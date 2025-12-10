@@ -1,5 +1,6 @@
 import { isDocument, type Ref } from "@typegoose/typegoose";
 import logger from "~/logger";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import { addLog } from "~/modules/logs/logs.service";
 import type { Dispositif, Theme, ThemeId, UserId } from "~/typegoose";
 
@@ -53,7 +54,7 @@ export const log = async (
 
     // sponsor
     const oldSponsorId = originalDispositif.mainSponsor
-      ? originalDispositif.getMainSponsor()?._id
+      ? getDispositifMainSponsor(originalDispositif)?._id
       : null;
     const newSponsorId = dispositif.mainSponsor;
     const oldSponsorIdString = (oldSponsorId || "").toString();

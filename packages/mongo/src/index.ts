@@ -1,5 +1,6 @@
 export * from "./schemas/AdminOptions";
 export * from "./schemas/AppUser";
+export * from "./schemas/Dispositif";
 export * from "./schemas/Error";
 export * from "./schemas/generics";
 export type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./schemas/Image";

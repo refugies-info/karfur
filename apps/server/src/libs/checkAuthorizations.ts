@@ -1,6 +1,7 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { UnauthorizedError } from "~/errors";
 import logger from "~/logger";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import type { Dispositif, Structure, User } from "~/typegoose";
 
 // Dispositif edition
@@ -31,7 +32,9 @@ export const isUserAuthorizedToModifyDispositif = (
     return true;
   }
 
-  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  const sponsor: Structure | null = dispositif.mainSponsor
+    ? getDispositifMainSponsor(dispositif)
+    : null;
 
   const isUserMembre =
     sponsor &&
@@ -73,7 +76,9 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   }
   const isAuthor = dispositif.creatorId.toString() === user.id;
 
-  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  const sponsor: Structure | null = dispositif.mainSponsor
+    ? getDispositifMainSponsor(dispositif)
+    : null;
   if (!sponsor && isAuthor) return true; // no sponsor yet, but user is author
 
   const userInStructure =

@@ -35,7 +35,7 @@ export const addTradToAirtable = async (
       "Nb mots":
         translation.toReviewCache.length > 0
           ? countDispositifWordsForSections(dispositif.translations.fr, translation.toReviewCache)
-          : countDispositifWords(dispositif.translations.fr.content),
+          : countDispositifWords(dispositif.translations.fr.content as any),
     },
   };
   return getAirtableTranslationTable("SUIVI TRAD").create(

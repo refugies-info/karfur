@@ -34,19 +34,19 @@ describe("getNotificationsToSend", () => {
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
       {
         uid: "2",
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
       {
         uid: "3",
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
     ];
 
     const tokens = {
@@ -176,7 +176,7 @@ describe("sendDispositifNotifications", () => {
         seen: false,
         title: "Réfugiés.info",
         data: {},
-      },
+      } as any,
     ];
     const messages: ExpoPushMessage[] = [
       {
@@ -357,7 +357,7 @@ describe("sendDemarcheNotifications", () => {
         seen: false,
         title: "Réfugiés.info",
         data: {},
-      },
+      } as any,
     ];
     const messages: ExpoPushMessage[] = [
       {

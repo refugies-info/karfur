@@ -6,6 +6,7 @@ import {
 import { isEmpty, some } from "lodash";
 import { countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
+import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { getActiveContents } from "~/modules/dispositif/dispositif.repository";
 import { getSectionsTranslated } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguage } from "~/modules/traductions/traductions.repository";
@@ -96,7 +97,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
      * La traduction est présente dans le dispositif
      * Le dispositif est déjà traduit
      */
-    if (dispositif.isTranslatedIn(locale)) {
+    if (isDispositifTranslatedIn(dispositif, locale)) {
       return results.push({
         ...dispositifData,
         avancementTrad: dispositif.nbMots,

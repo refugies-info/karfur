@@ -2,11 +2,9 @@ import { getModelForClass, Severity, setGlobalOptions } from "@typegoose/typegoo
 
 setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
-import { DispositifStatus } from "@refugies-info/api-types";
-
 import type { AdminOptions, AdminOptionsId, AdminOptionsType } from "./AdminOptions";
 import type { AppUser, AppUserType, NotificationsSettings } from "./AppUser";
-import { Dispositif, type DispositifId } from "./Dispositif";
+import type { Dispositif, DispositifId } from "./Dispositif";
 import type { Error, ErrorId, ErrorType } from "./Error";
 import type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./Image";
 import type { Indicator, IndicatorId, IndicatorType } from "./Indicator";
@@ -29,30 +27,21 @@ import {
 import type { User, UserId } from "./User";
 import type { Widget, WidgetId, WidgetType } from "./Widget";
 
-export { AdminOptionsModel, AppUserModel } from "@refugies-info/mongo";
-export const DispositifModel = getModelForClass(Dispositif, {
-  options: {
-    customName: "Dispositif",
-  },
-  schemaOptions: {
-    collection: "dispositifs",
-  },
-});
-export const DispositifDraftModel = getModelForClass(Dispositif, {
-  options: {
-    customName: "DispositifDraft",
-  },
-  schemaOptions: {
-    collection: "dispositifs_draft",
-  },
-});
+export { DispositifStatus } from "@refugies-info/api-types";
 // export const SnapshotModel = getModelForClass(Snapshot);
 // export const LogModel = getModelForClass(Log);
 // export const TraductionsModel = getModelForClass(Traductions);
 export {
+  AdminOptionsModel,
+  AppUserModel,
   CloudinaryImageModel,
+  type DemarcheContent,
+  type DispositifContent,
+  DispositifDraftModel,
+  DispositifModel,
   ErrorModel,
   IndicatorModel,
+  type InfoSections,
   LangueModel,
   LogModel,
   MailEventModel,
@@ -63,11 +52,11 @@ export {
   StructureModel,
   ThemeModel,
   TraductionsModel,
+  UserModel,
   WidgetModel,
 } from "@refugies-info/mongo";
-
-export { Dispositif, DispositifStatus, TraductionsStatus, TraductionsType };
-export type { Traductions };
+export { TraductionsStatus, TraductionsType };
+export type { Dispositif, Traductions };
 
 export type {
   AdminOptions,

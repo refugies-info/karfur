@@ -17,7 +17,7 @@ const getTraductionsForReview = async (
   if (
     currentUser.isExpert() &&
     translations.find((t: Traductions) => t.toReview.length > 0) &&
-    !translations.find((t: Traductions) => t.userId._id.toString() === currentUser.id)
+    !translations.find((t: Traductions) => getTraductionUser(t)._id.toString() === currentUser.id)
   ) {
     const trad = translations.find((t: Traductions) => t.toReview.length > 0);
     return [
@@ -45,11 +45,14 @@ const getTraductionsForReview = async (
       // Non-experts users can only acces non-expert translations. Experts can only access his own validation
       .filter(
         (translation) =>
-          (currentUser.isExpert() && translation.userId._id.toString() === currentUser.id) ||
+          (currentUser.isExpert() &&
+            getTraductionUser(translation)._id.toString() === currentUser.id) ||
           translation.type === TraductionsType.SUGGESTION,
       )
       // Permet d'avoir la traduction de l'utilisateur courant en première dans l'ordre d'affichage
-      .sort((translation) => (translation.userId._id.toString() === currentUser.id ? -1 : 0))
+      .sort((translation) =>
+        getTraductionUser(translation)._id.toString() === currentUser.id ? -1 : 0,
+      )
       // transforme en GetTraductionsForReview
       .map((trad) => ({
         translated: trad.translated,

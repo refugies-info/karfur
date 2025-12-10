@@ -223,7 +223,7 @@ describe("Traductions", () => {
     it("should not return administrationName ", () => {
       const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
       newTradAdded.content = { ...newTradAdded.content, administrationName: null };
-      //@ts-expect-error because we don't need administrationName for this test
+
       expect(diffTraductions(trad_added_adminName, newTradAdded)).toEqual({
         modified: [],
         added: [],

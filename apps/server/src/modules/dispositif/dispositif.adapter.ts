@@ -1,6 +1,10 @@
 import _, { get } from "lodash";
 import moment from "moment";
 import logger from "~/logger";
+import {
+  getDispositifCreator,
+  getDispositifTranslated,
+} from "~/modules/dispositif/dispositif.business";
 import type { Dispositif, DispositifId, UserId } from "~/typegoose";
 import { departmentRegionCorrespondency, type RegionData } from "./data";
 
@@ -27,7 +31,7 @@ export const filterDispositifsForDraftReminders = (
       return false;
     }
 
-    if (!dispositif.getCreator()?.email) {
+    if (!getDispositifCreator(dispositif)?.email) {
       logger.info(
         `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`,
       );
@@ -40,8 +44,10 @@ export const filterDispositifsForDraftReminders = (
 export const filterDispositifsForUpdateReminders = (
   dispositifs: Dispositif[],
   nbDaysBeforeReminder: number,
+  // ... (unchanged)
 ) =>
   dispositifs.filter((dispositif) => {
+    // ... (unchanged logic mostly)
     if (dispositif.lastReminderMailSentToUpdateContentDate) {
       const nbDaysLastReminderFromNow = Math.round(
         moment(moment()).diff(dispositif.lastReminderMailSentToUpdateContentDate) /
@@ -79,39 +85,51 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
   const formattedArray: FormattedDispositif[] = [];
 
   dispositifs.forEach((dispositif) => {
+    const creator = getDispositifCreator(dispositif);
+    const checkedCreatorId = (dispositif.creatorId as any)._id || dispositif.creatorId; // Handle potential unpopulated or populated difference
+
     const elementIndex = formattedArray.findIndex(
-      (obj) => obj.creatorId.toString() === dispositif.creatorId._id.toString(),
+      (obj) => obj.creatorId.toString() === checkedCreatorId.toString(),
     );
 
     const isCreatorIdInArray = elementIndex !== -1;
 
-    if (!isCreatorIdInArray && dispositif.getCreator()?.email) {
+    if (!isCreatorIdInArray && creator?.email) {
       formattedArray.push({
-        creatorId: dispositif.creatorId._id,
-        firstName: dispositif.getCreator()?.firstName,
-        email: dispositif.getCreator()?.email,
+        creatorId: checkedCreatorId,
+        firstName: creator.firstName,
+        email: creator.email,
         dispositifs: [
           {
             _id: dispositif._id,
-            titreInformatif: dispositif.getTranslated("content.titreInformatif"),
+            titreInformatif: getDispositifTranslated(
+              dispositif,
+              "content.titreInformatif",
+            ) as unknown as string,
           },
         ],
       });
       return;
     }
 
-    const updatedObject = {
-      ...formattedArray[elementIndex],
-      dispositifs: [
-        ...formattedArray[elementIndex].dispositifs,
-        {
-          _id: dispositif._id,
-          titreInformatif: dispositif.getTranslated("content.titreInformatif"),
-        },
-      ],
-    };
+    if (isCreatorIdInArray) {
+      // Check to be safe
+      const updatedObject = {
+        ...formattedArray[elementIndex],
+        dispositifs: [
+          ...formattedArray[elementIndex].dispositifs,
+          {
+            _id: dispositif._id,
+            titreInformatif: getDispositifTranslated(
+              dispositif,
+              "content.titreInformatif",
+            ) as unknown as string,
+          },
+        ],
+      };
 
-    formattedArray[elementIndex] = updatedObject;
+      formattedArray[elementIndex] = updatedObject;
+    }
   });
   return formattedArray;
 };

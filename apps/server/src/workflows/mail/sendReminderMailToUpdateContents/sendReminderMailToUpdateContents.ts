@@ -1,6 +1,7 @@
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { filterDispositifsForUpdateReminders } from "~/modules/dispositif/dispositif.adapter";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import {
   getPublishedDispositifWithMainSponsor,
   updateDispositifInDB,
@@ -38,10 +39,11 @@ export const sendReminderMailToUpdateContents = async (): Response => {
     filteredDispositifWithTitreInfoFormated,
     async (dispositif: Dispositif & { titreInformatif: string }) => {
       try {
-        if (dispositif.mainSponsor) {
-          if (dispositif.getMainSponsor().membres) {
+        const mainSponsor = getDispositifMainSponsor(dispositif);
+        if (mainSponsor) {
+          if (mainSponsor.membres) {
             await Promise.all(
-              dispositif.getMainSponsor().membres.map(async (membre) => {
+              mainSponsor.membres.map(async (membre) => {
                 try {
                   const user = await getUserById(membre.userId.toString(), {
                     firstName: 1,

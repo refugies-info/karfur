@@ -6,11 +6,13 @@ import type {
 } from "@refugies-info/api-types";
 import { cloneDeep, set } from "lodash";
 import logger from "~/logger";
+import { isDispositif } from "~/modules/dispositif/dispositif.business";
 import {
   deleteLineBreaks,
   deleteLineBreaksInInfosections,
 } from "~/modules/dispositif/dispositif.service";
 import { getLanguageByCode } from "~/modules/langues/langues.repository";
+
 import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors";
@@ -75,7 +77,7 @@ const validateTranslation = (
             })
           : null,
         isFirstValidation ? updateLanguagesAvancement() : null,
-        dispositif.isDispositif() && isFirstValidation
+        isDispositif(dispositif) && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
               logger.error(
                 "[validateTranslations] error while sending mails to structure members",

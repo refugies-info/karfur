@@ -71,7 +71,7 @@ export const createDispositif = async (
     text: "success",
     data: {
       id: dispositif._id,
-      mainSponsor: (dispositif.mainSponsor as string) || null,
+      mainSponsor: (dispositif.mainSponsor as any as string) || null,
       typeContenu: dispositif.typeContenu,
       status: dispositif.status,
       hasDraftVersion: false,

@@ -1,7 +1,7 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-export const dispositif: Dispositif = new Dispositif();
+export const dispositif: any = {};
 
 dispositif._id = new ObjectId("5ce7b52d83983700167bca27");
 dispositif.typeContenu = ContentType.DISPOSITIF;

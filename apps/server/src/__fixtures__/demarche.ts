@@ -1,7 +1,7 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { Dispositif, ObjectId } from "~/typegoose";
 
-export const demarche: Dispositif = new Dispositif();
+export const demarche: any = {};
 
 demarche._id = new ObjectId("651588ea521b25fd0f92ee1a");
 demarche.typeContenu = ContentType.DEMARCHE;

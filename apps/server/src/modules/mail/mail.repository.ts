@@ -2,5 +2,5 @@ import { type DispositifId, type MailEvent, MailEventModel, type UserId } from "
 import type { Modify } from "~/types/interface";
 
 export const addMailEvent = (
-  mailEvent: Modify<MailEvent, { userId?: UserId; dispositifId?: DispositifId }>,
+  mailEvent: Modify<Omit<MailEvent, "_id">, { userId?: UserId; dispositifId?: DispositifId }>,
 ) => MailEventModel.create(mailEvent as any);

@@ -1,5 +1,6 @@
 import { ContentType, type SaveTranslationRequest } from "@refugies-info/api-types";
 import { isUndefined } from "lodash";
+import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { updateIndicator } from "~/modules/indicators/indicators.service";
 import {
@@ -21,7 +22,7 @@ const saveTranslation = (
 ): Promise<Traductions> =>
   getDispositifById(dispositifId).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
-    if (dispositif.isTranslatedIn(language) && !userIsExpert) {
+    if (isDispositifTranslatedIn(dispositif, language) && !userIsExpert) {
       throw new Error(`Dispositif is already translated in ${language}`);
     }
 

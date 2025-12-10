@@ -87,7 +87,7 @@ export interface User extends Document {
   getSelectedLanguagesButFrench(): Langue[];
 }
 
-export type UserId = User["_id"] | User["id"];
+export type UserId = Types.ObjectId | string;
 
 const FavoriteSchema = new Schema<Favorite>({
   dispositifId: { type: Schema.Types.ObjectId, ref: "Dispositif" },

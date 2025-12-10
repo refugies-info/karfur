@@ -1,6 +1,5 @@
 import {
   ContentType,
-  type DemarcheContent,
   DispositifStatus,
   type Id,
   type Languages,
@@ -13,7 +12,9 @@ import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
 import { cleanupAvis } from "~/libs/cleanupAvis";
 import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import {
+  type DemarcheContent,
   type Dispositif,
+  type DispositifContent,
   DispositifDraftModel,
   type DispositifId,
   DispositifModel,
@@ -151,7 +152,7 @@ export const getSimpleDispositifs = async (
       ) {
         resDisp.sponsor = {
           nom: (translation.content as DemarcheContent).administrationName,
-          picture: dispositif.administrationLogo,
+          picture: dispositif.administrationLogo as any,
         };
       }
       return resDisp;
@@ -209,7 +210,7 @@ export const getStructureDispositifs = async (
         const translation = dispositif.translations[locale] || dispositif.translations.fr;
         const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
           return {
-            ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
+            ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
             username:
               usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
           };
@@ -237,7 +238,7 @@ export const getStructureDispositifs = async (
         ) {
           resDisp.sponsor = {
             nom: (translation.content as DemarcheContent).administrationName,
-            picture: dispositif.administrationLogo,
+            picture: dispositif.administrationLogo as any,
           };
         }
         return resDisp;

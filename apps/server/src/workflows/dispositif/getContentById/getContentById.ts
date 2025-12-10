@@ -9,11 +9,16 @@ import {
   type SimpleUser,
   type Sponsor,
 } from "@refugies-info/api-types";
+import { isDocument, isDocumentArray } from "@typegoose/typegoose";
 import pick from "lodash/pick";
 import type { ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import { isUserAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
+import {
+  getDispositifMainSponsor,
+  isDispositifTranslatedIn,
+} from "~/modules/dispositif/dispositif.business";
 import {
   getDispositifById,
   getDraftDispositifById,
@@ -47,7 +52,9 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
   if (user?.isAdmin()) return true;
 
   // is part of structure: OK
-  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  const sponsor: Structure | null = dispositif.mainSponsor
+    ? getDispositifMainSponsor(dispositif) || null
+    : null;
   const isMemberOfStructure =
     user &&
     !!(sponsor?.membres || []).find(
@@ -151,7 +158,7 @@ export const getContentById = async (
   }
 
   const dispositif = draftDispositif || originalDispositif;
-  const dataLanguage = originalDispositif.isTranslatedIn(locale) ? locale : "fr"; // find translation in published version only
+  const dataLanguage = isDispositifTranslatedIn(originalDispositif as any, locale) ? locale : "fr"; // find translation in published version only
 
   const allRoles = await getRoles();
   const participantsWithRoles = dispositif.participants.map((p) => ({
@@ -167,11 +174,11 @@ export const getContentById = async (
       ? dispositifObject.translations[dataLanguage]
       : originalDispositifObject.translations[dataLanguage];
 
-  const response: GetDispositifResponse = {
+  const response: any = {
     _id: dispositifObject._id,
     ...translation.content,
     participants: participantsWithRoles,
-    metadatas: getMetadatas(dispositifObject.metadatas),
+    metadatas: getMetadatas(dispositifObject.metadatas as any),
     availableLanguages: Object.keys(originalDispositifObject.translations), // show available languages of published version only
     date: translation.created_at || dispositifObject.lastModificationDate,
     hasDraftVersion: !!draftDispositif,

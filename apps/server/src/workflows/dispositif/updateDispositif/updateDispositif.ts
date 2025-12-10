@@ -9,6 +9,7 @@ import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizati
 import { isToday } from "~/libs/isToday";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import {
   addNewParticipant,
   cloneDispositifInDrafts,
@@ -112,7 +113,7 @@ export const updateDispositif = async (
       ...oldDispositif.translations,
       fr: translationContent,
     },
-    nbMots: countDispositifWords(translationContent.content),
+    nbMots: countDispositifWords(translationContent.content as any),
     ...(await buildNewDispositif(body, user._id.toString())),
   };
 
@@ -162,7 +163,9 @@ export const updateDispositif = async (
     text: "success",
     data: {
       id: newDispositif._id,
-      mainSponsor: (newDispositif.mainSponsor as string) || null,
+      mainSponsor:
+        getDispositifMainSponsor(newDispositif)?._id.toString() ||
+        (newDispositif.mainSponsor ? newDispositif.mainSponsor.toString() : null),
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
       hasDraftVersion: needsDraftVersion || !!draftOldDispositif,

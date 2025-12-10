@@ -24,7 +24,7 @@ export const modifyDispositifMainSponsor = async (
   if (!oldDispositif) throw new NotFoundError("Dispositif not found");
 
   const modifiedDispositif: Partial<Dispositif> = {
-    mainSponsor: body.sponsorId,
+    mainSponsor: body.sponsorId as any,
   };
 
   await updateDispositifInDB(id, modifiedDispositif, !!oldDispositif.hasDraftVersion);
