@@ -81,7 +81,7 @@
         "noAutofocus": "off",
         "noSvgWithoutTitle": "off",
         "useValidAnchor": "off",
-
+        "useAriaPropsSupportedByRole": "off",
         "noRedundantRoles": "off",
         "useKeyWithMouseEvents": "off",
         "useIframeTitle": "off",
@@ -108,7 +108,16 @@
     {
       "includes": ["**/*.css", "**/*.scss"],
       "linter": { "enabled": false },
-      "formatter": { "enabled": false }
+      "formatter": { "enabled": false },
+      "css": { "parser": { "cssModules": true } }
     }
-  ]
+  ],
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  }
 }
