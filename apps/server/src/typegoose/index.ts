@@ -2,11 +2,11 @@ import { getModelForClass, Severity, setGlobalOptions } from "@typegoose/typegoo
 
 setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
-import { AdminOptions } from "./AdminOptions";
+import type { AdminOptions, AdminOptionsId, AdminOptionsType } from "./AdminOptions";
 import type { AppUser, AppUserType, NotificationsSettings } from "./AppUser";
 import { Dispositif, type DispositifId } from "./Dispositif";
-import { Error } from "./Error";
-import { Image } from "./Image";
+import type { Error, ErrorId, ErrorType } from "./Error";
+import type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./Image";
 import { Indicator } from "./Indicator";
 import type { Langue, LangueId } from "./Langue";
 import { Log, type LogId } from "./Log";
@@ -26,8 +26,7 @@ import {
 import type { User, UserId } from "./User";
 import { Widget, type WidgetId } from "./Widget";
 
-export const AdminOptionsModel = getModelForClass(AdminOptions);
-export { AppUserModel } from "@refugies-info/mongo";
+export { AdminOptionsModel, AppUserModel } from "@refugies-info/mongo";
 export const DispositifModel = getModelForClass(Dispositif, {
   options: {
     customName: "Dispositif",
@@ -45,8 +44,7 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
   },
 });
 export const SnapshotModel = getModelForClass(Snapshot);
-export const ErrorModel = getModelForClass(Error);
-export const ImageModel = getModelForClass(Image);
+export { CloudinaryImageModel, ErrorModel } from "@refugies-info/mongo";
 export const IndicatorModel = getModelForClass(Indicator);
 export { LangueModel } from "@refugies-info/mongo";
 export const LogModel = getModelForClass(Log);
@@ -59,10 +57,7 @@ export { UserModel } from "@refugies-info/mongo";
 export const WidgetModel = getModelForClass(Widget);
 
 export {
-  AdminOptions,
   Dispositif,
-  Error,
-  Image,
   Indicator,
   Log,
   Notification,
@@ -73,9 +68,18 @@ export {
 };
 
 export type {
+  AdminOptions,
+  AdminOptionsId,
+  AdminOptionsType,
   AppUser,
   AppUserType,
+  CloudinaryImage,
+  CloudinaryImageId,
+  CloudinaryImageType,
   DispositifId,
+  Error,
+  ErrorId,
+  ErrorType,
   Langue,
   LangueId,
   LogId,

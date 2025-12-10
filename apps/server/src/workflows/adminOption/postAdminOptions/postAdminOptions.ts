@@ -28,6 +28,6 @@ export const postAdminOptions = async (
 
   return {
     text: "success",
-    data: updatedAdminOption.toObject<AdminOptions>(),
+    data: updatedAdminOption.toObject<AdminOptions>() as PostAdminOptionResponse,
   };
 };

@@ -13,6 +13,6 @@ export const getAdminOptions = async (key: string): ResponseWithData<GetAdminOpt
 
   return {
     text: "success",
-    data: adminOption.toObject<AdminOptions>(),
+    data: adminOption.toObject<AdminOptions>() as GetAdminOptionResponse,
   };
 };

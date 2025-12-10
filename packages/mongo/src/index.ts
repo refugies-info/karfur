@@ -1,5 +1,9 @@
+export * from "./schemas/AdminOptions";
 export * from "./schemas/AppUser";
+export * from "./schemas/Error";
 export * from "./schemas/generics";
+export type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./schemas/Image";
+export { CloudinaryImageModel } from "./schemas/Image";
 export * from "./schemas/Langue";
 export * from "./schemas/Need";
 export * from "./schemas/Role";
