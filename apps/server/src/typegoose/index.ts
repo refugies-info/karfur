@@ -79,6 +79,7 @@ export type {
   Langue,
   LangueId,
   LogId,
+  MailEvent,
   Need,
   NeedId,
   NeedType,
