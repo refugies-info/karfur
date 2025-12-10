@@ -81,7 +81,7 @@
         "noAutofocus": "off",
         "noSvgWithoutTitle": "off",
         "useValidAnchor": "off",
-        "useAriaPropsSupportedByRole": "off",
+
         "noRedundantRoles": "off",
         "useKeyWithMouseEvents": "off",
         "useIframeTitle": "off",
