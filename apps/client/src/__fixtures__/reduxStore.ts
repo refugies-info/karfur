@@ -94,6 +94,7 @@ export const initialMockStore = {
   themes: {
     activeThemes: activeThemesMock,
     inactiveThemes: [],
+    hasLoaded: true,
   },
   searchResults: initialMockSearchReults,
 };
