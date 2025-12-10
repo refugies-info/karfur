@@ -161,6 +161,7 @@ export interface DispositifRequest {
   titreMarque?: string;
   abstract?: string;
   what?: string;
+  markdown?: string;
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
@@ -244,6 +245,7 @@ export type GetDispositifResponse = {
   titreMarque: string;
   abstract: string;
   what: string;
+  markdown?: string;
   why?: InfoSections;
   how: InfoSections;
   next?: InfoSections;

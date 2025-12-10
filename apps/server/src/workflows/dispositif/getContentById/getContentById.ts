@@ -105,6 +105,15 @@ export const getContentById = async (
     hasDraftVersion: 1,
     administrationLogo: 1,
     origin: 1,
+    // @ts-expect-error
+    "translations.fr.content.markdown": 1,
+    "translations.en.content.markdown": 1,
+    "translations.ar.content.markdown": 1,
+    "translations.ps.content.markdown": 1,
+    "translations.uk.content.markdown": 1,
+    "translations.ti.content.markdown": 1,
+    "translations.ru.content.markdown": 1,
+    "translations.fa.content.markdown": 1,
   };
   let draftDispositif = null;
   const originalDispositif = await (await getDispositifById(id, fields))?.populate<{
