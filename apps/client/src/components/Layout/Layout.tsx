@@ -28,7 +28,7 @@ import {
   isLoadingSelector,
 } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
-import { hasThemesLoadedSelector, themesSelector } from "~/services/Themes/themes.selectors";
+import { hasThemesLoadedSelector } from "~/services/Themes/themes.selectors";
 import { toggleSpinner } from "~/services/Tts/tts.actions";
 import { ttsActiveSelector } from "~/services/Tts/tts.selector";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
