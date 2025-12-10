@@ -1,7 +1,13 @@
 import type { DispositifStatus } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { createSnapshot } from "~/modules/snapshots/snapshots.repository";
-import { type Dispositif, ObjectId, Snapshot, SnapshotModel, type SnapshotType } from "~/typegoose";
+import {
+  type Dispositif,
+  ObjectId,
+  type Snapshot,
+  SnapshotModel,
+  type SnapshotType,
+} from "~/typegoose";
 
 export const takeSnapshot = async (
   dispositif: Dispositif,
@@ -23,13 +29,14 @@ export const takeSnapshot = async (
   const newVersion = latestSnapshot ? latestSnapshot.version + 1 : 1;
 
   // Create snapshot
-  const snapshot = new Snapshot();
-  snapshot.dispositifId = new ObjectId(dispositif._id.toString()) as any;
-  snapshot.version = newVersion;
-  snapshot.type = type;
-  snapshot.from = from;
-  snapshot.to = to;
-  snapshot.data = content;
+  const snapshot: Partial<Snapshot> = {
+    dispositifId: new ObjectId(dispositif._id.toString()),
+    version: newVersion,
+    type: type,
+    from: from,
+    to: to,
+    data: content as any,
+  };
 
-  return createSnapshot(snapshot);
+  return createSnapshot(snapshot as Snapshot);
 };

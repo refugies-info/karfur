@@ -23,6 +23,6 @@ export const patchWidget = async (
 
   return {
     text: "success",
-    data: dbWidget,
+    data: dbWidget as PatchWidgetResponse,
   };
 };

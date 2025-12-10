@@ -9,12 +9,12 @@ import type { Error, ErrorId, ErrorType } from "./Error";
 import type { CloudinaryImage, CloudinaryImageId, CloudinaryImageType } from "./Image";
 import type { Indicator, IndicatorId, IndicatorType } from "./Indicator";
 import type { Langue, LangueId } from "./Langue";
-import { Log, type LogId } from "./Log";
+import type { Log, LogId, LogType } from "./Log";
 import type { MailEvent, MailEventId, MailEventType } from "./MailEvent";
 import type { Need, NeedId, NeedType } from "./Need";
 import type { Notification, NotificationId, NotificationType } from "./Notification";
 import type { Role } from "./Role";
-import { Snapshot, type SnapshotType } from "./Snapshot";
+import type { Snapshot, SnapshotId, SnapshotType, SnapshotTypeObj } from "./Snapshot";
 import type { Structure, StructureId } from "./Structure";
 import type { Theme, ThemeId, ThemeType } from "./Theme";
 import {
@@ -24,7 +24,7 @@ import {
   TraductionsStatus,
 } from "./Traductions";
 import type { User, UserId } from "./User";
-import { Widget, type WidgetId } from "./Widget";
+import type { Widget, WidgetId, WidgetType } from "./Widget";
 
 export { AdminOptionsModel, AppUserModel } from "@refugies-info/mongo";
 export const DispositifModel = getModelForClass(Dispositif, {
@@ -43,7 +43,8 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
     collection: "dispositifs_draft",
   },
 });
-export const SnapshotModel = getModelForClass(Snapshot);
+// export const SnapshotModel = getModelForClass(Snapshot);
+// export const LogModel = getModelForClass(Log);
 export {
   CloudinaryImageModel,
   ErrorModel,
@@ -52,14 +53,14 @@ export {
   MailEventModel,
   NeedModel,
   NotificationModel,
+  RoleModel,
+  StructureModel,
+  ThemeModel,
 } from "@refugies-info/mongo";
-export const LogModel = getModelForClass(Log);
-export { RoleModel, StructureModel, ThemeModel } from "@refugies-info/mongo";
 export const TraductionsModel = getModelForClass(Traductions);
-export { UserModel } from "@refugies-info/mongo";
-export const WidgetModel = getModelForClass(Widget);
+export { LogModel, SnapshotModel, UserModel, WidgetModel } from "@refugies-info/mongo";
 
-export { Dispositif, Log, Snapshot, Traductions, TraductionsStatus, Widget };
+export { Dispositif, Traductions, TraductionsStatus };
 
 export type {
   AdminOptions,
@@ -79,7 +80,9 @@ export type {
   IndicatorType,
   Langue,
   LangueId,
+  Log,
   LogId,
+  LogType,
   MailEvent,
   MailEventId,
   MailEventType,
@@ -91,7 +94,10 @@ export type {
   NotificationType,
   NotificationsSettings,
   Role,
+  Snapshot,
+  SnapshotId,
   SnapshotType,
+  SnapshotTypeObj,
   Structure,
   StructureId,
   Theme,
@@ -101,7 +107,9 @@ export type {
   TraductionId,
   User,
   UserId,
+  Widget,
   WidgetId,
+  WidgetType,
 };
 
 export * from "./generics";

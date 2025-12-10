@@ -4,7 +4,7 @@ import logger from "~/logger";
 import {
   type DispositifId,
   type LangueId,
-  Log,
+  type Log,
   ObjectId,
   type StructureId,
   type UserId,
@@ -35,10 +35,12 @@ export const addLog = async (
   text: string,
   options?: optionsType,
 ) => {
-  const log = new Log();
-  log.objectId = new ObjectId(id.toString());
-  log.model_object = type;
-  log.text = text;
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  const log: any = {
+    objectId: new ObjectId(id.toString()),
+    model_object: type,
+    text: text,
+  };
 
   if (options?.author) log.author = new ObjectId(options.author.toString());
   if (options?.dynamicId) log.dynamicId = new ObjectId(options.dynamicId.toString());
