@@ -28,7 +28,7 @@ import {
   isLoadingSelector,
 } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { hasThemesLoadedSelector, themesSelector } from "~/services/Themes/themes.selectors";
 import { toggleSpinner } from "~/services/Tts/tts.actions";
 import { ttsActiveSelector } from "~/services/Tts/tts.selector";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
@@ -207,13 +207,14 @@ const Layout = (props: Props) => {
 
   // THEMES
   const themes = useSelector(themesSelector);
+  const hasThemesLoaded = useSelector(hasThemesLoadedSelector);
   const isThemesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
   const hasThemesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_THEMES));
   useEffect(() => {
-    if (languageLoaded && themes.length === 0 && !isThemesLoading && !hasThemesError) {
+    if (languageLoaded && !hasThemesLoaded && !isThemesLoading && !hasThemesError) {
       dispatch(fetchThemesActionCreator());
     }
-  }, [languageLoaded, themes.length, isThemesLoading, hasThemesError, dispatch]);
+  }, [languageLoaded, hasThemesLoaded, isThemesLoading, hasThemesError, dispatch]);
 
   // LANGUAGES
   const langues = useSelector(allLanguesSelector);
