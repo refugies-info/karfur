@@ -79,9 +79,9 @@ const Dispositif = (props: Props) => {
             {dispositif?.origin === "RCO" ? (
               <div className="fr-callout fr-callout--info">
                 {dispositif.markdown ? (
-                  <ReactMarkdown className="prose no-dsfr" remarkPlugins={[remarkGfm]}>
-                    {dispositif.markdown}
-                  </ReactMarkdown>
+                  <div className="prose no-dsfr">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{dispositif.markdown}</ReactMarkdown>
+                  </div>
                 ) : (
                   <p className="fr-callout__text">
                     Ce contenu est généré par intelligence artificielle et est actuellement en cours
