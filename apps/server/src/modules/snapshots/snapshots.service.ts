@@ -24,7 +24,7 @@ export const takeSnapshot = async (
 
   // Create snapshot
   const snapshot = new Snapshot();
-  snapshot.dispositifId = new ObjectId(dispositif._id.toString());
+  snapshot.dispositifId = new ObjectId(dispositif._id.toString()) as any;
   snapshot.version = newVersion;
   snapshot.type = type;
   snapshot.from = from;

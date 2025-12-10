@@ -1,12 +1,12 @@
 import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
-import { User } from "./User";
+import type { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "errors", timestamps: true } })
 export class Error {
   @prop()
   public name: string;
 
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public userId?: Ref<User>;
 
   @prop()

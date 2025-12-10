@@ -4,7 +4,7 @@
   "workspaces": {
     ".": {
       "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"],
-      "ignoreDependencies": ["@biomejs/biome"]
+      "ignoreDependencies": []
     },
     "apps/client": {
       "entry": ["next-sitemap.config.js"],
@@ -17,9 +17,7 @@
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules",
-        "csvtojson",
-        "papaparse"
+        "typescript-plugin-css-modules"
       ]
     },
     "apps/mobile": {
@@ -45,7 +43,7 @@
       "ignoreDependencies": ["@tailwindcss/typography", "tailwindcss"]
     },
     "packages/ui": {
-      "ignoreDependencies": ["tailwindcss", "@types/fs-extra"]
+      "ignoreDependencies": ["tailwindcss"]
     }
   }
 }

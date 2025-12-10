@@ -3,7 +3,7 @@ import { Base } from "./Base";
 import type { Dispositif } from "./Dispositif";
 import type { Langue } from "./Langue";
 import type { Structure } from "./Structure";
-import { User } from "./User";
+import type { User } from "./User";
 
 class LogLink {
   @prop({ refPath: "model_link" })
@@ -37,7 +37,7 @@ export class Log extends Base {
   @prop({ required: true })
   public text!: string;
 
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public author?: Ref<User>;
 
   // used to replace {{dynamic}} in text by object property

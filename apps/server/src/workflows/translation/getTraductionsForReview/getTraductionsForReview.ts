@@ -25,12 +25,12 @@ const getTraductionsForReview = async (
         validator: {
           id: trad.getUser().id,
           username: trad.getUser().username || trad.getUser().email,
-          picture: trad.getUser().picture,
+          picture: trad.getUser().picture as any,
         },
         author: {
           id: currentUser.id,
           username: currentUser.username || currentUser.email,
-          picture: currentUser.picture,
+          picture: currentUser.picture as any,
         },
         toReview: trad.toReview,
         toFinish: trad.toFinish || [],
@@ -55,7 +55,7 @@ const getTraductionsForReview = async (
         author: {
           id: trad.getUser().id,
           username: trad.getUser().username || trad.getUser().email,
-          picture: trad.getUser().picture,
+          picture: trad.getUser().picture as any,
         },
         toReview: trad.toReview,
         toFinish: trad.toFinish || [],

@@ -32,7 +32,7 @@ const getMembers = async (structure: Structure) => {
         const res: StructureMember = {
           username: user.username,
           email: user.email,
-          picture: user.picture,
+          picture: user.picture as any,
           last_connected: user.last_connected,
           added_at: membre.added_at,
           userId: membre.userId.toString(),

@@ -1,9 +1,11 @@
+import type { Languages } from "@refugies-info/api-types";
 import type { ExpoPushMessage } from "expo-server-sdk";
 import { omit } from "lodash";
 import {
   AdminOptionsModel,
   type AppUser,
   AppUserModel,
+  type AppUserType,
   DispositifModel,
   type Notification,
   NotificationModel,
@@ -167,7 +169,7 @@ describe("sendDispositifNotifications", () => {
       mainThemeId: "63286a015d31b2c0cad9960a",
       type: "dispositif",
     };
-    const targetUsers: AppUser[] = targets;
+    const targetUsers: AppUserType[] = targets;
     const savedNotifications: Notification[] = [
       {
         uid: "1",
@@ -346,7 +348,7 @@ describe("sendDemarcheNotifications", () => {
       mainThemeId: "63450dd43e23cd7181ba0b26",
       type: "demarche",
     };
-    const targetUsers: AppUser[] = targets;
+    const targetUsers: AppUserType[] = targets;
     const savedNotifications: Notification[] = [
       {
         uid: "1",
@@ -409,7 +411,7 @@ describe("sendDemarcheNotifications", () => {
       targetUsers.map((t) => ({
         uid: t.uid,
         seen: false,
-        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${fixtures.demarche.translations[t.selectedLanguage].content.titreInformatif}`,
+        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${fixtures.demarche.translations[t.selectedLanguage as Languages].content.titreInformatif}`,
         data: {
           type: "dispositif",
           contentId: fixtures.demarche._id.toString(),

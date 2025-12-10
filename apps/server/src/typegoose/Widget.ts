@@ -27,7 +27,7 @@ export class Widget extends Base {
   @prop({ type: () => [String] })
   public languages: string[];
 
-  @prop({ required: true })
+  @prop({ required: true, ref: "User" })
   public author!: Ref<User>;
 }
 

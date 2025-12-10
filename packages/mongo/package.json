@@ -8,13 +8,16 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@refugies-info/api-types": "workspace:*",
+    "jwt-simple": "^0.5.6",
     "mongoose": "^8.1.1",
-    "zod": "^3.22.4",
-    "@refugies-info/api-types": "workspace:*"
+    "password-hash": "^1.2.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
     "@types/node": "^20.11.19",
+    "@types/password-hash": "^1.2.24",
     "typescript": "^5.3.3"
   }
 }

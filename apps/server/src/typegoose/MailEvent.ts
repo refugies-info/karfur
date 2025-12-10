@@ -1,7 +1,7 @@
 import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { Dispositif } from "./Dispositif";
-import { User } from "./User";
+import type { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "mails", timestamps: { createdAt: "created_at" } } })
 export class MailEvent extends Base {
@@ -14,7 +14,7 @@ export class MailEvent extends Base {
   @prop()
   public langue?: string;
 
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public userId?: Ref<User>;
 
   @prop({ ref: () => Dispositif })

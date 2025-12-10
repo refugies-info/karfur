@@ -1,4 +1,9 @@
-import { type AppUser, AppUserModel, type NotificationsSettings } from "~/typegoose";
+import {
+  type AppUser,
+  AppUserModel,
+  type AppUserType,
+  type NotificationsSettings,
+} from "~/typegoose";
 
 export const getAllAppUsers = async () => AppUserModel.find();
 
@@ -47,7 +52,10 @@ export const updateNotificationsSettings = async (
   return appUser.notificationsSettings;
 };
 
-export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]) => {
+export const updateOrCreateAppUser = async (
+  payload: Partial<AppUserType> & { uid: string },
+  themeIds: string[],
+) => {
   const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
   // delete outdated appusers with the same ExpoPushToken

@@ -16,7 +16,7 @@ export const updateAppUser = async (
       ...body,
       uid: appUid,
     },
-    themes.map((t) => t.id),
+    themes.map((t) => t._id.toString()),
   );
 
   return {

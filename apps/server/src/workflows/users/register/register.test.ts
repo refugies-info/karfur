@@ -4,11 +4,11 @@ import * as password from "~/libs/validatePassword";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import { registerUser } from "~/modules/users/users.service";
-import { User } from "~/typegoose";
+import { User, UserModel } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { register } from "./register";
 
-jest.spyOn(User.prototype, "getToken").mockImplementation(() => "token");
+jest.spyOn(UserModel.prototype, "getToken").mockImplementation(() => "token");
 
 jest.mock("password-hash", () => ({
   generate: jest.fn((p) => p),

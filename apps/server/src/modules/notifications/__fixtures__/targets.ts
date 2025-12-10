@@ -1,6 +1,6 @@
-import type { AppUser } from "~/typegoose";
+import type { AppUserType } from "~/typegoose";
 
-export const targets: AppUser[] = [
+export const targets: AppUserType[] = [
   {
     uid: "1",
     city: "Rennes",

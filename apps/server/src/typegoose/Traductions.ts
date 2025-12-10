@@ -5,7 +5,7 @@ import { MustBePopulatedError } from "~/errors";
 import { countDispositifWords } from "~/libs/wordCounter";
 import { Base } from "./Base";
 import { Dispositif, type TranslationContent } from "./Dispositif";
-import { User } from "./User";
+import type { User } from "./User";
 
 export enum TraductionsType {
   SUGGESTION = "suggestion",
@@ -77,7 +77,7 @@ export class Traductions extends Base {
   @prop({ ref: () => Dispositif })
   public dispositifId: Ref<Dispositif>;
 
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public userId: Ref<User>;
 
   @prop({ required: true })

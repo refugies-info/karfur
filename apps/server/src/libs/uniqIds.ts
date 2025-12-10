@@ -1,4 +1,4 @@
-import type { Ref } from "@typegoose/typegoose";
+// import type { Ref } from "@typegoose/typegoose";
 import uniq from "lodash/uniq";
 import { ObjectId } from "~/typegoose";
 
@@ -7,5 +7,7 @@ import { ObjectId } from "~/typegoose";
  * @param arrayOfObjectIds
  * @returns ObjectId[]
  */
-export const uniqIds = (arrayOfObjectIds: Ref<unknown, ObjectId>[]): ObjectId[] =>
-  uniq(arrayOfObjectIds.map((x) => x.toString())).map((x) => new ObjectId(x));
+export const uniqIds = (arrayOfObjectIds: any[]): ObjectId[] =>
+  uniq(
+    arrayOfObjectIds.map((x) => ((x as any)._id ? (x as any)._id.toString() : x.toString())),
+  ).map((x) => new ObjectId(x));

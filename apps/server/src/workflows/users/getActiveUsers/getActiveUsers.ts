@@ -26,7 +26,7 @@ export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUser
     const simpleUser: GetActiveUsersResponse = {
       _id: user._id,
       username: user.username,
-      picture: user.picture,
+      picture: user.picture as any,
       status: user.status,
       email: user.email,
     };

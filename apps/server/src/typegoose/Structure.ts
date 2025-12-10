@@ -2,10 +2,10 @@ import { StructureStatus } from "@refugies-info/api-types";
 import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { ImageSchema } from "./generics";
-import { User, type UserId } from "./User";
+import type { User, UserId } from "./User";
 
 export class Membre {
-  @prop({ required: true })
+  @prop({ required: true, ref: "User" })
   public userId!: Ref<User, UserId>;
   @prop({ required: true })
   public added_at!: Date;
@@ -42,7 +42,7 @@ export class Structure extends Base {
 
   @prop()
   public acronyme?: string;
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public administrateur?: Ref<User>;
   @prop()
   public adresse?: string;
@@ -50,7 +50,7 @@ export class Structure extends Base {
   public authorBelongs?: boolean;
   @prop()
   public contact?: string;
-  @prop({ required: true, ref: () => User })
+  @prop({ required: true, ref: "User" })
   public createur!: Ref<User>;
   @prop()
   public link?: string;

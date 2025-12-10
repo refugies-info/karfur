@@ -1,5 +1,5 @@
 import { RoleName, type UpdateUserRequest } from "@refugies-info/api-types";
-import type { DocumentType } from "@typegoose/typegoose";
+// import type { DocumentType } from "@typegoose/typegoose";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
 import { UnauthorizedError } from "~/errors";
@@ -17,7 +17,7 @@ import { log } from "./log";
 
 const updateAsAdmin = async (
   request: UpdateUserRequest["user"],
-  userFromDB: DocumentType<User>,
+  userFromDB: User,
   userReq: User,
 ) => {
   const roles = await getRoles();
@@ -59,7 +59,7 @@ const updateAsAdmin = async (
 const updateAsMyself = async (
   id: string,
   request: UpdateUserRequest["user"],
-  userFromDB: DocumentType<User>,
+  userFromDB: User,
   userReq: User,
 ): Promise<{ newUser: Partial<User>; refreshToken: boolean }> => {
   const roles = await getRoles();
@@ -153,6 +153,8 @@ export const updateUser = async (
   const { action } = body;
   logger.info("[updateUser] call received", { user: body.user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
+
+  if (!userFromDB) throw new Error("User not found");
 
   let newUser: Partial<User> = {};
   let refreshToken = false;

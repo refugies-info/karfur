@@ -27,7 +27,7 @@ import { Need, type NeedId } from "./Need";
 
 import { Structure, type StructureId } from "./Structure";
 import type { Theme, ThemeId } from "./Theme";
-import { User } from "./User";
+import type { User } from "./User";
 
 export class Sponsor {
   @prop()
@@ -237,20 +237,20 @@ export class Dispositif extends Base {
   @prop()
   public externalLink?: string;
 
-  @prop({ required: true, ref: () => User })
+  @prop({ required: true, ref: "User" })
   public creatorId!: Ref<User>;
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public participants: Ref<User>[];
 
   @prop()
   public lastAdminUpdate?: Date;
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public lastModificationAuthor: Ref<User>;
   @prop()
   public lastModificationDate?: Date;
   @prop()
   public publishedAt?: Date;
-  @prop({ ref: () => User })
+  @prop({ ref: "User" })
   public publishedAtAuthor?: Ref<User>;
   @prop()
   public deletionDate?: Date;

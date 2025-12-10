@@ -1,5 +1,5 @@
 import { ContentType, type Metadatas } from "@refugies-info/api-types";
-import type { AppUser, Dispositif, Theme } from "~/typegoose";
+import type { AppUserType, Dispositif, Theme } from "~/typegoose";
 
 const ALL = "france";
 
@@ -78,7 +78,7 @@ export const parseDispositif = (dispositif: Dispositif): Requirements => {
   };
 };
 
-export const filterTargets = (targets: AppUser[], requirements: Requirements, lang: string) => {
+export const filterTargets = (targets: AppUserType[], requirements: Requirements, lang: string) => {
   return targets.filter((target) => {
     const { age, departments, type, mainThemeId } = requirements;
     const { notificationsSettings } = target;
@@ -101,7 +101,7 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
 };
 
 export const filterTargetsForDemarche = (
-  targets: AppUser[],
+  targets: AppUserType[],
   requirements: Requirements,
   demarche: Dispositif,
 ) => {
@@ -115,7 +115,7 @@ export const filterTargetsForDemarche = (
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
-    const langOk = demarche.isTranslatedIn(target.selectedLanguage);
+    const langOk = demarche.isTranslatedIn(target.selectedLanguage as any);
 
     return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });

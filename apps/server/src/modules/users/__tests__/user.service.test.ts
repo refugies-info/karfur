@@ -72,15 +72,13 @@ describe("registerUser", () => {
     jest.useFakeTimers();
     jest.setSystemTime(mockDate);
 
-    jest
-      .spyOn(roleRep, "getRoleByName")
-      .mockImplementation(async (roleName: RoleName): Promise<DocumentType<Role>> => {
-        const role = new Role();
-        role._id = roleId;
-        role.nom = roleName;
-        role.nomPublique = "";
-        return new RoleModel(role);
-      });
+    jest.spyOn(roleRep, "getRoleByName").mockImplementation(async (roleName: RoleName) => {
+      const role = new RoleModel();
+      role._id = roleId;
+      role.nom = roleName;
+      role.nomPublique = "";
+      return role;
+    });
 
     jest
       .spyOn(usersRep, "createUser")

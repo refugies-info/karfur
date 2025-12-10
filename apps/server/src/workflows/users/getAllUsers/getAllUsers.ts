@@ -39,7 +39,6 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
       ...pick(user, [
         "_id",
         "username",
-        "picture",
         "status",
         "email",
         "adminComments",
@@ -48,8 +47,9 @@ export const getAllUsers = async (): ResponseWithData<GetAllUsersResponse[]> => 
         "phone",
         "selectedLanguages",
       ]),
+      picture: user.picture as any,
       roles,
-      structures: getStructures(user._id, user.getStructures()),
+      structures: getStructures(user._id, user.getStructures() as any),
       nbStructures: user.structures ? user.structures.length : 0,
       nbContributions: user.contributions ? user.contributions.length : 0,
     };

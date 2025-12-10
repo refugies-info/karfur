@@ -1,6 +1,5 @@
 import msal from "@azure/msal-node";
 import { type LoginRequest, type LoginResponse, UserStatus } from "@refugies-info/api-types";
-import type { DocumentType } from "@typegoose/typegoose";
 import { OAuth2Client } from "google-auth-library";
 import logger from "~/logger";
 import { loginExceptionsManager, logUser, needs2FA } from "~/modules/users/auth";
@@ -26,10 +25,7 @@ const cca = new msal.ConfidentialClientApplication({
 const MICROSOFT_REDIRECT_URL = process.env.FRONT_SITE_URL + "/fr/auth/microsoft-login";
 const MICROSOFT_SCOPES = ["User.Read"];
 
-export const authWithPassword = async (
-  user: DocumentType<User>,
-  password: string,
-): Promise<boolean> => {
+export const authWithPassword = async (user: User, password: string): Promise<boolean> => {
   logger.info("[authWithPassword] start", { email: user.email });
 
   if (!user.authenticate(password)) {
