@@ -1,7 +1,7 @@
 import type { ContentType } from "@refugies-info/api-types";
 import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
-import { Theme } from "./Theme";
+import type { Theme } from "./Theme";
 import type { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
@@ -15,7 +15,7 @@ export class Widget extends Base {
   @prop({ required: true, type: () => [String] })
   public tags!: string[];
 
-  @prop({ required: true, ref: () => Theme })
+  @prop({ required: true, ref: "Theme" })
   public themes!: Ref<Theme>[];
 
   @prop({ required: true })

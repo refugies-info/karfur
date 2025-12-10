@@ -21,3 +21,5 @@ var __exportStar =
   });
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./schemas/Langue"), exports);
+__exportStar(require("./schemas/Theme"), exports);
+__exportStar(require("./schemas/generics"), exports);

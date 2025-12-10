@@ -1,8 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LangueModel = exports.LangueZodSchema = void 0;
-var mongoose_1 = require("mongoose");
-var zod_1 = require("zod");
-// Zod Schema
+const mongoose_1 = require("mongoose");
+const zod_1 = require("zod");
 exports.LangueZodSchema = zod_1.z.object({
   langueFr: zod_1.z.string(),
   langueLoc: zod_1.z.string().optional(),
@@ -13,8 +12,7 @@ exports.LangueZodSchema = zod_1.z.object({
   created_at: zod_1.z.date().optional(),
   updatedAt: zod_1.z.date().optional(),
 });
-// Mongoose Schema
-var LangueSchema = new mongoose_1.Schema(
+const LangueSchema = new mongoose_1.Schema(
   {
     langueFr: { type: String, required: true, unique: true },
     langueLoc: { type: String },

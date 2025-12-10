@@ -26,7 +26,7 @@ import { ImageSchema, type RichText, type Uuid } from "./generics";
 import { Need, type NeedId } from "./Need";
 
 import { Structure, type StructureId } from "./Structure";
-import { Theme, type ThemeId } from "./Theme";
+import type { Theme, ThemeId } from "./Theme";
 import { User } from "./User";
 
 export class Sponsor {
@@ -226,9 +226,9 @@ export class Dispositif extends Base {
 
   @prop({ ref: () => Structure })
   public mainSponsor?: Ref<Structure, StructureId>;
-  @prop({ ref: () => Theme })
+  @prop({ ref: "Theme" })
   public theme?: Ref<Theme, ThemeId>;
-  @prop({ ref: () => Theme })
+  @prop({ ref: "Theme" })
   public secondaryThemes?: Ref<Theme, ThemeId>[];
   @prop({ ref: () => Need })
   public needs: Ref<Need, NeedId>[];

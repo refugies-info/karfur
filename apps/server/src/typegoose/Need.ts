@@ -2,7 +2,7 @@ import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Base } from "./Base";
 import type { ImageSchema } from "./generics";
-import { Theme, type ThemeId } from "./Theme";
+import type { Theme, ThemeId } from "./Theme";
 
 export class NeedTranslation {
   @prop()
@@ -18,7 +18,7 @@ export class Need extends Base {
   @prop()
   public tagName?: string;
 
-  @prop({ ref: () => Theme })
+  @prop({ ref: "Theme" })
   public theme!: Ref<Theme, ThemeId>;
 
   @prop()
