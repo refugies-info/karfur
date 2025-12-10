@@ -23,7 +23,7 @@ import { MustBePopulatedError } from "~/errors";
 import type { PartialRecord } from "~/types/interface";
 import { Base } from "./Base";
 import { ImageSchema, type RichText, type Uuid } from "./generics";
-import { Need, type NeedId } from "./Need";
+import type { Need, NeedId } from "./Need";
 
 import type { Structure, StructureId } from "./Structure";
 import type { Theme, ThemeId } from "./Theme";
@@ -230,7 +230,7 @@ export class Dispositif extends Base {
   public theme?: Ref<Theme, ThemeId>;
   @prop({ ref: "Theme" })
   public secondaryThemes?: Ref<Theme, ThemeId>[];
-  @prop({ ref: () => Need })
+  @prop({ ref: "Need" })
   public needs: Ref<Need, NeedId>[];
   @prop()
   public sponsors?: (Ref<Structure> | Sponsor)[];

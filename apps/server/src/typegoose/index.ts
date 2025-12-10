@@ -11,7 +11,7 @@ import { Indicator } from "./Indicator";
 import type { Langue, LangueId } from "./Langue";
 import { Log, type LogId } from "./Log";
 import { MailEvent } from "./MailEvent";
-import { Need, type NeedId } from "./Need";
+import type { Need, NeedId, NeedType } from "./Need";
 import { Notification } from "./Notification";
 import type { Role } from "./Role";
 import { Snapshot, type SnapshotType } from "./Snapshot";
@@ -51,7 +51,7 @@ export const IndicatorModel = getModelForClass(Indicator);
 export { LangueModel } from "@refugies-info/mongo";
 export const LogModel = getModelForClass(Log);
 export const MailEventModel = getModelForClass(MailEvent);
-export const NeedModel = getModelForClass(Need);
+export { NeedModel } from "@refugies-info/mongo";
 export const NotificationModel = getModelForClass(Notification);
 export { RoleModel, StructureModel, ThemeModel } from "@refugies-info/mongo";
 export const TraductionsModel = getModelForClass(Traductions);
@@ -65,8 +65,6 @@ export {
   Image,
   Indicator,
   Log,
-  MailEvent,
-  Need,
   Notification,
   Snapshot,
   Traductions,
@@ -81,7 +79,9 @@ export type {
   Langue,
   LangueId,
   LogId,
+  Need,
   NeedId,
+  NeedType,
   NotificationsSettings,
   Role,
   SnapshotType,
