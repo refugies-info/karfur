@@ -1,4 +1,5 @@
-import { model, Schema, type Types } from "mongoose";
+import { zId, zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 // import type { DispositifId } from "./Dispositif"; // Not yet available
 import type { LangueId } from "./Langue";
@@ -6,7 +7,7 @@ import type { StructureId } from "./Structure";
 import type { UserId } from "./User";
 
 export const LogLinkSchema = z.object({
-  id: z.custom<Types.ObjectId>(),
+  id: zId(),
   model_link: z.enum(["User", "Dispositif", "Structure"]),
   next: z.enum([
     "ModalContenu",
@@ -23,11 +24,11 @@ export type LogLink = z.infer<typeof LogLinkSchema>;
 
 export const LogSchema = z.object({
   created_at: z.date().optional(),
-  objectId: z.custom<Types.ObjectId>(),
+  objectId: zId(),
   model_object: z.enum(["User", "Dispositif", "Structure"]),
   text: z.string(),
-  author: z.custom<UserId>().optional(),
-  dynamicId: z.custom<Types.ObjectId>().optional(),
+  author: zId("User").optional(),
+  dynamicId: zId().optional(),
   model_dynamic: z.enum(["User", "Dispositif", "Structure", "Langue"]).optional(),
   link: LogLinkSchema.optional(),
   updatedAt: z.date().optional(),
@@ -36,42 +37,42 @@ export const LogSchema = z.object({
 export type LogType = z.infer<typeof LogSchema> & { _id: Types.ObjectId };
 export type LogId = Types.ObjectId | string;
 
-export interface Log extends Omit<LogType, "objectId" | "author" | "dynamicId" | "link"> {
+export interface Log
+  extends Omit<LogType, "_id" | "objectId" | "author" | "dynamicId" | "link">,
+    Document {
   objectId: Types.ObjectId;
   author?: UserId;
   dynamicId?: Types.ObjectId;
   link?: LogLink;
 }
 
-const LogLinkMongooseSchema = new Schema<LogLink>(
-  {
-    id: { type: Schema.Types.ObjectId, refPath: "model_link" },
-    model_link: { type: String, enum: ["User", "Dispositif", "Structure"] },
-    next: { type: String },
-  },
-  { _id: false },
-);
+const LogMongooseSchema = zodSchema(LogSchema);
+LogMongooseSchema.set("collection", "logs");
+LogMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const LogMongooseSchema = new Schema<Log>(
-  {
-    objectId: { type: Schema.Types.ObjectId, required: true, refPath: "model_object" },
-    model_object: { type: String, required: true, enum: ["User", "Dispositif", "Structure"] },
-    text: { type: String, required: true },
-    author: { type: Schema.Types.ObjectId, ref: "User" },
-    dynamicId: { type: Schema.Types.ObjectId, refPath: "model_dynamic" },
-    model_dynamic: {
-      type: String,
-      enum: ["User", "Dispositif", "Structure", "Langue"],
-      required: function () {
-        return !!this.dynamicId;
-      },
-    },
-    link: { type: LogLinkMongooseSchema },
-  },
-  {
-    collection: "logs",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+// Configure dynamic refs
+LogMongooseSchema.path("objectId").options.refPath = "model_object";
 
-export const LogModel = model<Log>("Log", LogMongooseSchema);
+const dynamicIdPath = LogMongooseSchema.path("dynamicId");
+if (dynamicIdPath) {
+  dynamicIdPath.options.refPath = "model_dynamic";
+}
+
+const modelDynamicPath = LogMongooseSchema.path("model_dynamic");
+if (modelDynamicPath) {
+  modelDynamicPath.required(function (this: Log) {
+    return !!this.dynamicId;
+  } as any);
+}
+
+// Configure link subdocument
+const linkPath = LogMongooseSchema.path("link") as any;
+if (linkPath && linkPath.schema) {
+  linkPath.schema.set("_id", false);
+  const linkIdPath = linkPath.schema.path("id");
+  if (linkIdPath) {
+    linkIdPath.options.refPath = "model_link";
+  }
+}
+
+export const LogModel = model<Log>("Log", LogMongooseSchema as unknown as Schema<Log>);

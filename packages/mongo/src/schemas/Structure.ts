@@ -1,13 +1,14 @@
 import { StructureStatus } from "@refugies-info/api-types";
-import { type Document, model, Schema, type Types } from "mongoose";
+import { zId, zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
-import { type Image, ImageSchema, ImageZodSchema } from "./generics";
-import { type User, UserId } from "./User";
+import { type Image, ImageZodSchema } from "./generics";
+import type { User, UserId } from "./User";
 
 // --- Zod Schemas ---
 
 export const MembreZodSchema = z.object({
-  userId: z.any(), // Ref User
+  userId: zId("User"),
   added_at: z.date(),
 });
 
@@ -28,11 +29,11 @@ export const OpeningHoursZodSchema = z.object({
 export const StructureZodSchema = z.object({
   membres: z.array(MembreZodSchema).optional(),
   acronyme: z.string().optional(),
-  administrateur: z.any().optional(), // Ref User
+  administrateur: zId("User").optional(),
   adresse: z.string().optional(),
   authorBelongs: z.boolean().optional(),
   contact: z.string().optional(),
-  createur: z.any(), // Ref User
+  createur: zId("User"),
   link: z.string().optional(),
   mail_contact: z.string().optional(),
   mail_generique: z.string().optional(),
@@ -122,7 +123,7 @@ export interface Structure extends Document {
   disposAssociesLocalisation?: string[];
   adminComments?: string;
   adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string; // Typegoose said string, implicit optional?
+  adminPercentageProgressionStatus?: string;
   created_at?: Date;
   updatedAt?: Date;
 }
@@ -131,75 +132,25 @@ export type StructureId = Structure["_id"] | Structure["id"];
 
 // --- Schemas ---
 
-const MembreSchema = new Schema<Membre>(
-  {
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    added_at: { type: Date, required: true },
-  },
-  { _id: false },
-);
+const StructureMongooseSchema = zodSchema(StructureZodSchema);
+StructureMongooseSchema.set("collection", "structures");
+StructureMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-const DetailedOpeningHoursSchema = new Schema<DetailedOpeningHours>(
-  {
-    day: { type: String, required: true },
-    from0: { type: String },
-    to0: { type: String },
-    from1: { type: String },
-    to1: { type: String },
-  },
-  { _id: false },
-);
+// Disable _id for subdocuments
+const picturePath = StructureMongooseSchema.path("picture") as any;
+if (picturePath && picturePath.schema) picturePath.schema.set("_id", false);
 
-const OpeningHoursSchema = new Schema<OpeningHours>(
-  {
-    details: { type: [DetailedOpeningHoursSchema], required: true },
-    noPublic: { type: Boolean },
-    precisions: { type: String },
-  },
-  { _id: false },
-);
+const membresPath = StructureMongooseSchema.path("membres") as any;
+if (membresPath && membresPath.schema) membresPath.schema.set("_id", false);
 
-const StructureSchema = new Schema<Structure>(
-  {
-    membres: { type: [MembreSchema] },
-    acronyme: { type: String },
-    administrateur: { type: Schema.Types.ObjectId, ref: "User" },
-    adresse: { type: String },
-    authorBelongs: { type: Boolean },
-    contact: { type: String },
-    createur: { type: Schema.Types.ObjectId, ref: "User", required: true },
-    link: { type: String },
-    mail_contact: { type: String },
-    mail_generique: { type: String },
-    nom: { type: String, required: true },
-    phone_contact: { type: String },
-    siren: { type: String },
-    siret: { type: String },
-    status: { type: String, enum: Object.values(StructureStatus) },
-    picture: { type: ImageSchema, _id: false },
-    structureTypes: { type: [String], default: [] },
-    websites: { type: [String], default: [] },
-    facebook: { type: String },
-    linkedin: { type: String },
-    twitter: { type: String },
-    activities: { type: [String], default: [] },
-    departments: { type: [String], default: [] },
-    phonesPublic: { type: [String], default: [] },
-    mailsPublic: { type: [String], default: [] },
-    adressPublic: { type: String },
-    openingHours: { type: OpeningHoursSchema, _id: false },
-    onlyWithRdv: { type: Boolean },
-    description: { type: String },
-    hasResponsibleSeenNotification: { type: Boolean },
-    disposAssociesLocalisation: { type: [String] },
-    adminComments: { type: String },
-    adminProgressionStatus: { type: String },
-    adminPercentageProgressionStatus: { type: String },
-  },
-  {
-    collection: "structures",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+const openingHoursPath = StructureMongooseSchema.path("openingHours") as any;
+if (openingHoursPath && openingHoursPath.schema) {
+  openingHoursPath.schema.set("_id", false);
+  const detailsPath = openingHoursPath.schema.path("details") as any;
+  if (detailsPath && detailsPath.schema) detailsPath.schema.set("_id", false);
+}
 
-export const StructureModel = model<Structure>("Structure", StructureSchema);
+export const StructureModel = model<Structure>(
+  "Structure",
+  StructureMongooseSchema as unknown as Schema<Structure>,
+);

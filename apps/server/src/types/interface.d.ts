@@ -1,4 +1,4 @@
-import { DocumentType } from "@typegoose/typegoose";
+import { DocumentType } from "@refugies-info/mongo";
 import { Request as ExpressRequest, Response as ExpressResponse } from "express";
 import { Moment } from "moment";
 import { Types } from "mongoose";

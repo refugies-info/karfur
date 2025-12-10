@@ -2,12 +2,12 @@ import { DispositifStatus, type Languages } from "@refugies-info/api-types";
 import type { TranslationContent } from "@refugies-info/mongo";
 import {
   type Dispositif,
+  isDocument,
   type Traductions,
   TraductionsStatus,
   TraductionsType,
   type User,
 } from "@refugies-info/mongo";
-import { isDocument } from "@typegoose/typegoose";
 import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 import { countDispositifWords } from "~/libs/wordCounter";

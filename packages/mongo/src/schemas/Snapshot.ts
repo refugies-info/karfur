@@ -1,6 +1,6 @@
-// import type { DispositifId } from "../index"; // Not yet available
 import { DispositifStatus } from "@refugies-info/api-types";
-import { model, Schema, type Types } from "mongoose";
+import { zId, zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 import type { StructureId } from "./Structure";
 import type { UserId } from "./User";
@@ -12,7 +12,7 @@ export const SnapshotTypeEnum = z.enum(["before", "after"]);
 export type SnapshotType = z.infer<typeof SnapshotTypeEnum>;
 
 export const SnapshotSchema = z.object({
-  dispositifId: z.custom<Types.ObjectId>(),
+  dispositifId: zId("Dispositif"),
   version: z.number().min(1),
   created_at: z.date().optional(),
   type: SnapshotTypeEnum,
@@ -24,23 +24,15 @@ export const SnapshotSchema = z.object({
 export type SnapshotTypeObj = z.infer<typeof SnapshotSchema> & { _id: Types.ObjectId };
 export type SnapshotId = Types.ObjectId | string;
 
-export interface Snapshot extends Omit<SnapshotTypeObj, "dispositifId"> {
+export interface Snapshot extends Omit<SnapshotTypeObj, "_id" | "dispositifId">, Document {
   dispositifId: Types.ObjectId;
 }
 
-export const SnapshotMongooseSchema = new Schema<Snapshot>(
-  {
-    dispositifId: { type: Schema.Types.ObjectId, ref: "Dispositif", required: true },
-    version: { type: Number, required: true, min: 1 },
-    type: { type: String, enum: ["before", "after"], required: true },
-    from: { type: String, enum: Object.values(DispositifStatus), required: true },
-    to: { type: String, enum: Object.values(DispositifStatus), required: true },
-    data: { type: Object, required: true },
-  },
-  {
-    collection: "snapshots",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+export const SnapshotMongooseSchema = zodSchema(SnapshotSchema);
+SnapshotMongooseSchema.set("collection", "snapshots");
+SnapshotMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const SnapshotModel = model<Snapshot>("Snapshot", SnapshotMongooseSchema);
+export const SnapshotModel = model<Snapshot>(
+  "Snapshot",
+  SnapshotMongooseSchema as unknown as Schema<Snapshot>,
+);

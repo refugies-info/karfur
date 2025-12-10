@@ -1,5 +1,6 @@
 import type { Languages } from "@refugies-info/api-types";
-import { type Document, model, Schema, type Types } from "mongoose";
+import { zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 
 // Zod Schema
@@ -28,19 +29,10 @@ export interface Langue extends Omit<LangueType, "i18nCode">, Document {
 export type LangueId = Langue["_id"] | Langue["id"];
 
 // Mongoose Schema
-const LangueSchema = new Schema<Langue>(
-  {
-    langueFr: { type: String, required: true, unique: true },
-    langueLoc: { type: String },
-    langueCode: { type: String },
-    i18nCode: { type: String, required: true, unique: true },
-    avancement: { type: Number, default: 0 },
-    avancementTrad: { type: Number, default: 0 },
-  },
-  {
-    collection: "langues",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+const LangueSchema = zodSchema(LangueZodSchema);
+LangueSchema.path("langueFr").unique(true);
+LangueSchema.path("i18nCode").unique(true);
+LangueSchema.set("collection", "langues");
+LangueSchema.set("timestamps", { createdAt: "created_at" });
 
-export const LangueModel = model<Langue>("Langue", LangueSchema);
+export const LangueModel = model<Langue>("Langue", LangueSchema as unknown as Schema<Langue>);

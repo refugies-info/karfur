@@ -1,4 +1,5 @@
-import { model, Schema, type Types } from "mongoose";
+import { zodSchema } from "@zodyac/zod-mongoose";
+import { model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 
 // Notification Schema
@@ -16,17 +17,11 @@ export type NotificationId = Types.ObjectId | string;
 
 export interface Notification extends NotificationType {}
 
-export const NotificationMongooseSchema = new Schema<Notification>(
-  {
-    uid: { type: String, required: true },
-    seen: { type: Boolean, required: true, default: false },
-    title: { type: String, required: true },
-    data: { type: Object, required: true },
-  },
-  {
-    collection: "notifications",
-    timestamps: true,
-  },
-);
+export const NotificationMongooseSchema = zodSchema(NotificationSchema);
+NotificationMongooseSchema.set("collection", "notifications");
+NotificationMongooseSchema.set("timestamps", true);
 
-export const NotificationModel = model<Notification>("Notification", NotificationMongooseSchema);
+export const NotificationModel = model<Notification>(
+  "Notification",
+  NotificationMongooseSchema as unknown as Schema<Notification>,
+);

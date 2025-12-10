@@ -1,6 +1,6 @@
 import { RoleName, type UpdateUserRequest } from "@refugies-info/api-types";
 import { ObjectId, type User } from "@refugies-info/mongo";
-// import type { DocumentType } from "@typegoose/typegoose";
+// import type { DocumentType } from "@refugies-info/mongo";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
 import { UnauthorizedError } from "~/errors";

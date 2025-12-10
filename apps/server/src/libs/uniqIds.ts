@@ -1,4 +1,4 @@
-// import type { Ref } from "@typegoose/typegoose";
+// import type { Ref } from "@refugies-info/mongo";
 
 import { ObjectId } from "@refugies-info/mongo";
 import uniq from "lodash/uniq";

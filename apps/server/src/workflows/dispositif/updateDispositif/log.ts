@@ -1,12 +1,10 @@
 import type { Dispositif, Theme, ThemeId, UserId } from "@refugies-info/mongo";
-import { isDocument, type Ref } from "@typegoose/typegoose";
+import { isDocument, type Ref } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import { addLog } from "~/modules/logs/logs.service";
 
-const getThemesIds = (
-  themes: Ref<Theme, ThemeId> | Ref<Theme, ThemeId>[] | undefined,
-): ThemeId[] => {
+const getThemesIds = (themes: Ref<Theme> | Ref<Theme>[] | undefined): ThemeId[] => {
   if (!themes) return [];
   if (Array.isArray(themes)) return themes.map((theme) => (isDocument(theme) ? theme._id : theme));
   return [isDocument(themes) ? themes._id : themes];

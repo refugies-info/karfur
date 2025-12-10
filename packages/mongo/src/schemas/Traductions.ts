@@ -1,9 +1,8 @@
 import { Languages } from "@refugies-info/api-types";
-import { model, Schema, type Types } from "mongoose";
+import { zId, zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 import type { UserId } from "./User";
-// import type { DispositifId } from "./Dispositif"; // Not yet available
-// We'll use Types.ObjectId for DispositifId for now
 
 export enum TraductionsType {
   SUGGESTION = "suggestion",
@@ -24,9 +23,9 @@ export const TraductionDiffSchema = z.object({
 });
 export type TraductionDiff = z.infer<typeof TraductionDiffSchema>;
 
-export const TraductionsSchema = z.object({
-  dispositifId: z.custom<Types.ObjectId>(),
-  userId: z.custom<UserId>(),
+export const TraductionsZodSchema = z.object({
+  dispositifId: zId("Dispositif"),
+  userId: zId("User"),
   language: z.enum(["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"]),
   translated: z.record(z.unknown()), // Partial<TranslationContent> is complex, using generic object
   timeSpent: z.number().optional(),
@@ -39,31 +38,22 @@ export const TraductionsSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type TraductionsTypeObj = z.infer<typeof TraductionsSchema> & { _id: Types.ObjectId };
+export type TraductionsTypeObj = z.infer<typeof TraductionsZodSchema>;
 export type TraductionId = Types.ObjectId | string;
 
-export interface Traductions extends Omit<TraductionsTypeObj, "dispositifId" | "userId"> {
+export interface Traductions
+  extends Omit<TraductionsTypeObj, "dispositifId" | "userId" | "translated">,
+    Document {
   dispositifId: Types.ObjectId;
   userId: UserId;
+  translated: Record<string, any>;
 }
 
-export const TraductionsMongooseSchema = new Schema<Traductions>(
-  {
-    dispositifId: { type: Schema.Types.ObjectId, ref: "Dispositif" },
-    userId: { type: Schema.Types.ObjectId, ref: "User" },
-    language: { type: String, required: true },
-    translated: { type: Object, required: true },
-    timeSpent: { type: Number },
-    finished: { type: Boolean },
-    toReview: { type: [String] },
-    toReviewCache: { type: [String] },
-    toFinish: { type: [String] },
-    type: { type: String, enum: Object.values(TraductionsType) },
-  },
-  {
-    collection: "traductions",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+const TraductionsMongooseSchema = zodSchema(TraductionsZodSchema);
+TraductionsMongooseSchema.set("collection", "traductions");
+TraductionsMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const TraductionsModel = model<Traductions>("Traductions", TraductionsMongooseSchema);
+export const TraductionsModel = model<Traductions>(
+  "Traductions",
+  TraductionsMongooseSchema as unknown as Schema<Traductions>,
+);

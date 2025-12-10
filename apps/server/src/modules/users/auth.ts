@@ -1,6 +1,6 @@
 import { UserStatus } from "@refugies-info/api-types";
 import type { User } from "@refugies-info/mongo";
-// import type { DocumentType } from "@typegoose/typegoose";
+// import type { DocumentType } from "@refugies-info/mongo";
 import {
   AuthenticationError,
   InternalError,

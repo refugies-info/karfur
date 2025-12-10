@@ -10,7 +10,7 @@ import {
   type Sponsor,
 } from "@refugies-info/api-types";
 import type { Dispositif, Role, Structure, User } from "@refugies-info/mongo";
-import { isDocument, isDocumentArray } from "@typegoose/typegoose";
+import { isDocument, isDocumentArray } from "@refugies-info/mongo";
 import pick from "lodash/pick";
 import type { ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";

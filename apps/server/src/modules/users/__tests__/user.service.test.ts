@@ -1,6 +1,6 @@
 import type { RoleName } from "@refugies-info/api-types";
+import type { DocumentType } from "@refugies-info/mongo";
 import { ObjectId, Role, RoleModel, UserModel } from "@refugies-info/mongo";
-import type { DocumentType } from "@typegoose/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { addLog } from "../../logs/logs.service";
 import { sendWelcomeMail } from "../../mail/mail.service";

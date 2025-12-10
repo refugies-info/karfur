@@ -1,6 +1,6 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
 import type { Dispositif, Need, Structure, Theme, User } from "@refugies-info/mongo";
-import { isDocument, isDocumentArray } from "@typegoose/typegoose";
+import { isDocument, isDocumentArray } from "@refugies-info/mongo";
 import { get, has } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 

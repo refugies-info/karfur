@@ -1,7 +1,18 @@
-import { Schema, Types } from "mongoose";
+import { type Document, Schema, Types } from "mongoose";
 import { z } from "zod";
 
 export class ObjectId extends Types.ObjectId {}
+
+export type Ref<T> = T | Types.ObjectId | string;
+export type DocumentType<T> = T & Document;
+
+export function isDocument(doc: any): doc is Document {
+  return doc instanceof Types.ObjectId === false && doc?._id;
+}
+
+export function isDocumentArray(docs: any[] | undefined): docs is Document[] {
+  return Array.isArray(docs) && docs.length > 0 && isDocument(docs[0]);
+}
 
 // Image Schema
 // Image Schema
@@ -15,11 +26,7 @@ export type ImageType = z.infer<typeof ImageZodSchema>;
 
 export interface Image extends ImageType {}
 
-export const ImageSchema = new Schema<Image>(
-  {
-    secure_url: { type: String, required: true },
-    public_id: { type: String, required: true },
-    imgId: { type: String, required: true },
-  },
-  { _id: false },
-);
+import { zodSchema } from "@zodyac/zod-mongoose";
+
+export const ImageSchema = zodSchema(ImageZodSchema);
+ImageSchema.set("_id", false);

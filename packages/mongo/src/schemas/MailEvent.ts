@@ -1,4 +1,5 @@
-import { model, Schema, type Types } from "mongoose";
+import { zId, zodSchema } from "@zodyac/zod-mongoose";
+import { model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 import type { DispositifId } from "./Dispositif";
 import type { UserId } from "./User";
@@ -8,8 +9,8 @@ export const MailEventSchema = z.object({
   templateName: z.string(),
   email: z.string().email(),
   langue: z.string().optional(),
-  userId: z.custom<UserId>().optional(),
-  dispositifId: z.custom<DispositifId>().optional(),
+  userId: zId("User").optional(),
+  dispositifId: zId("Dispositif").optional(),
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),
 });
@@ -22,18 +23,11 @@ export interface MailEvent extends Omit<MailEventType, "userId" | "dispositifId"
   dispositifId?: DispositifId;
 }
 
-export const MailEventMongooseSchema = new Schema<MailEvent>(
-  {
-    templateName: { type: String, required: true },
-    email: { type: String, required: true },
-    langue: { type: String },
-    userId: { type: Schema.Types.ObjectId, ref: "User" },
-    dispositifId: { type: Schema.Types.ObjectId, ref: "Dispositif" },
-  },
-  {
-    collection: "mails",
-    timestamps: { createdAt: "created_at" },
-  },
-);
+export const MailEventMongooseSchema = zodSchema(MailEventSchema);
+MailEventMongooseSchema.set("collection", "mails");
+MailEventMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const MailEventModel = model<MailEvent>("MailEvent", MailEventMongooseSchema);
+export const MailEventModel = model<MailEvent>(
+  "MailEvent",
+  MailEventMongooseSchema as unknown as Schema<MailEvent>,
+);

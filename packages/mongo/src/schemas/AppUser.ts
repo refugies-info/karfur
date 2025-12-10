@@ -1,5 +1,6 @@
 import type { Languages } from "@refugies-info/api-types";
-import { type Document, model, Schema, type Types } from "mongoose";
+import { zodSchema } from "@zodyac/zod-mongoose";
+import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
 
 export const NotificationsSettingsZodSchema = z.object({
@@ -13,14 +14,13 @@ export const AppUserZodSchema = z.object({
   uid: z.string(),
   city: z.string().optional(),
   department: z.string().optional(),
-  selectedLanguage: z.string().optional(), // Typed as Languages in interface, string in Zod/DB usually fine
+  selectedLanguage: z.string().optional(),
   age: z.string().optional(),
   frenchLevel: z.string().optional(),
   expoPushToken: z.string().optional(),
   notificationsSettings: NotificationsSettingsZodSchema.optional(),
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),
-  // Timestamps true in original
 });
 
 export type AppUserType = z.infer<typeof AppUserZodSchema>;
@@ -48,31 +48,20 @@ export interface AppUser extends Document {
 
 export type AppUserId = AppUser["_id"] | AppUser["id"];
 
-const NotificationsSettingsSchema = new Schema<NotificationsSettings>(
-  {
-    global: { type: Boolean, required: true },
-    local: { type: Boolean, required: true },
-    demarches: { type: Boolean, required: true },
-    themes: { type: Map, of: Boolean, required: true },
-  },
-  { _id: false },
-);
+const AppUserSchema = zodSchema(AppUserZodSchema);
+AppUserSchema.path("uid").unique(true);
+AppUserSchema.set("collection", "appusers");
+AppUserSchema.set("timestamps", true);
 
-const AppUserSchema = new Schema<AppUser>(
-  {
-    uid: { type: String, required: true, unique: true },
-    city: { type: String },
-    department: { type: String },
-    selectedLanguage: { type: String },
-    age: { type: String },
-    frenchLevel: { type: String },
-    expoPushToken: { type: String },
-    notificationsSettings: { type: NotificationsSettingsSchema },
-  },
-  {
-    collection: "appusers",
-    timestamps: true,
-  },
-);
+// Configure sub-schema _id: false manually if needed, usually zodSchema generates sub-schemas.
+// We can access properties.
+// NotificationsSettings is generic object in Zod?
+// zod-mongoose treats embedded objects as subdocuments.
+// We want _id: false for notificationsSettings.
+// Accessing path:
+const nsPath = AppUserSchema.path("notificationsSettings") as any;
+if (nsPath && nsPath.schema) {
+  nsPath.schema.set("_id", false);
+}
 
-export const AppUserModel = model<AppUser>("AppUser", AppUserSchema);
+export const AppUserModel = model<AppUser>("AppUser", AppUserSchema as unknown as Schema<AppUser>);
