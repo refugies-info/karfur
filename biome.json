@@ -111,13 +111,5 @@
       "formatter": { "enabled": false },
       "css": { "parser": { "cssModules": true } }
     }
-  ],
-  "assist": {
-    "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
-  }
+  ]
 }
