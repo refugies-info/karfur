@@ -44,13 +44,13 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       ...pick(structure, [
         "acronyme",
         "status",
-        "picture",
         "created_at",
         "adminComments",
         "adminProgressionStatus",
         "adminPercentageProgressionStatus",
         "link",
       ]),
+      picture: structure.picture as any,
       _id: structure._id,
       nom: structure.nom || "",
       membres: structure.membres || [],
@@ -71,7 +71,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
     const users = await getUsersById(responsablesIDs as UserId[], {
       _id: 1,
       username: 1,
-      picture: 1,
+      picture: 1 as any,
       email: 1,
     });
     const responsables: Record<string, SimpleUser> = users.reduce(

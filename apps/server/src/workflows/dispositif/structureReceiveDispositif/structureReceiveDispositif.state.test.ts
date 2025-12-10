@@ -18,8 +18,8 @@ describe("structureReceiveDispositif", () => {
       ...fixtures.dispositif,
       status: DispositifStatus.WAITING_STRUCTURE,
     });
-    await StructureModel.create(fixtures.structure);
-    await UserModel.create(fixtures.user);
+    await StructureModel.create(fixtures.structure.toObject());
+    await UserModel.create(fixtures.user.toObject());
 
     // 2. Execute function
     await structureReceiveDispositif(dispositif._id.toString(), { accept: true }, fixtures.user);
@@ -44,8 +44,8 @@ describe("structureReceiveDispositif", () => {
       ...fixtures.demarche,
       status: DispositifStatus.WAITING_STRUCTURE,
     });
-    await StructureModel.create(fixtures.structure);
-    await UserModel.create(fixtures.user);
+    await StructureModel.create(fixtures.structure.toObject());
+    await UserModel.create(fixtures.user.toObject());
 
     // 2. Execute function
     await structureReceiveDispositif(dispositif._id.toString(), { accept: true }, fixtures.user);

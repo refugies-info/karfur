@@ -82,7 +82,9 @@ describe("registerUser", () => {
 
     jest
       .spyOn(usersRep, "createUser")
-      .mockImplementation(async (userData) => new UserModel({ ...fixtures.user, ...userData }));
+      .mockImplementation(
+        async (userData) => new UserModel({ ...fixtures.user.toObject(), ...userData }),
+      );
   });
 
   it("should create user", async () => {

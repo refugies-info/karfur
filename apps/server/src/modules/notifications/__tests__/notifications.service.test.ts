@@ -193,7 +193,9 @@ describe("sendDispositifNotifications", () => {
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
     getAppUsersBatchMock
-      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValueOnce(
+        targetUsers.map((t) => new AppUserModel(t).toObject({ flattenMaps: true }) as any),
+      )
       .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
@@ -373,7 +375,9 @@ describe("sendDemarcheNotifications", () => {
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
     getAppUsersBatchMock
-      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValueOnce(
+        targetUsers.map((t) => new AppUserModel(t).toObject({ flattenMaps: true }) as any),
+      )
       .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");

@@ -4,7 +4,8 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "lint": "eslint . --max-warnings 0",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.3",
     "@refugies-info/typescript-config": "workspace:*",
     "@types/node": "^20.11.19",
     "@types/password-hash": "^1.2.24",

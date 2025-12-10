@@ -1,7 +1,7 @@
 import { StructureStatus } from "@refugies-info/api-types";
-import { ObjectId, Structure } from "~/typegoose";
+import { ObjectId, type Structure, StructureModel } from "~/typegoose";
 
-export const structure: Structure = new Structure();
+export const structure: Structure = new StructureModel();
 
 structure._id = new ObjectId("6569c41c61b13ef31806fadb");
 structure.createur = new ObjectId("6569af9815c38bd134125ff3");
@@ -23,7 +23,7 @@ structure.mailsPublic = [];
 structure.disposAssociesLocalisation = [];
 structure.membres = [
   {
-    userId: "6569af9815c38bd134125ff3",
+    userId: new ObjectId("6569af9815c38bd134125ff3"),
     added_at: new Date("2023-12-01T14:25:27.089Z"),
   },
 ];

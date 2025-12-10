@@ -14,7 +14,7 @@ export interface Image extends ImageType {}
 
 export const ImageSchema = new Schema<Image>(
   {
-    secure_url: { type: String, required: true },
+    secure_url: { type: String, required: false },
     public_id: { type: String },
     imgId: { type: String },
   },

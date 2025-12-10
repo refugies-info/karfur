@@ -15,7 +15,7 @@ import { Need, type NeedId } from "./Need";
 import { Notification } from "./Notification";
 import type { Role } from "./Role";
 import { Snapshot, type SnapshotType } from "./Snapshot";
-import { Structure, type StructureId } from "./Structure";
+import type { Structure, StructureId } from "./Structure";
 import type { Theme, ThemeId, ThemeType } from "./Theme";
 import {
   type TraductionDiff,
@@ -53,9 +53,7 @@ export const LogModel = getModelForClass(Log);
 export const MailEventModel = getModelForClass(MailEvent);
 export const NeedModel = getModelForClass(Need);
 export const NotificationModel = getModelForClass(Notification);
-export { RoleModel } from "@refugies-info/mongo";
-export const StructureModel = getModelForClass(Structure);
-export { ThemeModel } from "@refugies-info/mongo";
+export { RoleModel, StructureModel, ThemeModel } from "@refugies-info/mongo";
 export const TraductionsModel = getModelForClass(Traductions);
 export { UserModel } from "@refugies-info/mongo";
 export const WidgetModel = getModelForClass(Widget);
@@ -71,7 +69,6 @@ export {
   Need,
   Notification,
   Snapshot,
-  Structure,
   Traductions,
   TraductionsStatus,
   Widget,
@@ -88,6 +85,7 @@ export type {
   NotificationsSettings,
   Role,
   SnapshotType,
+  Structure,
   StructureId,
   Theme,
   ThemeId,

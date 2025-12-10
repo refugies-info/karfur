@@ -23,7 +23,7 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       _id: item._id,
       nom: item.nom,
       acronyme: item.acronyme,
-      picture: item.picture,
+      picture: item.picture as any, // Typed as any to resolve Image vs Picture mismatch (imgId optional vs required)
       structureTypes: item.structureTypes,
       departments: item.departments,
       disposAssociesLocalisation: [],

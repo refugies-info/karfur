@@ -84,7 +84,6 @@ describe("getAllDispositifs", () => {
     fixtures.dispositif.adminComments = "comment";
     fixtures.dispositif.adminProgressionStatus = "comment";
     populatedDispositif.mainSponsor = {
-      //@ts-expect-error type mismatch
       _id: "id",
       nom: "sponsor",
       status: StructureStatus.ACTIVE,

@@ -10,7 +10,7 @@ export const getStructures = (userId: UserId, structures: Structure[]): UserStru
     return {
       _id: structure._id,
       nom: structure.nom,
-      picture: structure.picture,
+      picture: structure.picture as any,
       role: ["Responsable"],
     };
   });
