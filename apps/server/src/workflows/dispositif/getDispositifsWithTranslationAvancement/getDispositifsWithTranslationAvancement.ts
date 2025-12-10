@@ -7,6 +7,7 @@ import { isEmpty, some } from "lodash";
 import { countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { getActiveContents } from "~/modules/dispositif/dispositif.repository";
+import { getSectionsTranslated } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguage } from "~/modules/traductions/traductions.repository";
 import type { Dispositif } from "~/typegoose";
 import type { TranslationContent } from "~/typegoose/Dispositif";
@@ -31,7 +32,7 @@ const getNbWordsDone = (
       [].concat(
         ...traductions
           .filter((t) => (validation ? t.type === TraductionsType.VALIDATION : true))
-          .map((t) => t.sectionsTranslated),
+          .map((t) => getSectionsTranslated(t)),
       ),
     ),
   ];

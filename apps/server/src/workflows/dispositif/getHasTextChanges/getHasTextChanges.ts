@@ -5,7 +5,8 @@ import {
   getDispositifById,
   getDraftDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
-import { Traductions } from "~/typegoose";
+import { diffTraductions } from "~/modules/traductions/traductions.business";
+import type { Dispositif, Traductions } from "~/typegoose";
 
 export const getHasTextChanges = async (id: string): Promise<boolean> => {
   logger.info("[getHasTextChanges] called");
@@ -15,7 +16,7 @@ export const getHasTextChanges = async (id: string): Promise<boolean> => {
 
   if (!originalDispositif.hasDraftVersion) return false;
   const draftDispositif = await getDraftDispositifById(id, { hasDraftVersion: 1, translations: 1 });
-  const traductionDiff = Traductions.diff(
+  const traductionDiff = diffTraductions(
     originalDispositif.translations.fr,
     draftDispositif.translations.fr,
   );

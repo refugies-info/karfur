@@ -14,5 +14,6 @@ export * from "./schemas/Role";
 export * from "./schemas/Snapshot"; // New export
 export * from "./schemas/Structure";
 export * from "./schemas/Theme";
+export * from "./schemas/Traductions"; // New export
 export * from "./schemas/User";
 export * from "./schemas/Widget"; // New export

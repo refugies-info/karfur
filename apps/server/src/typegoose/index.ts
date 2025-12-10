@@ -2,6 +2,8 @@ import { getModelForClass, Severity, setGlobalOptions } from "@typegoose/typegoo
 
 setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
+import { DispositifStatus } from "@refugies-info/api-types";
+
 import type { AdminOptions, AdminOptionsId, AdminOptionsType } from "./AdminOptions";
 import type { AppUser, AppUserType, NotificationsSettings } from "./AppUser";
 import { Dispositif, type DispositifId } from "./Dispositif";
@@ -20,8 +22,9 @@ import type { Theme, ThemeId, ThemeType } from "./Theme";
 import {
   type TraductionDiff,
   type TraductionId,
-  Traductions,
+  type Traductions,
   TraductionsStatus,
+  TraductionsType,
 } from "./Traductions";
 import type { User, UserId } from "./User";
 import type { Widget, WidgetId, WidgetType } from "./Widget";
@@ -45,22 +48,26 @@ export const DispositifDraftModel = getModelForClass(Dispositif, {
 });
 // export const SnapshotModel = getModelForClass(Snapshot);
 // export const LogModel = getModelForClass(Log);
+// export const TraductionsModel = getModelForClass(Traductions);
 export {
   CloudinaryImageModel,
   ErrorModel,
   IndicatorModel,
   LangueModel,
+  LogModel,
   MailEventModel,
   NeedModel,
   NotificationModel,
   RoleModel,
+  SnapshotModel,
   StructureModel,
   ThemeModel,
+  TraductionsModel,
+  WidgetModel,
 } from "@refugies-info/mongo";
-export const TraductionsModel = getModelForClass(Traductions);
-export { LogModel, SnapshotModel, UserModel, WidgetModel } from "@refugies-info/mongo";
 
-export { Dispositif, Traductions, TraductionsStatus };
+export { Dispositif, DispositifStatus, TraductionsStatus, TraductionsType };
+export type { Traductions };
 
 export type {
   AdminOptions,

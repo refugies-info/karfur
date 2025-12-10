@@ -29,7 +29,7 @@ const getTranslationStatistics = ({
     logger.info("[getTranslationStatistics] get translations statistics");
     const noFacet = facets.length === 0;
     const stats: Statistics = {};
-    const trads = users.filter((user) => user.hasRole(RoleName.TRAD));
+    const trads = (users as any[]).filter((user) => user.hasRole(RoleName.TRAD));
     // nbTranslators
     if (noFacet || facets.includes("nbTranslators") || facets.includes("nbActiveTranslators")) {
       stats.nbTranslators = trads.length;
@@ -37,7 +37,7 @@ const getTranslationStatistics = ({
 
     // nbRedactors
     if (noFacet || facets.includes("nbRedactors")) {
-      const redactors = users.filter((user) => user.hasRole(RoleName.CONTRIB));
+      const redactors = (users as any[]).filter((user) => user.hasRole(RoleName.CONTRIB));
       stats.nbRedactors = redactors.length;
     }
 
@@ -61,16 +61,18 @@ const getTranslationStatistics = ({
     // nbActiveTranslators
     if (noFacet || facets.includes("nbActiveTranslators")) {
       const now = Date.now();
-      const activeTranslators = trads.filter(
+      const activeTranslators = (trads as any[]).filter(
         (user) =>
           user.hasRole(RoleName.TRAD) && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
       );
       const nbActiveTranslators = languages
-        .filter((ln) => ln.i18nCode !== "fr")
-        .map((language) => {
+        .filter((ln: any) => ln.i18nCode !== "fr")
+        .map((language: any) => {
           const languageId = language._id.toString();
           const count = activeTranslators.filter((user) =>
-            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId.toString()),
+            user.selectedLanguages
+              .map((l: any) => l._id.toString())
+              .includes(languageId.toString()),
           ).length;
           return { languageId, count };
         });

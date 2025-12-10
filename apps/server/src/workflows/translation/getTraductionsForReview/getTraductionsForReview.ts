@@ -1,4 +1,5 @@
 import type { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
+import { getTraductionUser } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguageAndDispositif } from "~/modules/traductions/traductions.repository";
 import type { DispositifId, User } from "~/typegoose";
 import { type Traductions, TraductionsType } from "~/typegoose/Traductions";
@@ -23,9 +24,9 @@ const getTraductionsForReview = async (
       {
         translated: trad.translated,
         validator: {
-          id: trad.getUser().id,
-          username: trad.getUser().username || trad.getUser().email,
-          picture: trad.getUser().picture as any,
+          id: getTraductionUser(trad).id,
+          username: getTraductionUser(trad).username || getTraductionUser(trad).email,
+          picture: getTraductionUser(trad).picture as any,
         },
         author: {
           id: currentUser.id,
@@ -53,9 +54,9 @@ const getTraductionsForReview = async (
       .map((trad) => ({
         translated: trad.translated,
         author: {
-          id: trad.getUser().id,
-          username: trad.getUser().username || trad.getUser().email,
-          picture: trad.getUser().picture as any,
+          id: getTraductionUser(trad).id,
+          username: getTraductionUser(trad).username || getTraductionUser(trad).email,
+          picture: getTraductionUser(trad).picture as any,
         },
         toReview: trad.toReview,
         toFinish: trad.toFinish || [],

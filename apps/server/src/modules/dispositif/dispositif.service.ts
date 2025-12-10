@@ -3,7 +3,6 @@ import {
   type CreateDispositifRequest,
   type DemarcheContent,
   type DispositifContent,
-  DispositifStatus,
   type Id,
   type InfoSections,
   type Languages,
@@ -12,7 +11,7 @@ import {
 } from "@refugies-info/api-types";
 import type { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import type { ProjectionType } from "mongoose";
+import { type ProjectionType, Schema } from "mongoose";
 import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
@@ -25,17 +24,26 @@ import {
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
+  computeTraductionFinished,
+  diffTraductions,
+} from "~/modules/traductions/traductions.business";
+import {
   type Dispositif,
+  DispositifDraftModel,
   type DispositifId,
+  DispositifModel,
+  DispositifStatus,
+  LogModel,
   ObjectId,
   type Structure,
-  Traductions,
+  type Traductions,
   TraductionsModel,
+  TraductionsStatus,
+  TraductionsType,
   type User,
   type UserId,
 } from "~/typegoose";
 import type { TranslationContent } from "~/typegoose/Dispositif";
-import { TraductionsType } from "~/typegoose/Traductions";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
@@ -205,7 +213,7 @@ const rebuildTranslations = async (
   /**
    * Calcul des changements qui doivent être revus en traduction
    */
-  const traductionDiff = Traductions.diff(translations.fr, translationContent);
+  const traductionDiff = diffTraductions(translations.fr, translationContent);
   logger.info("[updateDispositif] traduction changes ", traductionDiff);
 
   const newTranslations = cloneDeep(translations);
@@ -264,17 +272,18 @@ const rebuildTranslations = async (
       const translationsReviews = Object.entries(newTranslations)
         .filter(([locale]) => locale !== "fr")
         .map(([locale, value]) => {
-          const translation = new Traductions();
-          translation.dispositifId = dispositif._id;
-          translation.language = locale as Languages;
-          translation.translated = omit(value, ["created_at"]);
-          translation.timeSpent = 0;
-          translation.type = TraductionsType.VALIDATION;
-          translation.toReview = toReview;
-          translation.toReviewCache = toReview;
-          translation.userId = value.validatorId;
-          translation.finished = Traductions.computeFinished(dispositif, translation);
-          return translation;
+          const translation: Partial<Traductions> = {
+            dispositifId: dispositif._id,
+            language: locale as Languages,
+            translated: omit(value, ["created_at"]) as any,
+            timeSpent: 0,
+            type: TraductionsType.VALIDATION,
+            toReview: toReview,
+            toReviewCache: toReview,
+            userId: value.validatorId,
+          };
+          translation.finished = computeTraductionFinished(dispositif, translation as Traductions);
+          return translation as Traductions;
         });
       logger.info("translationsReviews", translationsReviews);
 

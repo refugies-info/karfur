@@ -1,7 +1,10 @@
+import {
+  computeTraductionFinished,
+  diffTraductions,
+} from "~/modules/traductions/traductions.business";
 import { ObjectId } from "~/typegoose";
 import type { RecursivePartial } from "~/types/interface";
 import type { TranslationContent } from "./Dispositif";
-import { Traductions } from "./Traductions";
 
 const trad: TranslationContent = {
   content: {
@@ -183,31 +186,31 @@ const trad_adminNameNull_en: TranslationContent = {
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
-      expect(Traductions.diff(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
+      expect(diffTraductions(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
     });
     it("should return added sections", () => {
-      expect(Traductions.diff(trad, trad_added)).toEqual({
+      expect(diffTraductions(trad, trad_added)).toEqual({
         added: ["content.next.my-uuid-v4-key-3.title", "content.next.my-uuid-v4-key-3.text"],
         removed: [],
         modified: [],
       });
     });
     it("should return removed sections", () => {
-      expect(Traductions.diff(trad, trad_removed)).toEqual({
+      expect(diffTraductions(trad, trad_removed)).toEqual({
         removed: ["content.next.my-uuid-v4-key-2.title", "content.next.my-uuid-v4-key-2.text"],
         added: [],
         modified: [],
       });
     });
     it("should return modified sections", () => {
-      expect(Traductions.diff(trad, trad_modified)).toEqual({
+      expect(diffTraductions(trad, trad_modified)).toEqual({
         modified: ["content.next.my-uuid-v4-key-2.title", "content.next.my-uuid-v4-key-2.text"],
         added: [],
         removed: [],
       });
     });
     it("should return modified, added and removed sections", () => {
-      expect(Traductions.diff(trad, trad_mixed)).toEqual({
+      expect(diffTraductions(trad, trad_mixed)).toEqual({
         modified: [
           "content.titreMarque",
           "content.next.my-uuid-v4-key-2.title",
@@ -221,7 +224,7 @@ describe("Traductions", () => {
       const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
       newTradAdded.content = { ...newTradAdded.content, administrationName: null };
       //@ts-expect-error because we don't need administrationName for this test
-      expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
+      expect(diffTraductions(trad_added_adminName, newTradAdded)).toEqual({
         modified: [],
         added: [],
         removed: [],
@@ -232,7 +235,7 @@ describe("Traductions", () => {
   describe("computeFinished", () => {
     it("should return true", () => {
       expect(
-        Traductions.computeFinished(
+        computeTraductionFinished(
           { translations: { fr: trad } } as any,
           { translated: trad } as any,
         ),
@@ -240,7 +243,7 @@ describe("Traductions", () => {
     });
     it("should return false", () => {
       expect(
-        Traductions.computeFinished(
+        computeTraductionFinished(
           { translations: { fr: trad } } as any,
           { translated: { content: {} } } as any,
         ),
@@ -248,7 +251,7 @@ describe("Traductions", () => {
     });
     it("should return false", () => {
       expect(
-        Traductions.computeFinished(
+        computeTraductionFinished(
           { translations: { fr: trad_complete } } as any,
           { translated: trad_avancement } as any,
         ),
@@ -256,7 +259,7 @@ describe("Traductions", () => {
     });
     it("should return true", () => {
       expect(
-        Traductions.computeFinished(
+        computeTraductionFinished(
           { translations: { fr: trad_adminNameNull } } as any,
           { translated: trad_adminNameNull_en } as any,
         ),

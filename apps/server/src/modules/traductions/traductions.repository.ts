@@ -1,10 +1,11 @@
 import type { Id, Languages } from "@refugies-info/api-types";
 import { uniq } from "lodash";
 import type { FilterQuery, ProjectionType } from "mongoose";
+import { computeTraductionFinished } from "~/modules/traductions/traductions.business";
 import {
   type Dispositif,
   type DispositifId,
-  Traductions,
+  type Traductions,
   TraductionsModel,
   type UserId,
 } from "~/typegoose";
@@ -65,7 +66,7 @@ const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Di
   const operations = traductions.map((traduction) => ({
     updateOne: {
       filter: { _id: traduction._id },
-      update: { $set: { finished: Traductions.computeFinished(dispositif, traduction) } },
+      update: { $set: { finished: computeTraductionFinished(dispositif, traduction) } },
     },
   }));
 
