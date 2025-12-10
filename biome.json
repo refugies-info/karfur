@@ -108,8 +108,7 @@
     {
       "includes": ["**/*.css", "**/*.scss"],
       "linter": { "enabled": false },
-      "formatter": { "enabled": false },
-      "css": { "parser": { "cssModules": true } }
+      "formatter": { "enabled": false }
     }
   ]
 }
