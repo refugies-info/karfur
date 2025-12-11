@@ -1,62 +1,75 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
-  "include": ["dependencies"],
-  "workspaces": {
-    ".": {
-      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"]
-    },
-    "apps/client": {
-      "entry": ["next-sitemap.config.js"],
-      "ignoreDependencies": [
-        "@tailwindcss/typography",
-        "bootstrap",
-        "cssnano",
-        "eslint-config-next",
-        "eslint-config-turbo",
-        "flag-icons",
-        "react-anchor-link-smooth-scroll",
-        "remixicon",
-        "sharp",
-        "tailwindcss",
-        "typescript-plugin-css-modules"
-      ]
-    },
-    "apps/mobile": {
-      "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
-      "ignoreDependencies": [
-        "@babel/preset-env",
-        "@babel/runtime",
-        "@react-native/assets-registry",
-        "@types/styled-components-react-native",
-        "papaparse",
-        "use-sync-external-store"
-      ]
-    },
-    "apps/server": {
-      "entry": ["src/server.ts"],
-      "ignoreDependencies": [
-        "@tsoa/runtime",
-        "eslint-config-turbo",
-        "path-to-regexp",
-        "ts-node",
-        "tsconfig-paths"
-      ],
-      "ignore": ["dist/**"]
-    },
-    "packages/api-types": {
-      "ignoreDependencies": ["eslint-config-turbo"]
-    },
-    "apps/storybook": {
-      "ignoreDependencies": [
-        "@tailwindcss/typography",
-        "eslint-config-next",
-        "eslint-config-turbo",
-        "eslint-plugin-storybook",
-        "tailwindcss"
-      ]
-    },
-    "packages/ui": {
-      "ignoreDependencies": ["eslint-config-turbo", "tailwindcss"]
-    }
-  }
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"include": ["dependencies"],
+	"workspaces": {
+		".": {
+			"entry": [
+				"scripts/*.js",
+				"postcss.config.mjs",
+				"tailwind.config.ts",
+				"migrations/**/*.ts"
+			]
+		},
+		"apps/client": {
+			"entry": ["next-sitemap.config.js"],
+			"ignoreDependencies": [
+				"@tailwindcss/typography",
+				"bootstrap",
+				"cssnano",
+				"eslint-config-next",
+				"eslint-config-turbo",
+				"flag-icons",
+				"react-anchor-link-smooth-scroll",
+				"remixicon",
+				"sharp",
+				"tailwindcss",
+				"typescript-plugin-css-modules"
+			]
+		},
+		"apps/mobile": {
+			"entry": [
+				"build-scripts/*.js",
+				"src/translations/scripts/*.js",
+				"src/utils/*.js"
+			],
+			"ignoreDependencies": [
+				"@babel/preset-env",
+				"@babel/runtime",
+				"@react-native/assets-registry",
+				"@types/styled-components-react-native",
+				"papaparse",
+				"use-sync-external-store"
+			]
+		},
+		"apps/server": {
+			"entry": [
+				"src/server.ts",
+				"src/controllers/**/*.ts",
+				"src/workflows/**/*.ts"
+			],
+			"ignoreDependencies": [
+				"@tsoa/runtime",
+				"eslint-config-turbo",
+				"path-to-regexp",
+				"ts-node",
+				"tsconfig-paths"
+			],
+			"ignore": ["dist/**"]
+		},
+		"packages/api-types": {
+			"ignoreDependencies": ["eslint-config-turbo"]
+		},
+		"apps/storybook": {
+			"ignoreDependencies": [
+				"@tailwindcss/typography",
+				"eslint-config-next",
+				"eslint-config-turbo",
+				"eslint-plugin-storybook",
+				"tailwindcss"
+			]
+		},
+		"packages/ui": {
+			"ignoreDependencies": ["eslint-config-turbo", "tailwindcss"]
+		}
+	}
 }
