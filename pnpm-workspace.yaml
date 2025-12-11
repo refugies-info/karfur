@@ -27,7 +27,7 @@ minimumReleaseAge: 10080
 trustPolicy: no-downgrade
 
 # Disable strict peer dependencies to allow installation with mismatched peers (React 19 vs older libs)
-strictPeerDependencies: false
+
 
 # Packages excluded from trustPolicy check. Use for verified packages that
 # trigger false positives (e.g., lost provenance attestation between versions).
