@@ -33,6 +33,12 @@ export interface MercisProps {
   dispositif: GetDispositifResponse;
 }
 
+function hasMerci(
+  dispositif: GetDispositifResponse,
+): dispositif is Extract<GetDispositifResponse, { merci: any }> {
+  return !!dispositif.merci;
+}
+
 const Mercis = ({ dispositif }: MercisProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslationWithRTL();
@@ -50,6 +56,8 @@ const Mercis = ({ dispositif }: MercisProps) => {
   }, []);
 
   const [state, merci] = useAsyncFn(async () => {
+    if (!hasMerci(dispositif)) return;
+
     if (hasThanked) {
       return deleteMerci(dispositif._id.toString()).then(() => {
         const newThanks = thanks.filter((d) => d !== dispositif._id.toString());
@@ -63,7 +71,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
             content: {
               ...dispositif,
               merci: newDispositifThanks,
-            } as unknown as GetDispositifResponse,
+            },
             locale: currentLanguage,
           }),
         );
@@ -78,7 +86,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
           content: {
             ...dispositif,
             merci: [...(dispositif.merci || []), { created_at: new Date() }],
-          } as unknown as GetDispositifResponse,
+          },
           locale: currentLanguage,
         }),
       );
