@@ -55,7 +55,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
         const newThanks = thanks.filter((d) => d !== dispositif._id.toString());
         setThanks(newThanks);
         AsyncStorage.setItem("THANKS", newThanks.join(","));
-        const newDispositifThanks = JSON.parse(JSON.stringify(dispositif.merci));
+        const newDispositifThanks = JSON.parse(JSON.stringify(dispositif.merci || []));
         newDispositifThanks.pop();
 
         dispatch(
@@ -63,7 +63,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
             content: {
               ...dispositif,
               merci: newDispositifThanks,
-            },
+            } as unknown as GetDispositifResponse,
             locale: currentLanguage,
           }),
         );
@@ -77,8 +77,8 @@ const Mercis = ({ dispositif }: MercisProps) => {
         setSelectedContentActionCreator({
           content: {
             ...dispositif,
-            merci: [...dispositif.merci, { created_at: new Date() }],
-          },
+            merci: [...(dispositif.merci || []), { created_at: new Date() }],
+          } as unknown as GetDispositifResponse,
           locale: currentLanguage,
         }),
       );
@@ -117,7 +117,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
                 loading={state.loading}
                 onPress={merci}
                 title={t("content_screen.nbThanks", {
-                  count: dispositif.merci.length,
+                  count: (dispositif.merci || []).length,
                 })}
               />
             </Columns>
