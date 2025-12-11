@@ -14,8 +14,16 @@ export const IndicatorSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type Indicator = z.infer<typeof IndicatorSchema> & Document;
-export type IndicatorId = Types.ObjectId;
+export type Indicator = z.infer<typeof IndicatorSchema> & Document<Types.ObjectId>;
+/**
+ * IndicatorId represents a unique identifier for an Indicator.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Indicator` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type IndicatorId = Types.ObjectId | string;
 
 export const IndicatorMongooseSchema = zodSchema(IndicatorSchema);
 IndicatorMongooseSchema.set("collection", "indicators");

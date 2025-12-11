@@ -1,6 +1,7 @@
 import type { GetAllStructuresResponse, Id, SimpleUser } from "@refugies-info/api-types";
 import type { User, UserId } from "@refugies-info/mongo";
 import pick from "lodash/pick";
+import { Types } from "mongoose";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
 import { getUsersById } from "~/modules/users/users.repository";
@@ -52,11 +53,24 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       picture: structure.picture as any,
       _id: structure._id,
       nom: structure.nom || "",
-      membres: structure.membres || [],
+      membres: (structure.membres || []).map((m) => {
+        const userId = m.userId || new Types.ObjectId();
+        return {
+          ...m,
+          userId,
+          added_at: m.added_at || new Date(),
+        };
+      }),
       nbMembres,
       nbFiches,
       dispositifsIds,
-      createur,
+      createur: structure.createur[0]
+        ? ({
+            ...structure.createur[0],
+            _id: structure.createur[0]._id.toString(),
+            roles: [],
+          } as SimpleUser)
+        : null,
       responsable: responsableId?.toString() || null,
     };
   });

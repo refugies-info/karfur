@@ -95,9 +95,11 @@ const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]): Re
     "Titre marque": dispositif.translations.fr.content.titreMarque || "",
     "Type de contenu": [dispositif.typeContenu],
     Lien: "https://refugies.info/fr/" + dispositif.typeContenu + "/" + dispositif._id,
-    "Thème principal": (dispositif.theme as Theme | undefined)?.short?.fr || "",
-    "Thème secondaire 1": (dispositif.secondaryThemes[0] as Theme | undefined)?.short?.fr || "",
-    "Thème secondaire 2": (dispositif.secondaryThemes[1] as Theme | undefined)?.short?.fr || "",
+    "Thème principal": (dispositif.theme as unknown as Theme | undefined)?.short?.fr || "",
+    "Thème secondaire 1":
+      (dispositif.secondaryThemes[0] as unknown as Theme | undefined)?.short?.fr || "",
+    "Thème secondaire 2":
+      (dispositif.secondaryThemes[1] as unknown as Theme | undefined)?.short?.fr || "",
     "Zone d'action": getLocation(dispositif.metadatas),
     "Age requis": getAge(dispositif.metadatas),
     "Public visé": dispositif.metadatas.public || [],
@@ -108,7 +110,7 @@ const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]): Re
     Engagement: getCommitment(dispositif.metadatas),
     Fréquence: getFrequency(dispositif.metadatas),
     "Nombre de vues": dispositif.nbVues || 0,
-    Besoins: dispositif.needs.map((need) => (need as Need).fr.text),
+    Besoins: dispositif.needs.map((need) => (need as unknown as Need).fr.text),
     ...getTranslatedTitles(dispositif, activeLanguages),
     "Date de dernière mise à jour": dispositif.updatedAt.toISOString(),
   };

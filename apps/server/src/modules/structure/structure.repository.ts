@@ -13,7 +13,7 @@ export const getStructureFromDB = async (
   fields: "all" | Record<string, number>,
 ): Promise<Structure> =>
   StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
-    .then((structure) => structure.toObject() as Structure)
+    .then((structure) => structure.toObject() as unknown as Structure)
     .catch((e) => {
       logger.error("[getStructureFromDB] error", e);
       throw e;
@@ -122,6 +122,21 @@ export const updateStructureMember = async (
     structure,
     { upsert: true, new: true },
   );
+
+export const addMemberToStructure = async (structureId: StructureId, userId: UserId) => {
+  return StructureModel.findOneAndUpdate(
+    { _id: structureId },
+    {
+      $addToSet: {
+        membres: {
+          userId: userId,
+          added_at: new Date(),
+        },
+      },
+    },
+    { upsert: true, new: true },
+  );
+};
 
 export const removeMemberFromStructure = async (structureId: StructureId, userId: UserId) => {
   return StructureModel.findOneAndUpdate(

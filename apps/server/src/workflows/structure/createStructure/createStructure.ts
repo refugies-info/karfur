@@ -1,4 +1,5 @@
 import type { PostStructureRequest } from "@refugies-info/api-types";
+
 import { ObjectId, type Structure } from "@refugies-info/mongo";
 import { pick } from "lodash";
 import logger from "~/logger";
@@ -24,12 +25,13 @@ export const createStructure = async (body: PostStructureRequest, userId: string
   };
 
   const newStructure = await createStructureInDB(structureToSave);
-  await log(newStructure._id, userId);
+  await log(newStructure._id, new ObjectId(userId));
 
   const structureId = newStructure._id;
   if (newStructure.membres && newStructure.membres.length > 0) {
     // if we create a structure there is maximum one membre
-    await addStructureForUsers([newStructure.membres[0].userId.toString()], structureId);
+
+    await addStructureForUsers([newStructure.membres[0].userId], structureId);
   }
   logger.info("[createStructure] successfully created structure with id", { structureId });
 

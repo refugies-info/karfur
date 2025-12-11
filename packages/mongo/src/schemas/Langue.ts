@@ -15,8 +15,16 @@ export const LangueZodSchema = z.object({
 });
 
 // TypeScript Interface inferred from Zod + Mongoose Document
-export type Langue = z.infer<typeof LangueZodSchema> & Document;
-export type LangueId = Langue["_id"];
+export type Langue = z.infer<typeof LangueZodSchema> & Document<Types.ObjectId>;
+/**
+ * LangueId represents a unique identifier for a Langue.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Langue` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type LangueId = Langue["_id"] | string;
 
 // Mongoose Schema
 const LangueSchema = zodSchema(LangueZodSchema);

@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { model, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 // MailEvent Schema
@@ -13,8 +13,17 @@ export const MailEventSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type MailEvent = z.infer<typeof MailEventSchema> & Document;
-export type MailEventId = Types.ObjectId;
+export type MailEvent = z.infer<typeof MailEventSchema> & Document<Types.ObjectId>;
+export type MailEventType = z.infer<typeof MailEventSchema>;
+/**
+ * MailEventId represents a unique identifier for a MailEvent.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `MailEvent` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type MailEventId = Types.ObjectId | string;
 
 export const MailEventMongooseSchema = zodSchema(MailEventSchema);
 MailEventMongooseSchema.set("collection", "mails");

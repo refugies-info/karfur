@@ -21,6 +21,6 @@ export const updateAppUser = async (
 
   return {
     text: "success",
-    data: updated,
+    data: updated as unknown as PostAppUserResponse,
   };
 };

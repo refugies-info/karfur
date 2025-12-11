@@ -9,7 +9,7 @@ export const getDispositifMainSponsor = (dispositif: Dispositif): Structure => {
     throw new MustBePopulatedError("mainSponsor");
   }
 
-  return dispositif.mainSponsor as Structure;
+  return dispositif.mainSponsor as unknown as Structure;
 };
 
 export const getDispositifDepartements = (dispositif: Dispositif) => {
@@ -21,7 +21,7 @@ export const getDispositifTheme = (dispositif: Dispositif): Theme | null => {
   if (!isDocument(dispositif.theme as any)) {
     throw new MustBePopulatedError("theme");
   }
-  return dispositif.theme as Theme;
+  return dispositif.theme as unknown as Theme;
 };
 
 export const getDispositifSecondaryThemes = (dispositif: Dispositif): Theme[] => {
@@ -29,7 +29,7 @@ export const getDispositifSecondaryThemes = (dispositif: Dispositif): Theme[] =>
   if (!isDocumentArray(dispositif.secondaryThemes as any)) {
     throw new MustBePopulatedError("secondaryThemes");
   }
-  return dispositif.secondaryThemes as Theme[];
+  return dispositif.secondaryThemes as unknown as Theme[];
 };
 
 export const getDispositifNeeds = (dispositif: Dispositif): Need[] => {
@@ -37,7 +37,7 @@ export const getDispositifNeeds = (dispositif: Dispositif): Need[] => {
   if (!isDocumentArray(dispositif.needs as any)) {
     throw new MustBePopulatedError("needs");
   }
-  return dispositif.needs as Need[];
+  return dispositif.needs as unknown as Need[];
 };
 
 export const getDispositifCreator = (dispositif: Dispositif): User | null => {
@@ -45,7 +45,7 @@ export const getDispositifCreator = (dispositif: Dispositif): User | null => {
   if (!isDocument(dispositif.creatorId as any)) {
     throw new MustBePopulatedError("creatorId");
   }
-  return dispositif.creatorId as User;
+  return dispositif.creatorId as unknown as User;
 };
 
 export const isDispositif = (dispositif: Dispositif): boolean => {

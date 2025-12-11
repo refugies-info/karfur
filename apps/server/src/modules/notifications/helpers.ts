@@ -79,7 +79,7 @@ export const parseDispositif = (dispositif: Dispositif): Requirements => {
     departments: getDispositifDepartements(dispositif) as any,
     age: getAge(dispositif),
     type: dispositif.typeContenu,
-    mainThemeId: (dispositif.theme as Theme)?._id?.toString() || null,
+    mainThemeId: (dispositif.theme as unknown as Theme)?._id?.toString() || null,
   };
 };
 

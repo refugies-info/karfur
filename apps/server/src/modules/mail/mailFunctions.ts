@@ -21,7 +21,7 @@ export const sendPublishedMailToCreator = async (
     status: 1,
   };
 
-  const creator = await getUserById(newDispo.creatorId._id, userNeededFields);
+  const creator = await getUserById(newDispo.creatorId, userNeededFields);
   if (creator.status === UserStatus.DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");

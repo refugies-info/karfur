@@ -1,12 +1,8 @@
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
-import type { Need } from "./Need";
-import type { Structure } from "./Structure";
-import type { Theme } from "./Theme";
-import type { User } from "./User";
 
 // --- Nested Types ---
 export type InfoSections = Record<string, InfoSection>;
@@ -152,11 +148,17 @@ export type TranslationContent = {
 // --- Main Dispositif Schema ---
 
 export const DispositifZodSchema = z.object({
-  typeContenu: z.nativeEnum(ContentType),
-  status: z.nativeEnum(DispositifStatus),
+  typeContenu: z.enum(
+    Object.values(ContentType) as [string, ...string[]],
+  ) as z.ZodType<ContentType>,
+  status: z.enum(
+    Object.values(DispositifStatus) as [string, ...string[]],
+  ) as z.ZodType<DispositifStatus>,
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),
-  origin: z.nativeEnum(DispositifOrigin).default(DispositifOrigin.RI),
+  origin: z
+    .enum(Object.values(DispositifOrigin) as [string, ...string[]])
+    .default(DispositifOrigin.RI) as z.ZodType<DispositifOrigin>,
 
   mainSponsor: zId("Structure").optional(),
   theme: zId("Theme").optional(),
@@ -197,43 +199,23 @@ export const DispositifZodSchema = z.object({
   avis: z.array(AvisZodSchema).optional(),
   webOnly: z.boolean().optional(),
 
-  translations: z.record(z.custom<TranslationContent>()).optional(),
+  translations: z.any().optional(),
   metadatas: MetadatasZodSchema.optional(),
   map: z.array(PoiZodSchema).nullable().optional(),
   administrationLogo: ImageZodSchema.nullable().optional(),
 });
 
-export type DispositifType = z.infer<typeof DispositifZodSchema>;
-export type DispositifId = Types.ObjectId;
+export type Dispositif = z.infer<typeof DispositifZodSchema> & Document<Types.ObjectId>;
 
-export interface Dispositif
-  extends Omit<
-      DispositifType,
-      | "mainSponsor"
-      | "theme"
-      | "secondaryThemes"
-      | "needs"
-      | "sponsors"
-      | "creatorId"
-      | "participants"
-      | "lastModificationAuthor"
-      | "publishedAtAuthor"
-      | "translations"
-      | "metadatas" // Omit metadata to override with interface if needed or just use inferred
-    >,
-    Document {
-  mainSponsor?: Structure | Types.ObjectId;
-  theme?: Theme | Types.ObjectId;
-  secondaryThemes?: (Theme | Types.ObjectId)[];
-  needs: (Need | Types.ObjectId)[];
-  sponsors?: (Structure | Types.ObjectId | Sponsor)[];
-  creatorId: User | Types.ObjectId;
-  participants: (User | Types.ObjectId)[];
-  lastModificationAuthor: User | Types.ObjectId;
-  publishedAtAuthor?: User | Types.ObjectId;
-  translations?: Record<string, TranslationContent>;
-  metadatas?: Metadatas;
-}
+/**
+ * DispositifId represents a unique identifier for a Dispositif.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Dispositif` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type DispositifId = Types.ObjectId | string;
 
 // --- Mongoose Schemas ---
 
@@ -266,12 +248,9 @@ if (adminLogoPath && adminLogoPath.schema) adminLogoPath.schema.set("_id", false
 // Note: suggestions, merci, avis, map (Poi) usually HAVE _ids in Mongoose default.
 // The original schema didn't set _id: false for them, so we keep defaults (TRUE).
 
-export const DispositifModel = model<Dispositif>(
-  "Dispositif",
-  DispositifMongooseSchema as unknown as Schema<Dispositif>,
-);
-export const DispositifDraftModel = model<Dispositif>(
+export const DispositifModel = model("Dispositif", DispositifMongooseSchema);
+export const DispositifDraftModel = model(
   "DispositifDraft",
-  DispositifMongooseSchema as unknown as Schema<Dispositif>,
+  DispositifMongooseSchema,
   "dispositifs_draft",
 );

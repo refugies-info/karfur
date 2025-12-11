@@ -1,8 +1,7 @@
-import type { ThemeGradientColors } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import { z } from "zod";
-import { type Image, ImageZodSchema } from "./generics";
+import { ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
 
 // Helper Zod Schemas
@@ -50,30 +49,23 @@ export interface ThemeColors {
 }
 
 // Interface
-export interface Theme extends Document {
-  name: Record<string, string>;
-  short: Record<string, string>;
-  mainColor: string;
-  colors: ThemeColors;
-  gradientColors: ThemeGradientColors;
-  position: number;
-  icon?: Image;
-  banner?: Image;
-  appBanner?: Image;
-  appImage?: Image;
-  shareImage?: Image;
-  dispositifImage?: Image;
-  demarcheImage?: Image;
-  notificationEmoji: string;
-  adminComments?: string;
-  created_at?: Date;
-  updatedAt?: Date;
 
-  // Methods
-  isActive(activeLanguages: Langue[]): boolean;
-}
+// Interface
+export type Theme = z.infer<typeof ThemeZodSchema> &
+  Document<Types.ObjectId> & {
+    // Methods
+    isActive(activeLanguages: Langue[]): boolean;
+  };
 
-export type ThemeId = Theme["_id"];
+/**
+ * ThemeId represents a unique identifier for a Theme.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Theme` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type ThemeId = Theme["_id"] | string;
 
 // Schema
 const ThemeMongooseSchema = zodSchema(ThemeZodSchema);

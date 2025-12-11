@@ -94,8 +94,9 @@ const updateAsMyself = async (
     const caregiverRole = roles.find((r) => r.nom === RoleName.CAREGIVER);
     if (request.partner === "") {
       // remove partner -> remove TS role
+
       const newRoles = userFromDB.roles.filter(
-        (r) => r && r._id && r._id.toString() !== caregiverRole._id.toString(),
+        (r) => r && r.toString() !== caregiverRole._id.toString(),
       );
       newUser.roles = newRoles;
     } else {
@@ -179,6 +180,7 @@ export const updateUser = async (
       username: newUser.username || userFromDB.username,
     },
     userFromDB,
+
     userReq._id,
   );
 

@@ -32,8 +32,16 @@ export const LogSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type Log = z.infer<typeof LogSchema> & Document;
-export type LogId = Types.ObjectId;
+export type Log = z.infer<typeof LogSchema> & Document<Types.ObjectId>;
+/**
+ * LogId represents a unique identifier for a Log.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Log` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type LogId = Types.ObjectId | string;
 
 const LogMongooseSchema = zodSchema(LogSchema);
 LogMongooseSchema.set("collection", "logs");

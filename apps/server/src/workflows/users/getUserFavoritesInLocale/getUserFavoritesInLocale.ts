@@ -3,7 +3,7 @@ import type {
   GetUserFavoritesResponse,
   Languages,
 } from "@refugies-info/api-types";
-import type { Dispositif, Favorite, User } from "@refugies-info/mongo";
+import { type Dispositif, type Favorite, ObjectId, type User } from "@refugies-info/mongo";
 import type { FilterQuery } from "mongoose";
 import logger from "~/logger";
 import { getSimpleDispositifs } from "~/modules/dispositif/dispositif.repository";
@@ -15,7 +15,11 @@ export const getUserFavoritesInLocale = async (
 ): ResponseWithData<GetUserFavoritesResponse[]> => {
   logger.info("[getUserFavoritesInLocale] received");
 
-  const favorites: Favorite[] = user.favorites;
+  const favorites: Favorite[] = (user.favorites || []).map((f) => ({
+    ...f,
+    dispositifId: new ObjectId(f.dispositifId.toString()),
+    created_at: f.created_at || new Date(),
+  }));
   if (favorites.length === 0) {
     return { text: "success", data: [] };
   }

@@ -20,7 +20,7 @@ const saveTranslation = (
   { timeSpent, language, dispositifId, translated, toFinish, toReview }: SaveTranslationRequest,
   user: User,
 ): Promise<Traductions> =>
-  getDispositifById(dispositifId).then(async (dispositif) => {
+  getDispositifById(new ObjectId(dispositifId)).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
     if (isDispositifTranslatedIn(dispositif, language) && !userIsExpert) {
       throw new Error(`Dispositif is already translated in ${language}`);
@@ -50,7 +50,7 @@ const saveTranslation = (
     if (user.isExpert()) {
       const otherValidation = await getOtherValidationForDispositif(
         language,
-        dispositifId,
+        new ObjectId(dispositifId),
         user._id,
       );
       if (otherValidation?.toReviewCache) {
@@ -64,10 +64,10 @@ const saveTranslation = (
 
     await updateIndicator(user._id, dispositifId, language, timeSpent, wordsCount);
 
-    await addNewParticipant(dispositifId, user._id);
+    await addNewParticipant(new ObjectId(dispositifId), user._id);
 
     return TraductionsModel.findOneAndUpdate(
-      { dispositifId, userId: user._id, language },
+      { dispositifId: new ObjectId(dispositifId), userId: user._id, language },
       { ..._traduction, $inc: { timeSpent } },
       {
         upsert: true,
@@ -75,7 +75,7 @@ const saveTranslation = (
         returnDocument: "after",
         returnNewDocument: true,
       },
-    ).then((trad) => trad.toObject());
+    );
   });
 
 export default saveTranslation;

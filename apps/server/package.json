@@ -16,7 +16,7 @@
     "gen:tsoa": "tsoa spec-and-routes",
     "lint": "biome lint .",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
+    "format": "biome check --write --linter-enabled=false .",
     "pr:prod": "gh pr create -B master-backend -H staging-backend -l release -t '[PROD-BACK] Release' -b ''",
     "pr:stg": "gh pr create -B staging-backend -H dev -l release -t '[STG-BACK] Release' -b ''",
     "start": "node dist/index.js",

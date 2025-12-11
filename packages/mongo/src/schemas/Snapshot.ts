@@ -14,13 +14,25 @@ export const SnapshotSchema = z.object({
   version: z.number().min(1),
   created_at: z.date().optional(),
   type: SnapshotTypeEnum,
-  from: z.nativeEnum(DispositifStatus),
-  to: z.nativeEnum(DispositifStatus),
-  data: z.record(z.unknown()), // DispositifContent | DemarcheContent
+  from: z.enum(
+    Object.values(DispositifStatus) as [string, ...string[]],
+  ) as z.ZodType<DispositifStatus>,
+  to: z.enum(
+    Object.values(DispositifStatus) as [string, ...string[]],
+  ) as z.ZodType<DispositifStatus>,
+  data: z.record(z.any()), // DispositifContent | DemarcheContent
 });
 
-export type Snapshot = z.infer<typeof SnapshotSchema> & Document;
-export type SnapshotId = Types.ObjectId;
+export type Snapshot = z.infer<typeof SnapshotSchema> & Document<Types.ObjectId>;
+/**
+ * SnapshotId represents a unique identifier for a Snapshot.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Snapshot` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type SnapshotId = Types.ObjectId | string;
 
 export const SnapshotMongooseSchema = zodSchema(SnapshotSchema);
 SnapshotMongooseSchema.set("collection", "snapshots");

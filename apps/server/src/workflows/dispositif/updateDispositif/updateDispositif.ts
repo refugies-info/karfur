@@ -54,7 +54,7 @@ const buildDispositifContent = (
   return {
     content,
     created_at: new Date(),
-    validatorId: oldDispositif.creatorId._id,
+    validatorId: oldDispositif.creatorId as ObjectId,
   };
 };
 
@@ -160,8 +160,9 @@ export const updateDispositif = async (
     data: {
       id: newDispositif._id,
       mainSponsor:
-        getDispositifMainSponsor(newDispositif)?._id.toString() ||
-        (newDispositif.mainSponsor ? newDispositif.mainSponsor.toString() : null),
+        (newDispositif.mainSponsor as any)?._id?.toString() ||
+        newDispositif.mainSponsor?.toString() ||
+        null,
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
       hasDraftVersion: needsDraftVersion || !!draftOldDispositif,

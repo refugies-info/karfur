@@ -4,7 +4,7 @@ import { z } from "zod";
 export class ObjectId extends Types.ObjectId {}
 
 export type Ref<T> = T | Types.ObjectId | string;
-export type DocumentType<T> = T & Document;
+export type DocumentType<T> = T & Document<Types.ObjectId>;
 
 export function isDocument(doc: any): doc is Document {
   return doc instanceof Types.ObjectId === false && doc?._id;

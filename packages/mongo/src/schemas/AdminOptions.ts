@@ -5,12 +5,12 @@ import { z } from "zod";
 // AdminOptions Schema
 export const AdminOptionsSchema = z.object({
   key: z.string(),
-  value: z.unknown(),
+  value: z.any(),
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),
 });
 
-export type AdminOptions = z.infer<typeof AdminOptionsSchema> & Document;
+export type AdminOptions = z.infer<typeof AdminOptionsSchema> & Document<Types.ObjectId>;
 
 export const AdminOptionsMongooseSchema = zodSchema(AdminOptionsSchema);
 AdminOptionsMongooseSchema.path("key").unique(true);

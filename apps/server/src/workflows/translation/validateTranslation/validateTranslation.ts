@@ -9,7 +9,6 @@ import {
   DispositifModel,
   ErrorModel,
   type Traductions,
-  type UserId,
 } from "@refugies-info/mongo";
 import { cloneDeep, set } from "lodash";
 import logger from "~/logger";
@@ -67,9 +66,10 @@ const validateTranslation = (
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
         getLanguageByCode(language).then((langue) =>
-          log(dispositif._id, translation.userId as UserId, langue._id),
+          log(dispositif._id, translation.userId, langue._id),
         ),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
+
         isFirstValidation
           ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
               logger.error("[validateTranslations] error while sending notifications", error);

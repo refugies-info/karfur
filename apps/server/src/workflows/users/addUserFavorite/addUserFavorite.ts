@@ -17,6 +17,7 @@ export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest):
     dispositifId: new ObjectId(body.dispositifId),
     created_at: new Date(),
   };
-  await addFavoriteInDB(user._id, newFavorite);
+
+  await addFavoriteInDB(user._id as any, newFavorite);
   return { text: "success" };
 };

@@ -116,7 +116,7 @@ export const registerUser = async (data: RegisterUser) => {
 export const deleteUser = async (user: User) => {
   if (user.structures) {
     await Promise.all(
-      user.structures?.map((structure) => removeMemberFromStructure(structure._id, user._id)),
+      user.structures?.map((structure) => removeMemberFromStructure(structure, user._id)),
     );
   }
 

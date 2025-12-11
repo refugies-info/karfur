@@ -1,9 +1,8 @@
 import { StructureStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import { type Image, ImageZodSchema } from "./generics";
-import type { User } from "./User";
+import { ImageZodSchema } from "./generics";
 
 // --- Zod Schemas ---
 
@@ -11,6 +10,8 @@ export const MembreZodSchema = z.object({
   userId: zId("User"),
   added_at: z.date(),
 });
+
+export type Membre = z.infer<typeof MembreZodSchema>;
 
 export const DetailedOpeningHoursZodSchema = z.object({
   day: z.string(),
@@ -41,7 +42,9 @@ export const StructureZodSchema = z.object({
   phone_contact: z.string().optional(),
   siren: z.string().optional(),
   siret: z.string().optional(),
-  status: z.nativeEnum(StructureStatus).optional(),
+  status: z.enum(Object.values(StructureStatus) as [string, ...string[]]).optional() as z.ZodType<
+    StructureStatus | undefined
+  >,
   picture: ImageZodSchema.optional(),
   structureTypes: z.array(z.string()).optional(),
   websites: z.array(z.string()).optional(),
@@ -65,69 +68,17 @@ export const StructureZodSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type StructureType = z.infer<typeof StructureZodSchema>;
+export type Structure = z.infer<typeof StructureZodSchema> & Document<Types.ObjectId>;
 
-// --- Interfaces ---
-
-export interface Membre {
-  userId: Types.ObjectId | User;
-  added_at: Date;
-}
-
-export interface DetailedOpeningHours {
-  day: string;
-  from0?: string;
-  to0?: string;
-  from1?: string;
-  to1?: string;
-}
-
-export interface OpeningHours {
-  details: DetailedOpeningHours[];
-  noPublic?: boolean;
-  precisions?: string;
-}
-
-export interface Structure extends Document {
-  membres?: Membre[];
-  acronyme?: string;
-  administrateur?: Types.ObjectId | User;
-  adresse?: string;
-  authorBelongs?: boolean;
-  contact?: string;
-  createur: Types.ObjectId | User;
-  link?: string;
-  mail_contact?: string;
-  mail_generique?: string;
-  nom: string;
-  phone_contact?: string;
-  siren?: string;
-  siret?: string;
-  status?: StructureStatus;
-  picture?: Image;
-  structureTypes?: string[];
-  websites?: string[];
-  facebook?: string;
-  linkedin?: string;
-  twitter?: string;
-  activities?: string[];
-  departments?: string[];
-  phonesPublic?: string[];
-  mailsPublic?: string[];
-  adressPublic?: string;
-  openingHours?: OpeningHours;
-  onlyWithRdv?: boolean;
-  description?: string;
-  hasResponsibleSeenNotification?: boolean;
-  disposAssociesLocalisation?: string[];
-  adminComments?: string;
-  adminProgressionStatus?: string;
-  adminPercentageProgressionStatus?: string;
-  created_at?: Date;
-  updatedAt?: Date;
-}
-
-export type StructureId = Structure["_id"];
+/**
+ * StructureId represents a unique identifier for a Structure.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Structure` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type StructureId = Structure["_id"] | string;
 
 // --- Schemas ---
 
@@ -149,7 +100,4 @@ if (openingHoursPath && openingHoursPath.schema) {
   if (detailsPath && detailsPath.schema) detailsPath.schema.set("_id", false);
 }
 
-export const StructureModel = model<Structure>(
-  "Structure",
-  StructureMongooseSchema as unknown as Schema<Structure>,
-);
+export const StructureModel = model("Structure", StructureMongooseSchema);

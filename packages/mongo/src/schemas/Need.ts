@@ -31,8 +31,16 @@ export const NeedSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type Need = z.infer<typeof NeedSchema> & Document;
-export type NeedId = Types.ObjectId;
+export type Need = z.infer<typeof NeedSchema> & Document<Types.ObjectId>;
+/**
+ * NeedId represents a unique identifier for a Need.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Need` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type NeedId = Types.ObjectId | string;
 
 export const NeedMongooseSchema = zodSchema(NeedSchema);
 NeedMongooseSchema.set("collection", "needs");

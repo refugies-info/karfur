@@ -4,7 +4,7 @@ import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
 export const RoleZodSchema = z.object({
-  nom: z.nativeEnum(RoleName),
+  nom: z.enum(Object.values(RoleName) as [string, ...string[]]) as z.ZodType<RoleName>,
   nomPublique: z.string().optional(),
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),
@@ -12,9 +12,17 @@ export const RoleZodSchema = z.object({
 
 export type RoleType = z.infer<typeof RoleZodSchema>;
 
-export type Role = z.infer<typeof RoleZodSchema> & Document;
+export type Role = z.infer<typeof RoleZodSchema> & Document<Types.ObjectId>;
 
-export type RoleId = Role["_id"] | Role["id"];
+/**
+ * RoleId represents a unique identifier for a Role.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `Role` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type RoleId = Types.ObjectId | string;
 
 export const RoleMongooseSchema = zodSchema(RoleZodSchema);
 RoleMongooseSchema.path("nom").unique(true);

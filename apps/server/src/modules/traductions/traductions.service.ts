@@ -81,7 +81,7 @@ export const addFeedbackToAirtable = async (
       "Qualité générale": feedbackRequest.note || null,
       Commentaire: feedbackRequest.comment || "",
       Lien: `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
-      Thème: (dispositif.theme as Theme)?.short.fr || "",
+      Thème: (dispositif.theme as unknown as Theme)?.short.fr || "",
       "Email bénévole": translator.email,
     },
   };

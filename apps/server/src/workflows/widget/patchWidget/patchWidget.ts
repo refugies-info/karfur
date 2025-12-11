@@ -19,7 +19,7 @@ export const patchWidget = async (
     department: body.department,
   };
 
-  const dbWidget = await updateWidget(id, widget);
+  const dbWidget = await updateWidget(new ObjectId(id), widget);
 
   return {
     text: "success",

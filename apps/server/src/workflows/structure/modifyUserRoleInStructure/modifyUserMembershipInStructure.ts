@@ -1,10 +1,11 @@
 import type { PatchStructureRolesRequest } from "@refugies-info/api-types";
-import type { User } from "@refugies-info/mongo";
+import { ObjectId, type User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { sendNewMemberMailService } from "~/modules/mail/mail.service";
 import {
+  addMemberToStructure,
   getStructureFromDB,
-  updateStructureMember,
+  removeMemberFromStructure,
 } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { getUserById } from "~/modules/users/users.repository";
@@ -30,33 +31,18 @@ export const modifyUserMembershipInStructure = async (
   logger.info("[modifyUserMembershipInStructure] updating stucture", {
     id,
   });
-  let structure;
-
   if (action === "delete") {
-    structure = {
-      _id: id,
-      $pull: { membres: { userId: membreId } },
-    };
+    await removeMemberFromStructure(id, membreId);
   } else if (action === "create") {
     // FIXME: if create and already in members -> bug
-    structure = {
-      _id: id,
-      $addToSet: {
-        membres: {
-          userId: membreId,
-          added_at: new Date(),
-        },
-      },
-    };
+    await addMemberToStructure(id, membreId);
   } else {
     throw new Error("ERREUR");
   }
-  const membreIdToSend = action === "create" ? null : membreId;
-  await updateStructureMember(membreIdToSend, structure);
 
-  await log(action, membreId, id, user._id);
+  await log(action, new ObjectId(membreId), new ObjectId(id), user._id);
 
-  const structureData = await getStructureFromDB(structure._id, { nom: 1, status: 1 });
+  const structureData = await getStructureFromDB(id, { nom: 1, status: 1 });
   if (action === "create") {
     const user = await getUserById(membreId, { email: 1, firstName: 1, roles: 1 });
     if (!user || !structureData) {
@@ -74,11 +60,11 @@ export const modifyUserMembershipInStructure = async (
   // if delete, remove role and structure in corresponding user
   // if modify no need to update the user since he was already in the structure
   if (action === "delete") {
-    await removeStructureOfUser(membreId, structure._id);
+    await removeStructureOfUser(new ObjectId(membreId), new ObjectId(id));
   } else if (action === "create" && structureData.status !== "Supprimé") {
     // Ne pas ajouter la structure à l'utilisateur si celle-ci
     // est supprimée.
-    await addStructureForUsers([membreId], id);
+    await addStructureForUsers([new ObjectId(membreId)], id);
   }
 
   return { text: "success" };

@@ -4,7 +4,7 @@ import jwt from "jwt-simple";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import passwordHash from "password-hash";
 import { z } from "zod";
-import { type Image, ImageZodSchema } from "./generics";
+import { ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
 import type { Role } from "./Role";
 
@@ -25,7 +25,9 @@ export const UserZodSchema = z.object({
   roles: z.array(zId("Role")).optional(),
   selectedLanguages: z.array(zId("Langue")).optional(),
   contributions: z.array(zId("Dispositif")).optional(),
-  status: z.nativeEnum(UserStatus).optional(),
+  status: z.enum(Object.values(UserStatus) as [string, ...string[]]).optional() as z.ZodType<
+    UserStatus | undefined
+  >,
   favorites: z.array(FavoriteZodSchema).optional(),
   structures: z.array(zId("Structure")).optional(),
   last_connected: z.date().optional(),
@@ -46,43 +48,29 @@ export interface Favorite {
   created_at: Date;
 }
 
-export interface User extends Document {
-  username?: string;
-  password?: string;
-  email: string;
-  firstName?: string;
-  phone?: string;
-  description?: string;
-  picture?: Image;
-  roles?: (Role | Types.ObjectId)[];
-  selectedLanguages?: (Langue | Types.ObjectId)[];
-  contributions?: Types.ObjectId[];
-  status?: UserStatus;
-  favorites?: Favorite[];
-  structures?: Types.ObjectId[];
-  last_connected?: Date;
-  authy_id?: string;
-  reset_password_token?: string;
-  reset_password_expires?: Date;
-  adminComments?: string;
-  partner?: string;
-  departments?: string[];
-  created_at?: Date;
-  mfaCode?: string;
+export type User = z.infer<typeof UserZodSchema> &
+  Document<Types.ObjectId> & {
+    // Methods
+    authenticate(password: string): boolean;
+    getToken(): string;
+    hasRole(roleName: RoleName): boolean;
+    isAdmin(): boolean;
+    isExpert(): boolean;
+    getPlateformeRoles(): RoleName[];
+    getStructures(): Types.ObjectId[];
+    getSelectedLanguages(): Langue[];
+    getSelectedLanguagesButFrench(): Langue[];
+  };
 
-  // Methods
-  authenticate(password: string): boolean;
-  getToken(): string;
-  hasRole(roleName: RoleName): boolean;
-  isAdmin(): boolean;
-  isExpert(): boolean;
-  getPlateformeRoles(): RoleName[];
-  getStructures(): Types.ObjectId[];
-  getSelectedLanguages(): Langue[];
-  getSelectedLanguagesButFrench(): Langue[];
-}
-
-export type UserId = Types.ObjectId;
+/**
+ * UserId represents a unique identifier for a User.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `User` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type UserId = Types.ObjectId | string;
 
 const UserMongooseSchema = zodSchema(UserZodSchema);
 UserMongooseSchema.set("collection", "users");

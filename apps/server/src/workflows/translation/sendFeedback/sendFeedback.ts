@@ -1,12 +1,12 @@
 import type { SendFeedbackRequest } from "@refugies-info/api-types";
-import type { User } from "@refugies-info/mongo";
+import { ObjectId, type User } from "@refugies-info/mongo";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { addFeedbackToAirtable } from "~/modules/traductions/traductions.service";
 import { getUserById } from "~/modules/users/users.repository";
 
 const sendFeedback = async (body: SendFeedbackRequest, user: User): Promise<void> => {
   const dispositif = await getDispositifById(
-    body.contentId,
+    new ObjectId(body.contentId),
     { translations: 1, theme: 1, typeContenu: 1 },
     "theme",
   );

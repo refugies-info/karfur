@@ -9,6 +9,8 @@ export const NotificationsSettingsZodSchema = z.object({
   themes: z.record(z.boolean()),
 });
 
+export type NotificationsSettings = z.infer<typeof NotificationsSettingsZodSchema>;
+
 export const AppUserZodSchema = z.object({
   uid: z.string(),
   city: z.string().optional(),
@@ -22,8 +24,17 @@ export const AppUserZodSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type AppUser = z.infer<typeof AppUserZodSchema> & Document;
-export type AppUserId = AppUser["_id"];
+export type AppUser = z.infer<typeof AppUserZodSchema> & Document<Types.ObjectId>;
+export type AppUserType = z.infer<typeof AppUserZodSchema>;
+/**
+ * AppUserId represents a unique identifier for an AppUser.
+ *
+ * Rationale for `| string` union:
+ * 1. **API Compatibility**: IDs received from frontend/API (URL params, JSON bodies) are strings.
+ * 2. **Flexibility**: Allows service functions to accept raw strings without forcing immediate `new ObjectId()` casting at the controller layer.
+ * 3. **Note**: The Mongoose `AppUser` document strictly uses `Types.ObjectId` for its `_id` field.
+ */
+export type AppUserId = AppUser["_id"] | string;
 
 const AppUserSchema = zodSchema(AppUserZodSchema);
 AppUserSchema.path("uid").unique(true);

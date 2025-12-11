@@ -79,9 +79,11 @@ export const formatForAlgolia = (
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
-      theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
+      theme: {
+        _id: (dispositif.theme as unknown as Theme)?._id || dispositif.theme || "",
+      } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
       secondaryThemes: (dispositif.secondaryThemes || []).map((t) => ({
-        _id: (t as Theme)?._id || t,
+        _id: (t as unknown as Theme)?._id || t,
       })) as ThemeId[], // TODO: revert to keeping only id (change on mobile app too)
       needs: dispositif.needs as NeedId[],
       nbVues: dispositif.nbVues,
@@ -98,7 +100,7 @@ export const formatForAlgolia = (
     value = {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
-      theme: { _id: (need.theme as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
+      theme: { _id: (need.theme as unknown as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
       typeContenu: "besoin",
       priority: 20,
       webOnly: false,

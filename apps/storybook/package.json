@@ -9,7 +9,7 @@
     "storybook": "storybook dev -p 6006 --debug-webpack",
     "storybook:publish": "dotenv-run-script chromatic",
     "lint": "biome lint .",
-    "format": "biome format --write ."
+    "format": "biome check --write --linter-enabled=false ."
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",

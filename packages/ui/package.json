@@ -22,7 +22,7 @@
     "dev": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css --watch",
     "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts",
     "lint": "biome lint .",
-    "format": "biome format --write ."
+    "format": "biome check --write --linter-enabled=false ."
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
