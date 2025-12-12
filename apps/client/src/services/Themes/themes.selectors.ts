@@ -14,7 +14,9 @@ export const allThemesSelector = createSelector(
 
 export const themeSelector = (themeId: Id | undefined) => (state: RootState) => {
   if (!themeId) return null;
-  const theme = state.themes.activeThemes.find((theme) => theme._id === themeId);
+  const theme =
+    state.themes.activeThemes.find((theme) => theme._id === themeId) ||
+    state.themes.inactiveThemes.find((theme) => theme._id === themeId);
 
   return theme || null;
 };
@@ -24,7 +26,11 @@ export const secondaryThemesSelector =
   (state: RootState): GetThemeResponse[] => {
     if (!themeIds) return [];
     const themes = themeIds
-      .map((themeId) => state.themes.activeThemes.find((theme) => theme._id === themeId))
+      .map(
+        (themeId) =>
+          state.themes.activeThemes.find((theme) => theme._id === themeId) ||
+          state.themes.inactiveThemes.find((theme) => theme._id === themeId),
+      )
       .filter((t) => t !== undefined) as GetThemeResponse[];
 
     return themes;
