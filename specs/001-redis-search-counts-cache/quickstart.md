@@ -611,7 +611,7 @@ The API route is already implemented in the codebase. It provides:
 - Supports all query parameters from the search-helpers
 - Returns structured counts for UI filtering
 - Handles method validation (GET only)
-- Can be disabled via `DISABLE_SEARCH_COUNTS` environment variable
+- Can be disabled via `NEXT_PUBLIC_DISABLE_SEARCH_COUNTS` environment variable
 
 **Next Steps for Caching Integration**:
 
