@@ -98,7 +98,7 @@ const Filter = ({
 
   const { isMobile, isTablet } = useWindowSize();
 
-  const showCounts = process.env.DISABLE_SEARCH_COUNTS !== "true";
+  const showCounts = process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS !== "true";
 
   const processedMenuItems = useMemo(() => {
     if (!menuItems) return [];
@@ -363,11 +363,11 @@ const FilterCheckboxes = ({
 
         const labelText = currentmenu.translateOptions ? t(option.value as any) : option.value;
 
-        const ariaLabel = `${labelText} ${
+        const ariaLabel = `${labelText}${
           showCounts
             ? isDisabled
-              ? `- ${t("Recherche.tooltipAucuneFicheCorrespondante")}`
-              : `- ${t("Recherche.relatedSheets", { count: option.count || 0 })}`
+              ? ` - ${t("Recherche.tooltipAucuneFicheCorrespondante")}`
+              : ` - ${t("Recherche.relatedSheets", { count: option.count || 0 })}`
             : ""
         }`;
 
