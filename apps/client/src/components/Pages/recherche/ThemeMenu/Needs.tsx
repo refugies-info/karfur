@@ -13,7 +13,7 @@ import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDi
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
@@ -26,7 +26,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const { t } = useTranslation();
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();

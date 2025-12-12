@@ -16,7 +16,7 @@ import { getRelativeTimeString } from "~/lib/getRelativeDate";
 import { getTheme } from "~/lib/getTheme";
 import { getPath } from "~/routes";
 import styles from "~/scss/components/contentCard.module.scss";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import { NewThemeBadge } from "../NewThemeBadge";
 
 interface Props {
@@ -30,7 +30,7 @@ interface Props {
 const DispositifCard = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const isDispositif = useMemo(
     () => props.dispositif.typeContenu === ContentType.DISPOSITIF,
     [props.dispositif.typeContenu],

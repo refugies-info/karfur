@@ -10,15 +10,15 @@ import { Event } from "~/lib/tracking";
 import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import {
+  allThemesSelector,
   secondaryThemesSelector,
   themeSelector,
-  themesSelector,
 } from "~/services/Themes/themes.selectors";
 
 const LinkedThemes = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
   const theme = useSelector(themeSelector(dispositif?.theme));
   const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
@@ -53,10 +53,11 @@ const LinkedThemes = ({ className }: { className?: string }) => {
       {Array.isArray(needs) &&
         needs.map((need, i) => {
           const theme = themes.find((t) => t._id === need.theme._id);
+          if (!theme) return null;
           return (
             <li key={i}>
               <SearchThemeButton
-                theme={theme!}
+                theme={theme}
                 href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
                 value={need[locale]?.text || need.fr.text}
                 onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
