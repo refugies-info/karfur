@@ -1,4 +1,4 @@
-import {
+import type {
   AppUserRequest,
   GetContentsForAppRequest,
   GetContentsForAppResponse,
@@ -16,7 +16,7 @@ import {
 import Constants from "expo-constants";
 import ReactNativeBlobUtil from "react-native-blob-util";
 
-import { makeApiRequest, ResponseWith } from "~/hooks/useApi";
+import { makeApiRequest, type ResponseWith } from "~/hooks/useApi";
 import { logger } from "~/logger";
 import { apiCaller, dbURL, headers } from "./ConfigAPI";
 
@@ -26,10 +26,14 @@ export const getLanguages = (): Promise<GetLanguagesResponse[]> =>
   );
 
 export const getNeeds = () =>
-  makeApiRequest<null, ResponseWith<GetNeedResponse[]>>("/needs", null).then((response) => response.data);
+  makeApiRequest<null, ResponseWith<GetNeedResponse[]>>("/needs", null).then(
+    (response) => response.data,
+  );
 
 export const getThemes = () =>
-  makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then((response) => response.data);
+  makeApiRequest<null, ResponseWith<GetThemeResponse[]>>("/themes", null).then(
+    (response) => response.data,
+  );
 
 export const getCitiesFromGeoAPI = (text: string) =>
   apiCaller.get(`https://data.geopf.fr/geocodage/search?q=${text}&type=municipality`);
@@ -37,14 +41,18 @@ export const getCitiesFromGeoAPI = (text: string) =>
 export const getPlaceFromLocationFromGeoAPI = (longitude: number, latitude: number) =>
   apiCaller.get(`https://data.geopf.fr/geocodage/reverse?lon=${longitude}&lat=${latitude}`);
 
-export const getContentsForApp = (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> =>
+export const getContentsForApp = (
+  req: GetContentsForAppRequest,
+): Promise<GetContentsForAppResponse> =>
   makeApiRequest<GetContentsForAppRequest, ResponseWith<GetContentsForAppResponse>>(
     "/dispositifs/getContentsForApp",
     req,
     "GET",
   ).then((response) => response.data);
 
-export const getNbContents = (req: GetContentsForAppRequest): Promise<GetNbContentsForCountyResponse> =>
+export const getNbContents = (
+  req: GetContentsForAppRequest,
+): Promise<GetNbContentsForCountyResponse> =>
   makeApiRequest<GetContentsForAppRequest, ResponseWith<GetNbContentsForCountyResponse>>(
     "/dispositifs/getNbContentsForCounty",
     req,
@@ -69,9 +77,11 @@ export const getContentById = ({
 export const updateNbVuesOrFavoritesOnContent = (contentId: string, type: ViewsType) =>
   makeApiRequest(`/dispositifs/${contentId}/views`, { types: [type] }, "POST");
 
-export const addMerci = (contentId: string) => makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "PUT");
+export const addMerci = (contentId: string) =>
+  makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "PUT");
 
-export const deleteMerci = (contentId: string) => makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "DELETE");
+export const deleteMerci = (contentId: string) =>
+  makeApiRequest(`/dispositifs/${contentId}/merci`, {}, "DELETE");
 
 // FIXME Return type
 // export const addNeedView = (id: string) => apiCaller.post("/needs/views", id);

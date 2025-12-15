@@ -3,7 +3,7 @@ import { lastDemarches, lastDispositifs } from "~/__fixtures__/getDispositifs";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { setupGoogleMock } from "~/__mocks__/react-google-autocomplete";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
-import index, { Props } from "../pages/index";
+import index, { type Props } from "../pages/index";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

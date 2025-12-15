@@ -1,4 +1,9 @@
-import { ContentType, GetRegionStatisticsResponse, GetStatisticsResponse, Id } from "@refugies-info/api-types";
+import {
+  ContentType,
+  type GetRegionStatisticsResponse,
+  type GetStatisticsResponse,
+  type Id,
+} from "@refugies-info/api-types";
 import find from "lodash/find";
 import moment from "moment";
 import "moment/locale/fr";
@@ -38,7 +43,9 @@ const Dashboard = (props: Props) => {
     [key: string]: number;
   }>({});
   const [nbTraductors, setNbTraductors] = useState(0);
-  const [figuresByRegion, setFiguresByRegion] = useState<GetRegionStatisticsResponse["regionFigures"]>([]);
+  const [figuresByRegion, setFiguresByRegion] = useState<
+    GetRegionStatisticsResponse["regionFigures"]
+  >([]);
   const [showNoGeolocModal, setShowNoGeolocModal] = useState(false);
   const [dispositifsWithoutGeoloc, setDispositifsWithoutGeoloc] = useState<Id[]>([]);
   const [statistics, setStatistics] = useState<GetStatisticsResponse | null>(null);
@@ -73,9 +80,11 @@ const Dashboard = (props: Props) => {
           setFiguresByRegion(data.regionFigures);
           setDispositifsWithoutGeoloc(data.dispositifsWithoutGeoloc);
         }),
-        API.getDispositifsStatistics({ facets: ["nbMercis", "nbVues", "nbVuesMobile"] }).then((data) => {
-          setStatistics(data);
-        }),
+        API.getDispositifsStatistics({ facets: ["nbMercis", "nbVues", "nbVuesMobile"] }).then(
+          (data) => {
+            setStatistics(data);
+          },
+        ),
         API.getAdminOption(ACTIVES_NOTIFICATIONS).then((data) => {
           const res = data?.value as boolean;
           setNotificationsActive(res === null ? true : res);
@@ -144,10 +153,12 @@ const Dashboard = (props: Props) => {
     });
     if (!res.value) return;
 
-    return API.setAdminOption(ACTIVES_NOTIFICATIONS, { value: !notificationsActive }).then((data) => {
-      const res = data?.value as boolean;
-      setNotificationsActive(res === null ? true : res);
-    });
+    return API.setAdminOption(ACTIVES_NOTIFICATIONS, { value: !notificationsActive }).then(
+      (data) => {
+        const res = data?.value as boolean;
+        setNotificationsActive(res === null ? true : res);
+      },
+    );
   };
 
   return (
@@ -158,7 +169,9 @@ const Dashboard = (props: Props) => {
           <Spinner size="sm" />
         ) : (
           <FButton type="dark" onClick={deactivateNotifications}>
-            {notificationsActive ? "Désactiver les notifications push" : "Réactiver les notifications push"}
+            {notificationsActive
+              ? "Désactiver les notifications push"
+              : "Réactiver les notifications push"}
           </FButton>
         )}
       </div>
@@ -167,13 +180,20 @@ const Dashboard = (props: Props) => {
         <h2 className="mb-4">Statistiques</h2>
         <NavLink to="backend/admin">Admin</NavLink>
         <ul>
-          <b>Contenus par thème (nombre de dispositifs/démarches avec thème principal xxx (vs objectif)):</b>
+          <b>
+            Contenus par thème (nombre de dispositifs/démarches avec thème principal xxx (vs
+            objectif)):
+          </b>
           {Object.keys(nbDispositifsByTheme).map((theme, key) => {
             const targetTheme = find(targetByTag, { name: theme });
-            const targetDispo = targetTheme && targetTheme.targetDispositif ? targetTheme.targetDispositif : 0;
+            const targetDispo =
+              targetTheme && targetTheme.targetDispositif ? targetTheme.targetDispositif : 0;
 
-            const targetDemarche = targetTheme && targetTheme.targetDemarche ? targetTheme.targetDemarche : 0;
-            const currentValueDispositif = nbDispositifsByTheme[theme] ? nbDispositifsByTheme[theme] : 0;
+            const targetDemarche =
+              targetTheme && targetTheme.targetDemarche ? targetTheme.targetDemarche : 0;
+            const currentValueDispositif = nbDispositifsByTheme[theme]
+              ? nbDispositifsByTheme[theme]
+              : 0;
 
             const currentValueDemarche = nbDemarchesByTheme[theme] ? nbDemarchesByTheme[theme] : 0;
             const colorDispo = currentValueDispositif < targetDispo ? "red" : "green";
@@ -188,8 +208,8 @@ const Dashboard = (props: Props) => {
           })}
           <br />
           <b>
-            Géolocalisation des dispositifs par région (nombre de dispositifs - nombre de départements avec au moins 1
-            dispositif/nombre de départements) :
+            Géolocalisation des dispositifs par région (nombre de dispositifs - nombre de
+            départements avec au moins 1 dispositif/nombre de départements) :
           </b>
           <FButton type="dark" className="ms-2" onClick={exportToAirtable}>
             Export départements airtable
@@ -211,7 +231,9 @@ const Dashboard = (props: Props) => {
               </div>
             </li>
           )}
-          {franceFigures.length > 0 && <li>{`France entière : ${franceFigures[0].nbDispositifs}`} </li>}
+          {franceFigures.length > 0 && (
+            <li>{`France entière : ${franceFigures[0].nbDispositifs}`} </li>
+          )}
           {figuresByRegion.map((data) => {
             if (data.region === "France" || data.region === "No geoloc") return;
             return (
@@ -240,13 +262,15 @@ const Dashboard = (props: Props) => {
             Nombre de traducteurs ou experts : <b>{nbTraductors}</b>
           </li>
           <li>
-            Nombre de mercis : <b>{statistics?.nbMercis && formatter.format(statistics.nbMercis)}</b>
+            Nombre de mercis :{" "}
+            <b>{statistics?.nbMercis && formatter.format(statistics.nbMercis)}</b>
           </li>
           <li>
             Nombre de vues : <b>{statistics?.nbVues && formatter.format(statistics.nbVues)}</b>
           </li>
           <li>
-            Nombre de vues mobile : <b>{statistics?.nbVuesMobile && formatter.format(statistics.nbVuesMobile)}</b>
+            Nombre de vues mobile :{" "}
+            <b>{statistics?.nbVuesMobile && formatter.format(statistics.nbVuesMobile)}</b>
           </li>
         </ul>
       </div>

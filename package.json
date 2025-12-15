@@ -103,6 +103,7 @@
     "eas:submit": "cd apps/mobile && eas submit --profile production",
     "eas:submit:android": "cd apps/mobile && eas submit --profile production --platform android",
     "eas:submit:ios": "cd apps/mobile && eas submit --profile production --platform ios",
+    "format": "turbo format",
     "prepare": "husky",
     "migrate": "tsx migrations/cli.ts",
     "storybook": "pnpm dev:storybook",
@@ -114,6 +115,7 @@
     "node": "24.11.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.7",
     "@codegouvfr/react-dsfr": "1.20.2",
     "@refugies-info/api-types": "workspace:*",
     "@types/node": "^22.18.0",
@@ -124,9 +126,6 @@
     "lint-staged": "^15.5.2",
     "mongo-migrate-ts": "^1.6.3",
     "mongodb": "^6.20.0",
-    "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.3.0",
-    "prettier-plugin-tailwindcss": "^0.6.14",
     "rimraf": "^6.0.1",
     "stylelint": "^16.23.1",
     "stylelint-config-standard-scss": "^13.1.0",
@@ -140,8 +139,7 @@
   },
   "lint-staged": {
     "*.{css,scss}": "stylelint --fix",
-    "*.{js,jsx,ts,tsx}": "prettier --write",
-    "**/common.json": "prettier --write"
+    "*.{js,jsx,ts,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched"
   },
   "packageManager": "pnpm@10.23.0"
 }

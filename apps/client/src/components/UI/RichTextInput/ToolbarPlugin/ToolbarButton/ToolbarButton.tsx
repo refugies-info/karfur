@@ -30,10 +30,15 @@ const ToolbarButton = (props: Props) => {
   const content = useMemo(
     () => (
       <>
-        {props.icon && <ToolbarIcon name={props.icon} className={cls(styles.icon, !!props.text && "me-2")} />}
+        {props.icon && (
+          <ToolbarIcon name={props.icon} className={cls(styles.icon, !!props.text && "me-2")} />
+        )}
         {props.text}
         {props.hasSelectedIcon && props.isPressed && (
-          <ToolbarIcon name="ri-checkbox-circle-fill" className={cls(styles.icon, !!props.text && "ms-2")} />
+          <ToolbarIcon
+            name="ri-checkbox-circle-fill"
+            className={cls(styles.icon, !!props.text && "ms-2")}
+          />
         )}
       </>
     ),

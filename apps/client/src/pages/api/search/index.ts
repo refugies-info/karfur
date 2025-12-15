@@ -1,6 +1,6 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import mongoose from "mongoose";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { buildBaseMatch, buildQueryParams, getSearchClient } from "~/lib/search-helpers";
 import dbConnect from "../../../lib/db";
 
@@ -14,7 +14,10 @@ export interface SearchResponse {
   pageCount: number;
 }
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse | { message: string }>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<SearchResponse | { message: string }>,
+) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
@@ -23,14 +26,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
     const conn = await dbConnect();
     const Dispositif =
       conn.models.Dispositif ||
-      conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
+      conn.model(
+        "Dispositif",
+        new mongoose.Schema({}, { strict: false, collection: "dispositifs" }),
+      );
 
     const queryParams = buildQueryParams(req.query);
     const { search, type, sort } = req.query;
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
 
-    let algoliaIds: string[] | undefined = undefined;
+    let algoliaIds: string[] | undefined;
     if (search && typeof search === "string") {
       const { algoliaClient, indexName } = getSearchClient();
       const searchResults = await algoliaClient.searchSingleIndex({
@@ -65,7 +71,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
     ];
 
     if (sort === "theme") {
-      aggregation.push({ $sort: { "themeSortIndex": 1, "metadatas.updatedAt": -1 } });
+      aggregation.push({ $sort: { themeSortIndex: 1, "metadatas.updatedAt": -1 } });
     } else if (sort === "location") {
       aggregation.push({
         $addFields: {
@@ -74,7 +80,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
           },
         },
       });
-      aggregation.push({ $sort: { "isLocal": 1, "metadatas.vues": -1 } });
+      aggregation.push({ $sort: { isLocal: 1, "metadatas.vues": -1 } });
     } else if (sort === "views") {
       aggregation.push({ $sort: { "metadatas.vues": -1 } });
     } else {
@@ -99,7 +105,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<SearchResponse 
     const [results, total, typeCounts] = await Promise.all([
       Dispositif.aggregate(aggregation),
       Dispositif.countDocuments(baseMatch),
-      Dispositif.aggregate([{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }]),
+      Dispositif.aggregate([
+        { $match: baseMatch },
+        { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
+      ]),
     ]);
 
     const getCount = (type: string) => typeCounts.find((t: any) => t._id === type)?.count || 0;

@@ -1,18 +1,18 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { CompositeNavigationProp } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import React, { useMemo } from "react";
 import { useInfiniteHits } from "react-instantsearch-core";
 import { FlatList, Keyboard, Platform, View } from "react-native";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { SearchItem } from "~/components/Search/types";
+import type { SearchItem } from "~/components/Search/types";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { contentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { groupedContentsSelector } from "~/services/redux/ContentsGroupedByNeeds/contentsGroupedByNeeds.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
+import type { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { ErrorScreen } from "../ErrorScreen";
-import { AlgoliaMetadata, HitWithInsights } from "./Hit";
+import { type AlgoliaMetadata, HitWithInsights } from "./Hit";
 import NbResults from "./NbResults";
 
 const ErrorContainer = styled.View`
@@ -36,7 +36,9 @@ const InfiniteHits = ({ navigation, selectedLanguage, query, nbContents }: Props
   const { t } = useTranslationWithRTL();
   const dismissMode: "on-drag" | "none" = "on-drag";
   const keyboardDismissProp =
-    Platform.OS === "ios" ? { keyboardDismissMode: dismissMode } : { onScrollBeginDrag: Keyboard.dismiss };
+    Platform.OS === "ios"
+      ? { keyboardDismissMode: dismissMode }
+      : { onScrollBeginDrag: Keyboard.dismiss };
 
   const contents = useSelector(contentsSelector);
   const contentIds = useMemo(() => contents.map((c) => c._id.toString()), [contents]);
@@ -67,7 +69,10 @@ const InfiniteHits = ({ navigation, selectedLanguage, query, nbContents }: Props
           title={t("search_screen.no_result", "Impossible de trouver", {
             search: query,
           })}
-          text={t("search_screen.try_new_search", "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé.")}
+          text={t(
+            "search_screen.try_new_search",
+            "Essaie encore, vérifie l’orthographe ou utilise un autre mot-clé.",
+          )}
           imageLast={true}
         />
       </ErrorContainer>

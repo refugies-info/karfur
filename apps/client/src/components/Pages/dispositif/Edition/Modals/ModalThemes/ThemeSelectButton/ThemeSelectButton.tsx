@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import styled from "styled-components";
 import AdminIcon from "~/assets/dispositif/crown.svg";
@@ -36,7 +36,10 @@ interface Props {
 }
 
 const ThemeSelectButton = (props: Props) => {
-  const selected = useMemo(() => props.selectedPrimary || props.selected, [props.selectedPrimary, props.selected]);
+  const selected = useMemo(
+    () => props.selectedPrimary || props.selected,
+    [props.selectedPrimary, props.selected],
+  );
   const id = useMemo(() => `theme_${props.theme._id.toString()}`, [props.theme]);
   return (
     <span id={id}>
@@ -62,7 +65,10 @@ const ThemeSelectButton = (props: Props) => {
         {props.selectedPrimary && (
           <span
             className={styles.badge}
-            style={{ backgroundColor: props.theme.colors.color30, color: props.theme.colors.color100 }}
+            style={{
+              backgroundColor: props.theme.colors.color30,
+              color: props.theme.colors.color100,
+            }}
           >
             thème principal
             <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />

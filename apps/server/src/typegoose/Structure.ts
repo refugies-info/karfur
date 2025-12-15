@@ -1,8 +1,8 @@
 import { StructureStatus } from "@refugies-info/api-types";
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { ImageSchema } from "./generics";
-import { User, UserId } from "./User";
+import { User, type UserId } from "./User";
 
 export class Membre {
   @prop({ required: true })
@@ -33,7 +33,9 @@ class OpeningHours {
   public precisions?: string;
 }
 
-@modelOptions({ schemaOptions: { collection: "structures", timestamps: { createdAt: "created_at" } } })
+@modelOptions({
+  schemaOptions: { collection: "structures", timestamps: { createdAt: "created_at" } },
+})
 export class Structure extends Base {
   @prop({ type: () => [Membre], _id: false })
   public membres?: Membre[];

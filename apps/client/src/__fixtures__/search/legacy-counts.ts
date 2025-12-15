@@ -22,7 +22,11 @@ export interface LegacyQuery {
 }
 
 // Returns dispositifs after applying ALL filters (no skip)
-export function legacyFilterAll(dispositifs: SimpleDispositif[], allNeeds: LegacyNeedsItem[], query: LegacyQuery) {
+export function legacyFilterAll(
+  dispositifs: SimpleDispositif[],
+  allNeeds: LegacyNeedsItem[],
+  query: LegacyQuery,
+) {
   return filterDispositifs(query as any, dispositifs as any, false, undefined, allNeeds as any);
 }
 
@@ -62,7 +66,8 @@ function computeAgeRanges(d: any): string[] {
 
   const result: string[] = [];
   // bin is fully covered by [aMin,aMax]
-  const covers = (aMin: number, aMax: number, bMin: number, bMax: number) => aMin <= bMin && aMax >= bMax;
+  const covers = (aMin: number, aMax: number, bMin: number, bMax: number) =>
+    aMin <= bMin && aMax >= bMax;
 
   // Bins
   const BIN1: [number, number] = [0, 17]; // -18
@@ -129,14 +134,27 @@ export function legacyFacetCounts(
   };
 
   // Total (no skip)
-  const allFiltered = filterDispositifs(query as any, filteredBySearch as any, false, undefined, allNeeds as any);
+  const allFiltered = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    undefined,
+    allNeeds as any,
+  );
 
   // Themes facet (skip theme)
-  const forThemes = filterDispositifs(query as any, filteredBySearch as any, false, "theme", allNeeds as any);
+  const forThemes = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "theme",
+    allNeeds as any,
+  );
   const themes = countBy(forThemes, (d: any) => {
     const ids: string[] = [];
     if (d?.theme) ids.push(String(d.theme));
-    if (Array.isArray(d?.secondaryThemes)) ids.push(...d.secondaryThemes.map((t: any) => String(t)));
+    if (Array.isArray(d?.secondaryThemes))
+      ids.push(...d.secondaryThemes.map((t: any) => String(t)));
     return ids.length > 0 ? ids : undefined;
   });
 
@@ -147,7 +165,8 @@ export function legacyFacetCounts(
     .flatMap((d: any) => {
       const themeIds = new Set<string>();
       if (d?.theme) themeIds.add(String(d.theme));
-      if (Array.isArray(d?.secondaryThemes)) d.secondaryThemes.forEach((t: any) => themeIds.add(String(t)));
+      if (Array.isArray(d?.secondaryThemes))
+        d.secondaryThemes.forEach((t: any) => themeIds.add(String(t)));
       return (d.needs as Id[]).filter((id: Id) => {
         const needId = String(id);
         const themeId = String(needsMap.get(needId));
@@ -158,23 +177,47 @@ export function legacyFacetCounts(
     .value();
 
   // Languages facet (skip language)
-  const forLanguages = filterDispositifs(query as any, filteredBySearch as any, false, "language", allNeeds as any);
+  const forLanguages = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "language",
+    allNeeds as any,
+  );
   const languages = countBy(forLanguages, (d: any) => {
     // In test context, objects conform to SimpleDispositif and expose availableLanguages
     return (d?.availableLanguages || []).map(String);
   });
 
   // Publics facet (skip public)
-  const forPublics = filterDispositifs(query as any, filteredBySearch as any, false, "public", allNeeds as any);
+  const forPublics = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "public",
+    allNeeds as any,
+  );
   const publics = countBy(forPublics, (d: any) => (d?.metadatas?.public || []).map(String));
 
   // Statuses facet (skip status) — counts refugee statuses stored in metadatas.publicStatus
   // For statuses facet, skip the refugee status filter
-  const forStatuses = filterDispositifs(query as any, filteredBySearch as any, false, "status", allNeeds as any);
+  const forStatuses = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "status",
+    allNeeds as any,
+  );
   const statuses = countBy(forStatuses, (d: any) => (d?.metadatas?.publicStatus || []).map(String));
 
   // French levels facet (skip frenchLevel). Group by categories a/b/c; empty -> ["a","b","c"].
-  const forFrench = filterDispositifs(query as any, filteredBySearch as any, false, "frenchLevel", allNeeds as any);
+  const forFrench = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "frenchLevel",
+    allNeeds as any,
+  );
   const mapFrenchCats = (d: any): string[] => {
     const levels: string[] = (d?.metadatas?.frenchLevel || []).map(String);
     if (!levels || levels.length === 0) return ["a", "b", "c"];
@@ -189,7 +232,13 @@ export function legacyFacetCounts(
   const frenchLevels = countBy(forFrench, (d: any) => mapFrenchCats(d));
 
   // Age ranges facet (skip age)
-  const forAges = filterDispositifs(query as any, filteredBySearch as any, false, "age", allNeeds as any);
+  const forAges = filterDispositifs(
+    query as any,
+    filteredBySearch as any,
+    false,
+    "age",
+    allNeeds as any,
+  );
   const ageRanges = countBy(forAges, (d: any) => computeAgeRanges(d));
 
   return {

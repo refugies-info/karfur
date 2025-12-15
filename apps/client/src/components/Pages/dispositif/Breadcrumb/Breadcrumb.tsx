@@ -1,4 +1,4 @@
-import { GetDispositifResponse } from "@refugies-info/api-types";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
 import StatusAndEditButtons from "~/components/Pages/dispositif/Breadcrumb/StatusAndEditButtons";
 import { themeSelector } from "~/services/Themes/themes.selectors";

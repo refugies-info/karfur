@@ -1,23 +1,30 @@
-import { ProjectionType } from "mongoose";
+import type { ProjectionType } from "mongoose";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
-import { adaptDispositifDepartement, getDepartementsFigures } from "~/modules/dispositif/dispositif.adapter";
+import {
+  adaptDispositifDepartement,
+  getDepartementsFigures,
+} from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Dispositif } from "~/typegoose";
+import type { Response } from "~/types/interface";
 
-const exportDataInAirtable = (data: { departement: string; region: string; nbDispositifs: number }) => {
+const exportDataInAirtable = (data: {
+  departement: string;
+  region: string;
+  nbDispositifs: number;
+}) => {
   getAirtableUserTable("Departements RI").create(
     [
       {
         fields: {
-          "Département": data.departement,
+          Département: data.departement,
           "Nb dispositifs": data.nbDispositifs,
-          "Région": data.region,
+          Région: data.region,
         },
       },
     ],
-    function (err: Error) {
+    (err: Error) => {
       if (err) {
         logger.error("[exportDataInAirtable] error while exporting data to airtable", {
           dep: data.departement,

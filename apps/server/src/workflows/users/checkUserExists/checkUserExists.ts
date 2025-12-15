@@ -1,4 +1,4 @@
-import { CheckUserExistsResponse } from "@refugies-info/api-types";
+import type { CheckUserExistsResponse } from "@refugies-info/api-types";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { needs2FA } from "~/modules/users/auth";

@@ -7,7 +7,7 @@ describe("all structures reducer", () => {
     expect(
       allStructuresReducer(
         initialAllStructuresState,
-        // @ts-ignore
+        // @ts-expect-error
         setAllStructuresActionCreator(structures),
       ),
     ).toEqual(structures);

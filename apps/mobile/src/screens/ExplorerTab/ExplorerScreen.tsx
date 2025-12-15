@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -19,7 +19,7 @@ import {
   redirectDispositifSelector,
 } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 
@@ -39,7 +39,9 @@ const CarousselContainer = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-export const ExplorerScreen = ({ navigation }: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
+export const ExplorerScreen = ({
+  navigation,
+}: StackScreenProps<ExplorerParamList, "ExplorerScreen">) => {
   const dispatch = useDispatch();
 
   const [tabSelected, setTabSelected] = useState("galery");

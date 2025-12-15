@@ -1,5 +1,5 @@
-import { Id } from "@refugies-info/api-types";
-import React from "react";
+import type { Id } from "@refugies-info/api-types";
+import type React from "react";
 import { useSelector } from "react-redux";
 import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
 import ChoiceButton from "../../../ChoiceButton";

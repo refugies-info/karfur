@@ -1,6 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";

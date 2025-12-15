@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { useState } from "react";
 import TranslationStep1 from "~/assets/dispositif/translation/translate-step-1.svg";
 import TranslationStep2 from "~/assets/dispositif/translation/translate-step-2.svg";

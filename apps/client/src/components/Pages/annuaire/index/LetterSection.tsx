@@ -1,4 +1,4 @@
-import { GetActiveStructuresResponse, Id, Picture } from "@refugies-info/api-types";
+import type { GetActiveStructuresResponse, Id, Picture } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useMemo } from "react";
 import { getPath } from "routes";
@@ -6,6 +6,7 @@ import placeholder from "~/assets/no_results_alt.svg";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
 import styles from "./LetterSection.module.scss";
+
 interface StructureCardProps {
   nom: string;
   acronyme: string;
@@ -60,15 +61,17 @@ export const LetterSection = (props: Props) => {
         <div key={key} className={styles.list_item}>
           {key === 0 && <div id="A" key={"anchor_" + key} className={styles.anchor} />}
 
-          {key > 1 && props.structures[key - 1].nom[0].toLowerCase() !== props.structures[key].nom[0].toLowerCase() && (
-            <>
-              <div
-                key={"anchor_" + props.structures[key].nom[0].toUpperCase()}
-                className={styles.anchor}
-                id={props.structures[key].nom[0].toUpperCase()}
-              />
-            </>
-          )}
+          {key > 1 &&
+            props.structures[key - 1].nom[0].toLowerCase() !==
+              props.structures[key].nom[0].toLowerCase() && (
+              <>
+                <div
+                  key={"anchor_" + props.structures[key].nom[0].toUpperCase()}
+                  className={styles.anchor}
+                  id={props.structures[key].nom[0].toUpperCase()}
+                />
+              </>
+            )}
           <StructureCard
             key={"structure_" + key}
             nom={structure.nom}

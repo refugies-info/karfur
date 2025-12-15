@@ -1,8 +1,9 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { filterType, SortOptions, sortOptions, TypeOptions } from "data/searchFilters";
+import { filterType, type SortOptions, sortOptions, type TypeOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useMemo, useState } from "react";
+import type React from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { TabItem, TabsBar } from "~/components/UI/Tabs";
@@ -11,7 +12,7 @@ import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDefaultSortOption, getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
+import type { SearchCountsResponse } from "~/pages/api/search/counts";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./ResultsFilter.module.scss";
@@ -41,7 +42,7 @@ const ResultsFilter = (props: Props): React.ReactNode => {
         return `(${props.counts?.total || 0})`;
       case "demarche":
         return `(${nbDemarches})`;
-      case "dispositif":
+      case "dispositif": {
         const deptCount = query.departments.length;
         switch (deptCount) {
           case 1:
@@ -50,6 +51,7 @@ const ResultsFilter = (props: Props): React.ReactNode => {
           default:
             return `(${nbDispositifs})`;
         }
+      }
       case "ressource":
         return `(${onlineResourceCount})`;
       default:
@@ -100,7 +102,9 @@ const ResultsFilter = (props: Props): React.ReactNode => {
   }, [query]);
 
   const currentSortOption = useMemo(() => {
-    return sortOptions.find((opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort));
+    return sortOptions.find(
+      (opt) => opt.key === (query.sort === "default" ? defaultSortOption : query.sort),
+    );
   }, [query.sort, defaultSortOption]);
 
   const getCurrentSortKey = useMemo(() => {
@@ -112,7 +116,11 @@ const ResultsFilter = (props: Props): React.ReactNode => {
       <div className={styles.grid}>
         <TabsBar>
           {filterType.map((option) => (
-            <TabItem key={option.key} onClick={() => selectType(option.key)} isActive={query.type === option.key}>
+            <TabItem
+              key={option.key}
+              onClick={() => selectType(option.key)}
+              isActive={query.type === option.key}
+            >
               {t(option.value)} {getCount(option.key)}
             </TabItem>
           ))}

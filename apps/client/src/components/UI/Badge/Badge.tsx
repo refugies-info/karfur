@@ -1,4 +1,4 @@
-import Badge, { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
+import Badge, { type BadgeProps } from "@codegouvfr/react-dsfr/Badge";
 import { cls } from "~/lib/classname";
 import styles from "./Badge.module.scss";
 
@@ -13,7 +13,9 @@ interface Props {
 const DSFRBadge = (props: Props) => {
   return (
     <Badge className={props.className} severity={props.severity} small={props.small} noIcon>
-      {props.icon && <i className={cls(styles.icon, props.small && styles.small, props.icon, "me-1")} />}
+      {props.icon && (
+        <i className={cls(styles.icon, props.small && styles.small, props.icon, "me-1")} />
+      )}
       {props.children}
     </Badge>
   );

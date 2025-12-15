@@ -18,7 +18,8 @@ const FrameModal = (props: Props) => {
   const { t } = useTranslation();
 
   const getTutoUrl = () => {
-    const defaultUrl = "https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7";
+    const defaultUrl =
+      "https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7";
     if (!props.section) {
       return defaultUrl;
     }

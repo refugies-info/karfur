@@ -2,7 +2,7 @@
 "use client";
 
 import Accordion from "@codegouvfr/react-dsfr/Accordion";
-import { ContentType, InfoSection, InfoSections } from "@refugies-info/api-types";
+import { ContentType, type InfoSection, type InfoSections } from "@refugies-info/api-types";
 import { useContext, useState } from "react";
 import { cn } from "~/lib/classname";
 import PageContext from "~/utils/pageContext";
@@ -51,7 +51,14 @@ const Accordions = ({ content, sectionKey, contentType }: Props) => {
   );
 };
 
-const AccordionItem = ({ contentType, sectionKey, sectionId, section, mode, index }: AccordionItemProps) => {
+const AccordionItem = ({
+  contentType,
+  sectionKey,
+  sectionId,
+  section,
+  mode,
+  index,
+}: AccordionItemProps) => {
   const [expanded, setExpanded] = useState(false);
 
   return (

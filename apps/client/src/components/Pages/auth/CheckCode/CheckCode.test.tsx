@@ -52,7 +52,9 @@ describe("CheckCode", () => {
   it("should display an error message if code is wrong", async () => {
     await mockRouter.push("/check-code?email=test@example.com");
 
-    jest.spyOn(API, "checkCode").mockRejectedValueOnce({ response: { data: { code: "WRONG_CODE" } } });
+    jest
+      .spyOn(API, "checkCode")
+      .mockRejectedValueOnce({ response: { data: { code: "WRONG_CODE" } } });
 
     const component = wrapWithProvidersAndRenderForTesting({
       Component: CheckCode,
@@ -67,7 +69,9 @@ describe("CheckCode", () => {
     fireEvent.change(component.getByRole("textbox"), { target: { value: "12345" } });
     fireEvent.click(component.getByText("Valider"));
 
-    await waitFor(() => expect(component.getByText("Code incorrect, veuillez réessayer.")).toBeTruthy());
+    await waitFor(() =>
+      expect(component.getByText("Code incorrect, veuillez réessayer.")).toBeTruthy(),
+    );
   });
 
   it("should display an error message if an API error occurs", async () => {
@@ -89,7 +93,9 @@ describe("CheckCode", () => {
 
     await waitFor(() =>
       expect(
-        component.getByText("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur."),
+        component.getByText(
+          "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.",
+        ),
       ).toBeTruthy(),
     );
   });
@@ -114,7 +120,9 @@ describe("CheckCode", () => {
 
     await waitFor(() =>
       expect(
-        component.getByText("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur."),
+        component.getByText(
+          "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.",
+        ),
       ).toBeTruthy(),
     );
   });

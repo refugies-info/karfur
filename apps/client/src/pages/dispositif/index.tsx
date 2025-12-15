@@ -1,4 +1,4 @@
-import { ContentType, CreateDispositifRequest } from "@refugies-info/api-types";
+import { ContentType, type CreateDispositifRequest } from "@refugies-info/api-types";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -21,7 +21,9 @@ interface Props {
 }
 
 const DispositifPage = (props: Props) => {
-  const methods = useForm<CreateDispositifRequest>({ defaultValues: getInitialValue(ContentType.DISPOSITIF) });
+  const methods = useForm<CreateDispositifRequest>({
+    defaultValues: getInitialValue(ContentType.DISPOSITIF),
+  });
   const [showWelcomeModal, setShowWelcomeModal] = useState(true);
   const dispositifFormContext = useDispositifForm();
 
@@ -45,29 +47,32 @@ const DispositifPage = (props: Props) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
-  // must be authenticated to access page
-  if (!req.cookies.authorization) {
-    return {
-      redirect: {
-        destination: "/auth",
-        permanent: false,
-      },
-    };
-  }
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, query, locale }) => {
+      // must be authenticated to access page
+      if (!req.cookies.authorization) {
+        return {
+          redirect: {
+            destination: "/auth",
+            permanent: false,
+          },
+        };
+      }
 
-  store.dispatch(fetchThemesActionCreator());
-  store.dispatch(fetchNeedsActionCreator());
-  store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
-  store.dispatch(END);
-  await store.sagaTask?.toPromise();
+      store.dispatch(fetchThemesActionCreator());
+      store.dispatch(fetchNeedsActionCreator());
+      store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
+      store.dispatch(END);
+      await store.sagaTask?.toPromise();
 
-  // 200
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      // 200
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+        },
+      };
     },
-  };
-});
+);
 
 export default DispositifPage;

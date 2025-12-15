@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import * as Updates from "expo-updates";
 import { initReactI18next } from "react-i18next";
 import { Text } from "react-native";
@@ -37,7 +37,8 @@ export default function App() {
       i18n.use(initReactI18next);
       await i18n.init();
       try {
-        const language = ((await AsyncStorage.getItem("SELECTED_LANGUAGE")) as Languages) || ("fr" as Languages);
+        const language =
+          ((await AsyncStorage.getItem("SELECTED_LANGUAGE")) as Languages) || ("fr" as Languages);
         if (language) {
           i18n.changeLanguage(language);
         } else {

@@ -46,7 +46,7 @@
 
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
-import { ReactNode, RefObject } from "react";
+import type { ReactNode, RefObject } from "react";
 
 /**
  * Props for the Modal component
@@ -124,14 +124,14 @@ export interface ModalProps {
 }
 
 const maxWidthClasses = {
-  "sm": "max-w-sm",
-  "md": "max-w-md",
-  "lg": "max-w-lg",
-  "xl": "max-w-xl",
+  sm: "max-w-sm",
+  md: "max-w-md",
+  lg: "max-w-lg",
+  xl: "max-w-xl",
   "2xl": "max-w-2xl",
   "3xl": "max-w-3xl",
   "4xl": "max-w-4xl",
-  "full": "max-w-full",
+  full: "max-w-full",
 };
 
 /**
@@ -200,7 +200,10 @@ export const Modal = ({
   return (
     <Dialog.Root open={open} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className={`fixed inset-0 z-[1000] bg-black/50 ${overlayClassName}`} aria-hidden="true" />
+        <Dialog.Overlay
+          className={`fixed inset-0 z-[1000] bg-black/50 ${overlayClassName}`}
+          aria-hidden="true"
+        />
         <Dialog.Content
           className={`fixed top-1/2 left-1/2 z-[1001] flex ${maxWidthClasses[maxWidth]} -translate-x-1/2 -translate-y-1/2 flex-col bg-white p-8 pt-4 shadow-[0_2px_6px_0_rgb(0_0_18_/_16.1%)] focus:outline-none max-sm:w-[95vw] max-sm:max-w-[95vw] max-sm:p-6 ${className}`}
           aria-labelledby="modal-title"

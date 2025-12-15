@@ -1,9 +1,13 @@
-import { GetActiveUsersResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type { GetActiveUsersResponse } from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import { setActiveUsersActionCreator } from "./activeUsers.actions";
 import { FETCH_ACTIVE_USERS } from "./activeUsers.actionTypes";
 

@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import Link from "next/link";
 import { getPath } from "routes";
 import gif from "~/assets/annuaire/GIF-annuaire.gif";

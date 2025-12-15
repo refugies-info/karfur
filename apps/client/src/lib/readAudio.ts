@@ -4,13 +4,13 @@ let audio: HTMLAudioElement | null;
 
 const BASE_RATE = 0.75;
 
-const readAudio = function (
+const readAudio = (
   text: string,
   locale: string = "fr-fr",
   callback: any = null,
   isActive: boolean = true,
   startLoader: any = () => {},
-) {
+) => {
   if (typeof Audio !== "undefined" && !audio) {
     // for browsers
     audio = new Audio();
@@ -28,7 +28,7 @@ const readAudio = function (
         var blob = new Blob([audioData], { type: "audio/wav" });
         var blobUrl = window.URL.createObjectURL(blob);
         audio.src = blobUrl;
-        audio.onended = function () {
+        audio.onended = () => {
           callback && callback();
         };
         //On ne le joue que si l'audio est toujours activé
@@ -47,24 +47,24 @@ const readAudio = function (
     .catch(() => {});
 };
 
-const stopAudio = function () {
+const stopAudio = () => {
   if (!audio) return;
   API.cancel_tts_subscription();
   audio.pause();
   audio.currentTime = 0;
 };
 
-const pauseAudio = function () {
+const pauseAudio = () => {
   if (!audio) return;
   audio.pause();
 };
 
-const resumeAudio = function () {
+const resumeAudio = () => {
   if (!audio) return;
   audio.play();
 };
 
-const changeRate = function (rate: 1 | 2) {
+const changeRate = (rate: 1 | 2) => {
   if (!audio) return;
   const customRate = rate === 2 ? 1.15 : BASE_RATE;
   audio.playbackRate = customRate;

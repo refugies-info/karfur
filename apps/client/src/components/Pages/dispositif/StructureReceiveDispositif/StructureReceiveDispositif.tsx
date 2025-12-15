@@ -59,12 +59,18 @@ const StructureReceiveDispositif = () => {
 
   return (
     <div className={styles.container}>
-      <Status status={DispositifStatus.WAITING_STRUCTURE} isAdmin={true} hasDraftVersion={false} text="En attente" />
+      <Status
+        status={DispositifStatus.WAITING_STRUCTURE}
+        isAdmin={true}
+        hasDraftVersion={false}
+        text="En attente"
+      />
       <div className={styles.title}>Voulez-vous récupérer cette fiche ?</div>
       <p>
-        <strong>{dispositif?.creatorId?.username || "Un utilisateur"}</strong> a proposé cette fiche et a indiqué que
-        votre structure porte ce dispositif. En cochant « Oui », vous pourrez modifier et valider la fiche. Si vous
-        cochez « Non », elle ne sera jamais publiée sur le site de Réfugiés.info.
+        <strong>{dispositif?.creatorId?.username || "Un utilisateur"}</strong> a proposé cette fiche
+        et a indiqué que votre structure porte ce dispositif. En cochant « Oui », vous pourrez
+        modifier et valider la fiche. Si vous cochez « Non », elle ne sera jamais publiée sur le
+        site de Réfugiés.info.
       </p>
 
       <div>
@@ -119,8 +125,8 @@ const StructureReceiveDispositif = () => {
           {receiveDispositif ? (
             <>
               <p>
-                Vous êtes désormais responsable de cette fiche. Nous comptons sur vous pour maintenir ce contenu à jour
-                et répondre aux suggestions des contributeurs.
+                Vous êtes désormais responsable de cette fiche. Nous comptons sur vous pour
+                maintenir ce contenu à jour et répondre aux suggestions des contributeurs.
               </p>
               <div className="mb-8 text-center">
                 <Image src={ReceiveDispositif} width={224} height={160} alt="" />

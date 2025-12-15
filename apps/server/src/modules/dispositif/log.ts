@@ -1,5 +1,5 @@
-import { CreateDispositifRequest } from "@refugies-info/api-types";
-import { StructureId, UserId } from "~/typegoose";
+import type { CreateDispositifRequest } from "@refugies-info/api-types";
+import type { StructureId, UserId } from "~/typegoose";
 import { addLog } from "../logs/logs.service";
 import { addToStructureNotes } from "../structure/structure.repository";
 

@@ -5,8 +5,12 @@ export const OriginBadge = () => {
   const theme = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: theme.colors.dsfr_backgroundContrastPinkTuile }]}>
-      <Text style={[styles.text, { color: theme.colors.dsfr_textActionHighPinkTuile }]}>Généré par IA</Text>
+    <View
+      style={[styles.container, { backgroundColor: theme.colors.dsfr_backgroundContrastPinkTuile }]}
+    >
+      <Text style={[styles.text, { color: theme.colors.dsfr_textActionHighPinkTuile }]}>
+        Généré par IA
+      </Text>
     </View>
   );
 };

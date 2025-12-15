@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useState } from "react";
+import { type RefObject, useEffect, useState } from "react";
 
 const useIsSticky = (ref: RefObject<HTMLElement | null>): boolean => {
   const [isSticky, setIsSticky] = useState(false);

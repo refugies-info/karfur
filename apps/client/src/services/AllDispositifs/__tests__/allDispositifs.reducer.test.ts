@@ -7,7 +7,7 @@ describe("all dispositifs reducer", () => {
     expect(
       allDispositifsReducer(
         initialAllDispositifsState,
-        // @ts-ignore
+        // @ts-expect-error
         setAllDispositifsActionsCreator(dispositifs),
       ),
     ).toEqual(dispositifs);

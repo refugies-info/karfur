@@ -1,8 +1,9 @@
-import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
+import type { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { DispositifsWithTranslationsStatusActions } from "./dispositifsWithTranslationsStatus.actions";
+import type { DispositifsWithTranslationsStatusActions } from "./dispositifsWithTranslationsStatus.actions";
 
-export type DispositifsWithTranslationsStatusState = GetDispositifsWithTranslationAvancementResponse[];
+export type DispositifsWithTranslationsStatusState =
+  GetDispositifsWithTranslationAvancementResponse[];
 
 const initialDispositifsWithTranslationsStatusState: DispositifsWithTranslationsStatusState = [];
 

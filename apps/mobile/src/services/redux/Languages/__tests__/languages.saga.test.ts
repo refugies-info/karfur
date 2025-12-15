@@ -1,13 +1,21 @@
 import { testSaga } from "redux-saga-test-plan";
 import { getLanguages } from "~/utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setLanguagesActionCreator } from "../languages.actions";
 import latestActionsSaga, { fetchLanguages } from "../languages.saga";
 
 describe("[Saga] languages", () => {
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
-      testSaga(latestActionsSaga).next().takeLatest("FETCH_LANGUAGES", fetchLanguages).next().isDone();
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_LANGUAGES", fetchLanguages)
+        .next()
+        .isDone();
     });
   });
 

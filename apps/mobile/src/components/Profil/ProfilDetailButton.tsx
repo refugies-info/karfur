@@ -1,4 +1,4 @@
-import * as React from "react";
+import type * as React from "react";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { styles } from "~/theme";
@@ -98,7 +98,12 @@ export const ProfilDetailButton = (props: Props) => (
     </LabelContainer>
     <RTLView>
       {props.isEmpty ? (
-        <Icon name="plus-circle" width={ICON_SIZE} height={ICON_SIZE} fill={styles.colors.dsfr_success} />
+        <Icon
+          name="plus-circle"
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={styles.colors.dsfr_success}
+        />
       ) : (
         <Icon
           name={ICONS[props.iconRight]}

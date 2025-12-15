@@ -38,9 +38,15 @@ export const Modifications = (props: Props) => {
   return (
     <MainContainer hasModifications={props.hasModifications}>
       {getText()}
-      <EVAIcon name="info" fill={props.hasModifications ? "#ff9800" : "#4CAF50"} id={"alt-tooltip"} />
+      <EVAIcon
+        name="info"
+        fill={props.hasModifications ? "#ff9800" : "#4CAF50"}
+        id={"alt-tooltip"}
+      />
       <Tooltip isOpen={tooltipOpen} target="alt-tooltip" toggle={toggleTooltip}>
-        <TextTooltip>Cliquer sur Suivant pour sauvegarder et publier vos modifications.</TextTooltip>
+        <TextTooltip>
+          Cliquer sur Suivant pour sauvegarder et publier vos modifications.
+        </TextTooltip>
       </Tooltip>
     </MainContainer>
   );

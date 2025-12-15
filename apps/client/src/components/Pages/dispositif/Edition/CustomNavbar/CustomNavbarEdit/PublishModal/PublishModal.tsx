@@ -1,9 +1,13 @@
-import { ContentType, CreateDispositifRequest, DispositifStatus } from "@refugies-info/api-types";
+import type {
+  ContentType,
+  CreateDispositifRequest,
+  DispositifStatus,
+} from "@refugies-info/api-types";
 import { useEffect, useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
+import { type DeepPartialSkipArrayKey, useWatch } from "react-hook-form";
 import BaseModal from "~/components/UI/BaseModal";
 import { Event } from "~/lib/tracking";
-import { getMissingStepsEdit, Step } from "../functions";
+import { getMissingStepsEdit, type Step } from "../functions";
 import CompleteContent from "./CompleteContent";
 import MissingContent from "./MissingContent";
 
@@ -35,7 +39,11 @@ const PublishModal = (props: Props) => {
   // send event with missing steps
   useEffect(() => {
     if (props.show) {
-      Event("DISPO_CREATE", `${missingSteps.length} missing steps: ${missingSteps.join(", ")}`, "Missing Steps");
+      Event(
+        "DISPO_CREATE",
+        `${missingSteps.length} missing steps: ${missingSteps.join(", ")}`,
+        "Missing Steps",
+      );
     }
   }, [props.show, missingSteps]);
 
@@ -50,7 +58,12 @@ const PublishModal = (props: Props) => {
           setTitle={setTitle}
         />
       ) : (
-        <MissingContent onQuit={props.onQuit} onStay={props.toggle} status={props.status} missingSteps={missingSteps} />
+        <MissingContent
+          onQuit={props.onQuit}
+          onStay={props.toggle}
+          status={props.status}
+          missingSteps={missingSteps}
+        />
       )}
     </BaseModal>
   );

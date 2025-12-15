@@ -1,4 +1,4 @@
-import { GetLogResponse, Id } from "@refugies-info/api-types";
+import type { GetLogResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import { LogText } from "~/components/Backend/screens/Admin/Logs/functions";
 import { cls } from "~/lib/classname";

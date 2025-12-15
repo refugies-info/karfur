@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import { type RefObject, useEffect } from "react";
 
 /**
  * Hook to ensure all links with the rtri-link class open in a new tab

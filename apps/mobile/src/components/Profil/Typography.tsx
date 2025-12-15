@@ -1,5 +1,10 @@
 import styled from "styled-components/native";
-import { TextDSFR_Chapo_Bold, TextDSFR_MD, TextDSFR_MD_Bold, TextDSFR_XL } from "~/components/StyledText";
+import {
+  TextDSFR_Chapo_Bold,
+  TextDSFR_MD,
+  TextDSFR_MD_Bold,
+  TextDSFR_XL,
+} from "~/components/StyledText";
 import { styles } from "~/theme";
 
 export const P = styled(TextDSFR_MD)`

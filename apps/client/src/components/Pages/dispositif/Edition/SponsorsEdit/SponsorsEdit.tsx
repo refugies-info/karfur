@@ -1,4 +1,4 @@
-import { CreateDispositifRequest } from "@refugies-info/api-types";
+import type { CreateDispositifRequest } from "@refugies-info/api-types";
 import { useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -63,7 +63,10 @@ const SponsorsEdit = () => {
         toggle={() => setShowModal((o) => !o)}
         currentSponsorIndex={currentSponsorIndex}
       />
-      <ModalMainSponsor show={showMainSponsorModal} toggle={() => setShowMainSponsorModal((o) => !o)} />
+      <ModalMainSponsor
+        show={showMainSponsorModal}
+        toggle={() => setShowMainSponsorModal((o) => !o)}
+      />
       <DeleteContentModal
         show={toDeleteItemModal > -1}
         toggle={() => setToDeleteItemModal(-1)}

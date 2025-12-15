@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { useRouter } from "next/router";
-import { ReactElement, useCallback, useMemo, useState } from "react";
+import { type ReactElement, useCallback, useMemo, useState } from "react";
 import Layout from "~/components/Pages/auth/Layout";
 import Loader from "~/components/Pages/auth/Loader";
 import SEO from "~/components/Seo";
@@ -48,12 +48,17 @@ const AuthLogin = () => {
           <div className={cls(styles.title, styles.sm, "mt-12")}>
             <h1>Où souhaitez-vous chercher des dispositifs&nbsp;?</h1>
             <p className={styles.subtitle}>
-              Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Pas d’inquiétude, vous
-              pourrez les modifier plus tard et les démarches nationales resteront visibles&nbsp;!
+              Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Pas
+              d’inquiétude, vous pourrez les modifier plus tard et les démarches nationales
+              resteront visibles&nbsp;!
             </p>
           </div>
 
-          <EditDepartments successCallback={successCallback} setIsLoading={setIsLoading} buttonFullWidth />
+          <EditDepartments
+            successCallback={successCallback}
+            setIsLoading={setIsLoading}
+            buttonFullWidth
+          />
         </div>
       )}
     </div>

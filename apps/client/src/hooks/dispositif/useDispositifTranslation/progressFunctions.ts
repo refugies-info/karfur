@@ -1,20 +1,26 @@
 import {
   ContentType,
-  DemarcheContent,
-  DispositifContent,
-  GetTraductionsForReview,
-  InfoSections,
-  TranslationContent,
+  type DemarcheContent,
+  type DispositifContent,
+  type GetTraductionsForReview,
+  type InfoSections,
+  type TranslationContent,
 } from "@refugies-info/api-types";
 import flattenDeep from "lodash/flattenDeep";
 import get from "lodash/get";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
-import { TranslateForm } from "../useDispositifTranslateForm";
-import { Step } from "./useDispositifTranslation";
+import type { DeepPartialSkipArrayKey } from "react-hook-form";
+import type { TranslateForm } from "../useDispositifTranslateForm";
+import type { Step } from "./useDispositifTranslation";
 
-export const keysForSubSection = (prefix: string, translated: DeepPartialSkipArrayKey<TranslationContent>) =>
+export const keysForSubSection = (
+  prefix: string,
+  translated: DeepPartialSkipArrayKey<TranslationContent>,
+) =>
   flattenDeep(
-    Object.keys(get(translated, prefix, {})).map((key) => [`${prefix}.${key}.title`, `${prefix}.${key}.text`]),
+    Object.keys(get(translated, prefix, {})).map((key) => [
+      `${prefix}.${key}.title`,
+      `${prefix}.${key}.text`,
+    ]),
   );
 
 export const keys = (translated: DeepPartialSkipArrayKey<TranslationContent> | undefined) => {
@@ -37,7 +43,9 @@ const countWords = (text: string | undefined) =>
         .split(/\s+/)
         .filter((w) => !!w).length;
 
-export const getSectionWordCount = (defaultTranslation: TranslationContent | undefined): Record<string, number> => {
+export const getSectionWordCount = (
+  defaultTranslation: TranslationContent | undefined,
+): Record<string, number> => {
   const sections = keys(defaultTranslation);
   const wordsCount: Record<string, number> = {};
   for (const section of sections) {
@@ -53,7 +61,9 @@ type TranslationType = (DeepPartialSkipArrayKey<TranslateForm> | GetTraductionsF
 const isTradDone = (section: string, translations: TranslationType): boolean => {
   return !!translations.find((t) => {
     return (
-      !!get(t.translated, section) && !(t.toFinish || [])?.includes(section) && !(t.toReview || [])?.includes(section)
+      !!get(t.translated, section) &&
+      !(t.toFinish || [])?.includes(section) &&
+      !(t.toReview || [])?.includes(section)
     );
   });
 };
@@ -80,8 +90,8 @@ export const getMaxStepsTranslate = (defaultTranslation: TranslationContent | un
   if (!defaultTranslation) return 0;
   const removeTitreMarque = defaultTranslation.content.titreMarque === "" ? 1 : 0;
   const removeAdministrationName =
-    defaultTranslation.content.hasOwnProperty("administrationName") &&
-    (defaultTranslation.content as DemarcheContent).administrationName === ""
+    Object.hasOwn(defaultTranslation.content, "administrationName") &&
+    (defaultTranslation.content as any).administrationName === ""
       ? 1
       : 0;
   return keys(defaultTranslation).length - removeTitreMarque - removeAdministrationName;
@@ -120,28 +130,42 @@ export const getMissingStepsTranslate = (
   defaultTranslation: TranslationContent | undefined,
   isExpert: boolean,
 ): Step[] => {
-  let content: TranslationType = isExpert ? [formValue] : [formValue, ...suggestions];
+  const content: TranslationType = isExpert ? [formValue] : [formValue, ...suggestions];
   const steps = [
     isTradDone("content.titreInformatif", content) ? null : "titreInformatif",
-    !isTradDone("content.titreMarque", content) && typeContenu === ContentType.DISPOSITIF ? "titreMarque" : null,
+    !isTradDone("content.titreMarque", content) && typeContenu === ContentType.DISPOSITIF
+      ? "titreMarque"
+      : null,
     !isTradDone("content.administrationName", content) &&
     typeContenu === ContentType.DEMARCHE &&
-    (defaultTranslation?.content as DemarcheContent).administrationName
+    (defaultTranslation?.content as any).administrationName
       ? "administrationName"
       : null,
     isTradDone("content.what", content) ? null : "what",
     typeContenu === ContentType.DISPOSITIF
-      ? isAccordionTranslated(content, "why", (defaultTranslation?.content as DispositifContent).why)
+      ? isAccordionTranslated(
+          content,
+          "why",
+          (defaultTranslation?.content as DispositifContent).why,
+        )
         ? null
         : "why"
-      : isAccordionTranslated(content, "how", (defaultTranslation?.content as DispositifContent).how)
+      : isAccordionTranslated(
+            content,
+            "how",
+            (defaultTranslation?.content as DispositifContent).how,
+          )
         ? null
         : "how",
     typeContenu === ContentType.DISPOSITIF
       ? isAccordionTranslated(content, "how", (defaultTranslation?.content as DemarcheContent).how)
         ? null
         : "how"
-      : isAccordionTranslated(content, "next", (defaultTranslation?.content as DemarcheContent).next)
+      : isAccordionTranslated(
+            content,
+            "next",
+            (defaultTranslation?.content as DemarcheContent).next,
+          )
         ? null
         : "next",
     isTradDone("content.abstract", content) ? null : "abstract",
@@ -177,7 +201,13 @@ export const calculateProgressTranslate = (
   defaultTranslation: TranslationContent | undefined,
   isExpert: boolean,
 ) => {
-  const missingSteps = getMissingStepsTranslate(translation, suggestions, typeContenu, defaultTranslation, isExpert);
+  const missingSteps = getMissingStepsTranslate(
+    translation,
+    suggestions,
+    typeContenu,
+    defaultTranslation,
+    isExpert,
+  );
   const max = getMaxStepsTranslate(defaultTranslation);
   return max - missingSteps.length;
 };

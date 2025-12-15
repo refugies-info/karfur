@@ -1,7 +1,8 @@
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
 import { cn } from "@refugies-info/ui";
 import debounce from "lodash/debounce";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
@@ -10,14 +11,17 @@ import { getCountDispositifsForDepartment } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import {
   getCitiesForDepartment,
   getDepartmentForCity,
   sortByRelevance,
   transformDepartmentResult,
   transformMunicipalityResult,
-  UnifiedSearchResult,
+  type UnifiedSearchResult,
 } from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
 import styles from "./LocationMenu.module.css";
@@ -96,7 +100,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     const apiSearchQuery = search.replace(/ /g, "%20");
 
     const [municipalityData, departmentData] = await Promise.all([
-      fetch(`https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`)
+      fetch(
+        `https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`,
+      )
         .then((response) => response.json())
         .catch(() => ({ features: [] })),
       fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
@@ -152,7 +158,10 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     [announceResults, fetchSuggestions],
   );
 
-  const debouncedSearchChange = useMemo(() => debounce(handleSearchChange, 500), [handleSearchChange]);
+  const debouncedSearchChange = useMemo(
+    () => debounce(handleSearchChange, 500),
+    [handleSearchChange],
+  );
 
   // Use the existing decodeLocation function for consistency
 
@@ -164,7 +173,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       if (isCity) {
         // Handle city selection/deselection
         const currentCities = query.cities || [];
-        const cityExists = currentCities.some((city) => decodeLocation(city) === normalizedLocation);
+        const cityExists = currentCities.some(
+          (city) => decodeLocation(city) === normalizedLocation,
+        );
         const updatedCities = cityExists
           ? currentCities.filter((city) => decodeLocation(city) !== normalizedLocation)
           : [...currentCities, normalizedLocation];
@@ -175,7 +186,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         // If adding a city, ensure its department is in the departments list
         let updatedDepartments = query.departments || [];
         if (!cityExists && department) {
-          const deptExists = updatedDepartments.some((dept: string) => decodeLocation(dept) === department);
+          const deptExists = updatedDepartments.some(
+            (dept: string) => decodeLocation(dept) === department,
+          );
           if (!deptExists) {
             updatedDepartments = [...updatedDepartments, department];
           }
@@ -192,7 +205,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       } else {
         // Handle department selection/deselection
         const currentDepartments = query.departments || [];
-        const deptExists = currentDepartments.some((dept: string) => decodeLocation(dept) === normalizedLocation);
+        const deptExists = currentDepartments.some(
+          (dept: string) => decodeLocation(dept) === normalizedLocation,
+        );
 
         if (deptExists) {
           // When removing a department, also remove all its cities
@@ -203,7 +218,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
           // Get all cities that belong to this department
           const citiesToRemove = await getCitiesForDepartment(location);
           const currentCities = query.cities || [];
-          const updatedCities = currentCities.filter((city: string) => !citiesToRemove.includes(decodeLocation(city)));
+          const updatedCities = currentCities.filter(
+            (city: string) => !citiesToRemove.includes(decodeLocation(city)),
+          );
 
           dispatch(
             addToQueryActionCreator({
@@ -231,7 +248,15 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         }
       }
     },
-    [dispatch, query.departments, query.cities, decodeLocation, getNormalizedLocations, announce, t],
+    [
+      dispatch,
+      query.departments,
+      query.cities,
+      decodeLocation,
+      getNormalizedLocations,
+      announce,
+      t,
+    ],
   );
 
   const handleResultToggle = useCallback(
@@ -239,7 +264,10 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       Event(eventName, "toggle location option", result.label);
       Event(eventName, "click filter", "location");
       // Pass true for cities, false for departments
-      toggleSelection(result.type === "department" ? result.deptName : result.displayName, result.type === "city");
+      toggleSelection(
+        result.type === "department" ? result.deptName : result.displayName,
+        result.type === "city",
+      );
     },
     [toggleSelection, eventName],
   );
@@ -315,10 +343,14 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         let isChecked = false;
         if (result.type === "department") {
           isChecked =
-            query.departments?.some((dept) => decodeLocation(dept) === decodeLocation(result.deptName)) || false;
+            query.departments?.some(
+              (dept) => decodeLocation(dept) === decodeLocation(result.deptName),
+            ) || false;
         } else {
           isChecked =
-            query.cities?.some((city) => decodeLocation(city) === decodeLocation(result.displayName)) || false;
+            query.cities?.some(
+              (city) => decodeLocation(city) === decodeLocation(result.displayName),
+            ) || false;
         }
 
         return {
@@ -351,7 +383,13 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       return null;
     }
 
-    return <Checkbox className="w-full" legend={t("Recherche.commonPlaces", "Villes courantes")} options={options} />;
+    return (
+      <Checkbox
+        className="w-full"
+        legend={t("Recherche.commonPlaces", "Villes courantes")}
+        options={options}
+      />
+    );
   };
 
   const renderSelectedLocations = () => {

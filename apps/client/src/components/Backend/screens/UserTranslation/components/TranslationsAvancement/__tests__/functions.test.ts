@@ -1,5 +1,14 @@
 import { ContentType, TraductionsStatus } from "@refugies-info/api-types";
-import { data, data1, data2, data3, data4, data6, data7, data8 } from "../../__fixtures__/dispositifs";
+import {
+  data,
+  data1,
+  data2,
+  data3,
+  data4,
+  data6,
+  data7,
+  data8,
+} from "../../__fixtures__/dispositifs";
 import { filterData } from "../functions";
 
 describe("filter data", () => {

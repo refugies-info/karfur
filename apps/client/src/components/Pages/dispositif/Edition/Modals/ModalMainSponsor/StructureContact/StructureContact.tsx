@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import type React from "react";
+import { useCallback } from "react";
 import NoIcon from "~/assets/dispositif/no-icon.svg";
 import Input from "~/components/Pages/dispositif/Input";
 import ChoiceButton from "../../../ChoiceButton";
-import { ContactInfos } from "../ModalMainSponsor";
+import type { ContactInfos } from "../ModalMainSponsor";
 
 interface Props {
   contact: ContactInfos;
@@ -21,7 +22,9 @@ const StructureContact = (props: Props) => {
 
   return (
     <div>
-      <p>Nous avons besoin de contacter un membre de cette structure pour lui faire valider la fiche.</p>
+      <p>
+        Nous avons besoin de contacter un membre de cette structure pour lui faire valider la fiche.
+      </p>
       <Input
         id="structure-contact-name"
         label="Prénom et nom du contact"

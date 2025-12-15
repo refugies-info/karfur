@@ -1,6 +1,6 @@
-import React from "react";
+import type React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { PropsOf } from "~/utils";
+import type { PropsOf } from "~/utils";
 
 const SafeAreaViewTopInset: React.FC<React.PropsWithChildren<PropsOf<typeof SafeAreaView>>> = ({
   children,

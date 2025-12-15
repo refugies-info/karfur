@@ -1,9 +1,9 @@
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { Spacer } from "~/components";
 import PageOnboarding from "~/components/layout/PageOnboarding";
 import { EnableNotifications } from "~/components/Notifications/EnableNotifications";
-import { OnboardingParamList } from "~/types/navigation";
+import type { OnboardingParamList } from "~/types/navigation";
 
 export const ActivateNotificationsScreen = ({
   navigation,

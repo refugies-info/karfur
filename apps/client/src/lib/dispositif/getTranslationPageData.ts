@@ -1,4 +1,8 @@
-import { GetDispositifResponse, GetTraductionsForReviewResponse, GetUserInfoResponse } from "@refugies-info/api-types";
+import type {
+  GetDispositifResponse,
+  GetTraductionsForReviewResponse,
+  GetUserInfoResponse,
+} from "@refugies-info/api-types";
 import API from "~/utils/API";
 
 /**
@@ -16,9 +20,9 @@ const buildTranslationsObject = (
           titreInformatif: dispositif.titreInformatif,
           titreMarque: dispositif.titreMarque,
           abstract: dispositif.abstract,
-          what: dispositif.what,
+          what: dispositif.what || "",
           why: dispositif.why || {},
-          how: dispositif.how,
+          how: dispositif.how || {},
           next: dispositif.next || {},
         },
       },
@@ -46,7 +50,9 @@ export const getTranslationPageData = async (
 
   // if dispositif is already translated, build an object from original text to be able to edit it
   if (traductions.length === 0 && dispositif.availableLanguages.includes(queryLanguage)) {
-    const translatedDispositif = await API.getDispositif(dispositif._id.toString(), queryLanguage, { token });
+    const translatedDispositif = await API.getDispositif(dispositif._id.toString(), queryLanguage, {
+      token,
+    });
     traductions = buildTranslationsObject(translatedDispositif, user);
   }
 

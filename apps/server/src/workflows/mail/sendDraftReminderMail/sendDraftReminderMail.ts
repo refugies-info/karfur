@@ -1,19 +1,27 @@
 import logger from "~/logger";
 import {
+  type FormattedDispositif,
   filterDispositifsForDraftReminders,
   formatDispositifsByCreator,
-  FormattedDispositif,
 } from "~/modules/dispositif/dispositif.adapter";
-import { getDraftDispositifs, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { sendMultipleDraftsReminderMailService, sendOneDraftReminderMailService } from "~/modules/mail/mail.service";
-import { Response } from "~/types/interface";
+import {
+  getDraftDispositifs,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import {
+  sendMultipleDraftsReminderMailService,
+  sendOneDraftReminderMailService,
+} from "~/modules/mail/mail.service";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "first" | "second") => {
   try {
     if (recipient.dispositifs.length === 1) {
       const dispositifId = recipient.dispositifs[0]._id;
-      logger.info(`[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `);
+      logger.info(
+        `[sendDraftReminderMail] send mail to ${recipient.email} for dispositif with id ${dispositifId} `,
+      );
       await sendOneDraftReminderMailService(
         recipient.email,
         recipient.firstName,
@@ -37,7 +45,12 @@ const sendReminderEmails = async (recipient: FormattedDispositif, reminder: "fir
 
     logger.info(`[sendDraftReminderMail] send mail to ${recipient.email} for multiple dispositifs`);
 
-    await sendMultipleDraftsReminderMailService(recipient.email, recipient.firstName, recipient.creatorId, reminder);
+    await sendMultipleDraftsReminderMailService(
+      recipient.email,
+      recipient.firstName,
+      recipient.creatorId,
+      reminder,
+    );
 
     await Promise.all(
       recipient.dispositifs.map(async (dispositif) => {

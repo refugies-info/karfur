@@ -1,4 +1,5 @@
-import { Dispositif, DispositifId } from "~/typegoose";
+import type { Dispositif, DispositifId } from "~/typegoose";
 
-export const getDispositifDepartments = (dispositif: Dispositif & Required<{ _id: DispositifId }>) =>
-  dispositif.metadatas?.location || [];
+export const getDispositifDepartments = (
+  dispositif: Dispositif & Required<{ _id: DispositifId }>,
+) => dispositif.metadatas?.location || [];

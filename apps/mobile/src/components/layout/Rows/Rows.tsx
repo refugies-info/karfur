@@ -1,6 +1,6 @@
 import isNull from "lodash/isNull";
-import React, { PropsWithChildren, ReactNode } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import React, { type PropsWithChildren, type ReactNode } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { isLastChild } from "../../utils";
 import { FlexItem, getFlexValue } from "../common";

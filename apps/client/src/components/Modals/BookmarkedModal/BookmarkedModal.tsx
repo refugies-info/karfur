@@ -1,9 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { Modal } from "@refugies-info/ui";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { RefObject, useCallback } from "react";
+import { useTranslation } from "next-i18next";
+import { type RefObject, useCallback } from "react";
 import { getPath } from "routes";
 import { setLoginRedirect } from "~/lib/loginRedirect";
 import { Event } from "~/lib/tracking";
@@ -21,7 +21,9 @@ const BookmarkedModal = (props: Props) => {
   const { open, onOpenChange, triggerRef } = props;
 
   const redirect = useCallback(() => {
-    setLoginRedirect(props.dispositifId ? { addFavorite: props.dispositifId.toString() } : undefined);
+    setLoginRedirect(
+      props.dispositifId ? { addFavorite: props.dispositifId.toString() } : undefined,
+    );
     Event("AUTH", "start", "bookmark");
     router.push(getPath("/auth", "fr"));
   }, [props.dispositifId, router]);

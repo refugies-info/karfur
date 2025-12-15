@@ -1,4 +1,4 @@
-import { Languages } from "../generics";
+import type { Languages } from "../generics";
 
 /**
  * @url POST /appuser

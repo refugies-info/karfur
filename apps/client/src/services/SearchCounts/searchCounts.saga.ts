@@ -1,11 +1,8 @@
 import { call, put, takeLatest } from "redux-saga/effects";
+import type { SearchCountsResponse } from "../../pages/api/search/counts";
+import type { SearchQuery } from "../SearchResults/searchResults.reducer";
+import { fetchSearchCountsFailure, fetchSearchCountsSuccess } from "./searchCounts.reducer";
 import { getSearchCounts } from "./searchCounts.service";
-import {
-  fetchSearchCountsSuccess,
-  fetchSearchCountsFailure,
-} from "./searchCounts.reducer";
-import { SearchQuery } from "../SearchResults/searchResults.reducer";
-import { SearchCountsResponse } from "../../pages/api/search/counts";
 
 function* fetchSearchCounts(action: { type: string; payload: SearchQuery }) {
   try {

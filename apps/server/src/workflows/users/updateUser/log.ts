@@ -1,7 +1,7 @@
-import { Id } from "@refugies-info/api-types";
-import { Types } from "mongoose";
-import { addLog, optionsType } from "~/modules/logs/logs.service";
-import { User } from "~/typegoose";
+import type { Id } from "@refugies-info/api-types";
+import type { Types } from "mongoose";
+import { addLog, type optionsType } from "~/modules/logs/logs.service";
+import type { User } from "~/typegoose";
 
 type LogUser = {
   phone?: string;

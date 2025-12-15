@@ -16,7 +16,12 @@ jest.mock("react-i18next", () => ({
 describe("LocationWarningMessage snapshot test suite", () => {
   it("should render without bug", async () => {
     const test = render(
-      <LocationWarningMessage city="Paris" totalContent={42} onClose={() => null} onPress={() => null} />,
+      <LocationWarningMessage
+        city="Paris"
+        totalContent={42}
+        onClose={() => null}
+        onPress={() => null}
+      />,
     );
     expect(test).toMatchSnapshot();
   });

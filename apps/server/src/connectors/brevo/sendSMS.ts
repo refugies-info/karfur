@@ -1,6 +1,11 @@
-import { HttpError, SendTransacSms, TransactionalSMSApi, TransactionalSMSApiApiKeys } from "@getbrevo/brevo";
+import {
+  HttpError,
+  SendTransacSms,
+  TransactionalSMSApi,
+  TransactionalSMSApiApiKeys,
+} from "@getbrevo/brevo";
 import { phone as parse } from "phone";
-import { SendSMSResult } from "~/services";
+import type { SendSMSResult } from "~/services";
 
 const apiInstance = new TransactionalSMSApi();
 

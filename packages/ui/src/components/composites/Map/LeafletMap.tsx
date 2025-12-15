@@ -1,13 +1,14 @@
 "use client";
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
-import L, { LatLngBounds, LatLngTuple } from "leaflet";
+import L, { LatLngBounds, type LatLngTuple } from "leaflet";
 import "leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet/dist/leaflet.css";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import CustomControls from "./CustomControls";
@@ -115,7 +116,10 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   }, [handleMapReady, handleFocusLocation]);
 
   const bounds = useMemo(
-    () => (mapData.length > 0 ? new LatLngBounds(mapData.map((poi) => [poi.lat, poi.lng] as LatLngTuple)) : undefined),
+    () =>
+      mapData.length > 0
+        ? new LatLngBounds(mapData.map((poi) => [poi.lat, poi.lng] as LatLngTuple))
+        : undefined,
     [mapData],
   );
 
@@ -157,7 +161,9 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         const popup = e.target as L.Popup;
         const element = popup.getElement();
         if (element) {
-          const closeButton = element.querySelector(".leaflet-popup-close-button") as HTMLAnchorElement;
+          const closeButton = element.querySelector(
+            ".leaflet-popup-close-button",
+          ) as HTMLAnchorElement;
           if (closeButton) {
             closeButton.setAttribute("class", "hidden");
           }

@@ -16,7 +16,9 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
     <div className="container">
       <div className="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20">
         <div className="flex-1 text-center md:text-left">
-          <h1 className="text-h1 text-inverted-blue-france md:text-alt-title mb-6">{props.title}</h1>
+          <h1 className="text-h1 text-inverted-blue-france md:text-alt-title mb-6">
+            {props.title}
+          </h1>
           <p className="text-chapo text-inverted-blue-france mb-0">{props.subtitle}</p>
           <Button
             iconId="fr-icon-arrow-right-line"
@@ -30,7 +32,12 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
           </Button>
         </div>
         <div className="flex-1">
-          <Image src={props.image} alt="" width={props.imageWidth} className="mx-auto h-auto max-w-full" />
+          <Image
+            src={props.image}
+            alt=""
+            width={props.imageWidth}
+            className="mx-auto h-auto max-w-full"
+          />
         </div>
       </div>
     </div>

@@ -9,7 +9,8 @@ structure.link = "www.associationmotamot.org";
 structure.nom = "Mot à Mot";
 structure.status = StructureStatus.ACTIVE;
 structure.picture = {
-  secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1701430229/pictures/rxvgu9ivip3kksatgomc.jpg",
+  secure_url:
+    "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1701430229/pictures/rxvgu9ivip3kksatgomc.jpg",
   public_id: "pictures/rxvgu9ivip3kksatgomc",
   imgId: "6569c3d661b13ef31806fab2",
 };

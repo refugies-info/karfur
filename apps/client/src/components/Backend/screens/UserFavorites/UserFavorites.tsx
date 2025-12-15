@@ -100,7 +100,9 @@ const UserFavorites = (props: Props) => {
       <Toast open={showDeleteToast} closeCallback={() => setShowDeleteToast(false)}>
         Vos favoris ont été supprimés
       </Toast>
-      {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes favoris"} />}
+      {showTutoModal && (
+        <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes favoris"} />
+      )}
     </>
   );
 };

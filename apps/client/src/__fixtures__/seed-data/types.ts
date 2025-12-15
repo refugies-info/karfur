@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
 
 export interface NeedSeedIds {
   NA1: mongoose.Types.ObjectId;

@@ -58,7 +58,12 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
           </SkeletonTheme>
         </Row>
         <Row>
-          <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
+          <FButton
+            type="tuto"
+            onClick={props.toggleTutoModal}
+            name="video-outline"
+            className="me-2"
+          >
             Explications
           </FButton>
           <FButton type="dark" name="settings-2-outline">
@@ -75,14 +80,18 @@ export const LoadingDispositifsWithTranslationsStatus = (props: Props) => {
             onClick={() => {}}
           />
 
-          <FilterButton status={TraductionsStatus.VALIDATED} isSelected={false} nbContent={"..."} onClick={() => {}} />
+          <FilterButton
+            status={TraductionsStatus.VALIDATED}
+            isSelected={false}
+            nbContent={"..."}
+            onClick={() => {}}
+          />
           <FilterButton isSelected={true} name="Dispositifs" onClick={() => {}} nbContent={"..."} />
           <FilterButton isSelected={false} name="Démarches" onClick={() => {}} nbContent={"..."} />
         </Row>
 
         <CustomSearchBar
           value={""}
-          // @ts-ignore
           onChange={() => {}}
           placeholder="Rechercher..."
           withMargin={false}

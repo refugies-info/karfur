@@ -1,6 +1,6 @@
 "use client";
 
-import NextImage, { ImageLoader } from "next/image";
+import NextImage, { type ImageLoader } from "next/image";
 import { forwardRef } from "react";
 
 // Demo: https://res.cloudinary.com/demo/image/upload/w_300,c_limit,q_auto/turtles.jpg
@@ -25,7 +25,11 @@ const isCloudinaryUrl = (src: string): boolean => {
 
 export const Image: typeof NextImage = forwardRef(({ src, loader, ...props }, ref) => {
   const realLoader =
-    typeof loader !== "undefined" ? loader : isCloudinaryUrl(src as string) ? cloudinaryLoader : undefined; // Use default loader
+    typeof loader !== "undefined"
+      ? loader
+      : isCloudinaryUrl(src as string)
+        ? cloudinaryLoader
+        : undefined; // Use default loader
   return <NextImage src={src} loader={realLoader} {...props} ref={ref} />;
 });
 

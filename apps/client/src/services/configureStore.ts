@@ -1,7 +1,7 @@
 import { createWrapper } from "next-redux-wrapper";
-import { applyMiddleware, createStore, Store } from "redux";
+import { applyMiddleware, createStore, type Store } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { appReducer, RootState } from "./rootReducer";
+import { appReducer, type RootState } from "./rootReducer";
 import { rootSaga } from "./sagas";
 
 const bindMiddleware = (middleware: any) => {

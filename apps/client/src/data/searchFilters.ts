@@ -39,7 +39,11 @@ export type StatusFilters = {
 export const ageFilters: AgeFilters = [
   { key: "-18", value: "Filters.age-18", backwardCompatibility: ["moins de 18 ans"] },
   { key: "18-25", value: "Filters.age18-25", backwardCompatibility: ["entre 18 et 25 ans"] },
-  { key: "+25", value: "Filters.age+25", backwardCompatibility: ["entre 25 et 56 ans", "56 ans et plus"] },
+  {
+    key: "+25",
+    value: "Filters.age+25",
+    backwardCompatibility: ["entre 25 et 56 ans", "56 ans et plus"],
+  },
 ];
 export const frenchLevelFilter: FrenchFilters = [
   { key: "a", value: "Filters.frenchLevelA", backwardCompatibility: ["pas du tout", "un peu"] },

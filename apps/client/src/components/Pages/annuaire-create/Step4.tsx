@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { days } from "data/days";
 import { departments as departmentsData } from "data/departments";
 import { useState } from "react";
@@ -135,7 +135,9 @@ export const Step4 = (props: Props) => {
       return setDepartments([]);
     }
     const departmentsDataFiltered = departmentsData.filter((department) =>
-      props.structure && props.structure.departments ? !props.structure.departments.includes(department) : false,
+      props.structure && props.structure.departments
+        ? !props.structure.departments.includes(department)
+        : false,
     );
 
     const filteredDepartments = departmentsDataFiltered.filter((department) =>
@@ -165,7 +167,11 @@ export const Step4 = (props: Props) => {
   const handleCheckboxChange = () => {
     props.setHasModifications(true);
 
-    if (props.structure && props.structure.departments && props.structure.departments[0] === "All") {
+    if (
+      props.structure &&
+      props.structure.departments &&
+      props.structure.departments[0] === "All"
+    ) {
       return props.setStructure({
         ...props.structure,
         departments: [],
@@ -213,7 +219,11 @@ export const Step4 = (props: Props) => {
       });
     }
 
-    if (props.structure && props.structure.openingHours && props.structure.openingHours.precisions) {
+    if (
+      props.structure &&
+      props.structure.openingHours &&
+      props.structure.openingHours.precisions
+    ) {
       return props.setStructure({
         ...props.structure,
         openingHours: {
@@ -267,13 +277,17 @@ export const Step4 = (props: Props) => {
   };
 
   const onPhoneChange = (e: any) => {
-    const phones = props.structure ? getPhones(props.structure.phonesPublic, e.target.id, e.target.value) : [];
+    const phones = props.structure
+      ? getPhones(props.structure.phonesPublic, e.target.id, e.target.value)
+      : [];
     props.setStructure({ ...props.structure, phonesPublic: phones });
     props.setHasModifications(true);
   };
 
   const onMailChange = (e: any) => {
-    const mails = props.structure ? getMails(props.structure.mailsPublic, e.target.id, e.target.value) : [];
+    const mails = props.structure
+      ? getMails(props.structure.mailsPublic, e.target.id, e.target.value)
+      : [];
     props.setStructure({ ...props.structure, mailsPublic: mails });
     props.setHasModifications(true);
   };
@@ -289,13 +303,17 @@ export const Step4 = (props: Props) => {
     });
   };
 
-  const getUpdatedPhones = (phones: string[], index: number) => phones.filter((phone) => phone !== phones[index]);
+  const getUpdatedPhones = (phones: string[], index: number) =>
+    phones.filter((phone) => phone !== phones[index]);
 
-  const getUpdatedMails = (mails: string[], index: number) => mails.filter((mail) => mail !== mails[index]);
+  const getUpdatedMails = (mails: string[], index: number) =>
+    mails.filter((mail) => mail !== mails[index]);
 
   const removePhone = (index: number) => {
     const updatedPhones =
-      props.structure && props.structure.phonesPublic ? getUpdatedPhones(props.structure.phonesPublic, index) : [];
+      props.structure && props.structure.phonesPublic
+        ? getUpdatedPhones(props.structure.phonesPublic, index)
+        : [];
     props.setStructure({ ...props.structure, phonesPublic: updatedPhones });
     setshow1PhoneInput(false);
     setshow2PhoneInput(false);
@@ -304,7 +322,9 @@ export const Step4 = (props: Props) => {
 
   const removeMail = (index: number) => {
     const updatedMails =
-      props.structure && props.structure.mailsPublic ? getUpdatedMails(props.structure.mailsPublic, index) : [];
+      props.structure && props.structure.mailsPublic
+        ? getUpdatedMails(props.structure.mailsPublic, index)
+        : [];
     props.setStructure({ ...props.structure, mailsPublic: updatedMails });
     setshow1MailInput(false);
     setshow2MailInput(false);
@@ -314,7 +334,8 @@ export const Step4 = (props: Props) => {
   const isFranceSelected =
     !!props.structure && !!props.structure.departments && props.structure.departments[0] === "All";
 
-  const phones = props.structure && props.structure.phonesPublic ? props.structure.phonesPublic : [];
+  const phones =
+    props.structure && props.structure.phonesPublic ? props.structure.phonesPublic : [];
 
   const mails = props.structure && props.structure.mailsPublic ? props.structure.mailsPublic : [];
   const noPublicChecked = !!props.structure?.openingHours?.noPublic;
@@ -334,7 +355,8 @@ export const Step4 = (props: Props) => {
     const isDayInOpeningHours =
       props.structure.openingHours.details.filter((element) => element.day === day).length > 0;
 
-    if (isDayInOpeningHours) return props.structure.openingHours.details.filter((element) => element.day !== day);
+    if (isDayInOpeningHours)
+      return props.structure.openingHours.details.filter((element) => element.day !== day);
 
     return props.structure.openingHours.details.concat([{ day }]);
   };
@@ -349,7 +371,8 @@ export const Step4 = (props: Props) => {
 
   const onHoursChange = (value: any, index: string, day: string) => {
     if (!props.structure) return;
-    if (props.structure && props.structure.openingHours && props.structure.openingHours.noPublic) return;
+    if (props.structure && props.structure.openingHours && props.structure.openingHours.noPublic)
+      return;
 
     const dayRegistered =
       props.structure.openingHours && props.structure.openingHours.details
@@ -388,8 +411,9 @@ export const Step4 = (props: Props) => {
             <EVAIcon name="close" />
           </IconContainer>
           <HelpDescription>
-            Si votre structure est présente sur plus de 8 départements, cochez le choix <b>France entière</b> puis créez
-            une structure pour chacune de vos antennes territoriales.
+            Si votre structure est présente sur plus de 8 départements, cochez le choix{" "}
+            <b>France entière</b> puis créez une structure pour chacune de vos antennes
+            territoriales.
           </HelpDescription>
         </HelpContainer>
       )}
@@ -411,22 +435,27 @@ export const Step4 = (props: Props) => {
                 </div>
               </SelectedContainer>
             ))}
-          {props.structure && props.structure.departments && props.structure.departments.length < 8 && (
-            <div style={{ width: "280px", marginRight: "8px" }}>
-              <FInput
-                id="department"
-                value={departmentInput}
-                onChange={onDepartmentChange}
-                newSize={true}
-                placeholder="Entrez un numéro de département"
-                type="number"
-                prepend
-                prependName="hash"
-                autoFocus={false}
-              />
-              <CustomDropDown elementList={departments} onDropdownElementClick={onDropdownElementClick} />
-            </div>
-          )}
+          {props.structure &&
+            props.structure.departments &&
+            props.structure.departments.length < 8 && (
+              <div style={{ width: "280px", marginRight: "8px" }}>
+                <FInput
+                  id="department"
+                  value={departmentInput}
+                  onChange={onDepartmentChange}
+                  newSize={true}
+                  placeholder="Entrez un numéro de département"
+                  type="number"
+                  prepend
+                  prependName="hash"
+                  autoFocus={false}
+                />
+                <CustomDropDown
+                  elementList={departments}
+                  onDropdownElementClick={onDropdownElementClick}
+                />
+              </div>
+            )}
         </DepartmentContainer>
       )}
       <CheckboxContainer onClick={handleCheckboxChange} checked={isFranceSelected}>
@@ -490,7 +519,9 @@ export const Step4 = (props: Props) => {
             </DeleteIconContainer>
           </div>
         )}
-        {mails.length === 0 && !show1MailInput && <AddButton type="email" onClick={toggle1MailInput} />}
+        {mails.length === 0 && !show1MailInput && (
+          <AddButton type="email" onClick={toggle1MailInput} />
+        )}
       </div>
       <Title>Numéro de télephone</Title>
       <div style={{ marginBottom: "16px" }}>
@@ -550,7 +581,9 @@ export const Step4 = (props: Props) => {
             </DeleteIconContainer>
           </div>
         )}
-        {phones.length === 0 && !show1PhoneInput && <AddButton type="numéro" onClick={toggle1PhoneInput} />}
+        {phones.length === 0 && !show1PhoneInput && (
+          <AddButton type="numéro" onClick={toggle1PhoneInput} />
+        )}
       </div>
       <Title>Adresse postale</Title>
       <div
@@ -588,7 +621,7 @@ export const Step4 = (props: Props) => {
               key={day}
               day={day}
               onClick={onDayClick}
-              // @ts-ignore : it is not a string since noPublicChecked is false
+              // @ts-expect-error : it is not a string since noPublicChecked is false
               openingHours={props.structure ? props.structure.openingHours : []}
               onChange={onHoursChange}
             />
@@ -606,7 +639,12 @@ export const Step4 = (props: Props) => {
           type="textarea"
           placeholder="Ajoutez ici des précisions si besoin (jours fériés, sur rendez-vous, etc.)"
           rows={5}
-          value={(props.structure && props.structure.openingHours && props.structure.openingHours.precisions) || ""}
+          value={
+            (props.structure &&
+              props.structure.openingHours &&
+              props.structure.openingHours.precisions) ||
+            ""
+          }
           onChange={onPrecisionsChange}
         />
       </div>

@@ -1,7 +1,7 @@
-import { GetUserStatisticsResponse, RoleName } from "@refugies-info/api-types";
+import { type GetUserStatisticsResponse, RoleName } from "@refugies-info/api-types";
 import { getAllUsersFromDB } from "~/modules/users/users.repository";
-import { User } from "~/typegoose/User";
-import { ResponseWithData } from "~/types/interface";
+import type { User } from "~/typegoose/User";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getFiguresOnUsers = async (): ResponseWithData<GetUserStatisticsResponse> => {
   const users = await getAllUsersFromDB({ roles: 1 }, "roles");

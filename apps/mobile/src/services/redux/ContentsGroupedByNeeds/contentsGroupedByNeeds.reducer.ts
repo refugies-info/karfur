@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import { GroupedContentsActions } from "./contentsGroupedByNeeds.actions";
+import type { GroupedContentsActions } from "./contentsGroupedByNeeds.actions";
 
 export type GroupedContentsState = Record<string, string[]>;
 

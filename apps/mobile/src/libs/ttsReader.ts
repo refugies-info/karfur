@@ -1,4 +1,4 @@
-import { AVPlaybackStatus, Audio } from "expo-av";
+import { Audio, type AVPlaybackStatus } from "expo-av";
 import * as Speech from "expo-speech";
 import { Platform } from "react-native";
 import ReactNativeBlobUtil from "react-native-blob-util";
@@ -33,7 +33,11 @@ const waitForDiJustFinishedPlaying = (sound: Audio.Sound) =>
  * @param rate - voice reading speed
  * @returns reader
  */
-const getAzureReader = async (text: string, language: string | null, rate: number): Promise<Reader> => {
+const getAzureReader = async (
+  text: string,
+  language: string | null,
+  rate: number,
+): Promise<Reader> => {
   const path = await fetchAudio({
     text: text,
     locale: language || "fr",
@@ -114,5 +118,11 @@ const needsAzureTts = (language: string | null) => {
  * @param rate - voice reading speed
  * @returns reader
  */
-export const getTtsReader = async (text: string, language: string | null, rate: number): Promise<Reader> =>
-  needsAzureTts(language) ? getAzureReader(text, language, rate) : getNativeReader(text, language, rate);
+export const getTtsReader = async (
+  text: string,
+  language: string | null,
+  rate: number,
+): Promise<Reader> =>
+  needsAzureTts(language)
+    ? getAzureReader(text, language, rate)
+    : getNativeReader(text, language, rate);

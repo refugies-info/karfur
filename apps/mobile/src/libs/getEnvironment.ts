@@ -12,7 +12,11 @@ const Config = {
 };
 
 // Env variables for staging or production here
-if (Updates.channel === "staging" || Updates.channel === "development" || Updates.channel === "preview") {
+if (
+  Updates.channel === "staging" ||
+  Updates.channel === "development" ||
+  Updates.channel === "preview"
+) {
   Config.envName = "STAGING";
   Config.siteUrl = "https://staging.refugies.info";
   Config.dbUrl = "https://backend-stag-4rok5wopuq-ew.a.run.app";

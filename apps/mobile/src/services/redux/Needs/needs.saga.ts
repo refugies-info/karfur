@@ -1,8 +1,12 @@
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "~/logger";
 import { getNeeds } from "~/utils/API";
-import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import { setNeedsActionCreator } from "./needs.actions";
 import { FETCH_NEEDS } from "./needs.actionTypes";
 

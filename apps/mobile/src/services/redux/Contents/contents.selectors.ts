@@ -1,6 +1,6 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
-import { RootState } from "../reducers";
+import type { RootState } from "../reducers";
 
 export const contentsSelector = (state: RootState) =>
   state.user.currentLanguagei18nCode ? state.contents[state.user.currentLanguagei18nCode] : [];

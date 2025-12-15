@@ -1,5 +1,5 @@
 import Tag from "@codegouvfr/react-dsfr/Tag";
-import Image, { StaticImageData } from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { cn } from "~/lib/classname";
 
 interface Props {
@@ -14,7 +14,12 @@ export const TeamCard = (props: Props) => {
   return (
     <div className={cn("fr-card fr-enlarge-link fr-card--horizontal", "flex-row")}>
       <div className={cn("fr-card__body", "px-0")}>
-        <div className={cn("fr-card__content", "mx-0 min-h-[12.25rem] px-4 pt-4 pb-4 sm:max-h-none sm:px-6 sm:pt-6")}>
+        <div
+          className={cn(
+            "fr-card__content",
+            "mx-0 min-h-[12.25rem] px-4 pt-4 pb-4 sm:max-h-none sm:px-6 sm:pt-6",
+          )}
+        >
           <div className={cn("", "mb-4 h-6")}>
             <Tag small>{props.tag}</Tag>
           </div>
@@ -30,9 +35,16 @@ export const TeamCard = (props: Props) => {
           />
         </div>
       </div>
-      <div className={cn("fr-card__header", "min-h-[12.25rem] w-[10rem] flex-none lg:w-[14.6rem]")} aria-hidden={true}>
+      <div
+        className={cn("fr-card__header", "min-h-[12.25rem] w-[10rem] flex-none lg:w-[14.6rem]")}
+        aria-hidden={true}
+      >
         <div className={cn("fr-card__img", "h-full")}>
-          <Image src={props.image} alt="" className={cn("fr-responsive-img", "h-full object-cover")} />
+          <Image
+            src={props.image}
+            alt=""
+            className={cn("fr-responsive-img", "h-full object-cover")}
+          />
         </div>
       </div>
     </div>

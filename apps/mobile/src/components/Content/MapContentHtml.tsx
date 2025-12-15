@@ -17,7 +17,9 @@ export const MapContentFromHtml = (props: Props) => {
       defaultTextProps={{ selectable: true }}
       baseFontStyle={{
         fontSize: props.isLarge ? styles.fonts.sizes.l : styles.fonts.sizes.md,
-        fontFamily: props.isBold ? styles.fonts.families.marianneBold : styles.fonts.families.marianneReg,
+        fontFamily: props.isBold
+          ? styles.fonts.families.marianneBold
+          : styles.fonts.families.marianneReg,
         textAlign: isRTL ? "right" : "left",
         lineHeight: props.isLarge ? 24 : 20,
         flexShrink: 1,

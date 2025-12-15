@@ -6,7 +6,7 @@ import useUser from "~/hooks/useUser";
 import { fetchAllStructuresActionsCreator } from "~/services/AllStructures/allStructures.actions";
 import { fetchUserStructureActionCreator } from "~/services/UserStructure/userStructure.actions";
 import { userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
-import { Modals } from "~/utils/pageContext";
+import type { Modals } from "~/utils/pageContext";
 
 /**
  * Initializes the dispositif forms, and return the form context methods

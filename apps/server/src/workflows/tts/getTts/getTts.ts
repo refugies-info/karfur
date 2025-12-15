@@ -1,10 +1,9 @@
-import { TtsRequest } from "@refugies-info/api-types";
+import type { TtsRequest } from "@refugies-info/api-types";
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 import { SpeechSynthesisOutputFormat } from "microsoft-cognitiveservices-speech-sdk";
+import { PassThrough } from "stream";
 import logger from "~/logger";
 import voices from "./voices";
-
-import { PassThrough } from "stream";
 
 export const getTts = async (body: TtsRequest): Promise<unknown> => {
   logger.info("[getTts] received", body);

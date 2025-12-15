@@ -28,12 +28,12 @@ export const ModalResetPassword = ({ email }: Props) => {
       ) : (
         <>
           <p>
-            Nous venons de vous envoyer un mail pour réinitialiser votre mot de passe à l’adresse suivante&nbsp;:{" "}
-            {email}.
+            Nous venons de vous envoyer un mail pour réinitialiser votre mot de passe à l’adresse
+            suivante&nbsp;: {email}.
             <br />
             <br />
-            Si vous ne recevez pas de mail d’ici quelques minutes, pensez à vérifier vos courriers indésirables ou vos
-            spams.
+            Si vous ne recevez pas de mail d’ici quelques minutes, pensez à vérifier vos courriers
+            indésirables ou vos spams.
           </p>
           <ForgotPasswordMailSent email={email} />
         </>

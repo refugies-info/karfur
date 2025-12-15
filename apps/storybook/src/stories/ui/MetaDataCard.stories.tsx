@@ -47,8 +47,8 @@ export const Default: Story = {
   },
   globals: {
     backgrounds: {
-      value: "gradient"
-    }
+      value: "gradient",
+    },
   },
 };
 
@@ -71,8 +71,8 @@ export const WithActions: Story = {
   },
   globals: {
     backgrounds: {
-      value: "gradient"
-    }
+      value: "gradient",
+    },
   },
 };
 
@@ -83,8 +83,8 @@ export const WithSimpleText: Story = {
   },
   globals: {
     backgrounds: {
-      value: "gradient"
-    }
+      value: "gradient",
+    },
   },
 };
 
@@ -106,8 +106,8 @@ export const InvalidState: Story = {
   },
   globals: {
     backgrounds: {
-      value: "gradient"
-    }
+      value: "gradient",
+    },
   },
 };
 
@@ -130,7 +130,7 @@ export const InvalidStateWithEditAction: Story = {
   },
   globals: {
     backgrounds: {
-      value: "gradient"
-    }
+      value: "gradient",
+    },
   },
 };

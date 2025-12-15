@@ -1,6 +1,7 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
 import { operatorsPerDepartment } from "data/agirOperators";
-import React, { MouseEventHandler, SVGAttributes, useContext, useMemo, useState } from "react";
+import type React from "react";
+import { type MouseEventHandler, type SVGAttributes, useContext, useMemo, useState } from "react";
 import { cls } from "~/lib/classname";
 import styles from "./Department.module.scss";
 import { MapContext } from "./MapContext";
@@ -59,7 +60,11 @@ const Department: React.FC<Props> = ({ dep, d, points }) => {
       onClick,
       onMouseOut: () => setOpen(false),
       fill: MAP_COLORS[dep] || undefined,
-      className: cls(styles.dep, isSelectable && styles.selectable, dep === selectedDepartment && styles.selected),
+      className: cls(
+        styles.dep,
+        isSelectable && styles.selectable,
+        dep === selectedDepartment && styles.selected,
+      ),
     };
   }, [isSelectable, dep, selectedDepartment, setSelectedDepartment, setOpen]);
 

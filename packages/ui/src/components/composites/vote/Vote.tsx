@@ -1,7 +1,8 @@
 "use client";
 
-import { ThumbUpAnimatedRef } from "@refugies-info/ui";
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import type { ThumbUpAnimatedRef } from "@refugies-info/ui";
+import type React from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
 import VoteLayoutStandard from "./VoteLayoutStandard";
 import VoteLayoutSticky from "./VoteLayoutSticky";

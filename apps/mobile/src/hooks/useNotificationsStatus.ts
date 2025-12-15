@@ -38,7 +38,8 @@ export const useNotificationsStatus = (): [boolean, () => Promise<void>, string]
       if (expoStatus === PermissionStatus.GRANTED) {
         const token = (
           await getExpoPushTokenAsync({
-            projectId: Constants.expoConfig?.extra?.eas.projectId || "@refugies-info/refugies-info-app",
+            projectId:
+              Constants.expoConfig?.extra?.eas.projectId || "@refugies-info/refugies-info-app",
           })
         ).data;
         if (token) {

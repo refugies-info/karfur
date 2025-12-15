@@ -1,4 +1,4 @@
-import { action, ActionType } from "typesafe-actions";
+import { type ActionType, action } from "typesafe-actions";
 import { TOGGLE_SPINNER, TOGGLE_TTS } from "../Tts/tts.actionTypes";
 
 export const toggleTTSActionCreator = () => action(TOGGLE_TTS);

@@ -1,4 +1,4 @@
-import { CreateDispositifRequest, Picture, Sponsor } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, Picture, Sponsor } from "@refugies-info/api-types";
 import { useCallback, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import BaseModal from "~/components/UI/BaseModal";
@@ -53,7 +53,12 @@ const ModalSponsors = (props: Props) => {
   }, [props.currentSponsorIndex, getValues, resetForm]);
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajouter une structure partenaire">
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title="Ajouter une structure partenaire"
+    >
       <div>
         <SponsorForm
           name={name}

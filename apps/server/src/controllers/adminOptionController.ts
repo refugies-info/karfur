@@ -1,7 +1,11 @@
-import { AdminOptionRequest, GetAdminOptionResponse, PostAdminOptionResponse } from "@refugies-info/api-types";
+import type {
+  AdminOptionRequest,
+  GetAdminOptionResponse,
+  PostAdminOptionResponse,
+} from "@refugies-info/api-types";
 import { Body, Controller, Get, Path, Post, Route, Security } from "tsoa";
 
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 import { getAdminOptions } from "~/workflows/adminOption/getAdminOptions";
 import { postAdminOptions } from "~/workflows/adminOption/postAdminOptions";
 
@@ -21,7 +25,10 @@ export class AdminOptionController extends Controller {
     fromSite: [],
   })
   @Post("{key}")
-  public async post(@Path() key: string, @Body() body: AdminOptionRequest): ResponseWithData<PostAdminOptionResponse> {
+  public async post(
+    @Path() key: string,
+    @Body() body: AdminOptionRequest,
+  ): ResponseWithData<PostAdminOptionResponse> {
     return postAdminOptions(key, body);
   }
 }

@@ -1,4 +1,8 @@
-import { CreateDispositifRequest, DemarcheAdministration, Picture } from "@refugies-info/api-types";
+import type {
+  CreateDispositifRequest,
+  DemarcheAdministration,
+  Picture,
+} from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import LogoInput from "~/components/Pages/dispositif/Edition/LogoInput";
@@ -40,7 +44,12 @@ const ModalDemarcheAdministration = (props: Props) => {
   };
 
   return (
-    <BaseModal show={props.show} toggle={props.toggle} help={help} title="Ajouter une illustration pour les démarches">
+    <BaseModal
+      show={props.show}
+      toggle={props.toggle}
+      help={help}
+      title="Ajouter une illustration pour les démarches"
+    >
       <div>
         <Input
           id="sponsor-name"

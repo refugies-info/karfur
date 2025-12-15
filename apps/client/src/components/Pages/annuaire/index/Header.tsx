@@ -1,6 +1,6 @@
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { getPath } from "routes";
 import { useLocale } from "~/hooks";
 import useRTL from "~/hooks/useRTL";
@@ -39,7 +39,9 @@ export const Header = (props: Props) => {
       <div className={styles.container}>
         <div className="flex">
           {" "}
-          <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>{t("Annuaire.Annuaire", "Annuaire")}</h1>
+          <h1 className={`${styles.title} ${isRTL && styles.rtl}`}>
+            {t("Annuaire.Annuaire", "Annuaire")}
+          </h1>
           <SearchBarAnnuaire
             filteredStructures={props.filteredStructures}
             t={t}
@@ -68,7 +70,9 @@ export const Header = (props: Props) => {
                 href={getPath(
                   "/annuaire",
                   locale,
-                  props.lettersClickable.includes(letter.toLocaleUpperCase()) ? "#" + letter.toUpperCase() : "",
+                  props.lettersClickable.includes(letter.toLocaleUpperCase())
+                    ? "#" + letter.toUpperCase()
+                    : "",
                 )}
                 key={letter}
               >

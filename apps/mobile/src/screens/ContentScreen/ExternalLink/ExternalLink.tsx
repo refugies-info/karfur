@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { memo, useCallback } from "react";
 import { Linking, View } from "react-native";
 import { CustomButton } from "~/components";
@@ -22,7 +22,9 @@ const ExternalLinkComponent = (props: Props) => {
       contentId: props.contentId.toString(),
     });
     if (!props.externalLink) return;
-    const url = !props.externalLink.includes("https://") ? "https://" + props.externalLink : props.externalLink;
+    const url = !props.externalLink.includes("https://")
+      ? "https://" + props.externalLink
+      : props.externalLink;
     Linking.canOpenURL(url).then((supported) => {
       if (supported) {
         Linking.openURL(url);

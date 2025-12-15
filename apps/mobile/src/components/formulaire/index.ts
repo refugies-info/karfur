@@ -1,4 +1,4 @@
-export { default as ChoiceButton, ChoiceButtonProps } from "./ChoiceButton";
+export { ChoiceButtonProps, default as ChoiceButton } from "./ChoiceButton";
 export { default as FilterButton, FilterButtonProps } from "./FilterButton";
 export { default as RadioButton, RadioButtonProps } from "./RadioButton";
 export { default as RadioGroup } from "./RadioGroup";

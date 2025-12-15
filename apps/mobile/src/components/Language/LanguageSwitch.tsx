@@ -1,11 +1,14 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { getSelectedLanguageFromI18nCode } from "~/libs/language";
 import { setCurrentLanguageActionCreator } from "~/services/redux/User/user.actions";
-import { currentI18nCodeSelector, selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
+import {
+  currentI18nCodeSelector,
+  selectedI18nCodeSelector,
+} from "~/services/redux/User/user.selectors";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { Flag } from "./Flag";

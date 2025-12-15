@@ -1,4 +1,4 @@
-import { ContentType, GetThemeResponse } from "@refugies-info/api-types";
+import { ContentType, type GetThemeResponse } from "@refugies-info/api-types";
 
 export const useCardImageUrl = (
   theme: GetThemeResponse | undefined | null,
@@ -6,6 +6,8 @@ export const useCardImageUrl = (
 ): string | null => {
   if (!theme) return null;
   const image =
-    contentType === ContentType.DEMARCHE ? theme.demarcheImage?.secure_url : theme.dispositifImage?.secure_url;
+    contentType === ContentType.DEMARCHE
+      ? theme.demarcheImage?.secure_url
+      : theme.dispositifImage?.secure_url;
   return image || null;
 };

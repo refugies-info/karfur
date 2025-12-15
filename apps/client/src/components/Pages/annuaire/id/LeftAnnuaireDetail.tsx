@@ -1,6 +1,6 @@
-import { GetStructureResponse, Picture } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import type { GetStructureResponse, Picture } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { getPath, isRoute } from "routes";
 import placeholder from "~/assets/no_results_alt.svg";
 import FButton from "~/components/UI/FButton/FButton";

@@ -1,5 +1,7 @@
-import { CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { type CompositeScreenProps, useFocusEffect } from "@react-navigation/native";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { ContentForApp } from "@refugies-info/api-types";
 import * as React from "react";
 import { Image, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -7,9 +9,6 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 import { useDispatch, useSelector } from "react-redux";
 import useAsync from "react-use/lib/useAsync";
 import styled, { useTheme } from "styled-components/native";
-
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { ContentForApp } from "@refugies-info/api-types";
 import { Page, Rows } from "~/components";
 import { ConfirmationModal } from "~/components/ConfirmationModal";
 import { ContentSummary } from "~/components/Contents/ContentSummary";
@@ -29,7 +28,7 @@ import {
   userFavorites,
 } from "~/services/redux/User/user.selectors";
 import EmptyIllu from "~/theme/images/favoris/illu-empty-favorites.png";
-import { BottomTabParamList, FavorisParamList } from "~/types/navigation";
+import type { BottomTabParamList, FavorisParamList } from "~/types/navigation";
 import getContentsToDisplay from "./getContentsToDisplay";
 
 const EmptyContainer = styled.View`
@@ -158,13 +157,19 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
           </Rows>
         ) : (
           <EmptyContainer>
-            <Image source={EmptyIllu} style={{ width: 312, height: 250, marginTop: theme.margin * 4 }} />
+            <Image
+              source={EmptyIllu}
+              style={{ width: 312, height: 250, marginTop: theme.margin * 4 }}
+            />
             <EmptyTitle>
               <ReadableText>{t("favorites_screen.empty", "C'est vide")}</ReadableText>
             </EmptyTitle>
             <EmptyText>
               <ReadableText>
-                {t("favorites_screen.add_content", "Pour ajouter une fiche dans tes favoris, clique sur l’étoile.")}
+                {t(
+                  "favorites_screen.add_content",
+                  "Pour ajouter une fiche dans tes favoris, clique sur l’étoile.",
+                )}
               </ReadableText>
             </EmptyText>
             <CustomButton
@@ -185,8 +190,14 @@ export const FavorisScreen = ({ navigation }: FavorisScreenProps) => {
         toggleModal={hideDeleteModal}
         text={
           favoriteToDelete === "all"
-            ? t("favorites_screen.delete_all", "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?")
-            : t("favorites_screen.delete_content", "Veux-tu vraiment supprimer cette fiche de tes favoris ?")
+            ? t(
+                "favorites_screen.delete_all",
+                "Veux-tu vraiment supprimer toutes les fiches de tes favoris ?",
+              )
+            : t(
+                "favorites_screen.delete_content",
+                "Veux-tu vraiment supprimer cette fiche de tes favoris ?",
+              )
         }
         onValidate={() => deleteFavorite(favoriteToDelete)}
         i18nKeyValidateButton="global.delete"

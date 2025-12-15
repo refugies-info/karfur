@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import useLocale from "~/hooks/useLocale";
 import { cn } from "~/lib/classname";
 import ThemeIcon from "../ThemeIcon";

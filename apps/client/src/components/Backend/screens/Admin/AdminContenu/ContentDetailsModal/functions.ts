@@ -1,4 +1,4 @@
-import { GetAllUsersResponse, Id, SimpleUser } from "@refugies-info/api-types";
+import type { GetAllUsersResponse, Id, SimpleUser } from "@refugies-info/api-types";
 
 export const findUser = (userId: Id, users: GetAllUsersResponse[]): SimpleUser | null => {
   const user = users.find((u) => u._id === userId);

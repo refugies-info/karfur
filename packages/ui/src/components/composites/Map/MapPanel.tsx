@@ -33,7 +33,12 @@ export const MapPanel = ({ className }: MapPanelProps) => {
 
   const mobileItems = useMemo(() => {
     return mapData.map((poi, i) => (
-      <MapPanelItem className="h-full w-[80vw] max-w-96" key={`${poi.title}-${i}`} id={`${poi.title}-${i}`} poi={poi} />
+      <MapPanelItem
+        className="h-full w-[80vw] max-w-96"
+        key={`${poi.title}-${i}`}
+        id={`${poi.title}-${i}`}
+        poi={poi}
+      />
     ));
   }, [mapData]);
 

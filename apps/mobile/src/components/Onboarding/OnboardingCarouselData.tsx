@@ -1,4 +1,4 @@
-import { Image, ImageStyle, StyleProp } from "react-native";
+import { Image, type ImageStyle, type StyleProp } from "react-native";
 import { BackStep1 } from "~/theme/images/onboarding/BackStep1";
 import { BackStep2 } from "~/theme/images/onboarding/BackStep2";
 import { BackStep3 } from "~/theme/images/onboarding/BackStep3";

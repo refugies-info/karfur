@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { Bookmark } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useCallback, useRef, useState } from "react";
@@ -8,8 +9,6 @@ import Toast from "~/components/UI/Toast";
 import { useAuth, useFavorites } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-
-import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 
 export default function SaveBookmark() {
   const dispositif = useSelector(selectedDispositifSelector);
@@ -41,7 +40,10 @@ export default function SaveBookmark() {
 
   return (
     <div>
-      <Tooltip kind="hover" title={isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}>
+      <Tooltip
+        kind="hover"
+        title={isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}
+      >
         <Button
           ref={bookmarkButtonRef}
           priority="tertiary no outline"

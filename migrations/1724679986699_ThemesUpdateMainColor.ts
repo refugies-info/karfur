@@ -1,5 +1,5 @@
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db, ObjectId } from "mongodb";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import { type Db, ObjectId } from "mongodb";
 
 const themeColorsMap: Record<string, string> = {
   // Faire mes papiers
@@ -37,7 +37,10 @@ export class ThemesUpdateMainColor1724679986699 implements MigrationInterface {
     const themeCollection = db.collection("themes");
 
     for (const [themeObjectId, mainColor] of Object.entries(themeColorsMap)) {
-      await themeCollection.updateOne({ _id: new ObjectId(themeObjectId) }, { $set: { mainColor: "#FFFFFF" } });
+      await themeCollection.updateOne(
+        { _id: new ObjectId(themeObjectId) },
+        { $set: { mainColor: "#FFFFFF" } },
+      );
     }
   }
 }

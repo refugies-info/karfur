@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import { MiscellaneousActions } from "./miscellaneous.actions";
+import type { MiscellaneousActions } from "./miscellaneous.actions";
 import { TOGGLE_NEWSLETTER_MODAL } from "./miscellaneous.actionTypes";
 
 export interface MiscellaneousState {
@@ -10,9 +10,12 @@ const initialMiscellaneousState = {
   showNewsletterModal: false,
 };
 
-export const miscellaneousReducer = createReducer<MiscellaneousState, MiscellaneousActions>(initialMiscellaneousState, {
-  [TOGGLE_NEWSLETTER_MODAL]: (state, action) => ({
-    ...state,
-    showNewsletterModal: action.payload || !state.showNewsletterModal,
-  }),
-});
+export const miscellaneousReducer = createReducer<MiscellaneousState, MiscellaneousActions>(
+  initialMiscellaneousState,
+  {
+    [TOGGLE_NEWSLETTER_MODAL]: (state, action) => ({
+      ...state,
+      showNewsletterModal: action.payload || !state.showNewsletterModal,
+    }),
+  },
+);

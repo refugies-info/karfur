@@ -1,4 +1,4 @@
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { structureTypes } from "data/structureTypes";
 import { createRef, useEffect, useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle, Input } from "reactstrap";
@@ -7,6 +7,7 @@ import FButton from "~/components/UI/FButton/FButton";
 import { cls } from "~/lib/classname";
 import { colors } from "~/utils/colors";
 import styles from "./SearchBarAnnuaire.module.scss";
+
 interface Props {
   t: any;
   filteredStructures: GetActiveStructuresResponse[] | null;
@@ -34,7 +35,7 @@ export const SearchBarAnnuaire = (props: Props) => {
 
   const selectType = (item: string) => {
     if (props.typeSelected && !props.typeSelected.includes(item)) {
-      let newTypesSelected = props.typeSelected.concat([item]);
+      const newTypesSelected = props.typeSelected.concat([item]);
       props.setTypeSelected(newTypesSelected);
     }
 
@@ -69,7 +70,7 @@ export const SearchBarAnnuaire = (props: Props) => {
   };
 
   const removeType = (item: string) => {
-    let array = props.typeSelected ? props.typeSelected.filter((el) => el !== item) : [];
+    const array = props.typeSelected ? props.typeSelected.filter((el) => el !== item) : [];
     props.setTypeSelected(array);
     toggle();
   };
@@ -108,7 +109,13 @@ export const SearchBarAnnuaire = (props: Props) => {
         {}
 
         {props.keyword === "" ? (
-          <EVAIcon name="search-outline" fill={colors.gray90} id="bookmarkBtn" className="ms-2" size={"large"} />
+          <EVAIcon
+            name="search-outline"
+            fill={colors.gray90}
+            id="bookmarkBtn"
+            className="ms-2"
+            size={"large"}
+          />
         ) : (
           <EVAIcon
             name="close-circle"
@@ -122,7 +129,13 @@ export const SearchBarAnnuaire = (props: Props) => {
       </div>
       {props.ville === "" && !props.isCityFocus ? (
         <div className={styles.btn}>
-          <EVAIcon name="pin-outline" fill={colors.gray90} className="me-2" id="bookmarkBtn" size={"large"} />
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.gray90}
+            className="me-2"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div
             onClick={() => {
               props.setIsCityFocus(true);
@@ -133,7 +146,13 @@ export const SearchBarAnnuaire = (props: Props) => {
         </div>
       ) : props.isCitySelected ? (
         <div className={`${styles.btn} ${styles.dark}`}>
-          <EVAIcon name="pin-outline" fill={colors.white} className="me-2" id="bookmarkBtn" size={"large"} />
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.white}
+            className="me-2"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div
             onClick={() => {
               props.setIsCitySelected(false);
@@ -153,7 +172,13 @@ export const SearchBarAnnuaire = (props: Props) => {
         </div>
       ) : (
         <div className={styles.btn}>
-          <EVAIcon name="pin-outline" fill={colors.gray90} className="me-2" id="bookmarkBtn" size={"large"} />
+          <EVAIcon
+            name="pin-outline"
+            fill={colors.gray90}
+            className="me-2"
+            id="bookmarkBtn"
+            size={"large"}
+          />
           <div className={styles.city_input}>
             <input
               className={styles.autocomplete}
@@ -168,7 +193,10 @@ export const SearchBarAnnuaire = (props: Props) => {
               ref={autocompleteRef}
             />
             {suggestions.length > 0 && props.isCityFocus && (
-              <ul className="list-group position-absolute w-100" style={{ zIndex: 1000, top: "100%" }}>
+              <ul
+                className="list-group position-absolute w-100"
+                style={{ zIndex: 1000, top: "100%" }}
+              >
                 {suggestions.map((place, i) => (
                   <li
                     key={i}
@@ -187,7 +215,10 @@ export const SearchBarAnnuaire = (props: Props) => {
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <DropdownToggle
           caret={false}
-          className={cls(styles.type_btn, props.typeSelected && props.typeSelected.length === 0 ? "" : styles.selected)}
+          className={cls(
+            styles.type_btn,
+            props.typeSelected && props.typeSelected.length === 0 ? "" : styles.selected,
+          )}
         >
           {props.typeSelected && props.typeSelected.length === 1
             ? props.typeSelected[0]
@@ -217,7 +248,11 @@ export const SearchBarAnnuaire = (props: Props) => {
                     selectType(item);
                   }}
                   type="white"
-                  style={props.typeSelected && props.typeSelected.includes(item) ? { border: "2px black solid" } : {}}
+                  style={
+                    props.typeSelected && props.typeSelected.includes(item)
+                      ? { border: "2px black solid" }
+                      : {}
+                  }
                   className="mb-8"
                   key={key}
                 >
@@ -243,7 +278,8 @@ export const SearchBarAnnuaire = (props: Props) => {
         </DropdownMenu>
       </Dropdown>
       <div className={styles.results}>
-        {props.filteredStructures ? props.filteredStructures.length : 0} {props.t("Recherche.results", "résultats")}
+        {props.filteredStructures ? props.filteredStructures.length : 0}{" "}
+        {props.t("Recherche.results", "résultats")}
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
-import { Id, Metadatas, Picture } from "@refugies-info/api-types";
-import { FilterQuery, ProjectionFields } from "mongoose";
+import type { Id, Metadatas, Picture } from "@refugies-info/api-types";
+import type { FilterQuery, ProjectionFields } from "mongoose";
 import logger from "~/logger";
-import { Structure, StructureId, StructureModel, UserId } from "~/typegoose";
+import { type Structure, type StructureId, StructureModel, type UserId } from "~/typegoose";
 
-export const getStructureFromDB = async (id: StructureId, fields: "all" | Record<string, number>): Promise<Structure> =>
+export const getStructureFromDB = async (
+  id: StructureId,
+  fields: "all" | Record<string, number>,
+): Promise<Structure> =>
   StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
     .then((structure) => structure.toObject() as Structure)
     .catch((e) => {
@@ -13,7 +16,10 @@ export const getStructureFromDB = async (id: StructureId, fields: "all" | Record
 
 export const getStructureById = (id: string) => StructureModel.findOne({ _id: id });
 
-export const getStructuresFromDB = async (query: FilterQuery<Structure>, neededFields: ProjectionFields<Structure>) => {
+export const getStructuresFromDB = async (
+  query: FilterQuery<Structure>,
+  neededFields: ProjectionFields<Structure>,
+) => {
   logger.info("[getStructuresFromDB] without dispositifs associes");
   return StructureModel.find(query, neededFields);
 };
@@ -78,9 +84,13 @@ export const getStructuresWithDispos = async (
   ]);
 };
 
-export const createStructureInDB = (structure: Partial<Structure>) => StructureModel.create(structure);
+export const createStructureInDB = (structure: Partial<Structure>) =>
+  StructureModel.create(structure);
 
-export const updateStructureInDB = async (structureId: StructureId, structure: Partial<Structure>) => {
+export const updateStructureInDB = async (
+  structureId: StructureId,
+  structure: Partial<Structure>,
+) => {
   return StructureModel.findOneAndUpdate(
     {
       _id: structureId,
@@ -123,7 +133,8 @@ export const getNbStructures = async () => {
   return StructureModel.countDocuments({ status: "Actif" });
 };
 
-export const getStructureName = async (id: Id) => StructureModel.findById(id, { nom: 1 }).then((res) => res?.nom);
+export const getStructureName = async (id: Id) =>
+  StructureModel.findById(id, { nom: 1 }).then((res) => res?.nom);
 
 export const addToStructureNotes = async (structureId: StructureId, text: string) => {
   return StructureModel.findOneAndUpdate(

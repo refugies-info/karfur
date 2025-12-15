@@ -1,5 +1,5 @@
 {
-    "react-native": {
-        "crashlytics_debug_enabled": true
-    }
+  "react-native": {
+    "crashlytics_debug_enabled": true
+  }
 }

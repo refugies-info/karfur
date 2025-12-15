@@ -1,7 +1,7 @@
-import { GetLogResponse } from "@refugies-info/api-types";
+import type { GetLogResponse } from "@refugies-info/api-types";
 import { Controller, Get, Query, Route, Security } from "tsoa";
 
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 import { getLogs } from "~/workflows/log/getLogs";
 
 @Route("logs")

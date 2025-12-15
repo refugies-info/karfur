@@ -1,4 +1,4 @@
-import { GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
+import { type GetStructureResponse, StructureStatus, UserStatus } from "@refugies-info/api-types";
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "jest-styled-components";

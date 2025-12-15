@@ -1,4 +1,4 @@
-import { ContentStructure, UserStructure } from "@refugies-info/api-types";
+import type { ContentStructure, UserStructure } from "@refugies-info/api-types";
 import noStructure from "~/assets/noStructure.png";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
@@ -29,7 +29,9 @@ export const StructureButton = (props: {
       ) : (
         <Image className="mr-2" src={noStructure} alt="no structure" />
       )}
-      <p className={cls(styles.text, "ms-1")}>{props.sponsor ? props.sponsor.nom : "Aucune structure définie !"}</p>
+      <p className={cls(styles.text, "ms-1")}>
+        {props.sponsor ? props.sponsor.nom : "Aucune structure définie !"}
+      </p>
       {props.sponsor && (
         <span className="ms-auto">
           <StyledStatus text={propsToDisplay} textToDisplay={propsToDisplay} disabled={true} />

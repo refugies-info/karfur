@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { FilterCityComponent } from "~/components/Geoloc/FilterCityComponent";
@@ -9,7 +9,7 @@ import {
   removeUserLocationActionCreator,
   saveUserLocationActionCreator,
 } from "~/services/redux/User/user.actions";
-import { OnboardingParamList } from "~/types/navigation";
+import type { OnboardingParamList } from "~/types/navigation";
 
 export const FilterCity = ({ navigation }: StackScreenProps<OnboardingParamList, "FilterCity">) => {
   const dispatch = useDispatch();

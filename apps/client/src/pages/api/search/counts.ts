@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "~/lib/db";
-import { buildBaseMatch, buildQueryParams, getSearchClient, QueryParams } from "~/lib/search-helpers";
+import {
+  buildBaseMatch,
+  buildQueryParams,
+  getSearchClient,
+  type QueryParams,
+} from "~/lib/search-helpers";
 
 // Define types locally
 interface CountItem {
@@ -27,13 +32,16 @@ export interface SearchCountsResponse {
   total: number;
 }
 
-export const computeSearchCounts = async (conn: any, queryParams: QueryParams): Promise<SearchCountsResponse> => {
+export const computeSearchCounts = async (
+  conn: any,
+  queryParams: QueryParams,
+): Promise<SearchCountsResponse> => {
   // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
   const Dispositif =
     conn.models.Dispositif ||
     conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
 
-  let algoliaIds: string[] | undefined = undefined;
+  let algoliaIds: string[] | undefined;
   if (queryParams.search) {
     const { algoliaClient, indexName } = getSearchClient();
     const searchResults = await algoliaClient.searchSingleIndex({
@@ -159,7 +167,10 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
       { $unwind: "$cats" },
       { $group: { _id: "$cats", count: { $sum: 1 } } },
     ],
-    publics: [{ $unwind: "$metadatas.public" }, { $group: { _id: "$metadatas.public", count: { $sum: 1 } } }],
+    publics: [
+      { $unwind: "$metadatas.public" },
+      { $group: { _id: "$metadatas.public", count: { $sum: 1 } } },
+    ],
     languages: [
       // Transform translations object into array of {k, v}, take keys as language codes
       {
@@ -186,7 +197,12 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
               "$metadatas.publicStatus",
               {
                 $cond: [
-                  { $and: [{ $ne: ["$metadatas.publicStatus", null] }, { $ne: ["$metadatas.publicStatus", ""] }] },
+                  {
+                    $and: [
+                      { $ne: ["$metadatas.publicStatus", null] },
+                      { $ne: ["$metadatas.publicStatus", ""] },
+                    ],
+                  },
                   ["$metadatas.publicStatus"],
                   [],
                 ],
@@ -222,7 +238,9 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
               branches: [
                 {
                   case: { $eq: ["$metadatas.age.type", "between"] },
-                  then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] } },
+                  then: {
+                    $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 1000000] },
+                  },
                 },
                 { case: { $eq: ["$metadatas.age.type", "moreThan"] }, then: 1000000 },
                 {
@@ -239,9 +257,27 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
         $project: {
           ageRanges: {
             $setUnion: [
-              { $cond: [{ $and: [{ $lte: ["$minAge", 0] }, { $gte: ["$maxAge", 17] }] }, ["-18"], []] },
-              { $cond: [{ $and: [{ $lte: ["$minAge", 18] }, { $gte: ["$maxAge", 25] }] }, ["18-25"], []] },
-              { $cond: [{ $and: [{ $lte: ["$minAge", 25] }, { $gte: ["$maxAge", 1000000] }] }, ["+25"], []] },
+              {
+                $cond: [
+                  { $and: [{ $lte: ["$minAge", 0] }, { $gte: ["$maxAge", 17] }] },
+                  ["-18"],
+                  [],
+                ],
+              },
+              {
+                $cond: [
+                  { $and: [{ $lte: ["$minAge", 18] }, { $gte: ["$maxAge", 25] }] },
+                  ["18-25"],
+                  [],
+                ],
+              },
+              {
+                $cond: [
+                  { $and: [{ $lte: ["$minAge", 25] }, { $gte: ["$maxAge", 1000000] }] },
+                  ["+25"],
+                  [],
+                ],
+              },
             ],
           },
         },
@@ -281,7 +317,10 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
     {} as Record<string, any[]>,
   );
 
-  (facet as any).types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
+  (facet as any).types = [
+    { $match: baseMatch },
+    { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
+  ];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
 
   const results = await Dispositif.aggregate([{ $facet: facet }]);
@@ -317,7 +356,10 @@ export const computeSearchCounts = async (conn: any, queryParams: QueryParams): 
   return response;
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse<SearchCountsResponse | { message: string }>) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse<SearchCountsResponse | { message: string }>,
+) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }

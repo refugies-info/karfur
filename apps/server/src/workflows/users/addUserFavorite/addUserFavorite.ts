@@ -1,10 +1,10 @@
-import { AddUserFavoriteRequest } from "@refugies-info/api-types";
+import type { AddUserFavoriteRequest } from "@refugies-info/api-types";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 import { addFavoriteInDB } from "~/modules/users/users.repository";
-import { ObjectId, User } from "~/typegoose";
-import { Favorite } from "~/typegoose/User";
-import { Response } from "~/types/interface";
+import { ObjectId, type User } from "~/typegoose";
+import type { Favorite } from "~/typegoose/User";
+import type { Response } from "~/types/interface";
 
 export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest): Response => {
   logger.info("[addUserFavorite] received");

@@ -29,7 +29,9 @@ describe("computePossibleNeeds", () => {
   ];
 
   it("should return correct value when all needs are in theme", async () => {
-    mockGetNeedsFromDB.mockResolvedValueOnce(allNeeds as unknown as ReturnType<typeof getNeedsFromDB>);
+    mockGetNeedsFromDB.mockResolvedValueOnce(
+      allNeeds as unknown as ReturnType<typeof getNeedsFromDB>,
+    );
     const actualNeeds = ["id1", "id2"];
     const res = await computePossibleNeeds(actualNeeds, contentThemes);
     expect(mockGetNeedsFromDB).toHaveBeenCalledWith();

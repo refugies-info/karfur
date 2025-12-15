@@ -10,7 +10,9 @@ import { UserProfile } from "../UserProfile";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("components/UI/Tooltip", () => jest.fn().mockReturnValue(<></>));
-jest.mock("@codegouvfr/react-dsfr/SearchBar", () => ({ SearchBar: jest.fn().mockReturnValue(<></>) }));
+jest.mock("@codegouvfr/react-dsfr/SearchBar", () => ({
+  SearchBar: jest.fn().mockReturnValue(<></>),
+}));
 
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
@@ -93,7 +95,11 @@ describe("UserProfile", () => {
     await waitFor(() => expect(component.getByTitle("firstname-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("email-input")).not.toBeDisabled());
     await waitFor(() => expect(component.getByTitle("phone-input")).not.toBeDisabled());
-    await waitFor(() => expect(component.queryByTitle("old-password-input")).not.toBeInTheDocument());
-    await waitFor(() => expect(component.queryByTitle("new-password-input")).not.toBeInTheDocument());
+    await waitFor(() =>
+      expect(component.queryByTitle("old-password-input")).not.toBeInTheDocument(),
+    );
+    await waitFor(() =>
+      expect(component.queryByTitle("new-password-input")).not.toBeInTheDocument(),
+    );
   });
 });
