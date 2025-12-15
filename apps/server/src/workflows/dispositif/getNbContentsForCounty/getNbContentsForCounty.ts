@@ -1,8 +1,14 @@
-import { DispositifStatus, GetContentsForAppRequest, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetContentsForAppRequest,
+  type GetNbContentsForCountyResponse,
+} from "@refugies-info/api-types";
 import { getCountDispositifs } from "~/modules/dispositif/dispositif.repository";
 import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
-const getNbContentsForCounty = (request: GetContentsForAppRequest): Promise<GetNbContentsForCountyResponse> =>
+const getNbContentsForCounty = (
+  request: GetContentsForAppRequest,
+): Promise<GetNbContentsForCountyResponse> =>
   Promise.all([
     getFilteredContentsForApp(request).then((dispositifs) => dispositifs.length),
     getCountDispositifs({

@@ -26,6 +26,9 @@ minimumReleaseAge: 10080
 # See: https://pnpm.io/settings#trustpolicy
 trustPolicy: no-downgrade
 
+# Disable strict peer dependencies to allow installation with mismatched peers (React 19 vs older libs)
+
+
 # Packages excluded from trustPolicy check. Use for verified packages that
 # trigger false positives (e.g., lost provenance attestation between versions).
 # See: https://pnpm.io/settings#trustpolicyexclude

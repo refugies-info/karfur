@@ -1,16 +1,17 @@
-import { GetActiveUsersResponse } from "@refugies-info/api-types";
+import type { GetActiveUsersResponse } from "@refugies-info/api-types";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
 import { getAllUsersFromDB } from "~/modules/users/users.repository";
-import { User } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { User } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
   logger.info("[getActiveUsers] received");
 
   // Check authorizations
   const hasStructure = user && user.structures && user.structures?.length > 0;
-  if (!hasStructure && !user.isAdmin()) throw new AuthenticationError("You are not authorized to get users");
+  if (!hasStructure && !user.isAdmin())
+    throw new AuthenticationError("You are not authorized to get users");
 
   const neededFields = {
     username: 1,

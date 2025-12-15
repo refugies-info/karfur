@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import isEmpty from "lodash/isEmpty";
 import { memo } from "react";
 import { View } from "react-native";
@@ -6,7 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ReadableText, Spacer, TextDSFR_MD_Bold } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import { setInitialUrlActionCreator } from "~/services/redux/User/user.actions";
-import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import { LinkedNeed, LinkedTheme } from "../Sections";
 
@@ -42,14 +45,20 @@ const LinkedThemesNeedsComponent = ({ needs, theme, secondaryThemes }: Props) =>
       <View>
         {needs &&
           !isEmpty(needs) &&
-          needs.map((need) => <LinkedNeed key={need.toString()} needId={need} beforeNavigate={beforeNavigate} />)}
+          needs.map((need) => (
+            <LinkedNeed key={need.toString()} needId={need} beforeNavigate={beforeNavigate} />
+          ))}
         {theme && !isEmpty(theme) && (
           <LinkedTheme key={theme.toString()} themeId={theme} beforeNavigate={beforeNavigate} />
         )}
         {secondaryThemes &&
           !isEmpty(secondaryThemes) &&
           secondaryThemes.map((secondaryTheme) => (
-            <LinkedTheme key={secondaryTheme.toString()} themeId={secondaryTheme} beforeNavigate={beforeNavigate} />
+            <LinkedTheme
+              key={secondaryTheme.toString()}
+              themeId={secondaryTheme}
+              beforeNavigate={beforeNavigate}
+            />
           ))}
       </View>
     </>

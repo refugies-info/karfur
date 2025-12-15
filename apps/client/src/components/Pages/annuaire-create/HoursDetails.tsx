@@ -1,4 +1,4 @@
-import { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
+import type { DetailedOpeningHours, OpeningHours } from "@refugies-info/api-types";
 import moment from "moment";
 import TimePicker from "rc-time-picker";
 import { useState } from "react";
@@ -67,7 +67,7 @@ export const HoursDetails = (props: Props) => {
       {`${props.day} `}
       <Text>de</Text>
       <TimePicker
-        // @ts-ignore
+        // @ts-expect-error
         style={{ width: 100 }}
         showSecond={false}
         defaultValue={getInitialValue(isDayChecked, correspondingDay, "from0")}
@@ -77,7 +77,7 @@ export const HoursDetails = (props: Props) => {
       />
       <Text>à</Text>
       <TimePicker
-        // @ts-ignore
+        // @ts-expect-error
         style={{ width: 100 }}
         showSecond={false}
         defaultValue={getInitialValue(isDayChecked, correspondingDay, "to0")}
@@ -92,7 +92,7 @@ export const HoursDetails = (props: Props) => {
       {isPuisDeChecked && (
         <>
           <TimePicker
-            // @ts-ignore
+            // @ts-expect-error
             style={{ width: 100 }}
             showSecond={false}
             defaultValue={getInitialValue(isDayChecked, correspondingDay, "from1")}
@@ -102,7 +102,7 @@ export const HoursDetails = (props: Props) => {
           />
           <Text>à</Text>
           <TimePicker
-            // @ts-ignore
+            // @ts-expect-error
             style={{ width: 100 }}
             showSecond={false}
             defaultValue={getInitialValue(isDayChecked, correspondingDay, "to1")}

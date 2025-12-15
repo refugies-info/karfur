@@ -1,8 +1,11 @@
-import { GetStructureStatisticsRequest, GetStructureStatisticsResponse } from "@refugies-info/api-types";
+import type {
+  GetStructureStatisticsRequest,
+  GetStructureStatisticsResponse,
+} from "@refugies-info/api-types";
 import logger from "~/logger";
 import { getNbStructures, getStructuresFromDB } from "~/modules/structure/structure.repository";
 import { findAllRespo } from "~/modules/structure/structure.service";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getStatistics = async (
   query: GetStructureStatisticsRequest,
@@ -21,7 +24,10 @@ export const getStatistics = async (
 
   // nbCDA
   if (noFacet || facets.includes("nbCDA")) {
-    const cda = await getStructuresFromDB({ nom: "Comité de la Démarche Accessible" }, { membres: 1 });
+    const cda = await getStructuresFromDB(
+      { nom: "Comité de la Démarche Accessible" },
+      { membres: 1 },
+    );
     data.nbCDA = cda[0].membres.length;
   }
 

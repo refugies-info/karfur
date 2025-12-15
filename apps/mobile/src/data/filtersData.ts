@@ -1,4 +1,8 @@
-import { GetContentsForAppRequest, MobileFrenchLevel, frenchLevelType } from "@refugies-info/api-types";
+import {
+  type frenchLevelType,
+  type GetContentsForAppRequest,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
 
 export const ageFilters: {
   name: string;

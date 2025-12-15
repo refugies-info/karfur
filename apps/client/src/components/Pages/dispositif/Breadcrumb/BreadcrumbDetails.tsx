@@ -1,7 +1,7 @@
-import { ContentType, GetDispositifResponse } from "@refugies-info/api-types";
+import { ContentType, type GetDispositifResponse } from "@refugies-info/api-types";
 import { cn, useWindowSize } from "@refugies-info/ui";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
@@ -58,7 +58,11 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
 
             <li>
               <Link
-                href={getPath("/recherche", locale, `?${buildUrlQuery({ type: dispositif.typeContenu })}`)}
+                href={getPath(
+                  "/recherche",
+                  locale,
+                  `?${buildUrlQuery({ type: dispositif.typeContenu })}`,
+                )}
                 className="text-mention-grey !bg-transparent !bg-none underline decoration-current underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
               >
                 {dispositif.typeContenu === ContentType.DISPOSITIF
@@ -75,7 +79,11 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
               <>
                 <li>
                   <Link
-                    href={getPath("/recherche", locale, `?${buildUrlQuery({ themes: [theme._id] })}`)}
+                    href={getPath(
+                      "/recherche",
+                      locale,
+                      `?${buildUrlQuery({ themes: [theme._id] })}`,
+                    )}
                     className="text-mention-grey !bg-transparent !bg-none underline decoration-solid decoration-auto underline-offset-[0.125rem] [text-decoration-skip-ink:auto]"
                   >
                     {theme.short[locale] || theme.short.fr}

@@ -1,10 +1,20 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, setError, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  setError,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setThemesActionCreator } from "../themes.actions";
 import { CREATE_THEME, DELETE_THEME, SAVE_THEME } from "../themes.actionTypes";
-import latestActionsSaga, { createTheme, deleteTheme, fetchThemes, saveTheme } from "../themes.saga";
+import latestActionsSaga, {
+  createTheme,
+  deleteTheme,
+  fetchThemes,
+  saveTheme,
+} from "../themes.saga";
 import { allThemesSelector } from "../themes.selectors";
 
 describe("[Saga] Themes", () => {

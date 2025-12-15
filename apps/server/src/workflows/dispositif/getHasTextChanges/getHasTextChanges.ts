@@ -1,7 +1,10 @@
 import { isEmpty } from "lodash";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
-import { getDispositifById, getDraftDispositifById } from "~/modules/dispositif/dispositif.repository";
+import {
+  getDispositifById,
+  getDraftDispositifById,
+} from "~/modules/dispositif/dispositif.repository";
 import { Traductions } from "~/typegoose";
 
 export const getHasTextChanges = async (id: string): Promise<boolean> => {
@@ -12,7 +15,10 @@ export const getHasTextChanges = async (id: string): Promise<boolean> => {
 
   if (!originalDispositif.hasDraftVersion) return false;
   const draftDispositif = await getDraftDispositifById(id, { hasDraftVersion: 1, translations: 1 });
-  const traductionDiff = Traductions.diff(originalDispositif.translations.fr, draftDispositif.translations.fr);
+  const traductionDiff = Traductions.diff(
+    originalDispositif.translations.fr,
+    draftDispositif.translations.fr,
+  );
 
   return !isEmpty(traductionDiff.modified) || !isEmpty(traductionDiff.added);
 };

@@ -1,12 +1,19 @@
-import { GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
-import { CREATE_WIDGET, DELETE_WIDGET, GET_WIDGETS, SAVE_WIDGET, SET_WIDGETS } from "./widgets.actionTypes";
+import type { GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
+import {
+  CREATE_WIDGET,
+  DELETE_WIDGET,
+  GET_WIDGETS,
+  SAVE_WIDGET,
+  SET_WIDGETS,
+} from "./widgets.actionTypes";
 
 export const fetchWidgetsActionCreator = () => action(GET_WIDGETS);
 
 export const setWidgetsActionCreator = (value: GetWidgetResponse[]) => action(SET_WIDGETS, value);
 
-export const saveWidgetActionCreator = (id: Id, value: Partial<WidgetRequest>) => action(SAVE_WIDGET, { id, value });
+export const saveWidgetActionCreator = (id: Id, value: Partial<WidgetRequest>) =>
+  action(SAVE_WIDGET, { id, value });
 
 export const createWidgetActionCreator = (value: WidgetRequest) => action(CREATE_WIDGET, value);
 

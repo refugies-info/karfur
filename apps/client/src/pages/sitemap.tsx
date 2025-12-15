@@ -1,7 +1,7 @@
 import { ContentType } from "@refugies-info/api-types";
-import { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { getPath } from "routes";
 import API from "~/utils/API";
 

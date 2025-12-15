@@ -10,7 +10,9 @@ import { colors } from "~/utils/colors";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserContributions from "../UserContributions";
 
-jest.mock("components/Modals/WriteContentModal/WriteContentModal", () => jest.fn().mockReturnValue(<></>));
+jest.mock("components/Modals/WriteContentModal/WriteContentModal", () =>
+  jest.fn().mockReturnValue(<></>),
+);
 
 jest.mock("next/router", () => require("next-router-mock"));
 

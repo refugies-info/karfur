@@ -1,8 +1,11 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
-import { getDispositifById, removeAvisDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { Response } from "~/types/interface";
+import {
+  getDispositifById,
+  removeAvisDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import type { Response } from "~/types/interface";
 
 export const deleteAvis = async (
   id: string,

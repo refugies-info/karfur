@@ -1,21 +1,29 @@
-import { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type { DeleteUserFavoriteRequest, GetUserFavoritesResponse } from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import {
   fetchUserFavoritesActionCreator,
   setUserFavoritesActionCreator,
-  updateUserFavoritesActionCreator,
+  type updateUserFavoritesActionCreator,
 } from "./UserFavoritesInLocale.actions";
 import { FETCH_USER_FAVORITES, UPDATE_USER_FAVORITES } from "./UserFavoritesInLocale.actionTypes";
 
-export function* fetchUserFavorites(action: ReturnType<typeof fetchUserFavoritesActionCreator>): SagaIterator {
+export function* fetchUserFavorites(
+  action: ReturnType<typeof fetchUserFavoritesActionCreator>,
+): SagaIterator {
   try {
     logger.info("[fetchUserFavorites] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
-    const data: GetUserFavoritesResponse[] = yield call(API.getUserFavorites, { locale: action.payload });
+    const data: GetUserFavoritesResponse[] = yield call(API.getUserFavorites, {
+      locale: action.payload,
+    });
     yield put(setUserFavoritesActionCreator(data));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_FAVORITES));
   } catch (error) {
@@ -25,7 +33,9 @@ export function* fetchUserFavorites(action: ReturnType<typeof fetchUserFavorites
   }
 }
 
-export function* updateUserFavorites(action: ReturnType<typeof updateUserFavoritesActionCreator>): SagaIterator {
+export function* updateUserFavorites(
+  action: ReturnType<typeof updateUserFavoritesActionCreator>,
+): SagaIterator {
   try {
     logger.info("[updateUserFavorites] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_FAVORITES));

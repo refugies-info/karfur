@@ -1,5 +1,5 @@
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db } from "mongodb";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import type { Db } from "mongodb";
 
 /**
  * Adds indexes to support search counts aggregation in:
@@ -53,7 +53,10 @@ export class AddIndexesToDispositifsSearch1755001200000 implements MigrationInte
     // Wrapped in try/catch in case the target cluster does not support wildcard indexes.
     if (!existingNames.has("translations_wildcard_counts")) {
       try {
-        await coll.createIndex({ "translations.$**": 1 }, { ...partial, name: "translations_wildcard_counts" });
+        await coll.createIndex(
+          { "translations.$**": 1 },
+          { ...partial, name: "translations_wildcard_counts" },
+        );
       } catch (_) {
         // Ignore if not supported; the app can fall back to availableLanguages index
       }

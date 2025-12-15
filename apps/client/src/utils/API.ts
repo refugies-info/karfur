@@ -1,4 +1,4 @@
-import {
+import type {
   AddContactRequest,
   AddSuggestionDispositifRequest,
   AddUserFavoriteRequest,
@@ -94,15 +94,15 @@ import {
   WidgetRequest,
 } from "@refugies-info/api-types";
 import { isInBrowser } from "@refugies-info/ui";
-import axios, { Canceler } from "axios";
+import axios, { type Canceler } from "axios";
 import Swal from "sweetalert2";
-import { APIResponse } from "~/types/interface";
+import type { APIResponse } from "~/types/interface";
 import { getAuthToken, removeAuthToken } from "~/utils/authToken";
 import { logger } from "../logger";
 
 const burl = process.env.NEXT_PUBLIC_REACT_APP_SERVER_URL;
 
-//@ts-ignore
+//@ts-expect-error
 axios.withCredentials = true;
 const instance = axios.create({
   baseURL: burl || "",
@@ -185,7 +185,7 @@ const API = {
       .post<any, APIResponse<ResetPasswordResponse>>("/user/password/reset", body)
       .then((response) => response.data.data);
   },
-  checkResetToken: (token: String): Promise<null> => {
+  checkResetToken: (token: string): Promise<null> => {
     return instance.get<any, null>(`/user/password/reset?token=${token}`).then(() => null);
   },
   setNewPassword: (body: NewPasswordRequest): Promise<NewPasswordResponse> => {
@@ -226,13 +226,17 @@ const API = {
   getUserContributions: (): Promise<GetUserContributionsResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetUserContributionsResponse>>("/dispositifs/user-contributions", { headers })
+      .get<any, APIResponse<GetUserContributionsResponse>>("/dispositifs/user-contributions", {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   getUserFavorites: (query: GetUserFavoritesRequest): Promise<GetUserFavoritesResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetUserFavoritesResponse>>(`/user/favorites?locale=${query.locale}`, { headers })
+      .get<any, APIResponse<GetUserFavoritesResponse>>(`/user/favorites?locale=${query.locale}`, {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   addUserFavorite: (body: AddUserFavoriteRequest): Promise<null> => {
@@ -241,7 +245,9 @@ const API = {
   },
   deleteUserFavorites: (query: DeleteUserFavoriteRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete<any, null>("/user/favorites", { params: query, headers }).then(() => null);
+    return instance
+      .delete<any, null>("/user/favorites", { params: query, headers })
+      .then(() => null);
   },
 
   // Users
@@ -265,16 +271,25 @@ const API = {
   },
 
   // Dispositif
-  getDispositif: (id: string, locale: string, options?: RequestOptions): Promise<GetDispositifResponse> => {
+  getDispositif: (
+    id: string,
+    locale: string,
+    options?: RequestOptions,
+  ): Promise<GetDispositifResponse> => {
     const headers = getHeaders(options?.token);
     return instance
-      .get<any, APIResponse<GetDispositifResponse>>(`/dispositifs/${id}?locale=${locale}`, { headers })
+      .get<any, APIResponse<GetDispositifResponse>>(`/dispositifs/${id}?locale=${locale}`, {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   countDispositifs: (query: CountDispositifsRequest): Promise<GetCountDispositifsResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetCountDispositifsResponse>>("/dispositifs/count", { params: query, headers })
+      .get<any, APIResponse<GetCountDispositifsResponse>>("/dispositifs/count", {
+        params: query,
+        headers,
+      })
       .then((response) => response.data.data);
   },
   deleteDispositif: (id: Id): Promise<null> => {
@@ -283,33 +298,46 @@ const API = {
   },
   updateDispositifStatus: (id: Id, body: DispositifStatusRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/status`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/status`, body, { headers })
+      .then(() => null);
   },
-  structureReceiveDispositifStatus: (id: Id, body: StructureReceiveDispositifRequest): Promise<null> => {
+  structureReceiveDispositifStatus: (
+    id: Id,
+    body: StructureReceiveDispositifRequest,
+  ): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/structure-receive`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/structure-receive`, body, { headers })
+      .then(() => null);
   },
   updateDispositifThemesOrNeeds: (id: Id, body: DispositifThemeNeedsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/themes-needs`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/themes-needs`, body, { headers })
+      .then(() => null);
   },
   updateDispositifMainSponsor: (id: string, body: MainSponsorRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/main-sponsor`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/main-sponsor`, body, { headers })
+      .then(() => null);
   },
   updateDispositifAdminComments: (id: string, body: AdminCommentsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/admin-comments`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/admin-comments`, body, { headers })
+      .then(() => null);
   },
   getDispositifsWithTranslationAvancement: (
     locale: string,
   ): Promise<GetDispositifsWithTranslationAvancementResponse[]> => {
     const headers = getHeaders();
     return instance
-      .get<
-        any,
-        APIResponse<GetDispositifsWithTranslationAvancementResponse[]>
-      >(`/dispositifs/with-translations-status?locale=${locale}`, { headers })
+      .get<any, APIResponse<GetDispositifsWithTranslationAvancementResponse[]>>(
+        `/dispositifs/with-translations-status?locale=${locale}`,
+        { headers },
+      )
       .then((response) => response.data.data);
   },
   getDispositifs: (query: GetDispositifsRequest): Promise<SimpleDispositif[]> => {
@@ -326,7 +354,9 @@ const API = {
   getNbDispositifsByRegion: (): Promise<GetRegionStatisticsResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics", { headers })
+      .get<any, APIResponse<GetRegionStatisticsResponse>>("/dispositifs/region-statistics", {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   addDispositifViews: (id: string, body: AddViewsRequest): Promise<null> => {
@@ -336,13 +366,18 @@ const API = {
   getDispositifHasTextChanges: (id: string): Promise<GetDispositifsHasTextChanges> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetDispositifsHasTextChanges>>(`/dispositifs/${id}/has-text-changes`, { headers })
+      .get<any, APIResponse<GetDispositifsHasTextChanges>>(`/dispositifs/${id}/has-text-changes`, {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   getDispositifsStatistics: (query: GetStatisticsRequest): Promise<GetStatisticsResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetStatisticsResponse>>("/dispositifs/statistics", { params: query, headers })
+      .get<any, APIResponse<GetStatisticsResponse>>("/dispositifs/statistics", {
+        params: query,
+        headers,
+      })
       .then((response) => response.data.data);
   },
   addDispositifMerci: (id: string): Promise<null> => {
@@ -367,25 +402,38 @@ const API = {
     const headers = getHeaders();
     return instance.patch<any, null>(`/dispositifs/${id}/avis`, body, { headers }).then(() => null);
   },
-  deleteDispositifAvis: (id: string, body: { anonymousUserId?: string; userId?: Id } = {}): Promise<null> => {
+  deleteDispositifAvis: (
+    id: string,
+    body: { anonymousUserId?: string; userId?: Id } = {},
+  ): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete<any, null>(`/dispositifs/${id}/avis`, { headers, data: body }).then(() => null);
+    return instance
+      .delete<any, null>(`/dispositifs/${id}/avis`, { headers, data: body })
+      .then(() => null);
   },
   addDispositifSuggestion: (id: string, body: AddSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.put<any, null>(`/dispositifs/${id}/suggestion`, body, { headers }).then(() => null);
+    return instance
+      .put<any, null>(`/dispositifs/${id}/suggestion`, body, { headers })
+      .then(() => null);
   },
   readDispositifSuggestion: (id: string, body: ReadSuggestionDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/suggestion`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/suggestion`, body, { headers })
+      .then(() => null);
   },
   deleteDispositifSuggestion: (id: string, suggestionId: string): Promise<null> => {
     const headers = getHeaders();
-    return instance.delete<any, null>(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers }).then(() => null);
+    return instance
+      .delete<any, null>(`/dispositifs/${id}/suggestion/${suggestionId}`, { headers })
+      .then(() => null);
   },
   updateDispositifProperties: (id: Id, body: UpdateDispositifPropertiesRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/properties`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/properties`, body, { headers })
+      .then(() => null);
   },
   updateDispositif: (id: Id, body: UpdateDispositifRequest): Promise<UpdateDispositifResponse> => {
     const headers = getHeaders();
@@ -395,7 +443,9 @@ const API = {
   },
   publishDispositif: (id: Id, body: PublishDispositifRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/dispositifs/${id}/publish`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/dispositifs/${id}/publish`, body, { headers })
+      .then(() => null);
   },
   createDispositif: (body: CreateDispositifRequest): Promise<PostDispositifsResponse> => {
     const headers = getHeaders();
@@ -407,11 +457,15 @@ const API = {
   // Mail
   sendAdminImprovementsMail: (body: ImprovementsRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post<any, null>("/mail/sendAdminImprovementsMail", body, { headers }).then(() => null);
+    return instance
+      .post<any, null>("/mail/sendAdminImprovementsMail", body, { headers })
+      .then(() => null);
   },
   sendSubscriptionReminderMail: (body: SubscriptionRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.post<any, null>("/mail/sendSubscriptionReminderMail", body, { headers }).then(() => null);
+    return instance
+      .post<any, null>("/mail/sendSubscriptionReminderMail", body, { headers })
+      .then(() => null);
   },
   isInContacts: (): Promise<IsInContactResponse> => {
     const headers = getHeaders();
@@ -439,12 +493,20 @@ const API = {
   },
   updateStructureMembers: (id: Id, body: PatchStructureRolesRequest): Promise<null> => {
     const headers = getHeaders();
-    return instance.patch<any, null>(`/structures/${id}/members`, body, { headers }).then(() => null);
+    return instance
+      .patch<any, null>(`/structures/${id}/members`, body, { headers })
+      .then(() => null);
   },
-  getStructureById: (id: string, locale: string, options?: RequestOptions): Promise<GetStructureResponse> => {
+  getStructureById: (
+    id: string,
+    locale: string,
+    options?: RequestOptions,
+  ): Promise<GetStructureResponse> => {
     const headers = getHeaders(options?.token);
     return instance
-      .get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, { headers })
+      .get<any, APIResponse<GetStructureResponse>>(`/structures/${id}?locale=${locale}`, {
+        headers,
+      })
       .then((response) => response.data.data);
   },
   getActiveStructures: (): Promise<GetActiveStructuresResponse[]> => {
@@ -458,15 +520,21 @@ const API = {
       .get<any, APIResponse<GetAllStructuresResponse[]>>("/structures/all", { headers })
       .then((response) => response.data.data);
   },
-  getStructuresStatistics: (query: GetStructureStatisticsRequest): Promise<GetStructureStatisticsResponse> => {
+  getStructuresStatistics: (
+    query: GetStructureStatisticsRequest,
+  ): Promise<GetStructureStatisticsResponse> => {
     return instance
-      .get<any, APIResponse<GetStructureStatisticsResponse>>("/structures/statistics", { params: query })
+      .get<any, APIResponse<GetStructureStatisticsResponse>>("/structures/statistics", {
+        params: query,
+      })
       .then((response) => response.data.data);
   },
 
   // Needs
   getNeeds: (): Promise<GetNeedResponse> => {
-    return instance.get<any, APIResponse<GetNeedResponse>>("/needs").then((response) => response.data.data);
+    return instance
+      .get<any, APIResponse<GetNeedResponse>>("/needs")
+      .then((response) => response.data.data);
   },
   postNeeds: (body: NeedRequest): Promise<null> => {
     const headers = getHeaders();
@@ -489,7 +557,9 @@ const API = {
 
   // Themes
   getThemes: (): Promise<GetThemeResponse[]> => {
-    return instance.get<any, APIResponse<GetThemeResponse[]>>("/themes").then((response) => response.data.data);
+    return instance
+      .get<any, APIResponse<GetThemeResponse[]>>("/themes")
+      .then((response) => response.data.data);
   },
   postThemes: (body: ThemeRequest): Promise<PostThemeResponse> => {
     const headers = getHeaders();
@@ -568,10 +638,10 @@ const API = {
   ): Promise<GetTraductionsForReviewResponse> => {
     const headers = getHeaders(options?.token);
     return instance
-      .get<
-        any,
-        APIResponse<GetTraductionsForReviewResponse>
-      >(`/traduction/for_review?dispositif=${dispositif}&language=${language}`, { headers })
+      .get<any, APIResponse<GetTraductionsForReviewResponse>>(
+        `/traduction/for_review?dispositif=${dispositif}&language=${language}`,
+        { headers },
+      )
       .then((response) => response.data.data);
   },
   getDefaultTraductionForDispositif: (
@@ -580,7 +650,9 @@ const API = {
   ): Promise<GetDefaultTraductionResponse> => {
     const headers = getHeaders(options?.token);
     return instance
-      .get<any, APIResponse<GetDefaultTraductionResponse>>(`/traduction?dispositif=${dispositif}`, { headers })
+      .get<any, APIResponse<GetDefaultTraductionResponse>>(`/traduction?dispositif=${dispositif}`, {
+        headers,
+      })
       .then((response) => response.data.data);
   },
 
@@ -591,7 +663,10 @@ const API = {
   get_progression: (query: GetProgressionRequest): Promise<GetProgressionResponse> => {
     const headers = getHeaders();
     return instance
-      .get<any, APIResponse<GetProgressionResponse>>("/traduction/get_progression", { params: query, headers })
+      .get<any, APIResponse<GetProgressionResponse>>("/traduction/get_progression", {
+        params: query,
+        headers,
+      })
       .then((response) => response.data.data);
   },
 
@@ -601,7 +676,9 @@ const API = {
       .post<any, APIResponse<string>>("/traduction/translate", query, { headers })
       .then((response) => response.data.data);
   },
-  getTranslationStatistics: (query: TranslationStatisticsRequest): Promise<TranslationStatisticsResponse> => {
+  getTranslationStatistics: (
+    query: TranslationStatisticsRequest,
+  ): Promise<TranslationStatisticsResponse> => {
     return instance
       .get<any, APIResponse<any>>("/traduction/statistics", { params: query })
       .then((response) => response.data.data);
@@ -609,7 +686,9 @@ const API = {
 
   // langues
   getLanguages: (): Promise<GetLanguagesResponse> => {
-    return instance.get<any, APIResponse<GetLanguagesResponse>>("/langues").then((response) => response.data.data);
+    return instance
+      .get<any, APIResponse<GetLanguagesResponse>>("/langues")
+      .then((response) => response.data.data);
   },
 
   // Misc

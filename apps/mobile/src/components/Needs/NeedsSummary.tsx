@@ -1,22 +1,22 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { GetThemeResponse, Picture } from "@refugies-info/api-types";
-import { Hit } from "algoliasearch";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { GetThemeResponse, Picture } from "@refugies-info/api-types";
+import type { Hit } from "algoliasearch";
 import isEmpty from "lodash/isEmpty";
 import { memo, useCallback } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import type { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { RTLTouchableOpacity, RTLView } from "~/components/BasicComponents";
-import { SearchItem } from "~/components/Search/types";
+import type { SearchItem } from "~/components/Search/types";
 import { TextDSFR_MD_Bold, TextDSFR_S } from "~/components/StyledText";
-import { ValidScreen } from "~/libs/backButton";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ValidScreen } from "~/libs/backButton";
+import type { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
-import { ReadableText } from "../ReadableText";
-import Highlight from "../Search/Highlight";
 import { UriImage } from "../iconography";
 import { Columns, ColumnsSpacing, Rows, RowsSpacing } from "../layout";
+import { ReadableText } from "../ReadableText";
+import Highlight from "../Search/Highlight";
 
 const NeedContainer = styled(RTLTouchableOpacity)<{
   needTheme: GetThemeResponse;
@@ -85,11 +85,20 @@ const NeedsSummaryComponent = ({
 
   return (
     <NeedContainer accessibilityRole="button" needTheme={theme} onPress={goToContent} style={style}>
-      <Columns layout="1 auto" horizontalAlign="center" verticalAlign="center" spacing={ColumnsSpacing.Large}>
+      <Columns
+        layout="1 auto"
+        horizontalAlign="center"
+        verticalAlign="center"
+        spacing={ColumnsSpacing.Large}
+      >
         <Rows spacing={RowsSpacing.Text} verticalAlign="center">
           <TextDSFR_MD_Bold color={theme.colors.color100}>
             {searchItem ? (
-              <Highlight hit={searchItem} attribute={`title_${searchLanguageMatch}`} color={theme.colors.color100} />
+              <Highlight
+                hit={searchItem}
+                attribute={`title_${searchLanguageMatch}`}
+                color={theme.colors.color100}
+              />
             ) : (
               <ReadableText>{needText || ""}</ReadableText>
             )}

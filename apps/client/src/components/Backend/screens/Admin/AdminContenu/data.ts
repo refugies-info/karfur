@@ -1,5 +1,5 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { ContentStatus, ProgressionStatus } from "~/types/interface";
+import type { ContentStatus, ProgressionStatus } from "~/types/interface";
 import { colors } from "~/utils/colors";
 
 type TableContenu = {

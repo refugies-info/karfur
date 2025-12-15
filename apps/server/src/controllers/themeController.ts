@@ -1,7 +1,12 @@
-import { GetThemeResponse, PatchThemeResponse, PostThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import type {
+  GetThemeResponse,
+  PatchThemeResponse,
+  PostThemeResponse,
+  ThemeRequest,
+} from "@refugies-info/api-types";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Route, Security } from "tsoa";
 import { validateId } from "~/libs/validateId";
-import { Response, ResponseWithData } from "~/types/interface";
+import type { Response, ResponseWithData } from "~/types/interface";
 import { deleteTheme } from "~/workflows/themes/deleteTheme";
 import { getThemes } from "~/workflows/themes/getThemes";
 import { patchTheme } from "~/workflows/themes/patchTheme";
@@ -28,7 +33,10 @@ export class ThemeController extends Controller {
     fromSite: [],
   })
   @Patch("{id}")
-  public async patch(@Path() id: string, @Body() body: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> {
+  public async patch(
+    @Path() id: string,
+    @Body() body: Partial<ThemeRequest>,
+  ): ResponseWithData<PatchThemeResponse> {
     validateId(id, "theme");
     return patchTheme(id, body);
   }

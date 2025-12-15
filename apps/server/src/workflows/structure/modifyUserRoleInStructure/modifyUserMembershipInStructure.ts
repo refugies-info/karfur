@@ -1,12 +1,15 @@
-import { PatchStructureRolesRequest } from "@refugies-info/api-types";
+import type { PatchStructureRolesRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { sendNewMemberMailService } from "~/modules/mail/mail.service";
-import { getStructureFromDB, updateStructureMember } from "~/modules/structure/structure.repository";
+import {
+  getStructureFromDB,
+  updateStructureMember,
+} from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { getUserById } from "~/modules/users/users.repository";
 import { addStructureForUsers, removeStructureOfUser } from "~/modules/users/users.service";
-import { User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const modifyUserMembershipInStructure = async (

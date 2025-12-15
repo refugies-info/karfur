@@ -1,4 +1,4 @@
-import { Step } from "../../functions";
+import type { Step } from "../../functions";
 
 export const help = {
   draft:

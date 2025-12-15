@@ -1,9 +1,16 @@
-import { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
+import type { GetNeedResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
+import type {
+  AgeOptions,
+  FrenchOptions,
+  PublicOptions,
+  SortOptions,
+  StatusOptions,
+  TypeOptions,
+} from "data/searchFilters";
 import debounce from "lodash/debounce";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
@@ -18,7 +25,11 @@ import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
 import { generateLightResults } from "~/lib/recherche/generateLightResults";
-import { getTopDemarches, queryDispositifs, queryDispositifsWithAlgolia } from "~/lib/recherche/queryContents";
+import {
+  getTopDemarches,
+  queryDispositifs,
+  queryDispositifsWithAlgolia,
+} from "~/lib/recherche/queryContents";
 import styles from "~/scss/pages/recherche.module.scss";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
@@ -27,16 +38,19 @@ import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
+import { fetchSearchCountsRequest } from "~/services/SearchCounts/searchCounts.reducer";
+import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 import {
   addToQueryActionCreator,
   setNoResultsActionCreator,
   setSearchResultsActionCreator,
 } from "~/services/SearchResults/searchResults.actions";
-import { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import { noResultsSelector, searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import type { Results, SearchQuery } from "~/services/SearchResults/searchResults.reducer";
+import {
+  noResultsSelector,
+  searchQuerySelector,
+} from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
-import { fetchSearchCountsRequest } from "~/services/SearchCounts/searchCounts.reducer";
-import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
@@ -60,16 +74,38 @@ const debouncedQuery = debounce(
     allNeeds: GetNeedResponse[],
     callback: (res: Results) => void,
   ) => {
-    return queryDispositifsWithAlgolia(query, dispositifs, locale, allNeeds).then((res: Results) => callback(res));
+    return queryDispositifsWithAlgolia(query, dispositifs, locale, allNeeds).then((res: Results) =>
+      callback(res),
+    );
   },
   500,
 );
 
 const pickRelevantFilters = (q: SearchQuery) => {
-  const { search, departments, themes, needs, age, frenchLevel, public: publicFilter, status, language } = q;
+  const {
+    search,
+    departments,
+    themes,
+    needs,
+    age,
+    frenchLevel,
+    public: publicFilter,
+    status,
+    language,
+  } = q;
   // Normalize empty search to empty string for stable comparison
   const normSearch = typeof search === "string" ? search.trim() : "";
-  return { search: normSearch, departments, themes, needs, age, frenchLevel, public: publicFilter, status, language };
+  return {
+    search: normSearch,
+    departments,
+    themes,
+    needs,
+    age,
+    frenchLevel,
+    public: publicFilter,
+    status,
+    language,
+  };
 };
 
 const Recherche = () => {
@@ -133,7 +169,17 @@ const Recherche = () => {
         dispatch(setSearchResultsActionCreator(res));
       });
     }
-  }, [query, dispositifs, router, isNavigating, languei18nCode, params, allNeeds, locale, dispatch]);
+  }, [
+    query,
+    dispositifs,
+    router,
+    isNavigating,
+    languei18nCode,
+    params,
+    allNeeds,
+    locale,
+    dispatch,
+  ]);
 
   // generate list of demarches to show when no results
   useEffect(() => {
@@ -153,28 +199,35 @@ const Recherche = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
-  if (locale) {
-    store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
-  } else {
-    store.dispatch(fetchActiveDispositifsActionsCreator());
-  }
-  store.dispatch(fetchNeedsActionCreator());
-  store.dispatch(fetchThemesActionCreator());
-  store.dispatch(END);
-  await store.sagaTask?.toPromise();
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ query, locale }) => {
+      if (locale) {
+        store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
+      } else {
+        store.dispatch(fetchActiveDispositifsActionsCreator());
+      }
+      store.dispatch(fetchNeedsActionCreator());
+      store.dispatch(fetchThemesActionCreator());
+      store.dispatch(END);
+      await store.sagaTask?.toPromise();
 
-  const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
-  store.dispatch(addToQueryActionCreator(initialQuery));
+      const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
+      store.dispatch(addToQueryActionCreator(initialQuery));
 
-  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs, store.getState().needs);
-  store.dispatch(setSearchResultsActionCreator(generateLightResults(results)));
+      const results = queryDispositifs(
+        initialQuery,
+        store.getState().activeDispositifs,
+        store.getState().needs,
+      );
+      store.dispatch(setSearchResultsActionCreator(generateLightResults(results)));
 
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+        },
+      };
     },
-  };
-});
+);
 
 export default Recherche;

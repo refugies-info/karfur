@@ -1,8 +1,11 @@
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
-import { deleteNeedFromDispositifs, getCountDispositifs } from "~/modules/dispositif/dispositif.repository";
+import {
+  deleteNeedFromDispositifs,
+  getCountDispositifs,
+} from "~/modules/dispositif/dispositif.repository";
 import { deleteNeedById } from "~/modules/needs/needs.repository";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const deleteNeed = async (id: string): Response => {
   logger.info("[deleteNeed] received", id);

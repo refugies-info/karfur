@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import React, { useCallback, useContext, useMemo, useState } from "react";
+import type React from "react";
+import { useCallback, useContext, useMemo, useState } from "react";
 import Button from "~/components/UI/Button";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import Tooltip from "~/components/UI/Tooltip";
@@ -48,7 +49,9 @@ const AddContentButton = (props: Props) => {
     ),
     [],
   );
-  const safeContent = useSanitizedContent(typeof props.content === "string" ? props.content : undefined);
+  const safeContent = useSanitizedContent(
+    typeof props.content === "string" ? props.content : undefined,
+  );
   return (
     <Button
       priority="tertiary"
@@ -94,7 +97,10 @@ const AddContentButton = (props: Props) => {
             />
             {props.onDelete !== undefined && (
               <>
-                <div onMouseEnter={() => setHideEditTooltip(true)} onMouseLeave={() => setHideEditTooltip(false)}>
+                <div
+                  onMouseEnter={() => setHideEditTooltip(true)}
+                  onMouseLeave={() => setHideEditTooltip(false)}
+                >
                   <EVAIcon
                     name="trash-2-outline"
                     fill={
@@ -114,7 +120,10 @@ const AddContentButton = (props: Props) => {
                 {tooltipDeleteId && (
                   <Tooltip target={tooltipDeleteId} placement="right">
                     {props.onDelete === false ? (
-                      <>Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour valider la fiche.</>
+                      <>
+                        Vous ne pouvez pas supprimer cet élément : il en faut au moins trois pour
+                        valider la fiche.
+                      </>
                     ) : (
                       <>Supprimer</>
                     )}

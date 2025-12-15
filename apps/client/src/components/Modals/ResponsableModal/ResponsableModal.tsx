@@ -26,13 +26,19 @@ const ResponsableModal = (props: Props) => {
       className={styles.modal}
       contentClassName={styles.modal_content}
     >
-      <ModalHeader toggle={() => props.toggleModal(false, props.name)} className={styles.modal_header}>
+      <ModalHeader
+        toggle={() => props.toggleModal(false, props.name)}
+        className={styles.modal_header}
+      >
         {"Super !"}
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <Image src={responsableFiche} className={styles.img} alt="responsable-fiche" />
         <h5>Vous êtes responsable d’une nouvelle fiche</h5>
-        <p>Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des contributeurs.</p>
+        <p>
+          Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des
+          contributeurs.
+        </p>
       </ModalBody>
       <ModalFooter>
         <div className={styles.footer_inner}>

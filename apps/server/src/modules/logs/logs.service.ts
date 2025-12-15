@@ -1,7 +1,14 @@
-import { GetLogResponse, Id } from "@refugies-info/api-types";
+import type { GetLogResponse, Id } from "@refugies-info/api-types";
 import isEmpty from "lodash/isEmpty";
 import logger from "~/logger";
-import { DispositifId, LangueId, Log, ObjectId, StructureId, UserId } from "~/typegoose";
+import {
+  type DispositifId,
+  type LangueId,
+  Log,
+  ObjectId,
+  type StructureId,
+  type UserId,
+} from "~/typegoose";
 import { createLog } from "./logs.repository";
 
 export type optionsType = {
@@ -51,12 +58,17 @@ const datesAreOnSameDay = (first: Date, second: Date) =>
   first.getMonth() === second.getMonth() &&
   first.getDate() === second.getDate();
 
-const sameDynamicIds = (first: GetLogResponse["dynamicId"], second: GetLogResponse["dynamicId"]) => {
+const sameDynamicIds = (
+  first: GetLogResponse["dynamicId"],
+  second: GetLogResponse["dynamicId"],
+) => {
   if (
     (isEmpty(first) && isEmpty(second)) ||
     (first.langueFr && second.langueFr && first.langueFr === second.langueFr) ||
     (first.nom && second.nom && first.nom === second.nom) ||
-    (first.titreInformatif && second.titreInformatif && first.titreInformatif === second.titreInformatif) ||
+    (first.titreInformatif &&
+      second.titreInformatif &&
+      first.titreInformatif === second.titreInformatif) ||
     (first.username && second.username && first.username === second.username)
   ) {
     return true;

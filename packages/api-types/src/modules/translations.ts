@@ -1,4 +1,11 @@
-import { ContentType, InfoSection, InfoSections, Languages, Picture, RichText } from "../generics";
+import type {
+  ContentType,
+  InfoSection,
+  InfoSections,
+  Languages,
+  Picture,
+  RichText,
+} from "../generics";
 
 export type TraductionsType = "suggestion" | "validation";
 
@@ -143,7 +150,11 @@ export interface GetProgressionResponse {
   totalIndicator: ProgressionIndicator;
 }
 
-type TranslationStatisticsFacets = "nbTranslators" | "nbRedactors" | "nbWordsTranslated" | "nbActiveTranslators";
+type TranslationStatisticsFacets =
+  | "nbTranslators"
+  | "nbRedactors"
+  | "nbWordsTranslated"
+  | "nbActiveTranslators";
 export interface TranslationStatisticsRequest {
   facets?: TranslationStatisticsFacets[];
 }

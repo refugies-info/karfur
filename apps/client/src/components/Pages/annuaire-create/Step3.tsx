@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { activities } from "data/activities";
 import groupBy from "lodash/groupBy";
 import { useState } from "react";
@@ -84,9 +84,11 @@ export const Step3 = (props: Props) => {
 
     if (!props.structure.activities) return [selectedActivity];
 
-    const removeActivity = props.structure.activities.filter((activity) => activity === selectedActivity).length > 0;
+    const removeActivity =
+      props.structure.activities.filter((activity) => activity === selectedActivity).length > 0;
 
-    if (removeActivity) return props.structure.activities.filter((activity) => activity !== selectedActivity);
+    if (removeActivity)
+      return props.structure.activities.filter((activity) => activity !== selectedActivity);
 
     return props.structure.activities.concat([selectedActivity]);
   };
@@ -109,9 +111,9 @@ export const Step3 = (props: Props) => {
           <HelpHeader>Comment ça marche ?</HelpHeader>
           <HelpDescription>
             <>
-              Sélectionnez ci-dessous les activités que propose votre structure. Les internautes pourront ainsi
-              comprendre rapidement votre offre de service. Cette liste n’est pas exhaustive et sera complétée avec le
-              temps. <br />
+              Sélectionnez ci-dessous les activités que propose votre structure. Les internautes
+              pourront ainsi comprendre rapidement votre offre de service. Cette liste n’est pas
+              exhaustive et sera complétée avec le temps. <br />
               <b>Faites-nous part d’une activité manquante via notre livechat </b>
               présent en bas à droite de votre écran.
             </>
@@ -123,14 +125,18 @@ export const Step3 = (props: Props) => {
       {Object.keys(groupedActivities).map((activity) => {
         const correspondingTheme = themes.find((theme) => theme.short.fr === activity);
 
-        const correspondingActivities = activities.filter((activity2) => activity2.theme === activity);
+        const correspondingActivities = activities.filter(
+          (activity2) => activity2.theme === activity,
+        );
         return (
           <TagActivity
             backgroundColor={correspondingTheme?.colors.color30 || colors.gray10}
             key={activity}
             color={correspondingTheme?.colors.color100 || colors.gray90}
           >
-            <div style={{ marginLeft: "8px", marginBottom: "8px" }}>{jsUcfirst(correspondingTheme?.name.fr || "")}</div>
+            <div style={{ marginLeft: "8px", marginBottom: "8px" }}>
+              {jsUcfirst(correspondingTheme?.name.fr || "")}
+            </div>
             <ActivityCardsContainer>
               {correspondingActivities.map((detailedActivity) => (
                 <ActivityCard

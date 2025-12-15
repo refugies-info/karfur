@@ -1,5 +1,5 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import { Languages } from "@refugies-info/api-types";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { Languages } from "@refugies-info/api-types";
 import { useEffect } from "react";
 import { Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,7 +11,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { saveSelectedLanguageActionCreator } from "~/services/redux/User/user.actions";
 import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import HelloIllu from "~/theme/images/onboarding/hello.png";
-import { OnboardingParamList } from "~/types/navigation";
+import type { OnboardingParamList } from "~/types/navigation";
 
 const ImageContainer = styled.View`
   margin-top: ${({ theme }) => theme.margin * 2}px;
@@ -20,7 +20,9 @@ const ImageContainer = styled.View`
   align-items: center;
 `;
 
-export const LanguageChoiceScreen = ({ navigation }: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
+export const LanguageChoiceScreen = ({
+  navigation,
+}: StackScreenProps<OnboardingParamList, "LanguageChoice">) => {
   const { i18n } = useTranslationWithRTL();
   const dispatch = useDispatch();
 

@@ -1,4 +1,4 @@
-import { GetUserInfoResponse, RoleName, UserStatus } from "@refugies-info/api-types";
+import { type GetUserInfoResponse, RoleName, UserStatus } from "@refugies-info/api-types";
 
 export const testUser: GetUserInfoResponse = {
   username: "test",

@@ -1,13 +1,19 @@
-import { conditionType, ContentType, GetDispositifResponse, Metadatas } from "@refugies-info/api-types";
-import React, { memo, useMemo } from "react";
+import {
+  ContentType,
+  type conditionType,
+  type GetDispositifResponse,
+  type Metadatas,
+} from "@refugies-info/api-types";
+import type React from "react";
+import { memo, useMemo } from "react";
 import { Image } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { getConditionImage, getDescriptionNew } from "~/libs/content";
 import { styles } from "~/theme";
+import { Columns, Rows, RowsSpacing } from "../layout";
 import { ReadableText } from "../ReadableText";
 import { TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
-import { Columns, Rows, RowsSpacing } from "../layout";
 import { Title } from "../typography";
 import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 
@@ -99,7 +105,15 @@ const Metadata = ({
   );
 };
 
-const Section = ({ children, color, title }: { children: React.ReactNode; color: string; title: string }) => (
+const Section = ({
+  children,
+  color,
+  title,
+}: {
+  children: React.ReactNode;
+  color: string;
+  title: string;
+}) => (
   <SectionContainer>
     <TitleText color={color}>
       <ReadableText>{title}</ReadableText>
@@ -121,7 +135,9 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
         <Rows separator spacing={RowsSpacing.Default}>
           <Section color={color} title={t("Infocards.publicTitle", "Public visé")}>
             <Metadata color={color} metadatas={metadatas} metadataKey="publicStatus" withTitle />
-            {metadatas.public && <Metadata color={color} metadatas={metadatas} metadataKey="public" withTitle />}
+            {metadatas.public && (
+              <Metadata color={color} metadatas={metadatas} metadataKey="public" withTitle />
+            )}
 
             <Metadata color={color} metadatas={metadatas} metadataKey="frenchLevel" withTitle />
             <Metadata color={color} metadatas={metadatas} metadataKey="age" withTitle />

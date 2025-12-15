@@ -1,4 +1,4 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
+import type { GetStructureResponse } from "@refugies-info/api-types";
 import { useState } from "react";
 import { Input } from "reactstrap";
 import styled from "styled-components";
@@ -67,7 +67,8 @@ const RemainingCaracters = styled.div<{ caractersRemaining: boolean }>`
 const NB_CARACTERS_MAX = 1000;
 export const Step5 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
-  const nbCaracters = props.structure && props.structure.description ? props.structure.description.length : 0;
+  const nbCaracters =
+    props.structure && props.structure.description ? props.structure.description.length : 0;
 
   const nbCaractersRemaining = NB_CARACTERS_MAX - nbCaracters;
 
@@ -90,7 +91,8 @@ export const Step5 = (props: Props) => {
           </IconContainer>
           <HelpHeader>Comment ça marche ?</HelpHeader>
           <HelpDescription>
-            Rédigez un court paragraphe pour décrire votre structure : missions, valeurs, services, etc.
+            Rédigez un court paragraphe pour décrire votre structure : missions, valeurs, services,
+            etc.
           </HelpDescription>
         </HelpContainer>
       ) : (

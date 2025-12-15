@@ -5,9 +5,9 @@ import { TextDSFR_MD, TextDSFR_XL } from "~/components/StyledText";
 import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import bellAnimation from "~/theme/lottie/bell-animation.json";
-import { ReadableText } from "../ReadableText";
 import { ButtonDSFR } from "../buttons";
 import { Spacer } from "../layout";
+import { ReadableText } from "../ReadableText";
 
 const Title = styled(TextDSFR_XL)`
   margin-top: ${({ theme }) => theme.margin * 8}px;

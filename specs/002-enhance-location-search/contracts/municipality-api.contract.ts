@@ -79,11 +79,17 @@ export const MUNICIPALITY_VALIDATION_RULES = {
     minLength: 1,
     maxLength: 100,
     pattern: /^[a-zA-Z0-9\s\-'àâäçèéêëîïôùûüœæ]+$/i,
-    description: "Search query with letters, numbers, spaces, hyphens, apostrophes, and French accents",
+    description:
+      "Search query with letters, numbers, spaces, hyphens, apostrophes, and French accents",
   },
   response: {
     maxFeatures: 10,
-    requiredFields: ["properties.label", "properties.context", "properties.name", "geometry.coordinates"],
+    requiredFields: [
+      "properties.label",
+      "properties.context",
+      "properties.name",
+      "geometry.coordinates",
+    ],
     description: "Response contains array of features with required properties",
   },
 };

@@ -1,7 +1,7 @@
-import { Request } from "express";
+import type { Request } from "express";
 import jwt from "jwt-simple";
 import { AuthenticationError, UnauthorizedError } from "~/errors";
-import { ObjectId, User, UserModel } from "~/typegoose";
+import { type ObjectId, type User, UserModel } from "~/typegoose";
 
 // type Role = "optional" | "admin" | "expert";
 
@@ -21,7 +21,11 @@ export async function expressAuthentication(
   if (securityName === "fromPostman") {
     const postmanToken = request.headers["postman-secret"];
     if (!postmanToken && postmanToken !== process.env.POSTMAN_SECRET)
-      throw new UnauthorizedError("[authentication] Must only run from Postman", undefined, logData);
+      throw new UnauthorizedError(
+        "[authentication] Must only run from Postman",
+        undefined,
+        logData,
+      );
   }
 
   if (securityName === "fromCron") {

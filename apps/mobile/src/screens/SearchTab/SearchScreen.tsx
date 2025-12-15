@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Page } from "~/components";
 import HeaderContentSearch from "~/components/layout/Header/HeaderContentSearch";
-import SearchSuggestions, { NavigationProp } from "~/components/Search/SearchSuggestions";
+import SearchSuggestions, { type NavigationProp } from "~/components/Search/SearchSuggestions";
 import { mostViewedContentsSelector } from "~/services/redux/Contents/contents.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 

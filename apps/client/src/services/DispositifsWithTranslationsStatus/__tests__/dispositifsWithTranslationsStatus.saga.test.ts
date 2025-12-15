@@ -1,10 +1,16 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setDispositifsWithTranslationsStatusActionCreator } from "../dispositifsWithTranslationsStatus.actions";
 import { FETCH_DISPOSITIFS_TRANSLATIONS_STATUS } from "../dispositifsWithTranslationsStatus.actionTypes";
-import latestActionsSaga, { fetchDispositifTranslationsStatus } from "../dispositifsWithTranslationsStatus.saga";
+import latestActionsSaga, {
+  fetchDispositifTranslationsStatus,
+} from "../dispositifsWithTranslationsStatus.saga";
 
 describe("[Saga] dispositifsWithTranslationsStatus", () => {
   describe("pilot", () => {

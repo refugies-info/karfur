@@ -1,5 +1,5 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import { cn, useRTL } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { memo, useState } from "react";

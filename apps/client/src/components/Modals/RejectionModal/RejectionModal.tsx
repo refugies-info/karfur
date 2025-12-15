@@ -24,15 +24,19 @@ const RejectionModal = (props: Props) => {
       className={styles.modal}
       contentClassName={styles.modal_content}
     >
-      <ModalHeader className={styles.modal_header} toggle={() => props.toggleModal(false, props.name)}>
+      <ModalHeader
+        className={styles.modal_header}
+        toggle={() => props.toggleModal(false, props.name)}
+      >
         {"Êtes-vous sûr ?"}
       </ModalHeader>
       <ModalBody className={styles.modal_body}>
         <Image src={rejectionFiche} className={styles.img} alt="rejection-fiche" />
         <h5 className={styles.red_text}>Attention : vous allez refuser cette nouvelle fiche</h5>
         <p>
-          Refusez la fiche si elle existe déjà, si elle traite de sujets qui n’ont rien à voir avec votre structure ou
-          si elle comporte des éléments offensants. Pas de panique, nous prenons le relais.
+          Refusez la fiche si elle existe déjà, si elle traite de sujets qui n’ont rien à voir avec
+          votre structure ou si elle comporte des éléments offensants. Pas de panique, nous prenons
+          le relais.
         </p>
       </ModalBody>
       <ModalFooter className={styles.modal_footer}>

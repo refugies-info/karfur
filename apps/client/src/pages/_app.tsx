@@ -2,19 +2,18 @@ import "css/index.css";
 import "leaflet/dist/leaflet.css";
 import "scss/index.scss";
 
-import { Caveat } from "next/font/google";
-
 import { createNextDsfrIntegrationApi } from "@codegouvfr/react-dsfr/next-pagesdir";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
-import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
+import { Caveat } from "next/font/google";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react";
+import { appWithTranslation } from "next-i18next";
+import { type ReactElement, type ReactNode, useCallback, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
@@ -25,7 +24,7 @@ import { useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
 import { wrapper } from "~/services/configureStore";
-import { PageOptions } from "~/types/interface";
+import type { PageOptions } from "~/types/interface";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
@@ -113,7 +112,9 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
       <ToastProvider swipeDirection="down">
         <TooltipProvider delayDuration={250}>
           <ScreenReaderAnnouncerProvider>
-            <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+            <Provider store={store}>
+              {getLayout(<Component history={history} {...props.pageProps} />)}
+            </Provider>
 
             {options.supportModule && (
               <Script

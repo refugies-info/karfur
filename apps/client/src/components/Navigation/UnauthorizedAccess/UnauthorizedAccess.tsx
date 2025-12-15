@@ -1,5 +1,5 @@
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import FButton from "~/components/UI/FButton/FButton";
 import { colors } from "~/utils/colors";
 import styles from "./UnauthorizedAccess.module.scss";

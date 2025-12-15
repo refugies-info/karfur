@@ -1,4 +1,4 @@
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import type { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard } from "@refugies-info/ui";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";

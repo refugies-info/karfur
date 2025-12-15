@@ -131,8 +131,16 @@ export const WithoutCloseButton: Story = {
           Open Modal (No Close Button)
         </Button>
 
-        <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="No Close Button" hideCloseButton>
-          <p className="mb-4">This modal has no close button. You must use ESC or click outside to close.</p>
+        <Modal
+          open={open}
+          onOpenChange={setOpen}
+          triggerRef={triggerRef}
+          title="No Close Button"
+          hideCloseButton
+        >
+          <p className="mb-4">
+            This modal has no close button. You must use ESC or click outside to close.
+          </p>
           <Button priority="secondary" onClick={() => setOpen(false)}>
             Close Programmatically
           </Button>
@@ -156,7 +164,13 @@ export const SmallSize: Story = {
           Open Small Modal
         </Button>
 
-        <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="Small Modal" maxWidth="sm">
+        <Modal
+          open={open}
+          onOpenChange={setOpen}
+          triggerRef={triggerRef}
+          title="Small Modal"
+          maxWidth="sm"
+        >
           <p>This modal has a smaller max-width.</p>
         </Modal>
       </div>
@@ -178,7 +192,13 @@ export const LargeSize: Story = {
           Open Large Modal
         </Button>
 
-        <Modal open={open} onOpenChange={setOpen} triggerRef={triggerRef} title="Large Modal" maxWidth="4xl">
+        <Modal
+          open={open}
+          onOpenChange={setOpen}
+          triggerRef={triggerRef}
+          title="Large Modal"
+          maxWidth="4xl"
+        >
           <p className="mb-4">This modal has a larger max-width for more content.</p>
           <div className="grid grid-cols-3 gap-4">
             <div className="rounded bg-gray-100 p-4">Column 1</div>

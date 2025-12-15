@@ -40,35 +40,51 @@ interface Props {
 /**
  * @deprecated use Button instead
  */
-const FButton = React.forwardRef(({ type = "default", tag: Tag = "button", ...props }: Props, _ref) => {
-  let { className, fill, name, size, filter, children, wrap, loading = false, ...bProps } = props;
+const FButton = React.forwardRef(
+  ({ type = "default", tag: Tag = "button", ...props }: Props, _ref) => {
+    const {
+      className,
+      fill,
+      name,
+      size,
+      filter,
+      children,
+      wrap,
+      loading = false,
+      ...bProps
+    } = props;
 
-  if (props.href && Tag === "button") Tag = "a";
-  const themeType = type === "theme" ? " bg-darkColor" : "";
+    if (props.href && Tag === "button") Tag = "a";
+    const themeType = type === "theme" ? " bg-darkColor" : "";
 
-  const classNames = cls(
-    styles.btn,
-    filter ? styles.filter : false,
-    type ? styles[type] : false,
-    className || "",
-    themeType,
-    wrap ? styles.wrap : false,
-  );
+    const classNames = cls(
+      styles.btn,
+      filter ? styles.filter : false,
+      type ? styles[type] : false,
+      className || "",
+      themeType,
+      wrap ? styles.wrap : false,
+    );
 
-  return (
-    <Tag className={classNames} {...bProps} style={props.theme && { backgroundColor: props.theme }}>
-      {(name || loading) && (
-        <EVAIcon
-          name={loading ? "loader-outline" : name}
-          fill={fill}
-          size={size}
-          className={props.children ? "me-2" : ""}
-        />
-      )}
-      {props.children}
-    </Tag>
-  );
-});
+    return (
+      <Tag
+        className={classNames}
+        {...bProps}
+        style={props.theme && { backgroundColor: props.theme }}
+      >
+        {(name || loading) && (
+          <EVAIcon
+            name={loading ? "loader-outline" : name}
+            fill={fill}
+            size={size}
+            className={props.children ? "me-2" : ""}
+          />
+        )}
+        {props.children}
+      </Tag>
+    );
+  },
+);
 
 FButton.displayName = "FButton";
 

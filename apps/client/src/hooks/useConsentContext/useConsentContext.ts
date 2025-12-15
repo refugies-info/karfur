@@ -10,7 +10,8 @@ export const {
   finalityDescription: () => ({
     analytics: {
       title: "Analyse",
-      description: "Nous utilisons des cookies pour mesurer l’audience de notre site et améliorer son contenu.",
+      description:
+        "Nous utilisons des cookies pour mesurer l’audience de notre site et améliorer son contenu.",
     },
     youtube: {
       title: "Youtube",

@@ -1,8 +1,9 @@
 import { Header } from "@codegouvfr/react-dsfr/Header";
-import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import type { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import { isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { memo, useCallback, useMemo } from "react";
 import { isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
@@ -13,11 +14,9 @@ import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/
 import Image from "~/components/UI/Image";
 import { useEditionMode, useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
-import { isInBrowser } from "@refugies-info/ui";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
-import { useWindowSize } from "@refugies-info/ui";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -47,8 +46,10 @@ const Navbar = () => {
       return isPathMatching;
     };
     const isBackend = router.pathname.includes("/backend");
-    const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
-    const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+    const appStoreBadge =
+      assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
+    const playStoreBadge =
+      assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
     if (isBackend) return backendNavigation;
     return [

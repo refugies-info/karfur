@@ -20,7 +20,7 @@ const createMockComponent = (name) => {
 
 // Create a proxy that returns a mock component for any property access
 const handler = {
-  get: function (target, prop) {
+  get: (target, prop) => {
     // Return existing mocks if they exist
     if (prop in target) {
       return target[prop];

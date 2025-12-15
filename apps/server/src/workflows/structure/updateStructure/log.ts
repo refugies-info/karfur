@@ -1,7 +1,11 @@
 import { addLog } from "~/modules/logs/logs.service";
-import { Structure, UserId } from "~/typegoose";
+import type { Structure, UserId } from "~/typegoose";
 
-export const log = async (structure: Partial<Structure>, oldStructure: Structure, authorId: UserId) => {
+export const log = async (
+  structure: Partial<Structure>,
+  oldStructure: Structure,
+  authorId: UserId,
+) => {
   if (structure.picture?.imgId && structure.picture?.imgId !== oldStructure.picture?.imgId) {
     await addLog(structure._id, "Structure", "Logo modifié", {
       author: authorId,
@@ -23,7 +27,9 @@ export const log = async (structure: Partial<Structure>, oldStructure: Structure
     });
   }
   if (structure.status && structure.status !== oldStructure.status) {
-    await addLog(structure._id, "Structure", "Statut modifié : " + structure.status, { author: authorId });
+    await addLog(structure._id, "Structure", "Statut modifié : " + structure.status, {
+      author: authorId,
+    });
   }
   if (structure.adminComments && structure.adminComments !== oldStructure.adminComments) {
     await addLog(structure._id, "Structure", "Note interne modifiée", { author: authorId });

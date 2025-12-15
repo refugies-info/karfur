@@ -1,11 +1,11 @@
 import {
   ContentType,
-  CreateDispositifRequest,
+  type CreateDispositifRequest,
   DispositifOrigin,
   DispositifStatus,
-  SimpleDispositif,
+  type SimpleDispositif,
 } from "@refugies-info/api-types";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
+import type { DeepPartialSkipArrayKey } from "react-hook-form";
 
 export const getDefaultDispositif = (
   formValues: DeepPartialSkipArrayKey<CreateDispositifRequest>,
@@ -22,13 +22,13 @@ export const getDefaultDispositif = (
     sponsor,
     metadatas: {
       location: formValues.metadatas?.location || null,
-      price: !!formValues.metadatas?.price
+      price: formValues.metadatas?.price
         ? {
             values: formValues.metadatas?.price.values || [0],
             details: formValues.metadatas?.price.details || undefined,
           }
         : null,
-      commitment: !!formValues.metadatas?.commitment
+      commitment: formValues.metadatas?.commitment
         ? {
             amountDetails: formValues.metadatas.commitment.amountDetails || "exactly",
             hours: formValues.metadatas.commitment.hours || [0],

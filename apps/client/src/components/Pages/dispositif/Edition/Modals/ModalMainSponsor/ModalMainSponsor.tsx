@@ -1,4 +1,4 @@
-import { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, Id, MainSponsor } from "@refugies-info/api-types";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -41,7 +41,9 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const user = useSelector(userSelector);
   const { setValue, getValues, watch } = useFormContext<CreateDispositifRequest>();
   const userStructure = useSelector(userStructureSelector);
-  const [selectedStructure, setSelectedStructure] = useState<Id | null>(getValues("mainSponsor") || null);
+  const [selectedStructure, setSelectedStructure] = useState<Id | null>(
+    getValues("mainSponsor") || null,
+  );
   const [step, setStep] = useState(getInitialStep(selectedStructure, userStructure?._id || null));
   const [createStructure, setCreateStructure] = useState(false);
   const [memberOfStructure, setMemberOfStructure] = useState<boolean | null>(null);
@@ -66,7 +68,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   const setData = useCallback(() => {
     if (selectedStructure) {
       setValue("mainSponsor", selectedStructure.toString());
-    } else if (!!mainSponsor.name) {
+    } else if (mainSponsor.name) {
       setValue("mainSponsor", mainSponsor);
     }
 
@@ -76,7 +78,7 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
         isMember: !unknownContact,
         isMe: true,
       });
-    } else if (!!structureContact.name) {
+    } else if (structureContact.name) {
       setValue("contact", {
         ...structureContact,
         isMember: false,
@@ -155,16 +157,33 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
   };
 
   const displayedStep = useMemo(
-    () => getDisplayedStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    () =>
+      getDisplayedStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
     [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
   );
   const displayedMaxStep = useMemo(
-    () => getDisplayedMaxStep(step, user.hasStructure, createStructure, unknownContact, memberOfStructure),
+    () =>
+      getDisplayedMaxStep(
+        step,
+        user.hasStructure,
+        createStructure,
+        unknownContact,
+        memberOfStructure,
+      ),
     [step, user.hasStructure, createStructure, unknownContact, memberOfStructure],
   );
-  const previousStep = useMemo(() => getPreviousStep(step, user.hasStructure), [step, user.hasStructure]);
-  const isEndModal = useMemo(() => getIsEndModal(step, user.hasStructure), [step, user.hasStructure]);
-  const textContent = useMemo(() => getTextContent(step, user.hasStructure), [step, user.hasStructure]);
+  const previousStep = useMemo(
+    () => getPreviousStep(step, user.hasStructure),
+    [step, user.hasStructure],
+  );
+  const isEndModal = useMemo(
+    () => getIsEndModal(step, user.hasStructure),
+    [step, user.hasStructure],
+  );
+  const textContent = useMemo(
+    () => getTextContent(step, user.hasStructure),
+    [step, user.hasStructure],
+  );
   const nextButtonDisabled = useMemo(
     () =>
       isNextButtonDisabled(
@@ -258,16 +277,24 @@ const ModalMainSponsor = ({ show, toggle }: Props) => {
             />
           )}
           {step === 1 && (
-            <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
+            <MemberOfStructure
+              memberOfStructure={memberOfStructure}
+              setMemberOfStructure={setMemberOfStructure}
+            />
           )}
           {step === 2 && <AuthorContact contact={authorContact} setContact={setAuthorContact} />}
           {step === 3 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 4 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 5 && <CreateStructure sponsor={mainSponsor} setSponsor={setMainSponsor} />}
           {step === 6 && (
-            <MemberOfStructure memberOfStructure={memberOfStructure} setMemberOfStructure={setMemberOfStructure} />
+            <MemberOfStructure
+              memberOfStructure={memberOfStructure}
+              setMemberOfStructure={setMemberOfStructure}
+            />
           )}
-          {step === 7 && <AuthorContact contact={authorContact} setContact={setAuthorContact} phone={true} />}
+          {step === 7 && (
+            <AuthorContact contact={authorContact} setContact={setAuthorContact} phone={true} />
+          )}
           {step === 8 && <ThanksMessage publish={setData} content={textContent.content} />}
           {step === 9 && (
             <StructureContact

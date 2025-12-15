@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import { PixelRatio, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Animated, {
@@ -13,8 +13,8 @@ import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import { RTLView } from "./BasicComponents";
-import { TextDSFR_XS_Bold } from "./StyledText";
 import { Columns } from "./layout";
+import { TextDSFR_XS_Bold } from "./StyledText";
 
 interface Props {
   i18nKey?: string;
@@ -98,7 +98,11 @@ export const Toast = (props: PropsWithChildren<Props>) => {
       <ToastView>
         <Columns RTLBehaviour layout="auto" verticalAlign="center">
           <TextIcon name={props.icon} height={16} width={16} fill={theme.colors.white} />
-          {props.i18nKey ? <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText> : props.children}
+          {props.i18nKey ? (
+            <StyledText>{t(props.i18nKey, props.defaultText || "")}</StyledText>
+          ) : (
+            props.children
+          )}
         </Columns>
 
         <TouchableOpacity

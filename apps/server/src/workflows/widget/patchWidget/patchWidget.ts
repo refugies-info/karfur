@@ -1,8 +1,8 @@
-import { PatchWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
+import type { PatchWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { updateWidget } from "~/modules/widgets/widgets.repository";
-import { ObjectId, Widget } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import { ObjectId, type Widget } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const patchWidget = async (
   id: string,

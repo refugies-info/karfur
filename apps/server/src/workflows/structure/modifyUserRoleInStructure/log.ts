@@ -1,7 +1,12 @@
 import { addLog } from "~/modules/logs/logs.service";
-import { StructureId, UserId } from "~/typegoose";
+import type { StructureId, UserId } from "~/typegoose";
 
-export const log = async (action: string, membreId: UserId, structureId: StructureId, authorId: UserId) => {
+export const log = async (
+  action: string,
+  membreId: UserId,
+  structureId: StructureId,
+  authorId: UserId,
+) => {
   if (action === "create" || action === "modify") {
     await addLog(membreId, "User", "Devient responsable de la structure : {{dynamic}}", {
       author: authorId,

@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Input } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { colors } from "~/utils/colors";

@@ -1,4 +1,4 @@
-import {
+import type {
   ageType,
   CreateDispositifRequest,
   frenchLevelType,
@@ -18,14 +18,19 @@ import ChoiceButton from "../../ChoiceButton";
 import { InlineForm, StepsFooter } from "../components";
 import {
   ageOptions,
-  ChoiceItem,
+  type ChoiceItem,
   frenchLevelOptions,
   help,
   modalTitles,
   publicOptions,
   publicStatusOptions,
 } from "./data";
-import { addAllRefugeeTypes, includeAllFrenchLevels, includeAllRefugees, removeAllRefugeeTypes } from "./functions";
+import {
+  addAllRefugeeTypes,
+  includeAllFrenchLevels,
+  includeAllRefugees,
+  removeAllRefugeeTypes,
+} from "./functions";
 
 interface Props {
   show: boolean;
@@ -57,7 +62,9 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   );
   const selectPublicStatus = useCallback((option: publicStatusType) => {
     setPublicStatus((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+      options?.includes(option)
+        ? options.filter((o) => o !== option)
+        : [...(options || []), option],
     );
   }, []);
   const validatePublicStatus = () => {
@@ -72,7 +79,9 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   );
   const selectFrenchLevel = useCallback((option: frenchLevelType) => {
     setFrenchLevel((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+      options?.includes(option)
+        ? options.filter((o) => o !== option)
+        : [...(options || []), option],
     );
   }, []);
   const validateFrenchLevel = () => {
@@ -88,7 +97,7 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   const [ages, setAges] = useState<number[]>(getValues("metadatas.age.ages") || []);
   const [noAge, setNoAge] = useState(getValues("metadatas.age") === null);
   const validateAge = () => {
-    let age: Metadatas["age"] = undefined;
+    let age: Metadatas["age"];
     if (noAge) age = null;
     else if (!noAge && !!ageType && ages.length > 0) {
       const betweenFormError = ageType === "between" && (!ages[0] || !ages[1]);
@@ -104,10 +113,14 @@ const ModalPublic = ({ show, toggle, page }: Props) => {
   };
 
   // public
-  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(getValues("metadatas.public"));
+  const [publicType, setPublicType] = useState<publicType[] | null | undefined>(
+    getValues("metadatas.public"),
+  );
   const selectPublicType = useCallback((option: publicType) => {
     setPublicType((options) =>
-      options?.includes(option) ? options.filter((o) => o !== option) : [...(options || []), option],
+      options?.includes(option)
+        ? options.filter((o) => o !== option)
+        : [...(options || []), option],
     );
   }, []);
   const validatePublicType = () => {

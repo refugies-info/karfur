@@ -1,13 +1,18 @@
-import { DispositifStatus, GetStructureResponse, Languages, StructureMember } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetStructureResponse,
+  type Languages,
+  type StructureMember,
+} from "@refugies-info/api-types";
 import { omit } from "lodash";
-import { FilterQuery, ProjectionType } from "mongoose";
+import type { FilterQuery, ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { getStructureDispositifs } from "~/modules/dispositif/dispositif.repository";
 import { getStructureById as getStructure } from "~/modules/structure/structure.repository";
 import { getUserById } from "~/modules/users/users.repository";
-import { Dispositif, Structure, User } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { Dispositif, Structure, User } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 const getMembers = async (structure: Structure) => {
   const structureMembres = structure.membres || [];

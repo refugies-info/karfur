@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useTranslation } from "next-i18next";
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { cls, cn } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
@@ -66,10 +67,17 @@ const GeoLocationMenuItem: React.FC = () => {
           className={cn("w-full", styles.button)}
         >
           <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
-          <span className={styles.buttonText}>{t("Recherche.positionButton", "Utiliser ma position")}</span>
+          <span className={styles.buttonText}>
+            {t("Recherche.positionButton", "Utiliser ma position")}
+          </span>
         </button>
       ) : (
-        <>{t("Recherche.positionEnable", "Vous devez activer la géolocalisation pour votre navigateur")}</>
+        <>
+          {t(
+            "Recherche.positionEnable",
+            "Vous devez activer la géolocalisation pour votre navigateur",
+          )}
+        </>
       )}
     </div>
   );

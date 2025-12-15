@@ -1,9 +1,9 @@
 import {
-  AdminCommentsRequest,
+  type AdminCommentsRequest,
   DispositifStatus,
-  GetAllDispositifsResponse,
-  GetLogResponse,
-  Id,
+  type GetAllDispositifsResponse,
+  type GetLogResponse,
+  type Id,
 } from "@refugies-info/api-types";
 import cloneDeep from "lodash/cloneDeep";
 import moment from "moment";
@@ -16,7 +16,10 @@ import FButton from "~/components/UI/FButton/FButton";
 import { useLanguages } from "~/hooks";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { setAllDispositifsActionsCreator } from "~/services/AllDispositifs/allDispositifs.actions";
-import { allDispositifsSelector, dispositifSelector } from "~/services/AllDispositifs/allDispositifs.selector";
+import {
+  allDispositifsSelector,
+  dispositifSelector,
+} from "~/services/AllDispositifs/allDispositifs.selector";
 import { structureSelector } from "~/services/AllStructures/allStructures.selector";
 import { allUsersSelector } from "~/services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
@@ -165,7 +168,9 @@ export const ContentDetailsModal = (props: Props) => {
     }
   };
 
-  const members = (structure?.membres || []).filter((m) => m.userId !== structure?.responsable?._id);
+  const members = (structure?.membres || []).filter(
+    (m) => m.userId !== structure?.responsable?._id,
+  );
 
   const moreMembers = members.length > 3;
 
@@ -181,7 +186,9 @@ export const ContentDetailsModal = (props: Props) => {
             <TypeContenu type={dispositif.typeContenu} isDetailedVue={true} />
             <h2>
               {dispositif.titreInformatif}
-              {dispositif.typeContenu === "dispositif" && <span style={{ color: colors.gray70 }}> avec </span>}
+              {dispositif.typeContenu === "dispositif" && (
+                <span style={{ color: colors.gray70 }}> avec </span>
+              )}
               {dispositif.titreMarque}
             </h2>
           </>
@@ -197,17 +204,32 @@ export const ContentDetailsModal = (props: Props) => {
               Web only
             </FButton>
             {dispositif.status === "Actif" && dispositif.typeContenu === "demarche" && (
-              <FButton className="me-2" type="dark" name="alert-triangle-outline" onClick={sendPushNotification}>
+              <FButton
+                className="me-2"
+                type="dark"
+                name="alert-triangle-outline"
+                onClick={sendPushNotification}
+              >
                 Push
               </FButton>
             )}
             {["En attente admin", "En attente", "Accepté structure"].includes(dispositif.status) &&
               dispositif.typeContenu === "dispositif" && (
-                <FButton className="me-2" type="dark" name="email-outline" onClick={props.toggleImprovementsMailModal}>
+                <FButton
+                  className="me-2"
+                  type="dark"
+                  name="email-outline"
+                  onClick={props.toggleImprovementsMailModal}
+                >
                   Demande
                 </FButton>
               )}
-            <FButton className="me-2" type="dark" name="options-2-outline" onClick={props.toggleNeedsChoiceModal}>
+            <FButton
+              className="me-2"
+              type="dark"
+              name="options-2-outline"
+              onClick={props.toggleNeedsChoiceModal}
+            >
               Catégories
             </FButton>
             {dispositif.status === DispositifStatus.ACTIVE && (
@@ -224,7 +246,12 @@ export const ContentDetailsModal = (props: Props) => {
               rel="noopener noreferrer"
               name="eye-outline"
             ></FButton>
-            <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
+            <FButton
+              className="me-2"
+              type="white"
+              onClick={props.toggleModal}
+              name="close-outline"
+            ></FButton>
           </div>
         }
       >
@@ -245,7 +272,10 @@ export const ContentDetailsModal = (props: Props) => {
               <Row className="mb-5">
                 <Col>
                   <Label>Dernière mise à jour</Label>
-                  <Date date={dispositif.lastModificationDate} author={dispositif.lastModificationAuthor} />
+                  <Date
+                    date={dispositif.lastModificationDate}
+                    author={dispositif.lastModificationAuthor}
+                  />
                 </Col>
                 <Col>
                   <Label>Date de publication</Label>
@@ -277,7 +307,9 @@ export const ContentDetailsModal = (props: Props) => {
                     sponsor={dispositif.mainSponsor}
                     onClick={() => {
                       if (!dispositif.mainSponsor) return;
-                      props.setSelectedStructureIdAndToggleModal(dispositif.mainSponsor?._id || null);
+                      props.setSelectedStructureIdAndToggleModal(
+                        dispositif.mainSponsor?._id || null,
+                      );
                       props.toggleModal();
                     }}
                     additionnalProp="status"

@@ -1,4 +1,4 @@
-import { SimpleUser } from "@refugies-info/api-types";
+import type { SimpleUser } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import AdminIcon from "~/assets/dispositif/crown-high-blue-france.svg";
@@ -27,7 +27,9 @@ const ContributorCard = ({ user }: Props) => {
         {user.username || "Utilisateur"}
       </span>
       <span className="text-dsfr-text-mention-grey bg-action-low-blue-france-hover text-action-high-blue-france mt-auto flex w-auto items-center justify-center gap-1 rounded-2xl px-3 py-1 text-center text-sm font-normal">
-        {role === "admin" && <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />}
+        {role === "admin" && (
+          <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />
+        )}
         {t(`Roles.${role}`)}
       </span>
     </div>

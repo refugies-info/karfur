@@ -5,11 +5,9 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
-import { FC, useCallback, useState } from "react";
+import { type FC, useCallback, useState } from "react";
 
 import { cls } from "~/lib/classname";
-import styles from "./RichTextInput.module.scss";
-import ToolbarPlugin from "./ToolbarPlugin";
 import nodes from "./nodes";
 import LexicalAutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import CalloutPlugin from "./plugins/CalloutPlugin";
@@ -17,6 +15,8 @@ import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FocusPlugin from "./plugins/FocusPlugin";
 import LinkPlugin from "./plugins/LinkPlugin";
 import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
+import styles from "./RichTextInput.module.scss";
+import ToolbarPlugin from "./ToolbarPlugin";
 
 const theme = {
   link: "rtri-link",
@@ -93,7 +93,9 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
           contentEditable={<ContentEditable className={styles.content} />}
-          placeholder={!value ? <div className={styles.placeholder}>{props.placeholder}</div> : null}
+          placeholder={
+            !value ? <div className={styles.placeholder}>{props.placeholder}</div> : null
+          }
           ErrorBoundary={LexicalErrorBoundary}
         />
         <OnHtmlChangePlugin value={value} onHtmlChanged={onChange} />

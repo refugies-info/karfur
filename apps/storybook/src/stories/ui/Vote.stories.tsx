@@ -12,7 +12,8 @@ const meta: Meta<typeof Vote> = {
     layout: "centered",
     docs: {
       description: {
-        component: "A voting component that allows users to provide feedback on content with yes/no options.",
+        component:
+          "A voting component that allows users to provide feedback on content with yes/no options.",
       },
     },
   },
@@ -20,7 +21,8 @@ const meta: Meta<typeof Vote> = {
   argTypes: {
     isSticky: {
       control: "boolean",
-      description: "Determines if the vote component should be displayed in sticky mode at the bottom of the screen",
+      description:
+        "Determines if the vote component should be displayed in sticky mode at the bottom of the screen",
     },
     currentVote: {
       control: { type: "radio" },

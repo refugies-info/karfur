@@ -1,16 +1,24 @@
-import { GetWidgetResponse, PatchWidgetResponse, PostWidgetResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type {
+  GetWidgetResponse,
+  PatchWidgetResponse,
+  PostWidgetResponse,
+} from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { CREATE_WIDGET, DELETE_WIDGET, GET_WIDGETS, SAVE_WIDGET } from "./widgets.actionTypes";
 import {
-  createWidgetActionCreator,
-  deleteWidgetActionCreator,
-  saveWidgetActionCreator,
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
+import {
+  type createWidgetActionCreator,
+  type deleteWidgetActionCreator,
+  type saveWidgetActionCreator,
   setWidgetsActionCreator,
 } from "./widgets.actions";
+import { CREATE_WIDGET, DELETE_WIDGET, GET_WIDGETS, SAVE_WIDGET } from "./widgets.actionTypes";
 import { widgetsSelector } from "./widgets.selectors";
 
 export function* fetchWidgets(): SagaIterator {

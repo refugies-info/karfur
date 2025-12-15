@@ -1,4 +1,4 @@
-import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
+import type { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
 import { DispositifStatus } from "@refugies-info/api-types";
 
 type Status = {

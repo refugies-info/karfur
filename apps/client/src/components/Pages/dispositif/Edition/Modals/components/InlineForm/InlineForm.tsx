@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { cls } from "~/lib/classname";
 import styles from "./InlineForm.module.scss";
 
@@ -9,7 +9,11 @@ interface Props {
 }
 
 const InlineForm = (props: Props) => {
-  return <div className={cls(styles.form, props.border && styles.border, props.className)}>{props.children}</div>;
+  return (
+    <div className={cls(styles.form, props.border && styles.border, props.className)}>
+      {props.children}
+    </div>
+  );
 };
 
 export default InlineForm;

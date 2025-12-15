@@ -1,4 +1,4 @@
-import { GetActiveUsersResponse } from "@refugies-info/api-types";
+import type { GetActiveUsersResponse } from "@refugies-info/api-types";
 import styled from "styled-components";
 import marioProfile from "~/assets/mario-profile.jpg";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -47,14 +47,19 @@ const RowContainer = styled.div`
 
 const UserDetail = (props: Props) => {
   const secureUrl =
-    props.user && props.user.picture && props.user.picture.secure_url ? props.user.picture.secure_url : marioProfile;
+    props.user && props.user.picture && props.user.picture.secure_url
+      ? props.user.picture.secure_url
+      : marioProfile;
 
   const getText = () => {
     if (props.user?.username) return `${props.user.username} - ${props.user.email}`;
     return props.user.email;
   };
   return (
-    <UserDetailContainer isSelected={props.isSelected} onClick={() => props.onSelectItem(props.user)}>
+    <UserDetailContainer
+      isSelected={props.isSelected}
+      onClick={() => props.onSelectItem(props.user)}
+    >
       <RowContainer>
         <Image
           className="user-img me-2"

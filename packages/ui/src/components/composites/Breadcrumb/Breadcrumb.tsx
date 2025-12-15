@@ -1,5 +1,5 @@
 import { Breadcrumb as DsfrBreadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
-import { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export type BreadcrumbSegment = {
   label: ReactNode;
@@ -34,7 +34,13 @@ export const Breadcrumb = ({
 
   const allSegments = [homeSegment, ...segments];
 
-  return <DsfrBreadcrumb className={className} segments={allSegments} currentPageLabel={currentPageLabel} />;
+  return (
+    <DsfrBreadcrumb
+      className={className}
+      segments={allSegments}
+      currentPageLabel={currentPageLabel}
+    />
+  );
 };
 
 export default Breadcrumb;

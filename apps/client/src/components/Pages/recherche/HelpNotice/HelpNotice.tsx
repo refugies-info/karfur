@@ -48,7 +48,8 @@ export const HelpNotice = ({ className }: { className?: string }) => {
   const locale = useLocale();
 
   // Use French as fallback if the current locale is not available
-  const content: NoticeContentItem = noticeContent[locale as keyof typeof noticeContent] || noticeContent.fr;
+  const content: NoticeContentItem =
+    noticeContent[locale as keyof typeof noticeContent] || noticeContent.fr;
 
   return (
     <Notice
@@ -57,7 +58,12 @@ export const HelpNotice = ({ className }: { className?: string }) => {
       title={
         <>
           {content.title && content.title}
-          <a href={content.link} target="_blank" rel="noopener noreferrer" className="!border-0 !underline">
+          <a
+            href={content.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="!border-0 !underline"
+          >
             {content.text}
           </a>
         </>

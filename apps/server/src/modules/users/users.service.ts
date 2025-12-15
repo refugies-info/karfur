@@ -1,11 +1,11 @@
 import { RoleName, UserStatus } from "@refugies-info/api-types";
-import { ProjectionType } from "mongoose";
+import type { ProjectionType } from "mongoose";
 import { asyncForEach } from "~/libs/asyncForEach";
 import { generateRandomId } from "~/libs/generateRandomId";
 import logger from "~/logger";
-import { User } from "~/typegoose";
-import { Membre, StructureId } from "~/typegoose/Structure";
-import { UserId } from "~/typegoose/User";
+import type { User } from "~/typegoose";
+import type { Membre, StructureId } from "~/typegoose/Structure";
+import type { UserId } from "~/typegoose/User";
 import { addLog } from "../logs/logs.service";
 import { sendWelcomeMail } from "../mail/mail.service";
 import { getRoleByName } from "../role/role.repository";
@@ -117,7 +117,9 @@ export const registerUser = async (data: RegisterUser) => {
 
 export const deleteUser = async (user: User) => {
   if (user.structures) {
-    await Promise.all(user.structures?.map((structure) => removeMemberFromStructure(structure._id, user._id)));
+    await Promise.all(
+      user.structures?.map((structure) => removeMemberFromStructure(structure._id, user._id)),
+    );
   }
 
   await updateUserInDB(user._id, {

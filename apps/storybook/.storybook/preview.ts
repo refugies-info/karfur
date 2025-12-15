@@ -8,14 +8,14 @@ import "./globals.css";
 // desktop-lg : 75em; /* 1200px */
 
 const RIViewports = {
-  "mobile": {
+  mobile: {
     name: "mobile",
     styles: {
       width: "576px",
       height: "100%",
     },
   },
-  "tablet": {
+  tablet: {
     name: "tablet",
     styles: {
       width: "768px",
@@ -64,8 +64,8 @@ const preview: Preview = {
         dark: {
           name: "dark",
           value: "#0a0a0a",
-        }
-      }
+        },
+      },
     },
 
     viewport: {
@@ -79,9 +79,9 @@ const preview: Preview = {
 
   initialGlobals: {
     backgrounds: {
-      value: "light"
-    }
-  }
+      value: "light",
+    },
+  },
 };
 
 export default preview;

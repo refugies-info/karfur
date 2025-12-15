@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { GeoAPISuggestion } from "~/types/navigation";
+import type { GeoAPISuggestion } from "~/types/navigation";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import CityChoice from "../Geoloc/CityChoice";
 
@@ -112,7 +112,12 @@ export const SearchBarCity = (props: Props) => {
               accessible={true}
               accessibilityLabel={t("global.back")}
             >
-              <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+              <Icon
+                name="arrow-back-outline"
+                height={24}
+                width={24}
+                fill={styles.colors.dsfr_action}
+              />
             </TouchableOpacity>
             <InputContainer>
               <StyledInput
@@ -128,7 +133,12 @@ export const SearchBarCity = (props: Props) => {
                 accessible={true}
                 accessibilityLabel={t("global.clear_selection_accessibility")}
               >
-                <Icon name="close-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+                <Icon
+                  name="close-outline"
+                  height={24}
+                  width={24}
+                  fill={styles.colors.dsfr_action}
+                />
               </TouchableOpacity>
             </InputContainer>
           </MainContainer>

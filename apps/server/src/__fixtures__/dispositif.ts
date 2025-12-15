@@ -6,7 +6,10 @@ export const dispositif: Dispositif = new Dispositif();
 dispositif._id = new ObjectId("5ce7b52d83983700167bca27");
 dispositif.typeContenu = ContentType.DISPOSITIF;
 dispositif.status = DispositifStatus.ACTIVE;
-dispositif.secondaryThemes = [new ObjectId("63286a015d31b2c0cad9960d"), new ObjectId("63450dd43e23cd7181ba0b26")];
+dispositif.secondaryThemes = [
+  new ObjectId("63286a015d31b2c0cad9960d"),
+  new ObjectId("63450dd43e23cd7181ba0b26"),
+];
 dispositif.needs = [
   new ObjectId("613721a409c5190dfa70d057"),
   new ObjectId("63450e79f14a373d5af284c0"),

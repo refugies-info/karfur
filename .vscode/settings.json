@@ -4,7 +4,15 @@
   "css.customData": [".vscode/tailwind.json"],
   "eslint.workingDirectories": ["./apps/client", "./apps/server"],
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "conventionalCommits.scopes": ["api-types", "client", "server", "mobile", "storybook", "ui", "workspace"],
+  "conventionalCommits.scopes": [
+    "api-types",
+    "client",
+    "server",
+    "mobile",
+    "storybook",
+    "ui",
+    "workspace"
+  ],
   // i18n-ally
   "i18n-ally.extract.autoDetect": false,
   "i18n-ally.localesPaths": ["apps/client/public/locales", "apps/mobile/src/translations"],

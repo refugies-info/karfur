@@ -60,7 +60,9 @@ const Layout = (props: Props) => {
         />
       )}
       <div className={cls(!props.fullWidth && styles.row)}>
-        <main className={cls(styles.main, props.fullWidth && styles.full_width)}>{props.children}</main>
+        <main className={cls(styles.main, props.fullWidth && styles.full_width)}>
+          {props.children}
+        </main>
 
         {!props.fullWidth && (
           <div className={styles.right}>

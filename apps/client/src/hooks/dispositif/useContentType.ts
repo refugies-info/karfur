@@ -2,10 +2,13 @@ import { ContentType } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { SelectedDispositifState } from "~/services/SelectedDispositif/selectedDispositif.reducer";
+import type { SelectedDispositifState } from "~/services/SelectedDispositif/selectedDispositif.reducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
-const getContentType = (dispositif: SelectedDispositifState, formTypeContenu: ContentType | undefined) => {
+const getContentType = (
+  dispositif: SelectedDispositifState,
+  formTypeContenu: ContentType | undefined,
+) => {
   if (dispositif?.typeContenu) {
     return dispositif?.typeContenu;
   } else if (formTypeContenu) {
@@ -20,7 +23,9 @@ const getContentType = (dispositif: SelectedDispositifState, formTypeContenu: Co
 const useContentType = () => {
   const dispositif = useSelector(selectedDispositifSelector);
   const typeContenu: ContentType | undefined = useWatch({ name: "typeContenu" });
-  const [contentType, setContentType] = useState<ContentType>(getContentType(dispositif, typeContenu));
+  const [contentType, setContentType] = useState<ContentType>(
+    getContentType(dispositif, typeContenu),
+  );
 
   useEffect(() => {
     setContentType(getContentType(dispositif, typeContenu));

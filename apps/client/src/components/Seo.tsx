@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { NextRouter, useRouter } from "next/router";
-import { getPath, PathNames } from "routes";
+import { type NextRouter, useRouter } from "next/router";
+import { getPath, type PathNames } from "routes";
 import { useLocale } from "~/hooks";
 import { getBaseUrl } from "~/lib/getBaseUrl";
 
@@ -13,13 +13,19 @@ interface Props {
 const defaultTitle = "Réfugiés.info";
 const defaultImage = "/images/og-image-refugies.jpg";
 
-const getAlternateLocales = (locales: readonly string[] | undefined, currentLocale: string | undefined) => {
+const getAlternateLocales = (
+  locales: readonly string[] | undefined,
+  currentLocale: string | undefined,
+) => {
   if (!locales || locales.length === 0) return [];
   return locales.filter((locale) => locale !== "default" && locale !== (currentLocale || "fr"));
 };
 
 const getFullPath = (router: NextRouter, ln: string) => {
-  let path = getPath(router.pathname as PathNames, ln).replace("[id]", (router.query.id as string) || ""); // replace id params
+  let path = getPath(router.pathname as PathNames, ln).replace(
+    "[id]",
+    (router.query.id as string) || "",
+  ); // replace id params
   if (path.endsWith("/")) path = path.slice(0, -1);
   return getBaseUrl() + ln + path;
 };

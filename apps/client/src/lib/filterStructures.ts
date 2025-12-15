@@ -1,6 +1,9 @@
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
 
-export const filterStructuresByType = (arrayTofilter: GetActiveStructuresResponse[], typeSelected: string[]) => {
+export const filterStructuresByType = (
+  arrayTofilter: GetActiveStructuresResponse[],
+  typeSelected: string[],
+) => {
   if (!typeSelected || typeSelected.length === 0) {
     return arrayTofilter;
   }
@@ -17,14 +20,18 @@ export const filterStructuresByType = (arrayTofilter: GetActiveStructuresRespons
   });
 };
 
-export const filterStructuresByKeword = (arrayTofilter: GetActiveStructuresResponse[], keyword: string) => {
+export const filterStructuresByKeword = (
+  arrayTofilter: GetActiveStructuresResponse[],
+  keyword: string,
+) => {
   let newArrayKeyword: GetActiveStructuresResponse[] = [];
   if (keyword.length > 0) {
     if (arrayTofilter) {
       arrayTofilter.forEach((structure) => {
         if (
           (structure.nom.toLowerCase().includes(keyword.toLowerCase()) ||
-            (structure.acronyme && structure.acronyme.toLowerCase().includes(keyword.toLowerCase()))) &&
+            (structure.acronyme &&
+              structure.acronyme.toLowerCase().includes(keyword.toLowerCase()))) &&
           newArrayKeyword &&
           !newArrayKeyword.includes(structure)
         ) {
@@ -56,13 +63,21 @@ export const filterStructuresByLoc = (
         } else {
           if (depNumber && structure.disposAssociesLocalisation) {
             structure.disposAssociesLocalisation.forEach((el) => {
-              if (el.substr(0, 2) === depNumber && newArrayLoc && !newArrayLoc.includes(structure)) {
+              if (
+                el.substr(0, 2) === depNumber &&
+                newArrayLoc &&
+                !newArrayLoc.includes(structure)
+              ) {
                 newArrayLoc.push(structure);
               }
             });
             if (structure.departments) {
               structure.departments.forEach((el) => {
-                if (el.substr(0, 2) === depNumber && newArrayLoc && !newArrayLoc.includes(structure)) {
+                if (
+                  el.substr(0, 2) === depNumber &&
+                  newArrayLoc &&
+                  !newArrayLoc.includes(structure)
+                ) {
                   newArrayLoc.push(structure);
                 }
               });

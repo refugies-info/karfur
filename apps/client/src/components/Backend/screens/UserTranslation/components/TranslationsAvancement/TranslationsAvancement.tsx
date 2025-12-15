@@ -1,11 +1,11 @@
 import {
   ContentType,
-  GetDispositifsWithTranslationAvancementResponse,
-  GetLanguagesResponse,
-  GetNeedResponse,
-  GetUserInfoResponse,
-  Id,
-  Languages,
+  type GetDispositifsWithTranslationAvancementResponse,
+  type GetLanguagesResponse,
+  type GetNeedResponse,
+  type GetUserInfoResponse,
+  type Id,
+  type Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
@@ -73,7 +73,10 @@ const IndicatorText = styled.div`
   margin-right: 8px;
 `;
 
-const getInitialFilterStatus = (isExpert: boolean, data: GetDispositifsWithTranslationAvancementResponse[]) => {
+const getInitialFilterStatus = (
+  isExpert: boolean,
+  data: GetDispositifsWithTranslationAvancementResponse[],
+) => {
   if (!isExpert) return TraductionsStatus.TO_TRANSLATE;
   const nbARevoir = data.filter((trad) => trad.tradStatus === TraductionsStatus.TO_REVIEW).length;
   if (nbARevoir > 0) return TraductionsStatus.TO_REVIEW;
@@ -88,7 +91,9 @@ const TranslationsAvancement = (props: Props) => {
   const [statusFilter, setStatusFilter] = useState<TraductionsStatus | "all">(
     getInitialFilterStatus(props.isExpert, props.data),
   );
-  const [typeContenuFilter, setTypeContenuFilter] = useState<ContentType | "all">(ContentType.DISPOSITIF);
+  const [typeContenuFilter, setTypeContenuFilter] = useState<ContentType | "all">(
+    ContentType.DISPOSITIF,
+  );
   const [showNeedsList, setShowNeedsList] = useState(false);
   const toggleNeedsList = () => setShowNeedsList(!showNeedsList);
 
@@ -141,13 +146,15 @@ const TranslationsAvancement = (props: Props) => {
     return null;
   }
 
-  const { dataToDisplay, nbARevoir, nbATraduire, nbAValider, nbPubliees, nbDispositifs, nbDemarches } = filterData(
-    props.data,
-    statusFilter,
-    props.isExpert,
-    typeContenuFilter,
-    search,
-  );
+  const {
+    dataToDisplay,
+    nbARevoir,
+    nbATraduire,
+    nbAValider,
+    nbPubliees,
+    nbDispositifs,
+    nbDemarches,
+  } = filterData(props.data, statusFilter, props.isExpert, typeContenuFilter, search);
 
   return (
     <MainContainer>
@@ -173,7 +180,12 @@ const TranslationsAvancement = (props: Props) => {
         </Row>
         <Row>
           <IndicatorText>{`Vous avez traduit ${props.nbWords} mots pendant ${props.timeSpent} minutes.`}</IndicatorText>
-          <FButton type="tuto" onClick={props.toggleTutoModal} name="video-outline" className="me-2">
+          <FButton
+            type="tuto"
+            onClick={props.toggleTutoModal}
+            name="video-outline"
+            className="me-2"
+          >
             Explications
           </FButton>
           <FButton type="dark" onClick={props.toggleTraducteurModal} name="settings-2-outline">
@@ -233,7 +245,12 @@ const TranslationsAvancement = (props: Props) => {
               nbContent={sortedNeeds.filter((n) => n.status !== NeedTradStatus.TRANSLATED).length}
             />
           )}
-          <CustomSearchBar value={search} onChange={handleChange} placeholder="Rechercher..." withMargin={false} />
+          <CustomSearchBar
+            value={search}
+            onChange={handleChange}
+            placeholder="Rechercher..."
+            withMargin={false}
+          />
         </Row>
       </FilterBarContainer>
 

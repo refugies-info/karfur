@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import Image from "~/components/UI/Image";
 import useThemeIcon from "~/hooks/useThemeIcon";
 import { cls } from "~/lib/classname";

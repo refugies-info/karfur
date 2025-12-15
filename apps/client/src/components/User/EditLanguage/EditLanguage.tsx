@@ -84,7 +84,9 @@ const EditDepartments = (props: Props) => {
               }
               illuComponent={<Flag langueCode={language?.langueCode} />}
               checked={checked}
-              onSelect={() => setSelectedLanguages((ln) => (checked ? ln.filter((l) => l !== id) : [...ln, id]))}
+              onSelect={() =>
+                setSelectedLanguages((ln) => (checked ? ln.filter((l) => l !== id) : [...ln, id]))
+              }
               className="mb-4 rounded-none"
             />
           );
@@ -94,7 +96,7 @@ const EditDepartments = (props: Props) => {
 
       <div className="text-end">
         <Button
-          //@ts-ignore
+          //@ts-expect-error
           iconId={buttonProps[props.buttonType].icon}
           iconPosition="right"
           className={cls(styles.button, props.buttonFullWidth && styles.full, "mt-8")}

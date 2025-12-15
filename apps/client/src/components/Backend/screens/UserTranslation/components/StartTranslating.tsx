@@ -58,13 +58,20 @@ export const StartTranslating = (props: Props) => {
       <Title>Vous n'avez pas traduit de fiches pour le moment.</Title>
       <WhiteContainer>
         <WhiteContainerTitle>Vous parlez une autre langue ?</WhiteContainerTitle>
-        <WhiteContainerSubTitle>Aidez à traduire les contenus à votre rythme.</WhiteContainerSubTitle>
+        <WhiteContainerSubTitle>
+          Aidez à traduire les contenus à votre rythme.
+        </WhiteContainerSubTitle>
         <RowContainer>
           <FButton type="dark" className="me-2" onClick={props.toggleTraducteurModal}>
             <Image src={traductionIconBlanc} width="21" height="21" alt="a" />
             Commencer à traduire
           </FButton>
-          <FButton type="tuto" className="ms-2" name="video-outline" onClick={props.toggleTutoModal}>
+          <FButton
+            type="tuto"
+            className="ms-2"
+            name="video-outline"
+            onClick={props.toggleTutoModal}
+          >
             Explications
           </FButton>
         </RowContainer>

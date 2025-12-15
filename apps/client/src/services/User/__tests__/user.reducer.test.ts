@@ -92,10 +92,7 @@ describe("[Reducer] user", () => {
       roles: [],
       structures: ["id1"],
     };
-    expect(
-      // @ts-ignore
-      userReducer(initialUserState, setUserActionCreator(newUser)),
-    ).toEqual({
+    expect(userReducer(initialUserState, setUserActionCreator(newUser))).toEqual({
       userId: newUser._id,
       admin: false,
       traducteur: false,

@@ -1,10 +1,17 @@
-import { GetTraductionsForReviewResponse, Id, SaveTranslationRequest } from "@refugies-info/api-types";
+import type {
+  GetTraductionsForReviewResponse,
+  Id,
+  SaveTranslationRequest,
+} from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useChangeLanguage, useLocale, useUser } from "~/hooks";
 
 export type TranslateForm = Pick<SaveTranslationRequest, "translated" | "toFinish" | "toReview">;
-const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForReviewResponse): TranslateForm => {
+const getDefaultFormValues = (
+  userId: Id | null,
+  traductions: GetTraductionsForReviewResponse,
+): TranslateForm => {
   const userTrads = userId ? traductions.find((t) => t.author.id === userId.toString()) : null;
   return {
     translated: userTrads?.translated || {},
@@ -18,7 +25,9 @@ const getDefaultFormValues = (userId: Id | null, traductions: GetTraductionsForR
  */
 const useDispositifTranslateForm = (traductions: GetTraductionsForReviewResponse) => {
   const { user } = useUser();
-  const methods = useForm<TranslateForm>({ defaultValues: getDefaultFormValues(user?.userId, traductions) });
+  const methods = useForm<TranslateForm>({
+    defaultValues: getDefaultFormValues(user?.userId, traductions),
+  });
   const [activeSection, setActiveSection] = useState("");
   const [showMissingSteps, setShowMissingSteps] = useState(false);
 

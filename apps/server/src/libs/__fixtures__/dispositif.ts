@@ -81,7 +81,8 @@ export const dispositifAlgolia = {
   title_ru: "Стать компаньоном для беженца",
   abstract_fr: "Rencontrer et accompagner un réfugié dans son intégration en France.",
   abstract_ar: "التعرّف الى لاجىء و مساعدته في مسار حياته في فرنسا.",
-  abstract_ps: "په فرانسه کې د ادغام او په تولنه کې د شمولیت په موخه له یو کډوال سره ووینئ او ملاتړ یې وکړئ.",
+  abstract_ps:
+    "په فرانسه کې د ادغام او په تولنه کې د شمولیت په موخه له یو کډوال سره ووینئ او ملاتړ یې وکړئ.",
   abstract_fa: "ملاقات و حمایت از یک پناهنده در ادغام وی در فرانسه.",
   abstract_ru: "Познакомьтесь и поддержите беженца в его интеграции во Франции.",
   titreMarque_fr: "MAINtenant",

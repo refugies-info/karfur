@@ -1,4 +1,4 @@
-import { TtsRequest } from "@refugies-info/api-types";
+import type { TtsRequest } from "@refugies-info/api-types";
 import { Body, Controller, Post, Route, Security } from "tsoa";
 import { getTts } from "~/workflows/tts/getTts";
 

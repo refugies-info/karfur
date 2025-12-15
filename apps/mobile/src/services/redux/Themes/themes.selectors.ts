@@ -1,5 +1,5 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
-import { RootState } from "../reducers";
+import type { GetThemeResponse } from "@refugies-info/api-types";
+import type { RootState } from "../reducers";
 
 export const themesSelector = (state: RootState): GetThemeResponse[] => state.themes;
 

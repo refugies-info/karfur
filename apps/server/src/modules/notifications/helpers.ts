@@ -1,5 +1,5 @@
-import { ContentType, Metadatas } from "@refugies-info/api-types";
-import { AppUser, Dispositif, Theme } from "~/typegoose";
+import { ContentType, type Metadatas } from "@refugies-info/api-types";
+import type { AppUser, Dispositif, Theme } from "~/typegoose";
 
 const ALL = "france";
 
@@ -100,7 +100,11 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
   });
 };
 
-export const filterTargetsForDemarche = (targets: AppUser[], requirements: Requirements, demarche: Dispositif) => {
+export const filterTargetsForDemarche = (
+  targets: AppUser[],
+  requirements: Requirements,
+  demarche: Dispositif,
+) => {
   return targets.filter((target) => {
     const { age, mainThemeId } = requirements;
     const { notificationsSettings } = target;

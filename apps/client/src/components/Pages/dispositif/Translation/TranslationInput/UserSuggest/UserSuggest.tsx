@@ -20,13 +20,28 @@ const UserSuggest = (props: Props) => {
           <Image src={Crown} width={props.isBig ? 21 : 16} height={props.isBig ? 21 : 16} alt="" />
         )}
         {props.picture === "google" && (
-          <Image src={GoogleLogo} width={props.isBig ? 21 : 16} height={props.isBig ? 21 : 16} alt="" />
+          <Image
+            src={GoogleLogo}
+            width={props.isBig ? 21 : 16}
+            height={props.isBig ? 21 : 16}
+            alt=""
+          />
         )}
         {props.picture === "user" &&
           (props.pictureUrl ? (
-            <Image src={props.pictureUrl} width={props.isBig ? 32 : 24} height={props.isBig ? 32 : 24} alt="" />
+            <Image
+              src={props.pictureUrl}
+              width={props.isBig ? 32 : 24}
+              height={props.isBig ? 32 : 24}
+              alt=""
+            />
           ) : (
-            <Image src={UserAvatar} width={props.isBig ? 32 : 24} height={props.isBig ? 32 : 24} alt="" />
+            <Image
+              src={UserAvatar}
+              width={props.isBig ? 32 : 24}
+              height={props.isBig ? 32 : 24}
+              alt=""
+            />
           ))}
       </span>
       <span className="ms-2">{props.username}</span>

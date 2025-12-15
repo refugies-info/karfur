@@ -1,4 +1,4 @@
-import { Id, PatchStructureRolesRequest, SimpleUser } from "@refugies-info/api-types";
+import type { Id, PatchStructureRolesRequest, SimpleUser } from "@refugies-info/api-types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Spinner } from "reactstrap";
@@ -121,7 +121,6 @@ export const SelectFirstResponsableModal = (props: Props) => {
             className="search-bar inner-addon right-addon"
             placeholder="Rechercher un utilisateur"
             array={activeUsers}
-            //@ts-ignore
             selectItem={onSelectItem}
           />
         )}
@@ -135,12 +134,19 @@ export const SelectFirstResponsableModal = (props: Props) => {
         )}
       </div>
       <div>
-        <Warning>Au clic sur Valider, la structure sera modifiée avec le responsable choisi.</Warning>
+        <Warning>
+          Au clic sur Valider, la structure sera modifiée avec le responsable choisi.
+        </Warning>
         <RowContainer>
           <FButton type="white" name="close-outline" className="me-2" onClick={props.toggleModal}>
             Annuler
           </FButton>
-          <FButton type="validate" name="checkmark-outline" onClick={onValidate} disabled={!selectedUser}>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            onClick={onValidate}
+            disabled={!selectedUser}
+          >
             Valider
           </FButton>
         </RowContainer>

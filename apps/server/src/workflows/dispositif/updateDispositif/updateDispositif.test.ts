@@ -70,7 +70,11 @@ describe("updateDispositif", () => {
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", newDispositifContent, false);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      newDispositifContent,
+      false,
+    );
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(
       new ObjectId("5ce7b52d83983700167bca27"),
@@ -144,7 +148,11 @@ describe("updateDispositif", () => {
       ...newDispositifContent,
       status: DispositifStatus.DRAFT,
     });
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", { hasDraftVersion: true }, false);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      { hasDraftVersion: true },
+      false,
+    );
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(
       new ObjectId("5ce7b52d83983700167bca27"),
@@ -215,7 +223,11 @@ describe("updateDispositif", () => {
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", newDispositifContent, false);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      newDispositifContent,
+      false,
+    );
     expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", {
       status: DispositifStatus.DRAFT,
     });
@@ -300,7 +312,11 @@ describe("updateDispositif", () => {
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", newDispositifContent, false);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      newDispositifContent,
+      false,
+    );
     expect(logContactMock).toHaveBeenCalledWith(
       new ObjectId("6569af9815c38bd134125ff3"),
       new ObjectId("6569c41c61b13ef31806fadb"),
@@ -382,7 +398,11 @@ describe("updateDispositif", () => {
     };
     newDispositifContent.translations.fr.content.titreInformatif = "nouveau titre";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", newDispositifContent, true);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      newDispositifContent,
+      true,
+    );
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(
       new ObjectId("5ce7b52d83983700167bca27"),
@@ -439,7 +459,11 @@ describe("updateDispositif", () => {
     checkUserIsAuthorizedToModifyDispositifMock.mockReturnValue(true);
     logMock.mockResolvedValue();
 
-    const result = await updateDispositif("5ce7b52d83983700167bca27", { titreInformatif: "" }, fixtures.user);
+    const result = await updateDispositif(
+      "5ce7b52d83983700167bca27",
+      { titreInformatif: "" },
+      fixtures.user,
+    );
 
     expect(getDispositifByIdMock).toHaveBeenCalled();
     expect(cloneDispositifInDraftsMock).not.toHaveBeenCalled();
@@ -452,7 +476,11 @@ describe("updateDispositif", () => {
     };
     newDispositifContent.translations.fr.content.titreInformatif = "";
     newDispositifContent.translations.fr.created_at = new Date(2023, 0, 1);
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith("5ce7b52d83983700167bca27", newDispositifContent, false);
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      newDispositifContent,
+      false,
+    );
     expect(logContactMock).not.toHaveBeenCalled();
     expect(addNewParticipantMock).toHaveBeenCalledWith(
       new ObjectId("5ce7b52d83983700167bca27"),

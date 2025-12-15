@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { forwardRef, memo, useId, type ComponentProps, type ReactNode } from "react";
+import { type ComponentProps, forwardRef, memo, type ReactNode, useId } from "react";
 import { cls } from "~/lib/classname";
 import styles from "./PartnerRadio.module.scss";
 
@@ -85,14 +85,20 @@ const PartnerRadio = memo(
               )}
               key={i}
             >
-              {!fullWidth && "illustration" in rest && <div className={styles.illu}>{rest.illustration}</div>}
+              {!fullWidth && "illustration" in rest && (
+                <div className={styles.illu}>{rest.illustration}</div>
+              )}
               <input type="radio" id={getInputId(i)} name={radioName} {...nativeInputProps} />
               <label className={styles.label} htmlFor={getInputId(i)}>
                 {label}
-                {hintText !== undefined && <span className={fr.cx("fr-hint-text")}>{hintText}</span>}
+                {hintText !== undefined && (
+                  <span className={fr.cx("fr-hint-text")}>{hintText}</span>
+                )}
               </label>
               {fullWidth && "illustration" in rest && (
-                <div className={cls(fr.cx("fr-radio-rich__img"), styles.illu)}>{rest.illustration}</div>
+                <div className={cls(fr.cx("fr-radio-rich__img"), styles.illu)}>
+                  {rest.illustration}
+                </div>
               )}
             </div>
           ))}

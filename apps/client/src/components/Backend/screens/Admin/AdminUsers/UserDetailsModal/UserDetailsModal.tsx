@@ -1,8 +1,15 @@
-import { GetAllUsersResponse, GetLogResponse, GetProgressionResponse, Id, RoleName } from "@refugies-info/api-types";
+import {
+  type GetAllUsersResponse,
+  type GetLogResponse,
+  type GetProgressionResponse,
+  type Id,
+  RoleName,
+} from "@refugies-info/api-types";
 import { logger } from "logger";
 import moment from "moment";
 import "moment/locale/fr";
-import React, { useCallback, useEffect, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row, Spinner } from "reactstrap";
 import Swal from "sweetalert2";
@@ -16,7 +23,7 @@ import { setAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions"
 import { allUsersSelector, userSelector } from "~/services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { Event } from "~/types/interface";
+import type { Event } from "~/types/interface";
 import API from "~/utils/API";
 import { colors } from "~/utils/colors";
 import { LogList } from "../../Logs/LogList";
@@ -81,9 +88,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       setEmail(userFromStore?.email || "");
       setPhone(userFromStore?.phone || "");
       setPhoneError("");
-      //@ts-ignore fix type here
+
       const roles: RoleName[] = userFromStore?.roles
-        ? userFromStore.roles.filter((role: string) => role === RoleName.ADMIN || role === RoleName.EXPERT_TRAD)
+        ? userFromStore.roles.filter(
+            (role: string) => role === RoleName.ADMIN || role === RoleName.EXPERT_TRAD,
+          )
         : [];
       setRoles(roles);
       setAdminComments(userFromStore.adminComments || "");
@@ -206,7 +215,9 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
           icon: "success",
           timer: 1500,
         });
-        dispatch(setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]));
+        dispatch(
+          setAllUsersActionsCreator([...allUsers.filter((u) => u._id !== userFromStore._id)]),
+        );
         props.toggleModal();
       }
     } catch (error) {
@@ -229,7 +240,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     adminComments !== (userFromStore?.adminComments || "") ||
     roles.find((r) => r === RoleName.EXPERT_TRAD) !==
       (userFromStore?.roles || []).find((r) => r === RoleName.EXPERT_TRAD) ||
-    roles.find((r) => r === RoleName.ADMIN) !== (userFromStore?.roles || []).find((r) => r === RoleName.ADMIN);
+    roles.find((r) => r === RoleName.ADMIN) !==
+      (userFromStore?.roles || []).find((r) => r === RoleName.ADMIN);
 
   return (
     <DetailsModal
@@ -246,17 +258,30 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
             height={50}
             style={{ objectFit: "contain" }}
           />
-          <h2>{userFromStore ? userFromStore.username || userFromStore.email : "utilisateur supprimé"}</h2>
+          <h2>
+            {userFromStore ? userFromStore.username || userFromStore.email : "utilisateur supprimé"}
+          </h2>
         </>
       }
       rightHead={
         <>
           {userFromStore && (
-            <FButton className="me-2" type="error" name="trash-2-outline" target="_blank" onClick={onDeleteClick}>
+            <FButton
+              className="me-2"
+              type="error"
+              name="trash-2-outline"
+              target="_blank"
+              onClick={onDeleteClick}
+            >
               Supprimer
             </FButton>
           )}
-          <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
+          <FButton
+            className="me-2"
+            type="white"
+            onClick={props.toggleModal}
+            name="close-outline"
+          ></FButton>
         </>
       }
     >
@@ -356,9 +381,16 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Minutes passées à traduire</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.timeSpent)}</div>
-                      <div>6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.timeSpent)}</div>
-                      <div>12 derniers mois : {getMinutes(indicators?.twelveMonthsIndicator?.timeSpent)}</div>
+                      <div>
+                        3 derniers mois : {getMinutes(indicators?.threeMonthsIndicator?.timeSpent)}
+                      </div>
+                      <div>
+                        6 derniers mois : {getMinutes(indicators?.sixMonthsIndicator?.timeSpent)}
+                      </div>
+                      <div>
+                        12 derniers mois :{" "}
+                        {getMinutes(indicators?.twelveMonthsIndicator?.timeSpent)}
+                      </div>
                       <div>Toujours : {getMinutes(indicators?.totalIndicator?.timeSpent)}</div>
                     </>
                   ) : (
@@ -369,9 +401,13 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
                   <Label>Nombre de mots traduits</Label>
                   {indicators ? (
                     <>
-                      <div>3 derniers mois : {indicators?.threeMonthsIndicator?.wordsCount || 0}</div>
+                      <div>
+                        3 derniers mois : {indicators?.threeMonthsIndicator?.wordsCount || 0}
+                      </div>
                       <div>6 derniers mois : {indicators?.sixMonthsIndicator?.wordsCount || 0}</div>
-                      <div>12 derniers mois : {indicators?.twelveMonthsIndicator?.wordsCount || 0}</div>
+                      <div>
+                        12 derniers mois : {indicators?.twelveMonthsIndicator?.wordsCount || 0}
+                      </div>
                       <div>Toujours : {indicators?.totalIndicator?.wordsCount || 0}</div>
                     </>
                   ) : (

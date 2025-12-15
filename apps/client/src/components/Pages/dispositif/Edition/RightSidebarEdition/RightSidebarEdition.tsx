@@ -3,7 +3,7 @@ import { useContentType } from "~/hooks/dispositif";
 import { cn } from "~/lib/classname";
 import PageContext from "~/utils/pageContext";
 import HelpCard from "../HelpCard";
-import { Help } from "./data";
+import type { Help } from "./data";
 import { getHelp } from "./functions";
 
 /**
@@ -23,7 +23,11 @@ const RightSidebarEdition = ({ className }: { className?: string }) => {
     <div className={cn(className)}>
       {help && (
         <HelpCard title={help.title}>
-          {Array.isArray(help.text) ? help.text.map((text, i) => <p key={i}>{text}</p>) : <p>{help.text}</p>}
+          {Array.isArray(help.text) ? (
+            help.text.map((text, i) => <p key={i}>{text}</p>)
+          ) : (
+            <p>{help.text}</p>
+          )}
         </HelpCard>
       )}
     </div>

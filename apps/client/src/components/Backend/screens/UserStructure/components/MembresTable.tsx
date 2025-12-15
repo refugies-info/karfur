@@ -1,12 +1,12 @@
+// import "./MembresTable.scss";
+import type { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
+import moment from "moment";
 import { Table } from "reactstrap";
 import styled from "styled-components";
 import marioProfile from "~/assets/mario-profile.jpg";
 import Image from "~/components/UI/Image";
 import { colors } from "~/utils/colors";
 import { DeleteButton } from "../../Admin/sharedComponents/SubComponents";
-// import "./MembresTable.scss";
-import { GetStructureResponse, Id, StructureMember } from "@refugies-info/api-types";
-import moment from "moment";
 import "moment/locale/fr";
 
 moment.locale("fr");
@@ -81,7 +81,9 @@ export const MembresTable = (props: Props) => (
             <td className="align-middle">
               <DateContainer isUser={isUser}>
                 {element.last_connected
-                  ? moment(element.last_connected).calendar() + " " + moment(element.last_connected).fromNow()
+                  ? moment(element.last_connected).calendar() +
+                    " " +
+                    moment(element.last_connected).fromNow()
                   : "Non disponible"}
               </DateContainer>
             </td>

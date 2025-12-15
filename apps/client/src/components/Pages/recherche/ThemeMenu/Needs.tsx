@@ -1,5 +1,5 @@
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useMemo, useRef } from "react";
@@ -13,7 +13,7 @@ import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDi
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
@@ -22,10 +22,11 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const locale = useLocale();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const { search, selectedThemeId, nbDispositifsByNeed, nbDispositifsByTheme } = useContext(ThemeMenuContext);
+  const { search, selectedThemeId, nbDispositifsByNeed, nbDispositifsByTheme } =
+    useContext(ThemeMenuContext);
   const needs = useSelector(needsSelector);
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const { t } = useTranslation();
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();
@@ -60,13 +61,21 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
 
   const allNeedsSelected = currentlySelectedNeedsFromTheme.length === needsFromCurrentTheme.length;
 
-  const selectedTheme = useMemo(() => themes.find((theme) => theme._id === selectedThemeId), [themes, selectedThemeId]);
+  const selectedTheme = useMemo(
+    () => themes.find((theme) => theme._id === selectedThemeId),
+    [themes, selectedThemeId],
+  );
 
   const toggleAllNeeds = () => {
-    let updatedSelectedNeeds: Id[] = [...query.needs, ...getNeedsFromThemes(query.themes, allNeeds)];
+    let updatedSelectedNeeds: Id[] = [
+      ...query.needs,
+      ...getNeedsFromThemes(query.themes, allNeeds),
+    ];
 
     if (allNeedsSelected) {
-      updatedSelectedNeeds = updatedSelectedNeeds.filter((id) => !needsFromCurrentTheme.includes(id));
+      updatedSelectedNeeds = updatedSelectedNeeds.filter(
+        (id) => !needsFromCurrentTheme.includes(id),
+      );
     } else {
       updatedSelectedNeeds = [...new Set([...updatedSelectedNeeds, ...needsFromCurrentTheme])];
       Event(eventName, "use theme filter", "select all needs");
@@ -132,21 +141,22 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
                 />
               ),
               nativeInputProps: {
-                "checked": allNeedsSelected,
-                "onChange": toggleAllNeeds,
-                "className": "!border",
+                checked: allNeedsSelected,
+                onChange: toggleAllNeeds,
+                className: "!border",
                 "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", "fiches")}`,
               },
             },
             ...displayedNeeds.map((need) => {
-              const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
+              const selected =
+                query.needs.includes(need._id) || query.themes.includes(need.theme._id);
 
               return {
                 label: <NeedItem need={need} />,
                 nativeInputProps: {
-                  "checked": selected,
-                  "onChange": () => selectNeed(need._id),
-                  "className": "!border",
+                  checked: selected,
+                  onChange: () => selectNeed(need._id),
+                  className: "!border",
                   "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
                 },
               };

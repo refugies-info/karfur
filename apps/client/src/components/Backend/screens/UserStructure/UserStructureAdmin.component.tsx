@@ -1,4 +1,8 @@
-import { GetStructureResponse, Id, PatchStructureRolesRequest } from "@refugies-info/api-types";
+import type {
+  GetStructureResponse,
+  Id,
+  PatchStructureRolesRequest,
+} from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";

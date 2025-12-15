@@ -1,7 +1,7 @@
-import { conditionType, Metadatas } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions } from "data/searchFilters";
-import { TFunction } from "next-i18next";
-import { LinkProps } from "next/link";
+import type { conditionType, Metadatas } from "@refugies-info/api-types";
+import type { AgeOptions, FrenchOptions } from "data/searchFilters";
+import type { LinkProps } from "next/link";
+import type { TFunction } from "next-i18next";
 import { getPath } from "routes";
 import imgCb from "~/assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "~/assets/dispositif/form-icons/conditions-driver.svg";
@@ -26,12 +26,18 @@ export const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunct
   if (!price) return price; // null or undefined
   return getPriceText(price, t);
 };
-export const getPublicStatus = (publicStatus: Metadatas["publicStatus"] | null | undefined, t: TFunction) => {
+export const getPublicStatus = (
+  publicStatus: Metadatas["publicStatus"] | null | undefined,
+  t: TFunction,
+) => {
   if (!publicStatus) return publicStatus;
   return getPublicStatusText(publicStatus, t);
 };
 export const getAllPublicStatus = (t: TFunction) => {
-  return getPublicStatusText(["apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"], t);
+  return getPublicStatusText(
+    ["apatride", "asile", "refugie", "subsidiaire", "temporaire", "french"],
+    t,
+  );
 };
 export const getPublic = (publicType: Metadatas["public"] | null | undefined, t: TFunction) => {
   if (!publicType) return publicType;
@@ -41,15 +47,24 @@ export const getAge = (age: Metadatas["age"] | null | undefined, t: TFunction) =
   if (!age) return age; // null or undefined
   return getAgeText(age, t);
 };
-export const getCommitment = (commitment: Metadatas["commitment"] | null | undefined, t: TFunction) => {
+export const getCommitment = (
+  commitment: Metadatas["commitment"] | null | undefined,
+  t: TFunction,
+) => {
   if (!commitment) return commitment;
   return getCommitmentText(commitment, t);
 };
-export const getFrequency = (frequency: Metadatas["frequency"] | null | undefined, t: TFunction) => {
+export const getFrequency = (
+  frequency: Metadatas["frequency"] | null | undefined,
+  t: TFunction,
+) => {
   if (!frequency) return frequency;
   return getFrequencyText(frequency, t);
 };
-export const getTimeSlots = (timeSlots: Metadatas["timeSlots"] | null | undefined, t: TFunction) => {
+export const getTimeSlots = (
+  timeSlots: Metadatas["timeSlots"] | null | undefined,
+  t: TFunction,
+) => {
   if (!timeSlots) return timeSlots;
   return getTimeSlotsText(timeSlots, t);
 };
@@ -111,7 +126,8 @@ export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
 export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkProps["href"] => {
   const options: FrenchOptions[] = [];
   if (frenchLevel) {
-    if (frenchLevel.includes("alpha") || frenchLevel.includes("A1") || frenchLevel.includes("A2")) options.push("a");
+    if (frenchLevel.includes("alpha") || frenchLevel.includes("A1") || frenchLevel.includes("A2"))
+      options.push("a");
     if (frenchLevel.includes("B1") || frenchLevel.includes("B2")) options.push("b");
     if (frenchLevel.includes("C1") || frenchLevel.includes("C2")) options.push("c");
   }

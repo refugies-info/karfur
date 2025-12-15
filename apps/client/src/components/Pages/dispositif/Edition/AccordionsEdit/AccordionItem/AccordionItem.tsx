@@ -45,7 +45,12 @@ const AccordionItem = (props: Props) => {
     return (
       <div className={styles.content}>
         <div className={styles.title}>
-          <AccordionBadge index={props.index + 1} sectionKey={props.id} contentType={contentType} color100={color} />
+          <AccordionBadge
+            index={props.index + 1}
+            sectionKey={props.id}
+            contentType={contentType}
+            color100={color}
+          />
           {title}
         </div>
         <div className={styles.text}>
@@ -97,7 +102,9 @@ const AccordionItem = (props: Props) => {
           className="mb-6"
           content={getContent()}
           onDelete={props.onDelete}
-          hasError={!!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))}
+          hasError={
+            !!getContent() && (!getValues(`${props.id}.title`) || !getValues(`${props.id}.text`))
+          }
         >
           <span className={styles.button_inner}>
             <span className="flex items-center">

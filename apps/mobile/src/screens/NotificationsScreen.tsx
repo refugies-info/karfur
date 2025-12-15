@@ -1,22 +1,20 @@
-import { CompositeNavigationProp, useNavigation } from "@react-navigation/native";
-import React, { useMemo } from "react";
+import type { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import { type CompositeNavigationProp, useNavigation } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type React from "react";
+import { useMemo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
-
-import { styles } from "~/theme";
-
-import { Notification, useNotifications } from "~/hooks/useNotifications";
-import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
-import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { StackNavigationProp } from "@react-navigation/stack";
 import { useTheme } from "styled-components/native";
 import { Page, Rows } from "~/components";
-import { HeaderContentProps, HeaderContentTitle } from "~/components/layout/Header";
+import { type HeaderContentProps, HeaderContentTitle } from "~/components/layout/Header";
 import { EnableNotifications } from "~/components/Notifications/EnableNotifications";
 import { NotificationCard } from "~/components/Notifications/NotificationCard";
-import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
+import { type Notification, useNotifications } from "~/hooks/useNotifications";
+import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
+import type { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
 
 const ICON_SIZE = 24;
 
@@ -92,7 +90,12 @@ export const NotificationsScreen = () => {
             accessibilityRole="button"
             accessibilityLabel={t("notifications.settings")}
           >
-            <Icon name="settings-outline" width={ICON_SIZE} height={ICON_SIZE} fill={theme.colors.black} />
+            <Icon
+              name="settings-outline"
+              width={ICON_SIZE}
+              height={ICON_SIZE}
+              fill={theme.colors.black}
+            />
           </TouchableOpacity>
         }
         {...props}
@@ -103,7 +106,11 @@ export const NotificationsScreen = () => {
   }, [theme]);
 
   return (
-    <Page headerTitle={t("notifications.notifications")} HeaderContent={HeaderContent} loading={isLoading}>
+    <Page
+      headerTitle={t("notifications.notifications")}
+      HeaderContent={HeaderContent}
+      loading={isLoading}
+    >
       {!accessGranted ? (
         <EnableNotifications />
       ) : !notifications?.notifications.length ? (
@@ -125,7 +132,9 @@ export const NotificationsScreen = () => {
           </Text>
         </View>
       ) : (
-        <Rows style={{ paddingBottom: styles.margin * 3 }}>{(notifications?.notifications || []).map(renderCard)}</Rows>
+        <Rows style={{ paddingBottom: styles.margin * 3 }}>
+          {(notifications?.notifications || []).map(renderCard)}
+        </Rows>
       )}
     </Page>
   );

@@ -1,4 +1,4 @@
-import { Picture } from "@refugies-info/api-types";
+import type { Picture } from "@refugies-info/api-types";
 import { ImageSchema } from "~/typegoose/generics";
 
 /** 1-to-1 mapping from the DTO coming from the form to our Typegoose schema */

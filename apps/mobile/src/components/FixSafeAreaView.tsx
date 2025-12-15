@@ -1,4 +1,4 @@
-import { type PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { SafeAreaView, type SafeAreaViewProps } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 

@@ -1,10 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
-import React, { useId, useState } from "react";
+import type React from "react";
+import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
-import { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
+import type { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -12,7 +13,15 @@ import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.
 import { searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
 import styles from "./DialogMenuLayout.module.scss";
 
-export function DialogMenuLayout({ label, value, icon, resetOptions, gaType, filterCount, children }: LayoutProps) {
+export function DialogMenuLayout({
+  label,
+  value,
+  icon,
+  resetOptions,
+  gaType,
+  filterCount,
+  children,
+}: LayoutProps) {
   const { t } = useTranslation();
   const searchResults = useSelector(searchResultsSelector);
   const totalResults = searchResults.matches.length;

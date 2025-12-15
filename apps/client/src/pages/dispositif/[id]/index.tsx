@@ -22,39 +22,42 @@ const DispositifPage = (props: Props) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req, query, locale }) => {
-  if (query.id) {
-    const action = fetchSelectedDispositifActionCreator({
-      selectedDispositifId: query.id as string,
-      locale: locale || "fr",
-      token: req.cookies.authorization,
-    });
-    store.dispatch(action);
-    store.dispatch(fetchThemesActionCreator());
-    store.dispatch(fetchNeedsActionCreator());
-    store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
-    store.dispatch(END);
-    await store.sagaTask?.toPromise();
-  }
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, query, locale }) => {
+      if (query.id) {
+        const action = fetchSelectedDispositifActionCreator({
+          selectedDispositifId: query.id as string,
+          locale: locale || "fr",
+          token: req.cookies.authorization,
+        });
+        store.dispatch(action);
+        store.dispatch(fetchThemesActionCreator());
+        store.dispatch(fetchNeedsActionCreator());
+        store.dispatch(fetchUserActionCreator({ token: req.cookies.authorization }));
+        store.dispatch(END);
+        await store.sagaTask?.toPromise();
+      }
 
-  // 404
-  const dispositif = store.getState().selectedDispositif;
-  if (!dispositif || dispositif.typeContenu !== "dispositif") {
-    return { notFound: true };
-  }
+      // 404
+      const dispositif = store.getState().selectedDispositif;
+      if (!dispositif || dispositif.typeContenu !== "dispositif") {
+        return { notFound: true };
+      }
 
-  const isPrefetch = req.headers["purpose"] === "prefetch";
+      const isPrefetch = req.headers["purpose"] === "prefetch";
 
-  if (!isPrefetch) {
-    await updateNbViews(dispositif);
-  }
+      if (!isPrefetch) {
+        await updateNbViews(dispositif);
+      }
 
-  // 200
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      // 200
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+        },
+      };
     },
-  };
-});
+);
 
 export default DispositifPage;

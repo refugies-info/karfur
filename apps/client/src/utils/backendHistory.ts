@@ -1,5 +1,5 @@
-import { createBrowserHistory } from "history";
 import { isInBrowser } from "@refugies-info/ui";
+import { createBrowserHistory } from "history";
 
 const history = isInBrowser() ? createBrowserHistory() : undefined;
 

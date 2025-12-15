@@ -12,6 +12,7 @@ export const getTextContent = (
     if (hasChanges === false) return help.nochange;
     return help.published;
   }
-  if (isStatus(status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE])) return help.waiting;
+  if (isStatus(status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]))
+    return help.waiting;
   return help.draft;
 };

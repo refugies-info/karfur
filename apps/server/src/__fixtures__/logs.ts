@@ -1,4 +1,4 @@
-import { GetLogResponse } from "@refugies-info/api-types";
+import type { GetLogResponse } from "@refugies-info/api-types";
 
 export const logs: GetLogResponse[] = [
   {

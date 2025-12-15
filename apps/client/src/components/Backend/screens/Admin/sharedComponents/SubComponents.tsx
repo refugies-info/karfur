@@ -1,4 +1,4 @@
-import { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
+import type { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import styled from "styled-components";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
@@ -67,7 +67,8 @@ const getStructureNameAndStatus = (
   if (!sponsor || !sponsor.nom) return { structureName: "Sans structure", statusColor: red };
 
   const structureName = limitNbCaracters(sponsor.nom, 80);
-  const statusColor = sponsor.status === "Actif" ? green : sponsor.status === "En attente" ? orange : red;
+  const statusColor =
+    sponsor.status === "Actif" ? green : sponsor.status === "En attente" ? orange : red;
   return { structureName, statusColor };
 };
 
@@ -114,7 +115,9 @@ export const StyledStatusContainer = styled.div<StyledStatusContainer>`
   color: ${(props: StyledStatusContainer) => (props.$textColor ? props.$textColor : colors.white)};
 `;
 export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
-  const correspondingStatusElement = correspondingStatus.find((element) => element.storedStatus === text);
+  const correspondingStatusElement = correspondingStatus.find(
+    (element) => element.storedStatus === text,
+  );
   if (correspondingStatusElement)
     return {
       status:
@@ -125,7 +128,9 @@ export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
       textColor: correspondingStatusElement.textColor,
     };
 
-  const correspondingStatusElementProgression = progressionData.find((element) => element.storedStatus === text);
+  const correspondingStatusElementProgression = progressionData.find(
+    (element) => element.storedStatus === text,
+  );
   if (correspondingStatusElementProgression)
     return {
       status: correspondingStatusElementProgression.displayedStatus,
@@ -133,7 +138,9 @@ export const getColorAndStatus = (text: string, isAdmin?: boolean) => {
       textColor: correspondingStatusElementProgression.textColor,
     };
 
-  const correspondingStatusElementPublication = publicationData.find((element) => element.storedStatus === text);
+  const correspondingStatusElementPublication = publicationData.find(
+    (element) => element.storedStatus === text,
+  );
   if (correspondingStatusElementPublication)
     return {
       status: correspondingStatusElementPublication.displayedStatus,
@@ -159,9 +166,17 @@ export const StyledStatus = (props: {
   const { user } = useUser();
   const colorsAndStatus = getColorAndStatus(props.text, user.admin);
 
-  const color = props.overrideColor ? colors.gray70 : props.color ? props.color : colorsAndStatus.color;
+  const color = props.overrideColor
+    ? colors.gray70
+    : props.color
+      ? props.color
+      : colorsAndStatus.color;
   const status = props.textToDisplay ? props.textToDisplay : colorsAndStatus.status;
-  const textColor = props.overrideColor ? colors.white : props.textColor ? props.textColor : colorsAndStatus.textColor;
+  const textColor = props.overrideColor
+    ? colors.white
+    : props.textColor
+      ? props.textColor
+      : colorsAndStatus.textColor;
 
   return (
     <StyledStatusContainer $color={color} $textColor={textColor} $disabled={!!props.disabled}>
@@ -220,7 +235,11 @@ export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId
   </ButtonContainer>
 );
 
-export const DeleteButton = (props: { onClick: (event: any) => void; disabled: boolean; testId?: string }) => (
+export const DeleteButton = (props: {
+  onClick: (event: any) => void;
+  disabled: boolean;
+  testId?: string;
+}) => (
   <ButtonContainer
     onClick={props.disabled ? undefined : props.onClick}
     $hoverColor={colors.error}
@@ -271,7 +290,10 @@ export const TabHeader = (props: {
   </StyledTabHeader>
 );
 
-export const Date = (props: { date: Date | undefined; author?: { _id: Id; username?: string; email: string } }) => (
+export const Date = (props: {
+  date: Date | undefined;
+  author?: { _id: Id; username?: string; email: string };
+}) => (
   <p className={styles.text}>
     {!props.date ? (
       "Non disponible"

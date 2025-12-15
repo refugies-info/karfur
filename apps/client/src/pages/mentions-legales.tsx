@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { getPath } from "routes";
 import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
 import SEO from "~/components/Seo";
@@ -27,17 +27,21 @@ const MentionsLegales = () => {
 
       <div>
         <p>
-          En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de rectification, de
-          modification et de suppression concernant des données qui vous concernent personnellement. Ce droit peut être
-          exercé par voie électronique à l’adresse email suivante :{" "}
+          En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de
+          rectification, de modification et de suppression concernant des données qui vous
+          concernent personnellement. Ce droit peut être exercé par voie électronique à l’adresse
+          email suivante :{" "}
           <a title="Email" href="mailto:contact@email.refugies.info">
             contact@email.refugies.info
           </a>
-          . Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre d’identité, à l&apos;adresse
-          suivante :
+          . Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre
+          d’identité, à l&apos;adresse suivante :
         </p>
         <p>
-          <strong>Le délégué interministériel chargé de l&apos;accueil et de l&apos;intégration des réfugiés</strong>
+          <strong>
+            Le délégué interministériel chargé de l&apos;accueil et de l&apos;intégration des
+            réfugiés
+          </strong>
           <br />
           18 rue des Pyrénées
           <br />
@@ -48,9 +52,13 @@ const MentionsLegales = () => {
       <h2>Politique de confidentialité</h2>
 
       <p>
-        Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour plus d&apos;information
-        consultez la page relative à{" "}
-        <Link legacyBehavior href={getPath("/politique-de-confidentialite", locale)} prefetch={false}>
+        Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour
+        plus d&apos;information consultez la page relative à{" "}
+        <Link
+          legacyBehavior
+          href={getPath("/politique-de-confidentialite", locale)}
+          prefetch={false}
+        >
           <a>
             <strong>notre politique de confidentialité</strong>
           </a>
@@ -61,10 +69,11 @@ const MentionsLegales = () => {
       <h2>Propriété intellectuelle</h2>
 
       <p>
-        Tout le contenu de notre site, incluant, de façon non limitative, les graphismes, images, textes, vidéos,
-        animations, sons, logos et icônes, sont la propriété exclusive de l&apos;éditeur du site, à l’exception des
-        marques, logos ou contenus appartenant à d’autres organisations. Pour toute demande d’autorisation ou
-        d’information, veuillez nous contacter par email :{" "}
+        Tout le contenu de notre site, incluant, de façon non limitative, les graphismes, images,
+        textes, vidéos, animations, sons, logos et icônes, sont la propriété exclusive de
+        l&apos;éditeur du site, à l’exception des marques, logos ou contenus appartenant à d’autres
+        organisations. Pour toute demande d’autorisation ou d’information, veuillez nous contacter
+        par email :{" "}
         <a title="Email" href="mailto:contact@email.refugies.info">
           contact@email.refugies.info
         </a>
@@ -75,7 +84,7 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société{" "}
-        <a href="https://www.ovh.com" target="_blank">
+        <a href="https://www.ovh.com" target="_blank" rel="noopener">
           OVH
         </a>
         . 2 rue Kellermann – 59100 Roubaix – France Téléphone : 08 90 39 09 75 (France)

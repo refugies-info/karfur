@@ -1,4 +1,4 @@
-import { GetContentsForAppResponse } from "@refugies-info/api-types";
+import type { GetContentsForAppResponse } from "@refugies-info/api-types";
 
 export const groupResultsByNeed = (contents: GetContentsForAppResponse["dataFr"]) => {
   const results: Record<string, string[]> = {};

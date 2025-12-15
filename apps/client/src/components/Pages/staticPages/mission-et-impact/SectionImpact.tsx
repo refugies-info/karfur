@@ -70,7 +70,9 @@ export const SectionImpact = () => {
             figureText={t("MissionImpact.impact_arguments_figures_3")}
           />
         </div>
-        <p className="!text-small !mt-20 text-center">{t("MissionImpact.impact_arguments_legend")}</p>
+        <p className="!text-small !mt-20 text-center">
+          {t("MissionImpact.impact_arguments_legend")}
+        </p>
       </div>
     </Section>
   );

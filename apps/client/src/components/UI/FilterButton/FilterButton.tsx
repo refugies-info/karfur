@@ -12,9 +12,14 @@ interface Props {
 }
 
 const FilterButton = React.forwardRef<unknown, Props>((props) => {
-  let { className, active, color, ...bProps } = props;
+  const { className, active, color, ...bProps } = props;
 
-  const classNames = cls(styles.btn, active && styles.active, !!color && styles.colored, className || "");
+  const classNames = cls(
+    styles.btn,
+    active && styles.active,
+    !!color && styles.colored,
+    className || "",
+  );
 
   return (
     <button className={classNames} style={color ? { backgroundColor: color } : {}} {...bProps}>

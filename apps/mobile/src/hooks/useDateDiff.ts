@@ -38,12 +38,15 @@ function dateDiff(
 
   let delta: number = Math.abs(dateStart.getTime() - dateEnd.getTime());
 
-  return (units.length ? units : Object.keys(dateDiffDef)).reduce((res: Record<string, number>, key: string) => {
-    if (!Object.prototype.hasOwnProperty.call(dateDiffDef, key)) throw new Error("Unknown unit in dateDiff: " + key);
-    res[key] = Math.floor(delta / dateDiffDef[key]);
-    delta -= res[key] * dateDiffDef[key];
-    return res;
-  }, {});
+  return (units.length ? units : Object.keys(dateDiffDef)).reduce(
+    (res: Record<string, number>, key: string) => {
+      if (!Object.hasOwn(dateDiffDef, key)) throw new Error("Unknown unit in dateDiff: " + key);
+      res[key] = Math.floor(delta / dateDiffDef[key]);
+      delta -= res[key] * dateDiffDef[key];
+      return res;
+    },
+    {},
+  );
 }
 
 const useDateDiffReadable = (date: Date) => {

@@ -1,8 +1,8 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
-import { GetThemeResponse } from "@refugies-info/api-types";
-import { ValidScreen } from "~/libs/backButton";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import type { CompositeScreenProps } from "@react-navigation/native";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { GetThemeResponse } from "@refugies-info/api-types";
+import type { ValidScreen } from "~/libs/backButton";
 
 /**
  * Learn more about using TypeScript with React Navigation:

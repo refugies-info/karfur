@@ -76,7 +76,8 @@ export const DEPARTMENT_VALIDATION_RULES = {
     minLength: 1,
     maxLength: 100,
     pattern: /^[a-zA-Z0-9\s\-'àâäçèéêëîïôùûüœæ]+$/i,
-    description: "Search query with letters, numbers, spaces, hyphens, apostrophes, and French accents",
+    description:
+      "Search query with letters, numbers, spaces, hyphens, apostrophes, and French accents",
   },
   response: {
     maxItems: 100,

@@ -1,6 +1,11 @@
-import { GetContentsForAppRequest, GetThemeResponse, Languages, MobileFrenchLevel } from "@refugies-info/api-types";
+import type {
+  GetContentsForAppRequest,
+  GetThemeResponse,
+  Languages,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { UserActions } from "./user.actions";
+import type { UserActions } from "./user.actions";
 
 export interface UserState {
   hasUserSeenOnboarding: boolean | null;

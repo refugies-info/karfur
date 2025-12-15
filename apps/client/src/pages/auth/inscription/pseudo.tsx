@@ -1,6 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
-import { ReactElement, useMemo } from "react";
+import { type ReactElement, useMemo } from "react";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import { EditPseudo } from "~/components/User";
@@ -34,7 +34,8 @@ const AuthLogin = () => {
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Choisissez un pseudonyme</h1>
           <p className={styles.subtitle}>
-            Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction et sa traduction.
+            Au pied de chaque fiche, nous affichons les contributeurs ayant participé à sa rédaction
+            et sa traduction.
           </p>
         </div>
 

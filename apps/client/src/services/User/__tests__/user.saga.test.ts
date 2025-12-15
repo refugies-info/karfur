@@ -1,7 +1,11 @@
 import { testSaga } from "redux-saga-test-plan";
 import { testUser } from "../../../__fixtures__/user";
 import API from "../../../utils/API";
-import { finishLoading, LoadingStatusKey, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { searchQuerySelector } from "../../SearchResults/searchResults.selector";
 import { fetchUserStructureActionCreator } from "../../UserStructure/userStructure.actions";
 import { fetchUserActionCreator, setUserActionCreator } from "../user.actions";

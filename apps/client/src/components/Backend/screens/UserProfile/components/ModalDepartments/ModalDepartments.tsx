@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { EditDepartments } from "~/components/User";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
 
-interface Props {}
+type Props = {};
 
 export const modalDepartments = createModal({
   id: "user-departments-modal",
@@ -22,8 +22,8 @@ export const ModalDepartments = (props: Props) => {
   return (
     <modalDepartments.Component title="Départements pour la recherche">
       <p className="mb-8">
-        Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches nationales resteront
-        visibles.
+        Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches
+        nationales resteront visibles.
       </p>
       <EditDepartments successCallback={successCallback} />
     </modalDepartments.Component>

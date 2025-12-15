@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useSelector } from "react-redux";
 import ThemeIcon from "~/components/UI/ThemeIcon";
@@ -23,11 +23,14 @@ const EmbedHeader = (props: Props) => {
   const selectedTheme = props.themes.length === 1 ? props.themes[0] : null;
   const selectedDepartment = props.departments.length === 1 ? props.departments[0] : null;
   const selectedLanguage =
-    props.languages.length === 1 ? languages.find((ln) => ln.i18nCode === props.languages[0]) : null;
+    props.languages.length === 1
+      ? languages.find((ln) => ln.i18nCode === props.languages[0])
+      : null;
 
   return (
     <p className={styles.text}>
-      {(selectedTheme || selectedDepartment || selectedLanguage) && `${t("Widget.fiches", "Fiches")} `}
+      {(selectedTheme || selectedDepartment || selectedLanguage) &&
+        `${t("Widget.fiches", "Fiches")} `}
       {selectedTheme && (
         <>
           {t("Widget.withTheme", "avec le thème")}{" "}
@@ -55,7 +58,9 @@ const EmbedHeader = (props: Props) => {
               title={selectedLanguage.langueCode}
               id={selectedLanguage.langueCode}
             />
-            <span className={"language-name " + (isRTL ? "me-2" : "ms-2")}>{selectedLanguage.langueFr}</span>
+            <span className={"language-name " + (isRTL ? "me-2" : "ms-2")}>
+              {selectedLanguage.langueFr}
+            </span>
           </span>
         </>
       )}

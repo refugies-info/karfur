@@ -1,11 +1,11 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
+import Input from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
-import { ReactElement, useCallback, useMemo, useState } from "react";
+import { type ReactElement, useCallback, useMemo, useState } from "react";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import { useAuthRedirect, useLogin } from "~/hooks";
@@ -58,7 +58,9 @@ const AuthNewPassword = (props: Props) => {
           setFormError("Mot de passe trop faible");
         } else {
           logger.error(e);
-          setFormError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+          setFormError(
+            "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.",
+          );
         }
       }
     },
@@ -68,15 +70,20 @@ const AuthNewPassword = (props: Props) => {
   return (
     <div className={cls(styles.container, styles.half)}>
       <SEO title="Nouveau mot de passe" />
-      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+      <Button
+        priority="tertiary"
+        size="small"
+        iconId="fr-icon-arrow-left-line"
+        onClick={() => router.back()}
+      >
         Retour
       </Button>
       {props.error ? (
         <div className={styles.title}>
           <h1>Erreur</h1>
           <p className={styles.subtitle}>
-            Le lien de réinitialisation est invalide. Veuillez cliquer sur le lien à nouveau ou contacter un
-            administrateur si le problème persiste
+            Le lien de réinitialisation est invalide. Veuillez cliquer sur le lien à nouveau ou
+            contacter un administrateur si le problème persiste
           </p>
           <Button linkProps={{ href: "/" }} priority="tertiary" className={styles.mt}>
             Retour à l'accueil
@@ -97,7 +104,7 @@ const AuthNewPassword = (props: Props) => {
             <PasswordInput
               label="Mot de passe"
               messages={
-                !!formError
+                formError
                   ? [
                       {
                         message: formError,

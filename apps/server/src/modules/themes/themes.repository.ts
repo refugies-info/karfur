@@ -1,5 +1,5 @@
-import { Theme, ThemeId, ThemeModel } from "~/typegoose";
-import { DeleteResult } from "~/types/interface";
+import { type Theme, type ThemeId, ThemeModel } from "~/typegoose";
+import type { DeleteResult } from "~/types/interface";
 
 export const getTheme = (id: ThemeId) => ThemeModel.findOne({ _id: id });
 
