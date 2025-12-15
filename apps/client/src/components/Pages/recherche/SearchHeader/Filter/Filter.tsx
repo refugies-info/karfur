@@ -98,6 +98,8 @@ const Filter = ({
 
   const { isMobile, isTablet } = useWindowSize();
 
+  const showCounts = process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS !== "true";
+
   const processedMenuItems = useMemo(() => {
     if (!menuItems) return [];
     return menuItems.map((item) => ({
@@ -132,10 +134,12 @@ const Filter = ({
     // Calculate count using the updated query (after selection/deselection)
     const updatedQuery = { ...query, [filterKey]: newSelected };
     const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
-    announce(t("Recherche.updatedFilters", { count: results.matches.length }), {
-      priority: "interrupt",
-      delay: 1000,
-    });
+    if (showCounts) {
+      announce(t("Recherche.updatedFilters", { count: results.matches.length }), {
+        priority: "interrupt",
+        delay: 1000,
+      });
+    }
   };
 
   const resetOptions = () => {
@@ -204,7 +208,7 @@ const Filter = ({
                     {item.options.map((option, o) => {
                       const currentmenu = menuItems[i];
                       const isSelected = currentmenu.selected.includes(option.key);
-                      const isDisabled = option.count === 0;
+                      const isDisabled = showCounts && option.count === 0;
                       return (
                         <span key={option.key}>
                           <input
@@ -220,11 +224,14 @@ const Filter = ({
                           <span onClick={() => onSelectItem(currentmenu.filterKey, option.key)}>
                             {currentmenu.translateOptions ? t(option.value) : option.value}
                           </span>{" "}
-                          <small>
-                            ({option.count ?? ""}{" "}
-                            {stylesDisabled && ` ${t("Recherche.fiches", { count: option.count })}`}
-                            )
-                          </small>{" "}
+                          {showCounts && (
+                            <small>
+                              ({option.count ?? ""}{" "}
+                              {stylesDisabled &&
+                                ` ${t("Recherche.fiches", { count: option.count })}`}
+                              )
+                            </small>
+                          )}{" "}
                         </span>
                       );
                     })}
@@ -258,6 +265,7 @@ const Filter = ({
                           options={item.options}
                           currentmenu={item}
                           onSelectItem={onSelectItem}
+                          showCounts={showCounts}
                         />
                       </React.Fragment>
                     );
@@ -312,6 +320,7 @@ const Filter = ({
                         options={item.options}
                         currentmenu={item}
                         onSelectItem={onSelectItem}
+                        showCounts={showCounts}
                       />
                     );
                   })}
@@ -329,11 +338,13 @@ const FilterCheckboxes = ({
   currentmenu,
   onSelectItem,
   className,
+  showCounts,
 }: {
   options: FilterOptions;
   currentmenu: MenuItemProps;
   onSelectItem: (filterKey: keyof SearchQuery, optionKey: string) => void;
   className?: string;
+  showCounts: boolean;
 }) => {
   const { t } = useTranslation();
   return (
@@ -348,30 +359,42 @@ const FilterCheckboxes = ({
       )}
       options={options.map((option, o) => {
         const isSelected = currentmenu.selected.includes(option.key);
-        const isDisabled = option.count === 0;
+        const isDisabled = showCounts && option.count === 0;
+
+        const labelText = currentmenu.translateOptions ? t(option.value as any) : option.value;
+
+        const ariaLabel = `${labelText}${
+          showCounts
+            ? isDisabled
+              ? ` - ${t("Recherche.tooltipAucuneFicheCorrespondante")}`
+              : ` - ${t("Recherche.relatedSheets", { count: option.count || 0 })}`
+            : ""
+        }`;
+
         return {
           label: (
             <span
-              aria-label={`${currentmenu.translateOptions ? t(option.value as any) : option.value} - ${isDisabled ? t("Recherche.tooltipAucuneFicheCorrespondante") : t("Recherche.relatedSheets", { count: option.count || 0 })}`}
+              aria-label={ariaLabel}
               className={cn("flex w-full", isDisabled && "disabled")}
               id={`MenuItemTooltip${o}`}
             >
-              {currentmenu.translateOptions ? t(option.value as any) : option.value}{" "}
-              {isDisabled ? (
-                <div className="text-mention-grey ms-auto block p-2 ps-3 pe-1 pt-[0.35rem] text-xs">
-                  <Tooltip
-                    kind="hover"
-                    aria-hidden="true"
-                    title={t("Recherche.tooltipAucuneFicheCorrespondante")}
-                  >
+              {labelText}{" "}
+              {showCounts &&
+                (isDisabled ? (
+                  <div className="text-mention-grey ms-auto block p-2 ps-3 pe-1 pt-[0.35rem] text-xs">
+                    <Tooltip
+                      kind="hover"
+                      aria-hidden="true"
+                      title={t("Recherche.tooltipAucuneFicheCorrespondante")}
+                    >
+                      {option.count ?? ""}
+                    </Tooltip>
+                  </div>
+                ) : (
+                  <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">
                     {option.count ?? ""}
-                  </Tooltip>
-                </div>
-              ) : (
-                <span className="text-mention-grey ms-auto pe-1 pt-[0.35rem] text-xs">
-                  {option.count ?? ""}
-                </span>
-              )}
+                  </span>
+                ))}
             </span>
           ),
           nativeInputProps: {
