@@ -365,7 +365,7 @@ const handler = async (
   }
 
   // Check if the search counts API is disabled via environment variable
-  if (process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS === "true") {
+  if (process.env.DISABLE_SEARCH_COUNTS === "true") {
     return res.status(503).json({ message: "Search counts temporarily unavailable" });
   }
 
