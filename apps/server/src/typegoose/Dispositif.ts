@@ -60,6 +60,8 @@ export class DispositifContent extends Content {
   @prop()
   what: RichText;
   @prop()
+  markdown?: string;
+  @prop()
   why: { [key: string]: InfoSection };
   @prop()
   how: InfoSections;

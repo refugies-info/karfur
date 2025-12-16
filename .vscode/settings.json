@@ -41,8 +41,6 @@
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.ignoredByFiles": {},
   "i18n-ally.pathMatcher": "{locale}/common.json",
-  // prettier
-  "prettier.configPath": ".prettierrc",
   // Github
   "githubPullRequests.fileListLayout": "flat",
   "githubPullRequests.pullBranch": "never",
@@ -58,5 +56,7 @@
     "typescriptreact": "javascript",
     "html": "html"
   },
-  "tailwindCSS.emmetCompletions": true
+  "tailwindCSS.emmetCompletions": true,
+  "debug.javascript.autoAttachFilter": "disabled"
+
 }

@@ -15,8 +15,9 @@ export const selectedDispositifReducer = createReducer<
     return {
       ...(action.payload.reset ? {} : state),
       ...action.payload.value,
-    };
+    } as SelectedDispositifState;
   },
-  UPDATE_SELECTED_DISPOSITIF: (state, action) => merge({ ...state, ...action.payload }),
+  UPDATE_SELECTED_DISPOSITIF: (state, action) =>
+    merge({}, state, action.payload) as SelectedDispositifState,
   CLEAR_SELECTED_DISPOSITIF: () => null,
 });

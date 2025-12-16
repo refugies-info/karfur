@@ -3,7 +3,13 @@ import Department from "./Department";
 
 const MapFrance: React.FC = () => {
   return (
-    <svg width="578px" height="544px" viewBox="0 0 578 544" style={{ maxWidth: "100%" }}>
+    <svg
+      width="578px"
+      height="544px"
+      viewBox="0 0 578 544"
+      style={{ maxWidth: "100%" }}
+      aria-hidden="true"
+    >
       <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="par-commune">
           <g id="legende">

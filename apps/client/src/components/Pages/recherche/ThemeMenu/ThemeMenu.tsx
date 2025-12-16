@@ -9,7 +9,7 @@ import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import { useSearchCounts } from "../SearchCountsContext";
 import { getInitialTheme } from "./functions";
 import Needs from "./Needs";
@@ -32,7 +32,7 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
   const themesContainerRef = useRef<HTMLDivElement | null>(null);
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
   const query = useSelector(searchQuerySelector);
