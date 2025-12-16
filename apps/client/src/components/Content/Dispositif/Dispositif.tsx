@@ -3,7 +3,9 @@ import { ContentType } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
+import remarkGfm from "remark-gfm";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
@@ -76,11 +78,17 @@ const Dispositif = (props: Props) => {
           >
             {dispositif?.origin === "RCO" ? (
               <div className="fr-callout fr-callout--info">
-                <p className="fr-callout__text">
-                  Ce contenu est généré par intelligence artificielle et est actuellement en cours
-                  de validation. Les informations présentées sont fournies à titre indicatif et
-                  peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
-                </p>
+                {dispositif.markdown ? (
+                  <div className="prose no-dsfr">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{dispositif.markdown}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <p className="fr-callout__text">
+                    Ce contenu est généré par intelligence artificielle et est actuellement en cours
+                    de validation. Les informations présentées sont fournies à titre indicatif et
+                    peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
+                  </p>
+                )}
               </div>
             ) : (
               CONTENT_STRUCTURES[typeContenu].map((section, i) => (

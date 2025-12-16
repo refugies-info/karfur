@@ -51,7 +51,7 @@ export const getAllPageReadableText = (
   return [
     dispositif.titreInformatif || "",
     t("Dispositif.sectionWhat"),
-    getReadableText(dispositif.what),
+    getReadableText(dispositif.what || ""),
     getSectionsReadableText(dispositif.why, t("Dispositif.sectionWhy")),
     getSectionsReadableText(dispositif.how, t("Dispositif.sectionHow")),
     getSectionsReadableText(dispositif.next, t("Dispositif.sectionNext")),
