@@ -160,7 +160,6 @@ const DeclarationAccessibilite = () => {
           <li>Dispositif</li>
           <li>Démarche</li>
           <li>Comment contribuer </li>
-          <li>Annuaire</li>
         </ul>
 
         <h2 className={styles.h4}>Retour d’information et contact</h2>
