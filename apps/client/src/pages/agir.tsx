@@ -303,25 +303,30 @@ const Agir = () => {
                   <DepartmentSelect className="mb-4" />
                   <div className="mt-6">
                     {selectedDepartment && (
-                      <div className={styles.operator} aria-live="polite" aria-atomic="true">
-                        <div className={styles.head}>
+                      <div className={styles.operator}>
+                        <div className={styles.head} aria-hidden="true">
                           <span>{selectedDepartment}</span>
-                          {getDepartmentFromNumber(selectedDepartment).split(" - ")[1]}
+                          {getDepartmentFromNumber(selectedDepartment)?.split(" - ")[1] ?? ""}
                         </div>
                         {operatorData && (
                           <div className={styles.content}>
-                            <div>
-                              <i className="ri-building-line me-2"></i> {operatorData.operator}
-                            </div>
+                            <p>
+                              <i className="ri-building-line me-2" aria-hidden="true" />
+                              <strong className="sr-only">Opérateur :</strong>{" "}
+                              {operatorData.operator}
+                            </p>
                             {operatorData.email && isValidEmail(operatorData.email) && (
-                              <div className="mt-4">
-                                <i className="ri-mail-line me-2"></i> {operatorData.email}
-                              </div>
+                              <p className="mt-4">
+                                <i className="ri-mail-line me-2" aria-hidden="true" />{" "}
+                                <strong className="sr-only">Email :</strong> {operatorData.email}
+                              </p>
                             )}
                             {operatorData.phone && (
-                              <div className="mt-4">
-                                <i className="ri-phone-line me-2"></i> {operatorData.phone}
-                              </div>
+                              <p className="mt-4">
+                                <i className="ri-phone-line me-2" aria-hidden="true" />{" "}
+                                <strong className="sr-only">Téléphone :</strong>{" "}
+                                {operatorData.phone}
+                              </p>
                             )}
                             {operatorData.dispositifId && (
                               <Button

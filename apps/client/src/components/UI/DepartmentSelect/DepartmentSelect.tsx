@@ -17,7 +17,7 @@ const DepartmentSelect: React.FC<{ className?: string }> = ({ className }) => {
 
     return [
       {
-        label: "Sélectionnez votre département",
+        label: "Sélectionner un département",
         value: "",
         disabled: true as const,
       },
@@ -39,17 +39,16 @@ const DepartmentSelect: React.FC<{ className?: string }> = ({ className }) => {
   return (
     <div className={className}>
       <Select
-        label="Sélectionner un département"
+        label=""
         hint="Choisissez votre département pour voir les coordonnées de l'opérateur AGIR"
         nativeSelectProps={{
           value: selectedDepartment || "",
           onChange: handleChange,
-          "aria-label": "Sélectionner un département pour afficher l'opérateur AGIR",
         }}
       >
         {departmentOptions.map((option) => (
           <option key={option.value} value={option.value} disabled={option.disabled}>
-            {option.label}
+            {option.label.replace(" -", "")}
           </option>
         ))}
       </Select>
