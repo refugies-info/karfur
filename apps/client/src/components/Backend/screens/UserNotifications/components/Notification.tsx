@@ -95,7 +95,7 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return router.push(getPath("/annuaire-creation", locale));
+      return router.push(getPath("/publier", locale));
     }
 
     if (props.type === "new content" && props.link) {

@@ -12,19 +12,26 @@ export const allThemesSelector = createSelector(
   (selectActiveThemes, selectInactiveThemes) => [...selectActiveThemes, ...selectInactiveThemes],
 );
 
-export const themeSelector = (themeId: Id | undefined) => (state: RootState) => {
-  if (!themeId) return null;
-  return allThemesSelector(state).find((theme) => theme._id === themeId) || null;
-};
+// Factory function to create a memoized theme selector
+export const makeThemeSelector = () =>
+  createSelector(
+    [allThemesSelector, (_state: RootState, themeId: Id | undefined) => themeId],
+    (allThemes, themeId) => {
+      if (!themeId) return null;
+      return allThemes.find((theme) => theme._id === themeId) || null;
+    },
+  );
 
-export const secondaryThemesSelector =
-  (themeIds: Id[] | undefined) =>
-  (state: RootState): GetThemeResponse[] => {
-    if (!themeIds) return [];
-    const allThemes = allThemesSelector(state);
-    const themes = themeIds
-      .map((themeId) => allThemes.find((theme) => theme._id === themeId))
-      .filter((t): t is GetThemeResponse => t !== undefined);
+// Factory function to create a memoized secondary themes selector
+export const makeSecondaryThemesSelector = () =>
+  createSelector(
+    [allThemesSelector, (_state: RootState, themeIds: Id[] | undefined) => themeIds],
+    (allThemes, themeIds): GetThemeResponse[] => {
+      if (!themeIds) return [];
+      const themes = themeIds
+        .map((themeId) => allThemes.find((theme) => theme._id === themeId))
+        .filter((t): t is GetThemeResponse => t !== undefined);
 
-    return themes;
-  };
+      return themes;
+    },
+  );

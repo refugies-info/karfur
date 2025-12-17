@@ -21,8 +21,9 @@ import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useLanguages, useUser } from "~/hooks";
 import { useDispositifTranslation } from "~/hooks/dispositif";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import styles from "./DispositifTranslate.module.scss";
 
@@ -41,7 +42,8 @@ const Dispositif = (props: Props) => {
   const { defaultTraduction, traductions } = props;
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
     [props.typeContenu, dispositif],
