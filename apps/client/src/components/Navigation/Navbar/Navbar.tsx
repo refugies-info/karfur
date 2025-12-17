@@ -34,7 +34,7 @@ const Navbar = () => {
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
-      const currentPath = router.pathname;
+      const currentPath = router.asPath.split("?")[0];
       const isPathMatching = currentPath === href;
 
       if (paramCheck) {
