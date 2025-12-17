@@ -45,9 +45,9 @@ export default function RootLayout({
     <html lang={locale}>
       <body>
         <StyledComponentsRegistry>
-             <Providers>
-                {children}
-             </Providers>
+          <Providers>
+             {children}
+          </Providers>
         </StyledComponentsRegistry>
       </body>
     </html>
