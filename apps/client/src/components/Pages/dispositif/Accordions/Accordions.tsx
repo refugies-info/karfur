@@ -5,6 +5,7 @@ import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { ContentType, type InfoSection, type InfoSections } from "@refugies-info/api-types";
 import { useContext, useState } from "react";
 import { cn } from "~/lib/classname";
+import { Event } from "~/lib/tracking";
 import PageContext from "~/utils/pageContext";
 import { AccordionsEdit } from "../Edition";
 import SectionButtons from "../SectionButtons";
@@ -60,12 +61,20 @@ const AccordionItem = ({
   index,
 }: AccordionItemProps) => {
   const [expanded, setExpanded] = useState(false);
+  const pageContext = useContext(PageContext);
+
+  const handleExpandedChange = (value: boolean) => {
+    setExpanded(!value);
+    if (!value && pageContext.mode === "view") {
+      Event("DISPO_VIEW", "open", "Accordion");
+    }
+  };
 
   return (
     <Accordion
       key={sectionId}
       defaultExpanded={expanded}
-      onExpandedChange={(value) => setExpanded(!value)}
+      onExpandedChange={handleExpandedChange}
       className={cn(
         styles.accordion,
         "max-md:[&_h3_button]:text-lg",
