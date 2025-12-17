@@ -10,7 +10,8 @@ import CardPublic from "~/components/Pages/dispositif/Metadatas/CardPublic";
 import EVAIcon from "~/components/UI/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
 import { cn } from "~/lib/classname";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import type { RootState } from "~/services/rootReducer";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import CardConditions from "../../Metadatas/CardConditions";
 import CardDemarcheAdministration from "../../Metadatas/CardDemarcheAdministration";
@@ -44,7 +45,8 @@ const LeftSidebarEdition = ({ typeContenu, className }: Props) => {
   const formData = useMemo(() => {
     return values as UpdateDispositifRequest;
   }, [values]);
-  const currentTheme = useSelector(themeSelector(values.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const currentTheme = useSelector((state: RootState) => selectTheme(state, values.theme));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 

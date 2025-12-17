@@ -1,6 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import dynamic from "next/dynamic";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import AccordionBadge from "~/components/Pages/dispositif/AccordionBadge";
@@ -10,12 +10,15 @@ import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useContentType } from "~/hooks/dispositif";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import type { RootState } from "~/services/rootReducer";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import AddContentButton from "../../AddContentButton";
 import styles from "./AccordionItem.module.scss";
 
-const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), { ssr: false });
+const RichTextInput = dynamic(() => import("components/UI/RichTextInput"), {
+  ssr: false,
+});
 
 interface Props {
   id: string;
@@ -33,7 +36,8 @@ const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
   const { register, getValues, setValue } = useFormContext();
 
-  const currentTheme = useSelector(themeSelector(getValues("theme")));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const currentTheme = useSelector((state: RootState) => selectTheme(state, getValues("theme")));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
