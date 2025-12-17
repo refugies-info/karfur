@@ -1,4 +1,5 @@
 import { useTranslation } from "next-i18next";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
 import SearchThemeButton from "~/components/UI/SearchThemeButton";
@@ -7,12 +8,13 @@ import { jsUcfirst } from "~/lib";
 import { cn } from "~/lib/classname";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { Event } from "~/lib/tracking";
-import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import { makeDispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import {
   allThemesSelector,
-  secondaryThemesSelector,
-  themeSelector,
+  makeSecondaryThemesSelector,
+  makeThemeSelector,
 } from "~/services/Themes/themes.selectors";
 
 const LinkedThemes = ({ className }: { className?: string }) => {
@@ -20,9 +22,18 @@ const LinkedThemes = ({ className }: { className?: string }) => {
   const locale = useLocale();
   const themes = useSelector(allThemesSelector);
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
-  const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
-  const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
+
+  // Create stable selector instances using useMemo
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const selectSecondaryThemes = useMemo(makeSecondaryThemesSelector, []);
+  const selectDispositifNeeds = useMemo(makeDispositifNeedsSelector, []);
+
+  // Use the stable selectors with the required parameters
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
+  const secondaryThemes = useSelector((state: RootState) =>
+    selectSecondaryThemes(state, dispositif?.secondaryThemes),
+  );
+  const needs = useSelector((state: RootState) => selectDispositifNeeds(state, dispositif?.needs));
 
   return (
     <ul
