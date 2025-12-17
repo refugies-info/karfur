@@ -134,8 +134,8 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     if (action.payload.langue.langues.length > 0 && nextState.langue.langues.length === 0) {
       nextState.langue = action.payload.langue;
     }
-    if (action.payload.themes.activeThemes.length > 0) {
-      // keep new themes even if already in store
+    if (action.payload.themes?.hasLoaded) {
+      // Always hydrate themes if they were loaded on the server
       nextState.themes = action.payload.themes;
     }
     if (action.payload.needs.length > 0 && nextState.needs.length === 0) {
