@@ -65,7 +65,7 @@ const AccordionItem = ({
 
   const handleExpandedChange = (value: boolean) => {
     setExpanded(!value);
-    if (!value && pageContext.mode === "view") {
+    if (value && pageContext.mode === "view") {
       Event("DISPO_VIEW", "open", "Accordion");
     }
   };
