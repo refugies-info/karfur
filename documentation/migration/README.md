@@ -46,6 +46,18 @@ To achieve this cleanly, we are executing a **Two-Phase Migration Strategy**:
 
 ---
 
+## ⏱️ Estimated Timeline
+
+We estimate the total transformation to take **~3 months manually**, or about **~5 weeks with AI assistance**.
+
+| Project | Human Speed | AI-Assisted Speed | Impact |
+| :--- | :--- | :--- | :--- |
+| **Project A (State)** | 6 Weeks | **~3 Weeks** | 🤖 AI accelerates hook generation, boilerplace deletion, and test migration. |
+| **Project B (Router)** | 6 Weeks | **~2 Weeks** | 🤖 AI accelerates layout scaffolding, middleware config, and "use client" directives. |
+| **Total** | **12 Weeks** | **~5 Weeks** | **-58% Time Reduction** |
+
+---
+
 ## 📅 Project A Roadmap: State Management
 
 1.  **Foundation**: Install TanStack Query, setup Provider.

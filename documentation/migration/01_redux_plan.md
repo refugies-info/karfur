@@ -226,7 +226,17 @@ export const getStaticProps = async () => {
 | **Selectors** | Refactoring hell | Keep Selectors temporarily! You can write a selector that reads from React Query cache if needed, or just rewrite components one by one. |
 | **Testing** | Tests failing | React Query needs a mock wrapper for tests. Update `render` utils. |
 
-## 7. Next Steps
+## 7. Testing Strategy (Critical)
+
+We identified `redux-saga-test-plan` in dependencies. These tests will break.
+
+1.  **Delete Saga Tests**: Do not try to migrate unit tests for Sagas. They test implementation details that are going away.
+2.  **Write Integration Tests**: Use `renderHook` from `@testing-library/react` to test your new custom hooks (`useThemes`, etc.).
+    *   Mock API calls using MSW (Mock Service Worker) or Jest mocks.
+    *   Verify that `isLoading`, `data`, and `error` states change correctly.
+3.  **Component Tests**: Existing component tests using `render` should largely stay, but you will need to wrap them in a `QueryClientProvider` mock instead of `ReduxProvider`.
+
+## 8. Next Steps
 
 1. **Approval**: Confirm this plan.
 2. **Setup**: I can install the libraries and set up `_app.tsx`.
