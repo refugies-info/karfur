@@ -34,13 +34,11 @@ const Navbar = () => {
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
-      if (!isInBrowser()) return false;
-      const currentPath = window?.location?.pathname || "";
-      const isPathMatching = currentPath === "/" + locale + href;
+      const currentPath = router.pathname;
+      const isPathMatching = currentPath === href;
 
       if (paramCheck) {
-        const urlParams = new URLSearchParams(window?.location?.search || "");
-        return isPathMatching && urlParams.get(paramCheck.param) === paramCheck.value;
+        return isPathMatching && router.query[paramCheck.param] === paramCheck.value;
       }
 
       return isPathMatching;
@@ -82,7 +80,10 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/agir", locale)),
       },
       {
-        linkProps: { href: getPath("/mission-et-impact", locale), prefetch: false },
+        linkProps: {
+          href: getPath("/mission-et-impact", locale),
+          prefetch: false,
+        },
         text: t("Toolbar.missionImpact", "Mission et impact"),
         isActive: isCurrent(getPath("/mission-et-impact", locale)),
       },
@@ -90,11 +91,17 @@ const Navbar = () => {
         text: t("Toolbar.partagerProjet", "Ressources"),
         menuLinks: [
           {
-            linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/formation/",
+              target: "_blank",
+            },
             text: t("Toolbar.webinaire", "Participer à un webinaire de découverte"),
           },
           {
-            linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/flyers/",
+              target: "_blank",
+            },
             text: t("Toolbar.posters_leaflets", "Commander des affiches et des dépliants"),
           },
           {
@@ -103,7 +110,10 @@ const Navbar = () => {
           },
 
           {
-            linkProps: { href: "https://kit.refugies.info/agir", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/agir",
+              target: "_blank",
+            },
             text: t("Toolbar.forAgirOperators", "Pour les opérateurs AGIR"),
           },
         ],

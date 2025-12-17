@@ -6,7 +6,6 @@ const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const PATHS_CRAWL: PathNames[] = [
   "/",
   "/recherche",
-  "/annuaire",
   "/publier",
   "/mission-et-impact",
   "/mentions-legales",
@@ -38,14 +37,6 @@ export const getAllUrls = async (type: string, locale: string): Promise<string[]
         locale: locale,
       });
       return demarches.map((d) => getUrl("/demarche/[id]", locale, d._id));
-    }
-
-    // STRUCTURES
-    case "structures": {
-      const structures = await API.getActiveStructures();
-      return structures.map((s: GetActiveStructuresResponse) =>
-        getUrl("/annuaire/[id]", locale, s._id),
-      );
     }
 
     // PAGES

@@ -8,7 +8,8 @@ import { getPath } from "routes";
 import { useContentLocale, useLocale } from "~/hooks";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { needSelector } from "~/services/Needs/needs.selectors";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import type { RootState } from "~/services/rootReducer";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import { getDepartments } from "./functions";
 
 interface Props {
@@ -21,7 +22,8 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
   const [showBreadcrumb, setShowBreadcrumb] = useState(false);
   const { isRTL } = useContentLocale();
   const locale = useLocale();
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const need = useSelector(needSelector(dispositif?.needs?.[0] || null));
   const chevron = useMemo(
     () => (
