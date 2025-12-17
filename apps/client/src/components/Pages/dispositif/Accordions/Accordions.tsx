@@ -64,7 +64,7 @@ const AccordionItem = ({
   const pageContext = useContext(PageContext);
 
   const handleExpandedChange = (value: boolean) => {
-    setExpanded(!value);
+    setExpanded(value);
     if (value && pageContext.mode === "view") {
       Event("DISPO_VIEW", "open", "Accordion");
     }
@@ -73,7 +73,7 @@ const AccordionItem = ({
   return (
     <Accordion
       key={sectionId}
-      defaultExpanded={expanded}
+      expanded={expanded}
       onExpandedChange={handleExpandedChange}
       className={cn(
         styles.accordion,
