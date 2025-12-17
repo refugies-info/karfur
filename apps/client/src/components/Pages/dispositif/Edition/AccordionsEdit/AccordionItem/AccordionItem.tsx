@@ -34,10 +34,10 @@ interface Props {
  */
 const AccordionItem = (props: Props) => {
   const [isActive, setIsActive] = useState(false);
-  const { register, getValues, setValue } = useFormContext();
+  const { register, getValues, setValue, watch } = useFormContext();
 
   const selectTheme = useMemo(makeThemeSelector, []);
-  const currentTheme = useSelector((state: RootState) => selectTheme(state, getValues("theme")));
+  const currentTheme = useSelector((state: RootState) => selectTheme(state, watch("theme")));
   const color = currentTheme?.colors.color100 || "#000";
   const contentType = useContentType();
 
