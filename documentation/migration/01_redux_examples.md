@@ -146,7 +146,7 @@ const Banner = (props: Props) => {
   const theme = themes?.find(t => t._id === props.themeId);
 
   // 3. Get dispositif (if needed here, otherwise pass as prop)
-  const { data: dispositif } = useDispositif(router.query.id as string);
+  const { data: dispositif } = useDispositif(Array.isArray(router.query.id) ? router.query.id[0] : router.query.id);
 
   // ... rest of component is identical
   return (
