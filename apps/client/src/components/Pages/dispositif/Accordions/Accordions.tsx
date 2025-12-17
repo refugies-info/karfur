@@ -3,7 +3,7 @@
 
 import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { ContentType, type InfoSection, type InfoSections } from "@refugies-info/api-types";
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import PageContext from "~/utils/pageContext";
@@ -63,12 +63,15 @@ const AccordionItem = ({
   const [expanded, setExpanded] = useState(false);
   const pageContext = useContext(PageContext);
 
-  const handleExpandedChange = (value: boolean) => {
-    setExpanded(value);
-    if (value && pageContext.mode === "view") {
-      Event("DISPO_VIEW", "open", "Accordion");
-    }
-  };
+  const handleExpandedChange = useCallback(
+    (value: boolean) => {
+      setExpanded(value);
+      if (value && pageContext.mode === "view") {
+        Event("DISPO_VIEW", "open", "Accordion");
+      }
+    },
+    [pageContext.mode],
+  );
 
   return (
     <Accordion
