@@ -84,7 +84,7 @@ TARGET: `Themes`, `Needs`, `User` (High impact, simpler logic)
 TARGET: `SearchResults`, `Dispositif` (Complex logic)
 1. Refactor Search Filters to URL/Zustand.
 2. Move Search API calls to `useQuery` with enabled/dependency flags.
-3. Handle complex side-effects (e.g., auto-opening modals) using `useEffect` or `onSuccess` callbacks (deprecated in v5 but replaced by useEffect).
+3. Handle complex side-effects (e.g., auto-opening modals) using `useEffect` for component logic or `onSuccess` callbacks for data-related logic.
 
 ### Phase 5: Cleanup (Week 7)
 1. Remove `next-redux-wrapper`.
