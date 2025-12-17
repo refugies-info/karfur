@@ -12,19 +12,18 @@ export const allThemesSelector = createSelector(
   (selectActiveThemes, selectInactiveThemes) => [...selectActiveThemes, ...selectInactiveThemes],
 );
 
-export const themeSelector = (themeId: Id | undefined) => (state: RootState) => {
-  if (!themeId) return null;
-  return allThemesSelector(state).find((theme) => theme._id === themeId) || null;
-};
+export const themeSelector = (themeId: Id | undefined) =>
+  createSelector([allThemesSelector], (allThemes) => {
+    if (!themeId) return null;
+    return allThemes.find((theme) => theme._id === themeId) || null;
+  });
 
-export const secondaryThemesSelector =
-  (themeIds: Id[] | undefined) =>
-  (state: RootState): GetThemeResponse[] => {
+export const secondaryThemesSelector = (themeIds: Id[] | undefined) =>
+  createSelector([allThemesSelector], (allThemes): GetThemeResponse[] => {
     if (!themeIds) return [];
-    const allThemes = allThemesSelector(state);
     const themes = themeIds
       .map((themeId) => allThemes.find((theme) => theme._id === themeId))
       .filter((t): t is GetThemeResponse => t !== undefined);
 
     return themes;
-  };
+  });
