@@ -22,8 +22,8 @@ const useDepartmentAutocomplete = () => {
     setHidePredictions(false);
   }, [search]);
 
-  const getPlaceSelected = (depCode: string): Promise<string | null> => {
-    return Promise.resolve(getDepartmentFromNumber(depCode));
+  const getPlaceSelected = async (depCode: string): Promise<string | null> => {
+    return getDepartmentFromNumber(depCode) || null;
   };
 
   const getFilteredDepartments = () => {
