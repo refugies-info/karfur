@@ -130,6 +130,7 @@ Le projet utilise deux fonctions principales pour le tracking :
 | `click french level` | `Left sidebar` | Clic sur le niveau de français | `Pages/dispositif/Metadatas/CardPublic/CardPublic.tsx` |
 | `click theme` | `Linked themes` | Clic sur un thème lié | `Pages/dispositif/LinkedThemes/LinkedThemes.tsx` |
 | `click need` | `Linked themes` | Clic sur un besoin lié | `Pages/dispositif/LinkedThemes/LinkedThemes.tsx` |
+| `open` | `Accordion` | ouverture d'un accordéon | `Pages/dispositif/Edition/AccordionsEdit/Accordion/Accordion.tsx` |
 
 ### DISPO_CREATE - Création/Édition d'un dispositif
 
