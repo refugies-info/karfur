@@ -10,20 +10,20 @@ import { cls } from "~/lib/classname";
 import styles from "./ThemeSelectButton.module.scss";
 
 interface ButtonProps {
-  backgroundColor: string;
-  backgroundColorHover: string;
+  $backgroundColor: string;
+  $backgroundColorHover: string;
   selected: boolean;
 }
 const ThemeButtonContainer = styled.button<ButtonProps>`
   ${(props) =>
     props.selected
       ? `
-  background-color: ${props.backgroundColor};
+  background-color: ${props.$backgroundColor};
   &:not(:disabled):hover {
-    background-color: ${props.backgroundColorHover} !important;
+    background-color: ${props.$backgroundColorHover} !important;
   }`
       : `&:not(:disabled):hover {
-        background-color: ${props.backgroundColor} !important;
+        background-color: ${props.$backgroundColor} !important;
       }`};
 `;
 
@@ -44,8 +44,8 @@ const ThemeSelectButton = (props: Props) => {
   return (
     <span id={id}>
       <ThemeButtonContainer
-        backgroundColor={props.theme.colors.color100}
-        backgroundColorHover={props.theme.colors.color80}
+        $backgroundColor={props.theme.colors.color100}
+        $backgroundColorHover={props.theme.colors.color80}
         selected={selected}
         className={cls(styles.btn, selected && styles.selected)}
         onClick={(e: any) => {

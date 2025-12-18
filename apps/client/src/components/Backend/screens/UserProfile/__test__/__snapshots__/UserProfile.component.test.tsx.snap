@@ -477,97 +477,6 @@ exports[`UserProfile should render correctly 1`] = `
       </div>
     </div>
     <button
-      aria-controls="user-departments-modal"
-      aria-hidden="true"
-      class="fr-btn fr-hidden"
-      data-fr-opened="false"
-      id="user-departments-modal-hidden-control-button"
-      tabindex="-1"
-      type="button"
-    >
-       
-    </button>
-    <dialog
-      aria-labelledby="fr-modal-title-user-departments-modal"
-      class="fr-modal"
-      data-fr-concealing-backdrop="true"
-      id="user-departments-modal"
-    >
-      <div
-        class="fr-container fr-container--fluid fr-container-md"
-      >
-        <div
-          class="fr-grid-row fr-grid-row--center"
-        >
-          <div
-            class="fr-col-12 fr-col-md-8 fr-col-lg-6"
-          >
-            <div
-              class="fr-modal__body"
-            >
-              <div
-                class="fr-modal__header"
-              >
-                <button
-                  aria-controls="user-departments-modal"
-                  class="fr-btn--close fr-btn"
-                  title="Fermer"
-                  type="button"
-                >
-                  Fermer
-                </button>
-              </div>
-              <div
-                class="fr-modal__content"
-              >
-                <h1
-                  class="fr-modal__title"
-                  id="fr-modal-title-user-departments-modal"
-                >
-                  Départements pour la recherche
-                </h1>
-                <p
-                  class="mb-8"
-                >
-                  Nous vous montrerons uniquement les contenus susceptibles de vous intéresser. Les démarches nationales resteront visibles.
-                </p>
-                <form>
-                  <label
-                    class="fr-label mb-2"
-                    for="location"
-                  >
-                    Nom ou numéro du département
-                    <span
-                      class="fr-hint-text"
-                    >
-                      Plusieurs choix possibles
-                    </span>
-                  </label>
-                  <div
-                    class="relative"
-                  >
-                    <div />
-                  </div>
-                  <div
-                    class="text-end"
-                  >
-                    <button
-                      class="fr-btn fr-icon-check-line fr-btn--icon-right button mt-12"
-                      disabled=""
-                      id="fr-button-:rd:"
-                      type="submit"
-                    >
-                      Valider
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </dialog>
-    <button
       aria-controls="user-language-modal"
       aria-hidden="true"
       class="fr-btn fr-hidden"
@@ -653,7 +562,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       class="fr-btn fr-icon-check-line fr-btn--icon-right button mt-8"
                       disabled=""
-                      id="fr-button-:rf:"
+                      id="fr-button-:rd:"
                       type="submit"
                     >
                       Valider
@@ -732,7 +641,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       aria-controls="delete-account-modal"
                       class="fr-btn fr-icon-delete-bin-line fr-btn--icon-left danger"
-                      id="fr-button-:rh:"
+                      id="fr-button-:rf:"
                     >
                       Supprimer mon compte
                     </button>
@@ -741,7 +650,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       aria-controls="delete-account-modal"
                       class="fr-btn fr-btn--secondary"
-                      id="fr-button-:ri:"
+                      id="fr-button-:rg:"
                     >
                       Annuler
                     </button>

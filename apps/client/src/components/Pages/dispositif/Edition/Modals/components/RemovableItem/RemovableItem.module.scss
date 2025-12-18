@@ -11,6 +11,9 @@
   margin-right: u(1);
   margin-bottom: u(1);
   text-align: left;
+  display: inline-flex;
+  align-items: center;
+  z-index: 1;
 
   &:hover {
     background: var(--background-action-low-blue-france-hover) !important;
@@ -24,4 +27,11 @@
 .image {
   border-radius: u(1);
   background: white;
+}
+
+.label {
+  line-height: 1;
+  position: relative;
+  top: -1px;
+  z-index: 1;
 }
