@@ -18,6 +18,10 @@ const useDepartmentAutocomplete = () => {
       .then((data) => setSuggestions(data));
   }, []);
 
+  useEffect(() => {
+    setHidePredictions(false);
+  }, [search]);
+
   const getPlaceSelected = (depName: string): Promise<string | null> => {
     return Promise.resolve(getDbDepartment(depName));
   };
