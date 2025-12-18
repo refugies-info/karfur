@@ -1,10 +1,9 @@
-import React from "react";
+import type React from "react";
 import { StyleSheet, Switch, View } from "react-native";
 
 import styled from "styled-components/native";
-import { styles } from "~/theme";
-
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { styles } from "~/theme";
 
 import { TextDSFR_MD_Med, TextDSFR_S } from "../StyledText";
 

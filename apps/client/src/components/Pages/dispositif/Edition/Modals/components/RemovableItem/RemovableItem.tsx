@@ -29,7 +29,7 @@ const RemovableItem = (props: Props) => {
           className={cls("me-2", styles.image)}
         />
       )}
-      {props.text}
+      <span className={styles.label}>{props.text}</span>
       <EVAIcon
         name="close-outline"
         fill={fr.colors.decisions.text.actionHigh.blueFrance.default}

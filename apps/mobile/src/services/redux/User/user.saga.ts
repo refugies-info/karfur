@@ -1,26 +1,30 @@
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "~/logger";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { fetchContentsActionCreator } from "../Contents/contents.actions";
 import { LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { deleteItemInAsyncStorage, getItemInAsyncStorage, saveItemInAsyncStorage } from "./functions";
 import {
-  addUserFavoriteActionCreator,
+  deleteItemInAsyncStorage,
+  getItemInAsyncStorage,
+  saveItemInAsyncStorage,
+} from "./functions";
+import {
+  type addUserFavoriteActionCreator,
   removeHasUserSeenOnboardingActionCreator,
   removeSelectedLanguageActionCreator,
-  removeUserAgeActionCreator,
+  type removeUserAgeActionCreator,
   removeUserAllFavoritesActionCreator,
-  removeUserFavoriteActionCreator,
-  removeUserFrenchLevelActionCreator,
+  type removeUserFavoriteActionCreator,
+  type removeUserFrenchLevelActionCreator,
   removeUserHasNewFavoritesActionCreator,
   removeUserLocalizedWarningHiddenActionCreator,
-  removeUserLocationActionCreator,
-  saveSelectedLanguageActionCreator,
-  saveUserAgeActionCreator,
-  saveUserFrenchLevelActionCreator,
-  saveUserLocationActionCreator,
+  type removeUserLocationActionCreator,
+  type saveSelectedLanguageActionCreator,
+  type saveUserAgeActionCreator,
+  type saveUserFrenchLevelActionCreator,
+  type saveUserLocationActionCreator,
   setCurrentLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,
   setSelectedLanguageActionCreator,
@@ -54,7 +58,9 @@ import {
 } from "./user.actionTypes";
 import { shouldLoadContentSelector, userFavorites } from "./user.selectors";
 
-export function* saveSelectedLanguage(action: ReturnType<typeof saveSelectedLanguageActionCreator>): SagaIterator {
+export function* saveSelectedLanguage(
+  action: ReturnType<typeof saveSelectedLanguageActionCreator>,
+): SagaIterator {
   try {
     const { langue: i18nCode, shouldFetchContents } = action.payload;
     logger.info("[saveSelectedLanguage] saga", { langue: i18nCode });
@@ -91,7 +97,9 @@ export function* removeSelectedLanguage(): SagaIterator {
   }
 }
 
-export function* saveUserLocation(action: ReturnType<typeof saveUserLocationActionCreator>): SagaIterator {
+export function* saveUserLocation(
+  action: ReturnType<typeof saveUserLocationActionCreator>,
+): SagaIterator {
   try {
     const { city, dep, shouldFetchContents } = action.payload;
     logger.info("[saveUserLocation] saga", { city, dep });
@@ -114,7 +122,9 @@ export function* saveUserLocation(action: ReturnType<typeof saveUserLocationActi
   }
 }
 
-export function* removeUserLocation(action: ReturnType<typeof removeUserLocationActionCreator>): SagaIterator {
+export function* removeUserLocation(
+  action: ReturnType<typeof removeUserLocationActionCreator>,
+): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserLocation] saga");
@@ -131,7 +141,9 @@ export function* removeUserLocation(action: ReturnType<typeof removeUserLocation
   }
 }
 
-export function* saveUserFrenchLevel(action: ReturnType<typeof saveUserFrenchLevelActionCreator>): SagaIterator {
+export function* saveUserFrenchLevel(
+  action: ReturnType<typeof saveUserFrenchLevelActionCreator>,
+): SagaIterator {
   try {
     const { frenchLevel, shouldFetchContents } = action.payload;
     logger.info("[saveUserFrenchLevel] saga", { frenchLevel });
@@ -153,7 +165,9 @@ export function* saveUserFrenchLevel(action: ReturnType<typeof saveUserFrenchLev
   }
 }
 
-export function* removeUserFrenchLevel(action: ReturnType<typeof removeUserFrenchLevelActionCreator>): SagaIterator {
+export function* removeUserFrenchLevel(
+  action: ReturnType<typeof removeUserFrenchLevelActionCreator>,
+): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserFrenchLevel] saga");
@@ -191,7 +205,9 @@ export function* saveUserAge(action: ReturnType<typeof saveUserAgeActionCreator>
   }
 }
 
-export function* removeUserAge(action: ReturnType<typeof removeUserAgeActionCreator>): SagaIterator {
+export function* removeUserAge(
+  action: ReturnType<typeof removeUserAgeActionCreator>,
+): SagaIterator {
   try {
     const shouldFetchContents = action.payload;
     logger.info("[removeUserAge] saga");
@@ -296,7 +312,10 @@ export function* getUserInfos(): SagaIterator {
   try {
     logger.info("[getUserInfos] saga");
     try {
-      const hasUserAlreadySeenOnboarding = yield call(getItemInAsyncStorage, "HAS_USER_SEEN_ONBOARDING");
+      const hasUserAlreadySeenOnboarding = yield call(
+        getItemInAsyncStorage,
+        "HAS_USER_SEEN_ONBOARDING",
+      );
       yield put(setHasUserSeenOnboardingActionCreator(hasUserAlreadySeenOnboarding === "TRUE"));
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -398,7 +417,9 @@ export function* getUserInfos(): SagaIterator {
   }
 }
 
-export function* addUserFavorite(action: ReturnType<typeof addUserFavoriteActionCreator>): SagaIterator {
+export function* addUserFavorite(
+  action: ReturnType<typeof addUserFavoriteActionCreator>,
+): SagaIterator {
   try {
     logger.info("[addFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
@@ -412,7 +433,9 @@ export function* addUserFavorite(action: ReturnType<typeof addUserFavoriteAction
   }
 }
 
-export function* removeUserFavorite(action: ReturnType<typeof removeUserFavoriteActionCreator>): SagaIterator {
+export function* removeUserFavorite(
+  action: ReturnType<typeof removeUserFavoriteActionCreator>,
+): SagaIterator {
   try {
     logger.info("[removeFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);

@@ -1,11 +1,13 @@
-import { GetUserContributionsResponse } from "@refugies-info/api-types";
+import type { GetUserContributionsResponse } from "@refugies-info/api-types";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { getDispositifsWithCreatorId } from "~/modules/dispositif/dispositif.repository";
-import { UserId } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { UserId } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
-export const getUserContributions = async (userId: UserId): ResponseWithData<GetUserContributionsResponse[]> => {
+export const getUserContributions = async (
+  userId: UserId,
+): ResponseWithData<GetUserContributionsResponse[]> => {
   logger.info("[getUserContributions] received");
 
   const neededFields = {
@@ -22,7 +24,7 @@ export const getUserContributions = async (userId: UserId): ResponseWithData<Get
   const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
 
   const res: GetUserContributionsResponse[] = dispositifs.map((d) => ({
-    ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues"]),
+    ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues", "origin"]),
     ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
     nbMercis: d.merci.length,
     hasDraftVersion: !!d.hasDraftVersion,

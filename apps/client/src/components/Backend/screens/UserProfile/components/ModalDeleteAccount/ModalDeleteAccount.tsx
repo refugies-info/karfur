@@ -4,7 +4,7 @@ import ErrorMessage from "~/components/UI/ErrorMessage";
 import API from "~/utils/API";
 import styles from "./ModalDeleteAccount.module.scss";
 
-interface Props {}
+type Props = {};
 
 export const modalDeleteAccount = createModal({
   id: "delete-account-modal",
@@ -39,7 +39,8 @@ export const ModalDeleteAccount = (props: Props) => {
       ]}
     >
       <p className="mb-8">
-        Vous perdrez l'accès à vos favoris ainsi qu'à votre structure et aux fiches que vous avez rédigées.
+        Vous perdrez l'accès à vos favoris ainsi qu'à votre structure et aux fiches que vous avez
+        rédigées.
       </p>
       <ErrorMessage error={error?.message} />
     </modalDeleteAccount.Component>

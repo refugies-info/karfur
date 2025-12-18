@@ -1,10 +1,16 @@
 "use client";
 
-import { ThumbUpAnimatedRef } from "@refugies-info/ui";
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
+import type { ThumbUpAnimatedRef } from "@refugies-info/ui";
+import type React from "react";
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 
 import VoteLayoutStandard from "./VoteLayoutStandard";
 import VoteLayoutSticky from "./VoteLayoutSticky";
+
+type AnnounceOptions = {
+  priority?: "interrupt" | "normal";
+  delay?: number;
+};
 
 type VoteProps = {
   className?: string;
@@ -15,11 +21,12 @@ type VoteProps = {
   onCancelYes?: () => void;
   onCancelNo?: () => void;
   onVoteUpdate?: (vote: boolean) => void;
+  onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
   error?: boolean | null;
 };
 
 type VoteRef = {
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
 };
 
 export const Vote = forwardRef<VoteRef, VoteProps>(
@@ -32,6 +39,7 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
       onCancelYes,
       onCancelNo,
       onVoteUpdate,
+      onVoteAnnounce,
       isSticky = false,
       error = false,
     },
@@ -135,6 +143,8 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
         handleClickYes={handleClickYes}
         handleClickNo={handleClickNo}
         thumbUpRef={thumbUpRef}
+        hasVoted={!error && hasVoted}
+        onVoteAnnounce={onVoteAnnounce}
       />
     ) : (
       <VoteLayoutStandard
@@ -144,6 +154,7 @@ export const Vote = forwardRef<VoteRef, VoteProps>(
         handleClickNo={handleClickNo}
         hasVoted={!error && hasVoted}
         thumbUpRef={thumbUpRef}
+        onVoteAnnounce={onVoteAnnounce}
       />
     );
   },

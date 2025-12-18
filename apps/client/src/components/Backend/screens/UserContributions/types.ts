@@ -1,4 +1,4 @@
-import { GetUserContributionsResponse } from "@refugies-info/api-types";
+import type { GetUserContributionsResponse } from "@refugies-info/api-types";
 
 export interface FormattedUserContribution extends GetUserContributionsResponse {
   responsabilite: string | null;

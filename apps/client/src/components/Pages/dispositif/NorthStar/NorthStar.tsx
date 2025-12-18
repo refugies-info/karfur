@@ -1,16 +1,17 @@
 "use client";
 
-import { Vote } from "@refugies-info/ui";
+import { useWindowSize, Vote } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
-import useWindowSize from "~/hooks/useWindowSize";
 import { customEvent } from "~/lib/tracking";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import { userSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
 
@@ -19,8 +20,10 @@ const NorthStar = () => {
   const userId = useSelector(userSelector)?.userId;
   const currentLanguage = useTranslation().i18n.language;
   const anonymousUserId = useAnonymousUserId();
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const { t } = useTranslation();
+  const announce = useAnnounce();
 
   const { isDesktop, isLargeDesktop } = useWindowSize();
 
@@ -41,12 +44,28 @@ const NorthStar = () => {
 
   const sendTrackEvent = (newAvis: boolean | null) => {
     if (newAvis === null) {
-      customEvent("avis", { valeur: currentAvis ? "positif" : "negatif", count: -1, ...trackData });
+      customEvent("avis", {
+        valeur: currentAvis ? "positif" : "negatif",
+        count: -1,
+        ...trackData,
+      });
     } else if (currentAvis !== null && currentAvis !== newAvis) {
-      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
-      customEvent("avis", { valeur: !newAvis ? "positif" : "negatif", count: -1, ...trackData });
+      customEvent("avis", {
+        valeur: newAvis ? "positif" : "negatif",
+        count: 1,
+        ...trackData,
+      });
+      customEvent("avis", {
+        valeur: !newAvis ? "positif" : "negatif",
+        count: -1,
+        ...trackData,
+      });
     } else {
-      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
+      customEvent("avis", {
+        valeur: newAvis ? "positif" : "negatif",
+        count: 1,
+        ...trackData,
+      });
     }
   };
 
@@ -107,7 +126,10 @@ const NorthStar = () => {
 
   const onCancel = () => {
     if (!dispositif) return;
-    API.deleteDispositifAvis(dispositif._id.toString())
+    API.deleteDispositifAvis(dispositif._id.toString(), {
+      anonymousUserId: anonymousUserId || undefined,
+      userId: userId || undefined,
+    })
       .then(() => {
         sendTrackEvent(null);
         setDidVote(false);
@@ -157,6 +179,7 @@ const NorthStar = () => {
         onCancelNo={onCancel}
         isSticky={!isLargeDesktop}
         error={error}
+        onVoteAnnounce={announce}
       />
       <Toast open={showErrorToast} closeCallback={() => setShowErrorToast(false)} type="error">
         {t("ui.northStar_error", "Une erreur est survenue lors de la soumission de votre avis")}

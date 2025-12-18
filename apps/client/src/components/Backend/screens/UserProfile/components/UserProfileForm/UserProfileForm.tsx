@@ -1,9 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import Input from "@codegouvfr/react-dsfr/Input";
 import PasswordInput from "@codegouvfr/react-dsfr/blocks/PasswordInput";
-import { UpdateUserRequest } from "@refugies-info/api-types";
+import Input from "@codegouvfr/react-dsfr/Input";
+import type { UpdateUserRequest } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
-import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
 import ErrorMessage from "~/components/UI/ErrorMessage";
@@ -17,7 +17,7 @@ import API from "~/utils/API";
 import { setAuthToken } from "~/utils/authToken";
 import styles from "../../UserProfile.module.scss";
 import { ModalEmailCode, modalEmailCode } from "../ModalEmailCode";
-import { modalResetPassword, ModalResetPassword } from "../ModalResetPassword";
+import { ModalResetPassword, modalResetPassword } from "../ModalResetPassword";
 
 interface Props {
   edition: boolean;
@@ -62,7 +62,8 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
 
   useEffect(() => {
     if (!email) setEmailError("L'email est obligatoire");
-    else if (!isValidEmail(email)) setEmailError("Ce n'est pas une adresse email valide, vérifiez votre saisie.");
+    else if (!isValidEmail(email))
+      setEmailError("Ce n'est pas une adresse email valide, vérifiez votre saisie.");
     else setEmailError(null);
   }, [email]);
 
@@ -125,7 +126,9 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
         } else if (errorCode === "INVALID_PASSWORD") {
           setOldPasswordError("Mot de passe incorrect, vérifiez votre saisie");
         } else if (errorCode === "USED_PASSWORD") {
-          setNewPasswordError("Le nouveau mot de passe doit être différent du mot de passe actuel.");
+          setNewPasswordError(
+            "Le nouveau mot de passe doit être différent du mot de passe actuel.",
+          );
         } else if (errorCode === "PASSWORD_TOO_WEAK") {
           setNewPasswordError(
             "Votre mot de passe ne contient pas l'un des éléments suivants : 7 caractères minimum, 1 caractère spécial, 1 chiffre minimum.",
@@ -140,7 +143,18 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
       }
       modalEmailCode.close();
     },
-    [userDetails, username, firstName, email, phone, phoneError, emailError, usernameError, oldPassword, newPassword],
+    [
+      userDetails,
+      username,
+      firstName,
+      email,
+      phone,
+      phoneError,
+      emailError,
+      usernameError,
+      oldPassword,
+      newPassword,
+    ],
   );
 
   const getPasswordErrorMessage = useCallback(
@@ -295,7 +309,7 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
               {edition && (
                 <PasswordInput
                   label="Nouveau mot de passe"
-                  messagesHint={!!newPasswordError ? "" : undefined}
+                  messagesHint={newPasswordError ? "" : undefined}
                   messages={getPasswordErrorMessage("new")}
                   nativeInputProps={{
                     name: "new-password",
@@ -310,7 +324,11 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
           )}
           <ErrorMessage error={error?.message} />
         </form>
-        <ModalEmailCode email={email} updateUser={(code: string) => submit(null, code)} error={emailCodeError} />
+        <ModalEmailCode
+          email={email}
+          updateUser={(code: string) => submit(null, code)}
+          error={emailCodeError}
+        />
         <ModalResetPassword email={userDetails?.email || ""} />
       </div>
     </>

@@ -1,6 +1,13 @@
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import L from "leaflet";
-import { MapContainer, Marker as LeafletMarker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import {
+  Marker as LeafletMarker,
+  MapContainer,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import styles from "./Map.module.scss";
 import PopupContent from "./PopupContent";
 

@@ -1,13 +1,21 @@
-import BottomSheet, { BottomSheetView, useBottomSheetDynamicSnapPoints } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetView,
+  useBottomSheetDynamicSnapPoints,
+} from "@gorhom/bottom-sheet";
 import { useEffect, useMemo, useState } from "react";
 import { Dimensions, Platform } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import MapView, { Marker, MarkerPressEvent, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
-import { SharedValue } from "react-native-reanimated";
+import MapView, {
+  Marker,
+  type MarkerPressEvent,
+  PROVIDER_DEFAULT,
+  PROVIDER_GOOGLE,
+} from "react-native-maps";
+import type { SharedValue } from "react-native-reanimated";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { MapGoogle, MarkerGoogle } from "~/types/interface";
+import type { MapGoogle, MarkerGoogle } from "~/types/interface";
 import { MapBottomBar } from "./MapBottomBar";
 
 interface PropsType {
@@ -41,8 +49,14 @@ export const Map = (props: PropsType) => {
       } else {
         bottomSheet.expand();
 
-        const lat = typeof markerOpen.latitude === "string" ? parseFloat(markerOpen.latitude) : markerOpen.latitude;
-        const lng = typeof markerOpen.longitude === "string" ? parseFloat(markerOpen.longitude) : markerOpen.longitude;
+        const lat =
+          typeof markerOpen.latitude === "string"
+            ? parseFloat(markerOpen.latitude)
+            : markerOpen.latitude;
+        const lng =
+          typeof markerOpen.longitude === "string"
+            ? parseFloat(markerOpen.longitude)
+            : markerOpen.longitude;
 
         if (map) {
           map.fitToCoordinates([
@@ -114,8 +128,10 @@ export const Map = (props: PropsType) => {
         provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
       >
         {markers.map((marker, key) => {
-          const lat = typeof marker.latitude === "string" ? parseFloat(marker.latitude) : marker.latitude;
-          const lng = typeof marker.longitude === "string" ? parseFloat(marker.longitude) : marker.longitude;
+          const lat =
+            typeof marker.latitude === "string" ? parseFloat(marker.latitude) : marker.latitude;
+          const lng =
+            typeof marker.longitude === "string" ? parseFloat(marker.longitude) : marker.longitude;
           return (
             <Marker
               key={key}
@@ -129,7 +145,9 @@ export const Map = (props: PropsType) => {
             >
               <Icon
                 name="pin"
-                fill={markerOpen?.place_id === marker.place_id ? styles.colors.red : props.markersColor}
+                fill={
+                  markerOpen?.place_id === marker.place_id ? styles.colors.red : props.markersColor
+                }
                 width={40}
                 height={40}
               />
@@ -149,7 +167,11 @@ export const Map = (props: PropsType) => {
         onChange={onChange}
       >
         <BottomSheetView onLayout={handleContentLayout}>
-          <MapBottomBar selectedMarker={markerOpen} textColor={props.markersColor} hideSideBar={hideMarkerDetails} />
+          <MapBottomBar
+            selectedMarker={markerOpen}
+            textColor={props.markersColor}
+            hideSideBar={hideMarkerDetails}
+          />
         </BottomSheetView>
       </BottomSheet>
     </GestureHandlerRootView>

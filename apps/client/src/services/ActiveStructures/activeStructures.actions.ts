@@ -1,5 +1,5 @@
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_ACTIVE_STRUCTURES, SET_ACTIVE_STRUCTURES } from "./activeStructures.actionTypes";
 
 export const setActiveStructuresActionCreator = (value: GetActiveStructuresResponse[]) =>

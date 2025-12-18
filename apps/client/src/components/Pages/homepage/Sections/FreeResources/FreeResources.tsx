@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import FreeResourcesImg from "~/assets/homepage/free-resources.png";
 import Image from "~/components/UI/Image";
 

@@ -1,4 +1,4 @@
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import type * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Tooltip from "@radix-ui/react-tooltip";
 
 import { useTranslation } from "next-i18next";
@@ -24,11 +24,19 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
 ) {
   const { t } = useTranslation();
 
+  const handleOnClear = () => {
+    onClear();
+  };
+
   return (
     <div className={styles.container}>
       <button
         onClick={onClick}
-        className={cls(styles.button, isOpen && styles.open, value.length > 0 && !icon && styles.values)}
+        className={cls(
+          styles.button,
+          isOpen && styles.open,
+          value.length > 0 && !icon && styles.values,
+        )}
         ref={forwardedRef}
         {...other}
       >
@@ -43,7 +51,12 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         {tooltip && (
           <Tooltip.Root>
             <Tooltip.Portal>
-              <Tooltip.TooltipContent className={styles.tooltip} side="bottom" align="start" sideOffset={15}>
+              <Tooltip.TooltipContent
+                className={styles.tooltip}
+                side="bottom"
+                align="start"
+                sideOffset={15}
+              >
                 <Balancer>{tooltip.text}</Balancer>
               </Tooltip.TooltipContent>
             </Tooltip.Portal>
@@ -68,7 +81,11 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
       </button>
 
       {!icon && value.length > 0 && (
-        <button className={styles.clear} onClick={onClear} title={t("Recherche.resetButton")}>
+        <button
+          className={styles.clear}
+          onClick={handleOnClear}
+          title={`${t("Recherche.resetButton", "Réinitialiser le filtre")} ${label}`}
+        >
           <i className="ri-close-circle-fill"></i>
         </button>
       )}

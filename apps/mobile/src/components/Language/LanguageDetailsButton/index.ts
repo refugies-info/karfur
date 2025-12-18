@@ -1,1 +1,1 @@
-export { LanguageDetailsButtonProps, default } from "./LanguageDetailsButton";
+export { default, LanguageDetailsButtonProps } from "./LanguageDetailsButton";

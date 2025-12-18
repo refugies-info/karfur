@@ -1,4 +1,4 @@
-import { GetLogResponse, Id, ImprovementsRequest } from "@refugies-info/api-types";
+import type { GetLogResponse, Id, ImprovementsRequest } from "@refugies-info/api-types";
 import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Col, Input, Row } from "reactstrap";
@@ -57,14 +57,22 @@ export const ImprovementsMailModal = (props: Props) => {
   const users = useSelector(allActiveUsersSelector);
   const structures = useSelector(allStructuresSelector);
 
-  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
+  const isLoadingDispositifs = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS),
+  );
   const isLoadingUsers = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS));
   const isLoadingStructures = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
   const isLoading = isLoadingDispositifs || isLoadingUsers || isLoadingStructures;
 
   if (isLoading) {
     return (
-      <DetailsModal show={props.show} toggleModal={props.toggleModal} isLoading={true} leftHead={null} rightHead={null}>
+      <DetailsModal
+        show={props.show}
+        toggleModal={props.toggleModal}
+        isLoading={true}
+        leftHead={null}
+        rightHead={null}
+      >
         <div></div>
       </DetailsModal>
     );
@@ -93,12 +101,19 @@ export const ImprovementsMailModal = (props: Props) => {
   );
 
   const formattedStatus = getFormattedStatus(dispositif.status);
-  const formattedStatusStructure = dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
+  const formattedStatusStructure =
+    dispositif.mainSponsor && getFormattedStatus(dispositif.mainSponsor.status);
 
-  const title = getTitle(dispositif.titreInformatif, dispositif.typeContenu, dispositif.titreMarque);
+  const title = getTitle(
+    dispositif.titreInformatif,
+    dispositif.typeContenu,
+    dispositif.titreMarque,
+  );
 
   const mainSponsorName =
-    dispositif && dispositif.mainSponsor && dispositif.mainSponsor.nom ? dispositif.mainSponsor.nom : "";
+    dispositif && dispositif.mainSponsor && dispositif.mainSponsor.nom
+      ? dispositif.mainSponsor.nom
+      : "";
 
   const dispositifCategories = [
     "C'est quoi ?",
@@ -148,7 +163,13 @@ export const ImprovementsMailModal = (props: Props) => {
   const nbUsersWithEmail = usersToDisplay.filter((user) => user.email).length;
 
   return (
-    <DetailsModal show={props.show} toggleModal={props.toggleModal} isLoading={false} leftHead={null} rightHead={null}>
+    <DetailsModal
+      show={props.show}
+      toggleModal={props.toggleModal}
+      isLoading={false}
+      leftHead={null}
+      rightHead={null}
+    >
       <Row>
         <Col lg="8">
           <div className={cls(modalStyles.title, "mb-4")}>
@@ -192,7 +213,9 @@ export const ImprovementsMailModal = (props: Props) => {
 
           <Row className="mt-6">
             <Col lg="4">
-              <p className={cls(styles.text, "mb-3")}>{"Sections à revoir (" + selectedCategories.length + ")"} </p>
+              <p className={cls(styles.text, "mb-3")}>
+                {"Sections à revoir (" + selectedCategories.length + ")"}{" "}
+              </p>
               <div className={styles.categories}>
                 {dispositifCategories.map((category, index) => (
                   <FButton
@@ -215,7 +238,9 @@ export const ImprovementsMailModal = (props: Props) => {
                 }}
               >
                 <p className={cls(styles.text, "mb-3")}>Ajouter un message</p>
-                <p className={cls(styles.text, "mb-3 text-muted")}>{message.length.toString()} sur 3000 caractères</p>
+                <p className={cls(styles.text, "mb-3 text-muted")}>
+                  {message.length.toString()} sur 3000 caractères
+                </p>
               </div>
               <Input
                 type="textarea"

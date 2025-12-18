@@ -1,13 +1,20 @@
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import type { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { HTMLAttributes, useContext, useMemo } from "react";
+import { type HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FRLink from "~/components/UI/FRLink";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
-import { getAge, getAgeLink, getFrenchLevel, getFrenchLevelLink, getPublic, getPublicStatus } from "../functions";
+import {
+  getAge,
+  getAgeLink,
+  getFrenchLevel,
+  getFrenchLevelLink,
+  getPublic,
+  getPublicStatus,
+} from "../functions";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   onClick?: () => void;
@@ -30,7 +37,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
   const { setActiveModal, setModalPage, formSubmitted } = useContext(PageContext);
 
   // Toggle visibility, if edit mode true, else check if there is any data
-  const showCard = isEditMode ? true : publicSpecific || publicStatus || publicAge || publicFrenchLevel;
+  const showCard = isEditMode
+    ? true
+    : publicSpecific || publicStatus || publicAge || publicFrenchLevel;
 
   return (
     <>
@@ -127,7 +136,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
               {publicAge === null ? (
                 "Non pertinent pour mon action"
               ) : publicAge ? (
-                <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>{getAge(publicAge, t)}</FRLink>
+                <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>
+                  {getAge(publicAge, t)}
+                </FRLink>
               ) : undefined}
             </MetaDataItem>
           ) : null}

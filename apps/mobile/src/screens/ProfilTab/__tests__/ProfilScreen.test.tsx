@@ -1,15 +1,20 @@
 import { useRoute } from "@react-navigation/core";
 import { NavigationContext } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import { MobileFrenchLevel } from "@refugies-info/api-types";
 import { fireEvent, render } from "@testing-library/react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import { AppActions, initialRootStateFactory, rootReducer, RootState } from "~/services/redux/reducers";
+import {
+  type AppActions,
+  initialRootStateFactory,
+  type RootState,
+  rootReducer,
+} from "~/services/redux/reducers";
 import { initialUserState } from "~/services/redux/User/user.reducer";
 import { ThemeProvider } from "~/theme";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 import { wrapWithProvidersAndRender } from "../../../jest/wrapWithProvidersAndRender";
 import { ProfilScreen } from "../ProfilScreen";
 

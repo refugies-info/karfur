@@ -1,8 +1,8 @@
 import { UserStatus } from "@refugies-info/api-types";
-import { ProjectionType } from "mongoose";
+import type { ProjectionType } from "mongoose";
 import logger from "~/logger";
-import { Dispositif } from "~/typegoose";
-import { User } from "~/typegoose/User";
+import type { Dispositif } from "~/typegoose";
+import type { User } from "~/typegoose/User";
 import { getUserById } from "../users/users.repository";
 import {
   sendPublishedFicheMailToCreatorService,

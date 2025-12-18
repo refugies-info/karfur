@@ -1,11 +1,11 @@
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import demarchesMobile from "~/assets/homepage/why-accordion/demarches-mobile.png";
 import demarches from "~/assets/homepage/why-accordion/demarches.png";
+import demarchesMobile from "~/assets/homepage/why-accordion/demarches-mobile.png";
 import dispos from "~/assets/homepage/why-accordion/dispos-mobile.png";
 import dispositif from "~/assets/homepage/why-accordion/dispositifs.png";
 import partage from "~/assets/homepage/why-accordion/partage.png";
 import { Accordion } from "~/components/Pages/staticPages/common";
-import { useWindowSize } from "~/hooks";
 
 interface Props {
   nbDemarches: number;
@@ -45,7 +45,10 @@ const WhyAccordions = (props: Props) => {
       mediaHeight: 327,
     },
     {
-      title: t("Homepage.accordionItemsdesktopTitle3", "Partagez facilement l’information à vos bénéficiaires"),
+      title: t(
+        "Homepage.accordionItemsdesktopTitle3",
+        "Partagez facilement l’information à vos bénéficiaires",
+      ),
       text: t("Homepage.accordionItemsdesktopText3", {
         count: props.nbDemarches,
         defaultValue:
@@ -104,7 +107,9 @@ const WhyAccordions = (props: Props) => {
 
   return (
     <div className="container md:py-20">
-      <h2 className="mb-20">{t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}</h2>
+      <h2 className="mb-20">
+        {t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}
+      </h2>
       <Accordion
         items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
         withImages

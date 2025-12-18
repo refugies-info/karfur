@@ -16,7 +16,10 @@ const DeleteContentModal = (props: Props) => {
       small
     >
       <div>
-        <p>Vous ne supprimez pas la structure en elle-même mais le lien qui existe entre votre fiche et celle-ci.</p>
+        <p>
+          Vous ne supprimez pas la structure en elle-même mais le lien qui existe entre votre fiche
+          et celle-ci.
+        </p>
 
         <div className="text-end">
           <Button

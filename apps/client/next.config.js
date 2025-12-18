@@ -1,5 +1,11 @@
 const { i18n } = require("./next-i18next.config");
-const { translatedRedirects, oldPathsRedirects, partnersRedirect, rewrites } = require("./redirects.js");
+const {
+  translatedRedirects,
+  oldPathsRedirects,
+  partnersRedirect,
+  annuaireRemovalRedirects,
+  rewrites,
+} = require("./redirects.js");
 const path = require("path");
 
 module.exports = {
@@ -47,7 +53,12 @@ module.exports = {
     return rewrites;
   },
   async redirects() {
-    return [...oldPathsRedirects, ...translatedRedirects, ...partnersRedirect];
+    return [
+      ...oldPathsRedirects,
+      ...translatedRedirects,
+      ...partnersRedirect,
+      ...annuaireRemovalRedirects,
+    ];
   },
   async headers() {
     return [

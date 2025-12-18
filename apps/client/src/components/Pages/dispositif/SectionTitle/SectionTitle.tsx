@@ -2,7 +2,7 @@ import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useContext } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { getDispositifSectionTitle, titleKeyType } from "~/lib/getDispositifSectionTitle";
+import { getDispositifSectionTitle, type titleKeyType } from "~/lib/getDispositifSectionTitle";
 import PageContext from "~/utils/pageContext";
 
 interface TitleProps {
@@ -14,7 +14,9 @@ const Title = (props: TitleProps) => {
   return (
     props.titleKey !== "what" && ( // Hide the 'what' section title as per RI-561
       <h2 className={cn("text-title-lg text-title-grey font-bold", props.className)}>
-        {props.titleKey === "abstract" && <EVAIcon name="file-text-outline" size={32} fill="#000" className="me-2" />}
+        {props.titleKey === "abstract" && (
+          <EVAIcon name="file-text-outline" size={32} fill="#000" className="me-2" />
+        )}
         {t(getDispositifSectionTitle(props.titleKey))}
       </h2>
     )

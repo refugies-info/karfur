@@ -1,31 +1,32 @@
 import {
-  ageType,
-  commitmentDetailsType,
-  conditionType,
+  type ageType,
   ContentType,
+  type commitmentDetailsType,
+  type conditionType,
+  DispositifOrigin,
   DispositifStatus,
-  frenchLevelType,
-  frequencyDetailsType,
-  frequencyUnitType,
-  Languages,
-  locationType,
-  priceDetails,
-  publicStatusType,
-  publicType,
-  timeSlotType,
-  timeUnitType,
+  type frenchLevelType,
+  type frequencyDetailsType,
+  type frequencyUnitType,
+  type Languages,
+  type locationType,
+  type priceDetails,
+  type publicStatusType,
+  type publicType,
+  type timeSlotType,
+  type timeUnitType,
 } from "@refugies-info/api-types";
-import { isDocument, isDocumentArray, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { isDocument, isDocumentArray, modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { get, has } from "lodash";
-import { Types } from "mongoose";
+import type { Types } from "mongoose";
 import { MustBePopulatedError } from "~/errors";
-import { PartialRecord } from "~/types/interface";
+import type { PartialRecord } from "~/types/interface";
 import { Base } from "./Base";
-import { ImageSchema, RichText, Uuid } from "./generics";
-import { Need, NeedId } from "./Need";
+import { ImageSchema, type RichText, type Uuid } from "./generics";
+import { Need, type NeedId } from "./Need";
 
-import { Structure, StructureId } from "./Structure";
-import { Theme, ThemeId } from "./Theme";
+import { Structure, type StructureId } from "./Structure";
+import { Theme, type ThemeId } from "./Theme";
 import { User } from "./User";
 
 export class Sponsor {
@@ -58,6 +59,8 @@ export type InfoSections = { [key: Uuid]: InfoSection };
 export class DispositifContent extends Content {
   @prop()
   what: RichText;
+  @prop()
+  markdown?: string;
   @prop()
   why: { [key: string]: InfoSection };
   @prop()
@@ -214,6 +217,15 @@ export class Dispositif extends Base {
   @prop()
   updatedAt?: Date;
 
+  @prop({
+    enum: DispositifOrigin,
+    type: String,
+    default: "RI",
+    required: true,
+    immutable: true,
+  })
+  public origin!: DispositifOrigin;
+
   @prop({ ref: () => Structure })
   public mainSponsor?: Ref<Structure, StructureId>;
   @prop({ ref: () => Theme })
@@ -358,7 +370,11 @@ export class Dispositif extends Base {
    *
    * @see TranslationContent
    */
-  public getTranslated(path: string, ln: Languages | string = "fr", defaultLanguage: string = "fr") {
+  public getTranslated(
+    path: string,
+    ln: Languages | string = "fr",
+    defaultLanguage: string = "fr",
+  ) {
     return this.isTranslatedIn(ln as Languages)
       ? get(this.translations, `${ln}.${path}`)
       : get(this.translations, `${defaultLanguage}.${path}`);

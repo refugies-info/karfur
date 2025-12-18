@@ -1,10 +1,13 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
-import { addMerciDispositifInDB, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import {
+  addMerciDispositifInDB,
+  getDispositifById,
+} from "~/modules/dispositif/dispositif.repository";
 import { ObjectId } from "~/typegoose";
-import { Merci } from "~/typegoose/Dispositif";
-import { Response } from "~/types/interface";
+import type { Merci } from "~/typegoose/Dispositif";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const addMerci = async (id: string, userId: string | null): Response => {

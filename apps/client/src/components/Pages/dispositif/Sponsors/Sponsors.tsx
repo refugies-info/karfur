@@ -1,9 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
+import type { ContentStructure, CreateDispositifRequest, Sponsor } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import React, { useCallback } from "react";
+import { useTranslation } from "next-i18next";
+import type React from "react";
+import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { sanitizeUrl } from "~/lib/sanitizeUrl";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -21,9 +22,18 @@ interface Props {
 /**
  * Show secondary sponsors of a dispositif.
  */
-const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSponsorClick, onAdd }: Props) => {
+const Sponsors = ({
+  mainSponsor,
+  sponsors,
+  editMode,
+  onDelete,
+  onClick,
+  onMainSponsorClick,
+  onAdd,
+}: Props) => {
   const { t } = useTranslation();
-  const hasMainSponsor = mainSponsor !== null && mainSponsor !== undefined && typeof mainSponsor !== "string";
+  const hasMainSponsor =
+    mainSponsor !== null && mainSponsor !== undefined && typeof mainSponsor !== "string";
   const hasSponsors = sponsors && sponsors.length > 0;
   const dispositif = useSelector(selectedDispositifSelector);
 
@@ -63,7 +73,11 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
                     onMainSponsorClick?.();
                   }}
                 >
-                  {getSponsorContent(mainSponsor?.link, mainSponsor?.acronyme || mainSponsor?.nom, true)}
+                  {getSponsorContent(
+                    mainSponsor?.link,
+                    mainSponsor?.acronyme || mainSponsor?.nom,
+                    true,
+                  )}
                 </span>
                 <Button
                   iconId="fr-icon-edit-line"
@@ -78,9 +92,7 @@ const Sponsors = ({ mainSponsor, sponsors, editMode, onDelete, onClick, onMainSp
                 />
               </>
             ) : (
-              <Link href={`/annuaire/${String((mainSponsor as ContentStructure)?._id)}`} className={cn("fr-link")}>
-                {(mainSponsor as ContentStructure)?.nom}
-              </Link>
+              <>{(mainSponsor as ContentStructure)?.nom}</>
             )}{" "}
             {hasSponsors && sponsors.length > 0 && ", "}
           </>

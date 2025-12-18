@@ -1,7 +1,8 @@
-import { action, ActionType } from "typesafe-actions";
+import { type ActionType, action } from "typesafe-actions";
 import { TOGGLE_NEWSLETTER_MODAL } from "./miscellaneous.actionTypes";
 
-export const toggleNewsletterModalAction = (visible?: boolean) => action(TOGGLE_NEWSLETTER_MODAL, visible);
+export const toggleNewsletterModalAction = (visible?: boolean) =>
+  action(TOGGLE_NEWSLETTER_MODAL, visible);
 
 const actions = {
   toggleNewsletterModalAction,

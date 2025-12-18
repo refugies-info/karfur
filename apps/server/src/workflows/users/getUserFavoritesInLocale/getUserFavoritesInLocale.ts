@@ -1,10 +1,14 @@
-import { GetUserFavoritesRequest, GetUserFavoritesResponse, Languages } from "@refugies-info/api-types";
-import { FilterQuery } from "mongoose";
+import type {
+  GetUserFavoritesRequest,
+  GetUserFavoritesResponse,
+  Languages,
+} from "@refugies-info/api-types";
+import type { FilterQuery } from "mongoose";
 import logger from "~/logger";
 import { getSimpleDispositifs } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif, User } from "~/typegoose";
-import { Favorite } from "~/typegoose/User";
-import { ResponseWithData } from "~/types/interface";
+import type { Dispositif, User } from "~/typegoose";
+import type { Favorite } from "~/typegoose/User";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getUserFavoritesInLocale = async (
   user: User,
@@ -18,7 +22,10 @@ export const getUserFavoritesInLocale = async (
   }
 
   const selectedLocale = (query.locale || "fr") as Languages;
-  const dbQuery: FilterQuery<Dispositif> = { status: "Actif", _id: { $in: favorites.map((f) => f.dispositifId) } };
+  const dbQuery: FilterQuery<Dispositif> = {
+    status: "Actif",
+    _id: { $in: favorites.map((f) => f.dispositifId) },
+  };
   const result = await getSimpleDispositifs(dbQuery, selectedLocale);
 
   return { text: "success", data: result as unknown as GetUserFavoritesResponse[] };

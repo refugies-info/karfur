@@ -1,10 +1,10 @@
-import { PostStructureRequest } from "@refugies-info/api-types";
+import type { PostStructureRequest } from "@refugies-info/api-types";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { createStructureInDB } from "~/modules/structure/structure.repository";
 import { addStructureForUsers } from "~/modules/users/users.service";
-import { ObjectId, Structure } from "~/typegoose";
-import { Response } from "~/types/interface";
+import { ObjectId, type Structure } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const createStructure = async (body: PostStructureRequest, userId: string): Response => {

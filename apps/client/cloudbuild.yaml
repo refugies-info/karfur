@@ -58,6 +58,7 @@ steps:
           --region ${_REGION} \
           --service-account ${_SA} \
           --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
+          --set-env-vars DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS} \
           "${vpc_args[@]}"
 
 options:
@@ -70,5 +71,6 @@ substitutions:
   _REGION: europe-west1
   _REGISTRY: "registry-${_ENV}"
   _REGISTRY_URL: "${_REGION}-docker.pkg.dev"
+  _DISABLE_SEARCH_COUNTS: "false"
 
 timeout: 1200s

@@ -1,5 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
+import { isInBrowser } from "@refugies-info/ui";
 import { logger } from "logger";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,7 +12,6 @@ import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
 import Image from "~/components/UI/Image";
 import { useLogin } from "~/hooks";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import styles from "~/scss/components/auth.module.scss";
 import API from "~/utils/API";
 import Loader from "../Loader";
@@ -26,7 +26,10 @@ interface Props {
 
 const CheckCode = (props: Props) => {
   const router = useRouter();
-  const email = useMemo(() => props.email || (router.query.email as string), [router.query, props.email]);
+  const email = useMemo(
+    () => props.email || (router.query.email as string),
+    [router.query, props.email],
+  );
   const [error, setError] = useState("");
   const [code, setCode] = useState("");
   const { logUser } = useLogin();
@@ -89,7 +92,12 @@ const CheckCode = (props: Props) => {
       ) : (
         <>
           {props.type !== "updateUser" && (
-            <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+            <Button
+              priority="tertiary"
+              size="small"
+              iconId="fr-icon-arrow-left-line"
+              onClick={() => router.back()}
+            >
               Retour
             </Button>
           )}
@@ -98,7 +106,11 @@ const CheckCode = (props: Props) => {
             {props.type === "login" && <h1>Entrez le code reçu</h1>}
             <p className={styles.subtitle}>
               Un code temporaire à 6 chiffres vous a été envoyé à {email}.{" "}
-              <Link href={props.notYouCallback ? "#" : "/auth"} onClick={props.notYouCallback} className="underline">
+              <Link
+                href={props.notYouCallback ? "#" : "/auth"}
+                onClick={props.notYouCallback}
+                className="underline"
+              >
                 Ce n'est pas vous&nbsp;?
               </Link>
             </p>
@@ -106,7 +118,9 @@ const CheckCode = (props: Props) => {
 
           <form onSubmit={submit}>
             <Input
-              label={props.type === "login" ? "Code de connexion temporaire" : "Code d'authentification"}
+              label={
+                props.type === "login" ? "Code de connexion temporaire" : "Code d'authentification"
+              }
               state={!error ? "default" : "error"}
               stateRelatedMessage={error}
               className="mb-0"

@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import Houssam from "~/assets/dispositif/translation/houssam.jpg";
 import Kim from "~/assets/dispositif/translation/kim.jpg";
 import Marianne from "~/assets/dispositif/translation/marianne.jpg";
@@ -16,8 +16,9 @@ export const modalContent: { title: string; text: React.ReactNode }[] = [
     title: "Retravaillez bien la traduction automatique proposée par Google Translate",
     text: (
       <>
-        Quand vous arrivez sur une fiche, vous voyez une première traduction. Attention, elle est automatique : il faut{" "}
-        <strong>la retravailler et la corriger</strong> ! Évitez la traduction mot à mot.
+        Quand vous arrivez sur une fiche, vous voyez une première traduction. Attention, elle est
+        automatique : il faut <strong>la retravailler et la corriger</strong> ! Évitez la traduction
+        mot à mot.
       </>
     ),
   },
@@ -25,8 +26,8 @@ export const modalContent: { title: string; text: React.ReactNode }[] = [
     title: "Faites des phrases simples et sans utiliser de dialecte",
     text: (
       <>
-        La traduction doit être comprise par le plus grand nombre de personnes. Choisissez la version la plus
-        universelle possible.
+        La traduction doit être comprise par le plus grand nombre de personnes. Choisissez la
+        version la plus universelle possible.
       </>
     ),
   },
@@ -34,8 +35,9 @@ export const modalContent: { title: string; text: React.ReactNode }[] = [
     title: "Expliquez les idées spécifiques à la culture française",
     text: (
       <>
-        Certains mots ou concepts sont propres à la culture ou à l’administration française. Pensez bien à compléter le
-        texte pour expliquer ces mots. Par exemple, les mots « attestation » ou « renouvellement ».
+        Certains mots ou concepts sont propres à la culture ou à l’administration française. Pensez
+        bien à compléter le texte pour expliquer ces mots. Par exemple, les mots « attestation » ou
+        « renouvellement ».
       </>
     ),
   },
@@ -43,8 +45,8 @@ export const modalContent: { title: string; text: React.ReactNode }[] = [
     title: "Un expert relit et valide votre traduction",
     text: (
       <>
-        Vous recevrez un email lorsque l’expert aura publié la fiche. Elle devient alors visible par les utilisateurs,
-        pas avant !
+        Vous recevrez un email lorsque l’expert aura publié la fiche. Elle devient alors visible par
+        les utilisateurs, pas avant !
       </>
     ),
   },

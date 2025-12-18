@@ -1,8 +1,15 @@
-import { DispositifStatus, Id, StructureStatus } from "@refugies-info/api-types";
-import { NextRouter } from "next/router";
-import { UserStatusType } from "~/types/interface";
+import type { DispositifStatus, Id, StructureStatus } from "@refugies-info/api-types";
+import type { NextRouter } from "next/router";
+import type { UserStatusType } from "~/types/interface";
 
-export type TabQuery = "contenus" | "structures" | "utilisateurs" | "divers" | "categories" | "widgets" | undefined;
+export type TabQuery =
+  | "contenus"
+  | "structures"
+  | "utilisateurs"
+  | "divers"
+  | "categories"
+  | "widgets"
+  | undefined;
 type Status = DispositifStatus | StructureStatus | UserStatusType;
 
 type AdminUrlParams = {
@@ -79,7 +86,9 @@ export const getInitialFilters = (router: NextRouter, currentTab: TabQuery) => {
   if (router.query.tab) {
     if (router.query.tab !== currentTab) return DEFAULT_FILTERS;
 
-    const filterQuery = router.query.filter ? (decodeURI(router.query.filter as string) as Status) : undefined;
+    const filterQuery = router.query.filter
+      ? (decodeURI(router.query.filter as string) as Status)
+      : undefined;
 
     return {
       filter: filterQuery,

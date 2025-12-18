@@ -102,7 +102,9 @@ export const ContribStyledStatus = (props: {
         $size={props.size}
       >
         {props.textToDisplay || status}
-        {onMouseHover && <EVAIcon name={"question-mark-circle"} size={20} fill={textColor} className="ms-2" />}
+        {onMouseHover && (
+          <EVAIcon name={"question-mark-circle"} size={20} fill={textColor} className="ms-2" />
+        )}
       </ContribStyledStatusContainer>
     </div>
   );
@@ -112,7 +114,12 @@ export const StatutHeader = (props: { onClick: () => void }) => {
   return (
     <RowContainer onClick={props.onClick}>
       Statut
-      <EVAIcon name={"question-mark-circle-outline"} size={20} fill={colors.gray90} className="ms-2" />
+      <EVAIcon
+        name={"question-mark-circle-outline"}
+        size={20}
+        fill={colors.gray90}
+        className="ms-2"
+      />
     </RowContainer>
   );
 };

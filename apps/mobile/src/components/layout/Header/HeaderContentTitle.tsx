@@ -1,12 +1,12 @@
-import { Picture } from "@refugies-info/api-types";
-import { ReactNode } from "react";
+import type { Picture } from "@refugies-info/api-types";
+import type { ReactNode } from "react";
 import styled, { useTheme } from "styled-components/native";
 
 import { firstLetterUpperCase } from "~/libs";
 import { ReadableText } from "../../ReadableText";
 import { StreamlineIcon } from "../../StreamlineIcon";
 import Columns from "../Columns";
-import { HeaderContentProps } from "./HeaderContentProps";
+import type { HeaderContentProps } from "./HeaderContentProps";
 import HeaderTitle from "./HeaderTitle";
 
 const TitleContainer = styled.View`

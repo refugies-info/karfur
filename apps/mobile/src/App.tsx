@@ -6,19 +6,20 @@ import { StatusBar } from "expo-status-bar";
 import { Suspense, useEffect } from "react";
 import { I18nManager, View } from "react-native";
 import "react-native-gesture-handler";
+
+import type { AppUserRequest, Languages } from "@refugies-info/api-types";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
-import aa from "search-insights";
-import { RootNavigator } from "./navigation";
-import { store } from "./services/redux/store";
-
-import { AppUserRequest, Languages } from "@refugies-info/api-types";
 import useAsync from "react-use/lib/useAsync";
+import aa from "search-insights";
 import { ConnexionTest } from "./components/ConnexionTest";
 import OfflinePage from "./components/OfflinePage";
+import { RootNavigator } from "./navigation";
+import { store } from "./services/redux/store";
 import { ThemeProvider } from "./theme";
 import { retrieveTechnicalInfo, updateAppUser } from "./utils/API";
+
 // deactivate native RTL so we can handle it ourselves
 I18nManager.forceRTL(false);
 I18nManager.allowRTL(false);

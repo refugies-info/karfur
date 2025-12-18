@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useMemo, useState } from "react";
+import { type ReactElement, useEffect, useMemo, useState } from "react";
 import { getPath } from "routes";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
@@ -45,7 +45,11 @@ const AuthMicrosoftLogin = () => {
         })
         .catch((e) => {
           const responseData = e.response?.data?.data;
-          const error = handleError(e.response?.data?.code, responseData?.email || "", responseData?.code);
+          const error = handleError(
+            e.response?.data?.code,
+            responseData?.email || "",
+            responseData?.code,
+          );
           if (error) setError(error);
         });
     }

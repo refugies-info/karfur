@@ -1,7 +1,7 @@
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import type { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { cn, MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { HTMLAttributes, useContext, useMemo } from "react";
+import { type HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FRLink from "~/components/UI/FRLink";
 import { formatDepartment } from "~/lib/departments";
@@ -39,18 +39,22 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
         <MetaDataCard
           mode={isEditMode ? "edit" : "view"}
           state={price ? "valid" : "invalid"}
-          title="Informations pratiques"
+          title={t("Dispositif.practicalInformations")}
           className={cn(className)}
           {...props}
         >
           {isEditMode || price ? (
             <MetaDataItem
               icon="fr-icon-money-euro-circle-line"
-              title="Prix"
+              title={t("Dispositif.price")}
               state={formSubmitted && price === undefined ? "invalid" : undefined}
               onClick={isEditMode ? () => setActiveModal?.("Price") : undefined}
             >
-              {price === null ? "Non pertinent pour mon action" : price ? getPrice(price, t) : undefined}
+              {price === null
+                ? "Non pertinent pour mon action"
+                : price
+                  ? getPrice(price, t)
+                  : undefined}
             </MetaDataItem>
           ) : null}
 

@@ -1,5 +1,11 @@
-import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
-import { FilterKey, getDisplayRule, TabKey } from "../resultsDisplayRules";
+import {
+  noSort,
+  sortByDate,
+  sortByLocation,
+  sortByTheme,
+  sortByView,
+} from "~/lib/recherche/sortContents";
+import { type FilterKey, getDisplayRule, type TabKey } from "../resultsDisplayRules";
 
 describe("All Tab Rules", () => {
   const tab: TabKey = "all";

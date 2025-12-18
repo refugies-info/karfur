@@ -17,7 +17,12 @@ describe("takeSnapshot", () => {
       translations: { fr: { content: "test content" } },
     });
 
-    const result = await takeSnapshot(dispositif, "before", DispositifStatus.DRAFT, DispositifStatus.ACTIVE);
+    const result = await takeSnapshot(
+      dispositif,
+      "before",
+      DispositifStatus.DRAFT,
+      DispositifStatus.ACTIVE,
+    );
 
     expect(result?.version).toBe(1);
 
@@ -43,7 +48,12 @@ describe("takeSnapshot", () => {
     await takeSnapshot(dispositif, "before", DispositifStatus.DRAFT, DispositifStatus.ACTIVE);
 
     // Now take another snapshot
-    const result = await takeSnapshot(dispositif, "after", DispositifStatus.DRAFT, DispositifStatus.ACTIVE);
+    const result = await takeSnapshot(
+      dispositif,
+      "after",
+      DispositifStatus.DRAFT,
+      DispositifStatus.ACTIVE,
+    );
 
     expect(result?.version).toBe(2);
 

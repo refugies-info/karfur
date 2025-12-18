@@ -5,9 +5,10 @@ import useLocale from "~/hooks/useLocale";
 import { getAllPageReadableText } from "~/lib/getReadableText";
 import { readAudio, stopAudio } from "~/lib/readAudio";
 import { Event } from "~/lib/tracking";
-import { dispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import { makeDispositifNeedsSelector } from "~/services/Needs/needs.selectors";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { secondaryThemesSelector, themeSelector } from "~/services/Themes/themes.selectors";
+import { makeSecondaryThemesSelector, makeThemeSelector } from "~/services/Themes/themes.selectors";
 
 /**
  * Gives methods to start and stop the TTS of the whole dispositif page
@@ -17,9 +18,17 @@ const useDispositifTts = () => {
 
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
-  const secondaryThemes = useSelector(secondaryThemesSelector(dispositif?.secondaryThemes));
-  const needs = useSelector(dispositifNeedsSelector(dispositif?.needs));
+
+  // Create stable selector instances
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const selectSecondaryThemes = useMemo(makeSecondaryThemesSelector, []);
+  const selectDispositifNeeds = useMemo(makeDispositifNeedsSelector, []);
+
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
+  const secondaryThemes = useSelector((state: RootState) =>
+    selectSecondaryThemes(state, dispositif?.secondaryThemes),
+  );
+  const needs = useSelector((state: RootState) => selectDispositifNeeds(state, dispositif?.needs));
 
   const [sectionPlaying, setSectionPlaying] = useState<number | null>(null);
   const [isLoadingTts, setIsLoadingTts] = useState(false);

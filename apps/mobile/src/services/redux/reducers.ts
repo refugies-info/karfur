@@ -1,21 +1,37 @@
 import { combineReducers } from "redux";
-import { ContentsState, contentsReducer, initialContentsState } from "./Contents/contents.reducer";
 import {
-  GroupedContentsState,
+  type ContentsState,
+  contentsReducer,
+  initialContentsState,
+} from "./Contents/contents.reducer";
+import {
+  type GroupedContentsState,
   groupedContentsReducer,
   initialGroupedContentsState,
 } from "./ContentsGroupedByNeeds/contentsGroupedByNeeds.reducer";
-import { LanguageState, initialLanguageState, languagesReducer } from "./Languages/languages.reducer";
-import { LoadingStatusState, initialLoadingState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
-import { NeedState, initialNeedState, needsReducer } from "./Needs/needs.reducer";
 import {
-  SelectedContentState,
+  initialLanguageState,
+  type LanguageState,
+  languagesReducer,
+} from "./Languages/languages.reducer";
+import {
+  initialLoadingState,
+  type LoadingStatusState,
+  loadingStatusReducer,
+} from "./LoadingStatus/loadingStatus.reducer";
+import { initialNeedState, type NeedState, needsReducer } from "./Needs/needs.reducer";
+import {
   initialSelectedContentState,
+  type SelectedContentState,
   selectedContentReducer,
 } from "./SelectedContent/selectedContent.reducer";
-import { ThemeState, initialThemeState, themesReducer } from "./Themes/themes.reducer";
-import { UserState, initialUserState, userReducer } from "./User/user.reducer";
-import { VoiceOverState, initialVoiceOverState, voiceOverReducer } from "./VoiceOver/voiceOver.reducer";
+import { initialThemeState, type ThemeState, themesReducer } from "./Themes/themes.reducer";
+import { initialUserState, type UserState, userReducer } from "./User/user.reducer";
+import {
+  initialVoiceOverState,
+  type VoiceOverState,
+  voiceOverReducer,
+} from "./VoiceOver/voiceOver.reducer";
 
 const appReducer = combineReducers({
   loadingStatus: loadingStatusReducer,
@@ -57,4 +73,5 @@ export const initialRootStateFactory = (): RootState => ({
   themes: initialThemeState,
 });
 
-export const rootReducer = (state: RootState | undefined, action: AppActions): RootReducer => appReducer(state, action);
+export const rootReducer = (state: RootState | undefined, action: AppActions): RootReducer =>
+  appReducer(state, action);

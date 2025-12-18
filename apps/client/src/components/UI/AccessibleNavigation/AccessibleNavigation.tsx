@@ -1,10 +1,10 @@
 import { Slot } from "@radix-ui/react-slot";
 import React, {
-  KeyboardEvent,
-  ReactNode,
   createContext,
   forwardRef,
+  type KeyboardEvent,
   memo,
+  type ReactNode,
   useCallback,
   useContext,
   useImperativeHandle,
@@ -15,10 +15,10 @@ import React, {
 type Orientation = "horizontal" | "vertical";
 
 type AccessibleNavigationProps = React.HTMLAttributes<HTMLDivElement> & {
-  "children": ReactNode;
-  "orientation"?: Orientation;
-  "onEscape"?: () => void;
-  "onNavigateOut"?: () => void;
+  children: ReactNode;
+  orientation?: Orientation;
+  onEscape?: () => void;
+  onNavigateOut?: () => void;
   "aria-label"?: string; // Accessible name for the navigation
 };
 
@@ -27,15 +27,27 @@ type AccessibleNavigationContextProps = {
   focusItem: (index: number) => void;
 };
 
-const AccessibleNavigationContext = createContext<AccessibleNavigationContextProps | undefined>(undefined);
+const AccessibleNavigationContext = createContext<AccessibleNavigationContextProps | undefined>(
+  undefined,
+);
 
 const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProps>(
   (
-    { children, orientation = "vertical", className, onEscape, onNavigateOut, "aria-label": ariaLabel, ...props },
+    {
+      children,
+      orientation = "vertical",
+      className,
+      onEscape,
+      onNavigateOut,
+      "aria-label": ariaLabel,
+      role,
+      ...props
+    },
     ref,
   ) => {
     const navRef = useRef<HTMLDivElement | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    const isPresentation = role === "presentation" || role === "none";
 
     // Here we can't use ref directly if we want the querySelector to work
     useImperativeHandle(ref, () => navRef.current as HTMLDivElement);
@@ -108,9 +120,9 @@ const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProp
       <AccessibleNavigationContext.Provider value={contextValue}>
         <div
           ref={navRef}
-          role="menubar"
-          aria-orientation={orientation}
-          aria-label={ariaLabel}
+          role={role || "menubar"}
+          aria-orientation={isPresentation ? undefined : orientation}
+          aria-label={isPresentation ? undefined : ariaLabel}
           className={className}
           onKeyDown={handleKeyDown}
           {...props}
@@ -124,10 +136,10 @@ const AccessibleNavigation = forwardRef<HTMLDivElement, AccessibleNavigationProp
 AccessibleNavigation.displayName = "AccessibleNavigation";
 
 type AccessibleNavigationItemProps = {
-  "children": ReactNode;
-  "asChild"?: boolean;
+  children: ReactNode;
+  asChild?: boolean;
   "aria-current"?: "page" | "step" | "location" | "date" | boolean;
-  "className"?: string;
+  className?: string;
 };
 
 const AccessibleNavigationItem = memo(
@@ -135,7 +147,9 @@ const AccessibleNavigationItem = memo(
     ({ children, className, asChild = false, "aria-current": ariaCurrent, ...props }, ref) => {
       const context = useContext(AccessibleNavigationContext);
       if (!context) {
-        throw new Error("AccessibleNavigationItem must be used within an AccessibleNavigation component");
+        throw new Error(
+          "AccessibleNavigationItem must be used within an AccessibleNavigation component",
+        );
       }
 
       const { focusItem } = context;
@@ -144,7 +158,9 @@ const AccessibleNavigationItem = memo(
       useImperativeHandle(ref, () => itemRef.current as HTMLDivElement, []);
 
       const handleFocus = useCallback(() => {
-        const index = Array.from(itemRef.current?.parentNode?.children || []).indexOf(itemRef.current as any);
+        const index = Array.from(itemRef.current?.parentNode?.children || []).indexOf(
+          itemRef.current as any,
+        );
         if (index !== -1) focusItem(index);
       }, [focusItem]);
 

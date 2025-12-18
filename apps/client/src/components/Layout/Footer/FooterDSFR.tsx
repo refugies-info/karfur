@@ -1,13 +1,17 @@
 "use client";
-import { Footer as DSFRFooter, FooterProps } from "@codegouvfr/react-dsfr/Footer";
-import { useTranslation } from "next-i18next";
+import { Footer as DSFRFooter, type FooterProps } from "@codegouvfr/react-dsfr/Footer";
+import { useWindowSize } from "@refugies-info/ui";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
-import { FooterConsentManagementItem, FooterPersonalDataPolicyItem } from "~/hooks/useConsentContext";
+import { useEditionMode, useLocale } from "~/hooks";
+import {
+  FooterConsentManagementItem,
+  FooterPersonalDataPolicyItem,
+} from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
@@ -40,7 +44,10 @@ const Footer = () => {
       <h2 className="sr-only">{t("Footer.useful_links", "Liens utiles")}</h2>
       <DSFRFooter
         accessibility="non compliant"
-        accessibilityLinkProps={{ href: getPath("/declaration-accessibilite", locale), prefetch: false }}
+        accessibilityLinkProps={{
+          href: getPath("/declaration-accessibilite", locale),
+          prefetch: false,
+        }}
         brandTop="GOUVERNEMENT"
         id="fr-footer"
         className={cn(styles.footer)}
@@ -107,14 +114,15 @@ const Footer = () => {
                 },
                 text: t("Footer.procedures", "Les fiches démarches"),
               },
-              {
-                linkProps: {
-                  href: getPath("/annuaire", locale),
-                  hrefLang: locale,
-                  prefetch: false,
-                },
-                text: t("Footer.directory", "L’annuaire des acteurs"),
-              },
+              // Temporary disabled
+              // {
+              //   linkProps: {
+              //     href: getPath("/annuaire", locale),
+              //     hrefLang: locale,
+              //     prefetch: false,
+              //   },
+              //   text: t("Footer.directory", "L’annuaire des acteurs"),
+              // },
             ],
           },
           {
@@ -199,7 +207,10 @@ const Footer = () => {
                   href: "https://accueil-integration-refugies.fr/",
                   target: "_blank",
                 },
-                text: t("Footer.diair", "La Délégation interministérielle à l’accueil et l’intégration des réfugiés"),
+                text: t(
+                  "Footer.diair",
+                  "La Délégation interministérielle à l’accueil et l’intégration des réfugiés",
+                ),
               },
               {
                 linkProps: {

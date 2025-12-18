@@ -5,10 +5,13 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
 import { filterDispositifs } from "~/lib/recherche/queryContents";
-import { FilterKey } from "~/lib/recherche/resultsDisplayRules";
+import type { FilterKey } from "~/lib/recherche/resultsDisplayRules";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
-import { searchQuerySelector, searchResultsSelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+} from "~/services/SearchResults/searchResults.selector";
 
 const useDocsToFilter = (skip: FilterKey) => {
   const dispositifs = useSelector(activeDispositifsSelector);

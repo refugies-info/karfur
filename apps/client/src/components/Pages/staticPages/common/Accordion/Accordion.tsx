@@ -1,11 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
+import { useWindowSize } from "@refugies-info/ui";
 import DOMPurify from "isomorphic-dompurify";
 import { useState } from "react";
 import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
 import { useConsent } from "~/hooks/useConsentContext";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import AutoplayVideo from "../AutoplayVideo";
 import styles from "./Accordion.module.scss";
@@ -57,9 +57,15 @@ const Accordion = (props: Props) => {
           />
         );
       case "video":
-        return <AutoplayVideo src={item.video} height={item.mediaHeight || 420} width={item.mediaWidth} />;
+        return (
+          <AutoplayVideo
+            src={item.video}
+            height={item.mediaHeight || 420}
+            width={item.mediaWidth}
+          />
+        );
       case "youtube":
-        return !!finalityConsent?.youtube ? (
+        return finalityConsent?.youtube ? (
           <iframe
             width={item.mediaWidth || "560"}
             height={item.mediaHeight || "315"}
@@ -71,7 +77,10 @@ const Accordion = (props: Props) => {
             className={cn(styles.youtube, "w-full")}
           ></iframe>
         ) : (
-          <div className={styles.no_cookie} style={{ width: item.mediaWidth || 560, height: item.mediaHeight || 315 }}>
+          <div
+            className={styles.no_cookie}
+            style={{ width: item.mediaWidth || 560, height: item.mediaHeight || 315 }}
+          >
             Vous devez accepter les cookies pour afficher les vidéos Youtube.
           </div>
         );
@@ -80,7 +89,9 @@ const Accordion = (props: Props) => {
 
   return (
     <div className={cn("flex gap-20", props.className)}>
-      <div className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}>
+      <div
+        className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}
+      >
         <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
           {props.items.map((item, i) => {
             const isItemOpen = isOpen(i);
@@ -105,7 +116,9 @@ const Accordion = (props: Props) => {
                     <i
                       className={cn(
                         "flex before:!h-4 before:!w-4",
-                        isItemOpen ? "fr-icon-subtract-line before:!bg-title-blue-france" : "fr-icon-add-line",
+                        isItemOpen
+                          ? "fr-icon-subtract-line before:!bg-title-blue-france"
+                          : "fr-icon-add-line",
                       )}
                     />
                   </AccordionRadix.Trigger>
@@ -123,7 +136,9 @@ const Accordion = (props: Props) => {
                       <>
                         {item?.image && getMedia("image", item)}
                         {item?.video && (
-                          <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">{getMedia("video", item)}</div>
+                          <div className="mx-auto mt-0 mb-6 max-w-[250px] !text-center">
+                            {getMedia("video", item)}
+                          </div>
                         )}
                         {item?.youtube && getMedia("youtube", item)}
                       </>

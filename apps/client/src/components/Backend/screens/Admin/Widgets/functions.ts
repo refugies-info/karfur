@@ -1,4 +1,4 @@
-import { GetWidgetResponse } from "@refugies-info/api-types";
+import type { GetWidgetResponse } from "@refugies-info/api-types";
 import qs from "query-string";
 import { getBaseUrl } from "~/lib/getBaseUrl";
 import type { UrlSearchQuery } from "~/pages/recherche";

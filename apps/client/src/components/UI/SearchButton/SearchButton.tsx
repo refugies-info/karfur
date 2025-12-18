@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import { cls } from "~/lib/classname";
 import styles from "./SearchButton.module.css";
 
@@ -21,14 +22,14 @@ const SearchButton: React.FC<Props> = ({ onChange }) => {
       <div className={styles.zone}>
         <i className={cls("fr-icon-search-line", styles.icon)} />
         <label htmlFor="theme-search-button" className="sr-only">
-          {t("Rechercher", "Rechercher")}
+          {t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
         </label>
         <input
           type="text"
           ref={ref}
           // dir={i18n.dir()}
           className={styles.input}
-          placeholder={t("Rechercher", "Rechercher")}
+          placeholder={t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
           onChange={onChange}
           id="theme-search-button"
           name="theme-search-button"

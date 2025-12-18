@@ -1,4 +1,10 @@
-import { Picture } from "@refugies-info/api-types";
+// import { isThemeTitleOk } from "./lib";
+import type {
+  GetLanguagesResponse,
+  GetThemeResponse,
+  Picture,
+  ThemeRequest,
+} from "@refugies-info/api-types";
 import toArray from "lodash/toArray";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +13,7 @@ import Swal from "sweetalert2";
 import FButton from "~/components/UI/FButton/FButton";
 import FInput from "~/components/UI/FInput/FInput";
 import ImageInput from "~/components/UI/ImageInput";
-import { cls } from "~/lib/classname";
+import { cls, cn } from "~/lib/classname";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import {
@@ -15,14 +21,12 @@ import {
   deleteThemeActionCreator,
   saveThemeActionCreator,
 } from "~/services/Themes/themes.actions";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import { colors as themeColors } from "~/utils/colors";
 import { LangueButton } from "../AdminUsers/components/AdminUsersComponents";
 import { DetailsModal } from "../sharedComponents/DetailsModal";
 import { Label } from "../sharedComponents/SubComponents";
 import styles from "./ThemeFormModal.module.scss";
-// import { isThemeTitleOk } from "./lib";
-import { GetLanguagesResponse, GetThemeResponse, ThemeRequest } from "@refugies-info/api-types";
-import { allThemesSelector } from "~/services/Themes/themes.selectors";
 
 interface Props {
   show: boolean;
@@ -51,24 +55,36 @@ export const ThemeFormModal = (props: Props) => {
   const [name, setName] = useState(props.selectedTheme?.name || { fr: "" });
   const [emoji, setEmoji] = useState(props.selectedTheme?.notificationEmoji || "");
   const [mainColor, setMainColor] = useState(props.selectedTheme?.mainColor || "#FFFFFF");
-  const [colors, setColors] = useState<GetThemeResponse["colors"]>(props.selectedTheme?.colors || EMPTY_COLORS);
+  const [colors, setColors] = useState<GetThemeResponse["colors"]>(
+    props.selectedTheme?.colors || EMPTY_COLORS,
+  );
   const [gradientColors, setGradientColors] = useState<GetThemeResponse["gradientColors"]>(
     props.selectedTheme?.gradientColors || EMPTY_GRADIENTS_COLORS,
   );
   const [notes, setNotes] = useState("");
-  const [banner, setBanner] = useState<Picture | undefined>(props.selectedTheme?.banner || undefined);
-  const [appBanner, setAppBanner] = useState<Picture | undefined>(props.selectedTheme?.appBanner || undefined);
-  const [appImage, setAppImage] = useState<Picture | undefined>(props.selectedTheme?.appImage || undefined);
+  const [banner, setBanner] = useState<Picture | undefined>(
+    props.selectedTheme?.banner || undefined,
+  );
+  const [appBanner, setAppBanner] = useState<Picture | undefined>(
+    props.selectedTheme?.appBanner || undefined,
+  );
+  const [appImage, setAppImage] = useState<Picture | undefined>(
+    props.selectedTheme?.appImage || undefined,
+  );
   const [dispositifImage, setDispositifImage] = useState<Picture | undefined>(
     props.selectedTheme?.dispositifImage || undefined,
   );
   const [demarcheImage, setDemarcheImage] = useState<Picture | undefined>(
     props.selectedTheme?.demarcheImage || undefined,
   );
-  const [shareImage, setShareImage] = useState<Picture | undefined>(props.selectedTheme?.shareImage || undefined);
+  const [shareImage, setShareImage] = useState<Picture | undefined>(
+    props.selectedTheme?.shareImage || undefined,
+  );
   const [icon, setIcon] = useState<Picture | undefined>(props.selectedTheme?.icon || undefined);
 
-  const [selectedLanguageModal, setSelectedLanguageModal] = useState<GetLanguagesResponse | null>(null);
+  const [selectedLanguageModal, setSelectedLanguageModal] = useState<GetLanguagesResponse | null>(
+    null,
+  );
 
   const needs = useSelector(needsSelector);
   const languages = useSelector(allLanguesSelector);
@@ -77,7 +93,9 @@ export const ThemeFormModal = (props: Props) => {
   const hasNeeds = useMemo(() => {
     if (!props.selectedTheme) return false;
     return (
-      needs.filter((need) => (props.selectedTheme ? need.theme._id === props.selectedTheme._id : false)).length > 0
+      needs.filter((need) =>
+        props.selectedTheme ? need.theme._id === props.selectedTheme._id : false,
+      ).length > 0
     );
   }, [props.selectedTheme, needs]);
 
@@ -178,6 +196,17 @@ export const ThemeFormModal = (props: Props) => {
     props.toggleModal();
   };
 
+  const getDSFRColor = (color: string) => {
+    const DSFRColorMap: Record<string, string> = {
+      color100: "Sun",
+      color80: "Sun-hover",
+      color60: "Sun-active",
+      color40: "850",
+      color30: "975",
+    };
+    return DSFRColorMap[color] || "";
+  };
+
   const isInvalid =
     toArray(emoji).length !== 1 ||
     !short /* isThemeTitleOk(short, languages) || */ ||
@@ -200,7 +229,13 @@ export const ThemeFormModal = (props: Props) => {
       rightHead={
         <>
           {props.selectedTheme && (
-            <FButton className="me-2" type="error" name="trash-2-outline" onClick={onDelete} disabled={hasNeeds}>
+            <FButton
+              className="me-2"
+              type="error"
+              name="trash-2-outline"
+              onClick={onDelete}
+              disabled={hasNeeds}
+            >
               Supprimer
             </FButton>
           )}
@@ -269,7 +304,7 @@ export const ThemeFormModal = (props: Props) => {
           </div>
           <div>
             <Label htmlFor="colors">Couleurs principales du thème</Label>
-            <div className={styles.colors}>
+            <div className={cn(styles.colors, "!grid !grid-cols-3 !gap-2")}>
               {COLOR_KEYS.map((i: colorKey) => (
                 <div key={i}>
                   <Input
@@ -279,9 +314,22 @@ export const ThemeFormModal = (props: Props) => {
                     onChange={(e: any) => setColors({ ...colors, [i]: e.target.value as string })}
                     style={{ backgroundColor: colors[i] }}
                   />
+                  <small className="flex flex-col justify-between text-xs">
+                    <span className="flex flex-wrap">
+                      <b>RI : </b>
+                      {i}
+                    </span>{" "}
+                    <span className="flex flex-wrap">
+                      <b>DSFR : </b>
+                      <span>{getDSFRColor(i)}</span>
+                    </span>
+                  </small>
                 </div>
               ))}
             </div>
+            <p className="text-sm">
+              Sur le site color40 = couleur de fond, color60 = couleur de survol
+            </p>
             <Label htmlFor="colors">Couleurs du dégradé du thème</Label>
             <div className={styles.colors}>
               <div>
@@ -289,7 +337,9 @@ export const ThemeFormModal = (props: Props) => {
                   type="text"
                   className={styles.color_input}
                   value={gradientColors.colorTop}
-                  onChange={(e: any) => setGradientColors({ ...gradientColors, colorTop: e.target.value as string })}
+                  onChange={(e: any) =>
+                    setGradientColors({ ...gradientColors, colorTop: e.target.value as string })
+                  }
                   style={{ backgroundColor: gradientColors.colorTop }}
                 />
               </div>
@@ -299,7 +349,9 @@ export const ThemeFormModal = (props: Props) => {
                   type="text"
                   className={styles.color_input}
                   value={gradientColors.colorBottom}
-                  onChange={(e: any) => setGradientColors({ ...gradientColors, colorBottom: e.target.value as string })}
+                  onChange={(e: any) =>
+                    setGradientColors({ ...gradientColors, colorBottom: e.target.value as string })
+                  }
                   style={{ backgroundColor: gradientColors.colorBottom }}
                 />
               </div>
@@ -429,10 +481,19 @@ export const ThemeFormModal = (props: Props) => {
         leftHead={<h2>Traduction du thème en : {selectedLanguageModal?.langueFr || ""}</h2>}
         rightHead={
           <>
-            <FButton className="me-2" type="white" name="close-outline" onClick={() => setSelectedLanguageModal(null)}>
+            <FButton
+              className="me-2"
+              type="white"
+              name="close-outline"
+              onClick={() => setSelectedLanguageModal(null)}
+            >
               Annuler
             </FButton>
-            <FButton type="validate" name="save-outline" onClick={() => setSelectedLanguageModal(null)}>
+            <FButton
+              type="validate"
+              name="save-outline"
+              onClick={() => setSelectedLanguageModal(null)}
+            >
               Valider
             </FButton>
           </>
@@ -442,10 +503,18 @@ export const ThemeFormModal = (props: Props) => {
           <>
             <div>
               <Label htmlFor="shortFr">Intitulé court du thème en français</Label>
-              <FInput id="shortFr" value={short?.fr} disabled={true} newSize={true} autoFocus={false} />
+              <FInput
+                id="shortFr"
+                value={short?.fr}
+                disabled={true}
+                newSize={true}
+                autoFocus={false}
+              />
             </div>
             <div>
-              <Label htmlFor="shortLn">Intitulé court du thème en {selectedLanguageModal.langueFr}</Label>
+              <Label htmlFor="shortLn">
+                Intitulé court du thème en {selectedLanguageModal.langueFr}
+              </Label>
               <FInput
                 id="shortLn"
                 value={short?.[selectedLanguageModal.i18nCode]}
@@ -462,10 +531,18 @@ export const ThemeFormModal = (props: Props) => {
             </div>
             <div>
               <Label htmlFor="nameFr">Intitulé long du thème en français</Label>
-              <FInput id="nameFr" value={name?.fr} disabled={true} newSize={true} autoFocus={false} />
+              <FInput
+                id="nameFr"
+                value={name?.fr}
+                disabled={true}
+                newSize={true}
+                autoFocus={false}
+              />
             </div>
             <div>
-              <Label htmlFor="nameLn">Intitulé long du thème en {selectedLanguageModal.langueFr}</Label>
+              <Label htmlFor="nameLn">
+                Intitulé long du thème en {selectedLanguageModal.langueFr}
+              </Label>
               <FInput
                 id="nameLn"
                 value={name?.[selectedLanguageModal.i18nCode]}

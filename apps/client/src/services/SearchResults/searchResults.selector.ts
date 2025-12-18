@@ -1,12 +1,13 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
 import { getThemesDisplayed } from "~/lib/recherche/functions";
-import { RootState } from "../rootReducer";
-import { Results, SearchQuery } from "./searchResults.reducer";
+import type { RootState } from "../rootReducer";
+import type { Results, SearchQuery } from "./searchResults.reducer";
 
 export const searchResultsSelector = (state: RootState): Results => state.searchResults.results;
 
-export const noResultsSelector = (state: RootState): SimpleDispositif[] => state.searchResults.noResults;
+export const noResultsSelector = (state: RootState): SimpleDispositif[] =>
+  state.searchResults.noResults;
 
 export const searchQuerySelector = (state: RootState): SearchQuery => state.searchResults.query;
 
@@ -24,5 +25,6 @@ export const themesDisplayedSelector = createSelector(
 
 export const themesDisplayedValueSelector = createSelector(
   [themesDisplayedSelector, selectLanguage],
-  (themesDisplayed, selectLanguage) => themesDisplayed.map((t) => t.short[selectLanguage] || t.short.fr),
+  (themesDisplayed, selectLanguage) =>
+    themesDisplayed.map((t) => t.short[selectLanguage] || t.short.fr),
 );

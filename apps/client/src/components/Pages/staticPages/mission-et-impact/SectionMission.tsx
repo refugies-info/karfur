@@ -1,5 +1,5 @@
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
@@ -17,7 +17,13 @@ export const SectionMission = () => {
             <p className="!text-h4 md:!text-h3 text-artwork-minor-blue-france !mb-0">
               {t("MissionImpact.mission_subtitle")}
             </p>
-            <Image src={ScreenshotRI} alt="" width={540} height={357} className="mx-auto mt-10 max-w-full md:mt-14" />
+            <Image
+              src={ScreenshotRI}
+              alt=""
+              width={540}
+              height={357}
+              className="mx-auto mt-10 max-w-full md:mt-14"
+            />
           </div>
           <div className="flex-1">
             <p

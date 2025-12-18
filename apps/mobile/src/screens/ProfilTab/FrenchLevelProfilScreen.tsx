@@ -1,5 +1,5 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import { MobileFrenchLevel } from "@refugies-info/api-types";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { MobileFrenchLevel } from "@refugies-info/api-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
 import { Page } from "~/components";
@@ -8,7 +8,7 @@ import { frenchLevelFilters } from "~/data/filtersData";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { saveUserFrenchLevelActionCreator } from "~/services/redux/User/user.actions";
 import { userFrenchLevelSelector } from "~/services/redux/User/user.selectors";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 
 export const FrenchLevelProfilScreen = ({
   navigation,
@@ -17,7 +17,8 @@ export const FrenchLevelProfilScreen = ({
   const theme = useTheme();
   const userFrenchLevel = useSelector(userFrenchLevelSelector);
   const selectedFrenchLevel: MobileFrenchLevel | null =
-    frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel)?.key || null;
+    frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === userFrenchLevel)
+      ?.key || null;
 
   const onValidateFrenchLevel = (frenchLevelKey: MobileFrenchLevel) => {
     if (selectedFrenchLevel && selectedFrenchLevel === frenchLevelKey) return;

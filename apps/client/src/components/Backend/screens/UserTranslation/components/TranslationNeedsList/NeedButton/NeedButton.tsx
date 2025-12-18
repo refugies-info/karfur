@@ -1,8 +1,8 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import TranslationStatus from "~/components/Pages/dispositif/Translation/TranslationInput/TranslationStatus";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
-import { SortedNeed } from "../../TranslationsAvancement/TranslationsAvancement";
+import type { SortedNeed } from "../../TranslationsAvancement/TranslationsAvancement";
 import { getClassStatus } from "./functions";
 import styles from "./NeedButton.module.scss";
 
@@ -23,7 +23,9 @@ const NeedButton = (props: Props) => {
           </div>
         )}
         <p className="mb-0">
-          <span className={styles.title}>{props.need[props.langueI18nCode]?.text || props.need.fr.text}</span>
+          <span className={styles.title}>
+            {props.need[props.langueI18nCode]?.text || props.need.fr.text}
+          </span>
           <span className={styles.subtitle}>
             {props.need[props.langueI18nCode]?.subtitle || props.need.fr.subtitle}
           </span>

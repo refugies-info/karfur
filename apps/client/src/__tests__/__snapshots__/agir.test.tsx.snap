@@ -4,9 +4,17 @@ exports[`agir renders traduire 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -434,20 +442,16 @@ exports[`agir renders traduire 1`] = `
           <h3
             class="h3"
           >
-            Trouver l’opérateur de mon territoire
+            Trouver l'opérateur de mon territoire
           </h3>
-          <p
-            class="italic lg:w-1/2"
-          >
-            Sélectionner votre département sur la carte pour obtenir les coordonnées de l’opérateur sur votre territoire.
-          </p>
           <div
-            class="grid lg:grid-cols-3"
+            class="grid gap-6 lg:grid-cols-3"
           >
             <div
-              class="lg:col-span-2"
+              class="lg:col-span-2 max-sm:hidden"
             >
               <svg
+                aria-hidden="true"
                 height="544px"
                 style="max-width: 100%;"
                 viewBox="0 0 578 544"
@@ -617,8 +621,8 @@ exports[`agir renders traduire 1`] = `
                         points="36.085 31.82 33.496 33.911 30.907 34.309 30.708 35.703 30.21 36.997 31.504 36.997 32.201 36.399 31.902 35.403 35.885 35.204 36.881 35.602 36.881 37.693 35.885 39.784 30.11 38.987 29.214 38.191 26.526 40.083 23.937 40.78 20.253 40.581 19.158 44.464 20.154 46.157 18.561 50.837 20.154 53.824 22.942 52.43 29.613 56.114 41.163 56.114 48.034 59.301 47.934 58.604 52.813 46.357 52.813 40.781 49.726 39.984 48.93 38.49 47.636 37.893 44.848 34.806 39.969 32.018"
                       />
                       <polygon
-                        class="dep"
-                        data-state="closed"
+                        class="dep selectable"
+                        fill="#313278"
                         id="dpt-93"
                         points="49.926 4.836 44.051 9.018 34.891 13.2 18.163 14.295 18.661 16.585 20.055 16.884 21.349 18.875 20.055 21.663 18.363 21.962 19.558 24.85 27.623 24.75 30.212 28.733 30.71 34.309 33.498 33.911 36.087 31.82 39.97 32.019 44.849 34.807 47.637 37.894 48.931 38.491 49.727 39.985 52.814 40.782 52.814 31.721 49.13 9.814"
                       />
@@ -713,8 +717,8 @@ exports[`agir renders traduire 1`] = `
                         points="282.881 110.538 282.82 110.659 277.524 112.172 276.768 113.11 277.736 114.623 277.736 116.136 279.43 116.499 278.462 117.467 278.553 118.314 278.674 118.224 280.55 120.1 281.124 122.37 282.639 123.883 281.881 125.971 281.881 127.847 283.212 129.36 281.881 131.63 283.212 134.868 285.845 136.744 286.241 138.832 288.511 139.195 289.056 143.371 290.785 145.459 293.842 146.034 294.296 143.038 295.597 141.555 294.508 139.89 297.262 139.89 299.138 137.318 297.836 135.079 298.199 133.052 300.983 131.751 301.341 129.693 303.192 128.967 304.882 128.21 305.214 128.422 305.214 128.21 303.525 126.304 302.463 123.429 304.157 119.737 303.304 116.953 300.006 114.955 295.346 114.744 290.992 111.96 287.482 112.595"
                       />
                       <polygon
-                        class="dep"
-                        data-state="closed"
+                        class="dep selectable"
+                        fill="#313278"
                         id="dpt-77"
                         points="318.104 111.438 320.466 109.9 322.542 111.229 323.492 111.958 325.186 111.776 326.336 110.263 328.968 111.776 332.206 110.444 334.082 111.019 335.958 109.506 337.108 108.931 339.197 110.447 339.772 114.623 344.856 119.525 346.55 120.1 347.519 122.37 350.604 123.083 350.151 123.702 350.363 124.822 348.85 125.79 348.456 128.423 349.97 129.361 350.726 132.206 349.788 133.9 350.362 135.232 353.176 135.05 353.179 136.561 350.546 137.681 350.364 139.951 349.033 141.676 348.276 145.459 347.833 148.417 346.005 149.786 338.621 149.423 335.232 151.118 333.9 153.962 335.414 155.657 331.418 160.378 326.729 162.938 326.337 161.528 324.248 161.346 323.674 162.859 321.797 163.222 316.684 163.04 314.595 164.372 313 162.833 315.928 160.767 315.745 157.563 313.475 156.413 312.294 154.658 312.294 150.845 316.533 148.061 315.26 146.396 315.833 141.417 316.521 140.333 315.624 135.261 317.29 133.96 316.925 131.388 318.406 127.688 318.422 123.188 317.288 116.56"
                       />
@@ -1204,8 +1208,518 @@ exports[`agir renders traduire 1`] = `
               </svg>
             </div>
             <div
-              class="flex items-center lg:col-span-1"
-            />
+              class="lg:col-span-1"
+            >
+              <div
+                class="mb-4"
+              >
+                <div
+                  class="fr-select-group"
+                  id="fr-select-group-:re:"
+                >
+                  <label
+                    class="fr-label"
+                    for="select-:rf:"
+                  >
+                    <span
+                      class="fr-hint-text"
+                    >
+                      Choisissez votre département pour voir les coordonnées de l'opérateur AGIR
+                    </span>
+                  </label>
+                  <select
+                    aria-describedby="select-:rg:-desc"
+                    class="fr-select"
+                    id="select-:rf:"
+                  >
+                    <option
+                      disabled=""
+                      value=""
+                    >
+                      Sélectionner un département
+                    </option>
+                    <option
+                      value="01"
+                    >
+                      01 Ain
+                    </option>
+                    <option
+                      value="02"
+                    >
+                      02 Aisne
+                    </option>
+                    <option
+                      value="03"
+                    >
+                      03 Allier
+                    </option>
+                    <option
+                      value="04"
+                    >
+                      04 Alpes-de-Haute-Provence
+                    </option>
+                    <option
+                      value="05"
+                    >
+                      05 Hautes-Alpes
+                    </option>
+                    <option
+                      value="06"
+                    >
+                      06 Alpes-Maritimes
+                    </option>
+                    <option
+                      value="07"
+                    >
+                      07 Ardèche
+                    </option>
+                    <option
+                      value="08"
+                    >
+                      08 Ardennes
+                    </option>
+                    <option
+                      value="09"
+                    >
+                      09 Ariège
+                    </option>
+                    <option
+                      value="10"
+                    >
+                      10 Aube
+                    </option>
+                    <option
+                      value="11"
+                    >
+                      11 Aude
+                    </option>
+                    <option
+                      value="12"
+                    >
+                      12 Aveyron
+                    </option>
+                    <option
+                      value="13"
+                    >
+                      13 Bouches-du-Rhône
+                    </option>
+                    <option
+                      value="14"
+                    >
+                      14 Calvados
+                    </option>
+                    <option
+                      value="15"
+                    >
+                      15 Cantal
+                    </option>
+                    <option
+                      value="16"
+                    >
+                      16 Charente
+                    </option>
+                    <option
+                      value="17"
+                    >
+                      17 Charente-Maritime
+                    </option>
+                    <option
+                      value="18"
+                    >
+                      18 Cher
+                    </option>
+                    <option
+                      value="19"
+                    >
+                      19 Corrèze
+                    </option>
+                    <option
+                      value="21"
+                    >
+                      21 Côte-d'Or
+                    </option>
+                    <option
+                      value="22"
+                    >
+                      22 Côtes-d'Armor
+                    </option>
+                    <option
+                      value="23"
+                    >
+                      23 Creuse
+                    </option>
+                    <option
+                      value="24"
+                    >
+                      24 Dordogne
+                    </option>
+                    <option
+                      value="25"
+                    >
+                      25 Doubs
+                    </option>
+                    <option
+                      value="26"
+                    >
+                      26 Drôme
+                    </option>
+                    <option
+                      value="27"
+                    >
+                      27 Eure
+                    </option>
+                    <option
+                      value="28"
+                    >
+                      28 Eure-et-Loir
+                    </option>
+                    <option
+                      value="29"
+                    >
+                      29 Finistère
+                    </option>
+                    <option
+                      value="30"
+                    >
+                      30 Gard
+                    </option>
+                    <option
+                      value="31"
+                    >
+                      31 Haute-Garonne
+                    </option>
+                    <option
+                      value="32"
+                    >
+                      32 Gers
+                    </option>
+                    <option
+                      value="33"
+                    >
+                      33 Gironde
+                    </option>
+                    <option
+                      value="34"
+                    >
+                      34 Hérault
+                    </option>
+                    <option
+                      value="35"
+                    >
+                      35 Ille-et-Vilaine
+                    </option>
+                    <option
+                      value="36"
+                    >
+                      36 Indre
+                    </option>
+                    <option
+                      value="37"
+                    >
+                      37 Indre-et-Loire
+                    </option>
+                    <option
+                      value="38"
+                    >
+                      38 Isère
+                    </option>
+                    <option
+                      value="39"
+                    >
+                      39 Jura
+                    </option>
+                    <option
+                      value="40"
+                    >
+                      40 Landes
+                    </option>
+                    <option
+                      value="41"
+                    >
+                      41 Loir-et-Cher
+                    </option>
+                    <option
+                      value="42"
+                    >
+                      42 Loire
+                    </option>
+                    <option
+                      value="43"
+                    >
+                      43 Haute-Loire
+                    </option>
+                    <option
+                      value="44"
+                    >
+                      44 Loire-Atlantique
+                    </option>
+                    <option
+                      value="45"
+                    >
+                      45 Loiret
+                    </option>
+                    <option
+                      value="46"
+                    >
+                      46 Lot
+                    </option>
+                    <option
+                      value="47"
+                    >
+                      47 Lot-et-Garonne
+                    </option>
+                    <option
+                      value="48"
+                    >
+                      48 Lozère
+                    </option>
+                    <option
+                      value="49"
+                    >
+                      49 Maine-et-Loire
+                    </option>
+                    <option
+                      value="50"
+                    >
+                      50 Manche
+                    </option>
+                    <option
+                      value="51"
+                    >
+                      51 Marne
+                    </option>
+                    <option
+                      value="52"
+                    >
+                      52 Haute-Marne
+                    </option>
+                    <option
+                      value="53"
+                    >
+                      53 Mayenne
+                    </option>
+                    <option
+                      value="54"
+                    >
+                      54 Meurthe-et-Moselle
+                    </option>
+                    <option
+                      value="55"
+                    >
+                      55 Meuse
+                    </option>
+                    <option
+                      value="56"
+                    >
+                      56 Morbihan
+                    </option>
+                    <option
+                      value="57"
+                    >
+                      57 Moselle
+                    </option>
+                    <option
+                      value="58"
+                    >
+                      58 Nièvre
+                    </option>
+                    <option
+                      value="59"
+                    >
+                      59 Nord
+                    </option>
+                    <option
+                      value="60"
+                    >
+                      60 Oise
+                    </option>
+                    <option
+                      value="61"
+                    >
+                      61 Orne
+                    </option>
+                    <option
+                      value="62"
+                    >
+                      62 Pas-de-Calais
+                    </option>
+                    <option
+                      value="63"
+                    >
+                      63 Puy-de-Dôme
+                    </option>
+                    <option
+                      value="64"
+                    >
+                      64 Pyrénées-Atlantiques
+                    </option>
+                    <option
+                      value="65"
+                    >
+                      65 Hautes-Pyrénées
+                    </option>
+                    <option
+                      value="66"
+                    >
+                      66 Pyrénées-Orientales
+                    </option>
+                    <option
+                      value="67"
+                    >
+                      67 Bas-Rhin
+                    </option>
+                    <option
+                      value="68"
+                    >
+                      68 Haut-Rhin
+                    </option>
+                    <option
+                      value="69"
+                    >
+                      69 Rhône
+                    </option>
+                    <option
+                      value="70"
+                    >
+                      70 Haute-Saône
+                    </option>
+                    <option
+                      value="71"
+                    >
+                      71 Saône-et-Loire
+                    </option>
+                    <option
+                      value="72"
+                    >
+                      72 Sarthe
+                    </option>
+                    <option
+                      value="73"
+                    >
+                      73 Savoie
+                    </option>
+                    <option
+                      value="74"
+                    >
+                      74 Haute-Savoie
+                    </option>
+                    <option
+                      value="75"
+                    >
+                      75 Paris
+                    </option>
+                    <option
+                      value="76"
+                    >
+                      76 Seine-Maritime
+                    </option>
+                    <option
+                      value="77"
+                    >
+                      77 Seine-et-Marne
+                    </option>
+                    <option
+                      value="78"
+                    >
+                      78 Yvelines
+                    </option>
+                    <option
+                      value="79"
+                    >
+                      79 Deux-Sèvres
+                    </option>
+                    <option
+                      value="80"
+                    >
+                      80 Somme
+                    </option>
+                    <option
+                      value="81"
+                    >
+                      81 Tarn
+                    </option>
+                    <option
+                      value="82"
+                    >
+                      82 Tarn-et-Garonne
+                    </option>
+                    <option
+                      value="83"
+                    >
+                      83 Var
+                    </option>
+                    <option
+                      value="84"
+                    >
+                      84 Vaucluse
+                    </option>
+                    <option
+                      value="85"
+                    >
+                      85 Vendée
+                    </option>
+                    <option
+                      value="86"
+                    >
+                      86 Vienne
+                    </option>
+                    <option
+                      value="87"
+                    >
+                      87 Haute-Vienne
+                    </option>
+                    <option
+                      value="88"
+                    >
+                      88 Vosges
+                    </option>
+                    <option
+                      value="89"
+                    >
+                      89 Yonne
+                    </option>
+                    <option
+                      value="90"
+                    >
+                      90 Territoire de Belfort
+                    </option>
+                    <option
+                      value="91"
+                    >
+                      91 Essonne
+                    </option>
+                    <option
+                      value="92"
+                    >
+                      92 Hauts-de-Seine
+                    </option>
+                    <option
+                      value="93"
+                    >
+                      93 Seine-Saint-Denis
+                    </option>
+                    <option
+                      value="94"
+                    >
+                      94 Val-de-Marne
+                    </option>
+                    <option
+                      value="95"
+                    >
+                      95 Val-d'Oise
+                    </option>
+                  </select>
+                  <div
+                    aria-live="polite"
+                    class="fr-messages-group"
+                    id="select-:rf:-messages-group"
+                  />
+                </div>
+              </div>
+              <div
+                class="mt-6"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -1241,7 +1755,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rg:"
+                id="fr-card-:rh:"
               >
                 <div
                   class="fr-card__body"
@@ -1292,7 +1806,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rh:"
+                id="fr-card-:ri:"
               >
                 <div
                   class="fr-card__body"
@@ -1343,7 +1857,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:ri:"
+                id="fr-card-:rj:"
               >
                 <div
                   class="fr-card__body"
@@ -1394,7 +1908,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rj:"
+                id="fr-card-:rk:"
               >
                 <div
                   class="fr-card__body"

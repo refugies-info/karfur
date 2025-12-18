@@ -1,3 +1,56 @@
+# =============================================================================
+# pnpm Workspace Configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Monorepo Structure
+# -----------------------------------------------------------------------------
+
+# Define which directories contain workspace packages.
+# Turborepo orchestrates builds across these packages.
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - "apps/*" # Next.js client, Express server, React Native mobile, Storybook
+  - "packages/*" # Shared: api-types, ui, typescript-config
+
+# -----------------------------------------------------------------------------
+# Supply Chain Security
+# -----------------------------------------------------------------------------
+
+# Only allow package versions that have been published for at least 7 days
+# (10080 minutes). Mitigates attacks using freshly published malicious versions.
+# See: https://pnpm.io/settings#minimumreleaseage
+minimumReleaseAge: 10080
+
+# Prevent downgrading packages to older versions during updates.
+# Protects against attacks that republish older vulnerable versions.
+# See: https://pnpm.io/settings#trustpolicy
+trustPolicy: no-downgrade
+
+# Disable strict peer dependencies to allow installation with mismatched peers (React 19 vs older libs)
+
+
+# Packages excluded from trustPolicy check. Use for verified packages that
+# trigger false positives (e.g., lost provenance attestation between versions).
+# See: https://pnpm.io/settings#trustpolicyexclude
+trustPolicyExclude:
+  - "@oxc-resolver/binding-darwin-arm64" # v11.7.1 lacks provenance attestation but is verified safe
+  - "@oxc-resolver/binding-darwin-x64" # v11.7.1 lacks provenance attestation but is verified safe
+  - "@oxc-resolver/binding-linux-arm64-gnu" # v11.7.1 lacks provenance attestation but is verified safe
+  - "@oxc-resolver/binding-linux-x64-gnu" # v11.7.1 lacks provenance attestation but is verified safe
+  - "@oxc-resolver/binding-win32-arm64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
+  - "@oxc-resolver/binding-win32-x64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
+  - "chokidar" # v4.0.3 lacks provenance attestation but is verified safe
+  - "eslint-import-resolver-typescript" # v3.10.1 lacks provenance attestation but is verified safe
+  - "oxc-resolver" # v11.7.1 lacks provenance attestation but is verified safe
+  - "react-device-detect" # v2.2.3 lacks provenance attestation but is verified safe
+  - "react-native-reanimated" # v3.17.5 lacks provenance attestation but is verified safe
+  - "react-native-screens" # v4.11.1 lacks provenance attestation but is verified safe
+  - "react-redux" # v9.2.0 lacks provenance attestation but is verified safe
+  - "reselect" # v5.1.1 lacks provenance attestation but is verified safe
+  - "rxjs" # v7.8.2 lacks provenance attestation but is verified safe
+  - "semver" # v6.3.1 lacks provenance attestation but is verified safe
+  - "tailwind-merge" # v2.6.0 lacks provenance attestation but is verified safe
+  - "ua-parser-js" # v1.0.41 lacks provenance attestation but is verified safe
+  - "undici-types" # v6.21.0 lacks provenance attestation but is verified safe
+  - "undici" # v6.21.2 lacks provenance attestation but is verified safe
+  - "wait-on" # v9.0.3 lacks provenance attestation but is verified safe

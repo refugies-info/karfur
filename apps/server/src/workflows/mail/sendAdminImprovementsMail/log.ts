@@ -1,5 +1,5 @@
 import { addLog } from "~/modules/logs/logs.service";
-import { DispositifId, UserId } from "~/typegoose";
+import type { DispositifId, UserId } from "~/typegoose";
 
 export interface LogOptions {
   message: string;

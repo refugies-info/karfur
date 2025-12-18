@@ -1,5 +1,5 @@
 import analytics from "@react-native-firebase/analytics";
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import Constants from "expo-constants";
 import * as React from "react";
 import { Linking } from "react-native";
@@ -30,7 +30,7 @@ import {
 } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import UserProfileIcon from "~/theme/images/profile/user-profile.svg";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 import { updateAppUser } from "~/utils/API";
 
 // TODO: use separator from components
@@ -56,9 +56,9 @@ const SectionTitle = styled(TextDSFR_L_Bold)`
   padding-vertical: ${({ theme }) => theme.margin * 2}px;
 `;
 
-export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "ProfilScreen">, "route">> = ({
-  navigation,
-}) => {
+export const ProfilScreen: React.FC<
+  Omit<StackScreenProps<ProfileParamList, "ProfilScreen">, "route">
+> = ({ navigation }) => {
   const theme = useTheme();
   const [isReinitAppModalVisible, setReinitAppModalVisible] = React.useState(false);
 
@@ -72,7 +72,9 @@ export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "Pro
   const selectedLocation = useSelector(userLocationSelector);
   const selectedAge = useSelector(userAgeSelector);
   const selectedFrenchLevel = useSelector(userFrenchLevelSelector);
-  const formattedLevel = frenchLevelFilters.find((frenchLevelFilter) => frenchLevelFilter.key === selectedFrenchLevel);
+  const formattedLevel = frenchLevelFilters.find(
+    (frenchLevelFilter) => frenchLevelFilter.key === selectedFrenchLevel,
+  );
 
   const dispatch = useDispatch();
 
@@ -128,7 +130,11 @@ export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "Pro
         />
         <ProfilDetailButton
           iconName="calendar-outline"
-          label={selectedAgeName ? t("filters." + selectedAgeName, selectedAgeName) : t("profile_screens.age", "age")}
+          label={
+            selectedAgeName
+              ? t("filters." + selectedAgeName, selectedAgeName)
+              : t("profile_screens.age", "age")
+          }
           onPress={() => navigation.navigate("AgeProfilScreen")}
           isEmpty={!selectedAge}
           isBold={!!selectedAge}
@@ -177,7 +183,7 @@ export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "Pro
 
         <ProfilDetailButton
           iconName="gift-outline"
-          label="Partager l'application"
+          label={t("Toolbar.shareApplication", "Partager l'application")}
           onPress={() => navigation.navigate("ShareScreen")}
           iconRight="navigate"
           purpleVariant
@@ -259,7 +265,10 @@ export const ProfilScreen: React.FC<Omit<StackScreenProps<ProfileParamList, "Pro
         <ConfirmationModal
           isModalVisible={isReinitAppModalVisible}
           toggleModal={toggleReinitAppModal}
-          text={t("profile_screens.reinit_app2", "Es-tu sûr de vouloir réinitialiser ton application ?")}
+          text={t(
+            "profile_screens.reinit_app2",
+            "Es-tu sûr de vouloir réinitialiser ton application ?",
+          )}
           onValidate={reinitializeApp}
         />
       </Section>

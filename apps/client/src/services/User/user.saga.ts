@@ -1,14 +1,23 @@
-import { GetUserInfoResponse } from "@refugies-info/api-types";
-import { AxiosError } from "axios";
-import { SagaIterator } from "redux-saga";
+import type { GetUserInfoResponse } from "@refugies-info/api-types";
+import type { AxiosError } from "axios";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { finishLoading, LoadingStatusKey, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  setError,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import { searchQuerySelector } from "../SearchResults/searchResults.selector";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
-import { fetchUserActionCreator, saveUserActionCreator, setUserActionCreator } from "./user.actions";
+import {
+  fetchUserActionCreator,
+  type saveUserActionCreator,
+  setUserActionCreator,
+} from "./user.actions";
 import { FETCH_USER, SAVE_USER } from "./user.actionTypes";
 import { userSelector } from "./user.selectors";
 
@@ -32,7 +41,9 @@ export function* fetchUser(action: ReturnType<typeof fetchUserActionCreator>): S
         ) {
           yield put(
             addToQueryActionCreator({
-              departments: (data.departments || [])?.map((dep) => dep.split(" - ")[1]),
+              departments: (data.departments || [])
+                ?.map((dep) => dep.split(" - ")[1])
+                .filter((dep) => dep !== undefined),
               sort: "default",
             }),
           );

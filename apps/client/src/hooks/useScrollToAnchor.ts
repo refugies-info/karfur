@@ -21,12 +21,24 @@ const useScrollToAnchor = () => {
    * @param {string} hash - The target element's ID.
    */
   const scrollToHash = useCallback((hash: string) => {
-    setTimeout(() => {
-      const element = document.getElementById(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+    const element = document.getElementById(hash);
+    if (element) {
+      // Calculate position with offset for header
+      const headerOffset = 0;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+
+      // Manage focus
+      if (!element.hasAttribute("tabIndex")) {
+        element.setAttribute("tabIndex", "-1");
       }
-    }, 50);
+      element.focus({ preventScroll: true });
+    }
   }, []);
 
   /**
@@ -43,7 +55,8 @@ const useScrollToAnchor = () => {
       const href = anchor.getAttribute("href");
       if (!href) return;
 
-      const isInternal = href.startsWith("/") || href.startsWith(window.location.origin);
+      const isInternal =
+        href.startsWith("/") || href.startsWith(window.location.origin) || href.startsWith("#");
       const isAnchor = href.includes("#");
 
       if (isInternal && isAnchor) {

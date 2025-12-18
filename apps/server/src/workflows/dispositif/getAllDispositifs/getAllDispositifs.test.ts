@@ -52,7 +52,10 @@ describe("getAllDispositifs", () => {
         new ObjectId("613721a409c5190dfa70d064"),
       ],
       theme: new ObjectId("63286a015d31b2c0cad9960a"),
-      secondaryThemes: [new ObjectId("63286a015d31b2c0cad9960d"), new ObjectId("63450dd43e23cd7181ba0b26")],
+      secondaryThemes: [
+        new ObjectId("63286a015d31b2c0cad9960d"),
+        new ObjectId("63450dd43e23cd7181ba0b26"),
+      ],
       nbVues: 79,
       nbMots: 256,
       mainSponsor: {
@@ -74,7 +77,9 @@ describe("getAllDispositifs", () => {
     fixtures.dispositif.lastAdminUpdate = new Date("2023-12-01T14:34:29.335Z");
     fixtures.dispositif.draftReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
     fixtures.dispositif.draftSecondReminderMailSentDate = new Date("2023-12-01T14:34:29.335Z");
-    fixtures.dispositif.lastReminderMailSentToUpdateContentDate = new Date("2023-12-01T14:34:29.335Z");
+    fixtures.dispositif.lastReminderMailSentToUpdateContentDate = new Date(
+      "2023-12-01T14:34:29.335Z",
+    );
     fixtures.dispositif.lastModificationDate = new Date("2023-12-01T14:34:29.335Z");
     fixtures.dispositif.adminComments = "comment";
     fixtures.dispositif.adminProgressionStatus = "comment";

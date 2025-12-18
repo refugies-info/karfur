@@ -1,12 +1,11 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { GetDispositifResponse } from "@refugies-info/api-types";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
 import { useEffect, useMemo, useState } from "react";
-import styled, { useTheme } from "styled-components/native";
-import { Button, Card, Columns, Rows, RowsSpacing, SectionTitle, TextDSFR_MD } from "~/components";
-
 import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import useAsyncFn from "react-use/lib/useAsyncFn";
+import styled, { useTheme } from "styled-components/native";
+import { Button, Card, Columns, Rows, RowsSpacing, SectionTitle, TextDSFR_MD } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import { currentI18nCodeSelector } from "~/services";
 import { setSelectedContentActionCreator } from "~/services/redux/SelectedContent/selectedContent.actions";
@@ -34,6 +33,12 @@ export interface MercisProps {
   dispositif: GetDispositifResponse;
 }
 
+function hasMerci(
+  dispositif: GetDispositifResponse,
+): dispositif is Extract<GetDispositifResponse, { merci: any }> {
+  return !!dispositif.merci;
+}
+
 const Mercis = ({ dispositif }: MercisProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslationWithRTL();
@@ -41,19 +46,24 @@ const Mercis = ({ dispositif }: MercisProps) => {
   const currentLanguage = useSelector(currentI18nCodeSelector) || "fr";
 
   const [thanks, setThanks] = useState<string[]>([]);
-  const hasThanked = useMemo(() => thanks.includes(dispositif._id.toString()), [thanks, dispositif._id]);
+  const hasThanked = useMemo(
+    () => thanks.includes(dispositif._id.toString()),
+    [thanks, dispositif._id],
+  );
 
   useEffect(() => {
     AsyncStorage.getItem("THANKS").then((thanks) => setThanks((thanks || "")?.split(",")));
   }, []);
 
   const [state, merci] = useAsyncFn(async () => {
+    if (!hasMerci(dispositif)) return;
+
     if (hasThanked) {
       return deleteMerci(dispositif._id.toString()).then(() => {
         const newThanks = thanks.filter((d) => d !== dispositif._id.toString());
         setThanks(newThanks);
         AsyncStorage.setItem("THANKS", newThanks.join(","));
-        const newDispositifThanks = JSON.parse(JSON.stringify(dispositif.merci));
+        const newDispositifThanks = JSON.parse(JSON.stringify(dispositif.merci || []));
         newDispositifThanks.pop();
 
         dispatch(
@@ -75,7 +85,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
         setSelectedContentActionCreator({
           content: {
             ...dispositif,
-            merci: [...dispositif.merci, { created_at: new Date() }],
+            merci: [...(dispositif.merci || []), { created_at: new Date() }],
           },
           locale: currentLanguage,
         }),
@@ -115,7 +125,7 @@ const Mercis = ({ dispositif }: MercisProps) => {
                 loading={state.loading}
                 onPress={merci}
                 title={t("content_screen.nbThanks", {
-                  count: dispositif.merci.length,
+                  count: (dispositif.merci || []).length,
                 })}
               />
             </Columns>

@@ -1,8 +1,9 @@
 import { Header } from "@codegouvfr/react-dsfr/Header";
-import { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import type { MainNavigationProps } from "@codegouvfr/react-dsfr/MainNavigation";
+import { isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { memo, useCallback, useMemo } from "react";
 import { isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
@@ -11,9 +12,8 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { useEditionMode, useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
@@ -34,20 +34,20 @@ const Navbar = () => {
 
   const navigationItems: MainNavigationProps.Item[] = useMemo(() => {
     const isCurrent = (href: string, paramCheck?: { param: string; value: string }) => {
-      if (!isInBrowser()) return false;
-      const currentPath = window?.location?.pathname || "";
-      const isPathMatching = currentPath === "/" + locale + href;
+      const currentPath = router.asPath.split("?")[0];
+      const isPathMatching = currentPath === href;
 
       if (paramCheck) {
-        const urlParams = new URLSearchParams(window?.location?.search || "");
-        return isPathMatching && urlParams.get(paramCheck.param) === paramCheck.value;
+        return isPathMatching && router.query[paramCheck.param] === paramCheck.value;
       }
 
       return isPathMatching;
     };
     const isBackend = router.pathname.includes("/backend");
-    const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
-    const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+    const appStoreBadge =
+      assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
+    const playStoreBadge =
+      assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
     if (isBackend) return backendNavigation;
     return [
@@ -80,7 +80,10 @@ const Navbar = () => {
         isActive: isCurrent(getPath("/agir", locale)),
       },
       {
-        linkProps: { href: getPath("/mission-et-impact", locale), prefetch: false },
+        linkProps: {
+          href: getPath("/mission-et-impact", locale),
+          prefetch: false,
+        },
         text: t("Toolbar.missionImpact", "Mission et impact"),
         isActive: isCurrent(getPath("/mission-et-impact", locale)),
       },
@@ -88,11 +91,17 @@ const Navbar = () => {
         text: t("Toolbar.partagerProjet", "Ressources"),
         menuLinks: [
           {
-            linkProps: { href: "https://kit.refugies.info/formation/", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/formation/",
+              target: "_blank",
+            },
             text: t("Toolbar.webinaire", "Participer à un webinaire de découverte"),
           },
           {
-            linkProps: { href: "https://kit.refugies.info/flyers/", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/flyers/",
+              target: "_blank",
+            },
             text: t("Toolbar.posters_leaflets", "Commander des affiches et des dépliants"),
           },
           {
@@ -101,7 +110,10 @@ const Navbar = () => {
           },
 
           {
-            linkProps: { href: "https://kit.refugies.info/agir", target: "_blank" },
+            linkProps: {
+              href: "https://kit.refugies.info/agir",
+              target: "_blank",
+            },
             text: t("Toolbar.forAgirOperators", "Pour les opérateurs AGIR"),
           },
         ],

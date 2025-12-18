@@ -1,4 +1,4 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "errors", timestamps: true } })

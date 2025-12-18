@@ -8,14 +8,14 @@ import "./globals.css";
 // desktop-lg : 75em; /* 1200px */
 
 const RIViewports = {
-  "mobile": {
+  mobile: {
     name: "mobile",
     styles: {
       width: "576px",
       height: "100%",
     },
   },
-  "tablet": {
+  tablet: {
     name: "tablet",
     styles: {
       width: "768px",
@@ -55,26 +55,33 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: "light",
-      values: [
-        {
+      options: {
+        light: {
           name: "light",
           value: "#ffffff",
         },
-        {
+
+        dark: {
           name: "dark",
           value: "#0a0a0a",
         },
-      ],
+      },
     },
 
     viewport: {
-      viewports: {
+      options: {
         ...RIViewports,
       },
     },
   },
+
   decorators: [withDsfrDecorator],
+
+  initialGlobals: {
+    backgrounds: {
+      value: "light",
+    },
+  },
 };
 
 export default preview;

@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,8 +64,12 @@ const UserContributions = (props: Props) => {
 
   const userContributions = useSelector(userContributionsSelector);
   const userStructureContributions = useSelector(userStructureDisposAssociesSelector);
-  const isLoadingUserContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
-  const isLoadingUserStructureContrib = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE));
+  const isLoadingUserContrib = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS),
+  );
+  const isLoadingUserStructureContrib = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE),
+  );
   const isLoading = isLoadingUserContrib || isLoadingUserStructureContrib;
   const userStructure = useSelector(userStructureSelector);
 
@@ -162,7 +166,9 @@ const UserContributions = (props: Props) => {
             toggleWriteModal={() => setShowWriteModal(true)}
             setTutoModalDisplayed={setTutoModalDisplayed}
           />
-          {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />}
+          {showTutoModal && (
+            <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Mes fiches"} />
+          )}
         </MainContainer>
         <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
       </div>
@@ -205,7 +211,9 @@ const UserContributions = (props: Props) => {
             />
           </WhiteContainer>
         </ContribContainer>
-        {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={tutoModalDisplayed} />}
+        {showTutoModal && (
+          <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={tutoModalDisplayed} />
+        )}
       </MainContainer>
       <WriteContentModal show={showWriteModal} close={() => setShowWriteModal(false)} />
     </div>

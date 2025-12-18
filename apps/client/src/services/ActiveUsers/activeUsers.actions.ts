@@ -1,8 +1,9 @@
-import { GetActiveUsersResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetActiveUsersResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_ACTIVE_USERS, SET_ACTIVE_USERS } from "./activeUsers.actionTypes";
 
-export const setActiveUsersActionCreator = (value: GetActiveUsersResponse[]) => action(SET_ACTIVE_USERS, value);
+export const setActiveUsersActionCreator = (value: GetActiveUsersResponse[]) =>
+  action(SET_ACTIVE_USERS, value);
 
 export const fetchActiveUsersActionCreator = () => action(FETCH_ACTIVE_USERS);
 

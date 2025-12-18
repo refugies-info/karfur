@@ -1,4 +1,4 @@
-import {
+import type {
   GetDispositifResponse,
   GetNeedResponse,
   GetThemeResponse,
@@ -6,7 +6,7 @@ import {
   InfoSections,
 } from "@refugies-info/api-types";
 import h2p from "html2plaintext";
-import { TFunction } from "next-i18next";
+import type { TFunction } from "next-i18next";
 
 const getSpaceBeforeCallout = (text: string) => text.replaceAll("</p>", "</p> ");
 
@@ -15,7 +15,10 @@ export const getSectionReadableText = (section: InfoSection | undefined): string
   return `${section.title}. ${h2p(getSpaceBeforeCallout(section.text))}`;
 };
 
-export const getSectionsReadableText = (sections: InfoSections | undefined, title: string): string => {
+export const getSectionsReadableText = (
+  sections: InfoSections | undefined,
+  title: string,
+): string => {
   if (!sections) return "";
   return [title, ...Object.values(sections).map((s) => getSectionReadableText(s))].join(". ");
 };
@@ -28,7 +31,11 @@ export const getLinkedThemesReadableText = (
   secondaryThemes: GetThemeResponse[],
   needs: GetNeedResponse[],
 ) => {
-  return [theme?.short?.fr || "", ...secondaryThemes.map((t) => t.short?.fr), ...needs.map((n) => n.fr.text)]
+  return [
+    theme?.short?.fr || "",
+    ...secondaryThemes.map((t) => t.short?.fr),
+    ...needs.map((n) => n.fr.text),
+  ]
     .filter((t) => !!t)
     .join(". ");
 };
@@ -44,7 +51,7 @@ export const getAllPageReadableText = (
   return [
     dispositif.titreInformatif || "",
     t("Dispositif.sectionWhat"),
-    getReadableText(dispositif.what),
+    getReadableText(dispositif.what || ""),
     getSectionsReadableText(dispositif.why, t("Dispositif.sectionWhy")),
     getSectionsReadableText(dispositif.how, t("Dispositif.sectionHow")),
     getSectionsReadableText(dispositif.next, t("Dispositif.sectionNext")),

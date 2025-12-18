@@ -1,5 +1,5 @@
 "use client";
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -9,7 +9,9 @@ import { MapPanel } from "./MapPanel";
 // Dynamically import LeafletMap component with SSR disabled
 const DynamicLeafletMap = dynamic(() => import("./LeafletMap.tsx").then((mod) => mod.LeafletMap), {
   ssr: false,
-  loading: () => <div className="flex h-full items-center justify-center">Chargement de la carte...</div>,
+  loading: () => (
+    <div className="flex h-full items-center justify-center">Chargement de la carte...</div>
+  ),
 });
 
 type MapProps = {
@@ -21,7 +23,14 @@ type MapProps = {
   showSidebar?: boolean;
 };
 
-export const Map = ({ className, title, description, mapData, defaultFocusedPoi, showSidebar = true }: MapProps) => {
+export const Map = ({
+  className,
+  title,
+  description,
+  mapData,
+  defaultFocusedPoi,
+  showSidebar = true,
+}: MapProps) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
   const previousFullscreenState = useRef(isFullscreen);
@@ -89,7 +98,9 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi,
     return undefined; // Explicit return for when condition is not met
   }, [isFullscreen]);
 
-  const [focusOnMapFn, setFocusOnMapFn] = useState<((poi: Poi, zoomLevel?: number) => void) | undefined>(undefined);
+  const [focusOnMapFn, setFocusOnMapFn] = useState<
+    ((poi: Poi, zoomLevel?: number) => void) | undefined
+  >(undefined);
 
   const handleMapReady = useCallback((fn: (poi: Poi, zoomLevel?: number) => void) => {
     setFocusOnMapFn(() => fn);
@@ -139,7 +150,10 @@ export const Map = ({ className, title, description, mapData, defaultFocusedPoi,
       >
         {showSidebar && <MapPanel />}
         <DynamicLeafletMap
-          className={cn("grid max-lg:min-h-128 max-md:h-[60vh] print:hidden", isFullscreen && "lg:col-span-3")}
+          className={cn(
+            "grid max-lg:min-h-128 max-md:h-[60vh] print:hidden",
+            isFullscreen && "lg:col-span-3",
+          )}
         />
       </div>
     </MapContext.Provider>

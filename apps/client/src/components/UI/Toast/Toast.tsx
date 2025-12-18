@@ -1,5 +1,5 @@
 import { ToastClose, ToastDescription, Toast as ToastRoot } from "@radix-ui/react-toast";
-import React from "react";
+import type React from "react";
 import { cn } from "~/lib/classname";
 import styles from "./Toast.module.scss";
 
@@ -18,7 +18,10 @@ const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
   return (
     <ToastRoot open={open} className={styles.container} onOpenChange={onOpenChange}>
       <ToastDescription className={cn(styles.body, type === "error" && styles.error)}>
-        <i className={cn(type === "error" ? "fr-icon-error-fill" : "fr-icon-checkbox-circle-fill")} aria-hidden />
+        <i
+          className={cn(type === "error" ? "fr-icon-error-fill" : "fr-icon-checkbox-circle-fill")}
+          aria-hidden
+        />
         {children}
       </ToastDescription>
       <ToastClose aria-label="Close" className={styles.close}>

@@ -1,5 +1,9 @@
 import { ObjectId } from "~/typegoose";
-import { DemarcheContent, DispositifContent, TranslationContent } from "~/typegoose/Dispositif";
+import type {
+  DemarcheContent,
+  DispositifContent,
+  TranslationContent,
+} from "~/typegoose/Dispositif";
 import {
   countDispositifWords,
   countDispositifWordsForSections,
@@ -43,13 +47,18 @@ describe("countDispositifWords", () => {
       titreMarque: "un titre marque",
       abstract: "résumé de la fiche",
       what: "<p>texte de la fiche</p>",
-      how: { "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" } },
+      how: {
+        "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" },
+      },
       why: {
         "my-uuid-v4-key": {
           title: "titre de la première section",
           text: "<p>texte de la <strong>première</strong> section</p>",
         },
-        "my-uuid-v4-key-2": { title: "titre de la seconde section", text: "<p>texte de la seconde section</p>" },
+        "my-uuid-v4-key-2": {
+          title: "titre de la seconde section",
+          text: "<p>texte de la seconde section</p>",
+        },
       },
     };
     const res = countDispositifWords(content);
@@ -62,13 +71,18 @@ describe("countDispositifWords", () => {
       titreMarque: "un titre marque",
       abstract: "résumé de la fiche",
       what: "<p>texte de la fiche</p>",
-      how: { "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" } },
+      how: {
+        "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" },
+      },
       next: {
         "my-uuid-v4-key": {
           title: "titre de la première section",
           text: "<p>texte de la <strong>première</strong> section</p>",
         },
-        "my-uuid-v4-key-2": { title: "titre de la seconde section", text: "<p>texte de la seconde section</p>" },
+        "my-uuid-v4-key-2": {
+          title: "titre de la seconde section",
+          text: "<p>texte de la seconde section</p>",
+        },
       },
       administrationName: "France Travail",
     };
@@ -85,13 +99,18 @@ describe("countDispositifWordsForSections", () => {
         titreMarque: "un titre marque",
         abstract: "résumé de la fiche",
         what: "<p>texte de la fiche</p>",
-        how: { "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" } },
+        how: {
+          "my-uuid-v4-key": { title: "titre de la section", text: "<p>texte de la section</p>" },
+        },
         next: {
           "my-uuid-v4-key": {
             title: "titre de la première section",
             text: "<p>texte de la <strong>première</strong> section</p>",
           },
-          "my-uuid-v4-key-2": { title: "titre de la seconde section", text: "<p>texte de la seconde section</p>" },
+          "my-uuid-v4-key-2": {
+            title: "titre de la seconde section",
+            text: "<p>texte de la seconde section</p>",
+          },
         },
         administrationName: "France Travail",
       },

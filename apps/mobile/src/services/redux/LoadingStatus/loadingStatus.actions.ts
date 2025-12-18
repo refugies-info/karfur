@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { action, ActionType } from "typesafe-actions";
+import { type ActionType, action } from "typesafe-actions";
 
 export enum LoadingStatusKey {
   FETCH_LANGUAGES = "FETCH_LANGUAGES",
@@ -11,7 +11,8 @@ export enum LoadingStatusKey {
 
 export const startLoading = (key: LoadingStatusKey) => action("LOADING_START", { key });
 export const finishLoading = (key: LoadingStatusKey) => action("LOADING_END", { key });
-export const setError = (key: LoadingStatusKey, error: string | undefined) => action("LOADING_ERROR", { key, error });
+export const setError = (key: LoadingStatusKey, error: string | undefined) =>
+  action("LOADING_ERROR", { key, error });
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const actions = {

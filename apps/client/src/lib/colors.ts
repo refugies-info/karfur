@@ -31,19 +31,37 @@ type AvancementText =
   | "En cours"
   | "Brouillon";
 const colorStatut = (avancement: AvancementText) => {
-  if (avancement === "Annulé" || avancement === "Annulée" || avancement === "Exclu" || avancement === "Supprimé") {
+  if (
+    avancement === "Annulé" ||
+    avancement === "Annulée" ||
+    avancement === "Exclu" ||
+    avancement === "Supprimé"
+  ) {
     return "danger";
   } else if (avancement === "Inactif" || avancement === "Inactive") {
     return "secondary";
-  } else if (avancement === "En attente" || avancement === "En cours" || avancement === "Brouillon") {
+  } else if (
+    avancement === "En attente" ||
+    avancement === "En cours" ||
+    avancement === "Brouillon"
+  ) {
     return "warning";
   }
   return "success";
 };
 
 const randomColor = () => {
-  let colorArr = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"];
-  let nb = Math.floor(Math.random() * Math.floor(colorArr.length - 1));
+  const colorArr = [
+    "primary",
+    "secondary",
+    "success",
+    "warning",
+    "danger",
+    "info",
+    "light",
+    "dark",
+  ];
+  const nb = Math.floor(Math.random() * Math.floor(colorArr.length - 1));
   return colorArr[nb];
 };
 

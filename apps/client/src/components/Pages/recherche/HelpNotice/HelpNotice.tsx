@@ -5,9 +5,10 @@ interface NoticeContentItem {
   title?: string;
   link: string;
   text: string;
+  className?: string;
 }
 
-export const HelpNotice = () => {
+export const HelpNotice = ({ className }: { className?: string }) => {
   const noticeContent = {
     fr: {
       title: "Réfugiés.info a été nommé Service numérique à impact national ! ",
@@ -47,15 +48,22 @@ export const HelpNotice = () => {
   const locale = useLocale();
 
   // Use French as fallback if the current locale is not available
-  const content: NoticeContentItem = noticeContent[locale as keyof typeof noticeContent] || noticeContent.fr;
+  const content: NoticeContentItem =
+    noticeContent[locale as keyof typeof noticeContent] || noticeContent.fr;
 
   return (
     <Notice
       isClosable
+      className={className}
       title={
         <>
           {content.title && content.title}
-          <a href={content.link} target="_blank" rel="noopener noreferrer" className="!border-0 !underline">
+          <a
+            href={content.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="!border-0 !underline"
+          >
             {content.text}
           </a>
         </>

@@ -1,13 +1,13 @@
-import { StackNavigationProp } from "@react-navigation/stack";
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import React, { useEffect } from "react";
-import { Dimensions, StyleProp, View, ViewStyle } from "react-native";
+import { Dimensions, type StyleProp, View, type ViewStyle } from "react-native";
 import Carousel from "react-native-reanimated-carousel";
 import { useSelector } from "react-redux";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { sortByOrder } from "~/libs";
 import { themesSelector } from "~/services/redux/Themes/themes.selectors";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { CarouselPagination } from "./CarouselPagination";
 import { CarousselCard } from "./CarousselCard";
 

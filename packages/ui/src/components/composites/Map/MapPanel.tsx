@@ -1,7 +1,6 @@
 "use client";
-import { Carrousel, cn } from "@refugies-info/ui";
+import { Carrousel, cn, useWindowSize } from "@refugies-info/ui";
 import { useCallback, useEffect, useMemo } from "react";
-import { useWindowSize } from "../../../hooks";
 import { useMapContext } from "./MapContext";
 import MapPanelItem from "./MapPanelItem";
 
@@ -34,18 +33,31 @@ export const MapPanel = ({ className }: MapPanelProps) => {
 
   const mobileItems = useMemo(() => {
     return mapData.map((poi, i) => (
-      <MapPanelItem className="h-full w-[80vw] max-w-96" key={`${poi.title}-${i}`} id={`${poi.title}-${i}`} poi={poi} />
+      <MapPanelItem
+        className="h-full w-[80vw] max-w-96"
+        key={`${poi.title}-${i}`}
+        id={`${poi.title}-${i}`}
+        poi={poi}
+      />
     ));
   }, [mapData]);
 
   const desktopItems = useMemo(() => {
-    return mapData.map((poi, i) => <MapPanelItem key={`${poi.title}-${i}`} id={`${poi.title}-${i}`} poi={poi} />);
+    return mapData.map((poi, i) => (
+      <div role="listitem" key={`${poi.title}-${i}`}>
+        <MapPanelItem id={`${poi.title}-${i}`} poi={poi} />
+      </div>
+    ));
   }, [mapData]);
 
   return (
     mapData && (
       <div className={cn("max-h-full w-full pt-10 pb-4 lg:overflow-y-auto lg:pb-10", className)}>
-        {title && <h2 className="text-title-lg mb-3 px-4 lg:px-10">{title}</h2>}
+        {title && (
+          <h2 id="map-panel-title" className="text-title-lg mb-3 px-4 lg:px-10">
+            {title}
+          </h2>
+        )}
         {description && <p className="px-4 max-sm:mb-0 lg:px-10">{description}</p>}
         {isMobile || isTablet ? (
           <Carrousel
@@ -57,7 +69,13 @@ export const MapPanel = ({ className }: MapPanelProps) => {
             {mobileItems}
           </Carrousel>
         ) : (
-          <div className="flex flex-col gap-2 lg:px-10">{desktopItems}</div>
+          <div
+            className="flex flex-col gap-2 lg:px-10"
+            role="list"
+            aria-labelledby={title ? "map-panel-title" : undefined}
+          >
+            {desktopItems}
+          </div>
         )}
       </div>
     )

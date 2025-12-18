@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { AnnotationsOverlay } from "@refugies-info/ui";
+import { AnnotationsOverlay, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
@@ -7,7 +7,7 @@ import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -17,21 +17,42 @@ const MobileApp = () => {
 
   const { isMobile } = useWindowSize();
 
-  const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
-  const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+  const appStoreBadge =
+    assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
+  const playStoreBadge =
+    assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
   const storeLinks = useMemo(
     () => (
       <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
-        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
-          <Image src={appStoreBadge} alt="Get it on App Store" fill />
+        <a
+          href={iosStoreLink}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="relative h-10 w-30"
+        >
+          <Image
+            src={appStoreBadge}
+            alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")}
+            fill
+          />
         </a>
-        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-          <Image src={playStoreBadge} width={128} height={40} alt="Get it on Play Store" />
+        <a
+          href={androidStoreLink}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="relative h-10 w-32"
+        >
+          <Image
+            src={playStoreBadge}
+            width={128}
+            height={40}
+            alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+          />
         </a>
       </p>
     ),
-    [appStoreBadge, playStoreBadge],
+    [appStoreBadge, playStoreBadge, t],
   );
 
   const handleOpenStoreLink = (storelink: string) => {
@@ -42,6 +63,8 @@ const MobileApp = () => {
     <section
       id="application"
       className="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+      role="region"
+      aria-label={t("MobileApp.sectionLabel", "Section application mobile")}
     >
       <div className="flex h-full flex-col items-center justify-center gap-10">
         <AnnotationsOverlay
@@ -68,13 +91,24 @@ const MobileApp = () => {
         >
           <Image src={application} fill className="object-contain" alt="" />
         </AnnotationsOverlay>
+        <p className="sr-only">
+          {t(
+            "MobileApp.description",
+            "Téléchargez l'application mobile pour accéder à toutes les fonctionnalités de partage, de changement de langue, de langage clair et de vocalisation centralisées dans une seule application.",
+          )}
+        </p>
+
         {storeLinks}
       </div>
       <div className="">
         <div className="mb-6 flex items-center gap-6">
           <Image src="/images/logoRI.svg" width={72} height={72} alt="" />
           <p className="m-0 flex flex-col gap-2 font-medium">
-            <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
+            <span
+              aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")}
+              role="img"
+              className="inline-flex gap-3"
+            >
               {Array.from({ length: 5 }).map((_, index) => (
                 // TODO @ledjay : fix yellow colors from DSFR
                 <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#fcc63a]" />

@@ -4,9 +4,17 @@ exports[`publier renders publier 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -578,16 +586,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Une journée porte ouverte
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Des sessions annuelles de formation
                   </p>
                 </div>
@@ -633,16 +653,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Un service qui génère des bénéfices
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Une formation certifiante
                   </p>
                 </div>
@@ -688,16 +720,28 @@ exports[`publier renders publier 1`] = `
                     class="flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-close-circle-fill text-default-error me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Mauvais exemple d'action :
+                    </span>
                     Une formation généraliste
                   </p>
                   <p
                     class="!mb-0 flex"
                   >
                     <i
+                      aria-hidden="true"
                       class="fr-icon-success-fill text-default-success me-2 h-6 w-6"
                     />
+                    <span
+                      class="sr-only"
+                    >
+                      Bon exemple d'action :
+                    </span>
                     Une formation avec cours de français
                   </p>
                 </div>
@@ -754,17 +798,13 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Créez 
-                <strong>
-                  votre compte
-                </strong>
-                 Réfugiés.info
+                Créez votre compte Réfugiés.info
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.
-              </p>
+              </div>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
@@ -807,21 +847,18 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Rédigez
-                </strong>
-                 votre fiche
+                Rédigez votre fiche
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.
-              </p>
-              <p
+              </div>
+              <div
                 class="text-large mb-6"
               >
                 Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.
-              </p>
+              </div>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
@@ -864,16 +901,13 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Ajoutez la 
-                <strong>
-                  structure responsable
-                </strong>
+                Ajoutez la structure responsable
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.
-              </p>
+              </div>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -909,26 +943,22 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                L’équipe éditoriale de Réfugiés.info 
-                <strong>
-                  relit et publie
-                </strong>
-                 votre fiche
+                L’équipe éditoriale de Réfugiés.info relit et publie votre fiche
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.
-              </p>
-              <p
+              </div>
+              <div
                 class="text-large mb-6"
               >
                 Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
-              </p>
+              </div>
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Votre fiche est publiée ! 🎉
+                Votre fiche est publiée ! 🎉
               </div>
             </div>
             <div
@@ -965,21 +995,18 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Traduction en 7 langues
-                </strong>
-                 de votre fiche
+                Traduction en 7 langues de votre fiche
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.
-              </p>
-              <p
+              </div>
+              <div
                 class="text-large mb-6"
               >
                 Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.
-              </p>
+              </div>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -1015,21 +1042,18 @@ exports[`publier renders publier 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                <strong>
-                  Mettez à jour
-                </strong>
-                 votre action régulièrement
+                Mettez à jour votre action régulièrement
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.
-              </p>
-              <p
+              </div>
+              <div
                 class="text-large mb-6"
               >
                 Attention, une action obsolète sera supprimée par l’équipe éditoriale.
-              </p>
+              </div>
               <span
                 class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />

@@ -1,8 +1,16 @@
-import { DispositifStatus, GetDispositifResponse, GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetDispositifResponse,
+  type GetUserInfoResponse,
+  RoleName,
+} from "@refugies-info/api-types";
 import { hasRole } from "~/lib/hasRole";
 import { isStatus } from "./isStatus";
 
-export const canEdit = (dispositif: GetDispositifResponse | null, user: GetUserInfoResponse | null) => {
+export const canEdit = (
+  dispositif: GetDispositifResponse | null,
+  user: GetUserInfoResponse | null,
+) => {
   if (!user || !dispositif) return false;
   if (hasRole(user, RoleName.ADMIN)) return true;
 

@@ -1,10 +1,10 @@
-import { ContentLinkRequest, Languages } from "@refugies-info/api-types";
+import type { ContentLinkRequest, Languages } from "@refugies-info/api-types";
 import { InvalidRequestError, NotFoundError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
 import { sendSMS } from "~/services";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const contentLink = async (body: ContentLinkRequest): Response => {
   logger.info("[contentLink] received", body);

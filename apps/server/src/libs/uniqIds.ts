@@ -1,4 +1,4 @@
-import { Ref } from "@typegoose/typegoose";
+import type { Ref } from "@typegoose/typegoose";
 import uniq from "lodash/uniq";
 import { ObjectId } from "~/typegoose";
 

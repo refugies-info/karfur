@@ -17,29 +17,30 @@ export const getContentIntro = (key: ContentKey, nbWords: number, locale: string
     case "expert":
       return (
         <>
-          Vous êtes sur le point de quitter l’éditeur sans avoir validé votre traduction alors que celle-ci est
-          complète.
+          Vous êtes sur le point de quitter l’éditeur sans avoir validé votre traduction alors que
+          celle-ci est complète.
         </>
       );
     case "pending":
       return (
         <>
-          Vous avez traduit {nbWords} mots, merci pour votre participation. Attention, vous avez commencé des nouvelles
-          propositions. Pensez bien à les valider pour que celles-ci soient prises en compte.
+          Vous avez traduit {nbWords} mots, merci pour votre participation. Attention, vous avez
+          commencé des nouvelles propositions. Pensez bien à les valider pour que celles-ci soient
+          prises en compte.
         </>
       );
     case "incomplete":
       return (
         <>
-          Félicitations, vous avez traduit {nbWords} mots. Vous recevrez une notification lorsque la fiche sera validée
-          par l’expert et publiée en {locale.toLowerCase()}.
+          Félicitations, vous avez traduit {nbWords} mots. Vous recevrez une notification lorsque la
+          fiche sera validée par l’expert et publiée en {locale.toLowerCase()}.
         </>
       );
     case "complete":
       return (
         <>
-          Félicitations, vous avez traduit {nbWords} mots. Vous recevrez une notification lorsque la fiche sera validée
-          par l’expert et publiée en {locale.toLowerCase()}.
+          Félicitations, vous avez traduit {nbWords} mots. Vous recevrez une notification lorsque la
+          fiche sera validée par l’expert et publiée en {locale.toLowerCase()}.
         </>
       );
   }

@@ -52,7 +52,9 @@ export const ErrorScreen = (props: Props) => {
       <TextDSFR_XL style={{ marginBottom: styles.margin * 2, textAlign: "center" }}>
         {props.title || t("content_screen.error_title", "Oh non !")}
       </TextDSFR_XL>
-      <TextDSFR_MD style={{ textAlign: "center", marginBottom: styles.margin * 4 }}>{props.text}</TextDSFR_MD>
+      <TextDSFR_MD style={{ textAlign: "center", marginBottom: styles.margin * 4 }}>
+        {props.text}
+      </TextDSFR_MD>
 
       {props.imageLast && image}
 

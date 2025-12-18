@@ -1,11 +1,12 @@
 import {
   ContentType,
+  DispositifOrigin,
   DispositifStatus,
-  GetStructureDispositifResponse,
-  GetUserContributionsResponse,
+  type GetStructureDispositifResponse,
+  type GetUserContributionsResponse,
 } from "@refugies-info/api-types";
 import { formatContributions } from "../functions";
-import { FormattedUserContribution } from "../types";
+import type { FormattedUserContribution } from "../types";
 
 const userContrib1: GetUserContributionsResponse = {
   _id: "id1",
@@ -17,6 +18,7 @@ const userContrib1: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.DRAFT,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const formattedUserContrib1: FormattedUserContribution = {
@@ -31,6 +33,7 @@ const formattedUserContrib1: FormattedUserContribution = {
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userContrib2: GetUserContributionsResponse = {
@@ -43,6 +46,7 @@ const userContrib2: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 const formattedUserContrib2: FormattedUserContribution = {
   _id: "id2",
@@ -56,6 +60,7 @@ const formattedUserContrib2: FormattedUserContribution = {
   isAuthorizedToDelete: true,
   titreMarque: "marque",
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userContrib3: GetUserContributionsResponse = {
@@ -68,6 +73,7 @@ const userContrib3: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.WAITING_ADMIN,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 const formattedUserContrib3: FormattedUserContribution = {
   _id: "id3",
@@ -81,6 +87,7 @@ const formattedUserContrib3: FormattedUserContribution = {
   responsabilite: "structure",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userContrib4: GetUserContributionsResponse = {
@@ -93,6 +100,7 @@ const userContrib4: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.KO_STRUCTURE,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 const formattedUserContrib4: FormattedUserContribution = {
   _id: "id4",
@@ -106,6 +114,7 @@ const formattedUserContrib4: FormattedUserContribution = {
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userContrib5: GetUserContributionsResponse = {
@@ -118,6 +127,7 @@ const userContrib5: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.WAITING_STRUCTURE,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 const formattedUserContrib5: FormattedUserContribution = {
   _id: "id5",
@@ -131,6 +141,7 @@ const formattedUserContrib5: FormattedUserContribution = {
   responsabilite: "Moi",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userContrib6: GetUserContributionsResponse = {
@@ -143,6 +154,7 @@ const userContrib6: GetUserContributionsResponse = {
   nbVues: 0,
   status: DispositifStatus.ACTIVE,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 const formattedUserContrib6: FormattedUserContribution = {
   _id: "id6",
@@ -156,9 +168,17 @@ const formattedUserContrib6: FormattedUserContribution = {
   responsabilite: "structure",
   isAuthorizedToDelete: false,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
-const userContribs = [userContrib1, userContrib2, userContrib3, userContrib4, userContrib5, userContrib6];
+const userContribs = [
+  userContrib1,
+  userContrib2,
+  userContrib3,
+  userContrib4,
+  userContrib5,
+  userContrib6,
+];
 
 const userStructureContrib1: GetStructureDispositifResponse = {
   _id: "id1s",
@@ -179,6 +199,7 @@ const userStructureContrib1: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: DispositifOrigin.RI,
 };
 
 const formattedUserStructureContrib1: FormattedUserContribution = {
@@ -193,6 +214,7 @@ const formattedUserStructureContrib1: FormattedUserContribution = {
   responsabilite: "structure",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userStructureContrib2: GetStructureDispositifResponse = {
@@ -211,6 +233,7 @@ const userStructureContrib2: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: DispositifOrigin.RI,
 };
 
 const userStructureContrib3: GetStructureDispositifResponse = {
@@ -229,6 +252,7 @@ const userStructureContrib3: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: DispositifOrigin.RI,
 };
 
 const userStructureContrib4: GetStructureDispositifResponse = {
@@ -247,6 +271,7 @@ const userStructureContrib4: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: DispositifOrigin.RI,
 };
 
 const formattedUserStructureContrib4: FormattedUserContribution = {
@@ -261,6 +286,7 @@ const formattedUserStructureContrib4: FormattedUserContribution = {
   responsabilite: "structure",
   isAuthorizedToDelete: true,
   hasDraftVersion: false,
+  origin: DispositifOrigin.RI,
 };
 
 const userStructureContrib5: GetStructureDispositifResponse = {
@@ -279,6 +305,7 @@ const userStructureContrib5: GetStructureDispositifResponse = {
   availableLanguages: [],
   hasDraftVersion: false,
   themeSortIndex: 0,
+  origin: DispositifOrigin.RI,
 };
 
 const userStructureContrib = [

@@ -1,8 +1,8 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Base } from "./Base";
-import { ImageSchema } from "./generics";
-import { Theme, ThemeId } from "./Theme";
+import type { ImageSchema } from "./generics";
+import { Theme, type ThemeId } from "./Theme";
 
 export class NeedTranslation {
   @prop()

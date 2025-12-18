@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import BubbleFlagBack from "~/assets/dispositif/bubble-flag.svg";
 import Flag from "~/components/UI/Flag";
@@ -26,7 +26,13 @@ const BubbleFlag = (props: Props) => {
       className={cls(styles.item, styles[props.size || "md"], props.className)}
       style={{ width: sizePx, height: sizePx }}
     >
-      <Image src={BubbleFlagBack} width={sizePx} height={sizePx} alt="" className={styles.background} />
+      <Image
+        src={BubbleFlagBack}
+        width={sizePx}
+        height={sizePx}
+        alt=""
+        className={styles.background}
+      />
       {langueCode && <Flag langueCode={langueCode} className={styles.flag} />}
     </div>
   );

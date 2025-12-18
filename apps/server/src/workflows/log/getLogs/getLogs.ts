@@ -1,4 +1,4 @@
-import { GetLogResponse } from "@refugies-info/api-types";
+import type { GetLogResponse } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { getDispositifName } from "~/modules/dispositif/dispositif.repository";
 import { getLangueName } from "~/modules/langues/langues.repository";
@@ -6,7 +6,7 @@ import { findLogs } from "~/modules/logs/logs.repository";
 import { groupLogs } from "~/modules/logs/logs.service";
 import { getStructureName } from "~/modules/structure/structure.repository";
 import { getUserName } from "~/modules/users/users.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> => {
   logger.info("[getLogs] received with id", id);

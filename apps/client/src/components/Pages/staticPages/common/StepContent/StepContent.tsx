@@ -1,9 +1,10 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
-import React, { useMemo } from "react";
+import { useWindowSize } from "@refugies-info/ui";
+import type React from "react";
+import { useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { useSanitizedContent } from "~/hooks";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cls } from "~/lib/classname";
 
 interface Props {
@@ -44,7 +45,9 @@ const StepContent = (props: Props) => {
 
   return (
     <div
-      className={cls("align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0")}
+      className={cls(
+        "align-stretch relative flex flex-col-reverse justify-between ps-4 lg:flex-row lg:gap-30 lg:ps-0",
+      )}
     >
       <div
         className={cls(
@@ -60,7 +63,9 @@ const StepContent = (props: Props) => {
             "flex items-center justify-center",
           )}
         >
-          <span className={cls("h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]")}>{props.step}</span>
+          <span className={cls("h-4 leading-[1rem] lg:h-[1.375rem] lg:leading-[1.25rem]")}>
+            {props.step}
+          </span>
         </div>
         <h3
           className={cls("text-h4 lg:text-h3", props.badge ? "mb-3" : "mb-6")}
@@ -75,7 +80,10 @@ const StepContent = (props: Props) => {
         )}
         {props.texts.map((text, i) =>
           Array.isArray(text) ? (
-            <div key={i} className="bg-contrast-beige-gris-galet border-default-grey mb-6 border p-4">
+            <div
+              key={i}
+              className="bg-contrast-beige-gris-galet border-default-grey mb-6 border p-4"
+            >
               <ul className="my-0 space-y-2">
                 {text.map((li, j) => (
                   <li key={j}>{li}</li>
@@ -83,9 +91,9 @@ const StepContent = (props: Props) => {
               </ul>
             </div>
           ) : (
-            <p key={i} className="text-large mb-6">
+            <div key={i} className="text-large mb-6">
               {text}
-            </p>
+            </div>
           ),
         )}
         {props.cta && (
@@ -120,7 +128,14 @@ const StepContent = (props: Props) => {
           !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}
       >
-        {props.image && <Image src={props.image} alt="" width={props.width || 550} style={{ objectFit: "contain" }} />}
+        {props.image && (
+          <Image
+            src={props.image}
+            alt=""
+            width={props.width || 550}
+            style={{ objectFit: "contain" }}
+          />
+        )}
         {/* fade border */}
         {props.dottedLine && (
           <span

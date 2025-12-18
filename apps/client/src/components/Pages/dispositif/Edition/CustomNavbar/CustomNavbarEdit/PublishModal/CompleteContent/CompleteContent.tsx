@@ -1,5 +1,6 @@
-import { DispositifStatus } from "@refugies-info/api-types";
-import React, { useEffect, useMemo, useState } from "react";
+import type { DispositifStatus } from "@refugies-info/api-types";
+import type React from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
@@ -16,7 +17,7 @@ import API from "~/utils/API";
 import StepBar from "../../../StepBar";
 import { getTotalSteps } from "../../functions";
 import BubbleFlags from "./BubbleFlags";
-import { Content } from "./data";
+import type { Content } from "./data";
 import { getTextContent } from "./functions";
 import PublicationSteps from "./PublicationSteps";
 
@@ -41,7 +42,9 @@ const CompleteContent = (props: Props) => {
 
   const [hasChanges, setHasChanges] = useState<boolean | null>(null);
   const [{ loading }, getHasChanges] = useAsyncFn(() =>
-    dispositif?._id ? API.getDispositifHasTextChanges(dispositif?._id.toString()) : Promise.resolve(false),
+    dispositif?._id
+      ? API.getDispositifHasTextChanges(dispositif?._id.toString())
+      : Promise.resolve(false),
   );
 
   const contentType = useContentType();
@@ -126,8 +129,8 @@ const CompleteContent = (props: Props) => {
                   title: "Traduction des modifications en 7 langues",
                   subtitle: (
                     <>
-                      Votre fiche est traduite gratuitement par des experts linguistes en anglais, arabe, pachto,
-                      persan, tigrinya, ukrainien et russe.
+                      Votre fiche est traduite gratuitement par des experts linguistes en anglais,
+                      arabe, pachto, persan, tigrinya, ukrainien et russe.
                       <BubbleFlags />
                     </>
                   ),
@@ -239,7 +242,16 @@ const CompleteContent = (props: Props) => {
         </div>
       </>
     );
-  }, [step, onPublish, user.admin, keepTranslations, hasChanges, dispositif, totalSteps, redirectToBo]);
+  }, [
+    step,
+    onPublish,
+    user.admin,
+    keepTranslations,
+    hasChanges,
+    dispositif,
+    totalSteps,
+    redirectToBo,
+  ]);
 
   return (
     <div>

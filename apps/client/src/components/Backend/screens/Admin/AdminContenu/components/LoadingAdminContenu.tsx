@@ -2,7 +2,13 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Table } from "reactstrap";
 import EVAIcon from "~/components/UI/EVAIcon";
 import { colors } from "~/utils/colors";
-import { Content, FigureContainer, StyledHeader, StyledSort, StyledTitle } from "../../sharedComponents/StyledAdmin";
+import {
+  Content,
+  FigureContainer,
+  StyledHeader,
+  StyledSort,
+  StyledTitle,
+} from "../../sharedComponents/StyledAdmin";
 import { FilterButton } from "../../sharedComponents/SubComponents";
 import { correspondingStatus, table_contenu } from "../data";
 
@@ -40,7 +46,7 @@ export const LoadingAdminContenu = () => {
                   {element.name}
                   {element.order && (
                     <EVAIcon
-                      // @ts-ignore
+                      // @ts-expect-error
                       name={"chevron-" + (element.croissant ? "up" : "down")}
                       fill={colors.gray90}
                       className="sort-btn"

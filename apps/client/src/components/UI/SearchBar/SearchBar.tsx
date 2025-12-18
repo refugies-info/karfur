@@ -1,3 +1,4 @@
+import type { GetActiveUsersResponse, GetAllUsersResponse } from "@refugies-info/api-types";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash/debounce";
@@ -7,11 +8,9 @@ import styled from "styled-components";
 import NoResultImage from "~/assets/no_results.svg";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
+import Image from "~/components/UI/Image";
 import { removeAccents } from "~/lib";
 import { escapeRegexCharacters, getSuggestionValue } from "~/lib/search";
-
-import { GetActiveUsersResponse, GetAllUsersResponse } from "@refugies-info/api-types";
-import Image from "~/components/UI/Image";
 import { colors } from "~/utils/colors";
 
 type Suggestion = GetActiveUsersResponse;
@@ -79,9 +78,12 @@ const SearchBar = (props: Props) => {
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     if (!props.array) return [];
-    //@ts-ignore
+
     return props.array.filter((child) => {
-      return (child.username && regex.test(removeAccents(child.username))) || regex.test(removeAccents(child.email));
+      return (
+        (child.username && regex.test(removeAccents(child.username))) ||
+        regex.test(removeAccents(child.email))
+      );
     });
   };
 
@@ -99,8 +101,7 @@ const SearchBar = (props: Props) => {
   const isNoResult = value !== "" && !suggestions.length;
 
   const renderSuggestion = (suggestion: Suggestion, { query }: { query: any }) => {
-    //@ts-ignore
-    if (suggestion.createNew) {
+    if ((suggestion as any).createNew) {
       return (
         <span className="suggestion-content">
           <span className="name">
@@ -113,10 +114,9 @@ const SearchBar = (props: Props) => {
         </span>
       );
     }
-    //@ts-ignore
-    const firstPart = (props.structures ? suggestion.acronyme : suggestion.username) || "";
-    //@ts-ignore
-    const secondPart = (props.structures ? suggestion.nom : suggestion.email) || "";
+
+    const firstPart = (props.structures ? (suggestion as any).acronyme : suggestion.username) || "";
+    const secondPart = (props.structures ? (suggestion as any).nom : suggestion.email) || "";
     const matches_first = AutosuggestHighlightMatch(firstPart, query + " " + query);
     const parts_first = AutosuggestHighlightParse(firstPart, matches_first);
     const matches_second = AutosuggestHighlightMatch(secondPart, query + " " + query);

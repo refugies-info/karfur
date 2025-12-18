@@ -5,6 +5,7 @@ import Select from "@codegouvfr/react-dsfr/Select";
 import { useTranslation } from "next-i18next";
 import { forwardRef, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Toast from "~/components/UI/Toast";
 import { useLocale, useSendSms } from "~/hooks";
 import { isValidPhone } from "~/lib/validateFields";
@@ -20,6 +21,7 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
   const { t } = useTranslation();
   const locale = useLocale();
   const dispositif = useSelector(selectedDispositifSelector);
+  const announce = useAnnounce();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -29,7 +31,10 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
   const selectOptions = useMemo(
     () =>
       languages.map((lang) => {
-        return { ...lang, disabled: !(dispositif?.availableLanguages || []).includes(lang.i18nCode) };
+        return {
+          ...lang,
+          disabled: !(dispositif?.availableLanguages || []).includes(lang.i18nCode),
+        };
       }),
     [languages, dispositif],
   );
@@ -51,7 +56,11 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
           setSelectedLang(locale);
           setError(false);
           setShowToast(true);
-          onSubmitSuccess?.();
+          announce(t("Dispositif.smsFormSent"));
+          setShowToast(false);
+          setTimeout(() => {
+            onSubmitSuccess?.();
+          }, 2000);
         })
         .catch((e) => {
           setIsLoading(false);
@@ -70,7 +79,11 @@ const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess 
       <Input
         id="sms-phone-input"
         ref={ref}
-        nativeInputProps={{ type: "tel", name: "tel", onChange: (e: any) => setTel(e.target.value) }}
+        nativeInputProps={{
+          type: "tel",
+          name: "tel",
+          onChange: (e: any) => setTel(e.target.value),
+        }}
         label={t("MobileApp.phoneLabel", "Numéro de téléphone (requis)")}
         state={error ? "error" : "default"}
         stateRelatedMessage={errorMessage}

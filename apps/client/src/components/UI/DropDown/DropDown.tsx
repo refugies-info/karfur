@@ -1,10 +1,11 @@
 import { Slot } from "@radix-ui/react-slot";
-import React, {
+import type React from "react";
+import {
+  type CSSProperties,
   createContext,
-  CSSProperties,
   forwardRef,
   memo,
-  ReactNode,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -36,100 +37,113 @@ type DropdownRootProps = {
 };
 
 export const DropdownRoot = memo(
-  forwardRef(({ children, defaultOpen = false, onOpenChange, className }: DropdownRootProps, ref) => {
-    const [isOpen, setIsOpen] = useState(defaultOpen);
-    const id = useId();
-    const triggerId = `${id}-trigger`;
-    const contentId = `${id}-content`;
-    const rootRef = useRef<HTMLDivElement>(null);
+  forwardRef(
+    ({ children, defaultOpen = false, onOpenChange, className }: DropdownRootProps, ref) => {
+      const [isOpen, setIsOpen] = useState(defaultOpen);
+      const id = useId();
+      const triggerId = `${id}-trigger`;
+      const contentId = `${id}-content`;
+      const rootRef = useRef<HTMLDivElement>(null);
 
-    const handleOpenChange = useCallback(
-      (newIsOpen: boolean) => {
-        setIsOpen(newIsOpen);
-        onOpenChange?.(newIsOpen);
-      },
-      [onOpenChange],
-    );
+      const handleOpenChange = useCallback(
+        (newIsOpen: boolean) => {
+          setIsOpen(newIsOpen);
+          onOpenChange?.(newIsOpen);
 
-    useImperativeHandle(ref, () => ({
-      toggleDropdown: () => setIsOpen((prev) => !prev),
-      closeDropdown: () => setIsOpen(false),
-      openDropdown: () => setIsOpen(true),
-    }));
+          // Restore focus to trigger button when closing
+          if (!newIsOpen) {
+            const triggerButton = document.getElementById(triggerId);
+            if (triggerButton) {
+              // Use setTimeout to ensure focus happens after state updates
+              setTimeout(() => {
+                triggerButton.focus();
+              }, 0);
+            }
+          }
+        },
+        [onOpenChange, triggerId],
+      );
 
-    const handleKeyEvents = useCallback(
-      (event: KeyboardEvent) => {
-        if (!rootRef.current) return;
+      useImperativeHandle(ref, () => ({
+        toggleDropdown: () => setIsOpen((prev) => !prev),
+        closeDropdown: () => setIsOpen(false),
+        openDropdown: () => setIsOpen(true),
+      }));
 
-        if (event.key === "Escape") {
-          handleOpenChange(false);
-          return;
-        }
+      const handleKeyEvents = useCallback(
+        (event: KeyboardEvent) => {
+          if (!rootRef.current) return;
 
-        if (event.key === "Tab") {
-          const focusableElements = rootRef.current.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-          );
+          if (event.key === "Escape") {
+            handleOpenChange(false);
+            return;
+          }
 
-          if (focusableElements.length === 0) return;
+          if (event.key === "Tab") {
+            const focusableElements = rootRef.current.querySelectorAll(
+              'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+            );
 
-          const firstFocusable = focusableElements[0];
-          const lastFocusable = focusableElements[focusableElements.length - 1];
-          const activeElement = document.activeElement;
+            if (focusableElements.length === 0) return;
 
-          if (
-            (activeElement === lastFocusable && !event.shiftKey) ||
-            (activeElement === firstFocusable && event.shiftKey)
-          ) {
+            const firstFocusable = focusableElements[0];
+            const lastFocusable = focusableElements[focusableElements.length - 1];
+            const activeElement = document.activeElement;
+
+            if (
+              (activeElement === lastFocusable && !event.shiftKey) ||
+              (activeElement === firstFocusable && event.shiftKey)
+            ) {
+              handleOpenChange(false);
+            }
+          }
+        },
+        [handleOpenChange, rootRef],
+      );
+
+      const handleClickOutside = useCallback(
+        (event: MouseEvent) => {
+          const target = event.target as Node;
+          if (!target || !(target instanceof Node)) return;
+
+          if (rootRef.current && !rootRef.current.contains(target)) {
             handleOpenChange(false);
           }
+        },
+        [handleOpenChange, rootRef],
+      );
+
+      useEffect(() => {
+        if (isOpen) {
+          document.addEventListener("mousedown", handleClickOutside);
+          document.addEventListener("keydown", handleKeyEvents);
         }
-      },
-      [handleOpenChange, rootRef],
-    );
 
-    const handleClickOutside = useCallback(
-      (event: MouseEvent) => {
-        const target = event.target as Node;
-        if (!target || !(target instanceof Node)) return;
+        return () => {
+          document.removeEventListener("mousedown", handleClickOutside);
+          document.removeEventListener("keydown", handleKeyEvents);
+        };
+      }, [isOpen, handleClickOutside, handleKeyEvents]);
 
-        if (rootRef.current && !rootRef.current.contains(target)) {
-          handleOpenChange(false);
-        }
-      },
-      [handleOpenChange, rootRef],
-    );
+      const contextValue = useMemo(
+        () => ({
+          isOpen,
+          setIsOpen: handleOpenChange,
+          triggerId,
+          contentId,
+        }),
+        [isOpen, handleOpenChange, triggerId, contentId],
+      );
 
-    useEffect(() => {
-      if (isOpen) {
-        document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("keydown", handleKeyEvents);
-      }
-
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-        document.removeEventListener("keydown", handleKeyEvents);
-      };
-    }, [isOpen, handleClickOutside, handleKeyEvents]);
-
-    const contextValue = useMemo(
-      () => ({
-        isOpen,
-        setIsOpen: handleOpenChange,
-        triggerId,
-        contentId,
-      }),
-      [isOpen, handleOpenChange, triggerId, contentId],
-    );
-
-    return (
-      <DropdownContext.Provider value={contextValue}>
-        <div ref={rootRef} className={cls(styles.dropdownRoot, className)}>
-          {children}
-        </div>
-      </DropdownContext.Provider>
-    );
-  }),
+      return (
+        <DropdownContext.Provider value={contextValue}>
+          <div ref={rootRef} className={cls(styles.dropdownRoot, className)}>
+            {children}
+          </div>
+        </DropdownContext.Provider>
+      );
+    },
+  ),
 );
 
 DropdownRoot.displayName = "DropdownRoot";
@@ -210,7 +224,10 @@ type DropdownContentProps = {
 
 export const DropdownContent = memo(
   forwardRef<HTMLDivElement | null, DropdownContentProps>(
-    ({ children, asChild, className, style, autoFocusFirst = true, position = "start", ...props }, ref) => {
+    (
+      { children, asChild, className, style, autoFocusFirst = true, position = "start", ...props },
+      ref,
+    ) => {
       const context = useContext(DropdownContext);
       if (!context) throw new Error("DropdownContent must be used within DropdownRoot");
       const { isOpen, contentId, triggerId } = context;
@@ -223,8 +240,6 @@ export const DropdownContent = memo(
         if (!isOpen || !autoFocusFirst || !isFirstRender.current) return;
 
         const currentRef = typeof combinedRef === "function" ? null : combinedRef?.current;
-        // eslint-disable-next-line no-console
-        console.log(currentRef);
         if (currentRef) {
           const focusableElements = currentRef.querySelectorAll<HTMLElement>(
             'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])',

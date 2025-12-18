@@ -1,8 +1,15 @@
-import { addAlgoliaObjects, deleteAlgoliaObjects, updateAlgoliaObjects } from "~/connectors/algolia/updateAlgoliaData";
+import {
+  addAlgoliaObjects,
+  deleteAlgoliaObjects,
+  updateAlgoliaObjects,
+} from "~/connectors/algolia/updateAlgoliaData";
 import { getDiffAlgoliaObject } from "~/libs/getDiffAlgoliaObject";
-import { AlgoliaObject } from "~/types/interface";
+import type { AlgoliaObject } from "~/types/interface";
 
-export const updateAlgoliaIndex = async (localContents: AlgoliaObject[], algoliaContents: AlgoliaObject[]) => {
+export const updateAlgoliaIndex = async (
+  localContents: AlgoliaObject[],
+  algoliaContents: AlgoliaObject[],
+) => {
   const localIds = localContents.map((c) => c.objectID.toString());
   const algoliaIds = algoliaContents.map((c) => c.objectID.toString());
 
@@ -18,7 +25,9 @@ export const updateAlgoliaIndex = async (localContents: AlgoliaObject[], algolia
   // UPDATE
   const objectsToUpdate: Partial<AlgoliaObject>[] = [];
   for (const content of localContents) {
-    const algoliaContent = algoliaContents.find((c) => c.objectID.toString() === content.objectID.toString());
+    const algoliaContent = algoliaContents.find(
+      (c) => c.objectID.toString() === content.objectID.toString(),
+    );
     if (!algoliaContent) continue;
     const objectDiff = getDiffAlgoliaObject(content, algoliaContent);
     if (objectDiff) objectsToUpdate.push(objectDiff);

@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+import type { Types } from "mongoose";
 
 /**
  *  @see https://stackoverflow.com/questions/55479658/how-to-create-a-type-excluding-instance-methods-from-a-class-in-typescript
@@ -154,6 +154,12 @@ export enum DispositifStatus {
   ARCHIVED = "Archivé",
 }
 
+// Dispositif origin type for distinguishing editorial vs AI-generated content
+export enum DispositifOrigin {
+  RI = "RI",
+  RCO = "RCO",
+}
+
 export interface InfoSection {
   title: string;
   text: RichText;
@@ -163,8 +169,23 @@ export type InfoSections = Record<string, InfoSection>;
 export type locationType = "france" | "online" | string[];
 export type frenchLevelType = "alpha" | "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 export type ageType = "lessThan" | "moreThan" | "between";
-export type priceDetails = "once" | "eachTime" | "hour" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-export type publicStatusType = "asile" | "refugie" | "subsidiaire" | "temporaire" | "apatride" | "french";
+export type priceDetails =
+  | "once"
+  | "eachTime"
+  | "hour"
+  | "day"
+  | "week"
+  | "month"
+  | "trimester"
+  | "semester"
+  | "year";
+export type publicStatusType =
+  | "asile"
+  | "refugie"
+  | "subsidiaire"
+  | "temporaire"
+  | "apatride"
+  | "french";
 export type publicType = "family" | "women" | "youths" | "senior" | "gender";
 export type conditionType =
   | "acte naissance"
@@ -186,8 +207,22 @@ export type timeUnitType =
   | "trimesters"
   | "semesters"
   | "years";
-export type frequencyUnitType = "session" | "day" | "week" | "month" | "trimester" | "semester" | "year";
-export type timeSlotType = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+export type frequencyUnitType =
+  | "session"
+  | "day"
+  | "week"
+  | "month"
+  | "trimester"
+  | "semester"
+  | "year";
+export type timeSlotType =
+  | "monday"
+  | "tuesday"
+  | "wednesday"
+  | "thursday"
+  | "friday"
+  | "saturday"
+  | "sunday";
 
 export interface Poi {
   title: string;
@@ -252,4 +287,5 @@ export interface SimpleDispositif {
   availableLanguages: string[];
   hasDraftVersion: boolean;
   themeSortIndex: number;
+  origin: DispositifOrigin;
 }

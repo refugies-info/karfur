@@ -1,6 +1,6 @@
+import { console } from "node:console";
 import csv from "csvtojson";
 import fs from "fs";
-import { console } from "node:console";
 
 const convertCsvToJsonFr = async () => {
   const jsonArray = await csv().fromFile("./csvAfterTrad/fr.csv");

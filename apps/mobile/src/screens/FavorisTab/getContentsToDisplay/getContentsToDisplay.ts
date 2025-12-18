@@ -1,4 +1,4 @@
-import { ContentForApp, GetDispositifResponse, Languages } from "@refugies-info/api-types";
+import type { ContentForApp, GetDispositifResponse, Languages } from "@refugies-info/api-types";
 import { getContentById } from "~/utils/API";
 
 /**

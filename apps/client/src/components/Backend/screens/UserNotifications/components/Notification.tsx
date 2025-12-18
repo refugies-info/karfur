@@ -95,7 +95,7 @@ export const Notification = (props: Props) => {
     }
 
     if (props.type === "annuaire") {
-      return router.push(getPath("/annuaire-creation", locale));
+      return router.push(getPath("/publier", locale));
     }
 
     if (props.type === "new content" && props.link) {
@@ -115,15 +115,26 @@ export const Notification = (props: Props) => {
   };
 
   return (
-    <Container read={props.read} onClick={(event: any) => onNotifClick(event)} data-testid={"test-notif-" + props.type}>
+    <Container
+      read={props.read}
+      onClick={(event: any) => onNotifClick(event)}
+      data-testid={"test-notif-" + props.type}
+    >
       <RowContainer>
-        <EVAIcon name={props.read ? "bell-outline" : "bell"} fill={props.read ? colors.gray90 : colors.white} />
+        <EVAIcon
+          name={props.read ? "bell-outline" : "bell"}
+          fill={props.read ? colors.gray90 : colors.white}
+        />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
-        {props.type === "reaction" && props.title && <DispositifTitle>{props.title}</DispositifTitle>}
+        {props.type === "reaction" && props.title && (
+          <DispositifTitle>{props.title}</DispositifTitle>
+        )}
       </RowContainer>
       <RowContainer>
         {props.createdAt && (
-          <DateContainer read={props.read}>{props.createdAt ? getFormattedDate(props.createdAt) : ""}</DateContainer>
+          <DateContainer read={props.read}>
+            {props.createdAt ? getFormattedDate(props.createdAt) : ""}
+          </DateContainer>
         )}
         {props.type === "annuaire" && (
           <>

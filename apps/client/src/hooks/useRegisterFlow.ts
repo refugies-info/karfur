@@ -37,7 +37,8 @@ const useRegisterFlow = (currentStep: Step | null, redirectIfAnonymous?: boolean
    * @returns Step[]
    */
   const getAllSteps = useCallback((roles: RoleName[]): Step[] => {
-    if (roles.includes(RoleName.TRAD)) return ["partenaire", "objectif", "langue", "pseudo", "territoire"];
+    if (roles.includes(RoleName.TRAD))
+      return ["partenaire", "objectif", "langue", "pseudo", "territoire"];
     if (roles.includes(RoleName.CAREGIVER)) return ["partenaire", "territoire"];
     if (roles.includes(RoleName.CONTRIB)) return ["partenaire", "objectif", "pseudo", "territoire"];
     return ["partenaire", "objectif", "territoire"];
@@ -72,7 +73,8 @@ const useRegisterFlow = (currentStep: Step | null, redirectIfAnonymous?: boolean
       if (skipSteps) {
         if (
           nextStep === "partenaire" &&
-          (roles.find((r) => [RoleName.TRAD, RoleName.CONTRIB].includes(r)) || !!userDetails?.partner)
+          (roles.find((r) => [RoleName.TRAD, RoleName.CONTRIB].includes(r)) ||
+            !!userDetails?.partner)
         ) {
           currentStepIndex += 1;
           nextStep = allSteps[currentStepIndex + 1];

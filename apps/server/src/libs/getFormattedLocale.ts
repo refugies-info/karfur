@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 
 const activatedLanguages = [
   {
@@ -41,7 +41,9 @@ const activatedLanguages = [
 export const availableLanguages: Languages[] = activatedLanguages.map((ln) => ln.code as Languages);
 
 export const getFormattedLocale = (locale: string, key: "short" | "full" = "full") => {
-  const selectedLocale = activatedLanguages.find((activatedLanguage) => locale === activatedLanguage.code);
+  const selectedLocale = activatedLanguages.find(
+    (activatedLanguage) => locale === activatedLanguage.code,
+  );
   if (!selectedLocale) return "locale not found";
   return selectedLocale[key];
 };

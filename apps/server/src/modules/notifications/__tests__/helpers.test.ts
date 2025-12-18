@@ -10,7 +10,7 @@ import {
   getNotificationEmoji,
   getTitle,
   parseDispositif,
-  Requirements,
+  type Requirements,
 } from "../helpers";
 
 describe("notification helpers", () => {

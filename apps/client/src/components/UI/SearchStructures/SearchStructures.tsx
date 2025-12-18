@@ -1,15 +1,13 @@
-import { ChangeEventHandler, useCallback, useMemo, useState } from "react";
+import type { GetAllStructuresResponse } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
+import { type ChangeEventHandler, useCallback, useMemo, useState } from "react";
 import { Row } from "reactstrap";
 import styled from "styled-components";
-import Image from "~/components/UI/Image";
-
-import { useTranslation } from "next-i18next";
 import NoResultImage from "~/assets/no_results.svg";
+import Image from "~/components/UI/Image";
 import { removeAccents } from "~/lib";
 import { escapeRegexCharacters } from "~/lib/search";
 import FButton from "../FButton";
-
-import { GetAllStructuresResponse } from "@refugies-info/api-types";
 import SearchStructureResult from "./SearchStructureResult";
 import styles from "./SearchStructures.module.scss";
 
@@ -63,7 +61,8 @@ const SearchStructures = ({
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     return structures.filter(
-      (structure) => regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom)),
+      (structure) =>
+        regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom)),
     );
   }, [needle, structures]);
 

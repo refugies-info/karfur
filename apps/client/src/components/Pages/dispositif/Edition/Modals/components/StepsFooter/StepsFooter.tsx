@@ -32,7 +32,10 @@ const StepsFooter = (props: Props) => {
           </Button>
         )}
         <Button
-          evaIcon={props.nextIcon || (props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline")}
+          evaIcon={
+            props.nextIcon ||
+            (props.step === props.maxSteps ? "checkmark-circle-2" : "arrow-forward-outline")
+          }
           iconPosition="right"
           onClick={(e: any) => {
             e.preventDefault();

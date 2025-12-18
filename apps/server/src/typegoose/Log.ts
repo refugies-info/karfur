@@ -1,8 +1,8 @@
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
-import { Dispositif } from "./Dispositif";
-import { Langue } from "./Langue";
-import { Structure } from "./Structure";
+import type { Dispositif } from "./Dispositif";
+import type { Langue } from "./Langue";
+import type { Structure } from "./Structure";
 import { User } from "./User";
 
 class LogLink {

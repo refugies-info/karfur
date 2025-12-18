@@ -53,7 +53,10 @@ export const AboutScreen = () => {
   const scrollviewContributif = React.useRef<ScrollView>(null);
 
   React.useEffect(() => {
-    initHorizontalScroll([scrollviewMissions, scrollviewProblematiques, scrollviewContributif], isRTL);
+    initHorizontalScroll(
+      [scrollviewMissions, scrollviewProblematiques, scrollviewContributif],
+      isRTL,
+    );
   }, [isRTL]);
 
   return (

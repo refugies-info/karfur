@@ -1,4 +1,5 @@
-import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactSortable } from "react-sortablejs";
@@ -7,7 +8,6 @@ import AdminNeedButton from "~/components/UI/AdminNeedButton";
 import AdminThemeButton from "~/components/UI/AdminThemeButton";
 import FButton from "~/components/UI/FButton";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
@@ -17,7 +17,12 @@ import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { getDispositifsWithAllInformationRequired } from "../AdminStructures/StructureDetailsModal/functions";
 import { SmallDispositif } from "../sharedComponents/SmallDispositif";
-import { StyledHeader, StyledHeaderInner, StyledSort, StyledTitle } from "../sharedComponents/StyledAdmin";
+import {
+  StyledHeader,
+  StyledHeaderInner,
+  StyledSort,
+  StyledTitle,
+} from "../sharedComponents/StyledAdmin";
 import { LoadingNeeds } from "./LoadingNeeds";
 import { NeedFormModal } from "./NeedFormModal";
 import styles from "./Needs.module.scss";
@@ -95,7 +100,9 @@ export const Needs = () => {
 
   useEffect(() => {
     if (positionsToSave) {
-      dispatch(orderNeedsActionCreator({ orderedNeedIds: displayedNeeds.map((n) => n._id.toString()) }));
+      dispatch(
+        orderNeedsActionCreator({ orderedNeedIds: displayedNeeds.map((n) => n._id.toString()) }),
+      );
       setPositionsToSave(false);
       NotificationManager.success("L'ordre des besoins a été enregistré", "Enregistré !", 5000);
     }
@@ -109,7 +116,11 @@ export const Needs = () => {
   const dispositifsIds = dispositifs
     .filter((disp) => currentNeed && disp.needs?.includes(currentNeed))
     .map((d) => d._id);
-  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(dispositifsIds || [], dispositifs, themes);
+  const dispositifsToDisplay = getDispositifsWithAllInformationRequired(
+    dispositifsIds || [],
+    dispositifs,
+    themes,
+  );
 
   return (
     <Container fluid>
@@ -154,12 +165,18 @@ export const Needs = () => {
         <Col>
           <h3 className={styles.subtitle}>
             Besoins
-            {displayedNeeds.length > 0 && <span className={styles.badge}>{displayedNeeds.length}</span>}
+            {displayedNeeds.length > 0 && (
+              <span className={styles.badge}>{displayedNeeds.length}</span>
+            )}
           </h3>
           <div className={cls(styles.column, styles.scroll_column)}>
             {displayedNeeds.length > 0 ? (
               <>
-                <ReactSortable list={displayedNeeds} setList={setDisplayedNeeds} onUpdate={updatePositions}>
+                <ReactSortable
+                  list={displayedNeeds}
+                  setList={setDisplayedNeeds}
+                  onUpdate={updatePositions}
+                >
                   {displayedNeeds.map((need, i) => (
                     <div key={i} className={cls("mb-2", i === 0 && "mt-1")}>
                       <AdminNeedButton
@@ -188,7 +205,9 @@ export const Needs = () => {
         <Col>
           <h3 className={styles.subtitle}>
             Fiches associées
-            {dispositifsToDisplay.length > 0 && <span className={styles.badge}>{dispositifsToDisplay.length}</span>}
+            {dispositifsToDisplay.length > 0 && (
+              <span className={styles.badge}>{dispositifsToDisplay.length}</span>
+            )}
           </h3>
           <div className={cls(styles.column, styles.scroll_column)}>
             {dispositifsToDisplay.length > 0 ? (

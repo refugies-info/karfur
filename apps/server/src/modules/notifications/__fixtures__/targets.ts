@@ -1,4 +1,4 @@
-import { AppUser } from "~/typegoose";
+import type { AppUser } from "~/typegoose";
 
 export const targets: AppUser[] = [
   {

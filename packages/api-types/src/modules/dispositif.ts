@@ -1,7 +1,8 @@
-import {
+import type {
   ContentStructure,
   ContentType,
   DemarcheAdministration,
+  DispositifOrigin,
   DispositifStatus,
   Id,
   InfoSection,
@@ -20,7 +21,13 @@ export enum ViewsType {
   MOBILE = "mobile",
   FAVORITE = "favorite",
 }
-type Facets = "nbMercis" | "nbVues" | "nbVuesMobile" | "nbDispositifs" | "nbDemarches" | "nbUpdatedRecently";
+type Facets =
+  | "nbMercis"
+  | "nbVues"
+  | "nbVuesMobile"
+  | "nbDispositifs"
+  | "nbDemarches"
+  | "nbUpdatedRecently";
 
 export type Suggestion = {
   created_at: Date;
@@ -38,6 +45,7 @@ export interface CountDispositifsRequest {
   type: ContentType;
   publishedOnly: boolean;
   themeId?: string;
+  origin?: DispositifOrigin;
 }
 
 /**
@@ -48,6 +56,7 @@ export interface GetDispositifsRequest {
   locale: string;
   limit?: number;
   sort?: string;
+  origin?: DispositifOrigin;
 }
 
 /**
@@ -87,6 +96,7 @@ export interface ContentForApp {
    * The actual locale returned by the server
    */
   locale: Languages;
+  origin: DispositifOrigin;
 }
 
 export type GetContentsForAppResponse = {
@@ -151,6 +161,7 @@ export interface DispositifRequest {
   titreMarque?: string;
   abstract?: string;
   what?: string;
+  markdown?: string;
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
@@ -169,6 +180,7 @@ export interface DispositifRequest {
   administration?: DemarcheAdministration;
   metadatas?: Metadatas;
   map?: Poi[] | null;
+  origin?: DispositifOrigin;
 }
 interface DispositifResponse {
   id: Id;
@@ -176,6 +188,7 @@ interface DispositifResponse {
   typeContenu: ContentType;
   status: DispositifStatus;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 }
 
 /**
@@ -226,14 +239,12 @@ export interface CreateDispositifRequest extends DispositifRequest {
 /**
  * @url GET /dispositifs/{id}
  */
-export type GetDispositifResponse = {
+export type BaseGetDispositifResponse = {
   _id: Id;
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
-  what: string;
   why?: InfoSections;
-  how: InfoSections;
   next?: InfoSections;
   administration?: DemarcheAdministration;
   typeContenu: ContentType;
@@ -243,9 +254,13 @@ export type GetDispositifResponse = {
   secondaryThemes?: Id[];
   needs: Id[];
   sponsors?: (Sponsor | ContentStructure)[];
-  participants: SimpleUser[];
-  merci: { created_at: Date; userId?: Id }[];
-  avis: { created_at: Date; userId?: Id; anonymousUserId?: string; avis: boolean; language: string }[];
+  avis: {
+    created_at: Date;
+    userId?: Id;
+    anonymousUserId?: string;
+    avis: boolean;
+    language: string;
+  }[];
   creatorId: { _id: Id; username?: string };
   metadatas: Metadatas;
   map: Poi[] | null;
@@ -254,7 +269,26 @@ export type GetDispositifResponse = {
   lastModificationDate?: Date;
   externalLink?: string;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 };
+
+export type GetDispositifResponse = BaseGetDispositifResponse &
+  (
+    | {
+        markdown: string;
+        what?: undefined;
+        how?: undefined;
+        participants?: undefined;
+        merci?: undefined;
+      }
+    | {
+        markdown?: undefined;
+        what: string;
+        how: InfoSections;
+        participants: SimpleUser[];
+        merci: { created_at: Date; userId?: Id }[];
+      }
+  );
 
 /**
  * @url GET /dispositifs/user-contributions
@@ -273,6 +307,7 @@ export interface GetUserContributionsResponse {
   status: DispositifStatus;
   hasDraftVersion: boolean;
   // TODO: add administration?
+  origin: DispositifOrigin;
 }
 
 /**
@@ -376,6 +411,7 @@ export interface GetAllDispositifsResponse {
   webOnly: boolean;
   creatorId: SimpleUser;
   hasDraftVersion: boolean;
+  origin: DispositifOrigin;
 }
 
 /**

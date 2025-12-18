@@ -1,12 +1,13 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useLanguages, useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import styles from "./Banner.module.scss";
 
@@ -19,7 +20,8 @@ interface Props {
  */
 const Banner = (props: Props) => {
   const { t } = useTranslation();
-  const theme = useSelector(themeSelector(props.themeId));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, props.themeId));
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
 
@@ -37,7 +39,9 @@ const Banner = (props: Props) => {
         styles.banner,
         pageContext.mode === "translate" && styles.translate,
       )}
-      style={theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}}
+      style={
+        theme?.banner?.secure_url ? { backgroundImage: `url(${theme?.banner.secure_url})` } : {}
+      }
     >
       <div>
         {isNotTranslated && (

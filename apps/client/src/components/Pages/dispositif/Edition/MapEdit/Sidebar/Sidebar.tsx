@@ -1,4 +1,4 @@
-import { CreateDispositifRequest } from "@refugies-info/api-types";
+import type { CreateDispositifRequest } from "@refugies-info/api-types";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import styles from "./Sidebar.module.scss";
@@ -24,7 +24,8 @@ const Sidebar = ({ markers, onSelectMarker, selectedMarkerId }: Props) => {
             >
               <p className={styles.title}>{marker.title}</p>
               <p className={styles.city}>
-                <EVAIcon name="pin-outline" fill="black" size={16} className="me-2" />À {marker.city}
+                <EVAIcon name="pin-outline" fill="black" size={16} className="me-2" />À{" "}
+                {marker.city}
               </p>
             </button>
             <span className={styles.divider} />

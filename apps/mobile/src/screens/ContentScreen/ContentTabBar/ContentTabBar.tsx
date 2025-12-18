@@ -1,13 +1,20 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { GetThemeResponse, Id, ViewsType } from "@refugies-info/api-types";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import { type GetThemeResponse, type Id, ViewsType } from "@refugies-info/api-types";
 import { useCallback, useMemo, useState } from "react";
 import { Trans } from "react-i18next";
 import { Platform, Share, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
-import { CustomButton, RTLView, ReadButton, TextDSFR_MD, TextDSFR_MD_Bold, Toast } from "~/components";
+import {
+  CustomButton,
+  ReadButton,
+  RTLView,
+  TextDSFR_MD,
+  TextDSFR_MD_Bold,
+  Toast,
+} from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import Config from "~/libs/getEnvironment";
 import { noVoiceover } from "~/libs/noVoiceover";
@@ -20,7 +27,7 @@ import {
 } from "~/services/redux/User/user.actions";
 import { isFavorite, userFavorites } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { BottomTabParamList } from "~/types/navigation";
+import type { BottomTabParamList } from "~/types/navigation";
 import { updateNbVuesOrFavoritesOnContent } from "~/utils/API";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
@@ -194,7 +201,9 @@ export const ContentTabBar = ({ contentId, needId, theme }: Props) => {
           onClose={() => setFavoriteToast("")}
         >
           {favoriteToast === "removed" ? (
-            <ToastText>{t("content_screen.favorite_deleted", "Fiche supprimée de tes favoris")}</ToastText>
+            <ToastText>
+              {t("content_screen.favorite_deleted", "Fiche supprimée de tes favoris")}
+            </ToastText>
           ) : (
             <View>
               <ToastText>

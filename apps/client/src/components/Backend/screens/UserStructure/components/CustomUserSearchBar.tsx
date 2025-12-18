@@ -1,4 +1,4 @@
-import { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
+import type { GetActiveUsersResponse, Id } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { useState } from "react";
 import UserDetail from "~/components/Backend/UserDetail";
@@ -52,7 +52,9 @@ export const CustomUserSearchBar = (props: Props) => {
 
   const onValueChange = (e: any) => {
     setValue(e.target.value);
-    debouncedQuery(props.dataArray, props.excludedUsers || [], value, (res) => setFilteredUsers(res));
+    debouncedQuery(props.dataArray, props.excludedUsers || [], value, (res) =>
+      setFilteredUsers(res),
+    );
     props.onSelectItem(null);
   };
 

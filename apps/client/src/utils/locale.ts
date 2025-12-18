@@ -1,4 +1,4 @@
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 
 const LOCALE_KEY = "languei18nCode";
 

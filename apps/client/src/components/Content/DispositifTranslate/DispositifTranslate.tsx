@@ -1,4 +1,8 @@
-import { ContentType, GetTraductionsForReviewResponse, TranslationContent } from "@refugies-info/api-types";
+import {
+  ContentType,
+  type GetTraductionsForReviewResponse,
+  type TranslationContent,
+} from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
@@ -6,15 +10,20 @@ import { useToggle } from "react-use";
 import { Col, Row } from "reactstrap";
 import { Banner, Section, SectionTitle } from "~/components/Pages/dispositif";
 import { CustomNavbar } from "~/components/Pages/dispositif/Edition";
-import { ModalWelcome, SectionTitleAbstract, TranslationInput } from "~/components/Pages/dispositif/Translation";
+import {
+  ModalWelcome,
+  SectionTitleAbstract,
+  TranslationInput,
+} from "~/components/Pages/dispositif/Translation";
 import SEO from "~/components/Seo";
-import FRLink from "~/components/UI/FRLink";
 import Flag from "~/components/UI/Flag";
+import FRLink from "~/components/UI/FRLink";
 import { useContentLocale, useLanguages, useUser } from "~/hooks";
 import { useDispositifTranslation } from "~/hooks/dispositif";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import styles from "./DispositifTranslate.module.scss";
 
@@ -33,7 +42,8 @@ const Dispositif = (props: Props) => {
   const { defaultTraduction, traductions } = props;
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
     [props.typeContenu, dispositif],
@@ -54,9 +64,11 @@ const Dispositif = (props: Props) => {
   const refContent = useRef<any>(null);
   useEffect(() => {
     if (pageContext.activeSection) {
-      refContent.current?.querySelector(`[data-section="${pageContext.activeSection}"]`)?.scrollIntoView({
-        behavior: "smooth",
-      });
+      refContent.current
+        ?.querySelector(`[data-section="${pageContext.activeSection}"]`)
+        ?.scrollIntoView({
+          behavior: "smooth",
+        });
     }
   }, [pageContext.activeSection]);
 
@@ -76,7 +88,9 @@ const Dispositif = (props: Props) => {
         defaultTranslation={defaultTraduction}
         locale={locale}
         progress={progress}
-        translators={traductions.map((t) => t.author).filter((auth) => auth.id.toString() !== user.userId?.toString())}
+        translators={traductions
+          .map((t) => t.author)
+          .filter((auth) => auth.id.toString() !== user.userId?.toString())}
       />
       <Row className="gx-0">
         <Col xs="6" className={cn(styles.col, "bg-white")}>
@@ -90,17 +104,26 @@ const Dispositif = (props: Props) => {
             </div>
 
             <div className={cn(styles.main, "relative z-1")} dir={isRTL ? undefined : "ltr"}>
-              <TranslationInput id="step-titreInformatif" {...getInputProps("content.titreInformatif")} />
+              <TranslationInput
+                id="step-titreInformatif"
+                {...getInputProps("content.titreInformatif")}
+              />
               {typeContenu === ContentType.DISPOSITIF && (
                 <div className={cn(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
-                  <TranslationInput id="step-titreMarque" {...getInputProps("content.titreMarque")} />
+                  <TranslationInput
+                    id="step-titreMarque"
+                    {...getInputProps("content.titreMarque")}
+                  />
                 </div>
               )}
               {typeContenu === ContentType.DEMARCHE && dispositif?.administration?.name && (
                 <div className={cn(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
-                  <TranslationInput id="step-administrationName" {...getInputProps("content.administrationName")} />
+                  <TranslationInput
+                    id="step-administrationName"
+                    {...getInputProps("content.administrationName")}
+                  />
                 </div>
               )}
               {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
@@ -154,7 +177,9 @@ const Dispositif = (props: Props) => {
         </Col>
       </Row>
 
-      {!user.expertTrad && <ModalWelcome show={showWelcomeModal} toggle={toggleWelcomeModal} locale={locale} />}
+      {!user.expertTrad && (
+        <ModalWelcome show={showWelcomeModal} toggle={toggleWelcomeModal} locale={locale} />
+      )}
     </div>
   );
 };

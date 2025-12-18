@@ -1,5 +1,5 @@
 import { createReducer } from "typesafe-actions";
-import { TtsActions } from "./tts.actions";
+import type { TtsActions } from "./tts.actions";
 
 export interface TtsState {
   ttsActive: boolean;

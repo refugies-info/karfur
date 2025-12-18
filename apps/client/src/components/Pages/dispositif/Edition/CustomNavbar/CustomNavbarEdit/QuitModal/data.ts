@@ -18,7 +18,8 @@ export const contents: Record<string, Content> = {
   },
   draftComplete: {
     title: "Pourquoi ne pas valider votre fiche ?",
-    intro: "Vous êtes sur le point de quitter l’éditeur sans avoir envoyé votre fiche pour relecture.",
+    intro:
+      "Vous êtes sur le point de quitter l’éditeur sans avoir envoyé votre fiche pour relecture.",
     items: [
       "Votre fiche est enregistrée dans vos brouillons.",
       "Tant qu’elle est en brouillon, elle est visible uniquement par vous.",
@@ -28,7 +29,8 @@ export const contents: Record<string, Content> = {
   },
   waitingIncomplete: {
     title: "Attention, votre fiche n’est plus complète !",
-    intro: "Vous allez quitter l’éditeur mais il manque certaines informations. Que va-t-il se passer ?",
+    intro:
+      "Vous allez quitter l’éditeur mais il manque certaines informations. Que va-t-il se passer ?",
     items: [
       "Votre fiche redevient un brouillon.",
       "Vous devrez la compléter et la valider pour qu’elle soit à nouveau envoyée à notre équipe éditoriale pour relecture.",
@@ -37,7 +39,8 @@ export const contents: Record<string, Content> = {
   },
   publishedIncomplete: {
     title: "Attention, la mise à jour de votre fiche n’est pas encore en ligne !",
-    intro: "Vous allez quitter l’éditeur mais il manque certaines informations. Que va-t-il se passer ?",
+    intro:
+      "Vous allez quitter l’éditeur mais il manque certaines informations. Que va-t-il se passer ?",
     items: [
       "L’ancienne version est toujours publiée et visible par les utilisateurs.",
       "Votre nouvelle version de travail est enregistrée en tant que brouillon.",
@@ -47,7 +50,8 @@ export const contents: Record<string, Content> = {
   },
   publishedComplete: {
     title: "Pourquoi ne pas valider votre fiche ?",
-    intro: "Vous êtes sur le point de quitter l’éditeur sans avoir envoyé vos modifications pour traduction.",
+    intro:
+      "Vous êtes sur le point de quitter l’éditeur sans avoir envoyé vos modifications pour traduction.",
     items: [
       "L’ancienne version est toujours publiée et visible par les utilisateurs.",
       "Votre nouvelle version de travail est enregistrée en tant que brouillon.",

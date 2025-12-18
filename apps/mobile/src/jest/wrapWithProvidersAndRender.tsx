@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NavigationContext } from "@react-navigation/native";
 import { render } from "@testing-library/react-native";
-import React from "react";
+import type React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { legacy_createStore as createStore } from "redux";
-import { initialRootStateFactory, rootReducer, RootState } from "~/services/redux/reducers";
+import { initialRootStateFactory, type RootState, rootReducer } from "~/services/redux/reducers";
 import { ThemeProvider } from "~/theme";
 
 interface WrapWithProvidersAndRenderParams {

@@ -1,4 +1,4 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import FilterButton from "~/components/UI/FilterButton";
 import LanguageText from "~/components/UI/Language";
 import { cls } from "~/lib/classname";

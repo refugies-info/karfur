@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import { useRef } from "react";
 import Input from "~/components/Pages/dispositif/Input";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useDepartmentAutocomplete } from "~/hooks";
@@ -14,6 +15,7 @@ interface Props {
 const DepartmentInput = (props: Props) => {
   const { search, setSearch, hidePredictions, setHidePredictions, getPlaceSelected, predictions } =
     useDepartmentAutocomplete();
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleChange = (e: any) => setSearch(e.target.value);
 
   const onPlaceSelected = async (id: string) => {
@@ -22,8 +24,10 @@ const DepartmentInput = (props: Props) => {
     if (!props.selectedDepartments?.includes(place)) {
       const newDeps = [...(props.selectedDepartments || []), place];
       props.setSelectedDepartments(newDeps);
-      setHidePredictions(true);
     }
+    setHidePredictions(true);
+    setSearch("");
+    inputRef.current?.focus();
   };
 
   return (
@@ -40,6 +44,8 @@ const DepartmentInput = (props: Props) => {
           }}
           value={search}
           icon="search-outline"
+          autoComplete="off"
+          ref={inputRef}
         />
 
         {!!(!hidePredictions && predictions?.length) && (
@@ -66,7 +72,9 @@ const DepartmentInput = (props: Props) => {
           <RemovableItem
             key={i}
             text={formatDepartment(dep)}
-            onClick={() => props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))}
+            onClick={() =>
+              props.setSelectedDepartments((departments) => departments?.filter((d) => d !== dep))
+            }
           />
         ))}
       </div>

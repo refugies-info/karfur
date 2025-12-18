@@ -1,8 +1,8 @@
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks";
 import { RTLView } from "../BasicComponents";
-import { TextDSFR_MD } from "../StyledText";
 import { Icon } from "../iconography";
+import { TextDSFR_MD } from "../StyledText";
 
 const Container = styled(RTLView)`
   background-color: white;

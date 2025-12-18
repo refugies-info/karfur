@@ -1,11 +1,11 @@
 import {
   ContentType,
-  CreateDispositifRequest,
-  DemarcheContent,
-  DispositifContent,
+  type CreateDispositifRequest,
+  type DemarcheContent,
+  type DispositifContent,
   DispositifStatus,
-  Id,
-  PostDispositifsResponse,
+  type Id,
+  type PostDispositifsResponse,
   RoleName,
 } from "@refugies-info/api-types";
 import { countDispositifWords } from "~/libs/wordCounter";
@@ -15,8 +15,8 @@ import { buildNewDispositif } from "~/modules/dispositif/dispositif.service";
 import { logContact } from "~/modules/dispositif/log";
 import { getRoleByName } from "~/modules/role/role.repository";
 import { addRoleAndContribToUser } from "~/modules/users/users.repository";
-import { Dispositif, ObjectId, StructureId, UserId } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import { type Dispositif, ObjectId, type StructureId, type UserId } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const createDispositif = async (
   body: CreateDispositifRequest,
@@ -75,6 +75,7 @@ export const createDispositif = async (
       typeContenu: dispositif.typeContenu,
       status: dispositif.status,
       hasDraftVersion: false,
+      origin: dispositif.origin,
     },
   };
 };

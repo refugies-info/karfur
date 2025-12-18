@@ -77,7 +77,9 @@ describe("changePassword", () => {
 
     await changePassword("id", "test1", "a");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
-    expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
+    expect(loginExceptionsManager).toHaveBeenCalledWith(
+      new Error(LoginErrorType.PASSWORD_TOO_WEAK),
+    );
   });
 
   it("should get user and return hashedPassword if ok", async () => {

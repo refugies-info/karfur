@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { Button, ButtonProps } from "@codegouvfr/react-dsfr/Button";
-import React, { useMemo } from "react";
+import { Button, type ButtonProps } from "@codegouvfr/react-dsfr/Button";
+import type React from "react";
+import { useMemo } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import styles from "./Button.module.scss";
@@ -24,7 +25,9 @@ interface Props {
 
 const getIconColor = (props: Props) => {
   if (props.disabled) return fr.colors.decisions.text.disabled.grey.default;
-  return (["secondary", "tertiary", "tertiary no outline"] as ButtonProps["priority"][]).includes(props.priority)
+  return (["secondary", "tertiary", "tertiary no outline"] as ButtonProps["priority"][]).includes(
+    props.priority,
+  )
     ? fr.colors.decisions.text.actionHigh.blueFrance.default
     : "white";
 };
@@ -47,7 +50,11 @@ const DSFRButton = (props: Props) => {
         {(props.children || props.evaIcon) && (
           <>
             {props.evaIcon && !props.isLoading && (
-              <EVAIcon name={props.evaIcon} fill={getIconColor(props)} className={getIconMargin(props)} />
+              <EVAIcon
+                name={props.evaIcon}
+                fill={getIconColor(props)}
+                className={getIconMargin(props)}
+              />
             )}
             {props.children}
           </>
@@ -57,7 +64,7 @@ const DSFRButton = (props: Props) => {
   }, [props]);
 
   return (
-    //@ts-ignore FIXME icon type
+    //@ts-expect-error FIXME icon type
     <Button
       className={cls(
         styles.btn,

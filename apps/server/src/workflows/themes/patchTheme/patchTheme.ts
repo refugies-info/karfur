@@ -1,12 +1,15 @@
-import { PatchThemeResponse, ThemeRequest } from "@refugies-info/api-types";
+import type { PatchThemeResponse, ThemeRequest } from "@refugies-info/api-types";
 import merge from "lodash/fp/merge";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getTheme, updateTheme } from "~/modules/themes/themes.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
-export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): ResponseWithData<PatchThemeResponse> => {
+export const patchTheme = async (
+  id: string,
+  theme: Partial<ThemeRequest>,
+): ResponseWithData<PatchThemeResponse> => {
   logger.info("[patchTheme] received", id);
 
   const oldTheme = await getTheme(id);
@@ -18,6 +21,9 @@ export const patchTheme = async (id: string, theme: Partial<ThemeRequest>): Resp
 
   return {
     text: "success",
-    data: { ...dbTheme.toObject(), active: dbTheme.isActive(activeLanguages) } as unknown as PatchThemeResponse,
+    data: {
+      ...dbTheme.toObject(),
+      active: dbTheme.isActive(activeLanguages),
+    } as unknown as PatchThemeResponse,
   };
 };

@@ -1,6 +1,10 @@
-import { DispositifStatus, GetAllDispositifsResponse, GetAllStructuresResponse } from "@refugies-info/api-types";
+import type {
+  DispositifStatus,
+  GetAllDispositifsResponse,
+  GetAllStructuresResponse,
+} from "@refugies-info/api-types";
 import { statusCompare } from "~/lib/statusCompare";
-import { ContentStatus, ProgressionStatus, StructureAdminStatus } from "~/types/interface";
+import type { ContentStatus, ProgressionStatus, StructureAdminStatus } from "~/types/interface";
 import styles from "./StatusRow.module.scss";
 import { Label, StyledStatus } from "./SubComponents";
 
@@ -36,7 +40,9 @@ export const StatusRow = (props: Props) => {
               <div
                 className="me-2"
                 key={status.storedStatus}
-                onClick={() => props.modifyStatus(status.storedStatus as DispositifStatus, "status")}
+                onClick={() =>
+                  props.modifyStatus(status.storedStatus as DispositifStatus, "status")
+                }
               >
                 <StyledStatus
                   text={status.storedStatus}
@@ -60,7 +66,9 @@ export const StatusRow = (props: Props) => {
               className="me-2"
               onClick={() =>
                 props.modifyStatus(
-                  status.storedStatus !== props.element.adminProgressionStatus ? status.storedStatus : "",
+                  status.storedStatus !== props.element.adminProgressionStatus
+                    ? status.storedStatus
+                    : "",
                   "adminProgressionStatus",
                 )
               }
@@ -86,7 +94,8 @@ export const StatusRow = (props: Props) => {
                 className="me-2"
                 onClick={() =>
                   props.modifyStatus(
-                    status.storedStatus !== (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
+                    status.storedStatus !==
+                      (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
                       ? status.storedStatus
                       : "",
                     "adminPercentageProgressionStatus",
@@ -99,7 +108,8 @@ export const StatusRow = (props: Props) => {
                   color={status.color}
                   textColor={status.textColor}
                   overrideColor={
-                    status.storedStatus !== (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
+                    status.storedStatus !==
+                    (props.element as GetAllStructuresResponse).adminPercentageProgressionStatus
                   }
                 />
               </div>

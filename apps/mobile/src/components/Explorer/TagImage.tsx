@@ -1,4 +1,4 @@
-import { Picture } from "@refugies-info/api-types";
+import type { Picture } from "@refugies-info/api-types";
 import { View } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { getImageUri } from "~/libs/getImageUri";

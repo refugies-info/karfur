@@ -5,7 +5,7 @@ import PageContext from "~/utils/pageContext";
 import { TitleEdit } from "../Edition";
 import Text from "../Text";
 
-interface Props {}
+type Props = {};
 
 /**
  * Shows a text as title, or the form component of the Title. Can be used for VIEW or EDIT mode.
@@ -15,7 +15,7 @@ const Title = () => {
   const pageContext = useContext(PageContext);
 
   return (
-    <h1 className="text-title-xl text-title-grey">
+    <h1 className="text-title-xl text-title-grey" id="main-title">
       {pageContext.mode !== "edit" ? (
         <Text id="titreInformatif">{dispositif?.titreInformatif || ""}</Text>
       ) : (

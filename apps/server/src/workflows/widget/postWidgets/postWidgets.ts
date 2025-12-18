@@ -1,10 +1,13 @@
-import { PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
+import type { PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { createWidget } from "~/modules/widgets/widgets.repository";
 import { ObjectId, Widget } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
-export const postWidgets = async (body: WidgetRequest, userId: string): ResponseWithData<PostWidgetResponse> => {
+export const postWidgets = async (
+  body: WidgetRequest,
+  userId: string,
+): ResponseWithData<PostWidgetResponse> => {
   logger.info("[postWidgets] received", body);
 
   const widget = new Widget();

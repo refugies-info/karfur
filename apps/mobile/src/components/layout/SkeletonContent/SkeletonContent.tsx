@@ -3,7 +3,8 @@
  * maintained anymore, to use react-native-reanimated 3.3.0
  */
 import { LinearGradient } from "expo-linear-gradient";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { type LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Animated, {
   Extrapolation,
   interpolate,
@@ -12,8 +13,6 @@ import Animated, {
   withRepeat,
   withTiming,
 } from "react-native-reanimated";
-
-import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   DEFAULT_BONE_COLOR,
   DEFAULT_BORDER_RADIUS,
@@ -21,8 +20,8 @@ import {
   DEFAULT_EASING,
   DEFAULT_HIGHLIGHT_COLOR,
   DEFAULT_LOADING,
-  ICustomViewStyle,
-  ISkeletonContentProps,
+  type ICustomViewStyle,
+  type ISkeletonContentProps,
 } from "./Constants";
 
 const styles = StyleSheet.create({
@@ -77,7 +76,11 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
   const getBoneHeight = (boneLayout: ICustomViewStyle): number =>
     (typeof boneLayout.height === "string" ? componentSize.height : Number(boneLayout.height)) || 0;
 
-  const getBoneContainer = (layoutStyle: ICustomViewStyle, childrenBones: React.ReactNode[], key: number | string) => (
+  const getBoneContainer = (
+    layoutStyle: ICustomViewStyle,
+    childrenBones: React.ReactNode[],
+    key: number | string,
+  ) => (
     <View key={layoutStyle.key || key} style={layoutStyle}>
       {childrenBones}
     </View>
@@ -92,7 +95,12 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
       return {
         transform: [
           {
-            translateX: interpolate(animationValue.value, [0, 1], [-boneWidth, +boneWidth], Extrapolation.CLAMP),
+            translateX: interpolate(
+              animationValue.value,
+              [0, 1],
+              [-boneWidth, +boneWidth],
+              Extrapolation.CLAMP,
+            ),
           },
         ],
       };
@@ -139,16 +147,23 @@ const SkeletonContent: React.FunctionComponent<ISkeletonContentProps> = ({
         if (bonesLayout[i].children && bonesLayout[i].children!.length > 0) {
           const containerPrefix = bonesLayout[i].key || `bone_container_${i}`;
           const { children: childBones, ...layoutStyle } = bonesLayout[i];
-          return getBoneContainer(layoutStyle, getBones(childBones, undefined, containerPrefix), containerPrefix);
+          return getBoneContainer(
+            layoutStyle,
+            getBones(childBones, undefined, containerPrefix),
+            containerPrefix,
+          );
         }
         return getShiverBone(bonesLayout[i], prefix ? `${prefix}_${i}` : i);
       });
       // no layout, matching children's layout
     }
     return React.Children.toArray(childrenItems)
-      .filter((child) => child !== null && typeof child === "object" && "props" in child)
+      .filter(
+        (child): child is React.ReactElement =>
+          child !== null && typeof child === "object" && "props" in child,
+      )
       .map((child, i) => {
-        const styling = child && typeof child === "object" && "props" in child ? child.props.style : {};
+        const styling = (child.props as { style?: ICustomViewStyle }).style || {};
         return getShiverBone(styling, i);
       });
   };

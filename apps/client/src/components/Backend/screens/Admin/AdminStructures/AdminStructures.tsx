@@ -1,3 +1,5 @@
+import { type GetAllStructuresResponse, type Id, StructureStatus } from "@refugies-info/api-types";
+import moment from "moment";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +13,6 @@ import { ChangeStructureModal } from "../AdminContenu/ChangeStructureModale/Chan
 import { NeedsChoiceModal } from "../AdminContenu/NeedsChoiceModal/NeedsChoiceModal";
 import { prepareDeleteContrib } from "../Needs/lib";
 import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
-
-import { GetAllStructuresResponse, Id, StructureStatus } from "@refugies-info/api-types";
-import moment from "moment";
 import "moment/locale/fr";
 import CustomSearchBar from "~/components/UI/CustomSeachBar";
 import FButton from "~/components/UI/FButton/FButton";
@@ -35,7 +34,11 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { FilterButton, StyledStatus, TabHeader } from "../sharedComponents/SubComponents";
 import styles from "./AdminStructures.module.scss";
-import { ResponsableComponent, RowContainer, StructureName } from "./components/AdminStructureComponents";
+import {
+  ResponsableComponent,
+  RowContainer,
+  StructureName,
+} from "./components/AdminStructureComponents";
 import { correspondingStatus, headers } from "./data";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -62,16 +65,24 @@ export const AdminStructures = () => {
 
   // modals
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
-  const [showContentDetailsModal, setShowContentDetailsModal] = useState(!!initialFilters.selectedDispositifId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    !!initialFilters.selectedStructureId,
+  );
+  const [showContentDetailsModal, setShowContentDetailsModal] = useState(
+    !!initialFilters.selectedDispositifId,
+  );
   const [showNewStructureModal, setShowNewStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
 
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
-  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(
+    initialFilters.selectedStructureId,
+  );
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(
+    initialFilters.selectedDispositifId,
+  );
   const [selectedContentStatus, setSelectedContentStatus] = useState<string | null>(null);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
 
@@ -104,15 +115,18 @@ export const AdminStructures = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  const toggleImprovementsMailModal = () => setShowImprovementsMailModal(!showImprovementsMailModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
 
   const toggleShowNewStructureModal = () => setShowNewStructureModal(!showNewStructureModal);
 
-  const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
 
   const toggleNeedsChoiceModal = () => setShowNeedsChoiceModal(!showNeedsChoiceModal);
 
-  const toggleShowChangeStructureModal = () => setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
 
   const addNewStructure = () => {
     toggleShowNewStructureModal();
@@ -162,7 +176,7 @@ export const AdminStructures = () => {
   };
 
   const filterAndSortStructures = (structures: GetAllStructuresResponse[]) => {
-    const structuresFilteredBySearch = !!search
+    const structuresFilteredBySearch = search
       ? structures.filter(
           (structure) =>
             structure.nom &&
@@ -183,45 +197,54 @@ export const AdminStructures = () => {
         structuresForCount: structuresFilteredBySearch,
       };
 
-    const structuresToDisplay = filteredStructures.sort((a: GetAllStructuresResponse, b: GetAllStructuresResponse) => {
-      // @ts-ignore
-      const orderColumn: "nom" | "status" | "nbMembres" | "responsable" | "nbFiches" | "created_at" =
-        sortedHeader.orderColumn;
+    const structuresToDisplay = filteredStructures.sort(
+      (a: GetAllStructuresResponse, b: GetAllStructuresResponse) => {
+        const orderColumn:
+          | "nom"
+          | "status"
+          | "nbMembres"
+          | "responsable"
+          | "nbFiches"
+          | "created_at" = sortedHeader.orderColumn as any;
 
-      if (orderColumn === "nbMembres") {
-        if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
+        if (orderColumn === "nbMembres") {
+          if (a[orderColumn] > b[orderColumn]) return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "nbFiches") {
+          const nbFichesA = a.nbFiches;
+          const nbFichesB = b.nbFiches;
+
+          if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "responsable") {
+          const respoA =
+            a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
+          const respoB =
+            b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
+
+          if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "created_at") {
+          if (moment(a.created_at).diff(moment(b.created_at)) > 0)
+            return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        const valueA = a[orderColumn]?.toLowerCase() || "";
+        const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        const valueB = b[orderColumn]?.toLowerCase() || "";
+        const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
+
         return sortedHeader.sens === "up" ? -1 : 1;
-      }
-
-      if (orderColumn === "nbFiches") {
-        const nbFichesA = a.nbFiches;
-        const nbFichesB = b.nbFiches;
-
-        if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
-        return sortedHeader.sens === "up" ? -1 : 1;
-      }
-
-      if (orderColumn === "responsable") {
-        const respoA = a.responsable && a.responsable.username ? a.responsable.username.toLowerCase() : "";
-        const respoB = b.responsable && b.responsable.username ? b.responsable.username.toLowerCase() : "";
-
-        if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
-        return sortedHeader.sens === "up" ? -1 : 1;
-      }
-
-      if (orderColumn === "created_at") {
-        if (moment(a.created_at).diff(moment(b.created_at)) > 0) return sortedHeader.sens === "up" ? 1 : -1;
-        return sortedHeader.sens === "up" ? -1 : 1;
-      }
-
-      const valueA = a[orderColumn]?.toLowerCase() || "";
-      const valueAWithoutAccent = valueA.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      const valueB = b[orderColumn]?.toLowerCase() || "";
-      const valueBWithoutAccent = valueB.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      if (valueAWithoutAccent > valueBWithoutAccent) return sortedHeader.sens === "up" ? 1 : -1;
-
-      return sortedHeader.sens === "up" ? -1 : 1;
-    });
+      },
+    );
     return {
       structuresToDisplay,
       structuresForCount: structuresFilteredBySearch,
@@ -229,11 +252,15 @@ export const AdminStructures = () => {
   };
 
   const getNbStructuresByStatus = (structures: GetAllStructuresResponse[], status: string) =>
-    structures && structures.length > 0 ? structures.filter((structure) => structure.status === status).length : 0;
+    structures && structures.length > 0
+      ? structures.filter((structure) => structure.status === status).length
+      : 0;
 
   const { structuresToDisplay, structuresForCount } = filterAndSortStructures(structures);
 
-  const nbNonDeletedStructures = structures.filter((structure) => structure.status !== "Supprimé").length;
+  const nbNonDeletedStructures = structures.filter(
+    (structure) => structure.status !== "Supprimé",
+  ).length;
   return (
     <div className={styles.container}>
       <StyledHeader>
@@ -244,7 +271,6 @@ export const AdminStructures = () => {
         <StyledSort>
           <CustomSearchBar
             value={search}
-            // @ts-ignore
             onChange={handleChange}
             placeholder="Rechercher une structure..."
             withMargin={true}
@@ -294,7 +320,10 @@ export const AdminStructures = () => {
           <tbody>
             {structuresToDisplay.map((element, key) => (
               <tr key={key}>
-                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
+                >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <Image
@@ -309,7 +338,10 @@ export const AdminStructures = () => {
                     <StructureName>{element.nom}</StructureName>
                   </RowContainer>
                 </td>
-                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
+                >
                   <StyledStatus text={element.status || ""} textToDisplay={element.status} />
                 </td>
                 <td
@@ -325,10 +357,16 @@ export const AdminStructures = () => {
                 >
                   <ResponsableComponent responsable={element.responsable} canClickOnRespo={false} />
                 </td>
-                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
+                >
                   {element.nbFiches}
                 </td>
-                <td className="align-middle" onClick={() => setSelectedStructureIdAndToggleModal(element._id)}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element._id)}
+                >
                   {element.created_at ? moment(element.created_at).format("LLL") : "Non connue"}
                 </td>
               </tr>
@@ -377,7 +415,12 @@ export const AdminStructures = () => {
           selectedDispositifId={selectedContentId}
           setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
           onDeleteClick={() =>
-            prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, selectedContentId)
+            prepareDeleteContrib(
+              dispositifs,
+              setAllDispositifsActionsCreator,
+              dispatch,
+              selectedContentId,
+            )
           }
           toggleNeedsChoiceModal={toggleNeedsChoiceModal}
           toggleImprovementsMailModal={toggleImprovementsMailModal}

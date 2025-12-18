@@ -1,11 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
+import type { GeoAPISuggestion } from "~/types/navigation";
 import { getCitiesFromGeoAPI } from "~/utils/API";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
@@ -56,10 +56,11 @@ export const FilterCityComponent = ({
 }: Props) => {
   const theme = useTheme();
   const [enteredText, setEnteredText] = React.useState("");
-  const [suggestions, setSuggestions] = React.useState<GoogleAPISuggestion[]>([]);
+  const [suggestions, setSuggestions] = React.useState<GeoAPISuggestion[]>([]);
   const [error, setError] = React.useState("");
   const [isGeolocLoading, setIsGeolocLoading] = React.useState(false);
   const { t } = useTranslationWithRTL();
+  const debounceTimerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const defaultError = t("global.error", "Une erreur est survenue, réessaie.");
 
@@ -70,6 +71,11 @@ export const FilterCityComponent = ({
     setSelectedCity("");
   };
 
+  const resetSelection = useCallback(() => {
+    setSelectedDepartment("");
+    setSelectedCity("");
+  }, []);
+
   const userLocation = useSelector(userLocationSelector);
 
   React.useEffect(() => {
@@ -79,22 +85,49 @@ export const FilterCityComponent = ({
     }
   }, [userLocation.city, userLocation.department]);
 
-  const onChangeText = async (data: string) => {
-    setError("");
-    setEnteredText(data);
+  // Cleanup debounce timer on unmount
+  React.useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
+
+  const fetchCitySuggestions = async (searchText: string) => {
+    if (!searchText.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
     try {
-      const results = await getCitiesFromGeoAPI(data);
+      const results = await getCitiesFromGeoAPI(searchText);
       if (results && results.data && results.data.features) {
         setSuggestions(results.data.features);
       }
     } catch (_: unknown) {
       setError(defaultError);
-      resetData();
+      setSuggestions([]);
       setIsGeolocLoading(false);
     }
   };
 
-  const setCityAndGetDepartment = async (suggestion: any) => {
+  const onChangeText = (data: string) => {
+    setError("");
+    setEnteredText(data);
+
+    // Clear existing timer
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+
+    // Set new timer to fetch suggestions after 300ms of no typing
+    debounceTimerRef.current = setTimeout(() => {
+      fetchCitySuggestions(data);
+    }, 300);
+  };
+
+  const setCityAndGetDepartment = async (suggestion: GeoAPISuggestion) => {
     setIsGeolocLoading(true);
     setSelectedCity(suggestion.properties.city);
     const department = suggestion.properties.context.split(", ")[1];
@@ -111,13 +144,14 @@ export const FilterCityComponent = ({
     setSelectedDepartment(department);
   };
 
-  const onSelectSuggestion = async (suggestion: any) => {
+  const onSelectSuggestion = async (suggestion: GeoAPISuggestion) => {
     try {
       setEnteredText("");
+      setSuggestions([]);
       await setCityAndGetDepartment(suggestion);
     } catch (_: unknown) {
       setError(defaultError);
-      resetData();
+      resetSelection();
       setIsGeolocLoading(false);
     }
   };
@@ -128,18 +162,23 @@ export const FilterCityComponent = ({
         setSelectedCity={setSelectedCity}
         setSelectedDepartment={setSelectedDepartment}
         setLoading={setIsGeolocLoading}
-        onError={() => resetData()}
+        onError={() => resetSelection()}
       />
     );
-  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading, resetData]);
+  }, [setSelectedCity, setSelectedDepartment, setIsGeolocLoading, resetSelection]);
 
   return (
     <Rows verticalAlign="space-between">
       <View>
         <Title>
-          <ReadableText>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</ReadableText>
+          <ReadableText>
+            {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
+          </ReadableText>
         </Title>
-        <Explaination step={1} defaultText="C’est pour te montrer les associations et les activités dans ta ville." />
+        <Explaination
+          step={1}
+          defaultText="C’est pour te montrer les associations et les activités dans ta ville."
+        />
         <Label>
           <ReadableText>{t("onboarding_screens.city_label", "Ta ville")}</ReadableText>
         </Label>

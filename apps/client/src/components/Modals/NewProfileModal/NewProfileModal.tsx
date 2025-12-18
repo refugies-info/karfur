@@ -24,7 +24,8 @@ const NewProfileModal = () => {
     const missingDepartment = (userDetails.departments?.length || 0) === 0;
 
     const tradIncomplete =
-      user.traducteur && (userDetails.selectedLanguages.length === 0 || missingUsername || missingDepartment);
+      user.traducteur &&
+      (userDetails.selectedLanguages.length === 0 || missingUsername || missingDepartment);
     const caregiverIncomplete = user.caregiver && (!userDetails.partner || missingDepartment);
     const contribIncomplete = user.contributeur && (missingUsername || missingDepartment);
     const userIncomplete = hasRole(userDetails, RoleName.USER) && missingDepartment;
@@ -59,7 +60,8 @@ const NewProfileModal = () => {
       small
     >
       <p>
-        Réfugiés.info améliore votre expérience de connexion pour vous proposer des contenus plus adaptés à vos besoins.
+        Réfugiés.info améliore votre expérience de connexion pour vous proposer des contenus plus
+        adaptés à vos besoins.
       </p>
       <p>
         Pour continuer à accéder au contenu, merci de{" "}
@@ -71,7 +73,11 @@ const NewProfileModal = () => {
         </Button>
 
         <div className="flex flex-column items-end gap-2">
-          <Button iconId="fr-icon-arrow-right-line" iconPosition="right" onClick={() => next(null, true)}>
+          <Button
+            iconId="fr-icon-arrow-right-line"
+            iconPosition="right"
+            onClick={() => next(null, true)}
+          >
             Compléter votre profil
           </Button>
 

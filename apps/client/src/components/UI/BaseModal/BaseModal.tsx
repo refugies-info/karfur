@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import type React from "react";
 import { Modal } from "reactstrap";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import Image from "~/components/UI/Image";
@@ -40,7 +40,9 @@ const BaseModal = ({ show, toggle, className, help, title, children, small, onOp
             <Image src={TutoImg} width={47} height={32} alt="" />
             <p className={styles.title}>{help.title}</p>
             <div className={styles.text}>
-              {Array.isArray(help.content) ? help.content.map((p, i) => <p key={i}>{p}</p>) : help.content}
+              {Array.isArray(help.content)
+                ? help.content.map((p, i) => <p key={i}>{p}</p>)
+                : help.content}
             </div>
           </div>
         )}

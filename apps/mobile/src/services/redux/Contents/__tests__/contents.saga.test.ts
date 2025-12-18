@@ -1,10 +1,14 @@
-import { ContentType } from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import util from "util";
 import { getContentsForApp, getNbContents } from "~/utils/API";
 import { mockedThemesData } from "../../../../jest/__fixtures__/themes";
 import { setGroupedContentsActionCreator } from "../../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,
@@ -22,7 +26,11 @@ describe("[Saga] contents", () => {
 
   describe("pilot", () => {
     it("should trigger all the sagas", () => {
-      testSaga(latestActionsSaga).next().takeLatest("FETCH_CONTENTS", fetchContents).next().isDone();
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_CONTENTS", fetchContents)
+        .next()
+        .isDone();
     });
   });
 
@@ -118,6 +126,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1Fr",
@@ -132,6 +141,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
             ],
           }),
@@ -277,6 +287,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1_ar",
@@ -291,6 +302,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
             ],
           }),
@@ -313,6 +325,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
               {
                 _id: "id1_fr",
@@ -327,6 +340,7 @@ describe("[Saga] contents", () => {
                 titreMarque: "titreMarque",
                 typeContenu: ContentType.DISPOSITIF,
                 abstract: "abstract",
+                origin: DispositifOrigin.RI,
               },
             ],
           }),

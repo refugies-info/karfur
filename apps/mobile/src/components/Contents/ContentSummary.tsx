@@ -1,17 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
-import { Hit } from "instantsearch.js";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { ContentForApp, GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { Hit } from "instantsearch.js";
 import { memo, useMemo } from "react";
-import { Image, StyleProp, ViewStyle } from "react-native";
+import { Image, type StyleProp, type ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
-import { SearchItem } from "~/components/Search/types";
-import { ValidScreen } from "~/libs/backButton";
+import { OriginBadge } from "~/components/OriginBadge";
+import type { SearchItem } from "~/components/Search/types";
+import type { ValidScreen } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
 import { styles } from "~/theme";
 import NoLogo from "~/theme/images/contents/structure_no_logo.png";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { Columns } from "../layout";
@@ -187,6 +188,7 @@ const ContentSummaryComponent = (props: Props) => {
                 </TitreMarqueText>
               )
             )}
+            {props.content.origin === "RCO" && <OriginBadge />}
           </TitlesContainer>
           {actionButton}
         </Columns>

@@ -1,5 +1,5 @@
-import { Poi } from "@refugies-info/api-types";
-import React from "react";
+import type { Poi } from "@refugies-info/api-types";
+import type React from "react";
 import Input from "~/components/Pages/dispositif/Input";
 import Button from "~/components/UI/Button";
 import { isValidEmail, isValidPhone } from "~/lib/validateFields";
@@ -63,7 +63,11 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
           onChange={(e) => setPoiForm({ ...poiForm, email: e.target.value || "" })}
           className="mb-4"
           icon="at-outline"
-          error={poiForm?.email && !isValidEmail(poiForm?.email) ? "Le format n'est pas valide." : undefined}
+          error={
+            poiForm?.email && !isValidEmail(poiForm?.email)
+              ? "Le format n'est pas valide."
+              : undefined
+          }
         />
         <Input
           id="input-poi-phone"
@@ -72,7 +76,11 @@ const PoiForm = ({ poiForm, setPoiForm, onValidate, onClose, onDelete }: Props) 
           onChange={(e) => setPoiForm({ ...poiForm, phone: e.target.value || "" })}
           className="mb-4"
           icon="phone-outline"
-          error={poiForm?.phone && !isValidPhone(poiForm?.phone) ? "Le format n'est pas valide." : undefined}
+          error={
+            poiForm?.phone && !isValidPhone(poiForm?.phone)
+              ? "Le format n'est pas valide."
+              : undefined
+          }
         />
         <Input
           id="input-poi-description"

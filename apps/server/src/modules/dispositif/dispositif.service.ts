@@ -1,18 +1,18 @@
 import {
   ContentType,
-  CreateDispositifRequest,
-  DemarcheContent,
-  DispositifContent,
+  type CreateDispositifRequest,
+  type DemarcheContent,
+  type DispositifContent,
   DispositifStatus,
-  Id,
-  InfoSections,
-  Languages,
+  type Id,
+  type InfoSections,
+  type Languages,
   StructureStatus,
-  UpdateDispositifRequest,
+  type UpdateDispositifRequest,
 } from "@refugies-info/api-types";
-import { Error } from "airtable";
+import type { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import { ProjectionType } from "mongoose";
+import type { ProjectionType } from "mongoose";
 import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
@@ -25,16 +25,16 @@ import {
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
-  Dispositif,
-  DispositifId,
+  type Dispositif,
+  type DispositifId,
   ObjectId,
-  Structure,
+  type Structure,
   Traductions,
   TraductionsModel,
-  User,
-  UserId,
+  type User,
+  type UserId,
 } from "~/typegoose";
-import { TranslationContent } from "~/typegoose/Dispositif";
+import type { TranslationContent } from "~/typegoose/Dispositif";
 import { TraductionsType } from "~/typegoose/Traductions";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
@@ -71,20 +71,27 @@ export const addDispositifToAirtable = (dispositif: Dispositif) => {
     fields: {
       "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
       "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
-      "Type de contenus": dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
+      "Type de contenus":
+        dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
       "date création": dispositif.created_at?.toISOString() || "",
       "Thème principal": theme.short["fr"] || "",
       "Thème secondaire 1": secondaryThemes?.length > 0 ? secondaryThemes[0].short["fr"] || "" : "",
       "Thème secondaire 2": secondaryThemes.length > 1 ? secondaryThemes[1].short["fr"] || "" : "",
     },
   };
-  return getAirtableContentTable("Suivi des publications").create([content], { typecast: true }, (error: Error) => {
-    if (error) {
-      logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", { error });
-      return;
-    }
-    logger.info("[addDispositifToAirtable] dispositif successfully added");
-  });
+  return getAirtableContentTable("Suivi des publications").create(
+    [content],
+    { typecast: true },
+    (error: Error) => {
+      if (error) {
+        logger.error("[addDispositifToAirtable] error while adding dispositif to airtable", {
+          error,
+        });
+        return;
+      }
+      logger.info("[addDispositifToAirtable] dispositif successfully added");
+    },
+  );
 };
 
 export enum NotifType {
@@ -108,9 +115,13 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
     }
     const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
     const contentTitle = `${
-      dispositif.typeContenu === ContentType.DISPOSITIF ? dispositif.translations.fr.content.titreMarque + " - " : ""
+      dispositif.typeContenu === ContentType.DISPOSITIF
+        ? dispositif.translations.fr.content.titreMarque + " - "
+        : ""
     } ${dispositif.translations.fr.content.titreInformatif}`;
-    const structure = user.structures[0]?.nom ? ` de la structure _${user.structures[0]?.nom}_` : "";
+    const structure = user.structures[0]?.nom
+      ? ` de la structure _${user.structures[0]?.nom}_`
+      : "";
     const type = dispositif.typeContenu === ContentType.DEMARCHE ? "démarche" : "dispositif";
 
     let title = "";
@@ -163,7 +174,11 @@ export const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSect
 const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
   const newDispositif = cloneDeep(dispositif.translations);
   set(newDispositif, "fr.content.what", deleteLineBreaks(newDispositif.fr.content.what));
-  set(newDispositif, "fr.content.how", deleteLineBreaksInInfosections(newDispositif.fr.content.how));
+  set(
+    newDispositif,
+    "fr.content.how",
+    deleteLineBreaksInInfosections(newDispositif.fr.content.how),
+  );
 
   if (dispositif.typeContenu === ContentType.DISPOSITIF) {
     set(
@@ -266,7 +281,10 @@ const rebuildTranslations = async (
       translationContent.created_at = new Date();
 
       await TraductionsModel.insertMany(translationsReviews).then((result) => {
-        logger.info(`[updateDispositif] ${translationsReviews.length} traductions created for review `, result);
+        logger.info(
+          `[updateDispositif] ${translationsReviews.length} traductions created for review `,
+          result,
+        );
       });
 
       // Mise à jour des validations existantes avec le toReview si ce n'est pas la première modification
@@ -298,7 +316,11 @@ export const saveAndOverwriteDraft = async (
   draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null;
 }> => {
   const dispositifToSave = cloneDeep(newDispositif);
-  const oldDispositif = await getDispositifById(id, { hasDraftVersion: 1, status: 1, translations: 1 });
+  const oldDispositif = await getDispositifById(id, {
+    hasDraftVersion: 1,
+    status: 1,
+    translations: 1,
+  });
 
   let draftDispositif = null;
   if (oldDispositif.hasDraftVersion) {
@@ -342,7 +364,10 @@ export const saveAndOverwriteDraft = async (
     dispositifToSave.administrationLogo = draftDispositif.administrationLogo;
   }
 
-  const updatedDispositif = await updateDispositifInDB(id, { ...dispositifToSave, hasDraftVersion: false });
+  const updatedDispositif = await updateDispositifInDB(id, {
+    ...dispositifToSave,
+    hasDraftVersion: false,
+  });
   if (draftDispositif) await deleteDraftDispositif(id);
 
   if (
@@ -353,7 +378,8 @@ export const saveAndOverwriteDraft = async (
     await takeSnapshot(updatedDispositif, "after", oldDispositif.status, updatedDispositif.status);
   }
 
-  let draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null = null;
+  let draftVersionStatus: DispositifStatus.DRAFT | DispositifStatus.UPDATE_TO_VALIDATE | null =
+    null;
   if (draftDispositif) {
     draftVersionStatus =
       draftDispositif.status === DispositifStatus.UPDATE_TO_VALIDATE
@@ -364,7 +390,11 @@ export const saveAndOverwriteDraft = async (
   return { updatedDispositif, draftVersionStatus };
 };
 
-export const publishDispositif = async (dispositifId: DispositifId, userId: UserId, keepTranslations?: boolean) => {
+export const publishDispositif = async (
+  dispositifId: DispositifId,
+  userId: UserId,
+  keepTranslations?: boolean,
+) => {
   const oldDispositif = await getDispositifById(dispositifId, {
     status: 1,
     creatorId: 1,
@@ -401,7 +431,9 @@ export const publishDispositif = async (dispositifId: DispositifId, userId: User
   try {
     await updateLanguagesAvancement();
   } catch (error) {
-    logger.error("[publishDispositif] error while updating languages avancement", { error: error.message });
+    logger.error("[publishDispositif] error while updating languages avancement", {
+      error: error.message,
+    });
   }
 
   // only if first publication
@@ -465,7 +497,8 @@ export const deleteDispositifInDb = async (id: string, user: User) => {
   const notifyChangeIf = async (id: string, user: User, oldDispositif: Dispositif) => {
     // notify only if non-admin and active or waiting, or admin and active
     if (
-      (!user.isAdmin() && [DispositifStatus.ACTIVE, DispositifStatus.WAITING_ADMIN].includes(oldDispositif.status)) ||
+      (!user.isAdmin() &&
+        [DispositifStatus.ACTIVE, DispositifStatus.WAITING_ADMIN].includes(oldDispositif.status)) ||
       (user.isAdmin() && oldDispositif.status === DispositifStatus.ACTIVE)
     ) {
       await notifyChange(NotifType.DELETED, id, user._id);
@@ -519,12 +552,19 @@ export const buildNewDispositif = async (
   if (formContent.administration)
     editedDispositif.administrationLogo = pictureToImageSchema(formContent.administration.logo);
 
+  // Handle origin field for device origin metadata
+  if ("origin" in formContent && formContent.origin) {
+    editedDispositif.origin = formContent.origin;
+  }
+
   return editedDispositif;
 };
 
 const isAccordionOk = (content: InfoSections | undefined, max: number): boolean => {
   if (!content) return false;
-  return Object.keys(content).length >= max && !Object.values(content).find((c) => !c.title || !c.text);
+  return (
+    Object.keys(content).length >= max && !Object.values(content).find((c) => !c.title || !c.text)
+  );
 };
 
 const isMetadataOk = (content: unknown): boolean => {
@@ -551,9 +591,12 @@ export const isDispositifComplete = (dispositif: Dispositif) => {
     isMetadataOk(dispositif.metadatas?.frenchLevel),
     isMetadataOk(dispositif.metadatas?.public),
     isMetadataOk(dispositif.metadatas?.price),
-    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.commitment),
-    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.frequency),
-    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.timeSlots),
+    dispositif.typeContenu === ContentType.DEMARCHE ||
+      isMetadataOk(dispositif.metadatas?.commitment),
+    dispositif.typeContenu === ContentType.DEMARCHE ||
+      isMetadataOk(dispositif.metadatas?.frequency),
+    dispositif.typeContenu === ContentType.DEMARCHE ||
+      isMetadataOk(dispositif.metadatas?.timeSlots),
     isMetadataOk(dispositif.metadatas?.conditions),
     dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.location),
   ];

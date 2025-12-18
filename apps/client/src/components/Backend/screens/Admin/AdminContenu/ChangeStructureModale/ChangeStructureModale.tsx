@@ -1,4 +1,4 @@
-import { GetAllStructuresResponse, Id, StructureStatus } from "@refugies-info/api-types";
+import { type GetAllStructuresResponse, type Id, StructureStatus } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useToggle from "react-use/lib/useToggle";
@@ -130,7 +130,9 @@ export const ChangeStructureModal = (props: Props) => {
           </div>
           <div>
             {selectedStructure && (
-              <Warning>Au clic sur Valider, la structure sera modifiée dans le dispositif ou la démarche.</Warning>
+              <Warning>
+                Au clic sur Valider, la structure sera modifiée dans le dispositif ou la démarche.
+              </Warning>
             )}
             <ButtonContainer>
               <FButton type="dark" name="plus-circle-outline" onClick={toggleNewStructureModal}>

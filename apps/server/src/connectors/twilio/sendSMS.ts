@@ -1,7 +1,7 @@
 import twilio from "twilio";
-import { MessageInstance } from "twilio/lib/rest/api/v2010/account/message";
+import type { MessageInstance } from "twilio/lib/rest/api/v2010/account/message";
 import logger from "~/logger";
-import { SendSMSResult } from "~/services";
+import type { SendSMSResult } from "~/services";
 
 const { accountSid, authToken, SMS_SENDER } = process.env;
 

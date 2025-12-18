@@ -1,10 +1,20 @@
 //@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
+import {
+  fetchUserFavoritesActionCreator,
+  setUserFavoritesActionCreator,
+} from "../UserFavoritesInLocale.actions";
 import { FETCH_USER_FAVORITES, UPDATE_USER_FAVORITES } from "../UserFavoritesInLocale.actionTypes";
-import { fetchUserFavoritesActionCreator, setUserFavoritesActionCreator } from "../UserFavoritesInLocale.actions";
-import latestActionsSaga, { fetchUserFavorites, updateUserFavorites } from "../UserFavoritesInLocale.saga";
+import latestActionsSaga, {
+  fetchUserFavorites,
+  updateUserFavorites,
+} from "../UserFavoritesInLocale.saga";
 
 describe("[Saga] UserFavorites", () => {
   describe("pilot", () => {
