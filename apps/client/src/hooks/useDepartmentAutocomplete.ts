@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getDbDepartment } from "~/lib/departments";
 import { levenshteinDistance, normalizeString } from "~/lib/string";
 
@@ -66,7 +66,7 @@ const useDepartmentAutocomplete = () => {
       }));
   };
 
-  const predictions = getFilteredDepartments();
+  const predictions = useMemo(() => getFilteredDepartments(), [search, suggestions]);
 
   return {
     search,
