@@ -1,5 +1,6 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import type React from "react";
+import { forwardRef } from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { cls } from "~/lib/classname";
 import styles from "./Input.module.scss";
@@ -18,9 +19,10 @@ interface Props {
   reset?: () => void;
   onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  autoComplete?: string;
 }
 
-const Input = (props: Props) => {
+const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>((props, ref) => {
   return (
     <div
       className={cls(
@@ -45,6 +47,7 @@ const Input = (props: Props) => {
             value={props.value || ""}
             onChange={props.onChange}
             onFocus={props.onFocus}
+            ref={ref as React.Ref<HTMLTextAreaElement>}
           />
         ) : (
           <input
@@ -55,6 +58,8 @@ const Input = (props: Props) => {
             value={props.value || ""}
             onChange={props.onChange}
             onFocus={props.onFocus}
+            autoComplete={props.autoComplete}
+            ref={ref as React.Ref<HTMLInputElement>}
           />
         )}
         {props.icon && (
@@ -94,6 +99,6 @@ const Input = (props: Props) => {
       {props.error && <div className={styles.error_msg}>{props.error}</div>}
     </div>
   );
-};
+});
 
 export default Input;
