@@ -14,6 +14,11 @@ jest.mock("@codegouvfr/react-dsfr/SearchBar", () => ({
   SearchBar: jest.fn().mockReturnValue(<></>),
 }));
 
+jest.mock("../components/ModalDepartments/ModalDepartments", () => ({
+  ModalDepartments: jest.fn().mockReturnValue(<></>),
+  modalDepartments: { open: jest.fn() },
+}));
+
 jest.mock("utils/API", () => ({
   __esModule: true, // this property makes it work
   default: {
