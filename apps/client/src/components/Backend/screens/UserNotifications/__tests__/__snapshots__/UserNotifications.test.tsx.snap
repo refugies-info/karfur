@@ -4,9 +4,17 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -83,9 +91,17 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -194,9 +210,17 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>

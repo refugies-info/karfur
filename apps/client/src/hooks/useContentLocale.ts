@@ -12,7 +12,9 @@ const getContentLocale = (locale: string, availableLanguages: string[] | undefin
 const useContentLocale = () => {
   const locale = useLocale();
   const dispositif = useSelector(selectedDispositifSelector);
-  const [contentLocale, setContentLocale] = useState(getContentLocale(locale, dispositif?.availableLanguages));
+  const [contentLocale, setContentLocale] = useState(
+    getContentLocale(locale, dispositif?.availableLanguages),
+  );
   const [isRTL, setIsRTL] = useState(checkIsRTL(contentLocale));
 
   useEffect(() => {

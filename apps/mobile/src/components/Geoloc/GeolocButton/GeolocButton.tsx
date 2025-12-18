@@ -57,7 +57,10 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
 
       const location = await Location.getCurrentPositionAsync({});
       if (location && location.coords && location.coords.latitude && location.coords.longitude) {
-        const result = await getPlaceFromLocationFromGeoAPI(location.coords.longitude, location.coords.latitude);
+        const result = await getPlaceFromLocationFromGeoAPI(
+          location.coords.longitude,
+          location.coords.latitude,
+        );
 
         if (result && result.data && result.data.features && result.data.features.length > 0) {
           const firstFeature = result.data.features[0];
@@ -98,9 +101,16 @@ const GeolocButton = ({ setSelectedCity, setSelectedDepartment, setLoading, onEr
   return (
     <View>
       <GeolocButtonContainer onPress={useGeoloc} hasError={!!error} accessibilityRole="button">
-        <Icon name="pin" width={ICON_SIZE} height={ICON_SIZE} fill={styles.colors.dsfr_blueSun113} />
+        <Icon
+          name="pin"
+          width={ICON_SIZE}
+          height={ICON_SIZE}
+          fill={styles.colors.dsfr_blueSun113}
+        />
         <GeolocText>
-          <ReadableText>{t("onboarding_screens.position_button", "Utiliser ma position")}</ReadableText>
+          <ReadableText>
+            {t("onboarding_screens.position_button", "Utiliser ma position")}
+          </ReadableText>
         </GeolocText>
         <Icon
           name={!isRTL ? "chevron-right-outline" : "chevron-left-outline"}

@@ -1,4 +1,4 @@
-import { Text, TextProps } from "react-native";
+import { Text, type TextProps } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 

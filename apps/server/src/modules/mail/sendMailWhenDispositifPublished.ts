@@ -1,5 +1,5 @@
 import logger from "~/logger";
-import { Dispositif } from "~/typegoose";
+import type { Dispositif } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import {
@@ -17,9 +17,16 @@ export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
   const titreMarque = dispo.translations.fr.content.titreMarque;
   const lien = "https://refugies.info/" + dispo.typeContenu + "/" + dispo._id;
 
-  void sendPublishedMailToStructureMembers(membresToSendMail, titreInformatif, titreMarque, lien, dispo._id);
+  void sendPublishedMailToStructureMembers(
+    membresToSendMail,
+    titreInformatif,
+    titreMarque,
+    lien,
+    dispo._id,
+  );
   const isCreatorInStructure =
-    structureMembres.filter((membre) => membre.userId.toString() === dispo.creatorId.toString()).length > 0;
+    structureMembres.filter((membre) => membre.userId.toString() === dispo.creatorId.toString())
+      .length > 0;
 
   if (!isCreatorInStructure) {
     logger.info("[sendMailWhenDispositifPublished] creator is not in structure");

@@ -1,11 +1,11 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import NewsletterIllu from "~/assets/homepage/newsletter-illu.svg";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
 import { cls } from "~/lib/classname";
 import API from "~/utils/API";
 
@@ -14,7 +14,9 @@ const Newsletter = () => {
   const { isMobile } = useWindowSize();
 
   const [email, setEmail] = useState("");
-  const [newsletterFormState, setNewsletterFormState] = useState<"default" | "success" | "error">("default");
+  const [newsletterFormState, setNewsletterFormState] = useState<"default" | "success" | "error">(
+    "default",
+  );
   const [newsletterError, setNewsletterError] = useState("");
 
   const sendMail = (e: any) => {
@@ -27,7 +29,9 @@ const Newsletter = () => {
 
     if (!isEmail) {
       setNewsletterFormState("error");
-      setNewsletterError(t("NewsletterForm.errorsEmailnotvalid", "Ceci n'est pas un email, vérifiez l'orthographe."));
+      setNewsletterError(
+        t("NewsletterForm.errorsEmailnotvalid", "Ceci n'est pas un email, vérifiez l'orthographe."),
+      );
       return;
     }
 
@@ -80,10 +84,14 @@ const Newsletter = () => {
             onSubmit={sendMail}
             className={cls(
               "col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in",
-              newsletterFormState === "success" ? "z-10 max-h-0 opacity-0" : "max-h-full opacity-100 transition-all",
+              newsletterFormState === "success"
+                ? "z-10 max-h-0 opacity-0"
+                : "max-h-full opacity-100 transition-all",
             )}
           >
-            <h2>{t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle !")}</h2>
+            <h2>
+              {t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle !")}
+            </h2>
             <p>{t("NewsletterForm.description", "Suivez l'évolution du service Réfugiés.info")}</p>
 
             <Input

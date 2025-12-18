@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement, useCallback, useMemo } from "react";
+import { type ReactElement, useCallback, useMemo } from "react";
 import { useAsyncFn } from "react-use";
 import { END } from "redux-saga";
 import Layout from "~/components/Pages/auth/Layout";

@@ -1,5 +1,5 @@
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
 import { cls } from "~/lib/classname";
 import { langueSelector } from "~/services/Langue/langue.selectors";

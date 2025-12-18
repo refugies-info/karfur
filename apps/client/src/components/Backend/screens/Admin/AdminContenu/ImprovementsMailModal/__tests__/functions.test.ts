@@ -3,13 +3,25 @@ import { getUsersToSendMail } from "../functions";
 
 describe("getUsersToSendMail", () => {
   it("should return correct data when not en attente, en attente admin and accepté", () => {
-    const res = getUsersToSendMail("Brouillon", "creatorId", null, [{ _id: "userId1" }], [{ _id: "structure1" }]);
+    const res = getUsersToSendMail(
+      "Brouillon",
+      "creatorId",
+      null,
+      [{ _id: "userId1" }],
+      [{ _id: "structure1" }],
+    );
 
     expect(res).toEqual([]);
   });
 
   it("should return correct data when en attente and no creatorId", () => {
-    const res = getUsersToSendMail("En attente", "", null, [{ _id: "userId1" }], [{ _id: "structure1" }]);
+    const res = getUsersToSendMail(
+      "En attente",
+      "",
+      null,
+      [{ _id: "userId1" }],
+      [{ _id: "structure1" }],
+    );
 
     expect(res).toEqual([]);
   });

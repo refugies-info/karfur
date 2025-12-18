@@ -1,7 +1,7 @@
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { getUserFromDB } from "~/modules/users/users.repository";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const checkResetToken = async (token: string): Response => {
   logger.info("[checkResetToken] received");

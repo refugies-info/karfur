@@ -1,7 +1,7 @@
-import { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getActiveStructures = async (): ResponseWithData<GetActiveStructuresResponse[]> => {
   logger.info("[getActiveStructures] get structures ");

@@ -1,5 +1,5 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { Picture } from "@refugies-info/api-types";
+import type { Picture } from "@refugies-info/api-types";
 import { useState } from "react";
 import { Input, Spinner } from "reactstrap";
 import Button from "~/components/UI/Button";
@@ -27,7 +27,7 @@ const LogoInput = (props: Props) => {
   const handleFileInputChange = (event: any) => {
     setUploading(true);
     const formData = new FormData();
-    // @ts-ignore
+    // @ts-expect-error
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)

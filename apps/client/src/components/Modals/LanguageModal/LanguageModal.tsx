@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useTranslation } from "next-i18next";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { isMobile } from "react-device-detect";
 import { Col, ListGroup, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
 import { getPath } from "routes";
@@ -43,14 +43,20 @@ const LanguageModal = (props: Props) => {
           >
             {t("close", "Fermer")}
           </Button>
-          <h5 className={cn(styles.title)}>{t("Homepage.modalLangTitle", "Quelle langue parlez-vous ?")}</h5>
+          <h5 className={cn(styles.title)}>
+            {t("Homepage.modalLangTitle", "Quelle langue parlez-vous ?")}
+          </h5>
         </div>
 
         <ListGroup className="!pl-0">
           <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
 
           {!isMobile && (
-            <ListGroupItem action key="unavailable" className={styles.list_group_item + " " + styles.unavailable}>
+            <ListGroupItem
+              action
+              key="unavailable"
+              className={styles.list_group_item + " " + styles.unavailable}
+            >
               <Row>
                 <Col xs="8" className={cn(styles.vertical_center)}>
                   {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}

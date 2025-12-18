@@ -30,7 +30,9 @@ const withM1build = (config) => {
 
       if (!addCode.didMerge) {
         // eslint-disable-next-line no-console
-        console.error("ERROR: Cannot add withM1build to the project's ios/Podfile because it's malformed.");
+        console.error(
+          "ERROR: Cannot add withM1build to the project's ios/Podfile because it's malformed.",
+        );
         return config;
       }
 

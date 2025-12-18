@@ -1,12 +1,21 @@
 // @ts-nocheck
+import { DispositifOrigin } from "@refugies-info/api-types";
 import mockRouter from "next-router-mock";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { userSelector } from "../../User/user.selectors";
+import {
+  fetchUserStructureActionCreator,
+  setUserStructureActionCreator,
+} from "../userStructure.actions";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "../userStructure.actionTypes";
-import { fetchUserStructureActionCreator, setUserStructureActionCreator } from "../userStructure.actions";
 import latestActionsSaga, { fetchUserStructure, updateUserStructure } from "../userStructure.saga";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] Structures", () => {
@@ -129,6 +138,36 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "id" })
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+    it("should filter out RCO dispositifsAssocies", () => {
+      const mockData = {
+        membres: [],
+        dispositifsAssocies: [
+          { _id: "id1", origin: DispositifOrigin.RI },
+          { _id: "id2", origin: DispositifOrigin.RCO },
+        ],
+      };
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", "fr")
+        .next(mockData)
+        .put(
+          setUserStructureActionCreator({
+            membres: [],
+            dispositifsAssocies: [{ _id: "id1", origin: DispositifOrigin.RI }],
+          }),
+        )
+        .next()
+        .select(userSelector)
+        .next({ userId: "userId" })
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
+import type { NativeScrollEvent, NativeSyntheticEvent } from "react-native";
 
 export function useHeaderAnimation(offset = 10) {
   const [showSimplifiedHeader, setShowSimplifiedHeader] = useState(false);

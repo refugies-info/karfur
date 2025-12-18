@@ -1,5 +1,5 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { END } from "redux-saga";
@@ -14,12 +14,18 @@ import decodeQuery from "~/lib/recherche/decodeUrlQuery";
 import { queryDispositifs } from "~/lib/recherche/queryContents";
 import styles from "~/scss/pages/recherche.module.scss";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
-import { fetchLanguesActionCreator, toggleLangueActionCreator } from "~/services/Langue/langue.actions";
-import { addToQueryActionCreator, setSearchResultsActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { wrapper } from "~/services/configureStore";
+import {
+  fetchLanguesActionCreator,
+  toggleLangueActionCreator,
+} from "~/services/Langue/langue.actions";
+import {
+  addToQueryActionCreator,
+  setSearchResultsActionCreator,
+} from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
-import { wrapper } from "~/services/configureStore";
 
 const Embed = () => {
   const themes = useSelector(themesSelector);
@@ -47,28 +53,35 @@ const Embed = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ query, locale }) => {
-  if (locale) {
-    store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
-  } else {
-    store.dispatch(fetchActiveDispositifsActionsCreator());
-  }
-  store.dispatch(fetchLanguesActionCreator());
-  store.dispatch(fetchThemesActionCreator());
-  store.dispatch(END);
-  await store.sagaTask?.toPromise();
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ query, locale }) => {
+      if (locale) {
+        store.dispatch(toggleLangueActionCreator(locale)); // will fetch dispositifs automatically
+      } else {
+        store.dispatch(fetchActiveDispositifsActionsCreator());
+      }
+      store.dispatch(fetchLanguesActionCreator());
+      store.dispatch(fetchThemesActionCreator());
+      store.dispatch(END);
+      await store.sagaTask?.toPromise();
 
-  const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
-  const results = queryDispositifs(initialQuery, store.getState().activeDispositifs, store.getState().needs);
-  store.dispatch(setSearchResultsActionCreator(results));
-  store.dispatch(addToQueryActionCreator(initialQuery));
+      const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
+      const results = queryDispositifs(
+        initialQuery,
+        store.getState().activeDispositifs,
+        store.getState().needs,
+      );
+      store.dispatch(setSearchResultsActionCreator(results));
+      store.dispatch(addToQueryActionCreator(initialQuery));
 
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+        },
+      };
     },
-  };
-});
+);
 
 export default Embed;
 

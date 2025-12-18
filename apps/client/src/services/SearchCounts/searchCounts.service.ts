@@ -1,5 +1,5 @@
-import { SearchCountsResponse } from "../../pages/api/search/counts";
-import { SearchQuery } from "../SearchResults/searchResults.reducer";
+import type { SearchCountsResponse } from "../../pages/api/search/counts";
+import type { SearchQuery } from "../SearchResults/searchResults.reducer";
 
 export const getSearchCounts = async (searchQuery: SearchQuery): Promise<SearchCountsResponse> => {
   // Exclude presentation-only params from counts: type (tab) and sort

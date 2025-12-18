@@ -12,7 +12,12 @@ module.exports = {
   },
   transformIgnorePatterns: ["node_modules/?!(static-container)"],
   testRegex: "(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$",
-  testPathIgnorePatterns: ["\\.snap$", "<rootDir>/node_modules/", "../../node_modules/", "<rootDir>/dist/"],
+  testPathIgnorePatterns: [
+    "\\.snap$",
+    "<rootDir>/node_modules/",
+    "../../node_modules/",
+    "<rootDir>/dist/",
+  ],
   cacheDirectory: ".jest/cache",
   coveragePathIgnorePatterns: ["/node_modules/", "../../node_modules/", "/src/environment"],
   collectCoverage: false,

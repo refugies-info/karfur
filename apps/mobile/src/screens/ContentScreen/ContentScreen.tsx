@@ -1,30 +1,11 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import type { CompositeScreenProps } from "@react-navigation/native";
+import type { StackScreenProps } from "@react-navigation/stack";
 import { ContentType, ViewsType } from "@refugies-info/api-types";
-import { useCallback, useEffect, useMemo, useRef } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-
-import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { LoadingStatusKey } from "~/services/redux/LoadingStatus/loadingStatus.actions";
-import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.selectors";
-import { fetchSelectedContentActionCreator } from "~/services/redux/SelectedContent/selectedContent.actions";
-import { selectedContentSelector } from "~/services/redux/SelectedContent/selectedContent.selectors";
-import { themeSelector } from "~/services/redux/Themes/themes.selectors";
-import {
-  currentI18nCodeSelector,
-  hasUserSeenOnboardingSelector,
-  initialUrlSelector,
-  selectedI18nCodeSelector,
-} from "~/services/redux/User/user.selectors";
-import { styles } from "~/theme";
-import { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
-
-import { registerBackButton } from "~/libs/backButton";
-import { updateNbVuesOrFavoritesOnContent } from "~/utils/API";
-
 import isEmpty from "lodash/isEmpty";
+import { useCallback, useEffect, useMemo, useRef } from "react";
+import { ActivityIndicator, type ScrollView, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import {
   DemarcheImage,
   ErrorScreen,
@@ -42,8 +23,25 @@ import {
   UpButton,
 } from "~/components";
 import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
+import { OriginBadge } from "~/components/OriginBadge";
+import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
+import { registerBackButton } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
+import { LoadingStatusKey } from "~/services/redux/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "~/services/redux/LoadingStatus/loadingStatus.selectors";
+import { fetchSelectedContentActionCreator } from "~/services/redux/SelectedContent/selectedContent.actions";
+import { selectedContentSelector } from "~/services/redux/SelectedContent/selectedContent.selectors";
+import { themeSelector } from "~/services/redux/Themes/themes.selectors";
 import { setInitialUrlActionCreator } from "~/services/redux/User/user.actions";
+import {
+  currentI18nCodeSelector,
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+  selectedI18nCodeSelector,
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import type { BottomTabParamList, ExplorerParamList } from "~/types/navigation";
+import { updateNbVuesOrFavoritesOnContent } from "~/utils/API";
 import PageSkeleton from "../SearchTab/ContentScreen/PageSkeleton";
 import { ContentTabBar } from "./ContentTabBar";
 import { ExternalLink } from "./ExternalLink";
@@ -132,7 +130,10 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
   };
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
-  const lastModificationDate = useMemo(() => selectedContent?.lastModificationDate, [selectedContent]);
+  const lastModificationDate = useMemo(
+    () => selectedContent?.lastModificationDate,
+    [selectedContent],
+  );
 
   // before leaving, if initialUrl (deeplink), clear it to return to onboarding if necessary
   const initialUrl = useSelector(initialUrlSelector);
@@ -217,13 +218,23 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
 
           <LastModificationDate lastModificationDate={lastModificationDate} />
 
+          {selectedContent.origin === "RCO" && (
+            <>
+              <Spacer height={styles.margin * 2} />
+              <OriginBadge />
+            </>
+          )}
+
           <Spacer height={styles.margin * 5} />
           <Section key="what" sectionKey="what" themeId={themeId || null} />
 
           <InfocardsSection key="infocards" content={selectedContent} color={colors.color100} />
 
           {CONTENT_STRUCTURES[selectedContent.typeContenu].map(
-            (section, i) => section !== "what" && <Section key={i} sectionKey={section} themeId={themeId || null} />,
+            (section, i) =>
+              section !== "what" && (
+                <Section key={i} sectionKey={section} themeId={themeId || null} />
+              ),
           )}
 
           <ExternalLink
@@ -232,7 +243,11 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
             backgroundColor={colors.color100}
           />
 
-          <MapMarkers markers={selectedContent.map} contentId={selectedContent._id} color={colors.color100} />
+          <MapMarkers
+            markers={selectedContent.map}
+            contentId={selectedContent._id}
+            color={colors.color100}
+          />
           <Spacer height={styles.margin * 5} />
           <Mercis dispositif={selectedContent} />
 

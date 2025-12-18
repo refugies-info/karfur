@@ -1,4 +1,4 @@
-import { conditionType } from "@refugies-info/api-types";
+import type { conditionType } from "@refugies-info/api-types";
 import imgCb from "~/assets/dispositif/form-icons/conditions-cb.svg";
 import imgDriver from "~/assets/dispositif/form-icons/conditions-driver.svg";
 import imgFranceTravail from "~/assets/dispositif/form-icons/conditions-france-travail.svg";
@@ -18,9 +18,9 @@ export const help = {
 export const dropdownOptions: Record<conditionType, any> = {
   "acte naissance": imgOfpra,
   "titre sejour": imgTse,
-  "cir": imgOfii,
+  cir: imgOfii,
   "bank account": imgCb,
   "pole emploi": imgFranceTravail,
   "driver license": imgDriver,
-  "school": imgSchool,
+  school: imgSchool,
 };

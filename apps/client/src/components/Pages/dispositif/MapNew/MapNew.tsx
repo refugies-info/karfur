@@ -1,12 +1,12 @@
 "use client";
 
-import { GetThemeResponse, Poi } from "@refugies-info/api-types";
+import type { GetThemeResponse, Poi } from "@refugies-info/api-types";
 import { Map } from "@refugies-info/ui";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { RootState } from "~/services/rootReducer";
 
 interface MapNewProps {
   data: Poi[];
@@ -50,7 +50,8 @@ const MapNew = ({ data }: MapNewProps) => {
   if (theme || secondaryThemes.length > 0) {
     title = t("Dispositif.mapTitle", "Lieu d'accueil");
 
-    const isFormation = theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
+    const isFormation =
+      theme?.short?.fr === "Formation" || secondaryThemes?.some((t) => t.short?.fr === "Formation");
     if (isFormation) {
       description = t(
         "Dispositif.mapDescriptionFormation",

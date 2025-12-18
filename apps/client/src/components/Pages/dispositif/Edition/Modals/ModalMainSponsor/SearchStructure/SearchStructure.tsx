@@ -1,5 +1,6 @@
-import { Id } from "@refugies-info/api-types";
-import React, { ChangeEventHandler, useCallback, useEffect, useMemo, useState } from "react";
+import type { Id } from "@refugies-info/api-types";
+import type React from "react";
+import { type ChangeEventHandler, useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { Collapse } from "reactstrap";
 import StructureImage from "~/assets/dispositif/structure-image.svg";
@@ -43,7 +44,8 @@ const SearchStructure = (props: Props) => {
 
     const regex = new RegExp(".*?" + escapedValue + ".*", "i");
     return structures.filter(
-      (structure) => regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom)),
+      (structure) =>
+        regex.test(structure.acronyme || "") || regex.test(removeAccents(structure.nom)),
     );
   }, [needle, structures]);
 

@@ -1,4 +1,4 @@
-import { ProgressionIndicator } from "@refugies-info/api-types";
+import type { ProgressionIndicator } from "@refugies-info/api-types";
 import axios from "axios";
 import { IndicatorModel, ObjectId } from "~/typegoose";
 

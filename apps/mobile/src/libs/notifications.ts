@@ -1,5 +1,5 @@
+import type { EventSubscription, NotificationResponse } from "expo-notifications";
 import * as Notifications from "expo-notifications";
-import { EventSubscription, NotificationResponse } from "expo-notifications";
 
 const notificationDataStack: NotificationResponse[] = [];
 let notificationListener: EventSubscription | null = null;

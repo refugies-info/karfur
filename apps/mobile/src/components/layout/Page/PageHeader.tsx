@@ -1,10 +1,11 @@
-import { Picture } from "@refugies-info/api-types";
-import React, { ComponentType, memo, useMemo } from "react";
-import { ImageBackground, LayoutChangeEvent, View, ViewStyle } from "react-native";
+import type { Picture } from "@refugies-info/api-types";
+import type React from "react";
+import { type ComponentType, memo, useMemo } from "react";
+import { ImageBackground, type LayoutChangeEvent, View, type ViewStyle } from "react-native";
 import styled from "styled-components/native";
 import { getImageUri } from "~/libs/getImageUri";
-import { PropsOf } from "~/utils";
-import { HeaderContentProps } from "../Header";
+import type { PropsOf } from "~/utils";
+import type { HeaderContentProps } from "../Header";
 import SafeAreaViewTopInset from "../SafeAreaViewTopInset";
 
 export interface PageHeaderProps {
@@ -42,10 +43,9 @@ const PageHeader = memo(function PageHeader({
   style,
 }: PageHeaderProps) {
   const Container = useMemo(() => {
-    const component: React.FC<React.PropsWithChildren<PropsOf<typeof ImageBackground | typeof View>>> = ({
-      children,
-      ...other
-    }) => {
+    const component: React.FC<
+      React.PropsWithChildren<PropsOf<typeof ImageBackground | typeof View>>
+    > = ({ children, ...other }) => {
       return headerBackgroundImage ? (
         <ImageBackground
           resizeMode="cover"

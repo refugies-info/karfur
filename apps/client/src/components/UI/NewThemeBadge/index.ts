@@ -1,1 +1,1 @@
-export { NewThemeBadge } from "./NewThemeBadge"
+export { NewThemeBadge } from "./NewThemeBadge";

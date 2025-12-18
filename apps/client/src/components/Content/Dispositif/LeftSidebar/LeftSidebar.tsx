@@ -14,7 +14,11 @@ const LeftSidebar = ({ className }: { className?: string }) => {
   return (
     <aside className={cn(className, "print:order-2 print:mt-8")}>
       {isViewMode && (
-        <FRLink href="#top" icon="arrow-upward" className="fixed bottom-4 left-4 z-20 print:!hidden">
+        <FRLink
+          href="#top"
+          icon="arrow-upward"
+          className="fixed bottom-4 left-4 z-20 print:!hidden"
+        >
           {t("topLink")}
         </FRLink>
       )}

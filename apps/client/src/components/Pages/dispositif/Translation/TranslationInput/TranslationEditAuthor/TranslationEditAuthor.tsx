@@ -1,8 +1,8 @@
 import Button from "~/components/UI/Button";
 import { useUser } from "~/hooks";
-import { Suggestion } from "~/hooks/dispositif";
+import type { Suggestion } from "~/hooks/dispositif";
 import { cls } from "~/lib/classname";
-import { FooterStatus } from "../functions";
+import type { FooterStatus } from "../functions";
 import UserSuggest from "../UserSuggest";
 import styles from "./TranslationEditAuthor.module.scss";
 
@@ -14,7 +14,13 @@ interface Props {
   deleteTranslation: () => void;
 }
 
-const TranslationEditAuthor = ({ index, max, footerStatus, suggestions, deleteTranslation }: Props) => {
+const TranslationEditAuthor = ({
+  index,
+  max,
+  footerStatus,
+  suggestions,
+  deleteTranslation,
+}: Props) => {
   const { user } = useUser();
 
   return (

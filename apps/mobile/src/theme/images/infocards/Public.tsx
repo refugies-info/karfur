@@ -1,9 +1,12 @@
 import { Path, Svg } from "react-native-svg";
-import { IconProps } from "./IconProps";
+import type { IconProps } from "./IconProps";
 
 const Public = ({ color, width = 32, height = 32 }: IconProps) => (
   <Svg width={width} height={height} viewBox="0 0 56 56" fill="none">
-    <Path d="M40.7986 25.0773L45.5101 40.491L47.7991 53.5964H49.5921L47.1696 25.0773H40.7986Z" fill="#FFCAA7" />
+    <Path
+      d="M40.7986 25.0773L45.5101 40.491L47.7991 53.5964H49.5921L47.1696 25.0773H40.7986Z"
+      fill="#FFCAA7"
+    />
     <Path
       d="M39.1009 25.0773C39.4252 33.5472 39.0437 37.8966 38.9674 38.6787C38.8911 39.4418 37.9183 44.4398 35.5911 53.8635L37.4986 53.2149C41.161 44.5733 42.4199 40.0713 42.8396 38.9458C43.2592 37.8012 44.3847 33.2038 46.1968 25.0964H39.1009V25.0773Z"
       fill="#FFCAA7"

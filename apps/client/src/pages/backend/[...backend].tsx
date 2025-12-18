@@ -1,4 +1,5 @@
 import { RoleName } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import { createBrowserHistory } from "history";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -6,13 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { getPath } from "routes";
-import { backendRoutes, BackendRouteType } from "~/components/Backend/screens/routes";
+import { type BackendRouteType, backendRoutes } from "~/components/Backend/screens/routes";
 import UnauthorizedAccess from "~/components/Navigation/UnauthorizedAccess/UnauthorizedAccess";
 import SEO from "~/components/Seo";
 import { useAuth } from "~/hooks";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
-import isInBrowser from "~/lib/isInBrowser";
 import { setLoginRedirect } from "~/lib/loginRedirect";
 import styles from "~/scss/pages/backend.module.scss";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
@@ -65,7 +65,8 @@ const Backend = () => {
 
       // Restriction and role: CHECK
       const roles = user.user?.roles || [];
-      const hasAuthorizedRole = roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
+      const hasAuthorizedRole =
+        roles.filter((x: any) => route.restriction.includes(x.nom)).length > 0;
       const hasRouteRestrictionHasStructure = route.restriction.includes(RoleName.STRUCTURE);
       return hasAuthorizedRole || (hasRouteRestrictionHasStructure && user.hasStructure);
     },
@@ -97,7 +98,13 @@ const Backend = () => {
                   key={idx}
                   path={routerLocale + route.path}
                   exact={route.exact}
-                  render={() => (isAuthorized(route) ? <route.component title={route.name} /> : <UnauthorizedAccess />)}
+                  render={() =>
+                    isAuthorized(route) ? (
+                      <route.component title={route.name} />
+                    ) : (
+                      <UnauthorizedAccess />
+                    )
+                  }
                 />
               ) : null,
             )}

@@ -1,8 +1,8 @@
 import {
-  GetActiveUsersResponse,
-  GetAllUsersResponse,
-  PostStructureRequest,
-  SimpleUser,
+  type GetActiveUsersResponse,
+  type GetAllUsersResponse,
+  type PostStructureRequest,
+  type SimpleUser,
   StructureStatus,
 } from "@refugies-info/api-types";
 import moment from "moment";
@@ -23,7 +23,7 @@ import { fetchAllUsersActionsCreator } from "~/services/AllUsers/allUsers.action
 import { allActiveUsersSelector } from "~/services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { Event } from "~/types/interface";
+import type { Event } from "~/types/interface";
 import API from "~/utils/API";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import { RowContainer } from "../components/AdminStructureComponents";
@@ -95,7 +95,7 @@ export const NewStructureModal = (props: Props) => {
     if (!structure) return;
     setUploading(true);
     const formData = new FormData();
-    // @ts-ignore
+    // @ts-expect-error
     formData.append(0, event.target.files[0]);
 
     API.postImage(formData)
@@ -139,7 +139,12 @@ export const NewStructureModal = (props: Props) => {
   const secureUrl = structure && structure.picture && structure.picture.secure_url;
 
   return (
-    <Modal isOpen={props.show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
+    <Modal
+      isOpen={props.show}
+      toggle={toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <h2 className={styles.title}>Création d'une nouvelle structure</h2>
       <div className={styles.input}>
         <FInput
@@ -164,7 +169,13 @@ export const NewStructureModal = (props: Props) => {
         </div>
         <div className={styles.right}>
           <FButton className="relative" type="theme" name="upload-outline">
-            <Input type="file" id="picture" name="structure" accept="image/*" onChange={handleFileInputChange} />
+            <Input
+              type="file"
+              id="picture"
+              name="structure"
+              accept="image/*"
+              onChange={handleFileInputChange}
+            />
             {secureUrl ? <span>Choisir une autre image</span> : <span>Ajouter un logo</span>}
 
             {uploading && <Spinner color="success" className="ms-2" />}

@@ -10,7 +10,7 @@ import { NotificationsSettingsScreen } from "~/screens/ProfilTab/NotificationsSe
 import { PrivacyPolicyScreen } from "~/screens/ProfilTab/PrivacyPolicyScreen";
 import { ProfilScreen } from "~/screens/ProfilTab/ProfilScreen";
 import { ShareScreen } from "~/screens/ProfilTab/ShareScreen";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 
 const ProfileStack = createStackNavigator<ProfileParamList>();
 
@@ -25,7 +25,10 @@ export const ProfileNavigator = () => (
     <ProfileStack.Screen name="LegalNoticeScreen" component={LegalNoticeScreen} />
     <ProfileStack.Screen name="AboutScreen" component={AboutScreen} />
     <ProfileStack.Screen name="AccessibilityScreen" component={AccessibilityScreen} />
-    <ProfileStack.Screen name="NotificationsSettingsScreen" component={NotificationsSettingsScreen} />
+    <ProfileStack.Screen
+      name="NotificationsSettingsScreen"
+      component={NotificationsSettingsScreen}
+    />
     <ProfileStack.Screen name="ShareScreen" component={ShareScreen} />
   </ProfileStack.Navigator>
 );

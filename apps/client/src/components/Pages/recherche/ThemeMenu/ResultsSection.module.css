@@ -29,3 +29,12 @@
   align-items: flex-start;
   align-self: stretch;
 }
+
+@layer base {
+  .needs fieldset legend:global(.fr-text--regular) {
+    font:
+      700 1rem/1.5rem Marianne,
+      arial,
+      sans-serif !important;
+  }
+}

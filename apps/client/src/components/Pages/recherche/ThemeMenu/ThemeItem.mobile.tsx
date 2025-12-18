@@ -1,8 +1,8 @@
 import * as Accordion from "@radix-ui/react-accordion";
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import AllNeedsItem from "~/components/Pages/recherche/ThemeMenu/AllNeedsItem";
-import NeedItem from "~/components/Pages/recherche/ThemeMenu/NeedItem";
+import Needs from "~/components/Pages/recherche/ThemeMenu/Needs";
 import { cls } from "~/lib/classname";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import styles from "./ThemeItem.mobile.module.scss";
@@ -25,10 +25,16 @@ const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) 
   return (
     <Accordion.Item value={themeId} className={styles.accordionItem}>
       <Accordion.Header asChild>
-        <Accordion.Trigger className={styles.trigger} style={{ "--accordion-color": color } as React.CSSProperties}>
+        <Accordion.Trigger
+          className={styles.trigger}
+          style={{ "--accordion-color": color } as React.CSSProperties}
+        >
           <span className={styles.label}>
             {label}
-            <b className={cls(styles.count, needCount > 0 && styles["count-visible"])} style={{ color: color }}>
+            <b
+              className={cls(styles.count, needCount > 0 && styles["count-visible"])}
+              style={{ color: color }}
+            >
               {needCount}
             </b>
             <i className={cls("fr-icon-arrow-down-s-line", styles.arrow)} />
@@ -36,10 +42,7 @@ const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) 
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Content className={styles.content}>
-        <AllNeedsItem themeId={themeId} />
-        {needs.map((need, i) => (
-          <NeedItem key={i} need={need} />
-        ))}
+        <Needs />
       </Accordion.Content>
     </Accordion.Item>
   );

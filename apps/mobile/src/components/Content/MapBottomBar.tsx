@@ -4,7 +4,7 @@ import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { MarkerGoogle } from "~/types/interface";
+import type { MarkerGoogle } from "~/types/interface";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import { CustomButton } from "../CustomButton";
 import { TextDSFR_MD } from "../StyledText";
@@ -81,7 +81,9 @@ export const MapBottomBar = (props: Props) => {
     return <MainContainer isSelected={false} />;
   }
   const formattedMarkerName =
-    props.selectedMarker && props.selectedMarker.nom ? props.selectedMarker.nom.replace("<br>", "") : "";
+    props.selectedMarker && props.selectedMarker.nom
+      ? props.selectedMarker.nom.replace("<br>", "")
+      : "";
   return (
     <MainContainer isSelected={true}>
       <View style={{ marginBottom: styles.margin * 4 }}>
@@ -121,7 +123,11 @@ export const MapBottomBar = (props: Props) => {
           />
           <HTMLContainer>
             {props.selectedMarker.email ? (
-              <MapContentFromHtml htmlContent={props.selectedMarker.email} darkColor={props.textColor} isBold={false} />
+              <MapContentFromHtml
+                htmlContent={props.selectedMarker.email}
+                darkColor={props.textColor}
+                isBold={false}
+              />
             ) : (
               <TextValue color={props.textColor}>{t("content_screen.not_set", "-")}</TextValue>
             )}
@@ -162,7 +168,13 @@ export const MapBottomBar = (props: Props) => {
         {!!props.selectedMarker.description && (
           <>
             <ContentContainer color={props.textColor} marginTop={4}>
-              <TextIcon name="info-outline" width={ICON_SIZE} height={ICON_SIZE} fill={props.textColor} isRTL={isRTL} />
+              <TextIcon
+                name="info-outline"
+                width={ICON_SIZE}
+                height={ICON_SIZE}
+                fill={props.textColor}
+                isRTL={isRTL}
+              />
               <HTMLContainer>
                 <MapContentFromHtml
                   htmlContent={props.selectedMarker.description}

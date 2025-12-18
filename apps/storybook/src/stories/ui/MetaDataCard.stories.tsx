@@ -45,9 +45,9 @@ export const Default: Story = {
       </MetaDataItem>,
     ],
   },
-  parameters: {
+  globals: {
     backgrounds: {
-      default: "gradient",
+      value: "gradient",
     },
   },
 };
@@ -69,9 +69,9 @@ export const WithActions: Story = {
     onClick: () => console.log("Edit clicked"),
     onDelete: () => console.log("Delete clicked"),
   },
-  parameters: {
+  globals: {
     backgrounds: {
-      default: "gradient",
+      value: "gradient",
     },
   },
 };
@@ -81,9 +81,9 @@ export const WithSimpleText: Story = {
     title: "Editable Card",
     children: <p>My free-form text</p>,
   },
-  parameters: {
+  globals: {
     backgrounds: {
-      default: "gradient",
+      value: "gradient",
     },
   },
 };
@@ -104,9 +104,9 @@ export const InvalidState: Story = {
       </MetaDataItem>,
     ],
   },
-  parameters: {
+  globals: {
     backgrounds: {
-      default: "gradient",
+      value: "gradient",
     },
   },
 };
@@ -128,9 +128,9 @@ export const InvalidStateWithEditAction: Story = {
       </MetaDataItem>,
     ],
   },
-  parameters: {
+  globals: {
     backgrounds: {
-      default: "gradient",
+      value: "gradient",
     },
   },
 };

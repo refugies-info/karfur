@@ -1,15 +1,15 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
-import { useWindowSize } from "~/hooks";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
+import type { SearchCountsResponse } from "~/pages/api/search/counts";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
 import { SearchCountsContext } from "../SearchCountsContext";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
@@ -52,13 +52,14 @@ const SearchHeader = (props: Props) => {
   };
 
   const showNotDeployedMessage =
-    departmentsNotDeployed.length > 0 && departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
+    departmentsNotDeployed.length > 0 &&
+    departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
   return (
-    <>
+    <header role="banner" aria-labelledby="search-title">
       <div className={styles.title}>
         <Container>
-          <h1>{t("Recherche.title")}</h1>
+          <h1 id="search-title">{t("Recherche.title")}</h1>
           <p ref={stickyBarRef}>{t("Recherche.subtitle", { count: props.nbResults })}</p>
         </Container>
       </div>
@@ -70,7 +71,9 @@ const SearchHeader = (props: Props) => {
           <div className={styles.notDeployedAlert}>
             <Alert
               closable
-              description={t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") })}
+              description={t("Recherche.notDeployedText", {
+                department: departmentsNotDeployed.join(", "),
+              })}
               onClose={hideBanner}
               severity="warning"
               small
@@ -78,7 +81,7 @@ const SearchHeader = (props: Props) => {
           </div>
         )}
       </div>
-    </>
+    </header>
   );
 };
 

@@ -1,12 +1,19 @@
-import { GetThemeResponse, Id, ThemeRequest } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
-import { CREATE_THEME, DELETE_THEME, GET_THEMES, SAVE_THEME, SET_THEMES } from "./themes.actionTypes";
+import type { GetThemeResponse, Id, ThemeRequest } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
+import {
+  CREATE_THEME,
+  DELETE_THEME,
+  GET_THEMES,
+  SAVE_THEME,
+  SET_THEMES,
+} from "./themes.actionTypes";
 
 export const fetchThemesActionCreator = () => action(GET_THEMES);
 
 export const setThemesActionCreator = (value: GetThemeResponse[]) => action(SET_THEMES, value);
 
-export const saveThemeActionCreator = (id: Id, value: Partial<ThemeRequest>) => action(SAVE_THEME, { id, value });
+export const saveThemeActionCreator = (id: Id, value: Partial<ThemeRequest>) =>
+  action(SAVE_THEME, { id, value });
 
 export const createThemeActionCreator = (value: ThemeRequest) => action(CREATE_THEME, value);
 

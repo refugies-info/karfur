@@ -1,12 +1,21 @@
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
 import { logger } from "~/logger";
 import { getContentById } from "~/utils/API";
-import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { fetchSelectedContentActionCreator, setSelectedContentActionCreator } from "./selectedContent.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
+import {
+  type fetchSelectedContentActionCreator,
+  setSelectedContentActionCreator,
+} from "./selectedContent.actions";
 import { FETCH_SELECTED_CONTENT } from "./selectedContent.actionTypes";
 
-export function* fetchSelectedContent(action: ReturnType<typeof fetchSelectedContentActionCreator>): SagaIterator {
+export function* fetchSelectedContent(
+  action: ReturnType<typeof fetchSelectedContentActionCreator>,
+): SagaIterator {
   const { contentId, locale } = action.payload;
   try {
     logger.info("[fetchSelectedContent] saga", { contentId, locale });

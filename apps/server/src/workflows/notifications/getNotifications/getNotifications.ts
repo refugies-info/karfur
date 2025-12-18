@@ -1,9 +1,11 @@
-import { GetNotificationResponse } from "@refugies-info/api-types";
+import type { GetNotificationResponse } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { getNotificationsForUser } from "~/modules/notifications/notifications.service";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
-export const getNotifications = async (appUid: string): ResponseWithData<GetNotificationResponse> => {
+export const getNotifications = async (
+  appUid: string,
+): ResponseWithData<GetNotificationResponse> => {
   logger.info("[getNotifications] received");
 
   const notifications = await getNotificationsForUser(appUid as string);

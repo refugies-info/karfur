@@ -1,6 +1,6 @@
 import { ObjectId } from "~/typegoose";
-import { RecursivePartial } from "~/types/interface";
-import { TranslationContent } from "./Dispositif";
+import type { RecursivePartial } from "~/types/interface";
+import type { TranslationContent } from "./Dispositif";
 import { Traductions } from "./Traductions";
 
 const trad: TranslationContent = {
@@ -10,7 +10,10 @@ const trad: TranslationContent = {
     abstract: "tyui",
     what: "WHAT",
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
-    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+    },
     administrationName: "France Travail",
   },
 
@@ -99,7 +102,10 @@ const trad_complete: TranslationContent = {
     abstract: "tyui",
     what: "WHAT",
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
-    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+    },
     administrationName: "France Travail",
   },
 
@@ -145,7 +151,10 @@ const trad_adminNameNull: TranslationContent = {
     abstract: "tyui",
     what: "WHAT",
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
-    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+    },
     administrationName: null,
   },
 
@@ -161,7 +170,10 @@ const trad_adminNameNull_en: TranslationContent = {
     what: "WHAT",
     why: {},
     how: { "my-uuid-v4-key": { title: "title", text: "text" } },
-    next: { "my-uuid-v4-key": { title: "title", text: "text" }, "my-uuid-v4-key-2": { title: "title", text: "text" } },
+    next: {
+      "my-uuid-v4-key": { title: "title", text: "text" },
+      "my-uuid-v4-key-2": { title: "title", text: "text" },
+    },
   },
 
   created_at: new Date(),
@@ -196,7 +208,11 @@ describe("Traductions", () => {
     });
     it("should return modified, added and removed sections", () => {
       expect(Traductions.diff(trad, trad_mixed)).toEqual({
-        modified: ["content.titreMarque", "content.next.my-uuid-v4-key-2.title", "content.next.my-uuid-v4-key-2.text"],
+        modified: [
+          "content.titreMarque",
+          "content.next.my-uuid-v4-key-2.title",
+          "content.next.my-uuid-v4-key-2.text",
+        ],
         added: ["content.how.my-uuid-v4-key-2.title", "content.how.my-uuid-v4-key-2.text"],
         removed: ["content.next.my-uuid-v4-key.title", "content.next.my-uuid-v4-key.text"],
       });
@@ -215,27 +231,34 @@ describe("Traductions", () => {
 
   describe("computeFinished", () => {
     it("should return true", () => {
-      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: trad })).toEqual(true);
-    });
-    it("should return false", () => {
-      // @ts-expect-error because we inject a partial Dispositif & partial Traductions
-      expect(Traductions.computeFinished({ translations: { fr: trad } }, { translated: { content: {} } })).toEqual(
-        false,
-      );
+      expect(
+        Traductions.computeFinished(
+          { translations: { fr: trad } } as any,
+          { translated: trad } as any,
+        ),
+      ).toEqual(true);
     });
     it("should return false", () => {
       expect(
-        // @ts-expect-error because we inject a partial Dispositif & partial Traductions
-        Traductions.computeFinished({ translations: { fr: trad_complete } }, { translated: trad_avancement }),
+        Traductions.computeFinished(
+          { translations: { fr: trad } } as any,
+          { translated: { content: {} } } as any,
+        ),
+      ).toEqual(false);
+    });
+    it("should return false", () => {
+      expect(
+        Traductions.computeFinished(
+          { translations: { fr: trad_complete } } as any,
+          { translated: trad_avancement } as any,
+        ),
       ).toEqual(false);
     });
     it("should return true", () => {
       expect(
         Traductions.computeFinished(
-          // @ts-expect-error because we inject a partial Dispositif & partial Traductions
-          { translations: { fr: trad_adminNameNull } },
-          { translated: trad_adminNameNull_en },
+          { translations: { fr: trad_adminNameNull } } as any,
+          { translated: trad_adminNameNull_en } as any,
         ),
       ).toEqual(true);
     });

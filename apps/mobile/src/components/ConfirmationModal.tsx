@@ -2,9 +2,9 @@ import { Image, Modal, ScrollView, TouchableWithoutFeedback } from "react-native
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import IlluMascotte from "~/theme/images/profile/illu-mascotte.png";
-import { TextDSFR_L } from "./StyledText";
 import { ButtonDSFR } from "./buttons";
 import { Rows, Spacer } from "./layout";
+import { TextDSFR_L } from "./StyledText";
 
 interface Props {
   isModalVisible: boolean;
@@ -53,7 +53,12 @@ export const ConfirmationModal = (props: Props) => {
     props.toggleModal();
   };
   return (
-    <Modal visible={props.isModalVisible} transparent={true} animationType="fade" onRequestClose={props.toggleModal}>
+    <Modal
+      visible={props.isModalVisible}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={props.toggleModal}
+    >
       <ModalContainer>
         <TouchableWithoutFeedback
           onPress={props.toggleModal}

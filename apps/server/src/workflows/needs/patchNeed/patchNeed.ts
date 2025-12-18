@@ -1,9 +1,9 @@
-import { NeedRequest } from "@refugies-info/api-types";
+import type { NeedRequest } from "@refugies-info/api-types";
 import { UnauthorizedError } from "~/errors";
 import logger from "~/logger";
 import { getNeedFromDB, saveNeedInDB } from "~/modules/needs/needs.repository";
-import { Need, User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Need, User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 
 export const patchNeed = async (id: string, body: Partial<NeedRequest>, user: User): Response => {
   logger.info("[saveNeed] received", id);

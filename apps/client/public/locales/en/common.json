@@ -45,7 +45,6 @@
     "demarcheTitle": "Procedure sheets",
     "dispositifTitle": "Scheme sheets",
     "otherDispositifTitle": "Other sheets with this topic",
-    "resetButton": "Reset",
     "seeButton": "See the sheets",
     "titleThemes": "Themes of integration",
     "positionButton": "Use my position",
@@ -65,7 +64,7 @@
     "filterAge": "Age range",
     "filterFrenchLevel": "Level of French",
     "filterLanguage": "Translated into",
-    "filterLocation": "Department",
+    "filterLocation": "City",
     "filterPublic": "Target audience",
     "filterStatus": "Status",
     "all": "All",
@@ -573,11 +572,11 @@
     "carrouselSeemore": "View all",
     "carrouselPrev": "Scroll left",
     "carrouselNext": "Scroll right",
-    "northStar_title": "Is this page useful? ✨",
+    "northStar_title": "Is this page useful?",
     "northStar_no": "No",
     "northStar_yes": "Yes",
     "northStar_notUseful": "Not useful",
     "northStar_useful": "Is it useful? ✨",
-    "northStar_thanks": "Thank you for your feedback 😊"
+    "northStar_thanks": "Thank you for your feedback"
   }
 }

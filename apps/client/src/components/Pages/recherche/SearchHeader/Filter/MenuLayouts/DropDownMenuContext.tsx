@@ -1,4 +1,5 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import type React from "react";
+import { createContext, type ReactNode, useContext, useState } from "react";
 
 type DropdownContextType = {
   openDropdownId: string | null;
@@ -13,7 +14,11 @@ interface DropdownProviderProps {
 
 export const DropdownProvider: React.FC<DropdownProviderProps> = ({ children }) => {
   const [openDropdownId, setOpenDropdownId] = useState<string | null>(null);
-  return <DropdownContext.Provider value={{ openDropdownId, setOpenDropdownId }}>{children}</DropdownContext.Provider>;
+  return (
+    <DropdownContext.Provider value={{ openDropdownId, setOpenDropdownId }}>
+      {children}
+    </DropdownContext.Provider>
+  );
 };
 
 export const useDropdownContext = () => {

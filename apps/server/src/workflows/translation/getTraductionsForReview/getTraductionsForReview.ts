@@ -1,7 +1,7 @@
-import { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
+import type { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import { getTraductionsByLanguageAndDispositif } from "~/modules/traductions/traductions.repository";
-import { DispositifId, User } from "~/typegoose";
-import { Traductions, TraductionsType } from "~/typegoose/Traductions";
+import type { DispositifId, User } from "~/typegoose";
+import { type Traductions, TraductionsType } from "~/typegoose/Traductions";
 
 const getTraductionsForReview = async (
   dispositif: DispositifId,

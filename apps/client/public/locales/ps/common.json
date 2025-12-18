@@ -45,7 +45,6 @@
     "demarcheTitle": "د طرزالعملونو فایلونه",
     "dispositifTitle": "د برنامو فایلونه",
     "otherDispositifTitle": "د دې موضوع سره تړلي نور فایلونه",
-    "resetButton": "له سره تازه کول",
     "seeButton": "د فایلونو کتل",
     "titleThemes": "د ادغام موضوعات",
     "positionButton": "زما موقعیت وکاروئ",
@@ -65,7 +64,6 @@
     "filterAge": "د عمر حد ټاکل",
     "filterFrenchLevel": "د فرانسوي ژبې کچه",
     "filterLanguage": "ژباړه",
-    "filterLocation": "څانګه",
     "filterPublic": "هدف لیدونکي",
     "filterStatus": "حالت",
     "all": "ټول",
@@ -574,11 +572,11 @@
     "carrouselSeemore": "ټول کتل",
     "carrouselPrev": "کیڼ اړخ ته سکرول کول",
     "carrouselNext": "ښي خوا ته سکرول کول",
-    "northStar_title": "ایا دا پاڼه ګټوره ده ؟ ✨",
+    "northStar_title": "ایا دا پاڼه ګټوره ده ؟",
     "northStar_no": "نه",
     "northStar_yes": "هو",
     "northStar_notUseful": "ګټوره نه ده",
     "northStar_useful": "ایا دا ګټور دی؟",
-    "northStar_thanks": "ستاسو د نظر ورکول څخه مننه 😊"
+    "northStar_thanks": "ستاسو د نظر ورکول څخه مننه "
   }
 }

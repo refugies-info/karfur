@@ -1,8 +1,5 @@
-import { DispositifStatus, UpdateIndexResponse } from "@refugies-info/api-types";
-
-import { Langue } from "~/typegoose";
-
-import { ProjectionType } from "mongoose";
+import { DispositifStatus, type UpdateIndexResponse } from "@refugies-info/api-types";
+import type { ProjectionType } from "mongoose";
 import { getAllAlgoliaObjects } from "~/connectors/algolia/updateAlgoliaData";
 import { formatForAlgolia } from "~/libs/formatForAlgolia";
 import logger from "~/logger";
@@ -11,8 +8,8 @@ import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getNeedsFromDB } from "~/modules/needs/needs.repository";
 import { updateAlgoliaIndex } from "~/modules/search/search.service";
 import { getAllThemes } from "~/modules/themes/themes.repository";
-import { Dispositif } from "~/typegoose";
-import { AlgoliaObject, ResponseWithData } from "~/types/interface";
+import type { Dispositif, Langue } from "~/typegoose";
+import type { AlgoliaObject, ResponseWithData } from "~/types/interface";
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
   const neededFields: ProjectionType<Dispositif> = {
@@ -25,9 +22,12 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
     webOnly: 1,
     mainSponsor: 1,
     metadatas: 1,
+    origin: 1,
   };
 
-  const contentsArray = await getActiveContentsFiltered(neededFields, { status: DispositifStatus.ACTIVE });
+  const contentsArray = await getActiveContentsFiltered(neededFields, {
+    status: DispositifStatus.ACTIVE,
+  });
   return contentsArray
     .map((content) => formatForAlgolia(content, [], "dispositif"))
     .filter((dispositif) => !!dispositif);
@@ -35,13 +35,16 @@ const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {
 
 const getNeedsForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const needs = await getNeedsFromDB();
-  //@ts-expect-error type mismatch
-  return needs.map((content) => formatForAlgolia(content, activeLanguages, "need")).filter((need) => !!need);
+  return (needs as any)
+    .map((content: any) => formatForAlgolia(content, activeLanguages, "need"))
+    .filter((need: any) => !!need);
 };
 
 const getThemesForAlgolia = async (activeLanguages: Langue[]): Promise<AlgoliaObject[]> => {
   const themes = await getAllThemes();
-  return themes.map((theme) => formatForAlgolia(theme, activeLanguages, "theme")).filter((theme) => !!theme);
+  return themes
+    .map((theme) => formatForAlgolia(theme, activeLanguages, "theme"))
+    .filter((theme) => !!theme);
 };
 
 export const updateIndex = async (): ResponseWithData<UpdateIndexResponse> => {

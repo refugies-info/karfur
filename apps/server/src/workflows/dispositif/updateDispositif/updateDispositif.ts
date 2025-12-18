@@ -1,8 +1,8 @@
 import {
   ContentType,
   DispositifStatus,
-  UpdateDispositifRequest,
-  UpdateDispositifResponse,
+  type UpdateDispositifRequest,
+  type UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import { isString } from "lodash";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
@@ -23,12 +23,19 @@ import {
   notifyChange,
 } from "~/modules/dispositif/dispositif.service";
 import { logContact } from "~/modules/dispositif/log";
-import { Dispositif, ObjectId, StructureId, User } from "~/typegoose";
-import { DemarcheContent, DispositifContent, TranslationContent } from "~/typegoose/Dispositif";
-import { ResponseWithData } from "~/types/interface";
+import { type Dispositif, ObjectId, type StructureId, type User } from "~/typegoose";
+import type {
+  DemarcheContent,
+  DispositifContent,
+  TranslationContent,
+} from "~/typegoose/Dispositif";
+import type { ResponseWithData } from "~/types/interface";
 import { log } from "./log";
 
-const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Dispositif): TranslationContent => {
+const buildDispositifContent = (
+  body: UpdateDispositifRequest,
+  oldDispositif: Dispositif,
+): TranslationContent => {
   // content
   const content = { ...oldDispositif.translations.fr.content };
   // check isString to allow empty values
@@ -43,7 +50,8 @@ const buildDispositifContent = (body: UpdateDispositifRequest, oldDispositif: Di
   } else {
     if (body.how) content.how = body.how;
     if (body.next) (content as DemarcheContent).next = body.next;
-    if (body.administration) (content as DemarcheContent).administrationName = body.administration.name;
+    if (body.administration)
+      (content as DemarcheContent).administrationName = body.administration.name;
   }
 
   return {
@@ -111,7 +119,8 @@ export const updateDispositif = async (
   // if published and not draft version yet, create draft version
   let newDispositif: Dispositif | null = null;
   const needsDraftVersion =
-    [DispositifStatus.ACTIVE, DispositifStatus.ARCHIVED].includes(oldDispositif.status) && !draftOldDispositif;
+    [DispositifStatus.ACTIVE, DispositifStatus.ARCHIVED].includes(oldDispositif.status) &&
+    !draftOldDispositif;
   if (needsDraftVersion) {
     newDispositif = await cloneDispositifInDrafts(id, {
       ...editedDispositif,
@@ -142,7 +151,9 @@ export const updateDispositif = async (
 
   // send notif only if non-admin user, and is today (= 1 notif per day maximum), and is active or waiting
   const isActive = oldDispositif.status === DispositifStatus.ACTIVE || !!draftOldDispositif;
-  const isWaiting = [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE].includes(oldDispositif.status);
+  const isWaiting = [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE].includes(
+    oldDispositif.status,
+  );
   if (!isToday(oldDispositif.lastModificationDate) && !user.isAdmin() && (isWaiting || isActive)) {
     await notifyChange(NotifType.UPDATED, id, user._id);
   }
@@ -155,6 +166,7 @@ export const updateDispositif = async (
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
       hasDraftVersion: needsDraftVersion || !!draftOldDispositif,
+      origin: newDispositif.origin,
     },
   };
 };

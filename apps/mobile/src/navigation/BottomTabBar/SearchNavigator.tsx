@@ -1,10 +1,14 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { CardStyleInterpolators, createStackNavigator, StackScreenProps } from "@react-navigation/stack";
+import type { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
+import { type CompositeScreenProps, getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+  type StackScreenProps,
+} from "@react-navigation/stack";
 import React from "react";
 import { SearchResultsScreen } from "~/screens/SearchTab/SearchResultsScreen";
 import { SearchScreen } from "~/screens/SearchTab/SearchScreen";
-import { BottomTabParamList, SearchParamList } from "~/types/navigation";
+import type { BottomTabParamList, SearchParamList } from "~/types/navigation";
 
 type Props = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList, "Search">,

@@ -1,5 +1,5 @@
 import { DispositifStatus } from "@refugies-info/api-types";
-import { Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Assuming models are available
+import { type Dispositif, DispositifModel, SnapshotModel } from "~/typegoose"; // Assuming models are available
 import { fixtures } from "../../../__fixtures__";
 import { saveAndOverwriteDraft } from "../dispositif.service";
 

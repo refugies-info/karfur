@@ -1,6 +1,6 @@
 import styled, { useTheme } from "styled-components/native";
 import { ReadableText } from "../../ReadableText";
-import { HeaderContentProps } from "./HeaderContentProps";
+import type { HeaderContentProps } from "./HeaderContentProps";
 import HeaderTitle from "./HeaderTitle";
 
 const TitleContainer = styled.View`

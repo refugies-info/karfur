@@ -1,3 +1,3 @@
-import { RootState } from "../reducers";
+import type { RootState } from "../reducers";
 
 export const groupedContentsSelector = (state: RootState) => state.groupedContents;

@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import moment from "moment";
-import { Dispositif } from "../AdminStructures/StructureDetailsModal/functions";
+import type { Dispositif } from "../AdminStructures/StructureDetailsModal/functions";
 import styles from "./SmallDispositif.module.scss";
 import { StyledStatus } from "./SubComponents";
 
@@ -13,7 +13,11 @@ interface Props {
 export const SmallDispositif = (props: Props) => {
   const { dispositif, onClick } = props;
   return (
-    <div className={styles.container} onClick={onClick} style={props.bgColor ? { background: dispositif.color30 } : {}}>
+    <div
+      className={styles.container}
+      onClick={onClick}
+      style={props.bgColor ? { background: dispositif.color30 } : {}}
+    >
       <div className={styles.title} style={{ color: dispositif.color }}>
         {dispositif.titreInformatif}
       </div>

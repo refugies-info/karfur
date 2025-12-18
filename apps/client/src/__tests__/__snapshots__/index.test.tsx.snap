@@ -39,7 +39,7 @@ exports[`homepage renders homepage 1`] = `
             <span
               class="fr-notice__title"
             >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
+              Réfugiés.info a été nommé Service numérique à impact national !
               <a
                 class="!border-0 !underline"
                 href="https://beta.gouv.fr/startups/refugies.info#impact"
@@ -4111,7 +4111,7 @@ exports[`homepage renders homepage 1`] = `
                       class="fr-icon-building-line me-2"
                     />
                     <span>
-                      CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher 
+                      CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher
                     </span>
                   </span>
                 </div>

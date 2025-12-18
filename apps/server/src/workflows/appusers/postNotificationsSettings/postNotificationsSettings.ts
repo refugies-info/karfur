@@ -1,8 +1,11 @@
-import { NotificationSettingsRequest, PostNotificationsSettingsResponse } from "@refugies-info/api-types";
+import type {
+  NotificationSettingsRequest,
+  PostNotificationsSettingsResponse,
+} from "@refugies-info/api-types";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { updateNotificationsSettings } from "~/modules/appusers/appusers.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 export const postNotificationsSettings = async (
   appUid: string,

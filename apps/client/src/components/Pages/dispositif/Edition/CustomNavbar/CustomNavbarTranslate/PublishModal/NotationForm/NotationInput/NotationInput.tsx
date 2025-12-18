@@ -1,6 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import Input from "@codegouvfr/react-dsfr/Input";
-import { GetTraductionsForReview, TranslatorFeedback } from "@refugies-info/api-types";
+import type { GetTraductionsForReview, TranslatorFeedback } from "@refugies-info/api-types";
 import { useState } from "react";
 import marioProfile from "~/assets/mario-profile.jpg";
 import EVAIcon from "~/components/UI/EVAIcon";
@@ -48,7 +48,11 @@ const NotationInput = (props: Props) => {
                 <EVAIcon
                   name={checked ? "star" : "star-outline"}
                   size={24}
-                  fill={checked ? "var(--border-action-low-yellow-tournesol)" : "var(--text-disabled-grey)"}
+                  fill={
+                    checked
+                      ? "var(--border-action-low-yellow-tournesol)"
+                      : "var(--text-disabled-grey)"
+                  }
                 />
               </button>
             );
@@ -58,7 +62,11 @@ const NotationInput = (props: Props) => {
 
       <div className="mt-4">
         {!showCommentInput ? (
-          <Button priority="tertiary no outline" iconId="fr-icon-add-line" onClick={() => setShowCommentInput(true)}>
+          <Button
+            priority="tertiary no outline"
+            iconId="fr-icon-add-line"
+            onClick={() => setShowCommentInput(true)}
+          >
             Ajouter un commentaire
           </Button>
         ) : (
@@ -68,7 +76,8 @@ const NotationInput = (props: Props) => {
             nativeTextAreaProps={{
               placeholder: "Ajoutez ici un commentaire (optionnel)",
               value: props.feedback.comment,
-              onChange: (e: any) => props.setFeedback({ ...props.feedback, comment: e.target.value }),
+              onChange: (e: any) =>
+                props.setFeedback({ ...props.feedback, comment: e.target.value }),
             }}
           />
         )}

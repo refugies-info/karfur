@@ -1,10 +1,17 @@
-import { ContentType, CreateDispositifRequest, SimpleDispositif } from "@refugies-info/api-types";
+import {
+  ContentType,
+  type CreateDispositifRequest,
+  type SimpleDispositif,
+} from "@refugies-info/api-types";
 import { useMemo } from "react";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
+import type { DeepPartialSkipArrayKey } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { allStructuresSelector } from "~/services/AllStructures/allStructures.selector";
 
-export const useSponsorData = (values: DeepPartialSkipArrayKey<CreateDispositifRequest>, typeContenu: ContentType) => {
+export const useSponsorData = (
+  values: DeepPartialSkipArrayKey<CreateDispositifRequest>,
+  typeContenu: ContentType,
+) => {
   const structures = useSelector(allStructuresSelector);
   const sponsor: SimpleDispositif["sponsor"] = useMemo(() => {
     if (typeContenu === ContentType.DEMARCHE) {

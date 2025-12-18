@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { TextInput, TextInputProps, TouchableOpacity } from "react-native";
+import { TextInput, type TextInputProps, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";

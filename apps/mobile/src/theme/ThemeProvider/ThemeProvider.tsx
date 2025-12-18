@@ -1,6 +1,10 @@
-import React, { useMemo } from "react";
+import type React from "react";
+import { useMemo } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { DefaultTheme, ThemeProvider as StyledComponentThemeProvider } from "styled-components/native";
+import {
+  type DefaultTheme,
+  ThemeProvider as StyledComponentThemeProvider,
+} from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import styles from "../styles";
 

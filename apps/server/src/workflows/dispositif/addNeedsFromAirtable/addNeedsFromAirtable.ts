@@ -1,9 +1,12 @@
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
-import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import {
+  getDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
 import { getNeedsFromDB } from "~/modules/needs/needs.repository";
-import { Res } from "~/types/interface";
+import type { Res } from "~/types/interface";
 import { data } from "./data";
 
 // REPLACE TAGS BY THEMES BEFORE USE
@@ -40,7 +43,9 @@ export const addNeedsFromAirtable = async (_req: object, res: Res) => {
 
         if (needs.length > 0) {
           await updateDispositifInDB(el._id, { needs });
-          logger.info("[addNeedsFromAirtable] successfully updated dispositif with id", { _id: el._id });
+          logger.info("[addNeedsFromAirtable] successfully updated dispositif with id", {
+            _id: el._id,
+          });
           nbDispoUpdated++;
         }
       } catch (error) {

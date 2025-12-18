@@ -1,8 +1,15 @@
-import { Id, SimpleDispositif } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
+import type { Id, SimpleDispositif } from "@refugies-info/api-types";
+import type {
+  AgeOptions,
+  FrenchOptions,
+  PublicOptions,
+  SortOptions,
+  StatusOptions,
+  TypeOptions,
+} from "data/searchFilters";
 import { createReducer } from "typesafe-actions";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
-import { SearchResultsActions } from "./searchResults.actions";
+import type { SearchResultsActions } from "./searchResults.actions";
 
 export type Results = {
   algolia?: SimpleDispositif[];
@@ -13,6 +20,7 @@ export type Results = {
 export type SearchQuery = {
   search: string;
   departments: string[];
+  cities?: string[];
   themes: Id[];
   needs: Id[];
   age: AgeOptions[];
@@ -39,6 +47,7 @@ const initialSearchResultsState: SearchResultsState = {
   query: {
     search: "",
     departments: [],
+    cities: [],
     themes: [],
     needs: [],
     age: [],
@@ -51,15 +60,18 @@ const initialSearchResultsState: SearchResultsState = {
   },
 };
 
-export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(initialSearchResultsState, {
-  SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
-  SET_NO_RESULTS: (state, action) => ({ ...state, noResults: action.payload }),
-  ADD_TO_QUERY: (state, action) => {
-    const query = { ...state.query, ...action.payload };
-    const rule = getDisplayRuleForQuery(query);
-    return {
-      ...state,
-      query: { ...query, sort: !rule?.display ? "default" : query.sort },
-    };
+export const searchResultsReducer = createReducer<SearchResultsState, SearchResultsActions>(
+  initialSearchResultsState,
+  {
+    SET_RESULTS: (state, action) => ({ ...state, results: action.payload }),
+    SET_NO_RESULTS: (state, action) => ({ ...state, noResults: action.payload }),
+    ADD_TO_QUERY: (state, action) => {
+      const query = { ...state.query, ...action.payload };
+      const rule = getDisplayRuleForQuery(query);
+      return {
+        ...state,
+        query: { ...query, sort: !rule?.display ? "default" : query.sort },
+      };
+    },
   },
-});
+);

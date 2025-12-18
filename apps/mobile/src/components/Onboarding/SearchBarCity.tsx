@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { GoogleAPISuggestion } from "~/types/navigation";
+import type { GeoAPISuggestion } from "~/types/navigation";
 import { RTLTouchableOpacity, RTLView } from "../BasicComponents";
 import CityChoice from "../Geoloc/CityChoice";
 
@@ -58,16 +58,18 @@ const FakeInputText = styled.Text<{ isRTL: boolean }>`
 const SuggestionsContainer = styled.ScrollView`
   margin-top: ${styles.margin}px;
 `;
-const TextModal = styled(Modal)`
-  justify-content: flex-start;
-  padding-top: ${styles.margin * 6}px;
+const ModalContainer = styled(SafeAreaView)`
+  flex: 1;
+  padding-horizontal: ${styles.margin * 2}px;
+  padding-vertical: ${styles.margin * 8}px;
+  background-color: ${styles.colors.white};
 `;
 
 interface Props {
   enteredText: string;
-  suggestions: any[];
+  suggestions: GeoAPISuggestion[];
   onChangeText: (data: string) => void;
-  selectSuggestion: (suggestion: any) => void;
+  selectSuggestion: (suggestion: GeoAPISuggestion) => void;
   geoloc: React.ReactNode;
 }
 
@@ -95,14 +97,13 @@ export const SearchBarCity = (props: Props) => {
         <FakeInputText isRTL={isRTL}>Paris, Lyon...</FakeInputText>
       </FakeInput>
 
-      <TextModal
+      <Modal
         visible={modalOpened}
         onDismiss={() => setModalOpened(false)}
         statusBarTranslucent={true}
-        backdropColor={styles.colors.greyF7}
         transparent={false}
       >
-        <SafeAreaView>
+        <ModalContainer>
           <MainContainer>
             <TouchableOpacity
               onPress={() => setModalOpened(false)}
@@ -111,7 +112,12 @@ export const SearchBarCity = (props: Props) => {
               accessible={true}
               accessibilityLabel={t("global.back")}
             >
-              <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+              <Icon
+                name="arrow-back-outline"
+                height={24}
+                width={24}
+                fill={styles.colors.dsfr_action}
+              />
             </TouchableOpacity>
             <InputContainer>
               <StyledInput
@@ -127,7 +133,12 @@ export const SearchBarCity = (props: Props) => {
                 accessible={true}
                 accessibilityLabel={t("global.clear_selection_accessibility")}
               >
-                <Icon name="close-outline" height={24} width={24} fill={styles.colors.dsfr_action} />
+                <Icon
+                  name="close-outline"
+                  height={24}
+                  width={24}
+                  fill={styles.colors.dsfr_action}
+                />
               </TouchableOpacity>
             </InputContainer>
           </MainContainer>
@@ -141,8 +152,8 @@ export const SearchBarCity = (props: Props) => {
               />
             ))}
           </SuggestionsContainer>
-        </SafeAreaView>
-      </TextModal>
+        </ModalContainer>
+      </Modal>
     </View>
   );
 };

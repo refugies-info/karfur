@@ -1,8 +1,8 @@
-import { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
+import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
 import Image from "next/image";
-import React from "react";
+import type React from "react";
 
 type MetaDataItemProps = {
   className?: string;
@@ -15,15 +15,23 @@ type MetaDataItemProps = {
   | { icon?: never; logoImage: { url: string; alt?: string } }
   | { icon?: never; logoImage?: never }
 );
-export const MetaDataItem = ({ icon, logoImage, className, title, children, onClick, state }: MetaDataItemProps) => {
+export const MetaDataItem = ({
+  icon,
+  logoImage,
+  className,
+  title,
+  children,
+  onClick,
+  state,
+}: MetaDataItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.();
   };
 
   return (
-    <div
-      onClick={handleClick}
+    <li
+      onClick={onClick && handleClick}
       className={cn(
         "relative mb-4 flex items-start gap-2",
         onClick && "cursor-pointer",
@@ -31,9 +39,14 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
         className,
       )}
     >
-      {icon && (typeof icon === "string" ? <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} /> : icon)}
+      {icon &&
+        (typeof icon === "string" ? (
+          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} />
+        ) : (
+          icon
+        ))}
       {logoImage && (
-        <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt={logoImage?.alt || ""} />
+        <Image src={logoImage.url} width={32} height={32} className="w-6 object-contain" alt="" />
       )}
       <div className="md:flex md:flex-col ltr:text-left rtl:text-right">
         {title && (
@@ -42,7 +55,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
           </h3>
         )}
         {children && (
-          <div
+          <p
             className={cn(
               "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
               "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
@@ -51,7 +64,7 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
             )}
           >
             {children}
-          </div>
+          </p>
         )}
       </div>
       {onClick && (
@@ -66,10 +79,11 @@ export const MetaDataItem = ({ icon, logoImage, className, title, children, onCl
             className="min-h-0 flex-none p-1 before:m-0"
             aria-label="Modifier"
             title="Modifier"
+            onClick={onClick}
           />
         </span>
       )}
-    </div>
+    </li>
   );
 };
 

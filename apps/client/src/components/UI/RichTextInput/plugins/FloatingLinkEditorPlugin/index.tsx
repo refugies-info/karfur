@@ -16,11 +16,11 @@ import {
   COMMAND_PRIORITY_HIGH,
   COMMAND_PRIORITY_LOW,
   KEY_ESCAPE_COMMAND,
-  LexicalEditor,
+  type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
   TextNode,
 } from "lexical";
-import { Dispatch, useCallback, useEffect, useRef, useState } from "react";
+import { type Dispatch, useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Modal } from "reactstrap";
 import Button from "~/components/UI/Button";
@@ -58,7 +58,13 @@ interface FloatingLinkEditorProps {
   initialOpen: "modal" | "tooltip";
 }
 
-const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen }: FloatingLinkEditorProps) => {
+const FloatingLinkEditor = ({
+  editor,
+  isLink,
+  setIsLink,
+  anchorElem,
+  initialOpen,
+}: FloatingLinkEditorProps) => {
   const editorRef = useRef<HTMLDivElement | null>(null);
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
@@ -190,7 +196,11 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
       const node = $getSelection();
       const childTextNode = node?.getNodes()?.[0];
       if (childTextNode instanceof TextNode) childTextNode.setTextContent(linkText);
-      editor.dispatchCommand(TOGGLE_LINK_COMMAND, { url: sanitizeUrl(linkUrl), rel: "noreferrer", target: "_blank" });
+      editor.dispatchCommand(TOGGLE_LINK_COMMAND, {
+        url: sanitizeUrl(linkUrl),
+        rel: "noreferrer",
+        target: "_blank",
+      });
       setIsModalOpen(false);
       setIsFloatingVisible(false);
       setFloatingBlocked(true);
@@ -199,7 +209,10 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
 
   return (
     <>
-      <div ref={editorRef} className={cls(styles.floating_container, !isFloatingVisible && styles.hidden)}>
+      <div
+        ref={editorRef}
+        className={cls(styles.floating_container, !isFloatingVisible && styles.hidden)}
+      >
         <CloseButton onClick={() => setIsLink(false)} />
         <p className={styles.text}>{linkText}</p>
         <p className={styles.url}>{linkUrl}</p>
@@ -226,7 +239,11 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} toggle={() => setIsModalOpen((o) => !o)} contentClassName={styles.modal}>
+      <Modal
+        isOpen={isModalOpen}
+        toggle={() => setIsModalOpen((o) => !o)}
+        contentClassName={styles.modal}
+      >
         <CloseButton onClick={() => setIsModalOpen(false)} />
 
         <p className={styles.title}>Modifier le lien</p>
@@ -234,14 +251,22 @@ const FloatingLinkEditor = ({ editor, isLink, setIsLink, anchorElem, initialOpen
           <label className={styles.label}>Texte</label>
           <span className={styles.input}>
             <i className="ri-message-3-line"></i>
-            <input type="text" value={linkText} onChange={(event) => setLinkText(event.target.value)} />
+            <input
+              type="text"
+              value={linkText}
+              onChange={(event) => setLinkText(event.target.value)}
+            />
           </span>
         </div>
         <div className="my-6">
           <label className={styles.label}>URL</label>
           <span className={styles.input}>
             <i className="ri-link"></i>
-            <input type="url" value={linkUrl} onChange={(event) => setLinkUrl(event.target.value)} />
+            <input
+              type="url"
+              value={linkUrl}
+              onChange={(event) => setLinkUrl(event.target.value)}
+            />
           </span>
         </div>
         <div className="text-end">
@@ -294,7 +319,11 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
 
   // on selection change
   useEffect(() => {
-    return editor.registerCommand(SELECTION_CHANGE_COMMAND, commandCallback, COMMAND_PRIORITY_CRITICAL);
+    return editor.registerCommand(
+      SELECTION_CHANGE_COMMAND,
+      commandCallback,
+      COMMAND_PRIORITY_CRITICAL,
+    );
   }, [editor, commandCallback]);
 
   // on click
@@ -319,7 +348,9 @@ const useFloatingLinkEditorToolbar = (editor: LexicalEditor, anchorElem: HTMLEle
 interface FloatingLinkEditorPluginProps {
   anchorElem?: HTMLElement;
 }
-const FloatingLinkEditorPlugin = ({ anchorElem = document.body }: FloatingLinkEditorPluginProps) => {
+const FloatingLinkEditorPlugin = ({
+  anchorElem = document.body,
+}: FloatingLinkEditorPluginProps) => {
   const [editor] = useLexicalComposerContext();
   return useFloatingLinkEditorToolbar(editor, anchorElem);
 };

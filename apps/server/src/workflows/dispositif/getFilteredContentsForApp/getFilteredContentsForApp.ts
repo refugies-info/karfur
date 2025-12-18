@@ -1,7 +1,11 @@
-import { DispositifStatus, GetContentsForAppRequest, MobileFrenchLevel } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetContentsForAppRequest,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif } from "~/typegoose";
+import type { Dispositif } from "~/typegoose";
 
 const filterByAge =
   (age: GetContentsForAppRequest["age"] | null) =>
@@ -142,6 +146,7 @@ const getFilteredContentsForApp = async (req: GetContentsForAppRequest) => {
       nbVues: 1,
       nbVuesMobile: 1,
       needs: 1,
+      origin: 1,
       secondaryThemes: 1,
       theme: 1,
       translations: 1,

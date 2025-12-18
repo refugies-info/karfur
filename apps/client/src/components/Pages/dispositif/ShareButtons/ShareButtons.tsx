@@ -9,6 +9,7 @@ import { Event } from "~/lib/tracking";
 
 const ShareButtons = ({ className }: { className?: string }) => {
   const { t } = useTranslation();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const [showSMS, setShowSMS] = useState(false);
   const [showToastLink, setShowToastLink] = useState(false);
@@ -44,7 +45,9 @@ const ShareButtons = ({ className }: { className?: string }) => {
   return (
     <div className="mb-4 flex flex-col gap-2 print:hidden">
       <div className={cn("bg-white/50 p-4 backdrop-blur-[30px]", className)}>
-        <p className="text-title-xxs text-title-grey mb-4 font-bold">{t("Dispositif.share", "Partager la fiche")}</p>
+        <p className="text-title-xxs text-title-grey mb-4 font-bold">
+          {t("Dispositif.share", "Partager la fiche")}
+        </p>
         <div className="flex items-center">
           <Tooltip kind="hover" title={t("Dispositif.sendBySMS")}>
             <Button
@@ -53,6 +56,7 @@ const ShareButtons = ({ className }: { className?: string }) => {
               iconId={showSMS ? "ri-chat-3-fill" : "ri-chat-3-line"}
               id="SmsTooltip"
               title={t("Dispositif.sendBySMS")}
+              ref={closeButtonRef}
               className={cn("rtl:before:!ml-[0.25rem]", showSMS && "!text-[#1212ff]")}
             >
               {t("Dispositif.sms", "SMS")}
@@ -88,17 +92,25 @@ const ShareButtons = ({ className }: { className?: string }) => {
         className={cn(
           "relative flex max-h-0 flex-col items-start justify-start overflow-clip bg-white shadow-[0px_2px_6px_0px_rgba(0,0,18,0.16)] transition-all duration-800 ease-in",
           showSMS ? "max-h-[28rem]" : "max-h-0",
+          !showSMS && "!hidden",
         )}
       >
         <Button
           priority="tertiary no outline"
           onClick={() => setShowSMS(false)}
           iconId="ri-close-line"
-          className="z-10 ml-auto"
+          className={cn("z-10 ml-auto", !showSMS && "!hidden")}
           size="small"
           title={t("close")}
         />
-        <SMSForm onSubmitSuccess={() => setShowSMS(false)} className="p-4 pt-0" ref={smsFormInputContainerRef} />
+        <SMSForm
+          onSubmitSuccess={() => {
+            setShowSMS(false);
+            closeButtonRef.current?.focus();
+          }}
+          className="p-4 pt-0"
+          ref={smsFormInputContainerRef}
+        />
       </div>
     </div>
   );

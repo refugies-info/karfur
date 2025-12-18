@@ -1,28 +1,32 @@
 import {
   ContentType,
-  GetStatisticsResponse,
-  GetStructureStatisticsResponse,
-  SimpleDispositif,
-  TranslationStatisticsResponse,
+  type GetStatisticsResponse,
+  type GetStructureStatisticsResponse,
+  type SimpleDispositif,
+  type TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
-import { Carrousel } from "@refugies-info/ui";
+import { Carrousel, isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { logger } from "logger";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
-import { FreeResources, Hero, MobileApp, WhyAccordions } from "~/components/Pages/homepage/Sections";
+import {
+  FreeResources,
+  Hero,
+  MobileApp,
+  WhyAccordions,
+} from "~/components/Pages/homepage/Sections";
 import Newsletter from "~/components/Pages/homepage/Sections/Newsletter";
 import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogos";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useRTL, useWindowSize } from "~/hooks";
+import { useRTL } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
@@ -66,15 +70,21 @@ const Homepage = (props: Props) => {
       <SEO
         title={
           isMobile
-            ? t("Homepage.titleMobile", "L'information <br/> pour les personnes réfugiées en France").replace(
-                "<br/>",
-                "",
+            ? t(
+                "Homepage.titleMobile",
+                "L'information <br/> pour les personnes réfugiées en France",
+              ).replace("<br/>", "")
+            : t(
+                "Homepage.titleDesktop",
+                "Le service public d’information pour les personnes réfugiées",
               )
-            : t("Homepage.titleDesktop", "Le service public d’information pour les personnes réfugiées")
         }
         description={
           isMobile
-            ? t("Homepage.subtitleMobile", "Des informations claires et traduites pour construire votre vie en France")
+            ? t(
+                "Homepage.subtitleMobile",
+                "Des informations claires et traduites pour construire votre vie en France",
+              )
             : `${t("Homepage.subtitle1", "Des ressources claires et traduites")} ${t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}`
         }
       />
@@ -92,8 +102,13 @@ const Homepage = (props: Props) => {
             count: props.contentStatistics.nbDemarches || 0,
           }),
           seeMore: t("Homepage.demarcheSeeAll", "Voir toutes les démarches"),
-          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
-          next: t("ui.carrouselNext", "Faire défiler à droite"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche", {
+            type: "demarche",
+          }),
+          next: t("ui.carrouselNext", "Faire défiler à droite", {
+            type: "demarche",
+          }),
+          countSeparator: t("ui.countSeparator", "sur"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=demarche"
       >
@@ -112,6 +127,7 @@ const Homepage = (props: Props) => {
           seeMore: t("Homepage.dispositifSeeAll", "Voir tous les dispositifs"),
           prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
           next: t("ui.carrouselNext", "Faire défiler à droite"),
+          countSeparator: t("ui.countSeparator", "sur"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
       >
@@ -142,31 +158,42 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   let translationStatistics: TranslationStatisticsResponse = {};
   let contentStatistics: GetStatisticsResponse = {};
   let structuresStatistics: GetStructureStatisticsResponse = {};
+  let demarches: SimpleDispositif[] = [];
+  let dispositifs: SimpleDispositif[] = [];
 
   try {
     contentStatistics = await API.getDispositifsStatistics({
-      facets: ["nbMercis", "nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches", "nbUpdatedRecently"],
+      facets: [
+        "nbMercis",
+        "nbVues",
+        "nbVuesMobile",
+        "nbDispositifs",
+        "nbDemarches",
+        "nbUpdatedRecently",
+      ],
     });
     structuresStatistics = await API.getStructuresStatistics({
       facets: ["nbStructures", "nbCDA", "nbStructureAdmins"],
     });
-    translationStatistics = await API.getTranslationStatistics({ facets: ["nbTranslators", "nbRedactors"] });
+    translationStatistics = await API.getTranslationStatistics({
+      facets: ["nbTranslators", "nbRedactors"],
+    });
+
+    demarches = await API.getDispositifs({
+      type: ContentType.DEMARCHE,
+      limit: 15,
+      sort: "nbVues",
+      locale: locale || "fr",
+    });
+    dispositifs = await API.getDispositifs({
+      type: ContentType.DISPOSITIF,
+      limit: 15,
+      sort: "nbVues",
+      locale: locale || "fr",
+    });
   } catch (e) {
     logger.error("[index] build page", e);
   }
-
-  const demarches = await API.getDispositifs({
-    type: ContentType.DEMARCHE,
-    limit: 15,
-    sort: "nbVues",
-    locale: locale || "fr",
-  });
-  const dispositifs = await API.getDispositifs({
-    type: ContentType.DISPOSITIF,
-    limit: 15,
-    sort: "nbVues",
-    locale: locale || "fr",
-  });
 
   return {
     props: {

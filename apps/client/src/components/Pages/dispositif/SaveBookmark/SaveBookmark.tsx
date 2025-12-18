@@ -1,15 +1,14 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 import { Bookmark } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import BookmarkedModal from "~/components/Modals/BookmarkedModal";
 import Toast from "~/components/UI/Toast";
 import { useAuth, useFavorites } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-
-import { Tooltip } from "@codegouvfr/react-dsfr/Tooltip";
 
 export default function SaveBookmark() {
   const dispositif = useSelector(selectedDispositifSelector);
@@ -19,6 +18,7 @@ export default function SaveBookmark() {
 
   // favorites
   const [showNoAuthModal, setShowNoAuthModal] = useState(false);
+  const bookmarkButtonRef = useRef<HTMLButtonElement>(null);
   const noAuthModalToggle = useCallback(() => setShowNoAuthModal((o) => !o), []);
 
   const { isFavorite, addToFavorites, deleteFromFavorites } = useFavorites(dispositif?._id || null);
@@ -40,8 +40,12 @@ export default function SaveBookmark() {
 
   return (
     <div>
-      <Tooltip kind="hover" title={isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}>
+      <Tooltip
+        kind="hover"
+        title={isFavorite ? t("UserFavorites.tooltip_remove") : t("UserFavorites.tooltip_add")}
+      >
         <Button
+          ref={bookmarkButtonRef}
           priority="tertiary no outline"
           onClick={toggleFavorite}
           size="small"
@@ -57,7 +61,14 @@ export default function SaveBookmark() {
           ? t("Dispositif.messageAddedToFavorites")
           : t("Dispositif.messageRemovedFromFavorites")}
       </Toast>
-      {!isAuth && <BookmarkedModal show={showNoAuthModal} toggle={noAuthModalToggle} dispositifId={dispositif?._id} />}
+      {!isAuth && (
+        <BookmarkedModal
+          open={showNoAuthModal}
+          onOpenChange={setShowNoAuthModal}
+          dispositifId={dispositif?._id}
+          triggerRef={bookmarkButtonRef}
+        />
+      )}
     </div>
   );
 }

@@ -1,10 +1,17 @@
-import { ContentType, DispositifStatus, StructureReceiveDispositifRequest } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifStatus,
+  type StructureReceiveDispositifRequest,
+} from "@refugies-info/api-types";
 import { InvalidRequestError, NotFoundError, UnauthorizedError } from "~/errors";
 import logger from "~/logger";
-import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
+import {
+  getDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
-import { Dispositif, User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Dispositif, User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const structureReceiveDispositif = async (
@@ -25,16 +32,25 @@ export const structureReceiveDispositif = async (
   if (oldDispositif.status !== DispositifStatus.WAITING_STRUCTURE) {
     throw new InvalidRequestError("The content cannot be accepted or rejected by the stucture");
   }
-  if (!oldDispositif.getMainSponsor()?.membres.find((membre) => membre.userId.toString() === user._id.toString())) {
+  if (
+    !oldDispositif
+      .getMainSponsor()
+      ?.membres.find((membre) => membre.userId.toString() === user._id.toString())
+  ) {
     throw new UnauthorizedError("You are not allowed to accept or reject this content", undefined, {
       id,
       user: user._id,
     });
   }
-  editedDispositif.status = body.accept ? DispositifStatus.WAITING_ADMIN : DispositifStatus.KO_STRUCTURE;
+  editedDispositif.status = body.accept
+    ? DispositifStatus.WAITING_ADMIN
+    : DispositifStatus.KO_STRUCTURE;
 
   const newDispositif = await updateDispositifInDB(id, editedDispositif);
-  if (oldDispositif.typeContenu === ContentType.DISPOSITIF && newDispositif.status === DispositifStatus.WAITING_ADMIN) {
+  if (
+    oldDispositif.typeContenu === ContentType.DISPOSITIF &&
+    newDispositif.status === DispositifStatus.WAITING_ADMIN
+  ) {
     await takeSnapshot(newDispositif, "before", oldDispositif.status, newDispositif.status);
   }
   await log(newDispositif, oldDispositif, user._id);

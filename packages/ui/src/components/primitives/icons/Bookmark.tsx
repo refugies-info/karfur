@@ -2,28 +2,29 @@
 type BookmarkProps = {
   variant?: "add" | "fill" | "line";
   className?: string;
+  size?: string;
 };
 
-export function Bookmark({ variant = "line", className }: BookmarkProps) {
+export function Bookmark({ variant = "line", className, size = "1.5em" }: BookmarkProps) {
   // siwtch variants
   switch (variant) {
     case "add":
-      return addVariant({ className });
+      return addVariant({ className, size });
     case "fill":
-      return fillVariant({ className });
+      return fillVariant({ className, size });
     case "line":
-      return lineVariant({ className });
+      return lineVariant({ className, size });
     default:
       return null;
   }
 }
 
-function addVariant({ className }: BookmarkProps) {
+function addVariant({ className, size }: BookmarkProps) {
   return (
     <svg
-      width="24"
+      width={size}
       className={className}
-      height="24"
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -37,12 +38,12 @@ function addVariant({ className }: BookmarkProps) {
   );
 }
 
-function fillVariant({ className }: BookmarkProps) {
+function fillVariant({ className, size }: BookmarkProps) {
   return (
     <svg
-      width="24"
+      width={size}
       className={className}
-      height="24"
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -57,12 +58,12 @@ function fillVariant({ className }: BookmarkProps) {
   );
 }
 
-function lineVariant({ className }: BookmarkProps) {
+function lineVariant({ className, size }: BookmarkProps) {
   return (
     <svg
-      width="24"
+      width={size}
       className={className}
-      height="24"
+      height={size}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

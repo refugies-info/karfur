@@ -1,4 +1,5 @@
-import { DispositifStatus, DispositifStatusRequest } from "@refugies-info/api-types";
+import { DispositifStatus, type DispositifStatusRequest } from "@refugies-info/api-types";
+import { notifyGoogleUrlDeleted } from "~/libs/googleIndexingApi";
 import logger from "~/logger";
 import {
   deleteDispositifInDb,
@@ -6,11 +7,15 @@ import {
   saveAndOverwriteDraft,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailWhenDispositifArchived } from "~/modules/mail/sendMailWhenDispositifArchived";
-import { Dispositif, ObjectId, User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import { type Dispositif, ObjectId, type User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const updateDispositifStatus = async (id: string, body: DispositifStatusRequest, user: User): Response => {
+export const updateDispositifStatus = async (
+  id: string,
+  body: DispositifStatusRequest,
+  user: User,
+): Response => {
   logger.info("[updateDispositifStatus]", { id, body });
   await log(id, body.status, user._id);
 
@@ -20,6 +25,18 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
   }
   if (body.status === DispositifStatus.DELETED) {
     await deleteDispositifInDb(id, user);
+    // Notify Google to remove from index (only in production)
+    if (process.env.NODE_ENV === "production") {
+      notifyGoogleUrlDeleted(`${process.env.FRONT_SITE_URL}/fr/dispositif/${id}`).catch((error) =>
+        logger.error("[updateDispositifStatus] Failed to notify Google", {
+          id,
+          error: error instanceof Error ? error.message : String(error),
+          ...(process.env.NODE_ENV !== "production" &&
+            process.env.NODE_ENV !== "staging" &&
+            error instanceof Error && { stack: error.stack }),
+        }),
+      );
+    }
     return { text: "success" };
   }
 
@@ -28,6 +45,18 @@ export const updateDispositifStatus = async (id: string, body: DispositifStatusR
 
   if (body.status === DispositifStatus.ARCHIVED) {
     await sendMailWhenDispositifArchived(new ObjectId(id));
+    // Notify Google to remove from index (only in production)
+    if (process.env.NODE_ENV === "production") {
+      notifyGoogleUrlDeleted(`${process.env.FRONT_SITE_URL}/fr/dispositif/${id}`).catch((error) =>
+        logger.error("[updateDispositifStatus] Failed to notify Google", {
+          id,
+          error: error instanceof Error ? error.message : String(error),
+          ...(process.env.NODE_ENV !== "production" &&
+            process.env.NODE_ENV !== "staging" &&
+            error instanceof Error && { stack: error.stack }),
+        }),
+      );
+    }
   }
 
   return { text: "success" };

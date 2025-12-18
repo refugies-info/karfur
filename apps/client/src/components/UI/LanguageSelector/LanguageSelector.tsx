@@ -1,5 +1,5 @@
 import { activatedLanguages } from "data/activatedLanguages";
-import { forwardRef, useEffect, useRef } from "react";
+import { forwardRef, type HTMLAttributes, useEffect, useRef } from "react";
 import {
   AccessibleNavigation,
   AccessibleNavigationItem,
@@ -7,7 +7,7 @@ import {
 import { LanguageItem } from "~/components/UI/LanguageSelector/LanguageItem";
 import { useLocale } from "~/hooks";
 
-interface LanguageSelectProps {
+interface LanguageSelectProps extends HTMLAttributes<HTMLDivElement> {
   onChangeLang?: () => void;
   type?: "global" | "page";
   itemsDesign?: "radio" | "default";
@@ -15,8 +15,13 @@ interface LanguageSelectProps {
 }
 
 const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
-  ({ onChangeLang, type = "global", itemsDesign = "default", availableLanguages, ...props }, ref) => {
-    const sortedLanguages = [...activatedLanguages].sort((a, b) => a.langueFr.localeCompare(b.langueFr));
+  (
+    { onChangeLang, type = "global", itemsDesign = "default", availableLanguages, ...props },
+    ref,
+  ) => {
+    const sortedLanguages = [...activatedLanguages].sort((a, b) =>
+      a.langueFr.localeCompare(b.langueFr),
+    );
     const frenchLanguage = sortedLanguages.find((lang) => lang.langueCode === "fr");
     const currentLanguage = useLocale();
     const forceFrenchLanguage =
@@ -35,7 +40,9 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
     return (
       <AccessibleNavigation ref={ref} {...props} orientation="vertical" aria-label="Languages">
         {sortedLanguages.map((lang, index) => {
-          const isDisabled = availableLanguages ? !availableLanguages?.includes(lang?.i18nCode || "") : false;
+          const isDisabled = availableLanguages
+            ? !availableLanguages?.includes(lang?.i18nCode || "")
+            : false;
 
           return (
             <AccessibleNavigationItem key={index} asChild>

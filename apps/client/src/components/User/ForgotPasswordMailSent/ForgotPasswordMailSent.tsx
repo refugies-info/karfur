@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { isInBrowser } from "@refugies-info/ui";
 import { useCallback } from "react";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
 import API from "~/utils/API";
 import styles from "./ForgotPasswordMailSent.module.scss";
 
@@ -22,7 +22,12 @@ const ForgotPasswordMailSent = ({ email }: Props) => {
 
   return (
     <>
-      <Button iconId="fr-icon-mail-line" iconPosition="right" onClick={sendMail} className={cls(styles.button, "mb-4")}>
+      <Button
+        iconId="fr-icon-mail-line"
+        iconPosition="right"
+        onClick={sendMail}
+        className={cls(styles.button, "mb-4")}
+      >
         Renvoyer le lien de réinitialisation
       </Button>
       <Button onClick={openChat} className={cls(styles.button)} priority="tertiary">

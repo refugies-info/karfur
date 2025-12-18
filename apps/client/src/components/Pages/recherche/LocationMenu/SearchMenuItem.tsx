@@ -1,42 +1,46 @@
+import Input from "@codegouvfr/react-dsfr/Input";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { useEffect, useRef } from "react";
-import { cls } from "~/lib/classname";
-import styles from "./SearchMenuItem.module.css";
+import type React from "react";
+import { memo } from "react";
 
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const SearchMenuItem: React.FC<Props> = ({ onChange }) => {
-  const { t, i18n } = useTranslation();
-  const ref = useRef<HTMLInputElement>(null);
+const SearchMenuItem = memo<Props>(({ onChange }) => {
+  const { t } = useTranslation();
+  const placeholder = t("Recherche.searchPlaceholder", "Recherche par ville ou département");
 
-  useEffect(() => {
-    if (ref.current) {
-      ref.current.focus();
-    }
-  }, []);
+  const inputClassName = cn(
+    "mb-2",
+    "[&_.fr-icon-search-line::before]:bg-flat-blue-france",
+    "[&_.fr-icon-search-line::before]:scale-120",
+    "ltr:[&_.fr-icon-search-line::before]:!right-[unset]",
+    "ltr:[&_.fr-icon-search-line::before]:left-2",
+    "ltr:[&_.fr-input]:!ps-8",
+    "ltr:[&_.fr-input]:pe-4",
+    "[&_input]:w-full",
+    "[&_label]:sr-only",
+  );
 
   return (
-    <form className={styles.item} onClick={(e) => e.preventDefault()} onSubmit={(e) => e.preventDefault()}>
-      <span className={styles.zone}>
-        <i className={cls("fr-icon-search-line", styles.icon)} />
-        <label htmlFor="location-search" className="sr-only">
-          {t("Rechercher", "Rechercher")}
-        </label>
-        <input
-          type="text"
-          ref={ref}
-          dir={i18n.dir()}
-          className={styles.input}
-          id="location-search"
-          placeholder={t("Rechercher", "Rechercher")}
-          name="location-search"
-          onChange={onChange}
-        />
-      </span>
+    <form className="w-full min-w-52" role="search" onSubmit={(e) => e.preventDefault()}>
+      <Input
+        iconId="fr-icon-search-line"
+        className={inputClassName}
+        label={placeholder}
+        nativeInputProps={{
+          type: "search",
+          placeholder,
+          onChange,
+          className: "fr-input-wrap fr-icon-search-line",
+        }}
+      />
     </form>
   );
-};
+});
+
+SearchMenuItem.displayName = "SearchMenuItem";
 
 export default SearchMenuItem;

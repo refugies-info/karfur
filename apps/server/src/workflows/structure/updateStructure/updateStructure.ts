@@ -1,13 +1,17 @@
-import { PatchStructureRequest } from "@refugies-info/api-types";
+import type { PatchStructureRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { getStructureFromDB, updateStructureInDB } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { addStructureForUsers, removeStructureOfAllUsers } from "~/modules/users/users.service";
-import { User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const updateStructure = async (id: string, body: PatchStructureRequest, user: User): Response => {
+export const updateStructure = async (
+  id: string,
+  body: PatchStructureRequest,
+  user: User,
+): Response => {
   logger.info("[updateStructure] try to modify structure with id", { id });
   await checkIfUserIsAuthorizedToModifyStructure(id, user);
   logger.info("[modifyStructure] updating stucture", { structureId: id });

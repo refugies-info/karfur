@@ -1,7 +1,15 @@
-import { DemarcheContent, DispositifContent, Languages, TranslationContent } from "@refugies-info/api-types";
+import type {
+  DemarcheContent,
+  DispositifContent,
+  Languages,
+  TranslationContent,
+} from "@refugies-info/api-types";
 import { cloneDeep, set } from "lodash";
 import logger from "~/logger";
-import { deleteLineBreaks, deleteLineBreaksInInfosections } from "~/modules/dispositif/dispositif.service";
+import {
+  deleteLineBreaks,
+  deleteLineBreaksInInfosections,
+} from "~/modules/dispositif/dispositif.service";
 import { getLanguageByCode } from "~/modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
@@ -9,7 +17,13 @@ import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedT
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
 import { addTradToAirtable } from "~/modules/traductions/traductions.service";
-import { Dispositif, DispositifModel, ErrorModel, Traductions, UserId } from "~/typegoose";
+import {
+  type Dispositif,
+  DispositifModel,
+  ErrorModel,
+  type Traductions,
+  type UserId,
+} from "~/typegoose";
 import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
@@ -51,7 +65,9 @@ const validateTranslation = (
        */
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
-        getLanguageByCode(language).then((langue) => log(dispositif._id, translation.userId as UserId, langue._id)),
+        getLanguageByCode(language).then((langue) =>
+          log(dispositif._id, translation.userId as UserId, langue._id),
+        ),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
         isFirstValidation
           ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
@@ -61,16 +77,21 @@ const validateTranslation = (
         isFirstValidation ? updateLanguagesAvancement() : null,
         dispositif.isDispositif() && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
-              logger.error("[validateTranslations] error while sending mails to structure members", {
-                error: error.message,
-              });
+              logger.error(
+                "[validateTranslations] error while sending mails to structure members",
+                {
+                  error: error.message,
+                },
+              );
             })
           : null,
         isFirstValidation ? sendPublishedTradMailToTraductors(language, dispositif) : null,
       ]),
     )
     .catch(async (err) => {
-      logger.error("[validateTranslations] error in validating, saving error to db", { error: err.message });
+      logger.error("[validateTranslations] error in validating, saving error to db", {
+        error: err.message,
+      });
       await ErrorModel.create({
         name: "validateTradModifications",
         error: err,

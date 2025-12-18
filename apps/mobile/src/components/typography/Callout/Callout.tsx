@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks";

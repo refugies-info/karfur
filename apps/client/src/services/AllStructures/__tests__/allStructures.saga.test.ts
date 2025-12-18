@@ -1,14 +1,22 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setAllStructuresActionCreator } from "../allStructures.actions";
 import latestActionsSaga, { fetchAllStructures } from "../allStructures.saga";
 
 describe("[Saga] All structures", () => {
   describe("pilot", () => {
     it("should trigger all the all structures sagas", () => {
-      testSaga(latestActionsSaga).next().takeLatest("FETCH_ALL_STRUCTURES", fetchAllStructures).next().isDone();
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_ALL_STRUCTURES", fetchAllStructures)
+        .next()
+        .isDone();
     });
   });
 

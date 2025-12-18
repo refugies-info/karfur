@@ -3,7 +3,7 @@ const React = require("react");
 
 // Create a component factory that returns a simple mock component
 const createMockComponent = (name) => {
-  const component = ({ children, className, ...props }) => {
+  const component = ({ children, className, ...props } = {}) => {
     return React.createElement(
       "div",
       {
@@ -20,7 +20,7 @@ const createMockComponent = (name) => {
 
 // Create a proxy that returns a mock component for any property access
 const handler = {
-  get: function (target, prop) {
+  get: (target, prop) => {
     // Return existing mocks if they exist
     if (prop in target) {
       return target[prop];

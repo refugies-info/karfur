@@ -1,4 +1,4 @@
-import { DispositifStatus, UpdateDispositifRequest } from "@refugies-info/api-types";
+import { DispositifStatus, type UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo, useState } from "react";
@@ -42,7 +42,10 @@ const CardMainSponsor = ({ formData, id }: Props) => {
   }, [formData, structures]);
 
   const isAllowedToEdit = useMemo(() => {
-    return user.admin || (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion);
+    return (
+      user.admin ||
+      (!isStatus(dispositif?.status, DispositifStatus.ACTIVE) && !dispositif?.hasDraftVersion)
+    );
   }, [user, dispositif]);
 
   const handleDelete = () => {
@@ -70,8 +73,8 @@ const CardMainSponsor = ({ formData, id }: Props) => {
       {!isAllowedToEdit && (
         <>
           <Tooltip target="main-sponsor-card">
-            Vous ne pouvez plus modifier la structure liée à votre fiche une fois celle-ci publiée. Contactez-nous via
-            le chat si besoin.
+            Vous ne pouvez plus modifier la structure liée à votre fiche une fois celle-ci publiée.
+            Contactez-nous via le chat si besoin.
           </Tooltip>
         </>
       )}

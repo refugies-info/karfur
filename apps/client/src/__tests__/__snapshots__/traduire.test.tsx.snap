@@ -4,9 +4,17 @@ exports[`traduire renders traduire 1`] = `
 <DocumentFragment>
   <div
     aria-atomic="true"
-    aria-live="assertive"
-    class="[object Object]"
+    aria-live="polite"
+    class="sr-only"
     role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
   >
      
   </div>
@@ -423,11 +431,11 @@ exports[`traduire renders traduire 1`] = `
                 </strong>
                  Réfugiés.info
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Indiquez votre adresse mail et un mot de passe, vous êtes prêt à utiliser l'outil de traduction.
-              </p>
+              </div>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
@@ -476,11 +484,11 @@ exports[`traduire renders traduire 1`] = `
                 </strong>
                  de traduction
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Une fois votre langue choisie, vous accédez à toutes les fiches à traduire. Cliquez sur une fiche pour commencer à la traduire.
-              </p>
+              </div>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -521,11 +529,11 @@ exports[`traduire renders traduire 1`] = `
                 </strong>
                  à partir de la proposition automatique
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Quand vous arrivez sur une fiche, vous trouverez une première traduction. Attention, elle est automatique. Il faut la retravailler et la corriger !
-              </p>
+              </div>
               <div
                 class="bg-contrast-beige-gris-galet border-default-grey mb-6 border p-4"
               >
@@ -584,16 +592,16 @@ exports[`traduire renders traduire 1`] = `
                 </strong>
                  votre traduction
               </h3>
-              <p
+              <div
                 class="text-large mb-6"
               >
                 Un expert va relire votre traduction avant de publier la fiche.
-              </p>
-              <p
+              </div>
+              <div
                 class="text-large mb-6"
               >
                 Vous allez recevoir un mail dès que la fiche que vous avez traduite sera visible sur le site Réfugiés.info et sur l'application mobile.
-              </p>
+              </div>
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >

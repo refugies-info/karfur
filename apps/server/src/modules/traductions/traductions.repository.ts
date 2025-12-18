@@ -1,12 +1,20 @@
-import { Id, Languages } from "@refugies-info/api-types";
+import type { Id, Languages } from "@refugies-info/api-types";
 import { uniq } from "lodash";
-import { FilterQuery, ProjectionType } from "mongoose";
-import { Dispositif, DispositifId, Traductions, TraductionsModel, UserId } from "~/typegoose";
+import type { FilterQuery, ProjectionType } from "mongoose";
+import {
+  type Dispositif,
+  type DispositifId,
+  Traductions,
+  TraductionsModel,
+  type UserId,
+} from "~/typegoose";
 import { TraductionsType } from "~/typegoose/Traductions";
-import { DeleteResult } from "~/types/interface";
+import type { DeleteResult } from "~/types/interface";
 
-export const getTraductionsByLanguage = (language: string, neededFields: ProjectionType<Traductions>) =>
-  TraductionsModel.find({ language }, neededFields);
+export const getTraductionsByLanguage = (
+  language: string,
+  neededFields: ProjectionType<Traductions>,
+) => TraductionsModel.find({ language }, neededFields);
 
 export const getTraductionsByLanguageAndDispositif = (
   language: Languages,
@@ -17,10 +25,22 @@ export const getTraductionsByLanguageAndDispositif = (
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
   TraductionsModel.findOne({ language, dispositifId, userId });
 
-export const getOtherValidationForDispositif = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
-  TraductionsModel.findOne({ language, dispositifId, userId: { $ne: userId }, type: TraductionsType.VALIDATION });
+export const getOtherValidationForDispositif = (
+  language: Languages,
+  dispositifId: DispositifId,
+  userId: UserId,
+) =>
+  TraductionsModel.findOne({
+    language,
+    dispositifId,
+    userId: { $ne: userId },
+    type: TraductionsType.VALIDATION,
+  });
 
-export const deleteTradsInDB = (dispositifId: DispositifId, language: Languages): Promise<DeleteResult> =>
+export const deleteTradsInDB = (
+  dispositifId: DispositifId,
+  language: Languages,
+): Promise<DeleteResult> =>
   TraductionsModel.deleteMany({
     dispositifId,
     language,
@@ -57,14 +77,21 @@ const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Di
  * +
  * update avancement
  */
-export const removeTraductionsSections = async (dispositifId: Id, sections: string[], dispositif: Dispositif) => {
+export const removeTraductionsSections = async (
+  dispositifId: Id,
+  sections: string[],
+  dispositif: Dispositif,
+) => {
   const query: FilterQuery<Traductions> = { dispositifId: dispositifId };
   const sectionsToRemove = uniq(
     sections
       .map((section) => section.replace(".title", "").replace(".text", ""))
       .map((section) => `translated.${section}`),
   );
-  const unsetSections = sectionsToRemove.reduce((acc: Record<string, string>, curr) => ((acc[curr] = ""), acc), {});
+  const unsetSections = sectionsToRemove.reduce(
+    (acc: Record<string, string>, curr) => ((acc[curr] = ""), acc),
+    {},
+  );
 
   const result = await TraductionsModel.updateMany(query, {
     $unset: unsetSections,
@@ -79,7 +106,10 @@ export const removeTraductionsSections = async (dispositifId: Id, sections: stri
 };
 
 export const addToReview = async (dispositifId: Id, toReview: string[], dispositif: Dispositif) => {
-  const query: FilterQuery<Traductions> = { dispositifId: dispositifId, type: TraductionsType.VALIDATION };
+  const query: FilterQuery<Traductions> = {
+    dispositifId: dispositifId,
+    type: TraductionsType.VALIDATION,
+  };
   const result = await TraductionsModel.updateMany(query, {
     $addToSet: {
       toReview: toReview,

@@ -1,21 +1,8 @@
+import { cn } from "@refugies-info/ui";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
-
-// actions
-import {
-  fetchLanguesActionCreator,
-  toggleLangueActionCreator,
-  toggleLangueModalActionCreator,
-} from "~/services/Langue/langue.actions";
-import { fetchUserActionCreator } from "~/services/User/user.actions";
-
-// selectors
-import { allLanguesSelector, showLangModalSelector } from "~/services/Langue/langue.selectors";
-import { hasErroredSelector, isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { ttsActiveSelector } from "~/services/Tts/tts.selector";
-
 import Footer from "~/components/Layout/Footer";
 import DownloadAppModal from "~/components/Modals/DownloadAppModal";
 import LanguageModal from "~/components/Modals/LanguageModal/LanguageModal";
@@ -23,13 +10,28 @@ import NewProfileModal from "~/components/Modals/NewProfileModal";
 import { SubscribeNewsletterModal } from "~/components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import Navbar from "~/components/Navigation/Navbar";
 import { useChangeLanguage, useRTL } from "~/hooks";
+import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { readAudio, stopAudio } from "~/lib/readAudio";
 import { setAnalyticsUserId } from "~/lib/tracking";
+// actions
+import {
+  fetchLanguesActionCreator,
+  toggleLangueActionCreator,
+  toggleLangueModalActionCreator,
+} from "~/services/Langue/langue.actions";
+// selectors
+import { allLanguesSelector, showLangModalSelector } from "~/services/Langue/langue.selectors";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import {
+  hasErroredSelector,
+  isLoadingSelector,
+} from "~/services/LoadingStatus/loadingStatus.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { hasThemesLoadedSelector } from "~/services/Themes/themes.selectors";
 import { toggleSpinner } from "~/services/Tts/tts.actions";
+import { ttsActiveSelector } from "~/services/Tts/tts.selector";
+import { fetchUserActionCreator } from "~/services/User/user.actions";
 import { userDetailsSelector } from "~/services/User/user.selectors";
 import { fetchUserFavoritesActionCreator } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.actions";
 import { userFavoritesSelector } from "~/services/UserFavoritesInLocale/UserFavoritesInLocale.selectors";
@@ -38,11 +40,10 @@ import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
 import styles from "./Layout.module.scss";
 
-import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
-
 interface Props {
   children: any;
   history: string[];
+  className?: string;
 }
 
 // TODO : refator to avoid  overcomplex code to show MobileModal + move it's logic to it's own component
@@ -53,7 +54,7 @@ const Layout = (props: Props) => {
 
   // Use refs to track modal state and timeout
   const manuallyClosedRef = useRef<boolean>(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -121,7 +122,11 @@ const Layout = (props: Props) => {
     const storedLanguei18nCode = locale.getFromCache();
     const isSharedSmsLink = new URLSearchParams(window.location.search).get("share") === "sms";
 
-    if (storedLanguei18nCode && storedLanguei18nCode !== "fr" && storedLanguei18nCode !== router.locale) {
+    if (
+      storedLanguei18nCode &&
+      storedLanguei18nCode !== "fr" &&
+      storedLanguei18nCode !== router.locale
+    ) {
       // if locale saved and not same as in URL
       changeLanguageCallback(storedLanguei18nCode);
     } else if (!storedLanguei18nCode && !isSharedSmsLink) {
@@ -167,7 +172,12 @@ const Layout = (props: Props) => {
         }
       }
       // Coming from content page to non-content page
-      else if (prevPath && isContentPage(prevPath) && !isContentPage(currentPath) && currentPath !== prevPath) {
+      else if (
+        prevPath &&
+        isContentPage(prevPath) &&
+        !isContentPage(currentPath) &&
+        currentPath !== prevPath
+      ) {
         toggleMobileAppModal();
       }
     };
@@ -196,14 +206,14 @@ const Layout = (props: Props) => {
   }, [user, isUserLoading, hasUserError, dispatch]);
 
   // THEMES
-  const themes = useSelector(themesSelector);
+  const hasThemesLoaded = useSelector(hasThemesLoadedSelector);
   const isThemesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
   const hasThemesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_THEMES));
   useEffect(() => {
-    if (languageLoaded && themes.length === 0 && !isThemesLoading && !hasThemesError) {
+    if (languageLoaded && !hasThemesLoaded && !isThemesLoading && !hasThemesError) {
       dispatch(fetchThemesActionCreator());
     }
-  }, [languageLoaded, themes.length, isThemesLoading, hasThemesError, dispatch]);
+  }, [languageLoaded, hasThemesLoaded, isThemesLoading, hasThemesError, dispatch]);
 
   // LANGUAGES
   const langues = useSelector(allLanguesSelector);
@@ -217,8 +227,12 @@ const Layout = (props: Props) => {
 
   // USER FAVORITES
   const userFavorites = useSelector(userFavoritesSelector);
-  const isUserFavoritesLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
-  const hasUserFavoritesError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_USER_FAVORITES));
+  const isUserFavoritesLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER_FAVORITES),
+  );
+  const hasUserFavoritesError = useSelector(
+    hasErroredSelector(LoadingStatusKey.FETCH_USER_FAVORITES),
+  );
   useEffect(() => {
     if (user && userFavorites === null && !isUserFavoritesLoading && !hasUserFavoritesError) {
       dispatch(fetchUserFavoritesActionCreator(router.locale || "fr"));
@@ -245,7 +259,9 @@ const Layout = (props: Props) => {
         : e?.target?.textContent || null;
 
       if (sentence) {
-        readAudio(sentence, router.locale, null, ttsActive, (val: boolean) => dispatch(toggleSpinner(val)));
+        readAudio(sentence, router.locale, null, ttsActive, (val: boolean) =>
+          dispatch(toggleSpinner(val)),
+        );
       } else {
         stopAudio();
       }
@@ -255,6 +271,17 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       {!showLangModal && <ConsentBannerAndConsentManagement />}
+      <DownloadAppBanner />
+      <Navbar />
+      <main id="contenu" className={cn(styles.content, props.className)}>
+        {props.children}
+      </main>
+      <Footer />
+      <AutoAddFavorite />
+
+      <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
+      <NewProfileModal />
+      <SubscribeNewsletterModal />
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
@@ -263,17 +290,6 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <DownloadAppBanner />
-      <Navbar />
-      <div id="contenu" className={styles.main}>
-        <main className={styles.content}>{props.children}</main>
-      </div>
-      <Footer />
-      <AutoAddFavorite />
-
-      <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
-      <NewProfileModal />
-      <SubscribeNewsletterModal />
     </div>
   );
 };

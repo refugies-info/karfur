@@ -1,4 +1,4 @@
-import { AlgoliaObject } from "~/types/interface";
+import type { AlgoliaObject } from "~/types/interface";
 
 export const getDiffAlgoliaObject = (localObject: AlgoliaObject, algoliaObject: AlgoliaObject) => {
   const objectToUpdate: Partial<AlgoliaObject> = { objectID: localObject.objectID };
@@ -9,7 +9,9 @@ export const getDiffAlgoliaObject = (localObject: AlgoliaObject, algoliaObject: 
     else if (Array.isArray(localObject[key])) {
       const diff = localObject[key]
         .filter((x) => !!x)
-        .filter((x) => !algoliaObject[key] || !(algoliaObject[key] as string[]).includes(x.toString()))
+        .filter(
+          (x) => !algoliaObject[key] || !(algoliaObject[key] as string[]).includes(x.toString()),
+        )
         .concat(
           ((algoliaObject[key] as string[]) || [])
             .filter((x) => !!x)

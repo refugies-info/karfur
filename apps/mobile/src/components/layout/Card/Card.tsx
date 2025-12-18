@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import styled from "styled-components/native";
 
 const CardContainer = styled.View<{ backgroundColor: string; shadow: boolean }>`

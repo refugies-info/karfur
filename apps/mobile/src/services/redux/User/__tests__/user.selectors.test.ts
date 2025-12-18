@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { initialRootStateFactory } from "../../reducers";
 import { initialUserState } from "../user.reducer";
 import { hasUserSeenOnboardingSelector, selectedI18nCodeSelector } from "../user.selectors";

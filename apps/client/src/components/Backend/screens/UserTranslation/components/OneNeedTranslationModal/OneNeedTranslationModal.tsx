@@ -1,4 +1,4 @@
-import { Id, Languages, NeedRequest } from "@refugies-info/api-types";
+import type { Id, Languages, NeedRequest } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BaseModal from "~/components/UI/BaseModal";
@@ -74,11 +74,23 @@ const OneNeedTranslationModal = (props: Props) => {
             </label>
             <div className={styles.flag_input}>
               <Flag langueCode="fr" className={styles.flag} />
-              <input id="titleFr" className={styles.input} value={need.fr.text} disabled={true} autoFocus={false} />
+              <input
+                id="titleFr"
+                className={styles.input}
+                value={need.fr.text}
+                disabled={true}
+                autoFocus={false}
+              />
             </div>
             <div className={styles.flag_input} dir={isRTL ? "rtl" : undefined}>
               <Flag langueCode={props.countryCode} className={styles.flag} />
-              <input id="title" className={styles.input} value={text} onChange={onTextChange} autoFocus={false} />
+              <input
+                id="title"
+                className={styles.input}
+                value={text}
+                onChange={onTextChange}
+                autoFocus={false}
+              />
             </div>
           </div>
           <div className="mt-5">
@@ -121,7 +133,12 @@ const OneNeedTranslationModal = (props: Props) => {
         >
           Annuler
         </Button>
-        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={onSave} disabled={validateDisabled}>
+        <Button
+          evaIcon="checkmark-circle-2"
+          iconPosition="right"
+          onClick={onSave}
+          disabled={validateDisabled}
+        >
           Valider
         </Button>
       </div>

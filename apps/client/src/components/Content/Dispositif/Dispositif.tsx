@@ -1,9 +1,11 @@
-import { ContentType } from "@refugies-info/api-types";
-import { useContext, useMemo, useRef } from "react";
-
 import Button from "@codegouvfr/react-dsfr/Button";
+import { ContentType } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
+import { useContext, useMemo, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
+import remarkGfm from "remark-gfm";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
@@ -15,10 +17,11 @@ import {
 import MapNew from "~/components/Pages/dispositif/MapNew";
 import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
-import { useContentLocale, useRtriLinks, useScrolledBottomEvent, useWindowSize } from "~/hooks";
+import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
@@ -39,7 +42,8 @@ const Dispositif = (props: Props) => {
   const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const { isRTL } = useContentLocale();
   useScrolledBottomEvent(pageContext.mode === "view");
   const { t } = useTranslation();
@@ -72,12 +76,38 @@ const Dispositif = (props: Props) => {
           <article
             className="z-10 order-2 flex flex-col pt-[240px] lg:gap-10 lg:pt-[196px] xl:w-[60%] print:w-full print:pt-0"
             dir={isRTL ? undefined : "ltr"}
+            aria-labelledby="main-title"
           >
-            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-              <Section key={i} sectionKey={section} contentType={typeContenu} className={cn(i === 0 && "z-10")} />
-            ))}
+            {dispositif?.origin === "RCO" ? (
+              <div className="fr-callout fr-callout--info">
+                {dispositif.markdown ? (
+                  <div className="prose no-dsfr">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{dispositif.markdown}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <p className="fr-callout__text">
+                    Ce contenu est généré par intelligence artificielle et est actuellement en cours
+                    de validation. Les informations présentées sont fournies à titre indicatif et
+                    peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
+                  </p>
+                )}
+              </div>
+            ) : (
+              CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+                <Section
+                  key={i}
+                  sectionKey={section}
+                  contentType={typeContenu}
+                  className={cn(i === 0 && "z-10")}
+                />
+              ))
+            )}
             {/* TODO: adapt the Map component to be used in edit mode */}
-            {isViewMode ? (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} /> : <MapEdit />}
+            {isViewMode ? (
+              (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} />
+            ) : (
+              <MapEdit />
+            )}
             {isViewMode && isMobile && (
               <Button
                 linkProps={{ href: "#top" }}
@@ -94,9 +124,12 @@ const Dispositif = (props: Props) => {
           {(isDesktop || isLargeDesktop) && (
             <>
               {isViewMode ? (
-                <LeftSidebar className="z-10 order-1 lg:w-[20%] lg:pt-[371px] print:pt-0" />
+                <LeftSidebar className="z-10 order-1 max-lg:hidden lg:w-[20%] lg:pt-[371px] print:pt-0" />
               ) : (
-                <LeftSidebarEdition className="z-10 order-1 lg:mt-[196px] lg:w-[20%]" typeContenu={typeContenu} />
+                <LeftSidebarEdition
+                  className="z-10 order-1 lg:mt-[196px] lg:w-[20%]"
+                  typeContenu={typeContenu}
+                />
               )}
             </>
           )}

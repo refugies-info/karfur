@@ -1,9 +1,9 @@
-import { Id, Languages } from "@refugies-info/api-types";
+import type { Id, Languages } from "@refugies-info/api-types";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
-import { SortedNeed } from "../TranslationsAvancement/TranslationsAvancement";
+import type { SortedNeed } from "../TranslationsAvancement/TranslationsAvancement";
 import NeedButton from "./NeedButton";
 import styles from "./TranslationNeedsList.module.scss";
 
@@ -21,7 +21,8 @@ const TranslationNeedsList = (props: Props) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>
-        Liste des besoins en {props.langueSelectedFr} <span className={styles.badge}>{props.sortedNeeds.length}</span>
+        Liste des besoins en {props.langueSelectedFr}{" "}
+        <span className={styles.badge}>{props.sortedNeeds.length}</span>
       </h2>
 
       <div className={styles.content}>

@@ -1,5 +1,5 @@
-import { RootState } from "../rootReducer";
-import { LoadingStatusKey } from "./loadingStatus.actions";
+import type { RootState } from "../rootReducer";
+import type { LoadingStatusKey } from "./loadingStatus.actions";
 
 const loadingStatusSelector = (state: RootState, key: LoadingStatusKey) => state.loadingStatus[key];
 

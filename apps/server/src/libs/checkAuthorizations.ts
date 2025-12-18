@@ -1,10 +1,14 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { UnauthorizedError } from "~/errors";
 import logger from "~/logger";
-import { Dispositif, Structure, User } from "~/typegoose";
+import type { Dispositif, Structure, User } from "~/typegoose";
 
 // Dispositif edition
-export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user: User, hasDraftVersion: boolean) => {
+export const isUserAuthorizedToModifyDispositif = (
+  dispositif: Dispositif,
+  user: User,
+  hasDraftVersion: boolean,
+) => {
   logger.info("[isUserAuthorizedToModifyDispositif] received");
   if (user.isAdmin()) {
     logger.info("[isUserAuthorizedToModifyDispositif] user is admin");
@@ -21,7 +25,9 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
   const isEditableByAuthor = firstDraftVersion || authorCanModify.includes(dispositif.status);
   const isAuthor = dispositif.creatorId.toString() === user._id.toString();
   if (isEditableByAuthor && isAuthor) {
-    logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`);
+    logger.info(
+      `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is author`,
+    );
     return true;
   }
 
@@ -29,12 +35,18 @@ export const isUserAuthorizedToModifyDispositif = (dispositif: Dispositif, user:
 
   const isUserMembre =
     sponsor &&
-    sponsor.membres.filter((membre) => membre.userId && membre.userId.toString() === user._id.toString()).length > 0;
+    sponsor.membres.filter(
+      (membre) => membre.userId && membre.userId.toString() === user._id.toString(),
+    ).length > 0;
   if (isUserMembre) {
-    logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is in structure`);
+    logger.info(
+      `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is in structure`,
+    );
     return true;
   }
-  logger.info(`[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is not in structure`);
+  logger.info(
+    `[isUserAuthorizedToModifyDispositif] status is ${dispositif.status} and user is not in structure`,
+  );
 
   return false;
 };
@@ -64,7 +76,8 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
   if (!sponsor && isAuthor) return true; // no sponsor yet, but user is author
 
-  const userInStructure = sponsor && sponsor.membres.find((membre) => membre.userId?.toString() === user.id);
+  const userInStructure =
+    sponsor && sponsor.membres.find((membre) => membre.userId?.toString() === user.id);
   if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure

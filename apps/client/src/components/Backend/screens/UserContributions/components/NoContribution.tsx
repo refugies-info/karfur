@@ -60,7 +60,12 @@ export const NoContribution = (props: {
         <SubTitle>Chacun peut apporter sa contribution pour enrichir le site.</SubTitle>
         <SubTitle>Lancez-vous !</SubTitle>
         <RowContainer>
-          <FButton onClick={props.toggleWriteModal} type="dark" name="file-add-outline" className="me-2">
+          <FButton
+            onClick={props.toggleWriteModal}
+            type="dark"
+            name="file-add-outline"
+            className="me-2"
+          >
             Créer une nouvelle fiche
           </FButton>
           <FButton

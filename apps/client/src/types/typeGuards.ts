@@ -1,4 +1,4 @@
-import { GetDispositifsResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
+import type { GetDispositifsResponse, Id, SimpleDispositif } from "@refugies-info/api-types";
 
 export const areDispositifsAssociesPopulate = (
   toBeDetermined: SimpleDispositif[] | Id[],

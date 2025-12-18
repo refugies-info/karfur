@@ -1,11 +1,12 @@
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import type { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard } from "@refugies-info/ui";
 import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import AdminIcon from "~/assets/dispositif/crown.svg";
 import Image from "~/components/UI/Image";
 import TagName from "~/components/UI/TagName";
-import { secondaryThemesSelector, themeSelector } from "~/services/Themes/themes.selectors";
+import type { RootState } from "~/services/rootReducer";
+import { makeSecondaryThemesSelector, makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import styles from "./CardTheme.module.scss";
 
@@ -14,8 +15,13 @@ interface Props {
 }
 
 const CardTheme = ({ formData }: Props) => {
-  const theme = useSelector(themeSelector(formData.theme));
-  const secondaryThemes = useSelector(secondaryThemesSelector(formData.secondaryThemes));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const selectSecondaryThemes = useMemo(makeSecondaryThemesSelector, []);
+
+  const theme = useSelector((state: RootState) => selectTheme(state, formData.theme));
+  const secondaryThemes = useSelector((state: RootState) =>
+    selectSecondaryThemes(state, formData.secondaryThemes),
+  );
   const { setActiveModal, formSubmitted } = useContext(PageContext);
   const content = useMemo(() => {
     return (

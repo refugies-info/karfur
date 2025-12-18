@@ -1,9 +1,7 @@
+import { isInBrowser } from "@refugies-info/ui";
 import { debounce } from "lodash";
-import { useEffect, useState } from "react";
-
-// TODO: update the client app to import this hook from @refugies-info/ui
-// Helper function to check if we're in a browser environment
-const isInBrowser = () => typeof window !== "undefined";
+import { useRef, useState } from "react";
+import useIsomorphicLayoutEffect from "./useIsomorphicLayoutEffect";
 
 type WindowSize = {
   width: number | undefined;
@@ -28,53 +26,42 @@ export const useWindowSize = () => {
     isDesktop: false,
     isLargeDesktop: false,
   });
-  const [hasMounted, setHasMounted] = useState(false);
+  const hasMountedRef = useRef(false);
   const [fontSize, setFontSize] = useState(16);
+  const [zoomLevel, setZoomLevel] = useState(100);
 
-  useEffect(() => {
-    const checkResponsiveFlags = () => {
-      if (hasMounted && windowSize.width) {
-        // Use fixed pixel values for breakpoints
-        // Convert rem values to pixels using current font size
-        // 48rem = 768px at 16px font size
-        // 62rem = 992px at 16px font size
-        // 75rem = 1200px at 16px font size
-        setResponsiveFlags({
-          isMobile: windowSize.width <= fontSize * 48,
-          isTablet: windowSize.width >= fontSize * 48 && windowSize.width < fontSize * 62,
-          isDesktop: windowSize.width >= fontSize * 62 && windowSize.width < fontSize * 75,
-          isLargeDesktop: windowSize.width >= fontSize * 75,
-        });
-      }
-    };
-
-    // Mark as mounted and set initial size
-    setHasMounted(true);
-    if (isInBrowser()) {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-      checkResponsiveFlags();
+  useIsomorphicLayoutEffect(() => {
+    if (!isInBrowser()) {
+      return () => {};
     }
+
+    hasMountedRef.current = true;
+
+    const initialSize = {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+    setWindowSize(initialSize);
+
+    const initialFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    setFontSize(initialFontSize);
 
     let rafId: number;
 
     const handleResize = debounce(() => {
-      if (!isInBrowser()) return;
+      if (!isInBrowser() || !hasMountedRef.current) return;
 
-      // Use innerWidth for accurate window size detection
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-
-      checkResponsiveFlags();
     }, 100);
 
     const handleFontSizeChange = debounce(() => {
-      if (!isInBrowser()) return;
+      if (!isInBrowser() || !hasMountedRef.current) return;
+
       const newFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
       if (newFontSize !== fontSize) {
         setFontSize(newFontSize);
         rafId = requestAnimationFrame(handleResize);
@@ -83,8 +70,7 @@ export const useWindowSize = () => {
 
     const debouncedFontSizeChange = debounce(handleFontSizeChange, 100);
 
-    // Set up observers if in browser environment
-    if (isInBrowser() && typeof ResizeObserver !== "undefined") {
+    if (typeof ResizeObserver !== "undefined") {
       const resizeObserver = new ResizeObserver(debouncedFontSizeChange);
       const mutationObserver = new MutationObserver((mutations) => {
         if (
@@ -98,35 +84,84 @@ export const useWindowSize = () => {
         }
       });
 
-      // Initial calculations
       handleResize();
       handleFontSizeChange();
 
-      // Attach observers and event listeners
       resizeObserver.observe(document.documentElement);
-      mutationObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["style", "class"] });
+      mutationObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["style", "class"],
+      });
       mutationObserver.observe(document.head, { childList: true, subtree: true });
 
       window.addEventListener("resize", handleResize);
       window.addEventListener("load", handleFontSizeChange);
-      window.addEventListener("keydown", (e) => {
+
+      const handleKeyDown = (e: KeyboardEvent) => {
         if ((e.ctrlKey || e.metaKey) && ["+", "-", "0", "="].includes(e.key)) {
           handleFontSizeChange();
         }
-      });
-      window.addEventListener("wheel", (e) => e.ctrlKey && handleFontSizeChange());
+      };
+
+      const handleWheel = (e: WheelEvent) => {
+        if (e.ctrlKey) handleFontSizeChange();
+      };
+
+      window.addEventListener("keydown", handleKeyDown);
+      window.addEventListener("wheel", handleWheel);
 
       return () => {
         [resizeObserver, mutationObserver].forEach((observer) => observer.disconnect());
-        ["resize", "load"].forEach((event) => window.removeEventListener(event, handleResize));
-        window.removeEventListener("keydown", handleFontSizeChange);
-        window.removeEventListener("wheel", handleFontSizeChange);
+        window.removeEventListener("resize", handleResize);
+        window.removeEventListener("load", handleFontSizeChange);
+        window.removeEventListener("keydown", handleKeyDown);
+        window.removeEventListener("wheel", handleWheel);
         clearTimeout(rafId);
+        hasMountedRef.current = false;
       };
     }
-    // Return empty cleanup function if conditions are not met
-    return () => {};
-  }, [hasMounted, windowSize.width, fontSize]);
 
-  return { windowSize, ...responsiveFlags };
+    return () => {};
+  }, []);
+
+  useIsomorphicLayoutEffect(() => {
+    if (hasMountedRef.current && windowSize.width) {
+      setResponsiveFlags({
+        isMobile: windowSize.width <= fontSize * 48,
+        isTablet: windowSize.width >= fontSize * 48 && windowSize.width < fontSize * 62,
+        isDesktop: windowSize.width >= fontSize * 62 && windowSize.width < fontSize * 75,
+        isLargeDesktop: windowSize.width >= fontSize * 75,
+      });
+    }
+  }, [windowSize.width, fontSize]);
+
+  useIsomorphicLayoutEffect(() => {
+    if (hasMountedRef.current && windowSize.width) {
+      const isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") > -1;
+
+      if (isFirefox) {
+        const defaultFontSize = 16;
+        const currentZoom = Math.round((fontSize / defaultFontSize) * 100);
+        setZoomLevel(currentZoom);
+      } else {
+        const isHiDPI =
+          window.matchMedia &&
+          window.matchMedia("(-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi)")
+            .matches;
+
+        let currentZoom;
+        if (isHiDPI) {
+          currentZoom = Math.round((window.devicePixelRatio / 2) * 100);
+        } else {
+          currentZoom = Math.round(window.devicePixelRatio * 100);
+        }
+
+        setZoomLevel(currentZoom);
+      }
+    }
+  }, [fontSize, hasMountedRef.current, windowSize]);
+
+  return { windowSize, zoomLevel, ...responsiveFlags };
 };
+
+export default useWindowSize;

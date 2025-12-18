@@ -16,11 +16,15 @@ interface Props {
 export const Flag = (props: Props) => {
   if (props.langueFr === "Français") return <FranceFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
   if (props.langueFr === "Anglais") return <GBFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
-  if (props.langueFr === "Pachto") return <AfghanistanFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
-  if (props.langueFr === "Persan/Dari") return <PersanFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
-  if (props.langueFr === "Tigrinya") return <ErythreeFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
+  if (props.langueFr === "Pachto")
+    return <AfghanistanFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
+  if (props.langueFr === "Persan/Dari")
+    return <PersanFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
+  if (props.langueFr === "Tigrinya")
+    return <ErythreeFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
   if (props.langueFr === "Russe") return <RussieFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
   if (props.langueFr === "Arabe") return <ArabeFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
-  if (props.langueFr === "Ukrainien") return <UkraineFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
+  if (props.langueFr === "Ukrainien")
+    return <UkraineFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
   return <FranceFlag width={FLAG_WIDTH} height={FLAG_HEIGHT} />;
 };

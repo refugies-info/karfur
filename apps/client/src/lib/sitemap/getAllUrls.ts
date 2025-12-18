@@ -1,12 +1,11 @@
-import { ContentType, GetActiveStructuresResponse, Id } from "@refugies-info/api-types";
-import { getPath, PathNames } from "routes";
+import { ContentType, type GetActiveStructuresResponse, type Id } from "@refugies-info/api-types";
+import { getPath, type PathNames } from "routes";
 import API from "~/utils/API";
 
 const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 const PATHS_CRAWL: PathNames[] = [
   "/",
   "/recherche",
-  "/annuaire",
   "/publier",
   "/mission-et-impact",
   "/mentions-legales",
@@ -23,25 +22,22 @@ const getUrl = (path: PathNames, locale: string, id?: Id) => {
 export const getAllUrls = async (type: string, locale: string): Promise<string[]> => {
   switch (type) {
     // DISPOSITIFS
-    case "dispositifs":
+    case "dispositifs": {
       const dispositifs = await API.getDispositifs({
         type: ContentType.DISPOSITIF,
         locale: locale,
       });
       return dispositifs.map((d) => getUrl("/dispositif/[id]", locale, d._id));
+    }
 
     // DEMARCHES
-    case "demarches":
+    case "demarches": {
       const demarches = await API.getDispositifs({
         type: ContentType.DEMARCHE,
         locale: locale,
       });
       return demarches.map((d) => getUrl("/demarche/[id]", locale, d._id));
-
-    // STRUCTURES
-    case "structures":
-      const structures = await API.getActiveStructures();
-      return structures.map((s: GetActiveStructuresResponse) => getUrl("/annuaire/[id]", locale, s._id));
+    }
 
     // PAGES
     case "pages":

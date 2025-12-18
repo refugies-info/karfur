@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DotLottieReact, DotLottieReactProps } from "@lottiefiles/dotlottie-react";
+import { DotLottieReact, type DotLottieReactProps } from "@lottiefiles/dotlottie-react";
 import { cn } from "@refugies-info/ui";
 import { forwardRef, useImperativeHandle, useState } from "react";
 
@@ -71,7 +71,7 @@ export const ThumbUpAnimated = forwardRef<ThumbUpAnimatedRef, ThumbUpAnimatedPro
     };
 
     return (
-      <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)}>
+      <div className={cn("aspect-[33_/_49] h-auto w-[1.5rem]", className)} aria-hidden="true">
         <DotLottieReact
           src={ThumbUpAnimation}
           autoplay={false}

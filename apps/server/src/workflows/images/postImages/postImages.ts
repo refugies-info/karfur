@@ -1,9 +1,9 @@
-import { PostImageResponse } from "@refugies-info/api-types";
+import type { PostImageResponse } from "@refugies-info/api-types";
 import cloudinary from "cloudinary";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 import { ImageModel } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 /**
  * Interface for uploaded file.

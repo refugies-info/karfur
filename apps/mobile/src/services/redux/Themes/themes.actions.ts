@@ -1,5 +1,5 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetThemeResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_THEMES, SET_THEMES } from "./themes.actionTypes";
 
 export const setThemesActionCreator = (value: GetThemeResponse[]) => action(SET_THEMES, value);

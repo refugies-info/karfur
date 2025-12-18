@@ -1,24 +1,30 @@
-import { getModelForClass, setGlobalOptions, Severity } from "@typegoose/typegoose";
+import { getModelForClass, Severity, setGlobalOptions } from "@typegoose/typegoose";
+
 setGlobalOptions({ options: { allowMixed: Severity.ALLOW } });
 
 import { AdminOptions } from "./AdminOptions";
 import { AppUser, NotificationsSettings } from "./AppUser";
-import { Dispositif, DispositifId } from "./Dispositif";
+import { Dispositif, type DispositifId } from "./Dispositif";
 import { Error } from "./Error";
 import { Image } from "./Image";
 import { Indicator } from "./Indicator";
-import { Langue, LangueId } from "./Langue";
-import { Log, LogId } from "./Log";
+import { Langue, type LangueId } from "./Langue";
+import { Log, type LogId } from "./Log";
 import { MailEvent } from "./MailEvent";
-import { Need, NeedId } from "./Need";
+import { Need, type NeedId } from "./Need";
 import { Notification } from "./Notification";
 import { Role } from "./Role";
-import { Snapshot, SnapshotType } from "./Snapshot";
-import { Structure, StructureId } from "./Structure";
-import { Theme, ThemeId } from "./Theme";
-import { TraductionDiff, TraductionId, Traductions, TraductionsStatus } from "./Traductions";
-import { User, UserId } from "./User";
-import { Widget, WidgetId } from "./Widget";
+import { Snapshot, type SnapshotType } from "./Snapshot";
+import { Structure, type StructureId } from "./Structure";
+import { Theme, type ThemeId } from "./Theme";
+import {
+  type TraductionDiff,
+  type TraductionId,
+  Traductions,
+  TraductionsStatus,
+} from "./Traductions";
+import { User, type UserId } from "./User";
+import { Widget, type WidgetId } from "./Widget";
 
 export const AdminOptionsModel = getModelForClass(AdminOptions);
 export const AppUserModel = getModelForClass(AppUser);

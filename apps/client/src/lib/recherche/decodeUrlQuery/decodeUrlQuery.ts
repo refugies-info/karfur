@@ -1,7 +1,14 @@
-import { GetThemeResponse, Id } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions, PublicOptions, SortOptions, StatusOptions, TypeOptions } from "data/searchFilters";
-import { UrlSearchQuery } from "~/pages/recherche";
-import { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
+import type { GetThemeResponse, Id } from "@refugies-info/api-types";
+import type {
+  AgeOptions,
+  FrenchOptions,
+  PublicOptions,
+  SortOptions,
+  StatusOptions,
+  TypeOptions,
+} from "data/searchFilters";
+import type { UrlSearchQuery } from "~/pages/recherche";
+import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
 
 export const decodeQuery = (
@@ -44,8 +51,10 @@ export const decodeQuery = (
     if (departments) query.departments = decodeURIComponent(departments as string).split(",");
     if (needs) query.needs = decodeURIComponent(needs as string).split(",") as unknown as Id[];
     if (themes) query.themes = decodeURIComponent(themes as string).split(",") as unknown as Id[];
-    if (age && query.age.length === 0) query.age = decodeURIComponent(age as string).split(",") as AgeOptions[];
-    if (frenchLevel) query.frenchLevel = decodeURIComponent(frenchLevel as string).split(",") as FrenchOptions[];
+    if (age && query.age.length === 0)
+      query.age = decodeURIComponent(age as string).split(",") as AgeOptions[];
+    if (frenchLevel)
+      query.frenchLevel = decodeURIComponent(frenchLevel as string).split(",") as FrenchOptions[];
     if (routerQuery.public)
       query.public = decodeURIComponent(routerQuery.public as string).split(",") as PublicOptions[];
     if (status) query.status = decodeURIComponent(status as string).split(",") as StatusOptions[];

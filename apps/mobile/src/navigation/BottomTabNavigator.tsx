@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import { BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { type BottomTabBarProps, createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,7 @@ import {
   initialUrlSelector,
   isInitialUrlUsedSelector,
 } from "~/services/redux/User/user.selectors";
-import { BottomTabParamList } from "~/types/navigation";
+import type { BottomTabParamList } from "~/types/navigation";
 import { ExplorerNavigator } from "./BottomTabBar/ExplorerNavigator";
 import { FavorisNavigator } from "./BottomTabBar/FavorisNavigator";
 import { ProfileNavigator } from "./BottomTabBar/ProfileNavigator";
@@ -70,7 +70,14 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     };
 
     return (
-      <TabBarItem key={index} isFocused={isFocused} onPress={onPress} options={options} route={route} label={label} />
+      <TabBarItem
+        key={index}
+        isFocused={isFocused}
+        onPress={onPress}
+        options={options}
+        route={route}
+        label={label}
+      />
     );
   });
 
@@ -78,7 +85,8 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
   const explorerScreen = state.routes.find((route) => route.name === "Explorer")?.state?.index || 0; // will return undefined if explorerScreen just mounted, 0 else
 
   const hasNotificationScreen = (
-    state.routes.find((route) => route.name === "Explorer")?.state?.routes || ([] as { name: string }[])
+    state.routes.find((route) => route.name === "Explorer")?.state?.routes ||
+    ([] as { name: string }[])
   ).find((route) => route.name === "NotificationsScreen");
 
   const noReadButton =

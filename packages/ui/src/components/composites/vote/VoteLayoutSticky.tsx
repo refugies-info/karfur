@@ -1,19 +1,43 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { cn, ThumbUpAnimated, ThumbUpAnimatedRef } from "@refugies-info/ui";
+import { cn, ThumbUpAnimated, type ThumbUpAnimatedRef } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React, { forwardRef } from "react";
+
+type AnnounceOptions = {
+  priority?: "interrupt" | "normal";
+  delay?: number;
+};
 
 type VoteLayoutStickyProps = {
   className?: string;
   vote?: boolean | null;
   handleClickYes: () => void;
   handleClickNo: () => void;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  hasVoted: boolean;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
+  onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
 const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
-  ({ className, vote, handleClickYes, handleClickNo, thumbUpRef }, ref) => {
+  (
+    { className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef, onVoteAnnounce },
+    ref,
+  ) => {
     const { t } = useTranslation();
+    const prevHasVoted = React.useRef(hasVoted);
+
+    React.useEffect(() => {
+      if (hasVoted && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_thanks", "Merci pour votre retour"), {
+          priority: "interrupt",
+        });
+      } else if (!hasVoted && prevHasVoted.current && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), {
+          priority: "interrupt",
+        });
+      }
+      prevHasVoted.current = hasVoted;
+    }, [hasVoted, onVoteAnnounce, t]);
 
     return (
       <div
@@ -34,9 +58,11 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             )}
           >
             <div className="relative">
-              <span className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}></span>
+              <span
+                className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}
+              ></span>
               <ThumbUpAnimated
-                ref={thumbUpRef}
+                ref={thumbUpRef as React.RefObject<ThumbUpAnimatedRef>}
                 className={cn("absolute bottom-0", vote === true ? "opacity-100" : "opacity-0")}
                 themeId="light"
               />

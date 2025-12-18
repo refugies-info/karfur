@@ -1,4 +1,4 @@
-import { AddContactRequest } from "@refugies-info/api-types";
+import type { AddContactRequest } from "@refugies-info/api-types";
 import { addToNewsletter } from "~/connectors/brevo";
 import { sendNewsletterSubscriptionEmail } from "~/modules/mail/mail.service";
 

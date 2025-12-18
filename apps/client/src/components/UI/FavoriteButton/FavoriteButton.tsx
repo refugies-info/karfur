@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { Button } from "reactstrap";
@@ -47,12 +47,16 @@ export const FavoriteButton = (props: Props) => {
         title={isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}
       >
         <i className={isFavorite ? "fr-icon-star-fill" : "fr-icon-star-line"} />
-        <span>{isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}</span>
+        <span>
+          {isFavorite ? t("Dispositif.removeFromFavorites") : t("Dispositif.addToFavorites")}
+        </span>
       </Button>
 
-      {showFavoriteModal && (
-        <BookmarkedModal show={true} toggle={() => setShowFavoriteModal((o) => !o)} dispositifId={props.contentId} />
-      )}
+      <BookmarkedModal
+        open={showFavoriteModal}
+        onOpenChange={setShowFavoriteModal}
+        dispositifId={props.contentId}
+      />
       <Toast open={!!showFavoriteToast} closeCallback={() => setShowFavoriteToast(null)}>
         {showFavoriteToast === "added"
           ? t("Dispositif.messageAddedToFavorites")

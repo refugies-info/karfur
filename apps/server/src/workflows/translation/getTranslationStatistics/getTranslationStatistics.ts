@@ -1,11 +1,15 @@
-import { RoleName, Statistics, TranslationStatisticsRequest } from "@refugies-info/api-types";
+import {
+  RoleName,
+  type Statistics,
+  type TranslationStatisticsRequest,
+} from "@refugies-info/api-types";
 import { cache } from "~/libs/cache";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
-import { Dispositif } from "~/typegoose";
+import type { Dispositif } from "~/typegoose";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 const NB_WORDS_CACHE = "nbWordsCache";
@@ -15,7 +19,9 @@ const countWordsInDispositif = (dispositif: Dispositif): number =>
     .map(([ln, translation]) => (ln === "fr" ? 0 : countDispositifWords(translation.content)))
     .reduce((acc, count) => acc + count, 0);
 
-const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest): Promise<Statistics> =>
+const getTranslationStatistics = ({
+  facets = [],
+}: TranslationStatisticsRequest): Promise<Statistics> =>
   Promise.all([
     getActiveLanguagesFromDB(),
     getAllUsersForAdminFromDB({ roles: 1, last_connected: 1, selectedLanguages: 1 }),
@@ -56,7 +62,8 @@ const getTranslationStatistics = ({ facets = [] }: TranslationStatisticsRequest)
     if (noFacet || facets.includes("nbActiveTranslators")) {
       const now = Date.now();
       const activeTranslators = trads.filter(
-        (user) => user.hasRole(RoleName.TRAD) && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
+        (user) =>
+          user.hasRole(RoleName.TRAD) && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
       );
       const nbActiveTranslators = languages
         .filter((ln) => ln.i18nCode !== "fr")

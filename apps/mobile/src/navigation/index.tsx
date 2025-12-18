@@ -4,41 +4,43 @@
  *
  */
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { DefaultTheme, NavigationContainer, NavigationContainerRef } from "@react-navigation/native";
+import {
+  DefaultTheme,
+  NavigationContainer,
+  type NavigationContainerRef,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as Linking from "expo-linking";
+import type { EventSubscription, NotificationResponse } from "expo-notifications";
 import * as Notifications from "expo-notifications";
-import { EventSubscription } from "expo-notifications";
 import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { styles } from "~/theme";
-import type { RootStackParamList as NavigationRootStackParamList } from "../types/navigation";
-
-import { RootStackParamList } from "~/types/navigation";
-
-import { markNotificationAsSeen } from "~/utils/API";
-
-import { fetchNeedsActionCreator } from "~/services/redux/Needs/needs.actions";
-import {
-  getUserInfosActionCreator,
-  saveSelectedLanguageActionCreator,
-  setInitialUrlActionCreator,
-  setUserHasNewFavoritesActionCreator,
-} from "~/services/redux/User/user.actions";
-import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
-
-import { NotificationResponse } from "expo-notifications";
 import { getLocaleFromUrl } from "~/libs/getScreenFromUrl";
 import {
   disableNotificationsListener,
   getNotificationFromStack,
   notificationDataStackLength,
 } from "~/libs/notifications";
+import { fetchNeedsActionCreator } from "~/services/redux/Needs/needs.actions";
 import { fetchThemesActionCreator } from "~/services/redux/Themes/themes.actions";
 import { themesSelector } from "~/services/redux/Themes/themes.selectors";
+import {
+  getUserInfosActionCreator,
+  saveSelectedLanguageActionCreator,
+  setInitialUrlActionCreator,
+  setUserHasNewFavoritesActionCreator,
+} from "~/services/redux/User/user.actions";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "~/services/redux/User/user.selectors";
+import { styles } from "~/theme";
+import type { RootStackParamList } from "~/types/navigation";
+import { markNotificationAsSeen } from "~/utils/API";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
+import type { RootStackParamList as NavigationRootStackParamList } from "../types/navigation";
 import BottomTabNavigator from "./BottomTabNavigator";
 import { OnboardingStackNavigator } from "./OnboardingNavigator";
 
@@ -47,8 +49,8 @@ import { OnboardingStackNavigator } from "./OnboardingNavigator";
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
-  const responseListener = useRef<EventSubscription>();
-  const notificationsListener = useRef<EventSubscription>();
+  const responseListener = useRef<EventSubscription | undefined>(undefined);
+  const notificationsListener = useRef<EventSubscription | undefined>(undefined);
   const navigationRef = useRef<NavigationContainerRef<NavigationRootStackParamList>>(null);
   const queryClient = useQueryClient();
   const [navigationReady, setNavigationReady] = useState(false);
@@ -176,6 +178,8 @@ export const RootNavigator = () => {
       shouldShowAlert: true,
       shouldPlaySound: false,
       shouldSetBadge: false,
+      shouldShowBanner: false,
+      shouldShowList: false,
     }),
   });
 
@@ -192,7 +196,11 @@ export const RootNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={MyTheme} ref={navigationRef} onReady={() => setNavigationReady(true)}>
+    <NavigationContainer
+      theme={MyTheme}
+      ref={navigationRef}
+      onReady={() => setNavigationReady(true)}
+    >
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {!hasUserSeenOnboarding && !initialUrl ? (
           <Stack.Screen name="OnboardingNavigator" component={OnboardingStackNavigator} />

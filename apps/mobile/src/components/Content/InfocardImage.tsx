@@ -1,4 +1,4 @@
-import { Metadatas } from "@refugies-info/api-types";
+import type { Metadatas } from "@refugies-info/api-types";
 import Age from "~/theme/images/infocards/Age";
 import Commitment from "~/theme/images/infocards/Commitment";
 import Durations from "~/theme/images/infocards/Durations";

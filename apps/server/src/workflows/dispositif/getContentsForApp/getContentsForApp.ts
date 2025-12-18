@@ -1,13 +1,13 @@
 import {
-  ContentForApp,
+  type ContentForApp,
   ContentType,
-  GetContentsForAppRequest,
-  GetContentsForAppResponse,
-  Languages,
+  type GetContentsForAppRequest,
+  type GetContentsForAppResponse,
+  type Languages,
 } from "@refugies-info/api-types";
 
 import logger from "~/logger";
-import { Dispositif } from "~/typegoose";
+import type { Dispositif } from "~/typegoose";
 import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
 const present =
@@ -22,7 +22,8 @@ const present =
     let sponsorUrl: string | null = null;
     if (dispositif.typeContenu === ContentType.DISPOSITIF)
       sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
-    if (dispositif.typeContenu === ContentType.DEMARCHE) sponsorUrl = dispositif.administrationLogo?.secure_url || null;
+    if (dispositif.typeContenu === ContentType.DEMARCHE)
+      sponsorUrl = dispositif.administrationLogo?.secure_url || null;
 
     return {
       _id: dispositif._id.toString(),
@@ -37,10 +38,13 @@ const present =
       typeContenu: dispositif.typeContenu,
       sponsorUrl,
       locale: realLocale,
+      origin: dispositif.origin,
     };
   };
 
-export const getContentsForApp = async (req: GetContentsForAppRequest): Promise<GetContentsForAppResponse> => {
+export const getContentsForApp = async (
+  req: GetContentsForAppRequest,
+): Promise<GetContentsForAppResponse> => {
   logger.info("[getContentsForApp] called", req);
 
   const dispositifs = await getFilteredContentsForApp(req);

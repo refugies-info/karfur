@@ -1,1 +1,1 @@
-export { IconButtonProps, default } from "./IconButton";
+export { default, IconButtonProps } from "./IconButton";

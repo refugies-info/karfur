@@ -1,22 +1,27 @@
-import { GetUserContributionsResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import { DispositifOrigin, type GetUserContributionsResponse } from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, takeLatest } from "redux-saga/effects";
-import { logger } from "../../logger";
-import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { DELETE_DISPOSITIF, FETCH_USER_CONTRIBUTIONS } from "./userContributions.actionTypes";
+import { logger } from "~/logger";
+import API from "~/utils/API";
 import {
-  deleteDispositifActionCreator,
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
+import {
+  type deleteDispositifActionCreator,
   fetchUserContributionsActionCreator,
   setUserContributionsActionCreator,
 } from "./userContributions.actions";
+import { DELETE_DISPOSITIF, FETCH_USER_CONTRIBUTIONS } from "./userContributions.actionTypes";
 
 export function* fetchUserContributions(): SagaIterator {
   try {
     logger.info("[fetchUserContributions] saga");
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
     const data: GetUserContributionsResponse[] = yield call(API.getUserContributions);
-    yield put(setUserContributionsActionCreator(data));
+    const filteredData = data.filter((d) => d.origin === DispositifOrigin.RI);
+    yield put(setUserContributionsActionCreator(filteredData));
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));
   } catch (error) {
     logger.error("[fetchUserContributions] saga error", { error });
@@ -25,7 +30,9 @@ export function* fetchUserContributions(): SagaIterator {
   }
 }
 
-export function* deleteContributionAndUpdate(action: ReturnType<typeof deleteDispositifActionCreator>): SagaIterator {
+export function* deleteContributionAndUpdate(
+  action: ReturnType<typeof deleteDispositifActionCreator>,
+): SagaIterator {
   try {
     logger.info("[deleteContributionAndUpdate] saga", { data: action.payload });
     yield put(startLoading(LoadingStatusKey.FETCH_USER_CONTRIBUTIONS));

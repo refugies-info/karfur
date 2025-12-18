@@ -52,8 +52,7 @@
     }
 
     @include media-max("phone-down") {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+      display: flex;
 
       > div > div {
         max-width: 100%;

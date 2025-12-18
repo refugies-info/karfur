@@ -1,4 +1,4 @@
-import { LoginResponse, RegisterRequest } from "@refugies-info/api-types";
+import type { LoginResponse, RegisterRequest } from "@refugies-info/api-types";
 import passwordHash from "password-hash";
 import { addToNewsletter } from "~/connectors/brevo";
 import { isPasswordOk } from "~/libs/validatePassword";
