@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { getDbDepartment } from "~/lib/departments";
+import { getDbDepartment, getDepartmentFromNumber } from "~/lib/departments";
 import { levenshteinDistance, normalizeString } from "~/lib/string";
 
 interface Department {
@@ -22,8 +22,8 @@ const useDepartmentAutocomplete = () => {
     setHidePredictions(false);
   }, [search]);
 
-  const getPlaceSelected = (depName: string): Promise<string | null> => {
-    return Promise.resolve(getDbDepartment(depName));
+  const getPlaceSelected = (depCode: string): Promise<string | null> => {
+    return Promise.resolve(getDepartmentFromNumber(depCode));
   };
 
   const getFilteredDepartments = () => {
