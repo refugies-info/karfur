@@ -1,6 +1,7 @@
-import { Id, Poi } from "@refugies-info/api-types";
-import React, { useCallback, useMemo, useState } from "react";
-import { Modal, TouchableOpacity, View } from "react-native";
+import type { Id, Poi } from "@refugies-info/api-types";
+import type React from "react";
+import { useCallback, useMemo, useState } from "react";
+import { Modal, TouchableOpacity, type View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import {
@@ -9,15 +10,15 @@ import {
   IconButton,
   Map,
   MiniMap,
-  RTLView,
   ReadableText,
+  RTLView,
   TextDSFR_MD_Bold,
   TextDSFR_XL,
 } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import { styles } from "~/theme";
-import { MapGoogle } from "~/types/interface";
-import { PropsOf } from "~/utils";
+import type { MapGoogle } from "~/types/interface";
+import type { PropsOf } from "~/utils";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 
@@ -39,7 +40,10 @@ const FakeMapButtonText = styled(TextDSFR_MD_Bold)`
   margin-left: ${({ theme }) => (!theme.i18n.isRTL ? theme.margin : 0)}px;
   margin-right: ${({ theme }) => (theme.i18n.isRTL ? theme.margin : 0)}px;
 `;
-const ModalContainer: React.FC<React.PropsWithChildren<PropsOf<typeof View>>> = ({ children, ...other }) => {
+const ModalContainer: React.FC<React.PropsWithChildren<PropsOf<typeof View>>> = ({
+  children,
+  ...other
+}) => {
   const insets = useSafeAreaInsets();
   const Component = styled.View<{ paddingTop: number }>`
     display: flex;
@@ -111,7 +115,9 @@ export const MapMarkers = ({ markers, contentId, color }: Props) => {
         >
           <FakeMapButton accessible={false}>
             <Icon color={styles.colors.black} name="eye-outline" size={24} />
-            <FakeMapButtonText isRTL={isRTL}>{t("content_screen.see_map_button", "Voir la carte")}</FakeMapButtonText>
+            <FakeMapButtonText isRTL={isRTL}>
+              {t("content_screen.see_map_button", "Voir la carte")}
+            </FakeMapButtonText>
           </FakeMapButton>
         </TouchableOpacity>
       </MiniMap>

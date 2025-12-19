@@ -1,10 +1,19 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setWidgetsActionCreator } from "../widgets.actions";
 import { CREATE_WIDGET, DELETE_WIDGET, SAVE_WIDGET } from "../widgets.actionTypes";
-import latestActionsSaga, { createWidget, deleteWidget, fetchWidgets, saveWidget } from "../widgets.saga";
+import latestActionsSaga, {
+  createWidget,
+  deleteWidget,
+  fetchWidgets,
+  saveWidget,
+} from "../widgets.saga";
 import { widgetsSelector } from "../widgets.selectors";
 
 describe("[Saga] Widgets", () => {

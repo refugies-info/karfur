@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 // Component for DSFR styling
 export const DsfrProvider = ({ children }: { children: React.ReactNode }) => {

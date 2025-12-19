@@ -1,1 +1,1 @@
-export { TagProps, default } from "./Tag";
+export { default, TagProps } from "./Tag";

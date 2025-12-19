@@ -1,7 +1,7 @@
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { getNeedFromDB, saveNeedInDB } from "~/modules/needs/needs.repository";
-import { Response } from "~/types/interface";
+import type { Response } from "~/types/interface";
 
 export const addView = async (id: string): Response => {
   logger.info("[addView] received", id);

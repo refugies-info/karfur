@@ -1,4 +1,4 @@
-import {
+import type {
   AppUserRequest,
   AppUserUid,
   GetNotificationsSettingsResponse,
@@ -8,7 +8,7 @@ import {
 } from "@refugies-info/api-types";
 import { Body, Controller, Get, Header, Post, Route } from "tsoa";
 
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 import { getNotificationsSettings } from "~/workflows/appusers/getNotificationsSettings";
 import { postNotificationsSettings } from "~/workflows/appusers/postNotificationsSettings";
 import { updateAppUser } from "~/workflows/appusers/updateAppUser";

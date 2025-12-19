@@ -1,4 +1,8 @@
-import { GetTraductionsForReview, Languages, TranslatorFeedback } from "@refugies-info/api-types";
+import type {
+  GetTraductionsForReview,
+  Languages,
+  TranslatorFeedback,
+} from "@refugies-info/api-types";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAsyncFn, useList } from "react-use";
@@ -54,7 +58,12 @@ const NotationForm = ({ locale, translators, onDone }: Props) => {
         />
       ))}
       <div className="text-end mt-2">
-        <Button evaIcon="checkmark-circle-2" iconPosition="right" onClick={submit} disabled={loading}>
+        <Button
+          evaIcon="checkmark-circle-2"
+          iconPosition="right"
+          onClick={submit}
+          disabled={loading}
+        >
           Valider
         </Button>
       </div>

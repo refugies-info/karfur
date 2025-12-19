@@ -1,4 +1,4 @@
-import { GetLogResponse, Id } from "@refugies-info/api-types";
+import type { GetLogResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { LogLine } from "./LogLine";

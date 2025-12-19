@@ -1,4 +1,4 @@
-import { GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
+import { type GetUserInfoResponse, RoleName } from "@refugies-info/api-types";
 import { getPath } from "routes";
 
 const REDIRECT_KEY = "login_redirect";
@@ -38,13 +38,15 @@ export const getLoginRedirect = (roles: GetUserInfoResponse["roles"] | undefined
   const roleNames = roles.map((r) => r.nom);
   if (roleNames.includes(RoleName.ADMIN)) return "/backend/admin";
   if (roleNames.includes(RoleName.CAREGIVER)) return getPath("/recherche", "fr");
-  if (roleNames.includes(RoleName.EXPERT_TRAD) || roleNames.includes(RoleName.TRAD)) return getPath("/traduire", "fr");
+  if (roleNames.includes(RoleName.EXPERT_TRAD) || roleNames.includes(RoleName.TRAD))
+    return getPath("/traduire", "fr");
   if (roleNames.includes(RoleName.CONTRIB)) return getPath("/publier", "fr");
   return getPath("/recherche", "fr");
 };
 
 export const getInscriptionMessage = (loginRedirect: string) => {
-  if (loginRedirect.includes("recherche")) return "Vous aurez bientôt accès à votre contenu personnalisé !";
+  if (loginRedirect.includes("recherche"))
+    return "Vous aurez bientôt accès à votre contenu personnalisé !";
   if (loginRedirect.includes("publier")) return "Vous pourrez bientôt commencer à rédiger !";
   if (loginRedirect.includes("traduire")) return "Vous pourrez bientôt commencer à traduire !";
   if (loginRedirect.includes("dispositif") || loginRedirect.includes("demarche"))

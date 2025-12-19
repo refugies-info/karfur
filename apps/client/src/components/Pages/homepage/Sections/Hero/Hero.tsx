@@ -1,12 +1,11 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { isIOS } from "react-device-detect";
 import HeroBackground from "~/assets/homepage/hero/background-image.svg";
 import Character from "~/assets/homepage/hero/character.svg";
 import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
-
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   targetArrow: string;
@@ -43,7 +42,9 @@ const Hero = (props: Props) => {
         ) : (
           <p className="mb-0 flex flex-col items-center text-xl">
             <span>{t("Homepage.subtitle1", "Des ressources claires et traduites")}</span>
-            <span>{t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}</span>
+            <span>
+              {t("Homepage.subtitle2", "pour accompagner les personnes réfugiées en France")}
+            </span>
           </p>
         )}
 

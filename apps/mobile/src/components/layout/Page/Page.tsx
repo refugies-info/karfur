@@ -1,16 +1,21 @@
-import { Picture } from "@refugies-info/api-types";
-import React, { ComponentType, ReactNode, useCallback, useEffect, useMemo } from "react";
+import type { Picture } from "@refugies-info/api-types";
+import React, { type ComponentType, type ReactNode, useCallback, useEffect, useMemo } from "react";
 import {
   FlatList,
-  FlatListProps,
-  LayoutChangeEvent,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  ScrollView,
-  ScrollViewProps,
-  ViewStyle,
+  type FlatListProps,
+  type LayoutChangeEvent,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  type ScrollView,
+  type ScrollViewProps,
+  type ViewStyle,
 } from "react-native";
-import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import styled, { useTheme } from "styled-components/native";
 import { useStateOnce } from "~/hooks";
 import { useHeaderAnimation } from "~/hooks/useHeaderAnimation";
@@ -20,10 +25,10 @@ import { isDarkColor } from "../../utils";
 import { hexToRgb } from "../../utils/isDarkColor/hexToRgb";
 import Header, {
   HeaderContentEmpty,
-  HeaderContentProps,
+  type HeaderContentProps,
   HeaderContentTitle,
-  HeaderContentTitleProps,
-  HeaderProps,
+  type HeaderContentTitleProps,
+  type HeaderProps,
 } from "../Header";
 import ScrollableContent from "../ScrollableContent";
 import Spacer from "../Spacer";
@@ -120,7 +125,11 @@ const Page = <T,>({
     return `${r},${g},${b}`;
   }, [headerBackgroundColor]);
   const animatedBg = useAnimatedStyle(() => ({
-    backgroundColor: interpolateColor(bgController.value, [0, 1], [`rgba(${rgbColor},0)`, headerBackgroundColor]),
+    backgroundColor: interpolateColor(
+      bgController.value,
+      [0, 1],
+      [`rgba(${rgbColor},0)`, headerBackgroundColor],
+    ),
   }));
 
   useEffect(() => {
@@ -149,7 +158,10 @@ const Page = <T,>({
 
   const showHeaderTitle = showSimplifiedHeader || HeaderContentInternal === HeaderContentEmpty;
 
-  const isDarkBackground = useMemo(() => isDarkColor(headerBackgroundColor), [headerBackgroundColor]);
+  const isDarkBackground = useMemo(
+    () => isDarkColor(headerBackgroundColor),
+    [headerBackgroundColor],
+  );
 
   const scrollViewProps: ScrollViewProps | FlatListProps<T> = useMemo(
     () => ({
@@ -172,7 +184,11 @@ const Page = <T,>({
   return (
     <PageContainer backgroundColor={backgroundColor}>
       <FixedContainerForHeader
-        style={HeaderContent === HeaderContentEmpty ? { backgroundColor: headerBackgroundColor } : [animatedBg]}
+        style={
+          HeaderContent === HeaderContentEmpty
+            ? { backgroundColor: headerBackgroundColor }
+            : [animatedBg]
+        }
       >
         <Header
           {...headerProps}

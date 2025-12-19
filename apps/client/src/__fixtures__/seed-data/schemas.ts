@@ -11,7 +11,7 @@ export const ThemeSchema = new mongoose.Schema(
     name: { type: String, required: true },
     position: { type: Number, required: true },
   },
-  { collection: "themes" }
+  { collection: "themes" },
 );
 
 // Need schema - minimal version for testing
@@ -20,7 +20,7 @@ export const NeedSchema = new mongoose.Schema(
     theme: { type: mongoose.Schema.Types.ObjectId, ref: "Theme", required: true },
     name: { type: String },
   },
-  { collection: "needs" }
+  { collection: "needs" },
 );
 
 // Dispositif schema - minimal version for testing with essential fields
@@ -152,14 +152,18 @@ export const DispositifSchema = new mongoose.Schema(
       enum: ["Actif", "Archivé", "Brouillon", "En attente", "En attente admin", "Supprimé"],
       default: "Actif",
     },
-    typeContenu: { type: String, enum: ["dispositif", "demarche", "online"], default: "dispositif" },
+    typeContenu: {
+      type: String,
+      enum: ["dispositif", "demarche", "online"],
+      default: "dispositif",
+    },
     title: { type: String },
     name: { type: String },
     titreMarque: { type: String },
     abstract: { type: String },
     sponsorName: { type: String },
   },
-  { collection: "dispositifs" }
+  { collection: "dispositifs" },
 );
 
 // Schema registry for easy access to all test schemas

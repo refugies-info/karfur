@@ -1,9 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { Modal } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { RefObject, useCallback, useRef, useState } from "react";
+import { type RefObject, useCallback, useRef, useState } from "react";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
@@ -89,7 +89,9 @@ const ReactionModal = (props: Props) => {
           textArea
           state={hasError ? "error" : "default"}
           stateRelatedMessage={
-            hasError ? t("Dispositif.suggestionErrorTitle") + " " + t("Dispositif.suggestionErrorText") : undefined
+            hasError
+              ? t("Dispositif.suggestionErrorTitle") + " " + t("Dispositif.suggestionErrorText")
+              : undefined
           }
           nativeTextAreaProps={{
             ref: textareaRef,
@@ -103,7 +105,11 @@ const ReactionModal = (props: Props) => {
         />
 
         <div className="flex justify-end">
-          <Button iconId="fr-icon-checkbox-circle-fill" onClick={submit} disabled={!suggestion.trim()}>
+          <Button
+            iconId="fr-icon-checkbox-circle-fill"
+            onClick={submit}
+            disabled={!suggestion.trim()}
+          >
             {t("Valider", "Valider")}
           </Button>
         </div>

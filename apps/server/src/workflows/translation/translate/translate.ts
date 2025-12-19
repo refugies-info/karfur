@@ -1,5 +1,5 @@
 import { v2 } from "@google-cloud/translate";
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { isEmpty } from "lodash";
 
 const { Translate } = v2;

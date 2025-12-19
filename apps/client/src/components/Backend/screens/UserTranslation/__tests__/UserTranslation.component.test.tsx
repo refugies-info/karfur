@@ -7,6 +7,7 @@ import { fetchDispositifsWithTranslationsStatusActionCreator } from "~/services/
 import API from "~/utils/API";
 import { wrapWithProvidersAndRenderForTesting } from "../../../../../../jest/lib/wrapWithProvidersAndRender";
 import UserTranslation from "../UserTranslation";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 // Mock history
@@ -17,16 +18,19 @@ jest.mock("react-router-dom", () => ({
   useHistory: () => ({ replace }),
 }));
 
-jest.mock("services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions", () => {
-  const actions = jest.requireActual(
-    "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
-  );
-  return {
-    fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
-      actions.fetchDispositifsWithTranslationsStatusActionCreator,
-    ),
-  };
-});
+jest.mock(
+  "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
+  () => {
+    const actions = jest.requireActual(
+      "services/DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.actions",
+    );
+    return {
+      fetchDispositifsWithTranslationsStatusActionCreator: jest.fn(
+        actions.fetchDispositifsWithTranslationsStatusActionCreator,
+      ),
+    };
+  },
+);
 jest.mock("utils/API");
 
 describe("user translation", () => {

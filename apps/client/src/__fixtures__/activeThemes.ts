@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 
 // Helper function to ensure all themes have the required gradientColors property
 const ensureGradientColors = (themes: any[]) => {
@@ -678,27 +678,32 @@ const originalThemesMock = [
       color30: "#FDC4FC",
     },
     icon: {
-      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1663058487/pictures/o52hghafc04bexxedrik.svg",
+      secure_url:
+        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1663058487/pictures/o52hghafc04bexxedrik.svg",
       public_id: "pictures/o52hghafc04bexxedrik",
       imgId: "63204239dd70acd9199aed06",
     },
     banner: {
-      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662990767/pictures/o1x9jwn7ncwx18mqcnx9.svg",
+      secure_url:
+        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662990767/pictures/o1x9jwn7ncwx18mqcnx9.svg",
       public_id: "pictures/o1x9jwn7ncwx18mqcnx9",
       imgId: "631f39b068917b340a0411fe",
     },
     appBanner: {
-      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662990785/pictures/ninp4ko4vbnrorsgyz7z.svg",
+      secure_url:
+        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662990785/pictures/ninp4ko4vbnrorsgyz7z.svg",
       public_id: "pictures/ninp4ko4vbnrorsgyz7z",
       imgId: "631f39c368917b340a041202",
     },
     appImage: {
-      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg",
+      secure_url:
+        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662999880/pictures/ot6qwuszncts5ppxusds.svg",
       public_id: "pictures/ot6qwuszncts5ppxusds",
       imgId: "631f5d4ad449751db1492051",
     },
     shareImage: {
-      secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662995793/pictures/wndug5571lzvcs1sguc1.png",
+      secure_url:
+        "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662995793/pictures/wndug5571lzvcs1sguc1.png",
       public_id: "pictures/wndug5571lzvcs1sguc1",
       imgId: "631f4d52d4047aca79ffd170",
     },

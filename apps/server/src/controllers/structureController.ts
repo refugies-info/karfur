@@ -1,4 +1,4 @@
-import {
+import type {
   GetActiveStructuresResponse,
   GetAllStructuresResponse,
   GetStructureResponse,
@@ -8,10 +8,22 @@ import {
   PatchStructureRolesRequest,
   PostStructureRequest,
 } from "@refugies-info/api-types";
-import { Request as ExRequest } from "express";
-import { Body, Controller, Get, Patch, Path, Post, Queries, Query, Request, Route, Security } from "tsoa";
+import type { Request as ExRequest } from "express";
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Path,
+  Post,
+  Queries,
+  Query,
+  Request,
+  Route,
+  Security,
+} from "tsoa";
 import { validateId } from "~/libs/validateId";
-import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import type { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { createStructure } from "~/workflows/structure/createStructure";
 import { getActiveStructures } from "~/workflows/structure/getActiveStructures";
 import { getAllStructures } from "~/workflows/structure/getAllStructures";
@@ -27,7 +39,10 @@ export class StructureController extends Controller {
     fromSite: [],
   })
   @Post("/")
-  public async createStructure(@Body() body: PostStructureRequest, @Request() request: IRequest): Response {
+  public async createStructure(
+    @Body() body: PostStructureRequest,
+    @Request() request: IRequest,
+  ): Response {
     return createStructure(body, request.userId);
   }
 

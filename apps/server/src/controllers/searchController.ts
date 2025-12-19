@@ -1,7 +1,7 @@
-import { UpdateIndexResponse } from "@refugies-info/api-types";
+import type { UpdateIndexResponse } from "@refugies-info/api-types";
 import { Controller, Get, Route } from "tsoa";
 
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 import { updateIndex } from "~/workflows/search/updateIndex";
 
 @Route("search")

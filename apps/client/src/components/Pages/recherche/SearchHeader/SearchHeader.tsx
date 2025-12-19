@@ -7,7 +7,7 @@ import { Container } from "reactstrap";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
+import type { SearchCountsResponse } from "~/pages/api/search/counts";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { SearchCountsContext } from "../SearchCountsContext";
@@ -52,7 +52,8 @@ const SearchHeader = (props: Props) => {
   };
 
   const showNotDeployedMessage =
-    departmentsNotDeployed.length > 0 && departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
+    departmentsNotDeployed.length > 0 &&
+    departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
   return (
     <header role="banner" aria-labelledby="search-title">
@@ -70,7 +71,9 @@ const SearchHeader = (props: Props) => {
           <div className={styles.notDeployedAlert}>
             <Alert
               closable
-              description={t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") })}
+              description={t("Recherche.notDeployedText", {
+                department: departmentsNotDeployed.join(", "),
+              })}
               onClose={hideBanner}
               severity="warning"
               small

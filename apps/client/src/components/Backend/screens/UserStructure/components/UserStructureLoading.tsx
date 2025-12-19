@@ -13,7 +13,13 @@ export const UserStructureLoading = () => (
       </SkeletonTheme>
     </StructurePictureContainer>
     <StructureContainer>
-      <TitleWithNumber isLoading={true} textBefore={"Membres"} textPlural="" textSingular="" amount={0} />
+      <TitleWithNumber
+        isLoading={true}
+        textBefore={"Membres"}
+        textPlural=""
+        textSingular=""
+        amount={0}
+      />
       <SkeletonTheme baseColor={colors.white}>
         <Skeleton count={1} height={50} width={700} />
       </SkeletonTheme>

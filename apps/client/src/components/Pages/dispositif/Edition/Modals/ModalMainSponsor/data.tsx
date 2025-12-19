@@ -1,8 +1,8 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { MainSponsor } from "@refugies-info/api-types";
-import React from "react";
+import type { MainSponsor } from "@refugies-info/api-types";
+import type React from "react";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { ContactInfos } from "./ModalMainSponsor";
+import type { ContactInfos } from "./ModalMainSponsor";
 
 // Help
 type Help = { title: string; content: string | React.ReactNode | (string | React.ReactNode)[] };
@@ -54,12 +54,12 @@ export const helpMember: Help = {
   title: "Qu’est-ce que ça change ?",
   content: [
     <>
-      <strong>Oui</strong> : Vous vous engagez à mettre à jour votre fiche au fil du temps et à prendre en compte les
-      réactions des internautes.
+      <strong>Oui</strong> : Vous vous engagez à mettre à jour votre fiche au fil du temps et à
+      prendre en compte les réactions des internautes.
     </>,
     <>
-      <strong>Non</strong> : Vous acceptez de transmettre la fiche à la structure responsable pour qu’elle valide et
-      mette à jour les informations.
+      <strong>Non</strong> : Vous acceptez de transmettre la fiche à la structure responsable pour
+      qu’elle valide et mette à jour les informations.
     </>,
   ],
 };
@@ -79,7 +79,8 @@ const thanksTransferTo: ThanksMessage = {
   ],
 };
 const thanksTransferToNew: ThanksMessage = {
-  title: "Notre équipe éditoriale va contacter cette structure afin qu’elle reprenne la main sur la fiche.",
+  title:
+    "Notre équipe éditoriale va contacter cette structure afin qu’elle reprenne la main sur la fiche.",
   items: [
     "Une fois que la structure aura repris la main sur la fiche, vous n'y aurez plus accès.",
     "Le responsable de la structure va relire et valider la fiche.",
@@ -87,7 +88,8 @@ const thanksTransferToNew: ThanksMessage = {
   ],
 };
 const thanksCreated: ThanksMessage = {
-  title: "Les informations sur votre structure vont être transférées à notre équipe éditoriale pour validation.",
+  title:
+    "Les informations sur votre structure vont être transférées à notre équipe éditoriale pour validation.",
   items: [
     "Vous allez être rattaché comme premier responsable de cette structure.",
     "Si votre action évolue un jour, pensez bien à faire les modifications nécessaires sur votre fiche.",
@@ -95,7 +97,8 @@ const thanksCreated: ThanksMessage = {
   ],
 };
 const thanksToContact: ThanksMessage = {
-  title: "Notre équipe éditoriale va contacter cette structure afin qu’elle reprenne la main sur la fiche.",
+  title:
+    "Notre équipe éditoriale va contacter cette structure afin qu’elle reprenne la main sur la fiche.",
   items: [
     "Une fois que la structure aura repris la main sur la fiche, vous n'y aurez plus accès.",
     "Le responsable de la structure va relire et valider la fiche.",
@@ -103,7 +106,8 @@ const thanksToContact: ThanksMessage = {
   ],
 };
 const thanksAttachUser: ThanksMessage = {
-  title: "L'équipe éditoriale est désormais en charge de vous rattacher à votre structure et de valider votre fiche.",
+  title:
+    "L'équipe éditoriale est désormais en charge de vous rattacher à votre structure et de valider votre fiche.",
   items: [
     "Vous serez notifié par mail lorsque notre équipe éditoriale vous aura rattaché à votre structure. En attendant, vous n’aurez plus accès temporairement à la fiche.",
     "Si votre action évolue un jour, pensez bien à faire les modifications nécessaires sur votre fiche.",

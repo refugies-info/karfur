@@ -1,4 +1,4 @@
-import {
+import type {
   AddUserFavoriteRequest,
   CheckCodeRequest,
   CheckUserExistsResponse,
@@ -21,11 +21,25 @@ import {
   UpdateUserRequest,
   UpdateUserResponse,
 } from "@refugies-info/api-types";
-import { Request as ExRequest } from "express";
+import type { Request as ExRequest } from "express";
 import { pick } from "lodash";
-import { Body, Controller, Delete, Get, Patch, Path, Post, Put, Queries, Query, Request, Route, Security } from "tsoa";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Path,
+  Post,
+  Put,
+  Queries,
+  Query,
+  Request,
+  Route,
+  Security,
+} from "tsoa";
 import { validateId } from "~/libs/validateId";
-import { IRequest, Response, ResponseWithData } from "~/types/interface";
+import type { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { setSelectedLanguages } from "~/workflows";
 import { addUserFavorite } from "~/workflows/users/addUserFavorite";
 import { checkCode } from "~/workflows/users/checkCode";
@@ -115,13 +129,17 @@ export class UserController extends Controller {
   }
 
   @Post("/password/reset")
-  public async resetPassword(@Body() body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> {
+  public async resetPassword(
+    @Body() body: ResetPasswordRequest,
+  ): ResponseWithData<ResetPasswordResponse> {
     return resetPassword(body);
   }
 
   @Security("fromSite")
   @Post("/password/new")
-  public async setNewPassword(@Body() body: NewPasswordRequest): ResponseWithData<NewPasswordResponse> {
+  public async setNewPassword(
+    @Body() body: NewPasswordRequest,
+  ): ResponseWithData<NewPasswordResponse> {
     return setNewPassword(body);
   }
 
@@ -136,7 +154,10 @@ export class UserController extends Controller {
 
   @Security("jwt")
   @Put("/favorites")
-  public async addUserFavorite(@Request() request: ExRequest, @Body() body: AddUserFavoriteRequest): Response {
+  public async addUserFavorite(
+    @Request() request: ExRequest,
+    @Body() body: AddUserFavoriteRequest,
+  ): Response {
     return addUserFavorite(request.user, body);
   }
 
@@ -157,8 +178,13 @@ export class UserController extends Controller {
 
   @Post("/selected_languages")
   @Security("jwt")
-  public async selectedLanguages(@Request() request: IRequest, @Body() body: SelectedLanguagesRequest): Response {
-    return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({ text: "success" }));
+  public async selectedLanguages(
+    @Request() request: IRequest,
+    @Body() body: SelectedLanguagesRequest,
+  ): Response {
+    return setSelectedLanguages(request.user, body.selectedLanguages).then(() => ({
+      text: "success",
+    }));
   }
 
   @Get("/")

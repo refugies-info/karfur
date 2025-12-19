@@ -1,5 +1,5 @@
 import Svg, { Path } from "react-native-svg";
-import IconProps from "./IconProps";
+import type IconProps from "./IconProps";
 
 const IconI = ({ color, size }: IconProps) => {
   return (

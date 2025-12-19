@@ -1,8 +1,8 @@
 import { useIsFocused } from "@react-navigation/native";
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import * as React from "react";
 import { Dimensions } from "react-native";
-import Carousel, { ICarouselInstance } from "react-native-reanimated-carousel";
+import Carousel, { type ICarouselInstance } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import PageOnboarding from "~/components/layout/PageOnboarding";
@@ -10,7 +10,7 @@ import { TAB_BAR_HEIGHT } from "~/components/layout/PageOnboarding/PageOnboardin
 import { OnboardingCarouselElement } from "~/components/Onboarding/OnboardingCarouselElement";
 import { OnboardingPagination } from "~/components/Onboarding/OnboardingPagination";
 import { useStopVoiceover } from "~/hooks/useStopVoiceover";
-import { OnboardingParamList } from "~/types/navigation";
+import type { OnboardingParamList } from "~/types/navigation";
 
 const MAX_STEP = 5;
 
@@ -21,7 +21,9 @@ const PaginationContainer = styled.View<{ insetTop: number }>`
   right: ${({ theme }) => theme.margin * 3}px;
 `;
 
-export const OnboardingSteps = ({ navigation }: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
+export const OnboardingSteps = ({
+  navigation,
+}: StackScreenProps<OnboardingParamList, "OnboardingSteps">) => {
   const width = Dimensions.get("window").width;
   const height = Dimensions.get("window").height;
   const insets = useSafeAreaInsets();
@@ -65,7 +67,10 @@ export const OnboardingSteps = ({ navigation }: StackScreenProps<OnboardingParam
         scrollAnimationDuration={500}
         onSnapToItem={(index) => setIndex(index)}
         renderItem={(item) => (
-          <OnboardingCarouselElement step={item.index} focused={isFocused && index === item.index} />
+          <OnboardingCarouselElement
+            step={item.index}
+            focused={isFocused && index === item.index}
+          />
         )}
       />
     </PageOnboarding>

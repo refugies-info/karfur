@@ -10,7 +10,7 @@ import FButton from "~/components/UI/FButton/FButton";
 import { useLocale } from "~/hooks";
 import { userSelector } from "~/services/User/user.selectors";
 import Modal from "../Modal";
-import { pseudoModal, PseudoModal } from "../PseudoModal";
+import { PseudoModal, pseudoModal } from "../PseudoModal";
 import WriteContentCard from "./WriteContentCard";
 import styles from "./WriteContentModal.module.scss";
 
@@ -55,7 +55,11 @@ const WriteContentModal = ({ show, close }: Props) => {
     <>
       <PseudoModal successCallback={() => setShowWriteModal(true)} />
 
-      <Modal show={showWriteModal} toggle={() => setShowWriteModal((o) => !o)} className={styles.modal}>
+      <Modal
+        show={showWriteModal}
+        toggle={() => setShowWriteModal((o) => !o)}
+        className={styles.modal}
+      >
         <ModalBody>
           <button className={styles.close} onClick={() => setShowWriteModal(false)}>
             <EVAIcon name="close-outline" fill="dark" size={24} className="me-2" />

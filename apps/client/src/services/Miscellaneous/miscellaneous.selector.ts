@@ -1,3 +1,4 @@
-import { RootState } from "~/services/rootReducer";
+import type { RootState } from "~/services/rootReducer";
 
-export const showNewsletterModalSelector = (state: RootState): boolean => state.miscellaneous.showNewsletterModal;
+export const showNewsletterModalSelector = (state: RootState): boolean =>
+  state.miscellaneous.showNewsletterModal;

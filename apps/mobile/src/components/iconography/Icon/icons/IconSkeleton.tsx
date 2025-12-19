@@ -1,6 +1,6 @@
 import Svg, { Circle } from "react-native-svg";
 import { useTheme } from "styled-components/native";
-import IconProps from "./IconProps";
+import type IconProps from "./IconProps";
 
 const IconSkeleton = ({ size }: Omit<IconProps, "color">) => {
   const theme = useTheme();

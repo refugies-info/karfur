@@ -35,7 +35,10 @@ const SearchResults = (props: Props) => {
   const noResultsDemarche = useSelector(noResultsSelector);
   const counts = useSelector(searchCountsDataSelector);
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
-  const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
+  const showSuggestions = useMemo(
+    () => getDisplayRuleForQuery(query, "suggestions")?.display,
+    [query],
+  );
 
   const announce = useAnnounce();
 
@@ -50,7 +53,10 @@ const SearchResults = (props: Props) => {
 
   const { isMobile } = useWindowSize();
   const dispositifs = useMemo(
-    () => (!isMobile ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE) : filteredResults.matches),
+    () =>
+      !isMobile
+        ? filteredResults.matches.slice(0, page * MATCHES_PER_PAGE)
+        : filteredResults.matches,
     [filteredResults.matches, isMobile, page],
   );
 
@@ -71,10 +77,15 @@ const SearchResults = (props: Props) => {
   }, [page]);
 
   const handleSeeMore = () => {
-    announce(t("Recherche.loadingResults", "Chargement de {{count}} résultats...", { count: seeMoreCount }), {
-      priority: "interrupt",
-      delay: page === 1 ? 1000 : 0,
-    });
+    announce(
+      t("Recherche.loadingResults", "Chargement de {{count}} résultats...", {
+        count: seeMoreCount,
+      }),
+      {
+        priority: "interrupt",
+        delay: page === 1 ? 1000 : 0,
+      },
+    );
     setPage(page + 1);
   };
 
@@ -82,9 +93,14 @@ const SearchResults = (props: Props) => {
     if (page === 1) return;
 
     if (remainingItems > 0) {
-      announce(t("Recherche.remainingResults", "Il reste {{count}} résultats à charger", { count: remainingItems }), {
-        priority: "normal",
-      });
+      announce(
+        t("Recherche.remainingResults", "Il reste {{count}} résultats à charger", {
+          count: remainingItems,
+        }),
+        {
+          priority: "normal",
+        },
+      );
     } else {
       announce(t("Recherche.allResultsDisplayed", "Tous les résultats sont affichés"), {
         priority: "normal",
@@ -103,9 +119,17 @@ const SearchResults = (props: Props) => {
               <Image src={TutoImg} width={176} height={120} alt="" />
               <div>
                 <h2 className="mb-2" id="resultats">
-                  {t("Recherche.noResultTitle", "Oups ! Il n’y a aucun résultat avec vos critères de recherche.")}
+                  {t(
+                    "Recherche.noResultTitle",
+                    "Oups ! Il n’y a aucun résultat avec vos critères de recherche.",
+                  )}
                 </h2>
-                <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
+                <p>
+                  {t(
+                    "Recherche.noResultText",
+                    "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.",
+                  )}
+                </p>
               </div>
 
               <Button
@@ -124,7 +148,12 @@ const SearchResults = (props: Props) => {
               </h2>
               <div className={styles.results} id="resultats-suggestions-liste">
                 {noResultsDemarche.map((d) => (
-                  <DispositifCard className={styles.dispositifCard} key={d._id.toString()} dispositif={d} targetBlank />
+                  <DispositifCard
+                    className={styles.dispositifCard}
+                    key={d._id.toString()}
+                    dispositif={d}
+                    targetBlank
+                  />
                 ))}
               </div>
             </div>
@@ -133,7 +162,8 @@ const SearchResults = (props: Props) => {
           <div style={{ width: "100%" }}>
             <h2 id="resultats">
               {t("Recherche.yourResults", { count: dispositifs.length })}
-              {remainingItems > 0 && ` ${t("Recherche.resultsOn", { count: searchResults.matches.length })}`}
+              {remainingItems > 0 &&
+                ` ${t("Recherche.resultsOn", { count: searchResults.matches.length })}`}
             </h2>
 
             <div className={styles.results} id="resultats-liste">
@@ -155,7 +185,9 @@ const SearchResults = (props: Props) => {
             <div className="mt-10 flex w-full justify-center">
               {remainingItems !== 0 && (
                 <Button onClick={handleSeeMore}>
-                  {t("Recherche.loadMore", "Afficher {{count}} résultats supplémentaires", { count: seeMoreCount })}
+                  {t("Recherche.loadMore", "Afficher {{count}} résultats supplémentaires", {
+                    count: seeMoreCount,
+                  })}
                 </Button>
               )}
             </div>

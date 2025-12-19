@@ -1,12 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { useNotifications } from "~/hooks/useNotifications";
 import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
-import { ExplorerParamList } from "~/types/navigation";
+import type { ExplorerParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 
@@ -66,10 +66,17 @@ const NotificationsIcon = () => {
         navigate("NotificationsScreen", {});
       }}
     >
-      <Icon width={ICON_WIDTH} height={ICON_HEIGHT} name="bell-outline" fill={styles.colors.black} />
+      <Icon
+        width={ICON_WIDTH}
+        height={ICON_HEIGHT}
+        name="bell-outline"
+        fill={styles.colors.black}
+      />
       {accessGranted && notifications && notifications.unseenCount > 0 && (
         <View style={stylesheet.unseenContainer}>
-          <Text style={stylesheet.unseenText}>{notifications.unseenCount > 9 ? "9" : notifications.unseenCount}</Text>
+          <Text style={stylesheet.unseenText}>
+            {notifications.unseenCount > 9 ? "9" : notifications.unseenCount}
+          </Text>
         </View>
       )}
     </TouchableOpacity>

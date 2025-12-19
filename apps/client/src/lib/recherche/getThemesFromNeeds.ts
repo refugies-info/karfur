@@ -1,4 +1,4 @@
-import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 
 /**
  * Get themes from selected needs
@@ -6,7 +6,10 @@ import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types"
  * @param allNeeds - all needs
  * @returns - themes and needs
  */
-export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedResponse[]): { themes: Id[]; needs: Id[] } => {
+export const getThemesFromNeeds = (
+  needsSelected: Id[],
+  allNeeds: GetNeedResponse[],
+): { themes: Id[]; needs: Id[] } => {
   const needs = needsSelected
     .map((need) => allNeeds.find((n) => n._id === need))
     .filter((n) => !!n) as GetNeedResponse[];
@@ -23,7 +26,9 @@ export const getThemesFromNeeds = (needsSelected: Id[], allNeeds: GetNeedRespons
   const themesSelected: Id[] = [];
   for (const themeDisplayed of themesDisplayed) {
     const totalNeedsOfTheme = allNeeds.filter((n) => n.theme._id === themeDisplayed._id).length;
-    const countNeedsOfThemeSelected = needs.filter((n) => n.theme._id === themeDisplayed._id).length;
+    const countNeedsOfThemeSelected = needs.filter(
+      (n) => n.theme._id === themeDisplayed._id,
+    ).length;
     if (totalNeedsOfTheme === countNeedsOfThemeSelected) {
       themesSelected.push(themeDisplayed._id);
     }

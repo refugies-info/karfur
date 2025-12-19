@@ -37,10 +37,16 @@ const DetailTagText = styled(TextDSFR_XS_Bold)`
 const FilterButton = (props: FilterButtonProps) => {
   const { t } = useTranslationWithRTL();
   return (
-    <ChoiceButton onPress={props.onPress} isSelected={props.isSelected} testID={`test-filter-${props.text}`}>
+    <ChoiceButton
+      onPress={props.onPress}
+      isSelected={props.isSelected}
+      testID={`test-filter-${props.text}`}
+    >
       <ReadableText text={t("filters." + props.text)}>
         <Content>
-          <StyledText isSelected={props.isSelected}>{t("filters." + props.text, props.text)}</StyledText>
+          <StyledText isSelected={props.isSelected}>
+            {t("filters." + props.text, props.text)}
+          </StyledText>
           {props.text !== "french_level_0" && props.details && (
             <Details>
               {props.details.map((detail, i) => (

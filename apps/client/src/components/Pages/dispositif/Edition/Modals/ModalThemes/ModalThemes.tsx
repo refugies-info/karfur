@@ -1,11 +1,17 @@
 import { fr } from "@codegouvfr/react-dsfr";
-import { CreateDispositifRequest } from "@refugies-info/api-types";
+import type { CreateDispositifRequest } from "@refugies-info/api-types";
 import { useCallback, useMemo, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import BaseModal from "~/components/UI/BaseModal";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
+import {
+  hasErroredSelector,
+  isLoadingSelector,
+} from "~/services/LoadingStatus/loadingStatus.selectors";
+
+import { allThemesSelector, hasThemesLoadedSelector } from "~/services/Themes/themes.selectors";
 import { SimpleFooter } from "../components";
 import styles from "./ModalThemes.module.scss";
 import ThemeSelectButton from "./ThemeSelectButton";
@@ -29,9 +35,15 @@ const MAX_SECONDARY_THEMES = 2;
 
 const ModalThemes = (props: Props) => {
   const { setValue, getValues } = useFormContext<CreateDispositifRequest>();
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
+  const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_THEMES));
+  const hasError = useSelector(hasErroredSelector(LoadingStatusKey.FETCH_THEMES));
+  const hasLoaded = useSelector(hasThemesLoadedSelector);
+
   const [mainTheme, setMainTheme] = useState<string | undefined>(getValues("theme") || undefined);
-  const [secondaryThemes, setSecondaryThemes] = useState<string[]>(getValues("secondaryThemes") || []);
+  const [secondaryThemes, setSecondaryThemes] = useState<string[]>(
+    getValues("secondaryThemes") || [],
+  );
 
   const selectTheme = useCallback(
     (id: string) => {
@@ -66,7 +78,7 @@ const ModalThemes = (props: Props) => {
   );
 
   const remainingSelect = useMemo(
-    () => 3 - (!!mainTheme ? 1 : 0) - secondaryThemes.length,
+    () => 3 - (mainTheme ? 1 : 0) - secondaryThemes.length,
     [mainTheme, secondaryThemes],
   );
 
@@ -90,6 +102,13 @@ const ModalThemes = (props: Props) => {
     >
       <div>
         <p className="mb-6">Choisissez un thème principal et jusqu’à deux thèmes secondaires :</p>
+
+        {(isLoading || !hasLoaded) && <p className="mb-6">Chargement des thèmes...</p>}
+        {hasError && <p className="mb-6 text-error">Erreur lors du chargement des thèmes.</p>}
+        {hasLoaded && !isLoading && !hasError && themes.length === 0 && (
+          <p className="mb-6">Aucun thème disponible.</p>
+        )}
+
         {themes.map((theme, i) => {
           const isSelectedPrimary = mainTheme === theme._id;
           const isSelected = secondaryThemes.includes(theme._id.toString());
@@ -107,7 +126,12 @@ const ModalThemes = (props: Props) => {
 
         {remainingSelect > 0 && (
           <p className={styles.help}>
-            <EVAIcon name="info" size={16} fill={fr.colors.decisions.text.default.info.default} className="me-2" />
+            <EVAIcon
+              name="info"
+              size={16}
+              fill={fr.colors.decisions.text.default.info.default}
+              className="me-2"
+            />
             {remainingSelect} thèmes restants maximum
           </p>
         )}

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { EditLanguage } from "~/components/User";
 import { fetchUserActionCreator } from "~/services/User/user.actions";
 
-interface Props {}
+type Props = {};
 
 export const modalLanguage = createModal({
   id: "user-language-modal",

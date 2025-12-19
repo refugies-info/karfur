@@ -1,7 +1,8 @@
 import Input from "@codegouvfr/react-dsfr/Input";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { memo } from "react";
+import type React from "react";
+import { memo } from "react";
 
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;

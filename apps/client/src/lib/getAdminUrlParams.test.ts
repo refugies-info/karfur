@@ -74,7 +74,9 @@ describe("getInitialFilters", () => {
     });
   });
   it("should use localStorage if no query", () => {
-    global.Storage.prototype.getItem = jest.fn((key) => "tab=utilisateurs&filter=Actif&contentId=abc");
+    global.Storage.prototype.getItem = jest.fn(
+      (key) => "tab=utilisateurs&filter=Actif&contentId=abc",
+    );
     const res = getInitialFilters({ query: {} }, "utilisateurs");
     expect(res).toEqual({
       filter: "Actif",

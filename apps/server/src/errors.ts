@@ -1,4 +1,4 @@
-import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
+import type { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { ValidateError } from "tsoa";
 import logger from "~/logger";
 

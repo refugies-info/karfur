@@ -1,4 +1,9 @@
-import { ContentType, GetWidgetResponse, Id, WidgetRequest } from "@refugies-info/api-types";
+import {
+  ContentType,
+  type GetWidgetResponse,
+  type Id,
+  type WidgetRequest,
+} from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
@@ -26,7 +31,9 @@ export const EditWidgetModal = (props: Props) => {
   const [selectedTypeContenu, setSelectedTypeContenu] = useState<ContentType[]>(
     props.widget?.typeContenu || [ContentType.DISPOSITIF, ContentType.DEMARCHE],
   );
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(props.widget?.languages || []);
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(
+    props.widget?.languages || [],
+  );
   const [selectedDepartment, setSelectedDepartment] = useState(props.widget?.department || "");
   const [code, setCode] = useState(props.widget ? generateIframe(props.widget) : "");
   const [copyAndCloseAfterEdit, setCopyAndCloseAfterEdit] = useState(false);
@@ -95,11 +102,14 @@ export const EditWidgetModal = (props: Props) => {
           <form>
             <ThemesInput
               selectedThemes={selectedThemes}
-              //@ts-ignore
+              //@ts-expect-error
               setSelectedThemes={setSelectedThemes}
             />
 
-            <LocationInput selectedDepartment={selectedDepartment} setSelectedDepartment={setSelectedDepartment} />
+            <LocationInput
+              selectedDepartment={selectedDepartment}
+              setSelectedDepartment={setSelectedDepartment}
+            />
 
             <TypeContenuInput
               selectedTypeContenu={selectedTypeContenu}
@@ -128,10 +138,21 @@ export const EditWidgetModal = (props: Props) => {
               Annuler
             </FButton>
             <div>
-              <FButton type="dark" name="save-outline" disabled={!canSubmit} onClick={editWidget} className="me-2">
+              <FButton
+                type="dark"
+                name="save-outline"
+                disabled={!canSubmit}
+                onClick={editWidget}
+                className="me-2"
+              >
                 Sauvegarder
               </FButton>
-              <FButton type="validate" name="copy-outline" disabled={!canSubmit} onClick={editAndCopy}>
+              <FButton
+                type="validate"
+                name="copy-outline"
+                disabled={!canSubmit}
+                onClick={editAndCopy}
+              >
                 Sauvegarder et copier
               </FButton>
             </div>

@@ -1,10 +1,16 @@
-import { GetUserFavoritesResponse, Id } from "@refugies-info/api-types";
-import { ActionType, action } from "typesafe-actions";
-import { FETCH_USER_FAVORITES, SET_USER_FAVORITES, UPDATE_USER_FAVORITES } from "./UserFavoritesInLocale.actionTypes";
+import type { GetUserFavoritesResponse, Id } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
+import {
+  FETCH_USER_FAVORITES,
+  SET_USER_FAVORITES,
+  UPDATE_USER_FAVORITES,
+} from "./UserFavoritesInLocale.actionTypes";
 
-export const fetchUserFavoritesActionCreator = (value: string) => action(FETCH_USER_FAVORITES, value);
+export const fetchUserFavoritesActionCreator = (value: string) =>
+  action(FETCH_USER_FAVORITES, value);
 
-export const setUserFavoritesActionCreator = (value: GetUserFavoritesResponse[]) => action(SET_USER_FAVORITES, value);
+export const setUserFavoritesActionCreator = (value: GetUserFavoritesResponse[]) =>
+  action(SET_USER_FAVORITES, value);
 
 export const updateUserFavoritesActionCreator = (value: {
   dispositifId?: Id;

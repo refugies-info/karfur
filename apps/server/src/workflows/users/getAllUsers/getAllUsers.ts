@@ -1,9 +1,9 @@
-import { GetAllUsersResponse, UserStructure } from "@refugies-info/api-types";
+import type { GetAllUsersResponse, UserStructure } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import logger from "~/logger";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
-import { Structure, UserId } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { Structure, UserId } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getStructures = (userId: UserId, structures: Structure[]): UserStructure[] =>
   structures.map((structure) => {

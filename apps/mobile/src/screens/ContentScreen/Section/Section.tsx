@@ -1,4 +1,4 @@
-import { ContentType, Id, InfoSections } from "@refugies-info/api-types";
+import { ContentType, type Id, type InfoSections } from "@refugies-info/api-types";
 import { memo, useMemo } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -17,8 +17,14 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   const { t } = useTranslationWithRTL();
 
   const windowWidth = useWindowDimensions().width;
-  const accordionMaxWidthWithStep = useMemo(() => windowWidth - 2 * 24 - 4 * 16 - 24 - 32, [windowWidth]);
-  const accordionMaxWidthWithoutStep = useMemo(() => windowWidth - 2 * 24 - 3 * 16 - 24, [windowWidth]);
+  const accordionMaxWidthWithStep = useMemo(
+    () => windowWidth - 2 * 24 - 4 * 16 - 24 - 32,
+    [windowWidth],
+  );
+  const accordionMaxWidthWithoutStep = useMemo(
+    () => windowWidth - 2 * 24 - 3 * 16 - 24,
+    [windowWidth],
+  );
 
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const dispositif = useSelector(selectedContentSelector(currentLanguage));
@@ -39,7 +45,10 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
   const width = useMemo(
-    () => (dispositif.typeContenu === ContentType.DEMARCHE ? accordionMaxWidthWithStep : accordionMaxWidthWithoutStep),
+    () =>
+      dispositif.typeContenu === ContentType.DEMARCHE
+        ? accordionMaxWidthWithStep
+        : accordionMaxWidthWithoutStep,
     [dispositif.typeContenu, accordionMaxWidthWithStep, accordionMaxWidthWithoutStep],
   );
 
@@ -64,7 +73,11 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
               title={section.title}
               content={section.text}
               key={key}
-              stepNumber={dispositif.typeContenu === ContentType.DEMARCHE && sectionKey === "how" ? index + 1 : null}
+              stepNumber={
+                dispositif.typeContenu === ContentType.DEMARCHE && sectionKey === "how"
+                  ? index + 1
+                  : null
+              }
               width={width}
               currentLanguage={currentLanguage}
               windowWidth={windowWidth}

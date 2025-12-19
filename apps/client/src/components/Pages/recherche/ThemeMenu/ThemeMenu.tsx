@@ -1,6 +1,6 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
-import { ChangeEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { type ChangeEvent, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import SearchButton from "~/components/UI/SearchButton";
 import { useSearchEventName } from "~/hooks";
@@ -9,7 +9,7 @@ import { sortThemes } from "~/lib/sortThemes";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import { useSearchCounts } from "../SearchCountsContext";
 import { getInitialTheme } from "./functions";
 import Needs from "./Needs";
@@ -32,7 +32,7 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
   const themesContainerRef = useRef<HTMLDivElement | null>(null);
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const sortedThemes = themes.sort(sortThemes);
   const needs = useSelector(needsSelector);
   const query = useSelector(searchQuerySelector);
@@ -77,7 +77,9 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
       if (isInTabList && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
         event.preventDefault();
-        const tabs = Array.from(themesContainerRef.current?.querySelectorAll('[role="tab"]') || []) as HTMLElement[];
+        const tabs = Array.from(
+          themesContainerRef.current?.querySelectorAll('[role="tab"]') || [],
+        ) as HTMLElement[];
         const currentIndex = tabs.findIndex((tab) => tab === target);
 
         if (currentIndex !== -1) {
@@ -97,7 +99,9 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
       if (isInTabList && (event.key === "Home" || event.key === "End")) {
         event.preventDefault();
-        const tabs = Array.from(themesContainerRef.current?.querySelectorAll('[role="tab"]') || []) as HTMLElement[];
+        const tabs = Array.from(
+          themesContainerRef.current?.querySelectorAll('[role="tab"]') || [],
+        ) as HTMLElement[];
         const targetTab = event.key === "Home" ? tabs[0] : tabs[tabs.length - 1];
         if (targetTab) {
           targetTab.click();
@@ -125,7 +129,13 @@ const ThemeMenu = ({ mobile, isOpen, className }: Props) => {
 
   return (
     <ThemeMenuContext.Provider
-      value={{ nbDispositifsByNeed, nbDispositifsByTheme, search, selectedThemeId, setSelectedThemeId: onClickTheme }}
+      value={{
+        nbDispositifsByNeed,
+        nbDispositifsByTheme,
+        search,
+        selectedThemeId,
+        setSelectedThemeId: onClickTheme,
+      }}
     >
       <div className={cls(!isMobile && styles.container, className)} ref={themesMenuContainerRef}>
         <div className={cls(styles.searchBar, isMobile ? styles.searchBarSticky : "")}>

@@ -46,7 +46,7 @@ export const useTeamData = () => {
       name: "Jérémie Gisserot",
       position: t("MissionImpact.team_position_dev"),
       tag: t("MissionImpact.team_pole_produit"),
-      link: "https://www.linkedin.com/in/jeremiegisserot/",
+      link: "https://jeremie-gisserot.net",
       image: TeamJeremie,
     },
     {

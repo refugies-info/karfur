@@ -1,11 +1,11 @@
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { type NavigationProp, useNavigation } from "@react-navigation/native";
 import { View } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks";
 import { RTLTouchableOpacity } from "../BasicComponents";
-import { TextDSFR_L_Bold, TextDSFR_MD_Med } from "../StyledText";
 import { Icon } from "../iconography";
 import Separator, { SeparatorSpacing } from "../layout/Separator/Separator";
+import { TextDSFR_L_Bold, TextDSFR_MD_Med } from "../StyledText";
 
 const Container = styled.View`
   background-color: white;
@@ -39,7 +39,11 @@ export const IconList = (props: Props) => {
 
   return (
     <Container>
-      {props.title && <TextDSFR_L_Bold style={{ paddingVertical: theme.margin * 2 }}>{props.title}</TextDSFR_L_Bold>}
+      {props.title && (
+        <TextDSFR_L_Bold style={{ paddingVertical: theme.margin * 2 }}>
+          {props.title}
+        </TextDSFR_L_Bold>
+      )}
       {props.items.map((item, i) => (
         <View key={i}>
           <Option
@@ -66,7 +70,11 @@ export const IconList = (props: Props) => {
             )}
           </Option>
           {i < props.items.length - 1 && (
-            <Separator spacing={SeparatorSpacing.NoSpace} fullWidth color={theme.colors.dsfr_borderGrey} />
+            <Separator
+              spacing={SeparatorSpacing.NoSpace}
+              fullWidth
+              color={theme.colors.dsfr_borderGrey}
+            />
           )}
         </View>
       ))}

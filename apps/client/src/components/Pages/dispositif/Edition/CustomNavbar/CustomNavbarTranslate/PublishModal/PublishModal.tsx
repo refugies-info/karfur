@@ -1,12 +1,12 @@
-import { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
+import type { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
-import { Step } from "~/hooks/dispositif";
+import type { Step } from "~/hooks/dispositif";
 import { Event } from "~/lib/tracking";
 import PageContext from "~/utils/pageContext";
 import MissingSteps from "../../MissingSteps";
-import { StepStatus } from "../../MissingSteps/MissingSteps";
+import type { StepStatus } from "../../MissingSteps/MissingSteps";
 import StepBar from "../../StepBar";
 import CompleteContent from "./CompleteContent";
 import NotationForm from "./NotationForm";
@@ -33,7 +33,9 @@ const PublishModal = (props: Props) => {
   const [screenStep, setScreenStep] = useState(0);
   const title = useMemo(() => {
     if (isComplete) {
-      return screenStep === 0 ? "Tout est prêt, vous pouvez publier la fiche !" : "Qu'avez-vous pensé des bénévoles ?";
+      return screenStep === 0
+        ? "Tout est prêt, vous pouvez publier la fiche !"
+        : "Qu'avez-vous pensé des bénévoles ?";
     }
     return `Plus que ${props.missingSteps.length} étapes`;
   }, [isComplete, props.missingSteps, screenStep]);
@@ -79,7 +81,11 @@ const PublishModal = (props: Props) => {
             }}
           />
         ) : (
-          <NotationForm locale={props.locale} translators={props.translators || []} onDone={onQuit} />
+          <NotationForm
+            locale={props.locale}
+            translators={props.translators || []}
+            onDone={onQuit}
+          />
         )
       ) : (
         <>

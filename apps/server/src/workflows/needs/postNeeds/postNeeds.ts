@@ -1,8 +1,8 @@
-import { NeedRequest } from "@refugies-info/api-types";
+import type { NeedRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { createNeedInDB } from "~/modules/needs/needs.repository";
-import { Need } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Need } from "~/typegoose";
+import type { Response } from "~/types/interface";
 
 export const postNeeds = async (body: NeedRequest): Response => {
   logger.info("[postNeeds] received", body);

@@ -1,4 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import styled from "styled-components";
 import AdminIcon from "~/assets/dispositif/crown.svg";
@@ -10,20 +10,20 @@ import { cls } from "~/lib/classname";
 import styles from "./ThemeSelectButton.module.scss";
 
 interface ButtonProps {
-  backgroundColor: string;
-  backgroundColorHover: string;
+  $backgroundColor: string;
+  $backgroundColorHover: string;
   selected: boolean;
 }
 const ThemeButtonContainer = styled.button<ButtonProps>`
   ${(props) =>
     props.selected
       ? `
-  background-color: ${props.backgroundColor};
+  background-color: ${props.$backgroundColor};
   &:not(:disabled):hover {
-    background-color: ${props.backgroundColorHover} !important;
+    background-color: ${props.$backgroundColorHover} !important;
   }`
       : `&:not(:disabled):hover {
-        background-color: ${props.backgroundColor} !important;
+        background-color: ${props.$backgroundColor} !important;
       }`};
 `;
 
@@ -36,13 +36,16 @@ interface Props {
 }
 
 const ThemeSelectButton = (props: Props) => {
-  const selected = useMemo(() => props.selectedPrimary || props.selected, [props.selectedPrimary, props.selected]);
+  const selected = useMemo(
+    () => props.selectedPrimary || props.selected,
+    [props.selectedPrimary, props.selected],
+  );
   const id = useMemo(() => `theme_${props.theme._id.toString()}`, [props.theme]);
   return (
     <span id={id}>
       <ThemeButtonContainer
-        backgroundColor={props.theme.colors.color100}
-        backgroundColorHover={props.theme.colors.color80}
+        $backgroundColor={props.theme.colors.color100}
+        $backgroundColorHover={props.theme.colors.color80}
         selected={selected}
         className={cls(styles.btn, selected && styles.selected)}
         onClick={(e: any) => {
@@ -62,7 +65,10 @@ const ThemeSelectButton = (props: Props) => {
         {props.selectedPrimary && (
           <span
             className={styles.badge}
-            style={{ backgroundColor: props.theme.colors.color30, color: props.theme.colors.color100 }}
+            style={{
+              backgroundColor: props.theme.colors.color30,
+              color: props.theme.colors.color100,
+            }}
           >
             thème principal
             <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />

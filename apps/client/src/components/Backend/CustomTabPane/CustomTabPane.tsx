@@ -1,5 +1,5 @@
 import { TabPane } from "reactstrap";
-import { TabQuery } from "~/lib/getAdminUrlParams";
+import type { TabQuery } from "~/lib/getAdminUrlParams";
 import { AdminContenu } from "../screens/Admin/AdminContenu";
 import { AdminStructures } from "../screens/Admin/AdminStructures";
 import { AdminUsers } from "../screens/Admin/AdminUsers";

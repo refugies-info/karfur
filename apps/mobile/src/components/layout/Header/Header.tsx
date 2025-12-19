@@ -1,20 +1,23 @@
 import { useIsFocused, useNavigation, useRoute } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import upperFirst from "lodash/upperFirst";
-import { ComponentType, useCallback, useEffect, useMemo, useState } from "react";
+import { type ComponentType, useCallback, useEffect, useMemo, useState } from "react";
 import { Platform, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import { useSelector } from "react-redux";
 import useToggle from "react-use/lib/useToggle";
 import styled, { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { ValidScreen } from "~/libs/backButton";
+import type { ValidScreen } from "~/libs/backButton";
 import { getLocaleFromUrl } from "~/libs/getScreenFromUrl";
 import { LanguageChoiceModal } from "~/screens/Modals/LanguageChoiceModal";
 import { selectedContentSelector } from "~/services";
-import { hasUserSeenOnboardingSelector, initialUrlSelector } from "~/services/redux/User/user.selectors";
+import {
+  hasUserSeenOnboardingSelector,
+  initialUrlSelector,
+} from "~/services/redux/User/user.selectors";
 import Logo from "~/theme/images/logo.svg";
-import { RootStackParamList } from "~/types/navigation";
+import type { RootStackParamList } from "~/types/navigation";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { IconButton } from "../../iconography";
@@ -23,12 +26,14 @@ import NotificationsIcon from "../../Notifications/NotificationsIcon";
 import { TextDSFR_MD_Bold } from "../../StyledText";
 import Columns from "../Columns";
 import Spacer from "../Spacer";
-import { HeaderContentProps } from "./HeaderContentProps";
+import type { HeaderContentProps } from "./HeaderContentProps";
 
 const Container = styled.SafeAreaView`
   min-height: ${({ theme }) => theme.layout.header.minHeight}px;
   padding-top: ${({ theme }) =>
-    theme.insets.top === 0 && Platform.OS === "android" ? Math.max(theme.insets.top, 40) : theme.insets.top}px;
+    theme.insets.top === 0 && Platform.OS === "android"
+      ? Math.max(theme.insets.top, 40)
+      : theme.insets.top}px;
   padding-bottom: 0;
 `;
 
@@ -89,7 +94,10 @@ export const Header = ({
 
   // if initialUrl (deeplink) and FR: wait 2 sec and show language modal
   const initialUrl = useSelector(initialUrlSelector);
-  const initialUrlLocale = useMemo(() => (initialUrl ? getLocaleFromUrl(initialUrl) : null), [initialUrl]);
+  const initialUrlLocale = useMemo(
+    () => (initialUrl ? getLocaleFromUrl(initialUrl) : null),
+    [initialUrl],
+  );
   const selectedContent = useSelector(selectedContentSelector(initialUrlLocale));
   const hasUserSeenOnboarding = useSelector(hasUserSeenOnboardingSelector);
   const isFocused = useIsFocused();

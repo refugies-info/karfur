@@ -28,7 +28,12 @@ const BottomButtons = ({ cancel, saveTrad, disabled }: Props) => {
         >
           Finir plus tard
         </Button>
-        <Button disabled={disabled} onClick={() => saveTrad(false)} evaIcon="checkmark-circle-2" iconPosition="right">
+        <Button
+          disabled={disabled}
+          onClick={() => saveTrad(false)}
+          evaIcon="checkmark-circle-2"
+          iconPosition="right"
+        >
           Valider
         </Button>
       </div>

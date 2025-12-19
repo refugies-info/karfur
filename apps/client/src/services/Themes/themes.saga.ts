@@ -1,16 +1,25 @@
-import { GetThemeResponse, PatchThemeResponse, PostThemeResponse } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type {
+  GetThemeResponse,
+  PatchThemeResponse,
+  PostThemeResponse,
+} from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
-import { CREATE_THEME, DELETE_THEME, GET_THEMES, SAVE_THEME } from "./themes.actionTypes";
 import {
-  createThemeActionCreator,
-  deleteThemeActionCreator,
-  saveThemeActionCreator,
+  finishLoading,
+  LoadingStatusKey,
+  setError,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
+import {
+  type createThemeActionCreator,
+  type deleteThemeActionCreator,
+  type saveThemeActionCreator,
   setThemesActionCreator,
 } from "./themes.actions";
+import { CREATE_THEME, DELETE_THEME, GET_THEMES, SAVE_THEME } from "./themes.actionTypes";
 import { allThemesSelector } from "./themes.selectors";
 
 export function* fetchThemes(): SagaIterator {

@@ -1,6 +1,6 @@
-import { GetDispositifResponse } from "@refugies-info/api-types";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { SelectedContentActions } from "./selectedContent.actions";
+import type { SelectedContentActions } from "./selectedContent.actions";
 
 export type SelectedContentState = {
   fr: GetDispositifResponse | null;

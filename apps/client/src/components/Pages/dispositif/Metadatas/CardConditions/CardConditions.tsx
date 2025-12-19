@@ -1,7 +1,7 @@
-import { UpdateDispositifRequest } from "@refugies-info/api-types";
+import type { UpdateDispositifRequest } from "@refugies-info/api-types";
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { HTMLAttributes, useContext, useMemo } from "react";
+import { type HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { getConditionImage } from "~/components/Pages/dispositif/Metadatas/functions";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";

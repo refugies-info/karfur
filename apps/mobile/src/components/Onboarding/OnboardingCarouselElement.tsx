@@ -51,7 +51,9 @@ export const OnboardingCarouselElement = (props: Props) => {
       </Image>
       <TextContainer>
         <StyledText accessibilityRole="text">
-          <ReadableText isFocused={props.focused}>{t("onboarding_screens." + onboardingElement.text)}</ReadableText>
+          <ReadableText isFocused={props.focused}>
+            {t("onboarding_screens." + onboardingElement.text)}
+          </ReadableText>
         </StyledText>
       </TextContainer>
     </View>

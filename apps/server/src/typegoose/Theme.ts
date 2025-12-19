@@ -1,9 +1,9 @@
-import { ThemeGradientColors } from "@refugies-info/api-types";
+import type { ThemeGradientColors } from "@refugies-info/api-types";
 import { modelOptions, prop } from "@typegoose/typegoose";
 import { isInteger } from "lodash";
 import { Base } from "./Base";
-import { ImageSchema } from "./generics";
-import { Langue } from "./Langue";
+import type { ImageSchema } from "./generics";
+import type { Langue } from "./Langue";
 
 class ThemeColors {
   @prop()

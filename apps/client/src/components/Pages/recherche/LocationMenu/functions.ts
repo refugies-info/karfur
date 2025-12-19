@@ -130,7 +130,9 @@ export const getDepartmentForCity = async (cityName: string): Promise<string | n
 export const getCitiesForDepartment = async (departmentName: string): Promise<string[]> => {
   try {
     // First, get the department code from the name
-    const deptResponse = await fetch(`https://geo.api.gouv.fr/departements?nom=${encodeURIComponent(departmentName)}`);
+    const deptResponse = await fetch(
+      `https://geo.api.gouv.fr/departements?nom=${encodeURIComponent(departmentName)}`,
+    );
     const deptData = await deptResponse.json();
 
     if (!deptData || deptData.length === 0) return [];
@@ -138,7 +140,9 @@ export const getCitiesForDepartment = async (departmentName: string): Promise<st
     const departmentCode = deptData[0].code;
 
     // Then get all cities for that department
-    const citiesResponse = await fetch(`https://geo.api.gouv.fr/departements/${departmentCode}/communes`);
+    const citiesResponse = await fetch(
+      `https://geo.api.gouv.fr/departements/${departmentCode}/communes`,
+    );
     const citiesData = await citiesResponse.json();
 
     return citiesData.map((city: any) => city.nom);
@@ -150,7 +154,10 @@ export const getCitiesForDepartment = async (departmentName: string): Promise<st
 /**
  * Sort results by relevance
  */
-export function sortByRelevance(results: UnifiedSearchResult[], query: string): UnifiedSearchResult[] {
+export function sortByRelevance(
+  results: UnifiedSearchResult[],
+  query: string,
+): UnifiedSearchResult[] {
   const queryLower = query.toLowerCase();
 
   const getScore = (result: UnifiedSearchResult): number => {

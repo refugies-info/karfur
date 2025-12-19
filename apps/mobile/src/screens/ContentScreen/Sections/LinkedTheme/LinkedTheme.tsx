@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
 
 import { TagButton } from "~/components/Explorer/TagButton";
 import { currentI18nCodeSelector, themeSelector } from "~/services";
-import { ContentScreenType } from "../../ContentScreen";
+import type { ContentScreenType } from "../../ContentScreen";
 
 export interface LinkedThemesProps {
   themeId: Id;

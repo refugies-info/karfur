@@ -1,13 +1,24 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
-import { SagaIterator } from "redux-saga";
+import type { SimpleDispositif } from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import { logger } from "../../logger";
 import API from "../../utils/API";
 import { languei18nSelector } from "../Langue/langue.selectors";
-import { LoadingStatusKey, finishLoading, setError, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  setError,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import { fetchUserStructureActionCreator } from "../UserStructure/userStructure.actions";
-import { FETCH_ACTIVE_DISPOSITIFS, UPDATE_DISPOSITIF_REACTION } from "./activeDispositifs.actionTypes";
-import { setActiveDispositifsActionsCreator, updateDispositifReactionActionCreator } from "./activeDispositifs.actions";
+import {
+  setActiveDispositifsActionsCreator,
+  type updateDispositifReactionActionCreator,
+} from "./activeDispositifs.actions";
+import {
+  FETCH_ACTIVE_DISPOSITIFS,
+  UPDATE_DISPOSITIF_REACTION,
+} from "./activeDispositifs.actionTypes";
 
 export function* fetchActiveDispositifs(): SagaIterator {
   try {
@@ -21,7 +32,9 @@ export function* fetchActiveDispositifs(): SagaIterator {
   } catch (error) {
     logger.error("Error while fetching dispositifs", { error });
     yield put(setActiveDispositifsActionsCreator([]));
-    yield put(setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"));
+    yield put(
+      setError(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS, "Error while fetching dispositifs"),
+    );
   }
 }
 
@@ -35,7 +48,11 @@ export function* updateDispositifReaction(
       structureId,
     });
     if (suggestion.type === "remove") {
-      yield call(API.deleteDispositifSuggestion, suggestion.dispositifId.toString(), suggestion.suggestionId);
+      yield call(
+        API.deleteDispositifSuggestion,
+        suggestion.dispositifId.toString(),
+        suggestion.suggestionId,
+      );
     }
     if (suggestion.type === "read") {
       yield call(API.readDispositifSuggestion, suggestion.dispositifId.toString(), {

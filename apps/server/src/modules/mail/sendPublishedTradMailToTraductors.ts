@@ -1,22 +1,28 @@
-import { ContentType, Languages, UserStatus } from "@refugies-info/api-types";
+import { ContentType, type Languages, UserStatus } from "@refugies-info/api-types";
 import { uniq } from "lodash";
-import { ProjectionType } from "mongoose";
+import type { ProjectionType } from "mongoose";
 import { getFormattedLocale } from "~/libs/getFormattedLocale";
 import logger from "~/logger";
-import { Dispositif, User } from "~/typegoose";
+import type { Dispositif, User } from "~/typegoose";
 import { findTraductors } from "../traductions/traductions.repository";
 import { getUserById } from "../users/users.repository";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
 
-export const sendPublishedTradMailToTraductors = async (locale: Languages, dispositif: Dispositif) => {
+export const sendPublishedTradMailToTraductors = async (
+  locale: Languages,
+  dispositif: Dispositif,
+) => {
   logger.info("[sendPublishedTradMailToTraductors] received for language", {
     locale,
   });
   try {
     const langue = getFormattedLocale(locale);
-    const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
+    const lien =
+      "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
     const allTraductors = await findTraductors(dispositif._id, locale);
-    const traductors = uniq(allTraductors.map((t: (typeof allTraductors)[number]) => t.userId.toString()));
+    const traductors = uniq(
+      allTraductors.map((t: (typeof allTraductors)[number]) => t.userId.toString()),
+    );
     await Promise.all(
       traductors.map(async (tradId) => {
         try {

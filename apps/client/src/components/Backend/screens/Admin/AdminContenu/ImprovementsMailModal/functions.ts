@@ -1,4 +1,9 @@
-import { ContentStructure, GetAllStructuresResponse, GetAllUsersResponse, SimpleUser } from "@refugies-info/api-types";
+import type {
+  ContentStructure,
+  GetAllStructuresResponse,
+  GetAllUsersResponse,
+  SimpleUser,
+} from "@refugies-info/api-types";
 import { correspondingStatus } from "../data";
 
 export const getUsersToSendMail = (
@@ -23,7 +28,7 @@ export const getUsersToSendMail = (
 
     if (!structure.membres) return [];
 
-    let result: SimpleUser[] = [];
+    const result: SimpleUser[] = [];
 
     structure.membres.forEach((membre) => {
       const membreId = membre.userId;
@@ -50,7 +55,11 @@ export const getFormattedStatus = (dispoStatus: string | undefined) => {
   return corresStatus[0];
 };
 
-export const getTitle = (titreInformatif: string, typeContenu: string, titreMarque: string | undefined) => {
+export const getTitle = (
+  titreInformatif: string,
+  typeContenu: string,
+  titreMarque: string | undefined,
+) => {
   if (typeContenu === "dispositif") {
     return titreInformatif + " avec " + titreMarque;
   }

@@ -59,7 +59,9 @@ const getElementsToPush = (title, langue, key, elementFrench, elementLangue, jso
 const convertJsonToCsv = (langue) => {
   // import french
   const jsonFrench = JSON.parse(fs.readFileSync("./public/locales/fr/common.json").toString());
-  const jsonLangue = JSON.parse(fs.readFileSync("./public/locales/" + langue + "/common.json").toString());
+  const jsonLangue = JSON.parse(
+    fs.readFileSync("./public/locales/" + langue + "/common.json").toString(),
+  );
   const titleArrayFrench = Object.keys(jsonFrench);
 
   const output = [];
@@ -70,12 +72,16 @@ const convertJsonToCsv = (langue) => {
     if (typeof elementsFrench !== "string") {
       const keysFrench = Object.keys(elementsFrench);
       keysFrench.forEach((key) =>
-        output.push(...getElementsToPush(title, langue, key, elementsFrench, elementsLangue, jsonLangue)),
+        output.push(
+          ...getElementsToPush(title, langue, key, elementsFrench, elementsLangue, jsonLangue),
+        ),
       );
     }
 
     if (typeof elementsFrench === "string") {
-      output.push(...getElementsToPush(title, langue, null, elementsFrench, elementsLangue, jsonLangue));
+      output.push(
+        ...getElementsToPush(title, langue, null, elementsFrench, elementsLangue, jsonLangue),
+      );
     }
   });
   console.log(

@@ -1,15 +1,22 @@
-import {
+import type {
   GetNeedResponse,
   NeedRequest,
   UpdatePositionsNeedResponse,
   UpdatePositionsRequest,
 } from "@refugies-info/api-types";
-import * as express from "express";
+import type * as express from "express";
 import { Body, Controller, Delete, Get, Patch, Path, Post, Request, Route, Security } from "tsoa";
 
 import { validateId } from "~/libs/validateId";
-import { Response, ResponseWithData } from "~/types/interface";
-import { addView, deleteNeed, getNeeds, patchNeed, postNeeds, updatePositions } from "~/workflows/needs";
+import type { Response, ResponseWithData } from "~/types/interface";
+import {
+  addView,
+  deleteNeed,
+  getNeeds,
+  patchNeed,
+  postNeeds,
+  updatePositions,
+} from "~/workflows/needs";
 
 @Route("needs")
 export class NeedController extends Controller {
@@ -61,7 +68,9 @@ export class NeedController extends Controller {
     fromSite: [],
   })
   @Post("positions")
-  public async positions(@Body() body: UpdatePositionsRequest): ResponseWithData<UpdatePositionsNeedResponse[]> {
+  public async positions(
+    @Body() body: UpdatePositionsRequest,
+  ): ResponseWithData<UpdatePositionsNeedResponse[]> {
     return updatePositions(body);
   }
 }

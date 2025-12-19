@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -10,7 +10,10 @@ import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
 } from "~/services/UserStructure/userStructure.actions";
-import { userStructureMembresSelector, userStructureSelector } from "~/services/UserStructure/userStructure.selectors";
+import {
+  userStructureMembresSelector,
+  userStructureSelector,
+} from "~/services/UserStructure/userStructure.selectors";
 import { colors } from "~/utils/colors";
 import { UserStructureDetails } from "./components/UserStructureDetails";
 import { UserStructureLoading } from "./components/UserStructureLoading";
@@ -113,8 +116,8 @@ export const UserStructureComponent = (props: Props) => {
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <ErrorContainer>
           <ErrorText>
-            Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat
-            en bas à droite de votre écran.
+            Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de
+            réfugiés.info via le live chat en bas à droite de votre écran.
           </ErrorText>
         </ErrorContainer>
       </div>
@@ -133,7 +136,6 @@ export const UserStructureComponent = (props: Props) => {
         name={userStructure.nom}
         acronyme={userStructure.acronyme || ""}
         membres={membresToDisplay}
-        // @ts-ignore
         userId={user.userId}
         structureId={userStructure._id}
         addUserInStructure={addUserInStructure}

@@ -1,6 +1,6 @@
-import { Languages } from "@refugies-info/api-types";
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db, ObjectId } from "mongodb";
+import type { Languages } from "@refugies-info/api-types";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import { type Db, ObjectId } from "mongodb";
 
 const themeShortNamesMap: Record<string, Record<Languages, string>> = {
   // Apprendre un métier

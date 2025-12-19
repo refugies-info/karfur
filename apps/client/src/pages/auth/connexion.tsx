@@ -1,8 +1,8 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { PasswordInput } from "@codegouvfr/react-dsfr/blocks/PasswordInput";
+import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { useRouter } from "next/router";
-import { ReactElement, useMemo, useState } from "react";
+import { type ReactElement, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { getPath } from "routes";
 import Layout from "~/components/Pages/auth/Layout";
@@ -40,7 +40,11 @@ const AuthLogin = () => {
       } catch (e: any) {
         setIsLoading(false);
         const responseData = e.response?.data?.data;
-        const error = handleError(e.response?.data?.code, responseData?.email || "", responseData?.code);
+        const error = handleError(
+          e.response?.data?.code,
+          responseData?.email || "",
+          responseData?.code,
+        );
         if (error) setError(error);
       }
     },
@@ -55,7 +59,12 @@ const AuthLogin = () => {
         <Loader text="Connexion en cours..." />
       ) : (
         <>
-          <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+          <Button
+            priority="tertiary"
+            size="small"
+            iconId="fr-icon-arrow-left-line"
+            onClick={() => router.back()}
+          >
             Retour
           </Button>
           <div className={styles.title}>
@@ -75,7 +84,7 @@ const AuthLogin = () => {
             <PasswordInput
               label="Mot de passe"
               messages={
-                !!error
+                error
                   ? [
                       {
                         message: error,
@@ -88,7 +97,9 @@ const AuthLogin = () => {
               nativeInputProps={{ name: "password", autoFocus: true }}
             />
             <div className={cls("mt-2", styles.mb)}>
-              <FRLink href={`/auth/reinitialiser-mot-de-passe?email=${email}`}>Mot de passe oublié&nbsp;?</FRLink>
+              <FRLink href={`/auth/reinitialiser-mot-de-passe?email=${email}`}>
+                Mot de passe oublié&nbsp;?
+              </FRLink>
             </div>
 
             <Button

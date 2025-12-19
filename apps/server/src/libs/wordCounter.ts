@@ -1,7 +1,12 @@
-import { DemarcheContent, DispositifContent, InfoSection, InfoSections } from "@refugies-info/api-types";
+import type {
+  DemarcheContent,
+  DispositifContent,
+  InfoSection,
+  InfoSections,
+} from "@refugies-info/api-types";
 import get from "lodash/get";
 import isString from "lodash/isString";
-import { TranslationContent } from "~/typegoose/Dispositif";
+import type { TranslationContent } from "~/typegoose/Dispositif";
 
 /**
  * Basic word counter
@@ -36,6 +41,9 @@ export const countDispositifWords = (translation: DispositifContent | DemarcheCo
   );
 };
 
-export const countDispositifWordsForSections = (translation: TranslationContent, sections: string[]) => {
+export const countDispositifWordsForSections = (
+  translation: TranslationContent,
+  sections: string[],
+) => {
   return sections.reduce((acc, key: string) => acc + countWords(get(translation, key) || ""), 0);
 };

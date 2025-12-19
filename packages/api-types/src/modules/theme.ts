@@ -1,4 +1,4 @@
-import { Id, Picture, ThemeColors, ThemeGradientColors, TranslatedText } from "../generics";
+import type { Id, Picture, ThemeColors, ThemeGradientColors, TranslatedText } from "../generics";
 
 /**
  * @urls POST /themes, PATCH /themes/{id}

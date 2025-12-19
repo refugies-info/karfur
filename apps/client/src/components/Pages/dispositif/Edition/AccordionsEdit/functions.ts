@@ -7,7 +7,11 @@ type Texts = {
   placeholderText: string;
 };
 
-export const getTexts = (contentType: ContentType, isLastSection: boolean, index: number): Texts => {
+export const getTexts = (
+  contentType: ContentType,
+  isLastSection: boolean,
+  index: number,
+): Texts => {
   if (contentType === ContentType.DISPOSITIF) {
     // dispositif why
     if (!isLastSection) {

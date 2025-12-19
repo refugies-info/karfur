@@ -1,4 +1,4 @@
-import {
+import type {
   CreateDispositifRequest,
   GetDispositifResponse,
   PostDispositifsResponse,
@@ -8,7 +8,7 @@ import debounce from "lodash/debounce";
 import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
-import { DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
+import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { submitCreateForm, submitUpdateForm } from "~/lib/dispositifForm";
 import { addToAllStructuresActionCreator } from "~/services/AllStructures/allStructures.actions";
@@ -132,7 +132,7 @@ const useAutosave = () => {
 
               // remove typeContenu, only needed for creation
               if (data.typeContenu) {
-                //@ts-ignore
+                //@ts-expect-error
                 methods.setValue("typeContenu", undefined);
                 updatedOldData.typeContenu = undefined;
               }

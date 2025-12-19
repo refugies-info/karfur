@@ -1,5 +1,12 @@
-import { Id, Picture, SimpleDispositif, SimpleUser, StructureMember, StructureStatus } from "../generics";
-import { Suggestion } from "./dispositif";
+import type {
+  Id,
+  Picture,
+  SimpleDispositif,
+  SimpleUser,
+  StructureMember,
+  StructureStatus,
+} from "../generics";
+import type { Suggestion } from "./dispositif";
 
 type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
 /**

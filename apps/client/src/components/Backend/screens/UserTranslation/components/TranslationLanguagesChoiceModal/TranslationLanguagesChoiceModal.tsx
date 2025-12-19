@@ -1,4 +1,4 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import isUndefined from "lodash/isUndefined";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
@@ -124,7 +124,12 @@ const TranslationLanguagesChoiceModal = (props: Props) => {
 
   if (isLoading)
     return (
-      <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggle}
+        className={styles.modal}
+        contentClassName={styles.modal_content}
+      >
         <Header>Choix de vos langues</Header>
         <SubTitle>Cochez les langues que vous souhaitez utiliser : </SubTitle>
         <div style={{ marginRight: "50px", marginLeft: "50px" }}>
@@ -139,7 +144,13 @@ const TranslationLanguagesChoiceModal = (props: Props) => {
             <FButton type="outline-black" name="close-outline" onClick={props.toggle}>
               Annuler
             </FButton>
-            <FButton type="validate" name="checkmark-outline" onClick={() => {}} className="ms-2" disabled={true}>
+            <FButton
+              type="validate"
+              name="checkmark-outline"
+              onClick={() => {}}
+              className="ms-2"
+              disabled={true}
+            >
               Valider
             </FButton>
           </div>
@@ -148,10 +159,14 @@ const TranslationLanguagesChoiceModal = (props: Props) => {
     );
 
   const handleCheck = (langue: GetLanguagesResponse) => {
-    const isLangueSelected = !!selectedLangues.find((selectedLangue) => selectedLangue === langue._id);
+    const isLangueSelected = !!selectedLangues.find(
+      (selectedLangue) => selectedLangue === langue._id,
+    );
 
     if (isLangueSelected) {
-      return setSelectedLangues(selectedLangues.filter((selectedLangue) => selectedLangue !== langue._id));
+      return setSelectedLangues(
+        selectedLangues.filter((selectedLangue) => selectedLangue !== langue._id),
+      );
     }
 
     if (!isLangueSelected) {
@@ -211,7 +226,12 @@ const TranslationLanguagesChoiceModal = (props: Props) => {
         <FButton type="outline-black" name="close-outline" onClick={props.toggle}>
           Annuler
         </FButton>
-        <FButton type="validate" name="checkmark-outline" disabled={selectedLangues.length === 0} onClick={onValidate}>
+        <FButton
+          type="validate"
+          name="checkmark-outline"
+          disabled={selectedLangues.length === 0}
+          onClick={onValidate}
+        >
           Valider
         </FButton>
       </ButtonsContainer>

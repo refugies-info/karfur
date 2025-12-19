@@ -1,7 +1,8 @@
 import type { StaticImageData } from "next/image";
 import Image from "next/image";
-import Coallia from "~/assets/homepage/structures-logos/Dispositif-Coallia.png";
+import { useTranslation } from "next-i18next";
 import COS from "~/assets/homepage/structures-logos/Dispositif-COS.png";
+import Coallia from "~/assets/homepage/structures-logos/Dispositif-Coallia.png";
 import FederationActeurs from "~/assets/homepage/structures-logos/Dispositif-FAS.png";
 import ForumRefugie from "~/assets/homepage/structures-logos/Dispositif-Forum-Refugie.png";
 import FH from "~/assets/homepage/structures-logos/Dispositif-France-horizon.png";
@@ -10,8 +11,6 @@ import FTDA from "~/assets/homepage/structures-logos/Dispositif-FTDA.png";
 import SOS from "~/assets/homepage/structures-logos/Dispositif-Groupe-SOS.png";
 import HIS from "~/assets/homepage/structures-logos/Dispositif-HIS.png";
 import PierreValdo from "~/assets/homepage/structures-logos/Dispositif-Pierre-Valdo.png";
-
-import { useTranslation } from "next-i18next";
 
 const StructuresLogos = () => {
   const { t } = useTranslation();
@@ -82,7 +81,8 @@ const StructuresLogos = () => {
         )}
       </p>
       <p className="sr-only">
-        {t("Homepage.StructuresLogosVocalisation", "Nos partenaires :")} {logos.map((logo) => logo.title).join(", ")}
+        {t("Homepage.StructuresLogosVocalisation", "Nos partenaires :")}{" "}
+        {logos.map((logo) => logo.title).join(", ")}
       </p>
     </section>
   );

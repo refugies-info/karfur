@@ -1,4 +1,4 @@
-import { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
+import type { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,11 +66,16 @@ const AddMemberModal = (props: Props) => {
   };
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <Title>Ajouter un membre</Title>
       <InformationContainer>
-        <b>Attention :</b> assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur
-        réfugiés.info.
+        <b>Attention :</b> assurez-vous que la personne que vous souhaitez ajouter a déjà créé un
+        compte sur réfugiés.info.
       </InformationContainer>
       {isLoading && (
         <SkeletonTheme baseColor={colors.white}>

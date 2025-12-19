@@ -1,9 +1,9 @@
-import { GetWidgetResponse, Id } from "@refugies-info/api-types";
+import type { GetWidgetResponse, Id } from "@refugies-info/api-types";
+import { isInBrowser } from "@refugies-info/ui";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import FButton from "~/components/UI/FButton";
-import { isInBrowser } from "@refugies-info/ui";
 import { deleteWidgetActionCreator } from "~/services/Widgets/widgets.actions";
 import { colors } from "~/utils/colors";
 import { copyToClipboard, generateIframe } from "../functions";
@@ -64,8 +64,19 @@ export const WidgetLine = (props: Props) => {
         </p>
       </div>
       <div>
-        <FButton name="copy" type="small-figma" className="me-1" theme={colors.gray80} onClick={copyCode}></FButton>
-        <FButton name="trash-2-outline" type="small-figma" theme={colors.gray80} onClick={deleteWidget}></FButton>
+        <FButton
+          name="copy"
+          type="small-figma"
+          className="me-1"
+          theme={colors.gray80}
+          onClick={copyCode}
+        ></FButton>
+        <FButton
+          name="trash-2-outline"
+          type="small-figma"
+          theme={colors.gray80}
+          onClick={deleteWidget}
+        ></FButton>
       </div>
     </div>
   );

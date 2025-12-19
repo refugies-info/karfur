@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Icon } from "react-native-eva-icons";
 import styled, { useTheme } from "styled-components/native";
 import { RTLTouchableOpacity } from "../../BasicComponents";

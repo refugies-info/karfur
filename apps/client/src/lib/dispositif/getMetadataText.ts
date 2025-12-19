@@ -1,5 +1,5 @@
-import { Metadatas } from "@refugies-info/api-types";
-import { TFunction } from "next-i18next";
+import type { Metadatas } from "@refugies-info/api-types";
+import type { TFunction } from "next-i18next";
 import { jsUcfirst } from "~/lib";
 
 export const getCommitmentText = (
@@ -46,12 +46,18 @@ export const getPriceText = (data: Metadatas["price"] | undefined, t: TFunction)
   return jsUcfirst(`${data.values[0]}€ ${data.details ? t(`Infocards.${data.details}`) : ""}`);
 };
 
-export const getPublicStatusText = (data: Metadatas["publicStatus"] | undefined, t: TFunction): string | null => {
+export const getPublicStatusText = (
+  data: Metadatas["publicStatus"] | undefined,
+  t: TFunction,
+): string | null => {
   if (!data) return null;
   return jsUcfirst(data.map((d) => t(`Infocards.${d}`)).join(", "));
 };
 
-export const getPublicText = (data: Metadatas["public"] | undefined, t: TFunction): string | null => {
+export const getPublicText = (
+  data: Metadatas["public"] | undefined,
+  t: TFunction,
+): string | null => {
   if (!data) return null;
   return jsUcfirst(data.map((d) => t(`Infocards.${d}`)).join(", "));
 };
@@ -69,7 +75,10 @@ export const getAgeText = (data: Metadatas["age"] | undefined, t: TFunction): st
   }
 };
 
-export const getFrequencyText = (data: Metadatas["frequency"] | undefined, t: TFunction): string | null => {
+export const getFrequencyText = (
+  data: Metadatas["frequency"] | undefined,
+  t: TFunction,
+): string | null => {
   if (!data) return null;
   const count = Number.parseInt(data.hours.toString());
   return jsUcfirst(
@@ -79,13 +88,19 @@ export const getFrequencyText = (data: Metadatas["frequency"] | undefined, t: TF
   );
 };
 
-export const getTimeSlotsText = (data: Metadatas["timeSlots"] | undefined, t: TFunction): string | null => {
+export const getTimeSlotsText = (
+  data: Metadatas["timeSlots"] | undefined,
+  t: TFunction,
+): string | null => {
   if (!data) return null;
   if (data.length === 7) return t("Infocards.everyday");
   return jsUcfirst(data.map((d) => t(`Infocards.${d}`)).join(", "));
 };
 
-export const getFrenchLevelText = (data: Metadatas["frenchLevel"] | undefined, t: TFunction): string | null => {
+export const getFrenchLevelText = (
+  data: Metadatas["frenchLevel"] | undefined,
+  t: TFunction,
+): string | null => {
   if (!data) return null;
   return jsUcfirst(data?.map((d) => (d === "alpha" ? t("Infocards.alpha") : d)).join(", "));
 };

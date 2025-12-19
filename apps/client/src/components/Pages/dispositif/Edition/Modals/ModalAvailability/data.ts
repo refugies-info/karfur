@@ -1,4 +1,4 @@
-import {
+import type {
   commitmentDetailsType,
   frequencyDetailsType,
   frequencyUnitType,
@@ -46,7 +46,12 @@ export const timeUnitOptions: timeUnitType[] = [
   "semesters",
   "years",
 ];
-export const frequencyDetailsOptions: frequencyDetailsType[] = ["minimum", "maximum", "approximately", "exactly"];
+export const frequencyDetailsOptions: frequencyDetailsType[] = [
+  "minimum",
+  "maximum",
+  "approximately",
+  "exactly",
+];
 export const frequencyUnitOptions: frequencyUnitType[] = [
   "session",
   "day",

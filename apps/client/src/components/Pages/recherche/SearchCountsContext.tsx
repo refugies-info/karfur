@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { SearchCountsResponse } from "~/pages/api/search/counts";
+import type { SearchCountsResponse } from "~/pages/api/search/counts";
 
 export const SearchCountsContext = createContext<SearchCountsResponse | null>(null);
 

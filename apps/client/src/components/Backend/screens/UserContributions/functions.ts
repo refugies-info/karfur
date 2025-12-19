@@ -1,10 +1,10 @@
-import {
+import type {
   GetStructureDispositifResponse,
   GetStructureResponse,
   GetUserContributionsResponse,
   Id,
 } from "@refugies-info/api-types";
-import { FormattedUserContribution } from "./types";
+import type { FormattedUserContribution } from "./types";
 
 // Dispositif deletion
 const isUserAuthorizedToDeleteDispositif = (
@@ -24,7 +24,8 @@ const isUserAuthorizedToDeleteDispositif = (
   if (!dispositifSponsorId && isAuthor) return true;
 
   // user not in structure
-  const isUserInStructure = !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
+  const isUserInStructure =
+    !!dispositifSponsorId && !!userStructure && dispositifSponsorId === userStructure._id;
   if (dispositifSponsorId && !isUserInStructure) return false;
 
   // user is member of structure, they have the same rights as the admin
@@ -38,13 +39,16 @@ export const formatContributions = (
   userId: Id | undefined,
   isAdmin: boolean,
 ): FormattedUserContribution[] => {
-  let formattedContribs: FormattedUserContribution[] = [];
+  const formattedContribs: FormattedUserContribution[] = [];
   if (!userId) return [];
   // dispositif written by user
   userContributions.forEach((dispositif) => {
-    const responsabilite = ["Brouillon", "En attente", "Rejeté structure", "En attente non prioritaire"].includes(
-      dispositif.status,
-    )
+    const responsabilite = [
+      "Brouillon",
+      "En attente",
+      "Rejeté structure",
+      "En attente non prioritaire",
+    ].includes(dispositif.status)
       ? "Moi"
       : dispositif.mainSponsor?.nom || "";
 

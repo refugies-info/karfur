@@ -1,5 +1,5 @@
-import { GetStructureResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetStructureResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import {
   FETCH_SELECTED_STRUCTURE,
   SET_SELECTED_STRUCTURE,
@@ -9,8 +9,11 @@ import {
 export const setSelectedStructureActionCreator = (value: GetStructureResponse | null) =>
   action(SET_SELECTED_STRUCTURE, value);
 
-export const fetchSelectedStructureActionCreator = (value: { id: string; locale: string; token?: string }) =>
-  action(FETCH_SELECTED_STRUCTURE, value);
+export const fetchSelectedStructureActionCreator = (value: {
+  id: string;
+  locale: string;
+  token?: string;
+}) => action(FETCH_SELECTED_STRUCTURE, value);
 
 export const updateSelectedStructureActionCreator = (value: { locale: string }) =>
   action(UPDATE_SELECTED_STRUCTURE, value);

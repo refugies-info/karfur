@@ -1,5 +1,5 @@
-import { Id, publicStatusType, publicType, SimpleDispositif } from "@refugies-info/api-types";
-import { AgeOptions, FrenchOptions, TypeOptions } from "data/searchFilters";
+import type { Id, publicStatusType, publicType, SimpleDispositif } from "@refugies-info/api-types";
+import type { AgeOptions, FrenchOptions, TypeOptions } from "data/searchFilters";
 
 export const filterByThemeOrNeed = (
   dispositif: SimpleDispositif,
@@ -86,7 +86,10 @@ const FILTER_AGE_VALUES: Record<AgeOptions, [number, number]> = {
   "+25": [25, 99],
 };
 
-const isAgeRangeCompatible = (filterRange: [number, number], audienceRange: [number, number]): boolean => {
+const isAgeRangeCompatible = (
+  filterRange: [number, number],
+  audienceRange: [number, number],
+): boolean => {
   const [filterMin, filterMax] = filterRange;
   const [audienceMin, audienceMax] = audienceRange;
 
@@ -142,7 +145,10 @@ export const getMatchingAgeOptions = (dispositif: SimpleDispositif): AgeOptions[
   }, [] as AgeOptions[]);
 };
 
-export const countMatchingAgeOptions = (dispositif: SimpleDispositif, ageOptions: AgeOptions[]): number => {
+export const countMatchingAgeOptions = (
+  dispositif: SimpleDispositif,
+  ageOptions: AgeOptions[],
+): number => {
   const audienceAge = dispositif.metadatas?.age;
   if (!audienceAge || !audienceAge.ages) return ageOptions.length;
 
@@ -168,7 +174,10 @@ const FILTER_FRENCH_LEVEL_VALUES: Record<FrenchOptions, string[]> = {
   c: ["C1", "C2"],
 };
 
-export const filterByFrenchLevel = (dispositif: SimpleDispositif, frenchLevelFilters: FrenchOptions[]) => {
+export const filterByFrenchLevel = (
+  dispositif: SimpleDispositif,
+  frenchLevelFilters: FrenchOptions[],
+) => {
   if (frenchLevelFilters.length === 0) return true;
   const frenchLevels = dispositif.metadatas?.frenchLevel as string[] | undefined;
   // If no level specified on the record, consider it matching all (as per UI counts logic)

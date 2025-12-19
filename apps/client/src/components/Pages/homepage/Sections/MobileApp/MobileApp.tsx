@@ -17,16 +17,32 @@ const MobileApp = () => {
 
   const { isMobile } = useWindowSize();
 
-  const appStoreBadge = assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
-  const playStoreBadge = assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
+  const appStoreBadge =
+    assetsOnServer.storeBadges.appStore[locale] || assetsOnServer.storeBadges.appStore.en;
+  const playStoreBadge =
+    assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
   const storeLinks = useMemo(
     () => (
       <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
-        <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
-          <Image src={appStoreBadge} alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")} fill />
+        <a
+          href={iosStoreLink}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="relative h-10 w-30"
+        >
+          <Image
+            src={appStoreBadge}
+            alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")}
+            fill
+          />
         </a>
-        <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
+        <a
+          href={androidStoreLink}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="relative h-10 w-32"
+        >
           <Image
             src={playStoreBadge}
             width={128}
@@ -88,7 +104,11 @@ const MobileApp = () => {
         <div className="mb-6 flex items-center gap-6">
           <Image src="/images/logoRI.svg" width={72} height={72} alt="" />
           <p className="m-0 flex flex-col gap-2 font-medium">
-            <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
+            <span
+              aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")}
+              role="img"
+              className="inline-flex gap-3"
+            >
               {Array.from({ length: 5 }).map((_, index) => (
                 // TODO @ledjay : fix yellow colors from DSFR
                 <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#fcc63a]" />

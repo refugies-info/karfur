@@ -1,31 +1,31 @@
-import { Languages } from "@refugies-info/api-types";
-import { FieldSet } from "airtable";
+import type { Languages } from "@refugies-info/api-types";
+import type { FieldSet } from "airtable";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
 import { getDispositifsForExport } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
-import { Dispositif, Langue, Need, Theme } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { Dispositif, Langue, Need, Theme } from "~/typegoose";
+import type { Response } from "~/types/interface";
 
 interface Result extends FieldSet {
   "Titre informatif": string;
   "Titre marque": string;
   "Type de contenu": string[];
-  "Lien": string;
+  Lien: string;
   "Thème principal": string;
   "Thème secondaire 1": string | null;
   "Thème secondaire 2": string | null;
   "Zone d'action": string[];
   "Age requis": string | null;
   "Public visé": string[];
-  "Public": string[];
+  Public: string[];
   "Niveau de français": string[];
   "Conditions requises": string[];
   "Combien ça coute": string | null;
-  "Engagement": string;
-  "Fréquence": string;
+  Engagement: string;
+  Fréquence: string;
   "Nombre de vues": number;
-  "Besoins": string[];
+  Besoins: string[];
   "Date de dernière mise à jour": string;
 }
 
@@ -75,7 +75,7 @@ const exportFichesInAirtable = (fiches: Result[]) => {
   getAirtableUserTable("Fiches").create(
     fiches.map((fiche) => ({ fields: fiche })),
     { typecast: true },
-    function (err: Error) {
+    (err: Error) => {
       if (err) {
         logger.error("[exportFichesInAirtable] error while exporting fiches to airtable", {
           fichesId: fiches.map((fiche) => fiche.Lien),
@@ -94,21 +94,21 @@ const formatDispositif = (dispositif: Dispositif, activeLanguages: Langue[]): Re
     "Titre informatif": dispositif.translations.fr.content.titreInformatif,
     "Titre marque": dispositif.translations.fr.content.titreMarque || "",
     "Type de contenu": [dispositif.typeContenu],
-    "Lien": "https://refugies.info/fr/" + dispositif.typeContenu + "/" + dispositif._id,
+    Lien: "https://refugies.info/fr/" + dispositif.typeContenu + "/" + dispositif._id,
     "Thème principal": (dispositif.theme as Theme | undefined)?.short?.fr || "",
     "Thème secondaire 1": (dispositif.secondaryThemes[0] as Theme | undefined)?.short?.fr || "",
     "Thème secondaire 2": (dispositif.secondaryThemes[1] as Theme | undefined)?.short?.fr || "",
     "Zone d'action": getLocation(dispositif.metadatas),
     "Age requis": getAge(dispositif.metadatas),
     "Public visé": dispositif.metadatas.public || [],
-    "Public": dispositif.metadatas.publicStatus || [],
+    Public: dispositif.metadatas.publicStatus || [],
     "Niveau de français": dispositif.metadatas.frenchLevel || [],
     "Conditions requises": dispositif.metadatas.conditions || [],
     "Combien ça coute": getPrice(dispositif.metadatas),
-    "Engagement": getCommitment(dispositif.metadatas),
-    "Fréquence": getFrequency(dispositif.metadatas),
+    Engagement: getCommitment(dispositif.metadatas),
+    Fréquence: getFrequency(dispositif.metadatas),
     "Nombre de vues": dispositif.nbVues || 0,
-    "Besoins": dispositif.needs.map((need) => (need as Need).fr.text),
+    Besoins: dispositif.needs.map((need) => (need as Need).fr.text),
     ...getTranslatedTitles(dispositif, activeLanguages),
     "Date de dernière mise à jour": dispositif.updatedAt.toISOString(),
   };
@@ -122,7 +122,10 @@ export const exportFiches = async (): Response => {
   let result: Result[] = [];
   dispositifs.forEach((dispositif) => {
     try {
-      const formattedDispositif = formatDispositif(dispositif as unknown as Dispositif, activeLanguages);
+      const formattedDispositif = formatDispositif(
+        dispositif as unknown as Dispositif,
+        activeLanguages,
+      );
       result.push(formattedDispositif);
       if (result.length === 10) {
         exportFichesInAirtable(result);

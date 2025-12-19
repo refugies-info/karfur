@@ -1,4 +1,4 @@
-import { SupportedLanguage } from "algoliasearch";
+import type { SupportedLanguage } from "algoliasearch";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import * as React from "react";
 import { Configure, InstantSearch } from "react-instantsearch-core";
@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import InfiniteHits from "~/components/Search/InfiniteHits";
 import SearchBox from "~/components/Search/SearchBox";
-import SearchSuggestions, { NavigationProp } from "~/components/Search/SearchSuggestions";
+import SearchSuggestions, { type NavigationProp } from "~/components/Search/SearchSuggestions";
 import Config from "~/libs/getEnvironment";
 import { getSearchableAttributes } from "~/libs/search";
 import { mostViewedContentsSelector } from "~/services/redux/Contents/contents.selectors";

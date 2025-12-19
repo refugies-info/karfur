@@ -1,31 +1,64 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
-import { Reducer } from "typesafe-actions";
-import { ActiveDispositifsState, activeDispositifsReducer } from "./ActiveDispositifs/activeDispositifs.reducer";
-import { ActiveStructuresState, activeStructuresReducer } from "./ActiveStructures/activeStructures.reducer";
-import { ActiveUsersState, activeUsersReducer } from "./ActiveUsers/activeUsers.reducer";
-import { AllDispositifsState, allDispositifsReducer } from "./AllDispositifs/allDispositifs.reducer";
-import { AllStructuresState, allStructuresReducer } from "./AllStructures/allStructures.reducer";
-import { AllUsersState, allUsersReducer } from "./AllUsers/allUsers.reducer";
+import type { Reducer } from "typesafe-actions";
 import {
-  DispositifsWithTranslationsStatusState,
+  type ActiveDispositifsState,
+  activeDispositifsReducer,
+} from "./ActiveDispositifs/activeDispositifs.reducer";
+import {
+  type ActiveStructuresState,
+  activeStructuresReducer,
+} from "./ActiveStructures/activeStructures.reducer";
+import { type ActiveUsersState, activeUsersReducer } from "./ActiveUsers/activeUsers.reducer";
+import {
+  type AllDispositifsState,
+  allDispositifsReducer,
+} from "./AllDispositifs/allDispositifs.reducer";
+import {
+  type AllStructuresState,
+  allStructuresReducer,
+} from "./AllStructures/allStructures.reducer";
+import { type AllUsersState, allUsersReducer } from "./AllUsers/allUsers.reducer";
+import {
+  type DispositifsWithTranslationsStatusState,
   dispositifsWithTranslationsStatusReducer,
 } from "./DispositifsWithTranslationsStatus/dispositifsWithTranslationsStatus.reducer";
-import { LangueState, langueReducer } from "./Langue/langue.reducer";
-import { LoadingStatusState, loadingStatusReducer } from "./LoadingStatus/loadingStatus.reducer";
-import { MiscellaneousState, miscellaneousReducer } from "./Miscellaneous/miscellaneous.reducer";
-import { NeedsState, needsReducer } from "./Needs/needs.reducer";
-import { SearchResultsState, searchResultsReducer } from "./SearchResults/searchResults.reducer";
-import searchCountsReducer, { SearchCountsState } from "./SearchCounts/searchCounts.reducer";
-import { SelectedDispositifState, selectedDispositifReducer } from "./SelectedDispositif/selectedDispositif.reducer";
-import { SelectedStructureState, selectedStructureReducer } from "./SelectedStructure/selectedStructure.reducer";
-import { ThemesState, themesReducer } from "./Themes/themes.reducer";
-import { TtsState, ttsReducer } from "./Tts/tts.reducer";
-import { UserState, userReducer } from "./User/user.reducer";
-import { UserContributionsState, userContributionsReducer } from "./UserContributions/userContributions.reducer";
-import { UserFavoritesState, userFavoritesReducer } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
-import { UserStructureState, structureReducer } from "./UserStructure/userStructure.reducer";
-import { WidgetsState, widgetsReducer } from "./Widgets/widgets.reducer";
+import { type LangueState, langueReducer } from "./Langue/langue.reducer";
+import {
+  type LoadingStatusState,
+  loadingStatusReducer,
+} from "./LoadingStatus/loadingStatus.reducer";
+import {
+  type MiscellaneousState,
+  miscellaneousReducer,
+} from "./Miscellaneous/miscellaneous.reducer";
+import { type NeedsState, needsReducer } from "./Needs/needs.reducer";
+import searchCountsReducer, { type SearchCountsState } from "./SearchCounts/searchCounts.reducer";
+import {
+  type SearchResultsState,
+  searchResultsReducer,
+} from "./SearchResults/searchResults.reducer";
+import {
+  type SelectedDispositifState,
+  selectedDispositifReducer,
+} from "./SelectedDispositif/selectedDispositif.reducer";
+import {
+  type SelectedStructureState,
+  selectedStructureReducer,
+} from "./SelectedStructure/selectedStructure.reducer";
+import { type ThemesState, themesReducer } from "./Themes/themes.reducer";
+import { type TtsState, ttsReducer } from "./Tts/tts.reducer";
+import { type UserState, userReducer } from "./User/user.reducer";
+import {
+  type UserContributionsState,
+  userContributionsReducer,
+} from "./UserContributions/userContributions.reducer";
+import {
+  type UserFavoritesState,
+  userFavoritesReducer,
+} from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
+import { structureReducer, type UserStructureState } from "./UserStructure/userStructure.reducer";
+import { type WidgetsState, widgetsReducer } from "./Widgets/widgets.reducer";
 
 export interface RootState {
   activeDispositifs: ActiveDispositifsState;
@@ -101,8 +134,8 @@ export const appReducer: Reducer<any, any> = (state, action) => {
     if (action.payload.langue.langues.length > 0 && nextState.langue.langues.length === 0) {
       nextState.langue = action.payload.langue;
     }
-    if (action.payload.themes.activeThemes.length > 0) {
-      // keep new themes even if already in store
+    if (action.payload.themes?.hasLoaded) {
+      // Always hydrate themes if they were loaded on the server
       nextState.themes = action.payload.themes;
     }
     if (action.payload.needs.length > 0 && nextState.needs.length === 0) {

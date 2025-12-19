@@ -1,5 +1,5 @@
-import { GetNeedResponse } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type { GetNeedResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import { FETCH_NEEDS, SET_NEEDS } from "./needs.actionTypes";
 
 export const setNeedsActionCreator = (value: GetNeedResponse[]) => action(SET_NEEDS, value);

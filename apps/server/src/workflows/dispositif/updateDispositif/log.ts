@@ -1,9 +1,11 @@
-import { isDocument, Ref } from "@typegoose/typegoose";
+import { isDocument, type Ref } from "@typegoose/typegoose";
 import logger from "~/logger";
 import { addLog } from "~/modules/logs/logs.service";
-import { Dispositif, Theme, ThemeId, UserId } from "~/typegoose";
+import type { Dispositif, Theme, ThemeId, UserId } from "~/typegoose";
 
-const getThemesIds = (themes: Ref<Theme, ThemeId> | Ref<Theme, ThemeId>[] | undefined): ThemeId[] => {
+const getThemesIds = (
+  themes: Ref<Theme, ThemeId> | Ref<Theme, ThemeId>[] | undefined,
+): ThemeId[] => {
   if (!themes) return [];
   if (Array.isArray(themes)) return themes.map((theme) => (isDocument(theme) ? theme._id : theme));
   return [isDocument(themes) ? themes._id : themes];
@@ -34,19 +36,25 @@ export const log = async (
     }
 
     const newThemes = JSON.stringify(
-      [...getThemesIds(dispositif.theme), ...getThemesIds(dispositif.secondaryThemes).sort()].filter((t) => !!t),
+      [
+        ...getThemesIds(dispositif.theme),
+        ...getThemesIds(dispositif.secondaryThemes).sort(),
+      ].filter((t) => !!t),
     );
     const oldThemes = JSON.stringify(
-      [...getThemesIds(originalDispositif.theme), ...getThemesIds(originalDispositif.secondaryThemes).sort()].filter(
-        (t) => !!t,
-      ),
+      [
+        ...getThemesIds(originalDispositif.theme),
+        ...getThemesIds(originalDispositif.secondaryThemes).sort(),
+      ].filter((t) => !!t),
     );
     if (newThemes !== oldThemes) {
       await addLog(dispositif._id, "Dispositif", "Thèmes modifiés", { author: authorId });
     }
 
     // sponsor
-    const oldSponsorId = originalDispositif.mainSponsor ? originalDispositif.getMainSponsor()?._id : null;
+    const oldSponsorId = originalDispositif.mainSponsor
+      ? originalDispositif.getMainSponsor()?._id
+      : null;
     const newSponsorId = dispositif.mainSponsor;
     const oldSponsorIdString = (oldSponsorId || "").toString();
     const newSponsorIdString = (newSponsorId || "").toString();
@@ -97,16 +105,21 @@ export const log = async (
       }
       if (!oldSponsorIdString && newSponsorIdString) {
         // sponsor added
-        await addLog(newSponsorId.toString(), "Structure", "Nouvelle fiche attribuée : {{dynamic}}", {
-          dynamicId: dispositif._id,
-          model_dynamic: "Dispositif",
-          link: {
-            id: dispositif._id,
-            model_link: "Dispositif",
-            next: "ModalContenu",
+        await addLog(
+          newSponsorId.toString(),
+          "Structure",
+          "Nouvelle fiche attribuée : {{dynamic}}",
+          {
+            dynamicId: dispositif._id,
+            model_dynamic: "Dispositif",
+            link: {
+              id: dispositif._id,
+              model_link: "Dispositif",
+              next: "ModalContenu",
+            },
+            author: authorId,
           },
-          author: authorId,
-        });
+        );
       }
       if (oldSponsorIdString && !newSponsorIdString) {
         // sponsor deleted
@@ -125,16 +138,21 @@ export const log = async (
             author: authorId,
           },
         );
-        await addLog(dispositif._id, "Dispositif", "Structure responsable supprimée : {{dynamic}}", {
-          dynamicId: oldSponsorId.toString(),
-          model_dynamic: "Structure",
-          link: {
-            id: oldSponsorId.toString(),
-            model_link: "Structure",
-            next: "ModalStructure",
+        await addLog(
+          dispositif._id,
+          "Dispositif",
+          "Structure responsable supprimée : {{dynamic}}",
+          {
+            dynamicId: oldSponsorId.toString(),
+            model_dynamic: "Structure",
+            link: {
+              id: oldSponsorId.toString(),
+              model_link: "Structure",
+              next: "ModalStructure",
+            },
+            author: authorId,
           },
-          author: authorId,
-        });
+        );
       }
     }
   } catch (e) {

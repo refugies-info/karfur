@@ -1,11 +1,14 @@
-import { AppUser, AppUserModel, NotificationsSettings } from "~/typegoose";
+import { type AppUser, AppUserModel, type NotificationsSettings } from "~/typegoose";
 
 export const getAllAppUsers = async () => AppUserModel.find();
 
 export const getAppUsersBatch = async (skip: number, batchSize: number) =>
   AppUserModel.find().skip(skip).limit(batchSize);
 
-export const processAppUsersByBatch = async (batchSize: number, processor: (users: AppUser[]) => Promise<void>) => {
+export const processAppUsersByBatch = async (
+  batchSize: number,
+  processor: (users: AppUser[]) => Promise<void>,
+) => {
   let skip = 0;
   for (;;) {
     const users: AppUser[] = await getAppUsersBatch(skip, batchSize);
@@ -23,7 +26,10 @@ export const getNotificationsSettings = async (uid: string) => {
   return appUser.notificationsSettings;
 };
 
-export const updateNotificationsSettings = async (uid: string, payload: Partial<NotificationsSettings>) => {
+export const updateNotificationsSettings = async (
+  uid: string,
+  payload: Partial<NotificationsSettings>,
+) => {
   const appUser = await AppUserModel.findOne({ uid });
   if (!appUser) {
     return null;
@@ -45,7 +51,10 @@ export const updateOrCreateAppUser = async (payload: AppUser, themeIds: string[]
   const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
   // delete outdated appusers with the same ExpoPushToken
-  await AppUserModel.deleteMany({ uid: { $ne: payload.uid }, expoPushToken: payload.expoPushToken });
+  await AppUserModel.deleteMany({
+    uid: { $ne: payload.uid },
+    expoPushToken: payload.expoPushToken,
+  });
 
   if (appUser) {
     await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true });

@@ -1,6 +1,7 @@
-import fs from "fs";
 import { console } from "node:console";
+import fs from "fs";
 import Papa from "papaparse";
+
 const convertJsonToCsv = (langue) => {
   // import french
   const jsonFrench = JSON.parse(fs.readFileSync("../fr/common.json").toString());

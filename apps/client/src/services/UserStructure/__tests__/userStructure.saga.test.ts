@@ -3,11 +3,19 @@ import { DispositifOrigin } from "@refugies-info/api-types";
 import mockRouter from "next-router-mock";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { userSelector } from "../../User/user.selectors";
+import {
+  fetchUserStructureActionCreator,
+  setUserStructureActionCreator,
+} from "../userStructure.actions";
 import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "../userStructure.actionTypes";
-import { fetchUserStructureActionCreator, setUserStructureActionCreator } from "../userStructure.actions";
 import latestActionsSaga, { fetchUserStructure, updateUserStructure } from "../userStructure.saga";
+
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("[Saga] Structures", () => {

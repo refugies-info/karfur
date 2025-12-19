@@ -1,7 +1,7 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { addLog } from "~/modules/logs/logs.service";
-import { UserId } from "~/typegoose";
+import type { UserId } from "~/typegoose";
 
 export const log = async (id: string, authorId: UserId) => {
   try {

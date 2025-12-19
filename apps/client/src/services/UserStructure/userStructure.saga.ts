@@ -1,35 +1,47 @@
 import {
   DispositifOrigin,
-  GetStructureResponse,
-  PatchStructureRequest,
-  PatchStructureRolesRequest,
+  type GetStructureResponse,
+  type PatchStructureRequest,
+  type PatchStructureRolesRequest,
 } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import Router from "next/router";
-import { SagaIterator } from "redux-saga";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
-import { UserState } from "~/services/User/user.reducer";
+import type { UserState } from "~/services/User/user.reducer";
 import { logger } from "../../logger";
 import API from "../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import { userSelector } from "../User/user.selectors";
-import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-  updateUserStructureActionCreator,
+  type updateUserStructureActionCreator,
 } from "./userStructure.actions";
+import { FETCH_USER_STRUCTURE, UPDATE_USER_STRUCTURE } from "./userStructure.actionTypes";
 import { userStructureSelector } from "./userStructure.selectors";
 
-export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructureActionCreator>): SagaIterator {
+export function* fetchUserStructure(
+  action: ReturnType<typeof fetchUserStructureActionCreator>,
+): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
     if (!structureId) return;
-    const data: GetStructureResponse = yield call(API.getStructureById, structureId.toString(), "fr");
+    const data: GetStructureResponse = yield call(
+      API.getStructureById,
+      structureId.toString(),
+      "fr",
+    );
     if (data && data.dispositifsAssocies) {
-      data.dispositifsAssocies = data.dispositifsAssocies.filter((d) => d.origin === DispositifOrigin.RI);
+      data.dispositifsAssocies = data.dispositifsAssocies.filter(
+        (d) => d.origin === DispositifOrigin.RI,
+      );
     }
     yield put(setUserStructureActionCreator(data));
     const user: UserState = yield select(userSelector);
@@ -51,7 +63,9 @@ export function* fetchUserStructure(action: ReturnType<typeof fetchUserStructure
   }
 }
 
-export function* updateUserStructure(action: ReturnType<typeof updateUserStructureActionCreator>): SagaIterator {
+export function* updateUserStructure(
+  action: ReturnType<typeof updateUserStructureActionCreator>,
+): SagaIterator {
   try {
     yield put(startLoading(LoadingStatusKey.UPDATE_USER_STRUCTURE));
     logger.info("[updateUserStructure] updating user structure", {

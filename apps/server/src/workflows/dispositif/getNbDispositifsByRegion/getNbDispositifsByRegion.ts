@@ -1,10 +1,13 @@
-import { GetRegionStatisticsResponse } from "@refugies-info/api-types";
-import { ProjectionType } from "mongoose";
+import type { GetRegionStatisticsResponse } from "@refugies-info/api-types";
+import type { ProjectionType } from "mongoose";
 import logger from "~/logger";
-import { adaptDispositifDepartement, getRegionFigures } from "~/modules/dispositif/dispositif.adapter";
+import {
+  adaptDispositifDepartement,
+  getRegionFigures,
+} from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
-import { Dispositif } from "~/typegoose";
-import { ResponseWithData } from "~/types/interface";
+import type { Dispositif } from "~/typegoose";
+import type { ResponseWithData } from "~/types/interface";
 
 export const getNbDispositifsByRegion = async (): ResponseWithData<GetRegionStatisticsResponse> => {
   logger.info("[getNbDispositifsByRegion]");

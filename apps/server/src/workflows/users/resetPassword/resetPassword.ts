@@ -1,21 +1,23 @@
-import { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
+import type { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
 import crypto from "crypto";
 import logger from "~/logger";
 import { sendResetPasswordMail } from "~/modules/mail/mail.service";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
 import { getUserByEmailFromDB, updateUserInDB } from "~/modules/users/users.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 
 const url = process.env.FRONT_SITE_URL;
 
-export const resetPassword = async (body: ResetPasswordRequest): ResponseWithData<ResetPasswordResponse> => {
+export const resetPassword = async (
+  body: ResetPasswordRequest,
+): ResponseWithData<ResetPasswordResponse> => {
   logger.info("[resetPassword] received", { email: body.email });
 
   const user = await getUserByEmailFromDB(body.email);
   if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
 
   await new Promise((resolve, reject) => {
-    crypto.randomBytes(20, async function (errb, buffer) {
+    crypto.randomBytes(20, async (errb, buffer) => {
       if (errb) reject(new LoginError(LoginErrorType.INVALID_REQUEST, { message: errb.message }));
       const token = buffer.toString("hex");
       await updateUserInDB(user._id, {

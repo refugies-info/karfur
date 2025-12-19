@@ -1,5 +1,5 @@
 import twilio from "twilio";
-import { ServiceInstance } from "twilio/lib/rest/verify/v2/service";
+import type { ServiceInstance } from "twilio/lib/rest/verify/v2/service";
 import logger from "~/logger";
 import LoginError, { LoginErrorType } from "./LoginError";
 
@@ -9,19 +9,23 @@ const { accountSid, authToken } = process.env;
 const client = twilio(accountSid, authToken);
 
 const getTwilioService = () => {
-  return client.verify.v2.services.list({ limit: 1 }).then((existingServices: ServiceInstance[]) => {
-    if (existingServices.length === 0) {
-      return client.verify.v2.services.create({ friendlyName: "Réfugiés.info" });
-    }
-    return existingServices[0];
-  });
+  return client.verify.v2.services
+    .list({ limit: 1 })
+    .then((existingServices: ServiceInstance[]) => {
+      if (existingServices.length === 0) {
+        return client.verify.v2.services.create({ friendlyName: "Réfugiés.info" });
+      }
+      return existingServices[0];
+    });
 };
 
 export const requestEmailLogin = async (email: string) => {
   try {
     const service = await getTwilioService();
     logger.info("[Login] using twilio service", { sid: service.sid });
-    await client.verify.v2.services(service.sid).verifications.create({ to: email, channel: "email" });
+    await client.verify.v2
+      .services(service.sid)
+      .verifications.create({ to: email, channel: "email" });
   } catch (e) {
     logger.error("[Login] error while sending email for", {
       email,
@@ -36,7 +40,9 @@ export const requestEmailLogin = async (email: string) => {
 export const verifyCode = async (email: string, code: string) => {
   const service = await getTwilioService();
   logger.info("[Login] using twilio service", { sid: service.sid });
-  const check = await client.verify.v2.services(service.sid).verificationChecks.create({ to: email, code: code });
+  const check = await client.verify.v2
+    .services(service.sid)
+    .verificationChecks.create({ to: email, code: code });
 
   const codeOK = check.status === "approved";
 

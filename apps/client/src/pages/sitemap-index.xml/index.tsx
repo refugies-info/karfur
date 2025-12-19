@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import { getServerSideSitemapIndexLegacy } from "next-sitemap";
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

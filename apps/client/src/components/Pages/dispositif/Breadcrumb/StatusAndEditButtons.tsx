@@ -1,4 +1,9 @@
-import { ContentType, DispositifStatus, GetDispositifResponse } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifStatus,
+  type GetDispositifResponse,
+} from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,7 +13,6 @@ import { userSelector } from "~/services/User/user.selectors";
 import PageContext from "~/utils/pageContext";
 import Status from "../Status";
 import EditModal from "./EditModal";
-import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   dispositif: GetDispositifResponse;
@@ -49,10 +53,17 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
             isAdmin={user.admin}
             className="me-4"
           />
-          <button className="fr-btn fr-btn--icon-right fr-icon-edit-line fr-btn--sm" onClick={onEditClick}>
+          <button
+            className="fr-btn fr-btn--icon-right fr-icon-edit-line fr-btn--sm"
+            onClick={onEditClick}
+          >
             Modifier la fiche
           </button>
-          <EditModal show={showEditModal} toggle={() => setShowEditModal((o) => !o)} onValidate={navigateToEdit} />
+          <EditModal
+            show={showEditModal}
+            toggle={() => setShowEditModal((o) => !o)}
+            onValidate={navigateToEdit}
+          />
         </>
       )}
     </>

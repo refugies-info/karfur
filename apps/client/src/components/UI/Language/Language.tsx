@@ -17,7 +17,11 @@ const Language = (props: Props) => {
 
   return (
     <span className={styles.container}>
-      <span className={"fi fi-" + language.langueCode} title={language.langueCode} id={language.langueCode} />
+      <span
+        className={"fi fi-" + language.langueCode}
+        title={language.langueCode}
+        id={language.langueCode}
+      />
       <span>{language.langueFr}</span>
       {language.langueCode !== "fr" && (
         <>

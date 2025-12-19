@@ -1,1 +1,1 @@
-export { HeaderTitleProps, default } from "./HeaderTitle";
+export { default, HeaderTitleProps } from "./HeaderTitle";

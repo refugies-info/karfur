@@ -1,6 +1,6 @@
-import { GetNeedResponse } from "@refugies-info/api-types";
+import type { GetNeedResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { NeedsActions } from "./needs.actions";
+import type { NeedsActions } from "./needs.actions";
 
 export type NeedState = GetNeedResponse[];
 export const initialNeedState = [];

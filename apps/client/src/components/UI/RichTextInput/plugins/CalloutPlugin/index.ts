@@ -9,14 +9,14 @@ import {
   $setSelection,
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_LOW,
+  createCommand,
   DELETE_CHARACTER_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_UP_COMMAND,
-  createCommand,
 } from "lexical";
 import { useEffect } from "react";
 
-import { $createCalloutNode, $isCalloutNode, CalloutLevel, CalloutNode } from "./CalloutNode";
+import { $createCalloutNode, $isCalloutNode, type CalloutLevel, CalloutNode } from "./CalloutNode";
 
 const INSERT_CALLOUT_COMMAND = createCommand<CalloutLevel>();
 const REMOVE_CALLOUT_COMMAND = createCommand();
@@ -35,7 +35,11 @@ export default function CalloutPlugin() {
         DELETE_CHARACTER_COMMAND,
         () => {
           const selection = $getSelection();
-          if (!$isRangeSelection(selection) || !selection.isCollapsed() || selection.anchor.offset !== 0) {
+          if (
+            !$isRangeSelection(selection) ||
+            !selection.isCollapsed() ||
+            selection.anchor.offset !== 0
+          ) {
             return false;
           }
           const anchorNode = selection.anchor.getNode().getTopLevelElement();
@@ -117,7 +121,10 @@ export default function CalloutPlugin() {
             }
 
             // if text selected, transform block into callout
-            const matchingParagraphParent = $findMatchingParent(selection.anchor.getNode(), $isParagraphNode);
+            const matchingParagraphParent = $findMatchingParent(
+              selection.anchor.getNode(),
+              $isParagraphNode,
+            );
             if (matchingParagraphParent?.getTextContent()) {
               $setBlocksType(selection, () => $createCalloutNode(level));
               editor.update(() => {
@@ -128,7 +135,11 @@ export default function CalloutPlugin() {
             }
 
             // else, insert new one with line breaks
-            selection.insertNodes([$createParagraphNode(), $createCalloutNode(level), $createParagraphNode()]);
+            selection.insertNodes([
+              $createParagraphNode(),
+              $createCalloutNode(level),
+              $createParagraphNode(),
+            ]);
           });
 
           return true;

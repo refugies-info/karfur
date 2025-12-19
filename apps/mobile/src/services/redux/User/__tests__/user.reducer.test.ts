@@ -53,7 +53,9 @@ describe("[Reducer] user", () => {
 
   it("set user french level", () => {
     const state = initialUserState;
-    expect(userReducer(state, setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle bien"]))).toEqual({
+    expect(
+      userReducer(state, setUserFrenchLevelActionCreator(MobileFrenchLevel["Je parle bien"])),
+    ).toEqual({
       ...initialUserState,
       frenchLevel: MobileFrenchLevel["Je parle bien"],
     });

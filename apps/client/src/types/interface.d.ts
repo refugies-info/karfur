@@ -29,7 +29,13 @@ export type StructureAdminStatus = {
   order: number;
 } & Status;
 
-export type UserStatusType = "Respo" | "Admin" | "Experts" | "Traducteurs" | "Multi-structure" | "Tous";
+export type UserStatusType =
+  | "Respo"
+  | "Admin"
+  | "Experts"
+  | "Traducteurs"
+  | "Multi-structure"
+  | "Tous";
 export type UserStatus = {
   storedStatus: UserStatusType;
   order: number;

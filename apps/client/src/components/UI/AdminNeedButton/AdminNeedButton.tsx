@@ -1,4 +1,4 @@
-import { GetNeedResponse } from "@refugies-info/api-types";
+import type { GetNeedResponse } from "@refugies-info/api-types";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
 import EVAIcon from "../EVAIcon/EVAIcon";
@@ -21,11 +21,14 @@ const AdminThemeButton = (props: Props) => (
     className={cls(styles.btn)}
     style={{
       background: props.need.theme.colors.color30,
-      borderColor: props.selected || props.opened ? props.need.theme.colors.color100 : "transparent",
+      borderColor:
+        props.selected || props.opened ? props.need.theme.colors.color100 : "transparent",
       color: props.need.theme.colors.color100,
     }}
   >
-    {props.draggable && <EVAIcon name="menu" size={20} fill={props.need.theme.colors.color100} className="me-4" />}
+    {props.draggable && (
+      <EVAIcon name="menu" size={20} fill={props.need.theme.colors.color100} className="me-4" />
+    )}
 
     {props.need.image?.secure_url && (
       <div className="me-4">
@@ -63,7 +66,12 @@ const AdminThemeButton = (props: Props) => (
         </span>
       )}
       {props.opened && (
-        <EVAIcon name="arrow-forward" fill={props.need.theme.colors.color100} size={20} className="ms-2" />
+        <EVAIcon
+          name="arrow-forward"
+          fill={props.need.theme.colors.color100}
+          size={20}
+          className="ms-2"
+        />
       )}
     </span>
   </button>
