@@ -36,7 +36,7 @@ describe("[Saga] All dispositifs", () => {
         .isDone();
     });
 
-    it("should filter out RCO dispositifs", () => {
+    it("should no longer filter out RCO dispositifs", () => {
       const mockData = [
         { id: "id1", origin: DispositifOrigin.RI },
         { id: "id2", origin: DispositifOrigin.RCO },
@@ -47,7 +47,7 @@ describe("[Saga] All dispositifs", () => {
         .next()
         .call(API.getAllDispositifs)
         .next(mockData)
-        .put(setAllDispositifsActionsCreator([{ id: "id1", origin: DispositifOrigin.RI }]))
+        .put(setAllDispositifsActionsCreator(mockData))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()
