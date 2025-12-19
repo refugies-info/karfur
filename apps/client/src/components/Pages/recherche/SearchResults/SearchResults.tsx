@@ -1,6 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { memo, useCallback, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import {
@@ -9,14 +10,15 @@ import {
   searchResultsSelector,
 } from "services/SearchResults/searchResults.selector";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
 import Image from "~/components/UI/Image";
-import { useWindowSize } from "~/hooks";
 import { filterByType } from "~/lib/recherche/filterContents";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
-import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { Event } from "~/lib/tracking";
 import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
+import { resetFiltersActionCreator } from "~/services/SearchResults/searchResults.actions";
 import styles from "./SearchResults.module.scss";
 
 export const MATCHES_PER_PAGE = 24;
@@ -35,6 +37,8 @@ const SearchResults = (props: Props) => {
   const selectedDepartment = query.departments.length === 1 ? query.departments[0] : undefined;
   const showSuggestions = useMemo(() => getDisplayRuleForQuery(query, "suggestions")?.display, [query]);
 
+  const announce = useAnnounce();
+
   const [page, setPage] = useState(1);
 
   const filteredResults = useMemo(() => {
@@ -50,44 +54,55 @@ const SearchResults = (props: Props) => {
     [filteredResults.matches, isMobile, page],
   );
 
+  const remainingItems = useMemo(() => {
+    return filteredResults.matches.length - dispositifs.length;
+  }, [filteredResults.matches.length, dispositifs.length]);
+
+  const seeMoreCount = useMemo(() => {
+    return Math.min(remainingItems, MATCHES_PER_PAGE);
+  }, [remainingItems]);
+
   const noResults = filteredResults.matches.length === 0;
 
-  const loadMoreData = useCallback(
-    (page: number) => {
-      // eslint-disable-next-line no-console
-      console.log(page, dispositifs.length, filteredResults.matches.length);
-      if (dispositifs.length < filteredResults.matches.length) {
-        setPage(page);
-      }
-    },
-    [dispositifs.length, filteredResults.matches],
-  );
+  useEffect(() => {
+    if (page > 1) {
+      Event("SEE_MORE", "Click on see more button", page.toString());
+    }
+  }, [page]);
+
+  const handleSeeMore = () => {
+    announce(t("Recherche.loadingResults", "Chargement de {{count}} résultats...", { count: seeMoreCount }), {
+      priority: "interrupt",
+      delay: page === 1 ? 1000 : 0,
+    });
+    setPage(page + 1);
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight / 2) {
-        setPage((prevPage) => prevPage + 1);
-        loadMoreData(page + 1);
-      }
-    };
+    if (page === 1) return;
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [page, loadMoreData]);
+    if (remainingItems > 0) {
+      announce(t("Recherche.remainingResults", "Il reste {{count}} résultats à charger", { count: remainingItems }), {
+        priority: "normal",
+      });
+    } else {
+      announce(t("Recherche.allResultsDisplayed", "Tous les résultats sont affichés"), {
+        priority: "normal",
+      });
+    }
+  }, [announce, remainingItems, page, t]);
 
   return (
-    <section className={styles.wrapper}>
+    <section className={styles.wrapper} aria-labelledby="resultats">
       <Container className={styles.container}>
         <ResultsFilter counts={counts} />
+
         {noResults ? (
           <>
-            <div className={styles.no_results}>
+            <div className={styles.no_results} id="resultats-liste">
               <Image src={TutoImg} width={176} height={120} alt="" />
               <div>
-                <h2 className="mb-2">
+                <h2 className="mb-2" id="resultats">
                   {t("Recherche.noResultTitle", "Oups ! Il n’y a aucun résultat avec vos critères de recherche.")}
                 </h2>
                 <p>{t("Recherche.noResultText", "Utilisez moins de filtres ou vérifiez l’orthographe du mot-clé.")}</p>
@@ -104,10 +119,10 @@ const SearchResults = (props: Props) => {
             </div>
 
             <div style={{ width: "100%" }}>
-              <h2 className={styles.no_results_other}>
+              <h2 className={styles.no_results_other} id="resultats-suggestions">
                 {t("Recherche.noResultOther", "Ces fiches peuvent aussi vous intéresser")}
               </h2>
-              <div className={styles.results}>
+              <div className={styles.results} id="resultats-suggestions-liste">
                 {noResultsDemarche.map((d) => (
                   <DispositifCard className={styles.dispositifCard} key={d._id.toString()} dispositif={d} targetBlank />
                 ))}
@@ -116,9 +131,12 @@ const SearchResults = (props: Props) => {
           </>
         ) : (
           <div style={{ width: "100%" }}>
-            <h2>{t("Recherche.yourResults", { count: filteredResults.matches.length })}</h2>
+            <h2 id="resultats">
+              {t("Recherche.yourResults", { count: dispositifs.length })}
+              {remainingItems > 0 && ` ${t("Recherche.resultsOn", { count: searchResults.matches.length })}`}
+            </h2>
 
-            <div className={styles.results}>
+            <div className={styles.results} id="resultats-liste">
               {dispositifs.length > 0 &&
                 dispositifs.map((d) => {
                   if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
@@ -133,14 +151,22 @@ const SearchResults = (props: Props) => {
                   );
                 })}
             </div>
+
+            <div className="mt-10 flex w-full justify-center">
+              {remainingItems !== 0 && (
+                <Button onClick={handleSeeMore}>
+                  {t("Recherche.loadMore", "Afficher {{count}} résultats supplémentaires", { count: seeMoreCount })}
+                </Button>
+              )}
+            </div>
           </div>
         )}
         {showSuggestions && filteredResults.suggestions.length > 0 && (
           <div style={{ width: "100%" }}>
-            <h2 className={styles.no_results_other}>
+            <h2 className={styles.no_results_other} id="resultats-suggestions">
               {t("Recherche.suggestedTitle", "Ces fiches peuvent aussi vous intéresser")}
             </h2>
-            <div className={styles.results}>
+            <div className={styles.results} id="resultats-suggestions-liste">
               {filteredResults.suggestions.map((d) => {
                 if (typeof d === "string") return null; // d can be a string if it comes from generateLightResults
                 return (

@@ -19,7 +19,7 @@
 
 Separate components in multiple small reusable components to increase modularity and separate logic in different functions.
 
-To know more about how to write a component, please read [component architecture guide](./component-architecture.md).
+To know more about how to write a component, please read [component composition guide](./component-composition.md).
 
 ## Typing
 

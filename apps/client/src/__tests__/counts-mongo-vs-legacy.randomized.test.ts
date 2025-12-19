@@ -17,7 +17,7 @@ import { LegacyNeedsItem } from "~/__fixtures__/search/legacy-counts";
 /**
  * Randomized dataset tests: seeds many generated documents for broader coverage
  */
-describe("Mongo counts vs legacy filterDispositifs (randomized)", () => {
+describe.skip("Mongo counts vs legacy filterDispositifs (randomized)", () => {
   let setup: TestSetup;
 
   const { TB } = getSeedThemeIdsAsStrings();

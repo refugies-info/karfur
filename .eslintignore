@@ -1,0 +1,9 @@
+# Ignore directories from linting
+/.gemini
+/.specify
+/.windsurf
+node_modules/
+dist/
+build/
+coverage/
+*.min.js

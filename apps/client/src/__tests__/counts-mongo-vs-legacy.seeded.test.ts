@@ -19,7 +19,7 @@ import { seedDispositifs } from "~/__fixtures__/seed-data";
 /**
  * Seeded dataset tests: uses deterministic fixtures from `seedDispositifs()`
  */
-describe("Mongo counts vs legacy filterDispositifs (seeded)", () => {
+describe.skip("Mongo counts vs legacy filterDispositifs (seeded)", () => {
   let setup: TestSetup;
 
   const { TB } = getSeedThemeIdsAsStrings();

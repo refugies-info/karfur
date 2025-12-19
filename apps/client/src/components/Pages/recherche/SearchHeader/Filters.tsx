@@ -1,16 +1,22 @@
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
-import { useSearchEventName, useWindowSize } from "~/hooks";
+import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
 import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
 import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector, themesDisplayedValueSelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchQuerySelector,
+  searchResultsSelector,
+  themesDisplayedValueSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
 import { useSearchCounts } from "../SearchCountsContext";
 import ThemeMenu from "../ThemeMenu";
@@ -30,8 +36,9 @@ const Filters = (props: Props) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const dispositifs = useSelector(activeDispositifsSelector);
+  const searchResults = useSelector(searchResultsSelector);
   const stylesDisabled = useStylesDisabled();
-
+  const announce = useAnnounce();
   const eventName = useSearchEventName();
 
   const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
@@ -43,13 +50,53 @@ const Filters = (props: Props) => {
   }, [query.departments, dispositifs]);
 
   // KEYWORD
+  const [insideSearchInput, setInsideSearchInput] = useState(false);
+  const [currentSearchInputValue, setCurrentSearchInputValue] = useState("");
   const onChangeSearchInput = useCallback(
     (e: any) => {
+      setCurrentSearchInputValue(e.target.value);
       dispatch(addToQueryActionCreator({ search: e.target.value }));
       Event(eventName, "use keyword filter", "use searchbar");
     },
     [dispatch, eventName],
   );
+
+  const onFocusSearchInput = useCallback(() => {
+    setInsideSearchInput(true);
+  }, []);
+
+  const onBlurSearchInput = useCallback(() => {
+    setInsideSearchInput(false);
+  }, []);
+
+  useEffect(() => {
+    if (!insideSearchInput) return;
+
+    if (currentSearchInputValue.length === 0) {
+      announce(
+        t("Recherche.emptySearch", "Recherche par mot clé vide. {{count}} fiches chargées", {
+          count: searchResults.matches.length,
+          search: currentSearchInputValue,
+        }),
+        {
+          priority: "interrupt",
+          delay: 100,
+        },
+      );
+      return;
+    }
+
+    announce(
+      t("Recherche.resultsForYourSearch", "{{count}} résultats trouvés pour votre recherche {{search}}", {
+        count: searchResults.matches.length,
+        search: currentSearchInputValue,
+      }),
+      {
+        priority: "interrupt",
+        delay: 1000,
+      },
+    );
+  }, [announce, searchResults.matches.length, t, currentSearchInputValue, insideSearchInput]);
 
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);
@@ -62,19 +109,45 @@ const Filters = (props: Props) => {
   }, [t, themeDisplayedValue]);
 
   // LOCATION
-  const resetDepartment = useCallback(() => {
-    dispatch(addToQueryActionCreator({ departments: [], sort: "default" }));
-  }, [dispatch]);
+  const resetLocation = useCallback(() => {
+    dispatch(addToQueryActionCreator({ departments: [], cities: [], sort: "default" }));
+    announce(t("Recherche.departmentsCleared", "Filtre de localisation effacé"));
+  }, [dispatch, announce, t]);
 
   const { isTablet } = useWindowSize();
 
+  const decodeDepartmentValue = (value: string) => {
+    try {
+      const decoded = decodeURIComponent(value);
+      return decoded
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, "&");
+    } catch (e) {
+      return value
+        .replace(/&#39;/g, "'")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, "&");
+    }
+  };
+
+  const decodedDepartments = useMemo(() => {
+    return query.departments.map((dep) => decodeDepartmentValue(dep));
+  }, [query.departments]);
+
   const locationLabel = useMemo(() => {
-    return query.departments.length === 0
-      ? t("Recherche.filterLocation", "Département")
-      : departmentsNotDeployed.length > 0 && isTablet
-        ? `${query.departments[0]} ⚠️`
-        : query.departments[0];
-  }, [t, query.departments, departmentsNotDeployed, isTablet]);
+    if (decodedDepartments.length === 0) {
+      return t("Recherche.filterLocation", "Localisation");
+    }
+
+    const firstDepartment = decodedDepartments[0];
+
+    if (departmentsNotDeployed.length > 0 && isTablet) {
+      return `${firstDepartment} ⚠️`;
+    }
+
+    return firstDepartment;
+  }, [t, decodedDepartments, departmentsNotDeployed, isTablet]);
 
   const statusOptions = useStatusOptions();
   const publicOptions = usePublicOptions();
@@ -95,7 +168,12 @@ const Filters = (props: Props) => {
 
   return (
     <Container className={cls(styles.container, isSticky && styles.sticky)}>
-      <SearchInput className={styles.searchZone} onChange={onChangeSearchInput} />
+      <SearchInput
+        onFocus={onFocusSearchInput}
+        onBlur={onBlurSearchInput}
+        className={styles.searchZone}
+        onChange={onChangeSearchInput}
+      />
       <DropdownProvider>
         <div className={styles.filtersBar}>
           <Filter
@@ -109,8 +187,8 @@ const Filters = (props: Props) => {
             }
             label={locationLabel}
             externalMenu={{
-              value: query.departments,
-              reset: resetDepartment,
+              value: decodedDepartments,
+              reset: resetLocation,
               menu: <LocationMenu />,
             }}
             gaType="department"

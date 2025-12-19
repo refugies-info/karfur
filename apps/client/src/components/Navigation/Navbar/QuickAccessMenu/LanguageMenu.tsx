@@ -1,15 +1,15 @@
 import { Accordion } from "@codegouvfr/react-dsfr/Accordion";
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
+import { useWindowSize } from "@refugies-info/ui";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useTranslation } from "next-i18next";
-import { useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { DropdownContent, DropdownRoot, DropdownTrigger } from "~/components/UI/DropDown/DropDown";
 import Flag from "~/components/UI/Flag";
 import { LanguageSelector } from "~/components/UI/LanguageSelector/LanguageSelector";
 import { useLocale } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
-import useWindowSize from "~/hooks/useWindowSize";
 import { cn } from "~/lib/classname";
 import styles from "./LanguageMenu.module.scss";
 
@@ -46,10 +46,12 @@ const LanguageMenu = ({
   }
 
   const { isMobile } = useWindowSize();
+
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
 
   const dropdownRef = useRef<{ closeDropdown: () => void }>(null);
+  const descriptionId = useId();
 
   const handleToggleMobileMenu = () => {
     const dsfrMenu = document.getElementById("header-menu-modal-fr-header");
@@ -90,7 +92,7 @@ const LanguageMenu = ({
 
       {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
         <DropdownRoot
-          className={className}
+          className={cn(className)}
           ref={dropdownRef}
           key={key}
           onOpenChange={(open) => setLangMenuOpened(open)}
@@ -106,12 +108,13 @@ const LanguageMenu = ({
               <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
             </Button>
           </DropdownTrigger>
-          <DropdownContent position="start" className={dropDownClassName}>
+          <DropdownContent position="start" className={cn(dropDownClassName)}>
             <LanguageSelector
               onChangeLang={handleToggleDesktopDopdown}
               type={languageSelectorType}
               availableLanguages={availableLanguages}
               itemsDesign={itemsDesign}
+              role="presentation"
             />
           </DropdownContent>
         </DropdownRoot>
@@ -138,7 +141,10 @@ const LanguageMenu = ({
                 }
               `}</style>
               <Dialog.Portal>
-                <Dialog.Content className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white">
+                <Dialog.Content
+                  className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white"
+                  aria-describedby={descriptionId}
+                >
                   <Dialog.Title className="border-default-grey sticky top-0 z-50 mb-6 flex items-center justify-between border-b bg-white p-4 py-5">
                     {t("Dispositif.readIn", "Lire la fiche en")}
                     <Dialog.Close asChild>
@@ -150,7 +156,7 @@ const LanguageMenu = ({
                       />
                     </Dialog.Close>
                   </Dialog.Title>
-                  <Dialog.Description className="px-2">
+                  <Dialog.Description className="px-2" id={descriptionId}>
                     <LanguageSelector
                       onChangeLang={handleToggleDesktopDopdown}
                       type={languageSelectorType}

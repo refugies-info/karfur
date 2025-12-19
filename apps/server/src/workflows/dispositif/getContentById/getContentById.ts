@@ -90,6 +90,7 @@ export const getContentById = async (
     creatorId: 1,
     hasDraftVersion: 1,
     administrationLogo: 1,
+    origin: 1,
   };
   let draftDispositif = null;
   const originalDispositif = await (
@@ -173,6 +174,7 @@ export const getContentById = async (
       "theme",
       "externalLink",
       "creatorId",
+      "origin",
     ]),
   };
 

@@ -11,7 +11,7 @@ import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
 import Image from "~/components/UI/Image";
 import { useLogin } from "~/hooks";
 import { cls } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import styles from "~/scss/components/auth.module.scss";
 import API from "~/utils/API";
 import Loader from "../Loader";

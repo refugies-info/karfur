@@ -3,6 +3,22 @@
 exports[`publier renders publier 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
+  <div
     class="w-full"
   >
     <div

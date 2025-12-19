@@ -1,7 +1,12 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { cn, ThumbUpAnimated, ThumbUpAnimatedRef } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
+
+type AnnounceOptions = {
+  priority?: "interrupt" | "normal";
+  delay?: number;
+};
 
 type VoteLayoutStandardProps = {
   className?: string;
@@ -9,16 +14,29 @@ type VoteLayoutStandardProps = {
   handleClickYes: () => void;
   handleClickNo: () => void;
   hasVoted: boolean;
-  thumbUpRef: React.RefObject<ThumbUpAnimatedRef>;
+  thumbUpRef: React.RefObject<ThumbUpAnimatedRef | null>;
+  onVoteAnnounce?: (message: string, options?: AnnounceOptions) => void;
 };
 
 const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
-  ({ className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef }, ref) => {
+  ({ className, vote, handleClickYes, handleClickNo, hasVoted, thumbUpRef, onVoteAnnounce }, ref) => {
     const { t } = useTranslation();
+    const prevHasVoted = useRef(hasVoted);
+
+    useEffect(() => {
+      if (hasVoted && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_thanks", "Merci pour votre retour"), { priority: "interrupt" });
+      } else if (!hasVoted && prevHasVoted.current && onVoteAnnounce) {
+        onVoteAnnounce(t("ui.northStar_vote_cancelled", "Votre vote a été retiré"), { priority: "interrupt" });
+      }
+      prevHasVoted.current = hasVoted;
+    }, [hasVoted, onVoteAnnounce, t]);
 
     return (
       <div ref={ref} className={cn("mb-4 flex flex-col gap-2 rounded-sm bg-white p-4 shadow-lg", className)}>
-        <p className="mb-2 text-xl font-bold">{t("ui.northStar_title", "Cette page vous a-t-elle été utile ? ✨")}</p>
+        <p className="mb-2 text-xl font-bold">
+          {t("ui.northStar_title", "Cette page vous a-t-elle été utile ?")} <span aria-hidden="true">✨</span>
+        </p>
 
         <div className="grid grid-cols-2 gap-2">
           <Button
@@ -27,10 +45,13 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             className={cn("flex h-[1.7rem] w-full items-end gap-2 transition-all")}
             size="small"
           >
-            <div className="relative">
-              <span className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}></span>
+            <div className="relative" aria-hidden="true">
+              <span
+                aria-hidden="true"
+                className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}
+              ></span>
               <ThumbUpAnimated
-                ref={thumbUpRef}
+                ref={thumbUpRef as React.RefObject<ThumbUpAnimatedRef>}
                 className={cn("absolute bottom-0", vote === true ? "opacity-100" : "opacity-0")}
                 themeId="light"
               />
@@ -49,14 +70,13 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         </div>
         <p
           className={cn(
-            "m-0 overflow-hidden transition-[max-height] delay-200 duration-500 text-sm",
+            "m-0 overflow-hidden text-sm transition-[max-height] delay-200 duration-500",
             hasVoted ? "max-h-[1000px]" : "max-h-0",
             vote === true && "delay-1000",
           )}
-          aria-hidden={hasVoted ? false : true}
-          aria-live={hasVoted ? "assertive" : "off"}
+          aria-hidden="true"
         >
-          {t("ui.northStar_thanks", "Merci pour votre retour 😊")}
+          {t("ui.northStar_thanks", "Merci pour votre retour")} ☺️
         </p>
       </div>
     );

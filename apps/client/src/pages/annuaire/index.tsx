@@ -20,7 +20,7 @@ import SEO from "~/components/Seo";
 
 import { GetActiveStructuresResponse } from "@refugies-info/api-types";
 import { useLocale } from "~/hooks";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { Event } from "~/lib/tracking";
 import styles from "~/scss/pages/annuaire.module.scss";
 

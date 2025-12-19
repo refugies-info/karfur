@@ -55,26 +55,33 @@ const preview: Preview = {
       },
     },
     backgrounds: {
-      default: "light",
-      values: [
-        {
+      options: {
+        light: {
           name: "light",
           value: "#ffffff",
         },
-        {
+
+        dark: {
           name: "dark",
           value: "#0a0a0a",
-        },
-      ],
+        }
+      }
     },
 
     viewport: {
-      viewports: {
+      options: {
         ...RIViewports,
       },
     },
   },
+
   decorators: [withDsfrDecorator],
+
+  initialGlobals: {
+    backgrounds: {
+      value: "light"
+    }
+  }
 };
 
 export default preview;

@@ -440,6 +440,22 @@ exports[`should render Structure with sponsor without nom 1`] = `
 
 exports[`should render StyledStatus Accepté structure  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -474,6 +490,22 @@ exports[`should render StyledStatus Accepté structure  1`] = `
 
 exports[`should render StyledStatus Brouillon  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -508,6 +540,22 @@ exports[`should render StyledStatus Brouillon  1`] = `
 
 exports[`should render StyledStatus En attente admin  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -542,6 +590,22 @@ exports[`should render StyledStatus En attente admin  1`] = `
 
 exports[`should render StyledStatus Rejeté structure  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -576,6 +640,22 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
 
 exports[`should render StyledStatus Supprimé  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -610,6 +690,22 @@ exports[`should render StyledStatus Supprimé  1`] = `
 
 exports[`should render StyledStatus actif  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -644,6 +740,22 @@ exports[`should render StyledStatus actif  1`] = `
 
 exports[`should render StyledStatus en attente  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -678,6 +790,22 @@ exports[`should render StyledStatus en attente  1`] = `
 
 exports[`should render StyledStatus no corresponding status  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -712,6 +840,22 @@ exports[`should render StyledStatus no corresponding status  1`] = `
 
 exports[`should render StyledStatus no corresponding with color  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;
@@ -746,6 +890,22 @@ exports[`should render StyledStatus no corresponding with color  1`] = `
 
 exports[`should render StyledStatus no corresponding with override  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   font-weight: bold;
   border-radius: 6px;

@@ -1,15 +1,15 @@
 import React from "react";
 import { ScrollView } from "react-native";
 
-const scrollToEnd = (el: React.RefObject<ScrollView>) => {
+const scrollToEnd = (el: React.RefObject<ScrollView | null>) => {
   return el.current?.scrollToEnd({ animated: false });
 };
-const scrollToStart = (el: React.RefObject<ScrollView>) => {
+const scrollToStart = (el: React.RefObject<ScrollView | null>) => {
   return el.current?.scrollTo({ x: 0, y: 0, animated: false });
 };
 
 export const initHorizontalScroll = (
-  elements: React.RefObject<ScrollView> | React.RefObject<ScrollView>[],
+  elements: React.RefObject<ScrollView | null> | React.RefObject<ScrollView | null>[],
   isRTL: boolean,
 ) => {
   setTimeout(() => {

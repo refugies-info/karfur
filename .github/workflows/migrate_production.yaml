@@ -25,7 +25,7 @@ jobs:
       MONGODB_ATLAS_PROJECT_ID: ${{ secrets.MONGODB_ATLAS_PROJECT_ID }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -33,9 +33,9 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
-          node-version: "22.14.0"
+          node-version: "24.11.1"
 
       - name: Install Dependencies
         run: |
@@ -43,7 +43,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Setup AtlasCLI
-        uses: mongodb/atlas-github-action@v0.2.1
+        uses: mongodb/atlas-github-action@v0.2.2
 
       - name: Setup IP environment variable
         run: echo "IP=$(curl -s https://api.ipify.org)" >> $GITHUB_ENV

@@ -76,17 +76,6 @@ export const customEvent = (eventName: string, eventData: object) => {
   ReactGA.gtag("event", eventName, eventData);
 };
 
-const initMatomo = () => {
-  var _mtm = (window._mtm = window._mtm || []);
-  _mtm.push({ "mtm.startTime": new Date().getTime(), "event": "mtm.Start" });
-  var d = document,
-    g = d.createElement("script"),
-    s = d.getElementsByTagName("script")[0];
-  g.async = true;
-  g.src = "https://cdn.matomo.cloud/refugies.matomo.cloud/container_ZxAXaEFC.js";
-  s.parentNode?.insertBefore(g, s);
-};
-
 /**
  * Inits GA with consent option, or update if already initialized
  */
@@ -107,7 +96,6 @@ export const initGA = (consent: boolean) => {
     });
     if (trackingId) ReactGA.initialize(trackingId);
     Event("SESSION", "count", "start");
-    initMatomo();
   } else {
     ReactGA.gtag("consent", "update", {
       analytics_storage: consent ? "granted" : "denied",

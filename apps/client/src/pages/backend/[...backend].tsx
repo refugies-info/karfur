@@ -12,7 +12,7 @@ import SEO from "~/components/Seo";
 import { useAuth } from "~/hooks";
 import useRouterLocale from "~/hooks/useRouterLocale";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { setLoginRedirect } from "~/lib/loginRedirect";
 import styles from "~/scss/pages/backend.module.scss";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";

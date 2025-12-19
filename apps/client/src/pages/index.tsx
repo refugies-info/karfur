@@ -5,7 +5,7 @@ import {
   SimpleDispositif,
   TranslationStatisticsResponse,
 } from "@refugies-info/api-types";
-import { Carrousel } from "@refugies-info/ui";
+import { Carrousel, isInBrowser, useWindowSize } from "@refugies-info/ui";
 import { logger } from "logger";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -20,9 +20,8 @@ import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useRTL, useWindowSize } from "~/hooks";
+import { useRTL } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
-import isInBrowser from "~/lib/isInBrowser";
 import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/staticPages.module.scss";
 import { wrapper } from "~/services/configureStore";
@@ -91,9 +90,10 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDemarche", "{{count}} démarches administratives expliquées", {
             count: props.contentStatistics.nbDemarches || 0,
           }),
-          seeMore: t("ui.carrouselSeemore", "Voir tout"),
-          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
-          next: t("ui.carrouselNext", "Faire défiler à droite"),
+          seeMore: t("Homepage.demarcheSeeAll", "Voir toutes les démarches"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche", { type: "demarche" }),
+          next: t("ui.carrouselNext", "Faire défiler à droite", { type: "demarche" }),
+          countSeparator: t("ui.countSeparator", "sur"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=demarche"
       >
@@ -109,9 +109,10 @@ const Homepage = (props: Props) => {
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
           }),
-          seeMore: t("ui.carrouselSeemore", "Voir plus"),
+          seeMore: t("Homepage.dispositifSeeAll", "Voir tous les dispositifs"),
           prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
           next: t("ui.carrouselNext", "Faire défiler à droite"),
+          countSeparator: t("ui.countSeparator", "sur"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
       >

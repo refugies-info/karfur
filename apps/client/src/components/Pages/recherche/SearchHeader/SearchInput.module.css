@@ -1,10 +1,6 @@
 .container {
   width: 100%;
 
-  & label {
-    display: none !important;
-  }
-
   & .fr-input-wrap {
     width: 100%;
   }

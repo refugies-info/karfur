@@ -91,6 +91,17 @@ export interface GoogleAPISuggestion {
   description: string;
 }
 
+export interface GeoAPISuggestion {
+  properties: {
+    city: string;
+    context: string;
+    label: string;
+  };
+  geometry: {
+    coordinates: [number, number];
+  };
+}
+
 export type ExplorerScreenProps<T extends keyof ExplorerParamList> = CompositeScreenProps<
   StackScreenProps<ExplorerParamList, T>,
   BottomTabScreenProps<BottomTabParamList>

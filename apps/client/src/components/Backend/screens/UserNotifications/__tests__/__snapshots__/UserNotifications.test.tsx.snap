@@ -2,6 +2,22 @@
 
 exports[`UserNotifications should render correctly when 0 notif 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   background: lightGrey;
   border-radius: 12px;
@@ -73,6 +89,22 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 
 exports[`UserNotifications should render correctly when loading 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c1 {
   display: flex;
   flex-direction: row;
@@ -176,6 +208,22 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 
 exports[`UserNotifications should render correctly when notif not read annuaire, not read reaction, not read new content, read reaction  1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c1 {
   display: flex;
   flex-direction: row;

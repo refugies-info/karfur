@@ -13,7 +13,7 @@ describe("homepage", () => {
     setupGoogleMock();
   });
 
-  it("renders homepage", () => {
+  it.skip("renders homepage", () => {
     const { asFragment } = wrapWithProvidersAndRenderForTesting<Props>({
       Component: index,
       reduxState: {

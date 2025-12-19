@@ -8,7 +8,8 @@ import DesktopRegisterImg from "~/assets/staticPages/publier/desktop-register.sv
 import MobileRegisterImg from "~/assets/staticPages/publier/mobile-register.png";
 import { Title2 } from "~/components/Pages/staticPages/common/Title2";
 import Image from "~/components/UI/Image";
-import { useAuth, useWindowSize } from "~/hooks";
+import { useAuth } from "~/hooks";
+import { useWindowSize } from "@refugies-info/ui";
 import { handleApiError } from "~/lib/handleApiErrors";
 import { setLoginRedirect, setRegisterInfos } from "~/lib/loginRedirect";
 import { Event } from "~/lib/tracking";

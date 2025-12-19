@@ -1,5 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { AnnotationsOverlay } from "@refugies-info/ui";
+import { AnnotationsOverlay, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
@@ -7,7 +7,7 @@ import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
@@ -24,14 +24,19 @@ const MobileApp = () => {
     () => (
       <p className="mb-0 flex w-full max-w-lg justify-center gap-4 xl:justify-start xl:pl-4">
         <a href={iosStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-30">
-          <Image src={appStoreBadge} alt="Get it on App Store" fill />
+          <Image src={appStoreBadge} alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")} fill />
         </a>
         <a href={androidStoreLink} rel="noopener noreferrer" target="_blank" className="relative h-10 w-32">
-          <Image src={playStoreBadge} width={128} height={40} alt="Get it on Play Store" />
+          <Image
+            src={playStoreBadge}
+            width={128}
+            height={40}
+            alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+          />
         </a>
       </p>
     ),
-    [appStoreBadge, playStoreBadge],
+    [appStoreBadge, playStoreBadge, t],
   );
 
   const handleOpenStoreLink = (storelink: string) => {
@@ -42,6 +47,8 @@ const MobileApp = () => {
     <section
       id="application"
       className="container flex flex-col gap-10 py-10 md:grid md:grid-cols-2 lg:py-20 2xl:gap-20"
+      role="region"
+      aria-label={t("MobileApp.sectionLabel", "Section application mobile")}
     >
       <div className="flex h-full flex-col items-center justify-center gap-10">
         <AnnotationsOverlay
@@ -66,21 +73,20 @@ const MobileApp = () => {
             },
           ]}
         >
-          <Image
-            src={application}
-            fill
-            className="object-contain"
-            alt={t(
-              "MobileApp.imageAlt",
-              "Capture d’écran de l’interface d’une application mobile nommée 'Réfugiés.info'. L’application propose des fiches d’information sur divers sujets liés à l’intégration des réfugiés. L’image met en avant plusieurs fonctionnalités accessibles : un bouton de partage, une option de changement de langue représentée par un drapeau, un contenu écrit en langage clair et simplifié, ainsi qu’un bouton de vocalisation permettant d’écouter les textes. L’interface utilise des illustrations et une disposition épurée pour faciliter la compréhension et l’utilisation.",
-            )}
-          />
+          <Image src={application} fill className="object-contain" alt="" />
         </AnnotationsOverlay>
+        <p className="sr-only">
+          {t(
+            "MobileApp.description",
+            "Téléchargez l'application mobile pour accéder à toutes les fonctionnalités de partage, de changement de langue, de langage clair et de vocalisation centralisées dans une seule application.",
+          )}
+        </p>
+
         {storeLinks}
       </div>
       <div className="">
         <div className="mb-6 flex items-center gap-6">
-          <Image src="/images/logoRI.svg" width={72} height={72} alt={t("MobileApp.logoAlt", "Logo Réfugiés.info")} />
+          <Image src="/images/logoRI.svg" width={72} height={72} alt="" />
           <p className="m-0 flex flex-col gap-2 font-medium">
             <span aria-label={t("MobileApp.rankingLabel", "Note : 5 sur 5")} role="img" className="inline-flex gap-3">
               {Array.from({ length: 5 }).map((_, index) => (

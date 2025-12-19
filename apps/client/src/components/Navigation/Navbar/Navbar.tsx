@@ -11,12 +11,13 @@ import { assetsOnServer } from "~/assets/assetsOnServer";
 import useBackendNavigation from "~/components/Backend/Navigation/useBackendNavigation";
 import { QuickAccessMenu } from "~/components/Navigation/Navbar/QuickAccessMenu/QuickAccessMenu";
 import Image from "~/components/UI/Image";
-import { useEditionMode, useLocale, useWindowSize } from "~/hooks";
+import { useEditionMode, useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
-import isInBrowser from "~/lib/isInBrowser";
+import { isInBrowser } from "@refugies-info/ui";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
 import styles from "./Navbar.module.scss";
+import { useWindowSize } from "@refugies-info/ui";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -160,6 +161,7 @@ const Navbar = () => {
   return (
     <>
       <Header
+        id="main-navigation"
         brandTop={
           <>
             République

@@ -25,12 +25,17 @@ const LanguageModal = (props: Props) => {
   const locale = useLocale();
 
   return (
-    <Modal isOpen={props.show} toggle={props.toggle} className={styles.modal} contentClassName={styles.modal_content}>
-      <ModalBody className={styles.modal_body}>
+    <Modal
+      isOpen={props.show}
+      toggle={props.toggle}
+      className={cn(styles.modal)}
+      contentClassName={cn(styles.modal_content, "md:min-w-[37.5rem]")}
+    >
+      <ModalBody className={cn(styles.modal_body)}>
         <div className="flex flex-col gap-8">
           <Button
             onClick={props.toggle}
-            className="!ms-auto block translate-x-4"
+            className="!ms-auto translate-x-4 whitespace-nowrap"
             iconId="fr-icon-close-line"
             priority="tertiary no outline"
             iconPosition="right"
@@ -47,8 +52,8 @@ const LanguageModal = (props: Props) => {
           {!isMobile && (
             <ListGroupItem action key="unavailable" className={styles.list_group_item + " " + styles.unavailable}>
               <Row>
-                <Col xs="8" className={styles.vertical_center}>
-                  <b>{t("Homepage.traduire", "Aidez-nous à traduire !")}</b>
+                <Col xs="8" className={cn(styles.vertical_center)}>
+                  {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
                 </Col>
                 <Col xs="4" className={styles.button_col}>
                   <Button

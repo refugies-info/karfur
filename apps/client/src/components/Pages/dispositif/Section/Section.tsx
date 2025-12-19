@@ -1,9 +1,9 @@
 import { ContentType, InfoSections } from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import React, { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
-import { useWindowSize } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { themeSelector } from "~/services/Themes/themes.selectors";
@@ -29,13 +29,14 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
-  const { isMobile, isTablet } = useWindowSize();
+  const { isMobile, isTablet, zoomLevel } = useWindowSize();
 
   // content
   const contentHtml: string | undefined = useMemo(
     () => (sectionKey === "what" ? dispositif?.[sectionKey] || "" : undefined),
     [sectionKey, dispositif],
   );
+
   const contentAccordions: InfoSections | undefined = useMemo(
     () => (sectionKey !== "what" ? dispositif?.[sectionKey] : undefined),
     [sectionKey, dispositif],
@@ -81,8 +82,10 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
           </>
         )}
       </section>
-      {/* We bring back the metadatas in the what section on mobile */}
-      {(isMobile || isTablet) && sectionKey === "what" && <Metadatas className="bg-white px-4 py-8 print:hidden" />}
+
+      {(isMobile || isTablet || zoomLevel >= 175) && sectionKey === "what" && (
+        <Metadatas className="bg-white px-4 py-8 print:hidden" />
+      )}
     </>
   );
 };

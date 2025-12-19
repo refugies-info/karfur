@@ -2,6 +2,22 @@
 
 exports[`user translation should redirect if user has language but not langue in url + snap view without content 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c1 {
   font-weight: bold;
   font-size: 27.7097px;
@@ -245,6 +261,22 @@ exports[`user translation should redirect if user has language but not langue in
 
 exports[`user translation should redirect if user has no language but langue in url + snap no langue 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c1 {
   font-weight: bold;
   font-size: 27.7097px;
@@ -489,6 +521,22 @@ exports[`user translation should redirect if user has no language but langue in 
 exports[`user translation should render correctly with expert, admin 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
+  <div
     class="main"
   >
     <div
@@ -605,6 +653,22 @@ exports[`user translation should render correctly with expert, admin 1`] = `
 
 exports[`user translation should render correctly with expert, non admin 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   <div
     class="main"
   >
@@ -723,6 +787,22 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
 exports[`user translation should render correctly with non expert, non admin 1`] = `
 <DocumentFragment>
   <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
+  <div
     class="main"
   >
     <div
@@ -839,6 +919,22 @@ exports[`user translation should render correctly with non expert, non admin 1`]
 
 exports[`user translation should return loader langue in url = first selected langue 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c1 {
   font-weight: bold;
   font-size: 27.7097px;

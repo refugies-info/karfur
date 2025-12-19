@@ -2,6 +2,22 @@
 
 exports[`UserStructure should render correctly when add member modal is open 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c5 {
   display: flex;
   flex-direction: row;
@@ -658,6 +674,22 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 
 exports[`UserStructure should render correctly when loading 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c3 {
   display: flex;
   flex-direction: row;
@@ -813,6 +845,22 @@ exports[`UserStructure should render correctly when loading 1`] = `
 
 exports[`UserStructure should render correctly when no structure 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c0 {
   margin-top: 60px;
   display: flex;
@@ -857,6 +905,22 @@ exports[`UserStructure should render correctly when no structure 1`] = `
 
 exports[`UserStructure should render correctly when structure with membres when user is redacteur 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c5 {
   display: flex;
   flex-direction: row;
@@ -1343,6 +1407,22 @@ exports[`UserStructure should render correctly when structure with membres when 
 
 exports[`UserStructure should render correctly when structure with membres when user is respo 1`] = `
 <DocumentFragment>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+    class="sr-only"
+    role="status"
+  >
+     
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    class="sr-only"
+    role="alert"
+  >
+     
+  </div>
   .c5 {
   display: flex;
   flex-direction: row;

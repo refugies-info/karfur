@@ -38,11 +38,13 @@ import AutoAddFavorite from "./AutoAddFavorite";
 import DownloadAppBanner from "./DownloadAppBanner";
 import styles from "./Layout.module.scss";
 
+import { cn } from "@refugies-info/ui";
 import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
 
 interface Props {
   children: any;
   history: string[];
+  className?: string;
 }
 
 // TODO : refator to avoid  overcomplex code to show MobileModal + move it's logic to it's own component
@@ -53,7 +55,7 @@ const Layout = (props: Props) => {
 
   // Use refs to track modal state and timeout
   const manuallyClosedRef = useRef<boolean>(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const isRTL = useRTL();
   const dispatch = useDispatch();
   const router = useRouter();
@@ -255,6 +257,17 @@ const Layout = (props: Props) => {
   return (
     <div dir={isRTL ? "rtl" : "ltr"} onMouseOver={toggleHover} onTouchStart={toggleHover}>
       {!showLangModal && <ConsentBannerAndConsentManagement />}
+      <DownloadAppBanner />
+      <Navbar />
+      <main id="contenu" className={cn(styles.content, props.className)}>
+        {props.children}
+      </main>
+      <Footer />
+      <AutoAddFavorite />
+
+      <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
+      <NewProfileModal />
+      <SubscribeNewsletterModal />
       <LanguageModal
         show={showLangModal}
         currentLanguage={router.locale || "fr"}
@@ -263,17 +276,6 @@ const Layout = (props: Props) => {
         languages={langues}
         isLanguagesLoading={isLanguagesLoading}
       />
-      <DownloadAppBanner />
-      <Navbar />
-      <div id="contenu" className={styles.main}>
-        <main className={styles.content}>{props.children}</main>
-      </div>
-      <Footer />
-      <AutoAddFavorite />
-
-      <DownloadAppModal show={showMobileModal} toggle={toggleMobileAppModal} />
-      <NewProfileModal />
-      <SubscribeNewsletterModal />
     </div>
   );
 };

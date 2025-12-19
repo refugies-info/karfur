@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { useWindowSize } from "@refugies-info/ui";
 import moment from "moment";
 import "moment/locale/ar";
 import "moment/locale/en-gb";
@@ -15,7 +16,7 @@ import SaveBookmark from "~/components/Pages/dispositif/SaveBookmark";
 import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
-import { useLocale, useWindowSize } from "~/hooks";
+import { useLocale } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
@@ -95,13 +96,7 @@ const Header = (props: Props) => {
         <div className="flex items-center gap-3 text-sm">
           {dispositif?.mainSponsor?.picture?.secure_url && (
             <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
-              <Image
-                src={dispositif?.mainSponsor?.picture?.secure_url}
-                width={150}
-                height={150}
-                alt={dispositif?.mainSponsor?.nom || ""}
-                className=""
-              />
+              <Image src={dispositif?.mainSponsor?.picture?.secure_url} width={150} height={150} alt="" />
             </span>
           )}
 
@@ -120,12 +115,12 @@ const Header = (props: Props) => {
 
       {isViewMode && (
         <div className="border-default-grey my-8 flex items-center justify-between border-y py-1 rtl:flex-row-reverse print:hidden">
-          {isMobile && navigatorShareSupported ? (
+          <SaveBookmark />
+
+          {navigatorShareSupported && (
             <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
               {t("Dispositif.shareShort", "Partager")}
             </Button>
-          ) : (
-            <SaveBookmark />
           )}
 
           <LanguageMenu

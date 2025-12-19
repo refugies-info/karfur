@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useWindowSize } from "~/hooks";
 import { canEdit, isStatus } from "~/lib/dispositif";
 import { userSelector } from "~/services/User/user.selectors";
 import PageContext from "~/utils/pageContext";
 import Status from "../Status";
 import EditModal from "./EditModal";
+import { useWindowSize } from "@refugies-info/ui";
 
 interface Props {
   dispositif: GetDispositifResponse;

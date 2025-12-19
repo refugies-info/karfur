@@ -18,6 +18,7 @@ import { ReactElement, ReactNode, useCallback, useEffect, useState } from "react
 import { Provider } from "react-redux";
 import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
+import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Layout/Layout";
 import { useRTL, useScrollToAnchor } from "~/hooks";
 import { useConsent } from "~/hooks/useConsentContext";
@@ -111,14 +112,15 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
     <DirectionProvider dir={isRTL ? "rtl" : "ltr"}>
       <ToastProvider swipeDirection="down">
         <TooltipProvider delayDuration={250}>
-          <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
+          <ScreenReaderAnnouncerProvider>
+            <Provider store={store}>{getLayout(<Component history={history} {...props.pageProps} />)}</Provider>
 
-          {options.supportModule && (
-            <Script
-              id="crisp-widget"
-              strategy="lazyOnload"
-              dangerouslySetInnerHTML={{
-                __html: `
+            {options.supportModule && (
+              <Script
+                id="crisp-widget"
+                strategy="lazyOnload"
+                dangerouslySetInnerHTML={{
+                  __html: `
         window.$crisp=[["safe", true]];
         window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
         (function(){
@@ -128,9 +130,10 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           s.async = 1;
           d.getElementsByTagName("head")[0].appendChild(s);
         })();`,
-              }}
-            />
-          )}
+                }}
+              />
+            )}
+          </ScreenReaderAnnouncerProvider>
         </TooltipProvider>
         <ToastViewport className={toastStyles.viewport} dir={isRTL ? "rtl" : "ltr"} />
       </ToastProvider>
