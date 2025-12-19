@@ -23,10 +23,16 @@ const Contributors = () => {
   return (
     <div className="lg:bg-alt-blue-france lg:shadow-ri flex w-full flex-col p-4 lg:p-14 print:hidden">
       <LinkedThemes className="mb-10 max-sm:mt-10" />
-      <h2 className="text-title-grey mb-6 text-[2rem] leading-[2.5rem] font-bold md:mb-8" id="contributors">
+      <h2
+        className="text-title-grey mb-6 text-[2rem] leading-[2.5rem] font-bold md:mb-8"
+        id="contributors"
+      >
         {t("Dispositif.contributors", { count: participants.length })}
       </h2>
-      <ul className="grid list-none grid-cols-2 gap-4 p-0 md:grid-cols-3" aria-labelledby="contributors">
+      <ul
+        className="grid list-none grid-cols-2 gap-4 p-0 md:grid-cols-3"
+        aria-labelledby="contributors"
+      >
         {participants.map((user, i) => (
           <li key={i}>
             <ContributorCard user={user} />

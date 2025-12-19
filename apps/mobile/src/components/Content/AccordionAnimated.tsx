@@ -1,6 +1,6 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import * as React from "react";
-import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import { type LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import Animated, {
   Extrapolation,
@@ -18,7 +18,7 @@ import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { RTLTouchableOpacity } from "../BasicComponents";
 import { Columns } from "../layout";
-import { ReadableText, ReadableTextRef } from "../ReadableText";
+import { ReadableText, type ReadableTextRef } from "../ReadableText";
 import { TextDSFR_MD_Bold } from "../StyledText";
 import { AccordionHeaderFromHtml } from "./AccordionHeaderFromHtml";
 import { ContentFromHtml } from "./ContentFromHtml";
@@ -174,14 +174,21 @@ export const AccordionAnimated = (props: Props) => {
             />
           )}
           <IconContainer isRTL={isRTL}>
-            <Icon name={isExpanded ? "chevron-up" : "chevron-down"} height={24} width={24} fill={props.darkColor} />
+            <Icon
+              name={isExpanded ? "chevron-up" : "chevron-down"}
+              height={24}
+              width={24}
+              fill={props.darkColor}
+            />
           </IconContainer>
         </Columns>
       </TitleContainer>
 
       <Animated.View style={[stylesheet.bodyBackground, animatedHeight]}>
         <View
-          onLayout={(event: LayoutChangeEvent) => setBodySectionHeight(event.nativeEvent.layout.height)}
+          onLayout={(event: LayoutChangeEvent) =>
+            setBodySectionHeight(event.nativeEvent.layout.height)
+          }
           style={stylesheet.bodyContainer}
         >
           <ExpandedContentContainer>

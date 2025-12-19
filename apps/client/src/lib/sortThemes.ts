@@ -1,3 +1,4 @@
-import { GetThemeResponse } from "@refugies-info/api-types";
+import type { GetThemeResponse } from "@refugies-info/api-types";
 
-export const sortThemes = (a: GetThemeResponse, b: GetThemeResponse) => (a.position > b.position ? 1 : -1);
+export const sortThemes = (a: GetThemeResponse, b: GetThemeResponse) =>
+  a.position > b.position ? 1 : -1;

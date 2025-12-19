@@ -12,16 +12,19 @@ export const defaultStaticProps = wrapper.getStaticProps(() => async ({ locale }
   };
 });
 
-export const defaultStaticPropsWithThemes = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const action = fetchThemesActionCreator();
-  store.dispatch(action);
-  store.dispatch(END);
-  await store.sagaTask?.toPromise();
+export const defaultStaticPropsWithThemes = wrapper.getStaticProps(
+  (store) =>
+    async ({ locale }) => {
+      const action = fetchThemesActionCreator();
+      store.dispatch(action);
+      store.dispatch(END);
+      await store.sagaTask?.toPromise();
 
-  return {
-    props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      return {
+        props: {
+          ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+        },
+        revalidate: 60 * 10, // need to rebuild the page every 10 mins to update themes
+      };
     },
-    revalidate: 60 * 10, // need to rebuild the page every 10 mins to update themes
-  };
-});
+);

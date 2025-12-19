@@ -1,5 +1,10 @@
-import { GetContentsForAppRequest, GetThemeResponse, Languages, MobileFrenchLevel } from "@refugies-info/api-types";
-import { action, ActionType } from "typesafe-actions";
+import type {
+  GetContentsForAppRequest,
+  GetThemeResponse,
+  Languages,
+  MobileFrenchLevel,
+} from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import {
   ADD_USER_FAVORITE,
   GET_USER_INFOS,
@@ -34,13 +39,16 @@ import {
   SET_USER_LOCATION,
 } from "./user.actionTypes";
 
-export const setHasUserSeenOnboardingActionCreator = (value: boolean) => action(SET_USER_HAS_SEEN_ONBOARDING, value);
+export const setHasUserSeenOnboardingActionCreator = (value: boolean) =>
+  action(SET_USER_HAS_SEEN_ONBOARDING, value);
 
 export const saveHasUserSeenOnboardingActionCreator = () => action(SAVE_USER_HAS_SEEN_ONBOARDING);
 
-export const removeHasUserSeenOnboardingActionCreator = () => action(REMOVE_USER_HAS_SEEN_ONBOARDING);
+export const removeHasUserSeenOnboardingActionCreator = () =>
+  action(REMOVE_USER_HAS_SEEN_ONBOARDING);
 
-export const setUserHasNewFavoritesActionCreator = (value: boolean) => action(SET_USER_HAS_NEW_FAVORITES, value);
+export const setUserHasNewFavoritesActionCreator = (value: boolean) =>
+  action(SET_USER_HAS_NEW_FAVORITES, value);
 
 export const saveUserHasNewFavoritesActionCreator = () => action(SAVE_USER_HAS_NEW_FAVORITES);
 
@@ -49,9 +57,11 @@ export const removeUserHasNewFavoritesActionCreator = () => action(REMOVE_USER_H
 export const setUserLocalizedWarningHiddenActionCreator = (value: boolean) =>
   action(SET_USER_LOCALIZED_WARNING_HIDDEN, value);
 
-export const saveUserLocalizedWarningHiddenActionCreator = () => action(SAVE_USER_LOCALIZED_WARNING_HIDDEN);
+export const saveUserLocalizedWarningHiddenActionCreator = () =>
+  action(SAVE_USER_LOCALIZED_WARNING_HIDDEN);
 
-export const removeUserLocalizedWarningHiddenActionCreator = () => action(REMOVE_USER_LOCALIZED_WARNING_HIDDEN);
+export const removeUserLocalizedWarningHiddenActionCreator = () =>
+  action(REMOVE_USER_LOCALIZED_WARNING_HIDDEN);
 
 export const setInitialUrlUsed = (value: boolean) => action(SET_INITIAL_URL_USED, value);
 
@@ -65,15 +75,21 @@ export const setRedirectDispositifActionCreator = (
   } | null,
 ) => action(SET_REDIRECT_DISPOSITIF, value);
 
-export const setSelectedLanguageActionCreator = (value: Languages | null) => action(SET_SELECTED_LANGUAGE, value);
+export const setSelectedLanguageActionCreator = (value: Languages | null) =>
+  action(SET_SELECTED_LANGUAGE, value);
 
-export const saveSelectedLanguageActionCreator = (value: { langue: Languages; shouldFetchContents: boolean }) =>
-  action(SAVE_SELECTED_LANGUAGE, value);
+export const saveSelectedLanguageActionCreator = (value: {
+  langue: Languages;
+  shouldFetchContents: boolean;
+}) => action(SAVE_SELECTED_LANGUAGE, value);
 
 export const removeSelectedLanguageActionCreator = () => action(REMOVE_SELECTED_LANGUAGE);
 
-export const saveUserLocationActionCreator = (value: { city: string; dep: string; shouldFetchContents: boolean }) =>
-  action(SAVE_USER_LOCATION, value);
+export const saveUserLocationActionCreator = (value: {
+  city: string;
+  dep: string;
+  shouldFetchContents: boolean;
+}) => action(SAVE_USER_LOCATION, value);
 
 export const setUserLocationActionCreator = (value: { city: string | null; dep: string | null }) =>
   action(SET_USER_LOCATION, value);
@@ -86,7 +102,8 @@ export const saveUserAgeActionCreator = (value: {
   shouldFetchContents: boolean;
 }) => action(SAVE_USER_AGE, value);
 
-export const setUserAgeActionCreator = (value: GetContentsForAppRequest["age"] | null) => action(SET_USER_AGE, value);
+export const setUserAgeActionCreator = (value: GetContentsForAppRequest["age"] | null) =>
+  action(SET_USER_AGE, value);
 
 export const removeUserAgeActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_AGE, shouldFetchContents);
@@ -102,15 +119,19 @@ export const setUserFrenchLevelActionCreator = (value: MobileFrenchLevel | null)
 export const removeUserFrenchLevelActionCreator = (shouldFetchContents: boolean) =>
   action(REMOVE_USER_FRENCH_LEVEL, shouldFetchContents);
 
-export const setCurrentLanguageActionCreator = (value: Languages | null) => action(SET_CURRENT_LANGUAGE, value);
+export const setCurrentLanguageActionCreator = (value: Languages | null) =>
+  action(SET_CURRENT_LANGUAGE, value);
 
 export const getUserInfosActionCreator = () => action(GET_USER_INFOS);
 
-export const setUserFavoritesActionCreator = (contentIds: string[]) => action(SET_USER_FAVORITES, contentIds);
+export const setUserFavoritesActionCreator = (contentIds: string[]) =>
+  action(SET_USER_FAVORITES, contentIds);
 
-export const addUserFavoriteActionCreator = (contentId: string) => action(ADD_USER_FAVORITE, contentId);
+export const addUserFavoriteActionCreator = (contentId: string) =>
+  action(ADD_USER_FAVORITE, contentId);
 
-export const removeUserFavoriteActionCreator = (contentId: string) => action(REMOVE_USER_FAVORITE, contentId);
+export const removeUserFavoriteActionCreator = (contentId: string) =>
+  action(REMOVE_USER_FAVORITE, contentId);
 
 export const removeUserAllFavoritesActionCreator = () => action(REMOVE_USER_ALL_FAVORITES);
 

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import type React from "react";
+import { useEffect, useState } from "react";
 import { Col, Row } from "reactstrap";
 import Input from "~/components/Pages/dispositif/Input";
 import Button from "~/components/UI/Button";

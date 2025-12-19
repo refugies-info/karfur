@@ -4,7 +4,11 @@ import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { fetchContentsActionCreator } from "../../Contents/contents.actions";
 import { LoadingStatusKey, startLoading } from "../../LoadingStatus/loadingStatus.actions";
-import { deleteItemInAsyncStorage, getItemInAsyncStorage, saveItemInAsyncStorage } from "../functions";
+import {
+  deleteItemInAsyncStorage,
+  getItemInAsyncStorage,
+  saveItemInAsyncStorage,
+} from "../functions";
 import {
   setCurrentLanguageActionCreator,
   setHasUserSeenOnboardingActionCreator,

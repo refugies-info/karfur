@@ -1,4 +1,4 @@
-import {
+import type {
   GetDispositifsWithTranslationAvancementResponse,
   GetUserInfoResponse,
   Languages,
@@ -162,7 +162,9 @@ export const TranslationAvancementTable = (props: Props) => {
         </thead>
         <tbody>
           {sortedData.map((element, key) => {
-            const nbDays = element.created_at ? -moment(element.created_at).diff(moment(), "days") + " jours" : "ND";
+            const nbDays = element.created_at
+              ? -moment(element.created_at).diff(moment(), "days") + " jours"
+              : "ND";
             return (
               <tr key={key} className={styles.line}>
                 <td className={styles.first + " align-middle"}>
@@ -177,7 +179,10 @@ export const TranslationAvancementTable = (props: Props) => {
                         goToTranslation(element);
                       }}
                     >
-                      <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+                      <Title
+                        titreInformatif={element.titreInformatif}
+                        titreMarque={element.titreMarque || null}
+                      />
                     </button>
                   </div>
                 </td>

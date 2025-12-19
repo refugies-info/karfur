@@ -21,11 +21,7 @@ const invariant = (condition: boolean, format: string, ...args: string[]) => {
         );
       } else {
         let argIndex = 0;
-        error = new Error(
-          format.replace(/%s/g, function () {
-            return args[argIndex++];
-          }),
-        );
+        error = new Error(format.replace(/%s/g, () => args[argIndex++]));
         error.name = "Invariant Violation";
       }
 

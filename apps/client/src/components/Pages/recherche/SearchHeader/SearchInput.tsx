@@ -1,7 +1,7 @@
 import Input from "@codegouvfr/react-dsfr/Input";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React from "react";
+import type React from "react";
 import { useSelector } from "react-redux";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";

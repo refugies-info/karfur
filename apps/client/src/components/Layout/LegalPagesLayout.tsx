@@ -1,6 +1,6 @@
 import { Breadcrumb, type BreadcrumbProps as UIBreadcrumbProps } from "@refugies-info/ui";
 import { useRouter } from "next/router";
-import React from "react";
+import type React from "react";
 import Layout from "~/components/Layout/Layout";
 import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 
@@ -27,7 +27,11 @@ export default function LegalPagesLayout({
       <div>
         <HelpNotice className="w-screen" />
         <div className="fr-container w-full">
-          <Breadcrumb className="w-full" segments={BreadcrumbProps.segments} currentPageLabel={title} />
+          <Breadcrumb
+            className="w-full"
+            segments={BreadcrumbProps.segments}
+            currentPageLabel={title}
+          />
           <main className="mx-auto mb-10 w-full max-w-3xl">{children}</main>
         </div>
       </div>

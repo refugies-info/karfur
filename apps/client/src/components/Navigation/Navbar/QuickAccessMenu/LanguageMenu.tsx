@@ -41,7 +41,10 @@ const LanguageMenu = ({
   const locale = useLocale();
   let currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === locale);
 
-  if (availableLanguages?.length && !availableLanguages?.includes(currentLanguage?.i18nCode || "")) {
+  if (
+    availableLanguages?.length &&
+    !availableLanguages?.includes(currentLanguage?.i18nCode || "")
+  ) {
     currentLanguage = activatedLanguages.find((lang) => lang.i18nCode === "fr");
   }
 
@@ -105,7 +108,11 @@ const LanguageMenu = ({
                 <i className="fr-icon-translate-2 fr-icon--sm" />
               )}
               {currentLanguage?.i18nCode?.toLocaleUpperCase()}{" "}
-              <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
+              <i
+                className={cn(
+                  langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line",
+                )}
+              />
             </Button>
           </DropdownTrigger>
           <DropdownContent position="start" className={cn(dropDownClassName)}>
@@ -130,7 +137,11 @@ const LanguageMenu = ({
                 <i className="fr-icon-translate-2 fr-icon--sm" />
               )}
               {locale?.toLocaleUpperCase()}{" "}
-              <i className={cn(langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line")} />
+              <i
+                className={cn(
+                  langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line",
+                )}
+              />
             </Button>
           </Dialog.Trigger>
           {langMenuOpened && (

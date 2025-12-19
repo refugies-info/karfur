@@ -1,13 +1,13 @@
-import {
+import type {
   AddContactRequest,
   ImprovementsRequest,
   IsInContactResponse,
   SubscriptionRequest,
 } from "@refugies-info/api-types";
-import { Request as ExRequest } from "express";
+import type { Request as ExRequest } from "express";
 import { Body, Controller, Delete, Get, Post, Request, Route, Security } from "tsoa";
 
-import { Response, ResponseWithData } from "~/types/interface";
+import type { Response, ResponseWithData } from "~/types/interface";
 import { addContact } from "~/workflows/mail/addContact";
 import { deleteContact } from "~/workflows/mail/deleteContact";
 import { isInContact } from "~/workflows/mail/isInContact";
@@ -39,7 +39,10 @@ export class MailController extends Controller {
     fromSite: [],
   })
   @Post("sendAdminImprovementsMail")
-  public adminImprovementsMail(@Body() body: ImprovementsRequest, @Request() request: ExRequest): Response {
+  public adminImprovementsMail(
+    @Body() body: ImprovementsRequest,
+    @Request() request: ExRequest,
+  ): Response {
     return sendAdminImprovementsMail(body, request.userId);
   }
 

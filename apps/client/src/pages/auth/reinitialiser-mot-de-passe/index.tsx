@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { ResetPasswordResponse } from "@refugies-info/api-types";
+import type { ResetPasswordResponse } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
-import { ReactElement, useMemo } from "react";
+import { type ReactElement, useMemo } from "react";
 import { getPath } from "routes";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
@@ -22,19 +22,28 @@ const AuthForgotPassword = () => {
         title="Mot de passe oublié"
         description="Nous allons vous envoyer un mail avec des instructions pour le réinitialiser."
       />
-      <Button priority="tertiary" size="small" iconId="fr-icon-arrow-left-line" onClick={() => router.back()}>
+      <Button
+        priority="tertiary"
+        size="small"
+        iconId="fr-icon-arrow-left-line"
+        onClick={() => router.back()}
+      >
         Retour
       </Button>
 
       <div className={styles.title}>
         <h1>Mot de passe oublié</h1>
-        <p className={styles.subtitle}>Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.</p>
+        <p className={styles.subtitle}>
+          Nous allons vous envoyer un mail avec des instructions pour le réinitialiser.
+        </p>
       </div>
 
       <ForgotPassword
         email={email}
         successCallback={(res: ResetPasswordResponse) =>
-          router.push(getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`))
+          router.push(
+            getPath("/auth/reinitialiser-mot-de-passe/mail-envoye", "fr", `?email=${res.email}`),
+          )
         }
         buttonFullWidth
       />

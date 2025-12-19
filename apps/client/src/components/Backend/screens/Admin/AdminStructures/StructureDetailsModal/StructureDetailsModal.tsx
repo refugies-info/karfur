@@ -1,10 +1,11 @@
-import { GetLogResponse, Id, PatchStructureRequest } from "@refugies-info/api-types";
+import type { GetLogResponse, Id, PatchStructureRequest } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
 import { useRouter } from "next/router";
-import React, { useCallback, useEffect, useState } from "react";
+import type React from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, RouteComponentProps, withRouter } from "react-router-dom";
+import { Link, type RouteComponentProps, withRouter } from "react-router-dom";
 import { useToggle } from "react-use";
 import Swal from "sweetalert2";
 import noStructure from "~/assets/noStructure.png";
@@ -14,7 +15,10 @@ import useRouterLocale from "~/hooks/useRouterLocale";
 import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
 import { setAllStructuresActionCreator } from "~/services/AllStructures/allStructures.actions";
-import { allStructuresSelector, structureSelector } from "~/services/AllStructures/allStructures.selector";
+import {
+  allStructuresSelector,
+  structureSelector,
+} from "~/services/AllStructures/allStructures.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { allThemesSelector } from "~/services/Themes/themes.selectors";
@@ -44,8 +48,18 @@ const EditableH2 = ({ title, onValidate }: EditableH2Props) => {
   const _onValidate = (value: string) => onValidate(value).then(() => toggleEdition(false));
   return edition ? (
     <>
-      <input onChange={(e) => setValue(e.target.value)} className="form-control" type="text" value={value} />
-      <FButton disabled={value === ""} name="save-outline" onClick={() => _onValidate(value)} type="fill-dark" />
+      <input
+        onChange={(e) => setValue(e.target.value)}
+        className="form-control"
+        type="text"
+        value={value}
+      />
+      <FButton
+        disabled={value === ""}
+        name="save-outline"
+        onClick={() => _onValidate(value)}
+        type="fill-dark"
+      />
     </>
   ) : (
     <>
@@ -99,12 +113,17 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
 
   const updateStructuresStore = (
     structureId: Id,
-    property: "adminComments" | "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "nom",
+    property:
+      | "adminComments"
+      | "status"
+      | "adminProgressionStatus"
+      | "adminPercentageProgressionStatus"
+      | "nom",
     value: string,
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
-    //@ts-ignore
+    //@ts-expect-error
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();
@@ -112,7 +131,9 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
 
   const changeNom = (nom: string) =>
     structure
-      ? API.updateStructure(structure._id, { nom }).then(() => updateStructuresStore(structure._id, "nom", nom))
+      ? API.updateStructure(structure._id, { nom }).then(() =>
+          updateStructuresStore(structure._id, "nom", nom),
+        )
       : Promise.reject("No structure");
 
   const onNotesChange = (e: any) => {
@@ -122,7 +143,11 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
 
   const modifyStatus = async (
     newStatus: string,
-    property: "status" | "adminProgressionStatus" | "adminPercentageProgressionStatus" | "adminComments",
+    property:
+      | "status"
+      | "adminProgressionStatus"
+      | "adminPercentageProgressionStatus"
+      | "adminComments",
   ) => {
     if (structure && newStatus !== structure[property]) {
       if (property === "status" && newStatus === "Supprimé") {
@@ -156,7 +181,9 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
   };
 
   const isLoadingStructures = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES));
-  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
+  const isLoadingDispositifs = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS),
+  );
 
   const isLoading = isLoadingDispositifs || isLoadingStructures;
   const secureUrl = structure?.picture?.secure_url;
@@ -174,7 +201,13 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
         isLoading={isLoading}
         leftHead={
           <>
-            <Image src={secureUrl || noStructure} alt="" width={140} height={60} style={{ objectFit: "contain" }} />
+            <Image
+              src={secureUrl || noStructure}
+              alt=""
+              width={140}
+              height={60}
+              style={{ objectFit: "contain" }}
+            />
             <EditableH2
               onValidate={changeNom}
               title={`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}
@@ -195,19 +228,13 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
             >
               Membres
             </FButton>
-            {structure && structure.status === "Actif" && (
-              <FButton
-                className="me-2"
-                type="dark"
-                name="eye-outline"
-                tag={"a"}
-                href={`/annuaire/${structure._id}`}
-                target="_blank"
-              >
-                Annuaire
-              </FButton>
-            )}
-            <FButton className="me-2" type="white" onClick={props.toggleModal} name="close-outline"></FButton>
+
+            <FButton
+              className="me-2"
+              type="white"
+              onClick={props.toggleModal}
+              name="close-outline"
+            ></FButton>
           </>
         }
       >
@@ -291,7 +318,6 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
               logs={logs}
               openUserModal={props.setSelectedUserIdAndToggleModal}
               openContentModal={props.setSelectedContentIdAndToggleModal}
-              openAnnuaire={(id) => router.push(`/annuaire/${id}`)}
             />
           </div>
         </div>

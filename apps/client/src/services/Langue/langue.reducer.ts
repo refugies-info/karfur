@@ -1,7 +1,7 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
 import locale from "~/utils/locale";
-import { LangueActions } from "./langue.actions";
+import type { LangueActions } from "./langue.actions";
 
 export interface LangueState {
   langues: GetLanguagesResponse[];

@@ -8,14 +8,14 @@ import { useLocale } from "~/hooks";
 import { sortThemes } from "~/lib/sortThemes";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import ThemeItem from "./ThemeItem";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 import styles from "./Themes.module.css";
 
 const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
   const { selectedThemeId } = useContext(ThemeMenuContext);
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const sortedThemes = useMemo(() => themes.sort(sortThemes), [themes]);
   const [nbNeedsSelectedByTheme, setNbNeedsSelectedByTheme] = useState<Record<string, number>>({});
   const locale = useLocale();
@@ -38,7 +38,9 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     for (const themeId of query.themes) {
       const theme = themes.find((t) => t._id === themeId);
       if (theme) {
-        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter((need) => need.theme._id === themeId).length;
+        nbNeedsSelectedByTheme[themeId.toString()] = needs.filter(
+          (need) => need.theme._id === themeId,
+        ).length;
       }
     }
     setNbNeedsSelectedByTheme(nbNeedsSelectedByTheme);

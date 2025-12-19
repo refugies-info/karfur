@@ -1,5 +1,5 @@
 import { NeedTradStatus } from "~/components/Backend/screens/UserTranslation/types";
-import { Suggestion } from "~/hooks/dispositif";
+import type { Suggestion } from "~/hooks/dispositif";
 
 export enum UserTradStatus {
   TO_TRANSLATE = "À traduire",
@@ -14,7 +14,8 @@ export const getUserTradStatus = (
   showMissingSteps: boolean | undefined,
 ): UserTradStatus => {
   // no text, show missing steps
-  if (!mySuggestion.text && suggestions.length === 0 && showMissingSteps) return UserTradStatus.MISSING;
+  if (!mySuggestion.text && suggestions.length === 0 && showMissingSteps)
+    return UserTradStatus.MISSING;
   // my text is pending if I have one, if I don't, all the others are pending
   if (
     (!!mySuggestion.text && mySuggestion.toFinish) ||
@@ -44,7 +45,8 @@ export const getExpertTradStatus = (
   showMissingSteps: boolean | undefined,
 ): ExpertTradStatus => {
   // no text, showMissingSteps is active
-  if ((!mySuggestion.text || mySuggestion.toReview) && showMissingSteps) return ExpertTradStatus.MISSING;
+  if ((!mySuggestion.text || mySuggestion.toReview) && showMissingSteps)
+    return ExpertTradStatus.MISSING;
 
   // my text is pending if I have one, if I don't, all the others are pending
   if (
@@ -63,7 +65,7 @@ export const getExpertTradStatus = (
     return ExpertTradStatus.TO_VALIDATE;
 
   // my text exists
-  if (!!mySuggestion.text) return ExpertTradStatus.VALIDATED;
+  if (mySuggestion.text) return ExpertTradStatus.VALIDATED;
 
   // else
   return ExpertTradStatus.TO_TRANSLATE;
@@ -88,11 +90,11 @@ export const getDisplay = (
     : getExpertTradStatus(mySuggestion, suggestions, showMissingSteps);
 
   // 1. my suggestion
-  if (!!mySuggestion.text) {
+  if (mySuggestion.text) {
     return {
       text: mySuggestion.text,
       username: mySuggestion.validator?.username || username,
-      picture: !!mySuggestion.validator ? "user" : "me",
+      picture: mySuggestion.validator ? "user" : "me",
       status,
     };
   }
@@ -122,7 +124,9 @@ type StatusStyle = {
   icon: string;
 };
 
-export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus | NeedTradStatus): StatusStyle => {
+export const getStatusStyle = (
+  status: UserTradStatus | ExpertTradStatus | NeedTradStatus,
+): StatusStyle => {
   if (status === UserTradStatus.MISSING || status === ExpertTradStatus.MISSING) {
     return {
       type: "error",
@@ -141,7 +145,11 @@ export const getStatusStyle = (status: UserTradStatus | ExpertTradStatus | NeedT
       icon: "alert-circle",
     };
   }
-  if ([UserTradStatus.TRANSLATED, ExpertTradStatus.VALIDATED, NeedTradStatus.TRANSLATED].includes(status)) {
+  if (
+    [UserTradStatus.TRANSLATED, ExpertTradStatus.VALIDATED, NeedTradStatus.TRANSLATED].includes(
+      status,
+    )
+  ) {
     return {
       type: "success",
       icon: "checkmark-circle-2",

@@ -1,4 +1,4 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import { useEffect, useMemo } from "react";
 import { Modal, TouchableWithoutFeedback, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
@@ -98,7 +98,12 @@ export const LanguageChoiceModal = (props: Props) => {
   );
 
   return (
-    <Modal visible={props.isModalVisible} transparent={true} animationType="fade" onRequestClose={props.toggleModal}>
+    <Modal
+      visible={props.isModalVisible}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={props.toggleModal}
+    >
       <ModalContainer>
         <TouchableWithoutFeedback
           onPress={props.toggleModal}
@@ -109,7 +114,13 @@ export const LanguageChoiceModal = (props: Props) => {
         </TouchableWithoutFeedback>
         <ModalView style={{ paddingBottom: insets.bottom }}>
           <TitleContainer>
-            <Icon name="globe-2-outline" width={24} height={24} fill={styles.colors.black} style={iconStyle} />
+            <Icon
+              name="globe-2-outline"
+              width={24}
+              height={24}
+              fill={styles.colors.black}
+              style={iconStyle}
+            />
             <TextDSFR_L_Bold>{t("global.language", "Langue de l'application")}</TextDSFR_L_Bold>
           </TitleContainer>
 

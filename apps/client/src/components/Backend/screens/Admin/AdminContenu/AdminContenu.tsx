@@ -1,5 +1,11 @@
 import moment from "moment";
 import "moment/locale/fr";
+
+import {
+  DispositifStatus,
+  type GetAllDispositifsResponse,
+  type Id,
+} from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +15,10 @@ import WriteContentModal from "~/components/Modals/WriteContentModal/WriteConten
 import CustomSearchBar from "~/components/UI/CustomSeachBar";
 import FButton from "~/components/UI/FButton/FButton";
 import useRouterLocale from "~/hooks/useRouterLocale";
+import { removeAccents } from "~/lib";
+import { getAdminUrlParams, getInitialFilters } from "~/lib/getAdminUrlParams";
+import { handleApiError } from "~/lib/handleApiErrors";
+import { statusCompare } from "~/lib/statusCompare";
 import { fetchActiveDispositifsActionsCreator } from "~/services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchAllDispositifsActionsCreator,
@@ -17,6 +27,7 @@ import {
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import API from "~/utils/API";
 import { colors } from "~/utils/colors";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
@@ -43,19 +54,12 @@ import {
   TypeContenu,
   ValidateButton,
 } from "../sharedComponents/SubComponents";
+import styles from "./AdminContenu.module.scss";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
-import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import { ContentDetailsModal } from "./ContentDetailsModal/ContentDetailsModal";
+import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import { correspondingStatus, table_contenu } from "./data";
 import { ImprovementsMailModal } from "./ImprovementsMailModal/ImprovementsMailModal";
-
-import { DispositifStatus, GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
-import { removeAccents } from "~/lib";
-import { getAdminUrlParams, getInitialFilters } from "~/lib/getAdminUrlParams";
-import { handleApiError } from "~/lib/handleApiErrors";
-import { statusCompare } from "~/lib/statusCompare";
-import { needsSelector } from "~/services/Needs/needs.selectors";
-import styles from "./AdminContenu.module.scss";
 import { NeedsChoiceModal } from "./NeedsChoiceModal/NeedsChoiceModal";
 
 moment.locale("fr");
@@ -85,28 +89,36 @@ export const AdminContenu = () => {
   // modals
   const [showDetailsModal, setShowDetailsModal] = useState(!!initialFilters.selectedDispositifId);
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(!!initialFilters.selectedUserId);
-  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(!!initialFilters.selectedStructureId);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    !!initialFilters.selectedStructureId,
+  );
   const [showImprovementsMailModal, setShowImprovementsMailModal] = useState(false);
   const [showNeedsChoiceModal, setShowNeedsChoiceModal] = useState(false);
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [showWriteModal, setShowWriteModal] = useState(false);
 
-  const [selectedContentId, setSelectedContentId] = useState<Id | null>(initialFilters.selectedDispositifId);
+  const [selectedContentId, setSelectedContentId] = useState<Id | null>(
+    initialFilters.selectedDispositifId,
+  );
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(initialFilters.selectedUserId);
-  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(initialFilters.selectedStructureId);
+  const [selectedStructureId, setSelectedStructureId] = useState<Id | null>(
+    initialFilters.selectedStructureId,
+  );
 
   const [isExportLoading, setIsExportLoading] = useState(false);
 
   const headers = table_contenu.headers;
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
 
-  const toggleShowChangeStructureModal = () => setShowChangeStructureModal(!showChangeStructureModal);
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
 
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
   const toggleNeedsChoiceModal = () => setShowNeedsChoiceModal(!showNeedsChoiceModal);
 
-  const toggleImprovementsMailModal = () => setShowImprovementsMailModal(!showImprovementsMailModal);
+  const toggleImprovementsMailModal = () =>
+    setShowImprovementsMailModal(!showImprovementsMailModal);
 
   const toggleUserDetailsModal = () => setShowUserDetailsModal(!showUserDetailsModal);
 
@@ -153,13 +165,16 @@ export const AdminContenu = () => {
     );
   }
 
-  const getNbDispositifsByStatus = (dispositifsToDisplay: GetAllDispositifsResponse[], status: string) =>
+  const getNbDispositifsByStatus = (
+    dispositifsToDisplay: GetAllDispositifsResponse[],
+    status: string,
+  ) =>
     dispositifsToDisplay && dispositifsToDisplay.length > 0
       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
       : 0;
 
   const filterAndSortDispositifs = (dispositifs: GetAllDispositifsResponse[]) => {
-    const dispositifsFilteredBySearch = !!search
+    const dispositifsFilteredBySearch = search
       ? dispositifs.filter(
           (dispo) =>
             (dispo.titreInformatif &&
@@ -183,7 +198,9 @@ export const AdminContenu = () => {
         )
       : dispositifs;
 
-    const filteredDispositifs = dispositifsFilteredBySearch.filter((dispo) => dispo.status === filter);
+    const filteredDispositifs = dispositifsFilteredBySearch.filter(
+      (dispo) => dispo.status === filter,
+    );
     if (sortedHeader.name === "none")
       return {
         dispositifsToDisplay: filteredDispositifs,
@@ -208,9 +225,9 @@ export const AdminContenu = () => {
         valueA = a[sortedHeader.orderColumn];
         valueB = b[sortedHeader.orderColumn];
       } else {
-        //@ts-ignore
+        //@ts-expect-error
         valueA = normalize((a[sortedHeader.orderColumn] || "").toLowerCase());
-        //@ts-ignore
+        //@ts-expect-error
         valueB = normalize((b[sortedHeader.orderColumn] || "").toLowerCase());
       }
 
@@ -261,9 +278,13 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
-  const toggleStructureDetailsModal = () => setShowStructureDetailsModal(!showStructureDetailsModal);
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedContentIdAndToggleModal = (element: Id | null, _status: string | null = null) => {
+  const setSelectedContentIdAndToggleModal = (
+    element: Id | null,
+    _status: string | null = null,
+  ) => {
     setSelectedDispositifAndToggleModal(element || null);
   };
 
@@ -405,34 +426,55 @@ export const AdminContenu = () => {
               const nbDays = date ? -moment(date).diff(moment(), "days") + " jours" : "ND";
               const burl = "/" + (element.typeContenu || "dispositif") + "/" + element._id;
               const validationDisabled =
-                element.status === "Actif" || !element.mainSponsor || element.mainSponsor.status !== "Actif";
+                element.status === "Actif" ||
+                !element.mainSponsor ||
+                element.mainSponsor.status !== "Actif";
 
               const areNeedsCompatibleWithTags = checkIfNeedsAreCompatibleWithTags(element);
 
               return (
                 <tr key={key}>
-                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
+                  >
                     <TypeContenu type={element.typeContenu || "dispositif"} isDetailedVue={false} />
                   </td>
                   <td className="align-middle">
                     <div className={styles.row}>
-                      <ColoredRound color={areNeedsCompatibleWithTags ? colors.validationHover : colors.error} />
+                      <ColoredRound
+                        color={areNeedsCompatibleWithTags ? colors.validationHover : colors.error}
+                      />
                       {element.needs ? element.needs.length : 0}
                     </div>
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
-                    <Title titreInformatif={element.titreInformatif} titreMarque={element.titreMarque || null} />
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
+                  >
+                    <Title
+                      titreInformatif={element.titreInformatif}
+                      titreMarque={element.titreMarque || null}
+                    />
                   </td>
                   <td
                     className="cursor-pointer align-middle"
-                    onClick={() => setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)}
+                    onClick={() =>
+                      setSelectedStructureIdAndToggleModal(element.mainSponsor?._id || null)
+                    }
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td className={"align-middle"} onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td
+                    className={"align-middle"}
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
+                  >
                     {nbDays}
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
+                  >
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       {element.adminProgressionStatus && (
                         <div style={{ marginRight: "8px" }}>
@@ -441,7 +483,10 @@ export const AdminContenu = () => {
                       )}
                     </div>
                   </td>
-                  <td className="align-middle" onClick={() => setSelectedDispositifAndToggleModal(element._id)}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element._id)}
+                  >
                     <StyledStatus
                       text={element.status}
                       textToDisplay={
@@ -462,7 +507,12 @@ export const AdminContenu = () => {
                       />
                       <DeleteButton
                         onClick={() =>
-                          prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, element._id)
+                          prepareDeleteContrib(
+                            dispositifs,
+                            setAllDispositifsActionsCreator,
+                            dispatch,
+                            element._id,
+                          )
                         }
                         disabled={element.status === "Supprimé"}
                         testId={`delete-button-${element._id}`}
@@ -485,7 +535,12 @@ export const AdminContenu = () => {
         setSelectedStructureIdAndToggleModal={setSelectedStructureIdAndToggleModal}
         selectedDispositifId={selectedContentId}
         onDeleteClick={() =>
-          prepareDeleteContrib(dispositifs, setAllDispositifsActionsCreator, dispatch, selectedContentId)
+          prepareDeleteContrib(
+            dispositifs,
+            setAllDispositifsActionsCreator,
+            dispatch,
+            selectedContentId,
+          )
         }
         setSelectedUserIdAndToggleModal={setSelectedUserIdAndToggleModal}
         setShowChangeStructureModal={setShowChangeStructureModal}

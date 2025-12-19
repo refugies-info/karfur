@@ -1,5 +1,9 @@
-import { ContentType, CreateDispositifRequest, InfoSections } from "@refugies-info/api-types";
-import { DeepPartialSkipArrayKey } from "react-hook-form";
+import {
+  ContentType,
+  type CreateDispositifRequest,
+  type InfoSections,
+} from "@refugies-info/api-types";
+import type { DeepPartialSkipArrayKey } from "react-hook-form";
 
 export const getText = (progress: number, total: number) => {
   const progressPercentage = progress / (total || 1);
@@ -10,7 +14,10 @@ export const getText = (progress: number, total: number) => {
   if (progressPercentage < 1) return "Vous y êtes presque !";
   return "Bravo, tout est bon ! 🎉";
 };
-const isAccordionOk = (content: DeepPartialSkipArrayKey<InfoSections> | undefined, minAccordions: number) => {
+const isAccordionOk = (
+  content: DeepPartialSkipArrayKey<InfoSections> | undefined,
+  minAccordions: number,
+) => {
   if (!content) return false;
   return (
     content &&
@@ -53,12 +60,12 @@ export const getMissingStepsEdit = (
 ): (Step | null)[] => {
   if (typeContenu === ContentType.DISPOSITIF) {
     return [
-      !!dispositif.titreInformatif ? null : "titreInformatif",
-      !!dispositif.titreMarque ? null : "titreMarque",
-      !!dispositif.what ? null : "what",
+      dispositif.titreInformatif ? null : "titreInformatif",
+      dispositif.titreMarque ? null : "titreMarque",
+      dispositif.what ? null : "what",
       isAccordionOk(dispositif.why, 3) ? null : "why",
       isAccordionOk(dispositif.how, 1) ? null : "how",
-      !!dispositif.theme ? null : "theme",
+      dispositif.theme ? null : "theme",
       isMetadataOk([
         dispositif.metadatas?.publicStatus,
         dispositif.metadatas?.age,
@@ -68,22 +75,26 @@ export const getMissingStepsEdit = (
         ? null
         : "public",
       isMetadataOk(dispositif.metadatas?.price) ? null : "price",
-      isMetadataOk([dispositif.metadatas?.commitment, dispositif.metadatas?.frequency, dispositif.metadatas?.timeSlots])
+      isMetadataOk([
+        dispositif.metadatas?.commitment,
+        dispositif.metadatas?.frequency,
+        dispositif.metadatas?.timeSlots,
+      ])
         ? null
         : "commitment",
       isMetadataOk(dispositif.metadatas?.conditions) ? null : "conditions",
       isMetadataOk(dispositif.metadatas?.location) ? null : "location",
       dispositif.mainSponsor ? null : "mainSponsor",
-      !!dispositif.abstract ? null : "abstract",
+      dispositif.abstract ? null : "abstract",
     ];
   }
 
   return [
-    !!dispositif.titreInformatif ? null : "titreInformatif",
-    !!dispositif.what ? null : "what",
+    dispositif.titreInformatif ? null : "titreInformatif",
+    dispositif.what ? null : "what",
     isAccordionOk(dispositif.how, 1) ? null : "how",
     isAccordionOk(dispositif.next, 1) ? null : "next",
-    !!dispositif.theme ? null : "theme",
+    dispositif.theme ? null : "theme",
     isMetadataOk([
       dispositif.metadatas?.publicStatus,
       dispositif.metadatas?.age,
@@ -95,7 +106,7 @@ export const getMissingStepsEdit = (
     isMetadataOk(dispositif.metadatas?.price) ? null : "price",
     isMetadataOk(dispositif.metadatas?.conditions) ? null : "conditions",
     dispositif.mainSponsor ? null : "mainSponsor",
-    !!dispositif.abstract ? null : "abstract",
+    dispositif.abstract ? null : "abstract",
   ];
 };
 

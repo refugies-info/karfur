@@ -19,7 +19,9 @@ jest.mock("../../../services/redux/User/user.actions", () => {
 
   return {
     saveUserLocationActionCreator: jest.fn(actions.saveUserLocationActionCreator),
-    removeUserLocalizedWarningHiddenActionCreator: jest.fn(actions.removeUserLocalizedWarningHiddenActionCreator),
+    removeUserLocalizedWarningHiddenActionCreator: jest.fn(
+      actions.removeUserLocalizedWarningHiddenActionCreator,
+    ),
   };
 });
 

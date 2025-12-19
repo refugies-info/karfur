@@ -6,7 +6,7 @@ import PageContext from "~/utils/pageContext";
 import AddContentButton from "../AddContentButton";
 import styles from "./TitleEdit.module.scss";
 
-interface Props {}
+type Props = {};
 
 /**
  * Form component for a title (titreInformatif and titreMarque).

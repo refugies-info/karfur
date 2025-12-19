@@ -1,14 +1,14 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import "react-native-get-random-values"; // Needed before uuid import according to their docs
 import {
-  MutationKey,
-  QueryKey,
+  type MutationKey,
+  type QueryKey,
+  type UseMutationOptions,
+  type UseMutationResult,
+  type UseQueryOptions,
+  type UseQueryResult,
   useMutation,
-  UseMutationOptions,
-  UseMutationResult,
   useQuery,
-  UseQueryOptions,
-  UseQueryResult,
 } from "react-query";
 import { v4 as uuidv4 } from "uuid";
 
@@ -30,7 +30,11 @@ export const getUid = async (): Promise<string> => {
   return newUid;
 };
 
-export const makeApiRequest = async <Request, T>(url: string, payload: Request, method: Method = "GET"): Promise<T> => {
+export const makeApiRequest = async <Request, T>(
+  url: string,
+  payload: Request,
+  method: Method = "GET",
+): Promise<T> => {
   try {
     let headers = {};
 
@@ -69,12 +73,20 @@ export const useApi = <Type, Error, Key extends QueryKey = QueryKey>(
 ): UseQueryResult<Type, Error> => {
   return useQuery<Type, Error, Type, Key>(
     key,
-    () => makeApiRequest<unknown, { data: Type }>(url, payload, method).then((response) => response.data),
+    () =>
+      makeApiRequest<unknown, { data: Type }>(url, payload, method).then(
+        (response) => response.data,
+      ),
     options as Omit<UseQueryOptions<Type, Error, Type, Key>, "queryKey" | "queryFn">,
   );
 };
 
-export const useApiMutation = <Type, Error, Payload = unknown, Key extends MutationKey = MutationKey>(
+export const useApiMutation = <
+  Type,
+  Error,
+  Payload = unknown,
+  Key extends MutationKey = MutationKey,
+>(
   url: string,
   method: Method,
   key: Key,
@@ -83,7 +95,9 @@ export const useApiMutation = <Type, Error, Payload = unknown, Key extends Mutat
   return useMutation<Type, Error, Payload, Key>(
     key,
     (payload: Payload) =>
-      makeApiRequest<Payload, { data: Type }>(url, payload, method).then((response) => response.data),
+      makeApiRequest<Payload, { data: Type }>(url, payload, method).then(
+        (response) => response.data,
+      ),
     options as Omit<UseMutationOptions<Type, Error, Payload, Key>, "mutationKey" | "mutationFn">,
   );
 };

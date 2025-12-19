@@ -55,7 +55,7 @@ const EditPseudo = (props: Props) => {
       <Input
         label="Votre pseudonyme"
         className="mt-12 mb-0"
-        state={!!error ? "error" : "default"}
+        state={error ? "error" : "default"}
         stateRelatedMessage={error}
         hintText="N'indiquez pas de coordonnées personnelles comme votre adresse email. Exemples : Guillaume-afpa, cidff13, sarah-trad, Nora78."
         nativeInputProps={{

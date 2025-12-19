@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { NeedsSummary } from "~/components/Needs/NeedsSummary";

@@ -1,7 +1,7 @@
-import { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
+import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import AgirLogos from "~/assets/agir/agir-logos.png";
 import Structures from "~/assets/homepage/structures.png";
 import Avatar from "~/assets/pictogrammes/avatar.svg";
@@ -31,12 +31,7 @@ const WorkTogether = () => {
       link: "https://kit.refugies.info/formation/",
       cta: t("WorkTogether.ts_cta", "Participez à un webinaire"),
       icon: "fr-icon-arrow-right-line",
-      image: (
-        <Image
-          src={Avatar}
-          alt=""
-        />
-      ),
+      image: <Image src={Avatar} alt="" />,
     },
     {
       title: t("WorkTogether.agir_title", "Opérateurs du programme AGIR ?"),
@@ -49,12 +44,7 @@ const WorkTogether = () => {
       icon: "fr-icon-calendar-event-line",
       image: (
         <span className="flex h-20 w-20 items-center justify-center bg-black p-1">
-          <Image
-            src={AgirLogos}
-            alt=""
-            width={150}
-            height={100}
-          />
+          <Image src={AgirLogos} alt="" width={150} height={100} />
         </span>
       ),
     },
@@ -67,14 +57,7 @@ const WorkTogether = () => {
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
       cta: t("WorkTogether.meeting_cta", "Prendre rendez-vous"),
       icon: "fr-icon-calendar-event-line",
-      image: (
-        <Image
-          src={Structures}
-          alt=""
-          width={240}
-          height={80}
-        />
-      ),
+      image: <Image src={Structures} alt="" width={240} height={80} />,
     },
     {
       title: t("WorkTogether.administration_title", "Administration ou institution publique ?"),
@@ -85,12 +68,7 @@ const WorkTogether = () => {
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
       cta: t("WorkTogether.meeting_cta", "Prendre rendez-vous"),
       icon: "fr-icon-calendar-event-line",
-      image: (
-        <Image
-          src={CityHall}
-          alt=""
-        />
-      ),
+      image: <Image src={CityHall} alt="" />,
     },
     {
       title: t("WorkTogether.structure_title", "Structures porteuses de dispositifs ?"),
@@ -101,12 +79,7 @@ const WorkTogether = () => {
       link: "https://refugies.info/publier",
       cta: t("WorkTogether.structure_cta", "Publier votre fiche"),
       icon: "fr-icon-arrow-right-line",
-      image: (
-        <Image
-          src={LocationFrance}
-          alt=""
-        />
-      ),
+      image: <Image src={LocationFrance} alt="" />,
     },
     {
       title: t("WorkTogether.traducteur_title", "Polyglottes bénévoles ?"),
@@ -117,18 +90,15 @@ const WorkTogether = () => {
       link: "https://refugies.info/traduire",
       cta: t("WorkTogether.traducteur_cta", "Traduire une fiche"),
       icon: "fr-icon-arrow-right-line",
-      image: (
-        <Image
-          src={Community}
-          alt=""
-        />
-      ),
+      image: <Image src={Community} alt="" />,
     },
   ];
 
   return (
     <section className="flex flex-col gap-20 py-20" id="work-together">
-      <h2 className="mx-4 mb-0 text-center">{t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}</h2>
+      <h2 className="mx-4 mb-0 text-center">
+        {t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}
+      </h2>
       <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[50.5rem] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
           <div key={title} className="border-default-grey h-full border p-8">

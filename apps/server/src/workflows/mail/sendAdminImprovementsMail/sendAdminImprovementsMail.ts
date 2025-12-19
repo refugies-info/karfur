@@ -1,13 +1,16 @@
-import { ImprovementsRequest } from "@refugies-info/api-types";
+import type { ImprovementsRequest } from "@refugies-info/api-types";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { sendAdminImprovementsMailService } from "~/modules/mail/mail.service";
 import { getUserById } from "~/modules/users/users.repository";
-import { DispositifId, UserId } from "~/typegoose";
-import { Response } from "~/types/interface";
+import type { DispositifId, UserId } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
-export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userId: string): Response => {
+export const sendAdminImprovementsMail = async (
+  body: ImprovementsRequest,
+  userId: string,
+): Response => {
   logger.info("[sendAdminImprovementsMail] received with data", { data: body });
   const formattedSections = {
     quoi: body.sections.includes("C'est quoi ?"),
@@ -18,7 +21,9 @@ export const sendAdminImprovementsMail = async (body: ImprovementsRequest, userI
   };
 
   const users: (Awaited<ReturnType<typeof getUserById>> | null)[] = await Promise.all(
-    body.userIds.map((userId) => getUserById(userId, { email: 1, firstName: 1 }).catch((): null => null)),
+    body.userIds.map((userId) =>
+      getUserById(userId, { email: 1, firstName: 1 }).catch((): null => null),
+    ),
   );
 
   await asyncForEach(

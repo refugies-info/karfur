@@ -1,5 +1,5 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
-import { AvailableLanguageI18nCode } from "~/types/interface";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { AvailableLanguageI18nCode } from "~/types/interface";
 
 export const activatedLanguages: GetLanguagesResponse[] = [
   {
@@ -76,4 +76,12 @@ export const activatedLanguages: GetLanguagesResponse[] = [
   },
 ];
 
-export const hasTTSAvailable: AvailableLanguageI18nCode[] = ["fr", "en", "ar", "ru", "uk", "ps", "fa"];
+export const hasTTSAvailable: AvailableLanguageI18nCode[] = [
+  "fr",
+  "en",
+  "ar",
+  "ru",
+  "uk",
+  "ps",
+  "fa",
+];

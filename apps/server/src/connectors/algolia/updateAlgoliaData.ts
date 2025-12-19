@@ -1,6 +1,6 @@
 import { algoliasearch } from "algoliasearch";
 import logger from "~/logger";
-import { AlgoliaObject } from "~/types/interface";
+import type { AlgoliaObject } from "~/types/interface";
 
 const client = algoliasearch("L9HYT1676M", process.env.ALGOLIA_API_KEY);
 const indexName = process.env.ALGOLIA_INDEX;

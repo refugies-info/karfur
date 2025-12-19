@@ -2,10 +2,20 @@
 import { DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
-import { fetchUserContributionsActionCreator, setUserContributionsActionCreator } from "../userContributions.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
+import {
+  fetchUserContributionsActionCreator,
+  setUserContributionsActionCreator,
+} from "../userContributions.actions";
 import { DELETE_DISPOSITIF } from "../userContributions.actionTypes";
-import latestActionsSaga, { deleteContributionAndUpdate, fetchUserContributions } from "../userContributions.saga";
+import latestActionsSaga, {
+  deleteContributionAndUpdate,
+  fetchUserContributions,
+} from "../userContributions.saga";
 
 describe("[Saga] UserContributions", () => {
   describe("pilot", () => {

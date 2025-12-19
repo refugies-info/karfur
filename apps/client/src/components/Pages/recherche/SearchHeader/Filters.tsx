@@ -22,7 +22,13 @@ import { useSearchCounts } from "../SearchCountsContext";
 import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
-import { useAgeOptions, useFrenchLevelOptions, useLanguagesOptions, usePublicOptions, useStatusOptions } from "./hooks";
+import {
+  useAgeOptions,
+  useFrenchLevelOptions,
+  useLanguagesOptions,
+  usePublicOptions,
+  useStatusOptions,
+} from "./hooks";
 import SearchInput from "./SearchInput";
 
 interface Props {
@@ -87,10 +93,14 @@ const Filters = (props: Props) => {
     }
 
     announce(
-      t("Recherche.resultsForYourSearch", "{{count}} résultats trouvés pour votre recherche {{search}}", {
-        count: searchResults.matches.length,
-        search: currentSearchInputValue,
-      }),
+      t(
+        "Recherche.resultsForYourSearch",
+        "{{count}} résultats trouvés pour votre recherche {{search}}",
+        {
+          count: searchResults.matches.length,
+          search: currentSearchInputValue,
+        },
+      ),
       {
         priority: "interrupt",
         delay: 1000,
@@ -181,7 +191,9 @@ const Filters = (props: Props) => {
               departmentsNotDeployed.length > 0
                 ? {
                     trigger: "⚠️",
-                    text: t("Recherche.notDeployedText", { department: departmentsNotDeployed.join(", ") }),
+                    text: t("Recherche.notDeployedText", {
+                      department: departmentsNotDeployed.join(", "),
+                    }),
                   }
                 : null
             }

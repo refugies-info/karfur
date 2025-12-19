@@ -44,8 +44,8 @@ const ModalWelcome = (props: Props) => {
         {step === 1 && (
           <>
             <p>
-              Vous allez rédiger une fiche pour présenter votre action. Prenez une minute pour lire ces quelques
-              conseils.
+              Vous allez rédiger une fiche pour présenter votre action. Prenez une minute pour lire
+              ces quelques conseils.
             </p>
             <div className="flex justify-center">
               <Image src={WelcomeStep1} width="524" height="280" alt="" />
@@ -56,8 +56,11 @@ const ModalWelcome = (props: Props) => {
         {step === 2 && (
           <>
             <p>
-              Votre fiche n’est <span className={styles.error}>pas un support institutionnel</span>, mais{" "}
-              <span className={styles.success}>une fiche pratique pour les personnes réfugiées non francophones</span>{" "}
+              Votre fiche n’est <span className={styles.error}>pas un support institutionnel</span>,
+              mais{" "}
+              <span className={styles.success}>
+                une fiche pratique pour les personnes réfugiées non francophones
+              </span>{" "}
               et leurs accompagnants.
             </p>
             <div className="flex justify-center">
@@ -87,8 +90,8 @@ const ModalWelcome = (props: Props) => {
         {step === 4 && (
           <>
             <p>
-              Une phrase <strong>courte</strong> est plus facile à lire. Évitez également les blocs de texte trop longs
-              : cela gêne la lecture.
+              Une phrase <strong>courte</strong> est plus facile à lire. Évitez également les blocs
+              de texte trop longs : cela gêne la lecture.
             </p>
             <TextExampleLine
               errorText="Acquérir et renforcer les compétences sociolinguistiques nécessaires à une autonomie langagière et pragmatique, à l’oral comme à l’écrit, en lien avec l’environnement de travail."
@@ -101,9 +104,9 @@ const ModalWelcome = (props: Props) => {
         {step === 5 && (
           <>
             <p>
-              C'est un exercice rédactionnel : le gabarit éditorial permet de bien organiser votre fiche et de ne rien
-              oublier ! Les tutoriels sont là pour vous aider et nous sommes aussi disponibles via le chat (en bas à
-              droite).
+              C'est un exercice rédactionnel : le gabarit éditorial permet de bien organiser votre
+              fiche et de ne rien oublier ! Les tutoriels sont là pour vous aider et nous sommes
+              aussi disponibles via le chat (en bas à droite).
             </p>
             <div className="flex justify-center">
               <Image src={WelcomeStep5} width="524" height="248" alt="" />

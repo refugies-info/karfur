@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView } from "react-native";
+import type React from "react";
+import type { ScrollView } from "react-native";
 
 const scrollToEnd = (el: React.RefObject<ScrollView | null>) => {
   return el.current?.scrollToEnd({ animated: false });

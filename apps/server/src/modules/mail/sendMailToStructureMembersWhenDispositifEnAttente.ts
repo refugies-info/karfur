@@ -1,12 +1,14 @@
 import logger from "~/logger";
-import { Dispositif, Structure } from "~/typegoose";
+import type { Dispositif, Structure } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { sendNewFicheEnAttenteMail } from "./mail.service";
 
 export const sendMailToStructureMembersWhenDispositifEnAttente = async (dispositif: Dispositif) => {
   logger.info("[sendMailToStructureMembersWhenDispositifEnAttente] received");
-  const structureMembres = await getStructureMembers((dispositif.mainSponsor as Structure)?._id.toString());
+  const structureMembres = await getStructureMembers(
+    (dispositif.mainSponsor as Structure)?._id.toString(),
+  );
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
   const lien = "https://refugies.info/" + dispositif.typeContenu + "/" + dispositif._id.toString();
 

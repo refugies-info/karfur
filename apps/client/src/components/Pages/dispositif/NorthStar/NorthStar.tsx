@@ -9,8 +9,9 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Toast from "~/components/UI/Toast";
 import { useAnonymousUserId } from "~/hooks/useAnonymousUserId";
 import { customEvent } from "~/lib/tracking";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import { userSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
 
@@ -19,7 +20,8 @@ const NorthStar = () => {
   const userId = useSelector(userSelector)?.userId;
   const currentLanguage = useTranslation().i18n.language;
   const anonymousUserId = useAnonymousUserId();
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const { t } = useTranslation();
   const announce = useAnnounce();
 
@@ -42,12 +44,28 @@ const NorthStar = () => {
 
   const sendTrackEvent = (newAvis: boolean | null) => {
     if (newAvis === null) {
-      customEvent("avis", { valeur: currentAvis ? "positif" : "negatif", count: -1, ...trackData });
+      customEvent("avis", {
+        valeur: currentAvis ? "positif" : "negatif",
+        count: -1,
+        ...trackData,
+      });
     } else if (currentAvis !== null && currentAvis !== newAvis) {
-      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
-      customEvent("avis", { valeur: !newAvis ? "positif" : "negatif", count: -1, ...trackData });
+      customEvent("avis", {
+        valeur: newAvis ? "positif" : "negatif",
+        count: 1,
+        ...trackData,
+      });
+      customEvent("avis", {
+        valeur: !newAvis ? "positif" : "negatif",
+        count: -1,
+        ...trackData,
+      });
     } else {
-      customEvent("avis", { valeur: newAvis ? "positif" : "negatif", count: 1, ...trackData });
+      customEvent("avis", {
+        valeur: newAvis ? "positif" : "negatif",
+        count: 1,
+        ...trackData,
+      });
     }
   };
 
@@ -66,7 +84,9 @@ const NorthStar = () => {
         didVote ||
         (userId || anonymousUserId
           ? dispositif.avis?.find(
-              (a) => (userId && a.userId === userId) || (anonymousUserId && a.anonymousUserId === anonymousUserId),
+              (a) =>
+                (userId && a.userId === userId) ||
+                (anonymousUserId && a.anonymousUserId === anonymousUserId),
             )
           : false)
       ) {

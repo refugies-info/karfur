@@ -85,7 +85,9 @@ describe("register", () => {
       expect(isPasswordOkMock).toHaveBeenCalledWith("password");
       expect(registerUser).not.toHaveBeenCalledWith();
       expect(addToNewsletter).not.toHaveBeenCalled();
-      expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.PASSWORD_TOO_WEAK));
+      expect(loginExceptionsManager).toHaveBeenCalledWith(
+        new Error(LoginErrorType.PASSWORD_TOO_WEAK),
+      );
     } catch {
       // Do nothing
     }

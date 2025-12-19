@@ -1,4 +1,4 @@
-import i18next, { Callback, TFunction } from "i18next";
+import i18next, { type Callback, type TFunction } from "i18next";
 import * as config from "~/config/i18n";
 import translationLoader from "./translation-loader";
 

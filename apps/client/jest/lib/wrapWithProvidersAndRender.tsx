@@ -2,11 +2,11 @@ import { ToastProvider, ToastViewport } from "@radix-ui/react-toast";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import { render } from "@testing-library/react";
 import { initialMockStore } from "__fixtures__/reduxStore";
-import React from "react";
+import type React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
-import { RootState } from "services/rootReducer";
+import type { RootState } from "services/rootReducer";
 import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 
 interface WrapWithProvidersAndRenderParams<Props> {

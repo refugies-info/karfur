@@ -10,7 +10,7 @@ import { userDetailsSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
 import styles from "./EditAvatar.module.scss";
 
-interface Props {}
+type Props = {};
 
 const EditAvatar = (props: Props) => {
   const dispatch = useDispatch();
@@ -42,9 +42,16 @@ const EditAvatar = (props: Props) => {
     <div className={styles.container}>
       <div className={cls(styles.avatar, isPictureUploading && styles.loading)}>
         {isPictureUploading && <Spinner className={styles.spinner} />}
-        <Image src={user?.picture?.secure_url || marioProfile} width="160" height="160" alt="user picture" />
+        <Image
+          src={user?.picture?.secure_url || marioProfile}
+          width="160"
+          height="160"
+          alt="user picture"
+        />
       </div>
-      <p className={cls(styles.small, "my-4")}>Votre photo apparaît sur les fiches auxquelles vous contribuez.</p>
+      <p className={cls(styles.small, "my-4")}>
+        Votre photo apparaît sur les fiches auxquelles vous contribuez.
+      </p>
       <button className="fr-btn fr-btn--secondary fr-btn--sm fr-icon-image-edit-line fr-btn--icon-right relative">
         Modifier ma photo
         <input type="file" id="avatar" onChange={handleFileInputChange} />

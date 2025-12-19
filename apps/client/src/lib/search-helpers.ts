@@ -1,7 +1,7 @@
-import { searchClient, type SearchClient } from "@algolia/client-search";
-import { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
+import { type SearchClient, searchClient } from "@algolia/client-search";
+import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose from "mongoose";
-import { ParsedUrlQuery } from "querystring";
+import type { ParsedUrlQuery } from "querystring";
 
 interface SearchQuery extends ParsedUrlQuery {
   search?: string;
@@ -39,7 +39,9 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   departments: getQueryParamAsArray(query.departments),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
-  age: getQueryParamAsArray(query.age).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25"),
+  age: getQueryParamAsArray(query.age).filter(
+    (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
+  ),
   frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(
     (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
   ),
@@ -53,14 +55,19 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   sort: typeof query.sort === "string" ? query.sort : undefined,
 });
 
-export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaIds?: string[]): any => {
+export const buildBaseMatch = (
+  queryParams: Omit<QueryParams, "sort">,
+  algoliaIds?: string[],
+): any => {
   const match: any = { status: "Actif" };
 
   if (algoliaIds) {
     match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
   }
 
-  const departments = (queryParams.departments ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
+  const departments = (queryParams.departments ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
   if (departments.length > 0) {
     const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const tokensOrRegexes = departments.map((dep) => {
@@ -71,14 +78,21 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
     match["metadatas.location"] = { $in: [...tokensOrRegexes, "france"] };
   }
 
-  const themes = (queryParams.themes ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
-  const needs = (queryParams.needs ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
+  const themes = (queryParams.themes ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
+  const needs = (queryParams.needs ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
   if (themes.length > 0 && needs.length > 0) {
     // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
     // a record matches if it has the theme OR the need (not both).
     const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
     const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
-    match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }, { needs: { $in: needIds } }]);
+    match.$or = (match.$or || []).concat([
+      { theme: { $in: themeIds } },
+      { needs: { $in: needIds } },
+    ]);
   } else {
     if (themes.length > 0) {
       const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
@@ -92,7 +106,9 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
     }
   }
 
-  const ages = (queryParams.age ?? []).filter((a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25");
+  const ages = (queryParams.age ?? []).filter(
+    (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
+  );
   if (ages.length > 0) {
     const minAgeExpr = {
       $switch: {
@@ -154,24 +170,32 @@ export const buildBaseMatch = (queryParams: Omit<QueryParams, "sort">, algoliaId
   if (frenchLevel.length > 0) {
     const allowedLevels = Array.from(
       new Set(
-        frenchLevel.flatMap((cat) => (cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"])),
+        frenchLevel.flatMap((cat) =>
+          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
+        ),
       ),
     );
     // Match if the field (string or array) contains any allowedLevels
     match["metadatas.frenchLevel"] = { $in: allowedLevels };
   }
 
-  const publics = (queryParams.public ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
+  const publics = (queryParams.public ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
   if (publics.length > 0) {
     match["metadatas.public"] = { $in: publics };
   }
 
-  const statuses = (queryParams.status ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
+  const statuses = (queryParams.status ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
   if (statuses.length > 0) {
     match["metadatas.publicStatus"] = { $in: statuses };
   }
 
-  const languages = (queryParams.language ?? []).filter((v) => typeof v === "string" && v.trim().length > 0);
+  const languages = (queryParams.language ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
   if (languages.length > 0) {
     const languageConditions = languages.map((lang) => ({
       // translations is an object whose keys are language codes (e.g., fr, en)
@@ -189,7 +213,10 @@ export const getSearchClient = (): {
   algoliaClient: SearchClient;
   indexName: string;
 } => {
-  const algoliaClient = searchClient("L9HYT1676M", process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "");
+  const algoliaClient = searchClient(
+    "L9HYT1676M",
+    process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY || "",
+  );
   const indexName =
     (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production"
       ? process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_PROD

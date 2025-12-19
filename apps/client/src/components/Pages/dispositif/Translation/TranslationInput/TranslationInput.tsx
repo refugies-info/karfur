@@ -1,10 +1,10 @@
-import { Languages } from "@refugies-info/api-types";
+import type { Languages } from "@refugies-info/api-types";
 import DOMPurify from "isomorphic-dompurify";
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useWatch } from "react-hook-form";
 import { useAsyncFn, useNumber } from "react-use";
 import { useUser } from "~/hooks";
-import { Suggestion } from "~/hooks/dispositif";
+import type { Suggestion } from "~/hooks/dispositif";
 import { checkIsRTL } from "~/hooks/useRTL";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -20,7 +20,7 @@ import TranslationStatus from "./TranslationStatus";
 import UserSuggest from "./UserSuggest";
 
 export const getAllSuggestions = (mySuggestion: Suggestion, suggestions: Suggestion[]) => {
-  return !!mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
+  return mySuggestion.text ? [mySuggestion, ...suggestions] : suggestions;
 };
 
 interface Props {
@@ -30,7 +30,10 @@ interface Props {
   mySuggestion: Suggestion;
   suggestions: Suggestion[]; // all suggestions except mine
   locale: string;
-  validate: (section: string, value: { text?: string; unfinished?: boolean; reviewDone?: boolean }) => void;
+  validate: (
+    section: string,
+    value: { text?: string; unfinished?: boolean; reviewDone?: boolean },
+  ) => void;
   deleteTrad: (section: string) => void;
   size?: "xl" | "lg";
   isHTML: boolean;
@@ -68,12 +71,24 @@ const TranslationInput = (props: Props) => {
 
   // Calcul de l'affichage du bouton
   const [display, setDisplay] = useState(
-    getDisplay(mySuggestion, suggestions, user.user?.username || "", pageContext.showMissingSteps, user.expertTrad),
+    getDisplay(
+      mySuggestion,
+      suggestions,
+      user.user?.username || "",
+      pageContext.showMissingSteps,
+      user.expertTrad,
+    ),
   );
 
   useEffect(() => {
     setDisplay(
-      getDisplay(mySuggestion, suggestions, user.user?.username || "", pageContext.showMissingSteps, user.expertTrad),
+      getDisplay(
+        mySuggestion,
+        suggestions,
+        user.user?.username || "",
+        pageContext.showMissingSteps,
+        user.expertTrad,
+      ),
     );
   }, [mySuggestion, suggestions, user, pageContext.showMissingSteps]);
 
@@ -123,7 +138,10 @@ const TranslationInput = (props: Props) => {
     pageContext.setActiveSection?.("");
   }, [pageContext]);
 
-  const isOpen = useMemo(() => `content.${pageContext.activeSection}` === section, [pageContext, section]);
+  const isOpen = useMemo(
+    () => `content.${pageContext.activeSection}` === section,
+    [pageContext, section],
+  );
 
   // quand la sections se ferme, si elle était validée mais que le contenu a changé
   // on la passe en toFinish
@@ -132,7 +150,13 @@ const TranslationInput = (props: Props) => {
 
   useEffect(() => {
     // Only run this effect when isOpen changes from true to false (section closes)
-    if (prevIsOpenRef.current && !isOpen && !!value && oldSuggestion.text !== value && !oldSuggestion.toFinish) {
+    if (
+      prevIsOpenRef.current &&
+      !isOpen &&
+      !!value &&
+      oldSuggestion.text !== value &&
+      !oldSuggestion.toFinish
+    ) {
       validate(section, { unfinished: true });
       setOldSuggestion({ ...mySuggestion, text: value, toFinish: true });
     }
@@ -229,7 +253,11 @@ const TranslationInput = (props: Props) => {
                 // view suggestion
                 <div
                   className={cn(styles.text, styles.value)}
-                  onClick={user.expertTrad ? () => clickSuggestionAsExpert(suggestions[index]?.text) : undefined}
+                  onClick={
+                    user.expertTrad
+                      ? () => clickSuggestionAsExpert(suggestions[index]?.text)
+                      : undefined
+                  }
                 >
                   {index === max ? (
                     <div
@@ -238,7 +266,9 @@ const TranslationInput = (props: Props) => {
                     />
                   ) : (
                     <div
-                      dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(suggestions[index]?.text) }}
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(suggestions[index]?.text),
+                      }}
                       dir={isRTL ? "rtl" : "ltr"}
                     />
                   )}

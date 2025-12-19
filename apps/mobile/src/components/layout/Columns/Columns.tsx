@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { StyleProp, ViewStyle } from "react-native";
+import React, { type ReactNode } from "react";
+import type { StyleProp, ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 import styled from "styled-components/native";
 import { isLastChild } from "../../utils";

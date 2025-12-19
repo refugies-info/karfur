@@ -1,5 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { RoleName } from "@refugies-info/api-types";
+import {
+  type GetStatisticsResponse,
+  type GetStructureStatisticsResponse,
+  RoleName,
+} from "@refugies-info/api-types";
+import { useWindowSize } from "@refugies-info/ui";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -38,7 +43,6 @@ import {
 } from "~/components/Pages/staticPages/common";
 import { CardExample, TestimonySlider } from "~/components/Pages/staticPages/publier";
 import SEO from "~/components/Seo";
-import { useWindowSize } from "@refugies-info/ui";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
 import API from "~/utils/API";
@@ -199,12 +203,15 @@ const RecensezVotreAction = (props: Props) => {
               image={CardIconCalendar}
               title="Pérenne"
               footer={
-                <CardExample exampleKo="Une journée porte ouverte" exampleOk="Des sessions annuelles de formation" />
+                <CardExample
+                  exampleKo="Une journée porte ouverte"
+                  exampleOk="Des sessions annuelles de formation"
+                />
               }
             >
               <p>
-                Votre action doit être accessible tout le temps ou de façon récurrente. Elle ne doit pas avoir lieu une
-                seule et unique fois.
+                Votre action doit être accessible tout le temps ou de façon récurrente. Elle ne doit
+                pas avoir lieu une seule et unique fois.
               </p>
             </Card>
 
@@ -212,12 +219,15 @@ const RecensezVotreAction = (props: Props) => {
               image={RequiredIcon2}
               title="À but non lucratif"
               footer={
-                <CardExample exampleKo="Un service qui génère des bénéfices" exampleOk="Une formation certifiante" />
+                <CardExample
+                  exampleKo="Un service qui génère des bénéfices"
+                  exampleOk="Une formation certifiante"
+                />
               }
             >
               <p>
-                L’action peut être payante à l’inscription, mais ne doit pas vendre des services ou des objets à but
-                lucratif.
+                L’action peut être payante à l’inscription, mais ne doit pas vendre des services ou
+                des objets à but lucratif.
               </p>
             </Card>
 
@@ -225,12 +235,15 @@ const RecensezVotreAction = (props: Props) => {
               image={RequiredIcon3}
               title="Adaptée au public"
               footer={
-                <CardExample exampleKo="Une formation généraliste" exampleOk="Une formation avec cours de français" />
+                <CardExample
+                  exampleKo="Une formation généraliste"
+                  exampleOk="Une formation avec cours de français"
+                />
               }
             >
               <p>
-                L’action doit prendre en compte les spécificités du public : la langue, la situation administrative
-                personnelle, la disponibilité...
+                L’action doit prendre en compte les spécificités du public : la langue, la situation
+                administrative personnelle, la disponibilité...
               </p>
             </Card>
           </RowCards>
@@ -258,7 +271,7 @@ const RecensezVotreAction = (props: Props) => {
             <Title2>Quelles sont les étapes pour publier une fiche ?</Title2>
             <StepContent
               step={1}
-              title="Créez <strong>votre compte</strong> Réfugiés.info"
+              title="Créez votre compte Réfugiés.info"
               texts={[
                 "Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.",
               ]}
@@ -268,7 +281,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={2}
-              title="<strong>Rédigez</strong> votre fiche"
+              title="Rédigez votre fiche"
               texts={[
                 "Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.",
                 "Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.",
@@ -282,7 +295,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={3}
-              title="Ajoutez la <strong>structure responsable</strong>"
+              title="Ajoutez la structure responsable"
               texts={[
                 "À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.",
               ]}
@@ -291,18 +304,18 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={4}
-              title="L’équipe éditoriale de Réfugiés.info <strong>relit et publie</strong> votre fiche"
+              title="L’équipe éditoriale de Réfugiés.info relit et publie votre fiche"
               texts={[
                 "Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.",
                 "Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.",
               ]}
               image={StepImage4}
-              buttonStep="Votre fiche est publiée ! 🎉"
+              buttonStep="Votre fiche est publiée ! 🎉"
               width={440}
             />
             <StepContent
               step={5}
-              title="<strong>Traduction en 7 langues</strong> de votre fiche"
+              title="Traduction en 7 langues de votre fiche"
               texts={[
                 "Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.",
                 "Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.",
@@ -312,7 +325,7 @@ const RecensezVotreAction = (props: Props) => {
             />
             <StepContent
               step={6}
-              title="<strong>Mettez à jour</strong> votre action régulièrement"
+              title="Mettez à jour votre action régulièrement"
               texts={[
                 "Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.",
                 "Attention, une action obsolète sera supprimée par l’équipe éditoriale.",
@@ -334,21 +347,34 @@ const RecensezVotreAction = (props: Props) => {
               subtitle="Nous sommes là pour vous accompagner dans la rédaction et la mise à jour de votre fiche."
             />
             <RowCards>
-              <Card image={CardIconCalendar} title="Séances découverte" link="https://kit.refugies.info/formation">
+              <Card
+                image={CardIconCalendar}
+                title="Séances découverte"
+                link="https://kit.refugies.info/formation"
+              >
                 <p className="mb-0">Profitez d’un webinaire de présentation de la plateforme.</p>
               </Card>
 
-              <Card image={HelpIcon2} title="Tutoriels et centre d’aide" link="https://help.refugies.info/fr/">
+              <Card
+                image={HelpIcon2}
+                title="Tutoriels et centre d’aide"
+                link="https://help.refugies.info/fr/"
+              >
                 <p className="mb-0">
-                  L’interface propose des tutoriels explicatifs et le centre d’aide contient de nombreux articles pour
-                  vous accompagner pendant la rédaction de votre fiche.
+                  L’interface propose des tutoriels explicatifs et le centre d’aide contient de
+                  nombreux articles pour vous accompagner pendant la rédaction de votre fiche.
                 </p>
               </Card>
 
-              <Card image={HelpIcon3} title="Live chat" onClick={() => window.$crisp.push(["do", "chat:open"])}>
+              <Card
+                image={HelpIcon3}
+                title="Live chat"
+                onClick={() => window.$crisp.push(["do", "chat:open"])}
+              >
                 <p className="mb-0">
-                  Le live chat est accessible en bas à droite de votre écran (deux jours par semaine). Posez toutes vos
-                  questions : nous sommes réactifs et c’est un vrai humain qui traite vos demandes !
+                  Le live chat est accessible en bas à droite de votre écran (deux jours par
+                  semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai
+                  humain qui traite vos demandes !
                 </p>
               </Card>
             </RowCards>
@@ -358,7 +384,9 @@ const RecensezVotreAction = (props: Props) => {
         {/* FIGURES */}
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
-            <Title2 className="text-center">Rejoignez un projet collaboratif de grande envergure</Title2>
+            <Title2 className="text-center">
+              Rejoignez un projet collaboratif de grande envergure
+            </Title2>
             <div className="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20">
               <CountUpFigure number={props.nbFiches} text="fiches publiées" />
               <CountUpFigure number={props.nbStructures} text="structures inscrites" />
@@ -388,7 +416,8 @@ const RecensezVotreAction = (props: Props) => {
                     text: "Dès que notre équipe éditoriale est informée de la création d'une nouvelle fiche, elle se charge de la relire afin de vérifier la cohérence avec la charte éditoriale. Vous serez contacté s'il manque des informations essentielles ou si une simplification est nécessaire. Votre fiche sera ensuite publiée et vous recevrez un mail de confirmation. Quelques semaines plus tard, celle-ci sera traduite en 7 autres langues par nos bénévoles avant d’être validée par nos experts traducteurs.",
                   },
                   {
-                    title: "Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?",
+                    title:
+                      "Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?",
                     text: "Vous avez la possibilité de rédiger une fiche sans faire partie de la structure citée. Après avoir rédigé la fiche, il suffira de nous transmettre les coordonnées de l'interlocuteur. Nous nous chargerons de le contacter afin qu'il ou elle reprenne la main sur la fiche.",
                   },
                   {
@@ -437,17 +466,27 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = await API.getDispositifsStatistics({
-    facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
-  });
-  const structStatistics = await API.getStructuresStatistics({ facets: ["nbStructures"] });
+  let dispStatistics: Partial<GetStatisticsResponse> = {};
+  let structStatistics: Partial<GetStructureStatisticsResponse> = {};
+
+  try {
+    dispStatistics = await API.getDispositifsStatistics({
+      facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
+    });
+    structStatistics = await API.getStructuresStatistics({
+      facets: ["nbStructures"],
+    });
+  } catch (error) {
+    // Log error but don't fail the build - use default values instead
+    console.error("[publier] Failed to fetch statistics during build:", error);
+  }
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
       nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
-      nbStructures: structStatistics.nbStructures,
+      nbStructures: structStatistics.nbStructures || 0,
     },
     revalidate: 60,
   };

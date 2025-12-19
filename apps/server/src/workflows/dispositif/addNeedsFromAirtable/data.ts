@@ -168,7 +168,11 @@ export const data = [
   { _id: "5fbfc0e469bac10014a9e814", needs: ["Trouver un premier travail"] },
   {
     _id: "60746a89cf9a8c00148cc1d3",
-    needs: ["Les démarches OFPRA (état civil)", "Obtenir mes papiers importants", "Les démarches pour ma famille"],
+    needs: [
+      "Les démarches OFPRA (état civil)",
+      "Obtenir mes papiers importants",
+      "Les démarches pour ma famille",
+    ],
   },
   {
     _id: "5ddfc54400db44004e071193",
@@ -286,7 +290,11 @@ export const data = [
   },
   {
     _id: "5e466d13f9fa02004e267f95",
-    needs: ["Rencontrer de nouvelles personnes", "Trouver un premier travail", "Me former aux métiers de la cuisine"],
+    needs: [
+      "Rencontrer de nouvelles personnes",
+      "Trouver un premier travail",
+      "Me former aux métiers de la cuisine",
+    ],
   },
   {
     _id: "5eea2813f78c23005bc9cbb0",
@@ -530,7 +538,10 @@ export const data = [
   },
   {
     _id: "5f918fbafc486c0047ef548d",
-    needs: ["Commencer à apprendre le français", "Être aidé pour faire mes démarches administratives"],
+    needs: [
+      "Commencer à apprendre le français",
+      "Être aidé pour faire mes démarches administratives",
+    ],
   },
   { _id: "6048ecb576fb800015351ee1", needs: ["Créer une entreprise"] },
   {
@@ -539,7 +550,10 @@ export const data = [
   },
   {
     _id: "5fb532beebfcd000146c1b75",
-    needs: ["Être aidé pour faire mes démarches administratives", "Être accompagné pour trouver un travail"],
+    needs: [
+      "Être aidé pour faire mes démarches administratives",
+      "Être accompagné pour trouver un travail",
+    ],
   },
   {
     _id: "6065af380774da00142298b5",
@@ -782,7 +796,10 @@ export const data = [
   },
   {
     _id: "5e7df80e0f3ff10050398e28",
-    needs: ["Passer un diplôme (DILF, DELF, DALF, TCF)", "Approfondir mes compétences linguistiques"],
+    needs: [
+      "Passer un diplôme (DILF, DELF, DALF, TCF)",
+      "Approfondir mes compétences linguistiques",
+    ],
   },
   {
     _id: "601974c283693f00144b634b",

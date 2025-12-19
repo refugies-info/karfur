@@ -5,7 +5,7 @@ import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { userLocationSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { GeoAPISuggestion } from "~/types/navigation";
+import type { GeoAPISuggestion } from "~/types/navigation";
 import { getCitiesFromGeoAPI } from "~/utils/API";
 import { RTLView } from "../BasicComponents";
 import { ErrorComponent } from "../ErrorComponent";
@@ -171,9 +171,14 @@ export const FilterCityComponent = ({
     <Rows verticalAlign="space-between">
       <View>
         <Title>
-          <ReadableText>{t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}</ReadableText>
+          <ReadableText>
+            {t("onboarding_screens.ville", "Tu habites dans quelle ville ?")}
+          </ReadableText>
         </Title>
-        <Explaination step={1} defaultText="C’est pour te montrer les associations et les activités dans ta ville." />
+        <Explaination
+          step={1}
+          defaultText="C’est pour te montrer les associations et les activités dans ta ville."
+        />
         <Label>
           <ReadableText>{t("onboarding_screens.city_label", "Ta ville")}</ReadableText>
         </Label>

@@ -1,13 +1,13 @@
 import {
   ContentType,
-  CreateDispositifRequest,
-  GetDispositifResponse,
-  Id,
-  InfoSections,
-  PostDispositifsResponse,
-  Sponsor,
-  UpdateDispositifRequest,
-  UpdateDispositifResponse,
+  type CreateDispositifRequest,
+  type GetDispositifResponse,
+  type Id,
+  type InfoSections,
+  type PostDispositifsResponse,
+  type Sponsor,
+  type UpdateDispositifRequest,
+  type UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import pick from "lodash/pick";
 import { logger } from "logger";
@@ -63,7 +63,11 @@ export const hasMissingAccordions = (
   return getMaxAccordions(dispositif.typeContenu, sectionKey) - Object.keys(section).length > 0;
 };
 
-const addMissingAccordions = (section: InfoSections, contentType: ContentType, sectionKey: string): InfoSections => {
+const addMissingAccordions = (
+  section: InfoSections,
+  contentType: ContentType,
+  sectionKey: string,
+): InfoSections => {
   const newContent: InfoSections = { ...section };
   const missingAccordions = getMaxAccordions(contentType, sectionKey) - Object.keys(section).length;
   for (let i = 0; i < missingAccordions; i++) {
@@ -76,7 +80,9 @@ const addMissingAccordions = (section: InfoSections, contentType: ContentType, s
 /**
  * Get initial form values for dispo edit
  */
-export const getDefaultValue = (dispositif: GetDispositifResponse | null): UpdateDispositifRequest => {
+export const getDefaultValue = (
+  dispositif: GetDispositifResponse | null,
+): UpdateDispositifRequest => {
   if (!dispositif) return {};
   const defaultValues: UpdateDispositifRequest = {
     ...pick(dispositif, [
@@ -96,7 +102,9 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
     sponsors: (dispositif.sponsors as Sponsor[])?.map((sponsor) => {
       const { logo, link, ...rest } = sponsor;
-      const result: Partial<Pick<Sponsor, "logo" | "link">> & Omit<Sponsor, "logo" | "link"> = { ...rest };
+      const result: Partial<Pick<Sponsor, "logo" | "link">> & Omit<Sponsor, "logo" | "link"> = {
+        ...rest,
+      };
       if (logo !== null) result.logo = logo;
       if (link !== null) result.link = link;
       return result as Sponsor;
@@ -125,12 +133,17 @@ export const getDefaultValue = (dispositif: GetDispositifResponse | null): Updat
   return defaultValues;
 };
 
-export const submitUpdateForm = (id: Id, data: UpdateDispositifRequest): Promise<UpdateDispositifResponse> => {
+export const submitUpdateForm = (
+  id: Id,
+  data: UpdateDispositifRequest,
+): Promise<UpdateDispositifResponse> => {
   logger.info("[update dispositif]", data);
   return API.updateDispositif(id, data);
 };
 
-export const submitCreateForm = (data: CreateDispositifRequest): Promise<PostDispositifsResponse> => {
+export const submitCreateForm = (
+  data: CreateDispositifRequest,
+): Promise<PostDispositifsResponse> => {
   logger.info("[create dispositif]", data);
   return API.createDispositif(data);
 };

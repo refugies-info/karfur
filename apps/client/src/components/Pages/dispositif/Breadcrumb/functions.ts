@@ -1,5 +1,5 @@
-import { Metadatas } from "@refugies-info/api-types";
-import { TFunction } from "next-i18next";
+import type { Metadatas } from "@refugies-info/api-types";
+import type { TFunction } from "next-i18next";
 
 export const getDepartments = (location: Metadatas["location"], t: TFunction) => {
   if (!location || !Array.isArray(location)) return "";

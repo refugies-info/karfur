@@ -1,4 +1,4 @@
-import { CreateDispositifRequest, Metadatas } from "@refugies-info/api-types";
+import type { CreateDispositifRequest, Metadatas } from "@refugies-info/api-types";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import imgAll from "~/assets/dispositif/form-icons/location-all.svg";
@@ -7,8 +7,8 @@ import imgInternet from "~/assets/dispositif/form-icons/location-internet.svg";
 import BaseModal from "~/components/UI/BaseModal";
 import ChoiceButton from "../../ChoiceButton";
 import { SimpleFooter, StepsFooter } from "../components";
-import { help, helpDepartments } from "./data";
 import DepartmentInput from "./DepartmentInput";
+import { help, helpDepartments } from "./data";
 
 interface Props {
   show: boolean;
@@ -28,7 +28,8 @@ const ModalLocation = (props: Props) => {
 
   const validate = () => {
     if (selected !== undefined) {
-      const value: Metadatas["location"] = selected === "departments" ? selectedDepartments : selected;
+      const value: Metadatas["location"] =
+        selected === "departments" ? selectedDepartments : selected;
       setValue("metadatas.location", value);
     }
     props.toggle();

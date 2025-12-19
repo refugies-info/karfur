@@ -1,4 +1,4 @@
-import { GetProgressionResponse, Id, Languages } from "@refugies-info/api-types";
+import type { GetProgressionResponse, Id, Languages } from "@refugies-info/api-types";
 import { activatedLanguages } from "data/activatedLanguages";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,7 +12,11 @@ import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import API from "~/utils/API";
-import { OneNeedTranslationModal, TranslationLanguagesChoiceModal, TranslationsAvancement } from "./components";
+import {
+  OneNeedTranslationModal,
+  TranslationLanguagesChoiceModal,
+  TranslationsAvancement,
+} from "./components";
 import { LoadingDispositifsWithTranslationsStatus } from "./components/LoadingDispositifsWithTranslationsStatus";
 import { StartTranslating } from "./components/StartTranslating";
 import styles from "./UserTranslation.module.scss";
@@ -31,7 +35,9 @@ const UserTranslation = (props: Props) => {
   const langueInUrl = useParams<{ id: string }>()?.id as Languages;
   const [languageLoaded, setLanguageLoaded] = useState<string | null>(null);
   const { getLanguage, getLanguageByCode, userTradLanguages } = useLanguages();
-  const isLoadingDispositifs = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS));
+  const isLoadingDispositifs = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS_TRANSLATIONS_STATUS),
+  );
 
   const [showTraducteurModal, setShowTraducteurModal] = useState(false);
   const [selectedNeedId, setSelectedNeedId] = useState<Id | null>(null);
@@ -64,8 +70,13 @@ const UserTranslation = (props: Props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (userFirstTradLanguage && !langueInUrl && getLanguage(userFirstTradLanguage)) {
-      return history.replace(routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode);
-    } else if ((langueInUrl && !userFirstTradLanguage) || !availableLanguages.includes(langueInUrl)) {
+      return history.replace(
+        routerLocale + "/backend/user-translation/" + getLanguage(userFirstTradLanguage).i18nCode,
+      );
+    } else if (
+      (langueInUrl && !userFirstTradLanguage) ||
+      !availableLanguages.includes(langueInUrl)
+    ) {
       return history.replace(routerLocale + "/backend/user-translation");
     }
 
@@ -79,7 +90,8 @@ const UserTranslation = (props: Props) => {
     };
     if (langueInUrl && languageLoaded !== langueInUrl) {
       setLanguageLoaded(langueInUrl);
-      if (!isLoadingDispositifs) dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
+      if (!isLoadingDispositifs)
+        dispatch(fetchDispositifsWithTranslationsStatusActionCreator(langueInUrl));
       if (!isLoadingNeeds) dispatch(fetchNeedsActionCreator());
       loadIndicators();
     }
@@ -115,7 +127,10 @@ const UserTranslation = (props: Props) => {
     <div className={styles.main}>
       <div className={styles.container}>
         {dispositifsWithTranslations.length === 0 || userTradLanguages.length === 0 ? (
-          <StartTranslating toggleTraducteurModal={toggleTraducteurModal} toggleTutoModal={toggleTutoModal} />
+          <StartTranslating
+            toggleTraducteurModal={toggleTraducteurModal}
+            toggleTutoModal={toggleTutoModal}
+          />
         ) : (
           <>
             <TranslationsAvancement
@@ -145,9 +160,14 @@ const UserTranslation = (props: Props) => {
         )}
 
         {showTraducteurModal && (
-          <TranslationLanguagesChoiceModal show={showTraducteurModal} toggle={toggleTraducteurModal} />
+          <TranslationLanguagesChoiceModal
+            show={showTraducteurModal}
+            toggle={toggleTraducteurModal}
+          />
         )}
-        {showTutoModal && <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Traduction"} />}
+        {showTutoModal && (
+          <FrameModal show={showTutoModal} toggle={toggleTutoModal} section={"Traduction"} />
+        )}
         <PseudoModal successCallback={() => setShowTraducteurModal(true)} />
       </div>
     </div>

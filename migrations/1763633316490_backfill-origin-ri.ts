@@ -1,5 +1,5 @@
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db } from "mongodb";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import type { Db } from "mongodb";
 
 export class backfillOriginRi1763633316490 implements MigrationInterface {
   public async up(db: Db): Promise<void | never> {

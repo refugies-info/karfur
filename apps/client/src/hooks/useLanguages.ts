@@ -1,4 +1,4 @@
-import { GetLanguagesResponse, Id } from "@refugies-info/api-types";
+import type { GetLanguagesResponse, Id } from "@refugies-info/api-types";
 import keyBy from "lodash/keyBy";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";

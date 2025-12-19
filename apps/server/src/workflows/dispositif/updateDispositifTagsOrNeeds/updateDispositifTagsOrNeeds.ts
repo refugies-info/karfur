@@ -1,4 +1,4 @@
-import { DispositifThemeNeedsRequest } from "@refugies-info/api-types";
+import type { DispositifThemeNeedsRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
 import {
   getDispositifById,
@@ -6,8 +6,8 @@ import {
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import { computePossibleNeeds } from "~/modules/needs/needs.service";
-import { ObjectId, User } from "~/typegoose";
-import { Response } from "~/types/interface";
+import { ObjectId, type User } from "~/typegoose";
+import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 export const updateDispositifTagsOrNeeds = async (
@@ -27,7 +27,10 @@ export const updateDispositifTagsOrNeeds = async (
   if (body.theme || body.secondaryThemes) {
     if (body.needs || originalDispositif.needs) {
       // if a need of the content has a tag that is not a tag of the content we remove the need
-      newNeeds = await computePossibleNeeds(body.needs || originalDispositif.needs.map((n) => n.toString()), allThemes);
+      newNeeds = await computePossibleNeeds(
+        body.needs || originalDispositif.needs.map((n) => n.toString()),
+        allThemes,
+      );
     }
   }
 

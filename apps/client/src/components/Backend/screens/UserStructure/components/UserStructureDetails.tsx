@@ -1,4 +1,4 @@
-import { GetStructureResponse, Id, Picture, StructureMember } from "@refugies-info/api-types";
+import type { GetStructureResponse, Id, Picture, StructureMember } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useState } from "react";
 import { getPath } from "routes";
@@ -38,7 +38,10 @@ interface Props {
   deleteUserFromStructure: (arg: Id) => void;
 }
 
-const checkIfUserIsAuthorizedToAddMembers = (isAdmin: boolean, userWithRole: GetStructureResponse["membres"]) => {
+const checkIfUserIsAuthorizedToAddMembers = (
+  isAdmin: boolean,
+  userWithRole: GetStructureResponse["membres"],
+) => {
   return isAdmin || userWithRole.length > 0;
 };
 
@@ -54,12 +57,19 @@ export const UserStructureDetails = (props: Props) => {
     return placeholder;
   };
 
-  const userWithRole = props.membres.filter((membre) => props.userId && membre.userId === props.userId);
+  const userWithRole = props.membres.filter(
+    (membre) => props.userId && membre.userId === props.userId,
+  );
 
-  const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(props.isAdmin, userWithRole);
+  const isUserAuthorizedToAddMembers = checkIfUserIsAuthorizedToAddMembers(
+    props.isAdmin,
+    userWithRole,
+  );
 
   const { membres } = props;
-  const isMember = props.membres.find((el) => props.userId && el.userId === props.userId) ? true : false;
+  const isMember = props.membres.find((el) => props.userId && el.userId === props.userId)
+    ? true
+    : false;
 
   return (
     <MainContainer className={styles.container}>
@@ -73,21 +83,6 @@ export const UserStructureDetails = (props: Props) => {
           style={{ objectFit: "contain" }}
         />
         <StructureName>{props.name}</StructureName>
-        {isMember && (
-          <Link
-            legacyBehavior
-            href={{
-              pathname: getPath("/annuaire/[id]", locale),
-              query: { id: props.structureId.toString() },
-            }}
-            passHref
-            prefetch={false}
-          >
-            <FButton type="dark" name="book-outline" tag="a">
-              Voir dans l'annuaire
-            </FButton>
-          </Link>
-        )}
       </StructurePictureContainer>
       <StructureContainer>
         <TitleContainer>

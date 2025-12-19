@@ -1,12 +1,18 @@
 import crashlytics from "@react-native-firebase/crashlytics";
-import { SagaIterator } from "redux-saga";
+import type {
+  GetContentsForAppResponse,
+  GetNbContentsForCountyResponse,
+} from "@refugies-info/api-types";
+import type { SagaIterator } from "redux-saga";
 import { call, put, select, takeLatest } from "redux-saga/effects";
-
-import { GetContentsForAppResponse, GetNbContentsForCountyResponse } from "@refugies-info/api-types";
 import { logger } from "~/logger";
 import { getContentsForApp, getNbContents } from "~/utils/API";
 import { setGroupedContentsActionCreator } from "../ContentsGroupedByNeeds/contentsGroupedByNeeds.actions";
-import { finishLoading, LoadingStatusKey, startLoading } from "../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 import {
   selectedI18nCodeSelector,
   userAgeSelector,

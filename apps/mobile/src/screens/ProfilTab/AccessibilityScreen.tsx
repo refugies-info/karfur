@@ -72,13 +72,13 @@ export const AccessibilityScreen = () => {
     >
       <H1>L'accessibilité, c'est quoi ?</H1>
       <P>
-        Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de l’application{" "}
-        {isIOS ? "iOS" : "Android"} Réfugiés.info.
+        Sur cette page, tu trouveras les informations obligatoires concernant l’accessibilité de
+        l’application {isIOS ? "iOS" : "Android"} Réfugiés.info.
       </P>
       <P>
-        L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et aux services
-        numériques. Pour cela, il faut respecter des règles émises par le World Wide Web Consortium et pensées par des
-        ergonomes pour chaque type de handicap.
+        L’accessibilité permet à tous les publics, sans discrimination, d’accéder aux contenus et
+        aux services numériques. Pour cela, il faut respecter des règles émises par le World Wide
+        Web Consortium et pensées par des ergonomes pour chaque type de handicap.
       </P>
 
       <Badge text="Temps de lecture : 5 à 10 minutes" type="new" icon="clock" />
@@ -86,17 +86,18 @@ export const AccessibilityScreen = () => {
 
       <H1 blue>Déclaration d’accessibilité</H1>
       <P>
-        La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à rendre son application
-        mobile accessible conformément à la Directive européenne sur l'accessibilité des applications Web et mobiles
-        (Directive (UE) 2018/2048) sur les exigences d'accessibilité pour les produits et services TIC EN 301 549
-        V3.2.1.
+        La Délégation interministérielle à l'accueil et à l'intégration des réfugiés s'engage à
+        rendre son application mobile accessible conformément à la Directive européenne sur
+        l'accessibilité des applications Web et mobiles (Directive (UE) 2018/2048) sur les exigences
+        d'accessibilité pour les produits et services TIC EN 301 549 V3.2.1.
       </P>
       <P>
-        À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan pluriannuel en cours
-        d'élaboration.
+        À cette fin, il met en œuvre la stratégie et les actions détaillées dans son plan
+        pluriannuel en cours d'élaboration.
       </P>
       <P style={{ marginBottom: 0 }}>
-        Cette déclaration d'accessibilité s'applique à l'application mobile {isIOS ? "iOS" : "Android"} Réfugiés.info.
+        Cette déclaration d'accessibilité s'applique à l'application mobile{" "}
+        {isIOS ? "iOS" : "Android"} Réfugiés.info.
       </P>
 
       <Separator spacing={SeparatorSpacing.XLarge} fullWidth color={theme.colors.dsfr_purple} />
@@ -111,7 +112,8 @@ export const AccessibilityScreen = () => {
         ) : (
           <TextDSFR_MD_Bold>non-conforme</TextDSFR_MD_Bold>
         )}{" "}
-        avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations énumérées ci-dessous.
+        avec EN 301 549 V3.2.1 en raison des non-conformités et des dérogations énumérées
+        ci-dessous.
       </P>
 
       <Separator spacing={SeparatorSpacing.XLarge} fullWidth color={theme.colors.dsfr_purple} />
@@ -127,7 +129,8 @@ export const AccessibilityScreen = () => {
         >
           Ipedis
         </Link>{" "}
-        révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN 301 549 V3.2.1 sont respectés.
+        révèle que {isIOS ? "50,00" : "45,83"}% des critères de la Directive EN 301 549 V3.2.1 sont
+        respectés.
       </P>
 
       <Card>
@@ -188,14 +191,16 @@ export const AccessibilityScreen = () => {
 
       <H2>Non-conformité</H2>
       <P>
-        Plusieurs éléments de non-conformité sont décrits dans ce document, dont certains récurrents sur plusieurs pages
-        :
+        Plusieurs éléments de non-conformité sont décrits dans ce document, dont certains récurrents
+        sur plusieurs pages :
       </P>
 
       <List
         isRTL={isRTL}
         items={[
-          isIOS ? "Les images/icônes porteuses d'information n'ont pas d'alternative textuelle" : null,
+          isIOS
+            ? "Les images/icônes porteuses d'information n'ont pas d'alternative textuelle"
+            : null,
           "Certains textes ne sont pas correctement lus par le lecteur d'écran",
           isIOS
             ? "Le contraste entre la couleur de fond et les textes/images et certains composants d’interface ne sont pas suffisants"
@@ -236,11 +241,15 @@ export const AccessibilityScreen = () => {
       <H1 blue>Établissement de cette déclaration d’accessibilité</H1>
       <P>Cette déclaration a été établie le 30 novembre 2021.</P>
       <P>Technologies utilisées pour la réalisation de l’application :</P>
-      <List isRTL={isRTL} items={["React Native"]} style={{ marginBottom: styles.margin * 3 }}></List>
+      <List
+        isRTL={isRTL}
+        items={["React Native"]}
+        style={{ marginBottom: styles.margin * 3 }}
+      ></List>
 
       <P>
-        Les tests des pages web ont été effectués avec les combinaisons d'agents utilisateurs et de lecteurs d’écran
-        suivants :
+        Les tests des pages web ont été effectués avec les combinaisons d'agents utilisateurs et de
+        lecteurs d’écran suivants :
       </P>
       <List
         isRTL={isRTL}
@@ -255,7 +264,9 @@ export const AccessibilityScreen = () => {
         style={{ marginBottom: styles.margin * 3 }}
       ></List>
 
-      <P style={{ marginBottom: 0 }}>Pages du site ayant fait l’objet de la vérification de conformité :</P>
+      <P style={{ marginBottom: 0 }}>
+        Pages du site ayant fait l’objet de la vérification de conformité :
+      </P>
       <List
         isRTL={isRTL}
         items={[
@@ -277,9 +288,9 @@ export const AccessibilityScreen = () => {
 
       <H1 blue>Retour d’information et contact</H1>
       <P>
-        Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le responsable de
-        l’application mobile pour être orienté vers une alternative accessible ou obtenir le contenu sous une autre
-        forme.
+        Si vous n’arrivez pas à accéder à un contenu ou à un service, vous pouvez contacter le
+        responsable de l’application mobile pour être orienté vers une alternative accessible ou
+        obtenir le contenu sous une autre forme.
       </P>
       <ContactButton isRTL={isRTL} />
 
@@ -288,8 +299,9 @@ export const AccessibilityScreen = () => {
       <H1 blue>Voies de recours</H1>
       <P>Cette procédure est à utiliser dans le cas suivant :</P>
       <P>
-        Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche d’accéder à un
-        contenu ou à un des services du portail et vous n’avez pas obtenu de réponse satisfaisante.
+        Vous avez signalé au responsable du site internet un défaut d’accessibilité qui vous empêche
+        d’accéder à un contenu ou à un des services du portail et vous n’avez pas obtenu de réponse
+        satisfaisante.
       </P>
       <List
         isRTL={isRTL}
@@ -320,7 +332,10 @@ export const AccessibilityScreen = () => {
         ]}
       ></List>
       <Spacer height={theme.margin * 2} />
-      <Info icon="pin-outline" text={"Défenseur des droits\nLibre réponse 71120\n75342 Paris CEDEX 07"} />
+      <Info
+        icon="pin-outline"
+        text={"Défenseur des droits\nLibre réponse 71120\n75342 Paris CEDEX 07"}
+      />
 
       <Spacer height={theme.margin * 5} />
 

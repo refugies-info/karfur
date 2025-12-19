@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { ChangeEventHandler, useState } from "react";
+import { type ChangeEventHandler, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "reactstrap";
@@ -139,14 +139,23 @@ export const SubscribeNewsletterModal = () => {
   };
 
   return (
-    <Modal isOpen={show} toggle={toggle} className={styles.modal} contentClassName={styles.modal_content}>
+    <Modal
+      isOpen={show}
+      toggle={toggle}
+      className={styles.modal}
+      contentClassName={styles.modal_content}
+    >
       <MainContainer>
         {isMobile && (
           <CloseIconContainer onClick={toggle}>
             <EVAIcon name="close" fill="white" size={"large"} />
           </CloseIconContainer>
         )}
-        <Image src={newsletter} alt="image newsletter" style={{ maxWidth: "100%", height: "auto" }} />
+        <Image
+          src={newsletter}
+          alt="image newsletter"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
@@ -158,7 +167,12 @@ export const SubscribeNewsletterModal = () => {
             "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info",
           )}
         </TextContainer>
-        <EmailField id="email" email={email} onChange={handleChangeEmail} notEmailError={notEmailError} />
+        <EmailField
+          id="email"
+          email={email}
+          onChange={handleChangeEmail}
+          notEmailError={notEmailError}
+        />
         {notEmailError && (
           <ErrorMessageContainer>{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
         )}

@@ -1,20 +1,19 @@
-import { Poi } from "@refugies-info/api-types";
+import type { Poi } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { CopyButton } from "./CopyButton";
 
-type PopupContentProps = {
+type AdressContentProps = {
   poi: Poi;
 };
 
-export default function PopupContent({ poi }: PopupContentProps) {
+export default function AdressContent({ poi }: AdressContentProps) {
   const { t } = useTranslation();
   const clipBoardCopy = (address: string) => {
     navigator.clipboard.writeText(address);
   };
 
   return (
-    <div>
-      <h3 className="text-corps-lg text-title-gray mb-0">{poi.title}</h3>
+    <div className="h-full bg-white p-4">
       {poi.address && poi.address.length > 1 ? (
         <p className="text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2">
           <span className="truncate">{poi.address}</span>

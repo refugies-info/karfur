@@ -1,8 +1,9 @@
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
-import { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
+import type { GetNeedResponse, GetThemeResponse, Id } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { useContext } from "react";
+import type React from "react";
+import { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
@@ -74,13 +75,14 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
         <Checkbox
           legend={theme.short[locale]}
           options={needs.map((need) => {
-            const selected = query.needs.includes(need._id) || query.themes.includes(need.theme._id);
+            const selected =
+              query.needs.includes(need._id) || query.themes.includes(need.theme._id);
 
             return {
               label: <NeedItem need={need} />,
               nativeInputProps: {
-                "checked": selected,
-                "onChange": () => selectNeed(need._id),
+                checked: selected,
+                onChange: () => selectNeed(need._id),
                 "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
               },
             };

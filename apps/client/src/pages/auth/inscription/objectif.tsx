@@ -4,8 +4,12 @@ import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RoleName } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useMemo, useState } from "react";
+import { type ReactElement, useEffect, useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
+// import GoalIconTs from "~/assets/auth/goal-icon-ts.svg"; // TODO: delete?
+import GoalIconStructure from "~/assets/auth/goal-icon-structure.svg";
+import GoalIconTranslate from "~/assets/auth/goal-icon-translate.svg";
+import GoalIconUser from "~/assets/auth/goal-icon-user.svg";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
@@ -14,12 +18,8 @@ import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { hasRole } from "~/lib/hasRole";
-import API from "~/utils/API";
-// import GoalIconTs from "~/assets/auth/goal-icon-ts.svg"; // TODO: delete?
-import GoalIconStructure from "~/assets/auth/goal-icon-structure.svg";
-import GoalIconTranslate from "~/assets/auth/goal-icon-translate.svg";
-import GoalIconUser from "~/assets/auth/goal-icon-user.svg";
 import styles from "~/scss/components/auth.module.scss";
+import API from "~/utils/API";
 
 const AuthLogin = () => {
   const router = useRouter();
@@ -89,7 +89,9 @@ const AuthLogin = () => {
             className={styles.radio}
             options={[
               {
-                illustration: <Image alt="illustration" src={GoalIconStructure} width={48} height={48} />,
+                illustration: (
+                  <Image alt="illustration" src={GoalIconStructure} width={48} height={48} />
+                ),
                 label: "Recenser mon dispositif",
                 hintText: "Pour les membres et responsables de structure",
                 nativeInputProps: {
@@ -98,7 +100,9 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: <Image alt="illustration" src={GoalIconTranslate} width={48} height={48} />,
+                illustration: (
+                  <Image alt="illustration" src={GoalIconTranslate} width={48} height={48} />
+                ),
                 label: "Traduire une fiche",
                 hintText: "Pour les bilingues qui souhaitent contribuer",
                 nativeInputProps: {
@@ -107,7 +111,9 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: <Image alt="illustration" src={GoalIconUser} width={26} height={56} />,
+                illustration: (
+                  <Image alt="illustration" src={GoalIconUser} width={26} height={56} />
+                ),
                 label: "Sauvegarder mes fiches préférées",
                 hintText: "En créant mon espace personnel",
                 nativeInputProps: {

@@ -123,7 +123,8 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
 
       if (isRtl) {
         hasReachedStart = container.scrollLeft > -10; // Close to 0 (right edge)
-        hasReachedEnd = Math.abs(container.scrollLeft) >= container.scrollWidth - container.clientWidth - 10; // Close to max negative (left edge)
+        hasReachedEnd =
+          Math.abs(container.scrollLeft) >= container.scrollWidth - container.clientWidth - 10; // Close to max negative (left edge)
       } else {
         hasReachedStart = container.scrollLeft < 10; // Close to 0 (left edge)
         hasReachedEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 10; // Close to max (right edge)
@@ -147,7 +148,9 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
 
         // Calculate the position to center the slide in the container
         const scrollLeft =
-          slideElement.offsetLeft - containerElement.offsetLeft - (containerRect.width / 2 - slideRect.width / 2);
+          slideElement.offsetLeft -
+          containerElement.offsetLeft -
+          (containerRect.width / 2 - slideRect.width / 2);
 
         // Scroll to the calculated position
         containerElement.scrollTo({
@@ -283,7 +286,11 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
               title={t.next}
             />
             {seeMoreUrl && (
-              <Button className="whitespace-nowrap" priority="tertiary" linkProps={{ href: seeMoreUrl }}>
+              <Button
+                className="whitespace-nowrap"
+                priority="tertiary"
+                linkProps={{ href: seeMoreUrl }}
+              >
                 {t.seeMore}
               </Button>
             )}

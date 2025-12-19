@@ -1,4 +1,4 @@
-import { StackScreenProps } from "@react-navigation/stack";
+import type { StackScreenProps } from "@react-navigation/stack";
 import { useCallback, useMemo, useState } from "react";
 import { Share, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -9,9 +9,9 @@ import {
   Flag,
   LanguageDetailsButton,
   Page,
-  RTLView,
   Rows,
   RowsSpacing,
+  RTLView,
   Select,
   Separator,
   Spacer,
@@ -24,7 +24,7 @@ import { activatedLanguages } from "~/data/languagesData";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { getSelectedLanguageFromI18nCode } from "~/libs/language";
 import { selectedI18nCodeSelector } from "~/services/redux/User/user.selectors";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 
 const FlagBackground = styled.View`
   background-color: ${({ theme }) => theme.colors.dsfr_borderGrey};
@@ -48,7 +48,9 @@ export const ShareScreen = ({ navigation }: StackScreenProps<ProfileParamList, "
   const selectedLanguageI18nCode = useSelector(selectedI18nCodeSelector);
 
   const [open, setOpen] = useState(false);
-  const [selectedShareLanguage, setSelectedShareLanguage] = useState<string>(selectedLanguageI18nCode || "fr");
+  const [selectedShareLanguage, setSelectedShareLanguage] = useState<string>(
+    selectedLanguageI18nCode || "fr",
+  );
 
   const selectLanguage = useCallback((selectedCode: string) => {
     setSelectedShareLanguage(selectedCode);
@@ -80,7 +82,11 @@ export const ShareScreen = ({ navigation }: StackScreenProps<ProfileParamList, "
       <Rows verticalAlign="space-between" spacing={RowsSpacing.Text}>
         <View>
           <Title>En quelle langue souhaites-tu envoyer l’application ?</Title>
-          <Select label="Langue du message" onPress={() => setOpen((o) => !o)} testID="test-change-language">
+          <Select
+            label="Langue du message"
+            onPress={() => setOpen((o) => !o)}
+            testID="test-change-language"
+          >
             <Columns RTLBehaviour layout="auto" verticalAlign="center">
               <FlagBackground>
                 <Flag langueFr={selectedLanguage.langueFr} />

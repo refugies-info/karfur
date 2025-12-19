@@ -1,7 +1,8 @@
-import { GetAllStructuresResponse, Id } from "@refugies-info/api-types";
-import { RootState } from "../rootReducer";
+import type { GetAllStructuresResponse, Id } from "@refugies-info/api-types";
+import type { RootState } from "../rootReducer";
 
-export const allStructuresSelector = (state: RootState): GetAllStructuresResponse[] => state.allStructures;
+export const allStructuresSelector = (state: RootState): GetAllStructuresResponse[] =>
+  state.allStructures;
 
 export const structureSelector = (structureId: Id | null) => (state: RootState) => {
   if (!structureId) return null;

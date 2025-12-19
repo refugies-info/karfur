@@ -1,5 +1,5 @@
-import { Picture } from "@refugies-info/api-types";
-import React from "react";
+import type { Picture } from "@refugies-info/api-types";
+import type React from "react";
 import Input from "~/components/Pages/dispositif/Input";
 import LogoInput from "../../../LogoInput";
 

@@ -1,8 +1,8 @@
-import { ContentType } from "@refugies-info/api-types";
-import { modelOptions, prop, Ref } from "@typegoose/typegoose";
+import type { ContentType } from "@refugies-info/api-types";
+import { modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { Base } from "./Base";
 import { Theme } from "./Theme";
-import { User } from "./User";
+import type { User } from "./User";
 
 @modelOptions({ schemaOptions: { collection: "widgets", timestamps: { createdAt: "created_at" } } })
 export class Widget extends Base {

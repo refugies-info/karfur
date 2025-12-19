@@ -1,5 +1,5 @@
-import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
-import { ActionType, action } from "typesafe-actions";
+import type { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
+import { type ActionType, action } from "typesafe-actions";
 import {
   FETCH_DISPOSITIFS_TRANSLATIONS_STATUS,
   SET_DISPOSITIFS_TRANSLATIONS_STATUS,

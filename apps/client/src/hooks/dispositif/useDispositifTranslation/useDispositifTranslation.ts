@@ -1,4 +1,4 @@
-import {
+import type {
   ContentType,
   GetTraductionsForReview,
   GetTraductionsForReviewResponse,
@@ -12,7 +12,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import { DISPOSITIF_FORM_CONSTANTS } from "~/constants/dispositif";
 import { useUser } from "~/hooks";
-import { TranslateForm } from "../useDispositifTranslateForm";
+import type { TranslateForm } from "../useDispositifTranslateForm";
 import {
   calculateProgressTranslate,
   getMaxStepsTranslate,
@@ -93,22 +93,36 @@ const useDispositifTranslation = (
   const dispositifSections = useMemo(() => keys(defaultTraduction), [defaultTraduction]);
   const totalSteps = useMemo(() => getMaxStepsTranslate(defaultTraduction), [defaultTraduction]);
   const doneSteps = useMemo(
-    () => calculateProgressTranslate(data, translations, typeContenu, defaultTraduction, user.expertTrad),
+    () =>
+      calculateProgressTranslate(
+        data,
+        translations,
+        typeContenu,
+        defaultTraduction,
+        user.expertTrad,
+      ),
     [data, translations, typeContenu, defaultTraduction, user.expertTrad],
   );
   const missingSteps = useMemo(
-    () => getMissingStepsTranslate(data, translations, typeContenu, defaultTraduction, user.expertTrad),
+    () =>
+      getMissingStepsTranslate(data, translations, typeContenu, defaultTraduction, user.expertTrad),
     [data, translations, typeContenu, defaultTraduction, user.expertTrad],
   );
   const isComplete = useMemo(() => doneSteps === totalSteps, [doneSteps, totalSteps]);
-  const sectionWordCount = useMemo(() => getSectionWordCount(defaultTraduction), [defaultTraduction]);
+  const sectionWordCount = useMemo(
+    () => getSectionWordCount(defaultTraduction),
+    [defaultTraduction],
+  );
   const pendingSteps = useMemo(() => getPendingStepsTranslate(data, "toFinish"), [data]);
   const reviewSteps = useMemo(() => getPendingStepsTranslate(data, "toReview"), [data]);
   const wordsCount = useMemo(
     () => getWordsCount(sectionWordCount, data, translations, user.expertTrad),
     [sectionWordCount, data, translations, user.expertTrad],
   );
-  const myWordsCount = useMemo(() => getWordsCount(sectionWordCount, data, [], true), [sectionWordCount, data]);
+  const myWordsCount = useMemo(
+    () => getWordsCount(sectionWordCount, data, [], true),
+    [sectionWordCount, data],
+  );
 
   const progress: Progress = useMemo(
     () => ({
@@ -122,7 +136,16 @@ const useDispositifTranslation = (
       pendingSteps,
       reviewSteps,
     }),
-    [totalSteps, doneSteps, missingSteps, isComplete, wordsCount, pendingSteps, reviewSteps, myWordsCount],
+    [
+      totalSteps,
+      doneSteps,
+      missingSteps,
+      isComplete,
+      wordsCount,
+      pendingSteps,
+      reviewSteps,
+      myWordsCount,
+    ],
   );
 
   // SAVING
@@ -131,7 +154,10 @@ const useDispositifTranslation = (
    */
   const [hasChangeForm, setHasChangeForm] = useState(false); // used to show validator name or not
   const validate = useCallback(
-    async (section: string, value: { text?: string; unfinished?: boolean; reviewDone?: boolean }) => {
+    async (
+      section: string,
+      value: { text?: string; unfinished?: boolean; reviewDone?: boolean },
+    ) => {
       // if section changed, remove from toReview
       if (value.reviewDone && data.toReview && data.toReview.includes(section)) {
         setHasChangeForm(true);
@@ -147,7 +173,7 @@ const useDispositifTranslation = (
       }
       if (value.text !== undefined) {
         if (value.text !== get(data, `translated.${section}`)) setHasChangeForm(true);
-        //@ts-ignore
+        //@ts-expect-error
         setValue(`translated.${section}`, value.text);
       }
     },
@@ -158,7 +184,7 @@ const useDispositifTranslation = (
     async (section: string) => {
       const toFinish = [...(data.toFinish || [])].filter((t) => t !== section);
       setValue("toFinish", toFinish);
-      //@ts-ignore
+      //@ts-expect-error
       setValue(`translated.${section}`, undefined);
     },
     [data, setValue],
@@ -170,7 +196,12 @@ const useDispositifTranslation = (
       return {
         section,
         initialText: get(defaultTraduction, section),
-        mySuggestion: transformMyTranslation(section, data, user.user, !hasChangeForm ? validator : undefined),
+        mySuggestion: transformMyTranslation(
+          section,
+          data,
+          user.user,
+          !hasChangeForm ? validator : undefined,
+        ),
         suggestions: filterAndTransformTranslations(section, translations),
         locale: language,
         validate,
@@ -178,10 +209,22 @@ const useDispositifTranslation = (
         isHTML: isInputHTML(section),
         size: getInputSize(section),
         noAutoTrad: section.includes("titreMarque") || section.includes("administrationName"),
-        maxLength: section.includes("abstract") ? DISPOSITIF_FORM_CONSTANTS.ABSTRACT_MAX_LENGTH : undefined,
+        maxLength: section.includes("abstract")
+          ? DISPOSITIF_FORM_CONSTANTS.ABSTRACT_MAX_LENGTH
+          : undefined,
       };
     },
-    [defaultTraduction, translations, language, validate, deleteTrad, data, user, validator, hasChangeForm],
+    [
+      defaultTraduction,
+      translations,
+      language,
+      validate,
+      deleteTrad,
+      data,
+      user,
+      validator,
+      hasChangeForm,
+    ],
   );
 
   return {

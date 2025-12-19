@@ -1,4 +1,4 @@
-import { SimpleUser } from "@refugies-info/api-types";
+import type { SimpleUser } from "@refugies-info/api-types";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import marioProfile from "~/assets/mario-profile.jpg";
@@ -57,7 +57,11 @@ export const UserButton = (props: {
   if (props.link) {
     return (
       <Link
-        className={cls(styles.details_button, !props.onClick && styles.disabled, !!props.wrap && styles.wrap)}
+        className={cls(
+          styles.details_button,
+          !props.onClick && styles.disabled,
+          !!props.wrap && styles.wrap,
+        )}
         to={props.link}
       >
         {buttonContent}
@@ -66,7 +70,11 @@ export const UserButton = (props: {
   }
   return (
     <div
-      className={cls(styles.details_button, !props.onClick && styles.disabled, !!props.wrap && styles.wrap)}
+      className={cls(
+        styles.details_button,
+        !props.onClick && styles.disabled,
+        !!props.wrap && styles.wrap,
+      )}
       onClick={props.onClick}
     >
       {buttonContent}

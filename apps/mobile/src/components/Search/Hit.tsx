@@ -1,11 +1,11 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import type { CompositeNavigationProp } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 import { useCallback } from "react";
 import { View } from "react-native";
 import aa from "search-insights";
-import { SearchItem } from "~/components/Search/types";
+import type { SearchItem } from "~/components/Search/types";
 import { styles } from "~/theme";
-import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
+import type { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { SearchContentSummary } from "../Search/SearchContentSummary";
 
 interface HighlightResult {
@@ -34,7 +34,8 @@ const getLanguageMatch = (hit: AlgoliaHit, selectedLanguage: string) => {
   return selectedLanguage;
 };
 
-const hasSponsorMatch = (hit: AlgoliaHit) => hit._highlightResult?.sponsorName?.matchLevel === "full";
+const hasSponsorMatch = (hit: AlgoliaHit) =>
+  hit._highlightResult?.sponsorName?.matchLevel === "full";
 
 type NavigationProp = CompositeNavigationProp<
   StackNavigationProp<RootStackParamList>,
@@ -72,7 +73,9 @@ export const HitWithInsights = ({ hit, navigation, selectedLanguage, nbContents 
         item={hit}
         languageMatch={getLanguageMatch(hit as AlgoliaHit, selectedLanguage || "")}
         hasSponsorMatch={hasSponsorMatch(hit as AlgoliaHit)}
-        nbContents={hit.typeContenu === "besoin" && nbContents ? (nbContents[hit.objectID] ?? 0) : null}
+        nbContents={
+          hit.typeContenu === "besoin" && nbContents ? (nbContents[hit.objectID] ?? 0) : null
+        }
         pressCallback={sendAlgoliaEvent}
       />
     </View>

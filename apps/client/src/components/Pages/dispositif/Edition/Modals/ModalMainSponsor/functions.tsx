@@ -1,6 +1,6 @@
-import { Id, MainSponsor } from "@refugies-info/api-types";
+import type { Id, MainSponsor } from "@refugies-info/api-types";
 import { hasStructureTitles, noStructureTitles } from "./data";
-import { ContactInfos } from "./ModalMainSponsor";
+import type { ContactInfos } from "./ModalMainSponsor";
 
 export const isStep = (currentStep: number, step: number | number[]) => {
   return typeof step === "number" ? currentStep === step : step.includes(currentStep);
@@ -8,7 +8,11 @@ export const isStep = (currentStep: number, step: number | number[]) => {
 
 export const getInitialStep = (selectedStructure: Id | null, userStructure: Id | null): number => {
   // not member, sponsor selected
-  if (selectedStructure && userStructure && selectedStructure.toString() !== userStructure.toString()) {
+  if (
+    selectedStructure &&
+    userStructure &&
+    selectedStructure.toString() !== userStructure.toString()
+  ) {
     return 2;
   }
   return 0;

@@ -1,10 +1,10 @@
-import { Languages } from "@refugies-info/api-types";
-import { isDocument, modelOptions, prop, Ref } from "@typegoose/typegoose";
+import type { Languages } from "@refugies-info/api-types";
+import { isDocument, modelOptions, prop, type Ref } from "@typegoose/typegoose";
 import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 import { countDispositifWords } from "~/libs/wordCounter";
 import { Base } from "./Base";
-import { Dispositif, TranslationContent } from "./Dispositif";
+import { Dispositif, type TranslationContent } from "./Dispositif";
 import { User } from "./User";
 
 export enum TraductionsType {
@@ -38,7 +38,10 @@ const keysForSubSection = (prefix: string, translated: unknown) =>
     }),
   );
 
-const removeEmptyValues = (keys: (keyof TranslationContent)[], translationObject: Partial<TranslationContent>) => {
+const removeEmptyValues = (
+  keys: (keyof TranslationContent)[],
+  translationObject: Partial<TranslationContent>,
+) => {
   return keys.filter((key: keyof TranslationContent) => {
     const value = get(translationObject, key);
     return value !== null && value !== undefined && value.toString().trim() !== "";
@@ -67,7 +70,9 @@ const keys = (translated: Content) => {
   ];
 };
 
-@modelOptions({ schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } } })
+@modelOptions({
+  schemaOptions: { collection: "traductions", timestamps: { createdAt: "created_at" } },
+})
 export class Traductions extends Base {
   @prop({ ref: () => Dispositif })
   public dispositifId: Ref<Dispositif>;
@@ -115,7 +120,9 @@ export class Traductions extends Base {
    */
   public get status(): TraductionsStatus {
     if (this.type === TraductionsType.VALIDATION) {
-      return isEmpty(this.toReview) && this.finished ? TraductionsStatus.VALIDATED : TraductionsStatus.TO_REVIEW;
+      return isEmpty(this.toReview) && this.finished
+        ? TraductionsStatus.VALIDATED
+        : TraductionsStatus.TO_REVIEW;
     }
 
     // if type === "suggestion"
@@ -153,7 +160,9 @@ export class Traductions extends Base {
       keys(translation.translated) as (keyof TranslationContent)[],
       translation.translated,
     ).length;
-    const notFinished = [...new Set([...(translation.toFinish || []), ...(translation.toReview || [])])].length;
+    const notFinished = [
+      ...new Set([...(translation.toFinish || []), ...(translation.toReview || [])]),
+    ].length;
     return (translationSectionsCounter - notFinished) / dispositifSectionsCounter >= 1;
   }
 

@@ -1,4 +1,4 @@
-import { Id, SimpleDispositif } from "@refugies-info/api-types";
+import type { Id, SimpleDispositif } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";

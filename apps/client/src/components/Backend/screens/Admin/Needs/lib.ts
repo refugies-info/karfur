@@ -1,4 +1,9 @@
-import { DispositifStatus, GetAllDispositifsResponse, GetLanguagesResponse, Id } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetAllDispositifsResponse,
+  type GetLanguagesResponse,
+  type Id,
+} from "@refugies-info/api-types";
 import Swal from "sweetalert2";
 import { handleApiError } from "~/lib/handleApiErrors";
 import API from "~/utils/API";
@@ -46,7 +51,10 @@ export const prepareDeleteContrib = (
   });
 };
 
-export const isThemeTitleOk = (title: Record<string, string>, languages: GetLanguagesResponse[]) => {
+export const isThemeTitleOk = (
+  title: Record<string, string>,
+  languages: GetLanguagesResponse[],
+) => {
   const emptyLn = languages.filter((ln) => !title[ln.i18nCode]);
   return emptyLn.length > 0;
 };

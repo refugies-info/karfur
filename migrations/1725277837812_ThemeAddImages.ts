@@ -1,5 +1,5 @@
-import { MigrationInterface } from "mongo-migrate-ts";
-import { Db, ObjectId } from "mongodb";
+import type { MigrationInterface } from "mongo-migrate-ts";
+import { type Db, ObjectId } from "mongodb";
 
 const imageNameMap: Record<string, string> = {
   // Faire mes papiers

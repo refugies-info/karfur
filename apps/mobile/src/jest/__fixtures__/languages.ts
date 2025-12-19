@@ -1,4 +1,4 @@
-import { GetLanguagesResponse } from "@refugies-info/api-types";
+import type { GetLanguagesResponse } from "@refugies-info/api-types";
 
 export const mockedLanguageData: GetLanguagesResponse[] = [
   {

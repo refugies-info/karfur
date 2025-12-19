@@ -1,4 +1,4 @@
-import { commitmentDetailsType, timeSlotType } from "@refugies-info/api-types";
+import type { commitmentDetailsType, timeSlotType } from "@refugies-info/api-types";
 
 export const getInputValues = (inputValues: (string | undefined)[]) => {
   return inputValues.map((val) => {
@@ -13,7 +13,10 @@ export const getInputValue = (inputValue: number | undefined) => {
   return inputValue.toString();
 };
 
-export const isCommitmentHoursKo = (hours: (number | undefined)[] | undefined, type: commitmentDetailsType) => {
+export const isCommitmentHoursKo = (
+  hours: (number | undefined)[] | undefined,
+  type: commitmentDetailsType,
+) => {
   return type === "between"
     ? !hours || hours.filter((c) => c !== undefined).length < 2
     : !hours || hours.filter((c) => c !== undefined).length < 1;

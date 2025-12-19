@@ -1,10 +1,10 @@
-import { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
+import type { BadgeProps } from "@codegouvfr/react-dsfr/Badge";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import DSFRBadge from "~/components/UI/Badge";
 import Flag from "~/components/UI/Flag";
 import { smoothScroll } from "~/lib/smoothScroll";
-import { NeedKey } from "~/pages/traduire";
+import type { NeedKey } from "~/pages/traduire";
 import { langueSelector } from "~/services/Langue/langue.selectors";
 
 interface Props {

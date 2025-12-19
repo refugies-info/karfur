@@ -1,17 +1,20 @@
-import { ContentType, InfoSections } from "@refugies-info/api-types";
+import { ContentType, type InfoSections } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import React, { useContext, useMemo } from "react";
+import type React from "react";
+import { useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import Accordions from "../Accordions";
 import RichText from "../RichText";
 import SectionButtons from "../SectionButtons";
 import SectionTitle from "../SectionTitle";
+
 interface Props {
   sectionKey: "what" | "why" | "how" | "next";
   contentType?: ContentType;
@@ -43,7 +46,8 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   );
 
   // colors
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const colors = useMemo(
     () => ({
       color100: theme?.colors.color100 || DEFAULT_COLOR_100,

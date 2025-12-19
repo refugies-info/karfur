@@ -34,7 +34,10 @@ export const notifyGoogleUrlDeleted = async (url: string): Promise<boolean> => {
       !process.env.GCLOUD_PRIVATE_KEY_ID ||
       !process.env.GCLOUD_PKEY
     ) {
-      logger.warn("[notifyGoogleUrlDeleted] Google Cloud credentials not fully configured, skipping", { url });
+      logger.warn(
+        "[notifyGoogleUrlDeleted] Google Cloud credentials not fully configured, skipping",
+        { url },
+      );
       return false;
     }
 

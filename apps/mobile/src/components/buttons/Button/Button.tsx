@@ -1,4 +1,4 @@
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, type TouchableOpacityProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
 import { Icon } from "../../iconography";
 import { Columns } from "../../layout";
@@ -62,7 +62,12 @@ const Button = ({
 }: ButtonProps) => {
   const theme = useTheme();
   const icon = iconName ? (
-    <Icon color={iconColor || theme.colors.black} loading={loading} name={iconName} size={ICON_SIZE} />
+    <Icon
+      color={iconColor || theme.colors.black}
+      loading={loading}
+      name={iconName}
+      size={ICON_SIZE}
+    />
   ) : null;
   return (
     <TouchableOpacity

@@ -1,7 +1,7 @@
 import { getDispositifAbstracts } from "~/modules/dispositif/dispositif.repository";
-import { ResponseWithData } from "~/types/interface";
+import type { ResponseWithData } from "~/types/interface";
 import { frontUrl } from "~/workflows/dispositif/newsletter/constants";
-import { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter/types";
+import type { DemarchesData, DispositifDesc } from "~/workflows/dispositif/newsletter/types";
 
 const getPublications = async (): Promise<DispositifDesc[]> => {
   const results = await getDispositifAbstracts(

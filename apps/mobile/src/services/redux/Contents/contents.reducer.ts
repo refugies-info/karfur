@@ -1,6 +1,6 @@
-import { ContentForApp } from "@refugies-info/api-types";
+import type { ContentForApp } from "@refugies-info/api-types";
 import { createReducer } from "typesafe-actions";
-import { ContentsActions } from "./contents.actions";
+import type { ContentsActions } from "./contents.actions";
 
 export type ContentsState = {
   fr: ContentForApp[];

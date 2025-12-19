@@ -1,6 +1,7 @@
-import { GetNeedResponse } from "@refugies-info/api-types";
+import type { GetNeedResponse } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
-import React, { useContext } from "react";
+import type React from "react";
+import { useContext } from "react";
 import { ThemeMenuContext } from "~/components/Pages/recherche/ThemeMenu/ThemeMenuContext";
 import { useLocale } from "~/hooks";
 import styles from "./NeedItem.module.css";
@@ -16,7 +17,8 @@ const NeedItem: React.FC<Props> = ({ need, label, count: customCount }) => {
   const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
 
   const displayLabel = label || (need ? need[locale]?.text || "" : "");
-  const displayCount = customCount !== undefined ? customCount : need ? nbDispositifsByNeed[need._id.toString()] : "";
+  const displayCount =
+    customCount !== undefined ? customCount : need ? nbDispositifsByNeed[need._id.toString()] : "";
 
   return (
     <span className={cn("space-between flex w-full")}>

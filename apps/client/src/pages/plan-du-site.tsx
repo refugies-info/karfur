@@ -1,6 +1,6 @@
-import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { ReactElement, ReactNode } from "react";
+import { useTranslation } from "next-i18next";
+import type { ReactElement, ReactNode } from "react";
 import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";
@@ -172,7 +172,7 @@ const PlanDuSite = () => {
         {
           id: "linkedin",
           label: t("sitemap.links.linkedin", "LinkedIn"),
-          href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s-info/",
+          href: "https://www.linkedin.com/showcase/r%C3%A9fugi%C3%A9s.info",
           isExternal: true,
         },
         {

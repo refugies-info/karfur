@@ -1,6 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import CommunityIlluAmbassadeurs from "~/assets/staticPages/mission-et-impact/community-ambassadeurs.png";
 import CommunityIlluCda from "~/assets/staticPages/mission-et-impact/community-cda.png";
 import CommunityIlluDinum from "~/assets/staticPages/mission-et-impact/community-dinum.png";
@@ -30,7 +30,13 @@ export const SectionContributors = (props: Props) => {
           <Card
             imageComponent={
               <div className="relative inline-block">
-                <Image src={CommunityIlluDispositifs} alt="" width={240} height={80} style={{ objectFit: "contain" }} />
+                <Image
+                  src={CommunityIlluDispositifs}
+                  alt=""
+                  width={240}
+                  height={80}
+                  style={{ objectFit: "contain" }}
+                />
                 <ImageCustomFigure>{props.nbRedactors + props.nbStructureAdmins}</ImageCustomFigure>
               </div>
             }
@@ -47,7 +53,13 @@ export const SectionContributors = (props: Props) => {
           <Card
             imageComponent={
               <div className="relative inline-block">
-                <Image src={CommunityIlluCda} alt="" width={240} height={80} style={{ objectFit: "contain" }} />
+                <Image
+                  src={CommunityIlluCda}
+                  alt=""
+                  width={240}
+                  height={80}
+                  style={{ objectFit: "contain" }}
+                />
                 <ImageCustomFigure>{props.nbCDA}</ImageCustomFigure>
               </div>
             }
@@ -64,7 +76,13 @@ export const SectionContributors = (props: Props) => {
           <Card
             imageComponent={
               <div className="relative inline-block">
-                <Image src={CommunityIlluTraducteurs} alt="" width={232} height={80} style={{ objectFit: "contain" }} />
+                <Image
+                  src={CommunityIlluTraducteurs}
+                  alt=""
+                  width={232}
+                  height={80}
+                  style={{ objectFit: "contain" }}
+                />
                 <ImageCustomFigure>{props.nbTranslators}</ImageCustomFigure>
               </div>
             }
@@ -96,7 +114,10 @@ export const SectionContributors = (props: Props) => {
             imageWidth={232}
             title={t("MissionImpact.community_ambassadeurs_title")}
             footer={
-              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
+              <Badge
+                noIcon
+                className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine"
+              >
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }
@@ -109,7 +130,10 @@ export const SectionContributors = (props: Props) => {
             imageWidth={232}
             title={t("MissionImpact.community_influenceurs_title")}
             footer={
-              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
+              <Badge
+                noIcon
+                className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine"
+              >
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }
@@ -122,7 +146,10 @@ export const SectionContributors = (props: Props) => {
             imageWidth={240}
             title={t("MissionImpact.community_partenaires_title")}
             footer={
-              <Badge noIcon className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine">
+              <Badge
+                noIcon
+                className="bg-artwork-minor-purple-glycine/10 text-action-high-purple-glycine"
+              >
                 {t("MissionImpact.community_tag_deploiement")}
               </Badge>
             }

@@ -1,8 +1,8 @@
 import _, { get } from "lodash";
 import moment from "moment";
 import logger from "~/logger";
-import { Dispositif, DispositifId, UserId } from "~/typegoose";
-import { departmentRegionCorrespondency, RegionData } from "./data";
+import type { Dispositif, DispositifId, UserId } from "~/typegoose";
+import { departmentRegionCorrespondency, type RegionData } from "./data";
 
 export const filterDispositifsForDraftReminders = (
   dispositifs: Dispositif[],
@@ -11,7 +11,9 @@ export const filterDispositifsForDraftReminders = (
 ) =>
   dispositifs.filter((dispositif) => {
     if (get(dispositif, reminderDateProp)) {
-      logger.info(`[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder`);
+      logger.info(
+        `[sendDraftReminderMail] dispositif with id ${dispositif._id} has already received reminder`,
+      );
       return false;
     }
 
@@ -26,18 +28,24 @@ export const filterDispositifsForDraftReminders = (
     }
 
     if (!dispositif.getCreator()?.email) {
-      logger.info(`[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`);
+      logger.info(
+        `[sendDraftReminderMail] dispositif with id ${dispositif._id}, creator has no email related`,
+      );
       return false;
     }
 
     return true;
   });
 
-export const filterDispositifsForUpdateReminders = (dispositifs: Dispositif[], nbDaysBeforeReminder: number) =>
+export const filterDispositifsForUpdateReminders = (
+  dispositifs: Dispositif[],
+  nbDaysBeforeReminder: number,
+) =>
   dispositifs.filter((dispositif) => {
     if (dispositif.lastReminderMailSentToUpdateContentDate) {
       const nbDaysLastReminderFromNow = Math.round(
-        moment(moment()).diff(dispositif.lastReminderMailSentToUpdateContentDate) / (1000 * 60 * 60 * 24),
+        moment(moment()).diff(dispositif.lastReminderMailSentToUpdateContentDate) /
+          (1000 * 60 * 60 * 24),
       );
       if (nbDaysLastReminderFromNow < nbDaysBeforeReminder) {
         logger.info(
@@ -82,7 +90,12 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
         creatorId: dispositif.creatorId._id,
         firstName: dispositif.getCreator()?.firstName,
         email: dispositif.getCreator()?.email,
-        dispositifs: [{ _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") }],
+        dispositifs: [
+          {
+            _id: dispositif._id,
+            titreInformatif: dispositif.getTranslated("content.titreInformatif"),
+          },
+        ],
       });
       return;
     }
@@ -91,7 +104,10 @@ export const formatDispositifsByCreator = (dispositifs: Dispositif[]) => {
       ...formattedArray[elementIndex],
       dispositifs: [
         ...formattedArray[elementIndex].dispositifs,
-        { _id: dispositif._id, titreInformatif: dispositif.getTranslated("content.titreInformatif") },
+        {
+          _id: dispositif._id,
+          titreInformatif: dispositif.getTranslated("content.titreInformatif"),
+        },
       ],
     };
 
@@ -116,7 +132,8 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
 
   for (const dispositif of dispositifs) {
     const location = dispositif.metadatas.location;
-    const departments = location && Array.isArray(location) && location.length > 0 ? location : null;
+    const departments =
+      location && Array.isArray(location) && location.length > 0 ? location : null;
     if (!departments) {
       result.push({
         _id: dispositif._id,
@@ -125,7 +142,9 @@ export const adaptDispositifDepartement = (dispositifs: Dispositif[]): Result[] 
       });
     } else {
       for (const department of departments) {
-        const regionData = departmentRegionCorrespondency.find((data) => data.department === department);
+        const regionData = departmentRegionCorrespondency.find(
+          (data) => data.department === department,
+        );
         if (regionData) {
           const region = getRegionName(regionData, department);
           result.push({

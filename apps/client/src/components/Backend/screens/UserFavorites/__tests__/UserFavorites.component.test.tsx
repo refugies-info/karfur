@@ -16,7 +16,9 @@ import { screen } from "@testing-library/dom";
 import "jest-styled-components";
 
 jest.mock("services/UserFavoritesInLocale/UserFavoritesInLocale.actions", () => {
-  const actions = jest.requireActual("services/UserFavoritesInLocale/UserFavoritesInLocale.actions");
+  const actions = jest.requireActual(
+    "services/UserFavoritesInLocale/UserFavoritesInLocale.actions",
+  );
 
   return {
     updateUserFavoritesActionCreator: jest.fn(actions.updateUserFavoritesActionCreator),

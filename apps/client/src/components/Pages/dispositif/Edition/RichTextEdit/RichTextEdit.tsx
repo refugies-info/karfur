@@ -47,7 +47,10 @@ const RichTextEdit = (props: Props) => {
   return (
     <div id={`step-${props.id}`}>
       {!isActive && (
-        <AddContentButton onClick={() => setIsActive(true)} content={formContext.getValues(props.id)}>
+        <AddContentButton
+          onClick={() => setIsActive(true)}
+          content={formContext.getValues(props.id)}
+        >
           Description synthétique de l’action proposée
         </AddContentButton>
       )}

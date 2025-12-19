@@ -33,7 +33,13 @@ describe("LanguageDetailsButton snapshot test suite", () => {
 
   it("should render with local language", async () => {
     const test = await render(
-      <LanguageDetailsButton isSelected langueCode="en" langueFr="Anglais" langueLoc="English" onPress={() => null} />,
+      <LanguageDetailsButton
+        isSelected
+        langueCode="en"
+        langueFr="Anglais"
+        langueLoc="English"
+        onPress={() => null}
+      />,
     );
     expect(test).toMatchSnapshot();
   });

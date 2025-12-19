@@ -1,5 +1,11 @@
-import { DispositifStatus, PublishDispositifRequest } from "@refugies-info/api-types";
-import { DispositifDraftModel, DispositifModel, SnapshotModel, StructureModel, UserModel } from "~/typegoose";
+import { DispositifStatus, type PublishDispositifRequest } from "@refugies-info/api-types";
+import {
+  DispositifDraftModel,
+  DispositifModel,
+  SnapshotModel,
+  StructureModel,
+  UserModel,
+} from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 

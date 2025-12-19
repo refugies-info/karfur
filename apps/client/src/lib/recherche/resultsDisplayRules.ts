@@ -1,9 +1,23 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import _ from "lodash";
-import { SortOptions, TypeOptions } from "~/data/searchFilters";
-import { noSort, sortByDate, sortByLocation, sortByTheme, sortByView } from "~/lib/recherche/sortContents";
+import type { SortOptions, TypeOptions } from "~/data/searchFilters";
+import {
+  noSort,
+  sortByDate,
+  sortByLocation,
+  sortByTheme,
+  sortByView,
+} from "~/lib/recherche/sortContents";
 
-export type FilterKey = "age" | "frenchLevel" | "keywords" | "language" | "location" | "public" | "status" | "theme";
+export type FilterKey =
+  | "age"
+  | "frenchLevel"
+  | "keywords"
+  | "language"
+  | "location"
+  | "public"
+  | "status"
+  | "theme";
 export type RuleKey = SortOptions | "suggestions";
 export type TabKey = TypeOptions;
 

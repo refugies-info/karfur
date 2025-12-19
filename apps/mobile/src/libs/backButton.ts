@@ -1,5 +1,5 @@
 import { BackHandler } from "react-native";
-import { BottomTabParamList, RootStackParamList } from "~/types/navigation";
+import type { BottomTabParamList, RootStackParamList } from "~/types/navigation";
 
 export type ValidScreen = keyof RootStackParamList | keyof BottomTabParamList;
 

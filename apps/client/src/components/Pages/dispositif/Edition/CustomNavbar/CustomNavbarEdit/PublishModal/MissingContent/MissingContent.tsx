@@ -3,10 +3,10 @@ import { useContext, useMemo } from "react";
 import Button from "~/components/UI/Button";
 import { useContentType } from "~/hooks/dispositif";
 import { isStatus } from "~/lib/dispositif";
-import PageContext, { Modals } from "~/utils/pageContext";
+import PageContext, { type Modals } from "~/utils/pageContext";
 import MissingSteps from "../../../MissingSteps";
 import StepBar from "../../../StepBar";
-import { getTotalSteps, Step } from "../../functions";
+import { getTotalSteps, type Step } from "../../functions";
 import { help } from "./data";
 
 interface Props {
@@ -40,7 +40,9 @@ const MissingContent = (props: Props) => {
 
   const content = useMemo(() => {
     if (isStatus(props.status, DispositifStatus.ACTIVE)) return help.published;
-    if (isStatus(props.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE]))
+    if (
+      isStatus(props.status, [DispositifStatus.WAITING_ADMIN, DispositifStatus.WAITING_STRUCTURE])
+    )
       return help.waiting;
     return help.draft;
   }, [props.status]);

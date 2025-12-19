@@ -1,15 +1,22 @@
-import { ContentType, DispositifOrigin, DispositifStatus, SimpleDispositif } from "@refugies-info/api-types";
+import {
+  ContentType,
+  DispositifOrigin,
+  DispositifStatus,
+  type SimpleDispositif,
+} from "@refugies-info/api-types";
 
 export const lastDemarches: SimpleDispositif[] = [
   {
     _id: "6392ff59bcd2075a379203a9",
     titreMarque: "",
     titreInformatif: "Déclarer un changement de situation sur Étrangers en France",
-    abstract: "Déclarer sur le site de l'ANEF votre nouvelle adresse, la perte ou le vol de votre carte de séjour, ...",
+    abstract:
+      "Déclarer sur le site de l'ANEF votre nouvelle adresse, la perte ou le vol de votre carte de séjour, ...",
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -41,11 +48,13 @@ export const lastDemarches: SimpleDispositif[] = [
     _id: "63972dcb98b670cc4bae76e6",
     titreMarque: "",
     titreInformatif: "Faire une demande de DCEM",
-    abstract: "Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).",
+    abstract:
+      "Demander un document de circulation pour un étranger mineur sur le site Étrangers en France (ANEF).",
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -75,7 +84,8 @@ export const lastDemarches: SimpleDispositif[] = [
   {
     _id: "5e1c8c0e0742580052a33972",
     titreInformatif: "Demander le RSA",
-    abstract: "Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?",
+    abstract:
+      "Le Revenu de Solidarité Active, c'est quoi ? Qui peut avoir cette aide financière ? Comment faire ?",
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
     nbMots: 1967,
@@ -83,7 +93,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -106,11 +117,13 @@ export const lastDemarches: SimpleDispositif[] = [
     _id: "637781c6896812af208f3495",
     titreMarque: "",
     titreInformatif: "Avoir le Diplôme d’accès aux études universitaires (DAEU)",
-    abstract: "Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.",
+    abstract:
+      "Ce diplôme vous permet d'avoir le niveau du baccalauréat et de faire des études supérieures.",
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -142,7 +155,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -166,13 +180,15 @@ export const lastDemarches: SimpleDispositif[] = [
   {
     _id: "5dd7c4b06f0ac0004c87c88d",
     titreInformatif: "Payer les impôts sur le revenu",
-    abstract: "Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.",
+    abstract:
+      "Quand et comment déclarer les revenus, payer les impôts, et recevoir un avis d'imposition.",
     status: DispositifStatus.ACTIVE,
     typeContenu: ContentType.DEMARCHE,
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -202,7 +218,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -233,7 +250,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -264,7 +282,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -290,11 +309,13 @@ export const lastDemarches: SimpleDispositif[] = [
     _id: "62f265d81119eede87fb1ae2",
     titreMarque: "",
     titreInformatif: "Demander des aides au logement",
-    abstract: "La CAF peut vous donner des aides (APL, ALF, ALS) pour payer votre logement, selon votre situation.",
+    abstract:
+      "La CAF peut vous donner des aides (APL, ALF, ALS) pour payer votre logement, selon votre situation.",
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -325,11 +346,13 @@ export const lastDemarches: SimpleDispositif[] = [
     _id: "62b9809b796009107a932cbc",
     titreMarque: "",
     titreInformatif: "Demander la fabrication du permis de conduire",
-    abstract: "Après la réussite du permis, les étapes pour demander la fabrication directement sur le site de l'ANTS",
+    abstract:
+      "Après la réussite du permis, les étapes pour demander la fabrication directement sur le site de l'ANTS",
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -359,7 +382,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -390,7 +414,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -421,7 +446,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -451,7 +477,8 @@ export const lastDemarches: SimpleDispositif[] = [
     sponsor: {
       nom: "Comité de la Démarche Accessible",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1575628927/pictures/k4rjgxympwzo3acblwqv.png",
         public_id: "",
         imgId: "",
       },
@@ -480,11 +507,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "6317279072a7091286cfaf24",
     titreMarque: "BIENVENU.E",
     titreInformatif: "Être accompagné pour entrer dans la vie professionnelle",
-    abstract: "Un programme pour progresser en français, découvrir des métiers et rencontrer des entreprises",
+    abstract:
+      "Un programme pour progresser en français, découvrir des métiers et rencontrer des entreprises",
     sponsor: {
       nom: "FACE GRAND LYON",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662462003/pictures/ao6iemtrsywhm6g1l1iu.png",
         public_id: "",
         imgId: "",
       },
@@ -509,12 +538,15 @@ export const lastDispositifs: SimpleDispositif[] = [
   {
     _id: "638dcbbaf0b1a31177cf9602",
     titreMarque: "TREMPLIN",
-    titreInformatif: "Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration",
-    abstract: "Apprendre le vocabulaire professionnel et les compétences techniques dans des secteurs qui recrutent",
+    titreInformatif:
+      "Faire une formation pour travailler dans le tourisme, l'hôtellerie, la restauration",
+    abstract:
+      "Apprendre le vocabulaire professionnel et les compétences techniques dans des secteurs qui recrutent",
     sponsor: {
       nom: "ABC FORMATION",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1670237766/pictures/jdivlio5x1iasjnawmun.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1670237766/pictures/jdivlio5x1iasjnawmun.png",
         public_id: "",
         imgId: "",
       },
@@ -545,11 +577,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "638613c54730d143903ca9ca",
     titreMarque: "Réseau Alpha",
     titreInformatif: "Trouver une formation de français en Ile-de-France",
-    abstract: "Réseau Alpha propose une cartographie des cours et formations de français en Ile-de-France.",
+    abstract:
+      "Réseau Alpha propose une cartographie des cours et formations de français en Ile-de-France.",
     sponsor: {
       nom: "Réseau Alpha",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669735095/pictures/ubtkqdpxwd5nvfi3ubvy.jpg",
         public_id: "",
         imgId: "",
       },
@@ -581,11 +615,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "63873a586fd089c3dad298f2",
     titreMarque: "l'association AIME",
     titreInformatif: "Faire une mission de service civique pour jeunes réfugiés",
-    abstract: "Missions rémunérées ouvertes spécialement aux jeunes réfugiés en Ile-de-France (de 18 à 25 ans).",
+    abstract:
+      "Missions rémunérées ouvertes spécialement aux jeunes réfugiés en Ile-de-France (de 18 à 25 ans).",
     sponsor: {
       nom: "AIME ONG",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669902286/pictures/rdx992fstuftcndifsb3.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1669902286/pictures/rdx992fstuftcndifsb3.png",
         public_id: "",
         imgId: "",
       },
@@ -611,11 +647,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "635a71c8d43c4d1a3f25227f",
     titreMarque: "DIU Passerelle - DILAMI",
     titreInformatif: "Apprendre le français à l'université",
-    abstract: "Avoir un diplôme reconnu de l'université de Toulouse pour continuer ses études en France ou travailler.",
+    abstract:
+      "Avoir un diplôme reconnu de l'université de Toulouse pour continuer ses études en France ou travailler.",
     sponsor: {
       nom: "Université fédérale de Toulouse",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666944740/pictures/xxghuad89ajpbnszvrwg.jpg",
         public_id: "",
         imgId: "",
       },
@@ -647,11 +685,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "6376470705f74970c5342371",
     titreMarque: "Espace France Services FACE Vendée",
     titreInformatif: "Avoir de l'aide pour faire ses démarches",
-    abstract: "Avoir un accompagnement pour faire ses démarches administratives et utiliser un ordinateur.",
+    abstract:
+      "Avoir un accompagnement pour faire ses démarches administratives et utiliser un ordinateur.",
     sponsor: {
       nom: "FACE Vendée",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668696619/pictures/cmaptk8tl4s0qc0ksgfb.png",
         public_id: "",
         imgId: "",
       },
@@ -677,11 +717,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "634d28bd9d3bda3be5cfd979",
     titreMarque: "Habitat et Humanisme Urgence",
     titreInformatif: "Apprendre le français pour le code de la route",
-    abstract: "Une formation intensive de 100h de français pour préparer l'examen du code de la route",
+    abstract:
+      "Une formation intensive de 100h de français pour préparer l'examen du code de la route",
     sponsor: {
       nom: "Habitat et Humanisme",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1568654761/pictures/ap1cbvvlzt96nphtnntx.png",
         public_id: "",
         imgId: "",
       },
@@ -707,11 +749,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "6332c0e6a36f411314ba4ca3",
     titreMarque: "fable-Lab",
     titreInformatif: "Apprendre du vocabulaire avec des images",
-    abstract: "Des livres de vocabulaire avec des images pour apprendre et mémoriser facilement les mots en français",
+    abstract:
+      "Des livres de vocabulaire avec des images pour apprendre et mémoriser facilement les mots en français",
     sponsor: {
       nom: "fable-Lab",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665386364/pictures/lqntfdymui845jb5jc2y.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1665386364/pictures/lqntfdymui845jb5jc2y.png",
         public_id: "",
         imgId: "",
       },
@@ -742,7 +786,8 @@ export const lastDispositifs: SimpleDispositif[] = [
     sponsor: {
       nom: "Habitat-Cité",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668078132/pictures/etoivbrifagwdyzycckz.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1668078132/pictures/etoivbrifagwdyzycckz.png",
         public_id: "",
         imgId: "",
       },
@@ -779,7 +824,8 @@ export const lastDispositifs: SimpleDispositif[] = [
     sponsor: {
       nom: "Unis-Cité",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
         public_id: "",
         imgId: "",
       },
@@ -810,7 +856,8 @@ export const lastDispositifs: SimpleDispositif[] = [
     sponsor: {
       nom: "BSB(Re)Connect",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1666086444/pictures/pipug1eqzjxsgjcanxmn.jpg",
         public_id: "",
         imgId: "",
       },
@@ -841,11 +888,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "634fba2814dbd7acb5c4f759",
     titreMarque: "Unis-Cité Val d'Oise",
     titreInformatif: "Faire un service civique dans le Val d'Oise",
-    abstract: "Un service civique de 8 mois pour les 16-25 ans (30 ans pour les personnes en situation de handicap)",
+    abstract:
+      "Un service civique de 8 mois pour les 16-25 ans (30 ans pour les personnes en situation de handicap)",
     sponsor: {
       nom: "Unis-Cité",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1612364200/pictures/ubiccrsqtmoieqlq3kqm.jpg",
         public_id: "",
         imgId: "",
       },
@@ -876,7 +925,8 @@ export const lastDispositifs: SimpleDispositif[] = [
     sponsor: {
       nom: "Stamtish",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1662471553/pictures/s5hx7wi8snvkqeut50rw.png",
         public_id: "",
         imgId: "",
       },
@@ -912,7 +962,8 @@ export const lastDispositifs: SimpleDispositif[] = [
     sponsor: {
       nom: "CRIA 41 Centre de ressources illettrisme et analphabétisme du Loir et Cher ",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1657536045/pictures/zmxm1zthcuqd4mchdrs2.png",
         public_id: "",
         imgId: "",
       },
@@ -938,11 +989,13 @@ export const lastDispositifs: SimpleDispositif[] = [
     _id: "63623b16a2a5bf7006723347",
     titreMarque: "la Prépa web Refugeeks²",
     titreInformatif: "Faire une formation en développement web",
-    abstract: "Une formation de 7 semaines (technique + français) pour découvrir le métier de développeur web",
+    abstract:
+      "Une formation de 7 semaines (technique + français) pour découvrir le métier de développeur web",
     sponsor: {
       nom: "Simplon.co",
       picture: {
-        secure_url: "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1570439852/pictures/xblmdsm8aly06enczcrx.png",
+        secure_url:
+          "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1570439852/pictures/xblmdsm8aly06enczcrx.png",
         public_id: "",
         imgId: "",
       },

@@ -1,7 +1,9 @@
-import { GetDispositifResponse } from "@refugies-info/api-types";
+import type { GetDispositifResponse } from "@refugies-info/api-types";
+import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import StatusAndEditButtons from "~/components/Pages/dispositif/Breadcrumb/StatusAndEditButtons";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import type { RootState } from "~/services/rootReducer";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import BreadcrumbDetails from "./BreadcrumbDetails";
 
 interface Props {
@@ -9,7 +11,8 @@ interface Props {
 }
 
 const Breadcrumb = ({ dispositif }: Props) => {
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
 
   if (!dispositif) return null;
   return (

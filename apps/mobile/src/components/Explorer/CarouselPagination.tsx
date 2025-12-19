@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import Animated, { interpolateColor, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, {
+  interpolateColor,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { themesSelector } from "~/services";
@@ -62,7 +67,11 @@ export const CarouselPagination = ({ size, activeDotIndex }: Props) => {
   return (
     <Container>
       {[...new Array(size).keys()].map((index) => (
-        <Dot key={index} active={index === activeDotIndex} activeColor={themes[index].colors.color80} />
+        <Dot
+          key={index}
+          active={index === activeDotIndex}
+          activeColor={themes[index].colors.color80}
+        />
       ))}
     </Container>
   );

@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 import { useSelector } from "react-redux";
 import FilterButton from "~/components/UI/FilterButton";
 import TagName from "~/components/UI/TagName";

@@ -1,8 +1,8 @@
-import { CheckCodeRequest, LoginResponse } from "@refugies-info/api-types";
+import type { CheckCodeRequest, LoginResponse } from "@refugies-info/api-types";
 import logger from "~/logger";
 import { isMfaCodeOk, loginExceptionsManager, logUser, needs2FA } from "~/modules/users/auth";
-import { verifyCode } from "~/modules/users/login2FA";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
+import { verifyCode } from "~/modules/users/login2FA";
 
 export const checkCode = async (body: CheckCodeRequest): Promise<LoginResponse> => {
   logger.info("[checkCode] check 2fa code", { email: body.email });

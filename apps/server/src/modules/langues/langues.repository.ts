@@ -1,5 +1,5 @@
-import { Id } from "@refugies-info/api-types";
-import { Types } from "mongoose";
+import type { Id } from "@refugies-info/api-types";
+import type { Types } from "mongoose";
 import { LangueModel } from "~/typegoose";
 
 export const getActiveLanguagesFromDB = () =>
@@ -22,4 +22,5 @@ export const updateLanguageAvancementInDB = (langueId: Types.ObjectId, avancemen
 
 export const getLanguageByCode = (locale: string) => LangueModel.findOne({ i18nCode: locale });
 
-export const getLangueName = async (id: Id) => LangueModel.findById(id, { langueFr: 1 }).then((res) => res?.langueFr);
+export const getLangueName = async (id: Id) =>
+  LangueModel.findById(id, { langueFr: 1 }).then((res) => res?.langueFr);

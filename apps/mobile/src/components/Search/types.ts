@@ -1,4 +1,4 @@
-import { Id } from "@refugies-info/api-types";
+import type { Id } from "@refugies-info/api-types";
 
 export interface SearchItem {
   typeContenu: "theme" | "besoin" | "dispositif" | "demarche";

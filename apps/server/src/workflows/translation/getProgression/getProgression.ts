@@ -1,9 +1,13 @@
-import { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
+import type { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
 import { computeGlobalIndicator } from "~/controllers/traduction/lib";
 import logger from "~/logger";
 import { IndicatorModel, ObjectId } from "~/typegoose";
 
-export const computeIndicator = async (userId: string, start: Date, end: Date): Promise<ProgressionIndicator> =>
+export const computeIndicator = async (
+  userId: string,
+  start: Date,
+  end: Date,
+): Promise<ProgressionIndicator> =>
   IndicatorModel.aggregate([
     {
       $match: {
@@ -20,7 +24,10 @@ export const computeIndicator = async (userId: string, start: Date, end: Date): 
     },
   ]).then((results) => results.shift());
 
-export const computeAllIndicators = async (userId: string, onlyTotal: boolean): Promise<GetProgressionResponse> => {
+export const computeAllIndicators = async (
+  userId: string,
+  onlyTotal: boolean,
+): Promise<GetProgressionResponse> => {
   logger.info("[computeAllIndicators] received for userId", userId);
   try {
     logger.info("[computeAllIndicators] computing indicators");

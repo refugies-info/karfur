@@ -11,7 +11,13 @@ interface Props {
 export const Progress = (props: Props) => {
   const value = useMemo(() => Math.floor(props.value), [props.value]);
   return (
-    <div className={cls("flex rounded-md bg-gray-200 overflow-hidden", props.small ? "h-3" : "h-4", props.className)}>
+    <div
+      className={cls(
+        "flex rounded-md bg-gray-200 overflow-hidden",
+        props.small ? "h-3" : "h-4",
+        props.className,
+      )}
+    >
       <div
         className={props.color}
         role="progressbar"

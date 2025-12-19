@@ -1,5 +1,10 @@
 import { t } from "i18next";
-import { sanitizeContent } from "~/lib/sanitizeContent";
+import DOMPurify from "isomorphic-dompurify";
+
+const sanitizeContent = (content?: string): string => {
+  if (!content) return "";
+  return DOMPurify.sanitize(content);
+};
 
 export const getCalloutTranslationKey = (level: "info" | "important") => {
   switch (level) {
@@ -18,13 +23,21 @@ interface ToParse {
 export const translationParsing = (originalHTML: string, toParse: ToParse[]) => {
   let parsedHTML = originalHTML;
   for (const parsing of toParse) {
-    parsedHTML = parsedHTML.replace(parsing.nodeAttr, `${parsing.nodeAttr} data-title='${parsing.translation}'`);
+    parsedHTML = parsedHTML.replace(
+      parsing.nodeAttr,
+      `${parsing.nodeAttr} data-title='${parsing.translation}'`,
+    );
   }
   return parsedHTML;
 };
 
 export type TextSegment = { type: "text"; content: string };
-export type CalloutSegment = { type: "callout"; calloutType: "important" | "info"; title: string; content: string };
+export type CalloutSegment = {
+  type: "callout";
+  calloutType: "important" | "info";
+  title: string;
+  content: string;
+};
 export type ContentSegment = TextSegment | CalloutSegment;
 
 /**
@@ -50,7 +63,9 @@ export const htmlParsing = (htmlContent: string) => {
           const calloutType = isImportant ? "important" : "info";
           const title =
             element.getAttribute("data-title") ||
-            (isImportant ? t(getCalloutTranslationKey("important")) : t(getCalloutTranslationKey("info")));
+            (isImportant
+              ? t(getCalloutTranslationKey("important"))
+              : t(getCalloutTranslationKey("info")));
           const content = element.innerHTML;
 
           contentSegments.push({

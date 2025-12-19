@@ -55,7 +55,8 @@ const useScrollToAnchor = () => {
       const href = anchor.getAttribute("href");
       if (!href) return;
 
-      const isInternal = href.startsWith("/") || href.startsWith(window.location.origin) || href.startsWith("#");
+      const isInternal =
+        href.startsWith("/") || href.startsWith(window.location.origin) || href.startsWith("#");
       const isAnchor = href.includes("#");
 
       if (isInternal && isAnchor) {

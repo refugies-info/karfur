@@ -2,14 +2,22 @@
 import { DispositifOrigin } from "@refugies-info/api-types";
 import { testSaga } from "redux-saga-test-plan";
 import API from "../../../utils/API";
-import { LoadingStatusKey, finishLoading, startLoading } from "../../LoadingStatus/loadingStatus.actions";
+import {
+  finishLoading,
+  LoadingStatusKey,
+  startLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
 import { setAllDispositifsActionsCreator } from "../allDispositifs.actions";
 import latestActionsSaga, { fetchAllDispositifs } from "../allDispositifs.saga";
 
 describe("[Saga] All dispositifs", () => {
   describe("pilot", () => {
     it("should trigger all the all dispositifs sagas", () => {
-      testSaga(latestActionsSaga).next().takeLatest("FETCH_ALL_DISPOSITIFS", fetchAllDispositifs).next().isDone();
+      testSaga(latestActionsSaga)
+        .next()
+        .takeLatest("FETCH_ALL_DISPOSITIFS", fetchAllDispositifs)
+        .next()
+        .isDone();
     });
   });
 
@@ -28,7 +36,7 @@ describe("[Saga] All dispositifs", () => {
         .isDone();
     });
 
-    it("should filter out RCO dispositifs", () => {
+    it("should no longer filter out RCO dispositifs", () => {
       const mockData = [
         { id: "id1", origin: DispositifOrigin.RI },
         { id: "id2", origin: DispositifOrigin.RCO },
@@ -39,7 +47,7 @@ describe("[Saga] All dispositifs", () => {
         .next()
         .call(API.getAllDispositifs)
         .next(mockData)
-        .put(setAllDispositifsActionsCreator([{ id: "id1", origin: DispositifOrigin.RI }]))
+        .put(setAllDispositifsActionsCreator(mockData))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS))
         .next()

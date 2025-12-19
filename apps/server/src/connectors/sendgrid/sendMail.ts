@@ -1,11 +1,15 @@
 import sgMail from "@sendgrid/mail";
 import logger from "../../logger";
-import { DynamicData, TemplateName } from "./sendgrid.types";
+import type { DynamicData, TemplateName } from "./sendgrid.types";
 import { templatesIds } from "./templatesIds";
 
 const UNSUBSCRIBE_GROUP_ID = 137241;
 
-export const sendMail = (templateName: TemplateName, dynamicData: DynamicData, bypassUnsubscribe?: boolean) => {
+export const sendMail = (
+  templateName: TemplateName,
+  dynamicData: DynamicData,
+  bypassUnsubscribe?: boolean,
+) => {
   if (process.env.NODE_ENV === "dev") {
     logger.info("[sendMail] no mail sent in dev env", dynamicData);
     return;

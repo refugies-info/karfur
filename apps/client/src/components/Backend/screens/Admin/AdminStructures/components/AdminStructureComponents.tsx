@@ -1,4 +1,4 @@
-import { GetAllStructuresResponse } from "@refugies-info/api-types";
+import type { GetAllStructuresResponse } from "@refugies-info/api-types";
 import styled from "styled-components";
 import marioProfile from "~/assets/mario-profile.jpg";
 import FButton from "~/components/UI/FButton/FButton";
@@ -92,7 +92,9 @@ export const ResponsableComponent = (props: Props) => {
         />
       )}
       <span className="ms-4">
-        {props.responsable ? props.responsable.username || props.responsable.email : "Aucun responsable"}
+        {props.responsable
+          ? props.responsable.username || props.responsable.email
+          : "Aucun responsable"}
       </span>
     </RowContainer>
   );

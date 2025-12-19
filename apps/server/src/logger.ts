@@ -2,7 +2,8 @@ import winston from "winston";
 
 const transports = [new winston.transports.Console()];
 
-const formatter = process.env.NODE_ENV !== "production" ? winston.format.simple() : winston.format.json();
+const formatter =
+  process.env.NODE_ENV !== "production" ? winston.format.simple() : winston.format.json();
 
 const winstonLogger = winston.createLogger({
   exitOnError: false,

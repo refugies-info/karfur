@@ -1,6 +1,6 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
-import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import { useTranslation } from "next-i18next";
 import UsersGraph1 from "~/assets/staticPages/mission-et-impact/users-graph-1.png";
 import UsersGraph2 from "~/assets/staticPages/mission-et-impact/users-graph-2.svg";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
@@ -31,14 +31,23 @@ export const SectionUsers = () => {
             </div>
           </div>
           <div className="flex flex-1 flex-col justify-center gap-8">
-            <Image
-              src={UsersGraph1}
-              alt={t("MissionImpact.users_legend_1")}
-              className="mx-auto lg:mx-5"
-              width={416}
-              height={271}
-            />
-            <p className="text-small text-mention-grey text-center italic">{t("MissionImpact.users_legend_1")}</p>
+            <figure>
+              <Image
+                src={UsersGraph1}
+                alt=""
+                className="mx-auto lg:mx-5"
+                width={416}
+                height={271}
+                aria-labelledby="users_legend_1"
+              />
+              <figcaption
+                aria-hidden="true"
+                id="users_legend_1"
+                className="text-small text-mention-grey text-center italic"
+              >
+                {t("MissionImpact.users_legend_1")}
+              </figcaption>
+            </figure>
           </div>
         </div>
         <div className="mn-10 flex flex-col gap-10 lg:mb-20 lg:flex-row lg:gap-20 lg:px-30">
@@ -58,14 +67,23 @@ export const SectionUsers = () => {
             </div>
           </div>
           <div className="flex flex-1 flex-col justify-center gap-8">
-            <Image
-              src={UsersGraph2}
-              alt={t("MissionImpact.users_legend_2")}
-              className="mx-auto lg:mx-10"
-              width={376}
-              height={191}
-            />
-            <p className="text-small text-mention-grey text-center italic">{t("MissionImpact.users_legend_2")}</p>
+            <figure>
+              <Image
+                src={UsersGraph2}
+                alt=""
+                aria-labelledby="users_legend_2"
+                className="mx-auto lg:mx-10"
+                width={376}
+                height={191}
+              />
+              <figcaption
+                aria-hidden="true"
+                id="users_legend_2"
+                className="text-small text-mention-grey text-center italic"
+              >
+                {t("MissionImpact.users_legend_2")}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </div>

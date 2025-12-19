@@ -1,6 +1,6 @@
-import { CompositeNavigationProp } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { ContentForApp } from "@refugies-info/api-types";
+import type { CompositeNavigationProp } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
+import type { ContentForApp } from "@refugies-info/api-types";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
@@ -9,7 +9,7 @@ import { sortByOrder } from "~/libs";
 import { themesSelector } from "~/services/redux/Themes/themes.selectors";
 import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
-import { ExplorerParamList, RootStackParamList } from "~/types/navigation";
+import type { ExplorerParamList, RootStackParamList } from "~/types/navigation";
 import { ContentSummary } from "../Contents/ContentSummary";
 import { TagButton } from "../Explorer/TagButton";
 import { Spacer } from "../layout";
@@ -42,12 +42,19 @@ const SearchSuggestions = (props: Props) => {
     <>
       <Spacer height={_theme.margin * 3} />
       <SectionTitle>
-        <ReadableText>{t("search_screen.most_searched_content", "Les fiches les plus recherchées")}</ReadableText>
+        <ReadableText>
+          {t("search_screen.most_searched_content", "Les fiches les plus recherchées")}
+        </ReadableText>
       </SectionTitle>
 
       {(props.contents || []).map((content: ContentForApp) => {
         return (
-          <ContentSummary key={content._id} backScreen="Search" content={content} style={stylesheet.contentSummary} />
+          <ContentSummary
+            key={content._id}
+            backScreen="Search"
+            content={content}
+            style={stylesheet.contentSummary}
+          />
         );
       })}
       <SectionTitle>

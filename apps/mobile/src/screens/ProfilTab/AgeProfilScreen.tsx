@@ -1,5 +1,5 @@
-import { StackScreenProps } from "@react-navigation/stack";
-import { GetContentsForAppRequest } from "@refugies-info/api-types";
+import type { StackScreenProps } from "@react-navigation/stack";
+import type { GetContentsForAppRequest } from "@refugies-info/api-types";
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components/native";
@@ -8,14 +8,18 @@ import { FilterAgeComponent } from "~/components/Profil/FilterAgeComponent";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { saveUserAgeActionCreator } from "~/services/redux/User/user.actions";
 import { userAgeSelector } from "~/services/redux/User/user.selectors";
-import { ProfileParamList } from "~/types/navigation";
+import type { ProfileParamList } from "~/types/navigation";
 
-export const AgeProfilScreen = ({ navigation }: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
+export const AgeProfilScreen = ({
+  navigation,
+}: StackScreenProps<ProfileParamList, "AgeProfilScreen">) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const { t } = useTranslationWithRTL();
   const userAge = useSelector(userAgeSelector);
-  const [selectedAge, setSelectedAge] = React.useState<GetContentsForAppRequest["age"] | undefined>(undefined);
+  const [selectedAge, setSelectedAge] = React.useState<GetContentsForAppRequest["age"] | undefined>(
+    undefined,
+  );
 
   React.useEffect(() => {
     if (userAge) setSelectedAge(userAge);

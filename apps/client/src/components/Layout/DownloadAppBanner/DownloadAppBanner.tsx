@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
-import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { isIOS, isMobileOnly } from "react-device-detect";
 import Image from "~/components/UI/Image";
@@ -16,7 +16,10 @@ const DownloadAppBanner = () => {
 
   useEffect(() => {
     const routeChanged = () => {
-      setShow((router.pathname === "/dispositif/[id]" || router.pathname === "/demarche/[id]") && isMobileOnly);
+      setShow(
+        (router.pathname === "/dispositif/[id]" || router.pathname === "/demarche/[id]") &&
+          isMobileOnly,
+      );
     };
 
     router.events.on("routeChangeComplete", routeChanged);

@@ -1,19 +1,28 @@
-import { ContentType, Languages } from "@refugies-info/api-types";
-import { Expo, ExpoPushMessage, ExpoPushTicket } from "expo-server-sdk";
+import { ContentType, type Languages } from "@refugies-info/api-types";
+import { Expo, type ExpoPushMessage, type ExpoPushTicket } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 import { availableLanguages } from "~/libs/getFormattedLocale";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { processAppUsersByBatch } from "~/modules/appusers/appusers.repository";
-import { getDispositifById, updateDispositifInDB } from "~/modules/dispositif/dispositif.repository";
-import { AppUser, Dispositif, DispositifId, Notification, NotificationModel } from "~/typegoose";
+import {
+  getDispositifById,
+  updateDispositifInDB,
+} from "~/modules/dispositif/dispositif.repository";
+import {
+  type AppUser,
+  type Dispositif,
+  type DispositifId,
+  type Notification,
+  NotificationModel,
+} from "~/typegoose";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import {
   filterTargets,
   filterTargetsForDemarche,
   getNotificationEmoji,
   parseDispositif,
-  Requirements,
+  type Requirements,
 } from "./helpers";
 
 export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
@@ -24,7 +33,10 @@ export const expo = new Expo({ accessToken: process.env.EXPO_ACCESS_TOKEN });
  * @param maxNotifs
  * @returns uid of the appuser and nb notifs sent
  */
-const getUserMaxNotifs = (nbDays: number, maxNotifs: number): Promise<{ _id: string; count: number }[]> => {
+const getUserMaxNotifs = (
+  nbDays: number,
+  maxNotifs: number,
+): Promise<{ _id: string; count: number }[]> => {
   return NotificationModel.aggregate([
     {
       $match: {
@@ -59,7 +71,10 @@ export const getUsersNotifsNotAllowed = async (): Promise<string[]> => {
   return uniq([...usersLastDay.map((u) => u._id), ...usersLastWeek.map((u) => u._id)]);
 };
 
-export const getNotificationsToSend = async (notifications: Notification[], tokens: Record<string, string>) => {
+export const getNotificationsToSend = async (
+  notifications: Notification[],
+  tokens: Record<string, string>,
+) => {
   const usersNotAllowed: string[] = []; // await getUsersNotifsNotAllowed(); // FIXME: temporary removed to send survey to TS
   const messages: ExpoPushMessage[] = notifications
     .map((notification) => {
@@ -98,7 +113,9 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
     }
     return true;
   } catch (error) {
-    logger.error("[markNotificationAsSeen] error while marking notification as seen", { error: error.message });
+    logger.error("[markNotificationAsSeen] error while marking notification as seen", {
+      error: error.message,
+    });
     return false;
   }
 };
@@ -135,7 +152,9 @@ const sendDispositifNotificationsBatch = async (
 
   const targetUsers = filterTargets(users, requirements, lang);
 
-  logger.info(`[sendDispositifNotificationsBatch] dispositif ${dispositifId} - ${targetUsers.length} users found`);
+  logger.info(
+    `[sendDispositifNotificationsBatch] dispositif ${dispositifId} - ${targetUsers.length} users found`,
+  );
 
   const tokens = {} as Record<string, string>;
   targetUsers.forEach((user) => {
@@ -211,7 +230,9 @@ export const sendDispositifNotifications = async (dispositifId: DispositifId, la
 
       const requirements = parseDispositif(dispositif);
       if (!requirements) {
-        logger.error(`[sendDispositifNotifications] dispositif ${dispositifId} - Failed to parse requirements`);
+        logger.error(
+          `[sendDispositifNotifications] dispositif ${dispositifId} - Failed to parse requirements`,
+        );
         return;
       }
 
@@ -226,12 +247,18 @@ export const sendDispositifNotifications = async (dispositifId: DispositifId, la
   }
 };
 
-const sendDemarcheNotificationsBatch = async (users: AppUser[], demarche: Dispositif, requirements: Requirements) => {
+const sendDemarcheNotificationsBatch = async (
+  users: AppUser[],
+  demarche: Dispositif,
+  requirements: Requirements,
+) => {
   const demarcheId = demarche._id;
 
   const targetUsers = filterTargetsForDemarche(users, requirements, demarche);
 
-  logger.info(`[sendDemarcheNotificationsBatch] demarche ${demarcheId} - ${targetUsers.length} users found`);
+  logger.info(
+    `[sendDemarcheNotificationsBatch] demarche ${demarcheId} - ${targetUsers.length} users found`,
+  );
 
   const tokens = {} as Record<string, string>;
   targetUsers.forEach((user) => {
@@ -294,11 +321,15 @@ export const sendDemarcheNotifications = async (demarcheId: DispositifId) => {
 
       const requirements = parseDispositif(demarche);
       if (!requirements) {
-        logger.error(`[sendDemarcheNotifications] demarche ${demarcheId} - Failed to parse requirements`);
+        logger.error(
+          `[sendDemarcheNotifications] demarche ${demarcheId} - Failed to parse requirements`,
+        );
         return;
       }
 
-      await processAppUsersByBatch(100, (users) => sendDemarcheNotificationsBatch(users, demarche, requirements));
+      await processAppUsersByBatch(100, (users) =>
+        sendDemarcheNotificationsBatch(users, demarche, requirements),
+      );
     } catch (err) {
       logger.error("[sendDemarcheNotifications]", err);
     }

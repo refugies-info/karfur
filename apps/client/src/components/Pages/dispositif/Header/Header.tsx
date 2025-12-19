@@ -96,7 +96,12 @@ const Header = (props: Props) => {
         <div className="flex items-center gap-3 text-sm">
           {dispositif?.mainSponsor?.picture?.secure_url && (
             <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
-              <Image src={dispositif?.mainSponsor?.picture?.secure_url} width={150} height={150} alt="" />
+              <Image
+                src={dispositif?.mainSponsor?.picture?.secure_url}
+                width={150}
+                height={150}
+                alt=""
+              />
             </span>
           )}
 
@@ -118,7 +123,11 @@ const Header = (props: Props) => {
           <SaveBookmark />
 
           {navigatorShareSupported && (
-            <Button priority="tertiary no outline" onClick={handleShare} iconId="ri-share-forward-line">
+            <Button
+              priority="tertiary no outline"
+              onClick={handleShare}
+              iconId="ri-share-forward-line"
+            >
               {t("Dispositif.shareShort", "Partager")}
             </Button>
           )}

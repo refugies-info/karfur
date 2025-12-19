@@ -3,6 +3,6 @@ type Entries<T> = {
 }[keyof T][];
 
 export function entries<T>(obj: T): Entries<T> {
-  //@ts-ignore
+  //@ts-expect-error
   return Object.entries(obj) as any;
 }

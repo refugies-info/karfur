@@ -1,9 +1,9 @@
-import { SimpleDispositif } from "@refugies-info/api-types";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { MATCHES_PER_PAGE } from "~/components/Pages/recherche/SearchResults/SearchResults";
-import { Results } from "~/services/SearchResults/searchResults.reducer";
+import type { Results } from "~/services/SearchResults/searchResults.reducer";
 
 const getSearchDispositifs = (dispositifs: SimpleDispositif[], max: number): SimpleDispositif[] => {
-  //@ts-ignore - see comment below
+  //@ts-expect-error - see comment below
   return [
     ...dispositifs.slice(0, max),
     /* TS does not accept ids instead of SearchDispositifs.

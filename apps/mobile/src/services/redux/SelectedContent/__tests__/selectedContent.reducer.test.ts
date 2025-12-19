@@ -15,7 +15,10 @@ describe("[Reducer] selected content", () => {
       uk: null,
     };
     expect(
-      selectedContentReducer(state, setSelectedContentActionCreator({ content: selectedContent, locale: "ar" })),
+      selectedContentReducer(
+        state,
+        setSelectedContentActionCreator({ content: selectedContent, locale: "ar" }),
+      ),
     ).toEqual({
       ar: selectedContent,
       fr: null,

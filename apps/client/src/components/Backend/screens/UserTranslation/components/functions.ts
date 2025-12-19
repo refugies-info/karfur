@@ -1,4 +1,4 @@
-import { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
+import type { GetDispositifsWithTranslationAvancementResponse } from "@refugies-info/api-types";
 
 const compare = (valueA: any, valueB: any, sens: string) => {
   if (valueA > valueB) return sens === "up" ? 1 : -1;
@@ -13,9 +13,9 @@ export const sortData = (
   if (sortedHeader.name === "none") return data;
 
   const dispositifsToDisplay = data.sort((a, b) => {
-    // @ts-ignore
+    // @ts-expect-error
     const valueA = a[sortedHeader.order];
-    // @ts-ignore
+    // @ts-expect-error
     const valueB = b[sortedHeader.order];
     if (
       sortedHeader.order === "type" ||
@@ -29,7 +29,11 @@ export const sortData = (
     }
 
     if (sortedHeader.order === "avancementTrad" || sortedHeader.order === "avancementValidation") {
-      return compare(a[sortedHeader.order] / a.nbMots, b[sortedHeader.order] / b.nbMots, sortedHeader.sens);
+      return compare(
+        a[sortedHeader.order] / a.nbMots,
+        b[sortedHeader.order] / b.nbMots,
+        sortedHeader.sens,
+      );
     }
 
     return compare(valueA, valueB, sortedHeader.sens);

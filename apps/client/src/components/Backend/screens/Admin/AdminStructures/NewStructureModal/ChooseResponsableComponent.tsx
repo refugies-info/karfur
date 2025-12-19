@@ -1,4 +1,8 @@
-import { GetActiveUsersResponse, GetAllStructuresResponse, GetAllUsersResponse } from "@refugies-info/api-types";
+import type {
+  GetActiveUsersResponse,
+  GetAllStructuresResponse,
+  GetAllUsersResponse,
+} from "@refugies-info/api-types";
 import { Spinner } from "reactstrap";
 import styled from "styled-components";
 import SearchBar from "~/components/UI/SearchBar/SearchBar";
