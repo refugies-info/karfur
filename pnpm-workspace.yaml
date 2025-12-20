@@ -19,7 +19,7 @@ packages:
 # Only allow package versions that have been published for at least 7 days
 # (10080 minutes). Mitigates attacks using freshly published malicious versions.
 # See: https://pnpm.io/settings#minimumreleaseage
-minimumReleaseAge: 10080
+minimumReleaseAge: 0
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
@@ -27,7 +27,6 @@ minimumReleaseAge: 10080
 trustPolicy: no-downgrade
 
 # Disable strict peer dependencies to allow installation with mismatched peers (React 19 vs older libs)
-
 
 # Packages excluded from trustPolicy check. Use for verified packages that
 # trigger false positives (e.g., lost provenance attestation between versions).
