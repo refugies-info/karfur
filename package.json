@@ -147,5 +147,5 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched"
   },
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.26.1"
 }
