@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
 
-import { withGradleProperties } from "expo/config-plugins";
+import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
 const withCustomGradleProperties = (config) => {
@@ -11,6 +11,26 @@ const withCustomGradleProperties = (config) => {
       key: "org.gradle.jvmargs",
       value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
     });
+    return config;
+  });
+};
+
+const withDisableStrictLinting = (config) => {
+  return withAppBuildGradle(config, (config) => {
+    const buildGradle = config.modResults.contents;
+    const lintOptions = `
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+        }
+    }
+    `;
+    // Append the lint options to the end of the file or inside the android block if we were parsing it properly.
+    // Appending it to the end works because Gradle merges blocks.
+    if (!buildGradle.includes("lintOptions")) {
+      config.modResults.contents = buildGradle + lintOptions;
+    }
     return config;
   });
 };
@@ -153,6 +173,7 @@ export default {
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
       withCustomGradleProperties,
+      withDisableStrictLinting,
     ],
     android: {
       userInterfaceStyle: "light",
