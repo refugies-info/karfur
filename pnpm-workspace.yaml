@@ -21,6 +21,8 @@ packages:
 # See: https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
+  # HACK: Temporarily excluded to allow update to a recent version of storybook.
+  # TODO: Remove this exclusion after 2025-12-25 once the package is older than 7 days.
   - storybook
 
 # Prevent downgrading packages to older versions during updates.
