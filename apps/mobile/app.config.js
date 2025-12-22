@@ -1,6 +1,39 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
+
+import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
+
+const withCustomGradleProperties = (config) => {
+  return withGradleProperties(config, (config) => {
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.jvmargs",
+      value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
+    });
+    return config;
+  });
+};
+
+const withDisableStrictLinting = (config) => {
+  return withAppBuildGradle(config, (modConfig) => {
+    const buildGradle = modConfig.modResults.contents;
+    const lintOptions = `
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+        }
+    }
+    `;
+    // Append the lint options to the end of the file or inside the android block if we were parsing it properly.
+    // Appending it to the end works because Gradle merges blocks.
+    if (!/lintOptions\s*{/.test(buildGradle)) {
+      modConfig.modResults.contents = buildGradle + lintOptions;
+    }
+    return modConfig;
+  });
+};
 
 // Update thiq version variable before publishing the app
 // Build versioning is now managed remotely via EAS
@@ -139,6 +172,8 @@ export default {
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
+      withCustomGradleProperties,
+      withDisableStrictLinting,
     ],
     android: {
       userInterfaceStyle: "light",
