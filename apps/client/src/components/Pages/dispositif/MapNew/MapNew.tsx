@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 
 interface MapNewProps {
   data: Poi[];
@@ -16,7 +17,7 @@ const MapNew = ({ data }: MapNewProps) => {
   const { t } = useTranslation();
   const [isClient, setIsClient] = useState(false);
   const dispositif = useSelector(selectedDispositifSelector);
-  const mapItems = dispositif?.map;
+  const allThemes = useSelector(allThemesSelector);
 
   useEffect(() => {
     setIsClient(true);
@@ -26,23 +27,19 @@ const MapNew = ({ data }: MapNewProps) => {
   const secondaryThemeIds = dispositif?.secondaryThemes;
 
   const themeSelector = useMemo(() => {
-    return (state: RootState) => {
-      if (!themeId) return null;
-      return state.themes.activeThemes.find((theme) => theme._id === themeId) || null;
-    };
-  }, [themeId]);
+    if (!themeId) return null;
+    return allThemes.find((theme) => theme._id === themeId) || null;
+  }, [themeId, allThemes]);
 
   const secondaryThemesSelector = useMemo(() => {
-    return (state: RootState) => {
-      if (!secondaryThemeIds) return [];
-      return secondaryThemeIds
-        .map((id) => state.themes.activeThemes.find((theme) => theme._id === id))
-        .filter((t) => t !== undefined) as GetThemeResponse[];
-    };
-  }, [secondaryThemeIds]);
+    if (!secondaryThemeIds) return [];
+    return secondaryThemeIds
+      .map((id) => allThemes.find((theme) => theme._id === id))
+      .filter((t) => t !== undefined) as GetThemeResponse[];
+  }, [secondaryThemeIds, allThemes]);
 
-  const theme = useSelector(themeSelector);
-  const secondaryThemes = useSelector(secondaryThemesSelector);
+  const theme = themeSelector;
+  const secondaryThemes = secondaryThemesSelector;
 
   let title = "";
   let description = "";
@@ -65,15 +62,15 @@ const MapNew = ({ data }: MapNewProps) => {
     }
   }
 
-  if (!mapItems || !title || !description) return null;
+  if (!data || !title || !description) return null;
 
   return (
     <Map
       className="max-sm:px-8"
-      mapData={mapItems}
+      mapData={data}
       title={title}
       description={isClient ? description : ""}
-      defaultFocusedPoi={mapItems.length === 1 ? mapItems[0] : undefined}
+      defaultFocusedPoi={data.length === 1 ? data[0] : undefined}
     />
   );
 };
