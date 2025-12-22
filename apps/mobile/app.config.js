@@ -37,7 +37,7 @@ const withDisableStrictLinting = (config) => {
 
 // Update thiq version variable before publishing the app
 // Build versioning is now managed remotely via EAS
-const displayVersionNumber = "2025.03.1";
+const displayVersionNumber = "2025.12.22";
 
 export default {
   name: "Réfugiés.info",
@@ -118,6 +118,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
+    version: displayVersionNumber,
     newArchEnabled: true,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
