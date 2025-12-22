@@ -1,6 +1,19 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
+
+import { withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
+
+const withCustomGradleProperties = (config) => {
+  return withGradleProperties(config, (config) => {
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.jvmargs",
+      value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
+    });
+    return config;
+  });
+};
 
 // Update thiq version variable before publishing the app
 // Build versioning is now managed remotely via EAS
@@ -139,6 +152,7 @@ export default {
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
+      withCustomGradleProperties,
     ],
     android: {
       userInterfaceStyle: "light",
