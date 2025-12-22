@@ -16,7 +16,7 @@ import { dispositifSelector } from "~/services/AllDispositifs/allDispositifs.sel
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
 import { needsSelector } from "~/services/Needs/needs.selectors";
-import { themesSelector } from "~/services/Themes/themes.selectors";
+import { allThemesSelector } from "~/services/Themes/themes.selectors";
 import API from "~/utils/API";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
 import styles from "./NeedsChoiceModal.module.scss";
@@ -43,7 +43,7 @@ export const NeedsChoiceModal = (props: Props) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
   const allNeeds = useSelector(needsSelector);
-  const themes = useSelector(themesSelector);
+  const themes = useSelector(allThemesSelector);
   const dispositif = useSelector(dispositifSelector(props.dispositifId));
 
   const [selectedThemesByAuthor, setSelectedThemesByAuthor] = useState<Id[] | null>(
@@ -204,6 +204,11 @@ export const NeedsChoiceModal = (props: Props) => {
     );
   };
 
+  const isAuthorOnlyTheme = (themeId: Id) => {
+    // Dim themes that are NOT selectable (no needs selected)
+    return !isThemeSelected(themeId);
+  };
+
   if (dispositif) {
     return (
       <DetailsModal
@@ -257,6 +262,8 @@ export const NeedsChoiceModal = (props: Props) => {
                     opened={currentTheme === theme._id}
                     selected={isThemeSelected(theme._id)}
                     hasWarning={hasThemeWarning(theme._id)}
+                    ignoreActiveState={true}
+                    dimmed={isAuthorOnlyTheme(theme._id)}
                   />
                 </div>
               ))}
