@@ -16,8 +16,8 @@ const withCustomGradleProperties = (config) => {
 };
 
 const withDisableStrictLinting = (config) => {
-  return withAppBuildGradle(config, (config) => {
-    const buildGradle = config.modResults.contents;
+  return withAppBuildGradle(config, (modConfig) => {
+    const buildGradle = modConfig.modResults.contents;
     const lintOptions = `
     android {
         lintOptions {
@@ -28,10 +28,10 @@ const withDisableStrictLinting = (config) => {
     `;
     // Append the lint options to the end of the file or inside the android block if we were parsing it properly.
     // Appending it to the end works because Gradle merges blocks.
-    if (!buildGradle.includes("lintOptions")) {
-      config.modResults.contents = buildGradle + lintOptions;
+    if (!/lintOptions\s*{/.test(buildGradle)) {
+      modConfig.modResults.contents = buildGradle + lintOptions;
     }
-    return config;
+    return modConfig;
   });
 };
 
