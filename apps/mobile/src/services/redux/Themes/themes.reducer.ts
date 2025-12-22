@@ -6,5 +6,5 @@ export type ThemeState = GetThemeResponse[];
 export const initialThemeState = [];
 
 export const themesReducer = createReducer<ThemeState, ThemesActions>(initialThemeState, {
-  SET_THEMES: (_, action) => action.payload.filter((t) => t.active),
+  SET_THEMES: (_, action) => action.payload,
 });
