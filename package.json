@@ -51,6 +51,12 @@
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "19",
+        "react-dom": "19"
+      }
     }
   },
   "scripts": {
