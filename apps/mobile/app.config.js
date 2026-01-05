@@ -35,10 +35,6 @@ const withDisableStrictLinting = (config) => {
   });
 };
 
-// Update thiq version variable before publishing the app
-// Build versioning is now managed remotely via EAS
-const displayVersionNumber = "2025.03.1";
-
 export default {
   name: "Réfugiés.info",
   owner: "refugies-info",
@@ -118,6 +114,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
+    version: "2.2.0",
     newArchEnabled: true,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
@@ -229,7 +226,6 @@ export default {
       eas: {
         projectId: "985bc919-57f5-4851-9f2f-748af3408606",
       },
-      displayVersionNumber,
     },
     runtimeVersion: {
       policy: "sdkVersion",
