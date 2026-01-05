@@ -102,8 +102,7 @@ export const getDefaultValue = (
     theme: dispositif.theme?.toString(),
     secondaryThemes: dispositif.secondaryThemes?.map((t) => t.toString()),
     sponsors: (dispositif.sponsors as (Sponsor | string | ContentStructure)[])?.map((sponsor) => {
-      if (typeof sponsor === "string") return sponsor;
-      if ((sponsor as ContentStructure)._id) return (sponsor as ContentStructure)._id.toString();
+      if ("_id" in sponsor) return sponsor._id.toString();
 
       const { logo, link, ...rest } = sponsor as Sponsor;
       const result: Partial<Pick<Sponsor, "logo" | "link">> & Omit<Sponsor, "logo" | "link"> = {
