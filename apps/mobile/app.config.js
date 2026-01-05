@@ -114,6 +114,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
+    version: "2.2.0",
     newArchEnabled: true,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
