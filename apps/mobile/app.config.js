@@ -4,6 +4,8 @@
 import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
+const APP_VERSION = "2.2.0";
+
 const withCustomGradleProperties = (config) => {
   return withGradleProperties(config, (config) => {
     config.modResults.push({
@@ -114,7 +116,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
-    version: "2.2.0",
+    version: APP_VERSION,
     newArchEnabled: true,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
@@ -223,6 +225,7 @@ export default {
       associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
     },
     extra: {
+      displayVersionNumber: APP_VERSION,
       eas: {
         projectId: "985bc919-57f5-4851-9f2f-748af3408606",
       },
