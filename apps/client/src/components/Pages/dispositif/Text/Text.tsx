@@ -1,6 +1,5 @@
 /** biome-ignore-all lint/security/noDangerouslySetInnerHtml: react needs it */
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
-import { uuid } from "fast-check";
 import { useTranslation } from "next-i18next";
 import { useContext, useEffect, useState } from "react";
 import { cn } from "~/lib/classname";
@@ -60,7 +59,8 @@ const Text = (props: Props) => {
       {contentSegments.map((segment, index) => {
         if (segment.type === "text") {
           const textSegment = segment as TextSegment;
-          return <div key={`text-${uuid()}`} dangerouslySetInnerHTML={{ __html: textSegment.content }} />;
+          // biome-ignore lint/suspicious/noArrayIndexKey: segments content is static and index is stable enough here
+          return <div key={`text-${index}`} dangerouslySetInnerHTML={{ __html: textSegment.content }} />;
         } else if (segment.type === "callout") {
           const calloutSegment = segment as CalloutSegment;
 
