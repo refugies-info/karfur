@@ -552,8 +552,8 @@ export const buildNewDispositif = async (
       if (typeof s === "string") return new ObjectId(s);
       return {
         name: s.name,
-        link: s.link ?? undefined,
-        logo: s.logo?.secure_url ?? undefined, // Sponsor.logo expects string
+        link: s.link,
+        logo: s.logo?.secure_url, // Sponsor.logo expects string
       };
     });
   }
