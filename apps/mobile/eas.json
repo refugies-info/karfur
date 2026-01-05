@@ -19,6 +19,7 @@
       "channel": "staging",
       "environment": "preview",
       "distribution": "internal",
+      "autoIncrement": true,
       "env": {
         "EXPO_APP_NAME": "Réfugiés.info - Staging",
         "EAS_BUILD_PROFILE": "staging"

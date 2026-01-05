@@ -6,23 +6,29 @@ import { isEmpty } from "lodash";
  */
 const ensureMinimumAppVersion = () =>
   !isEmpty(process.env.MINIMUM_APP_VERSION) &&
-  process.env.MINIMUM_APP_VERSION.match("\\d{4}.\\d{2}.\\d{1,}")
+  process.env.MINIMUM_APP_VERSION.match(/^\d+\.\d+\.\d+$/)
     ? Promise.resolve(process.env.MINIMUM_APP_VERSION)
     : Promise.reject(
-        "You must set MINIMUM_APP_VERSION = XXXX.XX.X in envar, got " +
-          process.env.MINIMUM_APP_VERSION,
+        "You must set MINIMUM_APP_VERSION = X.Y.Z in envar, got " + process.env.MINIMUM_APP_VERSION,
       );
 
 const compareTo = (appVersion: string) => (minimumAppVersion: string) => {
-  const [year, month, inc] = appVersion.split(".");
-  const [minYear, minMonth, minInc] = minimumAppVersion.split(".");
+  const versionRegex = /^\d+\.\d+\.\d+$/;
 
-  if (parseInt(year) > parseInt(minYear)) return true;
-  return (
-    parseInt(year) >= parseInt(minYear) &&
-    parseInt(month) >= parseInt(minMonth) &&
-    parseInt(inc) >= parseInt(minInc)
-  );
+  if (!appVersion || !versionRegex.test(appVersion)) {
+    return false;
+  }
+
+  const [major, minor, patch] = appVersion.split(".").map(Number);
+  const [minMajor, minMinor, minPatch] = minimumAppVersion.split(".").map(Number);
+
+  if (major > minMajor) return true;
+  if (major < minMajor) return false;
+
+  if (minor > minMinor) return true;
+  if (minor < minMinor) return false;
+
+  return patch >= minPatch;
 };
 
 const verifyVersion = async (appVersion: string): Promise<boolean> =>
