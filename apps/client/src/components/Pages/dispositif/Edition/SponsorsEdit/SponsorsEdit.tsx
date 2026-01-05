@@ -45,13 +45,19 @@ const SponsorsEdit = () => {
 
   // Transform sponsors strings to objects for display
   const displayedSponsors = useMemo(() => {
-    return sponsors?.map((s) => {
-      if (typeof s === "string") {
-        const structure = structures.find((params) => params._id.toString() === s);
-        return structure || { name: "", link: "", logo: null }; // Fallback if not found
-      }
-      return s;
-    });
+    return sponsors
+      ?.map((s) => {
+        if (typeof s === "string") {
+          const structure = structures.find((params) => params._id.toString() === s);
+          if (!structure) {
+            console.warn(`Sponsor structure with id ${s} not found.`);
+            return null;
+          }
+          return structure;
+        }
+        return s;
+      })
+      .filter((s) => s !== null);
   }, [sponsors, structures]);
 
   return (
