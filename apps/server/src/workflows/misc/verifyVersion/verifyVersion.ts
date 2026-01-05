@@ -6,7 +6,7 @@ import { isEmpty } from "lodash";
  */
 const ensureMinimumAppVersion = () =>
   !isEmpty(process.env.MINIMUM_APP_VERSION) &&
-  process.env.MINIMUM_APP_VERSION.match("\\d+\\.\\d+\\.\\d+")
+  process.env.MINIMUM_APP_VERSION.match(/^\d+\.\d+\.\d+$/)
     ? Promise.resolve(process.env.MINIMUM_APP_VERSION)
     : Promise.reject(
         "You must set MINIMUM_APP_VERSION = X.Y.Z in envar, got " + process.env.MINIMUM_APP_VERSION,
