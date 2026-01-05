@@ -13,16 +13,22 @@ const ensureMinimumAppVersion = () =>
       );
 
 const compareTo = (appVersion: string) => (minimumAppVersion: string) => {
-  const [major, minor, patch] = appVersion.split(".");
-  const [minMajor, minMinor, minPatch] = minimumAppVersion.split(".");
+  const versionRegex = /^\d+\.\d+\.\d+$/;
 
-  if (parseInt(major) > parseInt(minMajor)) return true;
-  if (parseInt(major) < parseInt(minMajor)) return false;
+  if (!appVersion || !versionRegex.test(appVersion)) {
+    return false;
+  }
 
-  if (parseInt(minor) > parseInt(minMinor)) return true;
-  if (parseInt(minor) < parseInt(minMinor)) return false;
+  const [major, minor, patch] = appVersion.split(".").map(Number);
+  const [minMajor, minMinor, minPatch] = minimumAppVersion.split(".").map(Number);
 
-  return parseInt(patch) >= parseInt(minPatch);
+  if (major > minMajor) return true;
+  if (major < minMajor) return false;
+
+  if (minor > minMinor) return true;
+  if (minor < minMinor) return false;
+
+  return patch >= minPatch;
 };
 
 const verifyVersion = async (appVersion: string): Promise<boolean> =>
