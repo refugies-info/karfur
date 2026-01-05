@@ -13,6 +13,8 @@ interface Props {
   opened: boolean;
   hasWarning?: boolean;
   editButton?: boolean;
+  ignoreActiveState?: boolean; // Don't apply opacity for inactive themes
+  dimmed?: boolean; // Apply reduced opacity for author-selected themes
 }
 
 const AdminThemeButton = (props: Props) => (
@@ -24,7 +26,7 @@ const AdminThemeButton = (props: Props) => (
       boxShadow: props.opened
         ? `0 0 4px 3px ${props.theme.colors.color30}, inset white 0 0 0 1px`
         : "none",
-      opacity: props.theme.active ? 1 : 0.4,
+      opacity: props.dimmed ? 0.5 : props.ignoreActiveState ? 1 : props.theme.active ? 1 : 0.4,
     }}
   >
     <div className={styles.image}>
