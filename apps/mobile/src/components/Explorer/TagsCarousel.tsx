@@ -2,6 +2,7 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { GetThemeResponse } from "@refugies-info/api-types";
 import React, { useEffect } from "react";
 import { Dimensions, type StyleProp, View, type ViewStyle } from "react-native";
+import { Extrapolate, interpolate } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 import { useSelector } from "react-redux";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -13,14 +14,9 @@ import { CarousselCard } from "./CarousselCard";
 
 const MIN_CARD_WIDTH = 248;
 const CARD_RATIO = 0.775;
-const CAROUSEL_CONFIG = {
-  parallaxScrollingScale: 1,
-  parallaxScrollingOffset: -10,
-  parallaxAdjacentItemScale: 0.75,
-};
 
 const carouselStyle: StyleProp<ViewStyle> = {
-  width: Dimensions.get("window").width,
+  width: Math.round(Dimensions.get("window").width),
   alignItems: "center",
   justifyContent: "center",
 };
@@ -48,6 +44,23 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
     else setActiveIndex(0);
   }, [isRTL, carouselItems.length]);
 
+  const customAnimation = React.useCallback(
+    (value: number) => {
+      "worklet";
+      const zIndex = Math.round(
+        interpolate(value, [-1, 0, 1], [0, cardWidth, 0], Extrapolate.CLAMP),
+      );
+      const scale = interpolate(value, [-1, 0, 1], [0.75, 1, 0.75], Extrapolate.CLAMP);
+      const translate = interpolate(value, [-1, 0, 1], [-cardWidth - 10, 0, cardWidth + 10]);
+
+      return {
+        transform: [{ translateX: translate }, { scale }],
+        zIndex,
+      };
+    },
+    [cardWidth],
+  );
+
   const renderItem = ({ item }: { item: GetThemeResponse }) => (
     <CarousselCard
       key={item._id.toString()}
@@ -67,8 +80,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
         onSnapToItem={(index) => setActiveIndex(index)}
         width={cardWidth}
         height={cardHeight}
-        mode="parallax"
-        modeConfig={CAROUSEL_CONFIG}
+        customAnimation={customAnimation}
         style={carouselStyle}
       />
       <CarouselPagination size={carouselItems.length} activeDotIndex={activeIndex} />

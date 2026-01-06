@@ -33,6 +33,11 @@ const withCustomGradleProperties = (config) => {
       key: "org.gradle.configureondemand",
       value: "true",
     });
+    config.modResults.push({
+      type: "property",
+      key: "android.gradlePluginVersion",
+      value: "8.5.0",
+    });
     return config;
   });
 };
