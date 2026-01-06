@@ -2,7 +2,7 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { GetThemeResponse } from "@refugies-info/api-types";
 import React, { useEffect } from "react";
 import { Dimensions, type StyleProp, View, type ViewStyle } from "react-native";
-import { Extrapolate, interpolate } from "react-native-reanimated";
+import { interpolate } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 import { useSelector } from "react-redux";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -47,10 +47,8 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   const customAnimation = React.useCallback(
     (value: number) => {
       "worklet";
-      const zIndex = Math.round(
-        interpolate(value, [-1, 0, 1], [0, cardWidth, 0], Extrapolate.CLAMP),
-      );
-      const scale = interpolate(value, [-1, 0, 1], [0.75, 1, 0.75], Extrapolate.CLAMP);
+      const zIndex = Math.round(interpolate(value, [-1, 0, 1], [0, cardWidth, 0], "clamp"));
+      const scale = interpolate(value, [-1, 0, 1], [0.75, 1, 0.75], "clamp");
       const translate = interpolate(value, [-1, 0, 1], [-cardWidth - 10, 0, cardWidth + 10]);
 
       return {
