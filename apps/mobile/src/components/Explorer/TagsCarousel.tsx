@@ -33,7 +33,11 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   const { isRTL } = useTranslationWithRTL();
   const [activeIndex, setActiveIndex] = React.useState(0);
   const themes = useSelector(themesSelector);
-  const carouselItems = themes.sort(sortByOrder);
+
+  const carouselItems = React.useMemo(() => {
+    const sorted = [...themes].sort(sortByOrder);
+    return isRTL ? sorted.reverse() : sorted;
+  }, [themes, isRTL]);
 
   // TODO : improve here to have responsive cards
   const cardWidth = Math.max(Dimensions.get("window").width * 0, MIN_CARD_WIDTH);
@@ -42,7 +46,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   useEffect(() => {
     if (isRTL) setActiveIndex(carouselItems.length - 1);
     else setActiveIndex(0);
-  }, [isRTL]);
+  }, [isRTL, carouselItems.length]);
 
   const renderItem = ({ item }: { item: GetThemeResponse }) => (
     <CarousselCard
@@ -57,7 +61,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
     <View>
       <Carousel
         loop={false}
-        data={!isRTL ? carouselItems : carouselItems.reverse()}
+        data={carouselItems}
         defaultIndex={!isRTL ? 0 : carouselItems.length - 1}
         renderItem={renderItem}
         onSnapToItem={(index) => setActiveIndex(index)}
