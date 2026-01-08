@@ -32,7 +32,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
 
   const carouselItems = React.useMemo(() => {
     const sorted = [...themes].sort(sortByOrder);
-    return isRTL ? sorted.reverse() : sorted;
+    return isRTL ? [...sorted].reverse() : sorted;
   }, [themes, isRTL]);
 
   // TODO : improve here to have responsive cards
