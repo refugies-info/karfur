@@ -16,13 +16,14 @@
         "remixicon",
         "sharp",
         "tailwindcss",
-        "typescript-plugin-css-modules"
+        "typescript-plugin-css-modules",
+        "csvtojson",
+        "papaparse"
       ]
     },
     "apps/mobile": {
       "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
       "ignoreDependencies": [
-        "@babel/core",
         "@babel/preset-env",
         "@babel/runtime",
         "@react-native/assets-registry",

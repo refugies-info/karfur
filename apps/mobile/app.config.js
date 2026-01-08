@@ -4,7 +4,7 @@
 import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
-const APP_VERSION = "2.2.1";
+const APP_VERSION = "2.2.0";
 
 const withCustomGradleProperties = (config) => {
   return withGradleProperties(config, (config) => {
@@ -12,26 +12,6 @@ const withCustomGradleProperties = (config) => {
       type: "property",
       key: "org.gradle.jvmargs",
       value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
-    });
-    config.modResults.push({
-      type: "property",
-      key: "org.gradle.daemon",
-      value: "true",
-    });
-    config.modResults.push({
-      type: "property",
-      key: "org.gradle.parallel",
-      value: "true",
-    });
-    config.modResults.push({
-      type: "property",
-      key: "org.gradle.caching",
-      value: "true",
-    });
-    config.modResults.push({
-      type: "property",
-      key: "org.gradle.configureondemand",
-      value: "true",
     });
     return config;
   });

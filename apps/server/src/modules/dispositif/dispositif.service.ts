@@ -108,10 +108,7 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
       { translations: 1, typeContenu: 1, theme: 1, secondaryThemes: 1 },
       "theme secondaryThemes",
     );
-    const user = await getUserByIdWithStructures(userId, {
-      username: 1,
-      structures: 1,
-    });
+    const user = await getUserByIdWithStructures(userId, { username: 1, structures: 1 });
     if (!dispositif) {
       logger.error("[notifyChange] dispositif not found", { dispositifId });
       return null;
@@ -428,9 +425,7 @@ export const publishDispositif = async (
   try {
     await deleteLineBreaksInDispositif(updatedDispositif);
   } catch (error) {
-    logger.error("[publishDispositif] error while deleting line breaks", {
-      error: error.message,
-    });
+    logger.error("[publishDispositif] error while deleting line breaks", { error: error.message });
   }
 
   try {
@@ -548,14 +543,11 @@ export const buildNewDispositif = async (
   if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
   if (formContent.map !== undefined) editedDispositif.map = formContent.map;
   if (formContent.sponsors) {
-    editedDispositif.sponsors = formContent.sponsors.map((s) => {
-      if (typeof s === "string") return new ObjectId(s);
-      return {
-        name: s.name,
-        link: s.link,
-        logo: s.logo?.secure_url, // Sponsor.logo expects string
-      };
-    });
+    editedDispositif.sponsors = formContent.sponsors.map((s) => ({
+      name: s.name,
+      link: s.link ?? undefined,
+      logo: s.logo?.secure_url ?? undefined, // Sponsor.logo expects string
+    }));
   }
   if (formContent.administration)
     editedDispositif.administrationLogo = pictureToImageSchema(formContent.administration.logo);

@@ -1,9 +1,7 @@
 import type { CreateDispositifRequest, Picture, Sponsor } from "@refugies-info/api-types";
 import { useCallback, useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { useSelector } from "react-redux";
 import BaseModal from "~/components/UI/BaseModal";
-import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { SimpleFooter, SponsorForm } from "../components";
 import { help } from "./data";
 
@@ -43,30 +41,16 @@ const ModalSponsors = (props: Props) => {
     }
   };
 
-  const dispositif = useSelector(selectedDispositifSelector);
-
   useEffect(() => {
     if (props.currentSponsorIndex >= 0) {
       const sponsor = getValues("sponsors")?.[props.currentSponsorIndex];
-      if (typeof sponsor === "string") {
-        const foundSponsor = dispositif?.sponsors?.find(
-          (s: any) => s._id && s._id.toString() === sponsor,
-        );
-        if (foundSponsor) {
-          const structure: any = foundSponsor;
-          setName(structure.nom || structure.name);
-          setLink(structure.link || undefined);
-          setLogo(structure.picture || structure.logo || undefined);
-        }
-      } else {
-        setName(sponsor?.name);
-        setLink(sponsor?.link || undefined);
-        setLogo(sponsor?.logo || undefined);
-      }
+      setName(sponsor?.name);
+      setLink(sponsor?.link || undefined);
+      setLogo(sponsor?.logo || undefined);
     } else {
       resetForm();
     }
-  }, [props.currentSponsorIndex, getValues, resetForm, dispositif]);
+  }, [props.currentSponsorIndex, getValues, resetForm]);
 
   return (
     <BaseModal

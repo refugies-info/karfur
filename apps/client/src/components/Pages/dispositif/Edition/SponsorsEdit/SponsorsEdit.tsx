@@ -16,12 +16,8 @@ const SponsorsEdit = () => {
   const [showMainSponsorModal, setShowMainSponsorModal] = useState(false);
   const [toDeleteItemModal, setToDeleteItemModal] = useState(-1); // -1 closed, else show modal and save index to delete
   const [currentSponsorIndex, setCurrentSponsorIndex] = useState(-1);
-  const sponsors: CreateDispositifRequest["sponsors"] = useWatch({
-    name: "sponsors",
-  });
-  const rawMainSponsor: CreateDispositifRequest["mainSponsor"] = useWatch({
-    name: "mainSponsor",
-  });
+  const sponsors: CreateDispositifRequest["sponsors"] = useWatch({ name: "sponsors" });
+  const rawMainSponsor: CreateDispositifRequest["mainSponsor"] = useWatch({ name: "mainSponsor" });
   const { setValue } = useFormContext();
 
   const structures = useSelector(allStructuresSelector);
@@ -43,27 +39,10 @@ const SponsorsEdit = () => {
     return rawMainSponsor;
   }, [rawMainSponsor, structures]);
 
-  // Transform sponsors strings to objects for display
-  const displayedSponsors = useMemo(() => {
-    return sponsors
-      ?.map((s) => {
-        if (typeof s === "string") {
-          const structure = structures.find((params) => params._id.toString() === s);
-          if (!structure) {
-            console.warn(`Sponsor structure with id ${s} not found.`);
-            return null;
-          }
-          return structure;
-        }
-        return s;
-      })
-      .filter((s) => s !== null);
-  }, [sponsors, structures]);
-
   return (
     <div id="step-sponsors" className={styles.container}>
       <Sponsors
-        sponsors={displayedSponsors}
+        sponsors={sponsors}
         mainSponsor={mainSponsor}
         onMainSponsorClick={() => setShowMainSponsorModal(true)}
         editMode

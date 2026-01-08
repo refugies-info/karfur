@@ -36,9 +36,6 @@ trustPolicy: no-downgrade
 # trigger false positives (e.g., lost provenance attestation between versions).
 # See: https://pnpm.io/settings#trustpolicyexclude
 trustPolicyExclude:
-  - "@react-native-firebase/analytics" # v23.7.0 Trust downgrade (Trusted Publisher -> Provenance)
-  - "@react-native-firebase/app" # v23.7.0 Trust downgrade (Trusted Publisher -> Provenance)
-  - "@react-native-firebase/crashlytics" # v23.7.0 Trust downgrade (Trusted Publisher -> Provenance)
   - "@oxc-resolver/binding-darwin-arm64" # v11.7.1 lacks provenance attestation but is verified safe
   - "@oxc-resolver/binding-darwin-x64" # v11.7.1 lacks provenance attestation but is verified safe
   - "@oxc-resolver/binding-linux-arm64-gnu" # v11.7.1 lacks provenance attestation but is verified safe
@@ -46,11 +43,11 @@ trustPolicyExclude:
   - "@oxc-resolver/binding-win32-arm64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
   - "@oxc-resolver/binding-win32-x64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
   - "chokidar" # v4.0.3 lacks provenance attestation but is verified safe
+  - "eslint-import-resolver-typescript" # v3.10.1 lacks provenance attestation but is verified safe
   - "oxc-resolver" # v11.7.1 lacks provenance attestation but is verified safe
   - "react-device-detect" # v2.2.3 lacks provenance attestation but is verified safe
   - "react-native-reanimated" # v3.17.5 lacks provenance attestation but is verified safe
   - "react-native-screens" # v4.11.1 lacks provenance attestation but is verified safe
-  - "react-native-worklets" # v0.7.1 lacks provenance attestation but is verified safe
   - "react-redux" # v9.2.0 lacks provenance attestation but is verified safe
   - "reselect" # v5.1.1 lacks provenance attestation but is verified safe
   - "rxjs" # v7.8.2 lacks provenance attestation but is verified safe

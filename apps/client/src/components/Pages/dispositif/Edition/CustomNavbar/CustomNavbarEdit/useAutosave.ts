@@ -56,7 +56,6 @@ const useAutosave = () => {
               if (sanitizedData.sponsors && Array.isArray(sanitizedData.sponsors)) {
                 sanitizedData.sponsors = sanitizedData.sponsors.map((sponsor: any) => {
                   if (!sponsor) return sponsor;
-                  if (typeof sponsor === "string") return sponsor;
 
                   const newSponsor = { ...sponsor };
                   // If logo is a string, convert it to a Picture object

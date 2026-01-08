@@ -176,7 +176,7 @@ export interface DispositifRequest {
   };
   theme?: string;
   secondaryThemes?: string[];
-  sponsors?: (Sponsor | string)[];
+  sponsors?: Sponsor[];
   administration?: DemarcheAdministration;
   metadatas?: Metadatas;
   map?: Poi[] | null;

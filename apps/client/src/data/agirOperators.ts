@@ -86,8 +86,8 @@ export const operators: Operator[] = [
   {
     department: "12 - Aveyron",
     operator: "Habitat et Humanisme",
-    email: "agir12@habitat-humanisme.org",
-    phone: "06 58 63 71 13",
+    email: "urgence@habitat-humanisme.org",
+    phone: "01 40 19 15 15",
   },
   {
     dispositifId: "660d1f36de6312466236065d",

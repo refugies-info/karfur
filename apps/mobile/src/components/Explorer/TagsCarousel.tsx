@@ -2,7 +2,6 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import type { GetThemeResponse } from "@refugies-info/api-types";
 import React, { useEffect } from "react";
 import { Dimensions, type StyleProp, View, type ViewStyle } from "react-native";
-import { interpolate } from "react-native-reanimated";
 import Carousel from "react-native-reanimated-carousel";
 import { useSelector } from "react-redux";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -14,9 +13,14 @@ import { CarousselCard } from "./CarousselCard";
 
 const MIN_CARD_WIDTH = 248;
 const CARD_RATIO = 0.775;
+const CAROUSEL_CONFIG = {
+  parallaxScrollingScale: 1,
+  parallaxScrollingOffset: -10,
+  parallaxAdjacentItemScale: 0.75,
+};
 
 const carouselStyle: StyleProp<ViewStyle> = {
-  width: Math.round(Dimensions.get("window").width),
+  width: Dimensions.get("window").width,
   alignItems: "center",
   justifyContent: "center",
 };
@@ -29,11 +33,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   const { isRTL } = useTranslationWithRTL();
   const [activeIndex, setActiveIndex] = React.useState(0);
   const themes = useSelector(themesSelector);
-
-  const carouselItems = React.useMemo(() => {
-    const sorted = [...themes].sort(sortByOrder);
-    return isRTL ? [...sorted].reverse() : sorted;
-  }, [themes, isRTL]);
+  const carouselItems = themes.sort(sortByOrder);
 
   // TODO : improve here to have responsive cards
   const cardWidth = Math.max(Dimensions.get("window").width * 0, MIN_CARD_WIDTH);
@@ -42,22 +42,7 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
   useEffect(() => {
     if (isRTL) setActiveIndex(carouselItems.length - 1);
     else setActiveIndex(0);
-  }, [isRTL, carouselItems.length]);
-
-  const customAnimation = React.useCallback(
-    (value: number) => {
-      "worklet";
-      const zIndex = Math.round(interpolate(value, [-1, 0, 1], [0, cardWidth, 0], "clamp"));
-      const scale = interpolate(value, [-1, 0, 1], [0.75, 1, 0.75], "clamp");
-      const translate = interpolate(value, [-1, 0, 1], [-cardWidth - 10, 0, cardWidth + 10]);
-
-      return {
-        transform: [{ translateX: translate }, { scale }],
-        zIndex,
-      };
-    },
-    [cardWidth],
-  );
+  }, [isRTL]);
 
   const renderItem = ({ item }: { item: GetThemeResponse }) => (
     <CarousselCard
@@ -72,13 +57,14 @@ export const TagsCarousel = ({ navigation }: TagsCarouselProps) => {
     <View>
       <Carousel
         loop={false}
-        data={carouselItems}
+        data={!isRTL ? carouselItems : carouselItems.reverse()}
         defaultIndex={!isRTL ? 0 : carouselItems.length - 1}
         renderItem={renderItem}
         onSnapToItem={(index) => setActiveIndex(index)}
         width={cardWidth}
         height={cardHeight}
-        customAnimation={customAnimation}
+        mode="parallax"
+        modeConfig={CAROUSEL_CONFIG}
         style={carouselStyle}
       />
       <CarouselPagination size={carouselItems.length} activeDotIndex={activeIndex} />
