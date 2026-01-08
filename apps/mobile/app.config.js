@@ -13,6 +13,26 @@ const withCustomGradleProperties = (config) => {
       key: "org.gradle.jvmargs",
       value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
     });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.daemon",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.parallel",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.caching",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.configureondemand",
+      value: "true",
+    });
     return config;
   });
 };
