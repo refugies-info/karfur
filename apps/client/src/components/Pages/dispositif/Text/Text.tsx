@@ -140,7 +140,10 @@ const Text = (props: Props) => {
     }
 
     const translated = translationParsing(props.children || "", [
-      { nodeAttr: /data-callout=["']info["']/, translation: t(getCalloutTranslationKey("info")) },
+      {
+        nodeAttr: /data-callout=["']info["']/,
+        translation: t(getCalloutTranslationKey("info")),
+      },
       {
         nodeAttr: /data-callout=["']important["']/,
         translation: t(getCalloutTranslationKey("important")),
@@ -160,7 +163,9 @@ const Text = (props: Props) => {
   const { contentSegments } =
     hasMounted && props.html
       ? htmlParsing(convertedContent as string)
-      : { contentSegments: [{ type: "text", content: convertedContent as string }] };
+      : {
+          contentSegments: [{ type: "text", content: convertedContent as string }],
+        };
 
   return props.html ? (
     <div
@@ -184,7 +189,7 @@ const Text = (props: Props) => {
             <CallOut key={`callout-${calloutSegment.calloutType}-${index}`} className="p-4 ps-6">
               <b className="mb-2 block text-xl">{calloutSegment.title}</b>
               <div
-                className="not-prose"
+                className="not-prose text-base max-sm:text-lg"
                 dangerouslySetInnerHTML={{ __html: calloutSegment.content }}
               />
             </CallOut>

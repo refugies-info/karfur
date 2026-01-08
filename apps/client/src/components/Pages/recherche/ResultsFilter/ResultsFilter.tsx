@@ -121,7 +121,8 @@ const ResultsFilter = (props: Props): React.ReactNode => {
               onClick={() => selectType(option.key)}
               isActive={query.type === option.key}
             >
-              {t(option.value)} {getCount(option.key)}
+              {t(option.value)}{" "}
+              {process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS !== "true" && getCount(option.key)}
             </TabItem>
           ))}
         </TabsBar>
