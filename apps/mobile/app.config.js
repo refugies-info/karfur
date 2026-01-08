@@ -4,7 +4,7 @@
 import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
-const APP_VERSION = "2.2.0";
+const APP_VERSION = "2.2.1";
 
 const withCustomGradleProperties = (config) => {
   return withGradleProperties(config, (config) => {
