@@ -23,7 +23,9 @@ interface Props {
 
 const DispositifPage = (props: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
-  const methods = useForm<UpdateDispositifRequest>({ defaultValues: getDefaultValue(dispositif) });
+  const methods = useForm<UpdateDispositifRequest>({
+    defaultValues: getDefaultValue(dispositif),
+  });
   const dispositifFormContext = useDispositifForm();
   const [showAccordionsCountModal, setShowAccordionsCountModal] = useState(
     hasMissingAccordions(dispositif, "why"),
