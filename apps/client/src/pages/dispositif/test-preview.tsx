@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import type { GetServerSideProps } from "next";
 import { useState } from "react";
 
 const DEFAULT_JSON = {
@@ -90,7 +91,12 @@ const TestPreviewPage = (props: Props) => {
   );
 };
 
-export const getServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const token = req.cookies.authorization;
+  if (!token) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       webhookSecret: process.env.WEBHOOK_SECRET || "",
