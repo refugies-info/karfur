@@ -98,6 +98,10 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
               <div className="prose no-dsfr">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
               </div>
+            ) : dispositif?.origin === "RCO" ? (
+              <div className="text-mention-grey italic">
+                Ce contenu est généré par intelligence artificielle
+              </div>
             ) : (
               <RichText id={sectionKey} value={contentHtml} />
             )}
