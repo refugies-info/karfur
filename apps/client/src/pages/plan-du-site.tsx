@@ -118,8 +118,8 @@ const PlanDuSite = () => {
         {
           id: "helpCenter",
           label: t("sitemap.links.helpCenter", "Centre d'aide"),
-          href: "/faq",
-          isExternal: false,
+          href: "https://help.refugies.info/fr/",
+          isExternal: true,
         },
       ],
     },
