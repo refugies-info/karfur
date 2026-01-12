@@ -62,19 +62,19 @@ export class DispositifContent extends Content {
   @prop()
   markdown?: string;
   @prop()
-  why: { [key: string]: InfoSection };
+  why?: { [key: string]: InfoSection };
   @prop()
-  how: InfoSections;
+  how?: InfoSections;
 }
 export class DemarcheContent extends Content {
   @prop()
   what: RichText;
   @prop()
-  how: InfoSections;
+  how?: InfoSections;
   @prop()
-  next: InfoSections;
+  next?: InfoSections;
   @prop()
-  administrationName: string | null;
+  administrationName?: string | null;
 }
 
 export class Suggestion {

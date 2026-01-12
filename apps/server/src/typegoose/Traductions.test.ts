@@ -183,7 +183,11 @@ const trad_adminNameNull_en: TranslationContent = {
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
-      expect(Traductions.diff(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
+      expect(Traductions.diff(trad, trad)).toEqual({
+        added: [],
+        removed: [],
+        modified: [],
+      });
     });
     it("should return added sections", () => {
       expect(Traductions.diff(trad, trad_added)).toEqual({
@@ -219,8 +223,11 @@ describe("Traductions", () => {
     });
     it("should not return administrationName ", () => {
       const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
-      newTradAdded.content = { ...newTradAdded.content, administrationName: null };
-      //@ts-expect-error because we don't need administrationName for this test
+      newTradAdded.content = {
+        ...newTradAdded.content,
+        administrationName: null,
+      };
+
       expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
         modified: [],
         added: [],

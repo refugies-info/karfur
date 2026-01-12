@@ -23,7 +23,7 @@ export const countWords = (str?: string): number =>
         .filter((w) => !!w).length
     : 0;
 
-export const countWordsForInfoSections = (infoSections: InfoSections): number =>
+export const countWordsForInfoSections = (infoSections: InfoSections | undefined): number =>
   Object.values(infoSections || {}).reduce(
     (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
     0,
