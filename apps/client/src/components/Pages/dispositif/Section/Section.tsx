@@ -1,4 +1,4 @@
-import { ContentType, type InfoSections } from "@refugies-info/api-types";
+import { ContentType, type InfoSections, type Languages } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type React from "react";
@@ -45,8 +45,12 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   const markdown = useMemo(() => {
     if (sectionKey !== "what") return null;
     if (!dispositif?.origin || dispositif.origin === "RI") return null;
+    const translationContent = dispositif.translations?.[i18n.language as Languages]?.content;
     return (
-      dispositif.markdown || (dispositif as any).translations?.[i18n.language]?.content?.markdown
+      dispositif.markdown ||
+      (translationContent && "markdown" in translationContent
+        ? translationContent.markdown
+        : undefined)
     );
   }, [sectionKey, dispositif, i18n.language]);
 

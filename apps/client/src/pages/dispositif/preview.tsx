@@ -29,7 +29,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     };
   }
 
-  // Verify Webhook Secret
   const secret = req.headers["webhook-secret"];
   const expectedSecret = process.env.WEBHOOK_SECRET;
 
@@ -54,7 +53,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 
   try {
-    // Parse the request body
     const chunks = [];
     for await (const chunk of req) {
       chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
@@ -65,9 +63,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     try {
       payload = JSON.parse(bodyContent);
     } catch (e) {
-      // Attempt to parse as form-urlencoded if raw JSON failed
       try {
-        // We can use URLSearchParams to parse form data
         const params = new URLSearchParams(bodyContent);
         const jsonParam = params.get("json");
         if (jsonParam) {
@@ -88,10 +84,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
       throw new Error("Missing dispositif data");
     }
 
-    // Construct the preview dispositif object
-    // Use a temporary ID and default fields similar to how we create it
-    // Construct the preview dispositif object
-    // We cast to GetDispositifResponse and provide defaults for required fields
     const previewDispositif: GetDispositifResponse = {
       ...dispositif,
       _id: "preview-id",
@@ -111,37 +103,26 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
         ...dispositif.translations,
         fr: {
           content: dispositif.translations?.fr?.content || {},
-          created_at: new Date().toISOString(),
+          created_at: new Date().toISOString() as unknown as Date,
         },
       },
     } as unknown as GetDispositifResponse;
 
-    // Populate the Redux store with the preview data
     store.dispatch(setSelectedDispositifActionCreator(previewDispositif));
 
-    // Fetch necessary supporting data
     store.dispatch(fetchThemesActionCreator());
     store.dispatch(fetchNeedsActionCreator());
     if (req.headers.cookie && req.headers.cookie.includes("authorization")) {
-      // simplified cookie check or just pass token if extracted
-      // We can access req.cookies directly if we use the proper type or middleware,
-      // but here we just rely on what is available.
-      // wrapper's getServerSideProps usually has req.cookies populated by next.js
       const token = (req as any).cookies?.authorization;
       if (token) {
         store.dispatch(fetchUserActionCreator({ token }));
       }
     }
 
-    // Wait for sagas to complete
     store.dispatch(END);
     await store.sagaTask?.toPromise();
   } catch (error) {
     console.error("[Preview] Error handling preview request:", error);
-    // We throw to see the 500 error stack trace in server logs,
-    // OR we could return props with an error.
-    // Returning 404 might hide the real issue.
-    // Let's rethrow to generate a 500 so we can see it in logs if the user checks.
     throw error;
   }
 

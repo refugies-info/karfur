@@ -36,14 +36,15 @@ export interface Content {
 
 export interface DispositifContent extends Content {
   what: RichText;
-  why: { [key: string]: InfoSection };
-  how: InfoSections;
+  markdown?: string;
+  why?: { [key: string]: InfoSection };
+  how?: InfoSections;
 }
 export interface DemarcheContent extends Content {
   what: RichText;
-  how: InfoSections;
-  next: InfoSections;
-  administrationName: string;
+  how?: InfoSections;
+  next?: InfoSections;
+  administrationName?: string;
 }
 
 export interface TranslationContent {
