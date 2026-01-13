@@ -92,6 +92,11 @@ const TestPreviewPage = (props: Props) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  // Block access in production
+  if (process.env.NODE_ENV === "production") {
+    return { notFound: true };
+  }
+
   const token = req.cookies.authorization;
   if (!token) {
     return { notFound: true };
