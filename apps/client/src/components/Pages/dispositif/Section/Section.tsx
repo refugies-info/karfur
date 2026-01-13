@@ -57,6 +57,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   );
 
   if (
+    isViewMode &&
     sectionKey !== "what" &&
     (!contentAccordions || Object.keys(contentAccordions).length === 0)
   ) {
