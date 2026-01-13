@@ -126,7 +126,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
-const trad_added_adminName = {
+const trad_added_adminName: TranslationContent = {
   content: {
     titreInformatif: "abc",
     titreMarque: "def",
@@ -138,6 +138,7 @@ const trad_added_adminName = {
       "my-uuid-v4-key-2": { title: "title", text: "text" },
       "my-uuid-v4-key-3": { title: "title", text: "text" },
     },
+    administrationName: null,
   },
 
   created_at: new Date(),
