@@ -47,10 +47,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
     if (!dispositif?.origin || dispositif.origin === "RI") return null;
     const translationContent = dispositif.translations?.[i18n.language as Languages]?.content;
     return (
-      dispositif.markdown ||
-      (translationContent && "markdown" in translationContent
-        ? translationContent.markdown
-        : undefined)
+      dispositif.markdown || (dispositif as any).translations?.[i18n.language]?.content?.markdown
     );
   }, [sectionKey, dispositif, i18n.language]);
 
@@ -94,13 +91,10 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
             {contentHtml && isViewMode && !markdown && (
               <SectionButtons id={sectionKey} className="mb-6 md:hidden" content={contentHtml} />
             )}
+
             {markdown ? (
               <div className="prose no-dsfr">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
-              </div>
-            ) : dispositif?.origin === "RCO" ? (
-              <div className="text-mention-grey italic">
-                Ce contenu est généré par intelligence artificielle
               </div>
             ) : (
               <RichText id={sectionKey} value={contentHtml} />
