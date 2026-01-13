@@ -43,6 +43,7 @@ const TestPreviewPage = (props: Props) => {
       <p>Copiez le JSON ci-dessous et cliquez sur "Prévisualiser" pour tester la page de rendu.</p>
 
       <form action="/dispositif/preview" method="POST" target="_blank" rel="noopener">
+        <input type="hidden" name="webhook-secret" value={props.webhookSecret} />
         <div className="fr-input-group">
           <label className="fr-label" htmlFor="json-input">
             Charge utile JSON (doit contenir "dispositif")
@@ -57,6 +58,9 @@ const TestPreviewPage = (props: Props) => {
             style={{ fontFamily: "monospace" }}
           />
         </div>
+        <Button className="mb-4" type="submit">
+          Prévisualiser (Form POST - Cross-Origin Safe)
+        </Button>
       </form>
 
       <Button

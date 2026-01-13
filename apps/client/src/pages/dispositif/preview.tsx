@@ -29,13 +29,64 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
     };
   }
 
-  const secret = req.headers["webhook-secret"];
+  let payload;
+  let bodySecret: string | undefined;
+
+  try {
+    const chunks = [];
+    for await (const chunk of req) {
+      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+    }
+    const bodyContent = Buffer.concat(chunks).toString("utf-8");
+
+    try {
+      // Try parsing as raw JSON
+      const jsonBody = JSON.parse(bodyContent);
+      payload = jsonBody;
+      if (jsonBody["webhook-secret"]) {
+        bodySecret = jsonBody["webhook-secret"];
+      }
+    } catch (e) {
+      try {
+        // Try parsing as Form Data
+        const params = new URLSearchParams(bodyContent);
+        const jsonParam = params.get("json");
+        const secretParam = params.get("webhook-secret");
+
+        if (jsonParam) {
+          payload = JSON.parse(jsonParam);
+        } else {
+          throw new Error("No 'json' parameter found in form data");
+        }
+
+        if (secretParam) {
+          bodySecret = secretParam;
+        }
+      } catch (formError) {
+        console.error("[Preview] Failed to parse body as JSON or form-encoded 'json':", e);
+        throw new Error("Invalid structure: Expected JSON body or form-data with 'json' key");
+      }
+    }
+  } catch (error) {
+    console.error("[Preview] Error reading/parsing body:", error);
+    return { notFound: true };
+  }
+
+  let secret = req.headers["webhook-secret"];
   const expectedSecret = process.env.WEBHOOK_SECRET;
+
+  // Priority: Header > Separate Body Param > Payload Field
+  if (!secret && bodySecret) {
+    secret = bodySecret;
+  }
+  if (!secret && payload && payload["webhook-secret"]) {
+    secret = payload["webhook-secret"];
+  }
 
   if (!secret || !expectedSecret || typeof secret !== "string") {
     console.log("[Preview] Unauthorized: Missing or invalid secret");
     return {
-      notFound: true, // Hide the existence of the page or return 401 via props if preferred
+      notFound: true,
     };
   }
 
@@ -53,30 +104,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
   }
 
   try {
-    const chunks = [];
-    for await (const chunk of req) {
-      chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
-    }
-    const bodyContent = Buffer.concat(chunks).toString("utf-8");
-
-    let payload;
-    try {
-      payload = JSON.parse(bodyContent);
-    } catch (e) {
-      try {
-        const params = new URLSearchParams(bodyContent);
-        const jsonParam = params.get("json");
-        if (jsonParam) {
-          payload = JSON.parse(jsonParam);
-        } else {
-          throw new Error("No 'json' parameter found in form data");
-        }
-      } catch (formError) {
-        console.error("[Preview] Failed to parse body as JSON or form-encoded 'json':", e);
-        throw new Error("Invalid structure: Expected JSON body or form-data with 'json' key");
-      }
-    }
-
     const { dispositif } = payload;
 
     if (!dispositif) {
