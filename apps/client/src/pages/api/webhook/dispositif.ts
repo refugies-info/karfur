@@ -57,30 +57,30 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // UPDATE: If _id is provided, update existing document
     if (dispositif._id) {
-      const existingDispositif = await Dispositif.findById(dispositif._id);
-
-      if (!existingDispositif) {
-        return res.status(404).json({ message: "Dispositif not found" });
-      }
-
       // Prepare update payload, preserving original creator and creation date
-      const { _id, ...dispositifWithoutId } = dispositif;
+      const { _id, creatorId, created_at, origin, ...dispositifWithoutId } = dispositif;
       const updatePayload = {
         ...dispositifWithoutId,
         lastModificationDate: new Date(),
         lastModificationAuthor: user._id,
         // Update translations while preserving structure
         translations: {
-          ...dispositif.translations,
+          ...(dispositif.translations || {}),
           fr: {
-            ...dispositif.translations?.fr,
+            ...(dispositif.translations?.fr || {}),
             content: dispositif.translations?.fr?.content || {},
             validatorId: user._id,
           },
         },
       };
 
-      await Dispositif.findByIdAndUpdate(_id, { $set: updatePayload });
+      const updatedDispositif = await Dispositif.findByIdAndUpdate(_id, {
+        $set: updatePayload,
+      });
+
+      if (!updatedDispositif) {
+        return res.status(404).json({ message: "Dispositif not found" });
+      }
 
       return res.status(200).json({
         message: "Dispositif updated successfully",
