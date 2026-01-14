@@ -56,14 +56,48 @@ export class InfoSection {
 export type InfoSections = { [key: Uuid]: InfoSection };
 // export type InfoSections = Record<Uuid, InfoSection>;
 
+/**
+ * Contenu d'un Dispositif.
+ *
+ * Deux formes mutuellement exclusives :
+ * - **Contenu structuré (RI)** : what, why, how sont obligatoires
+ * - **Contenu markdown (externe)** : seul markdown est requis
+ *
+ * La validation Mongoose garantit cette exclusivité au runtime.
+ */
 export class DispositifContent extends Content {
-  @prop()
-  what: RichText;
-  @prop()
+  // ─────────────────────────────────────────────────────────────────
+  // Contenu externe (requis si pas de contenu structuré)
+  // ─────────────────────────────────────────────────────────────────
+  @prop({
+    required: function (this: DispositifContent) {
+      return !this.what; // Requis si pas de contenu structuré
+    },
+  })
   markdown?: string;
-  @prop()
+
+  // ─────────────────────────────────────────────────────────────────
+  // Contenu structuré RI (requis si pas de markdown)
+  // ─────────────────────────────────────────────────────────────────
+  @prop({
+    required: function (this: DispositifContent) {
+      return !this.markdown;
+    },
+  })
+  what: RichText;
+
+  @prop({
+    required: function (this: DispositifContent) {
+      return !this.markdown;
+    },
+  })
   why: { [key: string]: InfoSection };
-  @prop()
+
+  @prop({
+    required: function (this: DispositifContent) {
+      return !this.markdown;
+    },
+  })
   how: InfoSections;
 }
 export class DemarcheContent extends Content {

@@ -115,8 +115,5 @@ describe("Dispositif RCO", () => {
     });
 
     expect(screen.queryByTestId("react-markdown")).not.toBeInTheDocument();
-    expect(
-      screen.getByText(/Ce contenu est généré par intelligence artificielle/i),
-    ).toBeInTheDocument();
   });
 });

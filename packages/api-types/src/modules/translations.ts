@@ -46,8 +46,50 @@ export interface DemarcheContent extends Content {
   administrationName: string;
 }
 
+/**
+ * Contenu structuré RI - what, why, how obligatoires
+ * Alias de DispositifContent pour clarifier l'intention
+ */
+export type StructuredContent = DispositifContent;
+
+/**
+ * Contenu markdown externe
+ * À utiliser pour les contenus d'origine externe (RCO, etc.)
+ */
+export interface MarkdownContent extends Content {
+  markdown: string;
+}
+
+/**
+ * Type union pour les contenus qui peuvent être structurés ou markdown
+ */
+export type FlexibleDispositifContent = DispositifContent | MarkdownContent;
+
+/**
+ * Type guard pour vérifier si un contenu est structuré (what, why, how)
+ */
+export function hasStructuredContent(
+  content: FlexibleDispositifContent | DemarcheContent,
+): content is StructuredContent {
+  return (
+    "what" in content &&
+    "why" in content &&
+    "how" in content &&
+    !("markdown" in content && (content as MarkdownContent).markdown)
+  );
+}
+
+/**
+ * Type guard pour vérifier si un contenu est uniquement markdown
+ */
+export function hasMarkdownContent(
+  content: FlexibleDispositifContent | DemarcheContent,
+): content is MarkdownContent {
+  return "markdown" in content && !!(content as MarkdownContent).markdown;
+}
+
 export interface TranslationContent {
-  content: DispositifContent | DemarcheContent;
+  content: FlexibleDispositifContent | DemarcheContent;
   // keep "content" prop to be able to add "metadatas" later
 }
 

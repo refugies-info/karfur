@@ -126,7 +126,7 @@ const trad_avancement: RecursivePartial<TranslationContent> = {
   validatorId: new ObjectId("656076dbaf8df7a3f7bceeb4"),
 };
 
-const trad_added_adminName = {
+const trad_added_adminName: TranslationContent = {
   content: {
     titreInformatif: "abc",
     titreMarque: "def",
@@ -138,6 +138,7 @@ const trad_added_adminName = {
       "my-uuid-v4-key-2": { title: "title", text: "text" },
       "my-uuid-v4-key-3": { title: "title", text: "text" },
     },
+    administrationName: null,
   },
 
   created_at: new Date(),
@@ -183,7 +184,11 @@ const trad_adminNameNull_en: TranslationContent = {
 describe("Traductions", () => {
   describe("diff", () => {
     it("should return empty array", () => {
-      expect(Traductions.diff(trad, trad)).toEqual({ added: [], removed: [], modified: [] });
+      expect(Traductions.diff(trad, trad)).toEqual({
+        added: [],
+        removed: [],
+        modified: [],
+      });
     });
     it("should return added sections", () => {
       expect(Traductions.diff(trad, trad_added)).toEqual({
@@ -219,8 +224,11 @@ describe("Traductions", () => {
     });
     it("should not return administrationName ", () => {
       const newTradAdded = JSON.parse(JSON.stringify(trad_added_adminName));
-      newTradAdded.content = { ...newTradAdded.content, administrationName: null };
-      //@ts-expect-error because we don't need administrationName for this test
+      newTradAdded.content = {
+        ...newTradAdded.content,
+        administrationName: null,
+      };
+
       expect(Traductions.diff(trad_added_adminName, newTradAdded)).toEqual({
         modified: [],
         added: [],
