@@ -15,6 +15,7 @@ import type {
   SimpleUser,
   Sponsor,
 } from "../generics";
+import type { TranslationContent } from "./translations";
 
 export enum ViewsType {
   WEB = "web",
@@ -270,6 +271,7 @@ export type BaseGetDispositifResponse = {
   externalLink?: string;
   hasDraftVersion: boolean;
   origin: DispositifOrigin;
+  translations?: Partial<Record<Languages, TranslationContent>>;
 };
 
 export type GetDispositifResponse = BaseGetDispositifResponse &

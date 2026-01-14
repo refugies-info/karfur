@@ -116,7 +116,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
             <li>
               {dispositif.typeContenu === ContentType.DISPOSITIF && (
                 <span className="text-active-grey" aria-current="page">
-                  {`${dispositif.titreMarque || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
+                  {`${dispositif.titreMarque || dispositif.titreInformatif || ""} ${getDepartments(dispositif.metadatas.location, t)}`}
                 </span>
               )}
               {dispositif.typeContenu === ContentType.DEMARCHE && (

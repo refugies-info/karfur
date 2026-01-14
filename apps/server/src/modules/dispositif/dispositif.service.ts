@@ -163,8 +163,11 @@ export const deleteLineBreaks = (htmlContent: string) => {
   return htmlContent.replace(regexp, "");
 };
 
-export const deleteLineBreaksInInfosections = (sections: InfoSections): InfoSections => {
+export const deleteLineBreaksInInfosections = (
+  sections: InfoSections | undefined,
+): InfoSections => {
   const newSections: InfoSections = {};
+  if (!sections) return newSections;
   for (const [key, section] of Object.entries(sections)) {
     newSections[key] = {
       title: section.title,

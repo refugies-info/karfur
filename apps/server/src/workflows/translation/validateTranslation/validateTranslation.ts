@@ -28,8 +28,19 @@ import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
   const newTranslation = cloneDeep(translation);
-  set(newTranslation, "content.what", deleteLineBreaks(newTranslation.content.what));
-  set(newTranslation, "content.how", deleteLineBreaksInInfosections(newTranslation.content.how));
+
+  // Skip line break deletion for markdown content
+  if ("markdown" in newTranslation.content && newTranslation.content.markdown) {
+    return newTranslation;
+  }
+
+  // For structured content, delete line breaks
+  if ("what" in newTranslation.content) {
+    set(newTranslation, "content.what", deleteLineBreaks(newTranslation.content.what));
+  }
+  if ("how" in newTranslation.content) {
+    set(newTranslation, "content.how", deleteLineBreaksInInfosections(newTranslation.content.how));
+  }
 
   const why = (newTranslation.content as DispositifContent).why;
   if (why) set(newTranslation, "content.why", deleteLineBreaksInInfosections(why));

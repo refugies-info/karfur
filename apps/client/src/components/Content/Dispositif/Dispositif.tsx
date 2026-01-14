@@ -46,7 +46,7 @@ const Dispositif = (props: Props) => {
   const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const { isRTL } = useContentLocale();
   useScrolledBottomEvent(pageContext.mode === "view");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -78,30 +78,14 @@ const Dispositif = (props: Props) => {
             dir={isRTL ? undefined : "ltr"}
             aria-labelledby="main-title"
           >
-            {dispositif?.origin === "RCO" ? (
-              <div className="fr-callout fr-callout--info">
-                {dispositif.markdown ? (
-                  <div className="prose no-dsfr">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{dispositif.markdown}</ReactMarkdown>
-                  </div>
-                ) : (
-                  <p className="fr-callout__text">
-                    Ce contenu est généré par intelligence artificielle et est actuellement en cours
-                    de validation. Les informations présentées sont fournies à titre indicatif et
-                    peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
-                  </p>
-                )}
-              </div>
-            ) : (
-              CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-                <Section
-                  key={i}
-                  sectionKey={section}
-                  contentType={typeContenu}
-                  className={cn(i === 0 && "z-10")}
-                />
-              ))
-            )}
+            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+              <Section
+                key={i}
+                sectionKey={section}
+                contentType={typeContenu}
+                className={cn(i === 0 && "z-10")}
+              />
+            ))}
             {/* TODO: adapt the Map component to be used in edit mode */}
             {isViewMode ? (
               (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} />
