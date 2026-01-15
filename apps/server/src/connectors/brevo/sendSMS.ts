@@ -33,6 +33,11 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
     const { response } = await apiInstance.sendTransacSms(sms);
     return { status: response.statusCode, sent: response.statusCode === 201 };
   } catch (error) {
+    console.error("[Brevo] Error sending SMS:", error);
+    if (error && typeof error === "object" && "response" in error) {
+      // @ts-expect-error
+      console.error("[Brevo] Error response:", error.response);
+    }
     return {
       status: error instanceof HttpError ? error.response.statusCode : 500,
       sent: false,
