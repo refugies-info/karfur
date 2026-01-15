@@ -46,7 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Dispositif Creation
+    // Dispositif Creation/Update
     // We use a loose schema as requested to avoid importing from apps/server
     const Dispositif =
       conn.models.Dispositif ||
@@ -55,11 +55,44 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         new mongoose.Schema({}, { strict: false, collection: "dispositifs" }),
       );
 
-    // Basic default fields if not present in payload, similar to createDispositif
+    // UPDATE: If _id is provided, update existing document
+    if (dispositif._id) {
+      // Prepare update payload, preserving original creator and creation date
+      const { _id, creatorId, created_at, origin, ...dispositifWithoutId } = dispositif;
+      const updatePayload = {
+        ...dispositifWithoutId,
+        lastModificationDate: new Date(),
+        lastModificationAuthor: user._id,
+        // Update translations while preserving structure
+        translations: {
+          ...(dispositif.translations || {}),
+          fr: {
+            ...(dispositif.translations?.fr || {}),
+            content: dispositif.translations?.fr?.content || {},
+            validatorId: user._id,
+          },
+        },
+      };
+
+      const updatedDispositif = await Dispositif.findByIdAndUpdate(_id, {
+        $set: updatePayload,
+      });
+
+      if (!updatedDispositif) {
+        return res.status(404).json({ message: "Dispositif not found" });
+      }
+
+      return res.status(200).json({
+        message: "Dispositif updated successfully",
+        id: _id,
+      });
+    }
+
+    // CREATE: No _id provided, create new document
     const newDispositif = {
       ...dispositif,
       creatorId: user._id,
-      status: DispositifStatus.DRAFT,
+      status: dispositif.status || DispositifStatus.DRAFT,
       typeContenu: dispositif.typeContenu || ContentType.DISPOSITIF,
       created_at: new Date(),
       lastModificationDate: new Date(),

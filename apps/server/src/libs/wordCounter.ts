@@ -1,9 +1,11 @@
 import type {
   DemarcheContent,
   DispositifContent,
+  FlexibleDispositifContent,
   InfoSection,
   InfoSections,
 } from "@refugies-info/api-types";
+import { hasMarkdownContent } from "@refugies-info/api-types";
 import get from "lodash/get";
 import isString from "lodash/isString";
 import type { TranslationContent } from "~/typegoose/Dispositif";
@@ -23,13 +25,24 @@ export const countWords = (str?: string): number =>
         .filter((w) => !!w).length
     : 0;
 
-export const countWordsForInfoSections = (infoSections: InfoSections): number =>
+export const countWordsForInfoSections = (infoSections: InfoSections | undefined): number =>
   Object.values(infoSections || {}).reduce(
     (acc, { title, text }: InfoSection) => acc + countWords(title) + countWords(text),
     0,
   );
 
-export const countDispositifWords = (translation: DispositifContent | DemarcheContent) => {
+export const countDispositifWords = (translation: FlexibleDispositifContent | DemarcheContent) => {
+  // Si c'est du markdown uniquement, compter les mots du markdown
+  if (hasMarkdownContent(translation)) {
+    return (
+      countWords(translation.titreInformatif) +
+      countWords(translation.titreMarque) +
+      countWords(translation.abstract) +
+      countWords(translation.markdown)
+    );
+  }
+
+  // Logique standard pour contenu structuré
   return (
     countWords(translation.titreInformatif) +
     countWords(translation.titreMarque) +

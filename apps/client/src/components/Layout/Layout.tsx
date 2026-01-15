@@ -1,3 +1,4 @@
+import Alert from "@codegouvfr/react-dsfr/Alert";
 import { cn } from "@refugies-info/ui";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -273,6 +274,15 @@ const Layout = (props: Props) => {
       {!showLangModal && <ConsentBannerAndConsentManagement />}
       <DownloadAppBanner />
       <Navbar />
+      {router.pathname.includes("/preview") && (
+        <Alert
+          severity="error"
+          title="Mode prévisualisation"
+          description="Vous êtes en mode prévisualisation. Les changements ne sont pas encore publiés."
+          className="fr-mb-0"
+          small
+        />
+      )}
       <main id="contenu" className={cn(styles.content, props.className)}>
         {props.children}
       </main>
