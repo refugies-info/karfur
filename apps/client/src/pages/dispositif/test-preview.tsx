@@ -97,7 +97,7 @@ const TestPreviewPage = (props: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   // Block access in production
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NEXT_PUBLIC_REACT_APP_ENV === "production") {
     return { notFound: true };
   }
 
