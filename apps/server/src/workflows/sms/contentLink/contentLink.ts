@@ -1,5 +1,5 @@
 import type { ContentLinkRequest, Languages } from "@refugies-info/api-types";
-import { InvalidRequestError, NotFoundError } from "~/errors";
+import { InternalError, InvalidRequestError, NotFoundError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
@@ -17,9 +17,9 @@ export const contentLink = async (body: ContentLinkRequest): Response => {
   const translation =
     dispositif.translations[body.locale as Languages] || dispositif.translations.fr;
 
-  if (!translation || !translation.content) {
+  if (!translation || !translation.content || !translation.content.titreInformatif) {
     throw new NotFoundError(
-      `[contentLink] Content not found for locale ${body.locale} and fallback fr`,
+      `[contentLink] Content or title not found for locale ${body.locale} and fallback fr`,
     );
   }
 
@@ -29,7 +29,7 @@ export const contentLink = async (body: ContentLinkRequest): Response => {
   if (!smsSentOk.sent) {
     logger.error("[contentLink] SMS not sent", smsSentOk);
     if (smsSentOk.status === 400) throw new InvalidRequestError("[contentLink] Invalid request");
-    throw new Error(`[contentLink] SMS not sent. Status: ${smsSentOk.status}`);
+    throw new InternalError(`[contentLink] SMS not sent. Status: ${smsSentOk.status}`);
   }
 
   return { text: "success" };
