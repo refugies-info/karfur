@@ -5,6 +5,7 @@ import {
   TransactionalSMSApiApiKeys,
 } from "@getbrevo/brevo";
 import { phone as parse } from "phone";
+import logger from "~/logger";
 import type { SendSMSResult } from "~/services";
 
 const apiInstance = new TransactionalSMSApi();
@@ -32,9 +33,22 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
   try {
     const { response } = await apiInstance.sendTransacSms(sms);
     return { status: response.statusCode, sent: response.statusCode === 201 };
-  } catch (error) {
+  } catch (error: any) {
+    const statusCode =
+      error instanceof HttpError
+        ? error.response.statusCode
+        : error.response?.status || error.status || 500;
+
+    const message = error instanceof HttpError ? error.message : error.message || "Unknown error";
+
+    logger.error("[Brevo] Error sending SMS", {
+      message,
+      statusCode,
+      errorObj: error, // Keep full object for debug just in case
+    });
+
     return {
-      status: error instanceof HttpError ? error.response.statusCode : 500,
+      status: statusCode,
       sent: false,
     };
   }
