@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { getDepartmentFromNumber } from "~/lib/departments";
-import { levenshteinDistance, normalizeString } from "~/lib/string";
+import { levenshteinDistance, normalizeString } from "@refugies-info/shared";
 
 interface Department {
   nom: string;
