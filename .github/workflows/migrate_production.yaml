@@ -38,9 +38,7 @@ jobs:
           node-version: "24.11.1"
 
       - name: Install Dependencies
-        run: |
-          pnpm add -g turbo
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Setup AtlasCLI
         uses: mongodb/atlas-github-action@v0.2.2

@@ -7,10 +7,13 @@
 # -----------------------------------------------------------------------------
 
 # Define which directories contain workspace packages.
-# Turborepo orchestrates builds across these packages.
+# Moonrepo orchestrates builds across these packages.
 packages:
   - "apps/*" # Next.js client, Express server, React Native mobile, Storybook
   - "packages/*" # Shared: api-types, ui, typescript-config
+
+# Allow existing peer dependency mismatches (they existed before migration)
+strictPeerDependencies: false
 
 # -----------------------------------------------------------------------------
 # Supply Chain Security

@@ -66,14 +66,12 @@ clean:*, start:*, pr:*, eas:*, migrate, storybook:publish, knip
 
 ## Prerequisites
 
-1. **Install Moonrepo CLI**
+1. **Install Moonrepo CLI via proto** (our standard tool manager)
    ```bash
-   curl -fsSL https://moonrepo.dev/install/moon.sh | bash
-   # or with proto
    proto install moon
    ```
 
-2. **Verify Rust is installed** (for Tauri later)
+2. **Verify Rust is installed** (already managed via proto)
    ```bash
    rustc --version
    ```
@@ -243,11 +241,7 @@ If issues arise:
 **Risk:** First runs after migration will be slower (no cache)
 **Mitigation:** Moonrepo supports remote caching; can set up after migration
 
-### 3. IDE Support
-**Risk:** VS Code Turborepo extension no longer useful
-**Mitigation:** Install Moonrepo VS Code extension
-
-### 4. Filter Syntax Changes
+### 3. Filter Syntax Changes
 **Risk:** `--filter=@refugies-info/ui` becomes different
 **Mitigation:** Moonrepo uses `--query` with different syntax; document changes
 

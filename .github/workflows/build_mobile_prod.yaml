@@ -50,9 +50,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
-        run: |
-          pnpm add -g turbo
-          pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Setup GCP service account key
         run: |

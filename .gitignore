@@ -54,3 +54,7 @@ credentials/
 
 # Cloudbuild
 /apps/client/cloudbuild.env
+
+# moon
+.moon/cache
+.moon/docker
