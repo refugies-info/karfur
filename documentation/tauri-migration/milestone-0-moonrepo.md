@@ -14,6 +14,38 @@ This document details the migration from Turborepo to Moonrepo for the Réfugié
 | Caching | ✅ Remote + Local | ✅ Remote + Local |
 | Migration Path | - | ✅ `moon ext migrate-turborepo` |
 
+## Moon Run Syntax Reference
+
+Understanding moon's target syntax is key to using it effectively:
+
+### Target Formats
+
+| Syntax | Meaning | Example |
+|--------|---------|---------|
+| `project:task` | Run task in specific project | `moon run ui:build` |
+| `:task` | Run task in ALL projects | `moon run :build` |
+| `project:task1 project:task2` | Run multiple specific tasks | `moon run ui:dev client:dev` |
+
+### Key Differences from Turborepo
+
+| Turborepo | Moonrepo | Notes |
+|-----------|----------|-------|
+| `turbo build` | `moon run :build` | The `:` prefix = all projects |
+| `turbo build --filter=@refugies-info/ui` | `moon run ui:build` | Project name without scope |
+| `turbo test --filter=!@refugies-info/mobile` | `moon run :test --query "project!=mobile"` | Query syntax for exclusions |
+
+### Task Name Conversion
+
+When moon infers tasks from `package.json` scripts, colons in **task names** become dashes:
+
+| package.json script | Moon task name |
+|--------------------|----------------|
+| `check:types` | `check-types` |
+| `lint:fix` | `lint-fix` |
+
+> [!NOTE]
+> This is different from the `project:task` syntax! The colon in `ui:build` separates project from task, while `check-types` is a single task name.
+
 ## Impact Analysis
 
 ### CI/CD Workflows (6 files)
