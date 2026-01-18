@@ -43,8 +43,11 @@ jobs:
       - name: Build UI Package
         run: moon run ui:build
 
-      - name: Lint and Check Types
-        run: pnpm lint check:types
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check Types
+        run: pnpm check:types
 
       - name: Test (except mobile for now because flaky)
         run: moon run :test --query "project!=mobile"
