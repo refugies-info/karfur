@@ -1,0 +1,22 @@
+# https://moonrepo.dev/docs/config/toolchain
+$schema: './cache/schemas/toolchain.json'
+
+# Node.js configuration (existing projects)
+node:
+  version: '24.11.1'
+  packageManager: 'pnpm'
+  pnpm:
+    version: '10.26.1'
+
+  # Infer tasks from package.json scripts
+  inferTasksFromScripts: true
+
+  # Don't run dedupe - project has existing peer dep issues
+  dedupeOnLockfileChange: false
+
+# Rust configuration (for Tauri - future milestones)
+rust:
+  version: 'stable'
+  components:
+    - 'clippy'
+    - 'rustfmt'
