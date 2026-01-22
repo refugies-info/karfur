@@ -125,3 +125,9 @@ jest.mock("@lottiefiles/dotlottie-react", () => ({
   DotLottieWorkerReact: jest.fn().mockImplementation(() => null),
   setWasmUrl: jest.fn(),
 }));
+
+// Mock remark-directive and unist-util-visit to avoid ESM errors
+jest.mock("remark-directive", () => () => {});
+jest.mock("unist-util-visit", () => ({
+  visit: () => {},
+}));
