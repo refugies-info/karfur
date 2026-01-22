@@ -1,8 +1,9 @@
-import { RoleName } from "@refugies-info/api-types";
+import { DispositifOrigin, RoleName } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import LinkedThemes from "~/components/Pages/dispositif/LinkedThemes";
+import SourceCard from "~/components/Pages/dispositif/SourceCard";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
 
@@ -23,6 +24,11 @@ const Contributors = () => {
   return (
     <div className="lg:bg-alt-blue-france lg:shadow-ri flex w-full flex-col p-4 lg:p-14 print:hidden">
       <LinkedThemes className="mb-10 max-sm:mt-10" />
+
+      {dispositif?.origin && dispositif.origin !== DispositifOrigin.RI && (
+        <SourceCard origin={dispositif.origin} />
+      )}
+
       <h2
         className="text-title-grey mb-6 text-[2rem] leading-[2.5rem] font-bold md:mb-8"
         id="contributors"
