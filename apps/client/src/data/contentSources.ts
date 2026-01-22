@@ -7,7 +7,7 @@ export interface ContentSource {
   textKey: string; // Clé de traduction dans i18n
 }
 
-export const contentSources: ContentSource[] = [
+export const contentSources = [
   {
     origin: DispositifOrigin.RCO,
     logo: {
@@ -17,7 +17,7 @@ export const contentSources: ContentSource[] = [
     },
     textKey: "ContentSources.RCO.description",
   },
-];
+] as const satisfies readonly ContentSource[];
 
 /**
  * Helper pour récupérer une source par son origin

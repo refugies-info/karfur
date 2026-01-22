@@ -44,6 +44,7 @@ const SourceCard = ({ origin }: Props) => {
         <div className="flex-shrink-0">
           <Image src={source.logo.secure_url} alt={`Logo ${origin}`} width={100} height={100} />
         </div>
+        {/* textKey is dynamically retrieved from config, TypeScript can't infer the literal type */}
         <p className="text-sm mb-0">{t(source.textKey as any)}</p>
       </div>
     </div>
