@@ -5,9 +5,14 @@ import type React from "react";
 import { useContext, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
+import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { cn } from "~/lib/classname";
+import {
+  getDirectiveComponents,
+  remarkDirectiveToComponent,
+} from "~/lib/markdown/directive-to-component";
 import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { makeThemeSelector } from "~/services/Themes/themes.selectors";
@@ -94,8 +99,13 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
             )}
 
             {markdown ? (
-              <div className="prose no-dsfr">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+              <div className="prose no-dsfr section-markdown">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveToComponent]}
+                  components={getDirectiveComponents(t)}
+                >
+                  {markdown}
+                </ReactMarkdown>
               </div>
             ) : (
               <RichText id={sectionKey} value={contentHtml} />
