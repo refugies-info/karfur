@@ -1,5 +1,5 @@
-import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
+import { RIAccordion } from "@refugies-info/ui";
 import type { TFunction } from "i18next";
 import type { Root } from "mdast";
 import type { ReactNode } from "react";
@@ -52,6 +52,7 @@ export function remarkDirectiveToComponent() {
 interface DirectiveComponentProps {
   children?: ReactNode;
   title?: string;
+  stepNumber?: string | number;
 }
 
 /**
@@ -74,11 +75,15 @@ export function getDirectiveComponents(t: TFunction) {
       <span className="block mb-4 last:mb-0">{children}</span>
     ),
 
-    // :::toggle{title="..."}
-    toggle: ({ children, title }: DirectiveComponentProps) => {
-      return <Accordion label={title}>{children ?? <></>}</Accordion>;
+    // :::toggle{title="..." stepNumber=1}
+    toggle: ({ children, title, stepNumber }: DirectiveComponentProps) => {
+      const parsedStepNumber = stepNumber ? Number.parseInt(stepNumber.toString(), 10) : undefined;
+      return (
+        <RIAccordion title={title ?? ""} stepNumber={parsedStepNumber}>
+          {children ?? <></>}
+        </RIAccordion>
+      );
     },
-
     // :::important
     important: ({ children }: DirectiveComponentProps) => {
       return (
