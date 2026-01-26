@@ -56,7 +56,11 @@ export const isDemarche = (dispositif: Dispositif): boolean => {
   return dispositif.typeContenu === ContentType.DEMARCHE;
 };
 
-export const isDispositifTranslatedIn = (dispositif: Dispositif, ln: Languages) => {
+export const isDispositifTranslatedIn = (dispositif: any, ln: Languages) => {
+  if (!dispositif.translations) return false;
+  if (typeof (dispositif.translations as any).has === "function") {
+    return (dispositif.translations as any).has(ln);
+  }
   return has(dispositif.translations, ln);
 };
 
@@ -71,13 +75,40 @@ export const isDispositifTranslatedIn = (dispositif: Dispositif, ln: Languages) 
  *
  * @see TranslationContent
  */
+export const getDispositifTranslation = (dispositif: any, ln: Languages, fallbackToFr = true) => {
+  if (!dispositif.translations) return undefined;
+  const hasLang = isDispositifTranslatedIn(dispositif, ln);
+  const targetLang = hasLang ? ln : fallbackToFr ? "fr" : null;
+
+  if (!targetLang) return undefined;
+
+  if (typeof (dispositif.translations as any).get === "function") {
+    return (dispositif.translations as any).get(targetLang);
+  }
+
+  return (dispositif.translations as any)[targetLang];
+};
+
+/**
+ * Cette fonction permet de récupérer un élément traduit depuis TranslationContent
+ * dans la langue que vous voulez. Le path permet de cibler l'élément.
+ */
 export const getDispositifTranslated = (
-  dispositif: Dispositif,
+  dispositif: any,
   path: string,
   ln: Languages | string = "fr",
   defaultLanguage: string = "fr",
 ) => {
-  return isDispositifTranslatedIn(dispositif, ln as Languages)
-    ? get(dispositif.translations, `${ln}.${path}`)
-    : get(dispositif.translations, `${defaultLanguage}.${path}`);
+  const translation = getDispositifTranslation(dispositif, ln as Languages, false);
+  if (translation) return get(translation, path);
+  const fallback = getDispositifTranslation(dispositif, defaultLanguage as Languages, true);
+  return get(fallback, path);
+};
+
+export const getAvailableLanguages = (dispositif: any): string[] => {
+  if (!dispositif.translations) return [];
+  if (typeof (dispositif.translations as any).keys === "function") {
+    return Array.from((dispositif.translations as any).keys());
+  }
+  return Object.keys(dispositif.translations);
 };

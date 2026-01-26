@@ -11,6 +11,7 @@ import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizati
 import logger from "~/logger";
 import {
   getDispositifMainSponsor,
+  getDispositifTranslation,
   isDispositifTranslatedIn,
 } from "~/modules/dispositif/dispositif.business";
 import {
@@ -122,8 +123,8 @@ export const publishDispositif = async (
       // with a draft version => publish
       const isAdmin = user.isAdmin();
       const hasTextChanges = hasChanges(
-        oldDispositif.translations.fr,
-        draftDispositif.translations.fr,
+        getDispositifTranslation(oldDispositif, "fr"),
+        getDispositifTranslation(draftDispositif, "fr"),
       );
 
       if (isAdmin || !hasTextChanges) {

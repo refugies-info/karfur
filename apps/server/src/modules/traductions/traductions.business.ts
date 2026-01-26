@@ -11,6 +11,7 @@ import {
 import { difference, flattenDeep, get, intersection, isEmpty } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 import { countDispositifWords } from "~/libs/wordCounter";
+import { getDispositifTranslation } from "../dispositif/dispositif.business";
 
 export interface TraductionDiff {
   added: string[];
@@ -103,11 +104,12 @@ export const computeTraductionFinished = (
   dispositif: Dispositif,
   translation: Traductions,
 ): boolean => {
-  if (!dispositif.translations?.fr) return false;
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
+  if (!frTranslation) return false;
 
   const dispositifSectionsCounter = removeEmptyValues(
-    keys(dispositif.translations.fr) as (keyof TranslationContent)[],
-    dispositif.translations.fr,
+    keys(frTranslation) as (keyof TranslationContent)[],
+    frTranslation,
   ).length;
 
   const translationSectionsCounter = removeEmptyValues(

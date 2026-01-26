@@ -69,9 +69,10 @@ export type FlexibleDispositifContent = DispositifContent | MarkdownContent;
  * Type guard pour vérifier si un contenu est structuré (what, why, how)
  */
 export function hasStructuredContent(
-  content: FlexibleDispositifContent | DemarcheContent,
+  content: FlexibleDispositifContent | DemarcheContent | undefined,
 ): content is StructuredContent {
   return (
+    !!content &&
     "what" in content &&
     "why" in content &&
     "how" in content &&
@@ -83,9 +84,9 @@ export function hasStructuredContent(
  * Type guard pour vérifier si un contenu est uniquement markdown
  */
 export function hasMarkdownContent(
-  content: FlexibleDispositifContent | DemarcheContent,
+  content: FlexibleDispositifContent | DemarcheContent | undefined,
 ): content is MarkdownContent {
-  return "markdown" in content && !!(content as MarkdownContent).markdown;
+  return !!content && "markdown" in content && !!(content as MarkdownContent).markdown;
 }
 
 export interface TranslationContent {

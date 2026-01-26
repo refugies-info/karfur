@@ -26,6 +26,7 @@ import { cleanupAvis } from "~/libs/cleanupAvis";
 import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import type { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
+import { getAvailableLanguages, getDispositifTranslation } from "./dispositif.business";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -130,13 +131,13 @@ export const getSimpleDispositifs = async (
     sort,
   ).then(
     map((dispositif) => {
-      const translation = dispositif.translations[locale] || dispositif.translations.fr;
+      const translation = getDispositifTranslation(dispositif, locale);
       const resDisp = {
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations", "mainSponsor"]),
-        availableLanguages: Object.keys(dispositif.translations),
+        availableLanguages: getAvailableLanguages(dispositif),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
         origin: dispositif.origin ?? "RI",
@@ -207,7 +208,7 @@ export const getStructureDispositifs = async (
     })
     .then(({ dispositifs, usernames }) =>
       dispositifs.map((dispositif) => {
-        const translation = dispositif.translations[locale] || dispositif.translations.fr;
+        const translation = getDispositifTranslation(dispositif, locale);
         const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
           return {
             ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
@@ -220,7 +221,7 @@ export const getStructureDispositifs = async (
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
           ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
-          availableLanguages: Object.keys(dispositif.translations),
+          availableLanguages: getAvailableLanguages(dispositif),
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: dispositif.merci.length,
           suggestions,
@@ -449,7 +450,7 @@ export const modifyReadSuggestionInDispositif = async (
 
 export const getDispositifName = async (id: Id) =>
   DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 }).then(
-    (res) => res?.translations.fr.content.titreInformatif,
+    (res) => getDispositifTranslation(res as any, "fr")?.content.titreInformatif,
   );
 
 export const getDispositifById = async (

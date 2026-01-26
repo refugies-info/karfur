@@ -35,8 +35,10 @@ import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizati
 import logger from "~/logger";
 import { pictureToImageSchema } from "~/mappers/image-mapper";
 import {
+  getAvailableLanguages,
   getDispositifSecondaryThemes,
   getDispositifTheme,
+  getDispositifTranslation,
 } from "~/modules/dispositif/dispositif.business";
 import {
   sendMailWhenDispositifPublished,
@@ -79,9 +81,10 @@ export const addDispositifToAirtable = (dispositif: Dispositif) => {
   const theme = getDispositifTheme(dispositif);
   const secondaryThemes = getDispositifSecondaryThemes(dispositif);
 
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
   const content: DispositifToExport = {
     fields: {
-      "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
+      "Titre informatif": frTranslation?.content.titreInformatif || "",
       "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
       "Type de contenus":
         dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
@@ -129,11 +132,12 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
       return null;
     }
     const theme = (getDispositifTheme(dispositif)?.name?.fr || "").toLowerCase();
+    const frTranslation = getDispositifTranslation(dispositif, "fr");
     const contentTitle = `${
       dispositif.typeContenu === ContentType.DISPOSITIF
-        ? dispositif.translations.fr.content.titreMarque + " - "
+        ? frTranslation?.content.titreMarque + " - "
         : ""
-    } ${dispositif.translations.fr.content.titreInformatif}`;
+    } ${frTranslation?.content.titreInformatif}`;
     const structure = user.structures[0]?.nom
       ? ` de la structure _${user.structures[0]?.nom}_`
       : "";
@@ -190,8 +194,10 @@ export const deleteLineBreaksInInfosections = (
 };
 
 const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
+  if (!frTranslation) return;
   const newDispositif = cloneDeep(dispositif.translations);
-  set(newDispositif, "fr.content.what", deleteLineBreaks(newDispositif.fr.content.what));
+  set(newDispositif, "fr.content.what", deleteLineBreaks(frTranslation.content.what));
   set(
     newDispositif,
     "fr.content.how",
@@ -220,10 +226,11 @@ const rebuildTranslations = async (
   keepTranslations: boolean,
 ): Promise<Dispositif["translations"]> => {
   const translations = dispositif.translations;
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
   /**
    * Calcul des changements qui doivent être revus en traduction
    */
-  const traductionDiff = diffTraductions(translations.fr, translationContent);
+  const traductionDiff = diffTraductions(frTranslation, translationContent);
   logger.info("[updateDispositif] traduction changes ", traductionDiff);
 
   const newTranslations = cloneDeep(translations);
@@ -237,7 +244,7 @@ const rebuildTranslations = async (
    * Pas de nouvelle traduction nécessaire si uniquement des suppressions.
    */
   if (!isEmpty(traductionDiff.removed)) {
-    Object.keys(translations).forEach((locale) => {
+    getAvailableLanguages(dispositif).forEach((locale) => {
       traductionDiff.removed.forEach((section) => {
         unset(newTranslations, `${locale}.${section}`);
       });
@@ -364,9 +371,10 @@ export const saveAndOverwriteDraft = async (
   }
 
   if (draftDispositif) {
+    const draftFr = getDispositifTranslation(draftDispositif, "fr");
     const newTranslations = await rebuildTranslations(
       oldDispositif,
-      draftDispositif.translations.fr,
+      draftFr,
       keepTranslations || false,
     );
     dispositifToSave.translations = newTranslations;
@@ -596,7 +604,9 @@ const isMetadataOk = (content: unknown): boolean => {
 };
 
 export const isDispositifComplete = (dispositif: Dispositif) => {
-  const content = dispositif.translations.fr.content;
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
+  if (!frTranslation) return false;
+  const content = frTranslation.content;
   const conditions: boolean[] = [
     !!content.titreInformatif,
     dispositif.typeContenu === ContentType.DEMARCHE || !!content.titreMarque,

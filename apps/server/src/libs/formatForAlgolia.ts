@@ -3,16 +3,20 @@ import { get } from "lodash";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import type { AlgoliaObject } from "~/types/interface";
 
-const extractValuesPerLanguage = (
-  translations: Dispositif["translations"],
-  path: string,
-  keyPrefix: string,
-) => {
+const extractValuesPerLanguage = (translations: any, path: string, keyPrefix: string) => {
   if (!translations) return {};
   const normalizedObject: Record<string, string> = {};
-  for (const [ln, translation] of Object.entries(translations)) {
-    const value = get(translation, path);
-    normalizedObject[`${keyPrefix}_${ln}`] = value;
+
+  if (typeof translations.entries === "function") {
+    for (const [ln, translation] of translations.entries()) {
+      const value = get(translation, path);
+      normalizedObject[`${keyPrefix}_${ln}`] = value;
+    }
+  } else {
+    for (const [ln, translation] of Object.entries(translations)) {
+      const value = get(translation, path);
+      normalizedObject[`${keyPrefix}_${ln}`] = value;
+    }
   }
   return normalizedObject;
 };

@@ -7,6 +7,10 @@ import type { Dispositif } from "@refugies-info/mongo";
 import { cache } from "~/libs/cache";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
+import {
+  getAvailableLanguages,
+  getDispositifTranslation,
+} from "~/modules/dispositif/dispositif.business";
 import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
@@ -14,12 +18,16 @@ import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
 const NB_WORDS_CACHE = "nbWordsCache";
 
-const countWordsInDispositif = (dispositif: Dispositif): number =>
-  Object.entries(dispositif.translations)
-    .map(([ln, translation]) =>
-      ln === "fr" ? 0 : countDispositifWords(translation.content as any),
-    )
+const countWordsInDispositif = (dispositif: Dispositif): number => {
+  const languages = getAvailableLanguages(dispositif);
+  return languages
+    .map((ln) => {
+      if (ln === "fr") return 0;
+      const translation = getDispositifTranslation(dispositif, ln as any, false);
+      return countDispositifWords(translation?.content as any);
+    })
     .reduce((acc, count) => acc + count, 0);
+};
 
 const getTranslationStatistics = ({
   facets = [],
