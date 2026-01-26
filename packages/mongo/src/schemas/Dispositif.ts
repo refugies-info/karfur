@@ -140,11 +140,7 @@ export const TranslationContentZodSchema = z.object({
   validatorId: zId("User"), // Assuming Validator is User
 });
 
-export type TranslationContent = {
-  content: DispositifContent | DemarcheContent;
-  created_at: Date;
-  validatorId: Types.ObjectId;
-};
+export type TranslationContent = z.infer<typeof TranslationContentZodSchema>;
 
 // --- Main Dispositif Schema ---
 
