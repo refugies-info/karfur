@@ -1,5 +1,10 @@
 import { t } from "i18next";
-import { sanitizeContent } from "~/lib/sanitizeContent";
+import DOMPurify from "isomorphic-dompurify";
+
+const sanitizeContent = (content?: string): string => {
+  if (!content) return "";
+  return DOMPurify.sanitize(content);
+};
 
 export const getCalloutTranslationKey = (level: "info" | "important") => {
   switch (level) {

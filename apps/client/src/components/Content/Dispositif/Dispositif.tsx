@@ -3,7 +3,9 @@ import { ContentType } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
+import remarkGfm from "remark-gfm";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
@@ -17,8 +19,9 @@ import NorthStar from "~/components/Pages/dispositif/NorthStar";
 import SEO from "~/components/Seo";
 import { useContentLocale, useRtriLinks, useScrolledBottomEvent } from "~/hooks";
 import { cn } from "~/lib/classname";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import LeftSidebar from "./LeftSidebar";
 import RightSidebar from "./RightSidebar";
@@ -39,10 +42,11 @@ const Dispositif = (props: Props) => {
   const { isTablet, isMobile, isDesktop, isLargeDesktop } = useWindowSize();
   const pageContext = useContext(PageContext);
   const dispositif = useSelector(selectedDispositifSelector);
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const { isRTL } = useContentLocale();
   useScrolledBottomEvent(pageContext.mode === "view");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const typeContenu = useMemo(
     () => props.typeContenu || dispositif?.typeContenu || ContentType.DISPOSITIF,
@@ -74,24 +78,14 @@ const Dispositif = (props: Props) => {
             dir={isRTL ? undefined : "ltr"}
             aria-labelledby="main-title"
           >
-            {dispositif?.origin === "RCO" ? (
-              <div className="fr-callout fr-callout--info">
-                <p className="fr-callout__text">
-                  Ce contenu est généré par intelligence artificielle et est actuellement en cours
-                  de validation. Les informations présentées sont fournies à titre indicatif et
-                  peuvent ne pas refléter la situation actuelle des dispositifs d'aide.
-                </p>
-              </div>
-            ) : (
-              CONTENT_STRUCTURES[typeContenu].map((section, i) => (
-                <Section
-                  key={i}
-                  sectionKey={section}
-                  contentType={typeContenu}
-                  className={cn(i === 0 && "z-10")}
-                />
-              ))
-            )}
+            {CONTENT_STRUCTURES[typeContenu].map((section, i) => (
+              <Section
+                key={i}
+                sectionKey={section}
+                contentType={typeContenu}
+                className={cn(i === 0 && "z-10")}
+              />
+            ))}
             {/* TODO: adapt the Map component to be used in edit mode */}
             {isViewMode ? (
               (dispositif?.map || []).length > 0 && <MapNew data={dispositif?.map || []} />

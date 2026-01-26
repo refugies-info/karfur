@@ -186,45 +186,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
         >
           structureTest
         </div>
-        <a
-          class="btn dark"
-          href="/annuaire/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
       </div>
       <div
         class="c3"
@@ -1064,45 +1025,6 @@ exports[`UserStructure should render correctly when structure with membres when 
         >
           structureTest
         </div>
-        <a
-          class="btn dark"
-          href="/annuaire/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
       </div>
       <div
         class="c3"
@@ -1566,45 +1488,6 @@ exports[`UserStructure should render correctly when structure with membres when 
         >
           structureTest
         </div>
-        <a
-          class="btn dark"
-          href="/annuaire/structureId"
-        >
-          <span
-            class="me-2 icon"
-          >
-            <i
-              style="height: 20px; line-height: 20px;"
-            >
-              <svg
-                class="eva eva-book-outline"
-                fill="#fff"
-                height="20px"
-                viewBox="0 0 24 24"
-                width="20px"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  data-name="Layer 2"
-                >
-                  <g
-                    data-name="book"
-                  >
-                    <rect
-                      height="24"
-                      opacity="0"
-                      width="24"
-                    />
-                    <path
-                      d="M19 3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM7 5h11v10H7a3 3 0 0 0-1 .18V6a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 0-2h11v2z"
-                    />
-                  </g>
-                </g>
-              </svg>
-            </i>
-          </span>
-          Voir dans l'annuaire
-        </a>
       </div>
       <div
         class="c3"

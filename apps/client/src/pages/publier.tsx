@@ -1,5 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
-import { RoleName } from "@refugies-info/api-types";
+import {
+  type GetStatisticsResponse,
+  type GetStructureStatisticsResponse,
+  RoleName,
+} from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useState } from "react";
@@ -462,17 +466,27 @@ const RecensezVotreAction = (props: Props) => {
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const dispStatistics = await API.getDispositifsStatistics({
-    facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
-  });
-  const structStatistics = await API.getStructuresStatistics({ facets: ["nbStructures"] });
+  let dispStatistics: Partial<GetStatisticsResponse> = {};
+  let structStatistics: Partial<GetStructureStatisticsResponse> = {};
+
+  try {
+    dispStatistics = await API.getDispositifsStatistics({
+      facets: ["nbVues", "nbVuesMobile", "nbDispositifs", "nbDemarches"],
+    });
+    structStatistics = await API.getStructuresStatistics({
+      facets: ["nbStructures"],
+    });
+  } catch (error) {
+    // Log error but don't fail the build - use default values instead
+    console.error("[publier] Failed to fetch statistics during build:", error);
+  }
 
   return {
     props: {
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       nbVues: (dispStatistics.nbVues || 0) + (dispStatistics.nbVuesMobile || 0),
       nbFiches: (dispStatistics.nbDispositifs || 0) + (dispStatistics.nbDemarches || 0),
-      nbStructures: structStatistics.nbStructures,
+      nbStructures: structStatistics.nbStructures || 0,
     },
     revalidate: 60,
   };

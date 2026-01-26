@@ -102,8 +102,12 @@ const Homepage = (props: Props) => {
             count: props.contentStatistics.nbDemarches || 0,
           }),
           seeMore: t("Homepage.demarcheSeeAll", "Voir toutes les démarches"),
-          prev: t("ui.carrouselPrev", "Faire défiler à gauche", { type: "demarche" }),
-          next: t("ui.carrouselNext", "Faire défiler à droite", { type: "demarche" }),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche", {
+            type: "demarche",
+          }),
+          next: t("ui.carrouselNext", "Faire défiler à droite", {
+            type: "demarche",
+          }),
           countSeparator: t("ui.countSeparator", "sur"),
         }}
         seeMoreUrl="/recherche?search=&sort=default&type=demarche"
@@ -154,6 +158,8 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   let translationStatistics: TranslationStatisticsResponse = {};
   let contentStatistics: GetStatisticsResponse = {};
   let structuresStatistics: GetStructureStatisticsResponse = {};
+  let demarches: SimpleDispositif[] = [];
+  let dispositifs: SimpleDispositif[] = [];
 
   try {
     contentStatistics = await API.getDispositifsStatistics({
@@ -172,22 +178,22 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
     translationStatistics = await API.getTranslationStatistics({
       facets: ["nbTranslators", "nbRedactors"],
     });
+
+    demarches = await API.getDispositifs({
+      type: ContentType.DEMARCHE,
+      limit: 15,
+      sort: "nbVues",
+      locale: locale || "fr",
+    });
+    dispositifs = await API.getDispositifs({
+      type: ContentType.DISPOSITIF,
+      limit: 15,
+      sort: "nbVues",
+      locale: locale || "fr",
+    });
   } catch (e) {
     logger.error("[index] build page", e);
   }
-
-  const demarches = await API.getDispositifs({
-    type: ContentType.DEMARCHE,
-    limit: 15,
-    sort: "nbVues",
-    locale: locale || "fr",
-  });
-  const dispositifs = await API.getDispositifs({
-    type: ContentType.DISPOSITIF,
-    limit: 15,
-    sort: "nbVues",
-    locale: locale || "fr",
-  });
 
   return {
     props: {

@@ -1,13 +1,21 @@
-import { ContentType, type InfoSections } from "@refugies-info/api-types";
+import { ContentType, type InfoSections, type Languages } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type React from "react";
 import { useContext, useMemo } from "react";
+import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
+import remarkDirective from "remark-directive";
+import remarkGfm from "remark-gfm";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { cn } from "~/lib/classname";
+import {
+  getDirectiveComponents,
+  remarkDirectiveToComponent,
+} from "~/lib/markdown/directive-to-component";
+import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
-import { themeSelector } from "~/services/Themes/themes.selectors";
+import { makeThemeSelector } from "~/services/Themes/themes.selectors";
 import PageContext from "~/utils/pageContext";
 import Accordions from "../Accordions";
 import RichText from "../RichText";
@@ -27,7 +35,7 @@ const DEFAULT_COLOR_30 = "#ccc";
  * Shows a section of a dispositif. Can display a rich text or InfoSections. Can be used in VIEW or EDIT mode.
  */
 const Section = ({ sectionKey, contentType, className }: Props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const pageContext = useContext(PageContext);
   const isViewMode = useMemo(() => pageContext.mode === "view", [pageContext.mode]);
@@ -39,13 +47,31 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
     [sectionKey, dispositif],
   );
 
+  const markdown = useMemo(() => {
+    if (sectionKey !== "what") return null;
+    if (!dispositif?.origin || dispositif.origin === "RI") return null;
+    const translationContent = dispositif.translations?.[i18n.language as Languages]?.content;
+    return (
+      dispositif.markdown || (dispositif as any).translations?.[i18n.language]?.content?.markdown
+    );
+  }, [sectionKey, dispositif, i18n.language]);
+
   const contentAccordions: InfoSections | undefined = useMemo(
     () => (sectionKey !== "what" ? dispositif?.[sectionKey] : undefined),
     [sectionKey, dispositif],
   );
 
+  if (
+    isViewMode &&
+    sectionKey !== "what" &&
+    (!contentAccordions || Object.keys(contentAccordions).length === 0)
+  ) {
+    return null;
+  }
+
   // colors
-  const theme = useSelector(themeSelector(dispositif?.theme));
+  const selectTheme = useMemo(makeThemeSelector, []);
+  const theme = useSelector((state: RootState) => selectTheme(state, dispositif?.theme));
   const colors = useMemo(
     () => ({
       color100: theme?.colors.color100 || DEFAULT_COLOR_100,
@@ -68,10 +94,22 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
         {sectionKey === "what" ? (
           <>
             <Header typeContenu={contentType || ContentType.DISPOSITIF} />
-            {contentHtml && isViewMode && (
+            {contentHtml && isViewMode && !markdown && (
               <SectionButtons id={sectionKey} className="mb-6 md:hidden" content={contentHtml} />
             )}
-            <RichText id={sectionKey} value={contentHtml} />
+
+            {markdown ? (
+              <div className="prose no-dsfr section-markdown">
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveToComponent]}
+                  components={getDirectiveComponents(t)}
+                >
+                  {markdown}
+                </ReactMarkdown>
+              </div>
+            ) : (
+              <RichText id={sectionKey} value={contentHtml} />
+            )}
           </>
         ) : (
           <>

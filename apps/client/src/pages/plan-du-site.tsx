@@ -112,14 +112,14 @@ const PlanDuSite = () => {
         {
           id: "installApp",
           label: t("sitemap.links.installApp", "Installer l'application"),
-          href: "#application",
+          href: "/#application",
           isExternal: true,
         },
         {
           id: "helpCenter",
           label: t("sitemap.links.helpCenter", "Centre d'aide"),
-          href: "/faq",
-          isExternal: false,
+          href: "https://help.refugies.info/fr/",
+          isExternal: true,
         },
       ],
     },

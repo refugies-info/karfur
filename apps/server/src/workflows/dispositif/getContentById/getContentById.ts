@@ -198,7 +198,7 @@ export const getContentById = async (
       "creatorId",
       "origin",
     ]),
-  };
+  } as unknown as GetDispositifResponse;
 
   if (dispositif.typeContenu === ContentType.DEMARCHE) {
     response.administration = {

@@ -15,6 +15,7 @@ import type {
   SimpleUser,
   Sponsor,
 } from "../generics";
+import type { TranslationContent } from "./translations";
 
 export enum ViewsType {
   WEB = "web",
@@ -161,6 +162,7 @@ export interface DispositifRequest {
   titreMarque?: string;
   abstract?: string;
   what?: string;
+  markdown?: string;
   why?: { [key: string]: InfoSection };
   how?: { [key: string]: InfoSection };
   next?: { [key: string]: InfoSection };
@@ -175,7 +177,7 @@ export interface DispositifRequest {
   };
   theme?: string;
   secondaryThemes?: string[];
-  sponsors?: Sponsor[];
+  sponsors?: (Sponsor | string)[];
   administration?: DemarcheAdministration;
   metadatas?: Metadatas;
   map?: Poi[] | null;
@@ -238,14 +240,12 @@ export interface CreateDispositifRequest extends DispositifRequest {
 /**
  * @url GET /dispositifs/{id}
  */
-export type GetDispositifResponse = {
+export type BaseGetDispositifResponse = {
   _id: Id;
   titreInformatif: string;
   titreMarque: string;
   abstract: string;
-  what: string;
   why?: InfoSections;
-  how: InfoSections;
   next?: InfoSections;
   administration?: DemarcheAdministration;
   typeContenu: ContentType;
@@ -255,8 +255,6 @@ export type GetDispositifResponse = {
   secondaryThemes?: Id[];
   needs: Id[];
   sponsors?: (Sponsor | ContentStructure)[];
-  participants: SimpleUser[];
-  merci: { created_at: Date; userId?: Id }[];
   avis: {
     created_at: Date;
     userId?: Id;
@@ -273,7 +271,26 @@ export type GetDispositifResponse = {
   externalLink?: string;
   hasDraftVersion: boolean;
   origin: DispositifOrigin;
+  translations?: Partial<Record<Languages, TranslationContent>>;
 };
+
+export type GetDispositifResponse = BaseGetDispositifResponse &
+  (
+    | {
+        markdown: string;
+        what?: undefined;
+        how?: undefined;
+        participants?: undefined;
+        merci?: undefined;
+      }
+    | {
+        markdown?: undefined;
+        what: string;
+        how: InfoSections;
+        participants: SimpleUser[];
+        merci: { created_at: Date; userId?: Id }[];
+      }
+  );
 
 /**
  * @url GET /dispositifs/user-contributions

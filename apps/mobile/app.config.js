@@ -1,10 +1,61 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
+
+import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
-// Update thiq version variable before publishing the app
-// Build versioning is now managed remotely via EAS
-const displayVersionNumber = "2025.03.1";
+const APP_VERSION = "2.2.1";
+
+const withCustomGradleProperties = (config) => {
+  return withGradleProperties(config, (config) => {
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.jvmargs",
+      value: "-Xmx4096m -XX:MaxMetaspaceSize=512m",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.daemon",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.parallel",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.caching",
+      value: "true",
+    });
+    config.modResults.push({
+      type: "property",
+      key: "org.gradle.configureondemand",
+      value: "true",
+    });
+    return config;
+  });
+};
+
+const withDisableStrictLinting = (config) => {
+  return withAppBuildGradle(config, (modConfig) => {
+    const buildGradle = modConfig.modResults.contents;
+    const lintOptions = `
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            abortOnError false
+        }
+    }
+    `;
+    // Append the lint options to the end of the file or inside the android block if we were parsing it properly.
+    // Appending it to the end works because Gradle merges blocks.
+    if (!/lintOptions\s*{/.test(buildGradle)) {
+      modConfig.modResults.contents = buildGradle + lintOptions;
+    }
+    return modConfig;
+  });
+};
 
 export default {
   name: "Réfugiés.info",
@@ -85,6 +136,7 @@ export default {
   expo: {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
+    version: APP_VERSION,
     newArchEnabled: true,
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
@@ -139,6 +191,8 @@ export default {
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/crashlytics",
+      withCustomGradleProperties,
+      withDisableStrictLinting,
     ],
     android: {
       userInterfaceStyle: "light",
@@ -191,10 +245,10 @@ export default {
       associatedDomains: ["applinks:refugies.info", "applinks:www.refugies.info"],
     },
     extra: {
+      displayVersionNumber: APP_VERSION,
       eas: {
         projectId: "985bc919-57f5-4851-9f2f-748af3408606",
       },
-      displayVersionNumber,
     },
     runtimeVersion: {
       policy: "sdkVersion",

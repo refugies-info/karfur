@@ -92,12 +92,7 @@ const Sponsors = ({
                 />
               </>
             ) : (
-              <Link
-                href={`/annuaire/${String((mainSponsor as ContentStructure)?._id)}`}
-                className={cn("fr-link")}
-              >
-                {(mainSponsor as ContentStructure)?.nom}
-              </Link>
+              <>{(mainSponsor as ContentStructure)?.nom}</>
             )}{" "}
             {hasSponsors && sponsors.length > 0 && ", "}
           </>

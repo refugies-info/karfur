@@ -41,10 +41,22 @@
       "stylus": "npm:noop3@^1000.0.0",
       "tmp": "^0.2.4",
       "undici": "6.21.2",
-      "validator": "^13.15.20"
+      "validator": "^13.15.20",
+      "mdast-util-to-hast": ">=13.2.1",
+      "react-server-dom-webpack": ">=19.0.2",
+      "node-forge": ">=1.3.2",
+      "jsonwebtoken>jws": "^3.2.3",
+      "google-auth-library>jws": "^4.0.1",
+      "gtoken>jws": "^4.0.1"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "19",
+        "react-dom": "19"
+      }
     }
   },
   "scripts": {
@@ -97,6 +109,9 @@
     "eas:build": "cd apps/mobile && eas build --profile development",
     "eas:build:android": "cd apps/mobile && eas build --profile development --platform android",
     "eas:build:ios": "cd apps/mobile && eas build --profile development --platform ios",
+    "eas:build:staging": "cd apps/mobile && eas build --profile staging",
+    "eas:build:android:staging": "cd apps/mobile && eas build --profile staging --platform android",
+    "eas:build:ios:staging": "cd apps/mobile && eas build --profile staging --platform ios",
     "eas:update": "cd apps/mobile && eas update --channel staging",
     "eas:update:android": "cd apps/mobile && eas update --channel staging --platform android",
     "eas:update:ios": "cd apps/mobile && eas update --channel staging --platform ios",
@@ -141,5 +156,5 @@
     "*.{css,scss}": "stylelint --fix",
     "*.{js,jsx,ts,tsx,json,jsonc}": "biome check --write --no-errors-on-unmatched"
   },
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.26.1"
 }

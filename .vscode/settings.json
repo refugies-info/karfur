@@ -42,6 +42,10 @@
   "i18n-ally.displayLanguage": "fr",
   "i18n-ally.extract.ignoredByFiles": {},
   "i18n-ally.pathMatcher": "{locale}/common.json",
+  // Github
+  "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.pullBranch": "never",
+  "githubIssues.issueBranchTitle": "feat/#${issueNumber}-${sanitizedIssueTitle}",
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib",

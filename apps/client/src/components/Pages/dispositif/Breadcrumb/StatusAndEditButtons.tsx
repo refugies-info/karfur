@@ -52,13 +52,16 @@ const StatusAndEditButtons = ({ dispositif }: Props) => {
             hasDraftVersion={!!dispositif.hasDraftVersion}
             isAdmin={user.admin}
             className="me-4"
+            text={router.pathname.includes("/preview") ? "PRÉVISUALISATION" : undefined}
           />
-          <button
-            className="fr-btn fr-btn--icon-right fr-icon-edit-line fr-btn--sm"
-            onClick={onEditClick}
-          >
-            Modifier la fiche
-          </button>
+          {!router.pathname.includes("/preview") && (
+            <button
+              className="fr-btn fr-btn--icon-right fr-icon-edit-line fr-btn--sm"
+              onClick={onEditClick}
+            >
+              Modifier la fiche
+            </button>
+          )}
           <EditModal
             show={showEditModal}
             toggle={() => setShowEditModal((o) => !o)}

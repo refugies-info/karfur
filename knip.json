@@ -4,7 +4,7 @@
   "workspaces": {
     ".": {
       "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"],
-      "ignoreDependencies": []
+      "ignoreDependencies": ["turbo"]
     },
     "apps/client": {
       "entry": ["next-sitemap.config.js"],
