@@ -49,8 +49,8 @@ jobs:
       - name: Check Types
         run: pnpm check:types
 
-      - name: Test (except mobile for now because flaky)
-        run: moon run :test --query "project!=mobile"
+      - name: Test (client and server only)
+        run: moon run client:test server:test
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}
