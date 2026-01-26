@@ -1,8 +1,8 @@
 /* eslint-disable no-use-before-define */
 "use client";
 
-import Accordion from "@codegouvfr/react-dsfr/Accordion";
 import { ContentType, type InfoSection, type InfoSections } from "@refugies-info/api-types";
+import { RIAccordion } from "@refugies-info/ui";
 import { useCallback, useContext, useState } from "react";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -10,7 +10,6 @@ import PageContext from "~/utils/pageContext";
 import { AccordionsEdit } from "../Edition";
 import SectionButtons from "../SectionButtons";
 import Text from "../Text";
-import styles from "./Accordions.module.scss";
 
 interface AccordionItemProps {
   contentType: ContentType;
@@ -74,36 +73,14 @@ const AccordionItem = ({
   );
 
   return (
-    <Accordion
+    <RIAccordion
       key={sectionId}
       expanded={expanded}
       onExpandedChange={handleExpandedChange}
-      className={cn(
-        styles.accordion,
-        "max-md:[&_h3_button]:text-lg",
-        "[&_h3_button]:text-title-grey",
-        "[&_h3_button]:after:hidden",
-        "[&_h3_button]:grid-cols-[1fr_auto_auto] [&_h3_button]:items-start [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
-        "rtl:[&_h3_button]:text-right",
-      )}
-      label={
-        <>
-          <span className="inline-flex items-start gap-2 leading-[1.75rem]">
-            {sectionKey === "how" && contentType === ContentType.DEMARCHE && (
-              <span className="inline-flex h-6 w-6 items-center justify-center rounded-full pt-1">
-                <span className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full p-[0.41669rem] text-white md:p-0.5">
-                  {index + 1}
-                </span>
-              </span>
-            )}
-            {section.title}
-          </span>
-          <span className="flex items-center">
-            <i className="ri-add-fill scale-75" />
-            <i className="ri-subtract-fill scale-75" />
-          </span>
-        </>
+      stepNumber={
+        sectionKey === "how" && contentType === ContentType.DEMARCHE ? index + 1 : undefined
       }
+      title={section.title}
     >
       <div className="flex items-start justify-between gap-2 max-sm:flex-col-reverse [&_p:last-child]:mb-0">
         <Text className="prose max-w-full max-sm:px-4" id={`${sectionKey}.${sectionId}.text`} html>
@@ -117,7 +94,7 @@ const AccordionItem = ({
           />
         )}
       </div>
-    </Accordion>
+    </RIAccordion>
   );
 };
 

@@ -4,4 +4,5 @@ export * from "./carrousel";
 export * from "./Map";
 export * from "./MetaData";
 export * from "./Modal";
+export * from "./RIAccordion/RIAccordion";
 export * from "./vote";
