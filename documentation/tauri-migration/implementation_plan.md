@@ -150,10 +150,10 @@ $schema: 'https://moonrepo.dev/schemas/toolchain.json'
 
 # Node.js configuration (existing projects)
 node:
-  version: '24.11.1'
+  version: '24.13.0'
   packageManager: 'pnpm'
   pnpm:
-    version: '10.26.1'
+    version: '10.28.0'
 
   # Infer tasks from package.json
   inferTasksFromScripts: true

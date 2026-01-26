@@ -151,9 +151,5 @@
     "typescript": "^5.9.2",
     "typescript-plugin-css-modules": "^5.2.0",
     "wait-on": "^9.0.3"
-  },
-  "volta": {
-    "node": "24.11.1",
-    "pnpm": "10.23.0"
   }
 }

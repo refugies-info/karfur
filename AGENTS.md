@@ -174,7 +174,7 @@ pnpm clean:cache           # Clear build artifacts
 
 ### Core Requirements
 
-- **Node.js**: 22.x LTS (currently 24.11.1)
+- **Node.js**: 22.x LTS (currently 24.13.0)
 - **Language**: TypeScript (all new code MUST be TypeScript)
 - **Package Manager**: pnpm 10.18.0
 - **Build Tool**: Turborepo
