@@ -3,6 +3,7 @@ import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
+import { I18nCodeZodSchema } from "./Langue";
 
 // --- Nested Types ---
 export type InfoSections = Record<string, InfoSection>;
@@ -199,7 +200,7 @@ export const DispositifZodSchema = z.object({
   avis: z.array(AvisZodSchema).optional(),
   webOnly: z.boolean().optional(),
 
-  translations: z.any().optional(),
+  translations: z.record(I18nCodeZodSchema, TranslationContentZodSchema).optional(),
   metadatas: MetadatasZodSchema.optional(),
   map: z.array(PoiZodSchema).nullable().optional(),
   administrationLogo: ImageZodSchema.nullable().optional(),

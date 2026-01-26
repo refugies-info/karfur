@@ -2,12 +2,16 @@ import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
 
+// Reusable i18n code schema for language codes
+export const I18nCodeZodSchema = z.enum(["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"]);
+export type I18nCode = z.infer<typeof I18nCodeZodSchema>;
+
 // Zod Schema
 export const LangueZodSchema = z.object({
   langueFr: z.string(),
   langueLoc: z.string().optional(),
   langueCode: z.string().optional(),
-  i18nCode: z.enum(["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"]),
+  i18nCode: I18nCodeZodSchema,
   avancement: z.number().default(0),
   avancementTrad: z.number().default(0),
   created_at: z.date().optional(),
