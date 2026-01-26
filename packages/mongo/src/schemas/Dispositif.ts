@@ -219,6 +219,8 @@ export type DispositifId = Types.ObjectId | string;
 const DispositifMongooseSchema = zodSchema(DispositifZodSchema);
 DispositifMongooseSchema.set("collection", "dispositifs");
 DispositifMongooseSchema.set("timestamps", { createdAt: "created_at" });
+DispositifMongooseSchema.set("toObject", { flattenMaps: true });
+DispositifMongooseSchema.set("toJSON", { flattenMaps: true });
 
 // Configure _id: false for nested schemas where appropriate
 // Metadatas children

@@ -168,18 +168,27 @@ export const getContentById = async (
 
   const originalDispositifObject = originalDispositif.toObject();
   const dispositifObject = dispositif.toObject();
-  // if FR: show draft version if available / if other language: show published verison
+
   const translation =
     dataLanguage === "fr"
-      ? dispositifObject.translations[dataLanguage]
-      : originalDispositifObject.translations[dataLanguage];
+      ? dispositifObject.translations?.[dataLanguage]
+      : originalDispositifObject.translations?.[dataLanguage];
+
+  if (!translation) {
+    logger.error("[getContentById] translation missing", {
+      id,
+      dataLanguage,
+      hasTranslations: !!(dispositifObject.translations || originalDispositifObject.translations),
+    });
+    throw new NotFoundError("Translation not found");
+  }
 
   const response: any = {
     _id: dispositifObject._id,
     ...translation.content,
     participants: participantsWithRoles,
     metadatas: getMetadatas(dispositifObject.metadatas as any),
-    availableLanguages: Object.keys(originalDispositifObject.translations), // show available languages of published version only
+    availableLanguages: Object.keys(originalDispositifObject.translations || {}), // show available languages of published version only
     date: translation.created_at || dispositifObject.lastModificationDate,
     hasDraftVersion: !!draftDispositif,
     ...pick(dispositif, [
