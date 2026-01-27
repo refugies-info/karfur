@@ -3,10 +3,12 @@ import * as Linking from "expo-linking";
 import * as React from "react";
 import { Text, View } from "react-native";
 import HTML from "react-native-render-html";
+import { useSelector } from "react-redux";
 import sanitizeHtml from "sanitize-html";
 import { useTheme } from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { getScreenFromUrl } from "~/libs/getScreenFromUrl";
+import { currentI18nCodeSelector } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import { RTLView } from "../BasicComponents";
 import { Icon } from "../iconography";
@@ -15,6 +17,7 @@ import { Link } from "../Profil/Typography";
 import { ReadableText, type ReadableTextRef } from "../ReadableText";
 import { TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
 import { Callout } from "../typography";
+import { AccordionAnimated } from "./AccordionAnimated";
 
 interface Props {
   htmlContent: string;
@@ -36,6 +39,7 @@ const sanitizeForReading = (htmlContent: string) => {
 export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, ref) => {
   const theme = useTheme();
   const { t, isRTL } = useTranslationWithRTL();
+  const currentLanguage = useSelector(currentI18nCodeSelector);
 
   const navigation = useNavigation();
   /**
@@ -45,8 +49,10 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
   const handleOpenUrl = (url: string) => {
     if (!url.includes("refugies.info")) Linking.openURL(url);
     const screen = getScreenFromUrl(url);
-    //@ts-expect-error navigation.navigate is not typed
-    if (screen) navigation.navigate(screen.rootNavigator, screen.screenParams);
+    if (screen) {
+      // @ts-expect-error dynamic dispatch
+      (navigation as any).navigate(screen.rootNavigator, screen.screenParams);
+    }
   };
 
   return (
@@ -166,10 +172,11 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
               </TextDSFR_MD>
             ),
             div: (_, children, _cssStyles, passProps) => {
+              // DIRECTIVE: :::important
               if (_["data-callout"] === "important") {
                 return (
                   <View key={passProps.key}>
-                    <Spacer key={passProps.key + "_spacer"} height={theme.margin * 3} />
+                    <Spacer key={`${passProps.key}_spacer_top`} height={theme.margin * 3} />
                     <Card key={passProps.key} backgroundColor={theme.colors.lightGrey}>
                       <Columns layout="auto 1">
                         <View
@@ -190,13 +197,40 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
                         </View>
                       </Columns>
                     </Card>
-                    <Spacer key={passProps.key + "_spacer_"} height={theme.margin * 3} />
+                    <Spacer key={`${passProps.key}_spacer_bottom`} height={theme.margin * 3} />
                   </View>
                 );
               }
 
+              // DIRECTIVE: :::good-to-know (info)
               if (_["data-callout"] === "info") {
                 return <Callout key={passProps.key}>{children}</Callout>;
+              }
+
+              // DIRECTIVE: :::toggle
+              if (_["data-component"] === "toggle") {
+                const title = _["data-title"];
+                const stepNumber = _["data-step-number"]
+                  ? Number.parseInt(String(_["data-step-number"]), 10)
+                  : null;
+
+                return (
+                  <AccordionAnimated
+                    key={passProps.key}
+                    title={String(title || "")}
+                    content=""
+                    childrenContent={children}
+                    stepNumber={stepNumber}
+                    width={props.windowWidth - theme.margin * 2 * 2}
+                    currentLanguage={currentLanguage}
+                    windowWidth={props.windowWidth}
+                    darkColor={theme.colors.color100}
+                    lightColor={theme.colors.color30}
+                    isContentTranslated={true}
+                    isAccordionEngagement={false}
+                    contentId=""
+                  />
+                );
               }
 
               return <View key={passProps.key}>{children}</View>;

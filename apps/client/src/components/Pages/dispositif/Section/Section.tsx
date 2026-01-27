@@ -1,4 +1,5 @@
 import { ContentType, type InfoSections, type Languages } from "@refugies-info/api-types";
+import { remarkRestoreHierarchy } from "@refugies-info/markdown-utils";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type React from "react";
@@ -13,7 +14,6 @@ import {
   getDirectiveComponents,
   remarkDirectiveToComponent,
 } from "~/lib/markdown/directive-to-component";
-import { remarkRestoreHierarchy } from "~/lib/markdown/remark-restore-hierarchy";
 import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { makeThemeSelector } from "~/services/Themes/themes.selectors";

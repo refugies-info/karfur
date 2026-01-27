@@ -1,10 +1,10 @@
 import { ContentType, type Id, type InfoSections } from "@refugies-info/api-types";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { useSelector } from "react-redux";
 import { AccordionAnimated, ContentFromHtml, ReadableText, Title } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
-import { defaultColors } from "~/libs";
+import { defaultColors, markdownToHtml } from "~/libs";
 import { currentI18nCodeSelector, selectedContentSelector, themeSelector } from "~/services";
 import { styles } from "~/theme";
 
@@ -34,10 +34,31 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   if (!dispositif) return null;
 
   // content
-  const contentHtml: string | undefined = useMemo(
-    () => (sectionKey === "what" ? dispositif[sectionKey] || "" : undefined),
-    [sectionKey, dispositif],
-  );
+  const [markdownHtml, setMarkdownHtml] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const processMarkdown = async () => {
+      const mdContent = dispositif.markdown;
+      // Note: we might want to check translations too if needed, but usually mobile selector returns text.
+
+      if (sectionKey === "what" && mdContent) {
+        const html = await markdownToHtml(mdContent);
+        if (isMounted) setMarkdownHtml(html);
+      } else {
+        if (isMounted) setMarkdownHtml(null);
+      }
+    };
+    processMarkdown();
+    return () => {
+      isMounted = false;
+    };
+  }, [dispositif, sectionKey]);
+
+  const contentHtml: string | undefined = useMemo(() => {
+    if (markdownHtml) return markdownHtml;
+    return sectionKey === "what" ? dispositif[sectionKey] || "" : undefined;
+  }, [sectionKey, dispositif, markdownHtml]);
   const contentAccordions: InfoSections | undefined = useMemo(
     () => (sectionKey !== "what" ? dispositif[sectionKey] : undefined),
     [sectionKey, dispositif],

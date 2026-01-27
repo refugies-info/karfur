@@ -28,7 +28,8 @@ const TitleContainer = styled(RTLTouchableOpacity)<{
   isExpanded: boolean;
   lightColor: string;
 }>`
-  background-color: ${({ isExpanded, lightColor, theme }) => (isExpanded ? lightColor : theme.colors.white)};
+  background-color: ${({ isExpanded, lightColor, theme }) =>
+    isExpanded ? lightColor : theme.colors.white};
   padding: ${styles.margin * 2}px;
   border-radius: ${styles.radius * 2}px;
   ${(props: { isExpanded: boolean }) => (!props.isExpanded ? styles.shadows.lg : "")};
@@ -100,6 +101,7 @@ interface Props {
   isContentTranslated: boolean;
   isAccordionEngagement: boolean;
   contentId: string;
+  childrenContent?: React.ReactNode;
 }
 
 export const AccordionAnimated = (props: Props) => {
@@ -142,7 +144,7 @@ export const AccordionAnimated = (props: Props) => {
     height.value = withTiming(accordionIsReading ? 1 : 0, { duration: 500 });
   }, [currentItem]);
 
-  if (!props.title || !props.content) return null;
+  if (!props.title || (!props.content && !props.childrenContent)) return null;
 
   return (
     <AccordionContainer>
@@ -192,14 +194,16 @@ export const AccordionAnimated = (props: Props) => {
           style={stylesheet.bodyContainer}
         >
           <ExpandedContentContainer>
-            {!!props.content && (
-              <ContentFromHtml
-                ref={currentItemRef}
-                htmlContent={props.content}
-                windowWidth={props.windowWidth}
-                fromAccordion={true}
-              />
-            )}
+            {props.childrenContent
+              ? props.childrenContent
+              : !!props.content && (
+                  <ContentFromHtml
+                    ref={currentItemRef}
+                    htmlContent={props.content}
+                    windowWidth={props.windowWidth}
+                    fromAccordion={true}
+                  />
+                )}
           </ExpandedContentContainer>
         </View>
       </Animated.View>

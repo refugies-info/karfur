@@ -1,0 +1,22 @@
+{
+  "name": "@refugies-info/markdown-utils",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "check:types": "tsc --noEmit",
+    "lint": "biome lint .",
+    "format": "biome format --write ."
+  },
+  "peerDependencies": {
+    "unified": "^11.0.0"
+  },
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@refugies-info/typescript-config": "workspace:*",
+    "typescript": "^5.9.2"
+  }
+}

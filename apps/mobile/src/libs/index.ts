@@ -12,3 +12,4 @@ export const sortByOrder = (a: GetThemeResponse, b: GetThemeResponse) => {
 };
 
 export { defaultColors } from "./getThemeTag";
+export * from "./markdown";

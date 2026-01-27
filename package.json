@@ -55,7 +55,13 @@
     "peerDependencyRules": {
       "allowedVersions": {
         "react": "19",
-        "react-dom": "19"
+        "react-dom": "19",
+        "@react-native-async-storage/async-storage": "^2.1.2",
+        "react-native-svg": "^15.11.2",
+        "react-leaflet": "^5.0.0",
+        "i18next": "^23.16.8",
+        "@types/react": "^19.0.14",
+        "@types/react-dom": "^19.2.1"
       }
     }
   },
