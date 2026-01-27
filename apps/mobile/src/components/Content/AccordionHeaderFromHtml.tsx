@@ -21,33 +21,35 @@ export const AccordionHeaderFromHtml = (props: Props) => {
         allowedAttributes: {},
       })}
     >
-      <HTML
-        contentWidth={props.windowWidth}
-        source={{ html: props.htmlContent }}
-        baseFontStyle={{
-          fontSize: styles.fonts.sizes.md,
-          fontFamily: styles.fonts.families.marianneBold,
-          textAlign: isRTL ? "right" : "left",
-          lineHeight: 20,
-          flexShrink: 1,
-          width: props.width,
-          color: props.darkColor,
-        }}
-        renderers={{
-          p: (_, children, _cssStyles, passProps) => (
-            <TextDSFR_MD_Bold
-              key={passProps.key}
-              style={{
-                flexShrink: 1,
-                width: props.width,
-                color: props.darkColor,
-              }}
-            >
-              {children}
-            </TextDSFR_MD_Bold>
-          ),
-        }}
-      />
+      {!!props.htmlContent && (
+        <HTML
+          contentWidth={props.windowWidth}
+          source={{ html: props.htmlContent }}
+          baseFontStyle={{
+            fontSize: styles.fonts.sizes.md,
+            fontFamily: styles.fonts.families.marianneBold,
+            textAlign: isRTL ? "right" : "left",
+            lineHeight: 20,
+            flexShrink: 1,
+            width: props.width,
+            color: props.darkColor,
+          }}
+          renderers={{
+            p: (_, children, _cssStyles, passProps) => (
+              <TextDSFR_MD_Bold
+                key={passProps.key}
+                style={{
+                  flexShrink: 1,
+                  width: props.width,
+                  color: props.darkColor,
+                }}
+              >
+                {children}
+              </TextDSFR_MD_Bold>
+            ),
+          }}
+        />
+      )}
     </ReadableText>
   );
 };
