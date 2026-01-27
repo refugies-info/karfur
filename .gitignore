@@ -40,8 +40,8 @@ npm-debug.log*
 .turbo
 
 # AI assistants
-.cursorrules
-.letta/
+/.cursorrules
+/.letta/
 
 # EAS
 .expo/
