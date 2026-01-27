@@ -965,6 +965,9 @@ importers:
 
   packages/markdown-utils:
     dependencies:
+      unified:
+        specifier: ^11.0.0
+        version: 11.0.5
       unist-util-visit:
         specifier: ^5.0.0
         version: 5.0.0
@@ -978,9 +981,6 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.2
-      unified:
-        specifier: ^11.0.5
-        version: 11.0.5
 
   packages/typescript-config: {}
 
