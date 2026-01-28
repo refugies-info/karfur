@@ -2,6 +2,7 @@ import type { GetAllStructuresResponse, Id, SimpleUser } from "@refugies-info/ap
 import type { User, UserId } from "@refugies-info/mongo";
 import pick from "lodash/pick";
 import { Types } from "mongoose";
+import { toPicture } from "~/libs/pictureUtils";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
 import { getUsersById } from "~/modules/users/users.repository";
@@ -50,7 +51,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
         "adminPercentageProgressionStatus",
         "link",
       ]),
-      picture: structure.picture as any,
+      picture: toPicture(structure.picture),
       _id: structure._id,
       nom: structure.nom || "",
       membres: (structure.membres || []).map((m) => {
@@ -84,7 +85,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
     const users = await getUsersById(responsablesIDs as UserId[], {
       _id: 1,
       username: 1,
-      picture: 1 as any,
+      picture: 1,
       email: 1,
     });
     const responsables: Record<string, SimpleUser> = users.reduce(

@@ -1,6 +1,7 @@
 import type { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import type { DispositifId, User } from "@refugies-info/mongo";
 import { type Traductions, TraductionsType } from "@refugies-info/mongo";
+import { toPicture } from "~/libs/pictureUtils";
 import { getTraductionUser } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguageAndDispositif } from "~/modules/traductions/traductions.repository";
 
@@ -26,12 +27,12 @@ const getTraductionsForReview = async (
         validator: {
           id: getTraductionUser(trad).id,
           username: getTraductionUser(trad).username || getTraductionUser(trad).email,
-          picture: getTraductionUser(trad).picture as any,
+          picture: toPicture(getTraductionUser(trad).picture),
         },
         author: {
           id: currentUser.id,
           username: currentUser.username || currentUser.email,
-          picture: currentUser.picture as any,
+          picture: toPicture(currentUser.picture),
         },
         toReview: trad.toReview,
         toFinish: trad.toFinish || [],
@@ -59,7 +60,7 @@ const getTraductionsForReview = async (
         author: {
           id: getTraductionUser(trad).id,
           username: getTraductionUser(trad).username || getTraductionUser(trad).email,
-          picture: getTraductionUser(trad).picture as any,
+          picture: toPicture(getTraductionUser(trad).picture),
         },
         toReview: trad.toReview,
         toFinish: trad.toFinish || [],

@@ -8,6 +8,7 @@ import type { Dispositif, Structure, User } from "@refugies-info/mongo";
 import { omit } from "lodash";
 import type { FilterQuery, ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
+import { toPicture } from "~/libs/pictureUtils";
 import logger from "~/logger";
 import { getStructureDispositifs } from "~/modules/dispositif/dispositif.repository";
 import { getStructureById as getStructure } from "~/modules/structure/structure.repository";
@@ -32,7 +33,7 @@ const getMembers = async (structure: Structure) => {
         const res: StructureMember = {
           username: user.username,
           email: user.email,
-          picture: user.picture as any,
+          picture: toPicture(user.picture),
           last_connected: user.last_connected,
           added_at: membre.added_at,
           userId: membre.userId.toString(),
