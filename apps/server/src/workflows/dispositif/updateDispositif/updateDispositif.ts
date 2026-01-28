@@ -6,12 +6,15 @@ import {
 } from "@refugies-info/api-types";
 import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
 import { type Dispositif, ObjectId, type StructureId, type User } from "@refugies-info/mongo";
-import { isString } from "lodash";
+import { isString, omit } from "lodash";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import { isToday } from "~/libs/isToday";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
-import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
+import {
+  getDispositifMainSponsor,
+  getDispositifTranslation,
+} from "~/modules/dispositif/dispositif.business";
 import {
   addNewParticipant,
   cloneDispositifInDrafts,
@@ -33,8 +36,9 @@ const buildDispositifContent = (
   body: UpdateDispositifRequest,
   oldDispositif: Dispositif,
 ): TranslationContent => {
-  // content
-  const content = { ...oldDispositif.translations.fr.content };
+  // content - use helper to handle both Map and plain object access
+  const frTranslation = getDispositifTranslation(oldDispositif, "fr", true);
+  const content = { ...frTranslation?.content };
   // check isString to allow empty values
   if (isString(body.titreInformatif)) content.titreInformatif = body.titreInformatif;
   if (isString(body.titreMarque)) content.titreMarque = body.titreMarque;
@@ -101,16 +105,23 @@ export const updateDispositif = async (
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
+
+  // Convert translations to plain object (handles both Map and plain object)
+  const existingTranslations =
+    typeof (oldDispositif.translations as any)?.entries === "function"
+      ? Object.fromEntries((oldDispositif.translations as any).entries())
+      : oldDispositif.translations || {};
+
   const editedDispositif: Partial<Dispositif> = {
     lastModificationAuthor: user._id,
     lastModificationDate: new Date(),
     themesSelectedByAuthor: !user.isAdmin(),
     translations: {
-      ...oldDispositif.translations,
+      ...existingTranslations,
       fr: translationContent,
     },
     nbMots: countDispositifWords(translationContent.content as any),
-    ...(await buildNewDispositif(body, user._id.toString())),
+    ...omit(await buildNewDispositif(body, user._id.toString()), "origin"),
   };
 
   // if published and not draft version yet, create draft version

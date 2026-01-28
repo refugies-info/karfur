@@ -102,6 +102,7 @@ describe("Dispositif Origin", () => {
       typeContenu: ContentType.DISPOSITIF,
       titreInformatif: "Legacy Dispositif",
       creatorId: user._id,
+      lastModificationAuthor: user._id,
       status: DispositifStatus.DRAFT,
     });
 

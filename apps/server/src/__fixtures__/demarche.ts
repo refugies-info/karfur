@@ -160,6 +160,7 @@ demarche.metadatas = {
   timeSlots: [],
 };
 demarche.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
+demarche.administrationLogo = null;
 demarche.hasDraftVersion = false;
 demarche.publishedAt = new Date("2023-12-01T13:57:31.392Z");
 demarche.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");

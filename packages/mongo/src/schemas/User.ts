@@ -4,7 +4,7 @@ import jwt from "jwt-simple";
 import { type Document, model, type Schema, type Types } from "mongoose";
 import passwordHash from "password-hash";
 import { z } from "zod";
-import { ImageZodSchema } from "./generics";
+import { type ImageType, ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
 import type { Role } from "./Role";
 
@@ -14,6 +14,7 @@ export const FavoriteZodSchema = z.object({
   created_at: z.date().default(() => new Date()),
 });
 
+// --- Mongoose-compatible schema (relaxed for zod-mongoose limitations) ---
 export const UserZodSchema = z.object({
   username: z.string().optional(),
   password: z.string(),
@@ -21,7 +22,8 @@ export const UserZodSchema = z.object({
   firstName: z.string().optional(),
   phone: z.string().optional(),
   description: z.string().optional(),
-  picture: ImageZodSchema.optional(),
+  // PATCHED: Nested optional with required fields causes validation issues
+  picture: z.any().optional(),
   roles: z.array(zId("Role")).optional(),
   selectedLanguages: z.array(zId("Langue")).optional(),
   contributions: z.array(zId("Dispositif")).optional(),
@@ -48,8 +50,13 @@ export interface Favorite {
   created_at: Date;
 }
 
-export type User = z.infer<typeof UserZodSchema> &
-  Document<Types.ObjectId> & {
+// --- Strict TypeScript type for User ---
+type UserBase = z.infer<typeof UserZodSchema>;
+
+// Patched type with correct strict types for relaxed fields
+export type User = Omit<UserBase, "picture"> & {
+  picture?: ImageType | null;
+} & Document<Types.ObjectId> & {
     // Methods
     authenticate(password: string): boolean;
     getToken(): string;

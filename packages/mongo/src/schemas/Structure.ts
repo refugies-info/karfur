@@ -2,7 +2,7 @@ import { StructureStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import { ImageZodSchema } from "./generics";
+import { type ImageType, ImageZodSchema } from "./generics";
 
 // --- Zod Schemas ---
 
@@ -27,6 +27,8 @@ export const OpeningHoursZodSchema = z.object({
   precisions: z.string().optional(),
 });
 
+// --- Mongoose-compatible schema (relaxed for zod-mongoose limitations) ---
+// See: https://github.com/git-zodyac/mongoose/blob/main/SUPPORTED.md
 export const StructureZodSchema = z.object({
   membres: z.array(MembreZodSchema).optional(),
   acronyme: z.string().optional(),
@@ -45,7 +47,8 @@ export const StructureZodSchema = z.object({
   status: z.enum(Object.values(StructureStatus) as [string, ...string[]]).optional() as z.ZodType<
     StructureStatus | undefined
   >,
-  picture: ImageZodSchema.optional(),
+  // PATCHED: Nested optional with required fields causes validation issues
+  picture: z.any().optional(),
   structureTypes: z.array(z.string()).optional(),
   websites: z.array(z.string()).optional(),
   facebook: z.string().optional(),
@@ -56,7 +59,8 @@ export const StructureZodSchema = z.object({
   phonesPublic: z.array(z.string()).optional(),
   mailsPublic: z.array(z.string()).optional(),
   adressPublic: z.string().optional(),
-  openingHours: OpeningHoursZodSchema.optional(),
+  // PATCHED: Nested optional with required fields causes validation issues
+  openingHours: z.any().optional(),
   onlyWithRdv: z.boolean().optional(),
   description: z.string().optional(),
   hasResponsibleSeenNotification: z.boolean().optional(),
@@ -68,7 +72,22 @@ export const StructureZodSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
-export type Structure = z.infer<typeof StructureZodSchema> & Document<Types.ObjectId>;
+// --- Strict TypeScript type for Structure ---
+type StructureBase = z.infer<typeof StructureZodSchema>;
+
+// Define strict types for the patched fields
+export type DetailedOpeningHours = z.infer<typeof DetailedOpeningHoursZodSchema>;
+export type OpeningHours = {
+  details: DetailedOpeningHours[];
+  noPublic?: boolean;
+  precisions?: string;
+};
+
+// Patched type with correct strict types for relaxed fields
+export type Structure = Omit<StructureBase, "picture" | "openingHours"> & {
+  picture?: ImageType;
+  openingHours?: OpeningHours;
+} & Document<Types.ObjectId>;
 
 /**
  * StructureId represents a unique identifier for a Structure.

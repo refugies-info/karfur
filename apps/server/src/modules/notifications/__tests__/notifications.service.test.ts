@@ -190,8 +190,9 @@ describe("sendDispositifNotifications", () => {
     ];
 
     // Mock function implementations
+    const dispositifModel = new DispositifModel(fixtures.dispositif);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
-    getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    getDispositifByIdMock.mockResolvedValue(dispositifModel);
     getAppUsersBatchMock
       .mockResolvedValueOnce(
         targetUsers.map((t) => new AppUserModel(t).toObject({ flattenMaps: true }) as any),
@@ -228,7 +229,7 @@ describe("sendDispositifNotifications", () => {
       requirements,
       lang,
     );
-    expect(getNotificationEmojiMock).toHaveBeenCalledWith(new DispositifModel(fixtures.dispositif));
+    expect(getNotificationEmojiMock).toHaveBeenCalledWith(dispositifModel);
     expect(insertNotificationsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => ({
         uid: t.uid,

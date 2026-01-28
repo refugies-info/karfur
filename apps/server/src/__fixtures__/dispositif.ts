@@ -157,6 +157,7 @@ dispositif.metadatas = {
   timeSlots: ["monday", "tuesday", "thursday", "friday"],
 };
 dispositif.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
+dispositif.administrationLogo = null;
 dispositif.hasDraftVersion = false;
 dispositif.publishedAt = new Date("2023-12-01T14:34:29.335Z");
 dispositif.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");

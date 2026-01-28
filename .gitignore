@@ -54,3 +54,6 @@ credentials/
 
 # Cloudbuild
 /apps/client/cloudbuild.env
+
+# AI Agents
+.letta/

@@ -20,10 +20,17 @@ export const SnapshotSchema = z.object({
   to: z.enum(
     Object.values(DispositifStatus) as [string, ...string[]],
   ) as z.ZodType<DispositifStatus>,
-  data: z.record(z.any()), // DispositifContent | DemarcheContent
+  // PATCHED: z.record becomes Map, but we want Mixed (POJO) to match existing behavior/tests
+  data: z.any(),
 });
 
-export type Snapshot = z.infer<typeof SnapshotSchema> & Document<Types.ObjectId>;
+// --- Strict TypeScript types ---
+type SnapshotBase = z.infer<typeof SnapshotSchema>;
+
+// Patched type
+export type Snapshot = Omit<SnapshotBase, "data"> & {
+  data: Record<string, any>;
+} & Document<Types.ObjectId>;
 /**
  * SnapshotId represents a unique identifier for a Snapshot.
  *

@@ -2,7 +2,7 @@ import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
 import { z } from "zod";
-import { ImageZodSchema } from "./generics";
+import { type ImageType, ImageZodSchema } from "./generics";
 import { I18nCodeZodSchema } from "./Langue";
 
 // --- Nested Types ---
@@ -81,22 +81,38 @@ export const FrequencyZodSchema = z.object({
 });
 export type Frequency = z.infer<typeof FrequencyZodSchema>;
 
+// --- Mongoose-compatible schema (relaxed for zod-mongoose limitations) ---
+// Note: Union types pick first inner type, so we use z.any() for complex unions
+// See: https://github.com/git-zodyac/mongoose/blob/main/SUPPORTED.md
 export const MetadatasZodSchema = z.object({
-  location: z
-    .union([z.string(), z.array(z.string())])
-    .optional()
-    .nullable(),
+  // PATCHED: Union(string, array) not supported - relaxed for Mongoose
+  location: z.any().optional().nullable(),
   frenchLevel: z.array(z.string()).optional().nullable(),
-  age: AgeZodSchema.optional().nullable(),
-  price: PriceZodSchema.optional().nullable(),
+  // PATCHED: Nested optional objects with required fields cause validation issues
+  age: z.any().optional().nullable(),
+  price: z.any().optional().nullable(),
   publicStatus: z.array(z.string()).optional().nullable(),
   public: z.array(z.string()).optional().nullable(),
   conditions: z.array(z.string()).optional().nullable(),
-  commitment: CommitmentZodSchema.optional().nullable(),
-  frequency: FrequencyZodSchema.optional().nullable(),
+  // PATCHED: Nested optional objects with required fields cause validation issues
+  commitment: z.any().optional().nullable(),
+  frequency: z.any().optional().nullable(),
   timeSlots: z.array(z.string()).optional().nullable(),
 });
-export type Metadatas = z.infer<typeof MetadatasZodSchema>;
+
+// --- Strict TypeScript types (what the app actually uses) ---
+export type Metadatas = {
+  location?: string | string[] | null;
+  frenchLevel?: string[] | null;
+  age?: Age | null;
+  price?: Price | null;
+  publicStatus?: string[] | null;
+  public?: string[] | null;
+  conditions?: string[] | null;
+  commitment?: Commitment | null;
+  frequency?: Frequency | null;
+  timeSlots?: string[] | null;
+};
 
 export const PoiZodSchema = z.object({
   title: z.string(),
@@ -112,37 +128,64 @@ export const PoiZodSchema = z.object({
 export type Poi = z.infer<typeof PoiZodSchema>;
 
 // --- Content Types ---
+// PATCHED: z.record() converts to Mongoose Map, causing object['key'] vs Map.get('key') issues
+// We use z.any() for Mongoose schema generation, but export strict TS types
 
 export const DispositifContentZodSchema = z.object({
   titreInformatif: z.string(),
   titreMarque: z.string(),
   abstract: z.string(),
   what: z.string(),
-  why: z.record(InfoSectionZodSchema),
-  how: z.record(InfoSectionZodSchema),
+  // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
+  why: z.any(),
+  how: z.any(),
 });
-export type DispositifContent = z.infer<typeof DispositifContentZodSchema>;
+// Strict type for application code
+export type DispositifContent = {
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  what: string;
+  why: Record<string, InfoSection>;
+  how: Record<string, InfoSection>;
+};
 
 export const DemarcheContentZodSchema = z.object({
   titreInformatif: z.string(),
   titreMarque: z.string(),
   abstract: z.string(),
   what: z.string(),
-  how: z.record(InfoSectionZodSchema),
-  next: z.record(InfoSectionZodSchema),
+  // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
+  how: z.any(),
+  next: z.any(),
   administrationName: z.string().nullable(),
 });
-export type DemarcheContent = z.infer<typeof DemarcheContentZodSchema>;
+// Strict type for application code
+export type DemarcheContent = {
+  titreInformatif: string;
+  titreMarque: string;
+  abstract: string;
+  what: string;
+  how: Record<string, InfoSection>;
+  next: Record<string, InfoSection>;
+  administrationName: string | null;
+};
 
 export const TranslationContentZodSchema = z.object({
-  content: z.union([DispositifContentZodSchema, DemarcheContentZodSchema]),
+  // PATCHED: Union picks first type only, relaxed for Mongoose compatibility
+  content: z.any(),
   created_at: z.date(),
-  validatorId: zId("User"), // Assuming Validator is User
+  validatorId: zId("User"),
 });
-
-export type TranslationContent = z.infer<typeof TranslationContentZodSchema>;
+// Strict type for application code
+export type TranslationContent = {
+  content: DispositifContent | DemarcheContent;
+  created_at: Date;
+  validatorId: Types.ObjectId;
+};
 
 // --- Main Dispositif Schema ---
+// PATCHED fields marked below - see type patching comments above
 
 export const DispositifZodSchema = z.object({
   typeContenu: z.enum(
@@ -161,7 +204,8 @@ export const DispositifZodSchema = z.object({
   theme: zId("Theme").optional(),
   secondaryThemes: z.array(zId("Theme")).optional(),
   needs: z.array(zId("Need")).optional(),
-  sponsors: z.array(z.union([zId("Structure"), SponsorZodSchema])).optional(),
+  // PATCHED: Union in array not supported, relaxed for Mongoose
+  sponsors: z.array(z.any()).optional(),
   externalLink: z.string().optional(),
 
   creatorId: zId("User"),
@@ -189,20 +233,36 @@ export const DispositifZodSchema = z.object({
   lastReminderMailSentToUpdateContentDate: z.date().optional(),
 
   themesSelectedByAuthor: z.boolean().optional(),
-  notificationsSent: z.record(z.boolean()).optional(),
+  // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
+  notificationsSent: z.any().optional(),
 
   suggestions: z.array(SuggestionZodSchema).optional(),
   merci: z.array(MerciZodSchema).optional(),
   avis: z.array(AvisZodSchema).optional(),
   webOnly: z.boolean().optional(),
 
-  translations: z.record(I18nCodeZodSchema, TranslationContentZodSchema).optional(),
+  // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
+  translations: z.any().optional(),
   metadatas: MetadatasZodSchema.optional(),
   map: z.array(PoiZodSchema).nullable().optional(),
-  administrationLogo: ImageZodSchema.nullable().optional(),
+  // PATCHED: Nested optional with required fields causes validation issues
+  administrationLogo: z.any().nullable().optional(),
 });
 
-export type Dispositif = z.infer<typeof DispositifZodSchema> & Document<Types.ObjectId>;
+// --- Strict TypeScript type for Dispositif ---
+// Base inferred type from Zod schema
+type DispositifBase = z.infer<typeof DispositifZodSchema>;
+
+// Patched type with correct strict types for relaxed fields
+export type Dispositif = Omit<
+  DispositifBase,
+  "sponsors" | "notificationsSent" | "translations" | "administrationLogo"
+> & {
+  sponsors?: (Types.ObjectId | Sponsor)[];
+  notificationsSent?: Record<string, boolean>;
+  translations?: Record<string, TranslationContent>;
+  administrationLogo?: ImageType | null;
+} & Document<Types.ObjectId>;
 
 /**
  * DispositifId represents a unique identifier for a Dispositif.
