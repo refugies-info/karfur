@@ -11,9 +11,9 @@
   }
 
   /* Fixes dsfr list markers */
-  ol > li::marker {
+  .prose ol > li::marker {
     content: initial;
-    font-size: initial;
+    font-size: inherit;
   }
 
   /* Ensure spacing between a paragraph and a following list (within prose) */
