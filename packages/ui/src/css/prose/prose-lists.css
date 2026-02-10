@@ -10,6 +10,12 @@
     }
   }
 
+  /* Fixes dsfr list markers */
+  ol > li::marker {
+    content: initial;
+    font-size: initial;
+  }
+
   /* Ensure spacing between a paragraph and a following list (within prose) */
   :not(.no-prose) .prose p + ul,
   :not(.no-prose) .prose p + ol {
