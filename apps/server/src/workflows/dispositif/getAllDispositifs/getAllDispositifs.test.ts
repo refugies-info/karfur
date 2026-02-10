@@ -1,4 +1,4 @@
-import { StructureStatus } from "@refugies-info/api-types";
+import { DispositifOrigin, StructureStatus } from "@refugies-info/api-types";
 import * as repository from "~/modules/dispositif/dispositif.repository";
 import { ObjectId } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
@@ -70,6 +70,7 @@ describe("getAllDispositifs", () => {
       },
       themesSelectedByAuthor: false,
       webOnly: false,
+      origin: "RI" as any,
     };
 
     const populatedDispositif = fixtures.dispositif;
@@ -115,14 +116,14 @@ describe("getAllDispositifs", () => {
       _id: "id",
       username: "author",
     };
+    populatedDispositif.origin = DispositifOrigin.RI;
 
     const expectedResponse = {
       text: "success",
       data: [expectedDispositif, expectedDispositif],
     };
     const getDispositifsFromDBMock = jest.spyOn(repository, "getDispositifsFromDB");
-    //@ts-expect-error type mismatch
-    getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
+    getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif] as any);
 
     // Act
     const result = await getAllDispositifs();
