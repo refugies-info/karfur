@@ -101,9 +101,6 @@ pnpm patch-commit './node_modules/.pnpm_patches/@codegouvfr/react-dsfr@[version]
 - Set up required state → Execute → Verify state changes
 - Don't rely heavily on spies/mocks
 
-## Zod Schema Guidelines
-
-
 ## Zod/Mongoose Type Patching Strategy
 
 **Problem**: `@zodyac/zod-mongoose` has limitations:
