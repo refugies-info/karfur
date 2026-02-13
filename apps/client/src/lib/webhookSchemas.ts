@@ -34,29 +34,28 @@ const TranslationSchema = z
   )
   .optional();
 
+// Shared fields between Create and Update
+const DispositifSharedSchema = z.object({
+  titreInformatif: z.string().optional(),
+  titreMarque: z.string().optional(),
+  abstract: z.string().optional(),
+  themes: z.array(z.string()).optional(),
+  translations: TranslationSchema,
+});
+
 // CREATE
 export const DispositifCreateSchema = BaseWebhookSchema.extend({
-  dispositif: z.object({
-    titreInformatif: z.string().optional(),
-    titreMarque: z.string().optional(),
-    abstract: z.string().optional(),
-    themes: z.array(z.string()).optional(),
+  dispositif: DispositifSharedSchema.extend({
     origin: z.nativeEnum(DispositifOrigin, {
       error: () => ({ message: "L'origine doit être 'RI' ou 'RCO'" }),
     }),
-    translations: TranslationSchema,
   }),
 });
 
 // UPDATE
 export const DispositifUpdateSchema = BaseWebhookSchema.extend({
-  dispositif: z.object({
+  dispositif: DispositifSharedSchema.extend({
     _id: z.string(),
-    titreInformatif: z.string().optional(),
-    titreMarque: z.string().optional(),
-    abstract: z.string().optional(),
-    themes: z.array(z.string()).optional(),
-    translations: TranslationSchema,
   }),
 });
 
