@@ -84,7 +84,8 @@
     "sweetalert2": "^11.22.5",
     "typesafe-actions": "^5.1.0",
     "unist-util-visit": "^5.0.0",
-    "uuid": "^11.0.3"
+    "uuid": "^11.0.3",
+    "zod": "^4.3.6"
   },
   "scripts": {
     "build": "next build --no-lint",
