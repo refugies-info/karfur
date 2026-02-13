@@ -29,8 +29,16 @@ export const validateSourceIP = (req: NextApiRequest) => {
   const allowedIps = process.env.ALLOWED_WEBHOOK_IPS;
   if (!allowedIps) return true; // Skip if not configured (local dev)
 
-  const forwarded = req.headers["x-forwarded-for"];
-  const ip = typeof forwarded === "string" ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
+  const xForwardedFor = req.headers["x-forwarded-for"];
+
+  let ip: string | undefined;
+  if (typeof xForwardedFor === "string") {
+    // On GCP/Vercel, the last IP is the one added by the trusted proxy
+    const ips = xForwardedFor.split(",").map((i) => i.trim());
+    ip = ips[ips.length - 1];
+  } else {
+    ip = req.socket.remoteAddress;
+  }
 
   if (!ip) return false;
 
