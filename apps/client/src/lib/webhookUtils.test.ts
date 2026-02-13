@@ -58,6 +58,7 @@ describe("Webhook Utilities", () => {
       ];
       const Theme: any = {
         find: jest.fn().mockReturnValue({
+          collation: jest.fn().mockReturnThis(),
           select: jest.fn().mockResolvedValue(mockThemes),
         }),
       };
@@ -69,6 +70,7 @@ describe("Webhook Utilities", () => {
       const mockThemes = [{ _id: "id1", name: { fr: "Theme 1" } }];
       const Theme: any = {
         find: jest.fn().mockReturnValue({
+          collation: jest.fn().mockReturnThis(),
           select: jest.fn().mockResolvedValue(mockThemes),
         }),
       };

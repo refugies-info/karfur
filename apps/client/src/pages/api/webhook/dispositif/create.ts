@@ -1,4 +1,4 @@
-import { ContentType, DispositifStatus } from "@refugies-info/api-types";
+import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { DispositifCreateSchema } from "~/lib/webhookSchemas";
 import {
@@ -27,6 +27,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Zod validation and sanitization
   const result = DispositifCreateSchema.safeParse(req.body);
   if (!result.success) {
+    console.error("[Webhook] RAW PAYLOAD:", JSON.stringify(req.body, null, 2));
+    console.error("[Webhook] FULL ERROR:", JSON.stringify(result.error, null, 2));
     console.error("[Webhook] Validation error:", JSON.stringify(result.error.flatten(), null, 2));
     return res.status(400).json({
       message: "Invalid payload",
@@ -59,7 +61,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const { themes, ...dispositifData } = dispositif;
-    const newDispositif = {
+    const newDispositif: any = {
       ...dispositifData,
       creatorId: user._id,
       theme: themeId,
@@ -69,19 +71,33 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       created_at: new Date(),
       lastModificationDate: new Date(),
       lastModificationAuthor: user._id,
-      origin: dispositif.origin,
+      origin: dispositif.origin || DispositifOrigin.RCO, // Respect payload but default to RCO
       translations: {
         ...dispositif.translations,
         fr: {
-          content: dispositif.translations?.fr?.content || {},
+          content: dispositif.translations?.fr?.content || {
+            titreInformatif: dispositif.titreInformatif,
+            titreMarque: dispositif.titreMarque,
+            abstract: dispositif.abstract,
+          },
           created_at: new Date(),
           validatorId: user._id,
         },
       },
     };
 
+    // Ensure titles are also at top level if not already (for some versions of search/UI)
+    if (!newDispositif.titreInformatif && dispositif.titreInformatif)
+      newDispositif.titreInformatif = dispositif.titreInformatif;
+    if (!newDispositif.titreMarque && dispositif.titreMarque)
+      newDispositif.titreMarque = dispositif.titreMarque;
+
     const createdDispositif = await Dispositif.create(newDispositif);
-    console.log(`[Webhook] Created Dispositif: ${createdDispositif._id}`);
+    console.log(`[Webhook] Created Dispositif: ${createdDispositif._id}`, {
+      typeContenu: createdDispositif.typeContenu,
+      origin: createdDispositif.origin,
+      status: createdDispositif.status,
+    });
 
     return res.status(201).json({
       message: "Dispositif created successfully",

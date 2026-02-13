@@ -61,8 +61,22 @@ export const getWebhookModels = async () => {
     mongoose.models.Dispositif ||
     mongoose.model(
       "Dispositif",
-      new mongoose.Schema({}, { strict: false, collection: "dispositifs" }),
+      new mongoose.Schema(
+        {
+          typeContenu: String,
+          origin: String,
+          status: String,
+          creatorId: mongoose.Schema.Types.ObjectId,
+          theme: mongoose.Schema.Types.ObjectId,
+          translations: mongoose.Schema.Types.Mixed,
+        },
+        { strict: false, collection: "dispositifs" },
+      ),
     );
+  // Ensure it's not strict even if pre-registered by another module
+  if (Dispositif.schema.options.strict !== false) {
+    Dispositif.schema.set("strict", false);
+  }
   const Theme =
     mongoose.models.Theme ||
     mongoose.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));
@@ -144,7 +158,7 @@ export const getWebhookUser = async (User: mongoose.Model<any>, email: string) =
 
   console.log(
     `[Webhook] User found: ${user._id} with roles:`,
-    user.roles.map((r: any) => r.nom || r),
+    (user.roles || []).map((r: any) => r.nom || r),
   );
   return user;
 };

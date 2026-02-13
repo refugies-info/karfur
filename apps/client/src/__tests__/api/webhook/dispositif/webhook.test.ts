@@ -44,6 +44,7 @@ describe("Webhook API Endpoints", () => {
       },
       Theme: {
         find: jest.fn().mockReturnValue({
+          collation: jest.fn().mockReturnThis(),
           select: jest.fn().mockResolvedValue([
             { _id: "theme1", name: { fr: "Apprendre le français" } },
             { _id: "theme2", name: { fr: "Santé" } },

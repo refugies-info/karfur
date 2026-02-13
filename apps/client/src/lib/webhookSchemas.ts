@@ -17,45 +17,54 @@ const DispositifContentSchema = z
   })
   .passthrough(); // Allow some flexibility but still strict at the top level
 
-import { activatedLanguages } from "~/data/activatedLanguages";
+import { activatedLanguages } from "../data/activatedLanguages";
 
-const AllowedLanguages = activatedLanguages.map((l) => l.i18nCode) as [string, ...string[]];
+const AllowedLanguages = activatedLanguages.map((l) => l.i18nCode);
 
 const TranslationSchema = z
   .record(
-    z.enum(AllowedLanguages, {
-      error: () => ({
-        message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
-      }),
-    }),
+    z.string(),
     z.object({
       content: DispositifContentSchema.optional(),
     }),
   )
-  .optional();
-
-// Shared fields between Create and Update
-const DispositifSharedSchema = z.object({
-  titreInformatif: z.string().optional(),
-  titreMarque: z.string().optional(),
-  abstract: z.string().optional(),
-  themes: z.array(z.string()).optional(),
-  translations: TranslationSchema,
-});
+  .optional()
+  .refine(
+    (t) => {
+      if (!t) return true; // optional translations are OK
+      const keys = Object.keys(t);
+      return keys.every((k) => AllowedLanguages.includes(k as any));
+    },
+    {
+      message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
+    },
+  );
 
 // CREATE
 export const DispositifCreateSchema = BaseWebhookSchema.extend({
-  dispositif: DispositifSharedSchema.extend({
-    origin: z.nativeEnum(DispositifOrigin, {
-      error: () => ({ message: "L'origine doit être 'RI' ou 'RCO'" }),
-    }),
+  dispositif: z.object({
+    titreInformatif: z.string().optional(),
+    titreMarque: z.string().optional(),
+    abstract: z.string().optional(),
+    themes: z.array(z.string()).optional(),
+    translations: TranslationSchema,
+    origin: z
+      .nativeEnum(DispositifOrigin)
+      .refine((val) => val === DispositifOrigin.RI || val === DispositifOrigin.RCO, {
+        message: "L'origine doit être 'RI' ou 'RCO'",
+      }),
   }),
 });
 
 // UPDATE
 export const DispositifUpdateSchema = BaseWebhookSchema.extend({
-  dispositif: DispositifSharedSchema.extend({
+  dispositif: z.object({
     _id: z.string(),
+    titreInformatif: z.string().optional(),
+    titreMarque: z.string().optional(),
+    abstract: z.string().optional(),
+    themes: z.array(z.string()).optional(),
+    translations: TranslationSchema,
   }),
 });
 
@@ -65,18 +74,23 @@ export const TranslationUpdateSchema = BaseWebhookSchema.extend({
     _id: z.string(),
     translations: z
       .record(
-        z.enum(AllowedLanguages, {
-          error: () => ({
-            message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
-          }),
-        }),
+        z.string(),
         z.object({
           content: DispositifContentSchema.optional(),
         }),
       )
       .refine((t) => Object.keys(t).length === 1, {
         message: "Une seule langue doit être fournie pour la mise à jour",
-      }),
+      })
+      .refine(
+        (t) => {
+          const keys = Object.keys(t);
+          return keys.every((k) => AllowedLanguages.includes(k as any));
+        },
+        {
+          message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
+        },
+      ),
   }),
 });
 
