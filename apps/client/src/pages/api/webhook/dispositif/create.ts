@@ -58,12 +58,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
     }
 
+    const { themes, ...dispositifData } = dispositif;
     const newDispositif = {
-      ...dispositif,
+      ...dispositifData,
       creatorId: user._id,
-      theme: themeId || (dispositif as any).theme,
-      secondaryThemes:
-        secondaryThemeIds.length > 0 ? secondaryThemeIds : (dispositif as any).secondaryThemes,
+      theme: themeId,
+      secondaryThemes: secondaryThemeIds,
       status: DispositifStatus.ACTIVE,
       typeContenu: ContentType.DISPOSITIF,
       created_at: new Date(),
@@ -73,7 +73,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       translations: {
         ...dispositif.translations,
         fr: {
-          content: (dispositif.translations?.fr as any)?.content || {},
+          content: dispositif.translations?.fr?.content || {},
           created_at: new Date(),
           validatorId: user._id,
         },

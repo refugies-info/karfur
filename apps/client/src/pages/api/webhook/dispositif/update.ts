@@ -61,16 +61,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // Prepare update payload, preserving original creator and creation date
-    const { themes, ...dispositifWithoutMetadata } = dispositif;
+    const { themes, ...dispositifData } = dispositif;
     const updatePayload: any = {
-      ...dispositifWithoutMetadata,
+      ...dispositifData,
       lastModificationDate: new Date(),
       lastModificationAuthor: user._id,
       translations: {
         ...(dispositif.translations || {}),
         fr: {
-          ...((dispositif.translations?.fr as any) || {}),
-          content: (dispositif.translations?.fr as any)?.content || {},
+          ...dispositif.translations?.fr,
+          content: dispositif.translations?.fr?.content || {},
           validatorId: user._id,
         },
       },
