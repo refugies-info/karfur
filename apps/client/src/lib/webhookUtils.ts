@@ -100,7 +100,9 @@ export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: stri
   if (!names || names.length === 0) return [];
   const themes = await Theme.find({
     "name.fr": { $in: names },
-  }).select("_id name.fr");
+  })
+    .collation({ locale: "fr", strength: 2 })
+    .select("_id name.fr");
 
   // Map to maintain order from input names if possible, or just return found ones
   // It's better to map them back to ensure we match the right IDs
