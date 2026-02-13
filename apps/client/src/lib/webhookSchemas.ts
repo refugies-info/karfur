@@ -17,9 +17,17 @@ const DispositifContentSchema = z
   })
   .passthrough(); // Allow some flexibility but still strict at the top level
 
+import { activatedLanguages } from "~/data/activatedLanguages";
+
+const AllowedLanguages = activatedLanguages.map((l) => l.i18nCode) as [string, ...string[]];
+
 const TranslationSchema = z
   .record(
-    z.string(),
+    z.enum(AllowedLanguages, {
+      error: () => ({
+        message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
+      }),
+    }),
     z.object({
       content: DispositifContentSchema.optional(),
     }),
@@ -58,7 +66,11 @@ export const TranslationUpdateSchema = BaseWebhookSchema.extend({
     _id: z.string(),
     translations: z
       .record(
-        z.string(),
+        z.enum(AllowedLanguages, {
+          error: () => ({
+            message: `Langue non supportée. Valeurs autorisées : ${AllowedLanguages.join(", ")}`,
+          }),
+        }),
         z.object({
           content: DispositifContentSchema.optional(),
         }),
