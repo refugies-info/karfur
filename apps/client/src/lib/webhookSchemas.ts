@@ -34,7 +34,7 @@ export const DispositifCreateSchema = BaseWebhookSchema.extend({
     abstract: z.string().optional(),
     themes: z.array(z.string()).optional(),
     origin: z.nativeEnum(DispositifOrigin, {
-      errorMap: () => ({ message: "L'origine doit être 'RI' ou 'RCO'" }),
+      error: () => ({ message: "L'origine doit être 'RI' ou 'RCO'" }),
     }),
     translations: TranslationSchema,
   }),

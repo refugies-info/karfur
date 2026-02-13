@@ -1,11 +1,11 @@
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
-import * as webhookUtils from "../../../../../lib/webhookUtils";
-import archiveHandler from "../archive";
-import createHandler from "../create";
-import translationHandler from "../translation";
-import updateHandler from "../update";
+import * as webhookUtils from "../../../../lib/webhookUtils";
+import archiveHandler from "../../../../pages/api/webhook/dispositif/archive";
+import createHandler from "../../../../pages/api/webhook/dispositif/create";
+import translationHandler from "../../../../pages/api/webhook/dispositif/translation";
+import updateHandler from "../../../../pages/api/webhook/dispositif/update";
 
-jest.mock("../../../../../lib/webhookUtils");
+jest.mock("../../../../lib/webhookUtils");
 
 const mockResponse = () => {
   const res: any = {};
@@ -61,7 +61,7 @@ describe("Webhook API Endpoints", () => {
     (webhookUtils.getThemeIdsByNames as jest.Mock).mockResolvedValue(["theme1", "theme2"]);
     (webhookUtils.validateSourceIP as jest.Mock).mockReturnValue(true);
     // Restoration of the real checkWebhookPermissions function to test it
-    const originalUtils = jest.requireActual("../../../../../lib/webhookUtils");
+    const originalUtils = jest.requireActual("../../../../lib/webhookUtils");
     (webhookUtils.checkWebhookPermissions as jest.Mock).mockImplementation(
       originalUtils.checkWebhookPermissions,
     );
