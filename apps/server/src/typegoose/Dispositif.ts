@@ -191,6 +191,26 @@ export class Frequency {
   public frequencyUnit: frequencyUnitType;
 }
 
+export class Session {
+  @prop({ required: true })
+  public startDate!: Date;
+
+  @prop({ required: true })
+  public endDate!: Date;
+
+  @prop()
+  public registrationStartDate?: Date;
+
+  @prop()
+  public registrationEndDate?: Date;
+
+  @prop()
+  public externalRef?: string;
+
+  @prop()
+  public url?: string;
+}
+
 export class Metadatas {
   @prop()
   public location?: locationType | null;
@@ -212,6 +232,8 @@ export class Metadatas {
   public frequency?: Frequency | null;
   @prop()
   public timeSlots?: timeSlotType[] | null;
+  @prop({ type: () => [Session], _id: false })
+  public sessions?: Session[] | null;
 }
 
 export class Poi {
