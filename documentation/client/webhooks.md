@@ -123,7 +123,46 @@ Archives an existing dispositif by setting its status to `Archivé`.
     }
   }
   ```
-  ```
+
+---
+
+## Metadatas Support (Future Enhancement)
+
+> [!NOTE]
+> **Status**: Metadata handling via webhooks is planned for a future sprint.
+
+Currently, the webhook API does not support sending `metadatas` (e.g., sessions, opening hours, custom fields) in the payload. However, the data model has been extended to support structured metadata for RCO-origin dispositifs.
+
+**Planned Enhancement**:
+- Add optional `metadatas` field in `DispositifCreateSchema` and `DispositifUpdateSchema`
+- Support for `sessions` metadata (training course dates from Data Inclusion)
+- Flexible schema using Zod `.passthrough()` to allow future metadata types without breaking changes
+
+**Example (Future)**:
+```json
+{
+  "email": "exemple@email.com",
+  "dispositif": {
+    "origin": "RCO",
+    "themes": ["Apprendre le français"],
+    "metadatas": {
+      "sessions": [
+        {
+          "startDate": "2025-11-24T00:00:00Z",
+          "endDate": "2026-01-16T00:00:00Z",
+          "registrationStartDate": "2025-08-01T00:00:00Z",
+          "registrationEndDate": "2025-11-23T00:00:00Z",
+          "externalRef": "585188",
+          "url": "https://example.com/session/585188"
+        }
+      ]
+    },
+    "translations": { ... }
+  }
+}
+```
+
+For now, metadata must be added directly in MongoDB for testing purposes.
 
 ---
 
