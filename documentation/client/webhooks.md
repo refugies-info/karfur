@@ -66,7 +66,7 @@ Updates the main editorial content (French) and metadata of an existing disposit
   {
     "email": "exemple@email.com",
     "dispositif": {
-      "_id": "60f7b1b5b5b5b5b5b5b5b5b5",
+      "_id": "60f7b1b5b5b5b5b5b5b5b5b5", // Must be a valid MongoDB ObjectId (24 hex characters)
       "themes": ["Santé"],
       "translations": {
         "fr": {
@@ -92,7 +92,7 @@ Updates a specific translation for an existing dispositif. This uses MongoDB dot
   {
     "email": "exemple@email.com",
     "dispositif": {
-      "_id": "60f7b1b5b5b5b5b5b5b5b5b5",
+      "_id": "60f7b1b5b5b5b5b5b5b5b5b5b5", // Must be a valid MongoDB ObjectId (24 hex characters)
       "translations": {
         "uk": {
           "content": {
@@ -119,10 +119,9 @@ Archives an existing dispositif by setting its status to `Archivé`.
   {
     "email": "exemple@email.com",
     "dispositif": {
-      "_id": "60f7b1b5b5b5b5b5b5b5b5b5"
+      "_id": "60f7b1b5b5b5b5b5b5b5b5b5" // Must be a valid MongoDB ObjectId (24 hex characters)
     }
   }
-  ```
   ```
 
 ---
@@ -133,7 +132,7 @@ The API returns standard HTTP status codes with informative JSON messages:
 
 | Status | Code | Message | Description |
 | :--- | :--- | :--- | :--- |
-| **400** | `Bad Request` | `Format d'email invalide`, `L'origine doit être 'RI' ou 'RCO'`, etc. | Payload validation error (Zod). |
+| **400** | `Bad Request` | `Format d'email invalide`, `L'origine doit être 'RI' ou 'RCO'`, `Format ObjectId invalide`, etc. | Payload validation error (Zod). |
 | **401** | `Unauthorized` | `Accès refusé : Secret invalide ou manquant` | The `webhook-secret` header is missing or incorrect. |
 | **403** | `Forbidden` | `Accès refusé : IP non autorisée` | The request allows from an unauthorized IP address. |
 | **403** | `Forbidden` | `Accès refusé. Rôle requis : Admin ou Contrib` | The user does not have sufficient permissions. |

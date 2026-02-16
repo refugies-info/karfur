@@ -57,10 +57,12 @@ export const getWebhookModels = async () => {
   const Role =
     mongoose.models.Role ||
     mongoose.model("Role", new mongoose.Schema({}, { strict: false, collection: "roles" }));
-  const Dispositif =
-    mongoose.models.Dispositif ||
+  // Use a separate model name to avoid modifying the global Dispositif schema
+  // This model uses strict: false for webhook flexibility but doesn't affect the main app
+  const WebhookDispositif =
+    mongoose.models.WebhookDispositif ||
     mongoose.model(
-      "Dispositif",
+      "WebhookDispositif",
       new mongoose.Schema(
         {
           typeContenu: String,
@@ -73,10 +75,7 @@ export const getWebhookModels = async () => {
         { strict: false, collection: "dispositifs" },
       ),
     );
-  // Ensure it's not strict even if pre-registered by another module
-  if (Dispositif.schema.options.strict !== false) {
-    Dispositif.schema.set("strict", false);
-  }
+  const Dispositif = WebhookDispositif; // Alias for backward compatibility with handlers
   const Theme =
     mongoose.models.Theme ||
     mongoose.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));

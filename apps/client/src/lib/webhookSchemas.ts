@@ -1,6 +1,11 @@
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { z } from "zod";
 
+// ObjectId validation - prevents NoSQL injection
+const ObjectIdSchema = z.string().regex(/^[0-9a-fA-F]{24}$/, {
+  message: "Format ObjectId invalide (doit être 24 caractères hexadécimaux)",
+});
+
 // Base schema for shared fields
 const BaseWebhookSchema = z.object({
   email: z.string().email("Format d'email invalide"),
@@ -59,7 +64,7 @@ export const DispositifCreateSchema = BaseWebhookSchema.extend({
 // UPDATE
 export const DispositifUpdateSchema = BaseWebhookSchema.extend({
   dispositif: z.object({
-    _id: z.string(),
+    _id: ObjectIdSchema,
     titreInformatif: z.string().optional(),
     titreMarque: z.string().optional(),
     abstract: z.string().optional(),
@@ -71,7 +76,7 @@ export const DispositifUpdateSchema = BaseWebhookSchema.extend({
 // TRANSLATION
 export const TranslationUpdateSchema = BaseWebhookSchema.extend({
   dispositif: z.object({
-    _id: z.string(),
+    _id: ObjectIdSchema,
     translations: z
       .record(
         z.string(),
@@ -97,6 +102,6 @@ export const TranslationUpdateSchema = BaseWebhookSchema.extend({
 // ARCHIVE
 export const ArchiveSchema = BaseWebhookSchema.extend({
   dispositif: z.object({
-    _id: z.string(),
+    _id: ObjectIdSchema,
   }),
 });
