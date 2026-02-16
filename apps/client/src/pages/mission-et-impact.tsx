@@ -100,7 +100,8 @@ const MissionImpact = (props: Props) => {
           { id: "impact", text: t("MissionImpact.navbarItem2") },
           { id: "users", text: t("MissionImpact.navbarItem3") },
           { id: "figures", text: t("MissionImpact.navbarItem4") },
-          { id: "team", text: t("MissionImpact.navbarItem5") },
+          // TEMP: Section équipe masquée - facilement réversible
+          // { id: "team", text: t("MissionImpact.navbarItem5") },
           { id: "contributors", text: t("MissionImpact.navbarItem6") },
           { id: "steps", text: t("MissionImpact.navbarItem7") },
         ]}
@@ -132,10 +133,12 @@ const MissionImpact = (props: Props) => {
         <SectionFigures />
       </div>
 
+      {/* TEMP: Section équipe masquée - facilement réversible
       <div ref={refTeam} className="relative">
         <Anchor id="team" />
         <SectionTeam />
       </div>
+      */}
 
       <div ref={refContributors} className="relative">
         <Anchor id="contributors" />
