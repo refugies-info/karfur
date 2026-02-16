@@ -24,42 +24,44 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
   logger.info("[getAllDispositifs] called");
 
   const dispositifs: GetAllDispositifsResponse[] = await Promise.all(
-    (await getDispositifsFromDB()).map(async (d) => {
-      const status = await getStatus(d);
-      return {
-        _id: d._id,
-        nbMercis: d.merci.length,
-        hasDraftVersion: !!d.hasDraftVersion,
-        status,
-        ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
-        ...pick(d, [
-          "updatedAt",
-          "typeContenu",
-          "creatorId",
-          "created_at",
-          "publishedAt",
-          "publishedAtAuthor",
-          "adminComments",
-          "adminProgressionStatus",
-          "lastAdminUpdate",
-          "draftReminderMailSentDate",
-          "draftSecondReminderMailSentDate",
-          "lastReminderMailSentToUpdateContentDate",
-          "lastModificationDate",
-          "deletionDate",
-          "lastModificationAuthor",
-          "needs",
-          "theme",
-          "secondaryThemes",
-          "nbVues",
-          "nbMots",
-          "mainSponsor",
-          "themesSelectedByAuthor",
-          "webOnly",
-          "origin",
-        ]),
-      };
-    }),
+    (await getDispositifsFromDB())
+      .filter((d) => d.origin === "RI")
+      .map(async (d) => {
+        const status = await getStatus(d);
+        return {
+          _id: d._id,
+          nbMercis: (d.merci || []).length,
+          hasDraftVersion: !!d.hasDraftVersion,
+          status,
+          ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
+          ...pick(d, [
+            "updatedAt",
+            "typeContenu",
+            "creatorId",
+            "created_at",
+            "publishedAt",
+            "publishedAtAuthor",
+            "adminComments",
+            "adminProgressionStatus",
+            "lastAdminUpdate",
+            "draftReminderMailSentDate",
+            "draftSecondReminderMailSentDate",
+            "lastReminderMailSentToUpdateContentDate",
+            "lastModificationDate",
+            "deletionDate",
+            "lastModificationAuthor",
+            "needs",
+            "theme",
+            "secondaryThemes",
+            "nbVues",
+            "nbMots",
+            "mainSponsor",
+            "themesSelectedByAuthor",
+            "webOnly",
+            "origin",
+          ]),
+        };
+      }),
   );
 
   return {
