@@ -49,7 +49,11 @@ const CardSessions = ({ className }: Props) => {
         const endDate = dateFormatter.format(new Date(session.endDate));
 
         return (
-          <MetaDataItem key={index} icon="ri-calendar-event-line" className="[&_p]:before:!hidden">
+          <MetaDataItem
+            key={session.externalRef || `${session.startDate}-${session.endDate}-${index}`}
+            icon="ri-calendar-event-line"
+            className="[&_p]:before:!hidden"
+          >
             <span className="flex flex-col gap-1">
               <span>
                 {t("Dispositif.from")} <span className="whitespace-nowrap">{startDate}</span>{" "}
