@@ -40,7 +40,7 @@ describe("Webhook API Endpoints", () => {
       User: { findOne: jest.fn().mockResolvedValue(mockUser) },
       Dispositif: {
         create: jest.fn().mockImplementation((data) => Promise.resolve({ ...data, _id: "newId" })),
-        findByIdAndUpdate: jest.fn().mockResolvedValue({ _id: "existingId" }),
+        findByIdAndUpdate: jest.fn().mockResolvedValue({ _id: "507f1f77bcf86cd799439011" }),
       },
       Theme: {
         find: jest.fn().mockReturnValue({
@@ -201,7 +201,7 @@ describe("Webhook API Endpoints", () => {
         body: {
           email: mockEmail,
           dispositif: {
-            _id: "existingId",
+            _id: "507f1f77bcf86cd799439011",
             themes: ["Santé"],
             translations: {
               fr: {
@@ -220,7 +220,7 @@ describe("Webhook API Endpoints", () => {
 
       const { Dispositif } = await webhookUtils.getWebhookModels();
       expect(Dispositif.findByIdAndUpdate).toHaveBeenCalledWith(
-        "existingId",
+        "507f1f77bcf86cd799439011",
         expect.objectContaining({
           $set: expect.objectContaining({
             theme: "theme1", // Based on getThemeIdsByNames mock in beforeEach
@@ -237,7 +237,7 @@ describe("Webhook API Endpoints", () => {
         body: {
           email: mockEmail,
           dispositif: {
-            _id: "existingId",
+            _id: "507f1f77bcf86cd799439011",
             translations: {
               uk: {
                 content: { titreInformatif: "UK Title" },
@@ -260,7 +260,7 @@ describe("Webhook API Endpoints", () => {
         body: {
           email: mockEmail,
           dispositif: {
-            _id: "existingId",
+            _id: "507f1f77bcf86cd799439011",
             translations: {
               uk: { content: {} },
               en: { content: {} },
@@ -282,7 +282,7 @@ describe("Webhook API Endpoints", () => {
         body: {
           email: mockEmail,
           dispositif: {
-            _id: "existingId",
+            _id: "507f1f77bcf86cd799439011",
           },
         },
       });
@@ -295,7 +295,7 @@ describe("Webhook API Endpoints", () => {
 
       const { Dispositif } = await webhookUtils.getWebhookModels();
       expect(Dispositif.findByIdAndUpdate).toHaveBeenCalledWith(
-        "existingId",
+        "507f1f77bcf86cd799439011",
         expect.objectContaining({
           $set: expect.objectContaining({
             status: DispositifStatus.ARCHIVED,
