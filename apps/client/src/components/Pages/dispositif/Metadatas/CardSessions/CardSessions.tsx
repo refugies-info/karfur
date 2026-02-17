@@ -23,25 +23,30 @@ const CardSessions = ({ className }: Props) => {
     );
   }, [sessions]);
 
+  // Formatter de date réutilisable (optimisation performance)
+  const locale = t("__locale", { defaultValue: "fr" });
+  const dateFormatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      }),
+    [locale],
+  );
+
+  // Date actuelle pour comparaison (une seule instance)
+  const now = new Date();
+
   // Ne pas afficher si pas de sessions
   if (!sortedSessions || sortedSessions.length === 0) return null;
 
   return (
     <MetaDataCard title={t("Dispositif.sessions")} className={className}>
       {sortedSessions.map((session: Session, index: number) => {
-        const isPast = new Date(session.endDate) < new Date();
-        const locale = t("__locale", { defaultValue: "fr" });
-
-        const formatDate = (date: Date): string => {
-          return new Intl.DateTimeFormat(locale, {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          }).format(date);
-        };
-
-        const startDate = formatDate(new Date(session.startDate));
-        const endDate = formatDate(new Date(session.endDate));
+        const isPast = new Date(session.endDate) < now;
+        const startDate = dateFormatter.format(new Date(session.startDate));
+        const endDate = dateFormatter.format(new Date(session.endDate));
 
         return (
           <MetaDataItem key={index} icon="ri-calendar-event-line" className="[&_p]:before:!hidden">
