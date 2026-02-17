@@ -5,6 +5,7 @@ import { cn } from "~/lib/classname";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import CardConditions from "./CardConditions";
 import CardPublic from "./CardPublic";
+import CardSessions from "./CardSessions";
 
 interface Props {
   className?: string;
@@ -23,6 +24,7 @@ const Metadatas = ({ className }: Props) => {
     <div id="anchor-metadatas" className={cn(className)}>
       <h2 className="text-title-lg font-bold lg:hidden">{t("Dispositif.importantInformations")}</h2>
 
+      {dispositifSelector.origin === "RCO" && <CardSessions />}
       <CardPublic />
       <CardInfo />
       <CardConditions />

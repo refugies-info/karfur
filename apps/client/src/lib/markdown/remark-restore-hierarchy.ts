@@ -42,6 +42,10 @@ export function remarkRestoreHierarchy() {
  * It looks for ":::" paragraphs and mimics the closing behavior by moving
  * preceding siblings into the target container.
  *
+ * IMPORTANT: Only content (paragraphs, lists, etc.) should be nested.
+ * A new directive after a fence means the fence is closing the previous directive,
+ * NOT nesting the new directive inside it.
+ *
  * @param node - The node currently being visited
  */
 function checkContainer(node: Node) {
@@ -61,7 +65,15 @@ function checkContainer(node: Node) {
         const target = container.children[index - 2];
         const elementToMove = container.children[index - 1];
 
-        if (target.type === "containerDirective") {
+        // Only nest if:
+        // 1. Target is a containerDirective
+        // 2. ElementToMove is NOT a directive (it's content like paragraph, list, etc.)
+        // If ElementToMove is a directive, the fence is closing Target, not nesting
+        if (
+          target.type === "containerDirective" &&
+          elementToMove.type !== "containerDirective" &&
+          elementToMove.type !== "leafDirective"
+        ) {
           const targetContainer = target as Parent;
           targetContainer.children = targetContainer.children || [];
           targetContainer.children.push(elementToMove);
@@ -75,7 +87,7 @@ function checkContainer(node: Node) {
         }
       }
 
-      // Remove invalid/unused fence
+      // Remove invalid/unused fence (closing fence for a directive)
       container.children.splice(i, 1);
       continue;
     }
@@ -92,7 +104,6 @@ function checkContainer(node: Node) {
  * @param node - The AST node to check (usually a paragraph)
  * @returns true if the node is a text paragraph containing exactly ":::"
  */
-// biome-ignore lint/suspicious/noExplicitAny: AST traversal involves loose types
 function isClosingFenceParagraph(node: any): boolean {
   if (node.type !== "paragraph") return false;
   if (!node.children || node.children.length !== 1) return false;

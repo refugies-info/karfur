@@ -180,6 +180,10 @@ export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t:
       return getTimeSlots(metadatas.timeSlots, t);
     case "location":
       return getLocation(metadatas.location, t);
+    case "sessions":
+      // Sessions not displayed on mobile yet (no mobile design)
+      // TODO: implement sessions display for mobile when design is ready
+      return null;
     default:
       return metadatas[key];
   }
