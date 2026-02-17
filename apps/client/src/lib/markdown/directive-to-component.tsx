@@ -7,6 +7,65 @@ import { visit } from "unist-util-visit";
 import { getCalloutTranslationKey } from "~/lib/contentParsing";
 
 /**
+ * Valid directive names that should be transformed to React components.
+ * Other directives (like text containing colons, e.g., "9:00") will be converted
+ * to plain text to prevent React errors (HTML tag names cannot start with numbers).
+ */
+const VALID_DIRECTIVE_NAMES = new Set(["toggle", "important", "good-to-know"]);
+
+/**
+ * Checks if a directive name is valid for transformation.
+ * Valid names:
+ * - Must be in the whitelist of known directive names
+ * - Must start with a letter (HTML tag names cannot start with numbers)
+ */
+function isValidDirectiveName(name: string): boolean {
+  // Must be a known directive name
+  if (!VALID_DIRECTIVE_NAMES.has(name)) return false;
+
+  // Must start with a letter (HTML tag names cannot start with numbers)
+  if (!/^[a-zA-Z]/.test(name)) return false;
+
+  return true;
+}
+
+/**
+ * Returns the prefix for a directive type.
+ * - textDirective: ":"
+ * - leafDirective: "::"
+ * - containerDirective: ":::"
+ */
+function getDirectivePrefix(type: string): string {
+  if (type === "textDirective") return ":";
+  if (type === "leafDirective") return "::";
+  return ":::";
+}
+
+/**
+ * Reconstructs the original text representation of a directive.
+ * This is used for invalid directives that should be rendered as plain text.
+ *
+ * @example
+ * textDirective with name="00" → ":00"
+ * leafDirective with name="foo" → "::foo"
+ * containerDirective with name="bar" → ":::bar"
+ */
+function reconstructDirectiveText(node: any): string {
+  const prefix = getDirectivePrefix(node.type);
+  let text = prefix + node.name;
+
+  // Reconstruct attributes if any
+  if (node.attributes && Object.keys(node.attributes).length > 0) {
+    const attrs = Object.entries(node.attributes)
+      .map(([key, value]) => `${key}="${value}"`)
+      .join(" ");
+    text += `{${attrs}}`;
+  }
+
+  return text;
+}
+
+/**
  * Remark plugin that transforms markdown directives into React components.
  *
  * This plugin bridges remark-directive (which parses :::name{attrs} syntax)
@@ -21,6 +80,10 @@ import { getCalloutTranslationKey } from "~/lib/contentParsing";
  * - `data.hName`: the component name to render (e.g., "toggle", "important")
  * - `data.hProperties`: the attributes to pass as props (e.g., { title: "..." })
  *
+ * Only directives with names in VALID_DIRECTIVE_NAMES are transformed.
+ * Unknown directives (including text like "9:00" parsed as :00) are converted
+ * to plain text nodes to prevent React errors.
+ *
  * @example
  * ```markdown
  * :::toggle{title="My Title"}
@@ -32,18 +95,34 @@ import { getCalloutTranslationKey } from "~/lib/contentParsing";
  */
 export function remarkDirectiveToComponent() {
   return (tree: Root) => {
-    visit(tree, (node) => {
+    visit(tree, (node, index, parent) => {
       if (
         node.type === "containerDirective" ||
         node.type === "leafDirective" ||
         node.type === "textDirective"
       ) {
-        const data = node.data || (node.data = {});
-
-        data.hName = node.name;
-        data.hProperties = Object.assign({}, node.attributes, {
-          class: node.name,
-        });
+        if (isValidDirectiveName(node.name)) {
+          // Valid directive: transform to component
+          const data = node.data || (node.data = {});
+          data.hName = node.name;
+          data.hProperties = Object.assign({}, node.attributes, {
+            class: node.name,
+          });
+        } else {
+          // Invalid directive: convert to plain text
+          // Only handle textDirective (inline) - container/leaf directives should not appear
+          // in normal content, so we just skip them to avoid breaking the layout
+          if (node.type === "textDirective" && parent && typeof index === "number") {
+            const textContent = reconstructDirectiveText(node);
+            // Replace the directive node with a text node
+            parent.children[index] = {
+              type: "text",
+              value: textContent,
+            };
+          }
+          // For containerDirective and leafDirective with invalid names, we leave them as-is
+          // They will be filtered out by ReactMarkdown since no component matches
+        }
       }
     });
   };
