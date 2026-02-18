@@ -5,8 +5,8 @@ import crypto from "crypto";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { END } from "redux-saga";
 import Dispositif from "~/components/Content/Dispositif";
-import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { wrapper } from "~/services/configureStore";
+import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { setSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
@@ -111,6 +111,21 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
       throw new Error("Missing dispositif data");
     }
 
+    // La locale vient de l'URL (Next.js i18n routing)
+    const previewLocale = locale || "fr";
+
+    // Vérifier si la traduction demandée existe
+    const hasTranslation =
+      previewLocale !== "fr" && !!dispositif.translations?.[previewLocale]?.content;
+
+    // Construire availableLanguages pour useContentLocale
+    const availableLanguages = hasTranslation ? ["fr", previewLocale] : ["fr"];
+
+    // Récupérer le contenu traduit ou fallback FR
+    const translationContent = dispositif.translations?.[previewLocale]?.content;
+    const frenchContent = dispositif.translations?.fr?.content;
+
+    // Construire le dispositif preview avec support des traductions
     const previewDispositif: GetDispositifResponse = {
       ...dispositif,
       _id: "preview-id",
@@ -123,19 +138,33 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
       secondaryThemes: dispositif.secondaryThemes || [],
       metadatas: dispositif.metadatas || {},
       avis: [],
-      availableLanguages: [],
+      availableLanguages,
       creatorId: { _id: "preview-creator", username: "Preview User" },
-      // Ensure we don't overwrite if not present, but mock if needed
+      // Titres: utiliser traduction si disponible, sinon fallback
+      titreInformatif:
+        translationContent?.titreInformatif ||
+        frenchContent?.titreInformatif ||
+        dispositif.titreInformatif,
+      titreMarque:
+        translationContent?.titreMarque || frenchContent?.titreMarque || dispositif.titreMarque,
+      abstract: translationContent?.abstract || frenchContent?.abstract || dispositif.abstract,
+      // Pour RCO: stocker le markdown traduit
+      markdown:
+        hasTranslation && translationContent?.markdown
+          ? translationContent.markdown
+          : frenchContent?.markdown,
+      // Inclure toutes les traductions pour que Section.tsx fonctionne
       translations: {
         ...dispositif.translations,
         fr: {
-          content: dispositif.translations?.fr?.content || {},
+          content: frenchContent || {},
           created_at: new Date().toISOString() as unknown as Date,
         },
       },
     } as unknown as GetDispositifResponse;
 
     store.dispatch(setSelectedDispositifActionCreator(previewDispositif));
+    store.dispatch(toggleLangueActionCreator(previewLocale));
 
     store.dispatch(fetchThemesActionCreator());
     store.dispatch(fetchNeedsActionCreator());
@@ -155,7 +184,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 
   return {
     props: {
-      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      ...(await serverSideTranslations(locale || "fr", ["common"])),
     },
   };
 });

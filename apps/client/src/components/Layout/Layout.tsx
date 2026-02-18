@@ -123,7 +123,11 @@ const Layout = (props: Props) => {
     const storedLanguei18nCode = locale.getFromCache();
     const isSharedSmsLink = new URLSearchParams(window.location.search).get("share") === "sms";
 
+    // Skip language auto-redirect for preview page (language is set by payload)
+    const isPreviewPage = router.pathname === "/dispositif/preview";
+
     if (
+      !isPreviewPage &&
       storedLanguei18nCode &&
       storedLanguei18nCode !== "fr" &&
       storedLanguei18nCode !== router.locale
