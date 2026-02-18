@@ -138,3 +138,106 @@ The API returns standard HTTP status codes with informative JSON messages:
 | **403** | `Forbidden` | `Accès refusé. Rôle requis : Admin ou Contrib` | The user does not have sufficient permissions. |
 | **404** | `Not Found` | `Utilisateur non trouvé pour cet email` | The email in the payload does not match any user. |
 | **500** | `Internal Server Error` | _(Variable)_ | Unexpected server error. |
+
+---
+
+## Preview Endpoint
+
+Preview a dispositif content in a specific language before publishing. This endpoint renders a full HTML page with the translated interface and content.
+
+### URL Structure
+
+```http
+POST /{locale}/dispositif/preview
+```
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `locale` | string | Yes | Preview language (`fr`, `ar`, `uk`, `en`, `ps`, `fa`, `ti`, `ru`) |
+
+### Headers
+
+| Header | Required | Description |
+|--------|----------|-------------|
+| `Content-Type` | Yes | `application/json` |
+| `webhook-secret` | Yes | Must match `WEBHOOK_SECRET` environment variable |
+
+### Payload Structure
+
+```json
+{
+  "dispositif": {
+    "titreInformatif": "Titre en français (fallback)",
+    "titreMarque": "Marque française",
+    "abstract": "Résumé français",
+    "origin": "RCO",
+    "theme": "63286a015d31b2c0cad99615",
+    "secondaryThemes": [],
+    "needs": [],
+    "metadatas": {
+      "location": "à distance",
+      "frenchLevel": ["A1", "A2"],
+      "age": { "type": "between", "ages": [18, 65] },
+      "public": ["tout public"],
+      "price": { "values": [0], "details": "Gratuit" },
+      "sessions": [
+        {
+          "startDate": "2025-11-24T00:00:00.000Z",
+          "endDate": "2026-01-16T00:00:00.000Z",
+          "externalRef": "585188"
+        }
+      ]
+    },
+    "translations": {
+      "fr": {
+        "content": {
+          "titreInformatif": "Titre français",
+          "titreMarque": "Marque française",
+          "abstract": "Résumé français",
+          "markdown": "# Contenu FR..."
+        }
+      },
+      "ar": {
+        "content": {
+          "titreInformatif": "العنوان بالعربية",
+          "titreMarque": "العلامة التجارية",
+          "abstract": "الملخص",
+          "markdown": "# محتوى AR..."
+        }
+      }
+    }
+  }
+}
+```
+
+### Example Request
+
+**French preview:**
+```bash
+curl -X POST http://localhost:3000/fr/dispositif/preview \
+  -H "Content-Type: application/json" \
+  -H "webhook-secret: xxx" \
+  -d '{"dispositif": {"titreInformatif": "Cours FLE", "origin": "RCO", "translations": {"fr": {"content": {"titreInformatif": "Cours FLE", "abstract": "...", "markdown": "# Content"}}}}}'
+```
+
+**Arabic preview:**
+```bash
+curl -X POST http://localhost:3000/ar/dispositif/preview \
+  -H "Content-Type: application/json" \
+  -H "webhook-secret: xxx" \
+  -d '{"dispositif": {"titreInformatif": "Cours FLE", "origin": "RCO", "translations": {"fr": {"content": {...}}, "ar": {"content": {"titreInformatif": "...", "abstract": "...", "markdown": "..."}}}}}'
+```
+
+### Behavior
+
+| Scenario | Result |
+|----------|--------|
+| Translation exists for `locale` | Displays everything in `locale` (title, abstract, content, UI) |
+| Translation missing for `locale` | Falls back to French (`translations.fr` or root fields) |
+| Interface language | Always matches the URL `locale` parameter |
+
+### Important Notes
+
+- The `locale` parameter moved from the request body to the URL path (as of 2025-02-18)
+- This endpoint returns a full HTML page, not JSON
+- Use the test page at `/dispositif/test-preview` (development only) for manual testing
