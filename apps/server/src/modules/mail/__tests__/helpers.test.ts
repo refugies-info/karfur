@@ -1,7 +1,8 @@
+import type { UserId } from "~/typegoose";
 import { consentsToEmail } from "../helpers";
 
-const MENS_ID = "63985164fd1bf4e22792ef6e" as any;
-const UNKNOWN_ID = "000000000000000000000000" as any;
+const MENS_ID = "63985164fd1bf4e22792ef6e" as unknown as UserId;
+const UNKNOWN_ID = "000000000000000000000000" as unknown as UserId;
 
 describe("consentsToEmail - réseau MENS restrictions", () => {
   it("should block restricted templates (e.g. newUserWelcome)", () => {
