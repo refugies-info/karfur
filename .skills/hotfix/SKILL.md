@@ -2,8 +2,8 @@
 name: Hotfix Workflow
 description: |
   Automates hotfix creation for staging or production environments.
-  Creates a worktree, presents an interactive list of recent dev commits to cherry-pick,
-  and generates PRs targeting the correct environment branch.
+  Creates a worktree from the correct base branch, presents an interactive
+  commit picker, and generates PRs targeting the correct environment branch.
 triggers:
   - /hotfix
   - hotfix for staging
@@ -25,17 +25,17 @@ Create and deploy hotfixes to staging or production environments with cherry-pic
 ## Quick start
 
 ```bash
-# From the karfur workspace root
-cd /Users/luis/Code/refugies_info/karfur
+# From any karfur worktree
+cd /Users/luis/Code/refugies_info/karfur/dev
 
-# Create a hotfix for staging
-.skills/hotfix/scripts/create-hotfix.sh staging "fix-login-redirect"
+# Create a hotfix for staging (client app)
+.skills/hotfix/scripts/create-hotfix.sh staging client fix-login-redirect
 
-# Or with a Linear ticket
-.skills/hotfix/scripts/create-hotfix.sh staging "KAR-456-fix-login-redirect"
+# Create a hotfix for staging (server app)
+.skills/hotfix/scripts/create-hotfix.sh staging server fix-api-timeout
 
-# Create a hotfix for production
-.skills/hotfix/scripts/create-hotfix.sh production "critical-payment-fix"
+# Create a production hotfix with Linear ticket
+.skills/hotfix/scripts/create-hotfix.sh production client KAR-456-critical-fix
 ```
 
 ## Workflow
@@ -43,53 +43,21 @@ cd /Users/luis/Code/refugies_info/karfur
 ### 1. Create the hotfix branch and worktree
 
 ```bash
-.skills/hotfix/scripts/create-hotfix.sh <environment> <description>
-```
-
-**Arguments:**
-- `environment`: `staging` or `production`
-- `description`: Branch description (optionally prefixed with ticket like `KAR-123-`)
-
-This will:
-- Create branch `hotfix/<environment>/<description>`
-- Create a worktree at `hotfix/<description>/`
-- Symlink `.envs/` and `.letta/` into the worktree
-
-### 2. Cherry-pick commits from dev
-
-```bash
-cd /Users/luis/Code/refugies_info/karfur/hotfix/<description>
-.skills/hotfix/scripts/pick-commits.sh
-```
-
-This will:
-- Show recent commits on `dev` in an interactive list
-- Let you select one or more commits (comma-separated)
-- Cherry-pick them into your hotfix branch
-
-### 3. Make additional changes (if needed)
-
-```bash
-# Run dev server, make fixes, test
-pnpm dev:client
-pnpm dev:server
-
-# Stage and commit
-git add <files>
-git commit -m "fix(client): additional hotfix changes"
-```
-
-### 4. Create PR(s)
-
-```bash
-.skills/hotfix/scripts/pr-hotfix.sh <environment> <app>
+.skills/hotfix/scripts/create-hotfix.sh <environment> <app> <description>
 ```
 
 **Arguments:**
 - `environment`: `staging` or `production`
 - `app`: `client`, `server`, or `mobile`
+- `description`: Branch description (optionally prefixed with ticket like `KAR-123-`)
 
-**Target branches:**
+This will:
+- Create branch `hotfix/<environment>/<app>/<description>` from the correct base branch
+- Create a worktree at `hotfix/<app>-<description>/`
+- Symlink `.envs/` and `.letta/` into the worktree
+- **Automatically launch the commit picker**
+
+### Base branches
 
 | Environment | App | Base branch |
 |-------------|-----|-------------|
@@ -100,17 +68,60 @@ git commit -m "fix(client): additional hotfix changes"
 | production | server | `master-backend` |
 | production | mobile | `master-mobile` |
 
+### 2. Select commits to cherry-pick
+
+The commit picker launches automatically after worktree creation. It will:
+- Show recent commits on `dev` in an interactive list (fzf if available, otherwise numbered list)
+- Let you select one or more commits
+- Cherry-pick them into your hotfix branch
+
+### 3. Make additional changes (if needed)
+
+```bash
+cd /Users/luis/Code/refugies_info/karfur/hotfix/<app>-<description>
+
+# Run dev server, make fixes, test
+pnpm dev:client
+pnpm dev:server
+
+# Stage and commit
+git add <files>
+git commit -m "fix(client): additional hotfix changes"
+```
+
+### 4. Create PR
+
+```bash
+.skills/hotfix/scripts/pr-hotfix.sh <environment> <app>
+```
+
+The script auto-detects the current branch and creates a PR to the correct base.
+
+## Multi-app hotfixes
+
+If your hotfix affects multiple apps (e.g., client AND server), run the workflow once per app:
+
+```bash
+# First, create client hotfix
+.skills/hotfix/scripts/create-hotfix.sh staging client fix-auth-bug
+# ... cherry-pick, test, create PR ...
+
+# Then, create server hotfix  
+.skills/hotfix/scripts/create-hotfix.sh staging server fix-auth-bug
+# ... cherry-pick, test, create PR ...
+```
+
 ## Scripts
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/create-hotfix.sh` | Creates worktree and hotfix branch |
+| `scripts/create-hotfix.sh` | Creates worktree from correct base branch, launches picker |
 | `scripts/pick-commits.sh` | Interactive cherry-pick from dev |
 | `scripts/pr-hotfix.sh` | Creates PR to correct base branch |
 
 ## Notes
 
-- Branch pattern: `hotfix/<staging|production>/<description>`
+- Branch pattern: `hotfix/<environment>/<app>/<description>`
+- Worktree path: `hotfix/<app>-<description>/`
 - Ticket reference is optional but recommended (e.g., `KAR-123-description`)
 - Always test locally before creating the PR
-- For multi-app hotfixes, create separate PRs for each app

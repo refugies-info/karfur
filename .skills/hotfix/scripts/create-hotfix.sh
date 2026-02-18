@@ -2,13 +2,14 @@
 #
 # create-hotfix.sh - Create a hotfix worktree for staging or production
 #
-# Usage: create-hotfix.sh <environment> <description>
+# Usage: create-hotfix.sh <environment> <app> <description>
 #   environment: staging | production
+#   app: client | server | mobile
 #   description: branch description (e.g., "fix-login" or "KAR-123-fix-login")
 #
 # Example:
-#   create-hotfix.sh staging fix-login-redirect
-#   create-hotfix.sh production KAR-456-critical-payment-fix
+#   create-hotfix.sh staging client fix-login-redirect
+#   create-hotfix.sh production server KAR-456-critical-api-fix
 
 set -euo pipefail
 
@@ -16,19 +17,29 @@ set -euo pipefail
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 usage() {
   local exit_code="${1:-1}"
-  echo "Usage: $0 <environment> <description>"
+  echo "Usage: $0 <environment> <app> <description>"
   echo ""
   echo "Arguments:"
   echo "  environment   staging | production"
+  echo "  app           client | server | mobile"
   echo "  description   Branch description (e.g., 'fix-login' or 'KAR-123-fix-login')"
   echo ""
   echo "Examples:"
-  echo "  $0 staging fix-login-redirect"
-  echo "  $0 production KAR-456-critical-payment-fix"
+  echo "  $0 staging client fix-login-redirect"
+  echo "  $0 production server KAR-456-critical-api-fix"
+  echo ""
+  echo "Base branch mapping:"
+  echo "  staging  + client -> staging-frontend"
+  echo "  staging  + server -> staging-backend"
+  echo "  staging  + mobile -> staging-mobile"
+  echo "  production + client -> master-frontend"
+  echo "  production + server -> master-backend"
+  echo "  production + mobile -> master-mobile"
   exit "$exit_code"
 }
 
@@ -38,15 +49,21 @@ if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
 fi
 
 # Validate arguments
-if [[ $# -lt 2 ]]; then
+if [[ $# -lt 3 ]]; then
   usage
 fi
 
 ENVIRONMENT="$1"
-DESCRIPTION="$2"
+APP="$2"
+DESCRIPTION="$3"
 
 if [[ "$ENVIRONMENT" != "staging" && "$ENVIRONMENT" != "production" ]]; then
   echo -e "${RED}Error: environment must be 'staging' or 'production'${NC}"
+  usage
+fi
+
+if [[ "$APP" != "client" && "$APP" != "server" && "$APP" != "mobile" ]]; then
+  echo -e "${RED}Error: app must be 'client', 'server', or 'mobile'${NC}"
   usage
 fi
 
@@ -78,11 +95,37 @@ else
   exit 1
 fi
 
-BRANCH_NAME="hotfix/${ENVIRONMENT}/${DESCRIPTION}"
-WORKTREE_PATH="${WORKSPACE_ROOT}/hotfix/${DESCRIPTION}"
+# Determine base branch based on environment and app
+get_base_branch() {
+  local env="$1"
+  local app="$2"
+  
+  case "$env" in
+    staging)
+      case "$app" in
+        client) echo "staging-frontend" ;;
+        server) echo "staging-backend" ;;
+        mobile) echo "staging-mobile" ;;
+      esac
+      ;;
+    production)
+      case "$app" in
+        client) echo "master-frontend" ;;
+        server) echo "master-backend" ;;
+        mobile) echo "master-mobile" ;;
+      esac
+      ;;
+  esac
+}
+
+BASE_BRANCH=$(get_base_branch "$ENVIRONMENT" "$APP")
+BRANCH_NAME="hotfix/${ENVIRONMENT}/${APP}/${DESCRIPTION}"
+WORKTREE_PATH="${WORKSPACE_ROOT}/hotfix/${APP}-${DESCRIPTION}"
 
 echo -e "${GREEN}Creating hotfix worktree...${NC}"
 echo "  Environment: ${ENVIRONMENT}"
+echo "  App:         ${APP}"
+echo "  Base branch: ${BASE_BRANCH}"
 echo "  Branch:      ${BRANCH_NAME}"
 echo "  Worktree:    ${WORKTREE_PATH}"
 echo ""
@@ -95,9 +138,26 @@ if [[ -d "$WORKTREE_PATH" ]]; then
   if [[ "$response" =~ ^[Yy]$ ]]; then
     echo -e "${GREEN}Using existing worktree.${NC}"
     echo ""
+    
+    # Change to worktree and launch picker
+    cd "$WORKTREE_PATH"
+    PICK_SCRIPT=""
+    if [[ -x "${WORKTREE_PATH}/.skills/hotfix/scripts/pick-commits.sh" ]]; then
+      PICK_SCRIPT="${WORKTREE_PATH}/.skills/hotfix/scripts/pick-commits.sh"
+    elif [[ -x "${SCRIPT_DIR}/pick-commits.sh" ]]; then
+      PICK_SCRIPT="${SCRIPT_DIR}/pick-commits.sh"
+    fi
+    
+    if [[ -n "$PICK_SCRIPT" ]]; then
+      echo -e "${GREEN}Launching commit picker...${NC}"
+      echo ""
+      bash "$PICK_SCRIPT"
+    fi
+    
+    echo ""
     echo -e "${GREEN}Next steps:${NC}"
     echo "  cd ${WORKTREE_PATH}"
-    echo "  .skills/hotfix/scripts/pick-commits.sh   # Cherry-pick commits from dev"
+    echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} ${APP}"
     exit 0
   else
     echo "Aborting."
@@ -109,59 +169,38 @@ fi
 echo "Fetching latest from origin..."
 git -C "$WORKSPACE_ROOT" fetch origin
 
-# Determine base branch for the hotfix
-# For staging: branch from the staging branch
-# For production: branch from the master/production branch
-if [[ "$ENVIRONMENT" == "staging" ]]; then
-  # Use dev as base - the commits we cherry-pick are already on dev
-  BASE_BRANCH="dev"
-else
-  # For production, also start from dev and cherry-pick
-  BASE_BRANCH="dev"
+# Verify base branch exists
+if ! git -C "$WORKSPACE_ROOT" rev-parse "origin/${BASE_BRANCH}" &>/dev/null; then
+  echo -e "${RED}Error: Base branch 'origin/${BASE_BRANCH}' not found${NC}"
+  echo "Available remote branches:"
+  git -C "$WORKSPACE_ROOT" branch -r | grep -E "(staging|master)" | head -10
+  exit 1
 fi
 
-# Create the worktree using the bare-repo-worktrees script if available
-NEW_WORKTREE_SCRIPT="$HOME/.letta/skills/bare-repo-worktrees/scripts/new-worktree.sh"
+# Create the worktree
+echo "Creating worktree from ${BASE_BRANCH}..."
 
-if [[ -x "$NEW_WORKTREE_SCRIPT" ]]; then
-  echo "Using bare-repo-worktrees script..."
-  # The script expects: new-worktree.sh <branch-name> <base-branch>
-  # But it creates worktree at workspace_root/<branch-name>
-  # We need worktree at workspace_root/hotfix/<description>
-  
-  # Create hotfix directory if it doesn't exist
-  mkdir -p "${WORKSPACE_ROOT}/hotfix"
-  
-  cd "$WORKSPACE_ROOT"
-  
-  # Create the branch first
-  git branch "$BRANCH_NAME" "origin/${BASE_BRANCH}" 2>/dev/null || true
-  
-  # Create worktree manually since the path structure differs
-  git worktree add "$WORKTREE_PATH" "$BRANCH_NAME"
-  
-  # Link env files
-  LINK_SCRIPT="$HOME/.letta/skills/bare-repo-worktrees/scripts/link-envs.sh"
-  if [[ -x "$LINK_SCRIPT" ]]; then
-    bash "$LINK_SCRIPT" "$WORKSPACE_ROOT" "$WORKTREE_PATH"
-  fi
-  
-  # Link .letta if it exists at workspace root
-  if [[ -d "${WORKSPACE_ROOT}/.letta" && ! -e "${WORKTREE_PATH}/.letta" ]]; then
-    ln -s "${WORKSPACE_ROOT}/.letta" "${WORKTREE_PATH}/.letta"
-    echo "Linked .letta -> ${WORKSPACE_ROOT}/.letta"
-  fi
-else
-  # Fallback: create worktree manually
-  echo "Creating worktree manually..."
-  
-  mkdir -p "${WORKSPACE_ROOT}/hotfix"
-  cd "$WORKSPACE_ROOT"
-  
-  # Create branch and worktree
-  git worktree add -b "$BRANCH_NAME" "$WORKTREE_PATH" "origin/${BASE_BRANCH}"
-  
-  echo -e "${YELLOW}Note: You may need to manually symlink .envs/ files${NC}"
+# Create hotfix directory if it doesn't exist
+mkdir -p "${WORKSPACE_ROOT}/hotfix"
+
+cd "$WORKSPACE_ROOT"
+
+# Create the branch from the base branch
+git branch "$BRANCH_NAME" "origin/${BASE_BRANCH}" 2>/dev/null || true
+
+# Create worktree
+git worktree add "$WORKTREE_PATH" "$BRANCH_NAME"
+
+# Link env files
+LINK_SCRIPT="$HOME/.letta/skills/bare-repo-worktrees/scripts/link-envs.sh"
+if [[ -x "$LINK_SCRIPT" ]]; then
+  bash "$LINK_SCRIPT" "$WORKSPACE_ROOT" "$WORKTREE_PATH"
+fi
+
+# Link .letta if it exists at workspace root
+if [[ -d "${WORKSPACE_ROOT}/.letta" && ! -e "${WORKTREE_PATH}/.letta" ]]; then
+  ln -s "${WORKSPACE_ROOT}/.letta" "${WORKTREE_PATH}/.letta"
+  echo "Linked .letta -> ${WORKSPACE_ROOT}/.letta"
 fi
 
 echo ""
@@ -189,15 +228,15 @@ if [[ -n "$PICK_SCRIPT" ]]; then
   echo "  cd ${WORKTREE_PATH}"
   echo "  pnpm install   # if needed"
   echo "  # Test your changes"
-  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} <app>   # app: client|server|mobile"
+  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} ${APP}"
 else
   echo -e "${YELLOW}Note: pick-commits.sh not found. Run it manually after cd'ing to the worktree.${NC}"
   echo ""
   echo -e "${GREEN}Next steps:${NC}"
   echo "  cd ${WORKTREE_PATH}"
   echo "  pnpm install"
-  echo "  # Cherry-pick commits from dev manually or find pick-commits.sh"
+  echo "  # Cherry-pick commits from dev manually"
   echo ""
   echo "After cherry-picking and testing:"
-  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} <app>   # app: client|server|mobile"
+  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} ${APP}"
 fi
