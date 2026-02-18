@@ -167,10 +167,37 @@ fi
 echo ""
 echo -e "${GREEN}Hotfix worktree created successfully!${NC}"
 echo ""
-echo -e "${GREEN}Next steps:${NC}"
-echo "  cd ${WORKTREE_PATH}"
-echo "  pnpm install"
-echo "  .skills/hotfix/scripts/pick-commits.sh   # Cherry-pick commits from dev"
-echo ""
-echo "After cherry-picking and testing:"
-echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} <app>   # app: client|server|mobile"
+
+# Change to worktree directory
+cd "$WORKTREE_PATH"
+
+# Find pick-commits.sh - check multiple locations
+PICK_SCRIPT=""
+if [[ -x "${WORKTREE_PATH}/.skills/hotfix/scripts/pick-commits.sh" ]]; then
+  PICK_SCRIPT="${WORKTREE_PATH}/.skills/hotfix/scripts/pick-commits.sh"
+elif [[ -x "${SCRIPT_DIR}/pick-commits.sh" ]]; then
+  PICK_SCRIPT="${SCRIPT_DIR}/pick-commits.sh"
+fi
+
+if [[ -n "$PICK_SCRIPT" ]]; then
+  echo -e "${GREEN}Launching commit picker...${NC}"
+  echo ""
+  bash "$PICK_SCRIPT"
+  
+  echo ""
+  echo -e "${GREEN}Next steps:${NC}"
+  echo "  cd ${WORKTREE_PATH}"
+  echo "  pnpm install   # if needed"
+  echo "  # Test your changes"
+  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} <app>   # app: client|server|mobile"
+else
+  echo -e "${YELLOW}Note: pick-commits.sh not found. Run it manually after cd'ing to the worktree.${NC}"
+  echo ""
+  echo -e "${GREEN}Next steps:${NC}"
+  echo "  cd ${WORKTREE_PATH}"
+  echo "  pnpm install"
+  echo "  # Cherry-pick commits from dev manually or find pick-commits.sh"
+  echo ""
+  echo "After cherry-picking and testing:"
+  echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} <app>   # app: client|server|mobile"
+fi
