@@ -185,8 +185,8 @@ mkdir -p "${WORKSPACE_ROOT}/hotfix"
 
 cd "$WORKSPACE_ROOT"
 
-# Create the branch from the base branch
-git branch "$BRANCH_NAME" "origin/${BASE_BRANCH}" 2>/dev/null || true
+# Create the branch from the base branch (--no-track to avoid tracking the base)
+git branch --no-track "$BRANCH_NAME" "origin/${BASE_BRANCH}" 2>/dev/null || true
 
 # Create worktree
 git worktree add "$WORKTREE_PATH" "$BRANCH_NAME"
