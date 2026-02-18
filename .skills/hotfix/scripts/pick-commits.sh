@@ -2,12 +2,16 @@
 #
 # pick-commits.sh - Interactive cherry-pick from dev branch
 #
-# Usage: pick-commits.sh [number_of_commits]
-#   number_of_commits: How many recent commits to show (default: 20)
+# Usage: pick-commits.sh [--pr | --commits] [count]
+#   --pr        Select a merged PR to cherry-pick (default)
+#   --commits   Select individual commits
+#   count       Number of items to show (default: 20)
 #
 # Example:
-#   pick-commits.sh        # Show last 20 commits
-#   pick-commits.sh 50     # Show last 50 commits
+#   pick-commits.sh              # Show last 20 merged PRs
+#   pick-commits.sh --pr 30      # Show last 30 merged PRs
+#   pick-commits.sh --commits    # Show last 20 commits
+#   pick-commits.sh --commits 50 # Show last 50 commits
 
 set -euo pipefail
 
@@ -19,14 +23,18 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 usage() {
-  echo "Usage: $0 [number_of_commits]"
+  echo "Usage: $0 [--pr | --commits] [count]"
   echo ""
-  echo "Arguments:"
-  echo "  number_of_commits   How many recent commits to show (default: 20)"
+  echo "Options:"
+  echo "  --pr        Select a merged PR to cherry-pick (default)"
+  echo "  --commits   Select individual commits"
+  echo "  count       Number of items to show (default: 20)"
   echo ""
   echo "Examples:"
-  echo "  $0           # Show last 20 commits"
-  echo "  $0 50        # Show last 50 commits"
+  echo "  $0                 # Show last 20 merged PRs"
+  echo "  $0 --pr 30         # Show last 30 merged PRs"
+  echo "  $0 --commits       # Show last 20 commits"
+  echo "  $0 --commits 50    # Show last 50 commits"
   exit 0
 }
 
@@ -35,18 +43,42 @@ if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
   usage
 fi
 
-NUM_COMMITS="${1:-20}"
+# Parse arguments
+MODE="pr"  # Default to PR mode
+COUNT=20
 
-# Validate NUM_COMMITS is a number
-if ! [[ "$NUM_COMMITS" =~ ^[0-9]+$ ]]; then
-  echo -e "${RED}Error: number_of_commits must be a positive integer${NC}"
-  usage
-fi
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --pr)
+      MODE="pr"
+      shift
+      ;;
+    --commits)
+      MODE="commits"
+      shift
+      ;;
+    *)
+      if [[ "$1" =~ ^[0-9]+$ ]]; then
+        COUNT="$1"
+      else
+        echo -e "${RED}Error: Unknown argument: $1${NC}"
+        usage
+      fi
+      shift
+      ;;
+  esac
+done
 
 # Ensure we're in a git repository
 if ! git rev-parse --is-inside-work-tree &>/dev/null; then
   echo -e "${RED}Error: Not in a git repository${NC}"
   exit 1
+fi
+
+# Ensure gh CLI is available for PR mode
+if [[ "$MODE" == "pr" ]] && ! command -v gh &>/dev/null; then
+  echo -e "${YELLOW}Warning: GitHub CLI (gh) not found, falling back to commit mode${NC}"
+  MODE="commits"
 fi
 
 # Get current branch
@@ -64,12 +96,136 @@ if command -v fzf &>/dev/null; then
   USE_FZF=true
 fi
 
+#
+# PR MODE
+#
+if [[ "$MODE" == "pr" ]]; then
+  echo -e "${GREEN}Fetching recent merged PRs to dev...${NC}"
+  echo ""
+  
+  # Get merged PRs
+  PR_LIST=$(gh pr list --state merged --base dev --limit "$COUNT" --json number,title,mergeCommit,author --jq '.[] | "\(.number)\t\(.title)\t\(.mergeCommit.oid // "unknown")\t\(.author.login)"' 2>/dev/null || echo "")
+  
+  if [[ -z "$PR_LIST" ]]; then
+    echo -e "${YELLOW}No merged PRs found or gh CLI error. Falling back to commit mode.${NC}"
+    MODE="commits"
+  else
+    if $USE_FZF; then
+      echo -e "${GREEN}Using fzf for PR selection (Enter to confirm)${NC}"
+      echo ""
+      
+      # Format for fzf display
+      SELECTED=$(echo "$PR_LIST" | while IFS=$'\t' read -r num title sha author; do
+        echo "#${num}  ${title} (@${author})"
+      done | fzf --reverse --header="Select a PR to cherry-pick" \
+                 --preview="gh pr view {1} --json commits,files --jq '.commits[].oid' | head -10; echo '---'; gh pr view {1} --json files --jq '.files[].path' | head -10" \
+                 --preview-window=right:40%:wrap || true)
+      
+      if [[ -z "$SELECTED" ]]; then
+        echo -e "${YELLOW}No PR selected. Aborting.${NC}"
+        exit 0
+      fi
+      
+      # Extract PR number
+      PR_NUM=$(echo "$SELECTED" | grep -oE '^#[0-9]+' | tr -d '#')
+    else
+      # Numbered list fallback
+      echo -e "${GREEN}Recent merged PRs to dev:${NC}"
+      echo ""
+      
+      mapfile -t PRS < <(echo "$PR_LIST")
+      
+      idx=1
+      for pr in "${PRS[@]}"; do
+        IFS=$'\t' read -r num title sha author <<< "$pr"
+        printf "  %2d) #%-5s %s (@%s)\n" "$idx" "$num" "$title" "$author"
+        ((idx++))
+      done
+      
+      echo ""
+      echo -e "${CYAN}Select a PR number (1-${#PRS[@]}):${NC}"
+      read -r SELECTION
+      
+      if [[ -z "$SELECTION" ]] || ! [[ "$SELECTION" =~ ^[0-9]+$ ]]; then
+        echo -e "${YELLOW}Invalid selection. Aborting.${NC}"
+        exit 0
+      fi
+      
+      if [[ "$SELECTION" -lt 1 || "$SELECTION" -gt "${#PRS[@]}" ]]; then
+        echo -e "${RED}Selection out of range.${NC}"
+        exit 1
+      fi
+      
+      # Get PR number from selection
+      IFS=$'\t' read -r PR_NUM _ _ _ <<< "${PRS[$((SELECTION - 1))]}"
+    fi
+    
+    echo ""
+    echo -e "${GREEN}Fetching commits for PR #${PR_NUM}...${NC}"
+    
+    # Get commits for the PR
+    PR_COMMITS=$(gh pr view "$PR_NUM" --json commits --jq '.commits[].oid' 2>/dev/null || echo "")
+    
+    if [[ -z "$PR_COMMITS" ]]; then
+      echo -e "${RED}Error: Could not fetch commits for PR #${PR_NUM}${NC}"
+      exit 1
+    fi
+    
+    # Convert to array
+    mapfile -t SHA_ARRAY <<< "$PR_COMMITS"
+    
+    echo ""
+    echo -e "${GREEN}PR #${PR_NUM} has ${#SHA_ARRAY[@]} commit(s):${NC}"
+    for sha in "${SHA_ARRAY[@]}"; do
+      git log --oneline -1 "$sha" 2>/dev/null | sed 's/^/  /' || echo "  $sha (not found locally)"
+    done
+    
+    echo ""
+    echo -e "${CYAN}Cherry-pick all ${#SHA_ARRAY[@]} commit(s)? (Y/n)${NC}"
+    read -r CONFIRM
+    
+    if [[ "$CONFIRM" =~ ^[Nn]$ ]]; then
+      echo "Aborting."
+      exit 0
+    fi
+    
+    # Cherry-pick commits (already in chronological order from API)
+    echo ""
+    echo -e "${GREEN}Cherry-picking commits...${NC}"
+    
+    for sha in "${SHA_ARRAY[@]}"; do
+      echo -e "  Cherry-picking ${CYAN}${sha:0:7}${NC}..."
+      if ! git cherry-pick "$sha"; then
+        echo ""
+        echo -e "${RED}Cherry-pick failed for ${sha}${NC}"
+        echo "Resolve conflicts, then run: git cherry-pick --continue"
+        echo "Or abort with: git cherry-pick --abort"
+        exit 1
+      fi
+    done
+    
+    echo ""
+    echo -e "${GREEN}Successfully cherry-picked PR #${PR_NUM} (${#SHA_ARRAY[@]} commit(s))!${NC}"
+    echo ""
+    echo -e "${GREEN}Next steps:${NC}"
+    echo "  1. Test your changes locally"
+    echo "  2. Create PR: .skills/hotfix/scripts/pr-hotfix.sh <environment> <app>"
+    exit 0
+  fi
+fi
+
+#
+# COMMITS MODE
+#
+echo -e "${GREEN}Showing recent commits on origin/dev...${NC}"
+echo ""
+
 if $USE_FZF; then
   echo -e "${GREEN}Using fzf for interactive selection (Tab to select multiple, Enter to confirm)${NC}"
   echo ""
   
   # Use fzf for multi-select
-  SELECTED=$(git log origin/dev -n "$NUM_COMMITS" --format="%h  %s" | \
+  SELECTED=$(git log origin/dev -n "$COUNT" --format="%h  %s" | \
     fzf --multi --reverse --header="Select commits to cherry-pick (Tab=select, Enter=confirm)" \
         --preview="git show --stat --color=always {1}" \
         --preview-window=right:50%:wrap || true)
@@ -87,7 +243,7 @@ else
   echo ""
   
   # Store commits in array
-  mapfile -t COMMITS < <(git log origin/dev -n "$NUM_COMMITS" --format="%h  %s")
+  mapfile -t COMMITS < <(git log origin/dev -n "$COUNT" --format="%h  %s")
   
   # Display numbered list
   for i in "${!COMMITS[@]}"; do

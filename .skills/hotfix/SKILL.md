@@ -68,12 +68,17 @@ This will:
 | production | server | `master-backend` |
 | production | mobile | `master-mobile` |
 
-### 2. Select commits to cherry-pick
+### 2. Select a PR or commits to cherry-pick
 
-The commit picker launches automatically after worktree creation. It will:
-- Show recent commits on `dev` in an interactive list (fzf if available, otherwise numbered list)
-- Let you select one or more commits
-- Cherry-pick them into your hotfix branch
+The commit picker launches automatically after worktree creation. By default it shows **merged PRs**:
+- Shows recent PRs merged to `dev`
+- Select a PR to cherry-pick all its commits at once
+- Uses `gh` CLI for PR data (falls back to commit mode if unavailable)
+
+You can also switch to commit mode with `--commits`:
+```bash
+.skills/hotfix/scripts/pick-commits.sh --commits
+```
 
 ### 3. Make additional changes (if needed)
 
