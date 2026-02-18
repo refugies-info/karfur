@@ -143,7 +143,7 @@ if [[ -x "$NEW_WORKTREE_SCRIPT" ]]; then
   # Link env files
   LINK_SCRIPT="$HOME/.letta/skills/bare-repo-worktrees/scripts/link-envs.sh"
   if [[ -x "$LINK_SCRIPT" ]]; then
-    bash "$LINK_SCRIPT" "$WORKTREE_PATH"
+    bash "$LINK_SCRIPT" "$WORKSPACE_ROOT" "$WORKTREE_PATH"
   fi
   
   # Link .letta if it exists at workspace root
