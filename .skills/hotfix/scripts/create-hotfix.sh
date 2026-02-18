@@ -282,17 +282,42 @@ fi
 echo ""
 echo -e "${GREEN}Cherry-picking ${#COMMIT_ARRAY[@]} commit(s) from PR #${PR_NUM}...${NC}"
 
+# Function to check if only lock files are conflicted
+only_lockfile_conflicts() {
+  local dominated_files
+  conflicted_files=$(git diff --name-only --diff-filter=U 2>/dev/null || echo "")
+  if [[ -z "$conflicted_files" ]]; then
+    return 1
+  fi
+  # Check if all conflicted files are lock files
+  while IFS= read -r file; do
+    if [[ "$file" != "pnpm-lock.yaml" && "$file" != "package-lock.json" && "$file" != "yarn.lock" ]]; then
+      return 1
+    fi
+  done <<< "$conflicted_files"
+  return 0
+}
+
 for sha in "${COMMIT_ARRAY[@]}"; do
   echo -e "  Cherry-picking ${CYAN}${sha:0:7}${NC}..."
   if ! git cherry-pick "$sha"; then
-    echo ""
-    echo -e "${RED}Cherry-pick failed for ${sha}${NC}"
-    echo "Resolve conflicts, then run: git cherry-pick --continue"
-    echo "Or abort with: git cherry-pick --abort"
-    echo ""
-    echo "After resolving, create PR with:"
-    echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} ${APP}"
-    exit 1
+    # Check if only pnpm-lock.yaml is conflicted
+    if only_lockfile_conflicts; then
+      echo -e "  ${YELLOW}Lock file conflict detected, resolving with pnpm install...${NC}"
+      git checkout --theirs pnpm-lock.yaml 2>/dev/null || true
+      pnpm install --lockfile-only 2>/dev/null || pnpm install
+      git add pnpm-lock.yaml
+      git cherry-pick --continue --no-edit
+    else
+      echo ""
+      echo -e "${RED}Cherry-pick failed for ${sha}${NC}"
+      echo "Resolve conflicts, then run: git cherry-pick --continue"
+      echo "Or abort with: git cherry-pick --abort"
+      echo ""
+      echo "After resolving, create PR with:"
+      echo "  .skills/hotfix/scripts/pr-hotfix.sh ${ENVIRONMENT} ${APP}"
+      exit 1
+    fi
   fi
 done
 
