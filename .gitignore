@@ -55,3 +55,4 @@ credentials/
 
 # Cloudbuild
 /apps/client/cloudbuild.env
+.letta
