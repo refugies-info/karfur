@@ -9,7 +9,7 @@ on:
   # mobile app or the API types.
   push:
     branches:
-      - staging-mobile
+      - staging
     paths:
       - pnpm-lock.yaml
       - package.json
