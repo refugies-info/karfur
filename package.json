@@ -28,7 +28,7 @@
     ],
     "overrides": {
       "@codegouvfr/react-dsfr": "1.20.2",
-      "baseline-browser-mapping": "2.8.29",
+      "baseline-browser-mapping": "^2.9.19",
       "caniuse-lite": "1.0.30001755",
       "debug": "4.4.1",
       "electron-to-chromium": "1.5.255",
