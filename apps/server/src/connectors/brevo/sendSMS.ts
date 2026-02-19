@@ -34,7 +34,6 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
     const { response } = await apiInstance.sendTransacSms(sms);
     return { status: response.statusCode, sent: response.statusCode === 201 };
   } catch (error) {
-<<<<<<< staging-backend
     if (error instanceof HttpError) {
       logger.error("[Brevo] Error sending SMS", {
         message: error.message,
@@ -43,8 +42,6 @@ export const sendSMS = async (text: string, phone: string): Promise<SendSMSResul
     } else {
       logger.error("[Brevo] Unknown error sending SMS", { error });
     }
-=======
->>>>>>> master-backend
     return {
       status: error instanceof HttpError ? error.response.statusCode : 500,
       sent: false,
