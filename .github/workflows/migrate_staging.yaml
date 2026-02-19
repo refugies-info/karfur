@@ -7,12 +7,12 @@ on:
   pull_request:
     types: [closed]
     branches:
-      - staging-backend
+      - staging
   workflow_dispatch:
 
 jobs:
   migrate-staging:
-    if: github.event.pull_request.merged == true && github.base_ref == 'staging-backend'
+    if: github.event.pull_request.merged == true && github.base_ref == 'staging'
     runs-on: ubuntu-latest
     environment: staging-migrate
     concurrency:
