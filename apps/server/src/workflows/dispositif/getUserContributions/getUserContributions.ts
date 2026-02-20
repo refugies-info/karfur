@@ -20,13 +20,14 @@ export const getUserContributions = async (
     merci: 1,
     translations: 1,
     hasDraftVersion: 1,
+    origin: 1,
   };
   const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
 
   const res: GetUserContributionsResponse[] = dispositifs.map((d) => ({
     ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues", "origin"]),
-    ...pick(d.translations.fr.content, ["titreInformatif", "titreMarque"]),
-    nbMercis: d.merci.length,
+    ...pick(d.translations?.fr?.content ?? {}, ["titreInformatif", "titreMarque"]),
+    nbMercis: (d.merci ?? []).length,
     hasDraftVersion: !!d.hasDraftVersion,
   }));
 
