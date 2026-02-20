@@ -9,11 +9,11 @@ on:
   # mobile app or the API types.
   push:
     branches:
-      - master-mobile
+      - production
     paths:
       - pnpm-lock.yaml
       - package.json
-      - .github/workflows/build_mobile_prod.yml
+      - .github/workflows/build_mobile_prod.yaml
       - apps/mobile/**
       - packages/api-types/**
   workflow_dispatch:
