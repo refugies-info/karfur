@@ -4,9 +4,7 @@ name: Release Pipeline
 # frontend build (which prerenders via SSR) always runs against an
 # already-deployed backend.
 #
-# Mobile builds are NOT included here — the EAS build does not call the
-# backend at build time, so build_mobile_staging.yaml / build_mobile_prod.yaml
-# can continue to run independently.
+# Mobile builds run in parallel with the backend (no build-time API calls).
 #
 # IMPORTANT: disable the GCP Cloud Build branch-push triggers for
 # backend-stag, frontend-stag, backend-prod, frontend-prod after merging
@@ -28,28 +26,49 @@ jobs:
     name: Detect changed components
     runs-on: ubuntu-latest
     outputs:
-      backend: ${{ steps.filter.outputs.backend }}
-      frontend: ${{ steps.filter.outputs.frontend }}
+      # On workflow_dispatch, deploy everything. On push, use changed-files output.
+      backend: ${{ steps.backend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+      frontend: ${{ steps.frontend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+      mobile: ${{ steps.mobile.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 2
+          # Full history so tj-actions/changed-files can reach github.event.before SHA
+          fetch-depth: 0
 
-      - uses: dorny/paths-filter@v3
-        id: filter
+      - name: Detect backend changes
+        uses: tj-actions/changed-files@v46
+        id: backend
+        if: github.event_name == 'push'
         with:
-          filters: |
-            backend:
-              - 'apps/server/**'
-              - 'packages/api-types/**'
-              - 'pnpm-lock.yaml'
-              - 'package.json'
-            frontend:
-              - 'apps/client/**'
-              - 'packages/ui/**'
-              - 'packages/api-types/**'
-              - 'pnpm-lock.yaml'
-              - 'package.json'
+          files: |
+            apps/server/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
+
+      - name: Detect frontend changes
+        uses: tj-actions/changed-files@v46
+        id: frontend
+        if: github.event_name == 'push'
+        with:
+          files: |
+            apps/client/**
+            packages/ui/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
+
+      - name: Detect mobile changes
+        uses: tj-actions/changed-files@v46
+        id: mobile
+        if: github.event_name == 'push'
+        with:
+          files: |
+            apps/mobile/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
 
   # ─── Backend — always before frontend ──────────────────────────────────────
   deploy-backend:
@@ -148,3 +167,55 @@ jobs:
             exit 1
           fi
           echo "✅ Frontend deployed successfully"
+
+  # ─── Mobile — runs in parallel with backend (no build-time API calls) ──────
+  deploy-mobile:
+    name: Build Mobile
+    needs: detect-changes
+    if: needs.detect-changes.outputs.mobile == 'true'
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.11.1"
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          pnpm add -g turbo
+          pnpm install --frozen-lockfile
+
+      - name: Setup GCP service account key
+        run: |
+          mkdir -p credentials
+          echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}' | base64 --decode > credentials/refugies-info-appkey.json
+
+      - name: Build app on both platforms
+        working-directory: ./apps/mobile
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            eas build --platform all --profile staging --non-interactive --no-wait
+          else
+            eas build --platform all --profile production --non-interactive --no-wait --auto-submit
+          fi
