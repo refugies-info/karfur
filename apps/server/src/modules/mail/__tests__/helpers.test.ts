@@ -13,8 +13,12 @@ describe("consentsToEmail - réseau MENS restrictions", () => {
     expect(consentsToEmail(MENS_ID, "resetPassword")).toBe(true);
   });
 
-  it("should allow publishedFicheToStructureMembers", () => {
-    expect(consentsToEmail(MENS_ID, "publishedFicheToStructureMembers")).toBe(true);
+  it("should block publishedFicheToStructureMembers", () => {
+    expect(consentsToEmail(MENS_ID, "publishedFicheToStructureMembers")).toBe(false);
+  });
+
+  it("should block publishedFicheToCreator", () => {
+    expect(consentsToEmail(MENS_ID, "publishedFicheToCreator")).toBe(false);
   });
 
   it("should block newMember", () => {
