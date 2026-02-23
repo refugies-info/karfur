@@ -30,5 +30,9 @@ export const PREFS: Record<string, Record<TemplateName, boolean>> = {
   // "programme agir"
   "65f8245fd9babd17f5825aac": DEFAULT_MAIL_PREFS,
   // "réseau Mens"
-  "63985164fd1bf4e22792ef6e": DEFAULT_MAIL_PREFS,
+  "63985164fd1bf4e22792ef6e": {
+    ...DEFAULT_MAIL_PREFS,
+    publishedFicheToCreator: false,
+    publishedFicheToStructureMembers: false,
+  },
 };
