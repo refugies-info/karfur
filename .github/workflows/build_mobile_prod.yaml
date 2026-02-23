@@ -4,18 +4,8 @@ permissions:
   contents: read
 
 on:
-  # We only want to run this workflow when a push is made to the
-  # master-mobile branch and the changes include a change to the
-  # mobile app or the API types.
-  push:
-    branches:
-      - production
-    paths:
-      - pnpm-lock.yaml
-      - package.json
-      - .github/workflows/build_mobile_prod.yaml
-      - apps/mobile/**
-      - packages/api-types/**
+  # Push builds are now handled by release_pipeline.yaml.
+  # This workflow is kept for manual re-runs only.
   workflow_dispatch:
 
 jobs:
