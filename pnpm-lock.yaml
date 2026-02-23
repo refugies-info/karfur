@@ -199,17 +199,17 @@ importers:
         specifier: ^2.29.4
         version: 2.30.1
       next:
-        specifier: 15.5.9
-        version: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+        specifier: 15.5.10
+        version: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       next-redux-wrapper:
         specifier: ^8.0.0
-        version: 8.1.0(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-redux@9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
+        version: 8.1.0(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-redux@9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1))(react@19.0.0)
       next-sitemap:
         specifier: ^4.2.3
-        version: 4.2.3(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))
+        version: 4.2.3(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))
       query-string:
         specifier: ^9.2.2
         version: 9.3.0
@@ -399,7 +399,7 @@ importers:
         version: 10.1.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       next-router-mock:
         specifier: ^0.9.13
-        version: 0.9.13(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react@19.0.0)
+        version: 0.9.13(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react@19.0.0)
       papaparse:
         specifier: ^5.5.3
         version: 5.5.3
@@ -871,8 +871,8 @@ importers:
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@4.1.13)
       next:
-        specifier: 15.5.9
-        version: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+        specifier: 15.5.10
+        version: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -897,7 +897,7 @@ importers:
         version: 10.1.8(storybook@10.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))
       '@storybook/nextjs':
         specifier: 10.1.8
-        version: 10.1.8(esbuild@0.27.1)(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)(storybook@10.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(type-fest@4.41.0)(typescript@5.9.2)(webpack-hot-middleware@2.26.1)(webpack@5.103.0(esbuild@0.27.1))
+        version: 10.1.8(esbuild@0.27.1)(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)(storybook@10.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(type-fest@4.41.0)(typescript@5.9.2)(webpack-hot-middleware@2.26.1)(webpack@5.103.0(esbuild@0.27.1))
       '@tailwindcss/postcss':
         specifier: ^4.1.12
         version: 4.1.13
@@ -960,7 +960,7 @@ importers:
         version: 2.1.1
       next-i18next:
         specifier: ^15.3.0
-        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
+        version: 15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0)
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -3433,8 +3433,8 @@ packages:
   '@next/env@13.5.11':
     resolution: {integrity: sha512-fbb2C7HChgM7CemdCY+y3N1n8pcTKdqtQLbC7/EQtPdLvlMUT9JX/dBYl8MMZAtYG4uVMyPFHXckb68q/NRwqg==}
 
-  '@next/env@15.5.9':
-    resolution: {integrity: sha512-4GlTZ+EJM7WaW2HEZcyU317tIQDjkQIyENDLxYJfSWlfqguN+dHkZgyQTV/7ykvobU7yEH5gKvreNrH4B6QgIg==}
+  '@next/env@15.5.10':
+    resolution: {integrity: sha512-plg+9A/KoZcTS26fe15LHg+QxReTazrIOoKKUC3Uz4leGGeNPgLHdevVraAAOX0snnUs3WkRx3eUQpj9mreG6A==}
 
   '@next/swc-darwin-arm64@15.5.7':
     resolution: {integrity: sha512-IZwtxCEpI91HVU/rAUOOobWSZv4P2DeTtNaCdHqLcTJU4wdNXgAySvKa/qJCgR5m6KI8UsKDXtO2B31jcaw1Yw==}
@@ -9512,8 +9512,8 @@ packages:
     peerDependencies:
       next: '*'
 
-  next@15.5.9:
-    resolution: {integrity: sha512-agNLK89seZEtC5zUHwtut0+tNrc0Xw4FT/Dg+B/VLEo9pAcS9rtTKpek3V6kVcVwsB2YlqMaHdfZL4eLEVYuCg==}
+  next@15.5.10:
+    resolution: {integrity: sha512-r0X65PNwyDDyOrWNKpQoZvOatw7BcsTPRKdwEqtc9cj3wv7mbBIk9tKed4klRaFXJdX0rugpuMTHslDrAU1bBg==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -15843,7 +15843,7 @@ snapshots:
 
   '@next/env@13.5.11': {}
 
-  '@next/env@15.5.9': {}
+  '@next/env@15.5.10': {}
 
   '@next/swc-darwin-arm64@15.5.7':
     optional: true
@@ -17097,7 +17097,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@storybook/nextjs@10.1.8(esbuild@0.27.1)(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)(storybook@10.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(type-fest@4.41.0)(typescript@5.9.2)(webpack-hot-middleware@2.26.1)(webpack@5.103.0(esbuild@0.27.1))':
+  '@storybook/nextjs@10.1.8(esbuild@0.27.1)(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)(storybook@10.1.10(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(type-fest@4.41.0)(typescript@5.9.2)(webpack-hot-middleware@2.26.1)(webpack@5.103.0(esbuild@0.27.1))':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.28.5)
@@ -17121,7 +17121,7 @@ snapshots:
       css-loader: 6.11.0(webpack@5.103.0(esbuild@0.27.1))
       image-size: 1.2.1
       loader-utils: 3.3.1
-      next: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+      next: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       node-polyfill-webpack-plugin: 2.0.1(webpack@5.103.0(esbuild@0.27.1))
       postcss: 8.5.6
       postcss-loader: 8.2.0(postcss@8.5.6)(typescript@5.9.2)(webpack@5.103.0(esbuild@0.27.1))
@@ -23396,7 +23396,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  next-i18next@15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.9(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0):
+  next-i18next@15.4.2(@types/react@19.0.14)(i18next@23.16.8)(next@15.5.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-i18next@15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.28.4
       '@types/hoist-non-react-statics': 3.3.7(@types/react@19.0.14)
@@ -23404,34 +23404,34 @@ snapshots:
       hoist-non-react-statics: 3.3.2
       i18next: 23.16.8
       i18next-fs-backend: 2.6.0
-      next: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+      next: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       react: 19.0.0
       react-i18next: 15.7.3(i18next@23.16.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.9.2)
     transitivePeerDependencies:
       - '@types/react'
 
-  next-redux-wrapper@8.1.0(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-redux@9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1))(react@19.0.0):
+  next-redux-wrapper@8.1.0(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react-redux@9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1))(react@19.0.0):
     dependencies:
-      next: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+      next: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       react: 19.0.0
       react-redux: 9.2.0(@types/react@19.0.14)(react@19.0.0)(redux@5.0.1)
 
-  next-router-mock@0.9.13(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react@19.0.0):
+  next-router-mock@0.9.13(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1))(react@19.0.0):
     dependencies:
-      next: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+      next: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
       react: 19.0.0
 
-  next-sitemap@4.2.3(next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)):
+  next-sitemap@4.2.3(next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)):
     dependencies:
       '@corex/deepmerge': 4.0.43
       '@next/env': 13.5.11
       fast-glob: 3.3.3
       minimist: 1.2.8
-      next: 15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
+      next: 15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1)
 
-  next@15.5.9(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1):
+  next@15.5.10(@babel/core@7.28.5)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.92.1):
     dependencies:
-      '@next/env': 15.5.9
+      '@next/env': 15.5.10
       '@swc/helpers': 0.5.15
       caniuse-lite: 1.0.30001755
       postcss: 8.4.31
