@@ -4,6 +4,8 @@ import archiveHandler from "../../../../pages/api/webhook/dispositif/archive";
 import createHandler from "../../../../pages/api/webhook/dispositif/create";
 import translationHandler from "../../../../pages/api/webhook/dispositif/translation";
 import updateHandler from "../../../../pages/api/webhook/dispositif/update";
+import needsHandler from "../../../../pages/api/webhook/needs";
+import themesHandler from "../../../../pages/api/webhook/themes";
 
 jest.mock("../../../../lib/webhookUtils");
 
@@ -45,9 +47,23 @@ describe("Webhook API Endpoints", () => {
       Theme: {
         find: jest.fn().mockReturnValue({
           collation: jest.fn().mockReturnThis(),
+          sort: jest.fn().mockReturnThis(),
           select: jest.fn().mockResolvedValue([
             { _id: "theme1", name: { fr: "Apprendre le français" } },
             { _id: "theme2", name: { fr: "Santé" } },
+          ]),
+        }),
+      },
+      Need: {
+        find: jest.fn().mockReturnValue({
+          sort: jest.fn().mockReturnThis(),
+          select: jest.fn().mockResolvedValue([
+            {
+              _id: "need1",
+              fr: { text: "Je veux apprendre le français" },
+              theme: { _id: "theme1" },
+            },
+            { _id: "need2", fr: { text: "Je cherche un emploi" }, theme: { _id: "theme2" } },
           ]),
         }),
       },
@@ -302,6 +318,64 @@ describe("Webhook API Endpoints", () => {
           }),
         }),
       );
+    });
+  });
+
+  describe("GET /api/webhook/themes", () => {
+    it("should return 405 if method is not GET", async () => {
+      const req = mockRequest({ method: "POST" });
+      const res = mockResponse();
+      await themesHandler(req, res);
+      expect(res._getStatusCode()).toBe(405);
+    });
+
+    it("should return 401 if secret is invalid", async () => {
+      (webhookUtils.validateWebhookSecret as jest.Mock).mockReturnValue(false);
+      const req = mockRequest({ method: "GET" });
+      const res = mockResponse();
+      await themesHandler(req, res);
+      expect(res._getStatusCode()).toBe(401);
+    });
+
+    it("should return 200 with the list of themes in id/name format", async () => {
+      const req = mockRequest({ method: "GET" });
+      const res = mockResponse();
+      await themesHandler(req, res);
+      expect(res._getStatusCode()).toBe(200);
+      const data = JSON.parse(res._getData());
+      expect(data).toEqual([
+        { id: "theme1", name: "Apprendre le français" },
+        { id: "theme2", name: "Santé" },
+      ]);
+    });
+  });
+
+  describe("GET /api/webhook/needs", () => {
+    it("should return 405 if method is not GET", async () => {
+      const req = mockRequest({ method: "POST" });
+      const res = mockResponse();
+      await needsHandler(req, res);
+      expect(res._getStatusCode()).toBe(405);
+    });
+
+    it("should return 401 if secret is invalid", async () => {
+      (webhookUtils.validateWebhookSecret as jest.Mock).mockReturnValue(false);
+      const req = mockRequest({ method: "GET" });
+      const res = mockResponse();
+      await needsHandler(req, res);
+      expect(res._getStatusCode()).toBe(401);
+    });
+
+    it("should return 200 with the list of needs in id/name/themeId format", async () => {
+      const req = mockRequest({ method: "GET" });
+      const res = mockResponse();
+      await needsHandler(req, res);
+      expect(res._getStatusCode()).toBe(200);
+      const data = JSON.parse(res._getData());
+      expect(data).toEqual([
+        { id: "need1", name: "Je veux apprendre le français", themeId: "theme1" },
+        { id: "need2", name: "Je cherche un emploi", themeId: "theme2" },
+      ]);
     });
   });
 });
