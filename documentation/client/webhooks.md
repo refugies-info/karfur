@@ -124,6 +124,42 @@ Archives an existing dispositif by setting its status to `Archivé`.
   }
   ```
 
+### 5. List Themes
+
+Returns the list of available themes in id/value format. Useful to populate selectors in external tools and to build valid webhook payloads (theme names must match exactly).
+
+- **URL**: `/api/webhook/themes`
+- **Method**: `GET`
+- **Response** (`200 OK`):
+  ```json
+  [
+    { "id": "507f1f77bcf86cd799439011", "name": "Apprendre le français" },
+    { "id": "507f1f77bcf86cd799439012", "name": "Emploi" }
+  ]
+  ```
+
+> [!NOTE]
+> Results are sorted by display position. The `name` field corresponds to `name.fr` and is the value expected in the `themes` array of the create/update endpoints.
+
+---
+
+### 6. List Needs
+
+Returns the list of available needs in id/value format, grouped by their associated theme.
+
+- **URL**: `/api/webhook/needs`
+- **Method**: `GET`
+- **Response** (`200 OK`):
+  ```json
+  [
+    { "id": "507f1f77bcf86cd799439021", "name": "Je veux apprendre le français", "themeId": "507f1f77bcf86cd799439011" },
+    { "id": "507f1f77bcf86cd799439022", "name": "Je cherche un emploi", "themeId": "507f1f77bcf86cd799439012" }
+  ]
+  ```
+
+> [!NOTE]
+> Results are sorted by display position. The `themeId` field allows grouping needs by theme on the client side.
+
 ---
 
 ## Error Handling
