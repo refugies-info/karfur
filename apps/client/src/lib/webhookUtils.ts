@@ -79,11 +79,14 @@ export const getWebhookModels = async () => {
   const Theme =
     mongoose.models.Theme ||
     mongoose.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));
+  const Need =
+    mongoose.models.Need ||
+    mongoose.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
   const Log =
     mongoose.models.Log ||
     mongoose.model("Log", new mongoose.Schema({}, { strict: false, collection: "logs" }));
 
-  return { User, Role, Dispositif, Theme, Log };
+  return { User, Role, Dispositif, Theme, Need, Log };
 };
 
 export const checkWebhookPermissions = (
