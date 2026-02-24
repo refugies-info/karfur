@@ -4,15 +4,14 @@ permissions:
   contents: read
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - staging
   workflow_dispatch:
 
 jobs:
   migrate-staging:
-    if: github.event.pull_request.merged == true && github.base_ref == 'staging'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: staging-migrate
     concurrency:
