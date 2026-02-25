@@ -345,7 +345,7 @@ const buildSearchAggregation = (
   ];
 
   if (sort === "theme") {
-    aggregation.push({ $sort: { themeSortIndex: 1, "metadatas.updatedAt": -1 } });
+    aggregation.push({ $sort: { themeSortIndex: 1, publishedAt: -1 } });
   } else if (sort === "location") {
     aggregation.push({
       $addFields: {
@@ -355,10 +355,13 @@ const buildSearchAggregation = (
       },
     });
     aggregation.push({ $sort: { isLocal: 1, "metadatas.vues": -1 } });
-  } else if (sort === "views") {
-    aggregation.push({ $sort: { "metadatas.vues": -1 } });
+  } else if (sort === "views" || sort === "view") {
+    aggregation.push({ $sort: { nbVues: -1 } });
+  } else if (sort === "date") {
+    aggregation.push({ $sort: { publishedAt: -1 } });
   } else {
-    aggregation.push({ $sort: { "metadatas.updatedAt": -1 } });
+    // "default" or undefined — sort by most recently updated
+    aggregation.push({ $sort: { publishedAt: -1 } });
   }
 
   aggregation.push({ $skip: (page - 1) * limit });
