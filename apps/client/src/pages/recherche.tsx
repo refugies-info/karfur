@@ -11,7 +11,7 @@ import debounce from "lodash/debounce";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
@@ -89,33 +89,6 @@ const pickRelevantFilters = (q: SearchQuery) => {
   };
 };
 
-const debouncedSearchAndUrlUpdate = debounce(
-  (
-    dispatch: any,
-    query: SearchQuery,
-    router: ReturnType<typeof useRouter>,
-    locale: string,
-    params: any,
-  ) => {
-    dispatch(fetchSearchResultsRequest(query));
-
-    // Update URL to reflect current query
-    const oldQueryString = router.asPath.split("?")[1] || "";
-    const newQueryString = buildUrlQuery(query, params);
-    if (oldQueryString !== newQueryString) {
-      router.push(
-        {
-          pathname: getPath("/recherche", locale),
-          search: newQueryString,
-        },
-        undefined,
-        { locale: locale, shallow: true },
-      );
-    }
-  },
-  500,
-);
-
 const Recherche = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -126,6 +99,34 @@ const Recherche = () => {
   const counts = useSelector(searchCountsDataSelector);
   const query = useSelector(searchQuerySelector);
   const pagination = useSelector(searchPaginationSelector);
+
+  // Stable refs for values used inside debounce (avoids stale closures and re-creating the fn)
+  const routerRef = useRef(router);
+  const localeRef = useRef(locale);
+  const paramsRef = useRef(params);
+  routerRef.current = router;
+  localeRef.current = locale;
+  paramsRef.current = params;
+
+  const debouncedSearchAndUrlUpdate = useCallback(
+    debounce((currentQuery: SearchQuery) => {
+      dispatch(fetchSearchResultsRequest(currentQuery));
+
+      const oldQueryString = routerRef.current.asPath.split("?")[1] || "";
+      const newQueryString = buildUrlQuery(currentQuery, paramsRef.current);
+      if (oldQueryString !== newQueryString) {
+        routerRef.current.push(
+          {
+            pathname: getPath("/recherche", localeRef.current),
+            search: newQueryString,
+          },
+          undefined,
+          { locale: localeRef.current, shallow: true },
+        );
+      }
+    }, 500),
+    [dispatch],
+  );
 
   // when navigating, save state to prevent loop on search page
   const [isNavigating, setIsNavigating] = useState(false);
@@ -146,11 +147,10 @@ const Recherche = () => {
     const prevRelevant = prevRelevantRef.current;
     const changed = JSON.stringify(prevRelevant) !== JSON.stringify(currentRelevant);
     if (!isNavigating && changed && prevRelevant !== null) {
-      debouncedSearchAndUrlUpdate(dispatch, query, router, locale, params);
+      debouncedSearchAndUrlUpdate(query);
     }
     prevRelevantRef.current = currentRelevant;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query, isNavigating, dispatch]);
+  }, [query, isNavigating, debouncedSearchAndUrlUpdate]);
 
   return (
     <div className={cls(styles.container)}>

@@ -1,6 +1,12 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
-import mongoose from "mongoose";
+import mongoose, {
+  type Connection,
+  type FilterQuery,
+  type Model,
+  type PipelineStage,
+} from "mongoose";
 import type { ParsedUrlQuery } from "querystring";
 
 interface SearchQuery extends ParsedUrlQuery {
@@ -235,8 +241,9 @@ export interface SearchResultsOptions {
 }
 
 export interface SearchResponse {
-  results: any[];
-  suggestions: any[];
+  results: SimpleDispositif[];
+  suggestions: SimpleDispositif[];
+  noResults: SimpleDispositif[];
   total: number;
   programCount: number;
   procedureCount: number;
@@ -292,10 +299,13 @@ export const resolveAlgoliaIds = async (
 /**
  * Build the MongoDB aggregation pipeline for search results.
  */
-const buildSearchAggregation = (baseMatch: any, options: SearchResultsOptions): any[] => {
+const buildSearchAggregation = (
+  baseMatch: FilterQuery<SimpleDispositif>,
+  options: SearchResultsOptions,
+): PipelineStage[] => {
   const { page, limit, sort } = options;
 
-  const aggregation: any[] = [
+  const aggregation: PipelineStage[] = [
     { $match: baseMatch },
     {
       $lookup: {
@@ -338,10 +348,10 @@ const buildSearchAggregation = (baseMatch: any, options: SearchResultsOptions): 
  * excluding those already matched by the main query.
  */
 const buildSuggestionsQuery = async (
-  Dispositif: any,
-  baseMatch: any,
+  Dispositif: Model<SimpleDispositif>,
+  baseMatch: FilterQuery<SimpleDispositif>,
   queryParams: QueryParams,
-): Promise<any[]> => {
+): Promise<SimpleDispositif[]> => {
   const themes = (queryParams.themes ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
   );
@@ -376,7 +386,9 @@ const buildSuggestionsQuery = async (
       Dispositif.db.models.Need ||
       Dispositif.db.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
     const selectedNeeds = await NeedModel.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
-    const parentThemeIds = [...new Set(selectedNeeds.map((n: any) => n.theme))];
+    const parentThemeIds = [
+      ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
+    ];
 
     if (parentThemeIds.length === 0) return [];
 
@@ -401,12 +413,30 @@ const buildSuggestionsQuery = async (
  * Core search computation, callable from both the API route handler and getServerSideProps.
  * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
  */
+/**
+ * Fetch top démarches by views — shown when main search yields 0 results.
+ */
+const buildNoResultsFallback = async (
+  Dispositif: Model<SimpleDispositif>,
+): Promise<SimpleDispositif[]> => {
+  return Dispositif.aggregate([
+    { $match: { status: "Actif", typeContenu: "demarche" } },
+    { $sort: { nbVues: -1 } },
+    { $limit: 12 },
+    { $project: RESULTS_PROJECTION },
+  ]);
+};
+
+/**
+ * Core search computation, callable from both the API route handler and getServerSideProps.
+ * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
+ */
 export const computeSearchResults = async (
-  conn: any,
+  conn: Connection,
   queryParams: QueryParams,
   options: SearchResultsOptions,
 ): Promise<SearchResponse> => {
-  const Dispositif =
+  const Dispositif: Model<SimpleDispositif> =
     conn.models.Dispositif ||
     conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
 
@@ -429,11 +459,16 @@ export const computeSearchResults = async (
     buildSuggestionsQuery(Dispositif, baseMatch, queryParams),
   ]);
 
-  const getCount = (type: string) => typeCounts.find((t: any) => t._id === type)?.count || 0;
+  const getCount = (type: string) =>
+    typeCounts.find((t: { _id: string; count: number }) => t._id === type)?.count || 0;
+
+  // When no results, provide top démarches as fallback
+  const noResults = total === 0 ? await buildNoResultsFallback(Dispositif) : [];
 
   return {
     results,
     suggestions,
+    noResults,
     total,
     programCount: getCount("dispositif"),
     procedureCount: getCount("demarche"),

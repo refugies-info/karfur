@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import {
@@ -53,6 +53,29 @@ const SearchResults = (props: Props) => {
   const remainingItems = pagination.total - dispositifs.length;
   const seeMoreCount = Math.min(remainingItems, MATCHES_PER_PAGE);
   const noResults = dispositifs.length === 0 && !loading;
+
+  // Announce remaining results after Load More completes
+  const prevPageRef = useRef(pagination.page);
+  useEffect(() => {
+    if (pagination.page <= prevPageRef.current) {
+      prevPageRef.current = pagination.page;
+      return;
+    }
+    prevPageRef.current = pagination.page;
+
+    if (remainingItems > 0) {
+      announce(
+        t("Recherche.remainingResults", "Il reste {{count}} résultats à charger", {
+          count: remainingItems,
+        }),
+        { priority: "normal" },
+      );
+    } else {
+      announce(t("Recherche.allResultsDisplayed", "Tous les résultats sont affichés"), {
+        priority: "normal",
+      });
+    }
+  }, [pagination.page, remainingItems, announce, t]);
 
   const handleSeeMore = () => {
     announce(

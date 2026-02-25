@@ -9,6 +9,7 @@ import type {
 } from "data/searchFilters";
 import type { Reducer } from "redux";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
+import type { SearchResponse } from "~/lib/search-helpers";
 import type { SearchResultsActions, ServerSearchAction } from "./searchResults.actions";
 import {
   ADD_TO_QUERY,
@@ -106,7 +107,7 @@ export const searchResultsReducer: Reducer<
     case SET_SEARCH_LOADING:
       return { ...state, loading: action.payload as boolean };
     case FETCH_SEARCH_RESULTS_SUCCESS: {
-      const response = action.payload as any;
+      const response = action.payload as SearchResponse;
       return {
         ...state,
         loading: false,
@@ -114,6 +115,7 @@ export const searchResultsReducer: Reducer<
           matches: response.results,
           suggestions: response.suggestions || [],
         },
+        noResults: response.noResults || [],
         pagination: {
           page: response.page,
           pageCount: response.pageCount,
@@ -122,7 +124,7 @@ export const searchResultsReducer: Reducer<
       };
     }
     case APPEND_SEARCH_RESULTS: {
-      const response = action.payload as any;
+      const response = action.payload as SearchResponse;
       return {
         ...state,
         loading: false,
