@@ -1,5 +1,6 @@
 import { call, put, select, takeLatest } from "redux-saga/effects";
 import type { SearchResponse } from "~/lib/search-helpers";
+import { languei18nSelector } from "~/services/Langue/langue.selectors";
 import { fetchSearchCountsRequest } from "~/services/SearchCounts/searchCounts.reducer";
 import {
   appendSearchResults,
@@ -23,7 +24,8 @@ function* handleFetchSearchResults(action: { type: string; payload: SearchQuery 
     if (!COUNTS_DISABLED) {
       yield put(fetchSearchCountsRequest(action.payload));
     }
-    const data: SearchResponse = yield call(fetchSearchResults, action.payload, 1);
+    const locale: string = yield select(languei18nSelector);
+    const data: SearchResponse = yield call(fetchSearchResults, action.payload, 1, locale || "fr");
     yield put(fetchSearchResultsSuccess(data));
   } catch (error: any) {
     yield put(fetchSearchResultsFailure(error.message));
@@ -35,8 +37,9 @@ function* handleFetchNextPage() {
     yield put(setSearchLoading(true));
     const query: SearchQuery = yield select(searchQuerySelector);
     const pagination: { page: number } = yield select(searchPaginationSelector);
+    const locale: string = yield select(languei18nSelector);
     const nextPage = pagination.page + 1;
-    const data: SearchResponse = yield call(fetchSearchResults, query, nextPage);
+    const data: SearchResponse = yield call(fetchSearchResults, query, nextPage, locale || "fr");
     yield put(appendSearchResults(data));
   } catch (error: any) {
     yield put(fetchSearchResultsFailure(error.message));

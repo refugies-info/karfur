@@ -13,13 +13,14 @@ const handler = async (
   try {
     const conn = await dbConnect();
     const queryParams = buildQueryParams(req.query);
-    const { type, sort } = req.query;
+    const { type, sort, locale } = req.query;
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 10;
 
     const response = await computeSearchResults(conn, queryParams, {
       page,
       limit,
+      locale: typeof locale === "string" ? locale : "fr",
       type: typeof type === "string" ? type : undefined,
       sort: typeof sort === "string" ? sort : undefined,
     });

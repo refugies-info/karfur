@@ -6,10 +6,12 @@ const SEARCH_RESULTS_LIMIT = 24;
 export const fetchSearchResults = async (
   query: SearchQuery,
   page: number,
+  locale = "fr",
 ): Promise<SearchResponse> => {
   const usp = new URLSearchParams();
   usp.set("page", String(page));
   usp.set("limit", String(SEARCH_RESULTS_LIMIT));
+  usp.set("locale", locale);
 
   if (query.search) usp.set("search", query.search);
   if (query.type !== "all") usp.set("type", query.type);

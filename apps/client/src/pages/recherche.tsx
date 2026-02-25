@@ -205,6 +205,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
           computeSearchResults(conn, queryParams, {
             page: 1,
             limit: 24,
+            locale: locale || "fr",
             type: initialQuery.type !== "all" ? initialQuery.type : undefined,
             sort: initialQuery.sort !== "default" ? initialQuery.sort : undefined,
           }),

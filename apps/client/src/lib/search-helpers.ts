@@ -236,6 +236,7 @@ export const getSearchClient = (): {
 export interface SearchResultsOptions {
   page: number;
   limit: number;
+  locale?: string;
   type?: string;
   sort?: string;
 }
@@ -252,11 +253,35 @@ export interface SearchResponse {
   pageCount: number;
 }
 
+/**
+ * Build a $addFields + $project pair that resolves translations for a given locale.
+ * MongoDB stores content in `translations.{locale}.content.{field}`.
+ * Falls back to `translations.fr.content.{field}` when the requested locale is missing.
+ */
+const buildTranslationStages = (locale: string): PipelineStage[] => {
+  const resolveField = (field: string) => ({
+    $ifNull: [`$translations.${locale}.content.${field}`, `$translations.fr.content.${field}`],
+  });
+
+  return [
+    {
+      $addFields: {
+        titreInformatif: resolveField("titreInformatif"),
+        titreMarque: resolveField("titreMarque"),
+        abstract: resolveField("abstract"),
+      },
+    },
+    {
+      $project: {
+        translations: 0, // drop the large translations map after extraction
+      },
+    },
+  ];
+};
+
 const RESULTS_PROJECTION = {
   _id: 1,
-  titreInformatif: 1,
-  titreMarque: 1,
-  abstract: 1,
+  translations: 1, // needed for translation resolution in later stages
   typeContenu: 1,
   status: 1,
   theme: 1,
@@ -339,6 +364,8 @@ const buildSearchAggregation = (
   aggregation.push({ $skip: (page - 1) * limit });
   aggregation.push({ $limit: limit });
   aggregation.push({ $project: RESULTS_PROJECTION });
+  // Resolve translations for the requested locale (must come after $project)
+  aggregation.push(...buildTranslationStages(options.locale || "fr"));
 
   return aggregation;
 };
@@ -351,6 +378,7 @@ const buildSuggestionsQuery = async (
   Dispositif: Model<SimpleDispositif>,
   baseMatch: FilterQuery<SimpleDispositif>,
   queryParams: QueryParams,
+  locale: string,
 ): Promise<SimpleDispositif[]> => {
   const themes = (queryParams.themes ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
@@ -376,6 +404,7 @@ const buildSuggestionsQuery = async (
       { $sort: { nbVues: -1 } },
       { $limit: 8 },
       { $project: RESULTS_PROJECTION },
+      ...buildTranslationStages(locale),
     ]);
   }
 
@@ -403,6 +432,7 @@ const buildSuggestionsQuery = async (
       { $sort: { nbVues: -1 } },
       { $limit: 8 },
       { $project: RESULTS_PROJECTION },
+      ...buildTranslationStages(locale),
     ]);
   }
 
@@ -418,12 +448,14 @@ const buildSuggestionsQuery = async (
  */
 const buildNoResultsFallback = async (
   Dispositif: Model<SimpleDispositif>,
+  locale: string,
 ): Promise<SimpleDispositif[]> => {
   return Dispositif.aggregate([
     { $match: { status: "Actif", typeContenu: "demarche" } },
     { $sort: { nbVues: -1 } },
     { $limit: 12 },
     { $project: RESULTS_PROJECTION },
+    ...buildTranslationStages(locale),
   ]);
 };
 
@@ -456,14 +488,15 @@ export const computeSearchResults = async (
       { $match: baseMatch },
       { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
     ]),
-    buildSuggestionsQuery(Dispositif, baseMatch, queryParams),
+    buildSuggestionsQuery(Dispositif, baseMatch, queryParams, options.locale || "fr"),
   ]);
 
   const getCount = (type: string) =>
     typeCounts.find((t: { _id: string; count: number }) => t._id === type)?.count || 0;
 
   // When no results, provide top démarches as fallback
-  const noResults = total === 0 ? await buildNoResultsFallback(Dispositif) : [];
+  const noResults =
+    total === 0 ? await buildNoResultsFallback(Dispositif, options.locale || "fr") : [];
 
   return {
     results,
