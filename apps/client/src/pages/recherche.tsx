@@ -211,9 +211,11 @@ export const getServerSideProps = wrapper.getServerSideProps(
           countsDisabled ? Promise.resolve(null) : computeSearchCounts(conn, queryParams),
         ]);
 
-        store.dispatch(fetchSearchResultsSuccess(searchResponse));
+        // Serialize to strip Mongoose ObjectIds / BSON types that Next.js can't serialize
+        const serializedSearch = JSON.parse(JSON.stringify(searchResponse));
+        store.dispatch(fetchSearchResultsSuccess(serializedSearch));
         if (countsResponse) {
-          store.dispatch(fetchSearchCountsSuccess(countsResponse));
+          store.dispatch(fetchSearchCountsSuccess(JSON.parse(JSON.stringify(countsResponse))));
         }
       } catch (error) {
         // If DB connection fails, render with empty results (client will retry)
