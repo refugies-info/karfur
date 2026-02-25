@@ -15,7 +15,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -40,7 +40,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: sortByLocation,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -66,7 +66,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -88,7 +88,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -112,7 +112,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -134,7 +134,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -156,7 +156,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: sortByLocation,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -181,7 +181,7 @@ describe("All Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -207,7 +207,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -232,7 +232,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: sortByLocation,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -258,7 +258,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -280,7 +280,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -305,7 +305,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -327,7 +327,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -349,7 +349,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: sortByLocation,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -374,7 +374,7 @@ describe("Dispositif Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -400,7 +400,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -425,7 +425,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -450,7 +450,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -472,7 +472,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -496,7 +496,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -518,7 +518,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -540,7 +540,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -564,7 +564,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -590,7 +590,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -615,7 +615,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -640,7 +640,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -662,7 +662,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -686,7 +686,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -708,7 +708,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({
@@ -730,7 +730,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: sortByView,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: true,
       sortFunction: sortByView,
     });
@@ -754,7 +754,7 @@ describe("Démarche Tab Rules", () => {
       display: true,
       sortFunction: noSort,
     });
-    expect(getDisplayRule(tab, filters, "view")).toEqual({
+    expect(getDisplayRule(tab, filters, "views")).toEqual({
       display: false,
     });
     expect(getDisplayRule(tab, filters, "date")).toEqual({

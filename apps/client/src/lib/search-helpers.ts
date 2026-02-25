@@ -355,7 +355,7 @@ const buildSearchAggregation = (
       },
     });
     aggregation.push({ $sort: { isLocal: 1, "metadatas.vues": -1 } });
-  } else if (sort === "views" || sort === "view") {
+  } else if (sort === "views") {
     aggregation.push({ $sort: { nbVues: -1 } });
   } else if (sort === "date") {
     aggregation.push({ $sort: { publishedAt: -1 } });
