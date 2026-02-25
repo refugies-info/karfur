@@ -8,9 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
-import { queryDispositifs } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
@@ -31,7 +29,6 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
   const eventName = useSearchEventName();
   const { t } = useTranslation();
   const announce = useAnnounce();
-  const dispositifs = useSelector(activeDispositifsSelector);
   const { nbDispositifsByNeed } = useContext(ThemeMenuContext);
 
   const selectNeed = (id: Id) => {
@@ -56,10 +53,8 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
     );
 
     if (selectedNeed) {
-      // Calculate count using the updated query (after selection/deselection)
-      const updatedQuery = { ...query, needs: res.needs, themes: res.themes };
-      const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
-      announce(t("Recherche.updatedFilters", { count: results.matches.length }));
+      // Announce filter change — actual count arrives when server responds
+      announce(t("Recherche.updatingResults", "Mise \u00e0 jour des r\u00e9sultats..."));
     }
   };
 

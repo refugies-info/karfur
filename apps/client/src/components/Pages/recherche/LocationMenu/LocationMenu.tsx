@@ -7,11 +7,10 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
-import { getCountDispositifsForDepartment } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
+  searchPaginationSelector,
   searchQuerySelector,
   searchResultsSelector,
 } from "~/services/SearchResults/searchResults.selector";
@@ -50,7 +49,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
   const searchResults = useSelector(searchResultsSelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
+  const pagination = useSelector(searchPaginationSelector);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
   const { t } = useTranslation();
@@ -94,7 +93,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     [decodeLocation],
   );
 
-  const departmentCounts = useMemo(() => dispositifs ?? [], [dispositifs]);
+  const NOT_DEPLOYED_THRESHOLD = 10;
 
   const fetchSuggestions = useCallback(async (search: string): Promise<UnifiedSearchResult[]> => {
     const apiSearchQuery = search.replace(/ /g, "%20");
@@ -306,9 +305,9 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       },
     );
 
-    currentDepartments.forEach((dept, index) => {
-      const count = getCountDispositifsForDepartment(dept, departmentCounts);
-      if (count < 10) {
+    // Warn about underserved departments using pagination total as proxy
+    if (pagination.total < NOT_DEPLOYED_THRESHOLD && currentDepartments.length > 0) {
+      currentDepartments.forEach((dept) => {
         announce(
           t(
             "Recherche.notDeployedText",
@@ -319,14 +318,14 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
             },
           ),
         );
-      }
-    });
+      });
+    }
     setPendingAnnounce(false);
   }, [
     pendingAnnounce,
     query.departments,
     query.cities,
-    departmentCounts,
+    pagination.total,
     announce,
     t,
     decodeLocation,
