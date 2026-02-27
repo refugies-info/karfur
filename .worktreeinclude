@@ -5,9 +5,6 @@
 .env
 .envrc
 
-# Dependencies (pnpm store is shared, but node_modules links need to exist)
-node_modules/
-
 # Build caches
 .next/
 .turbo/
