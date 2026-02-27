@@ -1,0 +1,16 @@
+# Files to copy from primary worktree via `wt step copy-ignored`
+# Must also be gitignored to be copied.
+
+# Environment files
+.env
+.envrc
+
+# Dependencies (pnpm store is shared, but node_modules links need to exist)
+node_modules/
+
+# Build caches
+.next/
+.turbo/
+
+# Agent config
+.letta/
