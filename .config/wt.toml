@@ -1,0 +1,5 @@
+[post-create]
+deps = "pnpm install"
+
+[post-start]
+copy = "wt step copy-ignored"
