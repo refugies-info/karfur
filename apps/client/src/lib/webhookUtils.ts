@@ -170,3 +170,38 @@ export const standardErrorResponse = (res: NextApiResponse, error: unknown) => {
   const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
   return res.status(500).json({ message: "Internal Server Error", error: errorMessage });
 };
+
+/**
+ * Convertit les dates ISO en objets Date MongoDB pour les métadonnées
+ * Gère spécialement les sessions avec leurs dates multiples
+ */
+export const convertMetadatasDates = (metadatas: any): any => {
+  if (!metadatas) return undefined;
+
+  const converted = { ...metadatas };
+
+  // Conversion des sessions
+  if (converted.sessions && Array.isArray(converted.sessions)) {
+    converted.sessions = converted.sessions.map((session: any, index: number) => {
+      try {
+        return {
+          ...session,
+          startDate: new Date(session.startDate),
+          endDate: new Date(session.endDate),
+          registrationStartDate: session.registrationStartDate
+            ? new Date(session.registrationStartDate)
+            : undefined,
+          registrationEndDate: session.registrationEndDate
+            ? new Date(session.registrationEndDate)
+            : undefined,
+        };
+      } catch (err) {
+        throw new Error(
+          `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
+        );
+      }
+    });
+  }
+
+  return converted;
+};

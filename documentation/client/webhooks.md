@@ -36,7 +36,15 @@ Creates a new dispositif record with initial translations.
     "email": "exemple@email.com",
     "dispositif": {
       "origin": "RI", // Mandatory ("RI" or "RCO")
-      "themes": ["Apprendre le français", "Santé"],
+      "theme": "63286a015d31b2c0cad99615", // Optional - Main theme ObjectId
+      "secondaryThemes": ["63286a025d31b2c0cad99616"], // Optional - Secondary theme ObjectIds
+      "sponsors": [ // Optional - Sponsors/partners
+        {
+          "name": "Alliance Française",
+          "logo": "https://example.com/logo.png",
+          "link": "https://example.com"
+        }
+      ],
       "translations": {
         "fr": {
           "content": {
@@ -46,6 +54,28 @@ Creates a new dispositif record with initial translations.
             "markdown": "### Objectif de la formation\n\n..."
           }
         }
+      },
+      "metadatas": {
+        "location": "france",
+        "frenchLevel": ["A1", "A2"],
+        "age": { "type": "between", "ages": [18, 65] },
+        "price": { "values": [0], "details": "month" },
+        "publicStatus": ["refugie", "asile"],
+        "public": ["family"],
+        "conditions": ["titre sejour"],
+        "commitment": { "amountDetails": "approximately", "hours": [10], "timeUnit": "weeks" },
+        "frequency": { "amountDetails": "exactly", "hours": 5, "timeUnit": "hours", "frequencyUnit": "week" },
+        "timeSlots": ["monday", "wednesday"],
+        "sessions": [
+          {
+            "startDate": "2025-11-24T00:00:00.000Z",
+            "endDate": "2026-01-16T00:00:00.000Z",
+            "registrationStartDate": "2025-10-01T00:00:00.000Z",
+            "registrationEndDate": "2025-11-20T23:59:59.000Z",
+            "externalRef": "585188",
+            "url": "https://example.com/session/585188"
+          }
+        ]
       }
     }
   }
@@ -67,7 +97,8 @@ Updates the main editorial content (French) and metadata of an existing disposit
     "email": "exemple@email.com",
     "dispositif": {
       "_id": "60f7b1b5b5b5b5b5b5b5b5b5", // Must be a valid MongoDB ObjectId (24 hex characters)
-      "themes": ["Santé"],
+      "theme": "63286a015d31b2c0cad99615", // Optional - Main theme ObjectId
+      "secondaryThemes": ["63286a025d31b2c0cad99616"], // Optional - Secondary theme ObjectIds
       "translations": {
         "fr": {
           "content": {
@@ -203,9 +234,6 @@ POST /{locale}/dispositif/preview
 ```json
 {
   "dispositif": {
-    "titreInformatif": "Titre en français (fallback)",
-    "titreMarque": "Marque française",
-    "abstract": "Résumé français",
     "origin": "RCO",
     "theme": "63286a015d31b2c0cad99615",
     "secondaryThemes": [],

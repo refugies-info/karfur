@@ -140,14 +140,10 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
       avis: [],
       availableLanguages,
       creatorId: { _id: "preview-creator", username: "Preview User" },
-      // Titres: utiliser traduction si disponible, sinon fallback
-      titreInformatif:
-        translationContent?.titreInformatif ||
-        frenchContent?.titreInformatif ||
-        dispositif.titreInformatif,
-      titreMarque:
-        translationContent?.titreMarque || frenchContent?.titreMarque || dispositif.titreMarque,
-      abstract: translationContent?.abstract || frenchContent?.abstract || dispositif.abstract,
+      // Titres: utiliser traduction si disponible, sinon fallback FR (toujours présent)
+      titreInformatif: translationContent?.titreInformatif || frenchContent?.titreInformatif,
+      titreMarque: translationContent?.titreMarque || frenchContent?.titreMarque,
+      abstract: translationContent?.abstract || frenchContent?.abstract,
       // Pour RCO: stocker le markdown traduit
       markdown:
         hasTranslation && translationContent?.markdown
