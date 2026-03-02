@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { DispositifUpdateSchema } from "~/lib/webhookSchemas";
 import {
   checkWebhookPermissions,
-  getThemeIdsByNames,
+  convertMetadatasDates,
   getWebhookModels,
   getWebhookUser,
   standardErrorResponse,
@@ -36,7 +36,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, dispositif } = result.data;
 
   try {
-    const { User, Dispositif, Theme } = await getWebhookModels();
+    const { User, Dispositif } = await getWebhookModels();
     const user = await getWebhookUser(User, email);
 
     if (!user) {
@@ -49,23 +49,29 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { _id } = dispositif;
 
-    // Resolve themes from names if provided
-    let themeId: any;
-    let secondaryThemeIds: any[] = [];
-    if (dispositif.themes && Array.isArray(dispositif.themes)) {
-      const themeIds = await getThemeIdsByNames(Theme, dispositif.themes);
-      if (themeIds.length > 0) {
-        themeId = themeIds[0];
-        secondaryThemeIds = themeIds.slice(1);
-      }
-    }
+    // Use theme IDs directly (sent by Luna)
+    const themeId = dispositif.theme;
+    const secondaryThemeIds = dispositif.secondaryThemes || [];
 
     // Prepare update payload, preserving original creator and creation date
-    const { themes, ...dispositifData } = dispositif;
+    const { theme, secondaryThemes, ...dispositifData } = dispositif;
+
+    // Convertir les dates ISO en objets Date MongoDB
+    let metadatas;
+    try {
+      metadatas = convertMetadatasDates(dispositif.metadatas);
+    } catch (dateError) {
+      return res.status(400).json({
+        message: "Erreur de format de date dans les métadonnées",
+        error: (dateError as Error).message,
+      });
+    }
+
     const updatePayload: any = {
       ...dispositifData,
       lastModificationDate: new Date(),
       lastModificationAuthor: user._id,
+      metadatas,
       translations: {
         ...(dispositif.translations || {}),
         fr: {
