@@ -34,5 +34,6 @@ export const PREFS: Record<string, Record<TemplateName, boolean>> = {
     ...DEFAULT_MAIL_PREFS,
     publishedFicheToCreator: false,
     publishedFicheToStructureMembers: false,
+    ficheArchived: false,
   },
 };
