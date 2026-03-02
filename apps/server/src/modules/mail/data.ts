@@ -32,6 +32,7 @@ export const PREFS: Record<string, Record<TemplateName, boolean>> = {
   // "réseau Mens"
   "63985164fd1bf4e22792ef6e": {
     ...DEFAULT_MAIL_PREFS,
+    ficheArchived: false,
     publishedFicheToCreator: false,
     publishedFicheToStructureMembers: false,
   },

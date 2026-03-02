@@ -37,7 +37,7 @@ jobs:
           fetch-depth: 0
 
       - name: Detect backend changes
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         id: backend
         if: github.event_name == 'push'
         with:
@@ -48,7 +48,7 @@ jobs:
             package.json
 
       - name: Detect frontend changes
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         id: frontend
         if: github.event_name == 'push'
         with:
@@ -60,7 +60,7 @@ jobs:
             package.json
 
       - name: Detect mobile changes
-        uses: tj-actions/changed-files@v46
+        uses: tj-actions/changed-files@v47
         id: mobile
         if: github.event_name == 'push'
         with:
@@ -79,12 +79,12 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Trigger and await backend Cloud Build
         run: |
@@ -130,12 +130,12 @@ jobs:
     timeout-minutes: 45
     steps:
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Trigger and await frontend Cloud Build
         run: |

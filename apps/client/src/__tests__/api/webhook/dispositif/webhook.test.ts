@@ -75,8 +75,11 @@ describe("Webhook API Endpoints", () => {
       ...mockUser,
       roles: [{ nom: "Admin" }],
     });
-    (webhookUtils.getThemeIdsByNames as jest.Mock).mockResolvedValue(["theme1", "theme2"]);
+    // Theme IDs are now passed directly by Luna, no resolution needed
     (webhookUtils.validateSourceIP as jest.Mock).mockReturnValue(true);
+    (webhookUtils.convertMetadatasDates as jest.Mock).mockImplementation(
+      (metadatas: any) => metadatas,
+    );
     // Restoration of the real checkWebhookPermissions function to test it
     const originalUtils = jest.requireActual("../../../../lib/webhookUtils");
     (webhookUtils.checkWebhookPermissions as jest.Mock).mockImplementation(
@@ -85,7 +88,7 @@ describe("Webhook API Endpoints", () => {
   });
 
   describe("POST /api/webhook/dispositif/create", () => {
-    it("should create a new dispositif successfully with origin and resolved themes", async () => {
+    it("should create a new dispositif successfully with origin and theme IDs", async () => {
       const req = mockRequest({
         method: "POST",
         headers: { "webhook-secret": mockSecret },
@@ -93,7 +96,8 @@ describe("Webhook API Endpoints", () => {
           email: mockEmail,
           dispositif: {
             origin: DispositifOrigin.RI,
-            themes: ["Apprendre le français", "Santé"],
+            theme: "507f1f77bcf86cd799439011",
+            secondaryThemes: ["507f1f77bcf86cd799439012"],
             translations: {
               fr: {
                 content: {
@@ -114,13 +118,13 @@ describe("Webhook API Endpoints", () => {
       expect(data.message).toBe("Dispositif created successfully");
       expect(data.id).toBe("newId");
 
-      // Verify origin and resolved themes were passed to create
+      // Verify origin and theme IDs were passed to create
       const { Dispositif } = await webhookUtils.getWebhookModels();
       expect(Dispositif.create).toHaveBeenCalledWith(
         expect.objectContaining({
           origin: DispositifOrigin.RI,
-          theme: "theme1",
-          secondaryThemes: ["theme2"],
+          theme: "507f1f77bcf86cd799439011",
+          secondaryThemes: ["507f1f77bcf86cd799439012"],
           status: DispositifStatus.ACTIVE,
         }),
       );
@@ -177,7 +181,8 @@ describe("Webhook API Endpoints", () => {
           email: mockEmail,
           dispositif: {
             origin: DispositifOrigin.RI,
-            themes: ["Apprendre le français", "Santé"],
+            theme: "507f1f77bcf86cd799439011",
+            secondaryThemes: ["507f1f77bcf86cd799439012"],
             translations: {
               fr: {
                 content: {
@@ -211,14 +216,15 @@ describe("Webhook API Endpoints", () => {
   });
 
   describe("POST /api/webhook/dispositif/update", () => {
-    it("should update a dispositif successfully with resolved themes", async () => {
+    it("should update a dispositif successfully with theme IDs", async () => {
       const req = mockRequest({
         method: "POST",
         body: {
           email: mockEmail,
           dispositif: {
             _id: "507f1f77bcf86cd799439011",
-            themes: ["Santé"],
+            theme: "507f1f77bcf86cd799439011",
+            secondaryThemes: ["507f1f77bcf86cd799439012"],
             translations: {
               fr: {
                 content: { titreInformatif: "Updated" },
@@ -239,7 +245,8 @@ describe("Webhook API Endpoints", () => {
         "507f1f77bcf86cd799439011",
         expect.objectContaining({
           $set: expect.objectContaining({
-            theme: "theme1", // Based on getThemeIdsByNames mock in beforeEach
+            theme: "507f1f77bcf86cd799439011",
+            secondaryThemes: ["507f1f77bcf86cd799439012"],
           }),
         }),
       );

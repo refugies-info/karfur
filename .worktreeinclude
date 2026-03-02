@@ -1,0 +1,13 @@
+# Files to copy from primary worktree via `wt step copy-ignored`
+# Must also be gitignored to be copied.
+
+# Environment files
+.env
+.envrc
+
+# Build caches
+.next/
+.turbo/
+
+# Agent config
+.letta/
