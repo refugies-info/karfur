@@ -177,7 +177,7 @@ export const standardErrorResponse = (res: NextApiResponse, error: unknown) => {
  * Gère spécialement les sessions avec leurs dates multiples
  */
 export const convertMetadatasDates = (
-  metadatas: WebhookMetadatas,
+  metadatas: WebhookMetadatas | undefined,
 ):
   | (WebhookMetadatas & {
       sessions?: (Omit<
