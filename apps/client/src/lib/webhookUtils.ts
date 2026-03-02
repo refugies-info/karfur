@@ -3,6 +3,7 @@ import crypto from "crypto";
 import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "./db";
+import type { WebhookMetadatas, WebhookSession } from "./webhookSchemas";
 
 export const validateWebhookSecret = (req: NextApiRequest) => {
   const secret = req.headers["webhook-secret"];
@@ -175,14 +176,28 @@ export const standardErrorResponse = (res: NextApiResponse, error: unknown) => {
  * Convertit les dates ISO en objets Date MongoDB pour les métadonnées
  * Gère spécialement les sessions avec leurs dates multiples
  */
-export const convertMetadatasDates = (metadatas: any): any => {
+export const convertMetadatasDates = (
+  metadatas: WebhookMetadatas,
+):
+  | (WebhookMetadatas & {
+      sessions?: (Omit<
+        WebhookSession,
+        "startDate" | "endDate" | "registrationStartDate" | "registrationEndDate"
+      > & {
+        startDate: Date;
+        endDate: Date;
+        registrationStartDate?: Date;
+        registrationEndDate?: Date;
+      })[];
+    })
+  | undefined => {
   if (!metadatas) return undefined;
 
   const converted = { ...metadatas };
 
   // Conversion des sessions
   if (converted.sessions && Array.isArray(converted.sessions)) {
-    converted.sessions = converted.sessions.map((session: any, index: number) => {
+    converted.sessions = converted.sessions.map((session: WebhookSession, index: number) => {
       try {
         return {
           ...session,
@@ -200,8 +215,8 @@ export const convertMetadatasDates = (metadatas: any): any => {
           `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
         );
       }
-    });
+    }) as any; // sessions contiennent maintenant des Date, pas des strings
   }
 
-  return converted;
+  return converted as any;
 };
