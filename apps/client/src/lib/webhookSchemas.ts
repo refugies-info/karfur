@@ -66,7 +66,9 @@ const AgeSchema = z
 const PriceSchema = z.object(
   {
     values: z.array(
-      z.number().min(0, { message: "Les valeurs de prix doivent être positives ou nulles" }),
+      z.number().min(0, {
+        message: "Les valeurs de prix doivent être positives ou nulles",
+      }),
       {
         message:
           "Le champ 'values' doit être un tableau de nombres (0 = gratuit, vide = montant libre)",
@@ -159,16 +161,12 @@ const FrequencySchema = z.object(
 const SessionSchema = z
   .object(
     {
-      startDate: z
-        .string()
-        .datetime({
-          message: "startDate doit être une date ISO 8601 valide (ex: 2025-11-24T00:00:00.000Z)",
-        }),
-      endDate: z
-        .string()
-        .datetime({
-          message: "endDate doit être une date ISO 8601 valide (ex: 2026-01-16T00:00:00.000Z)",
-        }),
+      startDate: z.string().datetime({
+        message: "startDate doit être une date ISO 8601 valide (ex: 2025-11-24T00:00:00.000Z)",
+      }),
+      endDate: z.string().datetime({
+        message: "endDate doit être une date ISO 8601 valide (ex: 2026-01-16T00:00:00.000Z)",
+      }),
       registrationStartDate: z
         .string()
         .datetime({
@@ -189,7 +187,9 @@ const SessionSchema = z
         .optional(),
       url: z
         .string()
-        .url({ message: "url doit être une URL valide (ex: https://example.com/session/123)" })
+        .url({
+          message: "url doit être une URL valide (ex: https://example.com/session/123)",
+        })
         .optional(),
     },
     {
@@ -235,6 +235,8 @@ const SessionSchema = z
       path: ["registrationEndDate"],
     },
   );
+
+export type WebhookSession = z.infer<typeof SessionSchema>;
 
 // Main Metadatas schema with detailed error messages
 export const MetadatasSchema = z.object(
@@ -329,13 +331,16 @@ export const MetadatasSchema = z.object(
       .optional(),
 
     sessions: z
-      .array(SessionSchema, { message: "sessions doit être un tableau de sessions" })
+      .array(SessionSchema, {
+        message: "sessions doit être un tableau de sessions",
+      })
       .optional(),
   },
   {
     message: "Structure des métadonnées invalide",
   },
 );
+export type WebhookMetadatas = z.infer<typeof MetadatasSchema>;
 
 import { activatedLanguages } from "../data/activatedLanguages";
 
