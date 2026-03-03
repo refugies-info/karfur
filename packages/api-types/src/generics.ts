@@ -244,6 +244,11 @@ export interface Session {
   url?: string;
 }
 
+export interface SessionsMetadata {
+  modalitesEntreesSorties?: 0 | 1 | null;
+  items?: Session[] | null;
+}
+
 export interface Metadatas {
   location?: locationType | null;
   frenchLevel?: frenchLevelType[] | null;
@@ -270,7 +275,7 @@ export interface Metadatas {
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;
   } | null;
-  sessions?: Session[] | null;
+  sessions?: SessionsMetadata | null;
 }
 
 export interface SimpleDispositif {

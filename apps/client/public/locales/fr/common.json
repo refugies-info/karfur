@@ -240,6 +240,8 @@
     "from": "Du",
     "to": "au",
     "datePassed": "DATE DÉPASSÉE",
+    "modalitesDatesFixesTitle": "Entrées & sorties à dates fixes",
+    "modalitesPermanentesTitle": "Entrées & sorties permanentes",
     "price": "Prix",
     "sectionWhatAndWhy": "C'est quoi et pourquoi c'est intéressant ?",
     "sectionWhat": "C'est quoi ?",
