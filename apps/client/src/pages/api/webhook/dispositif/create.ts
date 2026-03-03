@@ -4,6 +4,7 @@ import { DispositifCreateSchema } from "~/lib/webhookSchemas";
 import {
   checkWebhookPermissions,
   convertMetadatasDates,
+  formatZodErrors,
   getWebhookModels,
   getWebhookUser,
   standardErrorResponse,
@@ -27,12 +28,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Zod validation and sanitization
   const result = DispositifCreateSchema.safeParse(req.body);
   if (!result.success) {
-    console.error("[Webhook] RAW PAYLOAD:", JSON.stringify(req.body, null, 2));
-    console.error("[Webhook] FULL ERROR:", JSON.stringify(result.error, null, 2));
-    console.error("[Webhook] Validation error:", JSON.stringify(result.error.flatten(), null, 2));
+    const errors = formatZodErrors(result.error);
     return res.status(400).json({
       message: "Invalid payload",
-      errors: result.error.flatten(),
+      errors,
     });
   }
   const { email, dispositif } = result.data;
