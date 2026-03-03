@@ -238,6 +238,28 @@ const SessionSchema = z
 
 export type WebhookSession = z.infer<typeof SessionSchema>;
 
+// SessionsMetadata schema - wraps the sessions array with additional metadata
+const SessionsMetadataSchema = z.object(
+  {
+    modalitesEntreesSorties: z
+      .union([z.literal(0), z.literal(1)], {
+        message: "modalitesEntreesSorties doit être 0 (dates fixes) ou 1 (entrées permanentes)",
+      })
+      .optional()
+      .nullable(),
+    items: z
+      .array(SessionSchema, {
+        message: "items doit être un tableau de sessions",
+      })
+      .optional()
+      .nullable(),
+  },
+  {
+    message: "Structure des sessions invalide",
+  },
+);
+export type WebhookSessionsMetadata = z.infer<typeof SessionsMetadataSchema>;
+
 // Main Metadatas schema with detailed error messages
 export const MetadatasSchema = z.object(
   {
@@ -330,11 +352,7 @@ export const MetadatasSchema = z.object(
       )
       .optional(),
 
-    sessions: z
-      .array(SessionSchema, {
-        message: "sessions doit être un tableau de sessions",
-      })
-      .optional(),
+    sessions: SessionsMetadataSchema.optional().nullable(),
   },
   {
     message: "Structure des métadonnées invalide",
