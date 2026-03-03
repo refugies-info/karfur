@@ -2,6 +2,7 @@ import { RoleName } from "@refugies-info/api-types";
 import crypto from "crypto";
 import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { ZodError } from "zod";
 import dbConnect from "./db";
 import type { WebhookMetadatas, WebhookSession } from "./webhookSchemas";
 
@@ -95,7 +96,6 @@ export const checkWebhookPermissions = (
   action: "create" | "update" | "translation" | "archive",
 ) => {
   if (!user || !user.roles) {
-    console.log("[Webhook] Permission check failed: No user or roles");
     return false;
   }
 
@@ -145,7 +145,6 @@ export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: stri
 export const getWebhookUser = async (User: mongoose.Model<any>, email: string) => {
   const user = await User.findOne({ email });
   if (!user) {
-    console.log(`[Webhook] User not found for email: ${email}`);
     return null;
   }
 
@@ -159,12 +158,14 @@ export const getWebhookUser = async (User: mongoose.Model<any>, email: string) =
     user.roles = populatedRoles;
   }
 
-  console.log(
-    `[Webhook] User found: ${user._id} with roles:`,
-    (user.roles || []).map((r: any) => r.nom || r),
-  );
   return user;
 };
+
+export const formatZodErrors = (error: ZodError) =>
+  error.issues.map((issue) => ({
+    key: issue.path.join("."),
+    message: issue.message,
+  }));
 
 export const standardErrorResponse = (res: NextApiResponse, error: unknown) => {
   console.error("[Webhook] Error:", error);
