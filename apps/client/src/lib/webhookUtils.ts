@@ -196,26 +196,29 @@ export const convertMetadatasDates = (
   const converted = { ...metadatas };
 
   // Conversion des sessions
-  if (converted.sessions && Array.isArray(converted.sessions)) {
-    converted.sessions = converted.sessions.map((session: WebhookSession, index: number) => {
-      try {
-        return {
-          ...session,
-          startDate: new Date(session.startDate),
-          endDate: new Date(session.endDate),
-          registrationStartDate: session.registrationStartDate
-            ? new Date(session.registrationStartDate)
-            : undefined,
-          registrationEndDate: session.registrationEndDate
-            ? new Date(session.registrationEndDate)
-            : undefined,
-        };
-      } catch (err) {
-        throw new Error(
-          `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
-        );
-      }
-    }) as any; // sessions contiennent maintenant des Date, pas des strings
+  if (converted.sessions && converted.sessions.items && Array.isArray(converted.sessions.items)) {
+    converted.sessions = {
+      ...converted.sessions,
+      items: converted.sessions.items.map((session: WebhookSession, index: number) => {
+        try {
+          return {
+            ...session,
+            startDate: new Date(session.startDate),
+            endDate: new Date(session.endDate),
+            registrationStartDate: session.registrationStartDate
+              ? new Date(session.registrationStartDate)
+              : undefined,
+            registrationEndDate: session.registrationEndDate
+              ? new Date(session.registrationEndDate)
+              : undefined,
+          };
+        } catch (err) {
+          throw new Error(
+            `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
+          );
+        }
+      }),
+    } as any; // sessions.items contiennent maintenant des Date, pas des strings
   }
 
   return converted as any;

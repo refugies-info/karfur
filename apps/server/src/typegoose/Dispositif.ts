@@ -211,6 +211,14 @@ export class Session {
   public url?: string;
 }
 
+export class SessionsMetadata {
+  @prop()
+  public modalitesEntreesSorties?: 0 | 1 | null;
+
+  @prop({ type: () => [Session], _id: false })
+  public items?: Session[] | null;
+}
+
 export class Metadatas {
   @prop()
   public location?: locationType | null;
@@ -232,8 +240,8 @@ export class Metadatas {
   public frequency?: Frequency | null;
   @prop()
   public timeSlots?: timeSlotType[] | null;
-  @prop({ type: () => [Session], _id: false })
-  public sessions?: Session[] | null;
+  @prop({ _id: false })
+  public sessions?: SessionsMetadata | null;
 }
 
 export class Poi {
