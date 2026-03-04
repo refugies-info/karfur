@@ -23,6 +23,27 @@ const DispositifContentSchema = z
   .passthrough(); // Allow some flexibility but still strict at the top level
 
 // ============================================
+// POI SCHEMA (Points of Interest - carte géographique)
+// ============================================
+
+const PoiSchema = z.object(
+  {
+    title: z.string().min(1, { message: "Le titre du POI est requis" }),
+    address: z.string().min(1, { message: "L'adresse du POI est requise" }),
+    city: z.string().optional().nullable(),
+    // z.coerce.number() accepte les strings ET les numbers (Luna envoie parfois des strings)
+    lat: z.coerce.number({ message: "lat doit être un nombre (ex: 48.8566)" }),
+    lng: z.coerce.number({ message: "lng doit être un nombre (ex: 2.3522)" }),
+    description: z.string().optional(),
+    email: z.string().email({ message: "L'email du POI doit être un email valide" }).optional(),
+    phone: z.string().optional(),
+  },
+  {
+    message: "Structure de POI invalide",
+  },
+);
+
+// ============================================
 // SPONSOR SCHEMA
 // ============================================
 
@@ -392,6 +413,7 @@ export const DispositifCreateSchema = BaseWebhookSchema.extend({
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
     sponsors: z.array(SponsorSchema).optional(),
+    map: z.array(PoiSchema).optional().nullable(),
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
     origin: z
@@ -412,6 +434,7 @@ export const DispositifUpdateSchema = BaseWebhookSchema.extend({
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
     sponsors: z.array(SponsorSchema).optional(),
+    map: z.array(PoiSchema).optional().nullable(),
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
   }),
