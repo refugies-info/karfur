@@ -69,10 +69,9 @@ const IconContainer = styled.View<{ isRTL: boolean }>`
 `;
 
 const TitleText = styled(TextDSFR_MD_Bold)<{
-  width: number;
   darkColor: string;
 }>`
-  width: ${({ width }) => width}px;
+  flex-shrink: 1;
   color: ${({ darkColor }) => darkColor};
 `;
 const stylesheet = StyleSheet.create({
@@ -92,7 +91,6 @@ interface Props {
   title: string;
   content: string;
   stepNumber: number | null;
-  width: number;
   currentLanguage: Languages | null;
   windowWidth: number;
   darkColor: string;
@@ -162,13 +160,12 @@ export const AccordionAnimated = (props: Props) => {
             </StepContainer>
           )}
           {!props.isContentTranslated ? (
-            <TitleText width={props.width} darkColor={props.darkColor}>
+            <TitleText darkColor={props.darkColor}>
               <ReadableText>{props.title}</ReadableText>
             </TitleText>
           ) : (
             <AccordionHeaderFromHtml
               htmlContent={props.title}
-              width={props.width}
               windowWidth={props.windowWidth}
               darkColor={props.darkColor}
             />

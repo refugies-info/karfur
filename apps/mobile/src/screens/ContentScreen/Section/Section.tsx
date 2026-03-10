@@ -18,14 +18,6 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   const { t } = useTranslationWithRTL();
 
   const windowWidth = useWindowDimensions().width;
-  const accordionMaxWidthWithStep = useMemo(
-    () => windowWidth - 2 * 24 - 4 * 16 - 24 - 32,
-    [windowWidth],
-  );
-  const accordionMaxWidthWithoutStep = useMemo(
-    () => windowWidth - 2 * 24 - 3 * 16 - 24,
-    [windowWidth],
-  );
 
   const currentLanguage = useSelector(currentI18nCodeSelector);
   const dispositif = useSelector(selectedContentSelector(currentLanguage));
@@ -58,13 +50,6 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
   }, [sectionKey, dispositif, hasMarkdown]);
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
-  const width = useMemo(
-    () =>
-      dispositif.typeContenu === ContentType.DEMARCHE
-        ? accordionMaxWidthWithStep
-        : accordionMaxWidthWithoutStep,
-    [dispositif.typeContenu, accordionMaxWidthWithStep, accordionMaxWidthWithoutStep],
-  );
 
   const title = useMemo(() => {
     return dispositif.typeContenu === ContentType.DISPOSITIF && sectionKey === "how"
@@ -115,7 +100,6 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
                   ? index + 1
                   : null
               }
-              width={width}
               currentLanguage={currentLanguage}
               windowWidth={windowWidth}
               darkColor={colors.color100}

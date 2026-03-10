@@ -412,7 +412,6 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
                 content={String(_["data-html-content"] || "")}
                 windowWidth={props.windowWidth}
                 stepNumber={_["data-step-number"] ? Number(_["data-step-number"]) : null}
-                width={props.windowWidth - 80}
                 currentLanguage={null}
                 darkColor={styles.colors.darkGrey}
                 lightColor={styles.colors.lightGrey}
