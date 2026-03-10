@@ -40,7 +40,10 @@ export const MiniMap = (props: Props) => {
   return (
     <MainContainer>
       <ContentContainer>{props.children}</ContentContainer>
-      <MapViewContainer>
+      <MapViewContainer
+        accessibilityElementsHidden={true}
+        importantForAccessibility="no-hide-descendants"
+      >
         <MapView
           provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
           style={{
