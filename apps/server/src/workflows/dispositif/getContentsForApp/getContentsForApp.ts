@@ -21,7 +21,9 @@ const present =
     }
     let sponsorUrl: string | null = null;
     if (dispositif.typeContenu === ContentType.DISPOSITIF)
-      sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
+      sponsorUrl = dispositif.mainSponsor
+        ? dispositif.getMainSponsor().picture?.secure_url || null
+        : null;
     if (dispositif.typeContenu === ContentType.DEMARCHE)
       sponsorUrl = dispositif.administrationLogo?.secure_url || null;
 

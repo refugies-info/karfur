@@ -6,7 +6,7 @@ import { memo, useMemo } from "react";
 import { Image, type StyleProp, type ViewStyle } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
-import { OriginBadge } from "~/components/OriginBadge";
+
 import type { SearchItem } from "~/components/Search/types";
 import type { ValidScreen } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
@@ -188,7 +188,6 @@ const ContentSummaryComponent = (props: Props) => {
                 </TitreMarqueText>
               )
             )}
-            {props.content.origin === "RCO" && <OriginBadge />}
           </TitlesContainer>
           {actionButton}
         </Columns>

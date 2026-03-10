@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AccordionAnimated, ContentFromHtml, ReadableText, Title } from "~/components";
 import { useTranslationWithRTL } from "~/hooks";
 import { defaultColors } from "~/libs";
+import { markdownToHtmlBlocks } from "~/libs/markdown";
 import { currentI18nCodeSelector, selectedContentSelector, themeSelector } from "~/services";
 import { styles } from "~/theme";
 
@@ -33,15 +34,28 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
 
   if (!dispositif) return null;
 
-  // content
-  const contentHtml: string | undefined = useMemo(
-    () => (sectionKey === "what" ? dispositif[sectionKey] || "" : undefined),
-    [sectionKey, dispositif],
-  );
-  const contentAccordions: InfoSections | undefined = useMemo(
-    () => (sectionKey !== "what" ? dispositif[sectionKey] : undefined),
-    [sectionKey, dispositif],
-  );
+  // Determine if this dispositif uses markdown content (e.g. RCO)
+  const hasMarkdown = "markdown" in dispositif && !!dispositif.markdown;
+
+  // For RCO: split markdown into HTML blocks (one ReadableText per block for TTS)
+  const htmlBlocks: string[] = useMemo(() => {
+    if (sectionKey !== "what" || !hasMarkdown) return [];
+    return markdownToHtmlBlocks(dispositif.markdown);
+  }, [sectionKey, dispositif, hasMarkdown]);
+
+  // For RI: use the existing HTML content from dispositif.what
+  const contentHtml: string | undefined = useMemo(() => {
+    if (sectionKey !== "what") return undefined;
+    if (hasMarkdown) return undefined; // handled by htmlBlocks
+    return dispositif.what || "";
+  }, [sectionKey, dispositif, hasMarkdown]);
+
+  // For non-"what" sections (how/why/next): only available for RI dispositifs
+  const contentAccordions: InfoSections | undefined = useMemo(() => {
+    if (sectionKey === "what") return undefined;
+    if (hasMarkdown) return undefined; // RCO has no structured sections
+    return dispositif[sectionKey];
+  }, [sectionKey, dispositif, hasMarkdown]);
 
   const colors = useMemo(() => theme?.colors || defaultColors, [theme]);
   const width = useMemo(
@@ -58,14 +72,37 @@ const SectionComponent = ({ sectionKey, themeId }: SectionProps) => {
       : t("content_screen." + sectionKey, sectionKey);
   }, [sectionKey, dispositif]);
 
+  // For RCO dispositifs, only the "what" section has content
+  if (hasMarkdown && sectionKey !== "what") return null;
+
+  // For RI dispositifs, skip if no content for this section
+  if (!hasMarkdown && !contentHtml && !contentAccordions) return null;
+  // For RCO dispositifs, skip if no blocks
+  if (hasMarkdown && htmlBlocks.length === 0) return null;
+
   return (
     <View style={{ marginBottom: styles.margin * 5 }}>
-      <Title color={colors.color100} accessibilityRole="header">
-        <ReadableText>{title}</ReadableText>
-      </Title>
+      {!dispositif.markdown && (
+        <Title color={colors.color100} accessibilityRole="header">
+          <ReadableText>{title}</ReadableText>
+        </Title>
+      )}
       <View>
-        {contentHtml !== undefined ? (
-          <ContentFromHtml htmlContent={contentHtml} windowWidth={windowWidth} />
+        {htmlBlocks.length > 0 ? (
+          htmlBlocks.map((html, i) => (
+            <ContentFromHtml
+              key={i}
+              htmlContent={html}
+              windowWidth={windowWidth}
+              headingColor={colors.color100}
+            />
+          ))
+        ) : contentHtml !== undefined ? (
+          <ContentFromHtml
+            htmlContent={contentHtml}
+            windowWidth={windowWidth}
+            headingColor={colors.color100}
+          />
         ) : (
           contentAccordions &&
           Object.entries(contentAccordions).map(([key, section], index) => (

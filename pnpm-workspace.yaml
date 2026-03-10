@@ -24,6 +24,9 @@ minimumReleaseAgeExclude:
   # HACK: Temporarily excluded to allow update to a recent version of storybook.
   # TODO: Remove this exclusion after 2025-12-25 once the package is older than 7 days.
   - storybook
+  # HACK: Transitive dep via cssnano > browserslist. Version 2.9.19 publish date mismatch.
+  # TODO: Remove once browserslist updates to baseline-browser-mapping >= 2.10.0
+  - baseline-browser-mapping
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

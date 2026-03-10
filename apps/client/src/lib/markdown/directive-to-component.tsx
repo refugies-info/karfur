@@ -1,69 +1,11 @@
 import { CallOut } from "@codegouvfr/react-dsfr/CallOut";
+import { isValidDirectiveName, reconstructDirectiveText } from "@refugies-info/markdown-utils";
 import { RIAccordion } from "@refugies-info/ui";
 import type { TFunction } from "i18next";
 import type { Root } from "mdast";
 import type { ReactNode } from "react";
 import { visit } from "unist-util-visit";
 import { getCalloutTranslationKey } from "~/lib/contentParsing";
-
-/**
- * Valid directive names that should be transformed to React components.
- * Other directives (like text containing colons, e.g., "9:00") will be converted
- * to plain text to prevent React errors (HTML tag names cannot start with numbers).
- */
-const VALID_DIRECTIVE_NAMES = new Set(["toggle", "important", "good-to-know"]);
-
-/**
- * Checks if a directive name is valid for transformation.
- * Valid names:
- * - Must be in the whitelist of known directive names
- * - Must start with a letter (HTML tag names cannot start with numbers)
- */
-function isValidDirectiveName(name: string): boolean {
-  // Must be a known directive name
-  if (!VALID_DIRECTIVE_NAMES.has(name)) return false;
-
-  // Must start with a letter (HTML tag names cannot start with numbers)
-  if (!/^[a-zA-Z]/.test(name)) return false;
-
-  return true;
-}
-
-/**
- * Returns the prefix for a directive type.
- * - textDirective: ":"
- * - leafDirective: "::"
- * - containerDirective: ":::"
- */
-function getDirectivePrefix(type: string): string {
-  if (type === "textDirective") return ":";
-  if (type === "leafDirective") return "::";
-  return ":::";
-}
-
-/**
- * Reconstructs the original text representation of a directive.
- * This is used for invalid directives that should be rendered as plain text.
- *
- * @example
- * textDirective with name="00" → ":00"
- * leafDirective with name="foo" → "::foo"
- * containerDirective with name="bar" → ":::bar"
- */
-function reconstructDirectiveText(node: any): string {
-  const prefix = getDirectivePrefix(node.type);
-  let text = prefix + node.name;
-
-  // Reconstruct attributes if any
-  if (node.attributes && Object.keys(node.attributes).length > 0) {
-    const attrs = Object.entries(node.attributes)
-      .map(([key, value]) => `${key}="${value}"`)
-      .join(" ");
-    text += `{${attrs}}`;
-  }
-
-  return text;
-}
 
 /**
  * Remark plugin that transforms markdown directives into React components.

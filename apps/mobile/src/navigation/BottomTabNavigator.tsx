@@ -131,7 +131,7 @@ export default function BottomTabNavigator() {
   const isInitialUrlUsed = useSelector(isInitialUrlUsedSelector);
   React.useEffect(() => {
     if (!isInitialUrlUsed && initialUrl) {
-      if (!initialUrl.includes("refugies.info")) return;
+      if (!initialUrl.includes("refugies.info") && !initialUrl.startsWith("refugies://")) return;
       const screen = getScreenFromUrl(initialUrl);
       if (screen) {
         // @ts-expect-error screen.rootNavigator is not typed
