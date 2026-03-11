@@ -29,6 +29,15 @@ import { visit } from "unist-util-visit";
  * This ensures toggles use the same rendering pipeline as RI accordions
  * (content string → ContentFromHtml → ReadableText → TTS player).
  */
+/**
+ * Manual MDAST-to-HTML serializer (intentionally not using remark-rehype/rehype-stringify).
+ *
+ * Why manual? remark-rehype and rehype-stringify are pure ESM modules, incompatible
+ * with Metro bundler (React Native) without heavy configuration. This covers the node
+ * types actually produced by Content Playground markdown (paragraphs, lists, links,
+ * bold, italic, headings). Unsupported nodes degrade gracefully by serializing their
+ * children — no crash, just plain text fallback.
+ */
 function serializeChildrenToHtml(node: any): string {
   if (!node.children) return "";
   return node.children.map((child: any) => serializeNodeToHtml(child)).join("");
