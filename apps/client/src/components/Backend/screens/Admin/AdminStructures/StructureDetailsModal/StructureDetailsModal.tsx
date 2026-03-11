@@ -1,17 +1,20 @@
-import type { GetLogResponse, Id, PatchStructureRequest } from "@refugies-info/api-types";
+import type { GetLogResponse, Id, PatchStructureRequest, Picture } from "@refugies-info/api-types";
 import moment from "moment";
 import "moment/locale/fr";
 import { useRouter } from "next/router";
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, type RouteComponentProps, withRouter } from "react-router-dom";
 import { useToggle } from "react-use";
+import { Spinner } from "reactstrap";
 import Swal from "sweetalert2";
 import noStructure from "~/assets/noStructure.png";
+import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
 import Image from "~/components/UI/Image";
 import useRouterLocale from "~/hooks/useRouterLocale";
+import { handleApiDefaultError } from "~/lib/handleApiErrors";
 import { fetchActiveStructuresActionCreator } from "~/services/ActiveStructures/activeStructures.actions";
 import { allDispositifsSelector } from "~/services/AllDispositifs/allDispositifs.selector";
 import { setAllStructuresActionCreator } from "~/services/AllStructures/allStructures.actions";
@@ -89,6 +92,8 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
   const [adminCommentsSaved, setAdminCommentsSaved] = useState(false);
   const [currentId, setCurrentId] = useState<Id | null>(null);
   const [logs, setLogs] = useState<GetLogResponse[]>([]);
+  const [logoUploading, setLogoUploading] = useState(false);
+  const logoFileInputRef = useRef<HTMLInputElement>(null);
 
   const allStructures = useSelector(allStructuresSelector);
   const allDispositifs = useSelector(allDispositifsSelector);
@@ -118,8 +123,9 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
       | "status"
       | "adminProgressionStatus"
       | "adminPercentageProgressionStatus"
-      | "nom",
-    value: string,
+      | "nom"
+      | "picture",
+    value: string | Picture | undefined,
   ) => {
     const structures = [...allStructures];
     const newStructure = structures.find((s) => s._id === structureId);
@@ -127,6 +133,49 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
     if (newStructure) newStructure[property] = value;
     dispatch(setAllStructuresActionCreator(structures));
     updateLogs();
+  };
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!structure || !e.target.files?.[0]) return;
+    setLogoUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("0", e.target.files[0]);
+      const imgData = await API.postImage(formData);
+      const picture: Picture = {
+        secure_url: imgData.secure_url,
+        public_id: imgData.public_id,
+        imgId: imgData.imgId,
+      };
+      await API.updateStructure(structure._id, { picture });
+      updateStructuresStore(structure._id, "picture", picture);
+    } catch (err) {
+      handleApiDefaultError(err);
+    } finally {
+      setLogoUploading(false);
+      if (logoFileInputRef.current) logoFileInputRef.current.value = "";
+    }
+  };
+
+  const handleLogoDelete = async () => {
+    if (!structure) return;
+    const res = await Swal.fire({
+      title: "Supprimer le logo ?",
+      text: "Le logo de cette structure sera supprimé",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, supprimer",
+      cancelButtonText: "Annuler",
+    });
+    if (!res.value) return;
+    try {
+      await API.updateStructure(structure._id, { picture: null });
+      updateStructuresStore(structure._id, "picture", undefined);
+    } catch (err) {
+      handleApiDefaultError(err);
+    }
   };
 
   const changeNom = (nom: string) =>
@@ -201,13 +250,46 @@ const StructureDetailsModalComponent: React.FC<Props> = (props) => {
         isLoading={isLoading}
         leftHead={
           <>
-            <Image
-              src={secureUrl || noStructure}
-              alt=""
-              width={140}
-              height={60}
-              style={{ objectFit: "contain" }}
-            />
+            <div className={styles.logo_wrapper}>
+              <Image
+                src={secureUrl || noStructure}
+                alt=""
+                width={140}
+                height={60}
+                style={{ objectFit: "contain" }}
+              />
+              {logoUploading && (
+                <div className={styles.logo_uploading}>
+                  <Spinner color="white" size="sm" />
+                </div>
+              )}
+              <button
+                type="button"
+                className={styles.logo_edit}
+                onClick={() => logoFileInputRef.current?.click()}
+                title="Changer le logo"
+              >
+                <EVAIcon name="edit-2-outline" size={16} fill="white" />
+              </button>
+              {secureUrl && (
+                <button
+                  type="button"
+                  className={styles.logo_delete}
+                  onClick={handleLogoDelete}
+                  title="Supprimer le logo"
+                >
+                  <EVAIcon name="close-outline" size={16} fill="white" />
+                </button>
+              )}
+              <input
+                ref={logoFileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleLogoUpload}
+                className={styles.logo_file_input}
+                aria-label="Changer le logo de la structure"
+              />
+            </div>
             <EditableH2
               onValidate={changeNom}
               title={`${structure.acronyme ? structure.acronyme + " - " : ""}${structure.nom}`}
