@@ -57,6 +57,16 @@ function serializeNodeToHtml(node: any): string {
   if (node.type === "listItem") return `<li>${serializeChildrenToHtml(node)}</li>`;
   if (node.type === "heading")
     return `<h${node.depth}>${serializeChildrenToHtml(node)}</h${node.depth}>`;
+  // Nested directives (e.g., :::important inside a :::toggle)
+  if (node.type === "containerDirective" && isValidDirectiveName(node.name)) {
+    const mapping = DIRECTIVE_HTML_MAPPING[node.name];
+    if (mapping) {
+      const attrs = Object.entries(mapping.hProperties)
+        .map(([k, v]) => `${k}="${v}"`)
+        .join(" ");
+      return `<${mapping.hName} ${attrs}>${serializeChildrenToHtml(node)}</${mapping.hName}>`;
+    }
+  }
   // Fallback: serialize children
   if (node.children) return serializeChildrenToHtml(node);
   return "";
