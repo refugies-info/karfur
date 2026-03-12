@@ -40,7 +40,7 @@ $containerHeight: 435px;
 }
 
 // Logo edit area in modal header
-.logo_edit {
+%logo-button {
   position: absolute;
   display: flex;
   align-items: center;
@@ -53,26 +53,20 @@ $containerHeight: 435px;
   opacity: 0;
   transition: opacity 0.15s ease;
   padding: 0;
-  bottom: -4px;
   right: -4px;
+}
+
+.logo_edit {
+  @extend %logo-button;
+
+  bottom: -4px;
   background: var(--background-action-high-blue-france);
 }
 
 .logo_delete {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-  padding: 0;
+  @extend %logo-button;
+
   top: -4px;
-  right: -4px;
   background: var(--background-action-high-error);
 }
 
