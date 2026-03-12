@@ -23,7 +23,7 @@ const getStatus = async (
 export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsResponse[]> => {
   logger.info("[getAllDispositifs] called");
 
-  const dispositifs: GetAllDispositifsResponse[] = await Promise.all(
+  const dispositifs = (await Promise.all(
     (await getDispositifsFromDB())
       .filter((d) => d.origin === "RI")
       .map(async (d) => {
@@ -62,7 +62,7 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
           ]),
         };
       }),
-  );
+  )) as GetAllDispositifsResponse[];
 
   return {
     text: "success",
