@@ -7,7 +7,7 @@
       "ignoreDependencies": ["turbo"]
     },
     "apps/client": {
-      "entry": ["next-sitemap.config.js"],
+      "entry": ["next-sitemap.config.js", "scripts/*.js"],
       "ignoreDependencies": [
         "@tailwindcss/typography",
         "bootstrap",
@@ -33,7 +33,19 @@
     },
     "apps/server": {
       "entry": ["src/server.ts"],
-      "ignoreDependencies": ["@tsoa/runtime", "path-to-regexp", "ts-node", "tsconfig-paths"],
+      "ignoreDependencies": [
+        "@google-cloud/translate",
+        "@tsoa/runtime",
+        "@types/uniqid",
+        "axios",
+        "googleapis",
+        "microsoft-cognitiveservices-speech-sdk",
+        "node-cache",
+        "path-to-regexp",
+        "ts-node",
+        "tsconfig-paths",
+        "uniqid"
+      ],
       "ignore": ["dist/**"]
     },
     "packages/api-types": {
@@ -43,6 +55,7 @@
       "ignoreDependencies": ["@tailwindcss/typography", "tailwindcss"]
     },
     "packages/ui": {
+      "entry": ["scripts/*.ts"],
       "ignoreDependencies": ["tailwindcss"]
     }
   }

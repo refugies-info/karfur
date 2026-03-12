@@ -4,15 +4,14 @@ permissions:
   contents: read
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
-      - master-backend
+      - production
   workflow_dispatch:
 
 jobs:
   migrate-production:
-    if: github.event.pull_request.merged == true && github.base_ref == 'master-backend'
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: master-migrate
     concurrency:

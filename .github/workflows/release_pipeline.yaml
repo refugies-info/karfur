@@ -1,0 +1,221 @@
+name: Release Pipeline
+
+# Orchestrates backend → frontend deployments in sequence so that the
+# frontend build (which prerenders via SSR) always runs against an
+# already-deployed backend.
+#
+# Mobile builds run in parallel with the backend (no build-time API calls).
+#
+# IMPORTANT: disable the GCP Cloud Build branch-push triggers for
+# backend-stag, frontend-stag, backend-prod, frontend-prod after merging
+# this PR, otherwise builds will fire twice.
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - staging
+      - production
+  workflow_dispatch:
+
+jobs:
+  # ─── Detect which components changed ───────────────────────────────────────
+  detect-changes:
+    name: Detect changed components
+    runs-on: ubuntu-latest
+    outputs:
+      # On workflow_dispatch, deploy everything. On push, use changed-files output.
+      backend: ${{ steps.backend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+      frontend: ${{ steps.frontend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+      mobile: ${{ steps.mobile.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Full history so tj-actions/changed-files can reach github.event.before SHA
+          fetch-depth: 0
+
+      - name: Detect backend changes
+        uses: tj-actions/changed-files@v47
+        id: backend
+        if: github.event_name == 'push'
+        with:
+          files: |
+            apps/server/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
+
+      - name: Detect frontend changes
+        uses: tj-actions/changed-files@v47
+        id: frontend
+        if: github.event_name == 'push'
+        with:
+          files: |
+            apps/client/**
+            packages/ui/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
+
+      - name: Detect mobile changes
+        uses: tj-actions/changed-files@v47
+        id: mobile
+        if: github.event_name == 'push'
+        with:
+          files: |
+            apps/mobile/**
+            packages/api-types/**
+            pnpm-lock.yaml
+            package.json
+
+  # ─── Backend — always before frontend ──────────────────────────────────────
+  deploy-backend:
+    name: Deploy Backend
+    needs: detect-changes
+    if: needs.detect-changes.outputs.backend == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Trigger and await backend Cloud Build
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            TRIGGER_ID="9725eef6-b227-4cdb-af3f-4ff263eb9d35"
+          else
+            TRIGGER_ID="5afe00f9-f11c-41d8-a4cc-5936cb6b90ec"
+          fi
+
+          echo "Triggering backend Cloud Build ($TRIGGER_ID) on ${{ github.ref_name }}..."
+          BUILD_ID=$(gcloud builds triggers run "$TRIGGER_ID" \
+            --branch="${{ github.ref_name }}" \
+            --project=refugies-info \
+            --format='value(metadata.build.id)')
+
+          echo "Build ID: $BUILD_ID"
+          echo "🔗 https://console.cloud.google.com/cloud-build/builds/$BUILD_ID?project=refugies-info"
+
+          until [[ "$STATUS" == "SUCCESS" || "$STATUS" == "FAILURE" || "$STATUS" == "CANCELLED" || "$STATUS" == "TIMEOUT" || "$STATUS" == "EXPIRED" ]]; do
+            sleep 30
+            STATUS=$(gcloud builds describe "$BUILD_ID" \
+              --project=refugies-info \
+              --format='value(status)')
+            echo "Status: $STATUS"
+          done
+
+          if [[ "$STATUS" != "SUCCESS" ]]; then
+            echo "❌ Backend build failed: $STATUS"
+            exit 1
+          fi
+          echo "✅ Backend deployed successfully"
+
+  # ─── Frontend — runs after backend (or immediately if no backend changes) ──
+  deploy-frontend:
+    name: Deploy Frontend
+    needs: [detect-changes, deploy-backend]
+    # Run if frontend changed AND (backend succeeded OR backend was skipped)
+    if: |
+      always() &&
+      needs.detect-changes.outputs.frontend == 'true' &&
+      (needs.deploy-backend.result == 'success' || needs.deploy-backend.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v3
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Trigger and await frontend Cloud Build
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            TRIGGER_ID="13256662-bcdc-4526-88fe-475660d66fac"
+          else
+            TRIGGER_ID="bc32ef8b-ee21-489a-be3e-ac2b0721d310"
+          fi
+
+          echo "Triggering frontend Cloud Build ($TRIGGER_ID) on ${{ github.ref_name }}..."
+          BUILD_ID=$(gcloud builds triggers run "$TRIGGER_ID" \
+            --branch="${{ github.ref_name }}" \
+            --project=refugies-info \
+            --format='value(metadata.build.id)')
+
+          echo "Build ID: $BUILD_ID"
+          echo "🔗 https://console.cloud.google.com/cloud-build/builds/$BUILD_ID?project=refugies-info"
+
+          until [[ "$STATUS" == "SUCCESS" || "$STATUS" == "FAILURE" || "$STATUS" == "CANCELLED" || "$STATUS" == "TIMEOUT" || "$STATUS" == "EXPIRED" ]]; do
+            sleep 30
+            STATUS=$(gcloud builds describe "$BUILD_ID" \
+              --project=refugies-info \
+              --format='value(status)')
+            echo "Status: $STATUS"
+          done
+
+          if [[ "$STATUS" != "SUCCESS" ]]; then
+            echo "❌ Frontend build failed: $STATUS"
+            exit 1
+          fi
+          echo "✅ Frontend deployed successfully"
+
+  # ─── Mobile — runs in parallel with backend (no build-time API calls) ──────
+  deploy-mobile:
+    name: Build Mobile
+    needs: detect-changes
+    if: needs.detect-changes.outputs.mobile == 'true'
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24.11.1"
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: |
+          pnpm add -g turbo
+          pnpm install --frozen-lockfile
+
+      - name: Setup GCP service account key
+        run: |
+          mkdir -p credentials
+          echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}' | base64 --decode > credentials/refugies-info-appkey.json
+
+      - name: Build app on both platforms
+        working-directory: ./apps/mobile
+        run: |
+          if [[ "${{ github.ref_name }}" == "staging" ]]; then
+            eas build --platform all --profile staging --non-interactive --no-wait
+          else
+            eas build --platform all --profile production --non-interactive --no-wait --auto-submit
+          fi

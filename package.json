@@ -28,7 +28,7 @@
     ],
     "overrides": {
       "@codegouvfr/react-dsfr": "1.20.2",
-      "baseline-browser-mapping": "2.8.29",
+      "baseline-browser-mapping": "^2.9.19",
       "caniuse-lite": "1.0.30001755",
       "debug": "4.4.1",
       "electron-to-chromium": "1.5.255",
@@ -100,6 +100,8 @@
     "lint:style": "stylelint \"**/*.css\" \"**/*.scss\"",
     "client:i18n:export": "pnpm --filter @refugies-info/client i18n:export",
     "client:i18n:import": "pnpm --filter @refugies-info/client i18n:import",
+    "pr:stg": "gh pr create -B staging -H dev -l release -t '[STG] Release' -b ''",
+    "pr:prod": "gh pr create -B production -H staging -l release -t '[PROD] Release' -b ''",
     "pr:prod:client": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg:client": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "pr:prod:mobile": "gh pr create -B master-mobile -H staging-mobile -l release -t '[PROD-MOBILE] Release' -b ''",

@@ -1,4 +1,8 @@
+import { startReactDsfr } from "@codegouvfr/react-dsfr/spa";
+import Link from "next/link";
 import type React from "react";
+
+startReactDsfr({ defaultColorScheme: "system", Link });
 
 // Component for DSFR styling
 export const DsfrProvider = ({ children }: { children: React.ReactNode }) => {

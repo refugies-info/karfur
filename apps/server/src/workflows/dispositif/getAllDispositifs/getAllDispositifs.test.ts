@@ -1,4 +1,4 @@
-import { StructureStatus } from "@refugies-info/api-types";
+import { DispositifOrigin, StructureStatus } from "@refugies-info/api-types";
 import { ObjectId } from "@refugies-info/mongo";
 import * as repository from "~/modules/dispositif/dispositif.repository";
 import { fixtures } from "../../../__fixtures__";
@@ -70,6 +70,7 @@ describe("getAllDispositifs", () => {
       },
       themesSelectedByAuthor: false,
       webOnly: false,
+      origin: "RI" as any,
     };
 
     const populatedDispositif = fixtures.dispositif;
@@ -111,6 +112,7 @@ describe("getAllDispositifs", () => {
       _id: "id",
       username: "author",
     };
+    populatedDispositif.origin = DispositifOrigin.RI;
 
     const expectedResponse = {
       text: "success",

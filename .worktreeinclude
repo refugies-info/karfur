@@ -1,0 +1,14 @@
+# Files to copy from primary worktree via `wt step copy-ignored`
+# Must also be gitignored to be copied.
+
+# Environment files
+.env
+.envrc
+
+# Build caches
+# .next/ intentionally excluded — Next.js incremental cache is branch-specific,
+# copying from dev can cause stale/incorrect builds on feature branches.
+.turbo/
+
+# Agent config
+.letta/

@@ -13,6 +13,7 @@ import {
   getDirectiveComponents,
   remarkDirectiveToComponent,
 } from "~/lib/markdown/directive-to-component";
+import { remarkRestoreHierarchy } from "~/lib/markdown/remark-restore-hierarchy";
 import type { RootState } from "~/services/rootReducer";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import { makeThemeSelector } from "~/services/Themes/themes.selectors";
@@ -101,7 +102,12 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
             {markdown ? (
               <div className="prose no-dsfr section-markdown">
                 <ReactMarkdown
-                  remarkPlugins={[remarkGfm, remarkDirective, remarkDirectiveToComponent]}
+                  remarkPlugins={[
+                    remarkGfm,
+                    remarkDirective,
+                    remarkRestoreHierarchy,
+                    remarkDirectiveToComponent,
+                  ]}
                   components={getDirectiveComponents(t)}
                 >
                   {markdown}

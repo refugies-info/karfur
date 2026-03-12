@@ -21,10 +21,7 @@ import {
 import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls, cn } from "~/lib/classname";
-import { queryDispositifs } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
-import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import {
@@ -93,8 +90,6 @@ const Filter = ({
   const eventName = useSearchEventName();
   const stylesDisabled = useStylesDisabled();
   const announce = useAnnounce();
-  const dispositifs = useSelector(activeDispositifsSelector);
-  const allNeeds = useSelector(needsSelector);
 
   const { isMobile, isTablet } = useWindowSize();
 
@@ -131,11 +126,9 @@ const Filter = ({
     addToQuery({ [filterKey]: newSelected });
     Event(eventName, "click filter", menuItem.gaType || gaType);
 
-    // Calculate count using the updated query (after selection/deselection)
-    const updatedQuery = { ...query, [filterKey]: newSelected };
-    const results = queryDispositifs(updatedQuery, dispositifs, allNeeds);
+    // Announce filter change — actual count arrives when server responds
     if (showCounts) {
-      announce(t("Recherche.updatedFilters", { count: results.matches.length }), {
+      announce(t("Recherche.updatingResults") || "Mise \u00e0 jour des r\u00e9sultats...", {
         priority: "interrupt",
         delay: 1000,
       });

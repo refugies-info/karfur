@@ -235,6 +235,20 @@ export interface Poi {
   phone?: string;
 }
 
+export interface Session {
+  startDate: Date;
+  endDate: Date;
+  registrationStartDate?: Date;
+  registrationEndDate?: Date;
+  externalRef?: string;
+  url?: string;
+}
+
+export interface SessionsMetadata {
+  modalitesEntreesSorties?: 0 | 1 | null;
+  items?: Session[] | null;
+}
+
 export interface Metadatas {
   location?: locationType | null;
   frenchLevel?: frenchLevelType[] | null;
@@ -261,6 +275,7 @@ export interface Metadatas {
     timeUnit: timeUnitType;
     frequencyUnit: frequencyUnitType;
   } | null;
+  sessions?: SessionsMetadata | null;
 }
 
 export interface SimpleDispositif {

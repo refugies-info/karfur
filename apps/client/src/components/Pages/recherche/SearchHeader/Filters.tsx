@@ -8,11 +8,10 @@ import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filt
 import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
-import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import { Event } from "~/lib/tracking";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
+  searchPaginationSelector,
   searchQuerySelector,
   searchResultsSelector,
   themesDisplayedValueSelector,
@@ -41,19 +40,18 @@ const Filters = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
   const searchResults = useSelector(searchResultsSelector);
+  const pagination = useSelector(searchPaginationSelector);
   const stylesDisabled = useStylesDisabled();
   const announce = useAnnounce();
   const eventName = useSearchEventName();
 
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs),
-  );
-
-  useEffect(() => {
-    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
-  }, [query.departments, dispositifs]);
+  const NOT_DEPLOYED_THRESHOLD = 10;
+  const departmentsNotDeployed = useMemo(() => {
+    if (query.departments.length === 0) return [];
+    if (pagination.total >= NOT_DEPLOYED_THRESHOLD) return [];
+    return query.departments;
+  }, [query.departments, pagination.total]);
 
   // KEYWORD
   const [insideSearchInput, setInsideSearchInput] = useState(false);
