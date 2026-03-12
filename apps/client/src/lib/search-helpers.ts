@@ -1,6 +1,12 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
-import mongoose from "mongoose";
+import mongoose, {
+  type Connection,
+  type FilterQuery,
+  type Model,
+  type PipelineStage,
+} from "mongoose";
 import type { ParsedUrlQuery } from "querystring";
 
 interface SearchQuery extends ParsedUrlQuery {
@@ -223,4 +229,287 @@ export const getSearchClient = (): {
       : process.env.NEXT_PUBLIC_REACT_APP_ALGOLIA_INDEX_STG) || "";
 
   return { algoliaClient, indexName };
+};
+
+// --- Server-side search results computation ---
+
+export interface SearchResultsOptions {
+  page: number;
+  limit: number;
+  locale?: string;
+  type?: string;
+  sort?: string;
+}
+
+export interface SearchResponse {
+  results: SimpleDispositif[];
+  suggestions: SimpleDispositif[];
+  noResults: SimpleDispositif[];
+  total: number;
+  programCount: number;
+  procedureCount: number;
+  onlineCount: number;
+  page: number;
+  pageCount: number;
+}
+
+/**
+ * Build a $addFields + $project pair that resolves translations for a given locale.
+ * MongoDB stores content in `translations.{locale}.content.{field}`.
+ * Falls back to `translations.fr.content.{field}` when the requested locale is missing.
+ */
+const buildTranslationStages = (locale: string): PipelineStage[] => {
+  const resolveField = (field: string) => ({
+    $ifNull: [`$translations.${locale}.content.${field}`, `$translations.fr.content.${field}`],
+  });
+
+  return [
+    {
+      $addFields: {
+        titreInformatif: resolveField("titreInformatif"),
+        titreMarque: resolveField("titreMarque"),
+        abstract: resolveField("abstract"),
+      },
+    },
+    {
+      $project: {
+        translations: 0, // drop the large translations map after extraction
+      },
+    },
+  ];
+};
+
+const RESULTS_PROJECTION = {
+  _id: 1,
+  translations: 1, // needed for translation resolution in later stages
+  typeContenu: 1,
+  status: 1,
+  theme: 1,
+  secondaryThemes: 1,
+  needs: 1,
+  metadatas: 1,
+  created_at: 1,
+  publishedAt: 1,
+  lastModificationDate: 1,
+  nbMots: 1,
+  nbVues: 1,
+  nbVuesMobile: 1,
+  sponsor: 1,
+  availableLanguages: 1,
+  hasDraftVersion: 1,
+  themeSortIndex: 1,
+  origin: 1,
+};
+
+/**
+ * Resolves Algolia text-search IDs if a search term is provided.
+ * Returns undefined when no search term is given.
+ */
+export const resolveAlgoliaIds = async (
+  search: string | undefined,
+): Promise<string[] | undefined> => {
+  if (!search) return undefined;
+  const { algoliaClient, indexName } = getSearchClient();
+  const searchResults = await algoliaClient.searchSingleIndex({
+    indexName,
+    searchParams: {
+      query: search,
+      attributesToRetrieve: ["objectID"],
+      hitsPerPage: 1000,
+    },
+  });
+  return searchResults.hits.map((hit: { objectID: string }) => hit.objectID);
+};
+
+/**
+ * Build the MongoDB aggregation pipeline for search results.
+ */
+const buildSearchAggregation = (
+  baseMatch: FilterQuery<SimpleDispositif>,
+  options: SearchResultsOptions,
+): PipelineStage[] => {
+  const { page, limit, sort } = options;
+
+  const aggregation: PipelineStage[] = [
+    { $match: baseMatch },
+    {
+      $lookup: {
+        from: "themes",
+        localField: "theme",
+        foreignField: "_id",
+        as: "themeDoc",
+      },
+    },
+    { $unwind: { path: "$themeDoc", preserveNullAndEmptyArrays: true } },
+    { $addFields: { themeSortIndex: { $ifNull: ["$themeDoc.position", 999] } } },
+  ];
+
+  if (sort === "theme") {
+    aggregation.push({ $sort: { themeSortIndex: 1, publishedAt: -1 } });
+  } else if (sort === "location") {
+    aggregation.push({
+      $addFields: {
+        isLocal: {
+          $cond: { if: { $in: ["$metadatas.location"] }, then: 1, else: 2 },
+        },
+      },
+    });
+    aggregation.push({ $sort: { isLocal: 1, "metadatas.vues": -1 } });
+  } else if (sort === "views") {
+    aggregation.push({ $sort: { nbVues: -1 } });
+  } else if (sort === "date") {
+    aggregation.push({ $sort: { publishedAt: -1 } });
+  } else {
+    // "default" or undefined — sort by most recently updated
+    aggregation.push({ $sort: { publishedAt: -1 } });
+  }
+
+  aggregation.push({ $skip: (page - 1) * limit });
+  aggregation.push({ $limit: limit });
+  aggregation.push({ $project: RESULTS_PROJECTION });
+  // Resolve translations for the requested locale (must come after $project)
+  aggregation.push(...buildTranslationStages(options.locale || "fr"));
+
+  return aggregation;
+};
+
+/**
+ * Build a suggestions query: items where selected themes appear as secondary themes,
+ * excluding those already matched by the main query.
+ */
+const buildSuggestionsQuery = async (
+  Dispositif: Model<SimpleDispositif>,
+  baseMatch: FilterQuery<SimpleDispositif>,
+  queryParams: QueryParams,
+  locale: string,
+): Promise<SimpleDispositif[]> => {
+  const themes = (queryParams.themes ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
+  const needs = (queryParams.needs ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
+
+  if (themes.length === 0 && needs.length === 0) return [];
+
+  if (themes.length > 0) {
+    const themeIds = themes.map((t) => new mongoose.Types.ObjectId(t));
+    // Items that have selected themes as secondary themes but NOT as primary theme
+    const suggestionsMatch = {
+      ...baseMatch,
+      theme: { $nin: themeIds },
+      secondaryThemes: { $in: themeIds },
+    };
+    // Remove theme-related conditions from $or since we want secondary-only
+    delete suggestionsMatch.$or;
+    return Dispositif.aggregate([
+      { $match: { ...suggestionsMatch, status: "Actif" } },
+      { $sort: { nbVues: -1 } },
+      { $limit: 8 },
+      { $project: RESULTS_PROJECTION },
+      ...buildTranslationStages(locale),
+    ]);
+  }
+
+  if (needs.length > 0) {
+    const needIds = needs.map((n) => new mongoose.Types.ObjectId(n));
+    // Find needs' parent themes, then get items from those themes without the selected needs
+    const NeedModel =
+      Dispositif.db.models.Need ||
+      Dispositif.db.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
+    const selectedNeeds = await NeedModel.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
+    const parentThemeIds = [
+      ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
+    ];
+
+    if (parentThemeIds.length === 0) return [];
+
+    return Dispositif.aggregate([
+      {
+        $match: {
+          status: "Actif",
+          theme: { $in: parentThemeIds },
+          needs: { $nin: needIds },
+        },
+      },
+      { $sort: { nbVues: -1 } },
+      { $limit: 8 },
+      { $project: RESULTS_PROJECTION },
+      ...buildTranslationStages(locale),
+    ]);
+  }
+
+  return [];
+};
+
+/**
+ * Core search computation, callable from both the API route handler and getServerSideProps.
+ * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
+ */
+/**
+ * Fetch top démarches by views — shown when main search yields 0 results.
+ */
+const buildNoResultsFallback = async (
+  Dispositif: Model<SimpleDispositif>,
+  locale: string,
+): Promise<SimpleDispositif[]> => {
+  return Dispositif.aggregate([
+    { $match: { status: "Actif", typeContenu: "demarche" } },
+    { $sort: { nbVues: -1 } },
+    { $limit: 12 },
+    { $project: RESULTS_PROJECTION },
+    ...buildTranslationStages(locale),
+  ]);
+};
+
+/**
+ * Core search computation, callable from both the API route handler and getServerSideProps.
+ * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
+ */
+export const computeSearchResults = async (
+  conn: Connection,
+  queryParams: QueryParams,
+  options: SearchResultsOptions,
+): Promise<SearchResponse> => {
+  const Dispositif: Model<SimpleDispositif> =
+    conn.models.Dispositif ||
+    conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
+
+  const algoliaIds = await resolveAlgoliaIds(queryParams.search);
+  const baseMatch = buildBaseMatch(queryParams, algoliaIds);
+
+  if (options.type && options.type !== "all") {
+    baseMatch.typeContenu = options.type;
+  }
+
+  const aggregation = buildSearchAggregation(baseMatch, options);
+
+  const [results, total, typeCounts, suggestions] = await Promise.all([
+    Dispositif.aggregate(aggregation),
+    Dispositif.countDocuments(baseMatch),
+    Dispositif.aggregate([
+      { $match: baseMatch },
+      { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
+    ]),
+    buildSuggestionsQuery(Dispositif, baseMatch, queryParams, options.locale || "fr"),
+  ]);
+
+  const getCount = (type: string) =>
+    typeCounts.find((t: { _id: string; count: number }) => t._id === type)?.count || 0;
+
+  // When no results, provide top démarches as fallback
+  const noResults =
+    total === 0 ? await buildNoResultsFallback(Dispositif, options.locale || "fr") : [];
+
+  return {
+    results,
+    suggestions,
+    noResults,
+    total,
+    programCount: getCount("dispositif"),
+    procedureCount: getCount("demarche"),
+    onlineCount: getCount("online"),
+    page: options.page,
+    pageCount: Math.ceil(total / options.limit),
+  };
 };

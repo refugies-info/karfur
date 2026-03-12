@@ -3,13 +3,13 @@ import get from "lodash/get";
 
 const sortOptionsValues = {
   date: "publishedAt",
-  view: "nbVues",
+  views: "nbVues",
 };
 
 const sortHelper = (
   dispA: SimpleDispositif,
   dispB: SimpleDispositif,
-  sortOption: "date" | "view",
+  sortOption: "date" | "views",
 ) => {
   const sortKey = sortOptionsValues[sortOption];
   const valA = get(dispA, sortKey);
@@ -24,7 +24,7 @@ export const sortByDate = (dispA: SimpleDispositif, dispB: SimpleDispositif) =>
   sortHelper(dispA, dispB, "date");
 
 export const sortByView = (dispA: SimpleDispositif, dispB: SimpleDispositif) =>
-  sortHelper(dispA, dispB, "view");
+  sortHelper(dispA, dispB, "views");
 
 export const sortByTheme = (dispA: SimpleDispositif, dispB: SimpleDispositif) => {
   const valA = get(dispA, "themeSortIndex");

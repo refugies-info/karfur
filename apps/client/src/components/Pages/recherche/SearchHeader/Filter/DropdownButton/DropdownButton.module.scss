@@ -141,6 +141,7 @@
   background-color: #fff;
   box-shadow: 0 4px 12px 0 rgba(0 0 18 / 16%);
   transform: translateX(-1em);
+  z-index: 100; // above stickybar (z-index: 90)
 
   &::before {
     content: "";

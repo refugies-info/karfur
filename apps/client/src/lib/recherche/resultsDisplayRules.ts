@@ -46,7 +46,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -73,7 +73,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByLocation,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -101,7 +101,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -125,7 +125,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -151,7 +151,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -175,7 +175,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -199,7 +199,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByLocation,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -226,7 +226,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -252,7 +252,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -279,7 +279,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByLocation,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -307,7 +307,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -331,7 +331,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -358,7 +358,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -382,7 +382,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -406,7 +406,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByLocation,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -433,7 +433,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -459,7 +459,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -486,7 +486,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -513,7 +513,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -537,7 +537,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -563,7 +563,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -587,7 +587,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -611,7 +611,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -637,7 +637,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -663,7 +663,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -690,7 +690,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -717,7 +717,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -741,7 +741,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByView,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -767,7 +767,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -791,7 +791,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: noSort,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {
@@ -815,7 +815,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
           display: true,
           sortFunction: sortByLocation,
         },
-        view: {
+        views: {
           display: true,
           sortFunction: sortByView,
         },
@@ -840,7 +840,7 @@ const DISPLAY_RULES: Record<TabKey, DisplayRule[]> = {
         default: {
           display: false,
         },
-        view: {
+        views: {
           display: false,
         },
         date: {

@@ -57,6 +57,12 @@ const initialMockSearchReults: SearchResultsState = {
     matches: [],
     suggestions: [],
   },
+  pagination: {
+    page: 1,
+    pageCount: 0,
+    total: 0,
+  },
+  loading: false,
   noResults: [],
   query: {
     search: "",
