@@ -32,7 +32,7 @@
       ]
     },
     "apps/server": {
-      "entry": ["src/server.ts"],
+      "entry": ["src/server.ts", "src/authentication.ts"],
       "ignoreDependencies": [
         "@google-cloud/translate",
         "@tsoa/runtime",
