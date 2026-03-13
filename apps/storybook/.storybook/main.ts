@@ -2,7 +2,7 @@
 
 import { createRequire } from "node:module";
 import { dirname, join } from "node:path";
-import type { StorybookConfig } from "@storybook/nextjs";
+import type { StorybookConfig } from "@storybook/nextjs-vite";
 
 const require = createRequire(import.meta.url);
 
@@ -16,23 +16,11 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-docs"),
   ],
   framework: {
-    name: getAbsolutePath("@storybook/nextjs"),
+    name: getAbsolutePath("@storybook/nextjs-vite"),
     options: {},
   },
-  webpackFinal: async (config) => {
-    if (config.module) {
-      config.module.rules ||= [];
-
-      config.module.rules.push({
-        test: /\.lottie$/,
-        type: "asset/resource",
-      });
-
-      config.module.rules.push({
-        test: /\.woff2$/,
-        type: "asset/resource",
-      });
-    }
+  viteFinal: async (config) => {
+    config.assetsInclude = [...[config.assetsInclude ?? []].flat(), "**/*.lottie", "**/*.woff2"];
     return config;
   },
 };

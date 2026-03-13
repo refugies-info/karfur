@@ -1,5 +1,5 @@
 import { MetaDataCard, MetaDataItem } from "@refugies-info/ui";
-import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   title: "UI/Composites/MetaData/MetaDataCard",
