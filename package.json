@@ -120,7 +120,7 @@
     "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
     "knip": "knip",
-    "update-dependencies": "pnpm update -i --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook"
+    "update-dependencies": "pnpm update -i --filter . --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook --filter mongo"
   },
   "engines": {
     "node": "24.14.0"
