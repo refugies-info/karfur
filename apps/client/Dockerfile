@@ -1,5 +1,5 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:24.11.1-alpine AS base
+FROM node:24.14.0-alpine AS base
 
   # Update and install system packages
   RUN apk update && apk add --no-cache libc6-compat
@@ -11,7 +11,7 @@ FROM base AS tools
 
   # Enable corepack and prepare pnpm globally
   RUN corepack enable
-  RUN corepack prepare pnpm@10.23.0 --activate
+  RUN corepack prepare pnpm@10.32.1 --activate
 
   # Install turbo globally
   ENV PNPM_HOME="/root/.local/share/pnpm"

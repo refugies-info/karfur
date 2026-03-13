@@ -24,6 +24,16 @@ minimumReleaseAgeExclude:
   # HACK: Temporarily excluded to allow update to a recent version of storybook.
   # TODO: Remove this exclusion after 2025-12-25 once the package is older than 7 days.
   - storybook
+  # Platform-specific optional deps — exact version pins trigger false positives
+  # when lockfile re-resolves (e.g. esbuild@0.27.3 requires @esbuild/*@0.27.3 exactly)
+  # TODO: Remove after 2026-03-25
+  - "@esbuild/*"
+  - esbuild
+  - "@oxc-resolver/*"
+  - oxc-resolver
+  - "@tailwindcss/*"
+  - postcss
+  - "@types/node"
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

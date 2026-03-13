@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "@refugies-info/api-types": "workspace:*",
-    "@zodyac/zod-mongoose": "^4.2.0",
+    "@zodyac/zod-mongoose": "^4.2.2",
     "jwt-simple": "^0.5.6",
-    "mongoose": "^8.1.1",
+    "mongoose": "^8.23.0",
     "password-hash": "^1.2.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "@types/node": "^20.11.19",
+    "@types/node": "^20.19.37",
     "@types/password-hash": "^1.2.24",
-    "typescript": "^5.3.3"
+    "typescript": "^5.9.3"
   }
 }
