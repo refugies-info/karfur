@@ -41,8 +41,8 @@ export const addToNewsletter = async (email: string) => {
       error.statusCode === 400 &&
       typeof error.body === "object" &&
       error.body !== null &&
-      "message" in error.body &&
-      (error.body as { message: string }).message === "Contact already exist"
+      "code" in error.body &&
+      (error.body as { code: string }).code === "duplicate_parameter"
     )
       throw new InvalidRequestError("This email is already in the list.", "CONTACT_ALREADY_EXIST");
     throw new Error("Error while creating contact");
