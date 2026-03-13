@@ -20,15 +20,7 @@ const config: StorybookConfig = {
     options: {},
   },
   viteFinal: async (config) => {
-    config.assetsInclude = [
-      ...(Array.isArray(config.assetsInclude)
-        ? config.assetsInclude
-        : config.assetsInclude
-          ? [config.assetsInclude]
-          : []),
-      "**/*.lottie",
-      "**/*.woff2",
-    ];
+    config.assetsInclude = [...[config.assetsInclude ?? []].flat(), "**/*.lottie", "**/*.woff2"];
     return config;
   },
 };
