@@ -40,7 +40,7 @@
       "sha.js": "^2.4.12",
       "stylus": "npm:noop3@^1000.0.0",
       "tmp": "^0.2.4",
-      "undici": "6.21.2",
+      "undici": "^7.21.0",
       "validator": "^13.15.20",
       "mdast-util-to-hast": ">=13.2.1",
       "react-server-dom-webpack": ">=19.0.2",
