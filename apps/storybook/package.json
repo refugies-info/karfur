@@ -33,7 +33,7 @@
     "chromatic": "^13.3.5",
     "dotenv-run-script": "^0.4.1",
     "postcss": "^8.5.8",
-    "storybook": "10.1.10",
+    "storybook": "10.2.10",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3"
   }
