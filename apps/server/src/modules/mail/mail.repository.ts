@@ -1,6 +1,13 @@
-import { type DispositifId, type MailEvent, MailEventModel, type UserId } from "~/typegoose";
-import type { Modify } from "~/types/interface";
+import {
+  type DispositifId,
+  MailEventModel,
+  type MailEventType,
+  type UserId,
+} from "@refugies-info/mongo";
 
 export const addMailEvent = (
-  mailEvent: Modify<MailEvent, { userId?: UserId; dispositifId?: DispositifId }>,
-) => MailEventModel.create(mailEvent);
+  mailEvent: Omit<MailEventType, "_id" | "userId" | "dispositifId"> & {
+    userId?: UserId;
+    dispositifId?: DispositifId;
+  },
+) => MailEventModel.create(mailEvent as any);

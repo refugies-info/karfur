@@ -3,14 +3,15 @@ import {
   type Languages,
   TraductionsStatus,
 } from "@refugies-info/api-types";
+import type { Dispositif, TranslationContent } from "@refugies-info/mongo";
+import { TraductionsType } from "@refugies-info/mongo";
 import { isEmpty, some } from "lodash";
 import { countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
+import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { getActiveContents } from "~/modules/dispositif/dispositif.repository";
+import { getSectionsTranslated } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguage } from "~/modules/traductions/traductions.repository";
-import type { Dispositif } from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
-import { TraductionsType } from "~/typegoose/Traductions";
 
 /* TODO: test this */
 /**
@@ -31,7 +32,7 @@ const getNbWordsDone = (
       [].concat(
         ...traductions
           .filter((t) => (validation ? t.type === TraductionsType.VALIDATION : true))
-          .map((t) => t.sectionsTranslated),
+          .map((t) => getSectionsTranslated(t)),
       ),
     ),
   ];
@@ -95,7 +96,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
      * La traduction est présente dans le dispositif
      * Le dispositif est déjà traduit
      */
-    if (dispositif.isTranslatedIn(locale)) {
+    if (isDispositifTranslatedIn(dispositif, locale)) {
       return results.push({
         ...dispositifData,
         avancementTrad: dispositif.nbMots,

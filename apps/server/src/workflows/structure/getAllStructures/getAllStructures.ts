@@ -1,10 +1,11 @@
 import type { GetAllStructuresResponse, Id, SimpleUser } from "@refugies-info/api-types";
+import type { User, UserId } from "@refugies-info/mongo";
 import pick from "lodash/pick";
+import { Types } from "mongoose";
+import { toPicture } from "~/libs/pictureUtils";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
 import { getUsersById } from "~/modules/users/users.repository";
-import type { UserId } from "~/typegoose";
-import type { Base } from "~/typegoose/Base";
 import type { ResponseWithData } from "~/types/interface";
 
 // type StructureStatusType = "Actif" | "En attente" | "Supprimé";
@@ -44,20 +45,33 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       ...pick(structure, [
         "acronyme",
         "status",
-        "picture",
         "created_at",
         "adminComments",
         "adminProgressionStatus",
         "adminPercentageProgressionStatus",
         "link",
       ]),
+      picture: toPicture(structure.picture),
       _id: structure._id,
       nom: structure.nom || "",
-      membres: structure.membres || [],
+      membres: (structure.membres || []).map((m) => {
+        const userId = m.userId || new Types.ObjectId();
+        return {
+          ...m,
+          userId,
+          added_at: m.added_at || new Date(),
+        };
+      }),
       nbMembres,
       nbFiches,
       dispositifsIds,
-      createur,
+      createur: structure.createur[0]
+        ? ({
+            ...structure.createur[0],
+            _id: structure.createur[0]._id.toString(),
+            roles: [],
+          } as SimpleUser)
+        : null,
       responsable: responsableId?.toString() || null,
     };
   });
@@ -75,7 +89,7 @@ export const getAllStructures = async (): ResponseWithData<GetAllStructuresRespo
       email: 1,
     });
     const responsables: Record<string, SimpleUser> = users.reduce(
-      (acc: { [key: string]: SimpleUser }, user: Base) => ({
+      (acc: { [key: string]: SimpleUser }, user: User) => ({
         ...acc,
         [user._id.toString()]: {
           ...user,

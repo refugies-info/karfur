@@ -1,7 +1,7 @@
+import { UserModel } from "@refugies-info/mongo";
 import * as mailServ from "~/modules/mail/mail.service";
 import * as usersRep from "~/modules/users/users.repository";
 import * as usersServ from "~/modules/users/users.service";
-import { UserModel } from "~/typegoose";
 import { deleteUser } from "./deleteUser";
 
 jest.mock("../../../modules/users/users.repository", () => ({

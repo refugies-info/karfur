@@ -1,4 +1,4 @@
-import { type AdminOptions, AdminOptionsModel } from "~/typegoose";
+import { type AdminOptions, AdminOptionsModel } from "@refugies-info/mongo";
 
 export const getAdminOption = async (key: string) => AdminOptionsModel.findOne({ key: key });
 

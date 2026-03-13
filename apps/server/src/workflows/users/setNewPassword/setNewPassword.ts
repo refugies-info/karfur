@@ -25,10 +25,7 @@ export const setNewPassword = async (
       throw new LoginError(LoginErrorType.USED_PASSWORD);
     if (!isPasswordOk(body.newPassword)) throw new LoginError(LoginErrorType.PASSWORD_TOO_WEAK);
 
-    const userStructureId = await userRespoStructureId(
-      user.structures.map((structure) => structure._id) || [],
-      user._id,
-    );
+    const userStructureId = await userRespoStructureId(user.structures || [], user._id);
     if (userStructureId) {
       if (body.code) {
         await verifyCode(user.email, body.code);

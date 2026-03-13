@@ -7,9 +7,17 @@ import recherche from "../pages/recherche";
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("recherche", () => {
+  const originalEnv = process.env;
+
   beforeEach(() => {
     jest.clearAllMocks();
     setupGoogleMock();
+    // Pin env var so snapshot is deterministic regardless of local .env
+    process.env = { ...originalEnv, NEXT_PUBLIC_DISABLE_SEARCH_COUNTS: "true" };
+  });
+
+  afterEach(() => {
+    process.env = originalEnv;
   });
 
   it("renders search results", () => {
@@ -39,6 +47,12 @@ describe("recherche", () => {
             matches: [],
             suggestions: [],
           },
+          pagination: {
+            page: 1,
+            pageCount: 0,
+            total: 0,
+          },
+          loading: false,
           noResults: [],
           query: {
             search: "",

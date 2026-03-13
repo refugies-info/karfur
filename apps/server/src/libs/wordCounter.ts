@@ -6,9 +6,9 @@ import type {
   InfoSections,
 } from "@refugies-info/api-types";
 import { hasMarkdownContent } from "@refugies-info/api-types";
+import type { TranslationContent } from "@refugies-info/mongo";
 import get from "lodash/get";
 import isString from "lodash/isString";
-import type { TranslationContent } from "~/typegoose/Dispositif";
 
 /**
  * Basic word counter

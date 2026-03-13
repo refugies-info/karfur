@@ -6,7 +6,8 @@
 .envrc
 
 # Build caches
-.next/
+# .next/ intentionally excluded — Next.js incremental cache is branch-specific,
+# copying from dev can cause stale/incorrect builds on feature branches.
 .turbo/
 
 # Agent config

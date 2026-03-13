@@ -8,6 +8,7 @@ import {
   type PostDispositifsResponse,
   RoleName,
 } from "@refugies-info/api-types";
+import { type Dispositif, ObjectId, type StructureId, type UserId } from "@refugies-info/mongo";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { createDispositifInDB } from "~/modules/dispositif/dispositif.repository";
@@ -15,7 +16,6 @@ import { buildNewDispositif } from "~/modules/dispositif/dispositif.service";
 import { logContact } from "~/modules/dispositif/log";
 import { getRoleByName } from "~/modules/role/role.repository";
 import { addRoleAndContribToUser } from "~/modules/users/users.repository";
-import { type Dispositif, ObjectId, type StructureId, type UserId } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const createDispositif = async (
@@ -71,7 +71,7 @@ export const createDispositif = async (
     text: "success",
     data: {
       id: dispositif._id,
-      mainSponsor: (dispositif.mainSponsor as string) || null,
+      mainSponsor: (dispositif.mainSponsor as any as string) || null,
       typeContenu: dispositif.typeContenu,
       status: dispositif.status,
       hasDraftVersion: false,

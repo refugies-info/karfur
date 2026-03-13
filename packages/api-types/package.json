@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "biome lint .",
-    "format": "biome format --write .",
+    "format": "biome check --write --linter-enabled=false .",
     "check:types": "tsc",
     "test": "echo 'No tests to run'"
   },

@@ -1,7 +1,7 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
-import { Dispositif, ObjectId } from "~/typegoose";
+import { Dispositif, ObjectId } from "@refugies-info/mongo";
 
-export const demarche: Dispositif = new Dispositif();
+export const demarche: any = {};
 
 demarche._id = new ObjectId("651588ea521b25fd0f92ee1a");
 demarche.typeContenu = ContentType.DEMARCHE;
@@ -160,6 +160,7 @@ demarche.metadatas = {
   timeSlots: [],
 };
 demarche.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
+demarche.administrationLogo = null;
 demarche.hasDraftVersion = false;
 demarche.publishedAt = new Date("2023-12-01T13:57:31.392Z");
 demarche.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");

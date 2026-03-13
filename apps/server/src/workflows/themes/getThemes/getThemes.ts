@@ -12,6 +12,9 @@ export const getThemes = async (): ResponseWithData<GetThemeResponse[]> => {
 
   return {
     text: "success",
-    data: themes.map((t) => ({ ...t.toObject(), active: t.isActive(activeLanguages) })),
+    data: themes.map(
+      (t) =>
+        ({ ...t.toObject(), active: t.isActive(activeLanguages) }) as unknown as GetThemeResponse,
+    ),
   };
 };

@@ -1,7 +1,7 @@
 import type { PostWidgetResponse, WidgetRequest } from "@refugies-info/api-types";
+import { ObjectId, type Widget } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { createWidget } from "~/modules/widgets/widgets.repository";
-import { ObjectId, Widget } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const postWidgets = async (
@@ -10,11 +10,13 @@ export const postWidgets = async (
 ): ResponseWithData<PostWidgetResponse> => {
   logger.info("[postWidgets] received", body);
 
-  const widget = new Widget();
-  widget.name = body.name;
-  widget.themes = body.themes.map((t) => new ObjectId(t.toString()));
-  widget.typeContenu = body.typeContenu;
-  widget.author = new ObjectId(userId);
+  const widget: Partial<Widget> = {
+    name: body.name,
+    themes: body.themes.map((t) => new ObjectId(t.toString())),
+    typeContenu: body.typeContenu,
+    author: new ObjectId(userId),
+    tags: [], // Default empty array as per schema if needed, or handle in repo
+  };
 
   if (body.languages?.length) {
     widget.languages = body.languages;
@@ -22,10 +24,10 @@ export const postWidgets = async (
   if (body.department) {
     widget.department = body.department;
   }
-  const dbWidget = await createWidget(widget);
+  const dbWidget = await createWidget(widget as Widget);
 
   return {
     text: "success",
-    data: dbWidget,
+    data: dbWidget as PostWidgetResponse,
   };
 };

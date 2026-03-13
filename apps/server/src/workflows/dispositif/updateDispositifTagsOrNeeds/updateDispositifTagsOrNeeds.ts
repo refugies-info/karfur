@@ -1,4 +1,5 @@
 import type { DispositifThemeNeedsRequest } from "@refugies-info/api-types";
+import { ObjectId, type User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import {
   getDispositifById,
@@ -6,7 +7,6 @@ import {
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import { computePossibleNeeds } from "~/modules/needs/needs.service";
-import { ObjectId, type User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

@@ -1,8 +1,8 @@
 import type { PostImageResponse } from "@refugies-info/api-types";
+import { CloudinaryImageModel } from "@refugies-info/mongo";
 import cloudinary from "cloudinary";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
-import { ImageModel } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 /**
@@ -36,7 +36,7 @@ export const postImages = async (files: UploadedFile[]): ResponseWithData<PostIm
     version: imgData.version,
   };
 
-  const imageDb = await ImageModel.create(image);
+  const imageDb = await CloudinaryImageModel.create(image);
   return {
     text: "success",
     data: {

@@ -1,3 +1,4 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import type { ProjectionType } from "mongoose";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import logger from "~/logger";
@@ -6,7 +7,6 @@ import {
   getDepartementsFigures,
 } from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif } from "~/typegoose";
 import type { Response } from "~/types/interface";
 
 const exportDataInAirtable = (data: {

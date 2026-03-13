@@ -1,6 +1,6 @@
 import type { Id } from "@refugies-info/api-types";
+import { LangueModel } from "@refugies-info/mongo";
 import type { Types } from "mongoose";
-import { LangueModel } from "~/typegoose";
 
 export const getActiveLanguagesFromDB = () =>
   LangueModel.find(

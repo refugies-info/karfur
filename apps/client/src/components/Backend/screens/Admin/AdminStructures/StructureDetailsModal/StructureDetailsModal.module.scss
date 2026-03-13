@@ -38,3 +38,62 @@ $containerHeight: 435px;
   flex-direction: column;
   height: $containerHeight;
 }
+
+// Logo edit area in modal header
+%logo-button {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  padding: 0;
+  right: -4px;
+}
+
+.logo_edit {
+  @extend %logo-button;
+
+  bottom: -4px;
+  background: var(--background-action-high-blue-france);
+}
+
+.logo_delete {
+  @extend %logo-button;
+
+  top: -4px;
+  background: var(--background-action-high-error);
+}
+
+.logo_wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &:hover .logo_edit,
+  &:hover .logo_delete {
+    opacity: 1;
+  }
+}
+
+.logo_uploading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 40%);
+  border-radius: $radius;
+  z-index: 2;
+}
+
+.logo_file_input {
+  display: none;
+}

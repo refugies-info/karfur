@@ -18,6 +18,12 @@ export const postNotificationsSettings = async (
 
   return {
     text: "success",
-    data: settings,
+    data: {
+      global: true,
+      local: true,
+      demarches: true,
+      themes: {},
+      ...(settings || {}),
+    },
   };
 };

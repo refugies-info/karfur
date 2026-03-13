@@ -1,12 +1,12 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import type { Avis } from "@refugies-info/mongo";
+import { ObjectId } from "@refugies-info/mongo";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
 import {
   addAvisDispositifInDB,
   getDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
-import type { Avis } from "~/typegoose/Dispositif";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

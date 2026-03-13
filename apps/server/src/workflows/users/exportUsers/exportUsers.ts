@@ -2,7 +2,10 @@ import type { ProgressionIndicator } from "@refugies-info/api-types";
 import { getAirtableUserTable } from "~/connectors/airtable/airtable";
 import { computeGlobalIndicator } from "~/controllers/traduction/lib";
 import logger from "~/logger";
-import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
+import {
+  getAllUsersForAdminFromDB,
+  type UserWithPopulatedStructures,
+} from "~/modules/users/users.repository";
 import type { Response } from "~/types/interface";
 
 interface UserToExport {
@@ -39,7 +42,7 @@ const exportUsersInAirtable = (users: UserToExport[]): void => {
 };
 
 const formatUser = (
-  user: Awaited<ReturnType<typeof getAllUsersForAdminFromDB>>[0],
+  user: UserWithPopulatedStructures,
   indicators: ProgressionIndicator,
 ): UserToExport => {
   logger.info(`[formatUser] format user with id ${user._id}`);

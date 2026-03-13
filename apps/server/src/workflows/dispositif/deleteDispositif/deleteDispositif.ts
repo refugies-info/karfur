@@ -1,6 +1,6 @@
+import type { User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { deleteDispositifInDb } from "~/modules/dispositif/dispositif.service";
-import type { User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

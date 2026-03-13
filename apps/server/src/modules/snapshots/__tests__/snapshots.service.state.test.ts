@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import { DispositifModel, SnapshotModel } from "@refugies-info/mongo";
 import { fixtures } from "~/__fixtures__";
-import { DispositifModel, SnapshotModel } from "~/typegoose";
 import { takeSnapshot } from "../snapshots.service";
 
 describe("takeSnapshot", () => {

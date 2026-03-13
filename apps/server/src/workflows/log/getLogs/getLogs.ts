@@ -17,31 +17,31 @@ export const getLogs = async (id: string): ResponseWithData<GetLogResponse[]> =>
       if (log.dynamicId) {
         if (log.model_dynamic === "Dispositif")
           return {
-            ...log.toObject(),
+            ...(log.toObject() as any),
             dynamicId: { titreInformatif: await getDispositifName(log.dynamicId) },
           };
         if (log.model_dynamic === "Langue")
           return {
-            ...log.toObject(),
+            ...(log.toObject() as any),
             dynamicId: { langueFr: await getLangueName(log.dynamicId) },
           };
         if (log.model_dynamic === "User")
           return {
-            ...log.toObject(),
+            ...(log.toObject() as any),
             dynamicId: { username: await getUserName(log.dynamicId) },
           };
         if (log.model_dynamic === "Structure")
           return {
-            ...log.toObject(),
+            ...(log.toObject() as any),
             dynamicId: { nom: await getStructureName(log.dynamicId) },
           };
       }
-      return { ...log.toObject(), dynamicId: undefined };
+      return { ...(log.toObject() as any), dynamicId: undefined };
     }),
   );
 
   return {
     text: "success",
-    data: groupLogs(allLogs),
+    data: groupLogs(allLogs as any),
   };
 };

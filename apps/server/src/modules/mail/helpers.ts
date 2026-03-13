@@ -1,4 +1,4 @@
-import type { UserId } from "~/typegoose";
+import type { UserId } from "@refugies-info/mongo";
 import type { TemplateName } from "../../connectors/sendgrid/sendgrid.types";
 import { PREFS } from "./data";
 
