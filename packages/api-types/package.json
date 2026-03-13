@@ -14,10 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "mongoose": "^8.19.4"
+    "mongoose": "^8.23.0"
   },
   "repository": {
     "type": "git",
