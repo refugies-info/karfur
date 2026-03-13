@@ -21,9 +21,14 @@ packages:
 # See: https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
-  # HACK: Temporarily excluded to allow update to a recent version of storybook.
-  # TODO: Remove this exclusion after 2025-12-25 once the package is older than 7 days.
+  # Storybook 10.2 — new packages introduced by the nextjs→nextjs-vite migration
+  # TODO: Remove after 2026-03-20 once storybook 10.2.17 packages are older than 7 days
   - storybook
+  - "@storybook/nextjs-vite"
+  - "@storybook/addon-a11y"
+  - "@storybook/addon-docs"
+  - "@storybook/addon-onboarding"
+  - "@storybook/addon-themes"
   # Platform-specific optional deps — exact version pins trigger false positives
   # when lockfile re-resolves (e.g. esbuild@0.27.3 requires @esbuild/*@0.27.3 exactly)
   # TODO: Remove after 2026-03-25

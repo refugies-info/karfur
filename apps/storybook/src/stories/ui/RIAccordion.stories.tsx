@@ -1,5 +1,5 @@
 import { RIAccordion } from "@refugies-info/ui";
-import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof RIAccordion> = {
   title: "UI/Composites/RIAccordion",

@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/nextjs";
+import type { Preview } from "@storybook/nextjs-vite";
 import { withDsfrDecorator } from "./DsfrProvider";
 import "./globals.css";
 

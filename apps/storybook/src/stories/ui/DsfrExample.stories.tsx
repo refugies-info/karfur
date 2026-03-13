@@ -13,7 +13,7 @@ import { Select } from "@codegouvfr/react-dsfr/Select";
 import { Tabs } from "@codegouvfr/react-dsfr/Tabs";
 import { Tag } from "@codegouvfr/react-dsfr/Tag";
 import { cn } from "@refugies-info/ui";
-import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta = {
   title: "UI/DSFR Components",
