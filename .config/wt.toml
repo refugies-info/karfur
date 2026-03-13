@@ -3,3 +3,6 @@ deps = "pnpm install"
 
 [post-start]
 copy = "wt step copy-ignored"
+
+[post-switch]
+deps = "pnpm install"

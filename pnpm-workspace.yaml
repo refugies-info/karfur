@@ -34,6 +34,8 @@ minimumReleaseAgeExclude:
   - "@tailwindcss/*"
   - postcss
   - "@types/node"
+  # TODO: Remove after 2026-04-15 once @getbrevo/brevo@5.0.1 is older than 7 days
+  - "@getbrevo/brevo"
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

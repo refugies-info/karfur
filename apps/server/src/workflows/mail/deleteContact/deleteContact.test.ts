@@ -2,20 +2,13 @@ import { fixtures } from "../../../__fixtures__";
 import { deleteContact } from "./deleteContact";
 
 jest.mock("@getbrevo/brevo", () => ({
-  ContactsApi: jest.fn().mockReturnValue({
-    setApiKey: jest.fn(),
-    deleteContact: jest.fn().mockResolvedValue(undefined),
+  BrevoClient: jest.fn().mockReturnValue({
+    contacts: {
+      deleteContact: jest.fn().mockResolvedValue(undefined),
+    },
+    transactionalSms: {},
   }),
-  ContactsApiApiKeys: {
-    apiKey: "",
-  },
-  TransactionalSMSApi: jest.fn().mockReturnValue({
-    setApiKey: jest.fn(),
-  }),
-  TransactionalSMSApiApiKeys: {
-    apiKey: "",
-  },
-  SendTransacSms: jest.fn(),
+  BrevoError: class BrevoError extends Error {},
 }));
 
 describe("isInNewsletterList", () => {
