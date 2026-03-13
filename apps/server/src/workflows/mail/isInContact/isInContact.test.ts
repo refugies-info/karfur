@@ -2,20 +2,13 @@ import { fixtures } from "../../../__fixtures__";
 import { isInContact } from "./isInContact";
 
 jest.mock("@getbrevo/brevo", () => ({
-  ContactsApi: jest.fn().mockReturnValue({
-    setApiKey: jest.fn(),
-    getContactInfo: jest.fn().mockResolvedValue({ body: { listIds: [57] } }),
+  BrevoClient: jest.fn().mockReturnValue({
+    contacts: {
+      getContactInfo: jest.fn().mockResolvedValue({ listIds: [57] }),
+    },
+    transactionalSms: {},
   }),
-  ContactsApiApiKeys: {
-    apiKey: "",
-  },
-  TransactionalSMSApi: jest.fn().mockReturnValue({
-    setApiKey: jest.fn(),
-  }),
-  TransactionalSMSApiApiKeys: {
-    apiKey: "",
-  },
-  SendTransacSms: jest.fn(),
+  BrevoError: class BrevoError extends Error {},
 }));
 
 describe("isInNewsletterList", () => {
