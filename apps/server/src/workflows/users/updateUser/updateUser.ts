@@ -1,5 +1,6 @@
 import { RoleName, type UpdateUserRequest } from "@refugies-info/api-types";
-import type { DocumentType } from "@typegoose/typegoose";
+import { ObjectId, type User } from "@refugies-info/mongo";
+// import type { DocumentType } from "@refugies-info/mongo";
 import isUndefined from "lodash/isUndefined";
 import omitBy from "lodash/omitBy";
 import { UnauthorizedError } from "~/errors";
@@ -11,13 +12,12 @@ import { loginExceptionsManager } from "~/modules/users/auth";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
 import { requestEmailLogin, verifyCode } from "~/modules/users/login2FA";
 import { getUserById, getUserFromDB, updateUserInDB } from "~/modules/users/users.repository";
-import { ObjectId, type User } from "~/typegoose";
 import { changePassword } from "../changePassword";
 import { log } from "./log";
 
 const updateAsAdmin = async (
   request: UpdateUserRequest["user"],
-  userFromDB: DocumentType<User>,
+  userFromDB: User,
   userReq: User,
 ) => {
   const roles = await getRoles();
@@ -59,7 +59,7 @@ const updateAsAdmin = async (
 const updateAsMyself = async (
   id: string,
   request: UpdateUserRequest["user"],
-  userFromDB: DocumentType<User>,
+  userFromDB: User,
   userReq: User,
 ): Promise<{ newUser: Partial<User>; refreshToken: boolean }> => {
   const roles = await getRoles();
@@ -94,8 +94,9 @@ const updateAsMyself = async (
     const caregiverRole = roles.find((r) => r.nom === RoleName.CAREGIVER);
     if (request.partner === "") {
       // remove partner -> remove TS role
+
       const newRoles = userFromDB.roles.filter(
-        (r) => r && r._id && r._id.toString() !== caregiverRole._id.toString(),
+        (r) => r && r.toString() !== caregiverRole._id.toString(),
       );
       newUser.roles = newRoles;
     } else {
@@ -154,6 +155,8 @@ export const updateUser = async (
   logger.info("[updateUser] call received", { user: body.user, action });
   const userFromDB = await getUserById(id, { username: 1, phone: 1, email: 1, roles: 1 });
 
+  if (!userFromDB) throw new Error("User not found");
+
   let newUser: Partial<User> = {};
   let refreshToken = false;
   if (action === "modify-with-roles") {
@@ -177,6 +180,7 @@ export const updateUser = async (
       username: newUser.username || userFromDB.username,
     },
     userFromDB,
+
     userReq._id,
   );
 

@@ -1,6 +1,6 @@
 import { DispositifOrigin, StructureStatus } from "@refugies-info/api-types";
+import { ObjectId } from "@refugies-info/mongo";
 import * as repository from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { getAllDispositifs } from "./getAllDispositifs";
 
@@ -85,8 +85,7 @@ describe("getAllDispositifs", () => {
     fixtures.dispositif.adminComments = "comment";
     fixtures.dispositif.adminProgressionStatus = "comment";
     populatedDispositif.mainSponsor = {
-      //@ts-expect-error type mismatch
-      _id: "id",
+      _id: "id" as any,
       nom: "sponsor",
       status: StructureStatus.ACTIVE,
       picture: {
@@ -96,7 +95,6 @@ describe("getAllDispositifs", () => {
       },
     };
     populatedDispositif.creatorId = {
-      //@ts-expect-error type mismatch
       _id: "id",
       username: "creator",
       email: "creator@test.com",
@@ -107,12 +105,10 @@ describe("getAllDispositifs", () => {
       },
     };
     populatedDispositif.lastModificationAuthor = {
-      //@ts-expect-error type mismatch
       _id: "id",
       username: "author",
     };
     populatedDispositif.publishedAtAuthor = {
-      //@ts-expect-error type mismatch
       _id: "id",
       username: "author",
     };
@@ -123,7 +119,8 @@ describe("getAllDispositifs", () => {
       data: [expectedDispositif, expectedDispositif],
     };
     const getDispositifsFromDBMock = jest.spyOn(repository, "getDispositifsFromDB");
-    getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif] as any);
+
+    getDispositifsFromDBMock.mockResolvedValue([populatedDispositif, populatedDispositif]);
 
     // Act
     const result = await getAllDispositifs();

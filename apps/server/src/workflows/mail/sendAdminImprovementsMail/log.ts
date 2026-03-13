@@ -1,5 +1,5 @@
+import type { DispositifId, UserId } from "@refugies-info/mongo";
 import { addLog } from "~/modules/logs/logs.service";
-import type { DispositifId, UserId } from "~/typegoose";
 
 export interface LogOptions {
   message: string;

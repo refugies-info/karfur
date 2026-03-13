@@ -1,5 +1,5 @@
+import type { DispositifId } from "@refugies-info/mongo";
 import { addLog } from "~/modules/logs/logs.service";
-import type { DispositifId } from "~/typegoose";
 
 export const log = async (dispositifId: DispositifId, reminder: string) => {
   await addLog(

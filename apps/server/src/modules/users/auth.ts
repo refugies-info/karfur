@@ -1,5 +1,6 @@
 import { UserStatus } from "@refugies-info/api-types";
-import type { DocumentType } from "@typegoose/typegoose";
+import type { User } from "@refugies-info/mongo";
+// import type { DocumentType } from "@refugies-info/mongo";
 import {
   AuthenticationError,
   InternalError,
@@ -8,7 +9,6 @@ import {
   UnauthorizedError,
 } from "~/errors";
 import logger from "~/logger";
-import type { User } from "~/typegoose";
 import { addLog } from "../logs/logs.service";
 import { userRespoStructureId } from "../structure/structure.service";
 import LoginError, { LoginErrorType } from "./LoginError";
@@ -65,7 +65,7 @@ export const loginExceptionsManager = (error: LoginError) => {
 };
 
 export const isUserValid = async (
-  user: DocumentType<User> | null | undefined,
+  user: User | null | undefined,
   email: string,
 ): Promise<boolean> => {
   if (!user) throw new LoginError(LoginErrorType.NO_ACCOUNT, { email });
@@ -77,9 +77,8 @@ export const isUserValid = async (
  * Log all data before login and return token
  * @param user
  */
-export const logUser = async (user: DocumentType<User> | string): Promise<string> => {
-  const userDocument: DocumentType<User> =
-    typeof user === "string" ? await getUserByEmailFromDB(user) : user;
+export const logUser = async (user: User | string): Promise<string> => {
+  const userDocument: User = typeof user === "string" ? await getUserByEmailFromDB(user) : user;
   await isUserValid(userDocument, userDocument.email);
   await updateLastConnected(userDocument);
   await addLog(userDocument._id, "User", "Connexion");
@@ -90,14 +89,14 @@ export const logUser = async (user: DocumentType<User> | string): Promise<string
  * Check if user needs two-factor authentication
  * @param user - user object or email
  */
-export const needs2FA = async (user: DocumentType<User> | string): Promise<boolean> => {
-  const userDocument: DocumentType<User> =
+export const needs2FA = async (user: User | string): Promise<boolean> => {
+  const userDocument: User =
     typeof user === "string" ? await getUserByEmailFromDB(user).populate("roles") : user;
   if (!userDocument) return false;
   const userIsAdmin = userDocument.isAdmin();
   const userIsExpertTrad = userDocument.isExpert();
   const userStructureId = await userRespoStructureId(
-    userDocument.structures.map((s) => s._id) || [],
+    userDocument.structures.map((s) => s.toString()) || [],
     userDocument._id,
   );
   return !!(userIsAdmin || userStructureId || userIsExpertTrad);
@@ -109,7 +108,7 @@ export const needs2FA = async (user: DocumentType<User> | string): Promise<boole
  */
 export const isMfaCodeOk = async (mfaCode: string | undefined, email: string): Promise<boolean> => {
   if (!mfaCode) return false;
-  const user: DocumentType<User> = await getUserByEmailFromDB(email);
+  const user: User = await getUserByEmailFromDB(email);
   if (!user) return false;
   return user.mfaCode === mfaCode;
 };

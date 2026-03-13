@@ -1,4 +1,5 @@
 import type { GetRegionStatisticsResponse } from "@refugies-info/api-types";
+import type { Dispositif } from "@refugies-info/mongo";
 import type { ProjectionType } from "mongoose";
 import logger from "~/logger";
 import {
@@ -6,7 +7,6 @@ import {
   getRegionFigures,
 } from "~/modules/dispositif/dispositif.adapter";
 import { getActiveDispositifsFromDBWithoutPopulate } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getNbDispositifsByRegion = async (): ResponseWithData<GetRegionStatisticsResponse> => {

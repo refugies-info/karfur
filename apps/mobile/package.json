@@ -7,7 +7,7 @@
     "check:types": "tsc --noEmit",
     "test": "jest --runInBand --detectOpenHandles",
     "lint": "biome lint .",
-    "format": "biome format --write ."
+    "format": "biome check --write --linter-enabled=false ."
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",

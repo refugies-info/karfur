@@ -1,14 +1,19 @@
 import type { Id, Metadatas, Picture } from "@refugies-info/api-types";
+import {
+  type Structure,
+  type StructureId,
+  StructureModel,
+  type UserId,
+} from "@refugies-info/mongo";
 import type { FilterQuery, ProjectionFields } from "mongoose";
 import logger from "~/logger";
-import { type Structure, type StructureId, StructureModel, type UserId } from "~/typegoose";
 
 export const getStructureFromDB = async (
   id: StructureId,
   fields: "all" | Record<string, number>,
 ): Promise<Structure> =>
   StructureModel.findOne({ _id: id }, fields === "all" ? {} : fields)
-    .then((structure) => structure.toObject() as Structure)
+    .then((structure) => structure.toObject() as unknown as Structure)
     .catch((e) => {
       logger.error("[getStructureFromDB] error", e);
       throw e;
@@ -117,6 +122,21 @@ export const updateStructureMember = async (
     structure,
     { upsert: true, new: true },
   );
+
+export const addMemberToStructure = async (structureId: StructureId, userId: UserId) => {
+  return StructureModel.findOneAndUpdate(
+    { _id: structureId },
+    {
+      $addToSet: {
+        membres: {
+          userId: userId,
+          added_at: new Date(),
+        },
+      },
+    },
+    { upsert: true, new: true },
+  );
+};
 
 export const removeMemberFromStructure = async (structureId: StructureId, userId: UserId) => {
   return StructureModel.findOneAndUpdate(

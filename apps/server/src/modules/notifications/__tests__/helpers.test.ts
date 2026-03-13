@@ -1,6 +1,6 @@
 import { ContentType } from "@refugies-info/api-types";
+import { ThemeModel } from "@refugies-info/mongo";
 import cloneDeep from "lodash/cloneDeep";
-import { ThemeModel } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { targets } from "../__fixtures__/targets";
 import {

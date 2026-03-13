@@ -97,7 +97,7 @@
     "i18n:export": "node ./scripts/export-i18n.js",
     "lint": "biome lint .",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write .",
+    "format": "biome check --write --linter-enabled=false .",
     "pr:prod": "gh pr create -B master-frontend -H staging-frontend -l release -t '[PROD-FRONT] Release' -b ''",
     "pr:stg": "gh pr create -B staging-frontend -H dev -l release -t '[STG-FRONT] Release' -b ''",
     "start": "node ./.dist/apps/client/server.js",

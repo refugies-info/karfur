@@ -1,19 +1,16 @@
 import {
   ContentType,
-  type DemarcheContent,
   DispositifStatus,
   type Id,
   type Languages,
   type Picture,
   type Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
-import { omit, pick, union, uniq } from "lodash";
-import { map } from "lodash/fp";
-import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
-import { cleanupAvis } from "~/libs/cleanupAvis";
-import type { DispositifAbstracts } from "~/modules/dispositif/types";
+import type { Avis, Merci, Suggestion } from "@refugies-info/mongo";
 import {
+  type DemarcheContent,
   type Dispositif,
+  type DispositifContent,
   DispositifDraftModel,
   type DispositifId,
   DispositifModel,
@@ -21,10 +18,15 @@ import {
   ObjectId,
   type Theme,
   type UserId,
-} from "~/typegoose";
-import type { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
+} from "@refugies-info/mongo";
+import { omit, pick, union, uniq } from "lodash";
+import { map } from "lodash/fp";
+import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { cleanupAvis } from "~/libs/cleanupAvis";
+import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import type { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
+import { getAvailableLanguages, getDispositifTranslation } from "./dispositif.business";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -129,13 +131,13 @@ export const getSimpleDispositifs = async (
     sort,
   ).then(
     map((dispositif) => {
-      const translation = dispositif.translations[locale] || dispositif.translations.fr;
+      const translation = getDispositifTranslation(dispositif, locale);
       const resDisp = {
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations", "mainSponsor"]),
-        availableLanguages: Object.keys(dispositif.translations),
+        availableLanguages: getAvailableLanguages(dispositif),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
         origin: dispositif.origin ?? "RI",
@@ -151,7 +153,7 @@ export const getSimpleDispositifs = async (
       ) {
         resDisp.sponsor = {
           nom: (translation.content as DemarcheContent).administrationName,
-          picture: dispositif.administrationLogo,
+          picture: dispositif.administrationLogo as any,
         };
       }
       return resDisp;
@@ -206,10 +208,10 @@ export const getStructureDispositifs = async (
     })
     .then(({ dispositifs, usernames }) =>
       dispositifs.map((dispositif) => {
-        const translation = dispositif.translations[locale] || dispositif.translations.fr;
+        const translation = getDispositifTranslation(dispositif, locale);
         const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
           return {
-            ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
+            ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
             username:
               usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
           };
@@ -219,7 +221,7 @@ export const getStructureDispositifs = async (
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
           ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
-          availableLanguages: Object.keys(dispositif.translations),
+          availableLanguages: getAvailableLanguages(dispositif),
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: dispositif.merci.length,
           suggestions,
@@ -237,7 +239,7 @@ export const getStructureDispositifs = async (
         ) {
           resDisp.sponsor = {
             nom: (translation.content as DemarcheContent).administrationName,
-            picture: dispositif.administrationLogo,
+            picture: dispositif.administrationLogo as any,
           };
         }
         return resDisp;
@@ -448,7 +450,7 @@ export const modifyReadSuggestionInDispositif = async (
 
 export const getDispositifName = async (id: Id) =>
   DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 }).then(
-    (res) => res?.translations.fr.content.titreInformatif,
+    (res) => getDispositifTranslation(res as any, "fr")?.content.titreInformatif,
   );
 
 export const getDispositifById = async (

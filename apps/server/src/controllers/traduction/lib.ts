@@ -1,6 +1,6 @@
 import type { ProgressionIndicator } from "@refugies-info/api-types";
+import { IndicatorModel, ObjectId } from "@refugies-info/mongo";
 import axios from "axios";
-import { IndicatorModel, ObjectId } from "~/typegoose";
 
 const instance = axios.create();
 instance.defaults.timeout = 12000000;

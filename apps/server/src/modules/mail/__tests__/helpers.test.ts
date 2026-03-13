@@ -1,4 +1,4 @@
-import type { UserId } from "~/typegoose";
+import type { UserId } from "@refugies-info/mongo";
 import { consentsToEmail } from "../helpers";
 
 const MENS_ID = "63985164fd1bf4e22792ef6e" as unknown as UserId;

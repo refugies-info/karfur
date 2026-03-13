@@ -1,14 +1,14 @@
 import { RoleName } from "@refugies-info/api-types";
+import { User, UserModel } from "@refugies-info/mongo";
 import { addToNewsletter } from "~/connectors/brevo";
 import * as password from "~/libs/validatePassword";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import { registerUser } from "~/modules/users/users.service";
-import { User } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import { register } from "./register";
 
-jest.spyOn(User.prototype, "getToken").mockImplementation(() => "token");
+jest.spyOn(UserModel.prototype, "getToken").mockImplementation(() => "token");
 
 jest.mock("password-hash", () => ({
   generate: jest.fn((p) => p),

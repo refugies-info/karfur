@@ -1,10 +1,10 @@
 import type { AdminCommentsRequest } from "@refugies-info/api-types";
+import type { Dispositif, UserId } from "@refugies-info/mongo";
 import logger from "~/logger";
 import {
   getDispositifById,
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif, UserId } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

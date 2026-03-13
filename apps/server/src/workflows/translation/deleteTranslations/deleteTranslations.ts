@@ -1,5 +1,5 @@
 import type { Languages } from "@refugies-info/api-types";
-import { type Dispositif, DispositifModel, TraductionsModel } from "~/typegoose";
+import { type Dispositif, DispositifModel, TraductionsModel } from "@refugies-info/mongo";
 import type { DeleteResult } from "~/types/interface";
 
 const deleteTranslations = (

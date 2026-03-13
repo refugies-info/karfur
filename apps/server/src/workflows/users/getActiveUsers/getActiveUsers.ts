@@ -1,8 +1,9 @@
 import type { GetActiveUsersResponse } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { AuthenticationError } from "~/errors";
+import { toPicture } from "~/libs/pictureUtils";
 import logger from "~/logger";
 import { getAllUsersFromDB } from "~/modules/users/users.repository";
-import type { User } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUsersResponse[]> => {
@@ -26,7 +27,7 @@ export const getActiveUsers = async (user: User): ResponseWithData<GetActiveUser
     const simpleUser: GetActiveUsersResponse = {
       _id: user._id,
       username: user.username,
-      picture: user.picture,
+      picture: toPicture(user.picture),
       status: user.status,
       email: user.email,
     };

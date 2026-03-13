@@ -1,8 +1,7 @@
 import { UserStatus } from "@refugies-info/api-types";
+import type { Dispositif, User } from "@refugies-info/mongo";
 import type { ProjectionType } from "mongoose";
 import logger from "~/logger";
-import type { Dispositif } from "~/typegoose";
-import type { User } from "~/typegoose/User";
 import { getUserById } from "../users/users.repository";
 import {
   sendPublishedFicheMailToCreatorService,
@@ -22,7 +21,7 @@ export const sendPublishedMailToCreator = async (
     status: 1,
   };
 
-  const creator = await getUserById(newDispo.creatorId._id, userNeededFields);
+  const creator = await getUserById(newDispo.creatorId, userNeededFields);
   if (creator.status === UserStatus.DELETED) return;
   if (creator.email) {
     logger.info("[publish dispositif] creator has email");

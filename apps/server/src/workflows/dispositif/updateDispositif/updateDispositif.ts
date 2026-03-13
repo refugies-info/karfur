@@ -4,11 +4,17 @@ import {
   type UpdateDispositifRequest,
   type UpdateDispositifResponse,
 } from "@refugies-info/api-types";
-import { isString } from "lodash";
+import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
+import { type Dispositif, ObjectId, type StructureId, type User } from "@refugies-info/mongo";
+import { isString, omit } from "lodash";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import { isToday } from "~/libs/isToday";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
+import {
+  getDispositifMainSponsor,
+  getDispositifTranslation,
+} from "~/modules/dispositif/dispositif.business";
 import {
   addNewParticipant,
   cloneDispositifInDrafts,
@@ -23,12 +29,6 @@ import {
   notifyChange,
 } from "~/modules/dispositif/dispositif.service";
 import { logContact } from "~/modules/dispositif/log";
-import { type Dispositif, ObjectId, type StructureId, type User } from "~/typegoose";
-import type {
-  DemarcheContent,
-  DispositifContent,
-  TranslationContent,
-} from "~/typegoose/Dispositif";
 import type { ResponseWithData } from "~/types/interface";
 import { log } from "./log";
 
@@ -36,8 +36,9 @@ const buildDispositifContent = (
   body: UpdateDispositifRequest,
   oldDispositif: Dispositif,
 ): TranslationContent => {
-  // content
-  const content = { ...oldDispositif.translations.fr.content };
+  // content - use helper to handle both Map and plain object access
+  const frTranslation = getDispositifTranslation(oldDispositif, "fr", true);
+  const content = { ...frTranslation?.content };
   // check isString to allow empty values
   if (isString(body.titreInformatif)) content.titreInformatif = body.titreInformatif;
   if (isString(body.titreMarque)) content.titreMarque = body.titreMarque;
@@ -57,7 +58,7 @@ const buildDispositifContent = (
   return {
     content,
     created_at: new Date(),
-    validatorId: oldDispositif.creatorId._id,
+    validatorId: oldDispositif.creatorId as ObjectId,
   };
 };
 
@@ -104,16 +105,23 @@ export const updateDispositif = async (
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
+
+  // Convert translations to plain object (handles both Map and plain object)
+  const existingTranslations =
+    typeof (oldDispositif.translations as any)?.entries === "function"
+      ? Object.fromEntries((oldDispositif.translations as any).entries())
+      : oldDispositif.translations || {};
+
   const editedDispositif: Partial<Dispositif> = {
     lastModificationAuthor: user._id,
     lastModificationDate: new Date(),
     themesSelectedByAuthor: !user.isAdmin(),
     translations: {
-      ...oldDispositif.translations,
+      ...existingTranslations,
       fr: translationContent,
     },
-    nbMots: countDispositifWords(translationContent.content),
-    ...(await buildNewDispositif(body, user._id.toString())),
+    nbMots: countDispositifWords(translationContent.content as any),
+    ...omit(await buildNewDispositif(body, user._id.toString()), "origin"),
   };
 
   // if published and not draft version yet, create draft version
@@ -162,7 +170,10 @@ export const updateDispositif = async (
     text: "success",
     data: {
       id: newDispositif._id,
-      mainSponsor: (newDispositif.mainSponsor as string) || null,
+      mainSponsor:
+        (newDispositif.mainSponsor as any)?._id?.toString() ||
+        newDispositif.mainSponsor?.toString() ||
+        null,
       typeContenu: newDispositif.typeContenu,
       status: newDispositif.status,
       hasDraftVersion: needsDraftVersion || !!draftOldDispositif,

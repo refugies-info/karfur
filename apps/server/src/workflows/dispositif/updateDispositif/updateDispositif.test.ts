@@ -1,9 +1,9 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import { DispositifModel, ObjectId, StructureModel } from "@refugies-info/mongo";
 import * as authorizations from "~/libs/checkAuthorizations";
 import * as repository from "~/modules/dispositif/dispositif.repository";
 import * as service from "~/modules/dispositif/dispositif.service";
 import * as logDispositif from "~/modules/dispositif/log";
-import { DispositifModel, ObjectId, StructureModel } from "~/typegoose";
 import { fixtures } from "../../../__fixtures__";
 import * as log from "./log";
 import { updateDispositif } from "./updateDispositif";
@@ -38,7 +38,7 @@ describe("updateDispositif", () => {
 
     const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    newDispositif.mainSponsor = fixtures.structure._id;
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
@@ -87,7 +87,7 @@ describe("updateDispositif", () => {
       text: "success",
       data: {
         id: new ObjectId("5ce7b52d83983700167bca27"),
-        mainSponsor: new ObjectId("6569c41c61b13ef31806fadb"),
+        mainSponsor: "6569c41c61b13ef31806fadb",
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
@@ -111,7 +111,7 @@ describe("updateDispositif", () => {
     const logMock = jest.spyOn(log, "log");
 
     const newDispositif = new DispositifModel(fixtures.dispositif);
-    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    newDispositif.mainSponsor = fixtures.structure._id;
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
@@ -169,7 +169,7 @@ describe("updateDispositif", () => {
       text: "success",
       data: {
         id: new ObjectId("5ce7b52d83983700167bca27"),
-        mainSponsor: new ObjectId("6569c41c61b13ef31806fadb"),
+        mainSponsor: "6569c41c61b13ef31806fadb",
         typeContenu: "dispositif",
         status: "Actif",
         hasDraftVersion: true,
@@ -272,7 +272,7 @@ describe("updateDispositif", () => {
 
     const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    newDispositif.mainSponsor = fixtures.structure._id;
     newDispositif.lastModificationDate = new Date(2023, 0, 1);
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
@@ -337,7 +337,7 @@ describe("updateDispositif", () => {
       text: "success",
       data: {
         id: new ObjectId("5ce7b52d83983700167bca27"),
-        mainSponsor: new ObjectId("6569c41c61b13ef31806fadb"),
+        mainSponsor: "6569c41c61b13ef31806fadb",
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,
@@ -362,11 +362,11 @@ describe("updateDispositif", () => {
 
     const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.ACTIVE;
-    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    newDispositif.mainSponsor = fixtures.structure._id;
 
     const draftDispositif = new DispositifModel(fixtures.dispositif);
     draftDispositif.status = DispositifStatus.DRAFT;
-    draftDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    draftDispositif.mainSponsor = fixtures.structure._id;
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(new DispositifModel(draftDispositif));
@@ -419,7 +419,7 @@ describe("updateDispositif", () => {
       text: "success",
       data: {
         id: new ObjectId("5ce7b52d83983700167bca27"),
-        mainSponsor: new ObjectId("6569c41c61b13ef31806fadb"),
+        mainSponsor: "6569c41c61b13ef31806fadb",
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: true,
@@ -444,7 +444,7 @@ describe("updateDispositif", () => {
 
     const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.DRAFT;
-    newDispositif.mainSponsor = new StructureModel(fixtures.structure);
+    newDispositif.mainSponsor = fixtures.structure._id;
 
     getDispositifByIdMock.mockResolvedValue(new DispositifModel(newDispositif));
     getDraftDispositifByIdMock.mockResolvedValue(null);
@@ -493,7 +493,7 @@ describe("updateDispositif", () => {
       text: "success",
       data: {
         id: new ObjectId("5ce7b52d83983700167bca27"),
-        mainSponsor: new ObjectId("6569c41c61b13ef31806fadb"),
+        mainSponsor: "6569c41c61b13ef31806fadb",
         typeContenu: "dispositif",
         status: "Brouillon",
         hasDraftVersion: false,

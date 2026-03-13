@@ -1,6 +1,6 @@
+import type { DispositifId, UserId } from "@refugies-info/mongo";
 import { sendMail } from "~/connectors/sendgrid/sendMail";
 import logger from "~/logger";
-import type { DispositifId, UserId } from "~/typegoose";
 import { consentsToEmail } from "./helpers";
 import { addMailEvent } from "./mail.repository";
 

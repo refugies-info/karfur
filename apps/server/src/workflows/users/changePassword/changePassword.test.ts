@@ -1,9 +1,9 @@
 import { UserStatus } from "@refugies-info/api-types";
+import { UserModel } from "@refugies-info/mongo";
 import passwordHash from "password-hash";
 import { loginExceptionsManager } from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import * as usersRep from "~/modules/users/users.repository";
-import { UserModel } from "~/typegoose";
 import { changePassword } from "./changePassword";
 
 jest.mock("../../../modules/users/users.repository", () => ({

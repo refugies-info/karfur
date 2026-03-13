@@ -15,7 +15,7 @@ export const getNotifications = async (
     text: "success",
     data: {
       unseenCount,
-      notifications,
+      notifications: notifications as any,
     },
   };
 };

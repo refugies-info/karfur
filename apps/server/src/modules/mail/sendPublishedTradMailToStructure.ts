@@ -1,7 +1,7 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import { asyncForEach } from "~/libs/asyncForEach";
 import { getFormattedLocale } from "~/libs/getFormattedLocale";
 import logger from "~/logger";
-import type { Dispositif } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import { sendPublishedTradMailToStructureService } from "./mail.service";

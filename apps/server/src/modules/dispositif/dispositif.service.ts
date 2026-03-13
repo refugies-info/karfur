@@ -1,23 +1,45 @@
 import {
   ContentType,
   type CreateDispositifRequest,
-  type DemarcheContent,
-  type DispositifContent,
-  DispositifStatus,
   type Id,
-  type InfoSections,
   type Languages,
   StructureStatus,
   type UpdateDispositifRequest,
 } from "@refugies-info/api-types";
+import type { TranslationContent } from "@refugies-info/mongo";
+import {
+  type DemarcheContent,
+  type Dispositif,
+  type DispositifContent,
+  DispositifDraftModel,
+  type DispositifId,
+  DispositifModel,
+  DispositifStatus,
+  type InfoSections,
+  LogModel,
+  ObjectId,
+  type Structure,
+  type Traductions,
+  TraductionsModel,
+  TraductionsStatus,
+  TraductionsType,
+  type User,
+  type UserId,
+} from "@refugies-info/mongo";
 import type { Error } from "airtable";
 import { cloneDeep, isEmpty, omit, set, unset } from "lodash";
-import type { ProjectionType } from "mongoose";
+import { type ProjectionType, Schema } from "mongoose";
 import { getAirtableContentTable } from "~/connectors/airtable/airtable";
 import { sendSlackNotif } from "~/connectors/slack/sendSlackNotif";
 import { checkUserIsAuthorizedToDeleteDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
 import { pictureToImageSchema } from "~/mappers/image-mapper";
+import {
+  getAvailableLanguages,
+  getDispositifSecondaryThemes,
+  getDispositifTheme,
+  getDispositifTranslation,
+} from "~/modules/dispositif/dispositif.business";
 import {
   sendMailWhenDispositifPublished,
   sendMailWhenDispositifPublishedAfterUpdate,
@@ -25,17 +47,9 @@ import {
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
-  type Dispositif,
-  type DispositifId,
-  ObjectId,
-  type Structure,
-  Traductions,
-  TraductionsModel,
-  type User,
-  type UserId,
-} from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
-import { TraductionsType } from "~/typegoose/Traductions";
+  computeTraductionFinished,
+  diffTraductions,
+} from "~/modules/traductions/traductions.business";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
@@ -64,12 +78,13 @@ interface DispositifToExport {
 }
 
 export const addDispositifToAirtable = (dispositif: Dispositif) => {
-  const theme = dispositif.getTheme();
-  const secondaryThemes = dispositif.getSecondaryThemes();
+  const theme = getDispositifTheme(dispositif);
+  const secondaryThemes = getDispositifSecondaryThemes(dispositif);
 
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
   const content: DispositifToExport = {
     fields: {
-      "Titre informatif": dispositif.translations?.fr?.content.titreInformatif || "",
+      "Titre informatif": frTranslation?.content.titreInformatif || "",
       "Lien RI": `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
       "Type de contenus":
         dispositif.typeContenu.charAt(0).toUpperCase() + dispositif.typeContenu.slice(1),
@@ -116,12 +131,13 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
       logger.error("[notifyChange] dispositif not found", { dispositifId });
       return null;
     }
-    const theme = (dispositif.getTheme()?.name?.fr || "").toLowerCase();
+    const theme = (getDispositifTheme(dispositif)?.name?.fr || "").toLowerCase();
+    const frTranslation = getDispositifTranslation(dispositif, "fr");
     const contentTitle = `${
       dispositif.typeContenu === ContentType.DISPOSITIF
-        ? dispositif.translations.fr.content.titreMarque + " - "
+        ? frTranslation?.content.titreMarque + " - "
         : ""
-    } ${dispositif.translations.fr.content.titreInformatif}`;
+    } ${frTranslation?.content.titreInformatif}`;
     const structure = user.structures[0]?.nom
       ? ` de la structure _${user.structures[0]?.nom}_`
       : "";
@@ -178,8 +194,10 @@ export const deleteLineBreaksInInfosections = (
 };
 
 const deleteLineBreaksInDispositif = async (dispositif: Dispositif) => {
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
+  if (!frTranslation) return;
   const newDispositif = cloneDeep(dispositif.translations);
-  set(newDispositif, "fr.content.what", deleteLineBreaks(newDispositif.fr.content.what));
+  set(newDispositif, "fr.content.what", deleteLineBreaks(frTranslation.content.what));
   set(
     newDispositif,
     "fr.content.how",
@@ -208,10 +226,11 @@ const rebuildTranslations = async (
   keepTranslations: boolean,
 ): Promise<Dispositif["translations"]> => {
   const translations = dispositif.translations;
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
   /**
    * Calcul des changements qui doivent être revus en traduction
    */
-  const traductionDiff = Traductions.diff(translations.fr, translationContent);
+  const traductionDiff = diffTraductions(frTranslation, translationContent);
   logger.info("[updateDispositif] traduction changes ", traductionDiff);
 
   const newTranslations = cloneDeep(translations);
@@ -225,7 +244,7 @@ const rebuildTranslations = async (
    * Pas de nouvelle traduction nécessaire si uniquement des suppressions.
    */
   if (!isEmpty(traductionDiff.removed)) {
-    Object.keys(translations).forEach((locale) => {
+    getAvailableLanguages(dispositif).forEach((locale) => {
       traductionDiff.removed.forEach((section) => {
         unset(newTranslations, `${locale}.${section}`);
       });
@@ -270,17 +289,18 @@ const rebuildTranslations = async (
       const translationsReviews = Object.entries(newTranslations)
         .filter(([locale]) => locale !== "fr")
         .map(([locale, value]) => {
-          const translation = new Traductions();
-          translation.dispositifId = dispositif._id;
-          translation.language = locale as Languages;
-          translation.translated = omit(value, ["created_at"]);
-          translation.timeSpent = 0;
-          translation.type = TraductionsType.VALIDATION;
-          translation.toReview = toReview;
-          translation.toReviewCache = toReview;
-          translation.userId = value.validatorId;
-          translation.finished = Traductions.computeFinished(dispositif, translation);
-          return translation;
+          const translation: Partial<Traductions> = {
+            dispositifId: dispositif._id,
+            language: locale as Languages,
+            translated: omit(value, ["created_at"]) as any,
+            timeSpent: 0,
+            type: TraductionsType.VALIDATION,
+            toReview: toReview,
+            toReviewCache: toReview,
+            userId: value.validatorId,
+          };
+          translation.finished = computeTraductionFinished(dispositif, translation as Traductions);
+          return translation as Traductions;
         });
       logger.info("translationsReviews", translationsReviews);
 
@@ -351,9 +371,10 @@ export const saveAndOverwriteDraft = async (
   }
 
   if (draftDispositif) {
+    const draftFr = getDispositifTranslation(draftDispositif, "fr");
     const newTranslations = await rebuildTranslations(
       oldDispositif,
-      draftDispositif.translations.fr,
+      draftFr,
       keepTranslations || false,
     );
     dispositifToSave.translations = newTranslations;
@@ -583,7 +604,9 @@ const isMetadataOk = (content: unknown): boolean => {
 };
 
 export const isDispositifComplete = (dispositif: Dispositif) => {
-  const content = dispositif.translations.fr.content;
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
+  if (!frTranslation) return false;
+  const content = frTranslation.content;
   const conditions: boolean[] = [
     !!content.titreInformatif,
     dispositif.typeContenu === ContentType.DEMARCHE || !!content.titreMarque,

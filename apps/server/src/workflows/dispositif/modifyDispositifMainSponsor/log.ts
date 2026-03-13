@@ -1,7 +1,12 @@
 import type { Id } from "@refugies-info/api-types";
+import {
+  type Dispositif,
+  type DispositifId,
+  ObjectId,
+  type StructureId,
+} from "@refugies-info/mongo";
 import logger from "~/logger";
 import { addLog } from "~/modules/logs/logs.service";
-import { type Dispositif, type DispositifId, ObjectId, type StructureId } from "~/typegoose";
 
 export const log = async (
   oldDispositif: Dispositif,

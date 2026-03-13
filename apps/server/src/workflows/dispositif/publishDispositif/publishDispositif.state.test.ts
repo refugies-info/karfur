@@ -5,7 +5,7 @@ import {
   SnapshotModel,
   StructureModel,
   UserModel,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
 import { fixtures } from "../../../__fixtures__";
 import { publishDispositif } from "../publishDispositif";
 
@@ -21,10 +21,10 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
   it("should create a 'before' snapshot when status changes from ACTIVE to UPDATE_TO_VALIDATE", async () => {
     // Create a real user in the database for the workflow
-    await UserModel.create(fixtures.user);
+    await UserModel.create(fixtures.user.toObject());
 
     // Create structure fixture
-    await StructureModel.create(fixtures.structure);
+    await StructureModel.create(fixtures.structure.toObject());
 
     // 1. Setup: Create initial ACTIVE dispositif in DB
     const dispositif = await DispositifModel.create({
@@ -68,10 +68,10 @@ describe("publishDispositif - Narrow Integration Tests", () => {
 
   it("should not take a snapshot on a demarche", async () => {
     // Create a real user in the database for the workflow
-    await UserModel.create(fixtures.user);
+    await UserModel.create(fixtures.user.toObject());
 
     // Create structure fixture
-    await StructureModel.create(fixtures.structure);
+    await StructureModel.create(fixtures.structure.toObject());
 
     // 1. Setup initial state
     const dispositif = await DispositifModel.create({

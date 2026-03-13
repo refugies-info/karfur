@@ -1,4 +1,4 @@
-import { type Widget, type WidgetId, WidgetModel } from "~/typegoose";
+import { type Widget, type WidgetId, WidgetModel } from "@refugies-info/mongo";
 import type { DeleteResult } from "~/types/interface";
 
 export const getAllWidgets = async () => {

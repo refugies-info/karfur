@@ -1,9 +1,9 @@
 import type { AddUserFavoriteRequest } from "@refugies-info/api-types";
+import type { Favorite } from "@refugies-info/mongo";
+import { ObjectId, type User } from "@refugies-info/mongo";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 import { addFavoriteInDB } from "~/modules/users/users.repository";
-import { ObjectId, type User } from "~/typegoose";
-import type { Favorite } from "~/typegoose/User";
 import type { Response } from "~/types/interface";
 
 export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest): Response => {
@@ -17,6 +17,7 @@ export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest):
     dispositifId: new ObjectId(body.dispositifId),
     created_at: new Date(),
   };
-  await addFavoriteInDB(user._id, newFavorite);
+
+  await addFavoriteInDB(user._id as any, newFavorite);
   return { text: "success" };
 };

@@ -1,4 +1,5 @@
 import { DispositifStatus, type DispositifStatusRequest } from "@refugies-info/api-types";
+import { type Dispositif, ObjectId, type User } from "@refugies-info/mongo";
 import { notifyGoogleUrlDeleted } from "~/libs/googleIndexingApi";
 import logger from "~/logger";
 import {
@@ -7,7 +8,6 @@ import {
   saveAndOverwriteDraft,
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailWhenDispositifArchived } from "~/modules/mail/sendMailWhenDispositifArchived";
-import { type Dispositif, ObjectId, type User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

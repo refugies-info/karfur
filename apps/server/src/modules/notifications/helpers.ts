@@ -1,5 +1,10 @@
 import { ContentType, type Metadatas } from "@refugies-info/api-types";
-import type { AppUser, Dispositif, Theme } from "~/typegoose";
+import type { AppUserType, Dispositif, Theme } from "@refugies-info/mongo";
+import {
+  getDispositifDepartements,
+  getDispositifTheme,
+  isDispositifTranslatedIn,
+} from "~/modules/dispositif/dispositif.business";
 
 const ALL = "france";
 
@@ -20,7 +25,7 @@ export const getTitle = (title: string | Record<string, string>, lang: string = 
 };
 
 export const getAge = (dispositif: Dispositif) => {
-  const age = dispositif.metadatas.age;
+  const age = dispositif.metadatas?.age;
   if (!age) {
     return {
       min: 0,
@@ -71,14 +76,14 @@ const parseTargetAge = (targetAge: string) => {
 //Extracts age, french level, departments from a dispositif
 export const parseDispositif = (dispositif: Dispositif): Requirements => {
   return {
-    departments: dispositif.getDepartements(),
+    departments: getDispositifDepartements(dispositif) as any,
     age: getAge(dispositif),
     type: dispositif.typeContenu,
-    mainThemeId: (dispositif.theme as Theme)._id.toString() || null,
+    mainThemeId: (dispositif.theme as unknown as Theme)?._id?.toString() || null,
   };
 };
 
-export const filterTargets = (targets: AppUser[], requirements: Requirements, lang: string) => {
+export const filterTargets = (targets: AppUserType[], requirements: Requirements, lang: string) => {
   return targets.filter((target) => {
     const { age, departments, type, mainThemeId } = requirements;
     const { notificationsSettings } = target;
@@ -101,7 +106,7 @@ export const filterTargets = (targets: AppUser[], requirements: Requirements, la
 };
 
 export const filterTargetsForDemarche = (
-  targets: AppUser[],
+  targets: AppUserType[],
   requirements: Requirements,
   demarche: Dispositif,
 ) => {
@@ -115,12 +120,12 @@ export const filterTargetsForDemarche = (
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
-    const langOk = demarche.isTranslatedIn(target.selectedLanguage);
+    const langOk = isDispositifTranslatedIn(demarche, target.selectedLanguage as any);
 
     return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });
 };
 
 export const getNotificationEmoji = (dispositif: Dispositif) => {
-  return dispositif.getTheme()?.notificationEmoji || "🔔";
+  return getDispositifTheme(dispositif)?.notificationEmoji || "🔔";
 };

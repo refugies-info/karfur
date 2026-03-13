@@ -1,7 +1,7 @@
 import type { NeedRequest } from "@refugies-info/api-types";
+import type { Need } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { createNeedInDB } from "~/modules/needs/needs.repository";
-import type { Need } from "~/typegoose";
 import type { Response } from "~/types/interface";
 
 export const postNeeds = async (body: NeedRequest): Response => {

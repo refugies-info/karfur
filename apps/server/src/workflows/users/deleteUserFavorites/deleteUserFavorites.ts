@@ -1,8 +1,8 @@
 import type { DeleteUserFavoriteRequest } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { InvalidRequestError } from "~/errors";
 import logger from "~/logger";
 import { removeFavoriteFromDB, updateUserInDB } from "~/modules/users/users.repository";
-import type { User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 
 export const deleteUserFavorites = async (

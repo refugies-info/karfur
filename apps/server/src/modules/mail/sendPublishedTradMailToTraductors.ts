@@ -1,9 +1,9 @@
 import { ContentType, type Languages, UserStatus } from "@refugies-info/api-types";
+import type { Dispositif, User } from "@refugies-info/mongo";
 import { uniq } from "lodash";
 import type { ProjectionType } from "mongoose";
 import { getFormattedLocale } from "~/libs/getFormattedLocale";
 import logger from "~/logger";
-import type { Dispositif, User } from "~/typegoose";
 import { findTraductors } from "../traductions/traductions.repository";
 import { getUserById } from "../users/users.repository";
 import { sendPublishedTradMailToTraductorsService } from "./mail.service";
