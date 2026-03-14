@@ -108,7 +108,8 @@ export const getDispositifArray = async (
       select: "_id position",
     })
     .lean()
-    .populate(populate);
+    .populate(populate)
+    .cacheQuery();
 
   return dispositifs.map((dispositif) => ({
     ...dispositif,
@@ -467,7 +468,7 @@ export const getDispositifById = async (
   id: DispositifId,
   neededFields: ProjectionType<Dispositif> = {},
   populate = "",
-) => DispositifModel.findById(id, neededFields).populate(populate);
+) => DispositifModel.findById(id, neededFields).populate(populate).cacheQuery();
 
 export const getDraftDispositifById = async (
   id: DispositifId,
@@ -575,15 +576,25 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
       titreInformatif: 1,
       typeContenu: 1,
     },
-  ).populate("mainSponsor");
+  )
+    .populate("mainSponsor")
+    .cacheQuery();
 
-export const getActiveContents = async (neededFields: ProjectionType<Dispositif>) =>
-  DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
+export const getActiveContents = (
+  neededFields: ProjectionType<Dispositif>,
+): Promise<Dispositif[]> =>
+  DispositifModel.find(
+    { status: DispositifStatus.ACTIVE },
+    neededFields,
+  ).cacheQuery() as unknown as Promise<Dispositif[]>;
 
 export const getActiveContentsFiltered = (
   neededFields: ProjectionType<Dispositif>,
   query: unknown,
-) => DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
+): Promise<Dispositif[]> =>
+  DispositifModel.find(query, neededFields)
+    .populate("mainSponsor theme secondaryThemes")
+    .cacheQuery() as unknown as Promise<Dispositif[]>;
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) =>
   DispositifModel.findOne({ _id: id });
@@ -610,7 +621,7 @@ export const getNbMercis = async () => {
         mercis: { $sum: "$mercis" },
       },
     },
-  ]);
+  ]).cachePipeline({ ttl: 300 });
 };
 export const getNbVues = async () => {
   return DispositifModel.aggregate([
@@ -624,7 +635,7 @@ export const getNbVues = async () => {
         nbVuesMobile: { $sum: "$nbVuesMobile" },
       },
     },
-  ]);
+  ]).cachePipeline({ ttl: 300 });
 };
 
 export const getNbFiches = async () => {
@@ -679,5 +690,5 @@ export const getDispositifAbstracts = async (
         abstract: "$translations.fr.content.abstract",
       },
     },
-  ]);
+  ]).cachePipeline();
 };

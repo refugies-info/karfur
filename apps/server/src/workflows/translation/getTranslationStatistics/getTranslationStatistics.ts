@@ -4,7 +4,7 @@ import {
   type TranslationStatisticsRequest,
 } from "@refugies-info/api-types";
 import type { Dispositif } from "@refugies-info/mongo";
-import { cache } from "~/libs/cache";
+
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import {
@@ -16,7 +16,6 @@ import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
-const NB_WORDS_CACHE = "nbWordsCache";
 
 const countWordsInDispositif = (dispositif: Dispositif): number => {
   const languages = getAvailableLanguages(dispositif);
@@ -52,20 +51,14 @@ const getTranslationStatistics = ({
     }
 
     // nbWordsTranslated
+    // getActiveContentsFiltered uses speedgoose .cacheQuery() — DB hit only on first call
+    // or after a Dispositif write (SpeedGooseCacheAutoCleaner auto-invalidates)
     if (noFacet || facets.includes("nbWordsTranslated")) {
-      let nbWordsTranslated = 0;
-      // use cache to prevent multiple calculations, especially at build time
-      if (cache.has(NB_WORDS_CACHE)) {
-        const promiseCalculation = (await cache.get(NB_WORDS_CACHE)) as number;
-        nbWordsTranslated = promiseCalculation;
-      } else {
-        const promiseCalculation = getActiveContentsFiltered({}, {}).then((dispositifs) =>
-          dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0),
-        );
-        cache.set(NB_WORDS_CACHE, promiseCalculation, 120);
-        nbWordsTranslated = await promiseCalculation;
-      }
-      stats.nbWordsTranslated = nbWordsTranslated;
+      const dispositifs = await getActiveContentsFiltered({}, {});
+      stats.nbWordsTranslated = dispositifs.reduce(
+        (acc, dispositif) => acc + countWordsInDispositif(dispositif),
+        0,
+      );
     }
 
     // nbActiveTranslators

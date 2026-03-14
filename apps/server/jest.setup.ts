@@ -1,4 +1,6 @@
 // jest.setup.ts
+
+import { initCache } from "@refugies-info/mongo";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
 import path from "path";
@@ -33,6 +35,10 @@ beforeAll(async () => {
   if (hasDualInstances) {
     await mongoMongoose.connect(uri);
   }
+
+  // Initialize speedgoose in-memory cache so .cacheQuery() / .cachePipeline()
+  // are available on Mongoose Query/Aggregate prototypes during tests.
+  await initCache(); // no REDIS_URI → falls back to in-memory strategy
 }, 60000); // 60 seconds timeout
 
 afterAll(async () => {

@@ -321,7 +321,7 @@ export const computeSearchCounts = async (
   ];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
 
-  const results = await Dispositif.aggregate([{ $facet: facet }]);
+  const results = await Dispositif.aggregate([{ $facet: facet }]).cachePipeline();
   const data = results[0] || {};
 
   const toMap = (arr: Array<{ id: string; count: number }> | undefined): Record<string, number> => {

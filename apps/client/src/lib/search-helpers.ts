@@ -404,7 +404,7 @@ const buildSuggestionsQuery = async (
       { $limit: 8 },
       { $project: RESULTS_PROJECTION },
       ...buildTranslationStages(locale),
-    ]);
+    ]).cachePipeline();
   }
 
   if (needs.length > 0) {
@@ -430,7 +430,7 @@ const buildSuggestionsQuery = async (
       { $limit: 8 },
       { $project: RESULTS_PROJECTION },
       ...buildTranslationStages(locale),
-    ]);
+    ]).cachePipeline();
   }
 
   return [];
@@ -453,7 +453,7 @@ const buildNoResultsFallback = async (
     { $limit: 12 },
     { $project: RESULTS_PROJECTION },
     ...buildTranslationStages(locale),
-  ]);
+  ]).cachePipeline();
 };
 
 /**
@@ -479,12 +479,12 @@ export const computeSearchResults = async (
   const aggregation = buildSearchAggregation(baseMatch, options);
 
   const [results, total, typeCounts, suggestions] = await Promise.all([
-    Dispositif.aggregate(aggregation),
-    Dispositif.countDocuments(baseMatch),
+    Dispositif.aggregate(aggregation).cachePipeline(),
+    Dispositif.countDocuments(baseMatch).cacheQuery(),
     Dispositif.aggregate([
       { $match: baseMatch },
       { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
-    ]),
+    ]).cachePipeline(),
     buildSuggestionsQuery(Dispositif, baseMatch, queryParams, options.locale || "fr"),
   ]);
 

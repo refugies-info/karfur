@@ -86,7 +86,7 @@ export const getStructuresWithDispos = async (
         },
       },
     },
-  ]);
+  ]).cachePipeline() as unknown as Promise<StructureWithDispos[]>;
 };
 
 export const createStructureInDB = (structure: Partial<Structure>) =>
