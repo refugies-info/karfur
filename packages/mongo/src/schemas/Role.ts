@@ -1,6 +1,7 @@
 import { RoleName } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 
 export const RoleZodSchema = z.object({
@@ -28,5 +29,7 @@ export const RoleMongooseSchema = zodSchema(RoleZodSchema);
 RoleMongooseSchema.path("nom").unique(true);
 RoleMongooseSchema.set("collection", "roles");
 RoleMongooseSchema.set("timestamps", { createdAt: "created_at" });
+
+RoleMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 export const RoleModel = model("Role", RoleMongooseSchema);

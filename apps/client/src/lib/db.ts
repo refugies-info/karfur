@@ -23,10 +23,11 @@ if (!cached) {
  * Only imports once — subsequent calls are no-ops because mongoose.model() checks
  * if the model is already registered.
  */
-async function registerSharedModels() {
+async function registerSharedModelsAndCache() {
   // Dynamic import to avoid loading at module parse time (server-only code).
   // The import triggers @zodyac/zod-mongoose extendZod() and registers all models.
-  await import("@refugies-info/mongo");
+  const { initCache } = await import("@refugies-info/mongo");
+  await initCache(process.env.REDIS_URI);
 }
 
 async function dbConnect() {
@@ -44,7 +45,7 @@ async function dbConnect() {
     }
 
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then(async (mongoose) => {
-      await registerSharedModels();
+      await registerSharedModelsAndCache();
       return mongoose;
     });
   }

@@ -3,7 +3,7 @@ import type { DeleteResult } from "~/types/interface";
 
 export const getTheme = (id: ThemeId) => ThemeModel.findOne({ _id: id });
 
-export const getAllThemes = () => ThemeModel.find();
+export const getAllThemes = () => ThemeModel.find().cacheQuery();
 
 export const createTheme = (theme: ThemeType) => ThemeModel.create(theme);
 

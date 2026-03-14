@@ -1,5 +1,6 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Schema, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
@@ -118,5 +119,7 @@ ThemeMongooseSchema.methods.isActive = function (this: Theme, activeLanguages: L
   }
   return true;
 };
+
+ThemeMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 export const ThemeModel = model<Theme>("Theme", ThemeMongooseSchema as unknown as Schema<Theme>);

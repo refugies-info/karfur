@@ -5,7 +5,7 @@ import type { DeleteResult } from "~/types/interface";
 export const createNeedInDB = async (need: Partial<Need>) => await new NeedModel(need).save();
 
 export const getNeedsFromDB = async () =>
-  NeedModel.find().populate<{ theme: SimpleTheme }>("theme");
+  NeedModel.find().populate<{ theme: SimpleTheme }>("theme").cacheQuery();
 
 export const getNeedFromDB = async (id: NeedId) => NeedModel.findOne({ _id: id });
 

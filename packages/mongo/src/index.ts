@@ -4,6 +4,8 @@ import { z } from "zod";
 extendZod(z);
 
 export { DispositifStatus } from "@refugies-info/api-types";
+// Cache layer
+export { initCache, isCacheInitialized } from "./cache";
 export * from "./schemas/AdminOptions";
 export * from "./schemas/AppUser";
 export * from "./schemas/Dispositif";

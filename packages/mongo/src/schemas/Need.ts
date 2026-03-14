@@ -1,5 +1,6 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
 
@@ -54,5 +55,7 @@ for (const path of subdocPaths) {
     p.schema.set("_id", false);
   }
 }
+
+NeedMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 export const NeedModel = model("Need", NeedMongooseSchema);
