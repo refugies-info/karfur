@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 
@@ -20,4 +20,6 @@ AdminOptionsMongooseSchema.set("timestamps", { createdAt: "created_at", updatedA
 
 AdminOptionsMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
-export const AdminOptionsModel = model("AdminOptions", AdminOptionsMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const AdminOptionsModel = (models.AdminOptions ||
+  model("AdminOptions", AdminOptionsMongooseSchema)) as Model<AdminOptions>;

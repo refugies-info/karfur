@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Schema, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
@@ -122,4 +122,6 @@ ThemeMongooseSchema.methods.isActive = function (this: Theme, activeLanguages: L
 
 ThemeMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
-export const ThemeModel = model<Theme>("Theme", ThemeMongooseSchema as unknown as Schema<Theme>);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const ThemeModel = (models.Theme ||
+  model("Theme", ThemeMongooseSchema as unknown as Schema<Theme>)) as Model<Theme>;

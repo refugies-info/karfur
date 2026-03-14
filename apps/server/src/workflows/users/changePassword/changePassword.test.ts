@@ -13,7 +13,7 @@ jest.mock("../../../modules/users/users.repository", () => ({
 
 jest.mock("password-hash", () => ({
   __esModule: true, // this property makes it work
-  default: { generate: () => "hashedPassword", verify: () => true },
+  default: { generate: () => "hashedPassword", verify: jest.fn(() => true) },
 }));
 
 jest.mock("../../../modules/users/auth", () => ({
@@ -23,6 +23,8 @@ jest.mock("../../../modules/users/auth", () => ({
 describe("changePassword", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Reset passwordHash.verify to default behavior (return true)
+    jest.spyOn(passwordHash, "verify").mockReturnValue(true);
   });
 
   it("should get user and return error if no user", async () => {

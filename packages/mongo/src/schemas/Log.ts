@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 import type { UserId } from "./User";
@@ -72,4 +72,5 @@ if (linkPath && linkPath.schema) {
   }
 }
 
-export const LogModel = model("Log", LogMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const LogModel = (models.Log || model("Log", LogMongooseSchema)) as Model<Log>;

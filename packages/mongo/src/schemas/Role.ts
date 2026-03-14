@@ -1,6 +1,6 @@
 import { RoleName } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 
@@ -32,4 +32,5 @@ RoleMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
 RoleMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
-export const RoleModel = model("Role", RoleMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const RoleModel = (models.Role || model("Role", RoleMongooseSchema)) as Model<Role>;

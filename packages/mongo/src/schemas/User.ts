@@ -1,7 +1,7 @@
 import { RoleName, UserStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import jwt from "jwt-simple";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Schema, type Types } from "mongoose";
 import passwordHash from "password-hash";
 import { z } from "zod";
 import { type ImageType, ImageZodSchema } from "./generics";
@@ -145,4 +145,6 @@ UserMongooseSchema.methods.getSelectedLanguagesButFrench = function (): Langue[]
   return langs.filter((l: Langue) => l.langueCode !== "fr");
 };
 
-export const UserModel = model<User>("User", UserMongooseSchema as unknown as Schema<User>);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const UserModel = (models.User ||
+  model("User", UserMongooseSchema as unknown as Schema<User>)) as Model<User>;

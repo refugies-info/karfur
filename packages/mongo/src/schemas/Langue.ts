@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 
@@ -40,4 +40,5 @@ LangueSchema.set("timestamps", { createdAt: "created_at" });
 
 LangueSchema.plugin(SpeedGooseCacheAutoCleaner);
 
-export const LangueModel = model("Langue", LangueSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const LangueModel = (models.Langue || model("Langue", LangueSchema)) as Model<Langue>;
