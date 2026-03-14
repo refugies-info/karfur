@@ -1,6 +1,7 @@
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { type ImageType, ImageZodSchema } from "./generics";
 import { I18nCodeZodSchema } from "./Langue";
@@ -306,6 +307,8 @@ if (adminLogoPath && adminLogoPath.schema) adminLogoPath.schema.set("_id", false
 
 // Note: suggestions, merci, avis, map (Poi) usually HAVE _ids in Mongoose default.
 // The original schema didn't set _id: false for them, so we keep defaults (TRUE).
+
+DispositifMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 export const DispositifModel = model("Dispositif", DispositifMongooseSchema);
 export const DispositifDraftModel = model(

@@ -22,7 +22,7 @@ export const getUserContributions = async (
     hasDraftVersion: 1,
     origin: 1,
   };
-  const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
+  const dispositifs: any[] = await getDispositifsWithCreatorId(userId, neededFields);
 
   const res: GetUserContributionsResponse[] = dispositifs.map((d) => ({
     ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues", "origin"]),

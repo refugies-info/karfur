@@ -1,5 +1,6 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, model, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 
 // Reusable i18n code schema for language codes
@@ -36,5 +37,7 @@ LangueSchema.path("langueFr").unique(true);
 LangueSchema.path("i18nCode").unique(true);
 LangueSchema.set("collection", "langues");
 LangueSchema.set("timestamps", { createdAt: "created_at" });
+
+LangueSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 export const LangueModel = model("Langue", LangueSchema);

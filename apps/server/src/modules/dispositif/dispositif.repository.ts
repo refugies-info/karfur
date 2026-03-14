@@ -537,7 +537,7 @@ export const getDispositifsWithCreatorId = async (
     },
   );
 
-  return await DispositifModel.aggregate(pipeline);
+  return await DispositifModel.aggregate<any>(pipeline);
 };
 
 export const getDispositifByIdWithMainSponsor = async (

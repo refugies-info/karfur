@@ -19,4 +19,4 @@ export const computeGlobalIndicator = async (userId: string): Promise<Progressio
         timeSpent: { $sum: "$timeSpent" },
       },
     },
-  ]).then((results) => results.shift());
+  ]).then((results: ProgressionIndicator[]) => results.shift());
