@@ -18,6 +18,12 @@ interface SearchQuery extends ParsedUrlQuery {
   sort?: string;
 }
 
+const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
+  return values
+    .filter((value) => mongoose.Types.ObjectId.isValid(value))
+    .map((value) => new mongoose.Types.ObjectId(value));
+};
+
 export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
   if (!param) return [];
   return Array.isArray(param) ? param : [param];
@@ -64,7 +70,8 @@ export const buildBaseMatch = (
   const match: any = { status: "Actif" };
 
   if (algoliaIds) {
-    match._id = { $in: algoliaIds.map((id: string) => new mongoose.Types.ObjectId(id)) };
+    const objectIds = toObjectIds(algoliaIds);
+    match._id = { $in: objectIds };
   }
 
   const departments = (queryParams.departments ?? []).filter(
@@ -89,20 +96,20 @@ export const buildBaseMatch = (
   if (themes.length > 0 && needs.length > 0) {
     // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
     // a record matches if it has the theme OR the need (not both).
-    const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
-    const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
+    const themeIds = toObjectIds(themes);
+    const needIds = toObjectIds(needs);
     match.$or = (match.$or || []).concat([
       { theme: { $in: themeIds } },
       { needs: { $in: needIds } },
     ]);
   } else {
     if (themes.length > 0) {
-      const themeIds = themes.map((t: string) => new mongoose.Types.ObjectId(t));
+      const themeIds = toObjectIds(themes);
       match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
     }
 
     if (needs.length > 0) {
-      const needIds = needs.map((n: string) => new mongoose.Types.ObjectId(n));
+      const needIds = toObjectIds(needs);
       // Legacy behavior note: parent theme alignment is handled at aggregation time where needed
       match.needs = { $in: needIds };
     }
@@ -390,7 +397,8 @@ const buildSuggestionsQuery = async (
   if (themes.length === 0 && needs.length === 0) return [];
 
   if (themes.length > 0) {
-    const themeIds = themes.map((t) => new mongoose.Types.ObjectId(t));
+    const themeIds = toObjectIds(themes);
+    if (themeIds.length === 0) return [];
     // Items that have selected themes as secondary themes but NOT as primary theme
     const suggestionsMatch = {
       ...baseMatch,
@@ -409,7 +417,8 @@ const buildSuggestionsQuery = async (
   }
 
   if (needs.length > 0) {
-    const needIds = needs.map((n) => new mongoose.Types.ObjectId(n));
+    const needIds = toObjectIds(needs);
+    if (needIds.length === 0) return [];
     // Find needs' parent themes, then get items from those themes without the selected needs
     const Need = Dispositif.db.models.Need || NeedModel;
     const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
