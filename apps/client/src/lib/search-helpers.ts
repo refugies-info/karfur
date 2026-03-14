@@ -346,7 +346,8 @@ const buildSearchAggregation = (
     aggregation.push({
       $addFields: {
         isLocal: {
-          $cond: { if: { $in: ["$metadatas.location"] }, then: 1, else: 2 },
+          // Prioritize department-specific results over "france" fallback rows
+          $cond: { if: { $eq: ["$metadatas.location", "france"] }, then: 2, else: 1 },
         },
       },
     });
