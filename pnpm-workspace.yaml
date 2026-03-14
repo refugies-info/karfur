@@ -41,6 +41,12 @@ minimumReleaseAgeExclude:
   - "@types/node"
   # TODO: Remove after 2026-04-15 once @getbrevo/brevo@5.0.1 is older than 7 days
   - "@getbrevo/brevo"
+  # TODO: Remove after 2026-03-25 once rollup 4.59.0 platform packages are older than 7 days
+  - "@rollup/*"
+  - rollup
+  # TODO: Remove after 2026-03-25 once turbo 2.8.17 platform packages are older than 7 days
+  - "turbo-*"
+  - turbo
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
