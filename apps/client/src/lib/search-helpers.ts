@@ -1,12 +1,8 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
+import { NeedModel } from "@refugies-info/mongo";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
-import mongoose, {
-  type Connection,
-  type FilterQuery,
-  type Model,
-  type PipelineStage,
-} from "mongoose";
+import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import type { ParsedUrlQuery } from "querystring";
 
 interface SearchQuery extends ParsedUrlQuery {
@@ -414,10 +410,8 @@ const buildSuggestionsQuery = async (
   if (needs.length > 0) {
     const needIds = needs.map((n) => new mongoose.Types.ObjectId(n));
     // Find needs' parent themes, then get items from those themes without the selected needs
-    const NeedModel =
-      Dispositif.db.models.Need ||
-      Dispositif.db.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-    const selectedNeeds = await NeedModel.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
+    const Need = Dispositif.db.models.Need || NeedModel;
+    const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
     const parentThemeIds = [
       ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
     ];
@@ -467,13 +461,13 @@ const buildNoResultsFallback = async (
  * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
  */
 export const computeSearchResults = async (
-  conn: Connection,
+  conn: { models: Record<string, Model<any>> },
   queryParams: QueryParams,
   options: SearchResultsOptions,
 ): Promise<SearchResponse> => {
-  const Dispositif: Model<SimpleDispositif> =
-    conn.models.Dispositif ||
-    conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
+  // Use the Dispositif model from the connection (registered by @refugies-info/mongo
+  // in production via dbConnect(), or by test fixtures in tests).
+  const Dispositif = conn.models.Dispositif as Model<SimpleDispositif>;
 
   const algoliaIds = await resolveAlgoliaIds(queryParams.search);
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);

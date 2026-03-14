@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "~/lib/db";
 import {
@@ -36,10 +35,9 @@ export const computeSearchCounts = async (
   conn: any,
   queryParams: QueryParams,
 ): Promise<SearchCountsResponse> => {
-  // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
-  const Dispositif =
-    conn.models.Dispositif ||
-    conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
+  // Use the Dispositif model from the connection (registered by @refugies-info/mongo
+  // in production via dbConnect(), or by test fixtures in tests).
+  const Dispositif = conn.models.Dispositif;
 
   let algoliaIds: string[] | undefined;
   if (queryParams.search) {
