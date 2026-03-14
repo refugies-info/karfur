@@ -24,9 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const themes = await Theme.find({}).sort({ position: 1 }).select("_id name.fr");
 
     return res.status(200).json(
-      themes.map((t: any) => ({
+      themes.map((t) => ({
         id: String(t._id),
-        name: t.name?.fr,
+        name: (t.name as Record<string, string> | undefined)?.fr,
       })),
     );
   } catch (error: unknown) {

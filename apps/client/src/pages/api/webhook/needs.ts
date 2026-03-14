@@ -33,7 +33,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const needs = await Need.find({}).sort({ position: 1 }).select("_id fr.text theme");
 
     return res.status(200).json(
-      needs.map((n: any) => ({
+      needs.map((n) => ({
         id: String(n._id),
         name: n.fr?.text,
         themeId: getThemeId(n.theme),
