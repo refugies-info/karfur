@@ -78,7 +78,7 @@ export const getDispositifArray = async (
   populate: string = "",
   limit: number = 0,
   sort = {},
-) => {
+): Promise<any[]> => {
   const neededFields: ProjectionType<Dispositif> = Object.assign(
     {
       translations: 1,
@@ -123,7 +123,7 @@ export const getSimpleDispositifs = async (
   locale: Languages,
   limit: number = 0,
   sort: object = {},
-) => {
+): Promise<any[]> => {
   return getDispositifArray(
     query,
     {
@@ -177,7 +177,7 @@ export const getStructureDispositifs = async (
   locale: Languages,
   limit: number = 0,
   sort = {},
-) => {
+): Promise<any[]> => {
   return getDispositifArray(
     query,
     {
@@ -220,13 +220,15 @@ export const getStructureDispositifs = async (
     .then(({ dispositifs, usernames }) =>
       dispositifs.map((dispositif) => {
         const translation = getDispositifTranslation(dispositif, locale);
-        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
-          return {
-            ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
-            username:
-              usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
-          };
-        });
+        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map(
+          (s: (typeof dispositif.suggestions)[number]) => {
+            return {
+              ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
+              username:
+                usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
+            };
+          },
+        );
         const resDisp = {
           _id: dispositif._id,
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
