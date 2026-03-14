@@ -583,6 +583,7 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
 export const getActiveContents = (
   neededFields: ProjectionType<Dispositif>,
 ): Promise<Dispositif[]> =>
+  // Cast required: speedgoose's Query<R, ResultType> augmentation breaks awaited type inference
   DispositifModel.find(
     { status: DispositifStatus.ACTIVE },
     neededFields,
@@ -590,8 +591,9 @@ export const getActiveContents = (
 
 export const getActiveContentsFiltered = (
   neededFields: ProjectionType<Dispositif>,
-  query: unknown,
+  query: FilterQuery<Dispositif>,
 ): Promise<Dispositif[]> =>
+  // Cast required: speedgoose's Query<R, ResultType> augmentation breaks awaited type inference
   DispositifModel.find(query, neededFields)
     .populate("mainSponsor theme secondaryThemes")
     .cacheQuery() as unknown as Promise<Dispositif[]>;

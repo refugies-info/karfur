@@ -52,41 +52,45 @@ export const getStructuresWithDispos = async (
   neededFields: ProjectionFields<Structure>,
 ): Promise<StructureWithDispos[]> => {
   logger.info("[getStructuresWithDispos] with dispositifs associes");
-  return StructureModel.aggregate([
-    { $match: query },
-    {
-      $lookup: {
-        from: "dispositifs",
-        localField: "_id",
-        foreignField: "mainSponsor",
-        as: "dispositifsAssocies",
-      },
-    },
-    {
-      $lookup: {
-        from: "users",
-        localField: "createur",
-        foreignField: "_id",
-        as: "createur",
-      },
-    },
-    {
-      $project: {
-        ...neededFields,
-        dispositifsAssocies: {
-          _id: 1,
-          status: 1,
-          metadatas: 1,
-        },
-        createur: {
-          _id: 1,
-          username: 1,
-          email: 1,
-          picture: 1,
+  return (
+    StructureModel.aggregate([
+      { $match: query },
+      {
+        $lookup: {
+          from: "dispositifs",
+          localField: "_id",
+          foreignField: "mainSponsor",
+          as: "dispositifsAssocies",
         },
       },
-    },
-  ]).cachePipeline() as unknown as Promise<StructureWithDispos[]>;
+      {
+        $lookup: {
+          from: "users",
+          localField: "createur",
+          foreignField: "_id",
+          as: "createur",
+        },
+      },
+      {
+        $project: {
+          ...neededFields,
+          dispositifsAssocies: {
+            _id: 1,
+            status: 1,
+            metadatas: 1,
+          },
+          createur: {
+            _id: 1,
+            username: 1,
+            email: 1,
+            picture: 1,
+          },
+        },
+      },
+    ])
+      // Cast required: speedgoose's Aggregate<R, ResultType> augmentation breaks awaited type inference
+      .cachePipeline() as unknown as Promise<StructureWithDispos[]>
+  );
 };
 
 export const createStructureInDB = (structure: Partial<Structure>) =>
