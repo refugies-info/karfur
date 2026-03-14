@@ -46,6 +46,16 @@ export const getDispositifsFromDB = async () =>
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
 
+/**
+ * Result type for getDispositifsWithCreatorId — a subset of Dispositif fields
+ * (determined at runtime by neededFields) with a projected mainSponsor.
+ * mainSponsor is omitted from Partial<Dispositif> (ObjectId ref) and replaced
+ * with the populated shape emitted by the $lookup + $unwind pipeline stages.
+ */
+type DispositifContributionAggResult = Omit<Partial<Dispositif>, "mainSponsor"> & {
+  mainSponsor?: { _id: Id; nom: string };
+};
+
 export const getDispositifsForExport = async () => {
   return DispositifModel.find({ status: "Actif" })
     .populate<{
@@ -537,7 +547,8 @@ export const getDispositifsWithCreatorId = async (
     },
   );
 
-  return await DispositifModel.aggregate<any>(pipeline);
+  // Cast required: speedgoose's Aggregate<R, ResultType> augmentation breaks awaited type inference
+  return (await DispositifModel.aggregate(pipeline)) as DispositifContributionAggResult[];
 };
 
 export const getDispositifByIdWithMainSponsor = async (

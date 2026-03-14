@@ -19,4 +19,5 @@ export const computeGlobalIndicator = async (userId: string): Promise<Progressio
         timeSpent: { $sum: "$timeSpent" },
       },
     },
+    // Explicit type required: speedgoose's Aggregate<R, ResultType> augmentation breaks .then() callback inference
   ]).then((results: ProgressionIndicator[]) => results.shift());
