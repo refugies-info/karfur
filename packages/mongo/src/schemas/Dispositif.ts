@@ -312,6 +312,10 @@ DispositifMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
 // HMR-safe: use existing model if already compiled (Next.js dev mode)
 export const DispositifModel = (models.Dispositif ||
-  model("Dispositif", DispositifMongooseSchema)) as Model<Dispositif>;
+  model("Dispositif", DispositifMongooseSchema)) as unknown as Model<Dispositif>;
 export const DispositifDraftModel = (models.DispositifDraft ||
-  model("DispositifDraft", DispositifMongooseSchema, "dispositifs_draft")) as Model<Dispositif>;
+  model(
+    "DispositifDraft",
+    DispositifMongooseSchema,
+    "dispositifs_draft",
+  )) as unknown as Model<Dispositif>;
