@@ -1,6 +1,6 @@
 import type { Languages } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 // Indicator Schema
@@ -29,4 +29,6 @@ export const IndicatorMongooseSchema = zodSchema(IndicatorSchema);
 IndicatorMongooseSchema.set("collection", "indicators");
 IndicatorMongooseSchema.set("timestamps", true);
 
-export const IndicatorModel = model("Indicator", IndicatorMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const IndicatorModel = (models.Indicator ||
+  model("Indicator", IndicatorMongooseSchema)) as Model<Indicator>;

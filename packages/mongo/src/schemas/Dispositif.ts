@@ -1,6 +1,6 @@
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { type ImageType, ImageZodSchema } from "./generics";
@@ -310,9 +310,12 @@ if (adminLogoPath && adminLogoPath.schema) adminLogoPath.schema.set("_id", false
 
 DispositifMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
 
-export const DispositifModel = model("Dispositif", DispositifMongooseSchema);
-export const DispositifDraftModel = model(
-  "DispositifDraft",
-  DispositifMongooseSchema,
-  "dispositifs_draft",
-);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const DispositifModel = (models.Dispositif ||
+  model("Dispositif", DispositifMongooseSchema)) as unknown as Model<Dispositif>;
+export const DispositifDraftModel = (models.DispositifDraft ||
+  model(
+    "DispositifDraft",
+    DispositifMongooseSchema,
+    "dispositifs_draft",
+  )) as unknown as Model<Dispositif>;

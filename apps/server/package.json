@@ -47,7 +47,6 @@
     "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
-    "node-cache": "^5.1.2",
     "password-hash": "^1.2.2",
     "path-to-regexp": ">=0.1.12",
     "phone": "^3.1.71",

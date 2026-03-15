@@ -9,8 +9,8 @@ import {
 } from "~/modules/users/users.repository";
 import type { ResponseWithData } from "~/types/interface";
 
-export const getStructures = (userId: UserId, structures: Structure[]): UserStructure[] =>
-  structures.map((structure) => {
+export const getStructures = (userId: UserId, structures?: Structure[]): UserStructure[] =>
+  (structures || []).map((structure) => {
     return {
       _id: structure._id,
       nom: structure.nom,

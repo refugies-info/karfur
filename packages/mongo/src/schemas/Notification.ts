@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 // Notification Schema
@@ -27,4 +27,6 @@ export const NotificationMongooseSchema = zodSchema(NotificationSchema);
 NotificationMongooseSchema.set("collection", "notifications");
 NotificationMongooseSchema.set("timestamps", true);
 
-export const NotificationModel = model("Notification", NotificationMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const NotificationModel = (models.Notification ||
+  model("Notification", NotificationMongooseSchema)) as Model<Notification>;

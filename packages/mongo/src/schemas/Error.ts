@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 // Error Schema
@@ -27,4 +27,5 @@ export const ErrorMongooseSchema = zodSchema(ErrorSchema);
 ErrorMongooseSchema.set("collection", "errors");
 ErrorMongooseSchema.set("timestamps", true);
 
-export const ErrorModel = model("Error", ErrorMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const ErrorModel = (models.Error || model("Error", ErrorMongooseSchema)) as Model<Error>;
