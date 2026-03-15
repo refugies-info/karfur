@@ -24,18 +24,22 @@ const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
     .map((value) => new mongoose.Types.ObjectId(value));
 };
 
-/** Safely execute an aggregate with speedgoose cache, falling back to plain exec(). */
-export const executeCachedPipeline = async <T = any>(
-  aggregateQuery: mongoose.Aggregate<T[]>,
-): Promise<T[]> => {
-  const q = aggregateQuery as mongoose.Aggregate<T[]> & { cachePipeline?: () => Promise<T[]> };
-  return typeof q.cachePipeline === "function" ? q.cachePipeline() : q.exec();
+/**
+ * Safely execute an aggregate with speedgoose cache, falling back to plain exec().
+ * Parameter typed as `any` because speedgoose augments Aggregate with extra type params.
+ */
+export const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
+  return typeof aggregateQuery.cachePipeline === "function"
+    ? aggregateQuery.cachePipeline()
+    : aggregateQuery.exec();
 };
 
-/** Safely execute a query with speedgoose cache, falling back to plain exec(). */
-export const executeCachedQuery = async <T = any>(query: mongoose.Query<T, any>): Promise<T> => {
-  const q = query as mongoose.Query<T, any> & { cacheQuery?: () => Promise<T> };
-  return typeof q.cacheQuery === "function" ? q.cacheQuery() : q.exec();
+/**
+ * Safely execute a query with speedgoose cache, falling back to plain exec().
+ * Parameter typed as `any` because speedgoose augments Query with extra type params.
+ */
+export const executeCachedQuery = async <T = any>(query: any): Promise<T> => {
+  return typeof query.cacheQuery === "function" ? query.cacheQuery() : query.exec();
 };
 
 /**
