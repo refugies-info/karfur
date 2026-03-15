@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 // MailEvent Schema
@@ -29,4 +29,6 @@ export const MailEventMongooseSchema = zodSchema(MailEventSchema);
 MailEventMongooseSchema.set("collection", "mails");
 MailEventMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const MailEventModel = model("MailEvent", MailEventMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const MailEventModel = (models.MailEvent ||
+  model("MailEvent", MailEventMongooseSchema)) as Model<MailEvent>;

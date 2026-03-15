@@ -1,6 +1,6 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 // Needs strict imports or definitions if we want deep validation
@@ -45,4 +45,6 @@ export const SnapshotMongooseSchema = zodSchema(SnapshotSchema);
 SnapshotMongooseSchema.set("collection", "snapshots");
 SnapshotMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const SnapshotModel = model("Snapshot", SnapshotMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const SnapshotModel = (models.Snapshot ||
+  model("Snapshot", SnapshotMongooseSchema)) as Model<Snapshot>;

@@ -1,4 +1,4 @@
-import { model, Schema, type Types } from "mongoose";
+import { type Model, model, models, Schema, type Types } from "mongoose";
 import { z } from "zod";
 
 // CloudinaryImage Schema (for Cloudinary images stored in DB)
@@ -41,4 +41,6 @@ export const CloudinaryImageMongooseSchema = new Schema<CloudinaryImage>(
   },
 );
 
-export const CloudinaryImageModel = model<CloudinaryImage>("Image", CloudinaryImageMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const CloudinaryImageModel = (models.Image ||
+  model("Image", CloudinaryImageMongooseSchema)) as Model<CloudinaryImage>;

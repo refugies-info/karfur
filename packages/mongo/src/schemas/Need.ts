@@ -1,5 +1,6 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
 
@@ -55,4 +56,7 @@ for (const path of subdocPaths) {
   }
 }
 
-export const NeedModel = model("Need", NeedMongooseSchema);
+NeedMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
+
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const NeedModel = (models.Need || model("Need", NeedMongooseSchema)) as Model<Need>;

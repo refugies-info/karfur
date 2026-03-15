@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 export enum TraductionsType {
@@ -53,4 +53,6 @@ const TraductionsMongooseSchema = zodSchema(TraductionsZodSchema);
 TraductionsMongooseSchema.set("collection", "traductions");
 TraductionsMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const TraductionsModel = model("Traductions", TraductionsMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const TraductionsModel = (models.Traductions ||
+  model("Traductions", TraductionsMongooseSchema)) as Model<Traductions>;

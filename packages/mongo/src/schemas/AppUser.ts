@@ -1,5 +1,5 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 export const NotificationsSettingsZodSchema = z.object({
@@ -52,4 +52,5 @@ if (nsPath && nsPath.schema) {
   nsPath.schema.set("_id", false);
 }
 
-export const AppUserModel = model("AppUser", AppUserSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const AppUserModel = (models.AppUser || model("AppUser", AppUserSchema)) as Model<AppUser>;

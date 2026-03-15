@@ -1,6 +1,6 @@
 import { ContentType } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 export const WidgetSchema = z.object({
@@ -32,4 +32,6 @@ export const WidgetMongooseSchema = zodSchema(WidgetSchema);
 WidgetMongooseSchema.set("collection", "widgets");
 WidgetMongooseSchema.set("timestamps", { createdAt: "created_at" });
 
-export const WidgetModel = model("Widget", WidgetMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const WidgetModel = (models.Widget ||
+  model("Widget", WidgetMongooseSchema)) as Model<Widget>;

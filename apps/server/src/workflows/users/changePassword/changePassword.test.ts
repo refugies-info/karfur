@@ -12,8 +12,8 @@ jest.mock("../../../modules/users/users.repository", () => ({
 }));
 
 jest.mock("password-hash", () => ({
-  __esModule: true, // this property makes it work
-  default: { generate: () => "hashedPassword", verify: () => true },
+  __esModule: true,
+  default: { generate: () => "hashedPassword", verify: jest.fn() },
 }));
 
 jest.mock("../../../modules/users/auth", () => ({
@@ -33,6 +33,7 @@ describe("changePassword", () => {
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
     expect(loginExceptionsManager).toHaveBeenCalledWith(new Error(LoginErrorType.USER_DELETED));
   });
+
   it("should get user and return error if user deleted", async () => {
     const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
     getUserByIdMock.mockResolvedValue(new UserModel({ status: UserStatus.DELETED }));
@@ -52,10 +53,11 @@ describe("changePassword", () => {
   });
 
   it("should get user and return error if wrong password", async () => {
-    const hashVerifyMock = jest.spyOn(passwordHash, "verify");
     const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
-    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
-    hashVerifyMock.mockReturnValueOnce(false);
+    const user = new UserModel({ password: "test" });
+    // Mock the authenticate method to return false (wrong password)
+    jest.spyOn(user, "authenticate").mockReturnValue(false);
+    getUserByIdMock.mockResolvedValue(user);
 
     await changePassword("id", "", "");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
@@ -64,7 +66,10 @@ describe("changePassword", () => {
 
   it("should get user and return error if same password", async () => {
     const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
-    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+    const user = new UserModel({ password: "test" });
+    // Mock authenticate to return true (password is correct)
+    jest.spyOn(user, "authenticate").mockReturnValue(true);
+    getUserByIdMock.mockResolvedValue(user);
 
     await changePassword("id", "test1", "test1");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
@@ -73,7 +78,10 @@ describe("changePassword", () => {
 
   it("should get user and return error if password too weak", async () => {
     const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
-    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+    const user = new UserModel({ password: "test" });
+    // Mock authenticate to return true (password is correct)
+    jest.spyOn(user, "authenticate").mockReturnValue(true);
+    getUserByIdMock.mockResolvedValue(user);
 
     await changePassword("id", "test1", "a");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});
@@ -84,7 +92,10 @@ describe("changePassword", () => {
 
   it("should get user and return hashedPassword if ok", async () => {
     const getUserByIdMock = jest.spyOn(usersRep, "getUserById");
-    getUserByIdMock.mockResolvedValue(new UserModel({ password: "test" }));
+    const user = new UserModel({ password: "test" });
+    // Mock authenticate to return true (password is correct)
+    jest.spyOn(user, "authenticate").mockReturnValue(true);
+    getUserByIdMock.mockResolvedValue(user);
 
     const res = await changePassword("id", "test1", "Test1a@");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", {});

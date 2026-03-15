@@ -1,6 +1,6 @@
 import { StructureStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 import { type ImageType, ImageZodSchema } from "./generics";
 
@@ -119,4 +119,6 @@ if (openingHoursPath && openingHoursPath.schema) {
   if (detailsPath && detailsPath.schema) detailsPath.schema.set("_id", false);
 }
 
-export const StructureModel = model("Structure", StructureMongooseSchema);
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const StructureModel = (models.Structure ||
+  model("Structure", StructureMongooseSchema)) as Model<Structure>;

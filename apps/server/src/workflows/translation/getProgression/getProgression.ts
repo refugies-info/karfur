@@ -22,7 +22,8 @@ export const computeIndicator = async (
         timeSpent: { $sum: "$timeSpent" },
       },
     },
-  ]).then((results) => results.shift());
+    // Explicit type required: speedgoose's Aggregate<R, ResultType> augmentation breaks .then() callback inference
+  ]).then((results: ProgressionIndicator[]) => results.shift());
 
 export const computeAllIndicators = async (
   userId: string,

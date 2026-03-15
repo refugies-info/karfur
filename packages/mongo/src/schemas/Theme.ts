@@ -1,10 +1,25 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, model, type Schema, type Types } from "mongoose";
+import { type Document, type Model, model, models, type Schema, type Types } from "mongoose";
+import { SpeedGooseCacheAutoCleaner } from "speedgoose";
 import { z } from "zod";
 import { ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
 
 // Helper Zod Schemas
+const TranslatedTextZodSchema = z.object({
+  fr: z.string().optional(),
+  ar: z.string().optional(),
+  fa: z.string().optional(),
+  ps: z.string().optional(),
+  ti: z.string().optional(),
+  so: z.string().optional(),
+  am: z.string().optional(),
+  uk: z.string().optional(),
+  // Legacy languages still present on old content
+  en: z.string().optional(),
+  ru: z.string().optional(),
+});
+
 const ThemeColorsZodSchema = z.object({
   color100: z.string(),
   color80: z.string(),
@@ -19,8 +34,11 @@ const ThemeGradientColorsZodSchema = z.object({
 });
 
 export const ThemeZodSchema = z.object({
-  name: z.record(z.string()),
-  short: z.record(z.string()),
+  // NOTE: zod-mongoose does not correctly hydrate z.record(...) fields for Theme
+  // (it resulted in `{}` at runtime for name/short in /themes responses).
+  // We model translated text with explicit language keys to preserve data fidelity.
+  name: TranslatedTextZodSchema,
+  short: TranslatedTextZodSchema,
   mainColor: z.string(),
   colors: ThemeColorsZodSchema,
   gradientColors: ThemeGradientColorsZodSchema,
@@ -119,4 +137,8 @@ ThemeMongooseSchema.methods.isActive = function (this: Theme, activeLanguages: L
   return true;
 };
 
-export const ThemeModel = model<Theme>("Theme", ThemeMongooseSchema as unknown as Schema<Theme>);
+ThemeMongooseSchema.plugin(SpeedGooseCacheAutoCleaner);
+
+// HMR-safe: use existing model if already compiled (Next.js dev mode)
+export const ThemeModel = (models.Theme ||
+  model("Theme", ThemeMongooseSchema as unknown as Schema<Theme>)) as Model<Theme>;

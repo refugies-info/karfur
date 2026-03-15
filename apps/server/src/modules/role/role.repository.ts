@@ -3,4 +3,4 @@ import { RoleModel } from "@refugies-info/mongo";
 
 export const getRoleByName = async (name: RoleName) => await RoleModel.findOne({ nom: name });
 
-export const getRoles = async () => RoleModel.find();
+export const getRoles = async () => RoleModel.find().cacheQuery();

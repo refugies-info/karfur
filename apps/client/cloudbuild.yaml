@@ -47,7 +47,7 @@ steps:
         # https://google.github.io/styleguide/shellguide.html#arrays
         vpc_args=()
         if [[ -n "${_VPC_CONNECTOR}" ]]; then
-          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}" --vpc-egress=private-ranges-only)
         fi
 
         gcloud run deploy ${_COMPONENT}-${_ENV} \
@@ -61,7 +61,7 @@ steps:
           --project $PROJECT_ID \
           --region ${_REGION} \
           --service-account ${_SA} \
-          --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest,WEBHOOK_SECRET=${_WEBHOOK_SECRET}:latest \
+          --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest,WEBHOOK_SECRET=${_WEBHOOK_SECRET}:latest,REDIS_URI=${_REDIS_URI_VAR}:latest \
           --set-env-vars DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS} \
           "${vpc_args[@]}"
 
@@ -76,5 +76,6 @@ substitutions:
   _REGISTRY: "registry-${_ENV}"
   _REGISTRY_URL: "${_REGION}-docker.pkg.dev"
   _DISABLE_SEARCH_COUNTS: "false"
+  _REDIS_URI_VAR: REDIS_URI
 
 timeout: 1200s
