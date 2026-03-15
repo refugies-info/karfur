@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 
 // Note: Do NOT validate MONGODB_URI at module load time.
 // In tests and some CI contexts (e.g., PRs from forks), this env var may be absent
@@ -24,6 +25,14 @@ if (!cached) {
  * if the model is already registered.
  */
 async function registerSharedModelsAndCache() {
+  // During `next build`, page-data collection imports server code paths in a
+  // constrained environment where loading mongo schemas can fail. Skip shared
+  // model/cache initialization at build time; runtime requests still initialize
+  // cache normally in Cloud Run / local dev.
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    return;
+  }
+
   // Dynamic import to avoid loading at module parse time (server-only code).
   // The import triggers @zodyac/zod-mongoose extendZod() and registers all models.
   const { initCache } = await import("@refugies-info/mongo");
