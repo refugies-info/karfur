@@ -24,19 +24,27 @@ const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
     .map((value) => new mongoose.Types.ObjectId(value));
 };
 
-const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
-  return typeof aggregateQuery.cachePipeline === "function"
-    ? aggregateQuery.cachePipeline()
-    : aggregateQuery.exec();
+/** Safely execute an aggregate with speedgoose cache, falling back to plain exec(). */
+export const executeCachedPipeline = async <T = any>(
+  aggregateQuery: mongoose.Aggregate<T[]>,
+): Promise<T[]> => {
+  const q = aggregateQuery as mongoose.Aggregate<T[]> & { cachePipeline?: () => Promise<T[]> };
+  return typeof q.cachePipeline === "function" ? q.cachePipeline() : q.exec();
 };
 
-const executeCachedQuery = async <T = any>(query: any): Promise<T> => {
-  return typeof query.cacheQuery === "function" ? query.cacheQuery() : query.exec();
+/** Safely execute a query with speedgoose cache, falling back to plain exec(). */
+export const executeCachedQuery = async <T = any>(query: mongoose.Query<T, any>): Promise<T> => {
+  const q = query as mongoose.Query<T, any> & { cacheQuery?: () => Promise<T> };
+  return typeof q.cacheQuery === "function" ? q.cacheQuery() : q.exec();
 };
 
-const getDispositifModel = (conn: {
+/**
+ * Resolve the Dispositif model from the connection. Prefers the canonical shared
+ * model; falls back to a lightweight strict:false model for degraded operation.
+ */
+export const getDispositifModel = (conn: {
   models: Record<string, Model<any>>;
-  model?: (name: string, schema?: any, collection?: string) => Model<any>;
+  model?: (name: string, schema?: mongoose.Schema, collection?: string) => Model<any>;
 }): Model<SimpleDispositif> => {
   if (conn.models.Dispositif) {
     return conn.models.Dispositif as Model<SimpleDispositif>;

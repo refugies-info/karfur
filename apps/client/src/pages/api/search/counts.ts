@@ -1,10 +1,12 @@
-import mongoose from "mongoose";
+import type { Model } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import dbConnect from "~/lib/db";
 import {
   buildBaseMatch,
   buildQueryParams,
+  executeCachedPipeline,
+  getDispositifModel,
   getSearchClient,
   type QueryParams,
 } from "~/lib/search-helpers";
@@ -33,26 +35,11 @@ export interface SearchCountsResponse {
   total: number;
 }
 
-const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
-  return typeof aggregateQuery.cachePipeline === "function"
-    ? aggregateQuery.cachePipeline()
-    : aggregateQuery.exec();
-};
-
-const getDispositifModel = (conn: any) => {
-  if (conn.models.Dispositif) {
-    return conn.models.Dispositif;
-  }
-
-  if (typeof conn.model === "function") {
-    return conn.model("Dispositif", new mongoose.Schema({}, { strict: false }), "dispositifs");
-  }
-
-  throw new Error("Dispositif model is not registered on the mongoose connection");
-};
-
 export const computeSearchCounts = async (
-  conn: any,
+  conn: {
+    models: Record<string, Model<any>>;
+    model?: (name: string, schema?: any, collection?: string) => Model<any>;
+  },
   queryParams: QueryParams,
 ): Promise<SearchCountsResponse> => {
   if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
