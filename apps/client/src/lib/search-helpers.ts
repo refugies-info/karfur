@@ -124,12 +124,29 @@ export const buildBaseMatch = (
         branches: [
           {
             case: { $eq: ["$metadatas.age.type", "between"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } },
+            then: {
+              $convert: {
+                input: { $arrayElemAt: ["$metadatas.age.ages", 0] },
+                to: "int",
+                onError: 0,
+                onNull: 0,
+              },
+            },
           },
           {
             case: { $eq: ["$metadatas.age.type", "moreThan"] },
             then: {
-              $add: [{ $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 0] } }, 1],
+              $add: [
+                {
+                  $convert: {
+                    input: { $arrayElemAt: ["$metadatas.age.ages", 0] },
+                    to: "int",
+                    onError: 0,
+                    onNull: 0,
+                  },
+                },
+                1,
+              ],
             },
           },
           { case: { $eq: ["$metadatas.age.type", "lessThan"] }, then: 0 },
@@ -142,7 +159,14 @@ export const buildBaseMatch = (
         branches: [
           {
             case: { $eq: ["$metadatas.age.type", "between"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 1] }, 999] } },
+            then: {
+              $convert: {
+                input: { $arrayElemAt: ["$metadatas.age.ages", 1] },
+                to: "int",
+                onError: 999,
+                onNull: 999,
+              },
+            },
           },
           {
             case: { $eq: ["$metadatas.age.type", "moreThan"] },
@@ -150,7 +174,14 @@ export const buildBaseMatch = (
           },
           {
             case: { $eq: ["$metadatas.age.type", "lessThan"] },
-            then: { $toInt: { $ifNull: [{ $arrayElemAt: ["$metadatas.age.ages", 0] }, 999] } },
+            then: {
+              $convert: {
+                input: { $arrayElemAt: ["$metadatas.age.ages", 0] },
+                to: "int",
+                onError: 999,
+                onNull: 999,
+              },
+            },
           },
         ],
         default: 999,
