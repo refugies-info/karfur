@@ -1,6 +1,5 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
-import { NeedModel } from "@refugies-info/mongo";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import type { ParsedUrlQuery } from "querystring";
@@ -451,7 +450,7 @@ const buildSuggestionsQuery = async (
     const needIds = toObjectIds(needs);
     if (needIds.length === 0) return [];
     // Find needs' parent themes, then get items from those themes without the selected needs
-    const Need = Dispositif.db.models.Need || NeedModel;
+    const Need = Dispositif.db.models.Need || (await import("@refugies-info/mongo")).NeedModel;
     const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
     const parentThemeIds = [
       ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
