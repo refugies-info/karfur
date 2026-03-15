@@ -2,6 +2,7 @@ import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import type { ParsedUrlQuery } from "querystring";
 
 interface SearchQuery extends ParsedUrlQuery {
@@ -21,6 +22,43 @@ const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
   return values
     .filter((value) => mongoose.Types.ObjectId.isValid(value))
     .map((value) => new mongoose.Types.ObjectId(value));
+};
+
+const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
+  return typeof aggregateQuery.cachePipeline === "function"
+    ? aggregateQuery.cachePipeline()
+    : aggregateQuery.exec();
+};
+
+const executeCachedQuery = async <T = any>(query: any): Promise<T> => {
+  return typeof query.cacheQuery === "function" ? query.cacheQuery() : query.exec();
+};
+
+const getDispositifModel = (conn: {
+  models: Record<string, Model<any>>;
+  model?: (name: string, schema?: any, collection?: string) => Model<any>;
+}): Model<SimpleDispositif> => {
+  if (conn.models.Dispositif) {
+    return conn.models.Dispositif as Model<SimpleDispositif>;
+  }
+
+  if (typeof conn.model === "function") {
+    return conn.model(
+      "Dispositif",
+      new mongoose.Schema({}, { strict: false }),
+      "dispositifs",
+    ) as Model<SimpleDispositif>;
+  }
+
+  throw new Error("Dispositif model is not registered on the mongoose connection");
+};
+
+const getNeedModel = (Dispositif: Model<SimpleDispositif>): Model<any> => {
+  if (Dispositif.db.models.Need) {
+    return Dispositif.db.models.Need;
+  }
+
+  return Dispositif.db.model("Need", new mongoose.Schema({}, { strict: false }), "needs");
 };
 
 export const getQueryParamAsArray = (param: string | string[] | undefined): string[] => {
@@ -437,20 +475,22 @@ const buildSuggestionsQuery = async (
     };
     // Remove theme-related conditions from $or since we want secondary-only
     delete suggestionsMatch.$or;
-    return Dispositif.aggregate([
-      { $match: { ...suggestionsMatch, status: "Actif" } },
-      { $sort: { nbVues: -1 } },
-      { $limit: 8 },
-      { $project: RESULTS_PROJECTION },
-      ...buildTranslationStages(locale),
-    ]).cachePipeline();
+    return executeCachedPipeline(
+      Dispositif.aggregate([
+        { $match: { ...suggestionsMatch, status: "Actif" } },
+        { $sort: { nbVues: -1 } },
+        { $limit: 8 },
+        { $project: RESULTS_PROJECTION },
+        ...buildTranslationStages(locale),
+      ]),
+    );
   }
 
   if (needs.length > 0) {
     const needIds = toObjectIds(needs);
     if (needIds.length === 0) return [];
     // Find needs' parent themes, then get items from those themes without the selected needs
-    const Need = Dispositif.db.models.Need || (await import("@refugies-info/mongo")).NeedModel;
+    const Need = getNeedModel(Dispositif);
     const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
     const parentThemeIds = [
       ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
@@ -458,19 +498,21 @@ const buildSuggestionsQuery = async (
 
     if (parentThemeIds.length === 0) return [];
 
-    return Dispositif.aggregate([
-      {
-        $match: {
-          status: "Actif",
-          theme: { $in: parentThemeIds },
-          needs: { $nin: needIds },
+    return executeCachedPipeline(
+      Dispositif.aggregate([
+        {
+          $match: {
+            status: "Actif",
+            theme: { $in: parentThemeIds },
+            needs: { $nin: needIds },
+          },
         },
-      },
-      { $sort: { nbVues: -1 } },
-      { $limit: 8 },
-      { $project: RESULTS_PROJECTION },
-      ...buildTranslationStages(locale),
-    ]).cachePipeline();
+        { $sort: { nbVues: -1 } },
+        { $limit: 8 },
+        { $project: RESULTS_PROJECTION },
+        ...buildTranslationStages(locale),
+      ]),
+    );
   }
 
   return [];
@@ -487,13 +529,15 @@ const buildNoResultsFallback = async (
   Dispositif: Model<SimpleDispositif>,
   locale: string,
 ): Promise<SimpleDispositif[]> => {
-  return Dispositif.aggregate([
-    { $match: { status: "Actif", typeContenu: "demarche" } },
-    { $sort: { nbVues: -1 } },
-    { $limit: 12 },
-    { $project: RESULTS_PROJECTION },
-    ...buildTranslationStages(locale),
-  ]).cachePipeline();
+  return executeCachedPipeline(
+    Dispositif.aggregate([
+      { $match: { status: "Actif", typeContenu: "demarche" } },
+      { $sort: { nbVues: -1 } },
+      { $limit: 12 },
+      { $project: RESULTS_PROJECTION },
+      ...buildTranslationStages(locale),
+    ]),
+  );
 };
 
 /**
@@ -501,13 +545,30 @@ const buildNoResultsFallback = async (
  * Follows the same pattern as computeSearchCounts in /api/search/counts.ts.
  */
 export const computeSearchResults = async (
-  conn: { models: Record<string, Model<any>> },
+  conn: {
+    models: Record<string, Model<any>>;
+    model?: (name: string, schema?: any, collection?: string) => Model<any>;
+  },
   queryParams: QueryParams,
   options: SearchResultsOptions,
 ): Promise<SearchResponse> => {
-  // Use the Dispositif model from the connection (registered by @refugies-info/mongo
-  // in production via dbConnect(), or by test fixtures in tests).
-  const Dispositif = conn.models.Dispositif as Model<SimpleDispositif>;
+  // During next build, page-data collection may invoke getServerSideProps for
+  // /recherche. Return empty results instead of querying DB + Algolia.
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    return {
+      results: [],
+      suggestions: [],
+      noResults: [],
+      total: 0,
+      programCount: 0,
+      procedureCount: 0,
+      onlineCount: 0,
+      page: options.page,
+      pageCount: 0,
+    };
+  }
+
+  const Dispositif = getDispositifModel(conn);
 
   const algoliaIds = await resolveAlgoliaIds(queryParams.search);
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
@@ -519,12 +580,14 @@ export const computeSearchResults = async (
   const aggregation = buildSearchAggregation(baseMatch, options);
 
   const [results, total, typeCounts, suggestions] = await Promise.all([
-    Dispositif.aggregate(aggregation).cachePipeline(),
-    Dispositif.countDocuments(baseMatch).cacheQuery(),
-    Dispositif.aggregate([
-      { $match: baseMatch },
-      { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
-    ]).cachePipeline(),
+    executeCachedPipeline(Dispositif.aggregate(aggregation)),
+    executeCachedQuery<number>(Dispositif.countDocuments(baseMatch)),
+    executeCachedPipeline(
+      Dispositif.aggregate([
+        { $match: baseMatch },
+        { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
+      ]),
+    ),
     buildSuggestionsQuery(Dispositif, baseMatch, queryParams, options.locale || "fr"),
   ]);
 

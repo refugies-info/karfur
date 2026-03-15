@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import dbConnect from "~/lib/db";
 import {
   buildBaseMatch,
@@ -31,13 +33,43 @@ export interface SearchCountsResponse {
   total: number;
 }
 
+const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
+  return typeof aggregateQuery.cachePipeline === "function"
+    ? aggregateQuery.cachePipeline()
+    : aggregateQuery.exec();
+};
+
+const getDispositifModel = (conn: any) => {
+  if (conn.models.Dispositif) {
+    return conn.models.Dispositif;
+  }
+
+  if (typeof conn.model === "function") {
+    return conn.model("Dispositif", new mongoose.Schema({}, { strict: false }), "dispositifs");
+  }
+
+  throw new Error("Dispositif model is not registered on the mongoose connection");
+};
+
 export const computeSearchCounts = async (
   conn: any,
   queryParams: QueryParams,
 ): Promise<SearchCountsResponse> => {
-  // Use the Dispositif model from the connection (registered by @refugies-info/mongo
-  // in production via dbConnect(), or by test fixtures in tests).
-  const Dispositif = conn.models.Dispositif;
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    return {
+      themes: {},
+      needs: {},
+      frenchLevels: {},
+      ageRanges: {},
+      publics: {},
+      languages: {},
+      statuses: {},
+      types: { dispositif: 0, demarche: 0, online: 0 },
+      total: 0,
+    };
+  }
+
+  const Dispositif = getDispositifModel(conn);
 
   let algoliaIds: string[] | undefined;
   if (queryParams.search) {
@@ -321,7 +353,7 @@ export const computeSearchCounts = async (
   ];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
 
-  const results = await Dispositif.aggregate([{ $facet: facet }]).cachePipeline();
+  const results = await executeCachedPipeline(Dispositif.aggregate([{ $facet: facet }]));
   const data = results[0] || {};
 
   const toMap = (arr: Array<{ id: string; count: number }> | undefined): Record<string, number> => {
