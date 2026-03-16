@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import crashlytics from "@react-native-firebase/crashlytics";
 import Constants from "expo-constants";
+import { isDevelopmentBuild } from "expo-dev-client";
 import { getExpoPushTokenAsync } from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import * as Updates from "expo-updates";
@@ -73,7 +74,7 @@ export default function App() {
    * The app must be upgraded to continue
    * Skip this check in development builds to allow local backend testing
    */
-  if (error && Updates.channel !== "development") {
+  if (error && !isDevelopmentBuild()) {
     return (
       <SafeAreaProvider>
         <ThemeProvider>
