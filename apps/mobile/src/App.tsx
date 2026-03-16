@@ -3,6 +3,7 @@ import crashlytics from "@react-native-firebase/crashlytics";
 import Constants from "expo-constants";
 import { getExpoPushTokenAsync } from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
+import * as Updates from "expo-updates";
 import { Suspense, useEffect } from "react";
 import { I18nManager, View } from "react-native";
 import "react-native-gesture-handler";
@@ -70,8 +71,9 @@ export default function App() {
 
   /**
    * The app must be upgraded to continue
+   * Skip this check in development builds to allow local backend testing
    */
-  if (error) {
+  if (error && Updates.channel !== "development") {
     return (
       <SafeAreaProvider>
         <ThemeProvider>
