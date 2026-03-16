@@ -1,6 +1,6 @@
 import type { Id } from "@refugies-info/api-types";
+import { LangueModel } from "@refugies-info/mongo";
 import type { Types } from "mongoose";
-import { LangueModel } from "~/typegoose";
 
 export const getActiveLanguagesFromDB = () =>
   LangueModel.find(
@@ -13,9 +13,9 @@ export const getActiveLanguagesFromDB = () =>
       avancement: 1,
       avancementTrad: 1,
     },
-  ).sort({
-    avancement: -1,
-  });
+  )
+    .sort({ avancement: -1 })
+    .cacheQuery();
 
 export const updateLanguageAvancementInDB = (langueId: Types.ObjectId, avancementTrad: number) =>
   LangueModel.findByIdAndUpdate({ _id: langueId }, { avancementTrad });

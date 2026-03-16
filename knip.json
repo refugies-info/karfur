@@ -3,7 +3,8 @@
   "include": ["dependencies"],
   "workspaces": {
     ".": {
-      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"]
+      "entry": ["scripts/*.js", "postcss.config.mjs", "tailwind.config.ts", "migrations/**/*.ts"],
+      "ignoreDependencies": ["turbo"]
     },
     "apps/client": {
       "entry": ["next-sitemap.config.js", "scripts/*.js"],
@@ -21,17 +22,28 @@
     },
     "apps/mobile": {
       "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
+      "expo": false,
       "ignoreDependencies": [
         "@babel/preset-env",
         "@babel/runtime",
+        "@react-native-community/netinfo",
         "@react-native/assets-registry",
+        "@redux-devtools/extension",
         "@types/styled-components-react-native",
+        "@welldone-software/why-did-you-render",
+        "expo-build-properties",
+        "expo-dev-client",
+        "expo-font",
+        "expo-status-bar",
+        "expo-system-ui",
         "papaparse",
+        "react-native-reanimated-carousel",
+        "react-native-svg-transformer",
         "use-sync-external-store"
       ]
     },
     "apps/server": {
-      "entry": ["src/server.ts"],
+      "entry": ["src/server.ts", "src/authentication.ts"],
       "ignoreDependencies": [
         "@google-cloud/translate",
         "@tsoa/runtime",

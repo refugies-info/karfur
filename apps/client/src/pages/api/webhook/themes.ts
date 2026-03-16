@@ -6,11 +6,6 @@ import {
   validateWebhookSecret,
 } from "~/lib/webhookUtils";
 
-interface ThemeDocument {
-  _id: string;
-  name?: { fr: string };
-}
-
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "Method Not Allowed" });
@@ -29,9 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const themes = await Theme.find({}).sort({ position: 1 }).select("_id name.fr");
 
     return res.status(200).json(
-      themes.map((t: ThemeDocument) => ({
-        id: t._id,
-        name: t.name?.fr,
+      themes.map((t) => ({
+        id: String(t._id),
+        name: (t.name as Record<string, string> | undefined)?.fr,
       })),
     );
   } catch (error: unknown) {

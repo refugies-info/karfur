@@ -2,7 +2,7 @@ import type { SimpleDispositif } from "@refugies-info/api-types";
 import { createSelector } from "reselect";
 import { getThemesDisplayed } from "~/lib/recherche/functions";
 import type { RootState } from "../rootReducer";
-import type { Results, SearchQuery } from "./searchResults.reducer";
+import type { PaginationState, Results, SearchQuery } from "./searchResults.reducer";
 
 export const searchResultsSelector = (state: RootState): Results => state.searchResults.results;
 
@@ -10,6 +10,11 @@ export const noResultsSelector = (state: RootState): SimpleDispositif[] =>
   state.searchResults.noResults;
 
 export const searchQuerySelector = (state: RootState): SearchQuery => state.searchResults.query;
+
+export const searchPaginationSelector = (state: RootState): PaginationState =>
+  state.searchResults.pagination;
+
+export const searchLoadingSelector = (state: RootState): boolean => state.searchResults.loading;
 
 const selectActiveThemes = (state: RootState) => state.themes.activeThemes;
 const selectNeeds = (state: RootState) => state.needs;

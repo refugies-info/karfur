@@ -4,10 +4,10 @@ import {
   type Languages,
   type SimpleDispositif,
 } from "@refugies-info/api-types";
+import type { Dispositif } from "@refugies-info/mongo";
 import type { FilterQuery } from "mongoose";
 import logger from "~/logger";
 import { getSimpleDispositifs } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getDispositifs = async (

@@ -9,6 +9,6 @@ export const getWidgets = async (): ResponseWithData<GetWidgetResponse[]> => {
   const widgets = await getAllWidgets();
   return {
     text: "success",
-    data: widgets,
+    data: widgets as GetWidgetResponse[],
   };
 };

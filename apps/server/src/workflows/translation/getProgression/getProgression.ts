@@ -1,7 +1,7 @@
 import type { GetProgressionResponse, ProgressionIndicator } from "@refugies-info/api-types";
+import { IndicatorModel, ObjectId } from "@refugies-info/mongo";
 import { computeGlobalIndicator } from "~/controllers/traduction/lib";
 import logger from "~/logger";
-import { IndicatorModel, ObjectId } from "~/typegoose";
 
 export const computeIndicator = async (
   userId: string,
@@ -22,7 +22,8 @@ export const computeIndicator = async (
         timeSpent: { $sum: "$timeSpent" },
       },
     },
-  ]).then((results) => results.shift());
+    // Explicit type required: speedgoose's Aggregate<R, ResultType> augmentation breaks .then() callback inference
+  ]).then((results: ProgressionIndicator[]) => results.shift());
 
 export const computeAllIndicators = async (
   userId: string,

@@ -6,7 +6,7 @@ export const computePossibleNeeds = async (actualNeeds: string[], contentThemes:
     const allNeeds = await getNeedsFromDB();
 
     const newNeeds = actualNeeds.filter((needId) => {
-      const need = allNeeds.find((n) => n._id.toString() === needId.toString());
+      const need = allNeeds.find((n: any) => n._id.toString() === needId.toString());
       const correspondingNeedTheme = need?.theme || null;
       if (!correspondingNeedTheme) return false;
       let isNeedInTags = false;

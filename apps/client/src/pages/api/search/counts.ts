@@ -1,9 +1,12 @@
-import mongoose from "mongoose";
+import type { Model } from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import dbConnect from "~/lib/db";
 import {
   buildBaseMatch,
   buildQueryParams,
+  executeCachedPipeline,
+  getDispositifModel,
   getSearchClient,
   type QueryParams,
 } from "~/lib/search-helpers";
@@ -33,13 +36,27 @@ export interface SearchCountsResponse {
 }
 
 export const computeSearchCounts = async (
-  conn: any,
+  conn: {
+    models: Record<string, Model<any>>;
+    model?: (name: string, schema?: any, collection?: string) => Model<any>;
+  },
   queryParams: QueryParams,
 ): Promise<SearchCountsResponse> => {
-  // Ensure the Dispositif model is registered (use a permissive schema for aggregation-only usage)
-  const Dispositif =
-    conn.models.Dispositif ||
-    conn.model("Dispositif", new mongoose.Schema({}, { strict: false, collection: "dispositifs" }));
+  if (process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD) {
+    return {
+      themes: {},
+      needs: {},
+      frenchLevels: {},
+      ageRanges: {},
+      publics: {},
+      languages: {},
+      statuses: {},
+      types: { dispositif: 0, demarche: 0, online: 0 },
+      total: 0,
+    };
+  }
+
+  const Dispositif = getDispositifModel(conn);
 
   let algoliaIds: string[] | undefined;
   if (queryParams.search) {
@@ -323,7 +340,7 @@ export const computeSearchCounts = async (
   ];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
 
-  const results = await Dispositif.aggregate([{ $facet: facet }]);
+  const results = await executeCachedPipeline(Dispositif.aggregate([{ $facet: facet }]));
   const data = results[0] || {};
 
   const toMap = (arr: Array<{ id: string; count: number }> | undefined): Record<string, number> => {

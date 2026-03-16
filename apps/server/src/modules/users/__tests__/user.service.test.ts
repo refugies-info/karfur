@@ -1,6 +1,6 @@
 import type { RoleName } from "@refugies-info/api-types";
-import type { DocumentType } from "@typegoose/typegoose";
-import { ObjectId, Role, RoleModel, UserModel } from "~/typegoose";
+import type { DocumentType } from "@refugies-info/mongo";
+import { ObjectId, Role, RoleModel, UserModel } from "@refugies-info/mongo";
 import { fixtures } from "../../../__fixtures__";
 import { addLog } from "../../logs/logs.service";
 import { sendWelcomeMail } from "../../mail/mail.service";
@@ -72,19 +72,19 @@ describe("registerUser", () => {
     jest.useFakeTimers();
     jest.setSystemTime(mockDate);
 
-    jest
-      .spyOn(roleRep, "getRoleByName")
-      .mockImplementation(async (roleName: RoleName): Promise<DocumentType<Role>> => {
-        const role = new Role();
-        role._id = roleId;
-        role.nom = roleName;
-        role.nomPublique = "";
-        return new RoleModel(role);
-      });
+    jest.spyOn(roleRep, "getRoleByName").mockImplementation(async (roleName: RoleName) => {
+      const role = new RoleModel();
+      role._id = roleId;
+      role.nom = roleName;
+      role.nomPublique = "";
+      return role;
+    });
 
     jest
       .spyOn(usersRep, "createUser")
-      .mockImplementation(async (userData) => new UserModel({ ...fixtures.user, ...userData }));
+      .mockImplementation(
+        async (userData) => new UserModel({ ...fixtures.user.toObject(), ...userData }),
+      );
   });
 
   it("should create user", async () => {

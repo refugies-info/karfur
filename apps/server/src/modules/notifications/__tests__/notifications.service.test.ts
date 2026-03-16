@@ -1,13 +1,15 @@
-import type { ExpoPushMessage } from "expo-server-sdk";
-import { omit } from "lodash";
+import type { Languages } from "@refugies-info/api-types";
 import {
   AdminOptionsModel,
   type AppUser,
   AppUserModel,
+  type AppUserType,
   DispositifModel,
   type Notification,
   NotificationModel,
-} from "~/typegoose";
+} from "@refugies-info/mongo";
+import type { ExpoPushMessage } from "expo-server-sdk";
+import { omit } from "lodash";
 import { fixtures } from "../../../__fixtures__";
 import * as adminOptionsRepository from "../../adminOptions/adminOptions.repository";
 import * as appusersRepository from "../../appusers/appusers.repository";
@@ -32,19 +34,19 @@ describe("getNotificationsToSend", () => {
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
       {
         uid: "2",
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
       {
         uid: "3",
         seen: false,
         title: "test",
         data: {},
-      },
+      } as any,
     ];
 
     const tokens = {
@@ -167,14 +169,14 @@ describe("sendDispositifNotifications", () => {
       mainThemeId: "63286a015d31b2c0cad9960a",
       type: "dispositif",
     };
-    const targetUsers: AppUser[] = targets;
+    const targetUsers: AppUserType[] = targets;
     const savedNotifications: Notification[] = [
       {
         uid: "1",
         seen: false,
         title: "Réfugiés.info",
         data: {},
-      },
+      } as any,
     ];
     const messages: ExpoPushMessage[] = [
       {
@@ -188,10 +190,13 @@ describe("sendDispositifNotifications", () => {
     ];
 
     // Mock function implementations
+    const dispositifModel = new DispositifModel(fixtures.dispositif);
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
-    getDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    getDispositifByIdMock.mockResolvedValue(dispositifModel);
     getAppUsersBatchMock
-      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValueOnce(
+        targetUsers.map((t) => new AppUserModel(t).toObject({ flattenMaps: true }) as any),
+      )
       .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
@@ -224,7 +229,7 @@ describe("sendDispositifNotifications", () => {
       requirements,
       lang,
     );
-    expect(getNotificationEmojiMock).toHaveBeenCalledWith(new DispositifModel(fixtures.dispositif));
+    expect(getNotificationEmojiMock).toHaveBeenCalledWith(dispositifModel);
     expect(insertNotificationsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => ({
         uid: t.uid,
@@ -346,14 +351,14 @@ describe("sendDemarcheNotifications", () => {
       mainThemeId: "63450dd43e23cd7181ba0b26",
       type: "demarche",
     };
-    const targetUsers: AppUser[] = targets;
+    const targetUsers: AppUserType[] = targets;
     const savedNotifications: Notification[] = [
       {
         uid: "1",
         seen: false,
         title: "Réfugiés.info",
         data: {},
-      },
+      } as any,
     ];
     const messages: ExpoPushMessage[] = [
       {
@@ -371,7 +376,9 @@ describe("sendDemarcheNotifications", () => {
     getAdminOptionMock.mockResolvedValue(new AdminOptionsModel({ value: true }));
     getDispositifByIdMock.mockResolvedValue(demarcheModel);
     getAppUsersBatchMock
-      .mockResolvedValueOnce(targetUsers.map((t) => new AppUserModel(t)))
+      .mockResolvedValueOnce(
+        targetUsers.map((t) => new AppUserModel(t).toObject({ flattenMaps: true }) as any),
+      )
       .mockResolvedValue([]);
     filterTargetsMock.mockReturnValue(targetUsers);
     getNotificationEmojiMock.mockReturnValue("🔔");
@@ -409,7 +416,7 @@ describe("sendDemarcheNotifications", () => {
       targetUsers.map((t) => ({
         uid: t.uid,
         seen: false,
-        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${fixtures.demarche.translations[t.selectedLanguage].content.titreInformatif}`,
+        title: `🔔 ${t.selectedLanguage === "fa" ? "پیشنهاد جدید" : "Nouvelle offre"} : ${fixtures.demarche.translations[t.selectedLanguage as Languages].content.titreInformatif}`,
         data: {
           type: "dispositif",
           contentId: fixtures.demarche._id.toString(),

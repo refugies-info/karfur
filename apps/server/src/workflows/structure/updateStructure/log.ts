@@ -1,5 +1,5 @@
+import type { Structure, UserId } from "@refugies-info/mongo";
 import { addLog } from "~/modules/logs/logs.service";
-import type { Structure, UserId } from "~/typegoose";
 
 export const log = async (
   structure: Partial<Structure>,

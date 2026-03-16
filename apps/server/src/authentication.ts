@@ -1,7 +1,7 @@
+import { type ObjectId, type User, UserModel } from "@refugies-info/mongo";
 import type { Request } from "express";
 import jwt from "jwt-simple";
 import { AuthenticationError, UnauthorizedError } from "~/errors";
-import { type ObjectId, type User, UserModel } from "~/typegoose";
 
 // type Role = "optional" | "admin" | "expert";
 

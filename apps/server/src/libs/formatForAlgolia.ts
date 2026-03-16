@@ -1,18 +1,22 @@
+import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "@refugies-info/mongo";
 import { get } from "lodash";
-
-import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "~/typegoose";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import type { AlgoliaObject } from "~/types/interface";
 
-const extractValuesPerLanguage = (
-  translations: Dispositif["translations"],
-  path: string,
-  keyPrefix: string,
-) => {
+const extractValuesPerLanguage = (translations: any, path: string, keyPrefix: string) => {
   if (!translations) return {};
   const normalizedObject: Record<string, string> = {};
-  for (const [ln, translation] of Object.entries(translations)) {
-    const value = get(translation, path);
-    normalizedObject[`${keyPrefix}_${ln}`] = value;
+
+  if (typeof translations.entries === "function") {
+    for (const [ln, translation] of translations.entries()) {
+      const value = get(translation, path);
+      normalizedObject[`${keyPrefix}_${ln}`] = value;
+    }
+  } else {
+    for (const [ln, translation] of Object.entries(translations)) {
+      const value = get(translation, path);
+      normalizedObject[`${keyPrefix}_${ln}`] = value;
+    }
   }
   return normalizedObject;
 };
@@ -71,7 +75,7 @@ export const formatForAlgolia = (
 
   if (type === "dispositif") {
     const dispositif = content as Dispositif;
-    const mainSponsor = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+    const mainSponsor = dispositif.mainSponsor ? getDispositifMainSponsor(dispositif) : null;
     const location = getLocation(dispositif);
 
     value = {
@@ -79,9 +83,11 @@ export const formatForAlgolia = (
       ...extractValuesPerLanguage(dispositif.translations, "content.titreInformatif", "title"),
       ...extractValuesPerLanguage(dispositif.translations, "content.titreMarque", "titreMarque"),
       ...extractValuesPerLanguage(dispositif.translations, "content.abstract", "abstract"),
-      theme: { _id: (dispositif.theme as Theme)?._id || dispositif.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
+      theme: {
+        _id: (dispositif.theme as unknown as Theme)?._id || dispositif.theme || "",
+      } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
       secondaryThemes: (dispositif.secondaryThemes || []).map((t) => ({
-        _id: (t as Theme)?._id || t,
+        _id: (t as unknown as Theme)?._id || t,
       })) as ThemeId[], // TODO: revert to keeping only id (change on mobile app too)
       needs: dispositif.needs as NeedId[],
       nbVues: dispositif.nbVues,
@@ -98,7 +104,7 @@ export const formatForAlgolia = (
     value = {
       objectID: need._id,
       ...getAllNeedTitles(need, activeLanguages),
-      theme: { _id: (need.theme as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
+      theme: { _id: (need.theme as unknown as Theme)?._id || need.theme || "" } as ThemeId, // TODO: revert to keeping only id (change on mobile app too)
       typeContenu: "besoin",
       priority: 20,
       webOnly: false,

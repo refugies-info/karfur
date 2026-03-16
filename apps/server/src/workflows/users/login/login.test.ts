@@ -1,10 +1,10 @@
 import { RoleName, UserStatus } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import * as auth from "~/modules/users/auth";
 import { LoginErrorType } from "~/modules/users/LoginError";
 import * as login2FA from "~/modules/users/login2FA";
 import * as usersRep from "~/modules/users/users.repository";
 import * as usersServ from "~/modules/users/users.service";
-import type { User } from "~/typegoose";
 import * as endpoint from "./login";
 
 jest.mock("google-auth-library");

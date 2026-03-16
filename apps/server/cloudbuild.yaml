@@ -25,7 +25,7 @@ steps:
         # https://google.github.io/styleguide/shellguide.html#arrays
         vpc_args=()
         if [[ -n "${_VPC_CONNECTOR}" ]]; then
-          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}")
+          vpc_args=(--vpc-connector="${_VPC_CONNECTOR}" --vpc-egress=private-ranges-only)
         fi
 
         gcloud run deploy ${_COMPONENT}-${_ENV} \
@@ -64,6 +64,7 @@ steps:
           --set-secrets MICROSOFT_CLIENT_ID=MICROSOFT_CLIENT_ID:latest \
           --set-secrets MICROSOFT_CLIENT_SECRET=MICROSOFT_CLIENT_SECRET:latest \
           --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
+          --set-secrets REDIS_URI=${_REDIS_URI_VAR}:latest \
           --set-secrets POSTMAN_SECRET=POSTMAN_SECRET:latest \
           --set-secrets REACT_APP_SITE_SECRET=REACT_APP_SITE_SECRET:latest \
           --set-secrets SECRET=SECRET:latest \
@@ -75,6 +76,7 @@ steps:
 
 substitutions:
   _MAX_INSTANCES: "20"
+  _REDIS_URI_VAR: REDIS_URI
 
 options:
   dynamicSubstitutions: true

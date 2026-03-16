@@ -1,6 +1,6 @@
 import { type GetUserStatisticsResponse, RoleName } from "@refugies-info/api-types";
+import type { User } from "@refugies-info/mongo";
 import { getAllUsersFromDB } from "~/modules/users/users.repository";
-import type { User } from "~/typegoose/User";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getFiguresOnUsers = async (): ResponseWithData<GetUserStatisticsResponse> => {

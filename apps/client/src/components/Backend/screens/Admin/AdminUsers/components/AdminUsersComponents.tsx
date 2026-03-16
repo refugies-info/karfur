@@ -11,17 +11,13 @@ interface RoleProps {
 export const Role = (props: RoleProps) => <div className={styles.role}>{props.role}</div>;
 
 interface LangueFlagProps {
-  langue: string;
+  code: string;
+  label: string;
 }
 
-export const LangueFlag = (props: LangueFlagProps) => (
+export const LangueFlag = ({ code, label }: LangueFlagProps) => (
   <div className={styles.langue}>
-    <span
-      className={"fi fi-" + props.langue}
-      title={props.langue}
-      id={props.langue}
-      key={props.langue}
-    />
+    <span className={"fi fi-" + code} title={label} id={code} key={code} aria-label={label} />
   </div>
 );
 

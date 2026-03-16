@@ -1,5 +1,5 @@
+import type { Dispositif, DispositifId } from "@refugies-info/mongo";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
-import type { Dispositif, DispositifId } from "~/typegoose";
 
 const getDefaultTraduction = (
   dispositifId: DispositifId,

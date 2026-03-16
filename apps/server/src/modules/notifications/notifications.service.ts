@@ -1,4 +1,11 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
+import {
+  type AppUser,
+  type Dispositif,
+  type DispositifId,
+  type Notification,
+  NotificationModel,
+} from "@refugies-info/mongo";
 import { Expo, type ExpoPushMessage, type ExpoPushTicket } from "expo-server-sdk";
 import uniq from "lodash/uniq";
 import { availableLanguages } from "~/libs/getFormattedLocale";
@@ -6,16 +13,14 @@ import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { processAppUsersByBatch } from "~/modules/appusers/appusers.repository";
 import {
+  getDispositifTranslated,
+  isDemarche,
+  isDispositif,
+} from "~/modules/dispositif/dispositif.business";
+import {
   getDispositifById,
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
-import {
-  type AppUser,
-  type Dispositif,
-  type DispositifId,
-  type Notification,
-  NotificationModel,
-} from "~/typegoose";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import {
   filterTargets,
@@ -171,10 +176,10 @@ const sendDispositifNotificationsBatch = async (
         title: `${getNotificationEmoji(dispositif)} ${t(
           lang,
           "notifications.newOffer",
-        )} - ${dispositif.getTranslated("content.titreInformatif", lang)} ${t(
+        )} - ${getDispositifTranslated(dispositif, "content.titreInformatif", lang)} ${t(
           lang,
           "notifications.with",
-        )} ${dispositif.getTranslated("content.titreMarque", lang)}`,
+        )} ${getDispositifTranslated(dispositif, "content.titreMarque", lang)}`,
         data: {
           type: ContentType.DISPOSITIF,
           contentId: dispositif._id.toString(),
@@ -217,7 +222,7 @@ export const sendDispositifNotifications = async (dispositifId: DispositifId, la
       /*
        * Pas de mail si ce n'est pas un dispositif
        */
-      if (!dispositif.isDispositif()) {
+      if (!isDispositif(dispositif)) {
         return;
       }
 
@@ -273,7 +278,8 @@ const sendDemarcheNotificationsBatch = async (
       return {
         uid: user.uid,
         seen: false,
-        title: `${getNotificationEmoji(demarche)} ${t(lang, "notifications.newOffer")} : ${demarche.getTranslated(
+        title: `${getNotificationEmoji(demarche)} ${t(lang, "notifications.newOffer")} : ${getDispositifTranslated(
+          demarche,
           "content.titreInformatif",
           lang,
         )}`,
@@ -313,7 +319,7 @@ export const sendDemarcheNotifications = async (demarcheId: DispositifId) => {
         "theme",
       );
 
-      if (!demarche || !demarche.isDemarche()) {
+      if (!demarche || !isDemarche(demarche)) {
         // not a demarche: error
         logger.error(`[sendDemarcheNotifications] demarche ${demarcheId} not found`);
         return;

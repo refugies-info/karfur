@@ -56,7 +56,7 @@ export class TranslationController extends Controller {
           userId: translation.userId.toString(),
         },
       },
-    }));
+    })) as any;
   }
 
   /**
@@ -72,7 +72,7 @@ export class TranslationController extends Controller {
     return getDefaultTraduction(dispositif).then((translation) => ({
       text: "success",
       data: { translation },
-    }));
+    })) as any;
   }
 
   @Delete("/")

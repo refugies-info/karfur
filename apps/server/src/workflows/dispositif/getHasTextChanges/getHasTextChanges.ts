@@ -1,11 +1,13 @@
+import type { Dispositif, Traductions } from "@refugies-info/mongo";
 import { isEmpty } from "lodash";
 import { NotFoundError } from "~/errors";
 import logger from "~/logger";
+import { getDispositifTranslation } from "~/modules/dispositif/dispositif.business";
 import {
   getDispositifById,
   getDraftDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
-import { Traductions } from "~/typegoose";
+import { diffTraductions } from "~/modules/traductions/traductions.business";
 
 export const getHasTextChanges = async (id: string): Promise<boolean> => {
   logger.info("[getHasTextChanges] called");
@@ -15,10 +17,10 @@ export const getHasTextChanges = async (id: string): Promise<boolean> => {
 
   if (!originalDispositif.hasDraftVersion) return false;
   const draftDispositif = await getDraftDispositifById(id, { hasDraftVersion: 1, translations: 1 });
-  const traductionDiff = Traductions.diff(
-    originalDispositif.translations.fr,
-    draftDispositif.translations.fr,
-  );
+  const originalFr = getDispositifTranslation(originalDispositif, "fr");
+  const draftFr = getDispositifTranslation(draftDispositif, "fr");
+
+  const traductionDiff = diffTraductions(originalFr, draftFr);
 
   return !isEmpty(traductionDiff.modified) || !isEmpty(traductionDiff.added);
 };

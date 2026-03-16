@@ -12,6 +12,6 @@ export const updatePositions = async (
 
   return {
     text: "success",
-    data,
+    data: data as UpdatePositionsNeedResponse[],
   };
 };

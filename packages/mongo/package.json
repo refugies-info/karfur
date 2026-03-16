@@ -1,0 +1,26 @@
+{
+  "name": "@refugies-info/mongo",
+  "version": "0.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "biome lint .",
+    "format": "biome check --write --linter-enabled=false .",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@refugies-info/api-types": "workspace:*",
+    "@zodyac/zod-mongoose": "^4.2.2",
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^8.23.0",
+    "password-hash": "^1.2.2",
+    "speedgoose": "~2.2.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@refugies-info/typescript-config": "workspace:*",
+    "@types/node": "^20.19.37",
+    "@types/password-hash": "^1.2.24",
+    "typescript": "^5.9.3"
+  }
+}

@@ -21,12 +21,35 @@ packages:
 # See: https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
-  # HACK: Temporarily excluded to allow update to a recent version of storybook.
-  # TODO: Remove this exclusion after 2025-12-25 once the package is older than 7 days.
+  # Storybook 10.2 — new packages introduced by the nextjs→nextjs-vite migration
+  # TODO: Remove after 2026-03-20 once storybook 10.2.17 packages are older than 7 days
   - storybook
   # HACK: Transitive dep via cssnano > browserslist. Version 2.9.19 publish date mismatch.
   # TODO: Remove once browserslist updates to baseline-browser-mapping >= 2.10.0
   - baseline-browser-mapping
+  - "@storybook/nextjs-vite"
+  - "@storybook/addon-a11y"
+  - "@storybook/addon-docs"
+  - "@storybook/addon-onboarding"
+  - "@storybook/addon-themes"
+  # Platform-specific optional deps — exact version pins trigger false positives
+  # when lockfile re-resolves (e.g. esbuild@0.27.3 requires @esbuild/*@0.27.3 exactly)
+  # TODO: Remove after 2026-03-25
+  - "@esbuild/*"
+  - esbuild
+  - "@oxc-resolver/*"
+  - oxc-resolver
+  - "@tailwindcss/*"
+  - postcss
+  - "@types/node"
+  # TODO: Remove after 2026-04-15 once @getbrevo/brevo@5.0.1 is older than 7 days
+  - "@getbrevo/brevo"
+  # TODO: Remove after 2026-03-25 once rollup 4.59.0 platform packages are older than 7 days
+  - "@rollup/*"
+  - rollup
+  # TODO: Remove after 2026-03-25 once turbo 2.8.17 platform packages are older than 7 days
+  - "turbo-*"
+  - turbo
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

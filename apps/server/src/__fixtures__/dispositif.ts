@@ -1,7 +1,7 @@
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
-import { Dispositif, ObjectId } from "~/typegoose";
+import { Dispositif, ObjectId } from "@refugies-info/mongo";
 
-export const dispositif: Dispositif = new Dispositif();
+export const dispositif: any = {};
 
 dispositif._id = new ObjectId("5ce7b52d83983700167bca27");
 dispositif.typeContenu = ContentType.DISPOSITIF;
@@ -157,6 +157,7 @@ dispositif.metadatas = {
   timeSlots: ["monday", "tuesday", "thursday", "friday"],
 };
 dispositif.mainSponsor = new ObjectId("6569c41c61b13ef31806fadb");
+dispositif.administrationLogo = null;
 dispositif.hasDraftVersion = false;
 dispositif.publishedAt = new Date("2023-12-01T14:34:29.335Z");
 dispositif.publishedAtAuthor = new ObjectId("5fbd620b2e78910014405443");

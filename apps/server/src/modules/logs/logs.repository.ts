@@ -1,4 +1,4 @@
-import { type Log, LogModel } from "~/typegoose";
+import { type Log, LogModel } from "@refugies-info/mongo";
 
 export const findLogs = async (id: string) => {
   return LogModel.find({ objectId: id })

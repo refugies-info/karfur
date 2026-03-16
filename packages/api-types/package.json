@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "biome lint .",
-    "format": "biome format --write .",
+    "format": "biome check --write --linter-enabled=false .",
     "check:types": "tsc",
     "test": "echo 'No tests to run'"
   },
@@ -14,10 +14,10 @@
   "license": "ISC",
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "mongoose": "^8.19.4"
+    "mongoose": "^8.23.0"
   },
   "repository": {
     "type": "git",
@@ -28,10 +28,10 @@
   },
   "homepage": "https://github.com/refugies-info/karfur#readme",
   "engines": {
-    "node": "24.11.1"
+    "node": "24.14.0"
   },
   "volta": {
-    "node": "24.11.1",
-    "pnpm": "10.23.0"
+    "node": "24.14.0",
+    "pnpm": "10.32.1"
   }
 }

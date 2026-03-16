@@ -1,5 +1,5 @@
 import type { Id, Languages } from "@refugies-info/api-types";
-import { IndicatorModel } from "~/typegoose";
+import { IndicatorModel } from "@refugies-info/mongo";
 
 // We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
 export const updateIndicator = async (

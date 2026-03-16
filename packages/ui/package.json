@@ -22,30 +22,30 @@
     "dev": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css --watch",
     "generate-tokens": "tsx scripts/generate-tailwind-tokens.ts",
     "lint": "biome lint .",
-    "format": "biome format --write ."
+    "format": "biome check --write --linter-enabled=false ."
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "1.20.2",
     "@lottiefiles/dotlottie-react": "^0.13.5",
     "@radix-ui/react-dialog": "^1.1.4",
     "clsx": "^2.1.1",
-    "next-i18next": "^15.3.0",
+    "next-i18next": "^15.4.3",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-leaflet-cluster": "^2.1.0",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^2.6.1",
     "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "@tailwindcss/cli": "^4.1.17",
+    "@tailwindcss/cli": "^4.2.1",
     "@types/fs-extra": "^11.0.4",
     "@types/leaflet": "^1.9.21",
     "@types/leaflet.markercluster": "^1.5.5",
     "@types/react": "19.0.14",
     "@types/react-dom": "19.2.1",
-    "tailwindcss": "^4.1.12",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "tailwindcss": "^4.2.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
