@@ -50,6 +50,9 @@ minimumReleaseAgeExclude:
   # TODO: Remove after 2026-03-25 once turbo 2.8.17 platform packages are older than 7 days
   - "turbo-*"
   - turbo
+  # TODO: Remove after 2026-04-15 once next 15.5.12 platform packages are older than 7 days
+  - "@next/swc-*"
+  - next
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
