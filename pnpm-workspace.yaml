@@ -47,6 +47,12 @@ minimumReleaseAgeExclude:
   # TODO: Remove after 2026-03-25 once turbo 2.8.17 platform packages are older than 7 days
   - "turbo-*"
   - turbo
+  # TODO: Remove after 2026-03-24 once @biomejs/cli-*@2.4.7 packages are older than 7 days
+  - "@biomejs/cli-linux-x64-musl"
+  - "@biomejs/cli-linux-x64-gnu"
+  - "@biomejs/cli-darwin-arm64"
+  - "@biomejs/cli-darwin-x64"
+  - "@biomejs/cli-win32-x64"
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
