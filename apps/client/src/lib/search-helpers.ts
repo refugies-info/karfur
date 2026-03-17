@@ -503,10 +503,11 @@ const buildSuggestionsQuery = async (
     if (needIds.length === 0) return [];
     // Find needs' parent themes, then get items from those themes without the selected needs
     const Need = getNeedModel(Dispositif);
-    const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean();
-    const parentThemeIds = [
-      ...new Set(selectedNeeds.map((n) => (n as unknown as { theme: unknown }).theme)),
-    ];
+    type LeanNeedWithTheme = { theme: mongoose.Types.ObjectId };
+    const selectedNeeds = await Need.find({ _id: { $in: needIds } }, { theme: 1 }).lean<
+      LeanNeedWithTheme[]
+    >();
+    const parentThemeIds = [...new Set(selectedNeeds.map((n) => n.theme))];
 
     if (parentThemeIds.length === 0) return [];
 
