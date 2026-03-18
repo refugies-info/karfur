@@ -21,6 +21,12 @@ packages:
 # See: https://pnpm.io/settings#minimumreleaseage
 minimumReleaseAge: 10080
 minimumReleaseAgeExclude:
+  # Security fixes — Dependabot 2026-03-18
+  # TODO: Remove after 2026-03-25 once undici@7.24.0 is older than 7 days
+  - undici
+  # TODO: Remove after 2026-03-25 once next@15.5.13 is older than 7 days
+  - "@next/*"
+  - next
   # Storybook 10.2 — new packages introduced by the nextjs→nextjs-vite migration
   # TODO: Remove after 2026-03-20 once storybook 10.2.17 packages are older than 7 days
   - storybook
