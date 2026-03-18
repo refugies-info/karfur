@@ -1,5 +1,4 @@
 import type { StructureId, UserId } from "@refugies-info/mongo";
-import { StructureModel } from "@refugies-info/mongo";
 import type { TemplateName } from "../../connectors/sendgrid/sendgrid.types";
 import { STRUCTURE_PREFS, USER_PREFS } from "./data";
 
@@ -12,7 +11,7 @@ import { STRUCTURE_PREFS, USER_PREFS } from "./data";
  *
  * @param userId - The user's ID
  * @param templateName - The email template name
- * @param structureId - Optional: if known, check this structure directly (avoids DB query)
+ * @param structureId - Required for structure-related emails: checks only this structure's prefs
  * @returns true if user consents, false otherwise
  */
 export const consentsToEmail = async (
@@ -27,23 +26,15 @@ export const consentsToEmail = async (
     return false;
   }
 
-  // 2. Check structure-level preferences
-  // If structureId provided, use it directly (avoids DB query)
-  // Otherwise, find user's structures
-  let structureIds: string[] = structureId ? [structureId.toString()] : [];
-
-  if (!structureId) {
-    const structures = await StructureModel.find({ "membres.userId": id }, { _id: 1 }).lean();
-    structureIds = structures.map((s) => s._id.toString());
-  }
-
-  // 3. If any structure has this template disabled, respect that (veto)
-  for (const structId of structureIds) {
+  // 2. Check structure-level preferences ONLY if structureId is provided
+  // Structure prefs only apply to emails related to that specific structure
+  if (structureId) {
+    const structId = structureId.toString();
     if (STRUCTURE_PREFS[structId]?.[templateName] === false) {
       return false;
     }
   }
 
-  // 4. Check for explicit user-level allow, or default to true
+  // 3. Check for explicit user-level allow, or default to true
   return USER_PREFS[id]?.[templateName] ?? true;
 };

@@ -38,8 +38,11 @@ export const USER_PREFS: Record<string, Record<TemplateName, boolean>> = {
 
 /**
  * Structure-level mail preferences (keyed by structure ID).
- * These apply to ALL members of the structure.
+ * These apply to ALL members of the structure, but ONLY for emails related to that structure.
  * A `false` setting here will block an email for all members of the structure.
+ *
+ * IMPORTANT: Callers MUST pass `structureId` to `consentsToEmail()` for structure-related emails.
+ * If `structureId` is not provided, structure-level preferences will NOT be checked.
  */
 export const STRUCTURE_PREFS: Record<string, Record<TemplateName, boolean>> = {
   // "réseau Mens"
