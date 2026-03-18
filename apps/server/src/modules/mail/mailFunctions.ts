@@ -1,5 +1,5 @@
 import { UserStatus } from "@refugies-info/api-types";
-import type { Dispositif, User } from "@refugies-info/mongo";
+import type { Dispositif, StructureId, User } from "@refugies-info/mongo";
 import type { ProjectionType } from "mongoose";
 import logger from "~/logger";
 import { getUserById } from "../users/users.repository";
@@ -34,6 +34,7 @@ export const sendPublishedMailToCreator = async (
       email: creator.email,
       dispositifId: newDispo._id,
       userId: creator._id,
+      structureId: newDispo.mainSponsor?.toString(),
     });
   }
 };
@@ -44,6 +45,7 @@ export const sendPublishedMailToStructureMembers = async (
   titreMarque: string,
   lien: string,
   dispositifId: Dispositif["_id"],
+  structureId: StructureId,
 ) =>
   Promise.all(
     membres.map((membre) => {
@@ -55,10 +57,10 @@ export const sendPublishedMailToStructureMembers = async (
         titreInformatif: titreInformatif,
         titreMarque: titreMarque,
         lien,
-
         email: membre.email,
         dispositifId,
         userId: membre._id,
+        structureId,
       });
     }),
   );
@@ -68,6 +70,7 @@ export const sendValidatedAndPublishedMail = async (
   titreInformatif: string,
   titreMarque: string,
   lien: string,
+  structureId?: StructureId,
 ) =>
   Promise.all(
     membres.map((membre) => {
@@ -81,6 +84,7 @@ export const sendValidatedAndPublishedMail = async (
         titreInformatif: titreInformatif,
         titreMarque: titreMarque,
         lien,
+        structureId,
       });
     }),
   );

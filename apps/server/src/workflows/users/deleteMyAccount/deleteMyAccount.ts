@@ -6,7 +6,7 @@ import { deleteUser } from "~/modules/users/users.service";
 export const deleteMyAccount = async (user: User) => {
   await deleteUser(user);
   if (user.email) {
-    await sendAccountDeletedMailService(user.email);
+    await sendAccountDeletedMailService(user.email, user._id);
     await slackDeletedAccount(user.email);
   }
 };
