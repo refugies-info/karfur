@@ -50,7 +50,7 @@
     "lodash": "^4.17.23",
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
-    "next": "15.5.12",
+    "next": "15.5.13",
     "next-i18next": "^15.4.3",
     "next-redux-wrapper": "^8.0.0",
     "next-sitemap": "^4.2.3",
@@ -87,7 +87,7 @@
     "typesafe-actions": "^5.1.0",
     "unist-util-visit": "^5.1.0",
     "uuid": "^11.0.3",
-    "zod": "^4.3.6"
+    "zod": "^3.22.4"
   },
   "scripts": {
     "build": "next build --no-lint",
