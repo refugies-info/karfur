@@ -153,6 +153,9 @@ importers:
       '@refugies-info/api-types':
         specifier: workspace:*
         version: link:../../packages/api-types
+      '@refugies-info/markdown-utils':
+        specifier: workspace:*
+        version: link:../../packages/markdown-utils
       '@refugies-info/mongo':
         specifier: workspace:*
         version: link:../../packages/mongo
