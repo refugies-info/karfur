@@ -1,4 +1,5 @@
 import type { StructureId, UserId } from "@refugies-info/mongo";
+import { StructureModel } from "@refugies-info/mongo";
 import type { TemplateName } from "../../connectors/sendgrid/sendgrid.types";
 import { STRUCTURE_PREFS, USER_PREFS } from "./data";
 
@@ -11,7 +12,7 @@ import { STRUCTURE_PREFS, USER_PREFS } from "./data";
  *
  * @param userId - The user's ID
  * @param templateName - The email template name
- * @param structureId - Required for structure-related emails: checks only this structure's prefs
+ * @param structureId - For structure-related emails: checks prefs only if user is a member
  * @returns true if user consents, false otherwise
  */
 export const consentsToEmail = async (
@@ -26,11 +27,19 @@ export const consentsToEmail = async (
     return false;
   }
 
-  // 2. Check structure-level preferences ONLY if structureId is provided
-  // Structure prefs only apply to emails related to that specific structure
+  // 2. Check structure-level preferences ONLY if:
+  //    - structureId is provided, AND
+  //    - user is actually a member of that structure
   if (structureId) {
     const structId = structureId.toString();
-    if (STRUCTURE_PREFS[structId]?.[templateName] === false) {
+
+    // Verify user is a member of this structure
+    const membership = await StructureModel.findOne(
+      { _id: structId, "membres.userId": id },
+      { _id: 1 },
+    ).lean();
+
+    if (membership && STRUCTURE_PREFS[structId]?.[templateName] === false) {
       return false;
     }
   }
