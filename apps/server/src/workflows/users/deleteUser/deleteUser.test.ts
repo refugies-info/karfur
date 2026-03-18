@@ -55,6 +55,6 @@ describe("deleteUser", () => {
     await deleteUser("id");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", { email: 1, structures: 1 });
     expect(deleteUserMock).toHaveBeenCalledWith(user);
-    expect(sendMailMock).toHaveBeenCalledWith("test@example.com");
+    expect(sendMailMock).toHaveBeenCalledWith("test@example.com", user._id);
   });
 });
