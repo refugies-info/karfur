@@ -5,9 +5,10 @@ import { STRUCTURE_PREFS, USER_PREFS } from "./data";
 
 /**
  * Check if user consents to receiving a specific email template.
- * Checks both user-level and structure-level preferences.
  *
- * Priority: structure-level preferences override user-level defaults.
+ * A `false` preference at either the user or structure level will block the email.
+ * If no preference is set, the email is allowed by default.
+ * User-level preferences are checked first for a quick denial.
  *
  * @param userId - The user's ID
  * @param templateName - The email template name
@@ -21,9 +22,9 @@ export const consentsToEmail = async (
 ): Promise<boolean> => {
   const id = userId.toString();
 
-  // 1. Check user-level preferences first
-  if (USER_PREFS[id]?.[templateName] !== undefined) {
-    return USER_PREFS[id][templateName];
+  // 1. Check for a user-level block. A `false` here is a definitive "no".
+  if (USER_PREFS[id]?.[templateName] === false) {
+    return false;
   }
 
   // 2. Check structure-level preferences
@@ -36,13 +37,13 @@ export const consentsToEmail = async (
     structureIds = structures.map((s) => s._id.toString());
   }
 
-  // If any structure has this template disabled, respect that
+  // 3. If any structure has this template disabled, respect that (veto)
   for (const structId of structureIds) {
     if (STRUCTURE_PREFS[structId]?.[templateName] === false) {
       return false;
     }
   }
 
-  // 3. Default to true
-  return true;
+  // 4. Check for explicit user-level allow, or default to true
+  return USER_PREFS[id]?.[templateName] ?? true;
 };

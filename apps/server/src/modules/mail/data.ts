@@ -29,6 +29,7 @@ export const DEFAULT_MAIL_PREFS: Record<TemplateName, boolean> = {
 /**
  * User-level mail preferences (keyed by user ID).
  * Use for specific users who need custom email behavior.
+ * A `false` setting here will block the email for that user.
  */
 export const USER_PREFS: Record<string, Record<TemplateName, boolean>> = {
   // "programme agir" user
@@ -38,7 +39,7 @@ export const USER_PREFS: Record<string, Record<TemplateName, boolean>> = {
 /**
  * Structure-level mail preferences (keyed by structure ID).
  * These apply to ALL members of the structure.
- * Structure-level preferences take precedence over user-level.
+ * A `false` setting here will block an email for all members of the structure.
  */
 export const STRUCTURE_PREFS: Record<string, Record<TemplateName, boolean>> = {
   // "réseau Mens"

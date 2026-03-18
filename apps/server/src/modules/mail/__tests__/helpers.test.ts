@@ -25,23 +25,25 @@ import { StructureModel } from "@refugies-info/mongo";
 describe("consentsToEmail", () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    // Default: return empty array (user has no structures)
+    mockLean.mockResolvedValue([]);
   });
 
   describe("user-level preferences (USER_PREFS)", () => {
-    it("should respect user-level preferences from USER_PREFS", async () => {
+    it("should block when user-level preference is false", async () => {
       // AGIR user has DEFAULT_MAIL_PREFS which blocks newUserWelcome
       const result = await consentsToEmail(AGIR_USER_ID, "newUserWelcome");
-      expect(result).toBe(DEFAULT_MAIL_PREFS.newUserWelcome);
+      expect(result).toBe(false);
     });
 
-    it("should allow resetPassword for AGIR user", async () => {
+    it("should allow when user-level preference is true", async () => {
       const result = await consentsToEmail(AGIR_USER_ID, "resetPassword");
-      expect(result).toBe(DEFAULT_MAIL_PREFS.resetPassword);
+      expect(result).toBe(true);
     });
   });
 
   describe("structure-level preferences (STRUCTURE_PREFS)", () => {
-    it("should block restricted templates when structureId is passed directly", async () => {
+    it("should block when structure-level preference is false (via structureId param)", async () => {
       const result = await consentsToEmail(
         UNKNOWN_USER_ID,
         "publishedFicheToStructureMembers",
@@ -66,6 +68,26 @@ describe("consentsToEmail", () => {
 
     it("should block ficheArchived for MENS structure", async () => {
       const result = await consentsToEmail(UNKNOWN_USER_ID, "ficheArchived", MENS_STRUCTURE_ID);
+      expect(result).toBe(false);
+    });
+  });
+
+  describe("veto logic: any false blocks the email", () => {
+    it("should block when user-level is false, even if structure-level would allow", async () => {
+      // AGIR user has newUserWelcome=false in USER_PREFS
+      // Even if we pass an unknown structure (which would allow by default), it should still block
+      const result = await consentsToEmail(AGIR_USER_ID, "newUserWelcome", UNKNOWN_STRUCTURE_ID);
+      expect(result).toBe(false);
+    });
+
+    it("should block when structure-level is false, even if user-level would allow", async () => {
+      // Create a scenario where user has no prefs (would allow) but structure blocks
+      // User has no entry in USER_PREFS, but MENS structure blocks publishedFicheToStructureMembers
+      const result = await consentsToEmail(
+        UNKNOWN_USER_ID,
+        "publishedFicheToStructureMembers",
+        MENS_STRUCTURE_ID,
+      );
       expect(result).toBe(false);
     });
   });
@@ -100,12 +122,18 @@ describe("consentsToEmail", () => {
     });
   });
 
-  describe("priority: user-level vs structure-level", () => {
-    it("should check user-level prefs first, before structure lookup", async () => {
-      // AGIR user exists in USER_PREFS - should NOT query DB
+  describe("performance: skip DB query when user-level blocks", () => {
+    it("should not query DB when user-level preference is false", async () => {
+      // AGIR user has newUserWelcome=false in USER_PREFS - should NOT query DB
       const result = await consentsToEmail(AGIR_USER_ID, "newUserWelcome");
       expect(result).toBe(false);
       expect(StructureModel.find).not.toHaveBeenCalled();
+    });
+
+    it("should query DB when user has no preference to check structure-level", async () => {
+      // Unknown user - should query DB to check structures
+      await consentsToEmail(UNKNOWN_USER_ID, "newUserWelcome");
+      expect(StructureModel.find).toHaveBeenCalled();
     });
   });
 });
