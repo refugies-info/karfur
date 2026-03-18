@@ -23,7 +23,7 @@ import {
   UpButton,
 } from "~/components";
 import { SeparatorSpacing } from "~/components/layout/Separator/Separator";
-import { OriginBadge } from "~/components/OriginBadge";
+
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { registerBackButton } from "~/libs/backButton";
 import { defaultColors } from "~/libs/getThemeTag";
@@ -217,13 +217,6 @@ const ContentScreen = ({ navigation, route }: ContentScreenType) => {
           )}
 
           <LastModificationDate lastModificationDate={lastModificationDate} />
-
-          {selectedContent.origin === "RCO" && (
-            <>
-              <Spacer height={styles.margin * 2} />
-              <OriginBadge />
-            </>
-          )}
 
           <Spacer height={styles.margin * 5} />
           <Section key="what" sectionKey="what" themeId={themeId || null} />

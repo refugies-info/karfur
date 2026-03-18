@@ -7,7 +7,6 @@ import { TextDSFR_MD_Bold } from "../StyledText";
 
 interface Props {
   htmlContent: string;
-  width: number;
   windowWidth: number;
   darkColor: string;
 }
@@ -30,7 +29,6 @@ export const AccordionHeaderFromHtml = (props: Props) => {
           textAlign: isRTL ? "right" : "left",
           lineHeight: 20,
           flexShrink: 1,
-          width: props.width,
           color: props.darkColor,
         }}
         renderers={{
@@ -39,7 +37,6 @@ export const AccordionHeaderFromHtml = (props: Props) => {
               key={passProps.key}
               style={{
                 flexShrink: 1,
-                width: props.width,
                 color: props.darkColor,
               }}
             >

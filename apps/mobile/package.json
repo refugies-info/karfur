@@ -72,7 +72,14 @@
     "styled-components": "6.1.19",
     "typesafe-actions": "^5.1.0",
     "use-sync-external-store": "1.5.0",
-    "uuid": "^11.0.5"
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0",
+    "uuid": "^11.0.5",
+    "remark-directive": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.1",
+    "rehype-stringify": "^10.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -81,6 +88,7 @@
     "@react-native/assets-registry": "^0.82.1",
     "@react-navigation/core": "^7.16.1",
     "@refugies-info/api-types": "workspace:*",
+    "@refugies-info/markdown-utils": "workspace:*",
     "@testing-library/react": "^15.0.7",
     "@testing-library/react-native": "^12.9.0",
     "@types/jest": "^29.5.14",

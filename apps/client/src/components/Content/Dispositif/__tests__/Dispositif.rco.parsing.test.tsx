@@ -19,8 +19,8 @@ jest.mock("remark-gfm", () => () => {});
  *
  * NOTE: For full markdown parsing tests (including time notations like "9:00"),
  * see the unit tests for remark plugins in:
- * - src/lib/markdown/__tests__/directive-to-component.test.ts
- * - src/lib/markdown/__tests__/remark-restore-hierarchy.test.ts
+ * - packages/markdown-utils/src/__tests__/ (constants, helpers, remarkRestoreHierarchy)
+ * - src/lib/markdown/__tests__/markdown-plugins.test.ts (directive-to-component smoke tests)
  *
  * The parsing logic is tested at the plugin level to avoid ESM issues with
  * react-markdown in Jest.

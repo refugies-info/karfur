@@ -69,10 +69,9 @@ const IconContainer = styled.View<{ isRTL: boolean }>`
 `;
 
 const TitleText = styled(TextDSFR_MD_Bold)<{
-  width: number;
   darkColor: string;
 }>`
-  width: ${({ width }) => width}px;
+  flex-shrink: 1;
   color: ${({ darkColor }) => darkColor};
 `;
 const stylesheet = StyleSheet.create({
@@ -92,7 +91,6 @@ interface Props {
   title: string;
   content: string;
   stepNumber: number | null;
-  width: number;
   currentLanguage: Languages | null;
   windowWidth: number;
   darkColor: string;
@@ -157,23 +155,26 @@ export const AccordionAnimated = (props: Props) => {
       >
         <Columns layout="auto 1 auto" verticalAlign="center" RTLBehaviour>
           {props.stepNumber && (
-            <StepContainer darkColor={props.darkColor}>
+            <StepContainer
+              darkColor={props.darkColor}
+              accessible={false}
+              importantForAccessibility="no"
+            >
               <StepText>{props.stepNumber}</StepText>
             </StepContainer>
           )}
           {!props.isContentTranslated ? (
-            <TitleText width={props.width} darkColor={props.darkColor}>
+            <TitleText darkColor={props.darkColor}>
               <ReadableText>{props.title}</ReadableText>
             </TitleText>
           ) : (
             <AccordionHeaderFromHtml
               htmlContent={props.title}
-              width={props.width}
               windowWidth={props.windowWidth}
               darkColor={props.darkColor}
             />
           )}
-          <IconContainer isRTL={isRTL}>
+          <IconContainer isRTL={isRTL} accessible={false} importantForAccessibility="no">
             <Icon
               name={isExpanded ? "chevron-up" : "chevron-down"}
               height={24}
@@ -184,7 +185,11 @@ export const AccordionAnimated = (props: Props) => {
         </Columns>
       </TitleContainer>
 
-      <Animated.View style={[stylesheet.bodyBackground, animatedHeight]}>
+      <Animated.View
+        style={[stylesheet.bodyBackground, animatedHeight]}
+        accessibilityElementsHidden={!isExpanded}
+        importantForAccessibility={isExpanded ? "auto" : "no-hide-descendants"}
+      >
         <View
           onLayout={(event: LayoutChangeEvent) =>
             setBodySectionHeight(event.nativeEvent.layout.height)

@@ -24,7 +24,9 @@ export const getAllDispositifs = async (): ResponseWithData<GetAllDispositifsRes
   logger.info("[getAllDispositifs] called");
 
   const dispositifs = (await Promise.all(
-    (await getDispositifsFromDB())
+    (
+      await getDispositifsFromDB()
+    )
       .filter((d) => d.origin === "RI")
       .map(async (d) => {
         const status = await getStatus(d);
