@@ -94,7 +94,7 @@
     "build": "next build --no-lint",
     "postbuild": "mkdir -p ./.dist && cp -R .next/standalone/* ./.dist/ && cp -R .next/static ./.dist/apps/client/.next/ && cp -R ./public ./.dist/apps/client/",
     "check:types": "tsc --noEmit",
-    "dev": "wait-on http://localhost:8000/health && next dev",
+    "dev": "wait-on http://localhost:8000/health && next dev --webpack",
     "i18n:clean": "node ./scripts/clean-i18n.js",
     "i18n:import": "node ./scripts/import-i18n.js",
     "i18n:export": "node ./scripts/export-i18n.js",

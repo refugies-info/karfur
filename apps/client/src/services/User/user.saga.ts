@@ -78,7 +78,7 @@ export function* saveUser(action: ReturnType<typeof saveUserActionCreator>): Sag
     yield put(finishLoading(LoadingStatusKey.SAVE_USER));
   } catch (error) {
     logger.error("[saveUser] saga error", { error });
-    if ((<AxiosError<{ code?: string }, unknown>>error).response?.data?.code === "WRONG_CODE") {
+    if ((error as AxiosError<{ code?: string }, unknown>).response?.data?.code === "WRONG_CODE") {
       yield put(setError(LoadingStatusKey.SAVE_USER, "WRONG_CODE"));
     } else {
       yield put(setUserActionCreator(null));
