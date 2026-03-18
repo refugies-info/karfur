@@ -1,18 +1,15 @@
-import type { Node, Parent } from "unist";
-import { visit } from "unist-util-visit";
-
 /**
- * Remark Plugin to restore nested hierarchy from flat markdown directives.
+ * Remark plugin to restore nested hierarchy from flat markdown directives.
  *
- * It scans for "stray" `:::` closing fences (parsed as paragraphs in flat markdown)
- * and uses them as signals to nest the preceding sibling into the ante-preceding sibling.
+ * When remark-directive parses markdown, container directives (:::name ... :::)
+ * are sometimes left flat in the AST. This plugin detects stray ":::" closing
+ * fences (parsed as paragraphs) and uses them as signals to nest the preceding
+ * sibling into the ante-preceding container directive.
  *
- * Transformation: `[Parent, Child, :::]` -> `[Parent(Child)]`
+ * Transformation: `[Parent, Child, :::]` → `[Parent(Child)]`
  *
- *
- * Pipeline Position:
- *    [Markdown] -> [remark-parse] -> [remark-directive] -> [THIS PLUGIN] -> [react-markdown]
- *                                         (Produces Flat AST)    (Restores Nesting)
+ * Pipeline position:
+ *    [Markdown] → [remark-parse] → [remark-directive] → [THIS PLUGIN] → [directive transformer]
  *
  * Transformation Example:
  *    [ Input: Flat AST ]              [ Output: Nested AST ]
@@ -29,24 +26,22 @@ import { visit } from "unist-util-visit";
  *    | (stray fence)     |             (Stray fence removed)
  *    +------------------+
  *
- * @returns A unified transformer function.
+ * IMPORTANT: Only CONTENT nodes (paragraphs, lists, etc.) are nested.
+ * If the element before a fence is another directive, the fence is treated
+ * as closing the preceding directive — NOT as nesting the directive inside another.
+ * This prevents toggle from being nested inside good-to-know when they should be siblings.
+ *
+ * Uses manual recursive traversal (not unist-util-visit) for compatibility
+ * with Jest, Metro bundler, and Next.js (avoids ESM-only dependency).
+ *
+ * @module @refugies-info/markdown-utils
  */
-export function remarkRestoreHierarchy() {
-  return (tree: Node) => {
-    visit(tree, checkContainer);
-  };
-}
+
+import type { Node, Parent } from "unist";
+import { isClosingFenceParagraph } from "./helpers";
 
 /**
- * Visitor function to check and fix container hierarchy.
- * It looks for ":::" paragraphs and mimics the closing behavior by moving
- * preceding siblings into the target container.
- *
- * IMPORTANT: Only content (paragraphs, lists, etc.) should be nested.
- * A new directive after a fence means the fence is closing the previous directive,
- * NOT nesting the new directive inside it.
- *
- * @param node - The node currently being visited
+ * Visitor function to check and fix container hierarchy within a parent node.
  */
 function checkContainer(node: Node) {
   const container = node as Parent;
@@ -97,19 +92,23 @@ function checkContainer(node: Node) {
 }
 
 /**
- * Checks if a node is a paragraph containing only ":::".
- * This occurs when remark-directive parses a closing fence strictly as text
- * because of indentation/whitespace mismatches.
+ * Remark plugin to restore nested hierarchy.
  *
- * @param node - The AST node to check (usually a paragraph)
- * @returns true if the node is a text paragraph containing exactly ":::"
+ * @returns A unified transformer function.
  */
-function isClosingFenceParagraph(node: any): boolean {
-  if (node.type !== "paragraph") return false;
-  if (!node.children || node.children.length !== 1) return false;
-
-  const text = node.children[0];
-  if (text.type !== "text") return false;
-
-  return text.value.trim() === ":::";
+export function remarkRestoreHierarchy() {
+  return (tree: Node) => {
+    // Use simple recursive traversal instead of importing unist-util-visit
+    // to avoid ESM-only dependency issues with Jest and Metro bundler
+    function walkAndCheck(node: Node) {
+      checkContainer(node);
+      const parent = node as Parent;
+      if (parent.children && Array.isArray(parent.children)) {
+        for (const child of parent.children) {
+          walkAndCheck(child);
+        }
+      }
+    }
+    walkAndCheck(tree);
+  };
 }

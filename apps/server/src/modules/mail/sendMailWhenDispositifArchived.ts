@@ -20,7 +20,7 @@ export const sendMailWhenDispositifArchived = async (dispositifId: Dispositif["_
       logger.info("[sendMailWhenDispositifArchived] send mail to membre", {
         membreId: membre._id,
       });
-      return sendFicheArchivedService(membre.email, {
+      return sendFicheArchivedService(membre.email, membre._id, {
         firstName: membre.firstName || "",
         lien,
         titreInformatif,

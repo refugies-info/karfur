@@ -43,6 +43,8 @@ export const InfocardImage = ({ color, title, isFree }: Props) => {
       return <Status {...iconProps} />;
     case "public":
       return <Public {...iconProps} />;
+    case "sessions":
+      return <Durations {...iconProps} />;
     default:
       return <Public {...iconProps} />;
   }

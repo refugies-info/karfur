@@ -55,7 +55,8 @@ const CardSessions = ({ className }: Props) => {
         </MetaDataItem>
       )}
       {sortedSessions.map((session: Session, index: number) => {
-        const isPast = new Date(session.endDate) < now;
+        const refDate = modalites === 1 ? session.endDate : session.startDate;
+        const isPast = new Date(refDate) < now;
         const startDate = dateFormatter.format(new Date(session.startDate));
         const endDate = dateFormatter.format(new Date(session.endDate));
 

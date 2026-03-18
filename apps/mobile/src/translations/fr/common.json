@@ -137,7 +137,12 @@
     "scrollToTop": "Haut de page",
     "online": "en ligne",
     "callout_info": "Bon à savoir",
-    "callout_important": "Important"
+    "callout_important": "Important",
+    "session_from": "Du",
+    "session_to": "au",
+    "session_past": "DATE DÉPASSÉE",
+    "modalites_dates_fixes": "Entrées & sorties à dates fixes",
+    "modalites_permanentes": "Entrées & sorties permanentes"
   },
   "Infocards": {
     "proposedBy": "Proposé par",
@@ -214,7 +219,8 @@
     "priceBetween": "entre {{min}}€ et {{max}}€ {{details}}",
     "ageBetween": "entre {{min}} et {{max}} ans",
     "ageMoreThan": "plus de {{age}} ans",
-    "ageLessThan": "moins de {{age}} ans"
+    "ageLessThan": "moins de {{age}} ans",
+    "sessionsTitle": "Sessions"
   },
   "needs_screen": {
     "no_result": "Désolés, nous n'avons pas encore de fiches ici."

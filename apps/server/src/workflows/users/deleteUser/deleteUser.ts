@@ -10,6 +10,6 @@ export const deleteUser = async (id: string) => {
   await deleteUserService(user);
 
   if (email) {
-    await sendAccountDeletedMailService(email);
+    await sendAccountDeletedMailService(email, user._id);
   }
 };
