@@ -21,20 +21,6 @@ const InputContainer = styled(RTLView)`
   border: 1px solid ${styles.colors.darkGrey};
   flex: 1;
 `;
-interface StyledInputProps extends TextInputProps {
-  isRTL: boolean;
-}
-
-const StyledInput = styled(TextInput).attrs<StyledInputProps>(({ isRTL }) => ({
-  textAlign: isRTL ? "right" : "left",
-  style: {
-    marginLeft: isRTL ? 0 : styles.margin,
-    marginRight: isRTL ? styles.margin : 0,
-    color: styles.colors.black,
-  },
-}))`
-  flex: 1;
-`;
 
 interface Props {
   searchInputValue: string;
@@ -80,6 +66,14 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     }, 1000);
   }, []);
 
+  const inputStyle = {
+    flex: 1,
+    fontSize: 16,
+    color: styles.colors.black,
+    marginLeft: isRTL ? 0 : styles.margin,
+    marginRight: isRTL ? styles.margin : 0,
+  };
+
   return (
     <MainContainer>
       <TouchableOpacity
@@ -93,13 +87,14 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
       </TouchableOpacity>
       <InputContainer ref={containerRef}>
         <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
-        <StyledInput
+        <TextInput
           ref={input}
+          style={inputStyle}
           onChangeText={setQuery}
           value={searchInputValue}
           placeholder={t("search_screen.search", "Rechercher")}
           placeholderTextColor={styles.colors.darkGrey}
-          isRTL={isRTL}
+          textAlign={isRTL ? "right" : "left"}
           testID="test-city-search"
         />
         <TouchableOpacity
