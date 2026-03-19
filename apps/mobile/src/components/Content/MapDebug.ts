@@ -1,5 +1,5 @@
 export const MAP_DEBUG = {
-  ENABLE: true,
+  ENABLE: __DEV__,
   TAG: "[MapDebug]",
 };
 
@@ -8,9 +8,4 @@ export const logMapEvent = (event: string, data?: unknown) => {
     const timestamp = new Date().toISOString().split("T")[1];
     console.log(`${MAP_DEBUG.TAG} ${timestamp} ${event}`, data !== undefined ? data : "");
   }
-};
-
-export const logMapError = (event: string, error: unknown) => {
-  const timestamp = new Date().toISOString().split("T")[1];
-  console.error(`${MAP_DEBUG.TAG} ${timestamp} ${event}`, error);
 };
