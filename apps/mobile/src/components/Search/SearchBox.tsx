@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { TextInput, type TextInputProps, TouchableOpacity, type View } from "react-native";
+import { TextInput, type TextInputProps, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -30,7 +30,6 @@ interface Props {
 
 const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, backCallback }) => {
   const input = React.useRef<TextInput>(null);
-  const containerRef = React.useRef<View>(null);
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
 
@@ -54,26 +53,13 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     }, 500);
   }, []);
 
-  // Debug: measure actual dimensions
-  useEffect(() => {
-    setTimeout(() => {
-      containerRef.current?.measure((x, y, width, height, pageX, pageY) => {
-        console.log("[SearchBox DEBUG] InputContainer measured:", { width, height, pageX, pageY });
-      });
-      input.current?.measure((x, y, width, height, pageX, pageY) => {
-        console.log("[SearchBox DEBUG] StyledInput measured:", { width, height, pageX, pageY });
-      });
-    }, 1000);
-  }, []);
-
   const inputStyle = {
     flex: 1,
-    height: 40, // Explicit height
+    height: 40,
     fontSize: 16,
     color: styles.colors.black,
     marginLeft: isRTL ? 0 : styles.margin,
     marginRight: isRTL ? styles.margin : 0,
-    backgroundColor: "red", // Debug: make it visible
   };
 
   return (
@@ -87,7 +73,7 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
       >
         <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.darkGrey} />
       </TouchableOpacity>
-      <InputContainer ref={containerRef}>
+      <InputContainer>
         <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         <TextInput
           ref={input}
