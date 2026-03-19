@@ -1,4 +1,5 @@
-/* stylelint-disable */
+/* stylelint-disable custom-property-pattern */
+
 /**
  * Réfugiés.info Design Tokens
  * 
@@ -166,10 +167,12 @@
     --color-gray-70b: #ababab;
     --color-gray-80: #5e5e5e;
     --color-gray-90: #212121;
-    --color-dark-grey: #5e5e5e;
-    --color-light-grey: #edebeb;
+    
+    /* Gray aliases (for backward compatibility) */
+    --color-dark-grey: var(--color-gray-80);
+    --color-light-grey: var(--color-gray-40b);
     --color-grey-2: #e0e0e0;
-    --color-grey-50b: #e0e0e0;
+    --color-grey-50b: var(--color-grey-2);
     
     /* Green / Success */
     --color-green: #137f3a;

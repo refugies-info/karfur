@@ -43,35 +43,32 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-bottom: 8px;
 }
 
-.c14 {
+.c12 {
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
 }
 
-.c16 {
+.c14 {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-top: 8px;
 }
 
-.c15 {
-  background: focus;
+.c13 {
   border-radius: 12px;
   padding: 16px;
   margin-top: 15px;
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
-  color: white;
   margin-bottom: 15px;
 }
 
 .c11 {
   width: 40px;
   height: 40px;
-  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -79,10 +76,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   margin-right: 4px;
   margin-left: 4px;
   cursor: pointer;
-}
-
-.c11:hover {
-  background-color: error;
 }
 
 .c8 {
@@ -95,23 +88,9 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: bleuCharte;
-}
-
-.c12 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
 }
 
 .c10 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c13 {
-  color: gray90;
   max-width: 190px;
 }
 
@@ -126,7 +105,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c3 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -135,7 +113,6 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -343,7 +320,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -395,7 +372,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                       width="70"
                     />
                     <div
-                      class="c12"
+                      class="c9"
                     >
                       membre1
                     </div>
@@ -405,7 +382,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   >
                     undefined undefined
                   </div>
@@ -414,7 +391,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   />
                 </td>
                 <td
@@ -438,7 +415,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -474,12 +451,12 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
       </div>
       <div>
         <div
-          class="c14"
+          class="c12"
         >
           Ajouter un membre
         </div>
         <div
-          class="c15"
+          class="c13"
         >
           <b>
             Attention :
@@ -507,7 +484,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                 >
                   <svg
                     class="eva eva-search-outline"
-                    fill="gray90"
+                    fill="#fff"
                     height="20px"
                     viewBox="0 0 24 24"
                     width="20px"
@@ -536,7 +513,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           </div>
         </div>
         <div
-          class="c16"
+          class="c14"
         >
           <button
             class="btn outline-black me-2"
@@ -687,7 +664,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
 }
 
 .c2 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -696,7 +672,6 @@ exports[`UserStructure should render correctly when loading 1`] = `
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -725,7 +700,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 160px; height: 20px; --base-color: white;"
+            style="width: 160px; height: 20px;"
           >
             ‌
           </span>
@@ -758,7 +733,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: white;"
+            style="width: 700px; height: 50px;"
           >
             ‌
           </span>
@@ -770,7 +745,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: white;"
+            style="width: 700px; height: 50px;"
           >
             ‌
           </span>
@@ -782,7 +757,7 @@ exports[`UserStructure should render correctly when loading 1`] = `
         >
           <span
             class="react-loading-skeleton"
-            style="width: 700px; height: 50px; --base-color: white;"
+            style="width: 700px; height: 50px;"
           >
             ‌
           </span>
@@ -834,7 +809,6 @@ exports[`UserStructure should render correctly when no structure 1`] = `
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: error;
   margin-top: 60px;
 }
 
@@ -910,7 +884,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 .c11 {
   width: 40px;
   height: 40px;
-  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -918,10 +891,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-right: 4px;
   margin-left: 4px;
   cursor: pointer;
-}
-
-.c11:hover {
-  background-color: error;
 }
 
 .c8 {
@@ -934,23 +903,9 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: bleuCharte;
-}
-
-.c12 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
 }
 
 .c10 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c13 {
-  color: gray90;
   max-width: 190px;
 }
 
@@ -965,7 +920,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c3 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -974,7 +928,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -1182,7 +1135,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1234,7 +1187,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                       width="70"
                     />
                     <div
-                      class="c12"
+                      class="c9"
                     >
                       membre2
                     </div>
@@ -1244,7 +1197,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   >
                     undefined undefined
                   </div>
@@ -1253,7 +1206,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   />
                 </td>
                 <td
@@ -1277,7 +1230,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1373,7 +1326,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 .c11 {
   width: 40px;
   height: 40px;
-  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -1381,10 +1333,6 @@ exports[`UserStructure should render correctly when structure with membres when 
   margin-right: 4px;
   margin-left: 4px;
   cursor: pointer;
-}
-
-.c11:hover {
-  background-color: error;
 }
 
 .c8 {
@@ -1397,23 +1345,9 @@ exports[`UserStructure should render correctly when structure with membres when 
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: bleuCharte;
-}
-
-.c12 {
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: gray90;
 }
 
 .c10 {
-  color: bleuCharte;
-  max-width: 190px;
-}
-
-.c13 {
-  color: gray90;
   max-width: 190px;
 }
 
@@ -1428,7 +1362,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c3 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -1437,7 +1370,6 @@ exports[`UserStructure should render correctly when structure with membres when 
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin: 0px 20px 0px 20px;
@@ -1645,7 +1577,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1697,7 +1629,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                       width="70"
                     />
                     <div
-                      class="c12"
+                      class="c9"
                     >
                       membre1
                     </div>
@@ -1707,7 +1639,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   >
                     undefined undefined
                   </div>
@@ -1716,7 +1648,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                   class="align-middle"
                 >
                   <div
-                    class="c13"
+                    class="c10"
                   />
                 </td>
                 <td
@@ -1740,7 +1672,7 @@ exports[`UserStructure should render correctly when structure with membres when 
                           >
                             <svg
                               class="eva eva-trash"
-                              fill="white"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"

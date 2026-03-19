@@ -19,7 +19,6 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
      
   </div>
   .c0 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -36,7 +35,6 @@ exports[`UserNotifications should render correctly when 0 notif 1`] = `
 }
 
 .c1 {
-  color: darkGrey;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -131,7 +129,6 @@ exports[`UserNotifications should render correctly when loading 1`] = `
 }
 
 .c0 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -250,7 +247,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
 }
 
 .c4 {
-  background: focus;
   border-radius: 12px;
   padding: 8px 8px 8px 20px;
   margin: 8px 0px 0px 0px;
@@ -261,30 +257,6 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   cursor: pointer;
   border-width: 2px;
   border-style: solid;
-  border-color: focus;
-}
-
-.c4:hover {
-  border-color: gray90;
-}
-
-.c9 {
-  background: white;
-  border-radius: 12px;
-  padding: 8px 8px 8px 20px;
-  margin: 8px 0px 0px 0px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  border-width: 2px;
-  border-style: solid;
-  border-color: white;
-}
-
-.c9:hover {
-  border-color: gray90;
 }
 
 .c5 {
@@ -297,20 +269,10 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   font-weight: bold;
   font-size: 18px;
   line-height: 23px;
-  color: white;
-  margin-left: 20px;
-}
-
-.c10 {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-  color: gray90;
   margin-left: 20px;
 }
 
 .c8 {
-  background: lightGrey;
   border-radius: 8px;
   padding: 8px;
   font-weight: bold;
@@ -323,13 +285,11 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: white;
   margin-right: 8px;
   margin-left: 8px;
 }
 
 .c0 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-top: 26px;
@@ -378,7 +338,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="white"
+                fill="#fff"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -508,7 +468,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="white"
+                fill="#fff"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -607,7 +567,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell"
-                fill="white"
+                fill="#fff"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -730,7 +690,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
         </div>
       </div>
       <div
-        class="c9"
+        class="c4"
         data-testid="test-notif-reaction"
       >
         <div
@@ -744,7 +704,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             >
               <svg
                 class="eva eva-bell-outline"
-                fill="gray90"
+                fill="#fff"
                 height="20px"
                 viewBox="0 0 24 24"
                 width="20px"
@@ -770,7 +730,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             </i>
           </span>
           <div
-            class="c10"
+            class="c6"
           >
             Nouvelle réaction sur la fiche :
           </div>

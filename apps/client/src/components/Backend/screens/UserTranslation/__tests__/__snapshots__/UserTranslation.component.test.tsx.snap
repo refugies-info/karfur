@@ -34,7 +34,6 @@ exports[`user translation should redirect if user has language but not langue in
 }
 
 .c2 {
-  background: white;
   border-radius: 12px;
   width: 1040px;
   display: flex;
@@ -45,7 +44,6 @@ exports[`user translation should redirect if user has language but not langue in
 .c3 {
   font-size: 32px;
   line-height: 40px;
-  color: darkGrey;
   margin-top: 60px;
   margin-bottom: 20px;
 }
@@ -53,7 +51,6 @@ exports[`user translation should redirect if user has language but not langue in
 .c4 {
   font-size: 18px;
   line-height: 23px;
-  color: darkGrey;
   margin-bottom: 40px;
 }
 
@@ -293,7 +290,6 @@ exports[`user translation should redirect if user has no language but langue in 
 }
 
 .c2 {
-  background: white;
   border-radius: 12px;
   width: 1040px;
   display: flex;
@@ -304,7 +300,6 @@ exports[`user translation should redirect if user has no language but langue in 
 .c3 {
   font-size: 32px;
   line-height: 40px;
-  color: darkGrey;
   margin-top: 60px;
   margin-bottom: 20px;
 }
@@ -312,7 +307,6 @@ exports[`user translation should redirect if user has no language but langue in 
 .c4 {
   font-size: 18px;
   line-height: 23px;
-  color: darkGrey;
   margin-bottom: 40px;
 }
 
@@ -951,7 +945,6 @@ exports[`user translation should return loader langue in url = first selected la
 }
 
 .c2 {
-  background: white;
   border-radius: 12px;
   width: 1040px;
   display: flex;
@@ -962,7 +955,6 @@ exports[`user translation should return loader langue in url = first selected la
 .c3 {
   font-size: 32px;
   line-height: 40px;
-  color: darkGrey;
   margin-top: 60px;
   margin-bottom: 20px;
 }
@@ -970,7 +962,6 @@ exports[`user translation should return loader langue in url = first selected la
 .c4 {
   font-size: 18px;
   line-height: 23px;
-  color: darkGrey;
   margin-bottom: 40px;
 }
 

@@ -34,7 +34,7 @@ background: var(--color-gray-20);   /* was: $gray20 */
 ### In TypeScript
 
 ```typescript
-import { colors, spacing, typography, u } from "@refugies-info/ui/tokens";
+import { colors, spacing, typography, u, mediaMin } from "@refugies-info/ui/tokens";
 
 // Colors
 const primaryColor = colors.blue;        // "#0a54bf"
@@ -46,6 +46,9 @@ const padding = u(4);  // 16
 // Typography
 const fontSize = typography.normal.fontSize;  // 16
 const lineHeight = typography.normal.lineHeight;  // 24
+
+// Media queries (for JS-in-CSS)
+const tabletAndUp = mediaMin("tabletUp"); // => "@media (min-width: 48em)"
 ```
 
 ## Token Reference

@@ -19,7 +19,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
      
   </div>
   .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-left: 100px;
@@ -35,12 +34,10 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   font-size: 28px;
   line-height: 35px;
   align-self: center;
-  color: gray90;
   margin-bottom: 40px;
 }
 
 .c3 {
-  background: white;
   border-radius: 12px;
   width: 100%;
   height: 300px;
@@ -53,7 +50,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
-  color: darkGrey;
   margin-top: 52px;
   margin-bottom: 20px;
 }
@@ -62,7 +58,6 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
-  color: darkGrey;
 }
 
 .c6 {
@@ -272,7 +267,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 .c11 {
   width: 40px;
   height: 40px;
-  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -280,31 +274,9 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   margin-right: 4px;
   margin-left: 4px;
   cursor: pointer;
-}
-
-.c11:hover {
-  background-color: gray90;
-}
-
-.c12 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c12:hover {
-  background-color: error;
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-left: 100px;
@@ -319,13 +291,11 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: white;
-  background-color: gray90;
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
   cursor: default;
-  border: 1px solid gray90;
+  border: 1px solid;
 }
 
 .c7 {
@@ -350,7 +320,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: gray90;
 }
 
 .c0 {
@@ -370,7 +339,6 @@ exports[`userContributions should render correctly when click on delete 1`] = `
 }
 
 .c6 {
-  background: white;
   border-radius: 12px;
   width: 100%;
   padding: 20px;
@@ -522,7 +490,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         >
                           <svg
                             class="eva eva-question-mark-circle-outline"
-                            fill="gray90"
+                            fill="#fff"
                             height="20px"
                             viewBox="0 0 24 24"
                             width="20px"
@@ -615,7 +583,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                           >
                             <svg
                               class="eva eva-person-outline"
-                              fill="gray90"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -705,7 +673,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -739,7 +707,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id1"
                       >
                         <div
@@ -753,7 +721,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -862,7 +830,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
 .c11 {
   width: 40px;
   height: 40px;
-  background-color: gray70;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -870,31 +837,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
   margin-right: 4px;
   margin-left: 4px;
   cursor: pointer;
-}
-
-.c11:hover {
-  background-color: gray90;
-}
-
-.c12 {
-  width: 40px;
-  height: 40px;
-  background-color: gray70;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 4px;
-  margin-left: 4px;
-  cursor: pointer;
-}
-
-.c12:hover {
-  background-color: error;
 }
 
 .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-left: 100px;
@@ -909,26 +854,11 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: white;
-  background-color: gray90;
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
   cursor: default;
-  border: 1px solid gray90;
-}
-
-.c13 {
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  color: gray90;
-  background-color: white;
-  padding: 8px;
-  border-radius: 6px;
-  width: fit-content;
-  cursor: default;
-  border: 1px solid gray90;
+  border: 1px solid;
 }
 
 .c7 {
@@ -953,10 +883,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: gray90;
 }
 
-.c14 {
+.c12 {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -968,10 +897,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: white;
 }
 
-.c15 {
+.c13 {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -983,10 +911,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: white;
 }
 
-.c16 {
+.c14 {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -998,10 +925,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: white;
 }
 
-.c17 {
+.c15 {
   display: flex;
   align-items: center;
   font-weight: bold;
@@ -1013,7 +939,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
-  color: white;
 }
 
 .c0 {
@@ -1033,7 +958,6 @@ exports[`userContributions should render correctly when contributions 1`] = `
 }
 
 .c6 {
-  background: white;
   border-radius: 12px;
   width: 100%;
   padding: 20px;
@@ -1185,7 +1109,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         >
                           <svg
                             class="eva eva-question-mark-circle-outline"
-                            fill="gray90"
+                            fill="#fff"
                             height="20px"
                             viewBox="0 0 24 24"
                             width="20px"
@@ -1278,7 +1202,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           >
                             <svg
                               class="eva eva-person-outline"
-                              fill="gray90"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1368,7 +1292,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -1402,7 +1326,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id1"
                       >
                         <div
@@ -1416,7 +1340,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -1454,7 +1378,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -1491,7 +1415,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           >
                             <svg
                               class="eva eva-person-outline"
-                              fill="gray90"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -1530,7 +1454,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c14"
+                        class="c12"
                       >
                         En attente
                       </div>
@@ -1581,7 +1505,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -1615,7 +1539,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id2"
                       >
                         <div
@@ -1629,7 +1553,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -1667,7 +1591,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -1699,7 +1623,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c15"
+                        class="c13"
                       >
                         Relecture en cours
                       </div>
@@ -1750,7 +1674,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -1784,7 +1708,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id3"
                       >
                         <div
@@ -1798,7 +1722,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -1836,7 +1760,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -1868,7 +1792,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c14"
+                        class="c12"
                       >
                         Accepté
                       </div>
@@ -1919,7 +1843,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -1953,7 +1877,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id4"
                       >
                         <div
@@ -1967,7 +1891,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -2005,7 +1929,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -2042,7 +1966,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           >
                             <svg
                               class="eva eva-person-outline"
-                              fill="gray90"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2081,7 +2005,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c16"
+                        class="c14"
                       >
                         Rejeté
                       </div>
@@ -2132,7 +2056,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -2166,7 +2090,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id5"
                       >
                         <div
@@ -2180,7 +2104,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -2218,7 +2142,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -2250,7 +2174,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c17"
+                        class="c15"
                       >
                         Publié
                       </div>
@@ -2307,7 +2231,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -2341,7 +2265,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id6"
                       >
                         <div
@@ -2355,7 +2279,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -2393,7 +2317,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     class="first align-middle"
                   >
                     <div
-                      class="c13"
+                      class="c8"
                     >
                       Démarche
                     </div>
@@ -2430,7 +2354,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           >
                             <svg
                               class="eva eva-briefcase-outline"
-                              fill="gray90"
+                              fill="#fff"
                               height="20px"
                               viewBox="0 0 24 24"
                               width="20px"
@@ -2466,7 +2390,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                       style="width: 120px;"
                     >
                       <div
-                        class="c17"
+                        class="c15"
                       >
                         Publié
                       </div>
@@ -2523,7 +2447,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                               >
                                 <svg
                                   class="eva eva-eye"
-                                  fill="white"
+                                  fill="#fff"
                                   height="20px"
                                   viewBox="0 0 24 24"
                                   width="20px"
@@ -2557,7 +2481,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         </a>
                       </div>
                       <div
-                        class="c12"
+                        class="c11"
                         data-testid="delete-button-id7"
                       >
                         <div
@@ -2571,7 +2495,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             >
                               <svg
                                 class="eva eva-trash"
-                                fill="white"
+                                fill="#fff"
                                 height="20px"
                                 viewBox="0 0 24 24"
                                 width="20px"
@@ -2640,7 +2564,6 @@ exports[`userContributions should render correctly when loading 1`] = `
      
   </div>
   .c1 {
-  background: lightGrey;
   border-radius: 12px;
   padding: 40px;
   margin-left: 100px;
@@ -2656,12 +2579,10 @@ exports[`userContributions should render correctly when loading 1`] = `
   font-size: 28px;
   line-height: 35px;
   align-self: center;
-  color: gray90;
   margin-bottom: 40px;
 }
 
 .c3 {
-  background: white;
   border-radius: 12px;
   width: 100%;
   height: 300px;
@@ -2674,7 +2595,6 @@ exports[`userContributions should render correctly when loading 1`] = `
   font-weight: normal;
   font-size: 32px;
   line-height: 40px;
-  color: darkGrey;
   margin-top: 52px;
   margin-bottom: 20px;
 }
@@ -2683,7 +2603,6 @@ exports[`userContributions should render correctly when loading 1`] = `
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
-  color: darkGrey;
 }
 
 .c6 {
