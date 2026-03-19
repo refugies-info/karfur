@@ -67,6 +67,20 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     }, 500);
   }, []);
 
+  // Debug: log styles and colors
+  useEffect(() => {
+    console.log("[SearchBox DEBUG] styles.colors:", {
+      black: styles.colors.black,
+      darkGrey: styles.colors.darkGrey,
+      white: styles.colors.white,
+    });
+    console.log("[SearchBox DEBUG] InputContainer height: 56px");
+    console.log("[SearchBox DEBUG] StyledInput style:", {
+      color: styles.colors.black,
+      flex: 1,
+    });
+  }, []);
+
   return (
     <MainContainer>
       <TouchableOpacity
