@@ -30,12 +30,10 @@ const StyledInput = styled(TextInput).attrs<StyledInputProps>(({ isRTL }) => ({
   style: {
     marginLeft: isRTL ? 0 : styles.margin,
     marginRight: isRTL ? styles.margin : 0,
+    color: styles.colors.black,
   },
 }))`
-  height: 100%;
-  width: 100%;
   flex: 1;
-  color: ${styles.colors.black};
 `;
 
 interface Props {
