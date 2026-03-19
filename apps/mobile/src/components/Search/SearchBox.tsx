@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { TextInput, type TextInputProps, TouchableOpacity } from "react-native";
+import { TextInput, type TextInputProps, TouchableOpacity, type View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -44,6 +44,7 @@ interface Props {
 
 const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, backCallback }) => {
   const input = React.useRef<TextInput>(null);
+  const containerRef = React.useRef<View>(null);
   const { t, isRTL } = useTranslationWithRTL();
   const { query, refine } = useSearchBox();
 
@@ -67,18 +68,16 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     }, 500);
   }, []);
 
-  // Debug: log styles and colors
+  // Debug: measure actual dimensions
   useEffect(() => {
-    console.log("[SearchBox DEBUG] styles.colors:", {
-      black: styles.colors.black,
-      darkGrey: styles.colors.darkGrey,
-      white: styles.colors.white,
-    });
-    console.log("[SearchBox DEBUG] InputContainer height: 56px");
-    console.log("[SearchBox DEBUG] StyledInput style:", {
-      color: styles.colors.black,
-      flex: 1,
-    });
+    setTimeout(() => {
+      containerRef.current?.measure((x, y, width, height, pageX, pageY) => {
+        console.log("[SearchBox DEBUG] InputContainer measured:", { width, height, pageX, pageY });
+      });
+      input.current?.measure((x, y, width, height, pageX, pageY) => {
+        console.log("[SearchBox DEBUG] StyledInput measured:", { width, height, pageX, pageY });
+      });
+    }, 1000);
   }, []);
 
   return (
@@ -92,7 +91,7 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
       >
         <Icon name="arrow-back-outline" height={24} width={24} fill={styles.colors.darkGrey} />
       </TouchableOpacity>
-      <InputContainer>
+      <InputContainer ref={containerRef}>
         <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
         <StyledInput
           ref={input}
