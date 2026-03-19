@@ -1,0 +1,15 @@
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Screenshots
+/screenshots/local/
+comparison-report/
+
+# Node
+node_modules/
+
+# Build
+dist/

@@ -1,0 +1,22 @@
+{
+  "name": "@refugies-info/e2e",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Visual regression testing for Réfugiés.info",
+  "scripts": {
+    "capture:prod": "playwright test --project='capture-prod-*' --config=playwright.config.ts",
+    "capture:local": "playwright test --project='capture-local-*' --config=playwright.config.ts",
+    "compare": "npx tsx scripts/compare.ts",
+    "report": "playwright show-report",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@refugies-info/typescript-config": "workspace:*",
+    "typescript": "^5.9.3"
+  },
+  "volta": {
+    "node": "24.14.0",
+    "pnpm": "10.32.1"
+  }
+}

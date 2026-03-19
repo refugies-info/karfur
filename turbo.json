@@ -115,6 +115,10 @@
     },
     "format": {
       "dependsOn": ["^format", "//#base"]
+    },
+    "e2e": {
+      "cache": false,
+      "outputs": ["test-results/**", "screenshots/**"]
     }
   }
 }

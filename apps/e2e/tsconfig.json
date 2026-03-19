@@ -1,0 +1,11 @@
+{
+  "extends": "@refugies-info/typescript-config/base.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "types": ["node"]
+  },
+  "include": ["src/**/*", "playwright.config.ts"]
+}
