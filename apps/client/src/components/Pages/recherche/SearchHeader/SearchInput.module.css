@@ -19,5 +19,7 @@
     background-color: #fff;
     color: var(--text-title-grey);
     box-shadow: 0 2px 0 0 var(--background-flat-blue-france);
+    height: 2.5rem;
+    line-height: 1.5;
   }
 }
