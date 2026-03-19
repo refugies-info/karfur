@@ -13,7 +13,8 @@
     "./globals.css": "./src/css/globals-ui.css",
     "./lib/*": "./src/lib/*",
     "./hooks/*": "./src/hooks/*",
-    "./*": "./src/*.{ts,tsx}"
+    "./*": "./src/*.{ts,tsx}",
+    "./tokens": "./src/tokens.ts"
   },
   "scripts": {
     "build": "tailwindcss -i ./src/css/globals-ui.css -o ./dist/index.css",

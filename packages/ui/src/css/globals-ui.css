@@ -2,6 +2,7 @@
 /* stylelint-disable custom-property-pattern */
 @import "tailwindcss";
 @import "./dsfr-tokens.css";
+@import "./ri-tokens.css";
 @import "./dsfr-customisations.css";
 @import "./container.css";
 @import "./prose.css";

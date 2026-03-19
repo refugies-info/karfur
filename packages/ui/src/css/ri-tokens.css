@@ -1,0 +1,242 @@
+/* stylelint-disable */
+/**
+ * Réfugiés.info Design Tokens
+ * 
+ * These tokens replace SCSS variables/functions:
+ * - u() function → --u-* spacing tokens
+ * - $texts/$dsfr-texts maps → --text-* typography tokens
+ * - $breakpoints map → --breakpoint-* tokens
+ * - $colors → --color-* tokens (RI brand colors)
+ * 
+ * Usage in CSS:
+ *   padding: var(--u-4);        // was: u(4) → 16px
+ *   font: var(--text-normal);   // was: @include dsfr-text(normal)
+ *   color: var(--color-blue);   // was: $blue
+ */
+
+/* ============================================================================
+ * SPACING TOKENS
+ * 
+ * Based on u() function: $value * 4px
+ * Used 598 times across the codebase
+ * ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Unit spacing - 4px base */
+    --u-0: 0;
+    --u-0-5: 2px;      /* 0.5 * 4 */
+    --u-1: 4px;        /* 1 * 4 */
+    --u-1-5: 6px;      /* 1.5 * 4 */
+    --u-2: 8px;        /* 2 * 4 */
+    --u-2-5: 10px;     /* 2.5 * 4 */
+    --u-3: 12px;       /* 3 * 4 */
+    --u-4: 16px;       /* 4 * 4 */
+    --u-5: 20px;       /* 5 * 4 */
+    --u-6: 24px;       /* 6 * 4 */
+    --u-7: 28px;       /* 7 * 4 */
+    --u-8: 32px;       /* 8 * 4 */
+    --u-9: 36px;       /* 9 * 4 */
+    --u-10: 40px;      /* 10 * 4 */
+    --u-11: 44px;      /* 11 * 4 */
+    --u-12: 48px;      /* 12 * 4 */
+    --u-14: 56px;      /* 14 * 4 */
+    --u-16: 64px;      /* 16 * 4 */
+    --u-18: 72px;      /* 18 * 4 */
+    --u-20: 80px;      /* 20 * 4 */
+    --u-24: 96px;      /* 24 * 4 */
+    --u-28: 112px;     /* 28 * 4 */
+    --u-32: 128px;     /* 32 * 4 */
+    
+    /* Negative spacing */
+    --u-neg-1: -4px;
+    --u-neg-2: -8px;
+    --u-neg-3: -12px;
+    --u-neg-4: -16px;
+    --u-neg-6: -24px;
+    --u-neg-8: -32px;
+  }
+}
+
+/* ============================================================================
+ * TYPOGRAPHY TOKENS (DSFR Compliant)
+ * 
+ * From $dsfr-texts Sass map - pixel-based DSFR spec
+ * Font shorthand: font-size / line-height
+ * ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Body text */
+    --text-very-small: 12px / 20px;
+    --text-small: 14px / 24px;
+    --text-normal: 16px / 24px;
+    --text-large: 18px / 28px;
+    --text-chapo: 20px / 32px;
+    
+    /* Headings */
+    --text-h6: 20px / 28px;
+    --text-h5: 22px / 28px;
+    --text-h4: 24px / 32px;
+    --text-h3: 28px / 36px;
+    --text-h2: 32px / 40px;
+    --text-h1: 40px / 48px;
+    
+    /* Alternative titles */
+    --text-alt-title: 48px / 56px;
+    --text-alt-title-big: 56px / 64px;
+  }
+}
+
+/* ============================================================================
+ * TYPOGRAPHY TOKENS (Custom RI Scale)
+ * 
+ * From $texts Sass map - rem-based custom scale
+ * Used for some legacy components
+ * ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Rem-based typography (1rem = 16px default) */
+    --text-rem-very-small: 0.75rem / 0.9375rem;    /* 12px / 15px */
+    --text-rem-small: 0.875rem / 1.1875rem;        /* 14px / 19px */
+    --text-rem-normal: 1rem / 1.375rem;            /* 16px / 22px */
+    --text-rem-large: 1.125rem / 1.4375rem;        /* 18px / 23px */
+    --text-rem-h5: 1.375rem / 1.75rem;             /* 22px / 28px */
+    --text-rem-h4: 1.75rem / 2.1875rem;            /* 28px / 35px */
+    --text-rem-h3: 2.5rem / 3.1875rem;              /* 40px / 51px */
+    --text-rem-h2: 2.5rem / 3.1875rem;              /* 40px / 51px */
+    --text-rem-h1: 3.25rem / 4.125rem;              /* 52px / 66px */
+  }
+}
+
+/* ============================================================================
+ * BREAKPOINT TOKENS
+ * 
+ * From $breakpoints Sass map - em-based for accessibility
+ * Use with standard @media queries
+ * ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Breakpoint values (em-based) */
+    --breakpoint-phone-down: 31.25em;    /* 500px */
+    --breakpoint-sm-limit: 36.0625em;    /* 577px */
+    --breakpoint-tablet-up: 48em;        /* 768px */
+    --breakpoint-md-limit: 48.0625em;    /* 769px */
+    --breakpoint-lg-limit: 62em;         /* 992px */
+    --breakpoint-desktop-up: 64em;       /* 1024px */
+    --breakpoint-xl-limit: 75em;         /* 1200px */
+    --breakpoint-widescreen-up: 90em;    /* 1440px */
+    
+    /* Component-specific */
+    --breakpoint-drawer: 48em;           /* 768px */
+  }
+}
+
+/* ============================================================================
+ * RI BRAND COLORS
+ * 
+ * From _colors.scss - Réfugiés.info specific brand colors
+ * Note: DSFR colors are already in dsfr-tokens.css
+ * ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Base colors */
+    --color-white: #fff;
+    --color-dark: #212121;
+    --color-light: #f2f2f2;
+    
+    /* Brand blue */
+    --color-bleu-charte: #0421b1;
+    --color-blue: #0a54bf;
+    --color-focus: #2d9cdb;
+    --color-bg-focus: #d2edfc;
+    
+    /* Gray scale */
+    --color-gray-10: #fbfbfb;
+    --color-gray-20: #f2f2f2;
+    --color-gray-30: #f6f6f6;
+    --color-gray-40: #e5e5e5;
+    --color-gray-40b: #edebeb;
+    --color-gray-50: #cdcdcd;
+    --color-gray-60: #c6c6c6;
+    --color-gray-70: #828282;
+    --color-gray-70b: #ababab;
+    --color-gray-80: #5e5e5e;
+    --color-gray-90: #212121;
+    --color-dark-grey: #5e5e5e;
+    --color-light-grey: #edebeb;
+    --color-grey-2: #e0e0e0;
+    --color-grey-50b: #e0e0e0;
+    
+    /* Green / Success */
+    --color-green: #137f3a;
+    --color-vert: #2ca12a;
+    --color-vert-2: #008205;
+    --color-vert-fonce: #219653;
+    --color-green-validate: #bdf0c7;
+    --color-light-green: #def6c2;
+    --color-validation: #def6c2;
+    --color-validation-default: #8bc34a;
+    --color-validation-hover: #4caf50;
+    
+    /* Orange / Warning */
+    --color-orange: #ff9800;
+    --color-orange-dark: #ea6206;
+    --color-dark-orange: #ea6206;
+    --color-light-orange: #ffe2b8;
+    --color-standby: #fdd497;
+    
+    /* Yellow */
+    --color-yellow: #ffeb3b;
+    --color-light-yellow: #fff7ae;
+    
+    /* Red / Error */
+    --color-red-dark: #b50437;
+    --color-rouge: #e55039;
+    --color-error: #f44336;
+    --color-erreur: #ffcecb;
+    
+    /* DSFR Dark Mode Colors */
+    --color-dark-bg-action-high-blue-france: #8585f6;
+    --color-dark-bg-alt-blue-france: #1b1b35;
+    --color-dark-bg-alt-grey: #1e1e1e;
+    --color-dark-bg-contrast-grey: #242424;
+    --color-dark-bg-elevation-contrast: #2f2f2f;
+    --color-dark-border-plain-error: #ff5655;
+  }
+}
+
+/* ============================================================================
+ * TAILWIND V4 INTEGRATION
+ * 
+ * Expose tokens as Tailwind theme values
+ * ============================================================================ */
+
+@theme {
+  /* Spacing */
+  --spacing-u-0: var(--u-0);
+  --spacing-u-1: var(--u-1);
+  --spacing-u-2: var(--u-2);
+  --spacing-u-3: var(--u-3);
+  --spacing-u-4: var(--u-4);
+  --spacing-u-5: var(--u-5);
+  --spacing-u-6: var(--u-6);
+  --spacing-u-8: var(--u-8);
+  --spacing-u-10: var(--u-10);
+  --spacing-u-12: var(--u-12);
+  --spacing-u-16: var(--u-16);
+  --spacing-u-20: var(--u-20);
+  --spacing-u-24: var(--u-24);
+  
+  /* Colors */
+  --color-ri-blue: var(--color-blue);
+  --color-ri-bleu-charte: var(--color-bleu-charte);
+  --color-ri-focus: var(--color-focus);
+  --color-ri-green: var(--color-green);
+  --color-ri-orange: var(--color-orange);
+  --color-ri-error: var(--color-error);
+  --color-ri-gray-70: var(--color-gray-70);
+}
