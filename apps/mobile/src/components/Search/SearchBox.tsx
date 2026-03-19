@@ -68,10 +68,12 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
 
   const inputStyle = {
     flex: 1,
+    height: 40, // Explicit height
     fontSize: 16,
     color: styles.colors.black,
     marginLeft: isRTL ? 0 : styles.margin,
     marginRight: isRTL ? styles.margin : 0,
+    backgroundColor: "red", // Debug: make it visible
   };
 
   return (
