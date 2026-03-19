@@ -161,7 +161,7 @@ export const getContentById = async (
   const dataLanguage = isDispositifTranslatedIn(originalDispositif as any, locale) ? locale : "fr"; // find translation in published version only
 
   const allRoles = await getRoles();
-  const participantsWithRoles = dispositif.participants.map((p) => ({
+  const participantsWithRoles = (dispositif.participants || []).map((p) => ({
     ...pick(p, ["_id", "username", "picture"]),
     roles: p.roles.filter((r) => !!r).map((r) => getRoleName(r, allRoles)),
   }));
