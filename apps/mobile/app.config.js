@@ -137,7 +137,10 @@ export default {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
     version: APP_VERSION,
-    newArchEnabled: true,
+    newArchEnabled: false,
+    // New Architecture disabled: react-native-maps doesn't support Fabric on Android yet.
+    // Causes "View config not found for component AIRMap" error. Re-enable when
+    // https://github.com/react-native-maps/react-native-maps/issues/5121 is resolved.
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
     scheme: "refugies",
