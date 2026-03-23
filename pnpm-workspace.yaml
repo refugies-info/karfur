@@ -52,6 +52,8 @@ minimumReleaseAgeExclude:
   # TODO: Remove after 2026-03-25 once fast-xml-parser@5.5.6 is older than 7 days
   - fast-xml-parser
   - fast-xml-builder
+  # TODO: Remove after 2026-03-30 once flatted@3.4.2 is older than 7 days
+  - flatted
   # TODO: Remove - pnpm false positive for old packages
   - "@babel/core"
   - path-expression-matcher
