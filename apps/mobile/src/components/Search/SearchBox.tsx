@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSearchBox } from "react-instantsearch-core";
-import { TextInput, type TextInputProps, TouchableOpacity } from "react-native";
+import { TextInput, type TextInputProps, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
@@ -19,21 +19,6 @@ const InputContainer = styled(RTLView)`
   padding: ${styles.margin * 2}px;
   background-color: ${styles.colors.white};
   border: 1px solid ${styles.colors.darkGrey};
-  flex: 1;
-`;
-interface StyledInputProps extends TextInputProps {
-  isRTL: boolean;
-}
-
-const StyledInput = styled(TextInput).attrs<StyledInputProps>(({ isRTL }) => ({
-  textAlign: isRTL ? "right" : "left",
-  style: {
-    marginLeft: isRTL ? 0 : styles.margin,
-    marginRight: isRTL ? styles.margin : 0,
-  },
-}))`
-  height: 100%;
-  width: 100%;
   flex: 1;
 `;
 
@@ -68,6 +53,15 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
     }, 500);
   }, []);
 
+  const inputStyle = {
+    flex: 1,
+    height: 40,
+    fontSize: 16,
+    color: styles.colors.black,
+    marginLeft: isRTL ? 0 : styles.margin,
+    marginRight: isRTL ? styles.margin : 0,
+  };
+
   return (
     <MainContainer>
       <TouchableOpacity
@@ -81,13 +75,14 @@ const SearchBox: React.FC<Props> = ({ searchInputValue, setSearchInputValue, bac
       </TouchableOpacity>
       <InputContainer>
         <Icon name="search-outline" height={24} width={24} fill={styles.colors.darkGrey} />
-        <StyledInput
+        <TextInput
           ref={input}
+          style={inputStyle}
           onChangeText={setQuery}
           value={searchInputValue}
           placeholder={t("search_screen.search", "Rechercher")}
           placeholderTextColor={styles.colors.darkGrey}
-          isRTL={isRTL}
+          textAlign={isRTL ? "right" : "left"}
           testID="test-city-search"
         />
         <TouchableOpacity

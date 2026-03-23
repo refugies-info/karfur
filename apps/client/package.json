@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/client",
-  "version": "0.1.0",
+  "version": "2.3.0",
   "description": "Plateforme dédiée à l'intégration des réfugiés en France",
   "author": "Soufiane Lamrissi",
   "homepage": "https://refugies.info",
@@ -51,7 +51,7 @@
     "lodash": "^4.17.23",
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
-    "next": "15.5.13",
+    "next": "15.5.14",
     "next-i18next": "^15.4.3",
     "next-redux-wrapper": "^8.0.0",
     "next-sitemap": "^4.2.3",
