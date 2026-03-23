@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.2](https://github.com/refugies-info/karfur/compare/server-v2.3.1...server-v2.3.2) (2026-03-23)
+
+
+### Performance Improvements
+
+* **server:** replace live nbWordsTranslated scan with stored counter ([5bd24ff](https://github.com/refugies-info/karfur/commit/5bd24ff54942b9bb7a44ba3bb6d8105e7798c3bb))
+
 ## [2.3.1](https://github.com/refugies-info/karfur/compare/server-v2.3.0...server-v2.3.1) (2026-03-23)
 
 
