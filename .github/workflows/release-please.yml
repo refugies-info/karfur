@@ -1,0 +1,29 @@
+name: Release Please
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+          target-branch: dev
+
+      - name: Output release info
+        if: ${{ steps.release.outputs.releases_created }}
+        run: |
+          echo "releases_created=${{ steps.release.outputs.releases_created }}" >> $GITHUB_OUTPUT
+          echo "paths_released=${{ steps.release.outputs.paths_released }}" >> $GITHUB_OUTPUT
