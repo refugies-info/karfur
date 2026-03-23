@@ -51,7 +51,7 @@
     "lodash": "^4.17.23",
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
-    "next": "15.5.14",
+    "next": "16.1.7",
     "next-i18next": "^15.4.3",
     "next-redux-wrapper": "^8.0.0",
     "next-sitemap": "^4.2.3",
