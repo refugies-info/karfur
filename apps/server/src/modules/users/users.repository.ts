@@ -62,6 +62,25 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     { path: "departments" },
   ]) as unknown as Promise<UserWithPopulatedStructures[]>;
 
+/**
+ * Lightweight user query for translation statistics.
+ * Only populates roles + selectedLanguages (no structures/departments).
+ * Cached via speedgoose to avoid repeated full table scans.
+ */
+export const getUsersForTranslationStats = () =>
+  UserModel.find(
+    { status: UserStatus.ACTIVE },
+    { roles: 1, last_connected: 1, selectedLanguages: 1 },
+  )
+    .populate([
+      { path: "roles", select: "nom" },
+      { path: "selectedLanguages", select: "_id" },
+    ])
+    .lean()
+    .cacheQuery() as unknown as Promise<
+    { roles: { nom: string }[]; last_connected: Date; selectedLanguages: { _id: LangueId }[] }[]
+  >;
+
 // update
 export const updateUserInDB = async (
   id: Id,
