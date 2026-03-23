@@ -367,7 +367,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
       translationStatistics,
     },
-    revalidate: 60,
+    revalidate: 60 * 60, // 1 hour — this data changes infrequently
   };
 });
 
