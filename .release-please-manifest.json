@@ -1,6 +1,6 @@
 {
   "apps/client": "2.3.1",
-  "apps/server": "2.3.1",
+  "apps/server": "2.3.2",
   "apps/mobile": "2.3.0",
   "packages/api-types": "2.3.0",
   "packages/ui": "2.3.0",
