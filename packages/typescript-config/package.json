@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/typescript-config",
-  "version": "0.0.0",
+  "version": "2.2.1",
   "private": true,
   "publishConfig": {
     "access": "public"

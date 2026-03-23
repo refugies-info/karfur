@@ -1,0 +1,10 @@
+{
+  "apps/client": "2.2.1",
+  "apps/server": "2.2.1",
+  "apps/mobile": "2.2.1",
+  "packages/api-types": "2.2.1",
+  "packages/ui": "2.2.1",
+  "packages/mongo": "2.2.1",
+  "packages/typescript-config": "2.2.1",
+  "packages/markdown-utils": "2.2.1"
+}
