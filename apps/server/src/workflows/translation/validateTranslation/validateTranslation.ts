@@ -11,7 +11,9 @@ import {
   type Traductions,
 } from "@refugies-info/mongo";
 import { cloneDeep, set } from "lodash";
+import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
+import { incrementWordsTranslatedCounter } from "~/modules/adminOptions/adminOptions.repository";
 import { isDispositif } from "~/modules/dispositif/dispositif.business";
 import {
   deleteLineBreaks,
@@ -57,6 +59,14 @@ const validateTranslation = (
   username: string,
 ) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
+
+  // Compute word count delta for the stored counter
+  const newWords = countDispositifWords(translation.translated.content as any);
+  const oldWords = isFirstValidation
+    ? 0
+    : countDispositifWords((dispositif.translations[language] as any)?.content);
+  const wordsDelta = newWords - oldWords;
+
   return DispositifModel.updateOne(
     { _id: dispositif._id },
     {
@@ -98,6 +108,11 @@ const validateTranslation = (
             })
           : null,
         isFirstValidation ? sendPublishedTradMailToTraductors(language, dispositif) : null,
+        incrementWordsTranslatedCounter(wordsDelta).catch((error) => {
+          logger.error("[validateTranslations] error while updating words counter", {
+            error: error.message,
+          });
+        }),
       ]),
     )
     .catch(async (err) => {
