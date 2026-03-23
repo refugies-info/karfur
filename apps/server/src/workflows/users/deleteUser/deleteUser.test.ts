@@ -1,7 +1,7 @@
+import { UserModel } from "@refugies-info/mongo";
 import * as mailServ from "~/modules/mail/mail.service";
 import * as usersRep from "~/modules/users/users.repository";
 import * as usersServ from "~/modules/users/users.service";
-import { UserModel } from "~/typegoose";
 import { deleteUser } from "./deleteUser";
 
 jest.mock("../../../modules/users/users.repository", () => ({
@@ -55,6 +55,6 @@ describe("deleteUser", () => {
     await deleteUser("id");
     expect(getUserByIdMock).toHaveBeenCalledWith("id", { email: 1, structures: 1 });
     expect(deleteUserMock).toHaveBeenCalledWith(user);
-    expect(sendMailMock).toHaveBeenCalledWith("test@example.com");
+    expect(sendMailMock).toHaveBeenCalledWith("test@example.com", user._id);
   });
 });

@@ -1,9 +1,9 @@
 import type { PatchStructureRequest } from "@refugies-info/api-types";
+import type { ObjectId, User } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { getStructureFromDB, updateStructureInDB } from "~/modules/structure/structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "~/modules/structure/structure.service";
 import { addStructureForUsers, removeStructureOfAllUsers } from "~/modules/users/users.service";
-import type { User } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 
@@ -40,10 +40,13 @@ export const updateStructure = async (
      * réenregistrer la structure dans la propriété structures de tous les utilisateurs
      * @see updateRoleAndStructureOfResponsable
      */
-    await addStructureForUsers(
-      updatedStructure.membres.map((membre) => membre.userId.toString()),
-      id,
-    );
+
+    if (updatedStructure && updatedStructure.membres) {
+      await addStructureForUsers(
+        updatedStructure.membres.map((membre) => membre.userId),
+        id,
+      );
+    }
   }
 
   await log(updatedStructure, oldStructure, user._id);

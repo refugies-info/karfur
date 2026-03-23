@@ -17,6 +17,7 @@ import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { styles } from "~/theme";
 import type { MapGoogle, MarkerGoogle } from "~/types/interface";
 import { MapBottomBar } from "./MapBottomBar";
+import { logMapEvent, MAP_DEBUG } from "./MapDebug";
 
 interface PropsType {
   map: MapGoogle;
@@ -31,6 +32,8 @@ export const Map = (props: PropsType) => {
 
   // Bottom sheet
   const [markerOpen, setMarkerOpen] = useState<MarkerGoogle | null>(null);
+  const [mapReady, setMapReady] = useState(false);
+
   const onMarkerClick = (marker: MarkerGoogle, e: MarkerPressEvent) => {
     e.stopPropagation();
     setMarkerOpen(marker);
@@ -83,6 +86,7 @@ export const Map = (props: PropsType) => {
   const [maxZoom, setMaxZoom] = useState(13); // fix for initial zoom
   const fitAllMarkers = (markers: MarkerGoogle[]) => {
     if (!map) return;
+    logMapEvent("fitAllMarkers", { count: markers.length });
     map.fitToCoordinates(markers, {
       animated: false,
       edgePadding: {
@@ -106,11 +110,44 @@ export const Map = (props: PropsType) => {
   const mapHeight = Dimensions.get("screen").height;
   const mapWidth = Dimensions.get("screen").width;
 
+  // Debug: Log platform and provider info on mount
+  useEffect(() => {
+    if (MAP_DEBUG.ENABLE) {
+      logMapEvent("=== MAP COMPONENT MOUNT ===");
+      logMapEvent("Platform", Platform.OS);
+      logMapEvent("Platform Version", Platform.Version);
+      logMapEvent(
+        "Provider will be",
+        Platform.OS === "android" ? "PROVIDER_GOOGLE" : "PROVIDER_DEFAULT",
+      );
+      logMapEvent("Map dimensions", { width: mapWidth, height: mapHeight });
+      logMapEvent("Markers count", markers.length);
+    }
+  }, []);
+
+  const handleMapReady = () => {
+    logMapEvent("=== MAP READY ===");
+    setMapReady(true);
+    fitAllMarkers(markers);
+  };
+
+  const handleRegionChangeComplete = (region: {
+    latitude: number;
+    longitude: number;
+    latitudeDelta: number;
+    longitudeDelta: number;
+  }) => {
+    logMapEvent("regionChangeComplete", region);
+  };
+
   return (
     <GestureHandlerRootView>
       <MapView
         ref={(ref) => {
           map = ref;
+          if (ref && MAP_DEBUG.ENABLE) {
+            logMapEvent("MapView ref set");
+          }
         }}
         style={{
           width: mapWidth,
@@ -123,9 +160,12 @@ export const Map = (props: PropsType) => {
           longitudeDelta: 5,
         }}
         onPress={hideMarkerDetails}
-        onMapReady={() => fitAllMarkers(markers)}
+        onMapReady={handleMapReady}
+        onRegionChangeComplete={handleRegionChangeComplete}
         maxZoomLevel={maxZoom}
         provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
+        // Debug: Add googleRenderer for latest renderer
+        googleRenderer="LATEST"
       >
         {markers.map((marker, key) => {
           const lat =

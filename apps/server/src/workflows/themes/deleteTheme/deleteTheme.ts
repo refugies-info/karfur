@@ -1,6 +1,6 @@
+import { AppUserModel } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { deleteThemeById } from "~/modules/themes/themes.repository";
-import { AppUserModel } from "~/typegoose";
 import type { Response } from "~/types/interface";
 
 export const deleteTheme = async (id: string): Response => {

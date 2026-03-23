@@ -1,20 +1,22 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
-import { getDepartmentsNotDeployed } from "~/lib/recherche/functions";
 import type { SearchCountsResponse } from "~/pages/api/search/counts";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  searchPaginationSelector,
+  searchQuerySelector,
+} from "~/services/SearchResults/searchResults.selector";
 import { SearchCountsContext } from "../SearchCountsContext";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
 const HIDDEN_DEPS_KEY = "hideBannerDepartments";
+const NOT_DEPLOYED_THRESHOLD = 10;
 
 interface Props {
   nbResults: number;
@@ -25,20 +27,20 @@ const SearchHeader = (props: Props) => {
   const { t } = useTranslation();
   const stickyBarRef = useRef<HTMLDivElement>(null);
   const query = useSelector(searchQuerySelector);
-  const dispositifs = useSelector(activeDispositifsSelector);
+  const pagination = useSelector(searchPaginationSelector);
 
   const { isMobile } = useWindowSize();
   const isSticky = useIsSticky(stickyBarRef);
 
   const [departmentsMessageHidden, setDepartmentsMessageHidden] = useState<string[]>([]);
 
-  const [departmentsNotDeployed, setDepartmentsNotDeployed] = useState<string[]>(
-    getDepartmentsNotDeployed(query.departments, dispositifs),
-  );
-
-  useEffect(() => {
-    setDepartmentsNotDeployed(getDepartmentsNotDeployed(query.departments, dispositifs));
-  }, [query.departments, dispositifs]);
+  // Use pagination total as proxy for "not deployed" detection:
+  // if a department is selected and total results < threshold, it's likely underserved
+  const departmentsNotDeployed = useMemo(() => {
+    if (query.departments.length === 0) return [];
+    if (pagination.total >= NOT_DEPLOYED_THRESHOLD) return [];
+    return query.departments;
+  }, [query.departments, pagination.total]);
 
   useEffect(() => {
     const savedDepartments = localStorage.getItem(HIDDEN_DEPS_KEY);

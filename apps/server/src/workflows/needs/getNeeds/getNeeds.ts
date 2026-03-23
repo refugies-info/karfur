@@ -10,6 +10,6 @@ export const getNeeds = async (): ResponseWithData<GetNeedResponse[]> => {
 
   return {
     text: "success",
-    data: needs,
+    data: needs as GetNeedResponse[],
   };
 };

@@ -1,10 +1,12 @@
 import type * as React from "react";
+import { useEffect } from "react";
 import { Dimensions, Platform } from "react-native";
 import { Icon } from "react-native-eva-icons";
 import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
 import styled from "styled-components/native";
 import { styles } from "~/theme";
 import type { MapGoogle } from "~/types/interface";
+import { logMapEvent, MAP_DEBUG } from "./MapDebug";
 
 interface Props {
   children: React.ReactNode;
@@ -37,10 +39,40 @@ const mapHeight = 240;
 export const MiniMap = (props: Props) => {
   const mapWidth = Dimensions.get("window").width - styles.margin * 2 * 3;
 
+  // Debug: Log on mount
+  useEffect(() => {
+    if (MAP_DEBUG.ENABLE) {
+      logMapEvent("=== MINIMAP MOUNT ===");
+      logMapEvent("Platform", Platform.OS);
+      logMapEvent(
+        "Provider will be",
+        Platform.OS === "android" ? "PROVIDER_GOOGLE" : "PROVIDER_DEFAULT",
+      );
+      logMapEvent("Dimensions", { width: mapWidth, height: mapHeight });
+      logMapEvent("Markers count", props.map.markers.length);
+    }
+  }, []);
+
+  const handleMapReady = () => {
+    logMapEvent("=== MINIMAP READY ===");
+  };
+
+  const handleRegionChangeComplete = (region: {
+    latitude: number;
+    longitude: number;
+    latitudeDelta: number;
+    longitudeDelta: number;
+  }) => {
+    logMapEvent("MiniMap regionChangeComplete", region);
+  };
+
   return (
     <MainContainer>
       <ContentContainer>{props.children}</ContentContainer>
-      <MapViewContainer>
+      <MapViewContainer
+        accessibilityElementsHidden={true}
+        importantForAccessibility="no-hide-descendants"
+      >
         <MapView
           provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
           style={{
@@ -53,6 +85,9 @@ export const MiniMap = (props: Props) => {
             latitudeDelta: 10,
             longitudeDelta: 5,
           }}
+          onMapReady={handleMapReady}
+          onRegionChangeComplete={handleRegionChangeComplete}
+          googleRenderer="LATEST"
         >
           {props.map.markers.map((marker, key) => {
             const lat =

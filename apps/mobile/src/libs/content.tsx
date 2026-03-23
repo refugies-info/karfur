@@ -1,5 +1,6 @@
-import type { conditionType, Metadatas } from "@refugies-info/api-types";
+import type { conditionType, Metadatas, SessionsMetadata } from "@refugies-info/api-types";
 import type { TFunction } from "i18next";
+import i18next from "i18next";
 import { Image } from "react-native";
 import ImgCb from "~/theme/images/infocards/conditions/conditions-cb.svg";
 import ImgDriver from "~/theme/images/infocards/conditions/conditions-driver.svg";
@@ -143,6 +144,55 @@ const getPrice = (price: Metadatas["price"] | null | undefined, t: TFunction) =>
   return `${price.values[0]}€ ${price.details ? t(`Infocards.${price.details}`) : ""}`;
 };
 
+/**
+ * Format a date for session display using Intl.DateTimeFormat.
+ * Uses the current i18next language for localized month names.
+ * Format: "24 novembre 2025" (fr), "24 November 2025" (en), etc.
+ */
+export const formatSessionDate = (date: Date | string): string => {
+  const d = typeof date === "string" ? new Date(date) : date;
+  const locale = i18next.language || "fr";
+  return new Intl.DateTimeFormat(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(d);
+};
+
+/**
+ * Check if a session date is in the past.
+ * - modalites === 0 (dates fixes): compare startDate (can no longer join)
+ * - modalites === 1 (entrées permanentes): compare endDate (can join until end)
+ * - fallback (undefined/null): compare endDate
+ */
+export const isSessionPast = (
+  session: { startDate: Date | string; endDate: Date | string },
+  modalites?: number | null,
+): boolean => {
+  const refDate = modalites === 1 ? session.endDate : session.startDate;
+  const d = typeof refDate === "string" ? new Date(refDate) : refDate;
+  return d < new Date();
+};
+
+const getSessionsText = (
+  sessions: SessionsMetadata | null | undefined,
+  t: TFunction,
+): string | null => {
+  if (!sessions?.items || sessions.items.length === 0) return null;
+
+  return sessions.items
+    .map((session) => {
+      const start = formatSessionDate(session.startDate);
+      const end = formatSessionDate(session.endDate);
+      const text = `${t("content_screen.session_from", "Du")} ${start} ${t("content_screen.session_to", "au")} ${end}`;
+      if (isSessionPast(session, sessions?.modalitesEntreesSorties)) {
+        return `${text} (${t("content_screen.session_past", "DATE DÉPASSÉE")})`;
+      }
+      return text;
+    })
+    .join("\n");
+};
+
 export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t: TFunction) => {
   switch (key) {
     case "publicStatus":
@@ -181,9 +231,7 @@ export const getDescriptionNew = (metadatas: Metadatas, key: keyof Metadatas, t:
     case "location":
       return getLocation(metadatas.location, t);
     case "sessions":
-      // Sessions not displayed on mobile yet (no mobile design)
-      // TODO: implement sessions display for mobile when design is ready
-      return null;
+      return getSessionsText(metadatas.sessions, t);
     default:
       return metadatas[key];
   }

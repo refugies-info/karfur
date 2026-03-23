@@ -1,6 +1,5 @@
+import type { Membre, Structure, StructureId, User, UserId } from "@refugies-info/mongo";
 import logger from "~/logger";
-import type { Structure, User, UserId } from "~/typegoose";
-import type { Membre, StructureId } from "~/typegoose/Structure";
 import { getStructureFromDB } from "./structure.repository";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: UserId) => {

@@ -2,6 +2,7 @@ import { config } from "dotenv";
 
 config();
 
+import { initCache } from "@refugies-info/mongo";
 import cloudinary from "cloudinary";
 import compression from "compression";
 import cors from "cors";
@@ -32,7 +33,11 @@ const db_path = MONGODB_URI;
 const connectWithRetry = async () => {
   return mongoose
     .connect(db_path)
-    .then(() => logger.info("[mongoose] Connected to mongoDB"))
+    .then(async () => {
+      logger.info("[mongoose] Connected to mongoDB");
+      await initCache(process.env.REDIS_URI);
+      logger.info("[cache] Speedgoose cache layer initialized");
+    })
     .catch((e) => {
       logger.error("[mongoose] Error while DB connecting. Retrying in 5 seconds...", {
         message: e.message,

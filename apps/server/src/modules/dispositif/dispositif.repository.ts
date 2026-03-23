@@ -1,19 +1,16 @@
 import {
   ContentType,
-  type DemarcheContent,
   DispositifStatus,
   type Id,
   type Languages,
   type Picture,
   type Suggestion as SuggestionAPIType,
 } from "@refugies-info/api-types";
-import { omit, pick, union, uniq } from "lodash";
-import { map } from "lodash/fp";
-import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
-import { cleanupAvis } from "~/libs/cleanupAvis";
-import type { DispositifAbstracts } from "~/modules/dispositif/types";
+import type { Avis, Merci, Suggestion } from "@refugies-info/mongo";
 import {
+  type DemarcheContent,
   type Dispositif,
+  type DispositifContent,
   DispositifDraftModel,
   type DispositifId,
   DispositifModel,
@@ -21,10 +18,15 @@ import {
   ObjectId,
   type Theme,
   type UserId,
-} from "~/typegoose";
-import type { Avis, Merci, Suggestion } from "~/typegoose/Dispositif";
+} from "@refugies-info/mongo";
+import { omit, pick, union, uniq } from "lodash";
+import { map } from "lodash/fp";
+import type { FilterQuery, ProjectionType, UpdateQuery } from "mongoose";
+import { cleanupAvis } from "~/libs/cleanupAvis";
+import type { DispositifAbstracts } from "~/modules/dispositif/types";
 import type { DeleteResult } from "~/types/interface";
 import { getUsersById } from "../users/users.repository";
+import { getAvailableLanguages, getDispositifTranslation } from "./dispositif.business";
 
 export const getDispositifsFromDB = async () =>
   await DispositifModel.find({})
@@ -43,6 +45,16 @@ export const getDispositifsFromDB = async () =>
 
 type DispositifKeys = keyof Dispositif;
 type DispositifFieldsRequest = Partial<Record<DispositifKeys, number>>;
+
+/**
+ * Result type for getDispositifsWithCreatorId — a subset of Dispositif fields
+ * (determined at runtime by neededFields) with a projected mainSponsor.
+ * mainSponsor is omitted from Partial<Dispositif> (ObjectId ref) and replaced
+ * with the populated shape emitted by the $lookup + $unwind pipeline stages.
+ */
+type DispositifContributionAggResult = Omit<Partial<Dispositif>, "mainSponsor"> & {
+  mainSponsor?: { _id: Id; nom: string };
+};
 
 export const getDispositifsForExport = async () => {
   return DispositifModel.find({ status: "Actif" })
@@ -66,7 +78,7 @@ export const getDispositifArray = async (
   populate: string = "",
   limit: number = 0,
   sort = {},
-) => {
+): Promise<any[]> => {
   const neededFields: ProjectionType<Dispositif> = Object.assign(
     {
       translations: 1,
@@ -96,7 +108,8 @@ export const getDispositifArray = async (
       select: "_id position",
     })
     .lean()
-    .populate(populate);
+    .populate(populate)
+    .cacheQuery();
 
   return dispositifs.map((dispositif) => ({
     ...dispositif,
@@ -110,7 +123,7 @@ export const getSimpleDispositifs = async (
   locale: Languages,
   limit: number = 0,
   sort: object = {},
-) => {
+): Promise<any[]> => {
   return getDispositifArray(
     query,
     {
@@ -129,13 +142,13 @@ export const getSimpleDispositifs = async (
     sort,
   ).then(
     map((dispositif) => {
-      const translation = dispositif.translations[locale] || dispositif.translations.fr;
+      const translation = getDispositifTranslation(dispositif, locale);
       const resDisp = {
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
         ...omit(dispositif, ["translations", "mainSponsor"]),
-        availableLanguages: Object.keys(dispositif.translations),
+        availableLanguages: getAvailableLanguages(dispositif),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
         origin: dispositif.origin ?? "RI",
@@ -151,7 +164,7 @@ export const getSimpleDispositifs = async (
       ) {
         resDisp.sponsor = {
           nom: (translation.content as DemarcheContent).administrationName,
-          picture: dispositif.administrationLogo,
+          picture: dispositif.administrationLogo as any,
         };
       }
       return resDisp;
@@ -164,7 +177,7 @@ export const getStructureDispositifs = async (
   locale: Languages,
   limit: number = 0,
   sort = {},
-) => {
+): Promise<any[]> => {
   return getDispositifArray(
     query,
     {
@@ -206,20 +219,22 @@ export const getStructureDispositifs = async (
     })
     .then(({ dispositifs, usernames }) =>
       dispositifs.map((dispositif) => {
-        const translation = dispositif.translations[locale] || dispositif.translations.fr;
-        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map((s) => {
-          return {
-            ...pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]),
-            username:
-              usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
-          };
-        });
+        const translation = getDispositifTranslation(dispositif, locale);
+        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map(
+          (s: (typeof dispositif.suggestions)[number]) => {
+            return {
+              ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
+              username:
+                usernames.find((u) => u._id.toString() === s.userId?.toString())?.username || "",
+            };
+          },
+        );
         const resDisp = {
           _id: dispositif._id,
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
           ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
-          availableLanguages: Object.keys(dispositif.translations),
+          availableLanguages: getAvailableLanguages(dispositif),
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: dispositif.merci.length,
           suggestions,
@@ -237,7 +252,7 @@ export const getStructureDispositifs = async (
         ) {
           resDisp.sponsor = {
             nom: (translation.content as DemarcheContent).administrationName,
-            picture: dispositif.administrationLogo,
+            picture: dispositif.administrationLogo as any,
           };
         }
         return resDisp;
@@ -448,14 +463,14 @@ export const modifyReadSuggestionInDispositif = async (
 
 export const getDispositifName = async (id: Id) =>
   DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 }).then(
-    (res) => res?.translations.fr.content.titreInformatif,
+    (res) => getDispositifTranslation(res as any, "fr")?.content.titreInformatif,
   );
 
 export const getDispositifById = async (
   id: DispositifId,
   neededFields: ProjectionType<Dispositif> = {},
   populate = "",
-) => DispositifModel.findById(id, neededFields).populate(populate);
+) => DispositifModel.findById(id, neededFields).populate(populate).cacheQuery();
 
 export const getDraftDispositifById = async (
   id: DispositifId,
@@ -535,7 +550,8 @@ export const getDispositifsWithCreatorId = async (
     },
   );
 
-  return await DispositifModel.aggregate(pipeline);
+  // Cast required: speedgoose's Aggregate<R, ResultType> augmentation breaks awaited type inference
+  return (await DispositifModel.aggregate(pipeline)) as DispositifContributionAggResult[];
 };
 
 export const getDispositifByIdWithMainSponsor = async (
@@ -562,15 +578,27 @@ export const getPublishedDispositifWithMainSponsor = async (): Promise<Dispositi
       titreInformatif: 1,
       typeContenu: 1,
     },
-  ).populate("mainSponsor");
+  )
+    .populate("mainSponsor")
+    .cacheQuery();
 
-export const getActiveContents = async (neededFields: ProjectionType<Dispositif>) =>
-  DispositifModel.find({ status: DispositifStatus.ACTIVE }, neededFields);
+export const getActiveContents = (
+  neededFields: ProjectionType<Dispositif>,
+): Promise<Dispositif[]> =>
+  // Cast required: speedgoose's Query<R, ResultType> augmentation breaks awaited type inference
+  DispositifModel.find(
+    { status: DispositifStatus.ACTIVE },
+    neededFields,
+  ).cacheQuery() as unknown as Promise<Dispositif[]>;
 
 export const getActiveContentsFiltered = (
   neededFields: ProjectionType<Dispositif>,
-  query: unknown,
-) => DispositifModel.find(query, neededFields).populate("mainSponsor theme secondaryThemes");
+  query: FilterQuery<Dispositif>,
+): Promise<Dispositif[]> =>
+  // Cast required: speedgoose's Query<R, ResultType> augmentation breaks awaited type inference
+  DispositifModel.find(query, neededFields)
+    .populate("mainSponsor theme secondaryThemes")
+    .cacheQuery() as unknown as Promise<Dispositif[]>;
 
 export const getDispositifByIdWithAllFields = (id: DispositifId) =>
   DispositifModel.findOne({ _id: id });
@@ -597,7 +625,7 @@ export const getNbMercis = async () => {
         mercis: { $sum: "$mercis" },
       },
     },
-  ]);
+  ]).cachePipeline({ ttl: 300 });
 };
 export const getNbVues = async () => {
   return DispositifModel.aggregate([
@@ -611,7 +639,7 @@ export const getNbVues = async () => {
         nbVuesMobile: { $sum: "$nbVuesMobile" },
       },
     },
-  ]);
+  ]).cachePipeline({ ttl: 300 });
 };
 
 export const getNbFiches = async () => {
@@ -666,5 +694,5 @@ export const getDispositifAbstracts = async (
         abstract: "$translations.fr.content.abstract",
       },
     },
-  ]);
+  ]).cachePipeline();
 };

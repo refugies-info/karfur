@@ -5,9 +5,9 @@ import {
   type GetContentsForAppResponse,
   type Languages,
 } from "@refugies-info/api-types";
-
+import type { Dispositif } from "@refugies-info/mongo";
 import logger from "~/logger";
-import type { Dispositif } from "~/typegoose";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import getFilteredContentsForApp from "../getFilteredContentsForApp";
 
 const present =
@@ -20,8 +20,10 @@ const present =
       realLocale = "fr";
     }
     let sponsorUrl: string | null = null;
-    if (dispositif.typeContenu === ContentType.DISPOSITIF)
-      sponsorUrl = dispositif.getMainSponsor().picture?.secure_url || null;
+    if (dispositif.typeContenu === ContentType.DISPOSITIF) {
+      const mainSponsor = dispositif.mainSponsor ? getDispositifMainSponsor(dispositif) : null;
+      sponsorUrl = mainSponsor?.picture?.secure_url || null;
+    }
     if (dispositif.typeContenu === ContentType.DEMARCHE)
       sponsorUrl = dispositif.administrationLogo?.secure_url || null;
 

@@ -23,6 +23,27 @@ const DispositifContentSchema = z
   .passthrough(); // Allow some flexibility but still strict at the top level
 
 // ============================================
+// POI SCHEMA (Points of Interest - carte géographique)
+// ============================================
+
+const PoiSchema = z.object(
+  {
+    title: z.string().min(1, { message: "Le titre du POI est requis" }),
+    address: z.string().min(1, { message: "L'adresse du POI est requise" }),
+    city: z.string().optional().nullable(),
+    // z.coerce.number() accepte les strings ET les numbers (Luna envoie parfois des strings)
+    lat: z.coerce.number({ message: "lat doit être un nombre (ex: 48.8566)" }),
+    lng: z.coerce.number({ message: "lng doit être un nombre (ex: 2.3522)" }),
+    description: z.string().optional(),
+    email: z.string().email({ message: "L'email du POI doit être un email valide" }).optional(),
+    phone: z.string().optional(),
+  },
+  {
+    message: "Structure de POI invalide",
+  },
+);
+
+// ============================================
 // SPONSOR SCHEMA
 // ============================================
 
@@ -238,6 +259,28 @@ const SessionSchema = z
 
 export type WebhookSession = z.infer<typeof SessionSchema>;
 
+// SessionsMetadata schema - wraps the sessions array with additional metadata
+const SessionsMetadataSchema = z.object(
+  {
+    modalitesEntreesSorties: z
+      .union([z.literal(0), z.literal(1)], {
+        message: "modalitesEntreesSorties doit être 0 (dates fixes) ou 1 (entrées permanentes)",
+      })
+      .optional()
+      .nullable(),
+    items: z
+      .array(SessionSchema, {
+        message: "items doit être un tableau de sessions",
+      })
+      .optional()
+      .nullable(),
+  },
+  {
+    message: "Structure des sessions invalide",
+  },
+);
+export type WebhookSessionsMetadata = z.infer<typeof SessionsMetadataSchema>;
+
 // Main Metadatas schema with detailed error messages
 export const MetadatasSchema = z.object(
   {
@@ -330,11 +373,7 @@ export const MetadatasSchema = z.object(
       )
       .optional(),
 
-    sessions: z
-      .array(SessionSchema, {
-        message: "sessions doit être un tableau de sessions",
-      })
-      .optional(),
+    sessions: SessionsMetadataSchema.optional().nullable(),
   },
   {
     message: "Structure des métadonnées invalide",
@@ -373,7 +412,9 @@ export const DispositifCreateSchema = BaseWebhookSchema.extend({
     abstract: z.string().optional(),
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
+    needs: z.array(ObjectIdSchema).optional(),
     sponsors: z.array(SponsorSchema).optional(),
+    map: z.array(PoiSchema).optional().nullable(),
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
     origin: z
@@ -393,7 +434,9 @@ export const DispositifUpdateSchema = BaseWebhookSchema.extend({
     abstract: z.string().optional(),
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
+    needs: z.array(ObjectIdSchema).optional(),
     sponsors: z.array(SponsorSchema).optional(),
+    map: z.array(PoiSchema).optional().nullable(),
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
   }),

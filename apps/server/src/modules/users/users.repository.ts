@@ -1,5 +1,5 @@
 import { type Id, UserStatus } from "@refugies-info/api-types";
-import type { FilterQuery, ProjectionType, Types } from "mongoose";
+import type { Favorite, UserId } from "@refugies-info/mongo";
 import {
   type LangueId,
   ObjectId,
@@ -8,8 +8,8 @@ import {
   type StructureId,
   type User,
   UserModel,
-} from "~/typegoose";
-import type { Favorite, UserId } from "~/typegoose/User";
+} from "@refugies-info/mongo";
+import type { FilterQuery, ProjectionType, Types } from "mongoose";
 
 // find one
 export const getUserById = async (id: Id, neededFields: ProjectionType<User>) =>
@@ -37,6 +37,19 @@ export const findUsers = (filter: FilterQuery<User>, neededFields: Record<string
 export const getAllUsersFromDB = async (neededFields: FilterQuery<User>, populate: string = "") =>
   UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate(populate);
 
+/**
+ * User type with populated structures field
+ * Used when structures are populated from the database
+ */
+export type UserWithPopulatedStructures = Omit<
+  User,
+  "structures" | "selectedLanguages" | "roles"
+> & {
+  structures: Structure[];
+  selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
+  roles: Role[];
+};
+
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate<{
     selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
@@ -47,7 +60,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
     { path: "roles", select: "nom nomPublique" },
     { path: "structures" },
     { path: "departments" },
-  ]);
+  ]) as unknown as Promise<UserWithPopulatedStructures[]>;
 
 // update
 export const updateUserInDB = async (

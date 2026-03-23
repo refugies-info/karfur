@@ -1,9 +1,5 @@
-import { ObjectId } from "~/typegoose";
-import type {
-  DemarcheContent,
-  DispositifContent,
-  TranslationContent,
-} from "~/typegoose/Dispositif";
+import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
+import { ObjectId } from "@refugies-info/mongo";
 import {
   countDispositifWords,
   countDispositifWordsForSections,
@@ -61,7 +57,7 @@ describe("countDispositifWords", () => {
         },
       },
     };
-    const res = countDispositifWords(content);
+    const res = countDispositifWords(content as any);
     expect(res).toEqual(41);
   });
 
@@ -86,7 +82,7 @@ describe("countDispositifWords", () => {
       },
       administrationName: "France Travail",
     };
-    const res = countDispositifWords(content);
+    const res = countDispositifWords(content as any);
     expect(res).toEqual(41);
   });
 });

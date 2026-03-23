@@ -10,6 +10,7 @@ import dispositifsWithTranslationsStatus from "./DispositifsWithTranslationsStat
 import langueSaga from "./Langue/langue.saga";
 import needs from "./Needs/needs.saga";
 import { searchCountsSaga } from "./SearchCounts/searchCounts.saga";
+import { searchResultsSaga } from "./SearchResults/searchResults.saga";
 import selectedDispositifSaga from "./SelectedDispositif/selectedDispositif.saga";
 import selectedStructureSaga from "./SelectedStructure/selectedStructure.saga";
 import themes from "./Themes/themes.saga";
@@ -38,4 +39,5 @@ export function* rootSaga(): SagaIterator {
   yield fork(themes);
   yield fork(widgets);
   yield fork(searchCountsSaga);
+  yield fork(searchResultsSaga);
 }

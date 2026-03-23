@@ -406,7 +406,11 @@ export const AdminUsers = () => {
                   >
                     <div className={styles.item_container}>
                       {(element.selectedLanguages || []).map((langue) => (
-                        <LangueFlag langue={langue.langueFr} key={langue.langueCode} />
+                        <LangueFlag
+                          code={langue.langueCode}
+                          label={langue.langueFr}
+                          key={langue.langueCode}
+                        />
                       ))}
                     </div>
                   </td>

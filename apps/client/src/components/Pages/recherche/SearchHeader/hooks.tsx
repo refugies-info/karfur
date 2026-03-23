@@ -3,140 +3,52 @@ import _ from "lodash";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { getMatchingAgeOptions } from "~/lib/recherche/filterContents";
-import { filterDispositifs } from "~/lib/recherche/queryContents";
-import type { FilterKey } from "~/lib/recherche/resultsDisplayRules";
-import { activeDispositifsSelector } from "~/services/ActiveDispositifs/activeDispositifs.selector";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
-import {
-  searchQuerySelector,
-  searchResultsSelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 
-const useDocsToFilter = (skip: FilterKey) => {
-  const dispositifs = useSelector(activeDispositifsSelector);
-  const query = useSelector(searchQuerySelector);
-  const { algolia } = useSelector(searchResultsSelector);
-  const matches = useMemo(() => {
-    return filterDispositifs(query, algolia || dispositifs, false, skip);
-  }, [query, algolia, dispositifs, skip]);
-
-  return matches;
-};
+const COUNTS_DISABLED = process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS === "true";
 
 /**
  * Group docs by public status type and count them.
- * @returns
+ * When counts are disabled, returns options with count: 0 — no dispositif data needed.
  */
 export const useStatusOptions = () => {
-  const docs = useDocsToFilter("status");
-
-  const counts = useMemo(() => {
-    return _(docs)
-      .flatMap((doc) => doc.metadatas?.publicStatus || [])
-      .countBy()
-      .value();
-  }, [docs]);
-
   return useMemo(() => {
-    return statusOptions.map((option) => {
-      return {
-        ...option,
-        count: counts[option.key] || 0,
-      };
-    });
-  }, [counts]);
+    return statusOptions.map((option) => ({
+      ...option,
+      count: 0,
+    }));
+  }, []);
 };
 
 export const usePublicOptions = () => {
-  const docs = useDocsToFilter("public");
-
-  const counts = useMemo(() => {
-    return _(docs)
-      .flatMap((doc) => doc.metadatas?.public || [])
-      .countBy()
-      .value();
-  }, [docs]);
-
   return useMemo(() => {
-    return publicOptions.map((option) => {
-      return {
-        ...option,
-        count: counts[option.key] || 0,
-      };
-    });
-  }, [counts]);
+    return publicOptions.map((option) => ({
+      ...option,
+      count: 0,
+    }));
+  }, []);
 };
 
 export const useAgeOptions = () => {
-  const docs = useDocsToFilter("age");
-
-  const counts = useMemo(() => {
-    return _(docs)
-      .flatMap((doc) => getMatchingAgeOptions(doc))
-      .countBy()
-      .value();
-  }, [docs]);
-
   return useMemo(() => {
-    return ageFilters.map((option) => {
-      return {
-        ...option,
-        count: counts[option.key] || 0,
-      };
-    });
-  }, [counts]);
+    return ageFilters.map((option) => ({
+      ...option,
+      count: 0,
+    }));
+  }, []);
 };
 
 export const useFrenchLevelOptions = () => {
-  const docs = useDocsToFilter("frenchLevel");
-
-  const counts = useMemo(() => {
-    return _(docs)
-      .map((doc) => {
-        return doc.metadatas?.frenchLevel || [];
-      })
-      .map((frenchLevel) => {
-        return _(frenchLevel)
-          .map((level) => {
-            switch (level) {
-              case "alpha":
-              case "A1":
-              case "A2":
-                return "a";
-              case "B1":
-              case "B2":
-                return "b";
-              case "C1":
-              case "C2":
-                return "c";
-              default:
-                return null;
-            }
-          })
-          .filter((x) => x !== null)
-          .uniq()
-          .value();
-      })
-      .map((x) => (x.length === 0 ? ["a", "b", "c"] : x))
-      .flatten()
-      .countBy()
-      .value();
-  }, [docs]);
-
   return useMemo(() => {
-    return frenchLevelFilter.map((option) => {
-      return {
-        ...option,
-        count: counts[option.key] || 0,
-      };
-    });
-  }, [counts]);
+    return frenchLevelFilter.map((option) => ({
+      ...option,
+      count: 0,
+    }));
+  }, []);
 };
 
 export const useLanguagesOptions = () => {
-  const docs = useDocsToFilter("language");
-
   const { t } = useTranslation();
 
   const allLangues = useSelector(allLanguesSelector);
@@ -146,7 +58,6 @@ export const useLanguagesOptions = () => {
   }, [t]);
 
   const languagesOptions = useMemo(() => {
-    // Sort languages by langueFr
     const sorted = languages.sort((a, b) =>
       getTranslatedLanguage(a.langueFr).localeCompare(getTranslatedLanguage(b.langueFr)),
     );
@@ -156,19 +67,10 @@ export const useLanguagesOptions = () => {
     }));
   }, [languages, getTranslatedLanguage]);
 
-  const counts = useMemo(() => {
-    return _(docs)
-      .flatMap((doc) => doc.availableLanguages || [])
-      .countBy()
-      .value();
-  }, [docs]);
-
   return useMemo(() => {
-    return languagesOptions.map((option) => {
-      return {
-        ...option,
-        count: counts[option.key] || 0,
-      };
-    });
-  }, [languagesOptions, counts]);
+    return languagesOptions.map((option) => ({
+      ...option,
+      count: 0,
+    }));
+  }, [languagesOptions]);
 };

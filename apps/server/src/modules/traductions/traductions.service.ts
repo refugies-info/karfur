@@ -1,8 +1,9 @@
 import type { Languages, TranslatorFeedback } from "@refugies-info/api-types";
+import type { Dispositif, Theme, Traductions, User } from "@refugies-info/mongo";
 import { getAirtableTranslationTable } from "~/connectors/airtable/airtable";
 import { countDispositifWords, countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
-import type { Dispositif, Theme, Traductions, User } from "~/typegoose";
+import { getDispositifTranslation } from "../dispositif/dispositif.business";
 
 const url = process.env.FRONT_SITE_URL;
 
@@ -24,18 +25,19 @@ export const addTradToAirtable = async (
   translation: Traductions,
   username: string,
 ) => {
+  const frTranslation = getDispositifTranslation(dispositif, "fr");
   const trad: TradToExport = {
     fields: {
       "Quel traducteur ?": username,
-      Dispositif: dispositif.translations?.fr?.content.titreInformatif || "",
+      Dispositif: frTranslation?.content.titreInformatif || "",
       Lien: `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
       Langues: language.toUpperCase(),
       Type: dispositif.typeContenu,
       "Travail effectué": translation.toReviewCache.length > 0 ? "à revoir" : "à traduire",
       "Nb mots":
         translation.toReviewCache.length > 0
-          ? countDispositifWordsForSections(dispositif.translations.fr, translation.toReviewCache)
-          : countDispositifWords(dispositif.translations.fr.content),
+          ? countDispositifWordsForSections(frTranslation, translation.toReviewCache)
+          : countDispositifWords(frTranslation?.content as any),
     },
   };
   return getAirtableTranslationTable("SUIVI TRAD").create(
@@ -76,12 +78,12 @@ export const addFeedbackToAirtable = async (
     fields: {
       "Pseudo du bénévole": translator.username,
       Expert: expert.username,
-      Fiche: dispositif.translations?.fr?.content.titreInformatif || "",
+      Fiche: getDispositifTranslation(dispositif, "fr")?.content.titreInformatif || "",
       Langue: language.toUpperCase(),
       "Qualité générale": feedbackRequest.note || null,
       Commentaire: feedbackRequest.comment || "",
       Lien: `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
-      Thème: (dispositif.theme as Theme)?.short.fr || "",
+      Thème: (dispositif.theme as unknown as Theme)?.short.fr || "",
       "Email bénévole": translator.email,
     },
   };

@@ -1,5 +1,5 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import logger from "~/logger";
-import type { Dispositif } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 import {
@@ -10,7 +10,8 @@ import {
 
 export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
   logger.info("[sendMailWhenDispositifPublished] received");
-  const structureMembres = await getStructureMembers(dispo.mainSponsor.toString());
+  const structureId = dispo.mainSponsor.toString();
+  const structureMembres = await getStructureMembers(structureId);
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
   const titreInformatif = dispo.translations.fr.content.titreInformatif;
@@ -23,6 +24,7 @@ export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
     titreMarque,
     lien,
     dispo._id,
+    structureId,
   );
   const isCreatorInStructure =
     structureMembres.filter((membre) => membre.userId.toString() === dispo.creatorId.toString())
@@ -39,12 +41,19 @@ export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
 
 export const sendMailWhenDispositifPublishedAfterUpdate = async (dispo: Dispositif) => {
   logger.info("[sendMailWhenDispositifPublishedAfterUpdate] received");
-  const structureMembres = await getStructureMembers(dispo.mainSponsor.toString());
+  const structureId = dispo.mainSponsor.toString();
+  const structureMembres = await getStructureMembers(structureId);
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
   const titreInformatif = dispo.translations.fr.content.titreInformatif;
   const titreMarque = dispo.translations.fr.content.titreMarque;
   const lien = "https://refugies.info/" + dispo.typeContenu + "/" + dispo._id;
 
-  return sendValidatedAndPublishedMail(membresToSendMail, titreInformatif, titreMarque, lien);
+  return sendValidatedAndPublishedMail(
+    membresToSendMail,
+    titreInformatif,
+    titreMarque,
+    lien,
+    structureId,
+  );
 };

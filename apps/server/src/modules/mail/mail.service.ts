@@ -1,11 +1,11 @@
+import type { DispositifId, StructureId, UserId } from "@refugies-info/mongo";
 import { sendMail } from "~/connectors/sendgrid/sendMail";
 import logger from "~/logger";
-import type { DispositifId, UserId } from "~/typegoose";
 import { consentsToEmail } from "./helpers";
 import { addMailEvent } from "./mail.repository";
 
 export const sendWelcomeMail = async (email: string, firstName: string, userId: UserId) => {
-  if (consentsToEmail(userId, "newUserWelcome")) {
+  if (await consentsToEmail(userId, "newUserWelcome")) {
     try {
       logger.info("[sendWelcomeMail] received", { email });
       const dynamicData = {
@@ -63,8 +63,16 @@ export const sendResetPasswordMail = async (
   }
 };
 
-export const sendSubscriptionReminderMailService = async (email: string) => {
-  if (consentsToEmail(email, "subscriptionReminderMail")) {
+/**
+ * Send subscription reminder mail.
+ * Note: userId is optional because this is for newsletter subscriptions managed via Brevo.
+ * If no userId is provided, the consent check is skipped (always sends).
+ */
+export const sendSubscriptionReminderMailService = async (email: string, userId?: UserId) => {
+  // Skip consent check if no userId provided (newsletter subscriptions are managed via Brevo)
+  const shouldSend = userId ? await consentsToEmail(userId, "subscriptionReminderMail") : true;
+
+  if (shouldSend) {
     try {
       logger.info("[sendSubscriptionReminderMailService] received", { email });
       const dynamicData = {
@@ -137,7 +145,7 @@ export const sendUpdateReminderMailService = async (
   dispositifId: DispositifId,
   lienFiche: string,
 ) => {
-  if (consentsToEmail(userId, "updateReminder")) {
+  if (await consentsToEmail(userId, "updateReminder")) {
     try {
       logger.info("[sendUpdateReminderMailService]  received", {
         email,
@@ -180,7 +188,7 @@ export const sendMultipleDraftsReminderMailService = async (
   userId: UserId,
   reminder: "first" | "second",
 ) => {
-  if (consentsToEmail(userId, "multipleDraftsReminder")) {
+  if (await consentsToEmail(userId, "multipleDraftsReminder")) {
     try {
       logger.info("[sendMultipleDraftsReminderMailService] received", {
         email,
@@ -223,12 +231,13 @@ interface PublishedFicheMailToStructureMembersData {
   email: string;
   dispositifId: DispositifId;
   userId: UserId;
+  structureId: StructureId;
 }
 
 export const sendPublishedFicheMailToStructureMembersService = async (
   data: PublishedFicheMailToStructureMembersData,
 ) => {
-  if (consentsToEmail(data.userId, "publishedFicheToStructureMembers")) {
+  if (await consentsToEmail(data.userId, "publishedFicheToStructureMembers", data.structureId)) {
     try {
       logger.info("[sendPublishedFicheMail] received");
 
@@ -273,11 +282,12 @@ interface PublishedFicheMailToCreatorData {
   email: string;
   dispositifId: DispositifId;
   userId: UserId;
+  structureId?: StructureId;
 }
 export const sendPublishedFicheMailToCreatorService = async (
   data: PublishedFicheMailToCreatorData,
 ) => {
-  if (consentsToEmail(data.userId, "publishedFicheToCreator")) {
+  if (await consentsToEmail(data.userId, "publishedFicheToCreator", data.structureId)) {
     try {
       logger.info("[sendPublishedFicheMailToCreatorService] received ");
 
@@ -325,11 +335,12 @@ interface PublishedTradMailToStructure {
   lien: string;
   email: string;
   firstName: string;
+  structureId?: StructureId;
 }
 export const sendPublishedTradMailToStructureService = async (
   data: PublishedTradMailToStructure,
 ) => {
-  if (consentsToEmail(data.userId, "publishedTradForStructure")) {
+  if (await consentsToEmail(data.userId, "publishedTradForStructure", data.structureId)) {
     try {
       logger.info("[sendPublishedTradMailToStructure] received");
 
@@ -378,9 +389,10 @@ interface NewFicheEnAttenteMail {
   lien: string;
   email: string;
   firstName: string;
+  structureId?: StructureId;
 }
 export const sendNewFicheEnAttenteMail = async (data: NewFicheEnAttenteMail) => {
-  if (consentsToEmail(data.userId, "newFicheEnAttente")) {
+  if (await consentsToEmail(data.userId, "newFicheEnAttente", data.structureId)) {
     try {
       logger.info("[sendNewFicheEnAttenteMail] received");
 
@@ -433,7 +445,7 @@ interface PublishedTradMailToTraductors {
 export const sendPublishedTradMailToTraductorsService = async (
   data: PublishedTradMailToTraductors,
 ) => {
-  if (consentsToEmail(data.userId, "publishedTradForTraductors")) {
+  if (await consentsToEmail(data.userId, "publishedTradForTraductors")) {
     try {
       logger.info("[sendPublishedTradMailToTraductorsService] received");
 
@@ -488,7 +500,7 @@ interface AdminImprovementsMail {
 }
 
 export const sendAdminImprovementsMailService = async (data: AdminImprovementsMail) => {
-  if (consentsToEmail(data.userId, "reviewFiche")) {
+  if (await consentsToEmail(data.userId, "reviewFiche")) {
     try {
       logger.info("[sendAdminImprovementsMailService] received");
 
@@ -539,7 +551,7 @@ interface NewMemberMail {
 }
 
 export const sendNewMemberMailService = async (data: NewMemberMail) => {
-  if (consentsToEmail(data.userId, "newMember")) {
+  if (await consentsToEmail(data.userId, "newMember")) {
     try {
       logger.info("[sendNewMemberMailService] received");
 
@@ -575,8 +587,8 @@ export const sendNewMemberMailService = async (data: NewMemberMail) => {
   }
 };
 
-export const sendAccountDeletedMailService = async (email: string) => {
-  if (consentsToEmail(email, "accountDeleted")) {
+export const sendAccountDeletedMailService = async (email: string, userId: UserId) => {
+  if (await consentsToEmail(userId, "accountDeleted")) {
     try {
       logger.info("[sendAccountDeletedMailService] received");
 
@@ -612,8 +624,12 @@ interface FicheArchivedMail {
   lien: string;
 }
 
-export const sendFicheArchivedService = async (email: string, data: FicheArchivedMail) => {
-  if (consentsToEmail(email, "ficheArchived")) {
+export const sendFicheArchivedService = async (
+  email: string,
+  userId: UserId,
+  data: FicheArchivedMail,
+) => {
+  if (await consentsToEmail(userId, "ficheArchived")) {
     try {
       logger.info("[sendFicheArchivedService] received");
 
@@ -652,10 +668,11 @@ interface ValidatedAndPublished {
   titreInformatif: string;
   titreMarque: string;
   lien: string;
+  structureId?: StructureId;
 }
 
 export const sendValidatedAndPublishedMailService = async (data: ValidatedAndPublished) => {
-  if (consentsToEmail(data.userId, "validatedAndPublished")) {
+  if (await consentsToEmail(data.userId, "validatedAndPublished", data.structureId)) {
     try {
       logger.info("[sendValidatedAndPublishedMailService] received");
 

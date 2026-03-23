@@ -25,7 +25,7 @@ export const Breadcrumb = ({
 }: BreadcrumbProps) => {
   const homeSegment: BreadcrumbSegment = {
     label: (
-      <span className="relative inline-flex gap-2" aria-label={homeLabel}>
+      <span className="relative inline-flex gap-2" aria-label={homeLabel} role="img">
         <i className="ri-home-4-line" />
       </span>
     ),

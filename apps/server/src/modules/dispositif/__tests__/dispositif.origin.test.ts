@@ -4,9 +4,9 @@ import {
   DispositifStatus,
   RoleName,
 } from "@refugies-info/api-types";
+import { DispositifModel, RoleModel, UserModel } from "@refugies-info/mongo";
 import { fixtures } from "~/__fixtures__";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
-import { DispositifModel, RoleModel, UserModel } from "~/typegoose";
 import { createDispositif } from "~/workflows/dispositif/createDispositif/createDispositif";
 import { updateDispositif } from "~/workflows/dispositif/updateDispositif/updateDispositif";
 
@@ -19,7 +19,7 @@ describe("Dispositif Origin", () => {
   });
 
   it("should set default origin to RI on creation", async () => {
-    const user = await UserModel.create(fixtures.user);
+    const user = await UserModel.create(fixtures.user.toObject());
     const result = await createDispositif(
       {
         typeContenu: ContentType.DISPOSITIF,
@@ -35,7 +35,7 @@ describe("Dispositif Origin", () => {
   });
 
   it("should set origin to RCO on creation if specified", async () => {
-    const user = await UserModel.create(fixtures.user);
+    const user = await UserModel.create(fixtures.user.toObject());
     const result = await createDispositif(
       {
         typeContenu: ContentType.DISPOSITIF,
@@ -52,7 +52,7 @@ describe("Dispositif Origin", () => {
   });
 
   it("should return origin in updateDispositif response", async () => {
-    const user = await UserModel.create(fixtures.user);
+    const user = await UserModel.create(fixtures.user.toObject());
     const createResult = await createDispositif(
       {
         typeContenu: ContentType.DISPOSITIF,
@@ -73,7 +73,7 @@ describe("Dispositif Origin", () => {
   });
 
   it("should not allow updating origin", async () => {
-    const user = await UserModel.create(fixtures.user);
+    const user = await UserModel.create(fixtures.user.toObject());
     const createResult = await createDispositif(
       {
         typeContenu: ContentType.DISPOSITIF,
@@ -96,12 +96,13 @@ describe("Dispositif Origin", () => {
   });
 
   it("should default missing origin to RI in API responses", async () => {
-    const user = await UserModel.create(fixtures.user);
+    const user = await UserModel.create(fixtures.user.toObject());
     // Create a raw document without origin (simulating legacy data)
     const dispositif = await DispositifModel.create({
       typeContenu: ContentType.DISPOSITIF,
       titreInformatif: "Legacy Dispositif",
       creatorId: user._id,
+      lastModificationAuthor: user._id,
       status: DispositifStatus.DRAFT,
     });
 

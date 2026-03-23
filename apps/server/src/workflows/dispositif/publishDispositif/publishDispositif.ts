@@ -3,10 +3,17 @@ import {
   DispositifStatus,
   type PublishDispositifRequest,
 } from "@refugies-info/api-types";
+import type { TranslationContent } from "@refugies-info/mongo";
+import { type Dispositif, Traductions, type User } from "@refugies-info/mongo";
 import { isEmpty } from "lodash";
 import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
+import {
+  getDispositifMainSponsor,
+  getDispositifTranslation,
+  isDispositifTranslatedIn,
+} from "~/modules/dispositif/dispositif.business";
 import {
   addNewParticipant,
   getDispositifById,
@@ -21,13 +28,12 @@ import {
 } from "~/modules/dispositif/dispositif.service";
 import { sendMailToStructureMembersWhenDispositifEnAttente } from "~/modules/mail/sendMailToStructureMembersWhenDispositifEnAttente";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
-import { type Dispositif, Traductions, type User } from "~/typegoose";
-import type { TranslationContent } from "~/typegoose/Dispositif";
+import { diffTraductions } from "~/modules/traductions/traductions.business";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 
 const hasChanges = (originalContent: TranslationContent, draftContent: TranslationContent) => {
-  const traductionDiff = Traductions.diff(originalContent, draftContent);
+  const traductionDiff = diffTraductions(originalContent, draftContent);
   return !isEmpty(traductionDiff.modified) || !isEmpty(traductionDiff.added);
 };
 
@@ -36,10 +42,11 @@ const getWaitingStatus = async (
   oldDispositif: Dispositif,
   user: User,
 ): Promise<DispositifStatus | null> => {
-  const isInStructure = dispositif
-    .getMainSponsor()
-    ?.membres.find((membre) => membre.userId.toString() === user._id.toString());
-  const isNewStructure = dispositif.getMainSponsor()?.membres.length === 0;
+  const mainSponsor = getDispositifMainSponsor(dispositif);
+  const isInStructure = mainSponsor?.membres.find(
+    (membre) => membre.userId.toString() === user._id.toString(),
+  );
+  const isNewStructure = mainSponsor?.membres.length === 0;
   if (isInStructure || isNewStructure) {
     // dans la structure
     return DispositifStatus.WAITING_ADMIN;
@@ -116,8 +123,8 @@ export const publishDispositif = async (
       // with a draft version => publish
       const isAdmin = user.isAdmin();
       const hasTextChanges = hasChanges(
-        oldDispositif.translations.fr,
-        draftDispositif.translations.fr,
+        getDispositifTranslation(oldDispositif, "fr"),
+        getDispositifTranslation(draftDispositif, "fr"),
       );
 
       if (isAdmin || !hasTextChanges) {

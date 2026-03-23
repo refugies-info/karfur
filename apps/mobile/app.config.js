@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
 
+const pkg = require("./package.json");
+
 import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
 import deepLinks from "./androidDeepLinks";
 
-const APP_VERSION = "2.2.1";
+const APP_VERSION = pkg.version;
 
 const withCustomGradleProperties = (config) => {
   return withGradleProperties(config, (config) => {
@@ -137,7 +139,10 @@ export default {
     name: process.env.EXPO_APP_NAME || "Réfugiés.info",
     slug: "refugies-info-app",
     version: APP_VERSION,
-    newArchEnabled: true,
+    newArchEnabled: false,
+    // New Architecture disabled: react-native-maps doesn't support Fabric on Android yet.
+    // Causes "View config not found for component AIRMap" error. Re-enable when
+    // https://github.com/react-native-maps/react-native-maps/issues/5121 is resolved.
     orientation: "portrait",
     icon: "./src/theme/images/app-icon-ri.png",
     scheme: "refugies",

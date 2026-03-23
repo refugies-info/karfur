@@ -3,21 +3,30 @@ import {
   type Statistics,
   type TranslationStatisticsRequest,
 } from "@refugies-info/api-types";
-import { cache } from "~/libs/cache";
+import type { Dispositif } from "@refugies-info/mongo";
+
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
+import {
+  getAvailableLanguages,
+  getDispositifTranslation,
+} from "~/modules/dispositif/dispositif.business";
 import { getActiveContentsFiltered } from "~/modules/dispositif/dispositif.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getAllUsersForAdminFromDB } from "~/modules/users/users.repository";
-import type { Dispositif } from "~/typegoose";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
-const NB_WORDS_CACHE = "nbWordsCache";
 
-const countWordsInDispositif = (dispositif: Dispositif): number =>
-  Object.entries(dispositif.translations)
-    .map(([ln, translation]) => (ln === "fr" ? 0 : countDispositifWords(translation.content)))
+const countWordsInDispositif = (dispositif: Dispositif): number => {
+  const languages = getAvailableLanguages(dispositif);
+  return languages
+    .map((ln) => {
+      if (ln === "fr") return 0;
+      const translation = getDispositifTranslation(dispositif, ln as any, false);
+      return countDispositifWords(translation?.content as any);
+    })
     .reduce((acc, count) => acc + count, 0);
+};
 
 const getTranslationStatistics = ({
   facets = [],
@@ -29,7 +38,7 @@ const getTranslationStatistics = ({
     logger.info("[getTranslationStatistics] get translations statistics");
     const noFacet = facets.length === 0;
     const stats: Statistics = {};
-    const trads = users.filter((user) => user.hasRole(RoleName.TRAD));
+    const trads = (users as any[]).filter((user) => user.hasRole(RoleName.TRAD));
     // nbTranslators
     if (noFacet || facets.includes("nbTranslators") || facets.includes("nbActiveTranslators")) {
       stats.nbTranslators = trads.length;
@@ -37,40 +46,36 @@ const getTranslationStatistics = ({
 
     // nbRedactors
     if (noFacet || facets.includes("nbRedactors")) {
-      const redactors = users.filter((user) => user.hasRole(RoleName.CONTRIB));
+      const redactors = (users as any[]).filter((user) => user.hasRole(RoleName.CONTRIB));
       stats.nbRedactors = redactors.length;
     }
 
     // nbWordsTranslated
+    // getActiveContentsFiltered uses speedgoose .cacheQuery() — DB hit only on first call
+    // or after a Dispositif write (SpeedGooseCacheAutoCleaner auto-invalidates)
     if (noFacet || facets.includes("nbWordsTranslated")) {
-      let nbWordsTranslated = 0;
-      // use cache to prevent multiple calculations, especially at build time
-      if (cache.has(NB_WORDS_CACHE)) {
-        const promiseCalculation = (await cache.get(NB_WORDS_CACHE)) as number;
-        nbWordsTranslated = promiseCalculation;
-      } else {
-        const promiseCalculation = getActiveContentsFiltered({}, {}).then((dispositifs) =>
-          dispositifs.reduce((acc, dispositif) => acc + countWordsInDispositif(dispositif), 0),
-        );
-        cache.set(NB_WORDS_CACHE, promiseCalculation, 120);
-        nbWordsTranslated = await promiseCalculation;
-      }
-      stats.nbWordsTranslated = nbWordsTranslated;
+      const dispositifs = await getActiveContentsFiltered({}, {});
+      stats.nbWordsTranslated = dispositifs.reduce(
+        (acc, dispositif) => acc + countWordsInDispositif(dispositif),
+        0,
+      );
     }
 
     // nbActiveTranslators
     if (noFacet || facets.includes("nbActiveTranslators")) {
       const now = Date.now();
-      const activeTranslators = trads.filter(
+      const activeTranslators = (trads as any[]).filter(
         (user) =>
           user.hasRole(RoleName.TRAD) && now - new Date(user.last_connected).getTime() <= ONE_MONTH,
       );
       const nbActiveTranslators = languages
-        .filter((ln) => ln.i18nCode !== "fr")
-        .map((language) => {
+        .filter((ln: any) => ln.i18nCode !== "fr")
+        .map((language: any) => {
           const languageId = language._id.toString();
           const count = activeTranslators.filter((user) =>
-            user.selectedLanguages.map((l) => l._id.toString()).includes(languageId.toString()),
+            user.selectedLanguages
+              .map((l: any) => l._id.toString())
+              .includes(languageId.toString()),
           ).length;
           return { languageId, count };
         });

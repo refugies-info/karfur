@@ -24,7 +24,7 @@ export const addNeedsFromAirtable = async (_req: object, res: Res) => {
           return;
         }
         el.needs.forEach((need) => {
-          const needWithDetailsArray = needsFromDB.filter((needDB) => needDB.fr.text === need);
+          const needWithDetailsArray = needsFromDB.filter((needDB: any) => needDB.fr.text === need);
           const needWithDetails = needWithDetailsArray.length > 0 ? needWithDetailsArray[0] : null;
           let isTagOk = false;
           //@ts-expect-error typing issue with tags

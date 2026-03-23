@@ -1,7 +1,7 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import logger from "~/logger";
 import { getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { sendFicheArchivedService } from "~/modules/mail/mail.service";
-import type { Dispositif } from "~/typegoose";
 import { getStructureMembers } from "../structure/structure.service";
 import { getUsersFromStructureMembres } from "../users/users.service";
 
@@ -20,7 +20,7 @@ export const sendMailWhenDispositifArchived = async (dispositifId: Dispositif["_
       logger.info("[sendMailWhenDispositifArchived] send mail to membre", {
         membreId: membre._id,
       });
-      return sendFicheArchivedService(membre.email, {
+      return sendFicheArchivedService(membre.email, membre._id, {
         firstName: membre.firstName || "",
         lien,
         titreInformatif,

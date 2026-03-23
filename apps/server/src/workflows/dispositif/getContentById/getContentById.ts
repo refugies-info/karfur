@@ -9,17 +9,22 @@ import {
   type SimpleUser,
   type Sponsor,
 } from "@refugies-info/api-types";
+import type { Dispositif, Role, Structure, User } from "@refugies-info/mongo";
+import { isDocument, isDocumentArray } from "@refugies-info/mongo";
 import pick from "lodash/pick";
 import type { ProjectionType } from "mongoose";
 import { NotFoundError } from "~/errors";
 import { isUserAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
 import {
+  getDispositifMainSponsor,
+  isDispositifTranslatedIn,
+} from "~/modules/dispositif/dispositif.business";
+import {
   getDispositifById,
   getDraftDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
 import { getRoles } from "~/modules/role/role.repository";
-import type { Dispositif, Role, Structure, User } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 const getRoleName = (id: string, roles: Role[]) =>
@@ -47,7 +52,9 @@ const canViewDispositif = (dispositif: Dispositif, user?: User): boolean => {
   if (user?.isAdmin()) return true;
 
   // is part of structure: OK
-  const sponsor: Structure | null = dispositif.mainSponsor ? dispositif.getMainSponsor() : null;
+  const sponsor: Structure | null = dispositif.mainSponsor
+    ? getDispositifMainSponsor(dispositif) || null
+    : null;
   const isMemberOfStructure =
     user &&
     !!(sponsor?.membres || []).find(
@@ -151,28 +158,37 @@ export const getContentById = async (
   }
 
   const dispositif = draftDispositif || originalDispositif;
-  const dataLanguage = originalDispositif.isTranslatedIn(locale) ? locale : "fr"; // find translation in published version only
+  const dataLanguage = isDispositifTranslatedIn(originalDispositif as any, locale) ? locale : "fr"; // find translation in published version only
 
   const allRoles = await getRoles();
-  const participantsWithRoles = dispositif.participants.map((p) => ({
+  const participantsWithRoles = (dispositif.participants || []).map((p) => ({
     ...pick(p, ["_id", "username", "picture"]),
-    roles: p.roles.filter((r) => !!r).map((r) => getRoleName(r, allRoles)),
+    roles: (p.roles || []).filter((r) => !!r).map((r) => getRoleName(r, allRoles)),
   }));
 
   const originalDispositifObject = originalDispositif.toObject();
   const dispositifObject = dispositif.toObject();
-  // if FR: show draft version if available / if other language: show published verison
+
   const translation =
     dataLanguage === "fr"
-      ? dispositifObject.translations[dataLanguage]
-      : originalDispositifObject.translations[dataLanguage];
+      ? dispositifObject.translations?.[dataLanguage]
+      : originalDispositifObject.translations?.[dataLanguage];
 
-  const response: GetDispositifResponse = {
+  if (!translation) {
+    logger.error("[getContentById] translation missing", {
+      id,
+      dataLanguage,
+      hasTranslations: !!(dispositifObject.translations || originalDispositifObject.translations),
+    });
+    throw new NotFoundError("Translation not found");
+  }
+
+  const response: any = {
     _id: dispositifObject._id,
     ...translation.content,
     participants: participantsWithRoles,
-    metadatas: getMetadatas(dispositifObject.metadatas),
-    availableLanguages: Object.keys(originalDispositifObject.translations), // show available languages of published version only
+    metadatas: getMetadatas(dispositifObject.metadatas as any),
+    availableLanguages: Object.keys(originalDispositifObject.translations || {}), // show available languages of published version only
     date: translation.created_at || dispositifObject.lastModificationDate,
     hasDraftVersion: !!draftDispositif,
     ...pick(dispositif, [

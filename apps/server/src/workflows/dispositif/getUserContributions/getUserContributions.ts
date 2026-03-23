@@ -1,8 +1,8 @@
 import type { GetUserContributionsResponse } from "@refugies-info/api-types";
+import type { UserId } from "@refugies-info/mongo";
 import { pick } from "lodash";
 import logger from "~/logger";
 import { getDispositifsWithCreatorId } from "~/modules/dispositif/dispositif.repository";
-import type { UserId } from "~/typegoose";
 import type { ResponseWithData } from "~/types/interface";
 
 export const getUserContributions = async (
@@ -24,12 +24,15 @@ export const getUserContributions = async (
   };
   const dispositifs = await getDispositifsWithCreatorId(userId, neededFields);
 
-  const res: GetUserContributionsResponse[] = dispositifs.map((d) => ({
+  // Double-cast required: the $project pipeline always selects these fields but
+  // DispositifContributionAggResult exposes them as Partial (optional), while
+  // GetUserContributionsResponse requires them. The pipeline guarantees presence at runtime.
+  const res = dispositifs.map((d) => ({
     ...pick(d, ["_id", "typeContenu", "status", "mainSponsor", "nbVues", "origin"]),
     ...pick(d.translations?.fr?.content ?? {}, ["titreInformatif", "titreMarque"]),
     nbMercis: (d.merci ?? []).length,
     hasDraftVersion: !!d.hasDraftVersion,
-  }));
+  })) as unknown as GetUserContributionsResponse[];
 
   return { text: "success", data: res };
 };

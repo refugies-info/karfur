@@ -58,7 +58,7 @@ export const getDefaultSortOption = (query: SearchQuery): SortOptions => {
     case sortByTheme:
       return "theme";
     default:
-      return "view";
+      return "views";
   }
 };
 
@@ -248,7 +248,7 @@ export const getTopDemarches = (dispositifs: SimpleDispositif[]): SimpleDisposit
   return filterDispositifs(
     {
       type: "demarche",
-      sort: "view",
+      sort: "views",
       search: "",
       departments: [],
       themes: [],

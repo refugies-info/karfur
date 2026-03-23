@@ -1,9 +1,9 @@
 import type { ImprovementsRequest } from "@refugies-info/api-types";
+import type { DispositifId, UserId } from "@refugies-info/mongo";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { sendAdminImprovementsMailService } from "~/modules/mail/mail.service";
 import { getUserById } from "~/modules/users/users.repository";
-import type { DispositifId, UserId } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

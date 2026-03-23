@@ -1,4 +1,5 @@
 import type { GetActiveStructuresResponse } from "@refugies-info/api-types";
+import { toPicture } from "~/libs/pictureUtils";
 import logger from "~/logger";
 import { getStructuresWithDispos } from "~/modules/structure/structure.repository";
 import type { ResponseWithData } from "~/types/interface";
@@ -23,7 +24,7 @@ export const getActiveStructures = async (): ResponseWithData<GetActiveStructure
       _id: item._id,
       nom: item.nom,
       acronyme: item.acronyme,
-      picture: item.picture,
+      picture: toPicture(item.picture),
       structureTypes: item.structureTypes,
       departments: item.departments,
       disposAssociesLocalisation: [],

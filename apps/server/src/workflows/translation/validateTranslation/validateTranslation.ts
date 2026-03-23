@@ -4,8 +4,15 @@ import type {
   Languages,
   TranslationContent,
 } from "@refugies-info/api-types";
+import {
+  type Dispositif,
+  DispositifModel,
+  ErrorModel,
+  type Traductions,
+} from "@refugies-info/mongo";
 import { cloneDeep, set } from "lodash";
 import logger from "~/logger";
+import { isDispositif } from "~/modules/dispositif/dispositif.business";
 import {
   deleteLineBreaks,
   deleteLineBreaksInInfosections,
@@ -17,13 +24,6 @@ import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedT
 import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
 import { addTradToAirtable } from "~/modules/traductions/traductions.service";
-import {
-  type Dispositif,
-  DispositifModel,
-  ErrorModel,
-  type Traductions,
-  type UserId,
-} from "~/typegoose";
 import { log } from "./log";
 
 const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>) => {
@@ -77,16 +77,17 @@ const validateTranslation = (
       Promise.all([
         deleteTradsInDB(dispositif._id, language),
         getLanguageByCode(language).then((langue) =>
-          log(dispositif._id, translation.userId as UserId, langue._id),
+          log(dispositif._id, translation.userId, langue._id),
         ),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
+
         isFirstValidation
           ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
               logger.error("[validateTranslations] error while sending notifications", error);
             })
           : null,
         isFirstValidation ? updateLanguagesAvancement() : null,
-        dispositif.isDispositif() && isFirstValidation
+        isDispositif(dispositif) && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {
               logger.error(
                 "[validateTranslations] error while sending mails to structure members",

@@ -9,12 +9,17 @@ import { memo, useMemo } from "react";
 import { Image } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import { getConditionImage, getDescriptionNew } from "~/libs/content";
+import {
+  formatSessionDate,
+  getConditionImage,
+  getDescriptionNew,
+  isSessionPast,
+} from "~/libs/content";
 import { styles } from "~/theme";
 import { Columns, Rows, RowsSpacing } from "../layout";
 import { ReadableText } from "../ReadableText";
 import { TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
-import { Title } from "../typography";
+import { Badge, Title } from "../typography";
 import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 
 interface Props {
@@ -133,6 +138,58 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
       </Title>
       <MainContainer>
         <Rows separator spacing={RowsSpacing.Default}>
+          {content.origin === "RCO" &&
+            metadatas.sessions?.items &&
+            metadatas.sessions.items.length > 0 && (
+              <Section color={color} title={t("Infocards.sessionsTitle", "Sessions")}>
+                {metadatas.sessions.modalitesEntreesSorties !== undefined &&
+                  metadatas.sessions.modalitesEntreesSorties !== null && (
+                    <SubtitleText style={{ marginBottom: styles.margin }}>
+                      <ReadableText>
+                        {metadatas.sessions.modalitesEntreesSorties === 0
+                          ? t(
+                              "content_screen.modalites_dates_fixes",
+                              "Entrées & sorties à dates fixes",
+                            )
+                          : t(
+                              "content_screen.modalites_permanentes",
+                              "Entrées & sorties permanentes",
+                            )}
+                      </ReadableText>
+                    </SubtitleText>
+                  )}
+                {metadatas.sessions.items.map((session, index) => {
+                  const start = formatSessionDate(session.startDate);
+                  const end = formatSessionDate(session.endDate);
+                  const past = isSessionPast(session, metadatas.sessions?.modalitesEntreesSorties);
+                  return (
+                    <Columns
+                      key={index}
+                      RTLBehaviour
+                      layout="auto 1"
+                      verticalAlign="flex-start"
+                      style={{ marginBottom: styles.margin * 3 }}
+                    >
+                      <InfocardImage color={color} title="sessions" isFree={false} />
+                      <InfocardTextContainer>
+                        <ReadableText>
+                          <DescriptionText>
+                            {`${t("content_screen.session_from", "Du")} ${start} ${t("content_screen.session_to", "au")} ${end}`}
+                          </DescriptionText>
+                          {past && (
+                            <Badge
+                              type="error"
+                              text={t("content_screen.session_past", "DATE DÉPASSÉE")}
+                            />
+                          )}
+                        </ReadableText>
+                      </InfocardTextContainer>
+                    </Columns>
+                  );
+                })}
+              </Section>
+            )}
+
           <Section color={color} title={t("Infocards.publicTitle", "Public visé")}>
             <Metadata color={color} metadatas={metadatas} metadataKey="publicStatus" withTitle />
             {metadatas.public && (

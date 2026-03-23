@@ -1,13 +1,14 @@
+import type { Dispositif } from "@refugies-info/mongo";
 import { asyncForEach } from "~/libs/asyncForEach";
 import logger from "~/logger";
 import { filterDispositifsForUpdateReminders } from "~/modules/dispositif/dispositif.adapter";
+import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import {
   getPublishedDispositifWithMainSponsor,
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import { sendUpdateReminderMailService } from "~/modules/mail/mail.service";
 import { getUserById } from "~/modules/users/users.repository";
-import type { Dispositif } from "~/typegoose";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 
@@ -38,10 +39,11 @@ export const sendReminderMailToUpdateContents = async (): Response => {
     filteredDispositifWithTitreInfoFormated,
     async (dispositif: Dispositif & { titreInformatif: string }) => {
       try {
-        if (dispositif.mainSponsor) {
-          if (dispositif.getMainSponsor().membres) {
+        const mainSponsor = getDispositifMainSponsor(dispositif);
+        if (mainSponsor) {
+          if (mainSponsor.membres) {
             await Promise.all(
-              dispositif.getMainSponsor().membres.map(async (membre) => {
+              mainSponsor.membres.map(async (membre) => {
                 try {
                   const user = await getUserById(membre.userId.toString(), {
                     firstName: 1,

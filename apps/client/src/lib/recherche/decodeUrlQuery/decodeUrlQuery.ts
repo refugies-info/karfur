@@ -59,7 +59,10 @@ export const decodeQuery = (
       query.public = decodeURIComponent(routerQuery.public as string).split(",") as PublicOptions[];
     if (status) query.status = decodeURIComponent(status as string).split(",") as StatusOptions[];
     if (language) query.language = decodeURIComponent(language as string).split(",");
-    if (sort) query.sort = decodeURIComponent(sort as string) as SortOptions;
+    if (sort) {
+      const decodedSort = decodeURIComponent(sort as string);
+      query.sort = (decodedSort === "view" ? "views" : decodedSort) as SortOptions;
+    }
     if (type) query.type = decodeURIComponent(type as string) as TypeOptions;
     if (search) query.search = decodeURIComponent(search as string);
   }

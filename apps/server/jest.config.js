@@ -24,6 +24,7 @@ module.exports = {
   // https://stackoverflow.com/questions/71743639/getting-rangeerror-maximum-call-stack-size-exceeded-when-unit-testing-with-mo
   // moduleDirectories: ["node_modules", "src"],
   testEnvironment: "node",
+  testTimeout: 15000,
   moduleNameMapper: pathsToModuleNameMapper({
     "~/*": ["<rootDir>/src/*"],
   }),

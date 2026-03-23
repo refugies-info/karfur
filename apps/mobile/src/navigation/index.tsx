@@ -86,7 +86,7 @@ export const RootNavigator = () => {
     const saveInitialUrl = (event: Linking.EventType | string | null) => {
       if (event) {
         const url = typeof event === "object" ? event.url : event;
-        if (!url.includes("refugies.info")) return;
+        if (!url.includes("refugies.info") && !url.startsWith("refugies://")) return;
         dispatch(
           saveSelectedLanguageActionCreator({
             langue: getLocaleFromUrl(url),

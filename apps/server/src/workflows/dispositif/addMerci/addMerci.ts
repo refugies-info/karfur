@@ -1,12 +1,12 @@
 import { DispositifStatus } from "@refugies-info/api-types";
+import type { Merci } from "@refugies-info/mongo";
+import { ObjectId } from "@refugies-info/mongo";
 import { AuthenticationError } from "~/errors";
 import logger from "~/logger";
 import {
   addMerciDispositifInDB,
   getDispositifById,
 } from "~/modules/dispositif/dispositif.repository";
-import { ObjectId } from "~/typegoose";
-import type { Merci } from "~/typegoose/Dispositif";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 

@@ -1,7 +1,16 @@
 import { RoleName } from "@refugies-info/api-types";
+import {
+  DispositifModel,
+  LogModel,
+  NeedModel,
+  RoleModel,
+  ThemeModel,
+  UserModel,
+} from "@refugies-info/mongo";
 import crypto from "crypto";
-import mongoose from "mongoose";
+import type mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { ZodError } from "zod";
 import dbConnect from "./db";
 import type { WebhookMetadatas, WebhookSession } from "./webhookSchemas";
 
@@ -50,44 +59,17 @@ export const validateSourceIP = (req: NextApiRequest) => {
 export const getWebhookModels = async () => {
   await dbConnect();
 
-  // Use existing models if they are already registered by the main app
-  // or define minimal schemas for the webhook context with strict: false
-  const User =
-    mongoose.models.User ||
-    mongoose.model("User", new mongoose.Schema({}, { strict: false, collection: "users" }));
-  const Role =
-    mongoose.models.Role ||
-    mongoose.model("Role", new mongoose.Schema({}, { strict: false, collection: "roles" }));
-  // Use a separate model name to avoid modifying the global Dispositif schema
-  // This model uses strict: false for webhook flexibility but doesn't affect the main app
-  const WebhookDispositif =
-    mongoose.models.WebhookDispositif ||
-    mongoose.model(
-      "WebhookDispositif",
-      new mongoose.Schema(
-        {
-          typeContenu: String,
-          origin: String,
-          status: String,
-          creatorId: mongoose.Schema.Types.ObjectId,
-          theme: mongoose.Schema.Types.ObjectId,
-          translations: mongoose.Schema.Types.Mixed,
-        },
-        { strict: false, collection: "dispositifs" },
-      ),
-    );
-  const Dispositif = WebhookDispositif; // Alias for backward compatibility with handlers
-  const Theme =
-    mongoose.models.Theme ||
-    mongoose.model("Theme", new mongoose.Schema({}, { strict: false, collection: "themes" }));
-  const Need =
-    mongoose.models.Need ||
-    mongoose.model("Need", new mongoose.Schema({}, { strict: false, collection: "needs" }));
-  const Log =
-    mongoose.models.Log ||
-    mongoose.model("Log", new mongoose.Schema({}, { strict: false, collection: "logs" }));
-
-  return { User, Role, Dispositif, Theme, Need, Log };
+  // Shared models from @refugies-info/mongo are registered by dbConnect().
+  // Using canonical models ensures Mongoose middleware hooks fire correctly
+  // (required for speedgoose auto-cleaner cache invalidation).
+  return {
+    User: UserModel,
+    Role: RoleModel,
+    Dispositif: DispositifModel,
+    Theme: ThemeModel,
+    Need: NeedModel,
+    Log: LogModel,
+  };
 };
 
 export const checkWebhookPermissions = (
@@ -95,7 +77,6 @@ export const checkWebhookPermissions = (
   action: "create" | "update" | "translation" | "archive",
 ) => {
   if (!user || !user.roles) {
-    console.log("[Webhook] Permission check failed: No user or roles");
     return false;
   }
 
@@ -145,26 +126,23 @@ export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: stri
 export const getWebhookUser = async (User: mongoose.Model<any>, email: string) => {
   const user = await User.findOne({ email });
   if (!user) {
-    console.log(`[Webhook] User not found for email: ${email}`);
     return null;
   }
 
-  // Manually fetch roles because population is unreliable with mixed schemas
+  // Manually fetch roles (populate is unreliable in webhook context)
   if (user.roles && user.roles.length > 0) {
-    const conn = await dbConnect();
-    const Role =
-      conn.models.Role ||
-      conn.model("Role", new mongoose.Schema({ nom: String }, { collection: "roles" }));
-    const populatedRoles = await Role.find({ _id: { $in: user.roles } });
+    const populatedRoles = await RoleModel.find({ _id: { $in: user.roles } });
     user.roles = populatedRoles;
   }
 
-  console.log(
-    `[Webhook] User found: ${user._id} with roles:`,
-    (user.roles || []).map((r: any) => r.nom || r),
-  );
   return user;
 };
+
+export const formatZodErrors = (error: ZodError) =>
+  error.issues.map((issue) => ({
+    key: issue.path.join("."),
+    message: issue.message,
+  }));
 
 export const standardErrorResponse = (res: NextApiResponse, error: unknown) => {
   console.error("[Webhook] Error:", error);
@@ -196,26 +174,29 @@ export const convertMetadatasDates = (
   const converted = { ...metadatas };
 
   // Conversion des sessions
-  if (converted.sessions && Array.isArray(converted.sessions)) {
-    converted.sessions = converted.sessions.map((session: WebhookSession, index: number) => {
-      try {
-        return {
-          ...session,
-          startDate: new Date(session.startDate),
-          endDate: new Date(session.endDate),
-          registrationStartDate: session.registrationStartDate
-            ? new Date(session.registrationStartDate)
-            : undefined,
-          registrationEndDate: session.registrationEndDate
-            ? new Date(session.registrationEndDate)
-            : undefined,
-        };
-      } catch (err) {
-        throw new Error(
-          `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
-        );
-      }
-    }) as any; // sessions contiennent maintenant des Date, pas des strings
+  if (converted.sessions && converted.sessions.items && Array.isArray(converted.sessions.items)) {
+    converted.sessions = {
+      ...converted.sessions,
+      items: converted.sessions.items.map((session: WebhookSession, index: number) => {
+        try {
+          return {
+            ...session,
+            startDate: new Date(session.startDate),
+            endDate: new Date(session.endDate),
+            registrationStartDate: session.registrationStartDate
+              ? new Date(session.registrationStartDate)
+              : undefined,
+            registrationEndDate: session.registrationEndDate
+              ? new Date(session.registrationEndDate)
+              : undefined,
+          };
+        } catch (err) {
+          throw new Error(
+            `Erreur de conversion des dates pour la session #${index + 1}: ${(err as Error).message}`,
+          );
+        }
+      }),
+    } as any; // sessions.items contiennent maintenant des Date, pas des strings
   }
 
   return converted as any;

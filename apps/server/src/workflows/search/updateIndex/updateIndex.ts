@@ -1,4 +1,5 @@
 import { DispositifStatus, type UpdateIndexResponse } from "@refugies-info/api-types";
+import type { Dispositif, Langue } from "@refugies-info/mongo";
 import type { ProjectionType } from "mongoose";
 import { getAllAlgoliaObjects } from "~/connectors/algolia/updateAlgoliaData";
 import { formatForAlgolia } from "~/libs/formatForAlgolia";
@@ -8,7 +9,6 @@ import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
 import { getNeedsFromDB } from "~/modules/needs/needs.repository";
 import { updateAlgoliaIndex } from "~/modules/search/search.service";
 import { getAllThemes } from "~/modules/themes/themes.repository";
-import type { Dispositif, Langue } from "~/typegoose";
 import type { AlgoliaObject, ResponseWithData } from "~/types/interface";
 
 const getDispositifsForAlgolia = async (): Promise<AlgoliaObject[]> => {

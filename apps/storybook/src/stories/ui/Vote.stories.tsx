@@ -1,5 +1,5 @@
 import { Vote } from "@refugies-info/ui";
-import type { Meta, StoryObj } from "@storybook/nextjs";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 /**
  * The Vote component allows users to provide feedback on content by voting yes or no.
