@@ -1,6 +1,7 @@
 import type {
   DemarcheContent,
   DispositifContent,
+  FlexibleDispositifContent,
   Languages,
   TranslationContent,
 } from "@refugies-info/api-types";
@@ -14,7 +15,7 @@ import { cloneDeep, set } from "lodash";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import { incrementWordsTranslatedCounter } from "~/modules/adminOptions/adminOptions.repository";
-import { isDispositif } from "~/modules/dispositif/dispositif.business";
+import { getDispositifTranslation, isDispositif } from "~/modules/dispositif/dispositif.business";
 import {
   deleteLineBreaks,
   deleteLineBreaksInInfosections,
@@ -60,11 +61,15 @@ const validateTranslation = (
 ) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation
 
-  // Compute word count delta for the stored counter
-  const newWords = countDispositifWords(translation.translated.content as any);
-  const oldWords = isFirstValidation
-    ? 0
-    : countDispositifWords((dispositif.translations[language] as any)?.content);
+  // Compute word count delta for the stored counter.
+  // getDispositifTranslation handles both plain-object and Mongoose Map representations safely.
+  const newWords = countDispositifWords(
+    translation.translated.content as FlexibleDispositifContent,
+  );
+  const oldContent = isFirstValidation
+    ? undefined
+    : getDispositifTranslation(dispositif, language, false)?.content;
+  const oldWords = oldContent ? countDispositifWords(oldContent as FlexibleDispositifContent) : 0;
   const wordsDelta = newWords - oldWords;
 
   return DispositifModel.updateOne(

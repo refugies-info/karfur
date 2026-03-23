@@ -22,11 +22,13 @@ const deleteTranslations = async (
   ]);
 
   if (wordsDelta !== 0) {
-    incrementWordsTranslatedCounter(wordsDelta).catch((error) => {
+    try {
+      await incrementWordsTranslatedCounter(wordsDelta);
+    } catch (error) {
       logger.error("[deleteTranslations] error while updating words counter", {
-        error: error.message,
+        error: (error as Error).message,
       });
-    });
+    }
   }
 
   return result;
