@@ -50,6 +50,15 @@ export type UserWithPopulatedStructures = Omit<
   roles: Role[];
 };
 
+/**
+ * Shape of user data returned for translation statistics.
+ */
+export type UserForTranslationStats = {
+  roles: { nom: string }[];
+  last_connected: Date;
+  selectedLanguages: { _id: LangueId }[];
+};
+
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate<{
     selectedLanguages: { langueCode: string; langueFr: string; _id: LangueId }[];
@@ -67,7 +76,7 @@ export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>)
  * Only populates roles + selectedLanguages (no structures/departments).
  * Cached via speedgoose to avoid repeated full table scans.
  */
-export const getUsersForTranslationStats = () =>
+export const getUsersForTranslationStats = (): Promise<UserForTranslationStats[]> =>
   UserModel.find(
     { status: UserStatus.ACTIVE },
     { roles: 1, last_connected: 1, selectedLanguages: 1 },
@@ -77,9 +86,8 @@ export const getUsersForTranslationStats = () =>
       { path: "selectedLanguages", select: "_id" },
     ])
     .lean()
-    .cacheQuery() as unknown as Promise<
-    { roles: { nom: string }[]; last_connected: Date; selectedLanguages: { _id: LangueId }[] }[]
-  >;
+    // Type cast is safe as UserForTranslationStats accurately reflects selected and populated fields
+    .cacheQuery() as unknown as Promise<UserForTranslationStats[]>;
 
 // update
 export const updateUserInDB = async (
