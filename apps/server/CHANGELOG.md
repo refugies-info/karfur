@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.1](https://github.com/refugies-info/karfur/compare/server-v2.3.0...server-v2.3.1) (2026-03-23)
+
+
+### Performance Improvements
+
+* **server:** fix /traduction/statistics causing cascading 503 errors ([d9f6a65](https://github.com/refugies-info/karfur/commit/d9f6a65b4e1f736a6199007fbe556f1c62a1edbc))
+
 ## [2.3.0](https://github.com/refugies-info/karfur/compare/server-v2.2.1...server-v2.3.0) (2026-03-23)
 
 
