@@ -85,7 +85,7 @@ app.get("*", (_req, res) => {
 const startServer = async () => {
   try {
     await connectWithRetry();
-    const port = process.env.PORT;
+    const port = process.env.PORT || 8080;
     app.listen(port, () => logger.info(`Listening on port ${port}`));
   } catch (e) {
     logger.error("[server] Failed to start", { error: e });
