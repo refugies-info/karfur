@@ -32,10 +32,7 @@ const db_path = MONGODB_URI;
 
 const connectWithRetry = async () => {
   return mongoose
-    .connect(db_path, {
-      maxPoolSize: 20,
-      minPoolSize: 5,
-    })
+    .connect(db_path)
     .then(async () => {
       logger.info("[mongoose] Connected to mongoDB");
       await initCache(process.env.REDIS_URI);
