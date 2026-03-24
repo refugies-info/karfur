@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.4.0](https://github.com/refugies-info/karfur/compare/server-v2.3.2...server-v2.4.0) (2026-03-24)
+
+
+### Features
+
+* **server:** add debug logging and regression tests for RI-1154 ([e02ff60](https://github.com/refugies-info/karfur/commit/e02ff608c3399093507c22aefed56539d78aefe3))
+
+
+### Bug Fixes
+
+* **server:** add default port 8080 for local development ([75223e4](https://github.com/refugies-info/karfur/commit/75223e471c0b6e7779c6b0ea3de96f54e1a0e12f))
+* **server:** await DB/cache initialization before accepting requests ([62ab8b8](https://github.com/refugies-info/karfur/commit/62ab8b86638a0e454623fe0543bce060f897bdf6))
+* **server:** remove membership check for structure-level email prefs (RI-1154) ([#3610](https://github.com/refugies-info/karfur/issues/3610)) ([275dbdf](https://github.com/refugies-info/karfur/commit/275dbdf52617719cac93fab131f6d4427f3b7f6b))
+
 ## [2.3.2](https://github.com/refugies-info/karfur/compare/server-v2.3.1...server-v2.3.2) (2026-03-23)
 
 

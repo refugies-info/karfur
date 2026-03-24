@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.4.0](https://github.com/refugies-info/karfur/compare/mongo-v2.3.0...mongo-v2.4.0) (2026-03-24)
+
+
+### Features
+
+* Add `sessions` field to Dispositif schema and relax SessionSche… ([632e664](https://github.com/refugies-info/karfur/commit/632e66408f7b96058dbc7ebcf12a38a84aaff722))
+* Add `sessions` field to Dispositif schema and relax SessionSchema date validation to accept date-only strings. ([9c53bfc](https://github.com/refugies-info/karfur/commit/9c53bfce58f27a7f63f23e7491da3f3800ae4a1e))
+* add sessions metadata to the Dispositif schema. ([37c0145](https://github.com/refugies-info/karfur/commit/37c01457d1e80c00e946ed84cae036ac16c6fc0e))
+
 ## [2.3.0](https://github.com/refugies-info/karfur/compare/mongo-v2.2.1...mongo-v2.3.0) (2026-03-23)
 
 
