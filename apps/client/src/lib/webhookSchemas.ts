@@ -179,27 +179,33 @@ const FrequencySchema = z.object(
 );
 
 // Session schema with detailed validation for dates
+// Accepts both date-only ("YYYY-MM-DD") and full ISO 8601 datetime formats
 const SessionSchema = z
   .object(
     {
-      startDate: z.string().datetime({
-        message: "startDate doit être une date ISO 8601 valide (ex: 2025-11-24T00:00:00.000Z)",
-      }),
-      endDate: z.string().datetime({
-        message: "endDate doit être une date ISO 8601 valide (ex: 2026-01-16T00:00:00.000Z)",
-      }),
+      startDate: z
+        .string()
+        .refine((val) => !Number.isNaN(Date.parse(val)), {
+          message:
+            "startDate doit être une date valide (ex: 2025-11-24 ou 2025-11-24T00:00:00.000Z)",
+        }),
+      endDate: z
+        .string()
+        .refine((val) => !Number.isNaN(Date.parse(val)), {
+          message: "endDate doit être une date valide (ex: 2026-01-16 ou 2026-01-16T00:00:00.000Z)",
+        }),
       registrationStartDate: z
         .string()
-        .datetime({
+        .refine((val) => !Number.isNaN(Date.parse(val)), {
           message:
-            "registrationStartDate doit être une date ISO 8601 valide (ex: 2025-10-01T00:00:00.000Z)",
+            "registrationStartDate doit être une date valide (ex: 2025-10-01 ou 2025-10-01T00:00:00.000Z)",
         })
         .optional(),
       registrationEndDate: z
         .string()
-        .datetime({
+        .refine((val) => !Number.isNaN(Date.parse(val)), {
           message:
-            "registrationEndDate doit être une date ISO 8601 valide (ex: 2025-11-20T23:59:59.000Z)",
+            "registrationEndDate doit être une date valide (ex: 2025-11-20 ou 2025-11-20T23:59:59.000Z)",
         })
         .optional(),
       externalRef: z

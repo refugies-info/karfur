@@ -99,6 +99,8 @@ export const MetadatasZodSchema = z.object({
   commitment: z.any().optional().nullable(),
   frequency: z.any().optional().nullable(),
   timeSlots: z.array(z.string()).optional().nullable(),
+  // PATCHED: Nested object (modalitesEntreesSorties + items[]) - relaxed for Mongoose
+  sessions: z.any().optional().nullable(),
 });
 
 // --- Strict TypeScript types (what the app actually uses) ---
