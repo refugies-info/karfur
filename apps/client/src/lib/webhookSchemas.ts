@@ -178,36 +178,17 @@ const FrequencySchema = z.object(
   },
 );
 
+// Accepts YYYY-MM-DD or full ISO 8601 with timezone (rejects ambiguous datetime without timezone)
+const DateStringSchema = z.union([z.string().date(), z.string().datetime({ offset: true })]);
+
 // Session schema with detailed validation for dates
-// Accepts both date-only ("YYYY-MM-DD") and full ISO 8601 datetime formats
 const SessionSchema = z
   .object(
     {
-      startDate: z
-        .string()
-        .refine((val) => !Number.isNaN(Date.parse(val)), {
-          message:
-            "startDate doit être une date valide (ex: 2025-11-24 ou 2025-11-24T00:00:00.000Z)",
-        }),
-      endDate: z
-        .string()
-        .refine((val) => !Number.isNaN(Date.parse(val)), {
-          message: "endDate doit être une date valide (ex: 2026-01-16 ou 2026-01-16T00:00:00.000Z)",
-        }),
-      registrationStartDate: z
-        .string()
-        .refine((val) => !Number.isNaN(Date.parse(val)), {
-          message:
-            "registrationStartDate doit être une date valide (ex: 2025-10-01 ou 2025-10-01T00:00:00.000Z)",
-        })
-        .optional(),
-      registrationEndDate: z
-        .string()
-        .refine((val) => !Number.isNaN(Date.parse(val)), {
-          message:
-            "registrationEndDate doit être une date valide (ex: 2025-11-20 ou 2025-11-20T23:59:59.000Z)",
-        })
-        .optional(),
+      startDate: DateStringSchema,
+      endDate: DateStringSchema,
+      registrationStartDate: DateStringSchema.optional(),
+      registrationEndDate: DateStringSchema.optional(),
       externalRef: z
         .string()
         .min(1, { message: "externalRef ne peut pas être une chaîne vide" })
