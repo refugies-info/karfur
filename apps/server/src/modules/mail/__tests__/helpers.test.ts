@@ -148,3 +148,55 @@ describe("consentsToEmail", () => {
     });
   });
 });
+
+/**
+ * RI-1154: Regression test for MENS members receiving validatedAndPublished emails
+ *
+ * These tests verify that the MENS email blocking logic is working.
+ * If the structure-level preference check is disabled (simulating the bug),
+ * these tests will FAIL, demonstrating the bug.
+ */
+describe("RI-1154: validatedAndPublished should be blocked for MENS members", () => {
+  it("should block validatedAndPublished for MENS member (regression test)", async () => {
+    // User IS a confirmed member of MENS structure
+    mockLean.mockResolvedValue({ _id: MENS_STRUCTURE_ID });
+
+    // This is the email that was incorrectly sent (subject: "Les mises à jour de votre fiche ont été publiées")
+    const result = await consentsToEmail(
+      MENS_MEMBER_USER_ID,
+      "validatedAndPublished",
+      MENS_STRUCTURE_ID,
+    );
+
+    // Should be BLOCKED - MENS inherits validatedAndPublished: false from DEFAULT_MAIL_PREFS
+    // If this returns true, the MENS blocking logic is broken!
+    expect(result).toBe(false);
+  });
+
+  it("should block validatedAndPublished for actual MENS member user ID from production", async () => {
+    // Using the actual user ID from production incident: 64aad4d22e7872e398e7b8cd
+    const actualMensMemberId = "64aad4d22e7872e398e7b8cd" as unknown as UserId;
+
+    mockLean.mockResolvedValue({ _id: MENS_STRUCTURE_ID });
+
+    const result = await consentsToEmail(
+      actualMensMemberId,
+      "validatedAndPublished",
+      MENS_STRUCTURE_ID,
+    );
+
+    expect(result).toBe(false);
+  });
+
+  it("should verify validatedAndPublished is false in DEFAULT_MAIL_PREFS", () => {
+    // This documents that validatedAndPublished should be blocked by default
+    expect(DEFAULT_MAIL_PREFS.validatedAndPublished).toBe(false);
+  });
+
+  it("should verify MENS structure inherits validatedAndPublished: false", () => {
+    // MENS STRUCTURE_PREFS spreads DEFAULT_MAIL_PREFS, so it should inherit the false value
+    const mensPrefs = STRUCTURE_PREFS["63985164fd1bf4e22792ef6e"];
+    expect(mensPrefs).toBeDefined();
+    expect(mensPrefs.validatedAndPublished).toBe(false);
+  });
+});
