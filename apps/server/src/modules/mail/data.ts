@@ -51,5 +51,6 @@ export const STRUCTURE_PREFS: Record<string, Record<TemplateName, boolean>> = {
     ficheArchived: false,
     publishedFicheToCreator: false,
     publishedFicheToStructureMembers: false,
+    validatedAndPublished: false,
   },
 };
