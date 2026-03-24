@@ -1,3 +1,4 @@
+import type { SessionsMetadata } from "@refugies-info/api-types";
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
@@ -115,6 +116,7 @@ export type Metadatas = {
   commitment?: Commitment | null;
   frequency?: Frequency | null;
   timeSlots?: string[] | null;
+  sessions?: SessionsMetadata | null;
 };
 
 export const PoiZodSchema = z.object({
