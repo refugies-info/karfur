@@ -1,37 +1,19 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "packages": {
-    "apps/client": {
+    ".": {
       "release-type": "node",
-      "package-name": "@refugies-info/client"
-    },
-    "apps/server": {
-      "release-type": "node",
-      "package-name": "@refugies-info/server"
-    },
-    "apps/mobile": {
-      "release-type": "node",
-      "package-name": "@refugies-info/mobile"
-    },
-    "packages/api-types": {
-      "release-type": "node",
-      "package-name": "@refugies-info/api-types"
-    },
-    "packages/ui": {
-      "release-type": "node",
-      "package-name": "@refugies-info/ui"
-    },
-    "packages/mongo": {
-      "release-type": "node",
-      "package-name": "@refugies-info/mongo"
-    },
-    "packages/typescript-config": {
-      "release-type": "node",
-      "package-name": "@refugies-info/typescript-config"
-    },
-    "packages/markdown-utils": {
-      "release-type": "node",
-      "package-name": "@refugies-info/markdown-utils"
+      "package-name": "@refugies-info/karfur",
+      "extra-files": [
+        "apps/client/package.json",
+        "apps/server/package.json",
+        "apps/mobile/package.json",
+        "packages/api-types/package.json",
+        "packages/ui/package.json",
+        "packages/mongo/package.json",
+        "packages/typescript-config/package.json",
+        "packages/markdown-utils/package.json"
+      ]
     }
   }
 }
