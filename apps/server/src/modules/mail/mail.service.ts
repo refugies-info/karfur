@@ -672,6 +672,12 @@ interface ValidatedAndPublished {
 }
 
 export const sendValidatedAndPublishedMailService = async (data: ValidatedAndPublished) => {
+  logger.info("[sendValidatedAndPublishedMailService] ENTRY", {
+    userId: data.userId?.toString(),
+    email: data.email,
+    structureId: data.structureId?.toString(),
+    hasStructureId: !!data.structureId,
+  });
   if (await consentsToEmail(data.userId, "validatedAndPublished", data.structureId)) {
     try {
       logger.info("[sendValidatedAndPublishedMailService] received");
