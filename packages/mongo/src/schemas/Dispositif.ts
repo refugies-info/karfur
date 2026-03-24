@@ -1,3 +1,4 @@
+import type { SessionsMetadata } from "@refugies-info/api-types";
 import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
@@ -99,6 +100,8 @@ export const MetadatasZodSchema = z.object({
   commitment: z.any().optional().nullable(),
   frequency: z.any().optional().nullable(),
   timeSlots: z.array(z.string()).optional().nullable(),
+  // PATCHED: Nested object (modalitesEntreesSorties + items[]) - relaxed for Mongoose
+  sessions: z.any().optional().nullable(),
 });
 
 // --- Strict TypeScript types (what the app actually uses) ---
@@ -113,6 +116,7 @@ export type Metadatas = {
   commitment?: Commitment | null;
   frequency?: Frequency | null;
   timeSlots?: string[] | null;
+  sessions?: SessionsMetadata | null;
 };
 
 export const PoiZodSchema = z.object({
