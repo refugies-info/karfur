@@ -201,10 +201,10 @@ export const getStructureDispositifs = async (
     .then(async (dispositifs) => {
       const usernames = await Promise.all(
         dispositifs.map(async (dispositif) =>
-          dispositif.suggestions.length > 0
+          (dispositif.suggestions || []).length > 0
             ? await getUsersById<{ _id: ObjectId; username: string }>(
                 uniq(
-                  dispositif.suggestions
+                  (dispositif.suggestions || [])
                     .map((s: (typeof dispositif.suggestions)[number]) => s.userId)
                     .filter((id: unknown) => !!id),
                 ),
@@ -220,7 +220,7 @@ export const getStructureDispositifs = async (
     .then(({ dispositifs, usernames }) =>
       dispositifs.map((dispositif) => {
         const translation = getDispositifTranslation(dispositif, locale);
-        const suggestions: SuggestionAPIType[] = dispositif.suggestions.map(
+        const suggestions: SuggestionAPIType[] = (dispositif.suggestions || []).map(
           (s: (typeof dispositif.suggestions)[number]) => {
             return {
               ...(pick(s, ["created_at", "read", "suggestion", "suggestionId", "section"]) as any),
@@ -236,7 +236,7 @@ export const getStructureDispositifs = async (
           ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
           availableLanguages: getAvailableLanguages(dispositif),
           hasDraftVersion: dispositif.hasDraftVersion,
-          nbMercis: dispositif.merci.length,
+          nbMercis: (dispositif.merci || []).length,
           suggestions,
           themeSortIndex: dispositif.sortThemeIndex,
           origin: dispositif.origin ?? "RI",
