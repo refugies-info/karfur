@@ -1,4 +1,14 @@
 name: Release Pipeline
+run-name: >-
+  ${{
+    github.event_name == 'push' &&
+    format(
+      'Release Pipeline · {0} · {1}',
+      github.ref_name,
+      github.sha
+    ) ||
+    format('Release Pipeline · manual · {0}', github.ref_name)
+  }}
 
 # Orchestrates backend → frontend deployments in sequence so that the
 # frontend build (which prerenders via SSR) always runs against an
@@ -12,6 +22,7 @@ name: Release Pipeline
 
 permissions:
   contents: read
+  pull-requests: read
 
 on:
   push:
@@ -34,11 +45,57 @@ jobs:
       backend: ${{ steps.backend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
       frontend: ${{ steps.frontend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
       mobile: ${{ steps.mobile.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
+      triggering_pr_title: ${{ steps.trigger-pr.outputs.title }}
+      triggering_pr_number: ${{ steps.trigger-pr.outputs.number }}
     steps:
       - uses: actions/checkout@v6
         with:
           # Full history so tj-actions/changed-files can reach github.event.before SHA
           fetch-depth: 0
+
+      - name: Resolve triggering PR
+        id: trigger-pr
+        if: github.event_name == 'push'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const branch = context.ref.replace("refs/heads/", "");
+            const commitSha = context.sha;
+            const pulls = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: commitSha,
+            });
+
+            const mergedPull = pulls.data.find((pull) => pull.base.ref === branch && pull.merged_at);
+
+            if (!mergedPull) {
+              core.notice(`No merged PR found for ${commitSha} on ${branch} (direct push or sync merge).`);
+              return;
+            }
+
+            core.setOutput("title", mergedPull.title);
+            core.setOutput("number", String(mergedPull.number));
+            core.notice(`Triggered by PR #${mergedPull.number}: ${mergedPull.title}`);
+
+      - name: Add trigger context summary
+        if: github.event_name == 'push'
+        run: |
+          if [[ -n "${{ steps.trigger-pr.outputs.number }}" ]]; then
+            {
+              echo "## Trigger context"
+              echo "- Branch: \`${{ github.ref_name }}\`"
+              echo "- Commit: \`${{ github.sha }}\`"
+              echo "- PR: #${{ steps.trigger-pr.outputs.number }} — ${{ steps.trigger-pr.outputs.title }}"
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            {
+              echo "## Trigger context"
+              echo "- Branch: \`${{ github.ref_name }}\`"
+              echo "- Commit: \`${{ github.sha }}\`"
+              echo "- PR: _No merged PR resolved for this push_"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Detect backend changes
         uses: tj-actions/changed-files@v47
