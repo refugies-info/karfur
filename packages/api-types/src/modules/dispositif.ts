@@ -88,7 +88,7 @@ export interface ContentForApp {
   abstract: string;
   theme: Id;
   secondaryThemes: Id[];
-  needs: Id[];
+  needs?: Id[];
   nbVues: number;
   nbVuesMobile: number;
   typeContenu: ContentType;
@@ -253,7 +253,7 @@ export type BaseGetDispositifResponse = {
   mainSponsor?: ContentStructure | null;
   theme?: Id;
   secondaryThemes?: Id[];
-  needs: Id[];
+  needs?: Id[];
   sponsors?: (Sponsor | ContentStructure)[];
   avis: {
     created_at: Date;
@@ -391,7 +391,7 @@ export interface GetAllDispositifsResponse {
   status: DispositifStatus;
   theme?: Id;
   secondaryThemes?: Id[];
-  needs: Id[];
+  needs?: Id[];
   created_at?: Date;
   publishedAt?: Date;
   publishedAtAuthor: Author;

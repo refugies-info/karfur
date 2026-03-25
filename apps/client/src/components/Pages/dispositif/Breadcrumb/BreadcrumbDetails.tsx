@@ -97,7 +97,7 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
               </>
             )}
 
-            {dispositif.needs.length === 1 && need && (
+            {dispositif.needs?.length === 1 && need && (
               <>
                 <li>
                   <Link
