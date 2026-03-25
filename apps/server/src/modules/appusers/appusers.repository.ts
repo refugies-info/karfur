@@ -50,15 +50,16 @@ export const updateNotificationsSettings = async (
   // Use default settings if notificationsSettings is undefined (field is optional in schema)
   const currentSettings = appUser.notificationsSettings || DEFAULT_NOTIFICATIONS_SETTINGS;
 
-  if (payload.themes) {
-    const themes = { ...currentSettings.themes, ...payload.themes };
-    appUser.notificationsSettings = {
-      ...currentSettings,
-      themes,
-    };
-  } else {
-    appUser.notificationsSettings = { ...currentSettings, ...payload };
-  }
+  const { themes: payloadThemes, ...otherPayload } = payload;
+
+  appUser.notificationsSettings = {
+    ...currentSettings,
+    ...otherPayload,
+    themes: {
+      ...currentSettings.themes,
+      ...(payloadThemes || {}),
+    },
+  };
   await appUser.save();
   return appUser.notificationsSettings;
 };
