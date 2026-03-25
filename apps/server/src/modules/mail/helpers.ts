@@ -1,5 +1,4 @@
 import type { StructureId, UserId } from "@refugies-info/mongo";
-import { StructureModel } from "@refugies-info/mongo";
 import logger from "~/logger";
 import type { TemplateName } from "../../connectors/sendgrid/sendgrid.types";
 import { STRUCTURE_PREFS, USER_PREFS } from "./data";
@@ -13,7 +12,7 @@ import { STRUCTURE_PREFS, USER_PREFS } from "./data";
  *
  * @param userId - The user's ID
  * @param templateName - The email template name
- * @param structureId - For structure-related emails: checks prefs only if user is a member
+ * @param structureId - For structure-related emails: checks structure-level prefs
  * @returns true if user consents, false otherwise
  */
 export const consentsToEmail = async (
@@ -45,9 +44,7 @@ export const consentsToEmail = async (
     return false;
   }
 
-  // 2. Check structure-level preferences ONLY if:
-  //    - structureId is provided, AND
-  //    - user is actually a member of that structure
+  // 2. Check structure-level preferences if structureId is provided
   if (structureId) {
     const structId = structureId.toString();
     const structPrefs = STRUCTURE_PREFS[structId];
@@ -60,39 +57,13 @@ export const consentsToEmail = async (
       hasStructurePref: structPref !== undefined,
     });
 
-    // Verify user is a member of this structure
-    const query = { _id: structId, "membres.userId": id };
-    logger.info("[consentsToEmail] Membership query", { query });
-
-    const membership = await StructureModel.findOne(query, { _id: 1 }).lean();
-
-    logger.info("[consentsToEmail] Membership result", {
-      structId,
-      userId: id,
-      isMember: !!membership,
-      membership,
-    });
-
-    if (membership) {
-      logger.info("[consentsToEmail] Structure pref value", {
-        structId,
-        templateName,
-        structPref,
-      });
-
-      if (structPref === false) {
-        logger.info("[consentsToEmail] BLOCKED by structure pref", {
-          structId,
-          userId: id,
-          templateName,
-        });
-        return false;
-      }
-    } else {
-      logger.info("[consentsToEmail] User not a member, skipping structure pref check", {
+    if (structPref === false) {
+      logger.info("[consentsToEmail] BLOCKED by structure pref", {
         structId,
         userId: id,
+        templateName,
       });
+      return false;
     }
   } else {
     logger.info("[consentsToEmail] No structureId provided, skipping structure pref check");

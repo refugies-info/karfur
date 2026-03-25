@@ -5,6 +5,13 @@ import {
   type NotificationsSettings,
 } from "@refugies-info/mongo";
 
+const DEFAULT_NOTIFICATIONS_SETTINGS: NotificationsSettings = {
+  global: true,
+  local: true,
+  demarches: true,
+  themes: {},
+};
+
 export const getAllAppUsers = async () => AppUserModel.find();
 
 export const getAppUsersBatch = async (skip: number, batchSize: number) =>
@@ -39,15 +46,20 @@ export const updateNotificationsSettings = async (
   if (!appUser) {
     return null;
   }
-  if (payload.themes) {
-    const themes = { ...appUser.notificationsSettings.themes, ...payload.themes };
-    appUser.notificationsSettings = {
-      ...appUser.notificationsSettings,
-      themes,
-    };
-  } else {
-    appUser.notificationsSettings = { ...appUser.notificationsSettings, ...payload };
-  }
+
+  // Use default settings if notificationsSettings is undefined (field is optional in schema)
+  const currentSettings = appUser.notificationsSettings || DEFAULT_NOTIFICATIONS_SETTINGS;
+
+  const { themes: payloadThemes, ...otherPayload } = payload;
+
+  appUser.notificationsSettings = {
+    ...currentSettings,
+    ...otherPayload,
+    themes: {
+      ...currentSettings.themes,
+      ...(payloadThemes || {}),
+    },
+  };
   await appUser.save();
   return appUser.notificationsSettings;
 };
