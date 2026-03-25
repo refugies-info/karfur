@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/refugies-info/karfur/compare/karfur-v2.4.0...karfur-v2.4.1) (2026-03-25)
+
+
+### Bug Fixes
+
+* **server:** ensure release-please can parse PR [#3617](https://github.com/refugies-info/karfur/issues/3617) ([#3618](https://github.com/refugies-info/karfur/issues/3618)) ([a0c8bfa](https://github.com/refugies-info/karfur/commit/a0c8bfa17a7241ded2b64f88c6692c78eb3f1d86))
+
 ## [2.4.0](https://github.com/refugies-info/karfur/compare/karfur-v2.3.2...karfur-v2.4.0) (2026-03-24)
 
 
