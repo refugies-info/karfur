@@ -171,7 +171,7 @@ const filterSuggestions = (
       // Only the current themes
       .filter((dispositif) => relatedThemesIds.includes(dispositif.theme as string))
       // Only the ones that DOES NOT have the current selected needs
-      .filter((dispositif) => !dispositif.needs.some((need) => selectedNeedsIds.includes(need)));
+      .filter((dispositif) => !dispositif.needs?.some((need) => selectedNeedsIds.includes(need)));
 
     // Returns the results here to stop the filtering process
     return suggestions.sort((a, b) => b.nbVues - a.nbVues).slice(0, 8);

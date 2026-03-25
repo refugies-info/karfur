@@ -287,7 +287,7 @@ export interface SimpleDispositif {
   status: DispositifStatus;
   theme?: Id;
   secondaryThemes?: Id[];
-  needs: Id[];
+  needs?: Id[];
   metadatas?: Metadatas;
   created_at?: Date;
   publishedAt?: Date;
