@@ -6,6 +6,10 @@ on:
       - dev
   workflow_dispatch:
 
+concurrency:
+  group: release-please-${{ github.repository }}
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pull-requests: write
