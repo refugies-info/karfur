@@ -47,16 +47,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res, locales = []
       API.getDispositifs({ type: ContentType.DEMARCHE, locale: loc }),
     ]);
 
-    dispositifs.forEach((d) => {
-      allUrls.push(
-        `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/dispositif/[id]", loc).replace("[id]", d._id.toString())}`,
-      );
-    });
-    demarches.forEach((d) => {
-      allUrls.push(
-        `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/demarche/[id]", loc).replace("[id]", d._id.toString())}`,
-      );
-    });
+    allUrls.push(
+      ...dispositifs.map(
+        (d) =>
+          `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/dispositif/[id]", loc).replace("[id]", d._id.toString())}`,
+      ),
+      ...demarches.map(
+        (d) =>
+          `${process.env.NEXT_PUBLIC_REACT_APP_SITE_URL}/${loc}${getPath("/demarche/[id]", loc).replace("[id]", d._id.toString())}`,
+      ),
+    );
   }
 
   // Set cache headers - cache for 1 day, revalidate after 1 hour
