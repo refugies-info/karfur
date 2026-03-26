@@ -424,8 +424,10 @@ export function* addUserFavorite(
     logger.info("[addFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
     const newFavorites = [...(favorites || []), action.payload];
-    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
+    // Update Redux state FIRST for immediate UI feedback
     yield put(setUserFavoritesActionCreator(newFavorites));
+    // Then persist to AsyncStorage and sync with API
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
   } catch (error: unknown) {
     if (error instanceof Error) {
       logger.error("Error while adding favorite", { error: error.message });
@@ -440,8 +442,10 @@ export function* removeUserFavorite(
     logger.info("[removeFavorite] saga", action.payload);
     const favorites = yield select(userFavorites);
     const newFavorites = (favorites || []).filter((f: string) => f !== action.payload);
-    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
+    // Update Redux state FIRST for immediate UI feedback
     yield put(setUserFavoritesActionCreator(newFavorites));
+    // Then persist to AsyncStorage and sync with API
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify(newFavorites));
   } catch (error: unknown) {
     if (error instanceof Error) {
       logger.error("Error while removing favorite", { error: error.message });
@@ -452,8 +456,10 @@ export function* removeUserFavorite(
 export function* removeUserAllFavorites(): SagaIterator {
   try {
     logger.info("[removeAllFavorites] saga");
-    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify([]));
+    // Update Redux state FIRST for immediate UI feedback
     yield put(setUserFavoritesActionCreator([]));
+    // Then persist to AsyncStorage and sync with API
+    yield call(saveItemInAsyncStorage, "FAVORITES", JSON.stringify([]));
   } catch (error: unknown) {
     if (error instanceof Error) {
       logger.error("Error while removing favorites", { error: error.message });
