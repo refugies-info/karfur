@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/refugies-info/karfur/compare/karfur-v2.5.0...karfur-v2.5.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* Update sessions format for Zod schema compatibility in dispositifs and dispositifs_draft collections. ([dfebda2](https://github.com/refugies-info/karfur/commit/dfebda21cdc64e064ba1eb45eebade7b7fb69f1b))
+
 ## [2.5.0](https://github.com/refugies-info/karfur/compare/karfur-v2.4.1...karfur-v2.5.0) (2026-03-26)
 
 
