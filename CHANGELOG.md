@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.2](https://github.com/refugies-info/karfur/compare/karfur-v2.5.1...karfur-v2.5.2) (2026-03-26)
+
+
+### Bug Fixes
+
+* **migration:** preserve existing sessions array data during migration ([3ab70a2](https://github.com/refugies-info/karfur/commit/3ab70a24539c507dd3264758d6b82f8308e807fa))
+* **migration:** preserve existing sessions array data during migration ([496e49a](https://github.com/refugies-info/karfur/commit/496e49acf0d48ff51efaecdccf07291b4915550a))
+
 ## [2.5.1](https://github.com/refugies-info/karfur/compare/karfur-v2.5.0...karfur-v2.5.1) (2026-03-26)
 
 
