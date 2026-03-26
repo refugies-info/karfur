@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.5.0](https://github.com/refugies-info/karfur/compare/karfur-v2.4.1...karfur-v2.5.0) (2026-03-26)
+
+
+### Features
+
+* make Dispositif `needs` property optional and update client-side access with optional chaining. ([31d190c](https://github.com/refugies-info/karfur/commit/31d190c5b85a1f545861eca4ddcec55f02286909))
+
+
+### Bug Fixes
+
+* **client:** serialize sitemap locale requests to reduce backend overload ([c60c56a](https://github.com/refugies-info/karfur/commit/c60c56a2be9813ffbf784955ae167905314b6d32))
+* **client:** serialize sitemap locale requests to reduce backend overload ([aace330](https://github.com/refugies-info/karfur/commit/aace330850a93c5d49bddb259fd56ba671adfbf9))
+* **mobile:** update redux state before persisting favorites ([cc1445e](https://github.com/refugies-info/karfur/commit/cc1445eeb7d56e9b2e5ec7449f74e38fadaaba4a))
+* **mobile:** update redux state before persisting favorites ([9ed9a22](https://github.com/refugies-info/karfur/commit/9ed9a22a9d455d908b7ce180ef826630b02a833b))
+* safely access `dispositif.needs` length with optional chaining to prevent potential errors. ([c3544ac](https://github.com/refugies-info/karfur/commit/c3544aca5e91dbf65476276d01903683380bb3e0))
+* Safely access dispositif suggestions and merci arrays by default… ([90c2ae0](https://github.com/refugies-info/karfur/commit/90c2ae06f8fc28411209da519daa9a3b29972b3d))
+* Safely access dispositif suggestions and merci arrays by defaulting to an empty array. ([5088e32](https://github.com/refugies-info/karfur/commit/5088e32d317203a15b3c891e84054958aee458f6))
+* **server:** handle missing draft arrays in structure dispositifs ([5b841f1](https://github.com/refugies-info/karfur/commit/5b841f1232be3d2ba9088f5e9563d5df93555d84))
+
 ## [2.4.1](https://github.com/refugies-info/karfur/compare/karfur-v2.4.0...karfur-v2.4.1) (2026-03-25)
 
 
