@@ -207,14 +207,14 @@ export const DispositifZodSchema = z.object({
 
   mainSponsor: zId("Structure").optional(),
   theme: zId("Theme").optional(),
-  secondaryThemes: z.array(zId("Theme")).optional(),
-  needs: z.array(zId("Need")).optional(),
+  secondaryThemes: z.array(zId("Theme")).default([]),
+  needs: z.array(zId("Need")).default([]),
   // PATCHED: Union in array not supported, relaxed for Mongoose
-  sponsors: z.array(z.any()).optional(),
+  sponsors: z.array(z.any()).default([]),
   externalLink: z.string().optional(),
 
   creatorId: zId("User"),
-  participants: z.array(zId("User")).optional(),
+  participants: z.array(zId("User")).default([]),
 
   lastAdminUpdate: z.date().optional(),
   lastModificationAuthor: zId("User"),
@@ -241,9 +241,9 @@ export const DispositifZodSchema = z.object({
   // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
   notificationsSent: z.any().optional(),
 
-  suggestions: z.array(SuggestionZodSchema).optional(),
-  merci: z.array(MerciZodSchema).optional(),
-  avis: z.array(AvisZodSchema).optional(),
+  suggestions: z.array(SuggestionZodSchema).default([]),
+  merci: z.array(MerciZodSchema).default([]),
+  avis: z.array(AvisZodSchema).default([]),
   webOnly: z.boolean().optional(),
 
   // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
