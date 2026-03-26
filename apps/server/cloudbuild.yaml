@@ -39,6 +39,7 @@ steps:
           --service-account ${_SA} \
           --set-env-vars MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION} \
           --set-env-vars NODE_ENV=${_NODE_ENV} \
+          --set-env-vars NODE_OPTIONS="--max-old-space-size=1536" \
           --set-secrets accountSid=accountSid:latest \
           --set-secrets AIRTABLE_BASE_CONTENU=${_AIRTABLE_BASE_CONTENU_VAR}:latest \
           --set-secrets AIRTABLE_BASE_TRAD=${_AIRTABLE_BASE_TRAD_VAR}:latest \
