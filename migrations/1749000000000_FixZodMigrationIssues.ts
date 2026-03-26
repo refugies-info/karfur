@@ -6,6 +6,7 @@ import type { Db } from "mongodb";
  *
  * Converts metadatas.sessions from array format to SessionsMetadata object:
  *   sessions: [] → sessions: { items: [] }
+ *   sessions: [a, b] → sessions: { items: [a, b] }
  *
  * This fixes the 422 error on autosave when editing drafts.
  * The previous migration (MigrateSessionsToObject) only covered dispositifs,
@@ -15,23 +16,17 @@ export class FixZodMigrationIssues1749000000000 implements MigrationInterface {
   public async up(db: Db): Promise<void | never> {
     console.log("[FixSessionsFormat] Starting migration...");
 
-    // Fix sessions in dispositifs_draft
-    const draftsResult = await db
-      .collection("dispositifs_draft")
-      .updateMany(
-        { "metadatas.sessions": { $type: "array" } },
-        { $set: { "metadatas.sessions": { items: [] } } },
-      );
-    console.log(`[FixSessionsFormat] Fixed ${draftsResult.modifiedCount} dispositifs_draft`);
-
-    // Fix sessions in dispositifs (in case previous migration missed some)
-    const dispositifsResult = await db
-      .collection("dispositifs")
-      .updateMany(
-        { "metadatas.sessions": { $type: "array" } },
-        { $set: { "metadatas.sessions": { items: [] } } },
-      );
-    console.log(`[FixSessionsFormat] Fixed ${dispositifsResult.modifiedCount} dispositifs`);
+    // Fix sessions in dispositifs_draft and dispositifs
+    // Use aggregation pipeline to preserve existing array elements
+    const collectionsToMigrate = ["dispositifs_draft", "dispositifs"];
+    for (const collectionName of collectionsToMigrate) {
+      const result = await db
+        .collection(collectionName)
+        .updateMany({ "metadatas.sessions": { $type: "array" } }, [
+          { $set: { "metadatas.sessions": { items: "$metadatas.sessions" } } },
+        ]);
+      console.log(`[FixSessionsFormat] Fixed ${result.modifiedCount} ${collectionName}`);
+    }
 
     console.log("[FixSessionsFormat] Migration completed!");
   }
@@ -39,19 +34,17 @@ export class FixZodMigrationIssues1749000000000 implements MigrationInterface {
   public async down(db: Db): Promise<void | never> {
     console.log("[FixSessionsFormat] Rolling back...");
 
-    await db
-      .collection("dispositifs")
-      .updateMany(
-        { "metadatas.sessions.items": { $exists: true, $size: 0 } },
-        { $set: { "metadatas.sessions": [] } },
-      );
-
-    await db
-      .collection("dispositifs_draft")
-      .updateMany(
-        { "metadatas.sessions.items": { $exists: true, $size: 0 } },
-        { $set: { "metadatas.sessions": [] } },
-      );
+    // Rollback: convert sessions object back to array format
+    // Use aggregation pipeline to be symmetric with up migration
+    const collectionsToRollback = ["dispositifs", "dispositifs_draft"];
+    for (const collectionName of collectionsToRollback) {
+      const result = await db
+        .collection(collectionName)
+        .updateMany({ "metadatas.sessions.items": { $exists: true, $type: "array" } }, [
+          { $set: { "metadatas.sessions": "$metadatas.sessions.items" } },
+        ]);
+      console.log(`[FixSessionsFormat] Rolled back ${result.modifiedCount} ${collectionName}`);
+    }
 
     console.log("[FixSessionsFormat] Rollback completed!");
   }
