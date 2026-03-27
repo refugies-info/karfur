@@ -19,34 +19,21 @@ const deepLinks = [
     host: "refugies.info",
     path: "/",
   },
-  ...urlTranslations.map(
-    (
-      url, // https://refugies.info/dispositif/
-    ) => ({
-      scheme: "https",
-      host: "refugies.info",
-      pathPattern: url[0],
-    }),
-  ),
-  ...urlTranslations.map(
-    (
-      url, // https://refugies.info/fr/dispositif/
-    ) => ({
-      scheme: "https",
-      host: "refugies.info",
-      pathPattern: "/.*" + url[0],
-    }),
-  ),
-  ...urlTranslations.map(
-    (
-      url, // https://refugies.info/en/program/
-    ) => ({
-      scheme: "https",
-      host: "refugies.info",
-      pathPattern: "/.*" + url[1],
-    }),
-  ),
+  ...urlTranslations.map((url) => ({
+    scheme: "https",
+    host: "refugies.info",
+    pathPattern: url[0],
+  })),
+  ...urlTranslations.map((url) => ({
+    scheme: "https",
+    host: "refugies.info",
+    pathPattern: "/.*" + url[0],
+  })),
+  ...urlTranslations.map((url) => ({
+    scheme: "https",
+    host: "refugies.info",
+    pathPattern: "/.*" + url[1],
+  })),
 ];
 
-// eslint-disable-next-line no-undef
 module.exports = deepLinks;
