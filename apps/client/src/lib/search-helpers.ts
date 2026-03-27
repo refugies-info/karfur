@@ -586,6 +586,9 @@ export const computeSearchResults = async (
   const algoliaIds = await resolveAlgoliaIds(queryParams.search);
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
+  // Keep a clean copy for count calculations (before type filter is applied)
+  const baseMatchForCounts = { ...baseMatch };
+
   if (options.type && options.type !== "all") {
     if (options.type === "ressource") {
       baseMatch["metadatas.location"] = "online";
@@ -601,7 +604,7 @@ export const computeSearchResults = async (
     executeCachedQuery<number>(Dispositif.countDocuments(baseMatch)),
     executeCachedPipeline(
       Dispositif.aggregate([
-        { $match: baseMatch },
+        { $match: baseMatchForCounts },
         { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
       ]),
     ),
@@ -610,6 +613,15 @@ export const computeSearchResults = async (
 
   const getCount = (type: string) =>
     typeCounts.find((t: { _id: string; count: number }) => t._id === type)?.count || 0;
+
+  // Count online resources by metadatas.location (not typeContenu)
+  const onlineCountResult = await executeCachedPipeline<{ count: number }>(
+    Dispositif.aggregate([
+      { $match: { ...baseMatchForCounts, "metadatas.location": "online" } },
+      { $count: "count" },
+    ]),
+  );
+  const onlineCount = onlineCountResult[0]?.count || 0;
 
   // When no results, provide top démarches as fallback
   const noResults =
@@ -622,7 +634,7 @@ export const computeSearchResults = async (
     total,
     programCount: getCount("dispositif"),
     procedureCount: getCount("demarche"),
-    onlineCount: getCount("online"),
+    onlineCount,
     page: options.page,
     pageCount: Math.ceil(total / options.limit),
   };
