@@ -127,7 +127,7 @@ export const computeSearchCounts = async (
 
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
-  const facetPipelines = {
+  const facetPipelines: Pick<FacetPipelines, FacetPipelineKey> = {
     themes: [
       {
         $project: {
@@ -357,7 +357,9 @@ export const computeSearchCounts = async (
     ],
   };
 
-  const facet: Partial<FacetPipelines> = Object.entries(facetPipelines).reduce(
+  const facet: Partial<FacetPipelines> = (
+    Object.entries(facetPipelines) as [FacetPipelineKey, object[]][]
+  ).reduce(
     (acc, [key, pipeline]) => {
       // IMPORTANT: Rebuild base match with the corresponding facet filter removed
       // rather than mutating a shallow copy. Some filters are embedded in $or/$and expressions
@@ -377,7 +379,7 @@ export const computeSearchCounts = async (
         matchForFacet = buildBaseMatch({ ...queryParams, status: [] }, algoliaIds);
       }
 
-      acc[key as FacetPipelineKey] = [
+      acc[key] = [
         { $match: matchForFacet },
         ...pipeline,
         { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
