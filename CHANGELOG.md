@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.5.6](https://github.com/refugies-info/karfur/compare/karfur-v2.5.5...karfur-v2.5.6) (2026-03-27)
+
+
+### Bug Fixes
+
+* **client:** improve type inference in facetPipelines ([088ba2b](https://github.com/refugies-info/karfur/commit/088ba2b1ac0374da23e66b8c80e0f0e682a851ac))
+* **client:** improve type safety in search counts aggregation ([4f703ae](https://github.com/refugies-info/karfur/commit/4f703ae13fb5b7ee972e8931761df40ae6041a5e))
+* **client:** improve type safety in search counts aggregation ([e0dfb99](https://github.com/refugies-info/karfur/commit/e0dfb99c65fcd9ea70abab16597928379e331540))
+* **mobile:** convert app.config.js to pure CommonJS ([15c190d](https://github.com/refugies-info/karfur/commit/15c190dbe7932a99f0eeef6be519b07deef05794))
+* **mobile:** convert app.config.js to pure CommonJS ([a285743](https://github.com/refugies-info/karfur/commit/a285743f69d83866d5095a5ef107384abb1ff79d))
+
 ## [2.5.5](https://github.com/refugies-info/karfur/compare/karfur-v2.5.4...karfur-v2.5.5) (2026-03-27)
 
 
