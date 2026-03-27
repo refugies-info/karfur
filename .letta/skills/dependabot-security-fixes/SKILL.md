@@ -205,7 +205,7 @@ Fixes GitHub Dependabot alerts #NNN, #NNN.
 
 | Package | CVE | Severity | Fixed Version |
 |---------|-----|----------|---------------|
-| <pkg> | <description> | <severity> | <version> |
+| <pkg> | <cve-id> | <severity> | <version> |
 
 ## Test plan
 
