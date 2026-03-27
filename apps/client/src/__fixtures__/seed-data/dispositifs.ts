@@ -131,7 +131,7 @@ export const seedDispositifs = async (conn: Connection) => {
         },
       },
       status: "Actif",
-      typeContenu: "online",
+      typeContenu: "dispositif",
     },
     {
       theme: TA,
@@ -232,7 +232,7 @@ export const seedDispositifs = async (conn: Connection) => {
           fr: { title: `Formation ${i + 6}`, abstract: `Description de la formation ${i + 6}` },
         },
         status: "Actif",
-        typeContenu: i % 3 === 0 ? "dispositif" : i % 3 === 1 ? "demarche" : "online",
+        typeContenu: i % 3 === 0 ? "dispositif" : "demarche",
       };
     }),
     // Inactive entry should be filtered out globally
