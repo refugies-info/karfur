@@ -236,6 +236,8 @@ jobs:
     if: needs.detect-changes.outputs.mobile == 'true'
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
+    env:
+      EAS_SKIP_AUTO_FINGERPRINT: "1"
     steps:
       - name: Check for EXPO_TOKEN
         run: |
