@@ -3,8 +3,8 @@
 
 const pkg = require("./package.json");
 
-import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
-import deepLinks from "./androidDeepLinks";
+const { withAppBuildGradle, withGradleProperties } = require("expo/config-plugins");
+const deepLinks = require("./androidDeepLinks");
 
 const APP_VERSION = pkg.version;
 
@@ -59,7 +59,7 @@ const withDisableStrictLinting = (config) => {
   });
 };
 
-export default {
+module.exports = {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",
