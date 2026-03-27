@@ -30,6 +30,12 @@ minimumReleaseAgeExclude:
   - "storybook"
   # TODO: Remove after 2026-03-30 once flatted@3.4.2 is older than 7 days
   - flatted
+  # TODO: Remove after 2026-04-03 once handlebars@4.7.9 is older than 7 days (security fix)
+  - handlebars
+  # TODO: Remove after 2026-04-03 once brace-expansion@2.0.3 is older than 7 days (security fix)
+  - brace-expansion
+  # TODO: Remove after 2026-03-31 once node-forge@1.4.0 is older than 7 days (security fix)
+  - node-forge
   # TODO: Remove - pnpm false positive for old packages
   - "@babel/core"
   - path-expression-matcher
