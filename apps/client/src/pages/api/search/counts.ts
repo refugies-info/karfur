@@ -340,6 +340,13 @@ export const computeSearchCounts = async (
   ];
   (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
 
+  // Count online resources by metadatas.location (not typeContenu)
+  // Production data has typeContenu: "dispositif" or "demarche" with metadatas.location: "online"
+  (facet as any).online = [
+    { $match: { ...baseMatch, "metadatas.location": "online" } },
+    { $count: "count" },
+  ];
+
   const results = await executeCachedPipeline(Dispositif.aggregate([{ $facet: facet }]));
   const data = results[0] || {};
 
@@ -365,7 +372,7 @@ export const computeSearchCounts = async (
     types: {
       dispositif: data.types?.find((t: any) => t._id === "dispositif")?.count || 0,
       demarche: data.types?.find((t: any) => t._id === "demarche")?.count || 0,
-      online: data.types?.find((t: any) => t._id === "online")?.count || 0,
+      online: data.online?.[0]?.count || 0,
     },
     total: data.total?.[0]?.count || 0,
   };

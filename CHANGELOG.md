@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.5.4](https://github.com/refugies-info/karfur/compare/karfur-v2.5.3...karfur-v2.5.4) (2026-03-27)
+
+
+### Bug Fixes
+
+* **client:** filter online resources by metadatas.location instead of typeContenu ([9b49020](https://github.com/refugies-info/karfur/commit/9b490200a209e0772ba4e1940396065f04775dc4))
+* **client:** filter online resources by metadatas.location instead of typeContenu ([5d2765e](https://github.com/refugies-info/karfur/commit/5d2765e368c21395c2283f22cc428de87a443442))
+* **client:** update live chat availability from 2 to 4 days per week ([28c8a15](https://github.com/refugies-info/karfur/commit/28c8a1544aee0b1a638e4834f34b40aca1c01e55))
+* **client:** update live chat availability from 2 to 4 days per week ([d476169](https://github.com/refugies-info/karfur/commit/d4761699d73afd5a55c1f2684ed94012588485f5))
+* **client:** use separate query for online count calculation ([d64014b](https://github.com/refugies-info/karfur/commit/d64014be253e92738bb04245bfd1afe000350f8d))
+* **letta:** address review comments on settings.json and skill ([434dbb0](https://github.com/refugies-info/karfur/commit/434dbb0573baac6695329f9fc993419736aaed50))
+* **workspace:** address Dependabot security alerts for handlebars, node-forge, brace-expansion ([44f0f67](https://github.com/refugies-info/karfur/commit/44f0f67dd8453ded48360319053ab1b69fc9943c))
+* **workspace:** address Dependabot security alerts for handlebars, node-forge, brace-expansion ([150869a](https://github.com/refugies-info/karfur/commit/150869a3c6bee7aef74d457ac0a69f4a8dafbd6d))
+
 ## [2.5.3](https://github.com/refugies-info/karfur/compare/karfur-v2.5.2...karfur-v2.5.3) (2026-03-26)
 
 

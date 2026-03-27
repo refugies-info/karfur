@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git shortlog:*)",
+      "Bash(find:*)",
+      "Edit(**)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm test:server:*)",
+      "Bash(pnpm install:*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(cd apps/server && pnpx jest --runInBand:*)",
+      "Bash(pnpm check:types:*)",
+      "Bash(turbo check:types)",
+      "Write(**)",
+      "Edit(apps/server/src/workflows/users/getActiveUsers/**)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm biome:*)"
+    ]
+  }
+}
