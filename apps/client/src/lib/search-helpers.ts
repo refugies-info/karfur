@@ -587,7 +587,11 @@ export const computeSearchResults = async (
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
   if (options.type && options.type !== "all") {
-    baseMatch.typeContenu = options.type;
+    if (options.type === "ressource") {
+      baseMatch["metadatas.location"] = "online";
+    } else {
+      baseMatch.typeContenu = options.type;
+    }
   }
 
   const aggregation = buildSearchAggregation(baseMatch, options);
