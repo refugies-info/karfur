@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.7](https://github.com/refugies-info/karfur/compare/karfur-v2.5.6...karfur-v2.5.7) (2026-03-27)
+
+
+### Bug Fixes
+
+* **mobile:** use fs.readFileSync for package.json to avoid brace_expansion error ([5c967fa](https://github.com/refugies-info/karfur/commit/5c967fa599f9ef2c632be1cc10157457bedfd75f))
+* **mobile:** use fs.readFileSync for package.json to avoid brace_expansion error ([5150b28](https://github.com/refugies-info/karfur/commit/5150b28261cc6ad42d7fcd6bed1aa295bc3099ea))
+
 ## [2.5.6](https://github.com/refugies-info/karfur/compare/karfur-v2.5.5...karfur-v2.5.6) (2026-03-27)
 
 
