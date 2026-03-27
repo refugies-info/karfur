@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.5](https://github.com/refugies-info/karfur/compare/karfur-v2.5.4...karfur-v2.5.5) (2026-03-27)
+
+
+### Bug Fixes
+
+* **ci:** skip EAS fingerprint computation to workaround brace_expansion bug ([221d8c8](https://github.com/refugies-info/karfur/commit/221d8c8b39466b7b7dfa0700e1d710ba62d9ffd3))
+* **ci:** skip EAS fingerprint computation to workaround brace_expansion bug ([f4455c8](https://github.com/refugies-info/karfur/commit/f4455c84077e9d28eff4f6ab5d5e6fc2f3c5b472))
+
 ## [2.5.4](https://github.com/refugies-info/karfur/compare/karfur-v2.5.3...karfur-v2.5.4) (2026-03-27)
 
 
