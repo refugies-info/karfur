@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/markdown-utils",
-  "version": "2.5.0",
+  "version": "2.5.3",
   "description": "Shared markdown remark plugins and directive utilities for web client and mobile app",
   "main": "src/index.ts",
   "scripts": {
