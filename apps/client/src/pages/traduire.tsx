@@ -284,7 +284,7 @@ const RecensezVotreAction = (props: Props) => {
                 onClick={() => window.$crisp.push(["do", "chat:open"])}
               >
                 <p>
-                  Le live chat est accessible en bas à droite de votre écran (deux jours par
+                  Le live chat est accessible en bas à droite de votre écran (quatre jours par
                   semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai
                   humain qui traite vos demandes !
                 </p>
