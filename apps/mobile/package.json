@@ -109,7 +109,7 @@
     "typescript": "~5.8.3"
   },
   "private": true,
-  "version": "2.5.6",
+  "version": "2.5.7",
   "name": "@refugies-info/mobile",
   "engines": {
     "node": "24.14.0"
