@@ -36,6 +36,7 @@ const BookmarkedModal = (props: Props) => {
       title={t("UserFavorites.login_modal_title")}
       description={t("UserFavorites.login_modal_text")}
       maxWidth="sm"
+      titleClassName="text-xl"
     >
       <Button
         iconId="fr-icon-arrow-right-line"

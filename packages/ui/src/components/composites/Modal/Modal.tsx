@@ -121,6 +121,11 @@ export interface ModalProps {
    * Custom overlay className
    */
   overlayClassName?: string;
+
+  /**
+   * Additional CSS classes for the title
+   */
+  titleClassName?: string;
 }
 
 const maxWidthClasses = {
@@ -172,6 +177,7 @@ export const Modal = ({
   className = "",
   maxWidth = "2xl",
   overlayClassName = "",
+  titleClassName = "",
 }: ModalProps) => {
   const handleOpenAutoFocus = (event: Event) => {
     if (onOpenAutoFocus) {
@@ -212,7 +218,7 @@ export const Modal = ({
           onCloseAutoFocus={handleCloseAutoFocus}
         >
           <div className="order-1 mb-6">
-            <Dialog.Title id="modal-title" className="m-0 mb-6 text-2xl">
+            <Dialog.Title id="modal-title" className={`m-0 mb-6 text-2xl ${titleClassName}`}>
               {title}
             </Dialog.Title>
             {description && (
