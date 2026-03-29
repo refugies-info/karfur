@@ -1,10 +1,15 @@
 /* eslint-disable no-undef */
 /* eslint-env node */
 
-const pkg = require("./package.json");
+const fs = require("fs");
+const path = require("path");
 
-import { withAppBuildGradle, withGradleProperties } from "expo/config-plugins";
-import deepLinks from "./androidDeepLinks";
+const { withAppBuildGradle, withGradleProperties } = require("expo/config-plugins");
+const deepLinks = require("./androidDeepLinks");
+
+// Use fs.readFileSync instead of require() to avoid module resolution issues
+const pkgPath = path.join(__dirname, "package.json");
+const pkg = JSON.parse(fs.readFileSync(pkgPath, "utf8"));
 
 const APP_VERSION = pkg.version;
 
@@ -59,7 +64,7 @@ const withDisableStrictLinting = (config) => {
   });
 };
 
-export default {
+module.exports = {
   name: "Réfugiés.info",
   owner: "refugies-info",
   slug: "refugies-info-app",

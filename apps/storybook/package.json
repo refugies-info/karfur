@@ -20,12 +20,12 @@
     "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^5.0.1",
-    "@storybook/addon-a11y": "10.2.17",
-    "@storybook/addon-docs": "10.2.17",
-    "@storybook/addon-onboarding": "10.2.17",
-    "@storybook/addon-themes": "10.2.17",
-    "@storybook/nextjs-vite": "10.2.17",
+    "@chromatic-com/storybook": "^5.1.1",
+    "@storybook/addon-a11y": "10.3.3",
+    "@storybook/addon-docs": "10.3.3",
+    "@storybook/addon-onboarding": "10.3.3",
+    "@storybook/addon-themes": "10.3.3",
+    "@storybook/nextjs-vite": "10.3.3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^20.19.37",
     "@types/react": "19.0.14",
@@ -33,7 +33,7 @@
     "chromatic": "^13.3.5",
     "dotenv-run-script": "^0.4.1",
     "postcss": "^8.5.8",
-    "storybook": "10.2.17",
+    "storybook": "10.3.3",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
     "vite": "^7.0.0"

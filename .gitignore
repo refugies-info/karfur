@@ -42,7 +42,7 @@ npm-debug.log*
 
 # AI assistants
 /.cursorrules
-/.letta/
+.letta/settings.local.json
 
 # EAS
 .expo/
@@ -56,4 +56,3 @@ credentials/
 
 # Cloudbuild
 /apps/client/cloudbuild.env
-.letta

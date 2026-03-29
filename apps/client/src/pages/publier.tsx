@@ -372,7 +372,7 @@ const RecensezVotreAction = (props: Props) => {
                 onClick={() => window.$crisp.push(["do", "chat:open"])}
               >
                 <p className="mb-0">
-                  Le live chat est accessible en bas à droite de votre écran (deux jours par
+                  Le live chat est accessible en bas à droite de votre écran (quatre jours par
                   semaine). Posez toutes vos questions : nous sommes réactifs et c’est un vrai
                   humain qui traite vos demandes !
                 </p>
@@ -409,7 +409,7 @@ const RecensezVotreAction = (props: Props) => {
                   },
                   {
                     title: "Je ne suis pas à l'aise avec le numérique, est-ce facile ?",
-                    text: "Nous avons conçu cet outil avec des utilisateurs afin d’assurer l’expérience la plus fluide et intuitive possible. Des tutoriels sont là pour vous guider tout au long de l’expérience. Et si vous avez une question ou une remarque, n'hésitez pas à nous contacter directement via le live chat en bas à droite de l'écran (disponible 2 jours par semaine). Nous nous ferons une joie de vous aider !",
+                    text: "Nous avons conçu cet outil avec des utilisateurs afin d’assurer l’expérience la plus fluide et intuitive possible. Des tutoriels sont là pour vous guider tout au long de l’expérience. Et si vous avez une question ou une remarque, n'hésitez pas à nous contacter directement via le live chat en bas à droite de l'écran (disponible 4 jours par semaine). Nous nous ferons une joie de vous aider !",
                   },
                   {
                     title: "En combien de temps ma fiche sera publiée ?",

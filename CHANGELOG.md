@@ -1,5 +1,46 @@
 # Changelog
 
+## [2.5.7](https://github.com/refugies-info/karfur/compare/karfur-v2.5.6...karfur-v2.5.7) (2026-03-27)
+
+
+### Bug Fixes
+
+* **mobile:** use fs.readFileSync for package.json to avoid brace_expansion error ([5c967fa](https://github.com/refugies-info/karfur/commit/5c967fa599f9ef2c632be1cc10157457bedfd75f))
+* **mobile:** use fs.readFileSync for package.json to avoid brace_expansion error ([5150b28](https://github.com/refugies-info/karfur/commit/5150b28261cc6ad42d7fcd6bed1aa295bc3099ea))
+
+## [2.5.6](https://github.com/refugies-info/karfur/compare/karfur-v2.5.5...karfur-v2.5.6) (2026-03-27)
+
+
+### Bug Fixes
+
+* **client:** improve type inference in facetPipelines ([088ba2b](https://github.com/refugies-info/karfur/commit/088ba2b1ac0374da23e66b8c80e0f0e682a851ac))
+* **client:** improve type safety in search counts aggregation ([4f703ae](https://github.com/refugies-info/karfur/commit/4f703ae13fb5b7ee972e8931761df40ae6041a5e))
+* **client:** improve type safety in search counts aggregation ([e0dfb99](https://github.com/refugies-info/karfur/commit/e0dfb99c65fcd9ea70abab16597928379e331540))
+* **mobile:** convert app.config.js to pure CommonJS ([15c190d](https://github.com/refugies-info/karfur/commit/15c190dbe7932a99f0eeef6be519b07deef05794))
+* **mobile:** convert app.config.js to pure CommonJS ([a285743](https://github.com/refugies-info/karfur/commit/a285743f69d83866d5095a5ef107384abb1ff79d))
+
+## [2.5.5](https://github.com/refugies-info/karfur/compare/karfur-v2.5.4...karfur-v2.5.5) (2026-03-27)
+
+
+### Bug Fixes
+
+* **ci:** skip EAS fingerprint computation to workaround brace_expansion bug ([221d8c8](https://github.com/refugies-info/karfur/commit/221d8c8b39466b7b7dfa0700e1d710ba62d9ffd3))
+* **ci:** skip EAS fingerprint computation to workaround brace_expansion bug ([f4455c8](https://github.com/refugies-info/karfur/commit/f4455c84077e9d28eff4f6ab5d5e6fc2f3c5b472))
+
+## [2.5.4](https://github.com/refugies-info/karfur/compare/karfur-v2.5.3...karfur-v2.5.4) (2026-03-27)
+
+
+### Bug Fixes
+
+* **client:** filter online resources by metadatas.location instead of typeContenu ([9b49020](https://github.com/refugies-info/karfur/commit/9b490200a209e0772ba4e1940396065f04775dc4))
+* **client:** filter online resources by metadatas.location instead of typeContenu ([5d2765e](https://github.com/refugies-info/karfur/commit/5d2765e368c21395c2283f22cc428de87a443442))
+* **client:** update live chat availability from 2 to 4 days per week ([28c8a15](https://github.com/refugies-info/karfur/commit/28c8a1544aee0b1a638e4834f34b40aca1c01e55))
+* **client:** update live chat availability from 2 to 4 days per week ([d476169](https://github.com/refugies-info/karfur/commit/d4761699d73afd5a55c1f2684ed94012588485f5))
+* **client:** use separate query for online count calculation ([d64014b](https://github.com/refugies-info/karfur/commit/d64014be253e92738bb04245bfd1afe000350f8d))
+* **letta:** address review comments on settings.json and skill ([434dbb0](https://github.com/refugies-info/karfur/commit/434dbb0573baac6695329f9fc993419736aaed50))
+* **workspace:** address Dependabot security alerts for handlebars, node-forge, brace-expansion ([44f0f67](https://github.com/refugies-info/karfur/commit/44f0f67dd8453ded48360319053ab1b69fc9943c))
+* **workspace:** address Dependabot security alerts for handlebars, node-forge, brace-expansion ([150869a](https://github.com/refugies-info/karfur/commit/150869a3c6bee7aef74d457ac0a69f4a8dafbd6d))
+
 ## [2.5.3](https://github.com/refugies-info/karfur/compare/karfur-v2.5.2...karfur-v2.5.3) (2026-03-26)
 
 

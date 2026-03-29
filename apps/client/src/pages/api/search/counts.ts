@@ -23,6 +23,59 @@ interface TypeCounts {
   online: number;
 }
 
+// Facet pipeline result types
+interface FacetCountResult {
+  _id: string | null;
+  count: number;
+}
+
+interface OnlineCountResult {
+  count: number;
+}
+
+interface TotalCountResult {
+  count: number;
+}
+
+// Aggregation result type for $facet
+interface FacetAggregationResult {
+  themes: CountItem[];
+  needs: CountItem[];
+  frenchLevels: CountItem[];
+  ageRanges: CountItem[];
+  publics: CountItem[];
+  languages: CountItem[];
+  statuses: CountItem[];
+  types: FacetCountResult[];
+  total: TotalCountResult[];
+  online: OnlineCountResult[];
+}
+
+// Keys for facet pipelines that follow the standard pattern
+type FacetPipelineKey =
+  | "themes"
+  | "needs"
+  | "frenchLevels"
+  | "ageRanges"
+  | "publics"
+  | "languages"
+  | "statuses";
+
+// Full facet object including all keys
+interface FacetPipelines {
+  [key: string]: object[] | undefined;
+  themes: object[];
+  needs: object[];
+  frenchLevels: object[];
+  ageRanges: object[];
+  publics: object[];
+  languages: object[];
+  statuses: object[];
+  types: object[];
+  total: object[];
+  online: object[];
+}
+
 export interface SearchCountsResponse {
   themes: Record<string, number>;
   needs: Record<string, number>;
@@ -74,7 +127,7 @@ export const computeSearchCounts = async (
 
   const baseMatch = buildBaseMatch(queryParams, algoliaIds);
 
-  const facetPipelines = {
+  const facetPipelines: Pick<FacetPipelines, FacetPipelineKey> = {
     themes: [
       {
         $project: {
@@ -304,7 +357,9 @@ export const computeSearchCounts = async (
     ],
   };
 
-  const facet = Object.entries(facetPipelines).reduce(
+  const facet: Partial<FacetPipelines> = (
+    Object.entries(facetPipelines) as [FacetPipelineKey, object[]][]
+  ).reduce(
     (acc, [key, pipeline]) => {
       // IMPORTANT: Rebuild base match with the corresponding facet filter removed
       // rather than mutating a shallow copy. Some filters are embedded in $or/$and expressions
@@ -324,24 +379,43 @@ export const computeSearchCounts = async (
         matchForFacet = buildBaseMatch({ ...queryParams, status: [] }, algoliaIds);
       }
 
-      (acc as any)[key] = [
+      acc[key] = [
         { $match: matchForFacet },
-        ...(pipeline as unknown as any[]),
+        ...pipeline,
         { $project: { _id: 0, id: { $toString: "$_id" }, count: 1 } },
       ];
       return acc;
     },
-    {} as Record<string, any[]>,
+    {} as Partial<Pick<FacetPipelines, FacetPipelineKey>>,
   );
 
-  (facet as any).types = [
-    { $match: baseMatch },
-    { $group: { _id: "$typeContenu", count: { $sum: 1 } } },
-  ];
-  (facet as any).total = [{ $match: baseMatch }, { $count: "count" }];
+  facet.types = [{ $match: baseMatch }, { $group: { _id: "$typeContenu", count: { $sum: 1 } } }];
+  facet.total = [{ $match: baseMatch }, { $count: "count" }];
 
-  const results = await executeCachedPipeline(Dispositif.aggregate([{ $facet: facet }]));
-  const data = results[0] || {};
+  // Count online resources by metadatas.location (not typeContenu)
+  // Production data has typeContenu: "dispositif" or "demarche" with metadatas.location: "online"
+  facet.online = [
+    { $match: { ...baseMatch, "metadatas.location": "online" } },
+    { $count: "count" },
+  ];
+
+  const results = await executeCachedPipeline<FacetAggregationResult>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Mongoose $facet type is too strict; output is properly typed via FacetAggregationResult
+    Dispositif.aggregate([{ $facet: facet as any }]),
+  );
+  const emptyResult: FacetAggregationResult = {
+    themes: [],
+    needs: [],
+    frenchLevels: [],
+    ageRanges: [],
+    publics: [],
+    languages: [],
+    statuses: [],
+    types: [],
+    total: [],
+    online: [],
+  };
+  const data: FacetAggregationResult = results[0] || emptyResult;
 
   const toMap = (arr: Array<{ id: string; count: number }> | undefined): Record<string, number> => {
     const map: Record<string, number> = {};
@@ -363,9 +437,9 @@ export const computeSearchCounts = async (
     languages: toMap(data.languages),
     statuses: toMap(data.statuses),
     types: {
-      dispositif: data.types?.find((t: any) => t._id === "dispositif")?.count || 0,
-      demarche: data.types?.find((t: any) => t._id === "demarche")?.count || 0,
-      online: data.types?.find((t: any) => t._id === "online")?.count || 0,
+      dispositif: data.types?.find((t) => t._id === "dispositif")?.count || 0,
+      demarche: data.types?.find((t) => t._id === "demarche")?.count || 0,
+      online: data.online?.[0]?.count || 0,
     },
     total: data.total?.[0]?.count || 0,
   };
