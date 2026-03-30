@@ -14,10 +14,12 @@
   .modal_header {
     display: flex;
     align-items: center;
-    font-size: 40px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 24px;
     justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
   .close {
@@ -36,8 +38,8 @@
     font-weight: bold;
     margin-bottom: 24px;
     justify-content: center;
-    font-size: $text-large;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 24px;
     color: $gray90;
     padding: 0;
   }
@@ -45,15 +47,16 @@
   .send_by {
     display: flex;
     align-items: center;
-    font-size: $text-large;
-    position: absolute;
-    right: 40px;
+    font-size: 16px;
+    font-weight: normal;
   }
 
   .about {
     display: flex;
     align-items: center;
-    font-size: $text-large;
+    font-size: 18px;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
   .username {
