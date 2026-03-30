@@ -15,28 +15,20 @@ import type { DeleteResult } from "~/types/interface";
 export const getTraductionsByLanguage = (
   language: string,
   neededFields: ProjectionType<Traductions>,
-): Promise<Traductions[]> =>
-  TraductionsModel.find({ language }, neededFields).lean() as unknown as Promise<Traductions[]>;
+) => TraductionsModel.find({ language }, neededFields).lean();
 
 export const getTraductionsByLanguageAndDispositif = (
   language: Languages,
   dispositifId: DispositifId,
   neededFields: ProjectionType<Traductions> = {},
-): Promise<Traductions[]> =>
-  TraductionsModel.find({ language, dispositifId }, neededFields)
-    .populate("userId")
-    .lean() as unknown as Promise<Traductions[]>;
+) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId").lean();
 
-export const getValidation = (
-  language: Languages,
-  dispositifId: DispositifId,
-  userId: UserId,
-): Promise<Traductions | null> =>
+export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
   TraductionsModel.findOne({
     language,
     dispositifId,
     userId,
-  }).lean() as unknown as Promise<Traductions | null>;
+  }).lean();
 
 export const getOtherValidationForDispositif = (
   language: Languages,
@@ -48,7 +40,7 @@ export const getOtherValidationForDispositif = (
     dispositifId,
     userId: { $ne: userId },
     type: TraductionsType.VALIDATION,
-  }).lean() as unknown as Promise<Traductions | null>;
+  }).lean();
 
 export const deleteTradsInDB = (
   dispositifId: DispositifId,

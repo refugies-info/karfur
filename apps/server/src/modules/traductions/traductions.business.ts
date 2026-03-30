@@ -3,6 +3,7 @@ import type { TranslationContent } from "@refugies-info/mongo";
 import {
   type Dispositif,
   isDocument,
+  type LeanTraductions,
   type Traductions,
   TraductionsStatus,
   TraductionsType,
@@ -76,7 +77,7 @@ export const getTraductionWordsCount = (traduction: Traductions): number => {
   return countDispositifWords(traduction.translated.content as any);
 };
 
-export const getTraductionUser = (traduction: Traductions): User => {
+export const getTraductionUser = (traduction: Traductions | LeanTraductions): User => {
   if (!traduction.userId || !isDocument(traduction.userId)) {
     throw new MustBePopulatedError("userId");
   }
@@ -126,7 +127,7 @@ export const computeTraductionFinished = (
   return (translationSectionsCounter - notFinished) / dispositifSectionsCounter >= 1;
 };
 
-export const getSectionsTranslated = (traduction: Traductions): string[] => {
+export const getSectionsTranslated = (traduction: Traductions | LeanTraductions): string[] => {
   const translatedSections = keys(traduction.translated);
   const notFinished = [
     ...new Set([...(traduction.toFinish || []), ...(traduction.toReview || [])]),
