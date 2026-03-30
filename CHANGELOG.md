@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.7.0](https://github.com/refugies-info/karfur/compare/karfur-v2.6.0...karfur-v2.7.0) (2026-03-30)
+
+
+### Features
+
+* **migrations:** add MongoDB Performance Advisor recommended indexes ([3de686b](https://github.com/refugies-info/karfur/commit/3de686b5d9324f2d8d26a48ba4692f887594afe2))
+* **migrations:** add MongoDB Performance Advisor recommended indexes ([07507e8](https://github.com/refugies-info/karfur/commit/07507e8e6069b9b3b8a5549250ee13480b42dac2))
+
+
+### Bug Fixes
+
+* **deps:** resolve Dependabot security alerts for path-to-regexp and @smithy/config-resolver ([c84e758](https://github.com/refugies-info/karfur/commit/c84e7580d1d65f2fbea8025d1adb08e33d4536e4))
+* **deps:** resolve Dependabot security alerts for path-to-regexp and @smithy/config-resolver ([f286c7d](https://github.com/refugies-info/karfur/commit/f286c7d62a0e686381648714949cdb3d2323d43a))
+* **deps:** scope @smithy/config-resolver override to vulnerable versions only ([a3927f9](https://github.com/refugies-info/karfur/commit/a3927f953408ba15c114a3293e06a19f966f3f4b))
+* **migrations:** use IndexNotFound error code in down() instead of swallowing all errors ([003bee9](https://github.com/refugies-info/karfur/commit/003bee989532b54bd0ebc3e8c6d4aa3854062604))
+* **ui:** add titleClassName prop to Modal for flexible title sizing ([53eb162](https://github.com/refugies-info/karfur/commit/53eb162037190c3ec6ec55caa25a84f23be3e181))
+
 ## [2.6.0](https://github.com/refugies-info/karfur/compare/karfur-v2.5.7...karfur-v2.6.0) (2026-03-30)
 
 
