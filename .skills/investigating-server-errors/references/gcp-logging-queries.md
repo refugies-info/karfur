@@ -6,6 +6,7 @@ Copy-paste queries for common error investigation scenarios.
 
 ```bash
 # Replace "endpoint-path" with actual path (e.g., "notification_settings")
+# Replace "TIMESTAMP" with ISO datetime (e.g., "2023-10-26T10:35:00Z")
 gcloud logging read '
 resource.type="cloud_run_revision"
 resource.labels.service_name="backend-prod"
@@ -34,6 +35,7 @@ timestamp >= "'$(date -u -v-1H +%Y-%m-%dT%H:%M:%SZ)'"
 
 ```bash
 # Errors with structured jsonPayload
+# Replace "TIMESTAMP" with actual ISO datetime
 gcloud logging read '
 resource.type="cloud_run_revision"
 resource.labels.service_name="backend-prod"
@@ -41,15 +43,17 @@ resource.labels.location="europe-west1"
 logName="projects/refugies-info/logs/run.googleapis.com%2Fstderr"
 severity>=ERROR
 jsonPayload.message=~"error-pattern"
-timestamp >= "2026-03-29T10:00:00Z"
+timestamp >= "TIMESTAMP"
 ' --project=refugies-info --limit=50 --format='json' | jq -r '.[] | "\(.timestamp) | \(.jsonPayload.message)"'
 ```
 
 ## Timestamp Tips
 
-- **Specific time**: `"2026-03-29T10:35:00Z"`
+- **Specific time**: `"2023-10-26T10:35:00Z"`
 - **Last hour (macOS)**: `"'$(date -u -v-1H +%Y-%m-%dT%H:%M:%SZ)'"`
+- **Last hour (Linux)**: `"'$(date -d '1 hour ago' -u +'%Y-%m-%dT%H:%M:%SZ')'"`
 - **Last 15 minutes (macOS)**: `"'$(date -u -v-15M +%Y-%m-%dT%H:%M:%SZ)'"`
+- **Last 15 minutes (Linux)**: `"'$(date -d '15 minutes ago' -u +'%Y-%m-%dT%H:%M:%SZ')'"`
 
 ## Service Names
 

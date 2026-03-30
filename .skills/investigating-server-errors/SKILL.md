@@ -67,16 +67,18 @@ Check for errors since deployment or specific timeframe:
 
 ```bash
 # 5xx errors on specific endpoint since deployment
+# Note: Replace TIMESTAMP with actual ISO timestamp (e.g., 2023-10-26T10:35:00Z)
 gcloud logging read '
 resource.type="cloud_run_revision"
 resource.labels.service_name="backend-prod"
 resource.labels.location="europe-west1"
 httpRequest.requestUrl=~"endpoint-path"
 httpRequest.status>=500
-timestamp >= "2026-03-29T10:35:00Z"
+timestamp >= "YYYY-MM-DDTHH:MM:SSZ"
 ' --project=refugies-info --limit=50 --format='json'
 
 # Backend stderr errors (all 5xx)
+# Note: Use GNU date syntax on Linux: date -d '1 hour ago' -u +'%Y-%m-%dT%H:%M:%SZ'
 gcloud logging read '
 resource.type="cloud_run_revision"
 resource.labels.service_name="backend-prod"
@@ -117,3 +119,8 @@ gcloud logging read '...' --limit=10
 See [references/gcp-logging-queries.md](references/gcp-logging-queries.md) for copy-paste log queries.
 
 See [references/common-patterns.md](references/common-patterns.md) for codebase-specific error patterns.
+
+## Platform Notes
+
+- **macOS**: Uses BSD `date` with `-v` flag (e.g., `date -u -v-1H`)
+- **Linux**: Uses GNU `date` with `-d` flag (e.g., `date -d '1 hour ago' -u`)
