@@ -9,6 +9,7 @@ import {
   type Dispositif,
   DispositifModel,
   ErrorModel,
+  type LeanTraductions,
   type Traductions,
 } from "@refugies-info/mongo";
 import { cloneDeep, set } from "lodash";
@@ -56,7 +57,7 @@ const deleteLineBreaksInTranslation = (translation: Partial<TranslationContent>)
 const validateTranslation = (
   dispositif: Dispositif,
   language: Languages,
-  translation: Traductions,
+  translation: Traductions | LeanTraductions,
   username: string,
 ) => {
   const isFirstValidation = !dispositif.translations[language]; // else, expert is just changing validated translation

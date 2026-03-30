@@ -1,5 +1,5 @@
 import type { Languages, TranslatorFeedback } from "@refugies-info/api-types";
-import type { Dispositif, Theme, Traductions, User } from "@refugies-info/mongo";
+import type { Dispositif, LeanTraductions, Theme, Traductions, User } from "@refugies-info/mongo";
 import { getAirtableTranslationTable } from "~/connectors/airtable/airtable";
 import { countDispositifWords, countDispositifWordsForSections } from "~/libs/wordCounter";
 import logger from "~/logger";
@@ -22,7 +22,7 @@ interface TradToExport {
 export const addTradToAirtable = async (
   dispositif: Dispositif,
   language: Languages,
-  translation: Traductions,
+  translation: Traductions | LeanTraductions,
   username: string,
 ) => {
   const frTranslation = getDispositifTranslation(dispositif, "fr");

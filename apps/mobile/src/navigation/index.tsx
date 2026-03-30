@@ -164,11 +164,11 @@ export const RootNavigator = () => {
 
     return () => {
       if (responseListener.current) {
-        Notifications.removeNotificationSubscription(responseListener.current);
+        responseListener.current.remove();
       }
 
       if (notificationsListener.current) {
-        Notifications.removeNotificationSubscription(notificationsListener.current);
+        notificationsListener.current.remove();
       }
     };
   }, [navigationReady]);

@@ -15,16 +15,20 @@ import type { DeleteResult } from "~/types/interface";
 export const getTraductionsByLanguage = (
   language: string,
   neededFields: ProjectionType<Traductions>,
-) => TraductionsModel.find({ language }, neededFields);
+) => TraductionsModel.find({ language }, neededFields).lean();
 
 export const getTraductionsByLanguageAndDispositif = (
   language: Languages,
   dispositifId: DispositifId,
   neededFields: ProjectionType<Traductions> = {},
-) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId");
+) => TraductionsModel.find({ language, dispositifId }, neededFields).populate("userId").lean();
 
 export const getValidation = (language: Languages, dispositifId: DispositifId, userId: UserId) =>
-  TraductionsModel.findOne({ language, dispositifId, userId });
+  TraductionsModel.findOne({
+    language,
+    dispositifId,
+    userId,
+  }).lean();
 
 export const getOtherValidationForDispositif = (
   language: Languages,
@@ -36,7 +40,7 @@ export const getOtherValidationForDispositif = (
     dispositifId,
     userId: { $ne: userId },
     type: TraductionsType.VALIDATION,
-  });
+  }).lean();
 
 export const deleteTradsInDB = (
   dispositifId: DispositifId,
@@ -58,7 +62,9 @@ export const findTraductors = (dispositifId: DispositifId, language: Languages) 
   ).lean();
 
 const updateAvancements = async (query: FilterQuery<Traductions>, dispositif: Dispositif) => {
-  const traductions: Traductions[] = await TraductionsModel.find(query);
+  const traductions: Traductions[] = (await TraductionsModel.find(
+    query,
+  ).lean()) as unknown as Traductions[];
   if (traductions.length === 0) {
     return;
   }

@@ -1,5 +1,5 @@
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
-import { type Document, type Model, model, models, type Types } from "mongoose";
+import { type Document, type FlattenMaps, type Model, model, models, type Types } from "mongoose";
 import { z } from "zod";
 
 export enum TraductionsType {
@@ -39,6 +39,7 @@ export const TraductionsZodSchema = z.object({
 });
 
 export type Traductions = z.infer<typeof TraductionsZodSchema> & Document<Types.ObjectId>;
+export type LeanTraductions = FlattenMaps<Traductions> & Required<{ _id: Types.ObjectId }>;
 /**
  * TraductionId represents a unique identifier for a Traduction.
  *
