@@ -1,6 +1,6 @@
 import type { GetTraductionsForReview, Languages } from "@refugies-info/api-types";
 import type { DispositifId, User } from "@refugies-info/mongo";
-import { type Traductions, TraductionsType } from "@refugies-info/mongo";
+import { type LeanTraductions, type Traductions, TraductionsType } from "@refugies-info/mongo";
 import { toPicture } from "~/libs/pictureUtils";
 import { getTraductionUser } from "~/modules/traductions/traductions.business";
 import { getTraductionsByLanguageAndDispositif } from "~/modules/traductions/traductions.repository";
@@ -17,10 +17,12 @@ const getTraductionsForReview = async (
   // on garde également le nom de l'expert initial dans `validator`
   if (
     currentUser.isExpert() &&
-    translations.find((t: Traductions) => t.toReview.length > 0) &&
-    !translations.find((t: Traductions) => getTraductionUser(t)._id.toString() === currentUser.id)
+    translations.find((t: LeanTraductions) => t.toReview.length > 0) &&
+    !translations.find(
+      (t: LeanTraductions) => getTraductionUser(t)._id.toString() === currentUser.id,
+    )
   ) {
-    const trad = translations.find((t: Traductions) => t.toReview.length > 0);
+    const trad = translations.find((t: LeanTraductions) => t.toReview.length > 0);
     return [
       {
         translated: trad.translated,
@@ -51,11 +53,11 @@ const getTraductionsForReview = async (
           translation.type === TraductionsType.SUGGESTION,
       )
       // Permet d'avoir la traduction de l'utilisateur courant en première dans l'ordre d'affichage
-      .sort((translation) =>
+      .sort((translation: LeanTraductions) =>
         getTraductionUser(translation)._id.toString() === currentUser.id ? -1 : 0,
       )
       // transforme en GetTraductionsForReview
-      .map((trad) => ({
+      .map((trad: LeanTraductions) => ({
         translated: trad.translated,
         author: {
           id: getTraductionUser(trad).id,
