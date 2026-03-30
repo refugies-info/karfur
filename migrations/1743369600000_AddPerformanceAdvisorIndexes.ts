@@ -29,10 +29,14 @@ export class AddPerformanceAdvisorIndexes1743369600000 implements MigrationInter
     await db
       .collection("appusers")
       .dropIndex("expoPushToken_1_uid_1")
-      .catch(() => undefined);
+      .catch((err: { code?: number }) => {
+        if (err.code !== 27) throw err; // 27 = IndexNotFound — index may not exist yet
+      });
     await db
       .collection("dispositifs")
       .dropIndex("metadatas.frenchLevel_1_status_1_webOnly_1")
-      .catch(() => undefined);
+      .catch((err: { code?: number }) => {
+        if (err.code !== 27) throw err; // 27 = IndexNotFound — index may not exist yet
+      });
   }
 }
