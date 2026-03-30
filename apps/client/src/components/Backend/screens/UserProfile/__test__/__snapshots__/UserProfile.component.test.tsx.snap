@@ -39,7 +39,7 @@ exports[`UserProfile should render correctly 1`] = `
         >
           <button
             class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-error-warning-line fr-btn--icon-right danger ms-2"
-            id="fr-button-:r0:"
+            id="fr-button-«r0»"
           >
             Supprimer mon profil
           </button>
@@ -103,7 +103,7 @@ exports[`UserProfile should render correctly 1`] = `
             </h2>
             <button
               class="fr-btn fr-btn--secondary fr-btn--sm fr-icon-edit-box-line fr-btn--icon-right fix_align"
-              id="fr-button-:r1:"
+              id="fr-button-«r1»"
             >
               Modifier mes informations personnelles
             </button>
@@ -117,7 +117,7 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <label
                   class="fr-label"
-                  for="input-:r2:"
+                  for="input-«r2»"
                 >
                   Pseudonyme public
                   <span
@@ -128,7 +128,7 @@ exports[`UserProfile should render correctly 1`] = `
                 </label>
                 <input
                   class="fr-input"
-                  id="input-:r2:"
+                  id="input-«r2»"
                   name="pseudo"
                   readonly=""
                   title="pseudo-input"
@@ -138,7 +138,7 @@ exports[`UserProfile should render correctly 1`] = `
                 <div
                   aria-live="polite"
                   class="fr-messages-group"
-                  id="input-:r2:-messages-group"
+                  id="input-«r2»-messages-group"
                 />
               </div>
               <div
@@ -146,7 +146,7 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <label
                   class="fr-label"
-                  for="input-:r3:"
+                  for="input-«r3»"
                 >
                   Prénom
                   <span
@@ -157,7 +157,7 @@ exports[`UserProfile should render correctly 1`] = `
                 </label>
                 <input
                   class="fr-input"
-                  id="input-:r3:"
+                  id="input-«r3»"
                   name="firstName"
                   readonly=""
                   title="firstname-input"
@@ -167,7 +167,7 @@ exports[`UserProfile should render correctly 1`] = `
                 <div
                   aria-live="polite"
                   class="fr-messages-group"
-                  id="input-:r3:-messages-group"
+                  id="input-«r3»-messages-group"
                 />
               </div>
               <div
@@ -175,7 +175,7 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <label
                   class="fr-label"
-                  for="input-:r4:"
+                  for="input-«r4»"
                 >
                   Email
                   <span
@@ -184,7 +184,7 @@ exports[`UserProfile should render correctly 1`] = `
                 </label>
                 <input
                   class="fr-input"
-                  id="input-:r4:"
+                  id="input-«r4»"
                   name="email"
                   readonly=""
                   title="email-input"
@@ -194,7 +194,7 @@ exports[`UserProfile should render correctly 1`] = `
                 <div
                   aria-live="polite"
                   class="fr-messages-group"
-                  id="input-:r4:-messages-group"
+                  id="input-«r4»-messages-group"
                 />
               </div>
               <div
@@ -202,13 +202,13 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <label
                   class="fr-label"
-                  for="input-:r5:"
+                  for="input-«r5»"
                 >
                   Téléphone
                 </label>
                 <input
                   class="fr-input"
-                  id="input-:r5:"
+                  id="input-«r5»"
                   name="phone"
                   readonly=""
                   title="phone-input"
@@ -218,7 +218,7 @@ exports[`UserProfile should render correctly 1`] = `
                 <div
                   aria-live="polite"
                   class="fr-messages-group"
-                  id="input-:r5:-messages-group"
+                  id="input-«r5»-messages-group"
                 />
               </div>
               <div
@@ -226,13 +226,13 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <label
                   class="fr-label"
-                  for="input-:r6:"
+                  for="input-«r6»"
                 >
                   Mot de passe actuel
                 </label>
                 <input
                   class="fr-input"
-                  id="input-:r6:"
+                  id="input-«r6»"
                   name="fake-password-input"
                   readonly=""
                   title="fake-password-input"
@@ -242,7 +242,7 @@ exports[`UserProfile should render correctly 1`] = `
                 <div
                   aria-live="polite"
                   class="fr-messages-group"
-                  id="input-:r6:-messages-group"
+                  id="input-«r6»-messages-group"
                 />
               </div>
               <button
@@ -369,13 +369,13 @@ exports[`UserProfile should render correctly 1`] = `
                           >
                             <label
                               class="fr-label"
-                              for="input-:r9:"
+                              for="input-«r9»"
                             >
                               Adresse mail
                             </label>
                             <input
                               class="fr-input"
-                              id="input-:r9:"
+                              id="input-«r9»"
                               name="email"
                               type="email"
                               value=""
@@ -383,7 +383,7 @@ exports[`UserProfile should render correctly 1`] = `
                             <div
                               aria-live="polite"
                               class="fr-messages-group"
-                              id="input-:r9:-messages-group"
+                              id="input-«r9»-messages-group"
                             />
                           </div>
                           <div
@@ -391,7 +391,7 @@ exports[`UserProfile should render correctly 1`] = `
                           >
                             <button
                               class="fr-btn fr-icon-mail-line fr-btn--icon-right button mt"
-                              id="fr-button-:ra:"
+                              id="fr-button-«ra»"
                               type="submit"
                             >
                               Envoyer le lien de réinitialisation
@@ -445,18 +445,18 @@ exports[`UserProfile should render correctly 1`] = `
             </label>
             <div
               class="fr-toggle"
-              id="fr-toggle-:rb:"
+              id="fr-toggle-«rb»"
             >
               <input
-                aria-describedby="fr-toggle-:rb:-hint-text"
+                aria-describedby="fr-toggle-«rb»-hint-text"
                 class="fr-toggle__input"
                 disabled=""
-                id="fr-toggle-:rb:-input"
+                id="fr-toggle-«rb»-input"
                 type="checkbox"
               />
               <label
                 class="fr-toggle__label"
-                for="fr-toggle-:rb:-input"
+                for="fr-toggle-«rb»-input"
               >
                 <span>
                   <strong>
@@ -467,7 +467,7 @@ exports[`UserProfile should render correctly 1`] = `
               </label>
               <p
                 class="fr-hint-text"
-                id="fr-toggle-:rb:-hint-text"
+                id="fr-toggle-«rb»-hint-text"
               >
                 Maximum 1 fois par mois
               </p>
@@ -562,7 +562,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       class="fr-btn fr-icon-check-line fr-btn--icon-right button mt-8"
                       disabled=""
-                      id="fr-button-:rd:"
+                      id="fr-button-«rd»"
                       type="submit"
                     >
                       Valider
@@ -641,7 +641,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       aria-controls="delete-account-modal"
                       class="fr-btn fr-icon-delete-bin-line fr-btn--icon-left danger"
-                      id="fr-button-:rf:"
+                      id="fr-button-«rf»"
                     >
                       Supprimer mon compte
                     </button>
@@ -650,7 +650,7 @@ exports[`UserProfile should render correctly 1`] = `
                     <button
                       aria-controls="delete-account-modal"
                       class="fr-btn fr-btn--secondary"
-                      id="fr-button-:rg:"
+                      id="fr-button-«rg»"
                     >
                       Annuler
                     </button>

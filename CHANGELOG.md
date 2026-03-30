@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.6.0](https://github.com/refugies-info/karfur/compare/karfur-v2.5.7...karfur-v2.6.0) (2026-03-30)
+
+
+### Features
+
+* **mobile:** upgrade to Expo SDK 54 ([ae128bc](https://github.com/refugies-info/karfur/commit/ae128bca1843152891c6138afe61e27fab26c079))
+* **mobile:** upgrade to Expo SDK 54 ([747b3aa](https://github.com/refugies-info/karfur/commit/747b3aac24aac1ec57522f439c2dd8b700b18737))
+* **skill:** add investigating-server-errors skill for 5xx error debugging ([1d851c7](https://github.com/refugies-info/karfur/commit/1d851c73f641fd445cbd4d5a382bd7760b0836ed))
+* **skill:** add investigating-server-errors skill for 5xx error debugging ([bb5c500](https://github.com/refugies-info/karfur/commit/bb5c50082e9735f9ce85befb7a529bccd8fef907))
+
+
+### Bug Fixes
+
+* **client:** upgrade React to 19.1.0 and update snapshots ([12957d7](https://github.com/refugies-info/karfur/commit/12957d7ab718fb36a734f19aa86543a2bf3bbf25))
+* **server:** translation avancement 0% and publish failure due to Mongoose Maps ([a1ce40d](https://github.com/refugies-info/karfur/commit/a1ce40d035fc9c277980771ef5bbce9694216b83))
+* **server:** translation avancement 0% and publish failure due to Mongoose Maps ([3443265](https://github.com/refugies-info/karfur/commit/3443265a8ffafb1f4d587ab4b6624a007b74930d))
+* **workspace:** narrow brace-expansion override to ^2.0.3 ([86f9522](https://github.com/refugies-info/karfur/commit/86f9522a5ee67f26eb759bf9594a68fc85e1a2a0))
+* **workspace:** narrow brace-expansion override to ^2.0.3 ([4f785a2](https://github.com/refugies-info/karfur/commit/4f785a2894ad8eb6d3ced50220cc9a859f83d618))
+
 ## [2.5.7](https://github.com/refugies-info/karfur/compare/karfur-v2.5.6...karfur-v2.5.7) (2026-03-27)
 
 

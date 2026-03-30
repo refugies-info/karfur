@@ -209,7 +209,7 @@ exports[`user translation should redirect if user has language but not langue in
                     >
                       <label
                         class="fr-label"
-                        for="input-:r4:"
+                        for="input-«r4»"
                       >
                         Votre pseudonyme
                         <span
@@ -220,19 +220,19 @@ exports[`user translation should redirect if user has language but not langue in
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:r4:"
+                        id="input-«r4»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:r4:-messages-group"
+                        id="input-«r4»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:r5:"
+                      id="fr-button-«r5»"
                       type="submit"
                     >
                       Suivant
@@ -468,7 +468,7 @@ exports[`user translation should redirect if user has no language but langue in 
                     >
                       <label
                         class="fr-label"
-                        for="input-:ra:"
+                        for="input-«ra»"
                       >
                         Votre pseudonyme
                         <span
@@ -479,19 +479,19 @@ exports[`user translation should redirect if user has no language but langue in 
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:ra:"
+                        id="input-«ra»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:ra:-messages-group"
+                        id="input-«ra»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:rb:"
+                      id="fr-button-«rb»"
                       type="submit"
                     >
                       Suivant
@@ -601,7 +601,7 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                     >
                       <label
                         class="fr-label"
-                        for="input-:rj:"
+                        for="input-«rj»"
                       >
                         Votre pseudonyme
                         <span
@@ -612,19 +612,19 @@ exports[`user translation should render correctly with expert, admin 1`] = `
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:rj:"
+                        id="input-«rj»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:rj:-messages-group"
+                        id="input-«rj»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:rk:"
+                      id="fr-button-«rk»"
                       type="submit"
                     >
                       Suivant
@@ -734,7 +734,7 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                     >
                       <label
                         class="fr-label"
-                        for="input-:rg:"
+                        for="input-«rg»"
                       >
                         Votre pseudonyme
                         <span
@@ -745,19 +745,19 @@ exports[`user translation should render correctly with expert, non admin 1`] = `
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:rg:"
+                        id="input-«rg»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:rg:-messages-group"
+                        id="input-«rg»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:rh:"
+                      id="fr-button-«rh»"
                       type="submit"
                     >
                       Suivant
@@ -867,7 +867,7 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                     >
                       <label
                         class="fr-label"
-                        for="input-:rd:"
+                        for="input-«rd»"
                       >
                         Votre pseudonyme
                         <span
@@ -878,19 +878,19 @@ exports[`user translation should render correctly with non expert, non admin 1`]
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:rd:"
+                        id="input-«rd»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:rd:-messages-group"
+                        id="input-«rd»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:re:"
+                      id="fr-button-«re»"
                       type="submit"
                     >
                       Suivant
@@ -1126,7 +1126,7 @@ exports[`user translation should return loader langue in url = first selected la
                     >
                       <label
                         class="fr-label"
-                        for="input-:r1:"
+                        for="input-«r1»"
                       >
                         Votre pseudonyme
                         <span
@@ -1137,19 +1137,19 @@ exports[`user translation should return loader langue in url = first selected la
                       </label>
                       <input
                         class="fr-input"
-                        id="input-:r1:"
+                        id="input-«r1»"
                         type="text"
                         value=""
                       />
                       <div
                         aria-live="polite"
                         class="fr-messages-group"
-                        id="input-:r1:-messages-group"
+                        id="input-«r1»-messages-group"
                       />
                     </div>
                     <button
                       class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right button mt-12"
-                      id="fr-button-:r2:"
+                      id="fr-button-«r2»"
                       type="submit"
                     >
                       Suivant

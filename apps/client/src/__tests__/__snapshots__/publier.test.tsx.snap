@@ -23,7 +23,7 @@ exports[`publier renders publier 1`] = `
   >
     <div
       class="fr-notice fr-notice--info"
-      id="fr-notice-:r0:"
+      id="fr-notice-«r0»"
     >
       <div
         class="fr-container"
@@ -79,7 +79,7 @@ exports[`publier renders publier 1`] = `
             <a
               class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
-              id="fr-button-:r1:"
+              id="fr-button-«r1»"
             >
               Rédiger une fiche
             </a>
@@ -114,7 +114,7 @@ exports[`publier renders publier 1`] = `
         >
           <fieldset
             class="fr-segmented fr-segmented--no-legend"
-            id="fr-segmented-:r2:"
+            id="fr-segmented-«r2»"
           >
             <div
               class="fr-segmented__elements"
@@ -123,14 +123,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r2:-0"
-                  name="segmented-name-:r3:"
+                  id="fr-segmented-«r2»-0"
+                  name="segmented-name-«r3»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r2:-0"
+                  for="fr-segmented-«r2»-0"
                 >
                   Pourquoi ?
                 </label>
@@ -139,14 +139,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r2:-1"
-                  name="segmented-name-:r3:"
+                  id="fr-segmented-«r2»-1"
+                  name="segmented-name-«r3»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r2:-1"
+                  for="fr-segmented-«r2»-1"
                 >
                   Quels critères ?
                 </label>
@@ -155,14 +155,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r2:-2"
-                  name="segmented-name-:r3:"
+                  id="fr-segmented-«r2»-2"
+                  name="segmented-name-«r3»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r2:-2"
+                  for="fr-segmented-«r2»-2"
                 >
                   Comment faire ?
                 </label>
@@ -171,14 +171,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-:r2:-3"
-                  name="segmented-name-:r3:"
+                  id="fr-segmented-«r2»-3"
+                  name="segmented-name-«r3»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-:r2:-3"
+                  for="fr-segmented-«r2»-3"
                 >
                   Foire aux questions
                 </label>
@@ -192,7 +192,7 @@ exports[`publier renders publier 1`] = `
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
             href="#register"
-            id="fr-button-:r4:"
+            id="fr-button-«r4»"
           >
             Rédiger une fiche
           </a>
@@ -237,14 +237,14 @@ exports[`publier renders publier 1`] = `
                     data-state="open"
                   >
                     <button
-                      aria-controls="radix-:r6:"
+                      aria-controls="radix-«r6»"
                       aria-disabled="true"
                       aria-expanded="true"
                       class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="open"
-                      id="radix-:r5:"
+                      id="radix-«r5»"
                       type="button"
                     >
                       <span
@@ -258,11 +258,11 @@ exports[`publier renders publier 1`] = `
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-:r5:"
+                    aria-labelledby="radix-«r5»"
                     class="content"
                     data-orientation="vertical"
                     data-state="open"
-                    id="radix-:r6:"
+                    id="radix-«r6»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
                   >
@@ -288,13 +288,13 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-:r8:"
+                      aria-controls="radix-«r8»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:r7:"
+                      id="radix-«r7»"
                       type="button"
                     >
                       <span
@@ -308,12 +308,12 @@ exports[`publier renders publier 1`] = `
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-:r7:"
+                    aria-labelledby="radix-«r7»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-:r8:"
+                    id="radix-«r8»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -329,13 +329,13 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-:ra:"
+                      aria-controls="radix-«ra»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:r9:"
+                      id="radix-«r9»"
                       type="button"
                     >
                       <span
@@ -349,12 +349,12 @@ exports[`publier renders publier 1`] = `
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-:r9:"
+                    aria-labelledby="radix-«r9»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-:ra:"
+                    id="radix-«ra»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -370,13 +370,13 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-:rc:"
+                      aria-controls="radix-«rc»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-:rb:"
+                      id="radix-«rb»"
                       type="button"
                     >
                       <span
@@ -390,12 +390,12 @@ exports[`publier renders publier 1`] = `
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-:rb:"
+                    aria-labelledby="radix-«rb»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-:rc:"
+                    id="radix-«rc»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -755,7 +755,7 @@ exports[`publier renders publier 1`] = `
           <a
             class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            id="fr-button-:rd:"
+            id="fr-button-«rd»"
           >
             Lire la charte éditoriale complète
           </a>
@@ -808,7 +808,7 @@ exports[`publier renders publier 1`] = `
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
-                id="fr-button-:re:"
+                id="fr-button-«re»"
               >
                 Créer mon compte
               </a>
@@ -862,7 +862,7 @@ exports[`publier renders publier 1`] = `
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                id="fr-button-:rf:"
+                id="fr-button-«rf»"
               >
                 Voir les bonnes pratiques
               </a>
@@ -1347,13 +1347,13 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-:rh:"
+                        aria-controls="radix-«rh»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-:rg:"
+                        id="radix-«rg»"
                         type="button"
                       >
                         <span
@@ -1367,12 +1367,12 @@ exports[`publier renders publier 1`] = `
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-:rg:"
+                      aria-labelledby="radix-«rg»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-:rh:"
+                      id="radix-«rh»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1388,13 +1388,13 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-:rj:"
+                        aria-controls="radix-«rj»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-:ri:"
+                        id="radix-«ri»"
                         type="button"
                       >
                         <span
@@ -1408,12 +1408,12 @@ exports[`publier renders publier 1`] = `
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-:ri:"
+                      aria-labelledby="radix-«ri»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-:rj:"
+                      id="radix-«rj»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1429,13 +1429,13 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-:rl:"
+                        aria-controls="radix-«rl»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-:rk:"
+                        id="radix-«rk»"
                         type="button"
                       >
                         <span
@@ -1449,12 +1449,12 @@ exports[`publier renders publier 1`] = `
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-:rk:"
+                      aria-labelledby="radix-«rk»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-:rl:"
+                      id="radix-«rl»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1470,13 +1470,13 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-:rn:"
+                        aria-controls="radix-«rn»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-:rm:"
+                        id="radix-«rm»"
                         type="button"
                       >
                         <span
@@ -1490,12 +1490,12 @@ exports[`publier renders publier 1`] = `
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-:rm:"
+                      aria-labelledby="radix-«rm»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-:rn:"
+                      id="radix-«rn»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1511,13 +1511,13 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-:rp:"
+                        aria-controls="radix-«rp»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-:ro:"
+                        id="radix-«ro»"
                         type="button"
                       >
                         <span
@@ -1531,12 +1531,12 @@ exports[`publier renders publier 1`] = `
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-:ro:"
+                      aria-labelledby="radix-«ro»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-:rp:"
+                      id="radix-«rp»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1551,7 +1551,7 @@ exports[`publier renders publier 1`] = `
             <a
               class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="https://help.refugies.info/fr/"
-              id="fr-button-:rq:"
+              id="fr-button-«rq»"
             >
               Voir le centre d’aide
             </a>
@@ -1596,7 +1596,7 @@ exports[`publier renders publier 1`] = `
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
-            id="fr-button-:rr:"
+            id="fr-button-«rr»"
           >
             Me connecter ou m'inscrire
           </button>

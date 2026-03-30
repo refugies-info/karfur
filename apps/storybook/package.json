@@ -16,8 +16,8 @@
     "@refugies-info/ui": "workspace:*",
     "@tailwindcss/typography": "^0.5.19",
     "next": "15.5.14",
-    "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^5.1.1",
@@ -28,8 +28,8 @@
     "@storybook/nextjs-vite": "10.3.3",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^20.19.37",
-    "@types/react": "19.0.14",
-    "@types/react-dom": "19.2.1",
+    "@types/react": "~19.1.17",
+    "@types/react-dom": "~19.1.7",
     "chromatic": "^13.3.5",
     "dotenv-run-script": "^0.4.1",
     "postcss": "^8.5.8",
