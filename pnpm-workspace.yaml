@@ -40,6 +40,18 @@ minimumReleaseAgeExclude:
   - "@babel/core"
   - path-expression-matcher
   - rollup
+  # TODO: Remove after 2026-04-06 once Biome 2.4.10 is older than 7 days
+  - "@biomejs/cli-darwin-arm64"
+  - "@biomejs/cli-darwin-x64"
+  - "@biomejs/cli-linux-arm64"
+  - "@biomejs/cli-linux-x64"
+  - "@biomejs/cli-win32-arm64"
+  - "@biomejs/cli-win32-x64"
+  - "@biomejs/cli-linux-arm64-musl"
+  - "@biomejs/cli-linux-x64-musl"
+  - "@emnapi/runtime"
+  - sharp
+  - image-size
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

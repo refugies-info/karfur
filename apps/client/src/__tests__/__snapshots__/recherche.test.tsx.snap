@@ -23,7 +23,7 @@ exports[`recherche renders search results 1`] = `
   >
     <div
       class="fr-notice fr-notice--info"
-      id="fr-notice-:r0:"
+      id="fr-notice-«r0»"
     >
       <div
         class="fr-container"
@@ -85,7 +85,7 @@ exports[`recherche renders search results 1`] = `
           >
             <label
               class="fr-label"
-              for="input-:r1:"
+              for="input-«r1»"
             >
               Recherche.keyword
               <span
@@ -97,7 +97,7 @@ exports[`recherche renders search results 1`] = `
             >
               <input
                 class="fr-input"
-                id="input-:r1:"
+                id="input-«r1»"
                 placeholder="Recherche.keyword"
                 type="search"
                 value=""
@@ -106,7 +106,7 @@ exports[`recherche renders search results 1`] = `
             <div
               aria-live="polite"
               class="fr-messages-group"
-              id="input-:r1:-messages-group"
+              id="input-«r1»-messages-group"
             />
           </div>
           <div
@@ -373,7 +373,7 @@ exports[`recherche renders search results 1`] = `
               aria-label="Filters.sortView, selected"
               class="sort_button"
               data-state="closed"
-              id="radix-:r2:"
+              id="radix-«r2»"
               type="button"
             >
               <span
@@ -415,7 +415,7 @@ exports[`recherche renders search results 1`] = `
           </div>
           <button
             class="fr-btn fr-btn--tertiary ri-eraser-line fr-btn--icon-right"
-            id="fr-button-:r4:"
+            id="fr-button-«r4»"
           >
             Recherche.resetFilters
           </button>

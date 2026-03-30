@@ -23,7 +23,7 @@ exports[`agir renders traduire 1`] = `
   >
     <div
       class="fr-notice fr-notice--info"
-      id="fr-notice-:r0:"
+      id="fr-notice-«r0»"
     >
       <div
         class="fr-container"
@@ -79,14 +79,14 @@ exports[`agir renders traduire 1`] = `
             <a
               class="fr-btn fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse mb-4"
               href="#program"
-              id="fr-button-:r1:"
+              id="fr-button-«r1»"
             >
               Découvrir le programme
             </a>
             <a
               class="fr-btn fr-btn--secondary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse"
               href="#map"
-              id="fr-button-:r2:"
+              id="fr-button-«r2»"
             >
               Trouver mon opérateur
             </a>
@@ -117,7 +117,7 @@ exports[`agir renders traduire 1`] = `
       >
         <fieldset
           class="fr-segmented fr-segmented--no-legend"
-          id="fr-segmented-:r3:"
+          id="fr-segmented-«r3»"
         >
           <div
             class="fr-segmented__elements"
@@ -126,14 +126,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r3:-0"
-                name="segmented-name-:r4:"
+                id="fr-segmented-«r3»-0"
+                name="segmented-name-«r4»"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r3:-0"
+                for="fr-segmented-«r3»-0"
               >
                 Le programme
               </label>
@@ -142,14 +142,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r3:-1"
-                name="segmented-name-:r4:"
+                id="fr-segmented-«r3»-1"
+                name="segmented-name-«r4»"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r3:-1"
+                for="fr-segmented-«r3»-1"
               >
                 Les opérateurs
               </label>
@@ -158,14 +158,14 @@ exports[`agir renders traduire 1`] = `
               class="fr-segmented__element"
             >
               <input
-                id="fr-segmented-:r3:-2"
-                name="segmented-name-:r4:"
+                id="fr-segmented-«r3»-2"
+                name="segmented-name-«r4»"
                 readonly=""
                 type="radio"
               />
               <label
                 class="fr-label"
-                for="fr-segmented-:r3:-2"
+                for="fr-segmented-«r3»-2"
               >
                 Aller plus loin
               </label>
@@ -1215,11 +1215,11 @@ exports[`agir renders traduire 1`] = `
               >
                 <div
                   class="fr-select-group"
-                  id="fr-select-group-:re:"
+                  id="fr-select-group-«re»"
                 >
                   <label
                     class="fr-label"
-                    for="select-:rf:"
+                    for="select-«rf»"
                   >
                     <span
                       class="fr-hint-text"
@@ -1228,9 +1228,9 @@ exports[`agir renders traduire 1`] = `
                     </span>
                   </label>
                   <select
-                    aria-describedby="select-:rg:-desc"
+                    aria-describedby="select-«rg»-desc"
                     class="fr-select"
-                    id="select-:rf:"
+                    id="select-«rf»"
                   >
                     <option
                       disabled=""
@@ -1712,7 +1712,7 @@ exports[`agir renders traduire 1`] = `
                   <div
                     aria-live="polite"
                     class="fr-messages-group"
-                    id="select-:rf:-messages-group"
+                    id="select-«rf»-messages-group"
                   />
                 </div>
               </div>
@@ -1755,7 +1755,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rh:"
+                id="fr-card-«rh»"
               >
                 <div
                   class="fr-card__body"
@@ -1806,7 +1806,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:ri:"
+                id="fr-card-«ri»"
               >
                 <div
                   class="fr-card__body"
@@ -1857,7 +1857,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rj:"
+                id="fr-card-«rj»"
               >
                 <div
                   class="fr-card__body"
@@ -1908,7 +1908,7 @@ exports[`agir renders traduire 1`] = `
             >
               <div
                 class="fr-card fr-enlarge-link fr-card--sm h-full"
-                id="fr-card-:rk:"
+                id="fr-card-«rk»"
               >
                 <div
                   class="fr-card__body"
