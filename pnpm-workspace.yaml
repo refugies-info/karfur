@@ -52,6 +52,10 @@ minimumReleaseAgeExclude:
   - "@emnapi/runtime"
   - sharp
   - image-size
+  # TODO: Remove after 2026-04-02 once path-to-regexp@8.4.0 and 0.1.13 are older than 7 days (security fix)
+  - path-to-regexp
+  # TODO: Remove after 2026-04-02 once @smithy/config-resolver@4.4.13 is older than 7 days (security fix)
+  - "@smithy/config-resolver"
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
