@@ -23,7 +23,7 @@ exports[`auth/reinitialiser-mot-de-passe/mail-envoye renders page 1`] = `
   >
     <button
       class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
-      id="fr-button-:r0:"
+      id="fr-button-«r0»"
     >
       Retour
     </button>
@@ -44,13 +44,13 @@ exports[`auth/reinitialiser-mot-de-passe/mail-envoye renders page 1`] = `
     </div>
     <button
       class="fr-btn fr-icon-mail-line fr-btn--icon-right button mb-4"
-      id="fr-button-:r1:"
+      id="fr-button-«r1»"
     >
       Renvoyer le lien de réinitialisation
     </button>
     <button
       class="fr-btn fr-btn--tertiary button"
-      id="fr-button-:r2:"
+      id="fr-button-«r2»"
     >
       Contacter le chat
     </button>

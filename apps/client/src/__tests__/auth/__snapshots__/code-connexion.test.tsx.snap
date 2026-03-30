@@ -23,7 +23,7 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
   >
     <button
       class="fr-btn fr-btn--tertiary fr-btn--sm fr-icon-arrow-left-line fr-btn--icon-left"
-      id="fr-button-:r0:"
+      id="fr-button-«r0»"
     >
       Retour
     </button>
@@ -51,13 +51,13 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
       >
         <label
           class="fr-label"
-          for="input-:r1:"
+          for="input-«r1»"
         >
           Code de connexion temporaire
         </label>
         <input
           class="fr-input"
-          id="input-:r1:"
+          id="input-«r1»"
           name="code"
           type="text"
           value=""
@@ -65,19 +65,19 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
         <div
           aria-live="polite"
           class="fr-messages-group"
-          id="input-:r1:-messages-group"
+          id="input-«r1»-messages-group"
         />
       </div>
       <button
         class="fr-btn fr-icon-check-line fr-btn--icon-right button mt mb-4"
-        id="fr-button-:r2:"
+        id="fr-button-«r2»"
         type="submit"
       >
         Valider
       </button>
       <button
         class="fr-btn fr-btn--tertiary fr-icon-mail-line fr-btn--icon-right button"
-        id="fr-button-:r3:"
+        id="fr-button-«r3»"
       >
         Renvoyer le code
       </button>
@@ -91,7 +91,7 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
         <a
           class="fr-btn fr-btn--tertiary button"
           href="https://mail.google.com/mail/u/0/"
-          id="fr-button-:r4:"
+          id="fr-button-«r4»"
         >
           <img
             alt=""
@@ -114,7 +114,7 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
         <a
           class="fr-btn fr-btn--tertiary button"
           href="https://outlook.live.com/mail/0/"
-          id="fr-button-:r5:"
+          id="fr-button-«r5»"
         >
           <img
             alt=""

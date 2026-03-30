@@ -36,23 +36,22 @@ minimumReleaseAgeExclude:
   - brace-expansion
   # TODO: Remove after 2026-03-31 once node-forge@1.4.0 is older than 7 days (security fix)
   - node-forge
-  # TODO: Remove after 2026-04-03 - esbuild 0.27.x packages for Expo SDK 54
-  - "@esbuild/aix-ppc64"
-  - "@esbuild/darwin-arm64"
-  - "@esbuild/darwin-x64"
-  - "@esbuild/linux-arm64"
-  - "@esbuild/linux-x64"
-  - "@esbuild/win32-arm64"
-  - "@esbuild/win32-x64"
-  - esbuild
-  - tar
-  # TODO: Remove after 2026-04-03 - oxc-resolver bindings for Expo SDK 54
-  - "@oxc-resolver/binding-openharmony-arm64"
-  - "@oxc-resolver/binding-openharmony-x64"
   # TODO: Remove - pnpm false positive for old packages
   - "@babel/core"
   - path-expression-matcher
   - rollup
+  # TODO: Remove after 2026-04-06 once Biome 2.4.10 is older than 7 days
+  - "@biomejs/cli-darwin-arm64"
+  - "@biomejs/cli-darwin-x64"
+  - "@biomejs/cli-linux-arm64"
+  - "@biomejs/cli-linux-x64"
+  - "@biomejs/cli-win32-arm64"
+  - "@biomejs/cli-win32-x64"
+  - "@biomejs/cli-linux-arm64-musl"
+  - "@biomejs/cli-linux-x64-musl"
+  - "@emnapi/runtime"
+  - sharp
+  - image-size
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
@@ -75,4 +74,17 @@ trustPolicyExclude:
   - "@oxc-resolver/binding-win32-arm64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
   - "@oxc-resolver/binding-win32-x64-msvc" # v11.7.1 lacks provenance attestation but is verified safe
   - "chokidar" # v4.0.3 lacks provenance attestation but is verified safe
-  - "semver" # v6.3.1 trust downgrade issue
+  - "oxc-resolver" # v11.7.1 lacks provenance attestation but is verified safe
+  - "react-device-detect" # v2.2.3 lacks provenance attestation but is verified safe
+  - "react-native-reanimated" # v3.17.5 lacks provenance attestation but is verified safe
+  - "react-native-screens" # v4.11.1 lacks provenance attestation but is verified safe
+  - "react-native-worklets" # v0.7.1 lacks provenance attestation but is verified safe
+  - "react-redux" # v9.2.0 lacks provenance attestation but is verified safe
+  - "reselect" # v5.1.1 lacks provenance attestation but is verified safe
+  - "rxjs" # v7.8.2 lacks provenance attestation but is verified safe
+  - "semver" # v6.3.1 lacks provenance attestation but is verified safe
+  - "tailwind-merge" # v2.6.0 lacks provenance attestation but is verified safe
+  - "ua-parser-js" # v1.0.41 lacks provenance attestation but is verified safe
+  - "undici-types" # v6.21.0 lacks provenance attestation but is verified safe
+  - "undici" # v6.21.2 lacks provenance attestation but is verified safe
+  - "wait-on" # v9.0.3 lacks provenance attestation but is verified safe
