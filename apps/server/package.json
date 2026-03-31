@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/server",
-  "version": "2.6.0",
+  "version": "2.7.1",
   "description": "Plateforme dédiée aux réfugiés",
   "author": "Soufiane Lamrissi",
   "homepage": "https://refugies.info",
@@ -48,7 +48,7 @@
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
     "password-hash": "^1.2.2",
-    "path-to-regexp": ">=0.1.12",
+    "path-to-regexp": "^8.4.0",
     "phone": "^3.1.71",
     "ts-node": "^10.9.2",
     "tsoa": "^6.6.0",

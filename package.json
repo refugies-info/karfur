@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "karfur",
-  "version": "2.6.0",
+  "version": "2.7.1",
   "description": "Plateforme dédiée aux réfugiés",
   "author": "Soufiane Lamrissi",
   "homepage": "https://accueil-integration-refugies.fr",
@@ -65,7 +65,9 @@
       "webpack": "^5.104.1",
       "diff": "^4.0.4",
       "@types/react": "~19.1.17",
-      "@types/react-dom": "~19.1.7"
+      "@types/react-dom": "~19.1.7",
+      "path-to-regexp@<1": "0.1.13",
+      "@smithy/config-resolver@<4.4.0": "^4.4.0"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"

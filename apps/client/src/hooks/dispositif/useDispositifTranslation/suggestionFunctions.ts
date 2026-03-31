@@ -28,7 +28,7 @@ export const transformMyTranslation = (
   return {
     validator,
     author: {
-      id: user?._id.toString() || "",
+      id: user?._id?.toString() || "",
       username: user?.username || "",
     },
     text: get(traductions.translated, section) || "",
@@ -79,5 +79,6 @@ export const getInitialTranslations = (
   userId: string,
   traductions: GetTraductionsForReviewResponse,
 ) => {
-  return traductions.filter((t) => t.author.id !== userId.toString());
+  const currentUserId = userId?.toString() || "";
+  return traductions.filter((t) => t.author.id?.toString() !== currentUserId);
 };
