@@ -39,6 +39,14 @@ const getTraductionsForReview = async (
   language: Languages,
   currentUser: User,
 ): Promise<GetTraductionsForReview[]> => {
+  const currentUserId = currentUser._id?.toString() || currentUser.id || "";
+  if (!currentUserId) {
+    logger.warn("[getTraductionsForReview] current user has no id", {
+      currentUserUsername: currentUser.username,
+      currentUserEmail: currentUser.email,
+    });
+  }
+
   const translations = await getTraductionsByLanguageAndDispositif(language, dispositif);
   const populatedTranslations = getPopulatedTranslations(translations);
 
@@ -52,7 +60,7 @@ const getTraductionsForReview = async (
   if (
     currentUser.isExpert() &&
     tradToReview &&
-    !populatedTranslations.find(({ userId }) => userId === currentUser.id)
+    !populatedTranslations.find(({ userId }) => userId === currentUserId)
   ) {
     return [
       {
@@ -63,7 +71,7 @@ const getTraductionsForReview = async (
           picture: toPicture(tradToReview.user.picture),
         },
         author: {
-          id: currentUser.id,
+          id: currentUserId,
           username: currentUser.username || currentUser.email,
           picture: toPicture(currentUser.picture),
         },
@@ -77,10 +85,10 @@ const getTraductionsForReview = async (
   return populatedTranslations
     .filter(
       ({ translation, userId }) =>
-        (currentUser.isExpert() && userId === currentUser.id) ||
+        (currentUser.isExpert() && userId === currentUserId) ||
         translation.type === TraductionsType.SUGGESTION,
     )
-    .sort(({ userId }) => (userId === currentUser.id ? -1 : 0))
+    .sort(({ userId }) => (userId === currentUserId ? -1 : 0))
     .map(({ translation, user, userId }) => ({
       translated: translation.translated,
       author: {
