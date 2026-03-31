@@ -90,7 +90,7 @@ const Dispositif = (props: Props) => {
         progress={progress}
         translators={traductions
           .map((t) => t.author)
-          .filter((auth) => auth.id.toString() !== user.userId?.toString())}
+          .filter((auth) => auth.id?.toString() !== user.userId?.toString())}
       />
       <Row className="gx-0">
         <Col xs="6" className={cn(styles.col, "bg-white")}>
