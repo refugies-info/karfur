@@ -21,14 +21,14 @@ describe("appusers.repository", () => {
       },
     });
 
-    const updated = await updateNotificationsSettings(uid, {
+    const firstUpdate = await updateNotificationsSettings(uid, {
       global: false,
       themes: {
         "theme-2": false,
       },
     });
 
-    expect(updated).toEqual({
+    expect(firstUpdate).toEqual({
       global: false,
       local: true,
       demarches: true,
@@ -38,8 +38,25 @@ describe("appusers.repository", () => {
       },
     });
 
+    const secondUpdate = await updateNotificationsSettings(uid, {
+      themes: {
+        "theme-3": true,
+      },
+    });
+
+    expect(secondUpdate).toEqual({
+      global: false,
+      local: true,
+      demarches: true,
+      themes: {
+        "theme-1": true,
+        "theme-2": false,
+        "theme-3": true,
+      },
+    });
+
     const saved = await AppUserModel.findOne({ uid }).lean();
-    expect(saved?.notificationsSettings).toEqual(updated);
+    expect(saved?.notificationsSettings).toEqual(secondUpdate);
 
     const themeKeys = Object.keys(saved?.notificationsSettings?.themes || {});
     expect(themeKeys.some((key) => key.startsWith("$__"))).toBe(false);
