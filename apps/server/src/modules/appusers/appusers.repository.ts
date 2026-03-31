@@ -31,7 +31,7 @@ export const processAppUsersByBatch = async (
 };
 
 export const getNotificationsSettings = async (uid: string) => {
-  const appUser = await AppUserModel.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid }).lean();
   if (!appUser) {
     return null;
   }
@@ -42,7 +42,7 @@ export const updateNotificationsSettings = async (
   uid: string,
   payload: Partial<NotificationsSettings>,
 ) => {
-  const appUser = await AppUserModel.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid }).lean();
   if (!appUser) {
     return null;
   }
@@ -52,7 +52,7 @@ export const updateNotificationsSettings = async (
 
   const { themes: payloadThemes, ...otherPayload } = payload;
 
-  appUser.notificationsSettings = {
+  const notificationsSettings: NotificationsSettings = {
     ...currentSettings,
     ...otherPayload,
     themes: {
@@ -60,8 +60,14 @@ export const updateNotificationsSettings = async (
       ...(payloadThemes || {}),
     },
   };
-  await appUser.save();
-  return appUser.notificationsSettings;
+
+  await AppUserModel.updateOne(
+    { uid },
+    { $set: { notificationsSettings } },
+    { runValidators: true },
+  );
+
+  return notificationsSettings;
 };
 
 export const updateOrCreateAppUser = async (
