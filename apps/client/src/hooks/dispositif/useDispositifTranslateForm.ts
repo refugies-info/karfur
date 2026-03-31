@@ -12,7 +12,9 @@ const getDefaultFormValues = (
   userId: Id | null,
   traductions: GetTraductionsForReviewResponse,
 ): TranslateForm => {
-  const userTrads = userId ? traductions.find((t) => t.author.id === userId.toString()) : null;
+  const userTrads = userId
+    ? traductions.find((t) => t.author.id?.toString() === userId.toString())
+    : null;
   return {
     translated: userTrads?.translated || {},
     toFinish: userTrads?.toFinish || [],
