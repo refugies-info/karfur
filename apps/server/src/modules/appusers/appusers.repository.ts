@@ -31,7 +31,7 @@ export const processAppUsersByBatch = async (
 };
 
 export const getNotificationsSettings = async (uid: string) => {
-  const appUser = await AppUserModel.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid }, { notificationsSettings: 1 }).lean();
   if (!appUser) {
     return null;
   }
@@ -42,26 +42,64 @@ export const updateNotificationsSettings = async (
   uid: string,
   payload: Partial<NotificationsSettings>,
 ) => {
-  const appUser = await AppUserModel.findOne({ uid });
+  const appUser = await AppUserModel.findOne({ uid }, { notificationsSettings: 1 }).lean();
   if (!appUser) {
     return null;
   }
 
-  // Use default settings if notificationsSettings is undefined (field is optional in schema)
-  const currentSettings = appUser.notificationsSettings || DEFAULT_NOTIFICATIONS_SETTINGS;
-
+  const currentSettings = appUser.notificationsSettings || ({} as Partial<NotificationsSettings>);
   const { themes: payloadThemes, ...otherPayload } = payload;
 
-  appUser.notificationsSettings = {
+  const notificationsSettings: NotificationsSettings = {
+    ...DEFAULT_NOTIFICATIONS_SETTINGS,
     ...currentSettings,
     ...otherPayload,
     themes: {
-      ...currentSettings.themes,
+      ...(currentSettings.themes || {}),
       ...(payloadThemes || {}),
     },
   };
-  await appUser.save();
-  return appUser.notificationsSettings;
+
+  const notificationsSettingsUpdate: Record<string, boolean | Record<string, boolean>> = {};
+
+  if (otherPayload.global !== undefined) {
+    notificationsSettingsUpdate["notificationsSettings.global"] = otherPayload.global;
+  }
+  if (otherPayload.local !== undefined) {
+    notificationsSettingsUpdate["notificationsSettings.local"] = otherPayload.local;
+  }
+  if (otherPayload.demarches !== undefined) {
+    notificationsSettingsUpdate["notificationsSettings.demarches"] = otherPayload.demarches;
+  }
+
+  if (currentSettings.themes === undefined) {
+    notificationsSettingsUpdate["notificationsSettings.themes"] = notificationsSettings.themes;
+  } else {
+    for (const [themeId, isEnabled] of Object.entries(payloadThemes || {})) {
+      notificationsSettingsUpdate[`notificationsSettings.themes.${themeId}`] = isEnabled;
+    }
+  }
+
+  if (currentSettings.global === undefined) {
+    notificationsSettingsUpdate["notificationsSettings.global"] = notificationsSettings.global;
+  }
+  if (currentSettings.local === undefined) {
+    notificationsSettingsUpdate["notificationsSettings.local"] = notificationsSettings.local;
+  }
+  if (currentSettings.demarches === undefined) {
+    notificationsSettingsUpdate["notificationsSettings.demarches"] =
+      notificationsSettings.demarches;
+  }
+
+  if (Object.keys(notificationsSettingsUpdate).length > 0) {
+    await AppUserModel.updateOne(
+      { uid },
+      { $set: notificationsSettingsUpdate },
+      { runValidators: true },
+    );
+  }
+
+  return notificationsSettings;
 };
 
 export const updateOrCreateAppUser = async (
