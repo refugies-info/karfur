@@ -26,17 +26,19 @@ export class AddPerformanceAdvisorIndexes1743369600000 implements MigrationInter
   }
 
   public async down(db: Db): Promise<void> {
+    // Only ignore IndexNotFound errors — the index may not exist in some environments.
+    // Using codeName is more readable than the numeric error code 27.
     await db
       .collection("appusers")
       .dropIndex("expoPushToken_1_uid_1")
-      .catch((err: { code?: number }) => {
-        if (err.code !== 27) throw err; // 27 = IndexNotFound — index may not exist yet
+      .catch((err: { codeName?: string }) => {
+        if (err.codeName !== "IndexNotFound") throw err;
       });
     await db
       .collection("dispositifs")
       .dropIndex("metadatas.frenchLevel_1_status_1_webOnly_1")
-      .catch((err: { code?: number }) => {
-        if (err.code !== 27) throw err; // 27 = IndexNotFound — index may not exist yet
+      .catch((err: { codeName?: string }) => {
+        if (err.codeName !== "IndexNotFound") throw err;
       });
   }
 }
