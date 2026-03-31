@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.7.1](https://github.com/refugies-info/karfur/compare/karfur-v2.7.0...karfur-v2.7.1) (2026-03-31)
+
+
+### Bug Fixes
+
+* **migrations:** use codeName instead of magic number for IndexNotFound ([f6cffe0](https://github.com/refugies-info/karfur/commit/f6cffe07f03a2b8f2fdbd2233f575e9038f45bfb))
+* **migrations:** use codeName instead of magic number for IndexNotFound ([e14ddd9](https://github.com/refugies-info/karfur/commit/e14ddd90dcc7b3ce7ea45ebd4f0ac959cb02f962))
+* **server:** address PR review feedback on appuser settings updates ([e8a661a](https://github.com/refugies-info/karfur/commit/e8a661aef7c0bd12846bd3c396c362a2463849e0))
+* **server:** normalize current user id in translation review workflow ([fb26fff](https://github.com/refugies-info/karfur/commit/fb26fff93b37a4b6d484736bdaba2eb14eb1af4a))
+* **server:** prevent appuser notification settings map cast errors ([1823c00](https://github.com/refugies-info/karfur/commit/1823c000678582134a257de585492e51a5372a67))
+* **server:** prevent appuser notification settings map cast errors ([6f73f70](https://github.com/refugies-info/karfur/commit/6f73f701c23b57ffd643450c5e1e4484d506a03f))
+* **workspace:** avoid unnecessary mobile release builds on lockfile-only noise ([661b714](https://github.com/refugies-info/karfur/commit/661b714a134317f1ee05713006393c8e797bb67c))
+* **workspace:** avoid unnecessary mobile release builds on lockfile-only noise ([8634788](https://github.com/refugies-info/karfur/commit/8634788ffd0d1d37096cb7101387782a21e752e1))
+* **workspace:** prevent translation page 500 on missing author ids ([ff2b7b9](https://github.com/refugies-info/karfur/commit/ff2b7b9b88526065f3f9a20f9d9dc4157e419840))
+* **workspace:** prevent translation page crash on missing author ids ([a9f11d4](https://github.com/refugies-info/karfur/commit/a9f11d48ecb7adf8d1fabb7ba3e14c6a597e97c7))
+
 ## [2.7.0](https://github.com/refugies-info/karfur/compare/karfur-v2.6.0...karfur-v2.7.0) (2026-03-30)
 
 
