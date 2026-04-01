@@ -43,7 +43,7 @@ const Footer = () => {
     <>
       <h2 className="sr-only">{t("Footer.useful_links", "Liens utiles")}</h2>
       <DSFRFooter
-        accessibility="non compliant"
+        accessibility="partially compliant"
         accessibilityLinkProps={{
           href: getPath("/declaration-accessibilite", locale),
           prefetch: false,
