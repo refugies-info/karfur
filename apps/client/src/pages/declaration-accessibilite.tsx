@@ -442,17 +442,6 @@ const DeclarationAccessibilite = () => {
             Écrivez-nous à l'adresse email :{" "}
             <a href="mailto:contact@refugies.info">contact@refugies.info</a>.
           </li>
-          <li>
-            Écrivez-nous par voie postale à l'adresse suivante :
-            <br />
-            <strong>
-              Le délégué interministériel chargé de l'accueil et de l'intégration des réfugiés
-            </strong>
-            <br />
-            18 rue des Pyrénées
-            <br />
-            75020 Paris
-          </li>
         </ul>
         <p>Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés au plus tard.</p>
 
