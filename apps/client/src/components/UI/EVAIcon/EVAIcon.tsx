@@ -19,6 +19,7 @@ interface Props {
   className?: string;
   id?: string;
   onClick?: any;
+  "aria-hidden"?: boolean | "true" | "false";
 }
 
 const EVAIcon = ({ name = "", fill = "#fff", size = "medium", ...props }: Props) => {
@@ -36,7 +37,12 @@ const EVAIcon = ({ name = "", fill = "#fff", size = "medium", ...props }: Props)
   }, [name, fill, sizeInPixels]);
 
   return (
-    <span id={props.id} className={cls(props.className, styles.icon)} onClick={props.onClick}>
+    <span
+      id={props.id}
+      className={cls(props.className, styles.icon)}
+      onClick={props.onClick}
+      aria-hidden={props["aria-hidden"]}
+    >
       <i
         dangerouslySetInnerHTML={{ __html: svg }}
         style={{
