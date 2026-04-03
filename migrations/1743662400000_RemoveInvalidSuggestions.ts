@@ -1,80 +1,60 @@
 import type { MigrationInterface } from "mongo-migrate-ts";
-import type { Db, Document, ObjectId } from "mongodb";
-
-// Find dispositifs with invalid suggestions (empty or whitespace-only suggestion field)
-const hasInvalidSuggestionsExpr: Document = {
-  $expr: {
-    $gt: [
-      {
-        $size: {
-          $filter: {
-            input: { $ifNull: ["$suggestions", []] },
-            as: "suggestion",
-            // Invalid: empty string or whitespace-only
-            cond: {
-              $or: [
-                { $eq: ["$$suggestion.suggestion", ""] },
-                {
-                  $eq: [
-                    {
-                      $trim: { input: "$$suggestion.suggestion" },
-                    },
-                    "",
-                  ],
-                },
-                { $eq: ["$$suggestion.suggestion", null] },
-              ],
-            },
-          },
-        },
-      },
-      0,
-    ],
-  },
-};
+import type { Db, ObjectId } from "mongodb";
 
 export class Migration1743662400000 implements MigrationInterface {
   public async up(db: Db): Promise<void> {
     const dispositifs = db.collection("dispositifs");
 
-    // Find all dispositifs with invalid suggestions
-    const docs = await dispositifs
-      .find(hasInvalidSuggestionsExpr, {
-        projection: { _id: 1, status: 1, typeContenu: 1, suggestions: 1 },
-      })
-      .toArray();
+    // Find dispositifs with invalid suggestions using $elemMatch (safer than $expr)
+    // $expr with $trim would crash on null values
+    const query = {
+      suggestions: {
+        $elemMatch: {
+          $or: [{ suggestion: null }, { suggestion: "" }, { suggestion: { $regex: /^\s+$/ } }],
+        },
+      },
+    };
 
-    if (docs.length === 0) {
-      console.log("[Migration1743662400000] No invalid suggestions found.");
-      return;
-    }
+    // Use cursor for memory efficiency
+    const cursor = dispositifs.find(query, {
+      projection: { _id: 1, suggestions: 1 },
+    });
 
-    console.log(
-      `[Migration1743662400000] Found ${docs.length} dispositif(s) with invalid suggestions.`,
-    );
-
-    // For each document, filter out invalid suggestions
+    const bulkOps: {
+      updateOne: { filter: { _id: ObjectId }; update: { $set: { suggestions: unknown[] } } };
+    }[] = [];
     let totalRemoved = 0;
-    for (const doc of docs) {
+    let docCount = 0;
+
+    // Iterate using cursor to avoid memory issues with large datasets
+    for await (const doc of cursor) {
       const validSuggestions = (doc.suggestions || []).filter(
         (s: { suggestion?: string }) => s.suggestion && s.suggestion.trim() !== "",
       );
       const removedCount = (doc.suggestions?.length || 0) - validSuggestions.length;
 
-      if (validSuggestions.length !== doc.suggestions?.length) {
-        await dispositifs.updateOne(
-          { _id: doc._id as ObjectId },
-          { $set: { suggestions: validSuggestions } },
-        );
+      if (removedCount > 0) {
+        bulkOps.push({
+          updateOne: {
+            filter: { _id: doc._id as ObjectId },
+            update: { $set: { suggestions: validSuggestions } },
+          },
+        });
         totalRemoved += removedCount;
-        console.log(
-          `[Migration1743662400000] Fixed ${doc._id}: removed ${removedCount} invalid suggestion(s)`,
-        );
+        docCount++;
       }
     }
 
+    if (bulkOps.length === 0) {
+      console.log("[Migration1743662400000] No invalid suggestions found.");
+      return;
+    }
+
+    // Use bulkWrite for efficient batch updates
+    const result = await dispositifs.bulkWrite(bulkOps);
+
     console.log(
-      `[Migration1743662400000] Removed ${totalRemoved} invalid suggestion(s) from ${docs.length} dispositif(s).`,
+      `[Migration1743662400000] Removed ${totalRemoved} invalid suggestion(s) from ${result.modifiedCount} dispositif(s).`,
     );
   }
 
