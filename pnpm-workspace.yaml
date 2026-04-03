@@ -56,6 +56,14 @@ minimumReleaseAgeExclude:
   - path-to-regexp
   # TODO: Remove after 2026-04-02 once @smithy/config-resolver@4.4.13 is older than 7 days (security fix)
   - "@smithy/config-resolver"
+  # TODO: Remove after 2026-04-07 once @xmldom/xmldom@0.8.12 is older than 7 days (security fix)
+  - "@xmldom/xmldom"
+  # TODO: Remove after 2026-04-07 once picomatch security fixes are older than 7 days
+  - picomatch
+  # TODO: Remove after 2026-04-07 once smol-toml@1.6.1 is older than 7 days (security fix)
+  - smol-toml
+  # TODO: Remove after 2026-04-07 once yaml@2.8.3 is older than 7 days (security fix)
+  - yaml
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
