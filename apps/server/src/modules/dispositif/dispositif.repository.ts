@@ -674,7 +674,18 @@ export const deleteNeedFromDispositifs = async (needId: string) => {
 
 export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial<Dispositif>) => {
   const dispositif = await DispositifModel.findById(id).lean();
-  return DispositifDraftModel.create({ ...dispositif, ...newData });
+
+  // Filter out invalid suggestions (empty suggestion field causes validation errors)
+  // See RI-1174: legacy data may have suggestions with empty strings
+  const sanitizedDispositif = dispositif
+    ? {
+        ...dispositif,
+        suggestions:
+          dispositif.suggestions?.filter((s) => s.suggestion && s.suggestion.trim() !== "") ?? [],
+      }
+    : null;
+
+  return DispositifDraftModel.create({ ...sanitizedDispositif, ...newData });
 };
 
 export const getDispositifAbstracts = async (
