@@ -64,7 +64,7 @@ minimumReleaseAgeExclude:
   - smol-toml
   # TODO: Remove after 2026-04-07 once yaml@2.8.3 is older than 7 days (security fix)
   - yaml
-  # TODO: Remove after 2026-04-11 once lodash@4.18.0 is older than 7 days (security fix, published 2026-03-31)
+  # TODO: Remove after 2026-04-11 once lodash@4.18.1 is older than 7 days (security fix, published 2026-03-31)
   - lodash
   # TODO: Remove after 2026-04-11 once @hapi/content@6.0.1 is older than 7 days (security fix, published 2026-04-02)
   - "@hapi/content"
