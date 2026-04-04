@@ -43,7 +43,7 @@
     "google-auth-library": "^9.15.0",
     "googleapis": "^165.0.0",
     "jwt-simple": "^0.5.5",
-    "lodash": "^4.17.23",
+    "lodash": "^4.18.1",
     "microsoft-cognitiveservices-speech-sdk": "^1.48.0",
     "moment": "^2.29.4",
     "mongoose": "^8.23.0",
