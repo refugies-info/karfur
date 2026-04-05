@@ -1,3 +1,12 @@
 #!/bin/sh
+set -e
+
+# GitLeaks - scan for secrets before commit
+if command -v gitleaks >/dev/null 2>&1; then
+  gitleaks protect
+else
+  echo "⚠️  GitLeaks not installed. Install with: brew install gitleaks"
+fi
+
 pnpm lint-staged
 pnpm knip
