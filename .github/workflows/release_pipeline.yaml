@@ -36,181 +36,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # ─── Detect which components changed ───────────────────────────────────────
-  detect-changes:
-    name: Detect changed components
-    runs-on: ubuntu-latest
-    outputs:
-      # On workflow_dispatch, deploy everything. On push, use changed-files output.
-      backend: ${{ steps.backend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
-      frontend: ${{ steps.frontend.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch' }}
-      mobile: ${{ steps.mobile-paths.outputs.any_changed == 'true' || steps.mobile-lockfile.outputs.changed == 'true' || github.event_name == 'workflow_dispatch' }}
-      triggering_pr_title: ${{ steps.trigger-pr.outputs.title }}
-      triggering_pr_number: ${{ steps.trigger-pr.outputs.number }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          # Full history so tj-actions/changed-files can reach github.event.before SHA
-          fetch-depth: 0
-
-      - name: Resolve triggering PR
-        id: trigger-pr
-        if: github.event_name == 'push'
-        uses: actions/github-script@v8
-        with:
-          script: |
-            const branch = context.ref.replace("refs/heads/", "");
-            const commitSha = context.sha;
-            const pulls = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: commitSha,
-            });
-
-            const mergedPull = pulls.data.find((pull) => pull.base.ref === branch && pull.merged_at);
-
-            if (!mergedPull) {
-              core.notice(`No merged PR found for ${commitSha} on ${branch} (direct push or sync merge).`);
-              return;
-            }
-
-            core.setOutput("title", mergedPull.title);
-            core.setOutput("number", String(mergedPull.number));
-            core.notice(`Triggered by PR #${mergedPull.number}: ${mergedPull.title}`);
-
-      - name: Add trigger context summary
-        if: github.event_name == 'push'
-        run: |
-          if [[ -n "${{ steps.trigger-pr.outputs.number }}" ]]; then
-            {
-              echo "## Trigger context"
-              echo "- Branch: \`${{ github.ref_name }}\`"
-              echo "- Commit: \`${{ github.sha }}\`"
-              echo "- PR: #${{ steps.trigger-pr.outputs.number }} — ${{ steps.trigger-pr.outputs.title }}"
-            } >> "$GITHUB_STEP_SUMMARY"
-          else
-            {
-              echo "## Trigger context"
-              echo "- Branch: \`${{ github.ref_name }}\`"
-              echo "- Commit: \`${{ github.sha }}\`"
-              echo "- PR: _No merged PR resolved for this push_"
-            } >> "$GITHUB_STEP_SUMMARY"
-          fi
-
-      - name: Detect backend changes
-        uses: tj-actions/changed-files@v47
-        id: backend
-        if: github.event_name == 'push'
-        with:
-          files: |
-            apps/server/**
-            packages/api-types/**
-            pnpm-lock.yaml
-            package.json
-
-      - name: Detect frontend changes
-        uses: tj-actions/changed-files@v47
-        id: frontend
-        if: github.event_name == 'push'
-        with:
-          files: |
-            apps/client/**
-            packages/ui/**
-            packages/api-types/**
-            pnpm-lock.yaml
-            package.json
-
-      - name: Detect mobile source changes
-        uses: tj-actions/changed-files@v47
-        id: mobile-paths
-        if: github.event_name == 'push'
-        with:
-          files: |
-            apps/mobile/**
-            packages/api-types/**
-
-      - name: Detect mobile lockfile dependency changes
-        id: mobile-lockfile
-        if: github.event_name == 'push'
-        env:
-          BEFORE_SHA: ${{ github.event.before }}
-          AFTER_SHA: ${{ github.sha }}
-        run: |
-          set -euo pipefail
-
-          if [[ "$BEFORE_SHA" == "0000000000000000000000000000000000000000" ]]; then
-            echo "First push on branch — trigger mobile build."
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if ! git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" | grep -Fqx "pnpm-lock.yaml"; then
-            echo "pnpm-lock.yaml unchanged."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          before_lock="$(mktemp)"
-          after_lock="$(mktemp)"
-          trap 'rm -f "$before_lock" "$after_lock"' EXIT
-
-          git show "$BEFORE_SHA:pnpm-lock.yaml" > "$before_lock"
-          git show "$AFTER_SHA:pnpm-lock.yaml" > "$after_lock"
-
-          extract_importer_block() {
-            local file="$1"
-            local importer="$2"
-
-            awk -v importer="$importer" '
-              BEGIN { in_importers = 0; in_target = 0 }
-              /^importers:/ {
-                in_importers = 1
-                next
-              }
-              in_importers && /^[^[:space:]]/ {
-                in_importers = 0
-              }
-              !in_importers {
-                next
-              }
-              in_target {
-                if ($0 ~ /^  [^[:space:]][^:]*:/ && $0 != "  " importer ":") {
-                  exit
-                }
-                print
-                next
-              }
-              $0 == "  " importer ":" {
-                in_target = 1
-                print
-              }
-            ' "$file"
-          }
-
-          before_mobile="$(extract_importer_block "$before_lock" "apps/mobile")"
-          after_mobile="$(extract_importer_block "$after_lock" "apps/mobile")"
-          before_api_types="$(extract_importer_block "$before_lock" "packages/api-types")"
-          after_api_types="$(extract_importer_block "$after_lock" "packages/api-types")"
-
-          if [[ -z "$before_mobile" || -z "$after_mobile" ]]; then
-            echo "Could not resolve apps/mobile importer in lockfile diff. Triggering mobile build for safety."
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          if [[ "$before_mobile" != "$after_mobile" || "$before_api_types" != "$after_api_types" ]]; then
-            echo "Mobile-related lockfile importer content changed."
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "Lockfile changed, but mobile-related importers are unchanged."
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          fi
-
   # ─── Backend — always before frontend ──────────────────────────────────────
   deploy-backend:
     name: Deploy Backend
-    needs: detect-changes
-    if: needs.detect-changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -253,15 +81,10 @@ jobs:
           fi
           echo "✅ Backend deployed successfully"
 
-  # ─── Frontend — runs after backend (or immediately if no backend changes) ──
+  # ─── Frontend — runs after backend ─────────────────────────────────────────
   deploy-frontend:
     name: Deploy Frontend
-    needs: [detect-changes, deploy-backend]
-    # Run if frontend changed AND (backend succeeded OR backend was skipped)
-    if: |
-      always() &&
-      needs.detect-changes.outputs.frontend == 'true' &&
-      (needs.deploy-backend.result == 'success' || needs.deploy-backend.result == 'skipped')
+    needs: deploy-backend
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -307,8 +130,6 @@ jobs:
   # ─── Mobile — runs in parallel with backend (no build-time API calls) ──────
   deploy-mobile:
     name: Build Mobile
-    needs: detect-changes
-    if: needs.detect-changes.outputs.mobile == 'true'
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
     env:
