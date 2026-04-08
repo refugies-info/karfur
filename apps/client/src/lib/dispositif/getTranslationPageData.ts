@@ -24,6 +24,9 @@ const buildTranslationsObject = (
           why: dispositif.why || {},
           how: dispositif.how || {},
           next: dispositif.next || {},
+          ...(dispositif.administration?.name != null
+            ? { administrationName: dispositif.administration.name }
+            : {}),
         },
       },
       toReview: [],
