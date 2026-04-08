@@ -1,0 +1,21 @@
+# GitLeaks configuration for Réfugiés.info / karfur monorepo
+# https://github.com/gitleaks/gitleaks
+
+title = "Réfugiés.info GitLeaks config"
+
+[allowlist]
+paths = [
+  # Example env files (use "demo" values)
+  '''example-env-file\.env$''',
+  '''\.env\.example$''',
+  # Test files with fake secrets
+  '''\.test\.ts$''',
+  '''\.spec\.ts$''',
+  '''__tests__/''',
+  # Storybook and fixtures
+  '''\.storybook/''',
+  '''fixtures/''',
+  # Documentation
+  '''documentation/''',
+  '''README\.md$''',
+]
