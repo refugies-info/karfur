@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { getPath } from "routes";
+import { ImpersonateBanner } from "~/components/Backend/ImpersonateBanner/ImpersonateBanner";
 import { type BackendRouteType, backendRoutes } from "~/components/Backend/screens/routes";
 import UnauthorizedAccess from "~/components/Navigation/UnauthorizedAccess/UnauthorizedAccess";
 import SEO from "~/components/Seo";
@@ -83,6 +84,7 @@ const Backend = () => {
   return (
     <>
       <SEO title="Administration" />
+      <ImpersonateBanner />
       {state === "loading" && (
         <div className={styles.spinner_container}>
           <Spinner color="success" />

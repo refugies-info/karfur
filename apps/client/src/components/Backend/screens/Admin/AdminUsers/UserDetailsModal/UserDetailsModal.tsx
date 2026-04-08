@@ -5,6 +5,7 @@ import {
   type Id,
   RoleName,
 } from "@refugies-info/api-types";
+import Cookies from "js-cookie";
 import { logger } from "logger";
 import moment from "moment";
 import "moment/locale/fr";
@@ -23,8 +24,10 @@ import { setAllUsersActionsCreator } from "~/services/AllUsers/allUsers.actions"
 import { allUsersSelector, userSelector } from "~/services/AllUsers/allUsers.selector";
 import { LoadingStatusKey } from "~/services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "~/services/LoadingStatus/loadingStatus.selectors";
+import { userDetailsSelector } from "~/services/User/user.selectors";
 import type { Event } from "~/types/interface";
 import API from "~/utils/API";
+import { getAuthToken, setAuthToken } from "~/utils/authToken";
 import { colors } from "~/utils/colors";
 import { LogList } from "../../Logs/LogList";
 import { DetailsModal } from "../../sharedComponents/DetailsModal";
@@ -53,6 +56,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
   const [selectedUserId, setSelectedUserId] = useState<Id | null>(props.selectedUserId);
 
   const allUsers = useSelector(allUsersSelector);
+  const currentAdmin = useSelector(userDetailsSelector);
   const userFromStore = useSelector(userSelector(selectedUserId));
   const [adminComments, setAdminComments] = useState<string>(userFromStore?.adminComments || "");
   const [infosSaved, setInfosSaved] = useState(false);
@@ -194,6 +198,25 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
     }
   };
 
+  const handleImpersonate = async () => {
+    if (!userFromStore) return;
+    try {
+      const { token } = await API.impersonateUser(userFromStore._id);
+      const adminToken = getAuthToken();
+      if (adminToken) {
+        Cookies.set("impersonation-admin-token", adminToken, {
+          expires: 1,
+          sameSite: "strict",
+          secure: window.location.protocol === "https:",
+        });
+      }
+      setAuthToken(token);
+      window.location.reload();
+    } catch (error) {
+      handleApiError({ text: "Erreur lors de l'impersonation" });
+    }
+  };
+
   const onDeleteClick = async () => {
     try {
       if (userFromStore) {
@@ -265,6 +288,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (props: Props) =
       }
       rightHead={
         <>
+          {userFromStore && currentAdmin?._id?.toString() !== userFromStore._id?.toString() && (
+            <FButton className="me-2" type="dark" name="person-outline" onClick={handleImpersonate}>
+              Se connecter en tant que
+            </FButton>
+          )}
           {userFromStore && (
             <FButton
               className="me-2"

@@ -9,6 +9,7 @@ import type {
   GetUserFavoritesResponse,
   GetUserInfoResponse,
   GetUserStatisticsResponse,
+  ImpersonateResponse,
   LoginRequest,
   LoginResponse,
   NewPasswordRequest,
@@ -53,6 +54,7 @@ import { getActiveUsers } from "~/workflows/users/getActiveUsers";
 import { getAllUsers } from "~/workflows/users/getAllUsers";
 import { getFiguresOnUsers } from "~/workflows/users/getFiguresOnUsers";
 import { getUserFavoritesInLocale } from "~/workflows/users/getUserFavoritesInLocale";
+import { impersonateUser } from "~/workflows/users/impersonateUser";
 import { login } from "~/workflows/users/login";
 import { register } from "~/workflows/users/register";
 import { resetPassword } from "~/workflows/users/resetPassword";
@@ -240,5 +242,16 @@ export class UserController extends Controller {
   public async deleteMyAccount(@Request() request: IRequest): Response {
     await deleteMyAccount(request.user);
     return { text: "success" };
+  }
+
+  @Post("/{id}/impersonate")
+  @Security({ jwt: ["admin"] })
+  public async impersonateUser(
+    @Path() id: string,
+    @Request() request: IRequest,
+  ): ResponseWithData<ImpersonateResponse> {
+    validateId(id, "user");
+    const data = await impersonateUser(request.userId.toString(), id);
+    return { text: "success", data };
   }
 }

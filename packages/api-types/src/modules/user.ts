@@ -171,6 +171,13 @@ export interface LoginResponse {
 }
 
 /**
+ * @url POST /user/:userId/impersonate
+ */
+export interface ImpersonateResponse {
+  token: string;
+}
+
+/**
  * @url GET /user/actives
  */
 export interface GetActiveUsersResponse {

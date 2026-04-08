@@ -47,6 +47,7 @@ import type {
   GetUserStatisticsResponse,
   GetWidgetResponse,
   Id,
+  ImpersonateResponse,
   ImprovementsRequest,
   IsInContactResponse,
   LoginRequest,
@@ -222,6 +223,12 @@ const API = {
   deleteUser: (query: Id): Promise<null> => {
     const headers = getHeaders();
     return instance.delete<any, null>(`/user/${query}`, { headers }).then(() => null);
+  },
+  impersonateUser: (userId: Id): Promise<ImpersonateResponse> => {
+    const headers = getHeaders();
+    return instance
+      .post<any, APIResponse<ImpersonateResponse>>(`/user/${userId}/impersonate`, {}, { headers })
+      .then((response) => response.data.data);
   },
   getUserContributions: (): Promise<GetUserContributionsResponse> => {
     const headers = getHeaders();
