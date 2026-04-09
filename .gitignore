@@ -43,6 +43,7 @@ npm-debug.log*
 # AI assistants
 /.cursorrules
 .letta/settings.local.json
+.letta
 
 # EAS
 .expo/
