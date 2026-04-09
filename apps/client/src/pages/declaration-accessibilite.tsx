@@ -109,9 +109,9 @@ const DeclarationAccessibilite = () => {
           </li>
         </ul>
 
-        <h4>Contenus non accessibles</h4>
+        <h3>Contenus non accessibles</h3>
 
-        <h5>Non-conformités</h5>
+        <h4>Non-conformités</h4>
         <p>Liste des critères non conformes :</p>
         <ul>
           <li>1.1 - Des images porteuses d'informations n'ont pas d'alternative textuelle.</li>
@@ -196,7 +196,7 @@ const DeclarationAccessibilite = () => {
           </li>
         </ul>
 
-        <h5>Contenus non soumis à l'obligation d'accessibilité</h5>
+        <h4>Contenus non soumis à l'obligation d'accessibilité</h4>
         <p>
           La carte interactive « Leaflet », présente dans la section « Lieu d'accueil » de la page «
           <a
@@ -214,11 +214,9 @@ const DeclarationAccessibilite = () => {
           autre forme numérique accessible.
         </p>
 
-        <h4>Remarques complémentaires</h4>
+        <h3>Remarques complémentaires</h3>
 
-        <p>
-          <strong>Validité du code source généré</strong>
-        </p>
+        <h4>Validité du code source généré</h4>
         <p>
           Le code source généré des pages du site n'est pas totalement valide selon le type de
           document spécifié.
@@ -238,9 +236,7 @@ const DeclarationAccessibilite = () => {
           du code source généré étant couverts par d'autres critères du RGAA.
         </p>
 
-        <p>
-          <strong>Création de compte : critère 7.5</strong>
-        </p>
+        <h4>Création de compte : critère 7.5</h4>
         <p>
           Au sein de la première étape «{" "}
           <a
@@ -259,22 +255,16 @@ const DeclarationAccessibilite = () => {
           apporterait plus de confusion que d'amélioration.
         </p>
 
-        <p>
-          <strong>Éléments de tiers non audités</strong>
-        </p>
+        <h4>Éléments de tiers non audités</h4>
 
-        <p>
-          <strong>Lecteur vidéo</strong>
-        </p>
+        <h5>Lecteur vidéo</h5>
         <p>Le lecteur vidéo « YouTube » n'a pas fait l'objet d'un audit complet et détaillé.</p>
         <p>
           Il a toutefois été vérifié que son utilisation est bien possible avec différentes
           technologies d'assistance.
         </p>
 
-        <p>
-          <strong>Chatbot</strong>
-        </p>
+        <h5>Chatbot</h5>
         <p>Le chatbot d'aide n'a pas fait l'objet d'un audit complet et détaillé.</p>
         <p>
           Il a toutefois été vérifié que son utilisation est bien possible avec différentes
@@ -290,12 +280,10 @@ const DeclarationAccessibilite = () => {
           .
         </p>
 
-        <h2>Établissement de cette déclaration</h2>
+        <h3>Établissement de cette déclaration</h3>
         <p>Cette déclaration a été établie le 16 mars 2026.</p>
 
-        <p>
-          <strong>Technologies utilisées pour la réalisation du site</strong>
-        </p>
+        <h4>Technologies utilisées pour la réalisation du site</h4>
         <ul>
           <li>HTML5.</li>
           <li>ARIA.</li>
@@ -303,9 +291,7 @@ const DeclarationAccessibilite = () => {
           <li>JavaScript.</li>
         </ul>
 
-        <p>
-          <strong>Environnement de test</strong>
-        </p>
+        <h4>Environnement de test</h4>
         <p>
           Les tests ont été effectués avec les combinaisons de navigateur web et lecteur d'écran
           suivantes :
@@ -317,18 +303,14 @@ const DeclarationAccessibilite = () => {
           <li>Safari et VoiceOver sous iOS 26.2.1.</li>
         </ul>
 
-        <p>
-          <strong>Outils pour évaluer l'accessibilité</strong>
-        </p>
+        <h4>Outils pour évaluer l'accessibilité</h4>
         <ul>
           <li>Colour Contrast Analyser.</li>
           <li>Outils de développement Firefox.</li>
           <li>Web Developer (extension Firefox).</li>
         </ul>
 
-        <p>
-          <strong>Pages du site ayant fait l'objet de la vérification de conformité</strong>
-        </p>
+        <h4>Pages du site ayant fait l'objet de la vérification de conformité</h4>
         <ul>
           <li>
             <a href="https://refugies.info/" target="_blank" rel="noopener noreferrer">
@@ -425,27 +407,25 @@ const DeclarationAccessibilite = () => {
           </li>
         </ul>
 
-        <h2>Démarche d'amélioration</h2>
+        <h3>Démarche d'amélioration</h3>
         <p>
           Réfugiés.info a engagé une démarche d'amélioration continue de l'accessibilité depuis
           2024. L'audit de mars 2026 a permis de mesurer les progrès réalisés et d'identifier les
           non-conformités restantes. Les corrections sont en cours de déploiement progressif.
         </p>
 
-        <h2>Retour d'information et contact</h2>
+        <h3>Retour d'information et contact</h3>
         <p>
           Si vous n'arrivez pas à accéder à un contenu ou à un service de ce site, vous pouvez nous
           contacter via un des moyens ci-après en décrivant votre problème :
         </p>
-        <ul>
-          <li>
-            Écrivez-nous à l'adresse email :{" "}
-            <a href="mailto:contact@refugies.info">contact@refugies.info</a>.
-          </li>
-        </ul>
+        <p>
+          Écrivez-nous à l'adresse email :{" "}
+          <a href="mailto:contact@refugies.info">contact@refugies.info</a>.
+        </p>
         <p>Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés au plus tard.</p>
 
-        <h2>Voies de recours</h2>
+        <h3>Voies de recours</h3>
         <ol>
           <li>
             Vous avez identifié sur ce site web un ou plusieurs manquement(s) à la réglementation
@@ -457,7 +437,7 @@ const DeclarationAccessibilite = () => {
         </ol>
         <p>Alors vous avez la possibilité de :</p>
 
-        <h3>Contacter l'Arcom</h3>
+        <h4>Contacter l'Arcom</h4>
         <p>
           Afin de signaler un ou plusieurs manquement(s) à la réglementation relative à
           l'accessibilité numérique, rendez-vous sur la page «{" "}
@@ -471,7 +451,7 @@ const DeclarationAccessibilite = () => {
           » du site web de l'Arcom.
         </p>
 
-        <h3>Saisir le Défenseur des droits</h3>
+        <h4>Saisir le Défenseur des droits</h4>
         <p>
           Pour faire valoir vos droits relatifs à des défauts d'accessibilité que vous avez
           rencontrés :
