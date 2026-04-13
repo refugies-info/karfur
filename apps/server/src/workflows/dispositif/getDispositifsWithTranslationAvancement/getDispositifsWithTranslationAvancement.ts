@@ -70,8 +70,8 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
 
     const lastTradUpdatedAt = Math.max(
       0,
-      dispositif.translations[locale]?.created_at.getTime() || 0,
-      ...correspondingTrads.map((z) => z.updatedAt.getTime() || 0),
+      dispositif.translations[locale]?.created_at?.getTime() || 0,
+      ...correspondingTrads.map((z) => z.updatedAt?.getTime() || 0),
     );
     const avancementTrad = getNbWordsDone(correspondingTrads, false, dispositif.translations.fr);
     const avancementValidation = getNbWordsDone(

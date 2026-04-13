@@ -25,6 +25,7 @@ export const addTradToAirtable = async (
   translation: Traductions | LeanTraductions,
   username: string,
 ) => {
+  const toReviewCache = translation.toReviewCache || [];
   const frTranslation = getDispositifTranslation(dispositif, "fr");
   const trad: TradToExport = {
     fields: {
@@ -33,10 +34,10 @@ export const addTradToAirtable = async (
       Lien: `${url}/fr/${dispositif.typeContenu}/${dispositif._id.toString()}`,
       Langues: language.toUpperCase(),
       Type: dispositif.typeContenu,
-      "Travail effectué": translation.toReviewCache.length > 0 ? "à revoir" : "à traduire",
+      "Travail effectué": toReviewCache.length > 0 ? "à revoir" : "à traduire",
       "Nb mots":
-        translation.toReviewCache.length > 0
-          ? countDispositifWordsForSections(frTranslation, translation.toReviewCache)
+        toReviewCache.length > 0
+          ? countDispositifWordsForSections(frTranslation, toReviewCache)
           : countDispositifWords(frTranslation?.content as any),
     },
   };
