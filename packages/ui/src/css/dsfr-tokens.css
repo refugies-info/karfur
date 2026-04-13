@@ -993,7 +993,6 @@
   --step-width: calc(100% / 8);
   --equisized-width: auto;
   --comma: " ";
-  --content: " - "attr(data-fr-error) var(--comma);
   --stepper-size: 0.5rem;
   --default-outer: calc((100% + var(--stepper-size)) / var(--steps));
   --default-inner: calc(var(--default-outer) - var(--stepper-size));
