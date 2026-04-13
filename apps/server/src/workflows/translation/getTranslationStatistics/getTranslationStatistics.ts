@@ -60,20 +60,28 @@ const getTranslationStatistics = async ({
     }
   }
 
-  // nbActiveTranslators
+  // nbActiveTranslators — single-pass O(U×S + L) instead of O(L×U×S)
   if (noFacet || facets.includes("nbActiveTranslators")) {
     const now = Date.now();
     const activeTranslators = trads.filter(
       (user) => now - new Date(user.last_connected).getTime() <= ONE_MONTH,
     );
+
+    const languageCounts = new Map<string, number>();
+    for (const user of activeTranslators) {
+      for (const lang of user.selectedLanguages) {
+        const id = lang._id?.toString();
+        if (id) {
+          languageCounts.set(id, (languageCounts.get(id) || 0) + 1);
+        }
+      }
+    }
+
     const nbActiveTranslators = languages
       .filter((ln: any) => ln.i18nCode !== "fr")
       .map((language: any) => {
-        const languageId = language._id.toString();
-        const count = activeTranslators.filter((user) =>
-          user.selectedLanguages.map((l: any) => l._id.toString()).includes(languageId.toString()),
-        ).length;
-        return { languageId, count };
+        const languageId = language._id?.toString();
+        return { languageId, count: languageId ? languageCounts.get(languageId) || 0 : 0 };
       });
     stats.nbActiveTranslators = nbActiveTranslators;
   }
