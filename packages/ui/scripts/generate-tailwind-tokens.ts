@@ -3,7 +3,7 @@ import fs from "fs-extra";
 import postcss from "postcss";
 
 const INPUT_CSS = require.resolve("@codegouvfr/react-dsfr/dsfr/dsfr.min.css");
-const OUTPUT_CSS = "./src/css/dsfr-tokens.css"; // Utiliser colors.css pour la sortie
+const OUTPUT_CSS = "./src/css/dsfr-tokens.css"; // Utiliser dsfr-tokens.css pour la sortie
 
 /**
  * Variables CSS de DSFR à exclure du @theme Tailwind car elles entrent en conflit
