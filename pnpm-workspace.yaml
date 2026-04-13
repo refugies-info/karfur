@@ -68,6 +68,13 @@ minimumReleaseAgeExclude:
   - lodash
   # TODO: Remove after 2026-04-11 once @hapi/content@6.0.1 is older than 7 days (security fix, published 2026-04-02)
   - "@hapi/content"
+  # TODO: Remove after 2026-04-20 once axios@1.15.0 is older than 7 days (security fix, published 2026-04-08)
+  - axios
+  # TODO: Remove after 2026-04-20 once next@15.5.15 is older than 7 days (security fix)
+  - next
+  - "@next/*"
+  # TODO: Remove after 2026-04-20 once vite@7.3.2 is older than 7 days (security fix)
+  - vite
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
