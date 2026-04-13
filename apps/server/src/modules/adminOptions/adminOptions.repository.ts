@@ -13,7 +13,7 @@ const WORDS_TRANSLATED_KEY = "nbWordsTranslated";
 
 /** Read the pre-computed translated-words counter. Returns 0 if not yet initialised. */
 export const getWordsTranslatedCounter = async (): Promise<number> => {
-  const doc = await AdminOptionsModel.findOne({ key: WORDS_TRANSLATED_KEY }).lean();
+  const doc = await AdminOptionsModel.findOne({ key: WORDS_TRANSLATED_KEY }).cacheQuery();
   return (doc?.value as number) ?? 0;
 };
 
