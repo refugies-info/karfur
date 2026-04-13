@@ -51,12 +51,14 @@ export class AddPerformanceAdvisorIndexes21776080086167 implements MigrationInte
 
   public async down(db: Db): Promise<void> {
     const INDEX_NOT_FOUND_CODE = 27;
+    const NAMESPACE_NOT_FOUND_CODE = 26; // collection deleted/renamed before rollback
     const drop = async (collection: string, indexName: string) => {
       await db
         .collection(collection)
         .dropIndex(indexName)
         .catch((err: any) => {
-          if (err?.code !== INDEX_NOT_FOUND_CODE) throw err;
+          if (err?.code !== INDEX_NOT_FOUND_CODE && err?.code !== NAMESPACE_NOT_FOUND_CODE)
+            throw err;
         });
     };
 
