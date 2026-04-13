@@ -58,7 +58,7 @@ export const MetaDataItem = ({
           <p
             className={cn(
               "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
-              "before:content before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
+              "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
               "md:[&_a]:text-sm",
               onClick && "[&_a]:pointer-events-none",
             )}

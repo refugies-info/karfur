@@ -3,7 +3,17 @@ import fs from "fs-extra";
 import postcss from "postcss";
 
 const INPUT_CSS = require.resolve("@codegouvfr/react-dsfr/dsfr/dsfr.min.css");
-const OUTPUT_CSS = "./src/css/dsfr-tokens.css"; // Utiliser colors.css pour la sortie
+const OUTPUT_CSS = "./src/css/dsfr-tokens.css"; // Utiliser dsfr-tokens.css pour la sortie
+
+/**
+ * Variables CSS de DSFR à exclure du @theme Tailwind car elles entrent en conflit
+ * avec des propriétés CSS standard ou des mécanismes internes de Tailwind.
+ *
+ * Exemple : `--content` est utilisé par DSFR pour les messages d'erreur de formulaire
+ * (" - "attr(data-fr-error)...) mais Tailwind v4 l'utilise aussi en interne pour les
+ * utilitaires `before:content-*`, ce qui injecte un tiret parasite sur tous les ::before.
+ */
+const EXCLUDED_VARIABLES = new Set(["content"]);
 
 /**
  * Extrait les variables CSS du fichier tokens.css
@@ -17,7 +27,10 @@ async function extractCssVariables(filePath: string): Promise<Record<string, str
     .then((result) => {
       result.root.walkDecls((decl) => {
         if (decl.prop.startsWith("--")) {
-          variables[decl.prop.slice(2)] = decl.value;
+          const varName = decl.prop.slice(2);
+          if (!EXCLUDED_VARIABLES.has(varName)) {
+            variables[varName] = decl.value;
+          }
         }
       });
     });
