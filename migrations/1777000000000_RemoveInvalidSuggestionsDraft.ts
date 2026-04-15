@@ -20,6 +20,7 @@ export class Migration1777000000000 implements MigrationInterface {
 
     for (const collectionName of collectionsToClean) {
       const collection = db.collection(collectionName);
+      let collectionRemoved = 0;
 
       // Find documents with invalid suggestions using $elemMatch
       // Invalid means: suggestion is null, empty string, or whitespace-only
@@ -53,6 +54,7 @@ export class Migration1777000000000 implements MigrationInterface {
               update: { $set: { suggestions: validSuggestions } },
             },
           });
+          collectionRemoved += removedCount;
           totalRemoved += removedCount;
           totalDocs++;
         }
@@ -61,7 +63,7 @@ export class Migration1777000000000 implements MigrationInterface {
       if (bulkOps.length > 0) {
         const result = await collection.bulkWrite(bulkOps);
         console.log(
-          `[Migration1777000000000] Cleaned ${collectionName}: removed ${totalRemoved} invalid suggestion(s) from ${result.modifiedCount} document(s)`,
+          `[Migration1777000000000] Cleaned ${collectionName}: removed ${collectionRemoved} invalid suggestion(s) from ${result.modifiedCount} document(s)`,
         );
       } else {
         console.log(`[Migration1777000000000] No invalid suggestions found in ${collectionName}`);
