@@ -1,5 +1,6 @@
 import type { Dispositif, Langue, Need, NeedId, Theme, ThemeId } from "@refugies-info/mongo";
 import { get } from "lodash";
+import { mapToPlainObject } from "~/libs/mongooseMaps";
 import { getDispositifMainSponsor } from "~/modules/dispositif/dispositif.business";
 import type { AlgoliaObject } from "~/types/interface";
 
@@ -7,16 +8,11 @@ const extractValuesPerLanguage = (translations: any, path: string, keyPrefix: st
   if (!translations) return {};
   const normalizedObject: Record<string, string> = {};
 
-  if (typeof translations.entries === "function") {
-    for (const [ln, translation] of translations.entries()) {
-      const value = get(translation, path);
-      normalizedObject[`${keyPrefix}_${ln}`] = value;
-    }
-  } else {
-    for (const [ln, translation] of Object.entries(translations)) {
-      const value = get(translation, path);
-      normalizedObject[`${keyPrefix}_${ln}`] = value;
-    }
+  // Use centralized utility to handle both Map and plain object
+  const plainTranslations = mapToPlainObject(translations);
+  for (const [ln, translation] of Object.entries(plainTranslations)) {
+    const value = get(translation, path);
+    normalizedObject[`${keyPrefix}_${ln}`] = value;
   }
   return normalizedObject;
 };
