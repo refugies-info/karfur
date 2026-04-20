@@ -9,6 +9,7 @@ import { type Dispositif, ObjectId, type StructureId, type User } from "@refugie
 import { isString, omit } from "lodash";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import { isToday } from "~/libs/isToday";
+import { mapToPlainObject } from "~/libs/mongooseMaps";
 import { countDispositifWords } from "~/libs/wordCounter";
 import logger from "~/logger";
 import {
@@ -38,7 +39,10 @@ const buildDispositifContent = (
 ): TranslationContent => {
   // content - use helper to handle both Map and plain object access
   const frTranslation = getDispositifTranslation(oldDispositif, "fr", true);
-  const content = { ...frTranslation?.content };
+  // Convert to plain object to avoid Map subdocument issues
+  const content = mapToPlainObject(frTranslation?.content || {}) as
+    | DispositifContent
+    | DemarcheContent;
   // check isString to allow empty values
   if (isString(body.titreInformatif)) content.titreInformatif = body.titreInformatif;
   if (isString(body.titreMarque)) content.titreMarque = body.titreMarque;
@@ -107,10 +111,7 @@ export const updateDispositif = async (
   const translationContent = buildDispositifContent(body, oldDispositif);
 
   // Convert translations to plain object (handles both Map and plain object)
-  const existingTranslations =
-    typeof (oldDispositif.translations as any)?.entries === "function"
-      ? Object.fromEntries((oldDispositif.translations as any).entries())
-      : oldDispositif.translations || {};
+  const existingTranslations = mapToPlainObject(oldDispositif.translations);
 
   const editedDispositif: Partial<Dispositif> = {
     lastModificationAuthor: user._id,
