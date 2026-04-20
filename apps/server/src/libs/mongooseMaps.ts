@@ -8,16 +8,22 @@
 
 /**
  * Check if a value is a Mongoose Map (has entries method)
+ * Checks for both `entries` and `get` methods and excludes Arrays
+ * to avoid false positives from Arrays, Sets, and other iterables.
  */
 export const isMongooseMap = (value: unknown): boolean => {
-  return typeof (value as any)?.entries === "function";
+  return (
+    !Array.isArray(value) &&
+    typeof (value as any)?.entries === "function" &&
+    typeof (value as any)?.get === "function"
+  );
 };
 
 /**
  * Convert a Mongoose Map or plain object to a plain JavaScript object
  *
  * @param value - The value to convert (Map or plain object)
- * @returns A plain object with all key-value pairs
+ * @returns A plain object copy with all key-value pairs
  */
 export const mapToPlainObject = <T = unknown>(
   value: Record<string, T> | Map<string, T> | undefined,
@@ -28,7 +34,11 @@ export const mapToPlainObject = <T = unknown>(
     return Object.fromEntries((value as Map<string, T>).entries());
   }
 
-  return value as Record<string, T>;
+  // Always return a copy to avoid in-place mutations on the original
+  // Use .toObject() for Mongoose documents/subdocuments, otherwise spread
+  return (
+    typeof (value as any)?.toObject === "function" ? (value as any).toObject() : { ...value }
+  ) as Record<string, T>;
 };
 
 /**
