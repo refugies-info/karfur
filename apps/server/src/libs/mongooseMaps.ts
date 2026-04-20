@@ -13,6 +13,7 @@
  */
 export const isMongooseMap = (value: unknown): boolean => {
   return (
+    !!value &&
     !Array.isArray(value) &&
     typeof (value as any)?.entries === "function" &&
     typeof (value as any)?.get === "function"
@@ -30,15 +31,17 @@ export const mapToPlainObject = <T = any>(
 ): Record<string, T> => {
   if (!value) return {};
 
+  // Prefer Mongoose's own conversion for documents/subdocuments.
+  if (typeof (value as any)?.toObject === "function") {
+    return (value as any).toObject({ flattenMaps: true }) as Record<string, T>;
+  }
+
   if (isMongooseMap(value)) {
     return Object.fromEntries((value as Map<string, T>).entries());
   }
 
   // Always return a copy to avoid in-place mutations on the original
-  // Use .toObject() for Mongoose documents/subdocuments, otherwise spread
-  return (
-    typeof (value as any)?.toObject === "function" ? (value as any).toObject() : { ...value }
-  ) as Record<string, T>;
+  return { ...value } as Record<string, T>;
 };
 
 /**
@@ -77,4 +80,24 @@ export const getMapKeys = (
   }
 
   return Object.keys(value);
+};
+
+/**
+ * Check if a Mongoose Map or plain object has a key
+ *
+ * @param value - The Map or plain object
+ * @param key - The key to check
+ * @returns True if the key exists
+ */
+export const hasMapKey = (
+  value: Record<string, unknown> | Map<string, unknown> | undefined,
+  key: string,
+): boolean => {
+  if (!value) return false;
+
+  if (isMongooseMap(value)) {
+    return (value as Map<string, unknown>).has(key);
+  }
+
+  return Object.hasOwn(value, key);
 };
