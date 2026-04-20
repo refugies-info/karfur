@@ -472,7 +472,11 @@ export const modifyReadSuggestionInDispositif = async (
 export const getDispositifName = async (id: Id) =>
   DispositifModel.findById(id, {
     "translations.fr.content.titreInformatif": 1,
-  }).then((res) => getDispositifTranslation(res as any, "fr")?.content.titreInformatif);
+  }).then((res) =>
+    res
+      ? getDispositifTranslation(res as unknown as Dispositif, "fr")?.content.titreInformatif
+      : undefined,
+  );
 
 export const getDispositifById = async (
   id: DispositifId,

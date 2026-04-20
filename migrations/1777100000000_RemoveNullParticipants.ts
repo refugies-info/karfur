@@ -25,18 +25,25 @@ export class Migration1777100000000 implements MigrationInterface {
     for (const collectionName of collectionsToClean) {
       const collection = db.collection(collectionName);
 
-      // $elemMatch + $eq: null targets only documents where the participants ARRAY contains a null element
-      // (unlike { participants: null } which also matches missing/null fields)
-      // $pull removes all null entries from the array in one operation
-      const result = await collection.updateMany(
+      // First, normalize documents where the field itself is null.
+      // This does NOT touch missing fields.
+      const nullFieldResult = await collection.updateMany(
+        { participants: null },
+        { $set: { participants: [] } },
+      );
+
+      // Then remove null elements inside participants arrays.
+      const nullEntriesResult = await collection.updateMany(
         { participants: { $elemMatch: { $eq: null } } },
         { $pull: { participants: null } },
       );
 
+      const collectionCleaned = nullFieldResult.modifiedCount + nullEntriesResult.modifiedCount;
+
       console.log(
-        `[Migration1777100000000] ${collectionName}: cleaned ${result.modifiedCount} document(s) with null participants`,
+        `[Migration1777100000000] ${collectionName}: normalized ${nullFieldResult.modifiedCount} null field(s), cleaned ${nullEntriesResult.modifiedCount} null array entries`,
       );
-      totalCleaned += result.modifiedCount;
+      totalCleaned += collectionCleaned;
     }
 
     console.log(`[Migration1777100000000] Total: cleaned ${totalCleaned} document(s)`);
