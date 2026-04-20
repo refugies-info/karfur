@@ -1,9 +1,9 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
 import type { Dispositif, Need, Structure, Theme, User } from "@refugies-info/mongo";
 import { isDocument, isDocumentArray } from "@refugies-info/mongo";
-import { get, has } from "lodash";
+import { get } from "lodash";
 import { MustBePopulatedError } from "~/errors";
-import { getMapKeys, getMapValue, isMongooseMap } from "~/libs/mongooseMaps";
+import { getMapKeys, getMapValue, hasMapKey } from "~/libs/mongooseMaps";
 
 export const getDispositifMainSponsor = (dispositif: Dispositif): Structure => {
   if (!dispositif.mainSponsor || !isDocument(dispositif.mainSponsor as any)) {
@@ -59,11 +59,7 @@ export const isDemarche = (dispositif: Dispositif): boolean => {
 
 export const isDispositifTranslatedIn = (dispositif: any, ln: Languages) => {
   if (!dispositif.translations) return false;
-  // Use centralized utility to handle both Map and plain object
-  if (isMongooseMap(dispositif.translations)) {
-    return (dispositif.translations as Map<string, unknown>).has(ln);
-  }
-  return has(dispositif.translations, ln);
+  return hasMapKey(dispositif.translations, ln);
 };
 
 /**
