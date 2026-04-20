@@ -3,6 +3,7 @@ import type { Dispositif, Need, Structure, Theme, User } from "@refugies-info/mo
 import { isDocument, isDocumentArray } from "@refugies-info/mongo";
 import { get, has } from "lodash";
 import { MustBePopulatedError } from "~/errors";
+import { getMapKeys, getMapValue, isMongooseMap } from "~/libs/mongooseMaps";
 
 export const getDispositifMainSponsor = (dispositif: Dispositif): Structure => {
   if (!dispositif.mainSponsor || !isDocument(dispositif.mainSponsor as any)) {
@@ -58,8 +59,9 @@ export const isDemarche = (dispositif: Dispositif): boolean => {
 
 export const isDispositifTranslatedIn = (dispositif: any, ln: Languages) => {
   if (!dispositif.translations) return false;
-  if (typeof (dispositif.translations as any).has === "function") {
-    return (dispositif.translations as any).has(ln);
+  // Use centralized utility to handle both Map and plain object
+  if (isMongooseMap(dispositif.translations)) {
+    return (dispositif.translations as Map<string, unknown>).has(ln);
   }
   return has(dispositif.translations, ln);
 };
@@ -82,11 +84,8 @@ export const getDispositifTranslation = (dispositif: any, ln: Languages, fallbac
 
   if (!targetLang) return undefined;
 
-  if (typeof (dispositif.translations as any).get === "function") {
-    return (dispositif.translations as any).get(targetLang);
-  }
-
-  return (dispositif.translations as any)[targetLang];
+  // Use centralized utility to handle both Map and plain object
+  return getMapValue(dispositif.translations, targetLang);
 };
 
 /**
@@ -107,8 +106,6 @@ export const getDispositifTranslated = (
 
 export const getAvailableLanguages = (dispositif: any): string[] => {
   if (!dispositif.translations) return [];
-  if (typeof (dispositif.translations as any).keys === "function") {
-    return Array.from((dispositif.translations as any).keys());
-  }
-  return Object.keys(dispositif.translations);
+  // Use centralized utility to handle both Map and plain object
+  return getMapKeys(dispositif.translations);
 };
