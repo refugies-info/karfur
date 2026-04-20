@@ -25,7 +25,7 @@ export const isMongooseMap = (value: unknown): boolean => {
  * @param value - The value to convert (Map or plain object)
  * @returns A plain object copy with all key-value pairs
  */
-export const mapToPlainObject = <T = unknown>(
+export const mapToPlainObject = <T = any>(
   value: Record<string, T> | Map<string, T> | undefined,
 ): Record<string, T> => {
   if (!value) return {};
@@ -48,7 +48,7 @@ export const mapToPlainObject = <T = unknown>(
  * @param key - The key to look up
  * @returns The value at the key, or undefined if not found
  */
-export const getMapValue = <T = unknown>(
+export const getMapValue = <T = any>(
   value: Record<string, T> | Map<string, T> | undefined,
   key: string,
 ): T | undefined => {

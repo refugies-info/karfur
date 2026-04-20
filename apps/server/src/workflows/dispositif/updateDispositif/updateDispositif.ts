@@ -40,7 +40,9 @@ const buildDispositifContent = (
   // content - use helper to handle both Map and plain object access
   const frTranslation = getDispositifTranslation(oldDispositif, "fr", true);
   // Convert to plain object to avoid Map subdocument issues
-  const content = mapToPlainObject(frTranslation?.content || {});
+  const content = mapToPlainObject(frTranslation?.content || {}) as
+    | DispositifContent
+    | DemarcheContent;
   // check isString to allow empty values
   if (isString(body.titreInformatif)) content.titreInformatif = body.titreInformatif;
   if (isString(body.titreMarque)) content.titreMarque = body.titreMarque;
