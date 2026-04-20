@@ -33,8 +33,16 @@ export const getDispositifsFromDB = async () =>
     .populate<{
       mainSponsor: { _id: Id; nom: string; status: string; picture: Picture };
       creatorId: { _id: Id; username: string; picture: Picture; email: string };
-      lastModificationAuthor: { _id: Id; username: string | undefined; email: string };
-      publishedAtAuthor: { _id: Id; username: string | undefined; email: string };
+      lastModificationAuthor: {
+        _id: Id;
+        username: string | undefined;
+        email: string;
+      };
+      publishedAtAuthor: {
+        _id: Id;
+        username: string | undefined;
+        email: string;
+      };
     }>([
       { path: "mainSponsor", select: "_id nom status picture" },
       { path: "creatorId", select: "_id username picture email" },
@@ -462,8 +470,12 @@ export const modifyReadSuggestionInDispositif = async (
   );
 
 export const getDispositifName = async (id: Id) =>
-  DispositifModel.findById(id, { "translations.fr.content.titreInformatif": 1 }).then(
-    (res) => getDispositifTranslation(res as any, "fr")?.content.titreInformatif,
+  DispositifModel.findById(id, {
+    "translations.fr.content.titreInformatif": 1,
+  }).then((res) =>
+    res
+      ? getDispositifTranslation(res as unknown as Dispositif, "fr")?.content.titreInformatif
+      : undefined,
   );
 
 export const getDispositifById = async (
@@ -675,13 +687,14 @@ export const deleteNeedFromDispositifs = async (needId: string) => {
 export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial<Dispositif>) => {
   const dispositif = await DispositifModel.findById(id).lean();
 
-  // Filter out invalid suggestions (empty suggestion field causes validation errors)
-  // See RI-1174: legacy data may have suggestions with empty strings
+  // Sanitize legacy data that causes Mongoose validation errors on create()
+  // See RI-1174: suggestions with empty strings, RI-1192: null entries in participants
   const sanitizedDispositif = dispositif
     ? {
         ...dispositif,
         suggestions:
           dispositif.suggestions?.filter((s) => s.suggestion && s.suggestion.trim() !== "") ?? [],
+        participants: dispositif.participants?.filter((p) => p != null) ?? [],
       }
     : null;
 
