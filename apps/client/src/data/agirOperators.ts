@@ -100,8 +100,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f38de6312466236067d",
     department: "14 - Calvados",
     operator: "FTDA",
-    email: "cfossey@france-terre-asile.org",
-    phone: "06 03 67 48 50",
+    email: "agircalvados@france-terre-asile.org",
   },
   {
     dispositifId: "660d1f35de63124662360643",
@@ -148,7 +147,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1d704672fd6af8c456dc",
     department: "22 - Côtes-d'Armor",
     operator: "Envergure",
-    email: "sandra.gicquere@envergure.eu",
+    email: "envergure.agir22@actualgroup.com",
     phone: "01 86 26 63 90",
   },
   {
@@ -183,8 +182,8 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360679",
     department: "27 - Eure",
     operator: "YSOS, SOS Solidarités",
-    email: "siege@ysos.fr",
-    phone: "02 32 62 35 38",
+    email: "secretariat-agir27-ysos@groupe-sos.org",
+    phone: "07 89 31 17 30",
   },
   {
     dispositifId: "660d1f36de63124662360664",
@@ -340,8 +339,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360678",
     department: "50 - Manche",
     operator: "FTDA",
-    email: "mvallee@france-terre-asile.org",
-    phone: "06 99 42 92 40",
+    email: "contactagir50@france-terre-asile.org",
   },
   {
     dispositifId: "660d1f37de63124662360676",
@@ -401,8 +399,8 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de6312466236066e",
     department: "59 - Nord",
     operator: "France Horizon",
-    email: "hautsdefrance@france-horizon.fr",
-    phone: "03 20 94 78 20",
+    email: "agir59@france-horizon.fr",
+    phone: "07 63 88 79 91",
   },
   {
     dispositifId: "660d1f3ade63124662360685",
@@ -511,7 +509,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f3ade63124662360683",
     department: "75 - Paris",
     operator: "FTDA",
-    email: "votchoumou@france-terre-asile.org",
+    email: "agirparis@france-terre-asile.org",
     phone: "01 40 40 27 20",
   },
   {
