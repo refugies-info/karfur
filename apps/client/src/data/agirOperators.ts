@@ -345,7 +345,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360676",
     department: "51 - Marne",
     operator: "AFND",
-    email: "siege@foyernotredame.org",
+    email: "contact-agir.marne@croix-rouge.fr",
   },
   {
     dispositifId: "6790bf9ab519daad65ac95f1",
