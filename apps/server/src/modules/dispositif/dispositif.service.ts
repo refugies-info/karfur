@@ -569,7 +569,18 @@ export const buildNewDispositif = async (
   if (formContent.theme) editedDispositif.theme = new ObjectId(formContent.theme);
   if (formContent.secondaryThemes)
     editedDispositif.secondaryThemes = formContent.secondaryThemes.map((t) => new ObjectId(t));
-  if (formContent.metadatas) editedDispositif.metadatas = formContent.metadatas;
+  if (formContent.metadatas) {
+    const metadatas = { ...formContent.metadatas };
+    // Guard: sessions must be SessionsMetadata | null, never a plain array.
+    // The old format was Session[] — some docs still have it and the frontend
+    // can send it back as-is during autosave, reintroducing the broken format.
+    // See gotchas.md: "TSOA Validation Rejects Old sessions: [] Format"
+    if (Array.isArray(metadatas.sessions)) {
+      metadatas.sessions =
+        (metadatas.sessions as unknown[]).length > 0 ? { items: metadatas.sessions as any } : null;
+    }
+    editedDispositif.metadatas = metadatas;
+  }
   if (formContent.map !== undefined) editedDispositif.map = formContent.map;
   if (formContent.sponsors) {
     editedDispositif.sponsors = formContent.sponsors.map((s) => {
