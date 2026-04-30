@@ -100,7 +100,7 @@ const RecensezVotreAction = (props: Props) => {
       <Hero
         ref={refHero}
         title="Aidez-nous à traduire !"
-        subtitle={`${props.translationStatistics?.nbTranslators || 0} bénévoles nous ont déjà aidé à traduire ${new Intl.NumberFormat().format(props.translationStatistics?.nbWordsTranslated || 0)} mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.`}
+        subtitle={`${props.translationStatistics?.nbTranslators || 0} bénévoles nous ont déjà aidé à traduire ${new Intl.NumberFormat("fr-FR").format(props.translationStatistics?.nbWordsTranslated || 0)} mots. Comme eux, devenez traducteur bénévole pour rendre l’information accessible au plus grand nombre.`}
         buttonTitle="Aider à traduire"
         image={MockupRI}
         imageWidth={448}
