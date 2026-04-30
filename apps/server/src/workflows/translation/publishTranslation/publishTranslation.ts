@@ -61,7 +61,7 @@ const publishTranslation = (
        * on considère la traduction comme terminée — l'expert ne peut pas cocher
        * des sections qui ne sont plus affichées dans l'UI.
        */
-      if (!traduction || !user.isExpert()) {
+      if (!traduction || !userIsExpert) {
         throw new UnauthorizedError("You cannot publish this dispositif");
       }
 
