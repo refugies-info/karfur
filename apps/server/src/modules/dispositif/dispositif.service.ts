@@ -174,7 +174,8 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
   return null;
 };
 
-export const deleteLineBreaks = (htmlContent: string) => {
+export const deleteLineBreaks = (htmlContent: string | undefined) => {
+  if (!htmlContent) return "";
   const regexp = /<p dir=(\\|)"(ltr|rtl)(\\|)"><br><\/p>|(<p><br><\/p>)/g;
   return htmlContent.replace(regexp, "");
 };
