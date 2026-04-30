@@ -15,22 +15,24 @@ const getFrContentKeys = (dispositif: Awaited<ReturnType<typeof getDispositifByI
   const fr = dispositif?.translations?.fr?.content as Record<string, unknown> | undefined;
   if (!fr) return [];
 
-  const keys: string[] = [
-    "content.titreInformatif",
-    "content.titreMarque",
-    "content.abstract",
-    "content.what",
-    "content.administrationName",
-  ];
+  const keys: string[] = [];
+
+  for (const field of [
+    "titreInformatif",
+    "titreMarque",
+    "abstract",
+    "what",
+    "administrationName",
+  ]) {
+    if (fr[field]) keys.push(`content.${field}`);
+  }
 
   for (const section of ["why", "how", "next"]) {
     const sections = fr[section] as Record<string, { title?: string; text?: string }> | undefined;
     if (!sections) continue;
     for (const [key, value] of Object.entries(sections)) {
-      if (value?.title || value?.text) {
-        keys.push(`content.${section}.${key}.title`);
-        keys.push(`content.${section}.${key}.text`);
-      }
+      if (value?.title) keys.push(`content.${section}.${key}.title`);
+      if (value?.text) keys.push(`content.${section}.${key}.text`);
     }
   }
   return keys;
