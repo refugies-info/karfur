@@ -69,7 +69,7 @@ const getTranslationStatistics = async ({
 
     const languageCounts = new Map<string, number>();
     for (const user of activeTranslators) {
-      for (const lang of user.selectedLanguages) {
+      for (const lang of user.selectedLanguages || []) {
         const id = lang._id?.toString();
         if (id) {
           languageCounts.set(id, (languageCounts.get(id) || 0) + 1);
