@@ -34,7 +34,7 @@ describe("deleteLineBreaksInInfosections", () => {
     expect(() => deleteLineBreaksInInfosections(sections as any)).not.toThrow();
   });
 
-  it("retourne undefined si sections est undefined", () => {
+  it("retourne un objet vide si sections est undefined", () => {
     expect(deleteLineBreaksInInfosections(undefined)).toEqual({});
   });
 
