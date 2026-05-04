@@ -24,7 +24,7 @@
       @apply mt-0 mb-6;
     }
 
-    section.fr-accordion + :is(h1, h2, h3, h4, h5, h6) {
+    .fr-accordion + :is(h1, h2, h3, h4, h5, h6) {
       @apply mt-8;
     }
 
