@@ -1,5 +1,5 @@
 import type { ContentLinkRequest } from "@refugies-info/api-types";
-import { InternalError, NotFoundError } from "~/errors";
+import { NotFoundError, ServiceUnavailableError } from "~/errors";
 import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
 import { sendSMS } from "~/services";
 import { contentLink } from "./contentLink";
@@ -84,7 +84,7 @@ describe("contentLink", () => {
     await expect(contentLink(body)).rejects.toThrow(NotFoundError);
   });
 
-  it("should throw InternalError if SMS sending fails with non-400 status", async () => {
+  it("should throw ServiceUnavailableError if SMS sending fails with non-400 status", async () => {
     mockGetDispositif.mockResolvedValue(validDispositif);
     mockSendSMS.mockResolvedValue({ status: 401, sent: false });
 
@@ -95,7 +95,7 @@ describe("contentLink", () => {
       locale: "fr",
     };
 
-    await expect(contentLink(body)).rejects.toThrow(InternalError);
-    await expect(contentLink(body)).rejects.toThrow("[contentLink] SMS not sent. Status: 401");
+    await expect(contentLink(body)).rejects.toThrow(ServiceUnavailableError);
+    await expect(contentLink(body)).rejects.toThrow("[contentLink] SMS provider unavailable");
   });
 });

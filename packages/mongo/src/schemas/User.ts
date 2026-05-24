@@ -17,7 +17,7 @@ export const FavoriteZodSchema = z.object({
 // --- Mongoose-compatible schema (relaxed for zod-mongoose limitations) ---
 export const UserZodSchema = z.object({
   username: z.string().optional(),
-  password: z.string(),
+  password: z.string().nullable().optional(),
   email: z.string().email(),
   firstName: z.string().optional(),
   phone: z.string().optional(),

@@ -15,13 +15,19 @@ const e164 = (phone: string): string => {
   return phone;
 };
 
+const brevoSender = (sender: string): string => {
+  if (sender.startsWith("+")) return sender.slice(1);
+  if (/^00\d+$/.test(sender)) return sender.slice(2);
+  return sender;
+};
+
 export const sendSMS = async (text: string, phone: string): Promise<SendSMSResult> => {
   try {
     const { rawResponse } = await client.transactionalSms
       .sendTransacSms({
         content: text,
         recipient: e164(phone),
-        sender: SMS_SENDER.replace("+", "00"),
+        sender: brevoSender(SMS_SENDER || ""),
         organisationPrefix: "Réfugiés.info",
         unicodeEnabled: true, // Support arabic, emojis, etc.
       })
