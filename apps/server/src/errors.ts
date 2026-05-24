@@ -31,6 +31,10 @@ export class InternalError extends APIError {
   status = 500;
 }
 
+export class ServiceUnavailableError extends APIError {
+  status = 503;
+}
+
 export class UnauthorizedError extends APIError {
   status = 401;
 }
@@ -46,6 +50,17 @@ export class NotFoundError extends APIError {
 export class InvalidRequestError extends APIError {
   status = 400;
 }
+
+const getErrorStatus = (err: Error): number => {
+  const error = err as { status?: number; statusCode?: number };
+  if (typeof error.status === "number" && error.status >= 400 && error.status < 600)
+    return error.status;
+
+  const statusCode = error.statusCode;
+  if (typeof statusCode === "number" && statusCode >= 400 && statusCode < 600) return statusCode;
+
+  return 500;
+};
 
 /**
  * Returns the right error code depending on the type of the error
@@ -93,12 +108,13 @@ export const serverErrorHandler: ErrorRequestHandler = (
   }
 
   if (err instanceof Error) {
+    const status = getErrorStatus(err);
     logger.error("[serverErrorHandler] Unknown error", {
-      status: 500,
+      status,
       path: req.url,
       error: err,
     });
-    res.status(500).json({
+    res.status(status).json({
       message: err.message || "Internal Server Error",
     });
     return;
