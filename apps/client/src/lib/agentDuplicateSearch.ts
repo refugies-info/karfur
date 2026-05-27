@@ -208,48 +208,58 @@ const buildConstrainedMatchStage = (
   };
 };
 
+const buildRegexMatchExpression = (
+  fieldExpression: string | Record<string, unknown>,
+  value: string,
+  escapeValue = true,
+): Record<string, unknown> => {
+  const regex = escapeValue ? escapeRegExp(value) : value;
+
+  if (typeof fieldExpression !== "string") {
+    return { $regexMatch: { input: fieldExpression, regex, options: "i" } };
+  }
+
+  return {
+    $cond: [
+      { $isArray: fieldExpression },
+      {
+        $anyElementTrue: {
+          $map: {
+            input: { $ifNull: [fieldExpression, []] },
+            as: "item",
+            in: {
+              $regexMatch: {
+                input: { $ifNull: ["$$item", ""] },
+                regex,
+                options: "i",
+              },
+            },
+          },
+        },
+      },
+      {
+        $regexMatch: {
+          input: { $ifNull: [fieldExpression, ""] },
+          regex,
+          options: "i",
+        },
+      },
+    ],
+  };
+};
+
 const buildRegexScoreExpression = (
   fieldExpression: string | Record<string, unknown>,
   value: string,
   score: number,
   escapeValue = true,
 ): Record<string, unknown> => ({
-  $cond: [
-    {
-      $regexMatch: {
-        input:
-          typeof fieldExpression === "string"
-            ? { $ifNull: [fieldExpression, ""] }
-            : fieldExpression,
-        regex: escapeValue ? escapeRegExp(value) : value,
-        options: "i",
-      },
-    },
-    score,
-    0,
-  ],
-});
-
-const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
-  $cond: [
-    { $isArray: fieldExpression },
-    {
-      $reduce: {
-        input: { $ifNull: [fieldExpression, []] },
-        initialValue: "",
-        in: {
-          $cond: [{ $eq: ["$$value", ""] }, "$$this", { $concat: ["$$value", " ", "$$this"] }],
-        },
-      },
-    },
-    { $ifNull: [fieldExpression, ""] },
-  ],
+  $cond: [buildRegexMatchExpression(fieldExpression, value, escapeValue), score, 0],
 });
 
 const buildDuplicateSearchScoreExpression = (
   query: DuplicateSearchQuery,
 ): Record<string, unknown> => {
-  const normalizedTitle = normalizeText(query.title);
   const rawTitleRegex = query.title.toLowerCase();
   const expressions: Record<string, unknown>[] = [
     buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 4),
@@ -257,7 +267,7 @@ const buildDuplicateSearchScoreExpression = (
   ];
 
   for (const token of tokenize(query.title)) {
-    if (token === normalizedTitle && token === rawTitleRegex) continue;
+    if (token === rawTitleRegex) continue;
     expressions.push(
       buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
     );
@@ -272,17 +282,12 @@ const buildDuplicateSearchScoreExpression = (
   }
 
   if (query.commune) {
-    expressions.push(buildRegexScoreExpression(joinFieldValues("$map.city"), query.commune, 5));
+    expressions.push(buildRegexScoreExpression("$map.city", query.commune, 5));
   }
 
   for (const department of query.departments) {
     expressions.push(
-      buildRegexScoreExpression(
-        joinFieldValues("$metadatas.location"),
-        departmentToRegex(department),
-        4,
-        false,
-      ),
+      buildRegexScoreExpression("$metadatas.location", departmentToRegex(department), 4, false),
     );
   }
 
