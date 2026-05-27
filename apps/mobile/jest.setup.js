@@ -9,11 +9,84 @@ require("react-native-reanimated").setUpTests();
 
 jest.useFakeTimers();
 
+(() => {
+  const { TextDecoder, TextEncoder } = require("util");
+  const { deserialize, serialize } = require("v8");
+  const { TextDecoderStream, TextEncoderStream } = require("stream/web");
+  const structuredClone = (value) => deserialize(serialize(value));
+
+  // Expo SDK 54 installs lazy WinterCG globals. Some Jest dependencies access them
+  // through Node's runtime first, where a lazy getter can resolve to undefined.
+  // Define concrete Node-compatible values for the test environment.
+  Object.defineProperty(global, "TextDecoder", {
+    configurable: true,
+    writable: true,
+    value: TextDecoder,
+  });
+  Object.defineProperty(global, "TextEncoder", {
+    configurable: true,
+    writable: true,
+    value: TextEncoder,
+  });
+  Object.defineProperty(global, "TextDecoderStream", {
+    configurable: true,
+    writable: true,
+    value: TextDecoderStream,
+  });
+  Object.defineProperty(global, "TextEncoderStream", {
+    configurable: true,
+    writable: true,
+    value: TextEncoderStream,
+  });
+  Object.defineProperty(global, "structuredClone", {
+    configurable: true,
+    writable: true,
+    value: structuredClone,
+  });
+})();
+
+jest.mock("axios", () => {
+  const axios = jest.requireActual("axios");
+
+  // Axios 1.15 can pick the fetch adapter in Jest because Expo provides fetch/streams.
+  // Force the Node adapter in mobile tests to avoid Expo virtual stream cancellation errors.
+  axios.defaults.adapter = "http";
+  if (axios.default?.defaults) {
+    axios.default.defaults.adapter = "http";
+  }
+
+  return axios;
+});
+
 // jest.mock("react-native/Libraries/EventEmitter/NativeEventEmitter.js", () => {
 //   const { EventEmitter } = require("events");
 //   return EventEmitter;
 // });
-// jest.mock("expo-speech", () => {});
+
+jest.mock("expo-av", () => {
+  const sound = {
+    playAsync: jest.fn(),
+    stopAsync: jest.fn(),
+    pauseAsync: jest.fn(),
+    setRateAsync: jest.fn(),
+    setOnPlaybackStatusUpdate: jest.fn(),
+  };
+
+  return {
+    Audio: {
+      Sound: {
+        createAsync: jest.fn().mockResolvedValue({ sound }),
+      },
+    },
+  };
+});
+
+jest.mock("expo-speech", () => ({
+  speak: jest.fn((_, options) => options?.onDone?.()),
+  stop: jest.fn(),
+  pause: jest.fn(),
+  resume: jest.fn(),
+}));
 
 jest.mock("react-native-blob-util", () => {
   return () => ({});
@@ -66,12 +139,31 @@ jest.mock("@react-native-firebase/crashlytics", () => {
 //   };
 // });
 
+jest.mock("@react-navigation/native", () => ({
+  ...jest.requireActual("@react-navigation/native"),
+  useFocusEffect: jest.fn((callback) => callback()),
+  useIsFocused: jest.fn(() => true),
+  useRoute: jest.fn(() => ({ routeName: "DummyScreen" })),
+  useNavigation: jest.fn(() => ({
+    addListener: jest.fn(() => jest.fn()),
+    dispatch: jest.fn(),
+    goBack: jest.fn(),
+    navigate: jest.fn(),
+    setOptions: jest.fn(),
+  })),
+}));
+
 jest.mock("@react-navigation/core", () => ({
   ...jest.requireActual("@react-navigation/core"),
-  useRoute: jest.fn(),
-  useNavigation: jest.fn().mockImplementation(() => ({
-    goBack: jest.fn().mockImplementation(() => () => console.log("Go back")),
-    navigate: jest.fn().mockImplementation(() => (to) => console.log("Navigation to " + to)),
+  useFocusEffect: jest.fn((callback) => callback()),
+  useIsFocused: jest.fn(() => true),
+  useRoute: jest.fn(() => ({ routeName: "DummyScreen" })),
+  useNavigation: jest.fn(() => ({
+    addListener: jest.fn(() => jest.fn()),
+    dispatch: jest.fn(),
+    goBack: jest.fn(),
+    navigate: jest.fn(),
+    setOptions: jest.fn(),
   })),
 }));
 

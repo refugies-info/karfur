@@ -96,6 +96,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               sponsorUrl: null,
               avancement: 1,
+              origin: DispositifOrigin.RI,
             },
             {
               _id: "id1Fr",
@@ -106,6 +107,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               sponsorUrl: null,
               avancement: 1,
+              origin: DispositifOrigin.RI,
             },
           ],
         })
@@ -223,6 +225,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               nbVuesMobile: 1,
               sponsorUrl: "sponsorUrl",
+              origin: DispositifOrigin.RI,
             },
             {
               _id: "id1_ar",
@@ -237,6 +240,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               nbVuesMobile: 1,
               sponsorUrl: "sponsorUrl",
+              origin: DispositifOrigin.RI,
             },
           ],
           dataFr: [
@@ -253,6 +257,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               nbVuesMobile: 1,
               sponsorUrl: "sponsorUrl",
+              origin: DispositifOrigin.RI,
             },
             {
               _id: "id1_fr",
@@ -267,6 +272,7 @@ describe("[Saga] contents", () => {
               nbVues: 1,
               nbVuesMobile: 1,
               sponsorUrl: "sponsorUrl",
+              origin: DispositifOrigin.RI,
             },
           ],
         })
@@ -360,6 +366,7 @@ describe("[Saga] contents", () => {
             nbVues: 1,
             nbVuesMobile: 1,
             sponsorUrl: "sponsorUrl",
+            origin: DispositifOrigin.RI,
           },
           {
             _id: "id1_fr",
@@ -374,6 +381,7 @@ describe("[Saga] contents", () => {
             nbVues: 1,
             nbVuesMobile: 1,
             sponsorUrl: "sponsorUrl",
+            origin: DispositifOrigin.RI,
           },
         ])
         .next({ idFr: [], id1Fr: [] })
