@@ -155,9 +155,11 @@ const getSponsorSearchConditions = (query: DuplicateSearchQuery): Record<string,
 
   if (!query.structureName) return conditions;
 
+  const rawSponsorRegex = query.structureName.toLowerCase();
   conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", query.structureName));
   conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", query.structureName));
   for (const token of tokenize(query.structureName).slice(0, 4)) {
+    if (token === rawSponsorRegex) continue;
     conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", token));
     conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", token));
   }
@@ -201,6 +203,98 @@ const buildConstrainedMatchStage = (
   return {
     $match: andConditions.length === 1 ? andConditions[0] : { $and: andConditions },
   };
+};
+
+const buildRegexScoreExpression = (
+  fieldExpression: string | Record<string, unknown>,
+  value: string,
+  score: number,
+  escapeValue = true,
+): Record<string, unknown> => ({
+  $cond: [
+    {
+      $regexMatch: {
+        input:
+          typeof fieldExpression === "string"
+            ? { $ifNull: [fieldExpression, ""] }
+            : fieldExpression,
+        regex: escapeValue ? escapeRegExp(value) : value,
+        options: "i",
+      },
+    },
+    score,
+    0,
+  ],
+});
+
+const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
+  $cond: [
+    { $isArray: fieldExpression },
+    {
+      $reduce: {
+        input: { $ifNull: [fieldExpression, []] },
+        initialValue: "",
+        in: { $concat: ["$$value", " ", "$$this"] },
+      },
+    },
+    { $ifNull: [fieldExpression, ""] },
+  ],
+});
+
+const buildDuplicateSearchScoreExpression = (
+  query: DuplicateSearchQuery,
+): Record<string, unknown> => {
+  const rawTitleRegex = query.title.toLowerCase();
+  const expressions: Record<string, unknown>[] = [
+    buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 4),
+    buildRegexScoreExpression("$translations.fr.content.titreMarque", query.title, 4),
+  ];
+
+  for (const token of tokenize(query.title)) {
+    if (token === rawTitleRegex) continue;
+    expressions.push(
+      buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
+    );
+    expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 1));
+  }
+
+  for (const token of tokenize(query.description).slice(0, 4)) {
+    expressions.push(
+      buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
+    );
+    expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 1));
+  }
+
+  if (query.commune) {
+    expressions.push(buildRegexScoreExpression(joinFieldValues("$map.city"), query.commune, 5));
+  }
+
+  for (const department of query.departments) {
+    expressions.push(
+      buildRegexScoreExpression(
+        joinFieldValues("$metadatas.location"),
+        departmentToRegex(department),
+        4,
+        false,
+      ),
+    );
+  }
+
+  if (query.structureName) {
+    const rawSponsorRegex = query.structureName.toLowerCase();
+    expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", query.structureName, 7));
+    expressions.push(
+      buildRegexScoreExpression("$mainSponsorInfo.acronyme", query.structureName, 7),
+    );
+
+    for (const token of tokenize(query.structureName).slice(0, 4)) {
+      if (token === rawSponsorRegex) continue;
+      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", token, 2));
+      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.acronyme", token, 2));
+    }
+  }
+
+  return { $add: expressions };
 };
 
 export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): PipelineStage[] => {
@@ -250,7 +344,8 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
   }
 
   pipeline.push(
-    { $sort: { publishedAt: -1, updatedAt: -1 } },
+    { $addFields: { duplicateSearchScore: buildDuplicateSearchScoreExpression(query) } },
+    { $sort: { duplicateSearchScore: -1, publishedAt: -1, updatedAt: -1 } },
     { $limit: dbLimit },
     {
       $project: {
@@ -286,6 +381,24 @@ const getInitials = (value: string | undefined) =>
 
 const includesEitherWay = (a: string, b: string) =>
   a.length > 0 && b.length > 0 && (a.includes(b) || b.includes(a));
+
+const isDepartmentCode = (department: string) =>
+  /^\d+$/.test(department) || /^(2a|2b)$/.test(department);
+
+const departmentCodeVariants = (department: string) =>
+  /^\d$/.test(department) ? [department, `0${department}`] : [department];
+
+const locationMatchesDepartment = (location: string, department: string) => {
+  if (!department) return false;
+
+  if (isDepartmentCode(department)) {
+    return departmentCodeVariants(department).some(
+      (code) => location === code || location.startsWith(`${code} `),
+    );
+  }
+
+  return includesEitherWay(location, department);
+};
 
 const candidateLocations = (candidate: RawDuplicateCandidate) =>
   Array.isArray(candidate.location)
@@ -330,10 +443,7 @@ export const scoreDuplicateCandidates = (
       if (
         normalizedDepartments.length > 0 &&
         normalizedDepartments.some((department) =>
-          locations.some(
-            (location) =>
-              includesEitherWay(location, department) || location.startsWith(`${department} `),
-          ),
+          locations.some((location) => locationMatchesDepartment(location, department)),
         )
       ) {
         score += 4;
