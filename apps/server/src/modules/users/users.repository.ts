@@ -133,7 +133,8 @@ export const removeStructureOfUserInDB = (userId: UserId, structureId: Structure
   );
 
 export const createUser = (user: {
-  firstName: string;
+  email: string;
+  firstName: string | null;
   password: string | null;
   roles: Types.ObjectId[];
   status: string;
