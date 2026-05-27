@@ -71,6 +71,9 @@ describe("agentDuplicateSearch", () => {
           as: "mainSponsorInfo",
         },
       });
+      expect(pipeline).toContainEqual({
+        $sort: { duplicateSearchScore: -1, publishedAt: -1, updatedAt: -1 },
+      });
       expect(pipeline).toContainEqual({ $limit: 40 });
     });
 
@@ -118,11 +121,67 @@ describe("agentDuplicateSearch", () => {
           ],
         },
       });
+      expect(pipeline).toContainEqual({
+        $addFields: { duplicateSearchScore: expect.any(Object) },
+      });
+      expect(pipeline).toContainEqual({
+        $sort: { duplicateSearchScore: -1, publishedAt: -1, updatedAt: -1 },
+      });
       expect(pipeline).toContainEqual({ $limit: 40 });
     });
   });
 
   describe("scoreDuplicateCandidates", () => {
+    it("does not match numeric department codes by substring", () => {
+      const [candidate] = scoreDuplicateCandidates(
+        [
+          {
+            id: "marseille",
+            titreInformatif: "Cours FLE",
+            titreMarque: "Français",
+            location: ["13 - Bouches-du-Rhône"],
+            city: ["Marseille"],
+            mainSponsorNom: "France Terre d'Asile",
+            mainSponsorAcronyme: "FTDA",
+          },
+        ],
+        {
+          title: "Cours FLE",
+          structureName: "France Terre d'Asile",
+          commune: "",
+          departments: ["3"],
+          limit: 10,
+        },
+      );
+
+      expect(candidate.reasons).not.toContain("same department/location");
+    });
+
+    it("matches one-digit department codes against zero-padded locations", () => {
+      const [candidate] = scoreDuplicateCandidates(
+        [
+          {
+            id: "allier",
+            titreInformatif: "Cours FLE",
+            titreMarque: "Français",
+            location: ["03 - Allier"],
+            city: ["Vichy"],
+            mainSponsorNom: "France Terre d'Asile",
+            mainSponsorAcronyme: "FTDA",
+          },
+        ],
+        {
+          title: "Cours FLE",
+          structureName: "France Terre d'Asile",
+          commune: "",
+          departments: ["3"],
+          limit: 10,
+        },
+      );
+
+      expect(candidate.reasons).toContain("same department/location");
+    });
+
     it("scores location, sponsor and content similarities", () => {
       const [candidate] = scoreDuplicateCandidates(
         [
