@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/mongo",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {

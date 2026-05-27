@@ -1,5 +1,69 @@
 # Changelog
 
+## [2.8.0](https://github.com/refugies-info/karfur/compare/karfur-v2.7.1...karfur-v2.8.0) (2026-05-27)
+
+
+### Features
+
+* add GitLeaks pre-commit hook for secret scanning ([6a53e86](https://github.com/refugies-info/karfur/commit/6a53e8619be8fd2f92cb2033fdbecb4083ba00f9))
+* add GitLeaks pre-commit hook for secret scanning ([e32393b](https://github.com/refugies-info/karfur/commit/e32393b9f2ca1d960d9ef663f60a5a8a84b552fa))
+* add migration to remove null participants and apply code format… ([bf8fa70](https://github.com/refugies-info/karfur/commit/bf8fa704955d012f2681d8dc12a21c3243864472))
+* add migration to remove null participants and apply code formatting to dispositif repository ([0146d03](https://github.com/refugies-info/karfur/commit/0146d0380df24e474492d4f891ca99899868779b))
+
+
+### Bug Fixes
+
+* add French locale to number formatting and prevent crash on null user languages ([e320dd3](https://github.com/refugies-info/karfur/commit/e320dd38260bceebecb99c0a78b67a0ef5810795))
+* add French locale to number formatting and prevent crash on null… ([d52d9fe](https://github.com/refugies-info/karfur/commit/d52d9fe4d76f4c30a64d445bf97fd91905bba311))
+* add lodash to pnpm.overrides for security ([df9deef](https://github.com/refugies-info/karfur/commit/df9deef9f79238623a5a8f884f86e6541524eb30))
+* add lodash to pnpm.overrides for security ([66ea473](https://github.com/refugies-info/karfur/commit/66ea473762d33068e46913f7077a178a441074ec))
+* add optional chaining to date timestamps and safely handle toRev… ([a98b2cd](https://github.com/refugies-info/karfur/commit/a98b2cdc5be79cbbe803b2fa760b1d0acf33f261))
+* add optional chaining to date timestamps and safely handle toReviewCache in translation export ([aa85fbf](https://github.com/refugies-info/karfur/commit/aa85fbf68bc66b31b874c11afe612cf29a78eafa))
+* add set -e and remove invalid --staged flag ([2fe6c93](https://github.com/refugies-info/karfur/commit/2fe6c939caf0ab6aff7b392930bd380d95737c07))
+* **client:** correct mission page typo ([aef25d4](https://github.com/refugies-info/karfur/commit/aef25d43fe30603e95bccf3e32e5aa094826245d))
+* **client:** correct mission page typo ([68100b8](https://github.com/refugies-info/karfur/commit/68100b87da5fd288f76827eb1c59b679278520b0))
+* **client:** include administrationName in translation reconstruction for démarches ([82121e5](https://github.com/refugies-info/karfur/commit/82121e58a0df3174b67d92f0041fc74b4a7cbc3a))
+* **client:** include administrationName in translation reconstruction for démarches ([0c4f7c8](https://github.com/refugies-info/karfur/commit/0c4f7c8e2a7bb10d8aeadaeb0cdb8c472fee842e))
+* correct lodash version reference in pnpm-workspace.yaml comment ([9874b75](https://github.com/refugies-info/karfur/commit/9874b7562342414aeca25183c5b6a64a0a89e34c))
+* **migration:** use per-collection counter for log messages ([a5ac041](https://github.com/refugies-info/karfur/commit/a5ac041669c1af38346f28377b22ca0b4562e0f2))
+* prevent crashes in deleteLineBreaks by handling undefined inputs and add corresponding unit tests ([6eae2a7](https://github.com/refugies-info/karfur/commit/6eae2a71746bd1987ec1de2f737c7ea8300eaabd))
+* prevent crashes in deleteLineBreaks by handling undefined inputs… ([d98b033](https://github.com/refugies-info/karfur/commit/d98b033b8b7076ff87da560334e02945334a401b))
+* prevent Tailwind v4 conflict by excluding --content variable fro… ([123238a](https://github.com/refugies-info/karfur/commit/123238a259db305d54bc75539673783ab0f8f080))
+* prevent Tailwind v4 conflict by excluding --content variable from generated tokens and updating MetaDataItem style ([861df12](https://github.com/refugies-info/karfur/commit/861df125a15596b2948bfeb7dca371b5ef7ca677))
+* remove picomatch overrides to preserve peer dependency declarations ([ea452a6](https://github.com/refugies-info/karfur/commit/ea452a663009cf57d7bf1f3de7a5ffd75ff14f85))
+* resolve 10 Dependabot security vulnerabilities ([781f8a6](https://github.com/refugies-info/karfur/commit/781f8a643daccc63195e4c94eb9246a2cde27589))
+* resolve 4 Dependabot security vulnerabilities ([bc33ba0](https://github.com/refugies-info/karfur/commit/bc33ba0bc280ffadfe5105c64259a9dc5339bc58))
+* resolve 4 Dependabot security vulnerabilities ([49e779a](https://github.com/refugies-info/karfur/commit/49e779a231c686affc65f0f0cb1210fd0569d4c6))
+* **security:** resolve 10 Dependabot security vulnerabilities ([3b793d0](https://github.com/refugies-info/karfur/commit/3b793d041e4f9b004ed63bc2ff6f6a443f326766))
+* **server:** add MongoDB Performance Advisor indexes for logs, indicators, dispositifs ([9e316ae](https://github.com/refugies-info/karfur/commit/9e316ae5d6bd013dc0fafe05deb59e739d44cb1f))
+* **server:** add MongoDB Performance Advisor indexes for logs, indicators, dispositifs ([5b08d1f](https://github.com/refugies-info/karfur/commit/5b08d1f47f27d1a809d0e7bb5ed0d2b6afaea8eb))
+* **server:** cache translation statistics counter and add error handling ([f2d64eb](https://github.com/refugies-info/karfur/commit/f2d64eb191869336a9767b3c0c2aa7251a673345))
+* **server:** cache translation statistics counter and add error handling ([8744461](https://github.com/refugies-info/karfur/commit/87444613b4354fd520dfd3a2ccf41788ceac66ab))
+* **server:** centralize Mongoose Map handling to fix autosave 500 error ([e700c12](https://github.com/refugies-info/karfur/commit/e700c1207e0229761318c23c3a76b90844766e79))
+* **server:** centralize Mongoose Map handling to fix autosave 500 error ([3cebfce](https://github.com/refugies-info/karfur/commit/3cebfce54f7042e3ca6e309b72fe1a0bf956cda7))
+* **server:** clean invalid suggestions from dispositifs_draft collection ([bacbdd6](https://github.com/refugies-info/karfur/commit/bacbdd6dbc05f916fabc45848760360d5f06a89a))
+* **server:** clean invalid suggestions from dispositifs_draft collection ([b7ffdf5](https://github.com/refugies-info/karfur/commit/b7ffdf5768eb16a30cf68c2ce96ad328092b5eb4))
+* **server:** handle NamespaceNotFound (code 26) in rollback migration ([ef2b963](https://github.com/refugies-info/karfur/commit/ef2b9639f7e18bb0f63902c435aa430cfd46f7e9))
+* **server:** harden null participants autosave safeguards ([776b494](https://github.com/refugies-info/karfur/commit/776b494325d372fa0acc80816ca722f42490d2fe))
+* **server:** improve Mongoose Map detection and prevent in-place mutations ([d8a1cfd](https://github.com/refugies-info/karfur/commit/d8a1cfd958f8e625d03fa905f75c233f3dd1f651))
+* **server:** prevent validation errors from invalid suggestions ([bf29442](https://github.com/refugies-info/karfur/commit/bf29442f0d7bf7ef8caa05f459a40e436f810ebe))
+* **server:** prevent validation errors from invalid suggestions ([77d9dad](https://github.com/refugies-info/karfur/commit/77d9dad63038c387f47d5ac312c2da46b66fe869))
+* **server:** reduce May 22 production 500 regressions ([d676286](https://github.com/refugies-info/karfur/commit/d67628618ad80dc83dcba28c0c759bf807070c37))
+* **server:** reduce May 22 production 500 regressions ([85e288d](https://github.com/refugies-info/karfur/commit/85e288d286502cfd22468debd6cbfb5db7367449))
+* **server:** restore typing for centralized map helpers ([814dab0](https://github.com/refugies-info/karfur/commit/814dab060f753c6fe6808940955099346a3a7918))
+* **server:** use typed status extraction for errors ([b3ee573](https://github.com/refugies-info/karfur/commit/b3ee5731adc65cf006ed64e8acbd20d228267c35))
+* update accessibility compliance status to partially compliant in DSFR footer ([f9cae9a](https://github.com/refugies-info/karfur/commit/f9cae9a435237f379d64efc71d68d19021b55ac0))
+* update AFND contact email in Marne department ([b2fc49d](https://github.com/refugies-info/karfur/commit/b2fc49db1e2e3f6305f812ed9dc8056f7741e848))
+* update AFND contact email in Marne department ([69ed15c](https://github.com/refugies-info/karfur/commit/69ed15cb107814d34a980b9a37853b3d85332a5e))
+* update deleteLineBreaks to return an empty string instead of undefined when input is missing ([90dad2a](https://github.com/refugies-info/karfur/commit/90dad2a7671f7d77611cad57f7d6e47660ed9c3e))
+* **workspace:** patch critical security vulnerabilities in next, axios, vite ([d5da4f7](https://github.com/refugies-info/karfur/commit/d5da4f70ee9d6f106b1a3dcfbda4c29302626595))
+* **workspace:** patch critical security vulnerabilities in next, axios, vite ([735a04b](https://github.com/refugies-info/karfur/commit/735a04b840e62a091d0463cd5ade0fc9d02f2ff1))
+
+
+### Performance Improvements
+
+* **server:** optimize nbActiveTranslators from O(L×U×S) to O(U×S+L) ([37cce7d](https://github.com/refugies-info/karfur/commit/37cce7d90d49af09920a84fec7109629918b7734))
+
 ## [2.7.1](https://github.com/refugies-info/karfur/compare/karfur-v2.7.0...karfur-v2.7.1) (2026-03-31)
 
 

@@ -1,5 +1,5 @@
 import type { ContentLinkRequest, Languages } from "@refugies-info/api-types";
-import { InternalError, InvalidRequestError, NotFoundError } from "~/errors";
+import { InvalidRequestError, NotFoundError, ServiceUnavailableError } from "~/errors";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import logger from "~/logger";
 import { getDispositifByIdWithAllFields } from "~/modules/dispositif/dispositif.repository";
@@ -29,7 +29,13 @@ export const contentLink = async (body: ContentLinkRequest): Response => {
   if (!smsSentOk.sent) {
     logger.error("[contentLink] SMS not sent", smsSentOk);
     if (smsSentOk.status === 400) throw new InvalidRequestError("[contentLink] Invalid request");
-    throw new InternalError(`[contentLink] SMS not sent. Status: ${smsSentOk.status}`);
+    throw new ServiceUnavailableError(
+      "[contentLink] SMS provider unavailable",
+      "SMS_PROVIDER_UNAVAILABLE",
+      {
+        status: smsSentOk.status,
+      },
+    );
   }
 
   return { text: "success" };

@@ -102,6 +102,19 @@ describe("registerUser", () => {
     expect(addLog).toHaveBeenCalledWith(userId, "User", "Utilisateur créé : première connexion");
   });
 
+  it("allows SSO users without a password", async () => {
+    const user = new UserModel({
+      email: "sso@example.com",
+      firstName: "Ada",
+      password: null,
+      roles: [roleId],
+      status: "Actif",
+      last_connected: new Date(1466424490000),
+    });
+
+    await expect(user.validate()).resolves.toBeUndefined();
+  });
+
   afterEach(() => {
     jest.useRealTimers();
   });

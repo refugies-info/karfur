@@ -1,6 +1,6 @@
 {
   "name": "@refugies-info/api-types",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "Types defined in the API to be used by the frontend",
   "main": "src/index.ts",
   "scripts": {
