@@ -19,6 +19,25 @@ jest.mock("algoliasearch/lite", () => ({
   }),
 }));
 
+jest.mock("react-instantsearch-core", () => {
+  const React = require("react");
+
+  return {
+    Configure: () => null,
+    InstantSearch: ({ children }: { children: React.ReactNode }) =>
+      React.createElement(React.Fragment, null, children),
+    useInfiniteHits: jest.fn(() => ({
+      hits: [],
+      isLastPage: true,
+      showMore: jest.fn(),
+    })),
+    useSearchBox: jest.fn(() => ({
+      query: "",
+      refine: jest.fn(),
+    })),
+  };
+});
+
 describe("Search results screen", () => {
   beforeEach(() => {
     jest.clearAllMocks();

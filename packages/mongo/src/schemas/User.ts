@@ -19,7 +19,7 @@ export const UserZodSchema = z.object({
   username: z.string().optional(),
   password: z.string().nullable().optional(),
   email: z.string().email(),
-  firstName: z.string().optional(),
+  firstName: z.string().nullable().optional(),
   phone: z.string().optional(),
   description: z.string().optional(),
   // PATCHED: Nested optional with required fields causes validation issues

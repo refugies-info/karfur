@@ -3,7 +3,6 @@
 exports[`LocationWarningModal snapshot test suite should render without bug 1`] = `
 <Modal
   backdropColor="#F7F7F7"
-  hardwareAccelerated={false}
   statusBarTranslucent={true}
   transparent={false}
   visible={true}

@@ -98,7 +98,7 @@ describe("registerUser", () => {
       status: "Actif",
       last_connected: new Date(1466424490000),
     });
-    expect(sendWelcomeMail).toHaveBeenCalledWith("test@example.com", null, userId);
+    expect(sendWelcomeMail).toHaveBeenCalledWith("test@example.com", "", userId);
     expect(addLog).toHaveBeenCalledWith(userId, "User", "Utilisateur créé : première connexion");
   });
 

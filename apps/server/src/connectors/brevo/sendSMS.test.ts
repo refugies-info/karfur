@@ -19,7 +19,13 @@ jest.mock("@getbrevo/brevo", () => ({
 jest.mock("~/logger");
 
 describe("Brevo sendSMS", () => {
+  let originalBrevoApiKey: string | undefined;
+  let originalSmsSender: string | undefined;
+
   beforeEach(() => {
+    originalBrevoApiKey = process.env.BREVO_API_KEY;
+    originalSmsSender = process.env.SMS_SENDER;
+
     jest.resetModules();
     jest.clearAllMocks();
     process.env.BREVO_API_KEY = "brevo-api-key";
@@ -28,6 +34,19 @@ describe("Brevo sendSMS", () => {
     mockSendTransacSms.mockReturnValue({
       withRawResponse: jest.fn().mockResolvedValue({ rawResponse: { status: 201 } }),
     });
+  });
+
+  afterEach(() => {
+    if (originalBrevoApiKey === undefined) {
+      delete process.env.BREVO_API_KEY;
+    } else {
+      process.env.BREVO_API_KEY = originalBrevoApiKey;
+    }
+    if (originalSmsSender === undefined) {
+      delete process.env.SMS_SENDER;
+    } else {
+      process.env.SMS_SENDER = originalSmsSender;
+    }
   });
 
   it("formats the sender as an international number without a leading zero", async () => {

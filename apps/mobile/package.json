@@ -22,7 +22,7 @@
     "@react-navigation/stack": "^6.3.20",
     "@redux-devtools/extension": "^3.3.0",
     "algoliasearch": "^5.49.1",
-    "axios": "^1.15.0",
+    "axios": "^1.15.2",
     "expo": "~54.0.33",
     "expo-av": "~16.0.8",
     "expo-build-properties": "~1.0.10",
@@ -79,7 +79,7 @@
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "use-sync-external-store": "1.5.0",
-    "uuid": "^11.0.5"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
