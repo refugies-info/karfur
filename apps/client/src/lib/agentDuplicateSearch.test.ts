@@ -171,6 +171,34 @@ describe("agentDuplicateSearch", () => {
       expect(serializedScore).toContain("$map.city");
       expect(serializedScore).toContain("$metadatas.location");
     });
+
+    it("anchors one-digit department codes in DB-side scoring", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        departments: ["3"],
+        limit: 10,
+      });
+
+      const serializedPipeline = JSON.stringify(pipeline);
+      expect(serializedPipeline).toContain('"$regex":"^(?:0?3)\\\\s+-"');
+      expect(serializedPipeline).toContain('"regex":"^(?:0?3)\\\\s+-"');
+      expect(serializedPipeline).not.toContain('"regex":"3"');
+    });
+
+    it("joins array field values without a leading separator", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        commune: "Paris",
+        departments: ["75"],
+        limit: 10,
+      });
+      const addFieldsStage = pipeline.find((stage) => "$addFields" in stage);
+
+      const serializedScore = JSON.stringify(addFieldsStage);
+      expect(serializedScore).toContain('"$eq":["$$value",""]');
+      expect(serializedScore).toContain('"$$this"');
+      expect(serializedScore).toContain('"$concat":["$$value"," ","$$this"]');
+    });
   });
 
   describe("scoreDuplicateCandidates", () => {

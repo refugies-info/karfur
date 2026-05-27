@@ -128,6 +128,9 @@ const buildStringRegexCondition = (field: string, value: string): Record<string,
 
 const departmentToRegex = (department: string) => {
   const trimmed = department.trim();
+  if (/^\d$/.test(trimmed)) {
+    return `^(?:0?${escapeRegExp(trimmed)})\\s+-`;
+  }
   if (/^\d{2,3}$/.test(trimmed) || /^(2A|2B)$/i.test(trimmed)) {
     return `^${escapeRegExp(trimmed)}\\s+-`;
   }
@@ -234,7 +237,9 @@ const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
       $reduce: {
         input: { $ifNull: [fieldExpression, []] },
         initialValue: "",
-        in: { $concat: ["$$value", " ", "$$this"] },
+        in: {
+          $cond: [{ $eq: ["$$value", ""] }, "$$this", { $concat: ["$$value", " ", "$$this"] }],
+        },
       },
     },
     { $ifNull: [fieldExpression, ""] },
@@ -244,6 +249,7 @@ const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
 const buildDuplicateSearchScoreExpression = (
   query: DuplicateSearchQuery,
 ): Record<string, unknown> => {
+  const normalizedTitle = normalizeText(query.title);
   const rawTitleRegex = query.title.toLowerCase();
   const expressions: Record<string, unknown>[] = [
     buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 4),
@@ -251,7 +257,7 @@ const buildDuplicateSearchScoreExpression = (
   ];
 
   for (const token of tokenize(query.title)) {
-    if (token === rawTitleRegex) continue;
+    if (token === normalizedTitle && token === rawTitleRegex) continue;
     expressions.push(
       buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
     );
