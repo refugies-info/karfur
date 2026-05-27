@@ -244,6 +244,7 @@ const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
 const buildDuplicateSearchScoreExpression = (
   query: DuplicateSearchQuery,
 ): Record<string, unknown> => {
+  const normalizedTitle = normalizeText(query.title);
   const rawTitleRegex = query.title.toLowerCase();
   const expressions: Record<string, unknown>[] = [
     buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 4),
@@ -251,7 +252,7 @@ const buildDuplicateSearchScoreExpression = (
   ];
 
   for (const token of tokenize(query.title)) {
-    if (token === rawTitleRegex) continue;
+    if (token === normalizedTitle && token === rawTitleRegex) continue;
     expressions.push(
       buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
     );
