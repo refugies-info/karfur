@@ -32,7 +32,7 @@
     "@types/react-dom": "~19.1.7",
     "chromatic": "^13.3.5",
     "dotenv-run-script": "^0.4.1",
-    "postcss": "^8.5.8",
+    "postcss": "^8.5.10",
     "storybook": "10.3.3",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.9.3",
