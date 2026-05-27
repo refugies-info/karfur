@@ -155,11 +155,11 @@ const getSponsorSearchConditions = (query: DuplicateSearchQuery): Record<string,
 
   if (!query.structureName) return conditions;
 
-  const normalizedSponsor = normalizeText(query.structureName);
+  const rawSponsorRegex = query.structureName.toLowerCase();
   conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", query.structureName));
   conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", query.structureName));
   for (const token of tokenize(query.structureName).slice(0, 4)) {
-    if (token === normalizedSponsor) continue;
+    if (token === rawSponsorRegex) continue;
     conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", token));
     conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", token));
   }
@@ -206,15 +206,19 @@ const buildConstrainedMatchStage = (
 };
 
 const buildRegexScoreExpression = (
-  fieldExpression: string,
+  fieldExpression: string | Record<string, unknown>,
   value: string,
   score: number,
+  escapeValue = true,
 ): Record<string, unknown> => ({
   $cond: [
     {
       $regexMatch: {
-        input: { $ifNull: [fieldExpression, ""] },
-        regex: escapeRegExp(value),
+        input:
+          typeof fieldExpression === "string"
+            ? { $ifNull: [fieldExpression, ""] }
+            : fieldExpression,
+        regex: escapeValue ? escapeRegExp(value) : value,
         options: "i",
       },
     },
@@ -223,19 +227,35 @@ const buildRegexScoreExpression = (
   ],
 });
 
+const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
+  $cond: [
+    { $isArray: fieldExpression },
+    {
+      $reduce: {
+        input: { $ifNull: [fieldExpression, []] },
+        initialValue: "",
+        in: { $concat: ["$$value", " ", "$$this"] },
+      },
+    },
+    { $ifNull: [fieldExpression, ""] },
+  ],
+});
+
 const buildDuplicateSearchScoreExpression = (
   query: DuplicateSearchQuery,
 ): Record<string, unknown> => {
+  const rawTitleRegex = query.title.toLowerCase();
   const expressions: Record<string, unknown>[] = [
-    buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 6),
-    buildRegexScoreExpression("$translations.fr.content.titreMarque", query.title, 6),
+    buildRegexScoreExpression("$translations.fr.content.titreInformatif", query.title, 4),
+    buildRegexScoreExpression("$translations.fr.content.titreMarque", query.title, 4),
   ];
 
   for (const token of tokenize(query.title)) {
+    if (token === rawTitleRegex) continue;
     expressions.push(
-      buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 2),
+      buildRegexScoreExpression("$translations.fr.content.titreInformatif", token, 1),
     );
-    expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 2));
+    expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 1));
   }
 
   for (const token of tokenize(query.description).slice(0, 4)) {
@@ -245,17 +265,32 @@ const buildDuplicateSearchScoreExpression = (
     expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 1));
   }
 
-  if (query.structureName) {
-    const normalizedSponsor = normalizeText(query.structureName);
-    expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", query.structureName, 5));
+  if (query.commune) {
+    expressions.push(buildRegexScoreExpression(joinFieldValues("$map.city"), query.commune, 5));
+  }
+
+  for (const department of query.departments) {
     expressions.push(
-      buildRegexScoreExpression("$mainSponsorInfo.acronyme", query.structureName, 5),
+      buildRegexScoreExpression(
+        joinFieldValues("$metadatas.location"),
+        departmentToRegex(department),
+        4,
+        false,
+      ),
+    );
+  }
+
+  if (query.structureName) {
+    const rawSponsorRegex = query.structureName.toLowerCase();
+    expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", query.structureName, 7));
+    expressions.push(
+      buildRegexScoreExpression("$mainSponsorInfo.acronyme", query.structureName, 7),
     );
 
     for (const token of tokenize(query.structureName).slice(0, 4)) {
-      if (token === normalizedSponsor) continue;
-      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", token, 1));
-      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.acronyme", token, 1));
+      if (token === rawSponsorRegex) continue;
+      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.nom", token, 2));
+      expressions.push(buildRegexScoreExpression("$mainSponsorInfo.acronyme", token, 2));
     }
   }
 

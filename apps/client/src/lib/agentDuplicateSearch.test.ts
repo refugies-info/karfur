@@ -129,6 +129,48 @@ describe("agentDuplicateSearch", () => {
       });
       expect(pipeline).toContainEqual({ $limit: 40 });
     });
+
+    it("keeps normalized sponsor fallback for accented names", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Atelier cuisine",
+        structureName: "Café",
+        departments: [],
+        limit: 10,
+      });
+
+      const serializedPipeline = JSON.stringify(pipeline);
+      expect(serializedPipeline).toContain('"regex":"Café"');
+      expect(serializedPipeline).toContain('"regex":"cafe"');
+    });
+
+    it("does not duplicate single-word title score expressions", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "FLE",
+        departments: [],
+        limit: 10,
+      });
+      const addFieldsStage = pipeline.find((stage) => "$addFields" in stage);
+
+      const serializedScore = JSON.stringify(addFieldsStage);
+      expect(serializedScore).toContain('"regex":"FLE"');
+      expect(serializedScore).not.toContain('"regex":"fle"');
+    });
+
+    it("includes sponsor and location signals in the pre-limit score", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        structureName: "FTDA",
+        commune: "Paris",
+        departments: ["75"],
+        limit: 10,
+      });
+      const addFieldsStage = pipeline.find((stage) => "$addFields" in stage);
+
+      const serializedScore = JSON.stringify(addFieldsStage);
+      expect(serializedScore).toContain("$mainSponsorInfo.nom");
+      expect(serializedScore).toContain("$map.city");
+      expect(serializedScore).toContain("$metadatas.location");
+    });
   });
 
   describe("scoreDuplicateCandidates", () => {
