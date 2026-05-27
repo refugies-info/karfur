@@ -13,7 +13,11 @@ jest.useFakeTimers();
   const { TextDecoder, TextEncoder } = require("util");
   const { deserialize, serialize } = require("v8");
   const { TextDecoderStream, TextEncoderStream } = require("stream/web");
-  const structuredClone = (value) => deserialize(serialize(value));
+  const existingStructuredClone = Object.getOwnPropertyDescriptor(global, "structuredClone")?.value;
+  const structuredClone =
+    typeof existingStructuredClone === "function"
+      ? existingStructuredClone
+      : (value) => deserialize(serialize(value));
 
   // Expo SDK 54 installs lazy WinterCG globals. Some Jest dependencies access them
   // through Node's runtime first, where a lazy getter can resolve to undefined.
@@ -141,7 +145,7 @@ jest.mock("@react-native-firebase/crashlytics", () => {
 
 jest.mock("@react-navigation/native", () => ({
   ...jest.requireActual("@react-navigation/native"),
-  useFocusEffect: jest.fn((callback) => callback()),
+  useFocusEffect: jest.fn((callback) => require("react").useEffect(callback, [])),
   useIsFocused: jest.fn(() => true),
   useRoute: jest.fn(() => ({ routeName: "DummyScreen" })),
   useNavigation: jest.fn(() => ({
@@ -155,7 +159,7 @@ jest.mock("@react-navigation/native", () => ({
 
 jest.mock("@react-navigation/core", () => ({
   ...jest.requireActual("@react-navigation/core"),
-  useFocusEffect: jest.fn((callback) => callback()),
+  useFocusEffect: jest.fn((callback) => require("react").useEffect(callback, [])),
   useIsFocused: jest.fn(() => true),
   useRoute: jest.fn(() => ({ routeName: "DummyScreen" })),
   useNavigation: jest.fn(() => ({
