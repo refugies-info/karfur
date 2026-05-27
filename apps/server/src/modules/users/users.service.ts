@@ -101,7 +101,7 @@ export const registerUser = async (data: RegisterUser) => {
   const user = await createUser(userToSave);
 
   if (user.email) {
-    await sendWelcomeMail(user.email, user.firstName, user._id);
+    await sendWelcomeMail(user.email, user.firstName ?? "", user._id);
   }
 
   logger.info("[Register] successfully registered a new user", {
