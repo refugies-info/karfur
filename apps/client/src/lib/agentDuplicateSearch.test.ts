@@ -171,6 +171,38 @@ describe("agentDuplicateSearch", () => {
       expect(serializedScore).toContain("$map.city");
       expect(serializedScore).toContain("$metadatas.location");
     });
+
+    it("anchors one-digit department codes in DB-side scoring", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        departments: ["3"],
+        limit: 10,
+      });
+
+      const serializedPipeline = JSON.stringify(pipeline);
+      expect(serializedPipeline).toContain('"$regex":"^(?:0?3)\\\\s+-"');
+      expect(serializedPipeline).toContain('"regex":"^(?:0?3)\\\\s+-"');
+      expect(serializedPipeline).not.toContain('"regex":"3"');
+    });
+
+    it("matches array field values per item for DB-side scoring", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        commune: "Paris",
+        departments: ["3"],
+        limit: 10,
+      });
+      const addFieldsStage = pipeline.find((stage) => "$addFields" in stage);
+
+      const serializedScore = JSON.stringify(addFieldsStage);
+      expect(serializedScore).toContain('"$anyElementTrue"');
+      expect(serializedScore).toContain('"$map"');
+      expect(serializedScore).toContain('"input":{"$ifNull":["$metadatas.location",[]]}');
+      expect(serializedScore).toContain('"input":{"$ifNull":["$map.city",[]]}');
+      expect(serializedScore).toContain('"regex":"^(?:0?3)');
+      expect(serializedScore).toContain('s+-"');
+      expect(serializedScore).not.toContain('"$concat"');
+    });
   });
 
   describe("scoreDuplicateCandidates", () => {

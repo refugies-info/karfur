@@ -128,6 +128,9 @@ const buildStringRegexCondition = (field: string, value: string): Record<string,
 
 const departmentToRegex = (department: string) => {
   const trimmed = department.trim();
+  if (/^\d$/.test(trimmed)) {
+    return `^(?:0?${escapeRegExp(trimmed)})\\s+-`;
+  }
   if (/^\d{2,3}$/.test(trimmed) || /^(2A|2B)$/i.test(trimmed)) {
     return `^${escapeRegExp(trimmed)}\\s+-`;
   }
@@ -205,40 +208,53 @@ const buildConstrainedMatchStage = (
   };
 };
 
+const buildRegexMatchExpression = (
+  fieldExpression: string | Record<string, unknown>,
+  value: string,
+  escapeValue = true,
+): Record<string, unknown> => {
+  const regex = escapeValue ? escapeRegExp(value) : value;
+
+  if (typeof fieldExpression !== "string") {
+    return { $regexMatch: { input: fieldExpression, regex, options: "i" } };
+  }
+
+  return {
+    $cond: [
+      { $isArray: fieldExpression },
+      {
+        $anyElementTrue: {
+          $map: {
+            input: { $ifNull: [fieldExpression, []] },
+            as: "item",
+            in: {
+              $regexMatch: {
+                input: { $ifNull: ["$$item", ""] },
+                regex,
+                options: "i",
+              },
+            },
+          },
+        },
+      },
+      {
+        $regexMatch: {
+          input: { $ifNull: [fieldExpression, ""] },
+          regex,
+          options: "i",
+        },
+      },
+    ],
+  };
+};
+
 const buildRegexScoreExpression = (
   fieldExpression: string | Record<string, unknown>,
   value: string,
   score: number,
   escapeValue = true,
 ): Record<string, unknown> => ({
-  $cond: [
-    {
-      $regexMatch: {
-        input:
-          typeof fieldExpression === "string"
-            ? { $ifNull: [fieldExpression, ""] }
-            : fieldExpression,
-        regex: escapeValue ? escapeRegExp(value) : value,
-        options: "i",
-      },
-    },
-    score,
-    0,
-  ],
-});
-
-const joinFieldValues = (fieldExpression: string): Record<string, unknown> => ({
-  $cond: [
-    { $isArray: fieldExpression },
-    {
-      $reduce: {
-        input: { $ifNull: [fieldExpression, []] },
-        initialValue: "",
-        in: { $concat: ["$$value", " ", "$$this"] },
-      },
-    },
-    { $ifNull: [fieldExpression, ""] },
-  ],
+  $cond: [buildRegexMatchExpression(fieldExpression, value, escapeValue), score, 0],
 });
 
 const buildDuplicateSearchScoreExpression = (
@@ -266,17 +282,12 @@ const buildDuplicateSearchScoreExpression = (
   }
 
   if (query.commune) {
-    expressions.push(buildRegexScoreExpression(joinFieldValues("$map.city"), query.commune, 5));
+    expressions.push(buildRegexScoreExpression("$map.city", query.commune, 5));
   }
 
   for (const department of query.departments) {
     expressions.push(
-      buildRegexScoreExpression(
-        joinFieldValues("$metadatas.location"),
-        departmentToRegex(department),
-        4,
-        false,
-      ),
+      buildRegexScoreExpression("$metadatas.location", departmentToRegex(department), 4, false),
     );
   }
 
