@@ -32,10 +32,9 @@ describe("agentDuplicateSearch", () => {
   });
 
   describe("buildDuplicateSearchPipeline", () => {
-    it("filters active dispositifs and looks up sponsor with _id", () => {
+    it("filters on title and location before looking up sponsors when structure is absent", () => {
       const pipeline = buildDuplicateSearchPipeline({
         title: "Cours FLE",
-        structureName: "FTDA",
         commune: "Paris",
         departments: ["75"],
         limit: 10,
@@ -45,21 +44,78 @@ describe("agentDuplicateSearch", () => {
         $match: { status: "Actif", typeContenu: "dispositif" },
       });
       expect(pipeline[1]).toMatchObject({
+        $match: {
+          $and: [
+            {
+              $or: expect.arrayContaining([
+                {
+                  "translations.fr.content.titreInformatif": { $regex: "Cours FLE", $options: "i" },
+                },
+                { "translations.fr.content.titreMarque": { $regex: "Cours FLE", $options: "i" } },
+              ]),
+            },
+            {
+              $or: expect.arrayContaining([
+                { "metadatas.location": { $regex: "^75\\s+-", $options: "i" } },
+                { "map.city": { $regex: "Paris", $options: "i" } },
+              ]),
+            },
+          ],
+        },
+      });
+      expect(pipeline[2]).toEqual({
         $lookup: {
           from: "structures",
-          let: { sponsorId: "$mainSponsor" },
-          pipeline: [
-            {
-              $match: {
-                $expr: {
-                  $eq: ["$_id", "$$sponsorId"],
-                },
-              },
-            },
-            { $limit: 1 },
-            { $project: { nom: 1, acronyme: 1, _id: 0 } },
-          ],
+          localField: "mainSponsor",
+          foreignField: "_id",
           as: "mainSponsorInfo",
+        },
+      });
+      expect(pipeline).toContainEqual({ $limit: 40 });
+    });
+
+    it("matches sponsor fields after lookup when structure is provided", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        title: "Cours FLE",
+        structureName: "FTDA",
+        commune: "Paris",
+        departments: ["75"],
+        limit: 10,
+      });
+
+      expect(pipeline[1]).toEqual({
+        $lookup: {
+          from: "structures",
+          localField: "mainSponsor",
+          foreignField: "_id",
+          as: "mainSponsorInfo",
+        },
+      });
+      expect(pipeline[2]).toEqual({
+        $unwind: {
+          path: "$mainSponsorInfo",
+          preserveNullAndEmptyArrays: true,
+        },
+      });
+      expect(pipeline[3]).toMatchObject({
+        $match: {
+          $and: [
+            {
+              $or: expect.arrayContaining([
+                {
+                  "translations.fr.content.titreInformatif": { $regex: "Cours FLE", $options: "i" },
+                },
+                { "mainSponsorInfo.nom": { $regex: "FTDA", $options: "i" } },
+                { "mainSponsorInfo.acronyme": { $regex: "FTDA", $options: "i" } },
+              ]),
+            },
+            {
+              $or: expect.arrayContaining([
+                { "metadatas.location": { $regex: "^75\\s+-", $options: "i" } },
+                { "map.city": { $regex: "Paris", $options: "i" } },
+              ]),
+            },
+          ],
         },
       });
       expect(pipeline).toContainEqual({ $limit: 40 });

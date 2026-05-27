@@ -3,6 +3,7 @@ import {
   buildDuplicateSearchPipeline,
   type DuplicateSearchCandidate,
   parseDuplicateSearchRequest,
+  type RawDuplicateCandidate,
   scoreDuplicateCandidates,
 } from "~/lib/agentDuplicateSearch";
 import dbConnect from "~/lib/db";
@@ -37,7 +38,7 @@ const handler = async (
   try {
     const conn = await dbConnect();
     const Dispositif = getDispositifModel(conn);
-    const rawCandidates = await executeCachedPipeline(
+    const rawCandidates = await executeCachedPipeline<RawDuplicateCandidate>(
       Dispositif.aggregate(buildDuplicateSearchPipeline(query)),
     );
 

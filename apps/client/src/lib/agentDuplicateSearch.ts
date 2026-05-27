@@ -31,7 +31,7 @@ export interface DuplicateSearchQuery {
   limit: number;
 }
 
-type RawDuplicateCandidate = Omit<DuplicateSearchCandidate, "url" | "score" | "reasons">;
+export type RawDuplicateCandidate = Omit<DuplicateSearchCandidate, "url" | "score" | "reasons">;
 
 const DEFAULT_LIMIT = 10;
 const MAX_LIMIT = 30;
@@ -98,10 +98,6 @@ export const parseDuplicateSearchRequest = (body: unknown): DuplicateSearchQuery
     throw new Error("Field 'title' is required");
   }
 
-  if (!title && !description && !structureName && !commune && departments.length === 0) {
-    throw new Error("At least one search criterion is required");
-  }
-
   return {
     title,
     ...(description ? { description } : {}),
@@ -138,7 +134,7 @@ const departmentToRegex = (department: string) => {
   return escapeRegExp(trimmed);
 };
 
-const getSearchConditions = (query: DuplicateSearchQuery): Record<string, unknown>[] => {
+const getLocationSearchConditions = (query: DuplicateSearchQuery): Record<string, unknown>[] => {
   const conditions: Record<string, unknown>[] = [];
 
   for (const department of query.departments) {
@@ -151,19 +147,30 @@ const getSearchConditions = (query: DuplicateSearchQuery): Record<string, unknow
     conditions.push({ "map.city": { $regex: escapeRegExp(query.commune), $options: "i" } });
   }
 
-  if (query.structureName) {
-    conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", query.structureName));
-    conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", query.structureName));
-    for (const token of tokenize(query.structureName).slice(0, 4)) {
-      conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", token));
-      conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", token));
-    }
+  return conditions;
+};
+
+const getSponsorSearchConditions = (query: DuplicateSearchQuery): Record<string, unknown>[] => {
+  const conditions: Record<string, unknown>[] = [];
+
+  if (!query.structureName) return conditions;
+
+  conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", query.structureName));
+  conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", query.structureName));
+  for (const token of tokenize(query.structureName).slice(0, 4)) {
+    conditions.push(buildStringRegexCondition("mainSponsorInfo.nom", token));
+    conditions.push(buildStringRegexCondition("mainSponsorInfo.acronyme", token));
   }
 
-  conditions.push(
+  return conditions;
+};
+
+const getTextSearchConditions = (query: DuplicateSearchQuery): Record<string, unknown>[] => {
+  const conditions: Record<string, unknown>[] = [
     buildStringRegexCondition("translations.fr.content.titreInformatif", query.title),
-  );
-  conditions.push(buildStringRegexCondition("translations.fr.content.titreMarque", query.title));
+    buildStringRegexCondition("translations.fr.content.titreMarque", query.title),
+  ];
+
   for (const token of tokenize(query.title)) {
     conditions.push(buildStringRegexCondition("translations.fr.content.titreInformatif", token));
     conditions.push(buildStringRegexCondition("translations.fr.content.titreMarque", token));
@@ -177,32 +184,52 @@ const getSearchConditions = (query: DuplicateSearchQuery): Record<string, unknow
   return conditions;
 };
 
+const buildOrMatch = (conditions: Record<string, unknown>[]): Record<string, unknown> =>
+  conditions.length === 1 ? conditions[0] : { $or: conditions };
+
+const buildConstrainedMatchStage = (
+  signalConditions: Record<string, unknown>[],
+  locationConditions: Record<string, unknown>[],
+): PipelineStage.Match | null => {
+  if (signalConditions.length === 0) return null;
+
+  const andConditions = [buildOrMatch(signalConditions)];
+  if (locationConditions.length > 0) {
+    andConditions.push(buildOrMatch(locationConditions));
+  }
+
+  return {
+    $match: andConditions.length === 1 ? andConditions[0] : { $and: andConditions },
+  };
+};
+
 export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): PipelineStage[] => {
-  const conditions = getSearchConditions(query);
+  const textConditions = getTextSearchConditions(query);
+  const locationConditions = getLocationSearchConditions(query);
+  const sponsorConditions = getSponsorSearchConditions(query);
+  const needsSponsorSearch = sponsorConditions.length > 0;
   const dbLimit = Math.min(query.limit * 4, MAX_DB_CANDIDATES);
 
-  return [
+  const pipeline: PipelineStage[] = [
     {
       $match: {
         status: "Actif",
         typeContenu: "dispositif",
       },
     },
+  ];
+
+  if (!needsSponsorSearch) {
+    const preLookupMatch = buildConstrainedMatchStage(textConditions, locationConditions);
+    if (preLookupMatch) pipeline.push(preLookupMatch);
+  }
+
+  pipeline.push(
     {
       $lookup: {
         from: "structures",
-        let: { sponsorId: "$mainSponsor" },
-        pipeline: [
-          {
-            $match: {
-              $expr: {
-                $eq: ["$_id", "$$sponsorId"],
-              },
-            },
-          },
-          { $limit: 1 },
-          { $project: { nom: 1, acronyme: 1, _id: 0 } },
-        ],
+        localField: "mainSponsor",
+        foreignField: "_id",
         as: "mainSponsorInfo",
       },
     },
@@ -212,7 +239,17 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
         preserveNullAndEmptyArrays: true,
       },
     },
-    ...(conditions.length > 0 ? [{ $match: { $or: conditions } }] : []),
+  );
+
+  if (needsSponsorSearch) {
+    const postLookupMatch = buildConstrainedMatchStage(
+      [...textConditions, ...sponsorConditions],
+      locationConditions,
+    );
+    if (postLookupMatch) pipeline.push(postLookupMatch);
+  }
+
+  pipeline.push(
     { $sort: { publishedAt: -1, updatedAt: -1 } },
     { $limit: dbLimit },
     {
@@ -235,7 +272,9 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
         mainSponsorAcronyme: "$mainSponsorInfo.acronyme",
       },
     },
-  ];
+  );
+
+  return pipeline;
 };
 
 const getInitials = (value: string | undefined) =>
