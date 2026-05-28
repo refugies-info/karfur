@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v5
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -43,8 +43,8 @@ jobs:
       - name: Lint and Check Types
         run: pnpm lint check:types
 
-      - name: Test (except mobile for now because flaky)
-        run: turbo test --filter=!@refugies-info/mobile
+      - name: Test
+        run: turbo test
         env:
           NEXT_PUBLIC_REACT_APP_ENV: ${{ vars.NEXT_PUBLIC_REACT_APP_ENV }}
           NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY: ${{ vars.NEXT_PUBLIC_REACT_APP_ALGOLIA_API_KEY }}

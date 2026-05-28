@@ -4,7 +4,6 @@ exports[`NotificationsModal snapshot test suite should render not visible 1`] = 
 
 exports[`NotificationsModal snapshot test suite should render without bug 1`] = `
 <Modal
-  hardwareAccelerated={false}
   visible={true}
 >
   <RCTScrollView

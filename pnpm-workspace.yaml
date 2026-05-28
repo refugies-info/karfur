@@ -75,6 +75,26 @@ minimumReleaseAgeExclude:
   - "@next/*"
   # TODO: Remove after 2026-04-20 once vite@7.3.2 is older than 7 days (security fix)
   - vite
+  # TODO: Remove after 2026-06-04 once May 2026 security patch releases are older than 7 days
+  - "@hapi/wreck"
+  - "@protobufjs/utf8"
+  - "@babel/plugin-transform-modules-systemjs"
+  - qs
+  - protobufjs
+  - ws
+  - js-cookie
+  - uuid
+  - multiparty
+  - turbo
+  - "@turbo/*"
+  - fast-uri
+  - fast-xml-builder
+  - fast-xml-parser
+  - ip-address
+  - postcss
+  - dompurify
+  - i18next-fs-backend
+  - follow-redirects
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
@@ -82,6 +102,7 @@ minimumReleaseAgeExclude:
 trustPolicy: no-downgrade
 
 # Disable strict peer dependencies to allow installation with mismatched peers (React 19 vs older libs)
+strictPeerDependencies: false
 
 # Packages excluded from trustPolicy check. Use for verified packages that
 # trigger false positives (e.g., lost provenance attestation between versions).

@@ -685,13 +685,7 @@ exports[`ContentScreen should render correctly 1`] = `
                   <View />
                 </Text>
                 <View>
-                  <View
-                    style={
-                      {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
+                  <View>
                     <View
                       collapsable={false}
                       style={
@@ -3124,7 +3118,6 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -3143,6 +3136,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -3251,6 +3246,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -3283,13 +3280,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -3533,7 +3524,6 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -3552,6 +3542,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -3660,6 +3652,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -3692,13 +3686,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -3942,7 +3930,6 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -3961,6 +3948,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -4069,6 +4058,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -4101,13 +4092,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -4409,7 +4394,6 @@ exports[`ContentScreen should render correctly 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -4428,6 +4412,8 @@ exports[`ContentScreen should render correctly 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -4536,6 +4522,8 @@ exports[`ContentScreen should render correctly 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -4568,13 +4556,7 @@ exports[`ContentScreen should render correctly 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -4968,6 +4950,8 @@ exports[`ContentScreen should render correctly 1`] = `
                   </View>
                 </View>
                 <View
+                  accessibilityElementsHidden={true}
+                  importantForAccessibility="no-hide-descendants"
                   style={
                     {
                       "borderBottomLeftRadius": 12,
@@ -9188,13 +9172,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   <View />
                 </Text>
                 <View>
-                  <View
-                    style={
-                      {
-                        "flexDirection": "row",
-                      }
-                    }
-                  >
+                  <View>
                     <View
                       collapsable={false}
                       style={
@@ -11627,7 +11605,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -11646,6 +11623,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -11754,6 +11733,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -11786,13 +11767,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -12036,7 +12011,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -12055,6 +12029,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -12163,6 +12139,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -12195,13 +12173,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -12445,7 +12417,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -12464,6 +12435,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -12572,6 +12545,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -12604,13 +12579,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -12912,7 +12881,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
                                       "fontSize": 16,
                                       "lineHeight": 20,
                                       "textAlign": "left",
-                                      "width": 630,
                                     }
                                   }
                                 >
@@ -12931,6 +12899,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                           }
                         >
                           <View
+                            accessible={false}
+                            importantForAccessibility="no"
                             isRTL={false}
                             style={
                               {
@@ -13039,6 +13009,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                       </View>
                     </View>
                     <View
+                      accessibilityElementsHidden={true}
+                      importantForAccessibility="no-hide-descendants"
                       style={
                         [
                           {
@@ -13071,13 +13043,7 @@ exports[`ContentScreen should toggle map modal 1`] = `
                             }
                           }
                         >
-                          <View
-                            style={
-                              {
-                                "flexDirection": "row",
-                              }
-                            }
-                          >
+                          <View>
                             <View
                               collapsable={false}
                               style={
@@ -13471,6 +13437,8 @@ exports[`ContentScreen should toggle map modal 1`] = `
                   </View>
                 </View>
                 <View
+                  accessibilityElementsHidden={true}
+                  importantForAccessibility="no-hide-descendants"
                   style={
                     {
                       "borderBottomLeftRadius": 12,
@@ -13603,7 +13571,6 @@ exports[`ContentScreen should toggle map modal 1`] = `
               </View>
               <Modal
                 animationType="slide"
-                hardwareAccelerated={false}
                 visible={true}
               >
                 <View

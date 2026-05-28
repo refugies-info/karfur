@@ -3,10 +3,8 @@
 exports[`LanguageChoiceModal should render correctly 1`] = `
 <Modal
   animationType="fade"
-  hardwareAccelerated={false}
   onRequestClose={[MockFunction]}
   transparent={true}
-  visible={true}
 >
   <View
     style={

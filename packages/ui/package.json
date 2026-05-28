@@ -34,7 +34,7 @@
     "react-dom": "19.1.0",
     "react-leaflet-cluster": "^2.1.0",
     "tailwind-merge": "^2.6.1",
-    "uuid": "^11.0.3"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
