@@ -6,7 +6,7 @@ if (__DEV__) {
   import("@welldone-software/why-did-you-render").then(({ default: whyDidYouRender }) => {
     whyDidYouRender(React, {
       trackAllPureComponents: true,
-      trackHooks: true,
+      trackHooks: false,
       include: [/^ContentScreen/],
       exclude: [/^ExpoLinearGradient/],
     });
