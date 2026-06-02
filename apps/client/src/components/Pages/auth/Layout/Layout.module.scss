@@ -12,6 +12,11 @@ $headerHeight: 120px;
   width: 50%;
   padding: u(6) u(38) u(20);
 
+  @include isMobile {
+    width: 100%;
+    padding: u(6) u(4) u(10);
+  }
+
   &.full_width {
     width: 100%;
     background-color: #fafaff;
@@ -24,14 +29,27 @@ $headerHeight: 120px;
 .right {
   background: var(--background-contrast-blue-france);
   min-height: calc(100vh - $headerHeight); // TODO: improve that
+
+  @include isMobile {
+    min-height: unset;
+    padding: u(10) u(0) u(30);
+  }
 }
 
 .row {
   display: flex;
 
+  @include isMobile {
+    flex-direction: column;
+  }
+
   .right,
   .main {
     width: 50%;
+
+    @include isMobile {
+      width: 100%;
+    }
   }
 }
 
@@ -45,6 +63,11 @@ $headerHeight: 120px;
 .right_content {
   text-align: center;
   width: 480px;
+
+  @include isMobile {
+    width: 100%;
+  }
+
   margin: u(15) auto 0;
 }
 
