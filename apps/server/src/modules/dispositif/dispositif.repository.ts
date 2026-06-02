@@ -696,7 +696,7 @@ export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial
         suggestions:
           dispositif.suggestions?.filter((s) => s.suggestion && s.suggestion.trim() !== "") ?? [],
         participants: dispositif.participants?.filter((p) => p != null) ?? [],
-        avis: dispositif.avis?.map((avis) => cleanupAvis({ ...avis } as Avis)) ?? [],
+        avis: dispositif.avis?.map((avis) => cleanupAvis(avis as Avis)) ?? [],
       }
     : null;
 
