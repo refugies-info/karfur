@@ -20,18 +20,23 @@ export class Migration1780387153155 implements MigrationInterface {
       const collection = db.collection(collectionName);
       const query = { avis: { $elemMatch: { userId: { $type: "null" } } } };
 
-      const matchedCount = await collection.countDocuments(query);
       const result = await collection.updateMany(
         query,
-        { $unset: { "avis.$[avis].userId": "" } },
-        { arrayFilters: [{ "avis.userId": { $type: "null" } }] },
+        { $unset: { "avis.$[elem].userId": "" } },
+        { arrayFilters: [{ "elem.userId": { $type: "null" } }] },
       );
 
-      totalMatched += matchedCount;
+      totalMatched += result.matchedCount;
       totalModified += result.modifiedCount;
 
       console.log(
-        `[Migration1780387153155] ${collectionName}: removed null avis.userId from ${result.modifiedCount}/${matchedCount} document(s)`,
+        "[Migration1780387153155] " +
+          collectionName +
+          ": removed null avis.userId from " +
+          result.modifiedCount +
+          "/" +
+          result.matchedCount +
+          " document(s)",
       );
     }
 
