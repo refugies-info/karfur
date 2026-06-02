@@ -689,12 +689,14 @@ export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial
 
   // Sanitize legacy data that causes Mongoose validation errors on create()
   // See RI-1174: suggestions with empty strings, RI-1192: null entries in participants
+  // and legacy anonymous feedbacks with userId: null.
   const sanitizedDispositif = dispositif
     ? {
         ...dispositif,
         suggestions:
           dispositif.suggestions?.filter((s) => s.suggestion && s.suggestion.trim() !== "") ?? [],
         participants: dispositif.participants?.filter((p) => p != null) ?? [],
+        avis: dispositif.avis?.map((avis) => cleanupAvis({ ...avis } as Avis)) ?? [],
       }
     : null;
 
