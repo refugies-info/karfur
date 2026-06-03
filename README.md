@@ -72,9 +72,9 @@ Editor preferences are available in the [editor config](https://github.com/entre
 **Product Manager**  
 🔗 [LinkedIn](https://www.linkedin.com/in/eliseprevot/)
 
-### Matthieu Fesselier
+### Camille Yahi Saillard
 **Developer**  
-🔗 [LinkedIn](https://www.linkedin.com/in/matthieu-fesselier/)
+🔗 [LinkedIn](https://www.linkedin.com/in/camille-yahi-saillard-8677a5a6/)
 
 ### Xavier Dumas
 **Support Manager & Content Writer**  
