@@ -94,7 +94,7 @@ const Dispositif = (props: Props) => {
             )}
             {isViewMode && isMobile && (
               <Button
-                linkProps={{ href: "#top" }}
+                onClick={() => dispositifRef.current?.scrollIntoView({ behavior: "smooth" })}
                 iconId="fr-icon-arrow-up-line"
                 priority="tertiary no outline"
                 className="w-full bg-white py-8 underline print:!hidden"
