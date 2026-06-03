@@ -28,7 +28,7 @@ export const getStatistics = async (
       { nom: "Comité de la Démarche Accessible" },
       { membres: 1 },
     );
-    data.nbCDA = cda[0].membres.length;
+    data.nbCDA = cda[0]?.membres?.length || 0;
   }
 
   // nbStructureAdmins
