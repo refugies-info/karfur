@@ -10,15 +10,11 @@ export const decodeHTMLEntities = (text: string): string => {
     return decoded
       .replace(/&#39;/g, "'")
       .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
+      .replace(/&amp;/g, "&");
   } catch (e) {
     return text
       .replace(/&#39;/g, "'")
       .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
+      .replace(/&amp;/g, "&");
   }
 };
