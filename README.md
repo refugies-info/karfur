@@ -80,7 +80,10 @@ Editor preferences are available in the [editor config](https://github.com/entre
 **Support Manager & Content Writer**  
 🔗 [LinkedIn](https://www.linkedin.com/in/xavier-dumas/)
 
-
+### Jérémy Pastouret
+**Developer**
+🔗 [LinkedIn](https://www.linkedin.com/in/jeremy-pastouret/)
+🔗 [Website](https://jeremy-pastouret.netlify.app/)
 
 
 ## Previous team
