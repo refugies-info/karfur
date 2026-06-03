@@ -87,7 +87,7 @@ const DispositifCard = (props: Props) => {
     >
       <Badge
         small
-        className={cn(badge.className, "absolute top-2 left-2 z-10")}
+        className={cn(badge.className, "absolute top-2 left-2 z-20")}
         aria-label={isRCO ? "Contenu généré par intelligence artificielle" : undefined}
       >
         {isOnline && <i className="ri-at-line me-1" aria-hidden="true"></i>}
