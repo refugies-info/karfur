@@ -81,6 +81,7 @@ export const getQueryParamAsArray = (param: string | string[] | undefined): stri
 export interface QueryParams {
   search?: string;
   departments?: string[];
+  cities?: string[];
   themes?: string[];
   needs?: string[];
   age?: AgeOptions[];
@@ -94,6 +95,7 @@ export interface QueryParams {
 export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   search: typeof query.search === "string" ? query.search : undefined,
   departments: getQueryParamAsArray(query.departments),
+  cities: getQueryParamAsArray(query.cities),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
   age: getQueryParamAsArray(query.age).filter(
@@ -126,14 +128,34 @@ export const buildBaseMatch = (
   const departments = (queryParams.departments ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
   );
-  if (departments.length > 0) {
+
+  const cities = (queryParams.cities ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
+
+  if (cities.length > 0 || departments.length > 0) {
     const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const tokensOrRegexes = departments.map((dep) => {
-      if (dep === "france" || dep === "online" || dep.includes(" - ")) return dep;
-      return new RegExp(` \\- ${escapeRegExp(dep)}$`, "i");
+    const tokensOrRegexes: (string | RegExp)[] = [];
+
+    // Add department patterns
+    departments.forEach((dep) => {
+      if (dep === "france" || dep === "online" || dep.includes(" - ")) {
+        tokensOrRegexes.push(dep);
+      } else {
+        tokensOrRegexes.push(new RegExp(` - ${escapeRegExp(dep)}$`, "i"));
+      }
     });
-    // Fiches "toute la france" should always appear when filtering by department
-    match["metadatas.location"] = { $in: [...tokensOrRegexes, "france"] };
+
+    // Add city patterns - cities should match exactly in the location field
+    cities.forEach((city) => {
+      // City pattern: match "City - Department" format
+      tokensOrRegexes.push(new RegExp(`^${escapeRegExp(city)}(?: - |$)`, "i"));
+    });
+
+    // Fiches "toute la france" should always appear when filtering
+    tokensOrRegexes.push("france");
+
+    match["metadatas.location"] = { $in: tokensOrRegexes };
   }
 
   const themes = (queryParams.themes ?? []).filter(

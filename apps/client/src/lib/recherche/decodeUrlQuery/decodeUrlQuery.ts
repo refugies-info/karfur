@@ -15,12 +15,24 @@ export const decodeQuery = (
   routerQuery: any,
   allThemes: GetThemeResponse[], // for backward compatibility
 ): SearchQuery => {
-  const { departments, needs, themes, age, frenchLevel, language, sort, type, search, status } =
-    routerQuery as UrlSearchQuery;
+  const {
+    departments,
+    cities,
+    needs,
+    themes,
+    age,
+    frenchLevel,
+    language,
+    sort,
+    type,
+    search,
+    status,
+  } = routerQuery as UrlSearchQuery;
 
   let query: SearchQuery = {
     search: search || "",
     departments: [],
+    cities: [],
     needs: [],
     themes: [],
     age: [],
@@ -37,6 +49,7 @@ export const decodeQuery = (
   // Reinject filters value in search
   if (
     departments ||
+    cities ||
     needs ||
     themes ||
     age ||
@@ -49,6 +62,7 @@ export const decodeQuery = (
     search
   ) {
     if (departments) query.departments = decodeURIComponent(departments as string).split(",");
+    if (cities) query.cities = decodeURIComponent(cities as string).split(",");
     if (needs) query.needs = decodeURIComponent(needs as string).split(",") as unknown as Id[];
     if (themes) query.themes = decodeURIComponent(themes as string).split(",") as unknown as Id[];
     if (age && query.age.length === 0)

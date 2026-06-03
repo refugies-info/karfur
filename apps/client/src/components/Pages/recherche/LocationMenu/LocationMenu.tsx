@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useSearchEventName } from "~/hooks";
+import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
@@ -59,39 +60,21 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const [pendingAnnounce, setPendingAnnounce] = useState(false);
   const previousMatchesRef = useRef(searchResults.matches);
 
-  // Helper function to decode location names consistently
-  const decodeLocation = useCallback((value: string): string => {
-    if (!value) return "";
-    let decoded = value;
-    try {
-      decoded = decodeURIComponent(value);
-    } catch (e) {
-      decoded = value;
-    }
-    return decoded
-      .replace(/&#39;/g, "'")
-      .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, "&");
-  }, []);
-
   // Helper function to normalize location names for comparison
-  const getNormalizedLocations = useCallback(
-    (locations: string[]): string[] => {
-      const seen = new Set<string>();
-      const normalized: string[] = [];
+  const getNormalizedLocations = (locations: string[]): string[] => {
+    const seen = new Set<string>();
+    const normalized: string[] = [];
 
-      locations.forEach((loc) => {
-        const decoded = decodeLocation(loc);
-        if (!seen.has(decoded)) {
-          seen.add(decoded);
-          normalized.push(decoded);
-        }
-      });
+    locations.forEach((loc) => {
+      const decoded = decodeHTMLEntities(loc);
+      if (!seen.has(decoded)) {
+        seen.add(decoded);
+        normalized.push(decoded);
+      }
+    });
 
-      return normalized;
-    },
-    [decodeLocation],
-  );
+    return normalized;
+  };
 
   const NOT_DEPLOYED_THRESHOLD = 10;
 
@@ -162,21 +145,19 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     [handleSearchChange],
   );
 
-  // Use the existing decodeLocation function for consistency
-
   const toggleSelection = useCallback(
     async (location: string, isCity: boolean) => {
       setPendingAnnounce(true);
-      const normalizedLocation = decodeLocation(location);
+      const normalizedLocation = decodeHTMLEntities(location);
 
       if (isCity) {
         // Handle city selection/deselection
         const currentCities = query.cities || [];
         const cityExists = currentCities.some(
-          (city) => decodeLocation(city) === normalizedLocation,
+          (city) => decodeHTMLEntities(city) === normalizedLocation,
         );
         const updatedCities = cityExists
-          ? currentCities.filter((city) => decodeLocation(city) !== normalizedLocation)
+          ? currentCities.filter((city) => decodeHTMLEntities(city) !== normalizedLocation)
           : [...currentCities, normalizedLocation];
 
         // Get the department for this city
@@ -186,7 +167,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         let updatedDepartments = query.departments || [];
         if (!cityExists && department) {
           const deptExists = updatedDepartments.some(
-            (dept: string) => decodeLocation(dept) === department,
+            (dept: string) => decodeHTMLEntities(dept) === department,
           );
           if (!deptExists) {
             updatedDepartments = [...updatedDepartments, department];
@@ -205,20 +186,20 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         // Handle department selection/deselection
         const currentDepartments = query.departments || [];
         const deptExists = currentDepartments.some(
-          (dept: string) => decodeLocation(dept) === normalizedLocation,
+          (dept: string) => decodeHTMLEntities(dept) === normalizedLocation,
         );
 
         if (deptExists) {
           // When removing a department, also remove all its cities
           const updatedDepartments = currentDepartments.filter(
-            (dept: string) => decodeLocation(dept) !== normalizedLocation,
+            (dept: string) => decodeHTMLEntities(dept) !== normalizedLocation,
           );
 
           // Get all cities that belong to this department
           const citiesToRemove = await getCitiesForDepartment(location);
           const currentCities = query.cities || [];
           const updatedCities = currentCities.filter(
-            (city: string) => !citiesToRemove.includes(decodeLocation(city)),
+            (city: string) => !citiesToRemove.includes(decodeHTMLEntities(city)),
           );
 
           dispatch(
@@ -247,15 +228,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         }
       }
     },
-    [
-      dispatch,
-      query.departments,
-      query.cities,
-      decodeLocation,
-      getNormalizedLocations,
-      announce,
-      t,
-    ],
+    [dispatch, query.departments, query.cities, getNormalizedLocations, announce, t],
   );
 
   const handleResultToggle = useCallback(
@@ -313,7 +286,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
             "Recherche.notDeployedText",
             "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
             {
-              department: decodeLocation(dept),
+              department: decodeHTMLEntities(dept),
               interpolation: { escapeValue: false },
             },
           ),
@@ -328,7 +301,6 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     pagination.total,
     announce,
     t,
-    decodeLocation,
     searchResults.matches,
   ]);
 
@@ -343,12 +315,12 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         if (result.type === "department") {
           isChecked =
             query.departments?.some(
-              (dept) => decodeLocation(dept) === decodeLocation(result.deptName),
+              (dept) => decodeHTMLEntities(dept) === decodeHTMLEntities(result.deptName),
             ) || false;
         } else {
           isChecked =
             query.cities?.some(
-              (city) => decodeLocation(city) === decodeLocation(result.displayName),
+              (city) => decodeHTMLEntities(city) === decodeHTMLEntities(result.displayName),
             ) || false;
         }
 
@@ -366,8 +338,8 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const renderCommonPlaces = () => {
     const selectedCities = query.cities || [];
     const options = commonPlaces.map(({ deptNo, placeName, deptName }) => {
-      const decodedCityName = decodeLocation(placeName);
-      const isChecked = selectedCities.some((city) => decodeLocation(city) === decodedCityName);
+      const decodedCityName = decodeHTMLEntities(placeName);
+      const isChecked = selectedCities.some((city) => decodeHTMLEntities(city) === decodedCityName);
 
       return {
         label: `${placeName} (${deptNo})`,
@@ -393,7 +365,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
 
   const renderSelectedLocations = () => {
     const selectedDepartments = (query?.departments || []).map((dept: string) => ({
-      label: `${decodeLocation(dept)} (${t("Recherche.department", "Département")})`,
+      label: `${decodeHTMLEntities(dept)} (${t("Recherche.department", "Département")})`,
       nativeInputProps: {
         name: `department-${dept}`,
         checked: true,
@@ -402,7 +374,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     }));
 
     const selectedCities = (query?.cities || []).map((city: string) => ({
-      label: `${decodeLocation(city)} (${t("Recherche.city", "Ville")})`,
+      label: `${decodeHTMLEntities(city)} (${t("Recherche.city", "Ville")})`,
       nativeInputProps: {
         name: `city-${city}`,
         checked: true,
