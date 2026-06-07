@@ -1,2 +1,8 @@
 #!/usr/bin/env sh
+
+if [ ! -d "node_modules" ]; then
+  echo "Erreur : le dossier node_modules est introuvable. Exécutez 'pnpm install' avant de push."
+  exit 1
+fi
+
 pnpm security:scan:js
