@@ -165,3 +165,13 @@ To allow the usage of the design system tokens inside tailwind you can take a lo
 ## Extras
 
 # If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
+
+## Scan des vulnérabilités de dépendances
+
+Le projet utilise OWASP CVE Lite CLI pour scanner le lockfile JavaScript/TypeScript avant de partager du code :
+
+```bash
+pnpm security:scan:js
+```
+
+Le hook Husky `pre-push` exécute ce scan avec un seuil `--fail-on high`. Les vulnérabilités faibles et moyennes restent visibles pour la revue, mais seules les vulnérabilités de sévérité haute ou critique bloquent le push.
