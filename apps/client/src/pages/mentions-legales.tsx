@@ -14,13 +14,16 @@ const MentionsLegales = () => {
       <SEO title="Mentions légales" />
       <h1 className="mb-8 md:mb-20">Mentions légales</h1>
       <h2>Site édité par</h2>
-      <strong>Refugies.info</strong>
+      <strong>
+        La Mednum pour le compte de la Délégation interministérielle à l’accueil et à l’intégration
+        des réfugiés
+      </strong>
       <p>Place Beauvau 75800 Paris Cedex 08</p>
 
       <h2>Directeur de la publication</h2>
 
       <p>
-        <strong>Yannick Prost</strong>
+        <strong>Délégation interministérielle à l’accueil et à l’intégration des réfugiés</strong>
       </p>
 
       <h2>Droit d’accès</h2>
@@ -54,14 +57,8 @@ const MentionsLegales = () => {
       <p>
         Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour
         plus d&apos;information consultez la page relative à{" "}
-        <Link
-          legacyBehavior
-          href={getPath("/politique-de-confidentialite", locale)}
-          prefetch={false}
-        >
-          <a>
-            <strong>notre politique de confidentialité</strong>
-          </a>
+        <Link href={getPath("/politique-de-confidentialite", locale)} prefetch={false}>
+          <strong>notre politique de confidentialité</strong>
         </Link>
         .
       </p>
@@ -84,10 +81,10 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société{" "}
-        <a href="https://www.ovh.com" target="_blank" rel="noopener">
-          OVH
-        </a>
-        . 2 rue Kellermann – 59100 Roubaix – France Téléphone : 08 90 39 09 75 (France)
+        <Link prefetch={false} href="https://cloud.google.com" target="_blank" rel="noopener">
+          Google Cloud France
+        </Link>
+        . 8 rue de Londres 75009 Paris (SIRET 910 738 392 00018)
       </p>
     </div>
   );
