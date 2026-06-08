@@ -566,24 +566,21 @@ function compactPrimitiveArrays(json: string): string {
   const formattedLines: string[] = [];
 
   for (let index = 0; index < lines.length; index += 1) {
-    const arrayStart = lines[index].match(/^(\s*)((?:"(?:\\.|[^"])+": )?)\[$/);
+    const arrayStart = parseJsonArrayStart(lines[index]);
     if (!arrayStart) {
       formattedLines.push(lines[index]);
       continue;
     }
 
-    const [, indent, propertyPrefix] = arrayStart;
+    const { indent, propertyPrefix } = arrayStart;
     const items: string[] = [];
     let cursor = index + 1;
     let closingComma = "";
     let canCompact = true;
 
     for (; cursor < lines.length; cursor += 1) {
-      const closingLine = lines[cursor].match(
-        new RegExp(`^${indent.replace(/ /g, "\\s")}\\](,?)$`),
-      );
-      if (closingLine) {
-        closingComma = closingLine[1];
+      if (lines[cursor] === `${indent}]` || lines[cursor] === `${indent}],`) {
+        closingComma = lines[cursor].endsWith(",") ? "," : "";
         break;
       }
 
@@ -609,8 +606,32 @@ function compactPrimitiveArrays(json: string): string {
   return formattedLines.join("\n");
 }
 
+function parseJsonArrayStart(line: string): { indent: string; propertyPrefix: string } | null {
+  const trimmedLine = line.trimStart();
+  if (trimmedLine === "[") {
+    return {
+      indent: line.slice(0, line.length - trimmedLine.length),
+      propertyPrefix: "",
+    };
+  }
+
+  if (!trimmedLine.startsWith('"') || !trimmedLine.endsWith(": [")) {
+    return null;
+  }
+
+  return {
+    indent: line.slice(0, line.length - trimmedLine.length),
+    propertyPrefix: trimmedLine.slice(0, -1),
+  };
+}
+
 function isPrimitiveJsonValue(value: string): boolean {
-  return /^("(?:\\.|[^"])*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|true|false|null)$/.test(value);
+  try {
+    const parsedValue = JSON.parse(value) as unknown;
+    return parsedValue === null || ["boolean", "number", "string"].includes(typeof parsedValue);
+  } catch {
+    return false;
+  }
 }
 
 function renderMarkdownResource(resource: ExportedResource, exportedAt: string): string {
