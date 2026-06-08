@@ -45,7 +45,8 @@ export const LegalNoticeScreen = () => {
       <Info icon="pin-outline" text="135 Boulevard Chanzy, 93100 Montreuil" />
 
       <P style={{ marginBottom: 0 }}>
-        Monsieur Yannick Prost est le responsable de publication de l'application.
+        La Délégation interministérielle à l’accueil et à l’intégration des réfugiés est le
+        responsable de publication de l'application.
       </P>
 
       <Separator spacing={SeparatorSpacing.XLarge} fullWidth color={theme.colors.dsfr_purple} />
