@@ -42,7 +42,7 @@ const DispositifCard = (props: Props) => {
   const price = props.dispositif.metadatas?.price;
   const isOnline = props.dispositif.metadatas?.location === "online";
 
-  const badge = useMemo((): { className: string; text: string | null } => {
+  const badge = useMemo(() => {
     if (!isDispositif)
       return { text: t("Dispositif.demarche", "Démarche"), className: styles.badge_demarche };
     const location = props.dispositif.metadatas?.location;
