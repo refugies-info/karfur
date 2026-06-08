@@ -42,7 +42,7 @@ export const LegalNoticeScreen = () => {
         Elle est développée par la MedNum, société coopérative d’intérêt collectif spécialisée sur
         la médiation et l’inclusion numérique.
       </P>
-      <Info icon="pin-outline" text="135 Boulevard Chanzy, 93100 Montreuil" />
+      <Info icon="pin-outline" text="24 Rue de Clichy, 75009 Paris" />
 
       <P style={{ marginBottom: 0 }}>
         La Délégation interministérielle à l’accueil et à l’intégration des réfugiés est le
