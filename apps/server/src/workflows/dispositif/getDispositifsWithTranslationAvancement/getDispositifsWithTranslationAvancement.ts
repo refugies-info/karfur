@@ -1,4 +1,5 @@
 import {
+  DispositifOrigin,
   type GetDispositifsWithTranslationAvancementResponse,
   type Languages,
   TraductionsStatus,
@@ -45,6 +46,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
   const activeDispositifs = await getActiveContents({
     created_at: 1,
     nbMots: 1,
+    origin: 1,
     translations: 1,
     typeContenu: 1,
     webOnly: 1,
@@ -63,6 +65,7 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
   const results: GetDispositifsWithTranslationAvancementResponse[] = [];
 
   activeDispositifs.forEach((dispositif: Dispositif) => {
+    if ((dispositif.origin ?? DispositifOrigin.RI) !== DispositifOrigin.RI) return;
     if (dispositif.webOnly) return; // do not translate webonly content
     const correspondingTrads = traductions.filter(
       (trad) => trad.dispositifId.toString() === dispositif._id.toString(),
@@ -140,6 +143,8 @@ export const getDispositifsWithTranslationAvancement = async (locale: Languages)
     });
   });
 
-  logger.info("[getDispositifsWithTranslationAvancement] got results", { count: results.length });
+  logger.info("[getDispositifsWithTranslationAvancement] got results", {
+    count: results.length,
+  });
   return results;
 };
