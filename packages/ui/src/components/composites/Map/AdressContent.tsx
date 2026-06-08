@@ -24,7 +24,7 @@ export default function AdressContent({ poi }: AdressContentProps) {
         </p>
       ) : null}
       {poi.phone && poi.phone.length > 1 ? (
-        <p className="text-default-grey text-corps-sm !m-0 center buto flex w-full items-center justify-between gap-2">
+        <p className="text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2">
           <a href={`tel:${poi.phone}`} className="flex-1 min-w-0">
             {poi.phone}
           </a>
