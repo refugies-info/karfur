@@ -9,9 +9,6 @@ $headerHeight: 120px;
 }
 
 .main {
-  width: 50%;
-  padding: u(6) u(38) u(20);
-
   &.full_width {
     width: 100%;
     background-color: #fafaff;
@@ -23,16 +20,10 @@ $headerHeight: 120px;
 
 .right {
   background: var(--background-contrast-blue-france);
-  min-height: calc(100vh - $headerHeight); // TODO: improve that
 }
 
 .row {
   display: flex;
-
-  .right,
-  .main {
-    width: 50%;
-  }
 }
 
 .illu {
@@ -44,7 +35,6 @@ $headerHeight: 120px;
 
 .right_content {
   text-align: center;
-  width: 480px;
   margin: u(15) auto 0;
 }
 

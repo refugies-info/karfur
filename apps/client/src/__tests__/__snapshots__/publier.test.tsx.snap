@@ -221,7 +221,7 @@ exports[`publier renders publier 1`] = `
             class="flex gap-20 min-h-[480px]"
           >
             <div
-              class="border-default-grey w-1/2 grow-1 basis-auto border-b"
+              class="border-default-grey grow-1 basis-auto border-b w-1/2"
             >
               <div
                 data-orientation="vertical"
