@@ -344,7 +344,9 @@ function toTargetPath(
   const safeLogicalPath = makeSafeRelativePath(logicalPath);
   const segments = safeLogicalPath.split("/");
   const sourceFolder = segments[0];
-  const mappedSourceFolder = SOURCE_FOLDER_MAP[sourceFolder] || slugifyPathSegment(sourceFolder);
+  const normalizedSourceFolder = sourceFolder.normalize("NFC");
+  const mappedSourceFolder =
+    SOURCE_FOLDER_MAP[normalizedSourceFolder] || slugifyPathSegment(sourceFolder);
   const rawRelativeSegments =
     segments.length > 1 ? segments.slice(1) : [makeSafePathSegment(fileName)];
   const relativeSegments =
@@ -405,16 +407,25 @@ function replaceExtension(value: string, extension: string): string {
 }
 
 function dedupeTargetPath(targetPath: string, seenTargets: Map<string, number>): string {
-  const seen = seenTargets.get(targetPath) || 0;
-  seenTargets.set(targetPath, seen + 1);
-
-  if (seen === 0) {
+  if (!seenTargets.has(targetPath)) {
+    seenTargets.set(targetPath, 1);
     return targetPath;
   }
 
   const extension = path.extname(targetPath);
   const withoutExtension = extension ? targetPath.slice(0, -extension.length) : targetPath;
-  return `${withoutExtension}-${seen + 1}${extension}`;
+  let counter = (seenTargets.get(targetPath) || 1) + 1;
+
+  while (true) {
+    const candidate = `${withoutExtension}-${counter}${extension}`;
+    if (!seenTargets.has(candidate)) {
+      seenTargets.set(targetPath, counter);
+      seenTargets.set(candidate, 1);
+      return candidate;
+    }
+
+    counter += 1;
+  }
 }
 
 function getWeakExtractionReasons(input: {
@@ -748,7 +759,7 @@ function readOptionalNumber(value: unknown): number | undefined {
 }
 
 function isPdf(fileType: string | undefined, extension: string): boolean {
-  return extension === ".pdf" || fileType === "application/pdf";
+  return extension === ".pdf" || fileType?.toLowerCase() === "application/pdf";
 }
 
 function isRecord(value: unknown): value is JsonRecord {
