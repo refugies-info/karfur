@@ -59,16 +59,28 @@ const Layout = (props: Props) => {
           }
         />
       )}
-      <div className={cls(!props.fullWidth && styles.row)}>
-        <main className={cls(styles.main, props.fullWidth && styles.full_width)}>
+      <div className={cls(!props.fullWidth && "flex max-lg:flex-col")}>
+        <main
+          className={cls(
+            styles.main,
+            props.fullWidth && styles.full_width,
+            !props.fullWidth &&
+              "w-1/2 max-lg:w-full pt-6 px-[152px] pb-20 max-lg:px-4 max-lg:pb-10",
+          )}
+        >
           {props.children}
         </main>
 
         {!props.fullWidth && (
-          <div className={styles.right}>
+          <div
+            className={cls(
+              styles.right,
+              "w-1/2 max-lg:w-full min-h-[calc(100vh-120px)] max-lg:min-h-0 max-lg:pt-10 max-lg:px-0 max-lg:pb-[120px]",
+            )}
+          >
             <Image src={AuthIllu} width={720} height={500} alt="" className={styles.illu} />
 
-            <div className={styles.right_content}>
+            <div className={cls(styles.right_content, "w-[480px] max-lg:w-full")}>
               <p className={styles.chapo}>
                 Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info&nbsp;!
               </p>

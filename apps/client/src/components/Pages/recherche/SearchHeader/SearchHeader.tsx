@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
+import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities.ts";
 import type { SearchCountsResponse } from "~/pages/api/search/counts";
 import {
   searchPaginationSelector,
@@ -73,9 +74,11 @@ const SearchHeader = (props: Props) => {
           <div className={styles.notDeployedAlert}>
             <Alert
               closable
-              description={t("Recherche.notDeployedText", {
-                department: departmentsNotDeployed.join(", "),
-              })}
+              description={decodeHTMLEntities(
+                t("Recherche.notDeployedText", {
+                  department: departmentsNotDeployed.join(", "),
+                }),
+              )}
               onClose={hideBanner}
               severity="warning"
               small

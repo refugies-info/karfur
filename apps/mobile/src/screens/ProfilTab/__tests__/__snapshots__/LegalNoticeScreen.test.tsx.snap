@@ -1049,7 +1049,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
               ]
             }
           >
-            135 Boulevard Chanzy, 93100 Montreuil
+            24 Rue de Clichy, 75009 Paris
           </Text>
         </View>
         <Text
@@ -1074,7 +1074,7 @@ exports[`LegalNotice screen should render correctly 1`] = `
             ]
           }
         >
-          Monsieur Yannick Prost est le responsable de publication de l'application.
+          La Délégation interministérielle à l’accueil et à l’intégration des réfugiés est le responsable de publication de l'application.
         </Text>
         <View
           color="#6A6AF4"

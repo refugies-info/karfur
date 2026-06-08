@@ -26,7 +26,7 @@ import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
 import { buildQueryParams, computeSearchResults } from "~/lib/search-helpers";
-import { computeSearchCounts, type SearchCountsResponse } from "~/pages/api/search/counts";
+import { computeSearchCounts } from "~/pages/api/search/counts";
 import styles from "~/scss/pages/recherche.module.scss";
 import { wrapper } from "~/services/configureStore";
 import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
@@ -47,6 +47,7 @@ import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 
 export type UrlSearchQuery = {
   departments?: string | string[];
+  cities?: string | string[];
   needs?: string | Id[];
   themes?: string | Id[];
   age?: string | AgeOptions[];
@@ -63,6 +64,7 @@ const pickRelevantFilters = (q: SearchQuery) => {
   const {
     search,
     departments,
+    cities,
     themes,
     needs,
     age,
@@ -77,6 +79,7 @@ const pickRelevantFilters = (q: SearchQuery) => {
   return {
     search: normSearch,
     departments,
+    cities,
     themes,
     needs,
     age,
@@ -190,6 +193,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
         const queryParams = buildQueryParams({
           search: initialQuery.search || undefined,
           departments: initialQuery.departments,
+          cities: initialQuery.cities,
           themes: initialQuery.themes.map(String),
           needs: initialQuery.needs.map(String),
           age: initialQuery.age,

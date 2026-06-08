@@ -8,6 +8,7 @@ import { DropdownProvider } from "~/components/Pages/recherche/SearchHeader/Filt
 import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls } from "~/lib/classname";
+import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
@@ -124,23 +125,8 @@ const Filters = (props: Props) => {
 
   const { isTablet } = useWindowSize();
 
-  const decodeDepartmentValue = (value: string) => {
-    try {
-      const decoded = decodeURIComponent(value);
-      return decoded
-        .replace(/&#39;/g, "'")
-        .replace(/&quot;/g, '"')
-        .replace(/&amp;/g, "&");
-    } catch (e) {
-      return value
-        .replace(/&#39;/g, "'")
-        .replace(/&quot;/g, '"')
-        .replace(/&amp;/g, "&");
-    }
-  };
-
   const decodedDepartments = useMemo(() => {
-    return query.departments.map((dep) => decodeDepartmentValue(dep));
+    return query.departments.map((dep) => decodeHTMLEntities(dep));
   }, [query.departments]);
 
   const locationLabel = useMemo(() => {
@@ -189,9 +175,11 @@ const Filters = (props: Props) => {
               departmentsNotDeployed.length > 0
                 ? {
                     trigger: "⚠️",
-                    text: t("Recherche.notDeployedText", {
-                      department: departmentsNotDeployed.join(", "),
-                    }),
+                    text: decodeHTMLEntities(
+                      t("Recherche.notDeployedText", {
+                        department: departmentsNotDeployed.join(", "),
+                      }),
+                    ),
                   }
                 : null
             }

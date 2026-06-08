@@ -38,7 +38,7 @@ interface Props {
 const Accordion = (props: Props) => {
   const { finalityConsent } = useConsent();
   const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
-  const { isTablet } = useWindowSize();
+  const { isTablet, isMobile } = useWindowSize();
 
   const isOpen = (index: number) => {
     return open.includes(index);
@@ -88,9 +88,12 @@ const Accordion = (props: Props) => {
   };
 
   return (
-    <div className={cn("flex gap-20", props.className)}>
+    <div className={cn("flex gap-20", (isTablet || isMobile) && "flex-col", props.className)}>
       <div
-        className={cn(props.withImages && "border-default-grey w-1/2 grow-1 basis-auto border-b")}
+        className={cn(
+          props.withImages && "border-default-grey grow-1 basis-auto border-b",
+          props.withImages && !isTablet && !isMobile && "w-1/2",
+        )}
       >
         <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
           {props.items.map((item, i) => {
