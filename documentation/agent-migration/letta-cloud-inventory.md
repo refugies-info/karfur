@@ -48,6 +48,8 @@ Conséquence pour la migration : ne pas baser les scripts d'export ou de synchro
 
 Les 19 fichiers sont répartis dans 4 groupes de sources.
 
+> Les chemins de fichiers ci-dessous sont les chemins exportés depuis Letta Cloud. Les coquilles apparentes dans certains noms de fichiers sont conservées volontairement pour garder un inventaire fidèle à la source exportée.
+
 | Source | Groupe apparent | Rôle dans la migration |
 | --- | --- | --- |
 | `source-0` | `ressources_langage_clair/*` | Règles et références de langage clair |
