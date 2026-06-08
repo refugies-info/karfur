@@ -17,6 +17,10 @@ Frontend app built with NextJS
 Located in `/api-types`
 Typescript types shared between front, back and app
 
+## [Migration agent IA](agent-migration/)
+
+Documentation de migration de l'agent Letta Cloud du Playground vers Letta Code SDK, qmd et le worker GCP.
+
 ## Technical standards
 
 Both of these projects should follow these standards:
