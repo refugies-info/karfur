@@ -14,6 +14,8 @@ Les prochaines PR ajouteront progressivement les contenus exportés, normalisés
 
 ## Structure
 
+> Le dossier `metadatas/` conserve le nom utilisé dans les ressources exportées depuis Letta Cloud, malgré l’anglicisme, afin de préserver la traçabilité avec la source.
+
 | Dossier | Usage |
 | --- | --- |
 | `langage-clair/` | Références de langage clair, chartes, lexiques et guides de transformation rédactionnelle. |
