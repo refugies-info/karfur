@@ -13,10 +13,10 @@ export default function AdressContent({ poi }: AdressContentProps) {
   };
 
   return (
-    <div className="h-full bg-white p-4">
+    <address className="h-full bg-white p-4 not-italic flex flex-col gap-2">
       {poi.address && poi.address.length > 1 ? (
         <p className="text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2">
-          <span className="truncate">{poi.address}</span>
+          <span className="flex-1 min-w-0">{poi.address}</span>
           <CopyButton
             title={t("Dispositif.mapCopyAddress", "Copier l'adresse")}
             onClick={() => clipBoardCopy(poi.address)}
@@ -25,7 +25,9 @@ export default function AdressContent({ poi }: AdressContentProps) {
       ) : null}
       {poi.phone && poi.phone.length > 1 ? (
         <p className="text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2">
-          <span className="truncate">{poi.phone}</span>
+          <a href={`tel:${poi.phone}`} className="flex-1 min-w-0">
+            {poi.phone}
+          </a>
           <CopyButton
             title={t("Dispositif.mapCopyPhone", "Copier le numéro de téléphone")}
             onClick={() => clipBoardCopy(poi.phone as string)}
@@ -34,13 +36,15 @@ export default function AdressContent({ poi }: AdressContentProps) {
       ) : null}
       {poi.email && poi.email !== "ajouter@votreemail.fr" && poi.email.length > 1 ? (
         <p className="text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2">
-          <span className="truncate">{poi.email}</span>
+          <a href={`mailto:${poi.email}`} className="flex-1 min-w-0">
+            {poi.email}
+          </a>
           <CopyButton
             title={t("Dispositif.mapCopyEmail", "Copier l'email")}
             onClick={() => clipBoardCopy(poi.email as string)}
           />
         </p>
       ) : null}
-    </div>
+    </address>
   );
 }

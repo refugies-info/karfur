@@ -72,15 +72,18 @@ Editor preferences are available in the [editor config](https://github.com/entre
 **Product Manager**  
 🔗 [LinkedIn](https://www.linkedin.com/in/eliseprevot/)
 
-### Matthieu Fesselier
+### Camille Yahi Saillard
 **Developer**  
-🔗 [LinkedIn](https://www.linkedin.com/in/matthieu-fesselier/)
+🔗 [LinkedIn](https://www.linkedin.com/in/camille-yahi-saillard-8677a5a6/)
 
 ### Xavier Dumas
 **Support Manager & Content Writer**  
 🔗 [LinkedIn](https://www.linkedin.com/in/xavier-dumas/)
 
-
+### Jérémy Pastouret
+**Developer**
+🔗 [LinkedIn](https://www.linkedin.com/in/jeremy-pastouret/)
+🔗 [Website](https://jeremy-pastouret.netlify.app/)
 
 
 ## Previous team
@@ -162,3 +165,13 @@ To allow the usage of the design system tokens inside tailwind you can take a lo
 ## Extras
 
 # If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
+
+## Scan des vulnérabilités de dépendances
+
+Le projet utilise OWASP CVE Lite CLI pour scanner le lockfile JavaScript/TypeScript avant de partager du code :
+
+```bash
+pnpm security:scan:js
+```
+
+Le hook Husky `pre-push` exécute ce scan avec un seuil `--fail-on high`. Les vulnérabilités faibles et moyennes restent visibles pour la revue, mais seules les vulnérabilités de sévérité haute ou critique bloquent le push.
