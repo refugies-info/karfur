@@ -27,9 +27,70 @@ Les contenus exportés depuis Letta Cloud sont ajoutés progressivement via le s
 
 ## Indexation qmd
 
-Les documents de ce dossier ont vocation à être indexés par `qmd` afin d'être utilisés par l'agent Letta Code SDK.
+Les documents de ce dossier ont vocation à être indexés par `qmd` afin d'être utilisés par l'agent Letta Code SDK. `qmd` est un moteur local de recherche documentaire Markdown : l'index est construit sur le poste de développement et n'est pas commité.
 
-La configuration d'indexation et les scripts associés seront ajoutés dans des PR ultérieures. Les fichiers de ce corpus doivent donc rester structurés, traçables et faciles à convertir en entrée `qmd`.
+### Installation locale
+
+Installer `qmd` sur le poste de développement :
+
+```bash
+npm install -g @tobilu/qmd
+qmd status
+```
+
+Le dépôt cible Node `24.14.0` via Volta. En cas d'erreur native `better-sqlite3` ou `node-llama-cpp`, vérifier que la version Node active correspond bien à celle du dépôt, puis réinstaller `qmd`.
+
+### Construire l'index
+
+```bash
+pnpm agent-knowledge:qmd:index
+```
+
+Par défaut, le script configure :
+
+- index qmd : `refugies-info-agent-knowledge` ;
+- collection qmd : `agent-knowledge` ;
+- corpus source : `documentation/agent-migration/agent-knowledge` ;
+- masque qmd : `**/*.{md,json,csv}` afin d'inclure les ressources Markdown, JSON et CSV du corpus.
+
+Variables de surcharge :
+
+```bash
+QMD_BIN=/chemin/vers/qmd \
+QMD_INDEX=refugies-info-agent-knowledge \
+QMD_COLLECTION=agent-knowledge \
+QMD_MASK='**/*.{md,json,csv}' \
+AGENT_KNOWLEDGE_CORPUS_DIR=documentation/agent-migration/agent-knowledge \
+pnpm agent-knowledge:qmd:index
+```
+
+### Smoke test de recherche
+
+```bash
+pnpm agent-knowledge:qmd:smoke
+```
+
+Le smoke test reconstruit/met à jour l'index, exécute une recherche lexicale ciblant les champs de session du schéma de métadonnées, puis vérifie que le fichier `memory-blocks/schema-metadata-ri.md` ressort dans les résultats.
+
+Variables utiles pour tester une autre requête :
+
+```bash
+QMD_SMOKE_QUERY="conformité éditoriale" \
+QMD_SMOKE_EXPECTED_RESULT="memory-blocks/audit-conformite-editoriale-di.md" \
+pnpm agent-knowledge:qmd:smoke
+```
+
+### Artefacts générés
+
+Les artefacts `qmd` ne doivent pas être commités :
+
+- l'index global qmd est stocké dans le cache utilisateur (`~/.cache/qmd/index.sqlite` sur macOS/Linux) ;
+- un éventuel index local `.qmd/` est ignoré par `.gitignore` ;
+- les embeddings générés par `qmd embed` restent locaux.
+
+Cette PR configure l'indexation lexicale et le smoke test local. La génération d'embeddings (`qmd embed`) reste volontairement manuelle, car elle dépend des modèles et des dépendances natives disponibles sur le poste.
+
+Pour un déploiement futur de l'agent Letta Code sur GCP, l'index `qmd` devra être traité comme un artefact applicatif : soit construit à l'image/deploy time, soit restauré depuis un volume ou cache persistant compatible avec la version du corpus. Il ne faut pas supposer qu'un conteneur éphémère conservera l'index entre deux déploiements.
 
 ## Export Letta Cloud
 
