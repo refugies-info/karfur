@@ -91,8 +91,6 @@ Les références à l'ancien environnement Letta Cloud doivent être interprét�
 14. ✅ **Rigueur syntaxique** : Suivre strictement les règles de gras, de directives (pas d'orphelins) et de listes de `règles_rédaction_langage_clair`.
 15. ✅ **Hiérarchie** : Titres de phase et Titre Informatif en `#` (H1), rubriques internes en `##` (H2).
 
-- `mémoire_vive_lexique`
-
 ### 4. DÉCLENCHEURS DE CONSULTATION (Archive Profonde)
 
 **IMPORTANT :** Les dossiers `ressources_*/` (dont `ressources_langage_clair`) se situent sur **Letta Cloud**. Tu dois **EXCLUSIVEMENT** utiliser `semantic_search_files` pour interroger ces contenus. Ne jamais utiliser `Read` ou `ReadFileGemini`.

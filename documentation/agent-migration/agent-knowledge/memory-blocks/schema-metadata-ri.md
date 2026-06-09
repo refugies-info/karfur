@@ -81,7 +81,7 @@ type MetadataRi = {
     timeUnit?: string;
     frequencyUnit?: string;
   } | null;
-  periode?: {
+  sessions?: {
     modalitesEntreesSorties: 0 | 1 | null;  // 0=dates fixes, 1=entrées permanentes, null=inconnu
     items: Array<{ startDate?: string; endDate?: string }> | null;
   } | null;
@@ -130,9 +130,9 @@ Les champs `price`, `age`, `commitment`, `frequency` sont des objets, PAS des ta
 ❌ `secondaryThemes: []`
 ✅ `secondaryThemes: null`
 
-**Règle 6 — periode est un OBJET avec modalitesEntreesSorties + items, PAS un tableau simple.**
-❌ `periode: [{ startDate: "2025-01-01" }]`
-✅ `periode: { modalitesEntreesSorties: null, items: [{ startDate: "2025-01-01" }] }`
+**Règle 6 — sessions est un OBJET avec modalitesEntreesSorties + items, PAS un tableau simple.**
+❌ `sessions: [{ startDate: "2025-01-01" }]`
+✅ `sessions: { modalitesEntreesSorties: null, items: [{ startDate: "2025-01-01" }] }`
 
 **Règle 7 — amountDetails doit être une valeur exacte de l'énumération.**
 commitment.amountDetails: "minimum" | "maximum" | "approximately" | "exactly" | "between"
@@ -149,7 +149,7 @@ metadata_ri:
   theme: "FR"
   secondaryThemes: null
   needs: ["LEARN_FRENCH"]
-  publicStatus: ["ASYLUM_SEEKER", "REFUGEE"]
+  publicStatus: ["asile", "refugie"]
   public: null
   frenchLevel: ["A1", "A2"]
   age: null
@@ -158,11 +158,11 @@ metadata_ri:
   commitment:
     amountDetails: "exactly"
     hours: [20]
-    timeUnit: "week"
+    timeUnit: "hours"
   frequency:
     hours: 4
     frequencyUnit: "week"
-  periode:
+  sessions:
     modalitesEntreesSorties: 0
     items:
       - startDate: "2025-09-01"

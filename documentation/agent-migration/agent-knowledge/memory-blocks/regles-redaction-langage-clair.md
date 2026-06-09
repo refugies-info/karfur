@@ -145,7 +145,7 @@ Les références à l'ancien environnement Letta Cloud doivent être interprét�
 ### Conseils Pratiques
 
 - ❌ Ne mentionne pas l'organisme ni nombre de places
-- ✅ Donne examples concrets pour que les gens se projettent
+- ✅ Donne des exemples concrets pour que les gens se projettent
 - ✅ Sépare bien les contenus de thèmes différents
 - ✅ Utilise références à `[PLACEHOLDER: DITP-Lexique-Administratif]` pour termes techniques
 

@@ -106,12 +106,12 @@ Les références à l'ancien environnement Letta Cloud doivent être interprét�
 ### 4. LOGIQUES MÉTIER COMPLEXES
 
 #### Prix (`price`)
-**Source:** Champ `extra.action.frais-restants` UNIQUEMENT
-- Si `frais-restants` est vide/null → **gratuit** → `values: [0]` (nombre, pas chaîne)
-- Si `frais-restants` contient un montant → **payant** → `values: [montant]` (ex: `[50]`)
+**Sources:** `extra.conventionnement`, `extra.code-financeur`, puis `extra.action.frais-restants` si un reste à charge explicite est présent.
+- Si `extra.conventionnement` vaut `1` et que `extra.code-financeur` fait partie des financeurs acceptés dans `base-connaissance.md` → **gratuit** → `values: [0]` (nombre, pas chaîne)
+- Sinon → **payant** ; si `frais-restants` contient un montant explicite, l'utiliser dans `values` (ex: `[50]`), sinon documenter le manque en provenance/revue.
 - `details` : omettre si absent (ne pas mettre `details: ""`)
 
-**Note:** Ne PAS utiliser `conventionnement` ni `code-financeur` pour déterminer le prix (filtrage fait en amont lors de la conformité).
+**Note:** Cette logique est volontairement alignée avec `ressources_metadatas/mapping-data-di.md`.
 
 #### Prix details
 **Source:** Interprétation sémantique du JSON complet → tableau `details` de base-connaissance.md
@@ -122,9 +122,9 @@ Les références à l'ancien environnement Letta Cloud doivent être interprét�
 - Format RI: ISO 8601 (ex: 2024-12-18T00:00:00.000Z)
 
 #### Commitment / Frequency
-**Sources (toutes dans `extra`):**
-1. `extra.volume_horaire-hebdomadaire`
-2. `extra.nombre_semaines`
+**Sources :**
+1. `volume_horaire-hebdomadaire` (racine du JSON)
+2. `nombre_semaines` (racine du JSON)
 3. `extra.nombre-heures-total`
 4. `extra.duree-indicative`
 
