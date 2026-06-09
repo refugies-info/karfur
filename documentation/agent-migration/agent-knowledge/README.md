@@ -50,7 +50,8 @@ Par défaut, le script configure :
 
 - index qmd : `refugies-info-agent-knowledge` ;
 - collection qmd : `agent-knowledge` ;
-- corpus source : `documentation/agent-migration/agent-knowledge`.
+- corpus source : `documentation/agent-migration/agent-knowledge` ;
+- masque qmd : `**/*.{md,json,csv}` afin d'inclure les ressources Markdown, JSON et CSV du corpus.
 
 Variables de surcharge :
 
@@ -58,6 +59,7 @@ Variables de surcharge :
 QMD_BIN=/chemin/vers/qmd \
 QMD_INDEX=refugies-info-agent-knowledge \
 QMD_COLLECTION=agent-knowledge \
+QMD_MASK='**/*.{md,json,csv}' \
 AGENT_KNOWLEDGE_CORPUS_DIR=documentation/agent-migration/agent-knowledge \
 pnpm agent-knowledge:qmd:index
 ```

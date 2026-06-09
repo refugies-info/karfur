@@ -13,23 +13,11 @@ EXPECTED_URI="qmd://$QMD_COLLECTION/$EXPECTED_RESULT"
 "$ROOT_DIR/scripts/index-agent-knowledge-qmd.sh"
 
 echo "Recherche smoke test : $SMOKE_QUERY"
-
-SEARCH_OUTPUT=""
-for attempt in 1 2 3 4 5; do
-  SEARCH_OUTPUT="$(
-    "$QMD_BIN" --index "$QMD_INDEX" search "$SMOKE_QUERY" \
-      --collection "$QMD_COLLECTION" \
-      -n 10
-  )"
-
-  if grep -Fq "$EXPECTED_URI" <<<"$SEARCH_OUTPUT"; then
-    break
-  fi
-
-  if [[ "$attempt" != "5" ]]; then
-    sleep 1
-  fi
-done
+SEARCH_OUTPUT="$(
+  "$QMD_BIN" --index "$QMD_INDEX" search "$SMOKE_QUERY" \
+    --collection "$QMD_COLLECTION" \
+    -n 10
+)"
 
 printf '%s\n' "$SEARCH_OUTPUT"
 

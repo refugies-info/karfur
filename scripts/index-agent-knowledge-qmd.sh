@@ -7,6 +7,7 @@ CORPUS_DIR="${AGENT_KNOWLEDGE_CORPUS_DIR:-$ROOT_DIR/documentation/agent-migratio
 QMD_BIN="${QMD_BIN:-qmd}"
 QMD_INDEX="${QMD_INDEX:-refugies-info-agent-knowledge}"
 QMD_COLLECTION="${QMD_COLLECTION:-agent-knowledge}"
+QMD_MASK="${QMD_MASK:-**/*.{md,json,csv}}"
 
 if ! command -v "$QMD_BIN" >/dev/null 2>&1; then
   cat >&2 <<EOF
@@ -29,6 +30,7 @@ fi
 echo "Index qmd            : $QMD_INDEX"
 echo "Collection qmd       : $QMD_COLLECTION"
 echo "Corpus agent-knowledge: $CORPUS_DIR"
+echo "Masque qmd           : $QMD_MASK"
 
 if "$QMD_BIN" --index "$QMD_INDEX" collection show "$QMD_COLLECTION" >/dev/null 2>&1; then
   echo "Collection existante : suppression avant réindexation du worktree courant."
@@ -36,6 +38,6 @@ if "$QMD_BIN" --index "$QMD_INDEX" collection show "$QMD_COLLECTION" >/dev/null 
 fi
 
 echo "Création de la collection."
-"$QMD_BIN" --index "$QMD_INDEX" collection add "$CORPUS_DIR" --name "$QMD_COLLECTION"
+"$QMD_BIN" --index "$QMD_INDEX" collection add "$CORPUS_DIR" --name "$QMD_COLLECTION" --mask "$QMD_MASK"
 
 echo "Indexation qmd terminée."
