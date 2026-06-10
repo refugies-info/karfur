@@ -93,7 +93,8 @@
       "i18next-fs-backend": "2.6.4",
       "follow-redirects": "1.16.0",
       "uuid": "11.1.1",
-      "check-dependency-version-consistency>js-yaml": "4.1.1"
+      "check-dependency-version-consistency>js-yaml": "4.1.1",
+      "shell-quote": "1.8.4"
     },
     "patchedDependencies": {
       "@codegouvfr/react-dsfr@1.20.2": "patches/@codegouvfr__react-dsfr@1.20.2.patch"
