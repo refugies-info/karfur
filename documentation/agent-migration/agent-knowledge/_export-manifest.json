@@ -5,10 +5,10 @@
   "generatedFiles": [
     "metadatas/mapping-data.md",
     "langage-clair/[PROCESS] Cas éditoriaux et jurisprudence.md",
-    "langage-clair/[guide dannotation] agent transformateur refugies-info.md",
+    "langage-clair/[Guide d'annotation] agent transformateur refugies-info.md",
     "langage-clair/DITP-Lexique-Administratif.md",
-    "langage-clair/[Charte éditorial] Réfugiés.info.md",
-    "langage-clair/[Lexique] administatif maison de la sagesse.md",
+    "langage-clair/[Charte éditoriale] Réfugiés.info.md",
+    "langage-clair/[Lexique] administratif maison de la sagesse.md",
     "langage-clair/[personas] bpi.md",
     "langage-clair/[Schéma] Fiche dispositif RI data.json",
     "metadatas/dispositif-letta.json",
@@ -59,9 +59,11 @@
       "processingStatus": "completed",
       "sourceId": "source-0",
       "sourceName": "ressources_langage_clair",
-      "targetPath": "langage-clair/[guide dannotation] agent transformateur refugies-info.md",
+      "targetPath": "langage-clair/[Guide d'annotation] agent transformateur refugies-info.md",
       "totalChunks": 15,
-      "weakExtractionReasons": []
+      "weakExtractionReasons": [],
+      "previousTargetPath": "langage-clair/[guide dannotation] agent transformateur refugies-info.md",
+      "targetPathNormalizationReason": "Correction du libellé du chemin cible, source Letta Cloud conservée en provenance"
     },
     {
       "chunksEmbedded": 970,
@@ -89,9 +91,11 @@
       "processingStatus": "completed",
       "sourceId": "source-0",
       "sourceName": "ressources_langage_clair",
-      "targetPath": "langage-clair/[Charte éditorial] Réfugiés.info.md",
+      "targetPath": "langage-clair/[Charte éditoriale] Réfugiés.info.md",
       "totalChunks": 12,
-      "weakExtractionReasons": []
+      "weakExtractionReasons": [],
+      "previousTargetPath": "langage-clair/[Charte éditorial] Réfugiés.info.md",
+      "targetPathNormalizationReason": "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance"
     },
     {
       "chunksEmbedded": 114,
@@ -104,9 +108,11 @@
       "processingStatus": "completed",
       "sourceId": "source-0",
       "sourceName": "ressources_langage_clair",
-      "targetPath": "langage-clair/[Lexique] administatif maison de la sagesse.md",
+      "targetPath": "langage-clair/[Lexique] administratif maison de la sagesse.md",
       "totalChunks": 114,
-      "weakExtractionReasons": []
+      "weakExtractionReasons": [],
+      "previousTargetPath": "langage-clair/[Lexique] administatif maison de la sagesse.md",
+      "targetPathNormalizationReason": "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance"
     },
     {
       "chunksEmbedded": 7,

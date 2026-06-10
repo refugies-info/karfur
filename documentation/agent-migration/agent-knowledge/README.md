@@ -16,14 +16,35 @@ Les contenus exportés depuis Letta Cloud sont ajoutés progressivement via le s
 
 > Le dossier `metadatas/` conserve le nom utilisé dans les ressources exportées depuis Letta Cloud, malgré l’anglicisme, afin de préserver la traçabilité avec la source.
 
-| Dossier | Usage |
-| --- | --- |
-| `langage-clair/` | Références de langage clair, chartes, lexiques et guides de transformation rédactionnelle. |
-| `exemples-redaction/` | Exemples de fiches initiales et finales utilisés pour guider les transformations. |
-| `metadatas/` | Mapping, schémas et références de métadonnées Réfugiés.info. |
-| `conformite-editoriale/` | Règles, jurisprudence et référentiels de conformité éditoriale. |
-| `memory-blocks/` | Blocs de mémoire vive critiques d'Agathe, après extraction et revue. |
-| `archival/` | Mémoire archivée utile après tri : décisions, jurisprudence et historique produit. |
+| Dossier                  | Usage                                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `langage-clair/`         | Références de langage clair, chartes, lexiques et guides de transformation rédactionnelle. |
+| `exemples-redaction/`    | Exemples de fiches initiales et finales utilisés pour guider les transformations.          |
+| `metadatas/`             | Mapping, schémas et références de métadonnées Réfugiés.info.                               |
+| `conformite-editoriale/` | Règles, jurisprudence et référentiels de conformité éditoriale.                            |
+| `memory-blocks/`         | Blocs de mémoire vive critiques d'Agathe, après extraction et revue.                       |
+| `archival/`              | Mémoire archivée utile après tri : décisions, jurisprudence et historique produit.         |
+
+## Convention de nommage
+
+Les chemins source exportés depuis Letta Cloud sont conservés à l'identique dans les métadonnées de provenance :
+
+- frontmatter `original_file_name` et `source_path` ;
+- manifeste `_export-manifest.json` (`fileName`, `logicalPath`, `originalFileName`).
+
+Les chemins cible versionnés dans le dépôt peuvent corriger une coquille évidente quand le nom propre sera utilisé par les skills, `qmd` ou la documentation de migration. Dans ce cas, la ressource doit documenter :
+
+- `previous_target_path` ;
+- `target_path_normalization_reason` ;
+- la correspondance dans `_export-manifest.json`.
+
+Normalisations appliquées :
+
+| Ancien chemin cible                                                       | Chemin cible versionné                                                     | Raison                                                          |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `langage-clair/[Charte éditorial] Réfugiés.info.md`                       | `langage-clair/[Charte éditoriale] Réfugiés.info.md`                       | Correction de la coquille « éditorial » → « éditoriale ».       |
+| `langage-clair/[Lexique] administatif maison de la sagesse.md`            | `langage-clair/[Lexique] administratif maison de la sagesse.md`            | Correction de la coquille « administatif » → « administratif ». |
+| `langage-clair/[guide dannotation] agent transformateur refugies-info.md` | `langage-clair/[Guide d'annotation] agent transformateur refugies-info.md` | Correction du libellé « dannotation » → « d'annotation ».       |
 
 ## Indexation qmd
 

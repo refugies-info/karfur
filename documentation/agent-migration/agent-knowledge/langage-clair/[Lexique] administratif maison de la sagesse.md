@@ -6,6 +6,8 @@ file_size_bytes: 1175719
 file_type: "application/pdf"
 original_file_name: "[Lexique] administatif maison de la sagesse.pdf"
 processing_status: "completed"
+previous_target_path: "langage-clair/[Lexique] administatif maison de la sagesse.md"
+target_path_normalization_reason: "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance"
 source_id: "source-0"
 source_name: "ressources_langage_clair"
 source_path: "ressources_langage_clair/ressources_langage_clair/[Lexique] administatif maison de la sagesse.pdf"
@@ -13,7 +15,7 @@ total_chunks: 114
 weak_extraction_reasons: []
 ---
 
-# [Lexique] administatif maison de la sagesse
+# [Lexique] administratif maison de la sagesse
 
 > Source Letta Cloud : `ressources_langage_clair/ressources_langage_clair/[Lexique] administatif maison de la sagesse.pdf`
 

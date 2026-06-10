@@ -10,18 +10,18 @@ Les skills sont stockés dans le dossier racine [`skills/`](../../../skills), af
 
 ## Mapping des commandes historiques
 
-| Slash command historique | Skill Letta Code | Rôle |
-| --- | --- | --- |
-| `/audit` | [`audit`](../../../skills/audit/SKILL.md) | Exécuter l'audit de conformité éditoriale et la détection de doublons. |
-| `/redaction` | [`redaction`](../../../skills/redaction/SKILL.md) | Transformer une fiche Data Inclusion en Markdown Réfugiés.info en langage clair. |
-| `/metadata` | [`metadata`](../../../skills/metadata/SKILL.md) | Produire le frontmatter `metadata_ri` et la provenance des métadonnées. |
-| `/pipeline` | Composition `audit` + `redaction` + `metadata` | Conserver le workflow historique Audit → Rédaction → Métadonnées. Aucun skill dédié n'est créé dans cette PR. |
+| Slash command historique | Skill Letta Code                                  | Rôle                                                                                                          |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `/audit`                 | [`audit`](../../../skills/audit/SKILL.md)         | Exécuter l'audit de conformité éditoriale et la détection de doublons.                                        |
+| `/redaction`             | [`redaction`](../../../skills/redaction/SKILL.md) | Transformer une fiche Data Inclusion en Markdown Réfugiés.info en langage clair.                              |
+| `/metadata`              | [`metadata`](../../../skills/metadata/SKILL.md)   | Produire le frontmatter `metadata_ri` et la provenance des métadonnées.                                       |
+| `/pipeline`              | Composition `audit` + `redaction` + `metadata`    | Conserver le workflow historique Audit → Rédaction → Métadonnées. Aucun skill dédié n'est créé dans cette PR. |
 
 ## Mapping des commandes ajoutées par la migration
 
-| Slash command cible | Skill Letta Code | Rôle |
-| --- | --- | --- |
-| `/translate` | [`translate`](../../../skills/translate/SKILL.md) | Traduire ou vérifier un contenu Réfugiés.info en préservant la structure Markdown. |
+| Slash command cible | Skill Letta Code                                  | Rôle                                                                               |
+| ------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `/translate`        | [`translate`](../../../skills/translate/SKILL.md) | Traduire ou vérifier un contenu Réfugiés.info en préservant la structure Markdown. |
 
 ## Relation avec le corpus `agent-knowledge`
 
@@ -32,7 +32,7 @@ Les skills ne dupliquent pas les règles métier longues. Ils pointent vers le c
 - `documentation/agent-migration/agent-knowledge/metadatas/` pour les schémas et mappings ;
 - `documentation/agent-migration/agent-knowledge/conformite-editoriale/` pour les référentiels de conformité.
 
-Les chemins de fichiers issus de l'export Letta Cloud sont volontairement conservés à l'identique, y compris quand ils contiennent une coquille. Si un libellé plus propre est nécessaire pour l'interface ou la documentation métier, l'ajouter comme alias lisible sans renommer le chemin source.
+Les skills référencent les chemins cible versionnés du corpus. Les chemins source Letta Cloud restent conservés dans la provenance (`source_path`, `original_file_name`, manifeste), même quand ils contiennent une coquille. Les corrections de chemins cible sont documentées dans la [convention de nommage du corpus](../agent-knowledge/README.md#convention-de-nommage).
 
 ## Notes de migration
 

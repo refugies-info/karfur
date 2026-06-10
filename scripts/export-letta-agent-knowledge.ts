@@ -15,6 +15,21 @@ const SOURCE_FOLDER_MAP: Record<string, string> = {
   ressources_conformité_éditoriale: "conformite-editoriale",
 };
 
+const TARGET_PATH_RENAMES: Record<string, { reason: string; targetPath: string }> = {
+  "langage-clair/[Charte éditorial] Réfugiés.info.md": {
+    reason: "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance",
+    targetPath: "langage-clair/[Charte éditoriale] Réfugiés.info.md",
+  },
+  "langage-clair/[Lexique] administatif maison de la sagesse.md": {
+    reason: "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance",
+    targetPath: "langage-clair/[Lexique] administratif maison de la sagesse.md",
+  },
+  "langage-clair/[guide dannotation] agent transformateur refugies-info.md": {
+    reason: "Correction du libellé du chemin cible, source Letta Cloud conservée en provenance",
+    targetPath: "langage-clair/[Guide d'annotation] agent transformateur refugies-info.md",
+  },
+};
+
 const DEFAULT_EXCLUDED_SOURCE_NAMES = new Set(["ressources_exemples_redaction"]);
 const DEFAULT_EXCLUSION_REASON = "source retirée du corpus cible après revue qualité";
 
@@ -46,11 +61,19 @@ type ExportedResource = {
   logicalPath: string;
   originalFileName?: string;
   processingStatus?: string;
+  previousTargetPath?: string;
   sourceId?: string;
   sourceName?: string;
   targetPath: string;
+  targetPathNormalizationReason?: string;
   totalChunks?: number;
   weakExtractionReasons: string[];
+};
+
+type TargetPathResult = {
+  previousTargetPath?: string;
+  targetPath: string;
+  targetPathNormalizationReason?: string;
 };
 
 type ExcludedResource = Omit<ExportedResource, "content"> & {
@@ -260,10 +283,8 @@ function normalizeResources(agentExport: JsonRecord): ExportedResource[] {
     const logicalPath = deriveLogicalPath(file, fileName, sourceName);
     const fileType = readOptionalString(file.file_type);
     const originalExtension = path.extname(fileName || logicalPath).toLowerCase();
-    const targetPath = dedupeTargetPath(
-      toTargetPath(logicalPath, fileName, fileType, originalExtension),
-      seenTargets,
-    );
+    const targetPathResult = toTargetPath(logicalPath, fileName, fileType, originalExtension);
+    const targetPath = dedupeTargetPath(targetPathResult.targetPath, seenTargets);
     const totalChunks = readOptionalNumber(file.total_chunks);
     const chunksEmbedded = readOptionalNumber(file.chunks_embedded);
     const content = readOptionalString(file.content);
@@ -290,9 +311,11 @@ function normalizeResources(agentExport: JsonRecord): ExportedResource[] {
       logicalPath,
       originalFileName: readOptionalString(file.original_file_name),
       processingStatus,
+      previousTargetPath: targetPathResult.previousTargetPath,
       sourceId,
       sourceName,
       targetPath,
+      targetPathNormalizationReason: targetPathResult.targetPathNormalizationReason,
       totalChunks,
       weakExtractionReasons,
     };
@@ -340,7 +363,7 @@ function toTargetPath(
   fileName: string,
   fileType: string | undefined,
   originalExtension: string,
-): string {
+): TargetPathResult {
   const safeLogicalPath = makeSafeRelativePath(logicalPath);
   const segments = safeLogicalPath.split("/");
   const sourceFolder = segments[0];
@@ -352,17 +375,32 @@ function toTargetPath(
   const relativeSegments =
     rawRelativeSegments[0] === sourceFolder ? rawRelativeSegments.slice(1) : rawRelativeSegments;
   const normalizedSegments = [mappedSourceFolder, ...relativeSegments];
-  const normalizedPath = normalizedSegments.join("/");
+  const normalizedPath = normalizedSegments.join("/").normalize("NFC");
+
+  let targetPath: string;
 
   if (isPdf(fileType, originalExtension)) {
-    return replaceExtension(normalizedPath, ".md");
+    targetPath = replaceExtension(normalizedPath, ".md");
+  } else if (TEXT_EXTENSIONS.has(originalExtension)) {
+    targetPath = normalizedPath;
+  } else {
+    targetPath = replaceExtension(normalizedPath, ".md");
   }
 
-  if (TEXT_EXTENSIONS.has(originalExtension)) {
-    return normalizedPath;
+  return applyTargetPathRename(targetPath);
+}
+
+function applyTargetPathRename(targetPath: string): TargetPathResult {
+  const rename = TARGET_PATH_RENAMES[targetPath];
+  if (!rename) {
+    return { targetPath };
   }
 
-  return replaceExtension(normalizedPath, ".md");
+  return {
+    previousTargetPath: targetPath,
+    targetPath: rename.targetPath,
+    targetPathNormalizationReason: rename.reason,
+  };
 }
 
 function makeSafeRelativePath(value: string): string {
@@ -646,7 +684,7 @@ function isPrimitiveJsonValue(value: string): boolean {
 }
 
 function renderMarkdownResource(resource: ExportedResource, exportedAt: string): string {
-  const title = path.basename(resource.fileName, path.extname(resource.fileName));
+  const title = path.basename(resource.targetPath, path.extname(resource.targetPath));
   const frontmatter = {
     chunks_embedded: resource.chunksEmbedded,
     exported_at: exportedAt,
@@ -655,9 +693,11 @@ function renderMarkdownResource(resource: ExportedResource, exportedAt: string):
     file_type: resource.fileType,
     original_file_name: resource.originalFileName,
     processing_status: resource.processingStatus,
+    previous_target_path: resource.previousTargetPath,
     source_id: resource.sourceId,
     source_name: resource.sourceName,
     source_path: resource.logicalPath,
+    target_path_normalization_reason: resource.targetPathNormalizationReason,
     total_chunks: resource.totalChunks,
     weak_extraction_reasons: resource.weakExtractionReasons,
   };

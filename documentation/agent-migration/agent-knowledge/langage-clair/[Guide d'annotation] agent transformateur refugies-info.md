@@ -6,6 +6,8 @@ file_size_bytes: 11826
 file_type: "text/x-markdown"
 original_file_name: "[guide dannotation] agent transformateur refugies-info.md"
 processing_status: "completed"
+previous_target_path: "langage-clair/[guide dannotation] agent transformateur refugies-info.md"
+target_path_normalization_reason: "Correction du libellé du chemin cible, source Letta Cloud conservée en provenance"
 source_id: "source-0"
 source_name: "ressources_langage_clair"
 source_path: "ressources_langage_clair/ressources_langage_clair/[guide dannotation] agent transformateur refugies-info.md"
@@ -13,7 +15,7 @@ total_chunks: 15
 weak_extraction_reasons: []
 ---
 
-# [guide dannotation] agent transformateur refugies-info
+# [Guide d'annotation] agent transformateur refugies-info
 
 > Source Letta Cloud : `ressources_langage_clair/ressources_langage_clair/[guide dannotation] agent transformateur refugies-info.md`
 

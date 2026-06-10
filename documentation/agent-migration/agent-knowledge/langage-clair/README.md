@@ -14,4 +14,6 @@ Il correspond au groupe `ressources_langage_clair/*` identifié dans l'inventair
 
 ## Notes de migration
 
-Les chemins d'origine exportés depuis Letta Cloud doivent être conservés ou documentés pour garder la traçabilité. Les éventuelles corrections de noms ou de coquilles doivent être explicites.
+Les chemins d'origine exportés depuis Letta Cloud doivent être conservés dans la provenance (`source_path`, `original_file_name`, manifeste) pour garder la traçabilité.
+
+Les chemins cible versionnés peuvent corriger une coquille évidente. Les corrections déjà appliquées dans ce dossier sont documentées dans le [README du corpus](../README.md#convention-de-nommage).
