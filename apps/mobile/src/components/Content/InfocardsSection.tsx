@@ -6,7 +6,7 @@ import {
 } from "@refugies-info/api-types";
 import type React from "react";
 import { memo, useMemo } from "react";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import {
@@ -176,13 +176,15 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
                           <DescriptionText>
                             {`${t("content_screen.session_from", "Du")} ${start} ${t("content_screen.session_to", "au")} ${end}`}
                           </DescriptionText>
-                          {past && (
+                        </ReadableText>
+                        {past && (
+                          <View style={{ marginTop: 4 }}>
                             <Badge
                               type="error"
                               text={t("content_screen.session_past", "DATE DÉPASSÉE")}
                             />
-                          )}
-                        </ReadableText>
+                          </View>
+                        )}
                       </InfocardTextContainer>
                     </Columns>
                   );
