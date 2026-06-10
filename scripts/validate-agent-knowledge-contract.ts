@@ -38,18 +38,26 @@ async function main(): Promise<void> {
   await assertDirectoryExists(CORPUS_DIR, "Corpus agent-knowledge introuvable");
   await assertDirectoryExists(SKILLS_DIR, "Dossier skills introuvable");
 
+  if (failures.length > 0) {
+    printFailuresAndExit();
+  }
+
   validateManifest();
   await validateSkillReferences();
 
   if (failures.length > 0) {
-    console.error("Contrat agent-knowledge invalide :");
-    for (const failure of failures) {
-      console.error(`- ${failure}`);
-    }
-    process.exit(1);
+    printFailuresAndExit();
   }
 
   console.log("Contrat agent-knowledge valide.");
+}
+
+function printFailuresAndExit(): never {
+  console.error("Contrat agent-knowledge invalide :");
+  for (const failure of failures) {
+    console.error(`- ${failure}`);
+  }
+  process.exit(1);
 }
 
 async function assertDirectoryExists(directoryPath: string, message: string): Promise<void> {
@@ -109,7 +117,13 @@ function validateManifest(): void {
 
 function readJsonFile(filePath: string): unknown {
   try {
-    return JSON.parse(readFileSync(filePath, "utf8")) as unknown;
+    const parsed = JSON.parse(readFileSync(filePath, "utf8")) as unknown;
+    if (isRecord(parsed)) {
+      return parsed;
+    }
+
+    failures.push(`${filePath}: le contenu JSON doit être un objet`);
+    return {};
   } catch (error) {
     failures.push(`${filePath}: JSON invalide ou fichier illisible (${String(error)})`);
     return {};
@@ -173,7 +187,7 @@ async function findSkillFiles(directoryPath: string): Promise<string[]> {
   const skillFiles: string[] = [];
 
   for (const entry of entries) {
-    if (!entry.isDirectory()) {
+    if (!entry.isDirectory() || entry.name.startsWith(".")) {
       continue;
     }
 
@@ -197,7 +211,7 @@ function extractCorpusReferences(content: string): string[] {
   let match: RegExpExecArray | null;
 
   while ((match = codeSpanRegex.exec(content)) !== null) {
-    const reference = match[1];
+    const reference = match[1].trim();
     if (CORPUS_REFERENCE_PREFIXES.some((prefix) => reference.startsWith(prefix))) {
       references.add(reference);
     }
@@ -209,6 +223,11 @@ function extractCorpusReferences(content: string): string[] {
 function validateCorpusTargetPath(relativePath: string, context: string): void {
   validateNfc(relativePath, context);
 
+  if (path.isAbsolute(relativePath)) {
+    failures.push(`${context}: chemin absolu refusé (${relativePath})`);
+    return;
+  }
+
   const absolutePath = path.resolve(CORPUS_DIR, relativePath);
   const relativeFromCorpus = path.relative(CORPUS_DIR, absolutePath);
   if (relativeFromCorpus.startsWith("..") || path.isAbsolute(relativeFromCorpus)) {
@@ -216,12 +235,8 @@ function validateCorpusTargetPath(relativePath: string, context: string): void {
     return;
   }
 
-  try {
-    const stats = statSyncSafe(absolutePath);
-    if (!stats?.isFile()) {
-      failures.push(`${context}: fichier introuvable dans le corpus (${relativePath})`);
-    }
-  } catch {
+  const stats = statSyncSafe(absolutePath);
+  if (!stats?.isFile()) {
     failures.push(`${context}: fichier introuvable dans le corpus (${relativePath})`);
   }
 }
