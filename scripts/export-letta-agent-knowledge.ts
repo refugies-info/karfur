@@ -391,14 +391,19 @@ function toTargetPath(
 }
 
 function applyTargetPathRename(targetPath: string): TargetPathResult {
-  const rename = TARGET_PATH_RENAMES[targetPath];
-  if (!rename) {
-    return { targetPath };
+  const normalizedTargetPath = targetPath.normalize("NFC");
+  const renameEntry = Object.entries(TARGET_PATH_RENAMES).find(
+    ([path]) => path.normalize("NFC") === normalizedTargetPath,
+  );
+
+  if (!renameEntry) {
+    return { targetPath: normalizedTargetPath };
   }
 
+  const [, rename] = renameEntry;
   return {
-    previousTargetPath: targetPath,
-    targetPath: rename.targetPath,
+    previousTargetPath: normalizedTargetPath,
+    targetPath: rename.targetPath.normalize("NFC"),
     targetPathNormalizationReason: rename.reason,
   };
 }

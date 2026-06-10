@@ -4,13 +4,13 @@
   "generatedAt": "2026-06-08T15:50:31.834Z",
   "generatedFiles": [
     "metadatas/mapping-data.md",
-    "langage-clair/[PROCESS] Cas éditoriaux et jurisprudence.md",
+    "langage-clair/[PROCESS] Cas éditoriaux et jurisprudence.md",
     "langage-clair/[Guide d'annotation] agent transformateur refugies-info.md",
     "langage-clair/DITP-Lexique-Administratif.md",
     "langage-clair/[Charte éditoriale] Réfugiés.info.md",
     "langage-clair/[Lexique] administratif maison de la sagesse.md",
     "langage-clair/[personas] bpi.md",
-    "langage-clair/[Schéma] Fiche dispositif RI data.json",
+    "langage-clair/[Schéma] Fiche dispositif RI data.json",
     "metadatas/dispositif-letta.json",
     "metadatas/base-connaissance.md",
     "metadatas/mapping-data-di.md",
@@ -44,7 +44,7 @@
       "processingStatus": "completed",
       "sourceId": "source-0",
       "sourceName": "ressources_langage_clair",
-      "targetPath": "langage-clair/[PROCESS] Cas éditoriaux et jurisprudence.md",
+      "targetPath": "langage-clair/[PROCESS] Cas éditoriaux et jurisprudence.md",
       "totalChunks": 48,
       "weakExtractionReasons": []
     },
@@ -94,7 +94,7 @@
       "targetPath": "langage-clair/[Charte éditoriale] Réfugiés.info.md",
       "totalChunks": 12,
       "weakExtractionReasons": [],
-      "previousTargetPath": "langage-clair/[Charte éditorial] Réfugiés.info.md",
+      "previousTargetPath": "langage-clair/[Charte éditorial] Réfugiés.info.md",
       "targetPathNormalizationReason": "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance"
     },
     {
@@ -140,7 +140,7 @@
       "processingStatus": "completed",
       "sourceId": "source-0",
       "sourceName": "ressources_langage_clair",
-      "targetPath": "langage-clair/[Schéma] Fiche dispositif RI data.json",
+      "targetPath": "langage-clair/[Schéma] Fiche dispositif RI data.json",
       "totalChunks": 48,
       "weakExtractionReasons": []
     },
@@ -256,7 +256,7 @@
       "processingStatus": "completed",
       "sourceId": "source-1",
       "sourceName": "ressources_exemples_redaction",
-      "targetPath": "exemples-redaction/Version finale - Solenciel - Réfugiés.info - février 2025.md",
+      "targetPath": "exemples-redaction/Version finale - Solenciel - Réfugiés.info - février 2025.md",
       "totalChunks": 1,
       "weakExtractionReasons": ["PDF avec un seul chunk indexé, extraction à relire"],
       "exclusionReason": "source retirée du corpus cible après revue qualité"
@@ -272,7 +272,7 @@
       "processingStatus": "completed",
       "sourceId": "source-1",
       "sourceName": "ressources_exemples_redaction",
-      "targetPath": "exemples-redaction/Version finale - Alliance française Aix MArseille - Réfugiés.info - sept 2025.md",
+      "targetPath": "exemples-redaction/Version finale - Alliance française Aix MArseille - Réfugiés.info - sept 2025.md",
       "totalChunks": 1,
       "weakExtractionReasons": ["PDF avec un seul chunk indexé, extraction à relire"],
       "exclusionReason": "source retirée du corpus cible après revue qualité"
@@ -288,7 +288,7 @@
       "processingStatus": "completed",
       "sourceId": "source-1",
       "sourceName": "ressources_exemples_redaction",
-      "targetPath": "exemples-redaction/Version finale - ADFIC Formation de français - Réfugiés.info - juin 2024.md",
+      "targetPath": "exemples-redaction/Version finale - ADFIC Formation de français - Réfugiés.info - juin 2024.md",
       "totalChunks": 1,
       "weakExtractionReasons": ["PDF avec un seul chunk indexé, extraction à relire"],
       "exclusionReason": "source retirée du corpus cible après revue qualité"
@@ -304,7 +304,7 @@
       "processingStatus": "completed",
       "sourceId": "source-1",
       "sourceName": "ressources_exemples_redaction",
-      "targetPath": "exemples-redaction/Version initiale - Solenciel - Réfugiés.info - février 2025.md",
+      "targetPath": "exemples-redaction/Version initiale - Solenciel - Réfugiés.info - février 2025.md",
       "totalChunks": 1,
       "weakExtractionReasons": ["PDF avec un seul chunk indexé, extraction à relire"],
       "exclusionReason": "source retirée du corpus cible après revue qualité"
@@ -320,7 +320,7 @@
       "processingStatus": "completed",
       "sourceId": "source-1",
       "sourceName": "ressources_exemples_redaction",
-      "targetPath": "exemples-redaction/Version initiale - Alliance française Aix Marseille BOp 104  -Réfugiés.info - sept 2025.md",
+      "targetPath": "exemples-redaction/Version initiale - Alliance française Aix Marseille BOp 104  -Réfugiés.info - sept 2025.md",
       "totalChunks": 1,
       "weakExtractionReasons": ["PDF avec un seul chunk indexé, extraction à relire"],
       "exclusionReason": "source retirée du corpus cible après revue qualité"
