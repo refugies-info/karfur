@@ -49,19 +49,20 @@ qmd mcp stop                # Stop daemon
 
 ## Tools
 
-### structured_search
+### query
 
-Search with pre-expanded queries.
+Search with pre-expanded queries. Use `collections` to restrict the search to one or more collections.
 
 ```json
 {
+  "intent": "Find the project metadata schema, not generic metadata docs.",
   "searches": [
-    { "type": "lex", "query": "keyword phrases" },
-    { "type": "vec", "query": "natural language question" },
-    { "type": "hyde", "query": "hypothetical answer passage..." }
+    { "type": "lex", "query": "metadata_ri modalitesEntreesSorties" },
+    { "type": "vec", "query": "Réfugiés.info metadata schema for sessions and dates" },
+    { "type": "hyde", "query": "A schema document explains metadata_ri fields, including sessions and modalitesEntreesSorties." }
   ],
+  "collections": ["agent-knowledge"],
   "limit": 10,
-  "collection": "optional",
   "minScore": 0.0
 }
 ```
@@ -79,8 +80,8 @@ Retrieve document by path or `#docid`.
 | Param | Type | Description |
 |-------|------|-------------|
 | `path` | string | File path or `#docid` |
-| `full` | bool? | Return full content |
-| `lineNumbers` | bool? | Add line numbers |
+| `full` | boolean? | Return full content |
+| `lineNumbers` | boolean? | Add line numbers |
 
 ### multi_get
 
