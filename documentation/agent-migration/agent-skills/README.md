@@ -1,17 +1,21 @@
 # Skills agent Playground
 
-Ce dossier prépare la structure des skills Letta Code qui remplaceront les slash commands historiques du Playground Agathe.
+Ce document mappe les slash commands historiques du Playground Agathe vers les skills Letta Code versionnés dans le dépôt.
 
-Cette PR crée uniquement les fichiers `SKILL.md` versionnés. Elle ne branche pas encore ces skills dans un runtime Letta Code, ne modifie aucun worker et ne change aucun comportement applicatif.
+Cette PR crée uniquement la structure des skills. Elle ne branche pas encore ces skills dans un runtime Letta Code, ne modifie aucun worker et ne change aucun comportement applicatif.
+
+## Emplacement des skills
+
+Les skills sont stockés dans le dossier racine [`skills/`](../../../skills), afin de suivre la convention standard Letta Code et de préparer leur chargement futur par le runtime.
 
 ## Mapping des commandes historiques
 
 | Slash command historique | Skill Letta Code | Rôle |
 | --- | --- | --- |
-| `/audit` | [`audit`](./audit/SKILL.md) | Exécuter l'audit de conformité éditoriale et la détection de doublons. |
-| `/redaction` | [`redaction`](./redaction/SKILL.md) | Transformer une fiche Data Inclusion en Markdown Réfugiés.info en langage clair. |
-| `/metadata` | [`metadata`](./metadata/SKILL.md) | Produire le frontmatter `metadata_ri` et la provenance des métadonnées. |
-| `/translate` | [`translate`](./translate/SKILL.md) | Traduire ou vérifier un contenu Réfugiés.info en préservant la structure Markdown. |
+| `/audit` | [`audit`](../../../skills/audit/SKILL.md) | Exécuter l'audit de conformité éditoriale et la détection de doublons. |
+| `/redaction` | [`redaction`](../../../skills/redaction/SKILL.md) | Transformer une fiche Data Inclusion en Markdown Réfugiés.info en langage clair. |
+| `/metadata` | [`metadata`](../../../skills/metadata/SKILL.md) | Produire le frontmatter `metadata_ri` et la provenance des métadonnées. |
+| `/translate` | [`translate`](../../../skills/translate/SKILL.md) | Traduire ou vérifier un contenu Réfugiés.info en préservant la structure Markdown. |
 
 ## Relation avec le corpus `agent-knowledge`
 
