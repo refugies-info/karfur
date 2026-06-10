@@ -101,6 +101,45 @@ QMD_SMOKE_EXPECTED_RESULT="memory-blocks/audit-conformite-editoriale-di.md" \
 pnpm agent-knowledge:qmd:smoke
 ```
 
+### Contrat de test skills/corpus/qmd
+
+Avant d'ajouter ou de modifier un skill, lancer le contrat local complet :
+
+```bash
+pnpm agent-knowledge:test
+```
+
+Cette commande exécute d'abord `pnpm agent-knowledge:validate`, puis un smoke test `qmd` dans un index et une collection de test isolés :
+
+- index qmd de test : `refugies-info-agent-knowledge-test` ;
+- collection qmd de test : `agent-knowledge-test`.
+
+Le validateur statique vérifie :
+
+- que les fichiers listés dans `_export-manifest.json` existent dans le corpus ;
+- que chaque `resources.targetPath` du manifeste est listé dans `generatedFiles` ;
+- que les chemins cible du manifeste sont normalisés en Unicode NFC ;
+- que `previousTargetPath` reste différent du chemin cible normalisé ;
+- que les références corpus présentes dans les fichiers `skills/*/SKILL.md` pointent vers des fichiers existants.
+
+Le smoke test `qmd` reconstruit ensuite l'index de test et vérifie qu'une recherche lexicale retrouve une ressource attendue. Les variables restent surchargeables pour les cas de test ciblés :
+
+```bash
+QMD_BIN=/chemin/vers/qmd \
+QMD_INDEX=refugies-info-agent-knowledge-test \
+QMD_COLLECTION=agent-knowledge-test \
+QMD_SMOKE_QUERY="conformité éditoriale" \
+QMD_SMOKE_EXPECTED_RESULT="memory-blocks/audit-conformite-editoriale-di.md" \
+pnpm agent-knowledge:test
+```
+
+Pour les futures PRs de conversion des skills, les fixtures doivent rester déterministes et locales :
+
+- ajouter les cas d'entrée minimaux près du code de test qui les consomme ;
+- référencer les fichiers du corpus par chemin cible versionné, jamais par chemin source Letta Cloud ;
+- éviter les embeddings et les modèles distants dans la suite locale par défaut ;
+- étendre `agent-knowledge:validate` ou le smoke test `qmd` quand une nouvelle catégorie de référence devient obligatoire.
+
 ### Artefacts générés
 
 Les artefacts `qmd` ne doivent pas être commités :
