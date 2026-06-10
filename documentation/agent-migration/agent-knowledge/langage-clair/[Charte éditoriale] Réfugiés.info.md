@@ -6,6 +6,8 @@ file_size_bytes: 294682
 file_type: "application/pdf"
 original_file_name: "[Charte éditorial] Réfugiés.info.pdf"
 processing_status: "completed"
+previous_target_path: "langage-clair/[Charte éditorial] Réfugiés.info.md"
+target_path_normalization_reason: "Correction de la coquille du chemin cible, source Letta Cloud conservée en provenance"
 source_id: "source-0"
 source_name: "ressources_langage_clair"
 source_path: "ressources_langage_clair/ressources_langage_clair/[Charte éditorial] Réfugiés.info.pdf"
@@ -13,7 +15,7 @@ total_chunks: 12
 weak_extraction_reasons: []
 ---
 
-# [Charte éditorial] Réfugiés.info
+# [Charte éditoriale] Réfugiés.info
 
 > Source Letta Cloud : `ressources_langage_clair/ressources_langage_clair/[Charte éditorial] Réfugiés.info.pdf`
 
