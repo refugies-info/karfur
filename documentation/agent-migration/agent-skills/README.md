@@ -23,6 +23,16 @@ Les skills sont stockés dans le dossier racine [`skills/`](../../../skills), af
 | ------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `/translate`        | [`translate`](../../../skills/translate/SKILL.md) | Traduire ou vérifier un contenu Réfugiés.info en préservant la structure Markdown. |
 
+## Skill d'outillage qmd
+
+| Skill Letta Code                          | Rôle                                                                                             |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [`qmd`](../../../skills/qmd/SKILL.md)     | Rechercher et récupérer des documents Markdown indexés localement avec le CLI ou MCP qmd.        |
+
+Le skill `qmd` est installé depuis le paquet officiel `@tobilu/qmd` et reste un outil de recherche local. Il ne remplace pas les skills métier Agathe (`audit`, `redaction`, `metadata`, `translate`) : il les aide à consulter le corpus `agent-knowledge` sans dupliquer les règles longues.
+
+La note projet [`skills/qmd/references/refugies-info-agent-knowledge.md`](../../../skills/qmd/references/refugies-info-agent-knowledge.md) documente les noms d'index/collection utilisés par ce dépôt.
+
 ## Relation avec le corpus `agent-knowledge`
 
 Les skills ne dupliquent pas les règles métier longues. Ils pointent vers le corpus versionné et indexable par `qmd` :
