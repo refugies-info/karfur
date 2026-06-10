@@ -96,7 +96,7 @@ export const needs2FA = async (user: User | string): Promise<boolean> => {
   const userIsAdmin = userDocument.isAdmin();
   const userIsExpertTrad = userDocument.isExpert();
   const userStructureId = await userRespoStructureId(
-    userDocument.structures.map((s) => s.toString()) || [],
+    userDocument.structures?.map((s) => s.toString()) ?? [],
     userDocument._id,
   );
   return !!(userIsAdmin || userStructureId || userIsExpertTrad);
