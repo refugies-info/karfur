@@ -27,6 +27,7 @@ Consulter le corpus `agent-knowledge` indexé par `qmd`, en priorité :
 - `memory-blocks/regles-redaction-langage-clair.md` pour les règles éditoriales.
 - `memory-blocks/format-sortie-transformation.md` pour le format Markdown attendu.
 - `memory-blocks/lexique-vif.md` et `langage-clair/DITP-Lexique-Administratif.md` pour simplifier les termes administratifs.
+<!-- Note : Le nom du fichier ci-dessous contient une coquille d'origine (« Charte éditorial ») préservée pour des raisons de fidélité à la source. -->
 - `langage-clair/[Charte éditorial] Réfugiés.info.md` et `langage-clair/[personas] bpi.md` si la cible éditoriale doit être précisée.
 
 ## Procédure

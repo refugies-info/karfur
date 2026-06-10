@@ -6,4 +6,4 @@ Cette section regroupe la documentation liée à la migration de l'agent Letta C
 
 - [Inventaire Letta Cloud de l'agent Agathe](./letta-cloud-inventory.md) : état initial de l'agent, corpus indexé, mémoires, outils custom et points d'attention pour la migration.
 - [Corpus documentaire agent-knowledge](./agent-knowledge/README.md) : arborescence du corpus métier versionné qui servira de source à l’indexation `qmd`.
-- [Skills agent Playground](./agent-skills/README.md) : structure des skills Letta Code qui remplaceront les slash commands historiques `/audit`, `/redaction`, `/metadata` et `/translate`.
+- [Skills agent Playground](./agent-skills/README.md) : structure des skills Letta Code et mapping des slash commands du Playground (`/audit`, `/redaction`, `/metadata`, `/pipeline`, `/translate`).

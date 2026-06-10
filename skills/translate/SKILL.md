@@ -26,6 +26,7 @@ Consulter le corpus `agent-knowledge` indexé par `qmd`, en priorité :
 
 - `memory-blocks/format-sortie-transformation.md` pour préserver la structure Markdown RI.
 - `memory-blocks/regles-redaction-langage-clair.md` pour conserver le niveau de langue clair.
+<!-- Note : Le nom du fichier ci-dessous contient une coquille d'origine (« administatif ») préservée pour des raisons de fidélité à la source. -->
 - `memory-blocks/lexique-vif.md` et `langage-clair/[Lexique] administatif maison de la sagesse.md` pour les termes administratifs sensibles.
 - `langage-clair/[personas] bpi.md` si la cible utilisateur doit guider le ton.
 
