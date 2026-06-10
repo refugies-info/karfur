@@ -42,6 +42,7 @@ npm-debug.log*
 
 # AI assistants
 /.cursorrules
+.qmd/
 .letta/settings.local.json
 .letta
 

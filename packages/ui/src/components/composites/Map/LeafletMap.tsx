@@ -115,13 +115,15 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
     }
   }, [handleMapReady, handleFocusLocation]);
 
-  const bounds = useMemo(
-    () =>
-      mapData.length > 0
-        ? new LatLngBounds(mapData.map((poi) => [poi.lat, poi.lng] as LatLngTuple))
-        : undefined,
+  const validMapData = useMemo(
+    () => mapData.filter((poi) => Number.isFinite(poi.lat) && Number.isFinite(poi.lng)),
     [mapData],
   );
+
+  const bounds = useMemo(() => {
+    const coords = validMapData.map((poi) => [poi.lat, poi.lng] as LatLngTuple);
+    return coords.length > 0 ? new LatLngBounds(coords) : undefined;
+  }, [validMapData]);
 
   const center = useMemo<LatLngTuple>(
     () => (bounds ? [bounds.getCenter().lat, bounds.getCenter().lng] : [46.603354, 1.888334]),
@@ -175,7 +177,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
   );
 
   const markers = useMemo(() => {
-    return mapData.map((poi, i) => {
+    return validMapData.map((poi, i) => {
       const position: [number, number] = [poi.lat, poi.lng];
 
       return (
@@ -235,7 +237,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         </Marker>
       );
     });
-  }, [mapData, handleMarkerClick, popupEventHandlers]);
+  }, [validMapData, handleMarkerClick, popupEventHandlers]);
 
   return (
     <div className={className} role="region" aria-label={t("map.interactive_map")}>

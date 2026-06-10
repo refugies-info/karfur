@@ -1,0 +1,179 @@
+{
+  "status": "Actif",
+  "translations": {
+    "fr": {
+      "content": {
+        "titreInformatif": "Apprendre à utiliser un ordinateur et progresser en français",
+        "titreMarque": " Découverte Numérique à Rennes",
+        "abstract": "Formation numérique et linguistique",
+        "what": "<p dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Une formation de 7 semaines pour :</span></p><ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">apprendre à utiliser les outils numériques pour chercher un travail et faire les démarches administratives sur internet </span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">progresser en français à l'oral et à l'écrit.</span></li></ul><div class=\"callout callout--info\" data-callout=\"info\" data-title=\"Bon à savoir\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Lieu de la formation : </span><br><span style=\"white-space: pre-wrap;\">Dates : du 1er décembre 2025 au 30 janvier 2026</span><br><span style=\"white-space: pre-wrap;\">Jours :  lundi, mardi, jeudi et vendredi.</span><br><br><span style=\"white-space: pre-wrap;\">Si vous n'avez pas d'ordinateur, il est possible de vous prêter du matériel (ordinateur portable, souris et chargeur) pendant la formation. </span></div><div class=\"callout callout--important\" data-callout=\"important\" data-title=\"Important\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Pour faire cette formation, il faut : </span><br><span style=\"white-space: pre-wrap;\">- être réfugié, ou bénéficiaire de la protection subsidiaire ou temporaire, ou apatride, ou être en France depuis moins de 5 ans</span><br><span style=\"white-space: pre-wrap;\">- être inscrit à France Travail</span><br><span style=\"white-space: pre-wrap;\">- avoir un niveau de français A2 ou B1 </span><br><span style=\"white-space: pre-wrap;\">- savoir lire et écrire votre langue maternelle</span><br><span style=\"white-space: pre-wrap;\">- être motivé et disponible pendant toute la formation.</span></div>",
+        "how": {
+          "a287bb33-64d3-4cb0-848f-77ce1e6743f4": {
+            "title": "Envoyer une candidature sur internet",
+            "text": "<p dir=\"ltr\"><span style=\"white-space: pre-wrap;\">1. Compléter le formulaire de contact&nbsp;</span><a href=\"https://www.simplon.co/session/gdo-rennes-cif-182716-int\" target=\"_blank\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ici</span></a><br><br><span style=\"white-space: pre-wrap;\">2.&nbsp;Recevoir le dossier de candidature et le </span><b><strong class=\"rtri-bold\" style=\"white-space: pre-wrap;\">compléter avant le 13 novembre </strong></b><br><span style=\"white-space: pre-wrap;\">Vérifier&nbsp;les spams.</span><br><br><span style=\"white-space: pre-wrap;\">3.&nbsp;Attendre la réponse de l’équipe Simplon Rennes.</span></p>"
+          }
+        },
+        "why": {
+          "bae3dbb1-4009-4326-9d29-d790b1c59077": {
+            "title": "Apprendre à utiliser un ordinateur",
+            "text": "<ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Savoir utiliser un ordinateur et une imprimante (connecter au wifi, compléter et imprimer un formulaire...)</span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Être capable de faire les démarches administratives sur internet (prendre rendez-vous, scanner et envoyer un document par mail...)</span></li><li value=\"3\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Chercher un travail sur les sites et les applications</span></li><li value=\"4\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Travailler sur un ordinateur (Excel, Word...).</span></li></ul>"
+          },
+          "539bf8fd-e694-47ad-bf07-6b3ee48a0d0e": {
+            "title": "Progresser en français",
+            "text": "<ul><li value=\"1\" dir=\"ltr\" style=\"text-align: start;\"><span style=\"white-space: pre-wrap;\">Une journée par semaine de cours de français (7 heures par jour)</span></li><li value=\"2\" dir=\"ltr\" style=\"text-align: start;\"><span style=\"white-space: pre-wrap;\">Vocabulaire de l'informatique</span></li><li value=\"3\" dir=\"ltr\" style=\"text-align: start;\"><span style=\"white-space: pre-wrap;\">Phrases pour les candidatures et les entretiens d'embauche</span></li><li value=\"4\" dir=\"ltr\" style=\"text-align: start;\"><span style=\"white-space: pre-wrap;\">Français du monde professionnel...</span></li></ul>"
+          },
+          "c786c0a7-0a27-4bec-b277-74ac7e9fef42": {
+            "title": "Avoir de nouvelles compétences et une certification officielle",
+            "text": "<ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Travailler en groupe </span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Présenter un projet devant d'autres personnes</span></li><li value=\"3\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Passer une certification officielle : </span><a href=\"https://simplon.co/formation/certification-mobiliser-les-competences-informatiques-fondamentales/731\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">Mobiliser les compétences informatiques fondamentales</span></a><span style=\"white-space: pre-wrap;\"> (Simplon.co),  </span><a href=\"https://www.francecompetences.fr/recherche/rs/5837/\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">RS 5837</span></a><span style=\"white-space: pre-wrap;\"> (France Compétences).  </span></li></ul>"
+          }
+        }
+      },
+      "created_at": {
+        "$date": "2025-10-02T16:48:58.077Z"
+      },
+      "validatorId": {
+        "$oid": "68dd0635cb77b8aa04c1eb88"
+      }
+    },
+    "ar": {
+      "content": {
+        "abstract": "فورماسيون لتعلّم اللغة الفرنسية و استخدام الكمبيوتر",
+        "how": {
+          "a287bb33-64d3-4cb0-848f-77ce1e6743f4": {
+            "title": "طلب التسجيل في البرنامج عبر الانترنيت",
+            "text": "<p dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">1. ملىء استمارة التواصل بالنقر </span><a href=\"https://www.simplon.co/session/gdo-rennes-cif-182716-int\" target=\"_blank\" class=\"rtri-link\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">هنا</span></a><br><br><span style=\"white-space: pre-wrap;\">2. استلام ملف طلب التسجيل </span><b><strong class=\"rtri-bold\" style=\"white-space: pre-wrap;\">و استكماله قبل تاريخ 13 نوفمبر</strong></b><span style=\"white-space: pre-wrap;\"> </span></p><p dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">(يرجى التحقق من مجلد البريد العشوائي في بريدك الالكتروني).</span><br><br><span style=\"white-space: pre-wrap;\">3. انتظار الرد من فريق Simplon Rennes.</span></p>"
+          }
+        },
+        "titreInformatif": "تعلّم استخدام الكمبيوتر و تحسين لغتك الفرنسية",
+        "titreMarque": "تعلّم استخدام الكمبيوتر في مدينة رين",
+        "what": "<p dir=\"rtl\"><span style=\"white-space: pre-wrap;\">فورماسيون لمدة 7 أسابيع من أجل :</span></p><ul><li value=\"1\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">تعلّم استخدام الأدوات الرقمية للبحث عن عمل و القيام بالمعاملات الإدارية على الإنترنت</span></li><li value=\"2\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">تحسين لغتك الفرنسية شفهياً وكتابياً</span></li></ul><div class=\"callout callout--info\" data-callout=\"info\" data-title=\"Bon à savoir\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">مكان الدورة التعليمية :</span><br><span style=\"white-space: pre-wrap;\">التاريخ : من 1 ديسمبر 2025 إلى 30 يناير 2026</span><br><span style=\"white-space: pre-wrap;\">الأيام : الاثنين و الثلاثاء و الخميس و الجمعة</span><br><br><span style=\"white-space: pre-wrap;\">إذا لم يكن لديك جهاز كمبيوتر، فمن الممكن إقراضك المعدات (حاسوب محمول، فأرة، وشاحن) أثناء فترة الدورة التعليمية</span></div><div class=\"callout callout--important\" data-callout=\"important\" data-title=\"Important\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">للتسجيل في هذه الدورة، يجب :</span><br><span style=\"white-space: pre-wrap;\">-  أن تكون لاجئاً أو مستفيداً من الحماية الفرعية أو المؤقتة أو أن تكون عديم الجنسية أو مُقيماً في فرنسا منذ أقل من 5 سنوات</span><br><span style=\"white-space: pre-wrap;\">- أن تكون مسجلاً لدى فرانس ترافاي France Travail (مؤسسة العمل)</span><br><span style=\"white-space: pre-wrap;\">- أن يكون لديك مستوى A2 أو B1 في اللغة الفرنسية</span><br><span style=\"white-space: pre-wrap;\">- أن تعرف القراءة و الكتابة بلغتك الأم</span><br><span style=\"white-space: pre-wrap;\">- أن تكون متحفزاً و متاحاً طوال فترة الفورماسيون</span></div>",
+        "why": {
+          "bae3dbb1-4009-4326-9d29-d790b1c59077": {
+            "title": "تعلم استخدام الكمبيوتر",
+            "text": "<ul><li value=\"1\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\"> استخدام الكمبيوتر والطابعة (الاتصال بشبكة Wi-Fi و ملىء استمارة وطباعتها وغير ذلك)</span></li><li value=\"2\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">القدرة على القيام بالإجراءات الإدارية عبر الإنترنت (حجز موعد و مسح ضوئي وإرسال مستند عبر البريد الإلكتروني و غير ذلك)</span></li><li value=\"3\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">البحث عن عمل عبر المواقع و التطبيقات</span></li><li value=\"4\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">العمل على الكمبيوتر ( برامج Excel، Word، وما إلى ذلك).</span></li></ul>"
+          },
+          "539bf8fd-e694-47ad-bf07-6b3ee48a0d0e": {
+            "title": "تحسين مستواك في اللغة الفرنسية",
+            "text": "<ul><li value=\"1\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">يوم واحد في الأسبوع مُخصص لدروس اللغة الفرنسية (7 ساعات في اليوم)</span></li><li value=\"2\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">الكلمات الخاصة باستخدام الكمبيوتر</span></li><li value=\"3\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">عبارات خاصة بطلبات التوظيف و المقابلات</span></li><li value=\"4\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">التعرّف على الفرنسية في مجال العمل</span></li></ul>"
+          },
+          "c786c0a7-0a27-4bec-b277-74ac7e9fef42": {
+            "title": "اكتساب مهارات جديدة و شهادة رسمية",
+            "text": "<ul><li value=\"1\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">العمل ضمن مجموعة</span></li><li value=\"2\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">عرض مشروع أمام الآخرين</span></li><li value=\"3\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">الحصول على شهادة رسمية : </span><a href=\"https://www.simplon.co/competences-numeriques/decouverte-numerique\" target=\"_blank\" rel=\"noreferrer\" class=\"rtri-link\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">في المهارات المعلوماتية الأساسية</span></a><span style=\"white-space: pre-wrap;\"> (Simplon.co)، </span><a href=\"https://www.francecompetences.fr/recherche/rs/5837/\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">RS 5837</span></a><span style=\"white-space: pre-wrap;\"> (France Compétences).</span></li></ul>"
+          }
+        }
+      },
+      "created_at": {
+        "$date": "2025-10-02T21:32:28.127Z"
+      },
+      "validatorId": {
+        "$oid": "5dd11f037939c90016c8c920"
+      }
+    },
+    "fa": {
+      "content": {
+        "titreInformatif": "یادگیری کار با کامپیوتر و پیشرفت در زبان فرانسوی\n",
+        "titreMarque": " Découverte Numérique à Rennes",
+        "what": "<p dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">یک دوره آموزشی 7 هفته‌ای برای:</span></p><ul><li value=\"1\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">یادگیری استفاده از ابزارهای دیجیتال برای  کار و انجام مراحل اداری به صورت آنلاین</span></li><li value=\"2\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">پیشرفت در زبان فرانسوی  گفتاری و نوشتاری</span></li></ul><div class=\"callout callout--info\" data-callout=\"info\" data-title=\"Bon à savoir\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">محل برگزاری آموزش:</span><br><span style=\"white-space: pre-wrap;\">تاریخ: از 1 دسامبر 2025 تا 30 ژانویه 2026</span><br><span style=\"white-space: pre-wrap;\">روزها: دوشنبه، سه‌شنبه، پنج‌شنبه و جمعه</span><br><br><span style=\"white-space: pre-wrap;\">اگر کامپیوتر ندارید، امکان قرض دادن تجهیزات (لپ‌تاپ، ماوس و شارژر) در طول آموزش وجود دارد.</span></div><div class=\"callout callout--important\" data-callout=\"important\" data-title=\"Important\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">برای شرکت در این دوره، باید:</span><br><span style=\"white-space: pre-wrap;\">- پناهنده، یا ذینفع حفاظت اجتماعی یا موقت، یا بدون تابعیت باشید، یا کمتر از 5 سال از حضورتان در فرانسه گذشته باشد</span><br><span style=\"white-space: pre-wrap;\">- در France Travail ثبت‌نام کرده باشید</span><br><span style=\"white-space: pre-wrap;\">- سطح زبان فرانسوی A2 یا B1 داشته باشید</span><br><span style=\"white-space: pre-wrap;\">- توانایی خواندن و نوشتن به زبان مادری خود را داشته باشید</span><br><span style=\"white-space: pre-wrap;\">- باانگیزه و در تمام مدت دوره در دسترس باشید.</span></div>",
+        "why": {
+          "bae3dbb1-4009-4326-9d29-d790b1c59077": {
+            "title": "یادگیری استفاده از کامپیوتر\n",
+            "text": "<ul><li value=\"1\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">توانایی کار با کامپیوتر و چاپگر \"پرنتر\" (اتصال به وای‌فای، تکمیل و چاپ فرم و...)</span></li><li value=\"2\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">انجام مراحل اداری از طریق اینترنت (قرار ملاقات، اسکن و ارسال مدارک از طریق ایمیل و...)</span></li><li value=\"3\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">جست‌وجوی کار در وب سایت‌ها و اپلیکیشن‌ها</span></li><li value=\"4\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">کار با نرم‌افزارهایی مانند Excel و Word</span></li></ul>"
+          },
+          "539bf8fd-e694-47ad-bf07-6b3ee48a0d0e": {
+            "title": "پیشرفت در زبان فرانسوی\n",
+            "text": "<ul><li value=\"1\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">یک روز در هفته کلاس زبان فرانسوی (7 ساعت در روز)</span></li><li value=\"2\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">یادگیری واژگان مربوط به کامپیوتر</span></li><li value=\"3\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">جملات موردنیاز برای ارسال درخواست‌ها و مصاحبه‌های شغلی</span></li><li value=\"4\" dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">زبان فرانسوی مخصوص کار </span></li></ul>"
+          },
+          "c786c0a7-0a27-4bec-b277-74ac7e9fef42": {
+            "title": "مهارت‌های جدید و گواهینامه رسمی داشته باشید",
+            "text": "<ul><li value=\"1\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">کار کردن در گروه‌ها</span></li><li value=\"2\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">ارائه پروژه در حضور دیگران</span></li><li value=\"3\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">گواهینامه رسمی را اخذ کنید: </span><a href=\"https://simplon.co/formation/certification-mobiliser-les-competences-informatiques-fondamentales/731\" class=\"rtri-link\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">مهارت‌های اساسی فناوری اطلاعات </span></a><span style=\"white-space: pre-wrap;\"> (Simplon.co)، </span><a href=\"https://www.francecompetences.fr/recherche/rs/5837/\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">RS 5837</span></a><span style=\"white-space: pre-wrap;\"> (France Compétences).</span></li></ul>"
+          }
+        },
+        "how": {
+          "a287bb33-64d3-4cb0-848f-77ce1e6743f4": {
+            "title": "ارسال درخواست آنلاین",
+            "text": "<p dir=\"rtl\" style=\"text-align: right;\"><span style=\"white-space: pre-wrap;\">1. فرم تماس را </span><a href=\"https://www.simplon.co/session/gdo-rennes-cif-182716-int\" target=\"_blank\" class=\"rtri-link\" dir=\"rtl\"><span style=\"white-space: pre-wrap;\">اینجا</span></a><span style=\"white-space: pre-wrap;\"> تکمیل کنید</span><br><br><span style=\"white-space: pre-wrap;\">2. فرم درخواست را دریافت و </span><b><strong class=\"rtri-bold\" style=\"white-space: pre-wrap;\">قبل از 13 نوامبر تکمیل و ارسال کنید.</strong></b><br><span style=\"white-space: pre-wrap;\">(لطفاً اسپم ایمیل خود را برسی کنید)</span><br><br><span style=\"white-space: pre-wrap;\">3. منتظر پاسخ تیم Simplon Rennes باشید.</span></p>"
+          }
+        },
+        "abstract": "آموزش دیجیتال و زبان‌"
+      },
+      "created_at": {
+        "$date": "2025-10-04T10:11:31.843Z"
+      },
+      "validatorId": {
+        "$oid": "604d227fb90cfa0014682490"
+      }
+    },
+    "ti": {
+      "content": {
+        "titreInformatif": "ምኽኣል ንምምሕያሽ ኮምፒተር ምጥቃም ተማሃርን ፈረንሳዊ ቋንቋ",
+        "titreMarque": "ምስ  Découverte Numérique à Rennes",
+        "what": "<p dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ምእንቲ ምስታፍ ኣብ ናይ 7 ሰሙን ስልጠና ኮርስ ንምስታፍ  ክትክእሉኡ፤</span></p><ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ፈለማ ስራሕ ንምድላይን ምምሕዳራዊ ኣገባባት ብኢንተርነት ንምፍጻምን ዲጂታላዊ መሳርሒታት ብከመይ  ከም እትጥቀምሉ  ምምሃር</span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ከምኡውን ምምዕባል ኣብ ኣዘራርባን  ቋንቋ ብጽሑፍን ፈረንሳ ዝግበር ተገባር ምኽኣል  ።</span></li></ul><div class=\"callout callout--info\" data-callout=\"info\" data-title=\"Bon à savoir\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣዝዩ ዘገድስ ሓበሬታ ስልጠና ዝካየደሉ ቦታ፤</span><br><span style=\"white-space: pre-wrap;\">ዕለታት፡ ካብ 1 ታሕሳስ 2025 ክሳብ 30 ጥሪ 2026</span><br><span style=\"white-space: pre-wrap;\">መዓልታት፡ ሰኑይ፡ ሰሉስ፡ ሓሙስን ዓርቢን።</span><br><br><span style=\"white-space: pre-wrap;\">ነዚ ንምግባር ኮምፒተር እንተዘይብልኩም ኣብ እዋን ስልጠና መሳርሒታት (ላፕቶፕ፡ ማውስን ቻርጀርን)  ካባና ምልቃሕ ይከኣል እዩ።</span></div><div class=\"callout callout--important\" data-callout=\"important\" data-title=\"Important\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣዝዩ ዘገድስ ሓበሬታ ነዚ ስልጠና ንምፍጻም ግድን፤</span><br><span style=\"white-space: pre-wrap;\">- ወረቐት ናይ ስደተኛ፡ ወይ ተጠቃሚ ንኡስ ወይ ግዝያዊ ሓለዋ፡ ወይ ሃገር ዘይብሉ ዝብል ሰነድ ምህላው፡ ወይ ድማ  ኣብ ፈረንሳ ካብ እትኣትዉ  ካብ 5 ዓመት ዘይመልእ ክኸውን</span><br><span style=\"white-space: pre-wrap;\">- ኣብ ፈረንሳ ትራቫይል ክምዝገብ</span><br><span style=\"white-space: pre-wrap;\">- ናይ ፈረንሳ ደረጃ A2 ወይ B1 ክህልዎም እዩ።</span><br><span style=\"white-space: pre-wrap;\">- ቋንቋ ኣዴኻ ምንባብን ምጽሓፍን ፍለጥ</span><br><span style=\"white-space: pre-wrap;\">- ኣብ ምሉእ እቲ ስልጠና ድራኸ ዘለዎን ዝርከብን ክኸውን።</span></div>",
+        "why": {
+          "bae3dbb1-4009-4326-9d29-d790b1c59077": {
+            "title": "ኮምፒተር ምጥቃም ተማሃሩ",
+            "text": "<ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኮምፒተርን ፕሪንተርን ከመይ ጌርካ ከም እትጥቀም ምፍላጥ (ምስ ዋይፋይ ምትእስሳር፡ ፎርም ምምላእን ምሕታምን ወዘተ)</span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ምምሕዳራዊ ኣገባባት ብኢንተርነት ክትፍጽም ምኽኣል (ቆጸራ ምሓዝ፣ ስካን ብምግባር ሰነድ ብኢመይል ምልኣኽ ወዘተ)</span></li><li value=\"3\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣብ ዌብሳይታትን ኣፕታትን ስራሕ ምድላይ</span></li><li value=\"4\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣብ ኮምፒተር (ኤክሰል፡ ወርድ ወዘተ) ምስራሕ።</span></li></ul>"
+          },
+          "539bf8fd-e694-47ad-bf07-6b3ee48a0d0e": {
+            "title": "ምዕባለ ብቋንቋ ፈረንሳ",
+            "text": "<ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣብ ሰሙን ሓደ መዓልቲ ትምህርቲ ፈረንሳ (ኣብ መዓልቲ 7 ሰዓታት)</span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ናይ ኮምፒተር ቃላት</span></li><li value=\"3\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ንመመልከቲ ስራሕን ቃለ መሕትትን ዝውዕሉ ሓረጋት።</span></li><li value=\"4\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ፈረንሳውያን ካብ ሞያዊ ዓለም...</span></li></ul>"
+          },
+          "c786c0a7-0a27-4bec-b277-74ac7e9fef42": {
+            "title": "ሓድሽ ክእለትን ወግዓዊ ምስክር ወረቐትን ይሃልኻ",
+            "text": "<ul><li value=\"1\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ብጉጅለ ምስራሕ</span></li><li value=\"2\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣብ ቅድሚ ካልኦት ሰባት ፕሮጀክት ኣቕርብ</span></li><li value=\"3\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ወግዓዊ ምስክር ወረቐት ምሕላፍ: </span><a href=\"https://simplon.co/formation/certification-mobiliser-les-competences-informatiques-fondamentales/731\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">መሰረታዊ ክእለት IT ምውህሃድ</span></a><span style=\"white-space: pre-wrap;\"> (Simplon.co), </span><a href=\"https://www.francecompetences.fr/recherche/rs/5837/\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">RS 5837</span></a><span style=\"white-space: pre-wrap;\"> (France Compétences)።</span></li></ul>"
+          }
+        },
+        "how": {
+          "a287bb33-64d3-4cb0-848f-77ce1e6743f4": {
+            "title": "ብኢንተርነት መመልከቲ ኣቕርቡ።",
+            "text": "<p dir=\"ltr\"><span style=\"white-space: pre-wrap;\">1እንተደሊኹም. </span><a href=\"https://www.simplon.co/session/gdo-rennes-cif-182716-int\" target=\"_blank\" class=\"rtri-link\" dir=\"ltr\"><span style=\"white-space: pre-wrap;\">ኣብዚ</span></a><span style=\"white-space: pre-wrap;\"> ናይ ርክብ ቅጥዒ ምልእዎ</span><br><br><span style=\"white-space: pre-wrap;\">2. ፋይል መመልከቲ ተቐቢልካ </span><b><strong class=\"rtri-bold\" style=\"white-space: pre-wrap;\">ቅድሚ 13 ሕዳር ምምላእ ይከኣል</strong></b><br><span style=\"white-space: pre-wrap;\">ስፓም ምፍታሽ።</span><br><br><span style=\"white-space: pre-wrap;\">3. ካብ ጋንታ ሲምፕሎን ረንስ ዝመጽእ መልሲ ተጸበዩ።</span></p>"
+          }
+        },
+        "abstract": "ምርካብ ዲጂታላውን ቋንቋ ብፈረንሳ  ስልጠናታት"
+      },
+      "created_at": {
+        "$date": "2025-10-06T10:01:58.802Z"
+      },
+      "validatorId": {
+        "$oid": "617763ae794ec90014ef6f2e"
+      }
+    }
+  },
+  "map": [
+    {
+      "title": "Simplon Rennes",
+      "address": "2A allée Jacques Frimot, Rennes, Ille-et-Vilaine, Bretagne, France métropolitaine, France",
+      "city": "Rennes",
+      "lat": 48.1113387,
+      "lng": -1.6800198,
+      "email": "contact@example.org"
+    }
+  ],
+  "metadatas": {
+    "location": ["35 - Ille-et-Vilaine"],
+    "frenchLevel": ["A2", "B1"],
+    "age": {
+      "type": "moreThan",
+      "ages": [18]
+    },
+    "price": {
+      "values": [0]
+    },
+    "publicStatus": ["refugie", "subsidiaire", "temporaire"],
+    "public": null,
+    "conditions": ["pole emploi"],
+    "commitment": {
+      "amountDetails": "exactly",
+      "hours": [7],
+      "timeUnit": "weeks"
+    },
+    "frequency": {
+      "amountDetails": "exactly",
+      "hours": 28,
+      "timeUnit": "hours",
+      "frequencyUnit": "week"
+    },
+    "timeSlots": ["monday", "tuesday", "thursday", "friday"]
+  },
+  "adminProgressionStatus": "À relire",
+  "hasDraftVersion": false
+}
