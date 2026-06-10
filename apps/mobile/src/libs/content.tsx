@@ -92,7 +92,7 @@ const getLocation = (data: Metadatas["location"], t: TFunction) => {
   return data
     .map((dep: string) => {
       const [nbDep, nomDep] = dep.split(" - ");
-      return `${nomDep ?? ""} (${nbDep})`;
+      return nomDep ? nomDep + " (" + nbDep + ")" : "(" + nbDep + ")";
     })
     .join("\n");
 };
