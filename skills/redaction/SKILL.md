@@ -59,7 +59,7 @@ Utiliser le skill `qmd` pour rechercher puis récupérer les sources complètes 
 - Bannir le futur 2ᵉ personne pluriel (`vous apprendrez` → `Apprendre`) et l'impératif direct (`Téléphonez` → `Téléphoner`).
 - Bannir `courriel` (utiliser `mail`) et `France Travail` sans ajouter `(anciennement Pôle emploi)`.
 - Bannir tirets bas `_` et tirets cadratins `—` au profit du tiret simple `-` ou demi-cadratin `–`.
-- Bannir les mots `reconnaissance officielle`, `gestes concrets`, `multisectoriel`, `plan de travail`, `programme d'apprentissage linguistique`, `vers l'emploi`, `obtenir`, `acquérir`, `pré-requis`, `FLE`, `primo-arrivant`, `être d'origine étrangère`, `codes français`, `complètement`, `parler beaucoup le français`, `socio-professionnel`, `linguistique`.
+- Bannir les mots `reconnaissance officielle`, `gestes concrets`, `multisectoriel`, `plan de travail`, `programme d'apprentissage linguistique`, `vers l'emploi`, `obtenir`, `acquérir`, `pré-requis`, `FLE`, `primo-arrivant`, `être d'origine étrangère`, `codes français`, `complètement`, `parler beaucoup le français`, `socio-professionnel`, `linguistique`. Note : `FLE` est interdit en tant que sigle isolé, l'expansion `français langue étrangère` doit être utilisée à la place.
 - Ne pas utiliser `son/sa/ses` : préférer `votre`, `un` ou `le` (`améliorer son français` → `améliorer votre français`).
 
 ## Structure standard de la fiche
@@ -72,7 +72,7 @@ Utiliser le skill `qmd` pour rechercher puis récupérer les sources complètes 
 2. Titre informatif en `#` (verbe infinitif + action concrète).
 3. Description en texte normal (2-3 phrases) : pas de titre `C'est quoi ?`, pas d'italique de résumé.
 4. Bloc `:::good-to-know` après la description si une mise en garde ou un conseil utilisateur s'applique.
-5. `## Pourquoi c'est intéressant ?` : exactement 3 accordéons `:::toggle{title="…"}`, exemples intégrés au texte, jamais en liste à puces.
+5. `## Pourquoi c'est intéressant ?` : au minimum 3 accordéons `:::toggle{title="…"}` (générer davantage si la matière source le permet), exemples intégrés au texte, jamais en liste à puces.
 6. `## Comment faire ?` : exactement 1 accordéon `:::toggle{title="…"}` dont le titre est une action concrète (ex. `Contacter l'organisme`). Bannir les titres creux `Étape 1`, `Démarrer la formation`, `Commencer la formation`, `Suivre la formation`, `Intégrer la formation`.
 7. `### Autres informations` : niveau de français, thématiques, conditions d'accès, public prioritaire (liste séparée par virgules).
 8. `### Pour aller plus loin` : sources au format `- Titre – Organisme – URL`.
@@ -101,7 +101,7 @@ Règles structurelles impératives :
 
 - Consulter d'abord `memory-blocks/lexique-vif.md` via `qmd get` pour les termes fréquents (`allocataire`, `justificatif`, `modalités`, `ressources`, `usager`, etc.).
 - Pour un sigle ou un terme rare, ouvrir `langage-clair/DITP-Lexique-Administratif.md` ou `langage-clair/[Lexique] administratif maison de la sagesse.md` (traduction arabe si pertinent).
-- Pour un sigle, expliciter la 1ʳᵉ mention dans le texte (`Le français langue étrangère (FLE), c'est…`) et garder le sigle ensuite.
+- Pour un sigle, expliciter la 1ʳᵉ mention dans le texte (`Le français langue étrangère (FLE), c'est…`) et garder le sigle ensuite. Pour `FLE`, suivre la règle des mots bannis ci-dessus : utiliser l'expansion `français langue étrangère` sans réutiliser le sigle seul.
 - `QPV` : ne pas laisser tel quel. Chercher la définition juste avant dans le texte (`Quartier de la Politique de la Ville`) et simplifier en `Quartier prioritaire` ou expliquer dans le Lexique.
 - `Lexique` final : ne lister que les termes effectivement utilisés dans la fiche.
 
