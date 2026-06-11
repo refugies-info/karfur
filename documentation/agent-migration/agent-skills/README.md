@@ -2,7 +2,7 @@
 
 Ce document mappe les slash commands du Playground Agathe vers les skills Letta Code versionnés dans le dépôt.
 
-Cette PR crée uniquement la structure des skills. Elle ne branche pas encore ces skills dans un runtime Letta Code, ne modifie aucun worker et ne change aucun comportement applicatif.
+Ce dossier est enrichi PR par PR : la structure initiale des skills est en place, puis chaque commande historique est convertie plus finement dans son skill dédié. Le branchement runtime Letta Code, les workers et les changements de comportement applicatif restent hors périmètre tant qu'une PR ne les mentionne pas explicitement.
 
 ## Emplacement des skills
 
