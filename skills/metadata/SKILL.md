@@ -42,8 +42,8 @@ Utiliser le skill `qmd` pour rechercher puis récupérer les sources complètes 
 1. Extraire les champs source DI utiles en respectant l'ordre de priorité documenté par `mapping-data-di.md`.
 2. Mapper chaque champ vers le schéma `metadata_ri` courant. Pour les champs sémantiques (`theme`, `secondaryThemes`, `needs`, `public`, `timeSlots`, `conditions`), passer par les tableaux autorisés de `base-connaissance.md`.
 3. Pour les coordonnées de contact (`map.phone` et `map.email`), utiliser **uniquement** `telephone` et `courriel` à la racine du JSON. Ignorer les chemins `extra.action.session[].contact-session[].coordonnees.*` qui sont des contacts internes.
-4. Calculer `location` à partir de `code_postal` racine (et non `zone_eligibilite` qui est obsolète pour ce champ). Appliquer la logique IDF si le département extrait est en Île-de-France, sinon retourner uniquement le département réel au format `"XX - Nom"`.
-5. Calculer `price` selon la règle financeur/conventionnement : si `extra.conventionnement = 1` et que `extra.code-financeur` est dans la liste acceptée, retourner `values: [0]` (`gratuit`). Sinon retourner `[0]` ou un montant numérique explicite extrait de `extra.action.frais-restants` ; utiliser `null` (pas `[]`) pour les tableaux optionnels absents.
+4. Calculer `location` à partir de `code_postal` racine (et non `zone_eligibilite` qui est obsolète pour ce champ). Le champ `location` est un `string[] | null` : appliquer la logique IDF si le département extrait est en Île-de-France, sinon retourner un tableau contenant uniquement le département réel au format `["XX - Nom"]`.
+5. Calculer `price` selon la règle financeur/conventionnement : si `extra.conventionnement = 1` et que `extra.code-financeur` est dans la liste acceptée, retourner l'objet `{ values: [0] }` (`gratuit`). Sinon la fiche est `payant` ; si `extra.action.frais-restants` contient un montant numérique explicite, retourner `{ values: [montant] }`, sinon laisser `price: null` et documenter le manque en provenance/revue (ne pas inventer un `values: [0]` qui publierait du payant comme gratuit). Utiliser `null` (pas `[]`) pour les tableaux optionnels absents.
 6. Mapper `sessions` (objet `{ modalitesEntreesSorties, items }`) à partir de `extra.session.periode.debut` et `extra.session.periode.fin` au format ISO 8601 (`YYYY-MM-DDTHH:mm:ss.sssZ`). Se fier aux clés, pas à l'ordre JSON.
 7. Construire la `provenance` : pour chaque métadonnée, fournir `key`, `label`, `value`, `status` (`valid|partial|missing|warning`) et `source` (array d'objets `{ field, rawValue }`). Toujours inclure la valeur brute et le nom du champ.
 8. Construire le tableau Markdown des métadonnées mappées (18 lignes, ordre imposé par `format-sortie-metadonnees.md`).
@@ -75,7 +75,7 @@ Rappels `metadata_ri` à ne jamais enfreindre (source : `memory-blocks/schema-me
 - `sessions.modalitesEntreesSorties` : `0` pour dates fixes, `1` pour entrées permanentes, `null` si inconnu. Ne pas déduire la valeur sans preuve.
 - `commitment.hours` peut être un tableau `[min, max]` quand `amountDetails = "between"`. Sinon c'est un scalaire encapsulé en tableau (`[100]`).
 - `frequency.hours` est un nombre unique qui décrit la cadence (ex. `4` heures par semaine).
-- `frequency.frequencyUnit` accepte `day`, `week`, `month`, `trimester`, `semester`, `year`, `sessions`.
+- `frequency.frequencyUnit` accepte `day`, `week`, `month`, `trimester`, `semester`, `year`, `session` (singulier, conformément à `base-connaissance.md`).
 
 ## Règles sur les contacts
 
@@ -89,18 +89,23 @@ Rappels `metadata_ri` à ne jamais enfreindre (source : `memory-blocks/schema-me
 ## Règles sur `location`
 
 - Source primaire : `code_postal` à la racine (et **non** `structure.code_postal`, et **non** `zone_eligibilite`).
-- Extraire le département avec les 2 premiers chiffres (ex. `75012` → `75`, `69003` → `69`, `2A...`/`2B...` pour la Corse).
-- Logique IDF : départements `75`, `77`, `78`, `91`, `92`, `93`, `94`, `95` → `location` = liste des 8 départements au format `"75 - Paris"`, `"77 - Seine-et-Marne"`, etc.
-- Hors IDF : `location` = `["XX - Nom du département"]`.
-- Si `code_postal` est absent, fallback sur `zone_eligibilite` et marquer un `warning` dans la provenance.
-- Si la fiche est en ligne, conserver `location: "online"`.
+- Le champ `location` est un `string[] | null` : retourner un tableau de chaînes, jamais une chaîne seule.
+- Extraire le département selon la règle suivante (en cohérence avec `apps/client/src/data/departments.ts` qui n'expose que `2A - Corse-du-Sud` et `2B - Haute-Corse`) :
+  - codes postaux `20xxx` → mapper vers `2A` si `code_postal` est inférieur à `20200` (ex. `20000`, `20100` → `2A - Corse-du-Sud`), sinon `2B` (ex. `20200`, `20290` → `2B - Haute-Corse`) ;
+  - sinon prendre les 2 premiers chiffres (ex. `75012` → `75`, `69003` → `69`) ;
+  - les codes `2Axxx`/`2Bxxx` sont normalisés en `2A`/`2B` directement.
+- Logique IDF : départements `75`, `77`, `78`, `91`, `92`, `93`, `94`, `95` → `location` = liste des 8 départements au format `["75 - Paris", "77 - Seine-et-Marne", ...]`.
+- Hors IDF : `location` = `["XX - Nom du département"]` (un seul élément).
+- Si `code_postal` est absent ou ne correspond à aucun département connu, fallback sur `zone_eligibilite` et marquer un `warning` dans la provenance.
+- Si la fiche est en ligne, conserver `location: "online"` (chaîne, pas tableau — cf. schéma).
 
 ## Règles sur `price`
 
-- `extra.conventionnement = 1` ET `extra.code-financeur` ∈ financeurs acceptés de `base-connaissance.md` → `price.values = [0]`.
-- Sinon : `price.values = [0]` (gratuit par défaut pour les fiches RI publiées) ou `[montant]` si `extra.action.frais-restants` mentionne un montant numérique explicite. Documenter le manque dans la provenance.
-- Ne pas mettre `price.values = [1]` ou `price.values = [0, 1]`.
-- `price.details` est omis quand aucune précision n'est disponible.
+- `price` est un objet `{ values: number[]; details?: string }` (jamais un tableau, jamais un scalaire). Toujours retourner l'objet complet.
+- `extra.conventionnement = 1` ET `extra.code-financeur` ∈ financeurs acceptés de `base-connaissance.md` → `price: { values: [0] }` (gratuit).
+- Sinon la fiche est `payant` : si `extra.action.frais-restants` contient un montant numérique explicite (par exemple `50` ou `"50"` convertible), retourner `price: { values: [montant] }`. Sinon, mettre `price: null` et documenter le manque en provenance (status `partial` ou `missing`) et dans la section `## ⚠️ Métadonnées incomplètes`. Ne jamais retomber sur `{ values: [0] }` dans la branche payant sans montant, ce qui publierait une offre payante comme gratuite.
+- Ne pas mettre `price: { values: [1] }` ou `price: { values: [0, 1] }`.
+- `price.details` est omis quand aucune précision n'est disponible (jamais `details: ""`).
 
 ## Format de sortie
 
