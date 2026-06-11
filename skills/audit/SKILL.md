@@ -72,7 +72,7 @@ Construire la requête à partir du JSON DI :
 - `description` : description, objectif ou contenu exploitable ;
 - `structureName` : `structure.nom` ou acronyme disponible ;
 - `commune` : commune ou ville principale ;
-- `departments` : départements extraits de `zone_eligibilite`, adresse, code postal ou contexte ;
+- `departments` : tableau de chaînes, par exemple `["75", "93"]`, contenant les départements extraits de `zone_eligibilite`, adresse, code postal ou contexte ;
 - `limit` : `10` par défaut, `20` si la fiche est générique ou ambiguë.
 
 Qualifier ensuite les candidats selon `memory-blocks/detection-doublons.md` : localisation comme critère éliminatoire, structure comme critère fort, contenu comme critère sémantique.
