@@ -34,18 +34,6 @@ Les skills ne dupliquent pas les règles métier longues. Ils pointent vers le c
 
 Les skills référencent les chemins cible versionnés du corpus. Les chemins source Letta Cloud restent conservés dans la provenance (`source_path`, `original_file_name`, manifeste), même quand ils contiennent une coquille. Les corrections de chemins cible sont documentées dans la [convention de nommage du corpus](../agent-knowledge/README.md#convention-de-nommage).
 
-## Contrat de test
-
-Toute PR qui ajoute, renomme ou supprime une référence corpus dans un skill doit lancer :
-
-```bash
-pnpm agent-knowledge:test
-```
-
-Cette commande vérifie statiquement les références `skills/*/SKILL.md` vers le corpus, contrôle la cohérence du manifeste `_export-manifest.json`, puis reconstruit un index `qmd` de test isolé avant d'exécuter une recherche smoke.
-
-Les futures PRs de conversion détaillée (`audit`, `redaction`, `metadata`, `translate`) doivent ajouter leurs cas de test sans redéfinir ce contrat : elles peuvent spécialiser la requête `qmd` avec `QMD_SMOKE_QUERY` et `QMD_SMOKE_EXPECTED_RESULT`, ou étendre le validateur quand un nouveau type de référence devient obligatoire.
-
 ## Notes de migration
 
 - Les noms de skills restent volontairement proches des commandes Playground pour faciliter la transition.
