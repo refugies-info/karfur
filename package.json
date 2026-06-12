@@ -168,10 +168,7 @@
     "storybook": "pnpm dev:storybook",
     "storybook:publish": "pnpm --filter @refugies-info/storybook storybook:publish",
     "knip": "knip",
-    "update-dependencies": "pnpm update -i --filter . --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook --filter mongo",
-    "agent-knowledge:export": "tsx scripts/export-letta-agent-knowledge.ts",
-    "agent-knowledge:qmd:index": "bash scripts/index-agent-knowledge-qmd.sh",
-    "agent-knowledge:qmd:smoke": "bash scripts/smoke-test-agent-knowledge-qmd.sh"
+    "update-dependencies": "pnpm update -i --filter . --filter api-types --filter ui --filter server --filter client --filter mobile --filter storybook --filter mongo"
   },
   "engines": {
     "node": "24.14.0"
