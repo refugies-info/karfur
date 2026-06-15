@@ -36,6 +36,9 @@ minimumReleaseAgeExclude:
   - brace-expansion
   # TODO: Remove after 2026-03-31 once node-forge@1.4.0 is older than 7 days (security fix)
   - node-forge
+  # TODO: Remove after 2026-06-19 once esbuild@0.28.1 is older than 7 days (security fix)
+  - esbuild
+  - "@esbuild/*"
   # TODO: Remove - pnpm false positive for old packages
   - "@babel/core"
   - path-expression-matcher
