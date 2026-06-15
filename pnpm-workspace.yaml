@@ -37,8 +37,33 @@ minimumReleaseAgeExclude:
   # TODO: Remove after 2026-03-31 once node-forge@1.4.0 is older than 7 days (security fix)
   - node-forge
   # TODO: Remove after 2026-06-19 once esbuild@0.28.1 is older than 7 days (security fix)
-  - esbuild
-  - "@esbuild/*"
+  - esbuild@0.28.1
+  - '@esbuild/aix-ppc64@0.28.1'
+  - '@esbuild/android-arm@0.28.1'
+  - '@esbuild/android-arm64@0.28.1'
+  - '@esbuild/android-x64@0.28.1'
+  - '@esbuild/darwin-arm64@0.28.1'
+  - '@esbuild/darwin-x64@0.28.1'
+  - '@esbuild/freebsd-arm64@0.28.1'
+  - '@esbuild/freebsd-x64@0.28.1'
+  - '@esbuild/linux-arm@0.28.1'
+  - '@esbuild/linux-arm64@0.28.1'
+  - '@esbuild/linux-ia32@0.28.1'
+  - '@esbuild/linux-loong64@0.28.1'
+  - '@esbuild/linux-mips64el@0.28.1'
+  - '@esbuild/linux-ppc64@0.28.1'
+  - '@esbuild/linux-riscv64@0.28.1'
+  - '@esbuild/linux-s390x@0.28.1'
+  - '@esbuild/linux-x64@0.28.1'
+  - '@esbuild/netbsd-arm64@0.28.1'
+  - '@esbuild/netbsd-x64@0.28.1'
+  - '@esbuild/openbsd-arm64@0.28.1'
+  - '@esbuild/openbsd-x64@0.28.1'
+  - '@esbuild/openharmony-arm64@0.28.1'
+  - '@esbuild/sunos-x64@0.28.1'
+  - '@esbuild/win32-arm64@0.28.1'
+  - '@esbuild/win32-ia32@0.28.1'
+  - '@esbuild/win32-x64@0.28.1'
   # TODO: Remove - pnpm false positive for old packages
   - "@babel/core"
   - path-expression-matcher
