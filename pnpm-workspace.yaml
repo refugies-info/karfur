@@ -37,6 +37,10 @@ minimumReleaseAgeExclude:
   # TODO: Remove after 2026-03-31 once node-forge@1.4.0 is older than 7 days (security fix)
   - node-forge
   # TODO: Remove after 2026-06-19 once esbuild@0.28.1 is older than 7 days (security fix)
+  # Scoped to the single 0.28.1 release so future esbuild releases still go through
+  # the minimumReleaseAge quarantine. pnpm rejects glob + version unions
+  # ('@esbuild/*@0.28.1' throws NAME_PATTERN_IN_VERSION_UNION), so the platform
+  # packages are enumerated explicitly.
   - esbuild@0.28.1
   - '@esbuild/aix-ppc64@0.28.1'
   - '@esbuild/android-arm@0.28.1'
