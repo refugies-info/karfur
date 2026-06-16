@@ -21,9 +21,11 @@ concurrency:
 
 jobs:
   letta:
-    # Skip Dependabot auto-bumps — they are handled by the dedicated
-    # Dependabot workflow and don't benefit from a conversational review.
-    if: github.event.sender.type != 'Bot'
+    # Skip Dependabot auto-bumps only. We deliberately do NOT use
+    # `github.event.sender.type != 'Bot'` because that would also exclude
+    # release-please, future automation bots, and the action's own
+    # github-actions identity, all of which may legitimately need a review.
+    if: github.event.sender.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -34,14 +36,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Pin to the latest Letta Code CLI release. The action's bundled binary
-      # can lag behind @letta-ai/letta-code on npm, so we install explicitly
-      # and pass the resolved path via path_to_letta_executable.
+      # Install the Letta Code CLI from npm. The action's bundled binary can
+      # lag behind @letta-ai/letta-code on npm, so we install explicitly and
+      # pass the resolved path via path_to_letta_executable. Pinned to the
+      # current minor (^0.27) — Dependabot keeps it bumped automatically,
+      # avoiding `@latest` (supply-chain risk).
       # https://github.com/letta-ai/letta-code-action#using-the-latest-cli
-      - name: Install latest Letta Code
+      - name: Install Letta Code CLI
         id: letta-bin
         run: |
-          npm install -g @letta-ai/letta-code@latest
+          npm install -g @letta-ai/letta-code@^0.27
           echo "path=$(command -v letta)" >> "$GITHUB_OUTPUT"
 
       - uses: letta-ai/letta-code-action@v0
