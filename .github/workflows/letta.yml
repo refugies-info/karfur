@@ -38,14 +38,19 @@ jobs:
 
       # Install the Letta Code CLI from npm. The action's bundled binary can
       # lag behind @letta-ai/letta-code on npm, so we install explicitly and
-      # pass the resolved path via path_to_letta_executable. Pinned to the
-      # current minor (^0.27) — Dependabot keeps it bumped automatically,
-      # avoiding `@latest` (supply-chain risk).
+      # pass the resolved path via path_to_letta_executable. We deliberately
+      # use `@latest`: getting the freshest CLI is the whole point of this
+      # step (the action is published as v0 with no semver discipline on the
+      # bundled binary). Supply-chain risk is accepted as a trade-off — if
+      # the npm package were ever compromised, the agent has access to the
+      # repo via `contents: write`, so this is a known and intentional
+      # trust boundary. Mitigation lives upstream (Letta's npm publishing
+      # process) rather than in pin/version policy.
       # https://github.com/letta-ai/letta-code-action#using-the-latest-cli
       - name: Install Letta Code CLI
         id: letta-bin
         run: |
-          npm install -g @letta-ai/letta-code@^0.27
+          npm install -g @letta-ai/letta-code@latest
           echo "path=$(command -v letta)" >> "$GITHUB_OUTPUT"
 
       - uses: letta-ai/letta-code-action@v0
