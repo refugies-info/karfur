@@ -10,6 +10,13 @@
     margin: 0;
   }
 
+  /* react-dsfr renders a mandatory, untranslatable accessibility link as the
+     first bottom item (its lang is stuck at "fr" in v1.20.2). We hide it and
+     render our own i18n version inside `bottomItems` instead. */
+  :global(.fr-footer__bottom-list) :global(.fr-footer__bottom-item):first-child {
+    display: none;
+  }
+
   @media print {
     display: none;
   }

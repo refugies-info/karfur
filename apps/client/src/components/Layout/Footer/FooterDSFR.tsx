@@ -8,10 +8,7 @@ import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode, useLocale } from "~/hooks";
-import {
-  FooterConsentManagementItem,
-  FooterPersonalDataPolicyItem,
-} from "~/hooks/useConsentContext";
+import { FooterConsentManagementItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { toggleNewsletterModalAction } from "~/services/Miscellaneous/miscellaneous.actions";
@@ -44,10 +41,6 @@ const Footer = () => {
       <h2 className="sr-only">{t("Footer.useful_links", "Liens utiles")}</h2>
       <DSFRFooter
         accessibility="partially compliant"
-        accessibilityLinkProps={{
-          href: getPath("/declaration-accessibilite", locale),
-          prefetch: false,
-        }}
         brandTop="GOUVERNEMENT"
         id="fr-footer"
         className={cn(styles.footer)}
@@ -65,31 +58,52 @@ const Footer = () => {
           title: "Accueil - Réfugiés.info",
         }}
         bottomItems={[
-          <FooterPersonalDataPolicyItem key={2} />,
-          <FooterConsentManagementItem key={3} />,
+          <Link
+            href={getPath("/plan-du-site", locale)}
+            key="sitemap"
+            className="fr-footer__bottom-link"
+            prefetch={false}
+          >
+            {t("Footer.Plan du site", "Plan du site")}
+          </Link>,
+          <Link
+            href={getPath("/declaration-accessibilite", locale)}
+            key="accessibility"
+            className="fr-footer__bottom-link"
+            prefetch={false}
+          >
+            {t("Footer.accessibility_link", "Accessibilité : partiellement conforme")}
+          </Link>,
+          <Link
+            href={getPath("/mentions-legales", locale)}
+            key="legal-terms"
+            className="fr-footer__bottom-link"
+            prefetch={false}
+          >
+            {t("Footer.legal_terms", "Mentions légales")}
+          </Link>,
+          <Link
+            href={getPath("/politique-de-confidentialite", locale)}
+            key="personal-data"
+            className="fr-footer__bottom-link"
+            prefetch={false}
+          >
+            {t("Footer.privacy_policy", "Politique de confidentialité")}
+          </Link>,
+          <FooterConsentManagementItem key="consent" />,
           <Link
             href="https://kit.refugies.info/stats/"
-            key={4}
+            key="stats"
             className="fr-footer__bottom-link"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Statistiques
+            {t("Footer.statistiques", "Statistiques")}
           </Link>,
         ]}
-        termsLinkProps={{
-          href: getPath("/mentions-legales", locale),
-          title: t("Footer.legal_terms", "Mentions légales"),
-          prefetch: false,
-        }}
-        websiteMapLinkProps={{
-          href: getPath("/plan-du-site", locale),
-          title: t("Footer.Plan du site", "Plan du site"),
-          prefetch: false,
-        }}
         linkList={[
           {
-            categoryName: "Chercher par thématique",
+            categoryName: t("Footer.search_by_topics", "Chercher par thématiques"),
             links: themes.map((theme) => ({
               linkProps: {
                 href: `${getPath("/recherche", locale)}?themes=${theme._id}`,

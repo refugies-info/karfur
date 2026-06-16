@@ -354,7 +354,8 @@
   "Footer": {
     "Newsletter": "Newsletter",
     "help_center": "Help center",
-    "accessibility_link": "Accessibility: not compliant",
+    "statistiques": "Statistics",
+    "accessibility_link": "Accessibility: partially compliant",
     "newsletter_contact_already_exist": "This email address is already subscribed to the Réfugiés.info newsletter!",
     "Les fiches actions": "Action sheets",
     "Participer": "Participate",
@@ -378,6 +379,11 @@
     "information_types": "Three types of information",
     "help_translate": "Help to translate",
     "mission_impact": "Mission and impact"
+  },
+  "Consent": {
+    "analytics_title": "Analysis",
+    "analytics_description": "We use cookies to measure our site's audience and improve its content.",
+    "youtube_description": "We use cookies to display YouTube videos."
   },
   "Roles": {
     "admin": "Admin",

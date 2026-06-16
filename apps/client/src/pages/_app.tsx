@@ -10,7 +10,7 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Caveat } from "next/font/google";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import NextRouter, { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
 import { type ReactElement, type ReactNode, useCallback, useEffect, useState } from "react";
@@ -26,9 +26,16 @@ import { Event, initGA } from "~/lib/tracking";
 import { wrapper } from "~/services/configureStore";
 import type { PageOptions } from "~/types/interface";
 
+// Synchronise la langue de react-dsfr (libellés du bandeau cookies, etc.) avec
+// la locale du routeur. DSFR fournit fr/en et retombe sur fr pour les autres.
+// On lit le singleton next/router (pas le hook useRouter) car useLang est aussi
+// appelé hors contexte routeur (_document SSR) → "NextRouter was not mounted".
+const useLang = () => NextRouter.router?.locale ?? "fr";
+
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
   Link,
+  useLang,
 });
 
 export { dsfrDocumentApi };
