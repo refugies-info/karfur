@@ -119,7 +119,7 @@ const MobileApp = () => {
         </div>
         <h2>
           {t(
-            isMobile ? "MobileApp.title.mobile" : "MobileApp.title.desktop",
+            isMobile ? "MobileApp.titleMobile" : "MobileApp.titleDesktop",
             isMobile
               ? "Télécharge l’application !"
               : "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
