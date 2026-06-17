@@ -447,7 +447,8 @@
   "Footer": {
     "Newsletter": "Newsletter",
     "help_center": "Consulter le centre d'aide",
-    "accessibility_link": "Accessibilité : non conforme",
+    "accessibility_link": "Accessibilité : partiellement conforme",
+    "statistiques": "Statistiques",
     "newsletter_contact_already_exist": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "Les fiches actions": "Les fiches actions",
     "Participer": "Participer",
@@ -468,10 +469,16 @@
     "subscribe_for_informations": "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info",
     "procedures": "Les fiches démarches",
     "directory": "L’annuaire des acteurs",
+    "search_by_topics": "Chercher par thématique",
     "information_types": "Trois types d’information",
     "help_translate": "Aider à traduire",
     "mission_impact": "Mission et impact",
     "useful_links": "Liens utiles"
+  },
+  "Consent": {
+    "analytics_title": "Analyse",
+    "analytics_description": "Nous utilisons des cookies pour mesurer l’audience de notre site et améliorer son contenu.",
+    "youtube_description": "Nous utilisons des cookies pour afficher les vidéos Youtube."
   },
   "Roles": {
     "admin": "Admin",
