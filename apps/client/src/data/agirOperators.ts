@@ -13,7 +13,8 @@ export const operators: Operator[] = [
     dispositifId: "660d1f34de63124662360640",
     department: "01 - Ain",
     operator: "Alfa3a",
-    email: "pierre-yves.prigent@alfa3a.org",
+    email: "agir01@alfa3a.org",
+    phone: "07 48 13 40 00",
   },
   {
     dispositifId: "6790bf9cb519daad65ac95fc",
@@ -45,7 +46,7 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f36de6312466236065e",
     department: "06 - Alpes-Maritimes",
-    operator: "Groupe SOS Solidarités",
+    operator: "Groupe​ SOS Solidarités",
     email: "agir06@groupe-sos.org",
     phone: "07 86 12 04 32",
   },
@@ -61,6 +62,7 @@ export const operators: Operator[] = [
     department: "08 - Ardennes",
     operator: "Association pour l'Accueil des Travailleurs et des Migrants",
     email: "agir08@aatm.fr",
+    phone: "03 75 97 03 16",
   },
   {
     dispositifId: "660d1f36de63124662360667",
@@ -72,7 +74,7 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f35de6312466236064f",
     department: "10 - Aube",
-    operator: "AATM",
+    operator: "AATM, Croix-Rouge et Pact Soliha",
     email: "contact@10.agir.ong",
     phone: "03 25 45 55 30",
   },
@@ -84,6 +86,7 @@ export const operators: Operator[] = [
     phone: "04 48 59 00 01",
   },
   {
+    dispositifId: "6790bf9cb519daad65ac95f9",
     department: "12 - Aveyron",
     operator: "Habitat et Humanisme",
     email: "agir12@habitat-humanisme.org",
@@ -168,7 +171,7 @@ export const operators: Operator[] = [
     dispositifId: "660d1f37de63124662360677",
     department: "25 - Doubs",
     operator: "Coallia",
-    email: "agir25@coallia.org",
+    email: "agir.25@coallia.org",
     phone: "06 03 74 57 59",
   },
   {
@@ -200,6 +203,7 @@ export const operators: Operator[] = [
     phone: "06 14 71 94 81",
   },
   {
+    dispositifId: "67d82e07c256d41cb5758ae6",
     department: "30 - Gard",
     operator: "Entraide Pierre Valdo",
     email: "idc@epvaldo.org",
@@ -210,6 +214,7 @@ export const operators: Operator[] = [
     department: "31 - Haute-Garonne",
     operator: "Forum Réfugiés",
     email: "agir31@forumrefugies.org",
+    phone: "05 34 58 19 15",
   },
   {
     dispositifId: "660d1f37de6312466236066b",
@@ -230,6 +235,7 @@ export const operators: Operator[] = [
     department: "34 - Hérault",
     operator: "Forum Réfugiés",
     email: "agir34@forumrefugies.org",
+    phone: "04 67 22 55 16",
   },
   {
     dispositifId: "660d1d704672fd6af8c456dd",
@@ -243,7 +249,7 @@ export const operators: Operator[] = [
     department: "36 - Indre",
     operator: "Coallia",
     email: "agir36@coallia.org",
-    phone: "05 49 92 29 23",
+    phone: "02 54 22 05 48",
   },
   {
     dispositifId: "6790bf9bb519daad65ac95f6",
@@ -313,6 +319,7 @@ export const operators: Operator[] = [
     department: "46 - Lot",
     operator: "Lot pour Toits (REGAR)",
     email: "coordinationagir@lotpourtoits.fr",
+    phone: "06 76 73 11 76",
   },
   {
     dispositifId: "660d1f3ade63124662360684",
@@ -346,6 +353,7 @@ export const operators: Operator[] = [
     department: "51 - Marne",
     operator: "AFND",
     email: "contact-agir.marne@croix-rouge.fr",
+    phone: "03 74 07 02 11",
   },
   {
     dispositifId: "6790bf9ab519daad65ac95f1",
@@ -373,6 +381,7 @@ export const operators: Operator[] = [
     department: "55 - Meuse",
     operator: "ARELIA-AMIE",
     email: "chrs-verdun@amie55.com",
+    phone: "03 29 86 56 23",
   },
   {
     dispositifId: "660d1f37de6312466236066c",
@@ -407,6 +416,7 @@ export const operators: Operator[] = [
     department: "60 - Oise",
     operator: "Coallia",
     email: "agir.60@coallia.org",
+    phone: "03 44 52 64 81",
   },
   {
     dispositifId: "660d1f37de63124662360673",
@@ -467,8 +477,8 @@ export const operators: Operator[] = [
     dispositifId: "660d18ea684cbc7e836f00d6",
     department: "69 - Rhône",
     operator: "Forum Réfugiés",
-    email: "direction@forumrefugies.org",
-    phone: "04 78 03 74 45",
+    email: "agir69@forumrefugies.org",
+    phone: "04 87 91 27 70",
   },
   {
     dispositifId: "660d1f37de63124662360671",
@@ -559,17 +569,21 @@ export const operators: Operator[] = [
     department: "82 - Tarn-et-Garonne",
     operator: "Forum Réfugiés",
     email: "agir82@forumrefugies.org",
+    phone: "05 67 75 00 30",
   },
   {
+    dispositifId: "67d82e14c256d41cb5758ae7",
     department: "83 - Var",
-    operator: "Entraide Pierre Valdo",
-    email: "contact@epvaldo.org",
+    operator: "Face Var (Sud-Var) et GES Sendra (Haut-Var)",
+    email: "facevar@facevar.org",
+    phone: "04 94 36 00 85",
   },
   {
     dispositifId: "660d1f37de6312466236066f",
     department: "84 - Vaucluse",
     operator: "Entraide Pierre Valdo",
     email: "contact@epvaldo.org",
+    phone: "04 88 60 52 50",
   },
   {
     dispositifId: "660d1f36de63124662360658",
@@ -624,6 +638,7 @@ export const operators: Operator[] = [
     department: "92 - Hauts-de-Seine",
     operator: "FTDA",
     email: "agir92@france-terre-asile.org",
+    phone: "01 46 39 04 93",
   },
   {
     dispositifId: "67d82e1ac256d41cb5758ae8",
@@ -637,6 +652,7 @@ export const operators: Operator[] = [
     department: "94 - Val-de-Marne",
     operator: "SOS Solidarités",
     email: "agir94@groupe-sos.org",
+    phone: "06 07 84 44 83",
   },
   {
     dispositifId: "660d1f38de6312466236067a",
