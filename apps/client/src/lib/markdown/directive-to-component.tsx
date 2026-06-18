@@ -96,6 +96,21 @@ export function getDirectiveComponents(t: TFunction) {
       <span className="block mb-4 last:mb-0">{children}</span>
     ),
 
+    // // Apply the same link styling as RI rich-text (.rtri-link)
+    a: ({ children, href }: { children?: ReactNode; href?: string }) => {
+      const isExternal = !!href && !href.startsWith("mailto:") && !href.startsWith("#");
+      console.log("link", href, isExternal);
+      return (
+        <a
+          href={href}
+          className="rtri-link"
+          {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {children}
+        </a>
+      );
+    },
+
     // :::toggle{title="..." stepNumber=1}
     toggle: ({ children, title, stepNumber }: DirectiveComponentProps) => {
       const parsedStepNumber = stepNumber ? Number.parseInt(stepNumber.toString(), 10) : undefined;
