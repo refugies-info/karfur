@@ -46,7 +46,7 @@ export const operators: Operator[] = [
   {
     dispositifId: "660d1f36de6312466236065e",
     department: "06 - Alpes-Maritimes",
-    operator: "Groupe​ SOS Solidarités",
+    operator: "Groupe SOS Solidarités",
     email: "agir06@groupe-sos.org",
     phone: "07 86 12 04 32",
   },
