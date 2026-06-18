@@ -96,6 +96,10 @@ export function getDirectiveComponents(t: TFunction) {
       <span className="block mb-4 last:mb-0">{children}</span>
     ),
 
+    h2: ({ children }: { children?: ReactNode }) => (
+      <h2 className="text-title-lg font-bold">{children}</h2>
+    ),
+
     // // Apply the same link styling as RI rich-text (.rtri-link)
     a: ({ children, href }: { children?: ReactNode; href?: string }) => {
       const isExternal = !!href && !href.startsWith("mailto:") && !href.startsWith("#");
