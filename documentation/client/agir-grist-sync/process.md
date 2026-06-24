@@ -10,12 +10,12 @@ Le but est de permettre à l’équipe de corriger les coordonnées sans redépl
 
 ```mermaid
 flowchart LR
-  A[Xavier modifie les opérateurs dans Grist] --> B[Il ouvre /agir en admin connecté]
-  B --> C[Il clique sur Synchroniser depuis Grist]
-  C --> D[Réfugiés.info relit toute la table Grist]
-  D --> E[Les données sont vérifiées]
-  E --> F[Un JSON valide est publié côté RI]
-  F --> G[La page AGIR affiche les nouvelles coordonnées]
+  A["Xavier modifie les opérateurs dans Grist"] --> B["Il ouvre /agir en admin connecté"]
+  B --> C["Il clique sur Synchroniser depuis Grist"]
+  C --> D["Réfugiés.info relit toute la table Grist"]
+  D --> E["Les données sont vérifiées"]
+  E --> F["Un JSON valide est publié côté RI"]
+  F --> G["La page AGIR affiche les nouvelles coordonnées"]
 ```
 
 La synchronisation est volontaire : Xavier peut faire plusieurs modifications dans Grist, puis publier une seule fois quand tout est prêt.
@@ -30,12 +30,12 @@ La synchronisation est volontaire : Xavier peut faire plusieurs modifications da
 
 ```mermaid
 flowchart LR
-  A[Modifications Grist terminées] --> B[Bouton admin sur /agir]
-  B --> C{Données valides ?}
-  C -->|Oui| D[Nouveau JSON publié]
-  C -->|Non| E[Erreur affichée]
-  D --> F[/agir affiche les nouvelles données]
-  E --> G[Ancienne version conservée]
+  A["Modifications Grist terminées"] --> B["Bouton admin sur /agir"]
+  B --> C{"Données valides ?"}
+  C -->|Oui| D["Nouveau JSON publié"]
+  C -->|Non| E["Erreur affichée"]
+  D --> F["/agir affiche les nouvelles données"]
+  E --> G["Ancienne version conservée"]
 ```
 
 ## Ce qui est publié
@@ -90,12 +90,12 @@ Principe prévu :
 
 ```mermaid
 flowchart LR
-  A[Synchro automatique jours ouvrés] --> B[Lecture Grist]
-  B --> C{Changement détecté ?}
-  C -->|Non| D[Aucune publication]
-  C -->|Oui| E{Données valides ?}
-  E -->|Oui| F[Nouveau JSON publié]
-  E -->|Non| G[Erreur logguée + ancienne version conservée]
+  A["Synchro automatique jours ouvrés"] --> B["Lecture Grist"]
+  B --> C{"Changement détecté ?"}
+  C -->|Non| D["Aucune publication"]
+  C -->|Oui| E{"Données valides ?"}
+  E -->|Oui| F["Nouveau JSON publié"]
+  E -->|Non| G["Erreur logguée + ancienne version conservée"]
 ```
 
 ## Comment tester

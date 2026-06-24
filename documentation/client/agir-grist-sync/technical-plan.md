@@ -16,12 +16,12 @@ Le fichier statique actuel reste le fallback ultime.
 
 ```mermaid
 flowchart LR
-  A[Grist] --> B[Bouton admin sur /agir]
-  B --> C[Route backend Express]
-  C --> D[Validation + normalisation]
-  D --> E[(JSON publié côté GCP)]
-  E --> F[Page /agir]
-  G[agirOperators.ts] --> F
+  A["Grist"] --> B["Bouton admin sur /agir"]
+  B --> C["Route backend Express"]
+  C --> D["Validation + normalisation"]
+  D --> E[("JSON publié côté GCP")]
+  E --> F["Page /agir"]
+  G["agirOperators.ts"] --> F
 ```
 
 Principes :
@@ -254,12 +254,12 @@ Mais la décision finale dépend des droits GCP et de la préférence équipe.
 
 ```mermaid
 flowchart TD
-  A[Requête /agir] --> B{JSON publié disponible ?}
-  B -->|Oui| C[Lire current.json]
-  B -->|Non| F[Fallback statique]
-  C --> D{Donnée exploitable ?}
-  D -->|Oui| E[Afficher données JSON]
-  D -->|Non| F[Afficher agirOperators.ts]
+  A["Requête /agir"] --> B{"JSON publié disponible ?"}
+  B -->|Oui| C["Lire current.json"]
+  B -->|Non| F["Fallback statique"]
+  C --> D{"Donnée exploitable ?"}
+  D -->|Oui| E["Afficher données JSON"]
+  D -->|Non| F["Afficher agirOperators.ts"]
 ```
 
 Lecture possible :
@@ -305,23 +305,23 @@ Décisions prévues :
 
 ```mermaid
 flowchart TD
-  A[Cloud Scheduler jours ouvrés] --> B[Route backend cron]
-  B --> C[Lire Grist]
-  C --> D[Normaliser les données]
-  D --> E{Différent du JSON courant ?}
-  E -->|Non| F[Ne rien publier + log aucun changement]
-  E -->|Oui| G[Valider et publier un nouveau JSON]
-  G --> H[Ancienne version conservée si erreur]
+  A["Cloud Scheduler jours ouvrés"] --> B["Route backend cron"]
+  B --> C["Lire Grist"]
+  C --> D["Normaliser les données"]
+  D --> E{"Différent du JSON courant ?"}
+  E -->|Non| F["Ne rien publier + log aucun changement"]
+  E -->|Oui| G["Valider et publier un nouveau JSON"]
+  G --> H["Ancienne version conservée si erreur"]
 ```
 
 Architecture cible à terme :
 
 ```mermaid
 flowchart LR
-  A[Bouton admin sur /agir] --> C[Workflow backend syncAgirOperators]
-  B[Cloud Scheduler jours ouvrés] --> C
-  C --> D[Grist]
-  C --> E[JSON GCP]
+  A["Bouton admin sur /agir"] --> C["Workflow backend syncAgirOperators"]
+  B["Cloud Scheduler jours ouvrés"] --> C
+  C --> D["Grist"]
+  C --> E["JSON GCP"]
 ```
 
 Point d’attention : la route cron doit être protégée côté backend et ne doit pas être callable publiquement sans secret.
