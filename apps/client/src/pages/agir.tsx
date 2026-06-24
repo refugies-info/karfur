@@ -4,6 +4,7 @@ import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { operatorsPerDepartment } from "data/agirOperators";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { getPath } from "routes";
 import ActeursIlluDemarche from "~/assets/agir/acteurs-illu-demarche.png";
@@ -26,11 +27,16 @@ import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { isValidEmail } from "~/lib/validateFields";
 import styles from "~/scss/pages/agir.module.scss";
+import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 
 type Section = "program" | "operators" | "next";
 
 const Agir = () => {
+  const user = useSelector(userSelector);
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [syncStatus, setSyncStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const operatorData = useMemo(
     () => operatorsPerDepartment[selectedDepartment],
     [selectedDepartment],
@@ -62,6 +68,20 @@ const Agir = () => {
     });
   }, []);
 
+  const syncAgirOperators = useCallback(async () => {
+    setSyncStatus("loading");
+    setSyncMessage(null);
+
+    try {
+      const response = await API.syncAgirOperators();
+      setSyncStatus("success");
+      setSyncMessage(response.message);
+    } catch {
+      setSyncStatus("error");
+      setSyncMessage("La synchronisation AGIR est impossible pour le moment.");
+    }
+  }, []);
+
   return (
     <div className="w-full">
       <SEO
@@ -69,6 +89,37 @@ const Agir = () => {
         description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
       />
       <HelpNotice />
+      {user.admin && (
+        <Container className="fr-my-4">
+          <div className="fr-alert fr-alert--info">
+            <h2 className="fr-alert__title">Administration AGIR</h2>
+            <p>
+              Cette action est visible uniquement par les admins connectés. Elle permet de tester la
+              route de synchronisation des opérateurs AGIR.
+            </p>
+            <Button
+              size="small"
+              onClick={syncAgirOperators}
+              disabled={syncStatus === "loading"}
+              className="mt-4"
+            >
+              {syncStatus === "loading"
+                ? "Synchronisation en cours..."
+                : "Synchroniser depuis Grist"}
+            </Button>
+            {syncMessage && (
+              <p
+                className={cls(
+                  "mb-0 mt-4",
+                  syncStatus === "error" ? "text-default-error" : "text-default-success",
+                )}
+              >
+                {syncMessage}
+              </p>
+            )}
+          </div>
+        </Container>
+      )}
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
