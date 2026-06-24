@@ -2,56 +2,45 @@
 
 ## Objectif
 
-Les coordonnées des opérateurs AGIR sont préparées dans Grist, puis publiées vers Réfugiés.info via une synchronisation manuelle.
+Les coordonnées des opérateurs AGIR sont préparées dans Grist, puis publiées vers Réfugiés.info via une action manuelle directement sur la page `/agir`, visible uniquement pour les admins connectés.
 
 Le but est de permettre à l’équipe de corriger les coordonnées sans redéployer le site, tout en évitant une mise à jour automatique à chaque modification de ligne.
 
-## Principe général
+## Fonctionnement cible
 
 ```mermaid
 flowchart LR
-  A[Xavier modifie les opérateurs dans Grist] --> B[Il déclenche une synchronisation globale]
-  B --> C[Réfugiés.info relit toute la table Grist]
-  C --> D[Les données sont vérifiées]
-  D --> E[Les données valides sont mises en cache partagé]
-  E --> F[La page AGIR affiche les nouvelles coordonnées]
+  A[Xavier modifie les opérateurs dans Grist] --> B[Il ouvre /agir en admin connecté]
+  B --> C[Il clique sur Synchroniser depuis Grist]
+  C --> D[Réfugiés.info relit toute la table Grist]
+  D --> E[Les données sont vérifiées]
+  E --> F[Un JSON valide est publié côté RI]
+  F --> G[La page AGIR affiche les nouvelles coordonnées]
 ```
 
 La synchronisation est volontaire : Xavier peut faire plusieurs modifications dans Grist, puis publier une seule fois quand tout est prêt.
 
-## Comment Xavier déclenche une mise à jour
+## Parcours Xavier
 
-Une table de pilotage est prévue dans Grist, par exemple **Publication RI**.
-
-Elle contient une ligne dédiée à la synchronisation AGIR :
-
-| Champ | Rôle |
-|---|---|
-| `Nom` | “Synchronisation AGIR vers Réfugiés.info” |
-| `Demande_sync` | case à cocher utilisée pour déclencher la publication |
-| `Commentaire` | optionnel, pour noter le contexte d’une mise à jour |
-
-Parcours côté Xavier :
-
-1. Modifier les coordonnées dans la table principale Grist : opérateur, email, téléphone, lien vers une fiche RI si besoin.
-2. Quand les modifications sont prêtes, aller dans la table **Publication RI**.
-3. Cocher **Demande_sync**.
-4. Grist déclenche une automation qui appelle Réfugiés.info.
-5. Réfugiés.info relit toute la table Grist, vérifie les données, puis publie la nouvelle version si elle est valide.
-6. Pour le premier lot, remettre manuellement **Demande_sync** à zéro après usage, afin de pouvoir relancer une future synchronisation.
+1. Modifier les coordonnées dans Grist : opérateur, email, téléphone, lien vers une fiche RI si besoin.
+2. Ouvrir `/agir` avec un compte admin connecté.
+3. Cliquer sur **Synchroniser les opérateurs AGIR depuis Grist** dans l’encart admin.
+4. Lire le résultat affiché : succès, avertissements éventuels, ou erreur à corriger.
+5. Vérifier directement sur `/agir` que le département modifié affiche la bonne donnée.
 
 ```mermaid
 flowchart LR
-  A[Modification de plusieurs lignes Grist] --> B[Table Publication RI]
-  B --> C[Cocher Demande_sync]
-  C --> D[Automation Grist]
-  D --> E[Webhook Réfugiés.info]
-  E --> F[Publication du nouvel état complet]
+  A[Modifications Grist terminées] --> B[Bouton admin sur /agir]
+  B --> C{Données valides ?}
+  C -->|Oui| D[Nouveau JSON publié]
+  C -->|Non| E[Erreur affichée]
+  D --> F[/agir affiche les nouvelles données]
+  E --> G[Ancienne version conservée]
 ```
 
 ## Ce qui est publié
 
-La synchronisation publie un état complet de la table, pas une ligne isolée.
+La synchronisation publie un état complet de la table Grist, pas une ligne isolée.
 
 Champs utilisés sur la page AGIR :
 
@@ -65,11 +54,11 @@ Champs utilisés sur la page AGIR :
 
 Les adresses, régions, années et mails secondaires ne sont pas affichés dans ce premier lot.
 
-## Que se passe-t-il en cas d’erreur ?
+## Gestion des erreurs
 
-Si la synchronisation échoue, Réfugiés.info garde les dernières données valides.
+Si la synchronisation échoue, Réfugiés.info ne publie pas de nouveau JSON. La page AGIR continue donc d’utiliser la dernière version valide.
 
-Exemples d’erreurs bloquantes :
+Erreurs bloquantes typiques :
 
 - Grist indisponible ;
 - département manquant ;
@@ -77,30 +66,20 @@ Exemples d’erreurs bloquantes :
 - opérateur vide ;
 - réponse Grist illisible.
 
-Exemples d’erreurs non bloquantes :
+Erreurs non bloquantes typiques :
 
 - email avec espace ou retour ligne : il est nettoyé ;
 - email invalide : il n’est pas affiché ;
 - lien fiche RI invalide : le bouton “Découvrir la fiche” n’est pas affiché.
 
-Les visiteurs de la page AGIR ne voient pas d’erreur : ils continuent à voir la dernière donnée disponible, ou le fichier de secours si le cache est vide.
+Les visiteurs de `/agir` ne voient pas d’erreur : ils continuent à voir la dernière donnée publiée, ou le fichier de secours si aucun JSON n’est disponible.
 
 ## Comment tester
 
 1. Modifier une coordonnée dans Grist.
-2. Déclencher la synchronisation via **Publication RI**.
-3. Ouvrir `/agir`.
-4. Sélectionner le département modifié.
-5. Vérifier que la coordonnée apparaît.
-6. Vérifier qu’un lien fiche RI valide affiche toujours le bouton “Découvrir la fiche”.
-7. Remettre **Demande_sync** à zéro dans Grist.
-
-## Évolution prévue
-
-Dans un second temps, Réfugiés.info pourra éventuellement écrire dans Grist pour :
-
-- remettre automatiquement `Demande_sync` à zéro ;
-- écrire la date de dernière synchronisation ;
-- écrire le dernier message d’erreur.
-
-Ce n’est pas nécessaire pour le premier lot.
+2. Ouvrir `/agir` avec un compte admin connecté.
+3. Cliquer sur **Synchroniser les opérateurs AGIR depuis Grist**.
+4. Vérifier le retour affiché dans l’encart admin.
+5. Sélectionner le département modifié.
+6. Vérifier que la coordonnée apparaît.
+7. Vérifier qu’un lien fiche RI valide affiche toujours le bouton “Découvrir la fiche”.

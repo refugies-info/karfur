@@ -1,48 +1,55 @@
 # Plan technique — données AGIR depuis Grist
 
-## 1. Contexte
+## 1. Objectif
 
-La page `/agir` utilise aujourd’hui un fichier statique :
+Remplacer la source principale actuelle :
 
 ```txt
 apps/client/src/data/agirOperators.ts
 ```
 
-Ce fichier alimente :
+par une donnée publiée depuis Grist, sans fragiliser la page publique `/agir`.
 
-- la page AGIR ;
-- le sélecteur de département ;
-- la carte de France.
+Le fichier statique actuel reste le fallback ultime.
 
-Objectif : utiliser Grist comme source principale, sans fragiliser la page publique.
+## 2. Architecture cible
 
-## 2. Configuration
+```mermaid
+flowchart LR
+  A[Grist] --> B[Bouton admin sur /agir]
+  B --> C[Route de synchronisation RI]
+  C --> D[Validation + normalisation]
+  D --> E[(JSON publié côté GCP)]
+  E --> F[Page /agir]
+  G[agirOperators.ts] --> F
+```
 
-L’endpoint Grist exact ne doit pas être figé dans le code. Il est configuré par variables d’environnement :
+Principes :
+
+- la synchronisation est déclenchée manuellement depuis `/agir` ;
+- le bouton est visible uniquement pour les admins connectés ;
+- la route de synchronisation vérifie aussi les droits admin côté serveur ;
+- Grist n’est jamais appelé pendant la navigation des visiteurs ;
+- si la synchronisation échoue, le JSON précédent reste en place ;
+- si le JSON publié est indisponible, `/agir` utilise le fichier statique de secours.
+
+## 3. Variables d’environnement prévues
 
 ```env
 GRIST_API_URL=...
 GRIST_API_KEY=...
-GRIST_SYNC_SECRET=...
+AGIR_OPERATORS_GCS_BUCKET=...
+AGIR_OPERATORS_GCS_OBJECT=...
+AGIR_OPERATORS_PUBLIC_URL=...
 ```
 
-`GRIST_API_URL` pointe vers l’API Grist de lecture des records.
+À noter : le nom exact du bucket et le mode de lecture du JSON restent à valider. Voir [Bucket GCP — TBD](#8-bucket-gcp--tbd).
 
-`GRIST_API_KEY` sert à lire la table Grist.
+## 4. Données Grist utilisées
 
-`GRIST_SYNC_SECRET` protège la route appelée par l’automation Grist.
+La table Grist contient actuellement environ 94 lignes, avec un département par ligne.
 
-## 3. Données Grist observées
-
-La table contient actuellement :
-
-- 94 lignes ;
-- 94 départements distincts ;
-- pas de doublon détecté.
-
-Quelques emails contiennent des espaces ou retours ligne. Ces cas peuvent être corrigés automatiquement par `trim()`.
-
-Champs retenus :
+Champs retenus pour le premier lot :
 
 | Colonne Grist | Usage | Statut |
 |---|---|---|
@@ -52,73 +59,37 @@ Champs retenus :
 | `Telephone` | téléphone affiché | optionnel |
 | `Fiche_RI` | bouton “Découvrir la fiche” | optionnel |
 
-## 4. Pourquoi ne pas utiliser ISR seul ?
+Champs non utilisés pour ce premier lot :
 
-Cloud Run peut lancer plusieurs instances du frontend.
+- adresses ;
+- région ;
+- année ;
+- mail secondaire.
 
-```mermaid
-flowchart TB
-  U[Utilisateurs] --> A[Frontend instance A]
-  U --> B[Frontend instance B]
-  U --> C[Frontend instance C]
+## 5. Synchronisation
 
-  A --> CA[Cache local A]
-  B --> CB[Cache local B]
-  C --> CC[Cache local C]
-```
-
-Avec une stratégie ISR seule, chaque instance peut avoir son propre cache local. Une revalidation peut ne toucher qu’une seule instance.
-
-Conséquence possible : deux utilisateurs peuvent voir deux versions différentes de la donnée pendant un certain temps.
-
-Pour cette donnée, on préfère une source partagée entre instances.
-
-## 5. Solution retenue : Redis comme cache partagé
-
-Redis sert de cache partagé de la donnée AGIR.
-
-```mermaid
-flowchart LR
-  G[Grist] --> S[Route de synchronisation]
-  S --> R[(Redis partagé)]
-  R --> A[Frontend instance A]
-  R --> B[Frontend instance B]
-  R --> C[Frontend instance C]
-```
-
-Avantages :
-
-- Grist n’est pas appelé par les visiteurs ;
-- toutes les instances lisent la même donnée ;
-- une synchronisation réussie met à jour un cache commun ;
-- une synchronisation échouée ne remplace pas la dernière donnée valide.
-
-## 6. Route de synchronisation
-
-Nouvelle route prévue :
+Route proposée :
 
 ```txt
 POST /api/agir/operators/sync
-Authorization: Bearer <GRIST_SYNC_SECRET>
 ```
 
 Flux :
 
 ```mermaid
 sequenceDiagram
-  participant X as Grist / Xavier
-  participant RI as API RI sync
-  participant G as API Grist
-  participant R as Redis
+  participant Admin as Admin sur /agir
+  participant API as API RI sync
+  participant Grist as API Grist
+  participant GCP as Stockage JSON GCP
 
-  X->>RI: POST /api/agir/operators/sync
-  RI->>RI: Vérifie le secret
-  RI->>R: Pose un verrou de synchronisation
-  RI->>G: Lit toute la table Grist
-  G-->>RI: Records Grist
-  RI->>RI: Normalise et valide
-  RI->>R: Écrit la nouvelle donnée
-  RI-->>X: Résultat de synchronisation
+  Admin->>API: Clique sur Synchroniser depuis /agir
+  API->>API: Vérifie les droits admin
+  API->>Grist: Lit toute la table Grist
+  Grist-->>API: Records Grist
+  API->>API: Normalise et valide
+  API->>GCP: Écrit le nouveau JSON valide
+  API-->>Admin: Succès / warnings / erreur
 ```
 
 Réponse de succès :
@@ -129,7 +100,8 @@ Réponse de succès :
   "source": "grist",
   "recordCount": 94,
   "departmentCount": 94,
-  "syncedAt": "2026-06-22T..."
+  "syncedAt": "2026-06-24T...",
+  "warnings": []
 }
 ```
 
@@ -140,80 +112,44 @@ Réponse d’erreur :
   "success": false,
   "error": "invalid_schema",
   "message": "Duplicate department 01",
-  "previousCachePreserved": true
+  "previousVersionPreserved": true
 }
 ```
 
-## 7. Verrou anti double synchronisation
+## 6. Format JSON cible
 
-Pour éviter deux synchronisations simultanées :
-
-```txt
-SET agir:operators:sync-lock 1 NX EX 60
-```
-
-Si le verrou existe déjà, la route répond `409 Conflict`.
-
-Cas couverts :
-
-- double clic ;
-- retry webhook ;
-- deux utilisateurs Grist ;
-- plusieurs instances Cloud Run.
-
-## 8. Clés Redis proposées
+Objet courant envisagé :
 
 ```txt
-agir:operators:data
-agir:operators:meta
-agir:operators:sync-lock
+agir/operators/current.json
 ```
 
-`agir:operators:data` contient les opérateurs par code département :
+Format proposé :
 
 ```json
 {
-  "01": {
-    "department": "01 - Ain",
-    "operator": "Alfa3a",
-    "email": "agir01@alfa3a.org",
-    "phone": "07 48 13 40 00",
-    "dispositifId": "660d1f34de63124662360640"
+  "meta": {
+    "source": "grist",
+    "recordCount": 94,
+    "departmentCount": 94,
+    "syncedAt": "2026-06-24T...",
+    "warnings": []
+  },
+  "operatorsPerDepartment": {
+    "01": {
+      "department": "01 - Ain",
+      "operator": "Alfa3a",
+      "email": "agir01@alfa3a.org",
+      "phone": "07 48 13 40 00",
+      "dispositifId": "660d1f34de63124662360640"
+    }
   }
 }
 ```
 
-`agir:operators:meta` contient les informations de synchronisation :
+Règle importante : écrire `current.json` uniquement après validation complète. Si la validation échoue, l’objet courant n’est pas remplacé.
 
-```json
-{
-  "source": "grist",
-  "recordCount": 94,
-  "departmentCount": 94,
-  "syncedAt": "2026-06-22T...",
-  "warnings": []
-}
-```
-
-Recommandation : ne pas mettre de TTL sur `agir:operators:data`, pour conserver la dernière version valide tant qu’une nouvelle synchronisation n’a pas réussi.
-
-## 9. Lecture côté page `/agir`
-
-Recommandation : passer `/agir` en rendu serveur, avec lecture Redis.
-
-```mermaid
-flowchart TD
-  A[Requête /agir] --> B{Redis disponible ?}
-  B -->|Oui| C[Lire agir:operators:data]
-  B -->|Non| F[Fallback statique]
-  C --> D{Donnée exploitable ?}
-  D -->|Oui| E[Afficher données Redis]
-  D -->|Non| F[Afficher agirOperators.ts]
-```
-
-Le fichier statique actuel reste donc le fallback de sécurité.
-
-## 10. Validation et normalisation
+## 7. Validation et normalisation
 
 Normalisations prévues :
 
@@ -239,59 +175,140 @@ Erreurs non critiques :
 - lien fiche RI invalide : bouton non affiché ;
 - téléphone vide : champ non affiché.
 
-## 11. Déclenchement depuis Grist
+## 8. Bucket GCP — TBD
 
-On évite un webhook directement sur la table principale des opérateurs.
+Le bucket exact reste à confirmer avant implémentation.
 
-Solution : une table de contrôle, par exemple **Publication RI**, avec un toggle `Demande_sync`.
+### Ce qui existe déjà dans le repo
 
-```mermaid
-flowchart LR
-  A[Xavier modifie Table1] --> B[Il coche Demande_sync]
-  B --> C[Automation Grist]
-  C --> D[Webhook RI]
-  D --> E[RI relit toute Table1]
+Le frontend référence déjà un bucket public d’assets :
+
+```txt
+https://storage.googleapis.com/refugies-info-assets/
 ```
 
-Premier lot : Xavier remet manuellement le toggle à zéro.
+Références repérées :
 
-Évolution possible : l’API RI écrit dans Grist pour remettre le toggle à zéro et renseigner la dernière date de synchronisation.
+- `apps/client/src/assets/assetsOnServer.ts`
+- `apps/client/next.config.js`
+- `documentation/client/general.md`
+- `documentation/client/architecture.md`
 
-## 12. Observabilité
+Ce bucket sert actuellement aux assets statiques frontend : images, pictogrammes, badges store, etc.
 
-Slack est reporté.
+### Option A — réutiliser `refugies-info-assets`
 
-Pour ce premier lot :
+Chemin possible :
+
+```txt
+gs://refugies-info-assets/agir/operators/current.json
+https://storage.googleapis.com/refugies-info-assets/agir/operators/current.json
+```
+
+Avantages :
+
+- bucket déjà connu du frontend ;
+- lecture publique probablement déjà adaptée ;
+- mise en place plus rapide.
+
+Points à vérifier :
+
+- le service qui synchronise a-t-il le droit d’écrire dans ce bucket ?
+- l’équipe est-elle OK pour stocker une donnée JSON publique dans le bucket d’assets ?
+- faut-il ajouter une archive horodatée sous `agir/operators/history/` ?
+
+### Option B — créer un bucket dédié
+
+Exemple :
+
+```txt
+refugies-info-public-data
+```
+
+Avantages :
+
+- séparation claire entre assets statiques et données publiques générées ;
+- droits IAM plus propres ;
+- plus lisible à long terme.
+
+Inconvénient :
+
+- demande une petite configuration GCP supplémentaire.
+
+### Décision à prendre
+
+À date, la piste pragmatique est :
+
+```txt
+TBD — explorer la réutilisation de refugies-info-assets avec un préfixe agir/operators/
+```
+
+Mais la décision finale dépend des droits GCP et de la préférence équipe.
+
+## 9. Lecture côté `/agir`
+
+```mermaid
+flowchart TD
+  A[Requête /agir] --> B{JSON publié disponible ?}
+  B -->|Oui| C[Lire current.json]
+  B -->|Non| F[Fallback statique]
+  C --> D{Donnée exploitable ?}
+  D -->|Oui| E[Afficher données JSON]
+  D -->|Non| F[Afficher agirOperators.ts]
+```
+
+Lecture possible :
+
+- via URL publique si l’objet est public ;
+- via route serveur si l’objet reste privé.
+
+Pour ce volume et cette donnée publique, une URL publique contrôlée est probablement l’option la plus simple.
+
+## 10. Encart admin sur `/agir`
+
+La page `/agir` affiche un encart réservé aux admins connectés.
+
+Exemple :
+
+```txt
+Administration AGIR
+Dernière synchronisation : 24/06/2026 à 15:42
+94 opérateurs publiés
+[ Synchroniser depuis Grist ]
+```
+
+L’encart doit afficher :
+
+- un état de chargement ;
+- un message de succès ;
+- les warnings éventuels ;
+- une erreur compréhensible en cas d’échec.
+
+## 11. Observabilité
+
+Premier lot :
 
 - logs structurés ;
-- réponse JSON explicite ;
-- metadata Redis ;
-- cache précédent conservé en cas d’échec.
+- réponse JSON explicite à l’admin ;
+- ancien JSON conservé en cas d’échec ;
+- fallback statique si le JSON publié est inaccessible.
+
+Slack est reporté.
 
 Exemples de logs :
 
 ```txt
 [agirOperators] sync succeeded
-[agirOperators] sync failed, previous Redis cache preserved
-[agirOperators] Redis read failed, static fallback used
+[agirOperators] sync failed, previous JSON preserved
+[agirOperators] GCP JSON read failed, static fallback used
 ```
 
-## 13. Arbitrages
+## 12. Points à valider avant implémentation
 
-| Sujet | Option retenue | Pourquoi |
-|---|---|---|
-| Source | Grist | Maintenable par l’équipe métier |
-| Cache | Redis | Partagé entre instances Cloud Run, adapté au faible volume |
-| Appel Grist | Sync explicite uniquement | Pas de dépendance Grist pendant la navigation utilisateur |
-| Page `/agir` | Lecture serveur de Redis | Évite les caches locaux divergents |
-| Déclenchement | Table de contrôle Grist | Publication globale, pas ligne par ligne |
-| Fallback | fichier actuel | Page toujours fonctionnelle |
-| Slack | plus tard | Non bloquant pour le premier lot |
-
-## 14. Points à valider avant implémentation
-
-1. Librairie Redis directe côté `apps/client` (`redis` officiel recommandé).
-2. Absence de TTL sur `agir:operators:data`.
-3. Afficher ou non une mention publique “Coordonnées mises à jour le …”.
-4. Reset manuel du toggle Grist en premier lot.
-5. Ajout des variables d’environnement au service frontend Cloud Run.
+1. Position exacte de l’encart admin sur `/agir`.
+2. Bucket à utiliser : `refugies-info-assets` ou bucket dédié.
+3. Chemin final de l’objet JSON.
+4. Objet public en lecture ou lecture via route serveur.
+5. Versioning bucket ou archive horodatée explicite.
+6. Afficher ou non une mention publique “Coordonnées mises à jour le …”.
+7. Dépendance/lib à utiliser pour écrire le JSON côté GCP.
