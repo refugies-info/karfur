@@ -291,6 +291,8 @@ L’encart doit afficher :
 
 ## 11. Lot 2 — synchronisation automatique jours ouvrés
 
+Ce lot est hors périmètre de la première PR et devra être traité dans une PR séparée.
+
 Le lot 2 pourra ajouter un filet de sécurité automatique, en complément du bouton manuel.
 
 Objectif : rattraper un oubli de synchronisation, pas remplacer le contrôle manuel.
@@ -354,4 +356,4 @@ Exemples de logs :
 5. Versioning bucket ou archive horodatée explicite.
 6. Afficher ou non une mention publique “Coordonnées mises à jour le …”.
 7. Dépendance/lib à utiliser pour écrire le JSON côté GCP.
-8. Pour le lot 2 : configuration Cloud Scheduler et route cron backend.
+8. Pour le lot 2, dans une PR séparée : configuration Cloud Scheduler et route cron backend.

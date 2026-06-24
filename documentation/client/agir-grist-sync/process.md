@@ -76,6 +76,8 @@ Les visiteurs de `/agir` ne voient pas d’erreur : ils continuent à voir la de
 
 ## Lot 2 envisagé : filet de sécurité automatique
 
+Ce lot est explicitement hors périmètre de la première PR et fera l’objet d’une PR séparée.
+
 Dans un second temps, une synchronisation automatique pourra tourner les jours ouvrés.
 
 Elle ne remplace pas le bouton manuel : elle sert de filet de sécurité si une publication a été oubliée.
