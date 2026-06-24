@@ -17,7 +17,7 @@ Le fichier statique actuel reste le fallback ultime.
 ```mermaid
 flowchart LR
   A[Grist] --> B[Bouton admin sur /agir]
-  B --> C[Route de synchronisation RI]
+  B --> C[Route backend Express]
   C --> D[Validation + normalisation]
   D --> E[(JSON publié côté GCP)]
   E --> F[Page /agir]
@@ -28,7 +28,8 @@ Principes :
 
 - la synchronisation est déclenchée manuellement depuis `/agir` ;
 - le bouton est visible uniquement pour les admins connectés ;
-- la route de synchronisation vérifie aussi les droits admin côté serveur ;
+- la route de synchronisation est portée par le backend Express ;
+- la route vérifie les droits admin côté serveur ;
 - Grist n’est jamais appelé pendant la navigation des visiteurs ;
 - si la synchronisation échoue, le JSON précédent reste en place ;
 - si le JSON publié est indisponible, `/agir` utilise le fichier statique de secours.
@@ -66,12 +67,16 @@ Champs non utilisés pour ce premier lot :
 - année ;
 - mail secondaire.
 
-## 5. Synchronisation
+## 5. Synchronisation — lot 1
 
-Route proposée :
+La logique de synchronisation vit côté backend Express, même si le déclenchement manuel est affiché sur `/agir`.
+
+Ce choix prépare le lot 2 : une synchronisation automatique pourra appeler le même workflow backend sans dupliquer la logique côté Next.
+
+Route proposée côté backend :
 
 ```txt
-POST /api/agir/operators/sync
+POST /agir/operators/sync
 ```
 
 Flux :
@@ -79,7 +84,7 @@ Flux :
 ```mermaid
 sequenceDiagram
   participant Admin as Admin sur /agir
-  participant API as API RI sync
+  participant API as Backend Express
   participant Grist as API Grist
   participant GCP as Stockage JSON GCP
 
@@ -284,7 +289,44 @@ L’encart doit afficher :
 - les warnings éventuels ;
 - une erreur compréhensible en cas d’échec.
 
-## 11. Observabilité
+## 11. Lot 2 — synchronisation automatique jours ouvrés
+
+Le lot 2 pourra ajouter un filet de sécurité automatique, en complément du bouton manuel.
+
+Objectif : rattraper un oubli de synchronisation, pas remplacer le contrôle manuel.
+
+Décisions prévues :
+
+- fréquence : jours ouvrés uniquement ;
+- publication : seulement si les données normalisées ont changé ;
+- déclencheur : Cloud Scheduler ;
+- cible : route backend protégée par le mécanisme cron existant ;
+- workflow : le même que le bouton manuel.
+
+```mermaid
+flowchart TD
+  A[Cloud Scheduler jours ouvrés] --> B[Route backend cron]
+  B --> C[Lire Grist]
+  C --> D[Normaliser les données]
+  D --> E{Différent du JSON courant ?}
+  E -->|Non| F[Ne rien publier + log aucun changement]
+  E -->|Oui| G[Valider et publier un nouveau JSON]
+  G --> H[Ancienne version conservée si erreur]
+```
+
+Architecture cible à terme :
+
+```mermaid
+flowchart LR
+  A[Bouton admin sur /agir] --> C[Workflow backend syncAgirOperators]
+  B[Cloud Scheduler jours ouvrés] --> C
+  C --> D[Grist]
+  C --> E[JSON GCP]
+```
+
+Point d’attention : la route cron doit être protégée côté backend et ne doit pas être callable publiquement sans secret.
+
+## 12. Observabilité
 
 Premier lot :
 
@@ -303,7 +345,7 @@ Exemples de logs :
 [agirOperators] GCP JSON read failed, static fallback used
 ```
 
-## 12. Points à valider avant implémentation
+## 13. Points à valider avant implémentation
 
 1. Position exacte de l’encart admin sur `/agir`.
 2. Bucket à utiliser : `refugies-info-assets` ou bucket dédié.
@@ -312,3 +354,4 @@ Exemples de logs :
 5. Versioning bucket ou archive horodatée explicite.
 6. Afficher ou non une mention publique “Coordonnées mises à jour le …”.
 7. Dépendance/lib à utiliser pour écrire le JSON côté GCP.
+8. Pour le lot 2 : configuration Cloud Scheduler et route cron backend.

@@ -74,6 +74,30 @@ Erreurs non bloquantes typiques :
 
 Les visiteurs de `/agir` ne voient pas d’erreur : ils continuent à voir la dernière donnée publiée, ou le fichier de secours si aucun JSON n’est disponible.
 
+## Lot 2 envisagé : filet de sécurité automatique
+
+Dans un second temps, une synchronisation automatique pourra tourner les jours ouvrés.
+
+Elle ne remplace pas le bouton manuel : elle sert de filet de sécurité si une publication a été oubliée.
+
+Principe prévu :
+
+- Réfugiés.info lit Grist à intervalles réguliers ;
+- les données sont normalisées ;
+- si elles sont identiques à la version publiée, rien n’est changé ;
+- si elles ont changé et sont valides, un nouveau JSON est publié ;
+- si une erreur est détectée, l’ancienne version reste en place.
+
+```mermaid
+flowchart LR
+  A[Synchro automatique jours ouvrés] --> B[Lecture Grist]
+  B --> C{Changement détecté ?}
+  C -->|Non| D[Aucune publication]
+  C -->|Oui| E{Données valides ?}
+  E -->|Oui| F[Nouveau JSON publié]
+  E -->|Non| G[Erreur logguée + ancienne version conservée]
+```
+
 ## Comment tester
 
 1. Modifier une coordonnée dans Grist.
