@@ -28,9 +28,6 @@ export const SectionMission = () => {
             <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
             <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
             <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
-            <div className="mt-10 flex items-center gap-6">
-              <p className="!text-large !mb-0"></p>
-            </div>
           </div>
         </div>
       </div>
