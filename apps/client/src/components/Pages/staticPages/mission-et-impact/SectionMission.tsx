@@ -25,13 +25,7 @@ export const SectionMission = () => {
             />
           </div>
           <div className="flex-1">
-            <p
-              className="!text-large"
-              dangerouslySetInnerHTML={{
-                __html: t("MissionImpact.mission_p1"),
-              }}
-            />
-            <p className="!text-large">{t("MissionImpact.mission_p11")}</p>
+            <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
             <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
             <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
             <div className="mt-10 flex items-center gap-6">
