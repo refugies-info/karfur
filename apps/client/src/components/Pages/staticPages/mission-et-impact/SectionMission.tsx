@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
-import AlainRegnier from "~/assets/staticPages/mission-et-impact/photo-alain-regnier.png";
 import ScreenshotRI from "~/assets/staticPages/mission-et-impact/ri-screenshot.png";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
 
@@ -26,21 +25,9 @@ export const SectionMission = () => {
             />
           </div>
           <div className="flex-1">
-            <p
-              className="!text-large"
-              dangerouslySetInnerHTML={{
-                __html: t("MissionImpact.mission_p1"),
-              }}
-            />
+            <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
             <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
             <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
-            <div className="mt-10 flex items-center gap-6">
-              <Image src={AlainRegnier} alt="Alain Regnier - Photo" width={120} height={120} />
-              <p className="!text-large !mb-0">
-                <strong className="block">Alain Régnier</strong>
-                <span>{t("MissionImpact.mission_alain_position")}</span>
-              </p>
-            </div>
           </div>
         </div>
       </div>
