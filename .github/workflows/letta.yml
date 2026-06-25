@@ -57,9 +57,13 @@ jobs:
         with:
           letta_api_key: ${{ secrets.LETTA_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # `agent_id` is only read in "tag" mode (@letta-code mention). This
+          # workflow always sets `prompt:`, so it runs in "agent" mode, which
+          # ignores agent_id and creates a new agent per run. We force reuse by
+          # passing `--agent` through letta_args (read by the CLI builder).
           agent_id: ${{ vars.LETTA_AGENT_ID }}
-          # "auto" lets the Letta platform pick the best model for the task
-          # instead of pinning opus/sonnet/haiku in CI.
+          letta_args: --agent ${{ vars.LETTA_AGENT_ID }}
+          # "auto" lets the Letta platform pick the best model for the task.
           model: auto
           path_to_letta_executable: ${{ steps.letta-bin.outputs.path }}
           # Auto-review prompt. The agent already has karfur context in
