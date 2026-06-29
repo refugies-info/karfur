@@ -1,6 +1,7 @@
 import type { AgirOperatorsSyncResponse } from "@refugies-info/api-types";
 import { InternalError, ServiceUnavailableError } from "~/errors";
 import logger from "~/logger";
+import { normalizeAgirOperators } from "./normalizeAgirOperators";
 
 interface GristRecord {
   id: number;
@@ -19,13 +20,6 @@ const getRequiredEnv = (key: "GRIST_AGIR_API_URL" | "GRIST_AGIR_API_KEY"): strin
   }
 
   return value;
-};
-
-const extractDepartmentCode = (department: unknown): string | null => {
-  if (typeof department !== "string") return null;
-
-  const match = department.trim().match(/^(\d{2,3})/);
-  return match?.[1] ?? null;
 };
 
 const fetchAgirOperatorsFromGrist = async (): Promise<GristRecordsResponse> => {
@@ -67,22 +61,27 @@ const fetchAgirOperatorsFromGrist = async (): Promise<GristRecordsResponse> => {
 
 export const syncAgirOperators = async (): Promise<AgirOperatorsSyncResponse> => {
   const gristData = await fetchAgirOperatorsFromGrist();
-  const sampleDepartments = gristData.records
-    .map((record) => extractDepartmentCode(record.fields.Departement))
-    .filter((department): department is string => !!department);
+  const { operatorsPerDepartment, warnings } = normalizeAgirOperators(gristData.records);
+  const departmentCount = Object.keys(operatorsPerDepartment).length;
 
   logger.info("[agirOperators] Grist records fetched", {
+    departmentCount,
     recordCount: gristData.records.length,
-    sampleDepartments,
+    warningCount: warnings.length,
   });
+
+  if (warnings.length > 0) {
+    logger.warn("[agirOperators] Grist records normalized with warnings", { warnings });
+  }
 
   return {
     success: true,
     source: "grist",
-    status: "fetched",
-    message: "Les opérateurs AGIR ont bien été récupérés depuis Grist, sans publication",
+    status: "validated",
+    message: "Les opérateurs AGIR ont bien été vérifiés depuis Grist, sans publication",
     recordCount: gristData.records.length,
-    sampleDepartments,
-    warnings: [],
+    departmentCount,
+    operatorsPerDepartment,
+    warnings,
   };
 };
