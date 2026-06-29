@@ -39,7 +39,7 @@ const getAllThemeTitles = (theme: Theme, activeLanguages: Langue[], property: "n
 };
 
 const getLocation = (dispositif: Dispositif): AlgoliaObject["location"] => {
-  const location = dispositif.metadatas.location;
+  const location = dispositif.metadatas?.location;
   if (Array.isArray(location)) {
     return "0_localized";
   }
