@@ -2,6 +2,7 @@ import type { AgirOperatorsSyncResponse } from "@refugies-info/api-types";
 import { InternalError, ServiceUnavailableError } from "~/errors";
 import logger from "~/logger";
 import { normalizeAgirOperators } from "./normalizeAgirOperators";
+import { uploadAgirOperatorsJsonToGcs } from "./uploadAgirOperatorsJsonToGcs";
 
 interface GristRecord {
   id: number;
@@ -12,7 +13,9 @@ interface GristRecordsResponse {
   records: GristRecord[];
 }
 
-const getRequiredEnv = (key: "GRIST_AGIR_API_URL" | "GRIST_AGIR_API_KEY"): string => {
+const getRequiredEnv = (
+  key: "GRIST_AGIR_API_URL" | "GRIST_AGIR_API_KEY" | "AGIR_OPERATORS_GCS_OBJECT",
+): string => {
   const value = process.env[key];
 
   if (!value) {
@@ -20,6 +23,15 @@ const getRequiredEnv = (key: "GRIST_AGIR_API_URL" | "GRIST_AGIR_API_KEY"): strin
   }
 
   return value;
+};
+
+const buildCheckObjectName = (currentObjectName: string, date = new Date()): string => {
+  const lastSlashIndex = currentObjectName.lastIndexOf("/");
+  const directory = lastSlashIndex >= 0 ? currentObjectName.slice(0, lastSlashIndex) : "";
+  const timestamp = date.toISOString().replace(/[:.]/g, "-");
+  const checkFileName = `sync-check-${timestamp}.json`;
+
+  return directory ? `${directory}/_checks/${checkFileName}` : `_checks/${checkFileName}`;
 };
 
 const fetchAgirOperatorsFromGrist = async (): Promise<GristRecordsResponse> => {
@@ -63,9 +75,24 @@ export const syncAgirOperators = async (): Promise<AgirOperatorsSyncResponse> =>
   const gristData = await fetchAgirOperatorsFromGrist();
   const { operatorsPerDepartment, warnings } = normalizeAgirOperators(gristData.records);
   const departmentCount = Object.keys(operatorsPerDepartment).length;
+  const gcsCheckObjectName = buildCheckObjectName(getRequiredEnv("AGIR_OPERATORS_GCS_OBJECT"));
+
+  await uploadAgirOperatorsJsonToGcs({
+    objectName: gcsCheckObjectName,
+    payload: {
+      generatedAt: new Date().toISOString(),
+      source: "grist",
+      status: "validated",
+      recordCount: gristData.records.length,
+      departmentCount,
+      operatorsPerDepartment,
+      warnings,
+    },
+  });
 
   logger.info("[agirOperators] Grist records fetched", {
     departmentCount,
+    gcsCheckObjectName,
     recordCount: gristData.records.length,
     warningCount: warnings.length,
   });
@@ -82,6 +109,7 @@ export const syncAgirOperators = async (): Promise<AgirOperatorsSyncResponse> =>
     recordCount: gristData.records.length,
     departmentCount,
     operatorsPerDepartment,
+    gcsCheckObjectName,
     warnings,
   };
 };

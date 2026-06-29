@@ -26,5 +26,6 @@ export interface AgirOperatorsSyncResponse {
   recordCount: number;
   departmentCount: number;
   operatorsPerDepartment: Record<string, AgirOperator>;
+  gcsCheckObjectName: string;
   warnings: AgirOperatorsSyncWarning[];
 }

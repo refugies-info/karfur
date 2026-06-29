@@ -39,12 +39,11 @@ Principes :
 ```env
 GRIST_AGIR_API_URL=...
 GRIST_AGIR_API_KEY=...
-AGIR_OPERATORS_GCS_BUCKET=...
-AGIR_OPERATORS_GCS_OBJECT=...
-AGIR_OPERATORS_PUBLIC_URL=...
+AGIR_OPERATORS_GCS_BUCKET=refugies-info-assets
+AGIR_OPERATORS_GCS_OBJECT=agir/operators/current.json
 ```
 
-À noter : le nom exact du bucket et le mode de lecture du JSON restent à valider. Voir [Bucket GCP — TBD](#8-bucket-gcp--tbd).
+Le JSON publié sera lisible publiquement via le bucket GCS existant.
 
 ## 4. Données Grist utilisées
 
@@ -180,9 +179,7 @@ Erreurs non critiques :
 - lien fiche RI invalide : bouton non affiché ;
 - téléphone vide : champ non affiché.
 
-## 8. Bucket GCP — TBD
-
-Le bucket exact reste à confirmer avant implémentation.
+## 8. Bucket GCP
 
 ### Ce qui existe déjà dans le repo
 
@@ -201,9 +198,9 @@ Références repérées :
 
 Ce bucket sert actuellement aux assets statiques frontend : images, pictogrammes, badges store, etc.
 
-### Option A — réutiliser `refugies-info-assets`
+### Décision — réutiliser `refugies-info-assets`
 
-Chemin possible :
+Chemin retenu :
 
 ```txt
 gs://refugies-info-assets/agir/operators/current.json
@@ -216,13 +213,15 @@ Avantages :
 - lecture publique probablement déjà adaptée ;
 - mise en place plus rapide.
 
-Points à vérifier :
+Points vérifiés :
 
-- le service qui synchronise a-t-il le droit d’écrire dans ce bucket ?
-- l’équipe est-elle OK pour stocker une donnée JSON publique dans le bucket d’assets ?
-- faut-il ajouter une archive horodatée sous `agir/operators/history/` ?
+- le bucket n’a pas de règle de nettoyage automatique configurée ;
+- l’équipe accepte de stocker cette donnée JSON publique dans le bucket d’assets ;
+- staging et production partagent volontairement le même objet JSON AGIR.
 
-### Option B — créer un bucket dédié
+À valider techniquement : le service account utilisé pour la synchronisation doit avoir le droit d’écrire dans le bucket (`storage.objects.create` pour les fichiers de vérification, puis droit de remplacement pour `current.json`).
+
+### Option écartée — créer un bucket dédié
 
 Exemple :
 
@@ -239,16 +238,6 @@ Avantages :
 Inconvénient :
 
 - demande une petite configuration GCP supplémentaire.
-
-### Décision à prendre
-
-À date, la piste pragmatique est :
-
-```txt
-TBD — explorer la réutilisation de refugies-info-assets avec un préfixe agir/operators/
-```
-
-Mais la décision finale dépend des droits GCP et de la préférence équipe.
 
 ## 9. Lecture côté `/agir`
 
@@ -350,10 +339,9 @@ Exemples de logs :
 ## 13. Points à valider avant implémentation
 
 1. Position exacte de l’encart admin sur `/agir`.
-2. Bucket à utiliser : `refugies-info-assets` ou bucket dédié.
-3. Chemin final de l’objet JSON.
-4. Objet public en lecture ou lecture via route serveur.
-5. Versioning bucket ou archive horodatée explicite.
+2. Droit d’écriture GCS pour le service account de synchronisation.
+3. Objet public en lecture ou lecture via route serveur.
+4. Versioning bucket ou archive horodatée explicite.
 6. Afficher ou non une mention publique “Coordonnées mises à jour le …”.
 7. Dépendance/lib à utiliser pour écrire le JSON côté GCP.
 8. Pour le lot 2, dans une PR séparée : configuration Cloud Scheduler et route cron backend.
