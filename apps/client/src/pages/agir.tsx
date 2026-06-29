@@ -75,7 +75,7 @@ const Agir = () => {
     try {
       const response = await API.syncAgirOperators();
       setSyncStatus("success");
-      setSyncMessage(response.message);
+      setSyncMessage(`${response.message} (${response.recordCount} lignes Grist récupérées)`);
     } catch {
       setSyncStatus("error");
       setSyncMessage("La synchronisation AGIR est impossible pour le moment.");
@@ -89,37 +89,6 @@ const Agir = () => {
         description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
       />
       <HelpNotice />
-      {user.admin && (
-        <Container className="fr-my-4">
-          <div className="fr-alert fr-alert--info">
-            <h2 className="fr-alert__title">Administration AGIR</h2>
-            <p>
-              Cette action est visible uniquement par les admins connectés. Elle permet de tester la
-              route de synchronisation des opérateurs AGIR.
-            </p>
-            <Button
-              size="small"
-              onClick={syncAgirOperators}
-              disabled={syncStatus === "loading"}
-              className="mt-4"
-            >
-              {syncStatus === "loading"
-                ? "Synchronisation en cours..."
-                : "Synchroniser depuis Grist"}
-            </Button>
-            {syncMessage && (
-              <p
-                className={cls(
-                  "mb-0 mt-4",
-                  syncStatus === "error" ? "text-default-error" : "text-default-success",
-                )}
-              >
-                {syncMessage}
-              </p>
-            )}
-          </div>
-        </Container>
-      )}
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
@@ -345,6 +314,37 @@ const Agir = () => {
           <MapContext.Provider value={{ selectedDepartment, setSelectedDepartment }}>
             <div className="mt-10 lg:mt-20">
               <h3 className={styles.h3}>Trouver l'opérateur de mon territoire</h3>
+
+              {user.admin && (
+                <div className="fr-alert fr-alert--info fr-mb-6">
+                  <h4 className="fr-alert__title">Administration AGIR</h4>
+                  <p>
+                    Après avoir modifié les coordonnées des opérateurs dans Grist, utilisez ce
+                    bouton pour récupérer la dernière version sur Réfugiés.info. Si une erreur est
+                    détectée, les données actuelles restent conservées.
+                  </p>
+                  <Button
+                    size="small"
+                    onClick={syncAgirOperators}
+                    disabled={syncStatus === "loading"}
+                    className="mt-4"
+                  >
+                    {syncStatus === "loading"
+                      ? "Synchronisation en cours..."
+                      : "Synchroniser depuis Grist"}
+                  </Button>
+                  {syncMessage && (
+                    <p
+                      className={cls(
+                        "mb-5 mt-4",
+                        syncStatus === "error" ? "text-default-error" : "text-default-success",
+                      )}
+                    >
+                      {syncMessage}
+                    </p>
+                  )}
+                </div>
+              )}
 
               <div className="grid gap-6 lg:grid-cols-3">
                 <div className="lg:col-span-2 max-sm:hidden">

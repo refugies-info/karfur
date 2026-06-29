@@ -1,5 +1,9 @@
 export interface AgirOperatorsSyncResponse {
   success: true;
-  status: "ready";
+  source: "grist";
+  status: "fetched";
   message: string;
+  recordCount: number;
+  sampleDepartments: string[];
+  warnings: string[];
 }
