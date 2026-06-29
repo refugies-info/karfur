@@ -75,7 +75,9 @@ const Agir = () => {
     try {
       const response = await API.syncAgirOperators();
       setSyncStatus("success");
-      setSyncMessage(`${response.message} (${response.recordCount} lignes Grist récupérées)`);
+      setSyncMessage(
+        `${response.message} : ${response.departmentCount} départements validés sur ${response.recordCount} lignes Grist.`,
+      );
     } catch {
       setSyncStatus("error");
       setSyncMessage("La synchronisation AGIR est impossible pour le moment.");
@@ -319,9 +321,9 @@ const Agir = () => {
                 <div className="fr-alert fr-alert--info fr-mb-6">
                   <h4 className="fr-alert__title">Administration AGIR</h4>
                   <p>
-                    Après avoir modifié les coordonnées des opérateurs dans Grist, utilisez ce
-                    bouton pour récupérer la dernière version sur Réfugiés.info. Si une erreur est
-                    détectée, les données actuelles restent conservées.
+                    Après avoir modifié les coordonnées des opérateurs, utilisez ce bouton pour
+                    récupérer la dernière version sur Réfugiés.info. Si une erreur est détectée, les
+                    données actuelles restent conservées.
                   </p>
                   <Button
                     size="small"
@@ -331,7 +333,7 @@ const Agir = () => {
                   >
                     {syncStatus === "loading"
                       ? "Synchronisation en cours..."
-                      : "Synchroniser depuis Grist"}
+                      : "Synchroniser les opérateurs AGIR"}
                   </Button>
                   {syncMessage && (
                     <p
