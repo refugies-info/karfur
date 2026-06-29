@@ -127,6 +127,12 @@ minimumReleaseAgeExclude:
   - dompurify
   - i18next-fs-backend
   - follow-redirects
+  # TODO: Remove after 2026-07-04 once June 2026 security patch releases are older than 7 days
+  - form-data
+  - js-yaml
+  - tar
+  - undici
+  - ts-deepmerge
   # TODO: Remove after 2026-08-24 once Sentry SDK releases (RI-1433) are older than 7 days
   - "@sentry/*"
   - "@sentry-internal/*"
