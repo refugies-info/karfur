@@ -19,4 +19,17 @@ export class AgirController extends Controller {
       data,
     };
   }
+
+  @Security({
+    fromCron: [],
+  })
+  @Post("sync/cron")
+  public async syncFromCron(): ResponseWithData<AgirOperatorsSyncResponse> {
+    const data = await syncAgirOperators();
+
+    return {
+      text: "success",
+      data,
+    };
+  }
 }

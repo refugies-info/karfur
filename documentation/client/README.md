@@ -103,8 +103,7 @@ Here are some more specific guides:
 - [component composition](component-composition.md)
 - [routing](routing.md)
 - [styling](styling.md)
-- [AGIR operators Grist sync — user process](agir-grist-sync/process.md)
-- [AGIR operators Grist sync — technical plan](agir-grist-sync/technical-plan.md)
+- [Synchronisation des opérateurs AGIR depuis Grist](agir-grist-sync/README.md)
 
 ## Reference
 
