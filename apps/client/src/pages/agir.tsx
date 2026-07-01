@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
-import { operatorsPerDepartment } from "data/agirOperators";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
@@ -21,22 +21,35 @@ import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
+import {
+  fallbackOperatorsPerDepartment,
+  fetchAgirOperatorsPerDepartment,
+  type OperatorsPerDepartment,
+} from "~/lib/agirOperators";
 import { cls } from "~/lib/classname";
 import { getDepartmentFromNumber } from "~/lib/departments";
-import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { isValidEmail } from "~/lib/validateFields";
 import styles from "~/scss/pages/agir.module.scss";
+import { wrapper } from "~/services/configureStore";
 import { userSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
 
 type Section = "program" | "operators" | "next";
 
-const Agir = () => {
+interface AgirPageProps {
+  initialOperatorsPerDepartment?: OperatorsPerDepartment;
+}
+
+const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
   const user = useSelector(userSelector);
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [syncStatus, setSyncStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
+  const [operatorsPerDepartment, setOperatorsPerDepartment] = useState<OperatorsPerDepartment>(
+    initialOperatorsPerDepartment ?? fallbackOperatorsPerDepartment,
+  );
   const operatorData = useMemo(
     () => operatorsPerDepartment[selectedDepartment],
     [selectedDepartment],
@@ -75,6 +88,7 @@ const Agir = () => {
     try {
       const response = await API.syncAgirOperators();
       setSyncStatus("success");
+      setOperatorsPerDepartment(response.operatorsPerDepartment);
       setSyncMessage(
         `${response.message} : ${response.departmentCount} départements validés sur ${response.recordCount} lignes Grist.`,
       );
@@ -502,6 +516,16 @@ const Agir = () => {
   );
 };
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = wrapper.getStaticProps(() => async ({ locale }) => {
+  const operatorsPerDepartment = await fetchAgirOperatorsPerDepartment();
+
+  return {
+    props: {
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      initialOperatorsPerDepartment: operatorsPerDepartment,
+    },
+    revalidate: 60,
+  };
+});
 
 export default Agir;
