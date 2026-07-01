@@ -61,7 +61,7 @@ FROM base AS runner
   # Set working directory
   WORKDIR /app
 
-  # Copy built app
-  COPY --from=installer /app/apps/server/dist/index.js ./index.js
+  # Copy built app, including ncc chunks required by some dependencies
+  COPY --from=installer /app/apps/server/dist/ ./
 
   CMD ["node", "./index.js"]
