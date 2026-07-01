@@ -342,21 +342,21 @@ Ce chemin sert aussi à construire les fichiers de vérification :
 agir/operators/_checks/sync-check-<timestamp>.json
 ```
 
-### Variables Google Cloud existantes
+### Variables Google Cloud utilisées pour l’écriture GCS
 
-L’écriture GCS réutilise les credentials Google Cloud déjà utilisés côté backend :
+L’écriture GCS réutilise les credentials Google Cloud du backend :
 
 ```txt
 GCLOUD_CLIENT_EMAIL
 GCLOUD_PKEY
 GCLOUD_PRIVATE_KEY_ID
-GCLOUD_PROJECT_ID
-GCLOUD_CLIENT_ID
 ```
 
 But : authentifier le service account qui écrit dans le bucket GCS.
 
 Selon les usages Google existants, `GCLOUD_PKEY` contient la clé privée avec les retours ligne échappés (`\n`), qui sont restaurés au runtime.
+
+Ces trois variables sont celles utilisées directement par le helper d’upload AGIR vers GCS.
 
 ### `CRON_TOKEN`
 

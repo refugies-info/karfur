@@ -64,6 +64,8 @@ steps:
           --set-secrets GCLOUD_PRIVATE_KEY_ID=GCLOUD_PRIVATE_KEY_ID:latest \
           --set-secrets GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID:latest \
           --set-secrets GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest \
+          --set-secrets GRIST_AGIR_API_KEY=GRIST_AGIR_API_KEY:latest \
+          --set-secrets GRIST_AGIR_API_URL=GRIST_AGIR_API_URL:latest \
           --set-secrets MICROSOFT_CLIENT_ID=MICROSOFT_CLIENT_ID:latest \
           --set-secrets MICROSOFT_CLIENT_SECRET=MICROSOFT_CLIENT_SECRET:latest \
           --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest \
