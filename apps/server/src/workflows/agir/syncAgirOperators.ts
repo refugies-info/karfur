@@ -75,24 +75,34 @@ export const syncAgirOperators = async (): Promise<AgirOperatorsSyncResponse> =>
   const gristData = await fetchAgirOperatorsFromGrist();
   const { operatorsPerDepartment, warnings } = normalizeAgirOperators(gristData.records);
   const departmentCount = Object.keys(operatorsPerDepartment).length;
-  const gcsCheckObjectName = buildCheckObjectName(getRequiredEnv("AGIR_OPERATORS_GCS_OBJECT"));
+  const gcsCurrentObjectName = getRequiredEnv("AGIR_OPERATORS_GCS_OBJECT");
+  const gcsCheckObjectName = buildCheckObjectName(gcsCurrentObjectName);
+  const publicPayload = {
+    generatedAt: new Date().toISOString(),
+    source: "grist",
+    status: "published",
+    recordCount: gristData.records.length,
+    departmentCount,
+    operatorsPerDepartment,
+  };
 
   await uploadAgirOperatorsJsonToGcs({
     objectName: gcsCheckObjectName,
     payload: {
-      generatedAt: new Date().toISOString(),
-      source: "grist",
-      status: "validated",
-      recordCount: gristData.records.length,
-      departmentCount,
-      operatorsPerDepartment,
+      ...publicPayload,
       warnings,
     },
+  });
+
+  await uploadAgirOperatorsJsonToGcs({
+    objectName: gcsCurrentObjectName,
+    payload: publicPayload,
   });
 
   logger.info("[agirOperators] Grist records fetched", {
     departmentCount,
     gcsCheckObjectName,
+    gcsCurrentObjectName,
     recordCount: gristData.records.length,
     warningCount: warnings.length,
   });
@@ -104,12 +114,13 @@ export const syncAgirOperators = async (): Promise<AgirOperatorsSyncResponse> =>
   return {
     success: true,
     source: "grist",
-    status: "validated",
-    message: "Les opérateurs AGIR ont bien été vérifiés depuis Grist, sans publication",
+    status: "published",
+    message: "Les opérateurs AGIR ont bien été publiés depuis Grist",
     recordCount: gristData.records.length,
     departmentCount,
     operatorsPerDepartment,
     gcsCheckObjectName,
+    gcsCurrentObjectName,
     warnings,
   };
 };

@@ -21,11 +21,12 @@ export interface AgirOperatorsSyncWarning {
 export interface AgirOperatorsSyncResponse {
   success: true;
   source: "grist";
-  status: "validated";
+  status: "published";
   message: string;
   recordCount: number;
   departmentCount: number;
   operatorsPerDepartment: Record<string, AgirOperator>;
   gcsCheckObjectName: string;
+  gcsCurrentObjectName: string;
   warnings: AgirOperatorsSyncWarning[];
 }
