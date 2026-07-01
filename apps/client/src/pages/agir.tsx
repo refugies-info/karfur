@@ -92,7 +92,8 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
       setSyncMessage(
         `${response.message} : ${response.departmentCount} départements validés sur ${response.recordCount} lignes Grist.`,
       );
-    } catch {
+    } catch (error) {
+      console.error("[agir] sync failed", error);
       setSyncStatus("error");
       setSyncMessage("La synchronisation AGIR est impossible pour le moment.");
     }

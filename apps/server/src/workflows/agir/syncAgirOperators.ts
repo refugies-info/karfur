@@ -1,16 +1,11 @@
 import type { AgirOperatorsSyncResponse } from "@refugies-info/api-types";
 import { InternalError, ServiceUnavailableError } from "~/errors";
 import logger from "~/logger";
-import { normalizeAgirOperators } from "./normalizeAgirOperators";
+import { type AgirGristRecord, normalizeAgirOperators } from "./normalizeAgirOperators";
 import { uploadAgirOperatorsJsonToGcs } from "./uploadAgirOperatorsJsonToGcs";
 
-interface GristRecord {
-  id: number;
-  fields: Record<string, unknown>;
-}
-
 interface GristRecordsResponse {
-  records: GristRecord[];
+  records: AgirGristRecord[];
 }
 
 const getRequiredEnv = (

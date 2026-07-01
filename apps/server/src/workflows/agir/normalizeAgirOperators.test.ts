@@ -1,4 +1,4 @@
-import { InvalidRequestError } from "~/errors";
+import { ServiceUnavailableError } from "~/errors";
 import { normalizeAgirOperators } from "./normalizeAgirOperators";
 
 describe("normalizeAgirOperators", () => {
@@ -63,18 +63,36 @@ describe("normalizeAgirOperators", () => {
     );
   });
 
+  it("supports Corsica department codes", () => {
+    const result = normalizeAgirOperators([
+      { id: 1, fields: { Departement: "2A - Corse-du-Sud", Operateur: "Opérateur Corse" } },
+      { id: 2, fields: { Departement: "2B - Haute-Corse", Operateur: "Opérateur Corse" } },
+    ]);
+
+    expect(result.operatorsPerDepartment).toEqual({
+      "2A": {
+        department: "2A - Corse-du-Sud",
+        operator: "Opérateur Corse",
+      },
+      "2B": {
+        department: "2B - Haute-Corse",
+        operator: "Opérateur Corse",
+      },
+    });
+  });
+
   it("rejects duplicate departments", () => {
     expect(() =>
       normalizeAgirOperators([
         { id: 1, fields: { Departement: "01 - Ain", Operateur: "Alfa3a" } },
         { id: 2, fields: { Departement: "01 - Ain", Operateur: "Autre opérateur" } },
       ]),
-    ).toThrow(InvalidRequestError);
+    ).toThrow(ServiceUnavailableError);
   });
 
   it("rejects records without operator", () => {
     expect(() =>
       normalizeAgirOperators([{ id: 1, fields: { Departement: "01 - Ain", Operateur: "   " } }]),
-    ).toThrow(InvalidRequestError);
+    ).toThrow(ServiceUnavailableError);
   });
 });

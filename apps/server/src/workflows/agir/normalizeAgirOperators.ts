@@ -1,5 +1,5 @@
 import type { AgirOperator, AgirOperatorsSyncWarning } from "@refugies-info/api-types";
-import { InvalidRequestError } from "~/errors";
+import { ServiceUnavailableError } from "~/errors";
 
 export interface AgirGristRecord {
   id: number;
@@ -39,8 +39,8 @@ const cleanString = (
 };
 
 const extractDepartmentCode = (department: string): string | null => {
-  const match = department.match(/^(\d{2,3})(?:\s*-|\b)/);
-  return match?.[1] ?? null;
+  const match = department.match(/^(2[AB]|\d{2,3})(?:\s*-|\b)/i);
+  return match?.[1]?.toUpperCase() ?? null;
 };
 
 const extractDispositifId = (ficheRi: string): string | null => {
@@ -156,10 +156,14 @@ export const normalizeAgirOperators = (records: AgirGristRecord[]): NormalizedAg
   }
 
   if (errors.length > 0) {
-    throw new InvalidRequestError("[agirOperators] Invalid Grist AGIR operators data", undefined, {
-      errors,
-      warnings,
-    });
+    throw new ServiceUnavailableError(
+      "[agirOperators] Invalid Grist AGIR operators data",
+      undefined,
+      {
+        errors,
+        warnings,
+      },
+    );
   }
 
   return {
