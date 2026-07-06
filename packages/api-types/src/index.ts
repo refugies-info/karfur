@@ -1,5 +1,6 @@
 export * from "./generics";
 export * from "./modules/adminOption";
+export * from "./modules/agir";
 export * from "./modules/appuser";
 export * from "./modules/dispositif";
 export * from "./modules/image";

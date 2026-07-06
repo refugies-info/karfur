@@ -1,9 +1,10 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
-import { operatorsPerDepartment } from "data/agirOperators";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
 import { getPath } from "routes";
 import ActeursIlluDemarche from "~/assets/agir/acteurs-illu-demarche.png";
@@ -20,17 +21,35 @@ import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
+import {
+  fallbackOperatorsPerDepartment,
+  fetchAgirOperatorsPerDepartment,
+  type OperatorsPerDepartment,
+} from "~/lib/agirOperators";
 import { cls } from "~/lib/classname";
 import { getDepartmentFromNumber } from "~/lib/departments";
-import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
+import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import { isValidEmail } from "~/lib/validateFields";
 import styles from "~/scss/pages/agir.module.scss";
+import { wrapper } from "~/services/configureStore";
+import { userSelector } from "~/services/User/user.selectors";
+import API from "~/utils/API";
 
 type Section = "program" | "operators" | "next";
 
-const Agir = () => {
+interface AgirPageProps {
+  initialOperatorsPerDepartment?: OperatorsPerDepartment;
+}
+
+const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
+  const user = useSelector(userSelector);
   const [selectedDepartment, setSelectedDepartment] = useState("");
+  const [syncStatus, setSyncStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [syncMessage, setSyncMessage] = useState<string | null>(null);
+  const [operatorsPerDepartment, setOperatorsPerDepartment] = useState<OperatorsPerDepartment>(
+    initialOperatorsPerDepartment ?? fallbackOperatorsPerDepartment,
+  );
   const operatorData = useMemo(
     () => operatorsPerDepartment[selectedDepartment],
     [selectedDepartment],
@@ -60,6 +79,24 @@ const Agir = () => {
     document.querySelector(`#${id}`)?.scrollIntoView({
       behavior: "smooth",
     });
+  }, []);
+
+  const syncAgirOperators = useCallback(async () => {
+    setSyncStatus("loading");
+    setSyncMessage(null);
+
+    try {
+      const response = await API.syncAgirOperators();
+      setSyncStatus("success");
+      setOperatorsPerDepartment(response.operatorsPerDepartment);
+      setSyncMessage(
+        `${response.message} : ${response.departmentCount} départements validés sur ${response.recordCount} lignes Grist.`,
+      );
+    } catch (error) {
+      console.error("[agir] sync failed", error);
+      setSyncStatus("error");
+      setSyncMessage("La synchronisation AGIR est impossible pour le moment.");
+    }
   }, []);
 
   return (
@@ -295,6 +332,37 @@ const Agir = () => {
             <div className="mt-10 lg:mt-20">
               <h3 className={styles.h3}>Trouver l'opérateur de mon territoire</h3>
 
+              {user.admin && (
+                <div className="fr-alert fr-alert--info fr-mb-6">
+                  <h4 className="fr-alert__title">Administration AGIR</h4>
+                  <p>
+                    Après avoir modifié les coordonnées des opérateurs, utilisez ce bouton pour
+                    récupérer la dernière version sur Réfugiés.info. Si une erreur est détectée, les
+                    données actuelles restent conservées.
+                  </p>
+                  <Button
+                    size="small"
+                    onClick={syncAgirOperators}
+                    disabled={syncStatus === "loading"}
+                    className="mt-4"
+                  >
+                    {syncStatus === "loading"
+                      ? "Synchronisation en cours..."
+                      : "Synchroniser les opérateurs AGIR"}
+                  </Button>
+                  {syncMessage && (
+                    <p
+                      className={cls(
+                        "mb-5 mt-4",
+                        syncStatus === "error" ? "text-default-error" : "text-default-success",
+                      )}
+                    >
+                      {syncMessage}
+                    </p>
+                  )}
+                </div>
+              )}
+
               <div className="grid gap-6 lg:grid-cols-3">
                 <div className="lg:col-span-2 max-sm:hidden">
                   <MapFrance />
@@ -449,6 +517,16 @@ const Agir = () => {
   );
 };
 
-export const getStaticProps = defaultStaticProps;
+export const getStaticProps = wrapper.getStaticProps(() => async ({ locale }) => {
+  const operatorsPerDepartment = await fetchAgirOperatorsPerDepartment();
+
+  return {
+    props: {
+      ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
+      initialOperatorsPerDepartment: operatorsPerDepartment,
+    },
+    revalidate: 60,
+  };
+});
 
 export default Agir;

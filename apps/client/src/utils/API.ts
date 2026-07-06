@@ -5,6 +5,7 @@ import type {
   AddViewsRequest,
   AdminCommentsRequest,
   AdminOptionRequest,
+  AgirOperatorsSyncResponse,
   CheckCodeRequest,
   CheckUserExistsResponse,
   ContentLinkRequest,
@@ -724,6 +725,14 @@ const API = {
     const headers = getHeaders();
     return instance
       .post<any, APIResponse<PostAdminOptionResponse>>(`/options/${key}`, body, { headers })
+      .then((response) => response.data.data);
+  },
+
+  // AGIR
+  syncAgirOperators: (): Promise<AgirOperatorsSyncResponse> => {
+    const headers = getHeaders();
+    return instance
+      .post<any, APIResponse<AgirOperatorsSyncResponse>>("/agir/operators/sync", {}, { headers })
       .then((response) => response.data.data);
   },
 
