@@ -15,6 +15,7 @@ import {
   getPublic,
   getPublicStatus,
 } from "../functions";
+import styles from "./CardPublic.module.scss";
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   onClick?: () => void;
@@ -109,6 +110,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
                   publicFrenchLevel
                 ) : (
                   <FRLink
+                    className={styles.frenchLevelLink}
                     href={isEditMode ? "#" : getFrenchLevelLink(publicFrenchLevel)}
                     onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
                   >
