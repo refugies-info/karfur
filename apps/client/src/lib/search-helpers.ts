@@ -432,6 +432,7 @@ export const resolveAlgoliaIds = async (
 const buildSearchAggregation = (
   baseMatch: FilterQuery<SimpleDispositif>,
   options: SearchResultsOptions,
+  algoliaIds?: string[],
 ): PipelineStage[] => {
   const { page, limit, sort } = options;
 
@@ -449,7 +450,18 @@ const buildSearchAggregation = (
     { $addFields: { themeSortIndex: { $ifNull: ["$themeDoc.position", 999] } } },
   ];
 
-  if (sort === "theme") {
+  // When a text search is active, Algolia already ranked the hits by relevance.
+  // Preserve that order (and paginate over it) instead of re-sorting by date/views.
+  // The UI hides sort options when a keyword is present (see resultsDisplayRules),
+  // so Algolia relevance always wins here.
+  if (algoliaIds && algoliaIds.length > 0) {
+    aggregation.push({
+      $addFields: {
+        __algoliaRank: { $indexOfArray: [algoliaIds, { $toString: "$_id" }] },
+      },
+    });
+    aggregation.push({ $sort: { __algoliaRank: 1 } });
+  } else if (sort === "theme") {
     aggregation.push({ $sort: { themeSortIndex: 1, publishedAt: -1 } });
   } else if (sort === "location") {
     aggregation.push({
@@ -619,7 +631,7 @@ export const computeSearchResults = async (
     }
   }
 
-  const aggregation = buildSearchAggregation(baseMatch, options);
+  const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds);
 
   const [results, total, typeCounts, suggestions] = await Promise.all([
     executeCachedPipeline(Dispositif.aggregate(aggregation)),
