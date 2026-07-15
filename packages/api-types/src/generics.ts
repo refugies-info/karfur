@@ -281,7 +281,7 @@ export interface Metadatas {
 export interface SimpleDispositif {
   _id: Id;
   titreInformatif?: string;
-  titreMarque?: string;
+  titreMarque?: string | null;
   abstract?: string;
   typeContenu: ContentType;
   status: DispositifStatus;
