@@ -34,7 +34,7 @@ export const structureReceiveDispositif = async (
     throw new InvalidRequestError("The content cannot be accepted or rejected by the stucture");
   }
   const mainSponsor = getDispositifMainSponsor(oldDispositif);
-  if (!mainSponsor?.membres.find((membre) => membre.userId.toString() === user._id.toString())) {
+  if (!mainSponsor?.membres?.find((membre) => membre.userId.toString() === user._id.toString())) {
     throw new UnauthorizedError("You are not allowed to accept or reject this content", undefined, {
       id,
       user: user._id,

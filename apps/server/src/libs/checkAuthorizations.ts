@@ -38,7 +38,7 @@ export const isUserAuthorizedToModifyDispositif = (
 
   const isUserMembre =
     sponsor &&
-    sponsor.membres.filter(
+    (sponsor.membres || []).filter(
       (membre) => membre.userId && membre.userId.toString() === user._id.toString(),
     ).length > 0;
   if (isUserMembre) {
@@ -82,7 +82,7 @@ const isUserAuthorizedToDeleteDispositif = (dispositif: Dispositif, user: User) 
   if (!sponsor && isAuthor) return true; // no sponsor yet, but user is author
 
   const userInStructure =
-    sponsor && sponsor.membres.find((membre) => membre.userId?.toString() === user.id);
+    sponsor && (sponsor.membres || []).find((membre) => membre.userId?.toString() === user.id);
   if (sponsor && !userInStructure) return false; // user not in structure
 
   // user is responsable of structure
