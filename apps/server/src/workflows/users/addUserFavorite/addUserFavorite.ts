@@ -9,7 +9,7 @@ import type { Response } from "~/types/interface";
 export const addUserFavorite = async (user: User, body: AddUserFavoriteRequest): Response => {
   logger.info("[addUserFavorite] received");
 
-  if (user.favorites.find((f) => f.dispositifId.toString() === body.dispositifId)) {
+  if (user.favorites?.find((f) => f.dispositifId.toString() === body.dispositifId)) {
     throw new InvalidRequestError("Already in favorites");
   }
 
