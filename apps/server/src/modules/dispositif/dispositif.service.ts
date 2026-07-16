@@ -53,7 +53,7 @@ import {
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
 import { addToReview, removeTraductionsSections } from "../traductions/traductions.repository";
-import { getUserByIdWithStructures } from "../users/users.repository";
+import { addStructureForUsersInDB, getUserByIdWithStructures } from "../users/users.repository";
 import {
   deleteDraftDispositif,
   getDispositifById,
@@ -561,9 +561,14 @@ export const buildNewDispositif = async (
         nom: formContent.mainSponsor.name,
         link: formContent.mainSponsor.link,
         createur: new ObjectId(userId),
+        // Automatically set the fiche author as first "responsable" so the
+        // structure is never left without a member (otherwise publishing the
+        // fiche fails and the email has to be added manually in the backoffice)
+        membres: [{ userId: new ObjectId(userId), added_at: new Date() }],
       };
       const newStructure = await createStructureInDB(structureToSave);
       editedDispositif.mainSponsor = newStructure._id;
+      await addStructureForUsersInDB([new ObjectId(userId)], newStructure._id);
       await log(newStructure._id, userId);
     }
   }

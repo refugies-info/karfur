@@ -15,7 +15,7 @@ const BaseWebhookSchema = z.object({
 const DispositifContentSchema = z
   .object({
     titreInformatif: z.string().optional(),
-    titreMarque: z.string().optional(),
+    titreMarque: z.string().nullish(),
     abstract: z.string().optional(),
     markdown: z.string().optional(),
     // Add more content fields if needed based on usage
@@ -395,7 +395,7 @@ const TranslationSchema = z
 export const DispositifCreateSchema = BaseWebhookSchema.extend({
   dispositif: z.object({
     titreInformatif: z.string().optional(),
-    titreMarque: z.string().optional(),
+    titreMarque: z.string().nullish(),
     abstract: z.string().optional(),
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
@@ -418,7 +418,7 @@ export const DispositifUpdateSchema = BaseWebhookSchema.extend({
   dispositif: z.object({
     _id: ObjectIdSchema,
     titreInformatif: z.string().optional(),
-    titreMarque: z.string().optional(),
+    titreMarque: z.string().nullish(),
     abstract: z.string().optional(),
     theme: ObjectIdSchema.optional(),
     secondaryThemes: z.array(ObjectIdSchema).optional(),
