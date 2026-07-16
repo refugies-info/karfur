@@ -58,9 +58,9 @@ export const getFormattedStatus = (dispoStatus: string | undefined) => {
 export const getTitle = (
   titreInformatif: string,
   typeContenu: string,
-  titreMarque: string | undefined,
+  titreMarque: string | null | undefined,
 ) => {
-  if (typeContenu === "dispositif") {
+  if (typeContenu === "dispositif" && titreMarque) {
     return titreInformatif + " avec " + titreMarque;
   }
   return titreInformatif;

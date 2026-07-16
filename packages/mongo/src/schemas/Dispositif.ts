@@ -138,7 +138,7 @@ export type Poi = z.infer<typeof PoiZodSchema>;
 
 export const DispositifContentZodSchema = z.object({
   titreInformatif: z.string(),
-  titreMarque: z.string(),
+  titreMarque: z.string().nullable(),
   abstract: z.string(),
   what: z.string(),
   // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
@@ -148,7 +148,7 @@ export const DispositifContentZodSchema = z.object({
 // Strict type for application code
 export type DispositifContent = {
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   abstract: string;
   what: string;
   why: Record<string, InfoSection>;
@@ -157,7 +157,7 @@ export type DispositifContent = {
 
 export const DemarcheContentZodSchema = z.object({
   titreInformatif: z.string(),
-  titreMarque: z.string(),
+  titreMarque: z.string().nullable(),
   abstract: z.string(),
   what: z.string(),
   // PATCHED: z.record() → Map in Mongoose, relaxed for compatibility
@@ -168,7 +168,7 @@ export const DemarcheContentZodSchema = z.object({
 // Strict type for application code
 export type DemarcheContent = {
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   abstract: string;
   what: string;
   how: Record<string, InfoSection>;
