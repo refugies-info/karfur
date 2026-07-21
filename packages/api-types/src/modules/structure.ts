@@ -8,7 +8,7 @@ import type {
 } from "../generics";
 import type { Suggestion } from "./dispositif";
 
-type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins";
+type StructureFacets = "nbStructures" | "nbCDA" | "nbStructureAdmins" | "nbDispositifPorteurs";
 /**
  * @url GET /structures/statistics
  */
@@ -120,6 +120,7 @@ export interface GetStructureStatisticsResponse {
   nbStructures?: number;
   nbCDA?: number;
   nbStructureAdmins?: number;
+  nbDispositifPorteurs?: number;
 }
 
 export interface DetailedOpeningHours {

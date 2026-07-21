@@ -14,8 +14,7 @@ import { Card, Section, Title2 } from "~/components/Pages/staticPages/common";
 import { ImageCustomFigure } from "~/components/Pages/staticPages/mission-et-impact/ImageCustomFigure";
 
 interface Props {
-  nbRedactors: number;
-  nbStructureAdmins: number;
+  nbDispositifPorteurs: number;
   nbCDA: number;
   nbTranslators: number;
 }
@@ -37,7 +36,7 @@ export const SectionContributors = (props: Props) => {
                   height={80}
                   style={{ objectFit: "contain" }}
                 />
-                <ImageCustomFigure>{props.nbRedactors + props.nbStructureAdmins}</ImageCustomFigure>
+                <ImageCustomFigure>{props.nbDispositifPorteurs}</ImageCustomFigure>
               </div>
             }
             title={t("MissionImpact.community_dispositifs_title")}
