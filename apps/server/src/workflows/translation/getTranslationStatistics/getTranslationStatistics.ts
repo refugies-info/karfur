@@ -7,12 +7,9 @@ import {
 import logger from "~/logger";
 import { getWordsTranslatedCounter } from "~/modules/adminOptions/adminOptions.repository";
 import { getActiveLanguagesFromDB } from "~/modules/langues/langues.repository";
-import { getUsersForTranslationStats } from "~/modules/users/users.repository";
+import { getUsersForTranslationStats, hasRole } from "~/modules/users/users.repository";
 
 const ONE_MONTH = 30 * 24 * 60 * 60 * 1000;
-
-const hasRole = (user: { roles: { nom: string }[] }, roleName: string): boolean =>
-  Array.isArray(user.roles) && user.roles.some((role) => role.nom === roleName);
 
 const getTranslationStatistics = async ({
   facets = [],
