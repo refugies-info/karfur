@@ -173,10 +173,10 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       ],
     });
     structuresStatistics = await API.getStructuresStatistics({
-      facets: ["nbStructures", "nbCDA", "nbStructureAdmins"],
+      facets: ["nbStructures", "nbCDA"],
     });
     translationStatistics = await API.getTranslationStatistics({
-      facets: ["nbTranslators", "nbRedactors"],
+      facets: ["nbTranslators"],
     });
 
     demarches = await API.getDispositifs({
