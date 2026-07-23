@@ -1,4 +1,4 @@
-import { type Id, UserStatus } from "@refugies-info/api-types";
+import { type Id, type RoleName, UserStatus } from "@refugies-info/api-types";
 import type { Favorite, UserId } from "@refugies-info/mongo";
 import {
   type LangueId,
@@ -54,10 +54,19 @@ export type UserWithPopulatedStructures = Omit<
  * Shape of user data returned for translation statistics.
  */
 export type UserForTranslationStats = {
+  _id: UserId;
   roles: { nom: string }[];
   last_connected: Date;
   selectedLanguages: { _id: LangueId }[];
 };
+
+/**
+ * Vérifie qu'un utilisateur possède un rôle donné. Variante autonome de la
+ * méthode d'instance `UserModel.hasRole`, utilisable sur les objets `lean`
+ * (projections partielles) tels que ceux renvoyés par getUsersForTranslationStats.
+ */
+export const hasRole = (user: { roles: { nom: string }[] }, roleName: RoleName): boolean =>
+  Array.isArray(user.roles) && user.roles.some((role) => role.nom === roleName);
 
 export const getAllUsersForAdminFromDB = async (neededFields: FilterQuery<User>) =>
   UserModel.find({ status: UserStatus.ACTIVE }, neededFields).populate<{

@@ -6,6 +6,8 @@ import HeroBackground from "~/assets/homepage/hero/background-image.svg";
 import Character from "~/assets/homepage/hero/character.svg";
 import WhiteWave from "~/components/Pages/homepage/Sections/Hero/WhiteWave";
 import Image from "~/components/UI/Image";
+import { useLocale } from "~/hooks";
+import { getPath } from "~/routes.ts";
 
 interface Props {
   targetArrow: string;
@@ -13,6 +15,7 @@ interface Props {
 
 const Hero = (props: Props) => {
   const { t } = useTranslation();
+  const locale = useLocale();
   const { isMobile } = useWindowSize();
   const mobileButtonIcon = isIOS ? "ri-app-store-line" : "ri-android-line";
   const buttonIconName = isMobile ? mobileButtonIcon : "fr-icon-smartphone-line";
@@ -51,7 +54,8 @@ const Hero = (props: Props) => {
         <div className="flex w-full items-center justify-center gap-4 max-lg:flex-col">
           <Button
             linkProps={{
-              href: "/recherche",
+              href: getPath("/recherche", locale, "?search=&sort=default"),
+              prefetch: false,
             }}
             iconId="fr-icon-search-line"
             iconPosition="right"

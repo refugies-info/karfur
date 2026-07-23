@@ -61,7 +61,6 @@ export const getMissingStepsEdit = (
   if (typeContenu === ContentType.DISPOSITIF) {
     return [
       dispositif.titreInformatif ? null : "titreInformatif",
-      dispositif.titreMarque ? null : "titreMarque",
       dispositif.what ? null : "what",
       isAccordionOk(dispositif.why, 3) ? null : "why",
       isAccordionOk(dispositif.how, 1) ? null : "how",

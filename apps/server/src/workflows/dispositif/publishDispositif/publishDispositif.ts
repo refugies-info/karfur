@@ -21,7 +21,7 @@ import {
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import {
-  isDispositifComplete,
+  getMissingDispositifFields,
   NotifType,
   notifyChange,
   publishDispositif as publishDispositifService,
@@ -43,10 +43,10 @@ const getWaitingStatus = async (
   user: User,
 ): Promise<DispositifStatus | null> => {
   const mainSponsor = getDispositifMainSponsor(dispositif);
-  const isInStructure = mainSponsor?.membres.find(
+  const isInStructure = mainSponsor?.membres?.find(
     (membre) => membre.userId.toString() === user._id.toString(),
   );
-  const isNewStructure = mainSponsor?.membres.length === 0;
+  const isNewStructure = (mainSponsor?.membres?.length ?? 0) === 0;
   if (isInStructure || isNewStructure) {
     // dans la structure
     return DispositifStatus.WAITING_ADMIN;
@@ -104,8 +104,11 @@ export const publishDispositif = async (
   }
 
   const dispositif = draftDispositif || oldDispositif;
-  if (!isDispositifComplete(dispositif)) {
-    throw new InvalidRequestError("The content is incomplete, it cannot be published");
+  const missingFields = getMissingDispositifFields(dispositif);
+  if (missingFields.length > 0) {
+    throw new InvalidRequestError(
+      `The content is incomplete, it cannot be published (missing: ${missingFields.join(", ")})`,
+    );
   }
 
   checkUserIsAuthorizedToModifyDispositif(dispositif, user, oldDispositif.hasDraftVersion);

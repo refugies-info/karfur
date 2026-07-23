@@ -143,8 +143,7 @@ const MissionImpact = (props: Props) => {
       <div ref={refContributors} className="relative">
         <Anchor id="contributors" />
         <SectionContributors
-          nbRedactors={props.translationStatistics.nbRedactors || 0}
-          nbStructureAdmins={props.structuresStatistics.nbStructureAdmins || 0}
+          nbDispositifPorteurs={props.structuresStatistics.nbDispositifPorteurs || 0}
           nbCDA={props.structuresStatistics.nbCDA || 0}
           nbTranslators={props.translationStatistics.nbTranslators || 0}
         />
@@ -171,10 +170,10 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
 
   try {
     structuresStatistics = await API.getStructuresStatistics({
-      facets: ["nbCDA", "nbStructureAdmins"],
+      facets: ["nbCDA", "nbDispositifPorteurs"],
     });
     translationStatistics = await API.getTranslationStatistics({
-      facets: ["nbTranslators", "nbRedactors"],
+      facets: ["nbTranslators"],
     });
   } catch (e) {
     logger.error("[index] build page", e);

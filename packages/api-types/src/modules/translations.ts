@@ -30,7 +30,7 @@ export enum TraductionsStatus {
 
 export interface Content {
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   abstract: string;
 }
 
@@ -131,7 +131,7 @@ export interface SaveTranslationRequest {
     content: {
       // Partial<Content> & not working, see: https://github.com/lukeautry/tsoa/issues/1425
       titreInformatif?: string;
-      titreMarque?: string;
+      titreMarque?: string | null;
       abstract?: string;
       what?: RichText;
       why?: { [key: string]: PartialTranslatedContent }; // Partial<InfoSection> not working, see: https://github.com/lukeautry/tsoa/issues/1515
@@ -163,7 +163,7 @@ export interface GetDefaultTraductionResponse {
 export interface GetDispositifsWithTranslationAvancementResponse {
   _id: string;
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   nbMots: number;
   created_at: Date;
   type: ContentType;

@@ -57,6 +57,7 @@ const TitleEdit = (props: Props) => {
               onClick={() => setIsActionActive(true)}
               size="lg"
               content={formContext.getValues("titreMarque")}
+              optional
             >
               Nom de votre action
             </AddContentButton>

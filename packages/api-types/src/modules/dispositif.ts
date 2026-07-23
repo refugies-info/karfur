@@ -84,7 +84,7 @@ export interface GetContentsForAppRequest {
 export interface ContentForApp {
   _id: string;
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   abstract: string;
   theme: Id;
   secondaryThemes: Id[];
@@ -159,7 +159,7 @@ export interface UpdateDispositifPropertiesRequest {
 
 export interface DispositifRequest {
   titreInformatif?: string;
-  titreMarque?: string;
+  titreMarque?: string | null;
   abstract?: string;
   what?: string;
   markdown?: string;
@@ -243,7 +243,7 @@ export interface CreateDispositifRequest extends DispositifRequest {
 export type BaseGetDispositifResponse = {
   _id: Id;
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   abstract: string;
   why?: InfoSections;
   next?: InfoSections;
@@ -298,7 +298,7 @@ export type GetDispositifResponse = BaseGetDispositifResponse &
 export interface GetUserContributionsResponse {
   _id: Id;
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   typeContenu: ContentType;
   mainSponsor: {
     _id: Id;
@@ -386,7 +386,7 @@ export type GetDispositifsHasTextChanges = boolean;
 export interface GetAllDispositifsResponse {
   _id: Id;
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
   typeContenu: ContentType;
   status: DispositifStatus;
   theme?: Id;
