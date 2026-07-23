@@ -21,12 +21,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const { Theme } = await getWebhookModels();
-    const themes = await Theme.find({}).sort({ position: 1 }).select("_id name.fr");
+    const themes = await Theme.find({})
+      .sort({ position: 1 })
+      .select("_id name.fr short.fr colors.color40");
 
     return res.status(200).json(
       themes.map((t) => ({
         id: String(t._id),
         name: (t.name as Record<string, string> | undefined)?.fr,
+        short: (t.short as Record<string, string> | undefined)?.fr,
+        color: (t.colors as Record<string, string> | undefined)?.color40,
       })),
     );
   } catch (error: unknown) {
