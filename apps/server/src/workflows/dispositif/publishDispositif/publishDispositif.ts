@@ -21,7 +21,7 @@ import {
   updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import {
-  isDispositifComplete,
+  getMissingDispositifFields,
   NotifType,
   notifyChange,
   publishDispositif as publishDispositifService,
@@ -104,8 +104,11 @@ export const publishDispositif = async (
   }
 
   const dispositif = draftDispositif || oldDispositif;
-  if (!isDispositifComplete(dispositif)) {
-    throw new InvalidRequestError("The content is incomplete, it cannot be published");
+  const missingFields = getMissingDispositifFields(dispositif);
+  if (missingFields.length > 0) {
+    throw new InvalidRequestError(
+      `The content is incomplete, it cannot be published (missing: ${missingFields.join(", ")})`,
+    );
   }
 
   checkUserIsAuthorizedToModifyDispositif(dispositif, user, oldDispositif.hasDraftVersion);
