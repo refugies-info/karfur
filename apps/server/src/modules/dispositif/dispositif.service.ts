@@ -609,36 +609,44 @@ const isMetadataOk = (content: unknown): boolean => {
   return !!content || content === null; // ok if filled or null
 };
 
-export const isDispositifComplete = (dispositif: Dispositif) => {
+/** Returns the list of required fields that are missing/incomplete for publication. */
+export const getMissingDispositifFields = (dispositif: Dispositif): string[] => {
   const frTranslation = getDispositifTranslation(dispositif, "fr");
-  if (!frTranslation) return false;
+  if (!frTranslation) return ["translation.fr"];
   const content = frTranslation.content;
-  const conditions: boolean[] = [
-    !!content.titreInformatif,
-    dispositif.typeContenu === ContentType.DEMARCHE || !!content.titreMarque,
-    !!content.what,
-    dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).why, 3)
-      : isAccordionOk((content as DemarcheContent).how, 1),
-    dispositif.typeContenu === ContentType.DISPOSITIF
-      ? isAccordionOk((content as DispositifContent).how, 1)
-      : isAccordionOk((content as DemarcheContent).next, 1),
-    !!content.abstract,
-    !!dispositif.theme,
-    !!dispositif.mainSponsor,
-    isMetadataOk(dispositif.metadatas?.publicStatus),
-    isMetadataOk(dispositif.metadatas?.age),
-    isMetadataOk(dispositif.metadatas?.frenchLevel),
-    isMetadataOk(dispositif.metadatas?.public),
-    isMetadataOk(dispositif.metadatas?.price),
-    dispositif.typeContenu === ContentType.DEMARCHE ||
-      isMetadataOk(dispositif.metadatas?.commitment),
-    dispositif.typeContenu === ContentType.DEMARCHE ||
-      isMetadataOk(dispositif.metadatas?.frequency),
-    dispositif.typeContenu === ContentType.DEMARCHE ||
-      isMetadataOk(dispositif.metadatas?.timeSlots),
-    isMetadataOk(dispositif.metadatas?.conditions),
-    dispositif.typeContenu === ContentType.DEMARCHE || isMetadataOk(dispositif.metadatas?.location),
+  const isDemarche = dispositif.typeContenu === ContentType.DEMARCHE;
+  const isDispositif = dispositif.typeContenu === ContentType.DISPOSITIF;
+  const checks: [string, boolean][] = [
+    ["titreInformatif", !!content.titreInformatif],
+    ["what", !!content.what],
+    [
+      isDispositif ? "why" : "how",
+      isDispositif
+        ? isAccordionOk((content as DispositifContent).why, 3)
+        : isAccordionOk((content as DemarcheContent).how, 1),
+    ],
+    [
+      isDispositif ? "how" : "next",
+      isDispositif
+        ? isAccordionOk((content as DispositifContent).how, 1)
+        : isAccordionOk((content as DemarcheContent).next, 1),
+    ],
+    ["abstract", !!content.abstract],
+    ["theme", !!dispositif.theme],
+    ["mainSponsor", !!dispositif.mainSponsor],
+    ["metadatas.publicStatus", isMetadataOk(dispositif.metadatas?.publicStatus)],
+    ["metadatas.age", isMetadataOk(dispositif.metadatas?.age)],
+    ["metadatas.frenchLevel", isMetadataOk(dispositif.metadatas?.frenchLevel)],
+    ["metadatas.public", isMetadataOk(dispositif.metadatas?.public)],
+    ["metadatas.price", isMetadataOk(dispositif.metadatas?.price)],
+    ["metadatas.commitment", isDemarche || isMetadataOk(dispositif.metadatas?.commitment)],
+    ["metadatas.frequency", isDemarche || isMetadataOk(dispositif.metadatas?.frequency)],
+    ["metadatas.timeSlots", isDemarche || isMetadataOk(dispositif.metadatas?.timeSlots)],
+    ["metadatas.conditions", isMetadataOk(dispositif.metadatas?.conditions)],
+    ["metadatas.location", isDemarche || isMetadataOk(dispositif.metadatas?.location)],
   ];
-  return conditions.filter((c) => !c).length === 0;
+  return checks.filter(([, ok]) => !ok).map(([key]) => key);
 };
+
+export const isDispositifComplete = (dispositif: Dispositif) =>
+  getMissingDispositifFields(dispositif).length === 0;

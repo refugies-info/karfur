@@ -133,7 +133,9 @@ export const getMissingStepsTranslate = (
   const content: TranslationType = isExpert ? [formValue] : [formValue, ...suggestions];
   const steps = [
     isTradDone("content.titreInformatif", content) ? null : "titreInformatif",
-    !isTradDone("content.titreMarque", content) && typeContenu === ContentType.DISPOSITIF
+    !isTradDone("content.titreMarque", content) &&
+    typeContenu === ContentType.DISPOSITIF &&
+    defaultTranslation?.content.titreMarque
       ? "titreMarque"
       : null,
     !isTradDone("content.administrationName", content) &&

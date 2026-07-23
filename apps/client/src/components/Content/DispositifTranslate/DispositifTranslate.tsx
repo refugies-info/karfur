@@ -108,7 +108,7 @@ const Dispositif = (props: Props) => {
                 id="step-titreInformatif"
                 {...getInputProps("content.titreInformatif")}
               />
-              {typeContenu === ContentType.DISPOSITIF && (
+              {typeContenu === ContentType.DISPOSITIF && dispositif?.titreMarque && (
                 <div className={cn(styles.marque, "mb-8")}>
                   <span>{t("Dispositif.with")}</span>
                   <TranslationInput
