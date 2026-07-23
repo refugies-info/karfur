@@ -374,6 +374,7 @@ const buildTranslationStages = (locale: string): PipelineStage[] => {
         titreInformatif: resolveField("titreInformatif"),
         titreMarque: resolveField("titreMarque"),
         abstract: resolveField("abstract"),
+        administrationName: resolveField("administrationName"),
       },
     },
     {
@@ -383,6 +384,57 @@ const buildTranslationStages = (locale: string): PipelineStage[] => {
     },
   ];
 };
+
+const buildSponsorStages = (): PipelineStage[] => [
+  {
+    $lookup: {
+      from: "structures",
+      localField: "mainSponsor",
+      foreignField: "_id",
+      as: "sponsorDoc",
+    },
+  },
+  { $unwind: { path: "$sponsorDoc", preserveNullAndEmptyArrays: true } },
+  {
+    $addFields: {
+      sponsor: {
+        $switch: {
+          branches: [
+            {
+              // mainSponsor structure wins for both dispositifs and demarches
+              case: { $ifNull: ["$sponsorDoc", false] },
+              then: {
+                _id: "$sponsorDoc._id",
+                nom: "$sponsorDoc.nom",
+                picture: "$sponsorDoc.picture",
+              },
+            },
+            {
+              // demarche fallback: administration fields when no mainSponsor
+              case: {
+                $and: [
+                  { $eq: ["$typeContenu", "demarche"] },
+                  {
+                    $or: [
+                      { $ifNull: ["$administrationLogo", false] },
+                      { $ifNull: ["$administrationName", false] },
+                    ],
+                  },
+                ],
+              },
+              then: {
+                nom: "$administrationName",
+                picture: "$administrationLogo",
+              },
+            },
+          ],
+          default: null,
+        },
+      },
+    },
+  },
+  { $project: { sponsorDoc: 0, mainSponsor: 0, administrationLogo: 0 } },
+];
 
 const RESULTS_PROJECTION = {
   _id: 1,
@@ -399,7 +451,8 @@ const RESULTS_PROJECTION = {
   nbMots: 1,
   nbVues: 1,
   nbVuesMobile: 1,
-  sponsor: 1,
+  mainSponsor: 1,
+  administrationLogo: 1,
   availableLanguages: 1,
   hasDraftVersion: 1,
   themeSortIndex: 1,
@@ -487,6 +540,8 @@ const buildSearchAggregation = (
   aggregation.push({ $project: RESULTS_PROJECTION });
   // Resolve translations for the requested locale (must come after $project)
   aggregation.push(...buildTranslationStages(options.locale || "fr"));
+  // Resolve mainSponsor -> sponsor (must come after translations)
+  aggregation.push(...buildSponsorStages());
 
   return aggregation;
 };
@@ -528,6 +583,7 @@ const buildSuggestionsQuery = async (
         { $limit: 8 },
         { $project: RESULTS_PROJECTION },
         ...buildTranslationStages(locale),
+        ...buildSponsorStages(),
       ]),
     );
   }
@@ -558,6 +614,7 @@ const buildSuggestionsQuery = async (
         { $limit: 8 },
         { $project: RESULTS_PROJECTION },
         ...buildTranslationStages(locale),
+        ...buildSponsorStages(),
       ]),
     );
   }
