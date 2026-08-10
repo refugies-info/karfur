@@ -396,6 +396,22 @@ const buildSponsorStages = (): PipelineStage[] => [
   },
   { $unwind: { path: "$sponsorDoc", preserveNullAndEmptyArrays: true } },
   {
+    // Premier sponsor embarqué (objet {name, logo}), par opposition aux sponsors
+    // stockés en référence vers une Structure. C'est sous cette forme qu'arrive
+    // la structure porteuse des fiches créées hors RI (webhook).
+    $addFields: {
+      embeddedSponsor: {
+        $first: {
+          $filter: {
+            input: { $ifNull: ["$sponsors", []] },
+            as: "sponsor",
+            cond: { $eq: [{ $type: "$$sponsor.name" }, "string"] },
+          },
+        },
+      },
+    },
+  },
+  {
     $addFields: {
       sponsor: {
         $switch: {
@@ -427,13 +443,36 @@ const buildSponsorStages = (): PipelineStage[] => [
                 picture: "$administrationLogo",
               },
             },
+            {
+              // fiches créées hors RI : la structure porteuse est embarquée dans
+              // la fiche, son logo est une simple URL (pas d'objet Picture).
+              case: { $ifNull: ["$embeddedSponsor", false] },
+              then: {
+                nom: "$embeddedSponsor.name",
+                picture: {
+                  $cond: [
+                    { $eq: [{ $type: "$embeddedSponsor.logo" }, "string"] },
+                    { secure_url: "$embeddedSponsor.logo" },
+                    "$embeddedSponsor.logo",
+                  ],
+                },
+              },
+            },
           ],
           default: null,
         },
       },
     },
   },
-  { $project: { sponsorDoc: 0, mainSponsor: 0, administrationLogo: 0 } },
+  {
+    $project: {
+      sponsorDoc: 0,
+      embeddedSponsor: 0,
+      sponsors: 0,
+      mainSponsor: 0,
+      administrationLogo: 0,
+    },
+  },
 ];
 
 const RESULTS_PROJECTION = {
@@ -452,6 +491,7 @@ const RESULTS_PROJECTION = {
   nbVues: 1,
   nbVuesMobile: 1,
   mainSponsor: 1,
+  sponsors: 1, // resolved into `sponsor` by buildSponsorStages, then projected out
   administrationLogo: 1,
   availableLanguages: 1,
   hasDraftVersion: 1,
