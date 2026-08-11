@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { useVoiceover } from "~/hooks/useVoiceover";
+import { getBottomInset } from "~/libs/getBottomInset";
 import { noVoiceover } from "~/libs/noVoiceover";
 import { currentI18nCodeSelector } from "~/services";
 import { ButtonDSFR } from "../../buttons";
@@ -84,7 +85,7 @@ const PageOnboarding = ({
   }, [resetScroll]);
 
   // use reduced insets
-  const insetBottom = useMemo(() => (insets.bottom > 0 ? insets.bottom - 8 : 0), [insets.bottom]);
+  const insetBottom = useMemo(() => getBottomInset(insets.bottom), [insets.bottom]);
   const insetTop = useMemo(() => (insets.top > 0 ? insets.top - 8 : 0), [insets.top]);
 
   const noReadButton = noVoiceover(currentLanguageI18nCode);
