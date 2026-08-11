@@ -44,22 +44,24 @@ const Header = (props: Props) => {
   const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
 
   /**
-   * Logo de la structure porteuse.
+   * Sponsoring structure logo.
    *
-   * Les fiches créées hors RI (webhook) n'ont pas de `mainSponsor` : leur
-   * structure est embarquée dans `sponsors[0]`, dont le logo est une simple URL
-   * et non un objet `Picture`. On ne bascule sur ce repli qu'en l'absence totale
-   * de `mainSponsor`, pour ne jamais afficher le logo d'un simple partenaire à la
-   * place de celui de la structure porteuse.
+   * Contents created outside RI (webhook) have no `mainSponsor`: their structure is
+   * embedded in `sponsors[0]`, whose logo is a plain URL and not a `Picture` object.
+   * We only use that fallback when `mainSponsor` is entirely absent, so that a mere
+   * partner's logo is never shown in place of the sponsoring structure's one.
    */
   const structureLogo = useMemo(() => {
     if (dispositif?.mainSponsor) return dispositif.mainSponsor.picture?.secure_url;
 
-    const logo = (dispositif?.sponsors?.[0] as Sponsor | undefined)?.logo as
-      | Picture
-      | string
-      | null
-      | undefined;
+    const logo =
+      dispositif?.sponsors && dispositif?.sponsors.length > 0
+        ? ((dispositif?.sponsors?.[0] as Sponsor | undefined)?.logo as
+            | Picture
+            | string
+            | null
+            | undefined)
+        : null;
     return typeof logo === "string" ? logo : logo?.secure_url;
   }, [dispositif]);
 

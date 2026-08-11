@@ -128,12 +128,12 @@ export const getDispositifArray = async (
 };
 
 /**
- * Structure porteuse embarquée dans la fiche, par opposition aux sponsors stockés
- * en référence vers une Structure. C'est sous cette forme qu'arrivent les fiches
- * créées hors RI (webhook), qui n'ont pas de `mainSponsor`.
+ * Sponsoring structure embedded in the content, as opposed to sponsors stored as a
+ * reference to a Structure. This is how contents created outside RI (webhook) arrive,
+ * since they have no `mainSponsor`.
  *
- * Leur logo est une simple URL : on le remet dans la forme `picture` attendue par
- * les tuiles, comme le fait déjà le repli `administrationLogo` des démarches.
+ * Their logo is a plain URL: we reshape it into the `picture` form the cards expect,
+ * the same way the `administrationLogo` fallback already does for demarches.
  */
 const getEmbeddedSponsor = (sponsors: Dispositif["sponsors"]) => {
   const sponsor = (sponsors || []).find(
@@ -141,7 +141,7 @@ const getEmbeddedSponsor = (sponsors: Dispositif["sponsors"]) => {
   );
   if (!sponsor) return null;
 
-  // Quelques fiches anciennes stockent un objet Picture plutôt qu'une URL.
+  // A few legacy contents store a Picture object rather than a URL.
   const logo = sponsor.logo as Picture | string | undefined;
 
   return {

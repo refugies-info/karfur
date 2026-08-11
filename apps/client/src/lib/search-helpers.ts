@@ -396,9 +396,9 @@ const buildSponsorStages = (): PipelineStage[] => [
   },
   { $unwind: { path: "$sponsorDoc", preserveNullAndEmptyArrays: true } },
   {
-    // Premier sponsor embarqué (objet {name, logo}), par opposition aux sponsors
-    // stockés en référence vers une Structure. C'est sous cette forme qu'arrive
-    // la structure porteuse des fiches créées hors RI (webhook).
+    // First embedded sponsor (a {name, logo} object), as opposed to sponsors stored
+    // as a reference to a Structure. This is how the sponsoring structure arrives
+    // for contents created outside RI (webhook).
     $addFields: {
       embeddedSponsor: {
         $first: {
@@ -444,8 +444,8 @@ const buildSponsorStages = (): PipelineStage[] => [
               },
             },
             {
-              // fiches créées hors RI : la structure porteuse est embarquée dans
-              // la fiche, son logo est une simple URL (pas d'objet Picture).
+              // contents created outside RI: the sponsoring structure is embedded
+              // in the content, its logo is a plain URL (not a Picture object)
               case: { $ifNull: ["$embeddedSponsor", false] },
               then: {
                 nom: "$embeddedSponsor.name",
