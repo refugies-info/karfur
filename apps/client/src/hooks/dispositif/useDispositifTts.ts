@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import useLocale from "~/hooks/useLocale";
+import useStopAudioOnLocaleChange from "~/hooks/useStopAudioOnLocaleChange";
 import { getAllPageReadableText } from "~/lib/getReadableText";
 import { readAudio, stopAudio } from "~/lib/readAudio";
 import { Event } from "~/lib/tracking";
@@ -36,6 +37,14 @@ const useDispositifTts = () => {
   const text = useMemo(
     () => getAllPageReadableText(dispositif, theme, secondaryThemes, needs, t),
     [dispositif, theme, secondaryThemes, needs, t],
+  );
+
+  // the audio of the previous language is not relevant anymore, back to the initial state
+  useStopAudioOnLocaleChange(
+    useCallback(() => {
+      setSectionPlaying(null);
+      setIsLoadingTts(false);
+    }, []),
   );
 
   const toggleReading = useCallback(() => {
