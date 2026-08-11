@@ -11,12 +11,12 @@ describe("getBottomInset", () => {
       jest.replaceProperty(Platform, "OS", "android");
     });
 
-    it("should reserve the whole inset of a 3-button navigation bar", () => {
-      expect(getBottomInset(48)).toEqual(48);
+    it("should reserve the whole inset of a 3-button navigation bar, plus a gap", () => {
+      expect(getBottomInset(48)).toEqual(56);
     });
 
-    it("should reserve the whole inset of a gesture navigation bar", () => {
-      expect(getBottomInset(24)).toEqual(24);
+    it("should reserve the whole inset of a gesture navigation bar, plus a gap", () => {
+      expect(getBottomInset(24)).toEqual(32);
     });
   });
 
