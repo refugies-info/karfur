@@ -1,6 +1,5 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import type { GetLanguagesResponse } from "@refugies-info/api-types";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { isMobile } from "react-device-detect";
 import { Col, ListGroup, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
@@ -21,7 +20,6 @@ interface Props {
 
 const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
   const locale = useLocale();
 
   return (
@@ -66,13 +64,10 @@ const LanguageModal = (props: Props) => {
               </Col>
               <Col xs="4" className={styles.button_col}>
                 <Button
-                  onClick={() => {
-                    props.toggle();
-                    setTimeout(() => {
-                      router.push({
-                        pathname: getPath("/traduire", locale),
-                      });
-                    }, 100);
+                  linkProps={{
+                    href: getPath("/traduire", locale),
+                    prefetch: false,
+                    onClick: props.toggle,
                   }}
                 >
                   {t("Homepage.btnTranslate", "Traduire")}
