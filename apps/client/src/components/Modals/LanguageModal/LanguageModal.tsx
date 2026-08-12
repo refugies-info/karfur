@@ -50,35 +50,37 @@ const LanguageModal = (props: Props) => {
 
         <ListGroup className="!pl-0">
           <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
-
-          {!isMobile && (
-            <ListGroupItem
-              action
-              key="unavailable"
-              className={styles.list_group_item + " " + styles.unavailable}
-            >
-              <Row>
-                <Col xs="8" className={cn(styles.vertical_center)}>
-                  {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
-                </Col>
-                <Col xs="4" className={styles.button_col}>
-                  <Button
-                    onClick={() => {
-                      props.toggle();
-                      setTimeout(() => {
-                        router.push({
-                          pathname: getPath("/traduire", locale),
-                        });
-                      }, 100);
-                    }}
-                  >
-                    {t("Homepage.btnTranslate", "Traduire")}
-                  </Button>
-                </Col>
-              </Row>
-            </ListGroupItem>
-          )}
         </ListGroup>
+
+        {!isMobile && (
+          <ListGroupItem
+            action
+            tag="div"
+            className={styles.list_group_item + " " + styles.unavailable}
+          >
+            <Row>
+              <Col xs="8" className={cn(styles.vertical_center)}>
+                <p className="mb-0">
+                  {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
+                </p>
+              </Col>
+              <Col xs="4" className={styles.button_col}>
+                <Button
+                  onClick={() => {
+                    props.toggle();
+                    setTimeout(() => {
+                      router.push({
+                        pathname: getPath("/traduire", locale),
+                      });
+                    }, 100);
+                  }}
+                >
+                  {t("Homepage.btnTranslate", "Traduire")}
+                </Button>
+              </Col>
+            </Row>
+          </ListGroupItem>
+        )}
       </ModalBody>
     </Modal>
   );
