@@ -77,7 +77,7 @@ const LanguageMenu = ({
         <Accordion
           label={
             <>
-              <i className="fr-icon-translate-2" />
+              <i className="fr-icon-translate-2" aria-hidden="true" />
               {currentLanguage?.langueFr} - {currentLanguage?.langueLoc}
             </>
           }
@@ -105,13 +105,14 @@ const LanguageMenu = ({
               {variant === "flag" ? (
                 <Flag langueCode={currentLanguage?.langueCode || "fr"} className="me-2" />
               ) : (
-                <i className="fr-icon-translate-2 fr-icon--sm" />
+                <i className="fr-icon-translate-2 fr-icon--sm" aria-hidden="true" />
               )}
               {currentLanguage?.i18nCode?.toLocaleUpperCase()}{" "}
               <i
                 className={cn(
                   langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line",
                 )}
+                aria-hidden="true"
               />
             </Button>
           </DropdownTrigger>
@@ -134,13 +135,14 @@ const LanguageMenu = ({
               {variant === "flag" ? (
                 <Flag langueCode={currentLanguage?.langueCode || "fr"} className="me-2" />
               ) : (
-                <i className="fr-icon-translate-2 fr-icon--sm" />
+                <i className="fr-icon-translate-2 fr-icon--sm" aria-hidden="true" />
               )}
               {locale?.toLocaleUpperCase()}{" "}
               <i
                 className={cn(
                   langMenuOpened ? "fr-icon-arrow-up-s-line" : "fr-icon-arrow-down-s-line",
                 )}
+                aria-hidden="true"
               />
             </Button>
           </Dialog.Trigger>
