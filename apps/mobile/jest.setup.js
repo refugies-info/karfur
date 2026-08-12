@@ -92,6 +92,14 @@ jest.mock("expo-speech", () => ({
   resume: jest.fn(),
 }));
 
+jest.mock("react-native-volume-manager", () => ({
+  VolumeManager: {
+    getVolume: jest.fn().mockResolvedValue({ volume: 1 }),
+    addVolumeListener: jest.fn(() => ({ remove: jest.fn() })),
+    addSilentListener: jest.fn(() => ({ remove: jest.fn() })),
+  },
+}));
+
 jest.mock("react-native-blob-util", () => {
   return () => ({});
 });

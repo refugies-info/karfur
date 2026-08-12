@@ -296,5 +296,11 @@
     "back_button_accessibility": "Return to previous page",
     "validate": "Ok",
     "new_app_version": "A new version of the Réfugiés.info app is available."
+  },
+  "silent_mode": {
+    "title": "Your phone is in silent mode",
+    "text": "You won't hear anything. Turn off silent mode or increase the volume, then restart the playback.",
+    "continue": "Play anyway",
+    "never_show": "Don't show this message again"
   }
 }

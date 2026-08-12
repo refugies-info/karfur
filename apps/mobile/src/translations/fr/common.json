@@ -319,5 +319,11 @@
     "minute_one": "{{count}} minute",
     "minute_other": "{{count}} minutes",
     "now": "À l'instant"
+  },
+  "silent_mode": {
+    "title": "Le son de ton téléphone est coupé",
+    "text": "Tu ne vas rien entendre. Désactive le mode silencieux ou monte le volume, puis relance la lecture.",
+    "continue": "Lire quand même",
+    "never_show": "Ne plus afficher ce message"
   }
 }
