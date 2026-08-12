@@ -46,7 +46,7 @@ const LanguageModal = (props: Props) => {
           </h5>
         </div>
 
-        <ListGroup className="!pl-0">
+        <ListGroup className="!mb-0 !pl-0">
           <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
         </ListGroup>
 
