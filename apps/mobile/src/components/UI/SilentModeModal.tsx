@@ -62,7 +62,7 @@ export const SilentModeModal = (props: Props) => {
         <TouchableWithoutFeedback
           onPress={props.onClose}
           accessibilityRole="button"
-          accessibilityLabel={t("silent_mode.close_window_accessibility")}
+          accessibilityLabel={t("global.close_window_accessibility")}
         >
           <Backdrop />
         </TouchableWithoutFeedback>
@@ -74,7 +74,7 @@ export const SilentModeModal = (props: Props) => {
             }}
           >
             <Rows horizontalAlign="center">
-              <Image style={{ height: 96, width: 77 }} source={IlluMascotte} />
+              <Image style={{ height: 96, width: 77 }} source={IlluMascotte} accessible={false} />
             </Rows>
             <TitleText>{t("silent_mode.title", "Le son de ton téléphone est coupé")}</TitleText>
             <DescriptionText>
