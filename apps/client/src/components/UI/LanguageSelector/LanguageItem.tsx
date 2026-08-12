@@ -110,7 +110,7 @@ const LanguageItem = memo(
             ></span>
           )}
           <span className="langLabel">
-            <b>{item.langueFr}</b> - {item.langueLoc}
+            <b>{item.langueFr}</b> - <span lang={item.i18nCode}>{item.langueLoc}</span>
           </span>{" "}
           {type === "global" && (
             <>
