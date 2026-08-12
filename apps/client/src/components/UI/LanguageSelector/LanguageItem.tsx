@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { forwardRef, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useChangeLanguage, useLocale } from "~/hooks";
+import { checkIsRTL } from "~/hooks/useRTL";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
@@ -110,7 +111,10 @@ const LanguageItem = memo(
             ></span>
           )}
           <span className="langLabel">
-            <b>{item.langueFr}</b> - <span lang={item.i18nCode}>{item.langueLoc}</span>
+            <b>{item.langueFr}</b> -{" "}
+            <span lang={item.i18nCode} dir={checkIsRTL(item.i18nCode) ? "rtl" : undefined}>
+              {item.langueLoc}
+            </span>
           </span>{" "}
           {type === "global" && (
             <>
