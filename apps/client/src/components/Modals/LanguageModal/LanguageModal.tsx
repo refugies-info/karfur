@@ -26,6 +26,7 @@ const LanguageModal = (props: Props) => {
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
+      labelledBy="language-modal-title"
       className={cn(styles.modal)}
       contentClassName={cn(styles.modal_content, "md:min-w-[37.5rem]")}
     >
@@ -41,7 +42,7 @@ const LanguageModal = (props: Props) => {
           >
             {t("close", "Fermer")}
           </Button>
-          <h5 className={cn(styles.title)}>
+          <h5 id="language-modal-title" className={cn(styles.title)}>
             {t("Homepage.modalLangTitle", "Quelle langue parlez-vous ?")}
           </h5>
         </div>
