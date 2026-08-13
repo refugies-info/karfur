@@ -147,7 +147,7 @@ const Navbar = () => {
             text: isIOS ? (
               <Image
                 src={appStoreBadge}
-                alt={t("Toolbar.getItOnAppStore", "Téléchager sur l'App Store")}
+                alt={t("Toolbar.getItOnAppStore", "Télécharger dans l'App Store")}
                 width={120}
                 height={40}
                 className="mt-3"
@@ -155,7 +155,7 @@ const Navbar = () => {
             ) : (
               <Image
                 src={playStoreBadge}
-                alt={t("Toolbar.getItOnPlayStore", "Téléchager sur le Play Store")}
+                alt={t("Toolbar.getItOnPlayStore", "Disponible sur Google Play")}
                 width={134}
                 height={40}
                 className="mt-3"
