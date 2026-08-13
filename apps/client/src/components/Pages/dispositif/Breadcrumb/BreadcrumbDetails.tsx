@@ -49,7 +49,10 @@ const BreadcrumbDetails = ({ dispositif }: Props) => {
           <ol className="!m-0 flex !list-none flex-wrap items-center !p-0 [&>li]:!list-none [&>li]:before:!content-none [&>li::marker]:!content-none">
             <li>
               <Link href={getPath("/", locale)} className="" title={t("homepage")}>
-                <i className="ri-home-4-line text-mention-grey !bg-transparent !bg-none text-xs [&::before]:![--icon-size:1.25rem]" />
+                <i
+                  className="ri-home-4-line text-mention-grey !bg-transparent !bg-none text-xs [&::before]:![--icon-size:1.25rem]"
+                  aria-hidden="true"
+                />
                 <span className="sr-only">{t("homepage")}</span>
               </Link>
             </li>
