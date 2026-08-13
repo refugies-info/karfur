@@ -80,6 +80,7 @@ const EmailField = (props: EmailProps) => {
         onChange={props.onChange}
         id="email"
         type="email"
+        autoComplete="email"
         title={t("Register.Votre adresse email", "Votre adresse email")}
         placeholder={t("Register.Votre email", "Votre email")}
         error={props.notEmailError}

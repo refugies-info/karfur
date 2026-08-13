@@ -99,6 +99,7 @@ const Newsletter = () => {
                 type: "email",
                 value: email,
                 name: "email",
+                autoComplete: "email",
                 onChange: (e: any) => setEmail(e.target.value),
                 id: "newsletter-email",
               }}
