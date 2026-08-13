@@ -185,7 +185,7 @@ const Navbar = () => {
           title: "Accueil - Réfugiés.info",
         }}
         operatorLogo={{
-          alt: "Réfugiés.info",
+          alt: "",
           imgUrl: "/images/logoRI.svg",
           orientation: "horizontal",
         }}
