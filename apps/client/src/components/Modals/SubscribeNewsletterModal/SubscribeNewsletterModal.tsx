@@ -154,6 +154,7 @@ export const SubscribeNewsletterModal = () => {
     <Modal
       isOpen={show}
       toggle={toggle}
+      labelledBy="newsletter-modal-title"
       className={styles.modal}
       contentClassName={styles.modal_content}
     >
@@ -164,7 +165,7 @@ export const SubscribeNewsletterModal = () => {
           </CloseIconContainer>
         )}
         <Image src={newsletter} alt="" style={{ maxWidth: "100%", height: "auto" }} />
-        <TitleContainer>
+        <TitleContainer id="newsletter-modal-title">
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
             : t("Footer.subscribe_to_newsletter_modal_title", "Inscription à la newsletter")}
