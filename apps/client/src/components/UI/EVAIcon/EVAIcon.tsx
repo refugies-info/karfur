@@ -45,7 +45,7 @@ const EVAIcon = ({ name = "", fill = "#fff", size = "medium", ...props }: Props)
       onClick={props.onClick}
       role={props.ariaLabel ? "img" : undefined}
       aria-label={props.ariaLabel}
-      aria-hidden={props.ariaLabel ? undefined : props["aria-hidden"]}
+      aria-hidden={props.ariaLabel ? undefined : (props["aria-hidden"] ?? true)}
     >
       <i
         dangerouslySetInnerHTML={{ __html: svg }}
