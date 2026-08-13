@@ -2,7 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroup, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
+import { Col, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
 import { getPath } from "routes";
 import { LanguageSelector } from "~/components/UI/LanguageSelector";
 import useLocale from "~/hooks/useLocale";
@@ -47,9 +47,7 @@ const LanguageModal = (props: Props) => {
           </h5>
         </div>
 
-        <ListGroup className="!mb-0 !pl-0">
-          <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
-        </ListGroup>
+        <LanguageSelector onChangeLang={props.toggle} itemsDesign="radio" />
 
         {!isMobile && (
           <ListGroupItem

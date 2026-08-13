@@ -64,7 +64,6 @@ const LanguageItem = memo(
       return (
         <button
           ref={ref}
-          data-nav-item
           className={cn(
             styles.item,
             styles[`design-${design}`],
@@ -83,15 +82,6 @@ const LanguageItem = memo(
             if (disabled) return;
             handleChangeLanguage(item);
           }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              if (disabled) return;
-              handleChangeLanguage(item);
-            }
-          }}
-          role="menuitem"
-          tabIndex={disabled ? -1 : 0}
           {...props}
         >
           {loading && (
