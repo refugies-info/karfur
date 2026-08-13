@@ -34,6 +34,7 @@ interface Props {
   name?: string;
   maxlength?: number;
   title?: string;
+  ariaDescribedby?: string;
 }
 
 const FInput = (props: Props) => {
@@ -62,6 +63,7 @@ const FInput = (props: Props) => {
         disabled={props.disabled}
         name={props.name}
         title={props.title}
+        aria-describedby={props.ariaDescribedby}
         maxLength={props.maxlength || undefined}
         className={cls(
           props.inputClassName || "",

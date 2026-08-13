@@ -83,6 +83,7 @@ const EmailField = (props: EmailProps) => {
         title={t("Register.Votre adresse email", "Votre adresse email")}
         placeholder={t("Register.Votre email", "Votre email")}
         error={props.notEmailError}
+        ariaDescribedby={props.notEmailError ? "newsletter-email-error" : undefined}
         errorIcon="email-outline"
         newSize
       />
@@ -175,7 +176,7 @@ export const SubscribeNewsletterModal = () => {
           notEmailError={notEmailError}
         />
         {notEmailError && (
-          <ErrorMessageContainer>{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
+          <ErrorMessageContainer id="newsletter-email-error">{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
         )}
         {isMobile ? (
           <FButtonMobile
