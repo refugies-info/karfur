@@ -6,6 +6,7 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { newsletter } from "~/assets/figma";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
 import { FButtonMobile } from "~/components/UI/FButtonMobile/FButtonMobile";
@@ -97,6 +98,7 @@ export const SubscribeNewsletterModal = () => {
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
   const { t } = useTranslation();
+  const announce = useAnnounce();
 
   const show = useSelector(showNewsletterModalSelector);
   const toggle = () => dispatch(toggleNewsletterModalAction(false));
@@ -129,12 +131,17 @@ export const SubscribeNewsletterModal = () => {
             icon: "success",
             timer: 1500,
           });
+          announce("Mail correctement enregistré !");
           setEmail("");
         })
         .catch((e) => {
-          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST")
+          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST") {
             Swal.fire("Oh non...", t("Footer.newsletter_contact_already_exist"), "error");
-          else Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+            announce(t("Footer.newsletter_contact_already_exist"));
+          } else {
+            Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+            announce("Une erreur s'est produite");
+          }
         });
     } else {
       setNotEmailError(true);
