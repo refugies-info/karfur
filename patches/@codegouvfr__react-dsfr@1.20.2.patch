@@ -26,7 +26,7 @@ index e1f2baababfca4e042e7daf8dbbb5ef5b17b9c3c..7e7433e4c747831b0429b57b2ecc388a
      return { ConsentBanner };
  }
 diff --git a/consentManagement/ConsentBannerAndConsentManagement/ConsentManagement.js b/consentManagement/ConsentBannerAndConsentManagement/ConsentManagement.js
-index a4e2f016566c0883f63bfb944e55a73c39e501d6..416b1c0e0d681cfa29b270f345d7cf58be8a3c4c 100644
+index a4e2f016566c0883f63bfb944e55a73c39e501d6..43df6b6c7022c47d4500f1e8216236bcc481ce32 100644
 --- a/consentManagement/ConsentBannerAndConsentManagement/ConsentManagement.js
 +++ b/consentManagement/ConsentBannerAndConsentManagement/ConsentManagement.js
 @@ -70,9 +70,9 @@ export function createConsentManagement(params) {
@@ -41,6 +41,18 @@ index a4e2f016566c0883f63bfb944e55a73c39e501d6..416b1c0e0d681cfa29b270f345d7cf58
                  React.createElement(ConsentService, { title: t("mandatory cookies"), description: t("mandatory cookies - description"), finalityConsent: true, onChange: undefined, subFinalities: undefined }),
                  objectKeys(finalityDescription)
                      .map(finality => ({
+@@ -88,9 +88,8 @@ export function createConsentManagement(params) {
+                         finality,
+                         isConsentGiven
+                     })), finalityConsent: localFinalityConsent[finality] }))),
+-                React.createElement("ul", { className: fr.cx("fr-consent-manager__buttons", "fr-btns-group", "fr-btns-group--right", "fr-btns-group--inline-sm") },
+-                    React.createElement("li", null,
+-                        React.createElement("button", { id: `${modal.id}-button-confirm`, className: fr.cx("fr-btn"), disabled: isProcessingChanges, onClick: createOnClick("apply local changes") }, t("confirm choices")))))));
++                React.createElement("div", { className: fr.cx("fr-consent-manager__buttons", "fr-btns-group", "fr-btns-group--right", "fr-btns-group--inline-sm") },
++                    React.createElement("button", { id: `${modal.id}-button-confirm`, className: fr.cx("fr-btn"), disabled: isProcessingChanges, onClick: createOnClick("apply local changes") }, t("confirm choices"))))));
+     }
+     function ConsentService(props) {
+         const { title, description, subFinalities, finalityConsent, onChange } = props;
 diff --git a/dsfr/dsfr.min.css b/dsfr/dsfr.min.css
 index 7b5b508f740e2145c052c383f98f6c18408a3456..5457df1d8d91ec08f4d0201d090e02f05f2e086e 100644
 --- a/dsfr/dsfr.min.css
