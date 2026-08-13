@@ -158,14 +158,10 @@ export const SubscribeNewsletterModal = () => {
       <MainContainer>
         {isMobile && (
           <CloseIconContainer onClick={toggle}>
-            <EVAIcon name="close" fill="white" size={"large"} />
+            <EVAIcon name="close" fill="white" size={"large"} aria-hidden="true" />
           </CloseIconContainer>
         )}
-        <Image
-          src={newsletter}
-          alt="image newsletter"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
+        <Image src={newsletter} alt="" style={{ maxWidth: "100%", height: "auto" }} />
         <TitleContainer>
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
