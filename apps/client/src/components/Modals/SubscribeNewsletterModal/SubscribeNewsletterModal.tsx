@@ -38,7 +38,7 @@ const MainContainer = styled.div`
   padding-top: 50px;
   margin: 8px;
 `;
-const TextContainer = styled.div`
+const TextContainer = styled.p`
   font-size: 18px;
   font-weight: normal;
   margin: 16px;
@@ -50,11 +50,13 @@ const ButtonContainer = styled.div`
   margin-top: 12px;
 `;
 
-const ErrorMessageContainer = styled.div`
+const ErrorMessageContainer = styled.p`
   color: ${colors.error};
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
+  // p reçoit une marge basse de bootstrap, absente du div d'origine
+  margin-bottom: 0;
 `;
 
 const CloseIconContainer = styled.div`
