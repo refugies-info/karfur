@@ -126,6 +126,7 @@ const AccordionItem = (props: Props) => {
                   name="trash-2-outline"
                   size={32}
                   fill={fr.colors.decisions.text.mention.grey.default}
+                  ariaLabel="Supprimer cette étape"
                   onClick={(e: any) => {
                     e.preventDefault();
                     props.onDelete ? props.onDelete() : null;

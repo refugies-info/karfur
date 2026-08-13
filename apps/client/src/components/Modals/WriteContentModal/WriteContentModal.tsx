@@ -61,7 +61,11 @@ const WriteContentModal = ({ show, close }: Props) => {
         className={styles.modal}
       >
         <ModalBody>
-          <button className={styles.close} onClick={() => setShowWriteModal(false)}>
+          <button
+            className={styles.close}
+            onClick={() => setShowWriteModal(false)}
+            aria-label="Fermer"
+          >
             <EVAIcon name="close-outline" fill="dark" size={24} className="me-2" />
           </button>
           <div className={styles.cards}>

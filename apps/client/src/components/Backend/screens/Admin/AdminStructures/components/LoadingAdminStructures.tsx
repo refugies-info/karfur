@@ -50,6 +50,7 @@ export const LoadingAdminStructures = () => {
                       name={"chevron-" + (element.croissant ? "up" : "down")}
                       fill={colors.gray90}
                       className="sort-btn"
+                      ariaLabel={element.croissant ? "Tri croissant" : "Tri décroissant"}
                     />
                   )}
                 </th>

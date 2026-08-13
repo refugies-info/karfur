@@ -74,7 +74,15 @@ const ThemeSelectButton = (props: Props) => {
             <Image src={AdminIcon} width={16} height={16} alt="" className="ms-2" />
           </span>
         )}
-        {selected && <EVAIcon name="close-outline" size={24} className="ms-2" fill="white" />}
+        {selected && (
+          <EVAIcon
+            name="close-outline"
+            size={24}
+            className="ms-2"
+            fill="white"
+            ariaLabel="Sélectionné"
+          />
+        )}
       </ThemeButtonContainer>
       {props.disabled && (
         <Tooltip target={id} placement="top">

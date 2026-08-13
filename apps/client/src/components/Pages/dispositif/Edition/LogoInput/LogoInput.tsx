@@ -78,6 +78,7 @@ const LogoInput = (props: Props) => {
               fill={fr.colors.decisions.background.actionHigh.error.default}
               onClick={deleteImage}
               className={styles.delete}
+              ariaLabel="Supprimer le logo"
             />
           </div>
         ) : (

@@ -22,6 +22,7 @@ const SectionTitleAbstract = () => {
             size={32}
             fill={fr.colors.decisions.text.mention.grey.default}
             className="ms-6 mb-4"
+            ariaLabel="Aide"
           />
         </Tooltip>
       )}

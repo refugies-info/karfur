@@ -212,14 +212,14 @@ export const ValidateButton = (props: { onClick: () => void; disabled: boolean }
     data-testid="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
+      <EVAIcon name="checkmark-outline" fill={colors.white} size={20} ariaLabel="Valider" />
     </div>
   </ButtonContainer>
 );
 
 export const SeeButton = (props: { burl: string }) => (
   <ButtonContainer $hoverColor={colors.gray90}>
-    <a href={props.burl} target="_blank" rel="noopener noreferrer">
+    <a href={props.burl} target="_blank" rel="noopener noreferrer" aria-label="Voir la fiche">
       <div style={{ marginBottom: "4px" }}>
         <EVAIcon name="eye" fill={colors.white} size={20} />
       </div>
@@ -230,7 +230,7 @@ export const SeeButton = (props: { burl: string }) => (
 export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => (
   <ButtonContainer $hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="edit" fill={colors.white} size={20} />
+      <EVAIcon name="edit" fill={colors.white} size={20} ariaLabel="Modifier" />
     </div>
   </ButtonContainer>
 );
@@ -247,7 +247,7 @@ export const DeleteButton = (props: {
     data-testid={props.testId}
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash" fill={colors.white} size={20} />
+      <EVAIcon name="trash" fill={colors.white} size={20} ariaLabel="Supprimer" />
     </div>
   </ButtonContainer>
 );
@@ -286,7 +286,13 @@ export const TabHeader = (props: {
 }) => (
   <StyledTabHeader order={props.order ? 1 : 0}>
     {props.name}
-    {props.order && <EVAIcon name={`chevron-${props.sens}`} fill={colors.gray90} />}
+    {props.order && (
+      <EVAIcon
+        name={`chevron-${props.sens}`}
+        fill={colors.gray90}
+        ariaLabel={props.sens === "up" ? "Tri croissant" : "Tri décroissant"}
+      />
+    )}
   </StyledTabHeader>
 );
 

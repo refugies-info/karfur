@@ -41,9 +41,14 @@ const AdminThemeButton = (props: Props) => (
         <>
           <span className={styles.hoverHidden}>
             {props.hasWarning ? (
-              <EVAIcon name="alert-triangle" fill="white" size={20} />
+              <EVAIcon
+                name="alert-triangle"
+                fill="white"
+                size={20}
+                ariaLabel="Sélectionné, avertissement"
+              />
             ) : (
-              <EVAIcon name="checkmark-outline" fill="white" size={20} />
+              <EVAIcon name="checkmark-outline" fill="white" size={20} ariaLabel="Sélectionné" />
             )}
           </span>
           <span className={styles.hoverVisible}>
@@ -51,6 +56,7 @@ const AdminThemeButton = (props: Props) => (
               name="close-outline"
               fill="white"
               size={20}
+              ariaLabel="Désélectionner le thème"
               onClick={(e: any) => {
                 e.stopPropagation();
                 props.onSelectTheme(props.theme._id);
@@ -65,6 +71,7 @@ const AdminThemeButton = (props: Props) => (
             name="edit-outline"
             fill="dark"
             size={16}
+            ariaLabel="Modifier le thème"
             onClick={(e: any) => {
               e.stopPropagation();
               if (props.onClickEdit) props.onClickEdit();
@@ -72,7 +79,9 @@ const AdminThemeButton = (props: Props) => (
           />
         </span>
       )}
-      {props.opened && <EVAIcon name="arrow-forward" fill="white" size={20} className="ms-2" />}
+      {props.opened && (
+        <EVAIcon name="arrow-forward" fill="white" size={20} className="ms-2" ariaLabel="Ouvert" />
+      )}
     </span>
   </button>
 );
