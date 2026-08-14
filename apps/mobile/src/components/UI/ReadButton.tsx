@@ -8,6 +8,7 @@ import { Icon } from "react-native-eva-icons";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
+import { useSilentModeWarning } from "~/hooks/useSilentModeWarning";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
 import { getTtsReader, type Reader } from "~/libs/ttsReader";
 import { logger } from "~/logger";
@@ -27,6 +28,7 @@ import type { ReadingItem } from "~/types/interface";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import { TextDSFR_MD_Bold, TextDSFR_XS, TextDSFR_XS_Med } from "../StyledText";
+import { SilentModeModal } from "./SilentModeModal";
 
 const Container = styled.View<{ bottomInset: number }>`
   position: absolute;
@@ -129,6 +131,7 @@ export const ReadButton = (props: Props) => {
   const dispatch = useDispatch();
   const { t } = useTranslationWithRTL();
   const { fontScale } = useWindowDimensions();
+  const silentWarning = useSilentModeWarning();
 
   const [isPaused, setIsPaused] = useState(false);
   const isStopped = useRef<boolean>(false);
@@ -341,6 +344,8 @@ export const ReadButton = (props: Props) => {
   const toggleVoiceOver = () => {
     dispatch(setShouldStop(false));
     if (!isReading) {
+      // warn first when the phone is muted, otherwise the user thinks the TTS is broken
+      if (silentWarning.warnIfSilent()) return;
       startToRead();
     } else {
       setIsPaused(!isPaused);
@@ -404,6 +409,18 @@ export const ReadButton = (props: Props) => {
           <Icon name={"close-outline"} height={24} width={24} fill={styles.colors.white} />
         </Button>
       </Buttons>
+      <SilentModeModal
+        isModalVisible={silentWarning.isVisible}
+        onClose={silentWarning.hide}
+        onContinue={() => {
+          silentWarning.hide();
+          startToRead();
+        }}
+        onNeverShowAgain={() => {
+          silentWarning.disableForever();
+          startToRead();
+        }}
+      />
     </Container>
   );
 };
