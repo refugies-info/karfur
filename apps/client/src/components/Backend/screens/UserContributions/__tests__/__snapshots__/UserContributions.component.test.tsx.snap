@@ -120,6 +120,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
               class="btn dark me-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -161,6 +162,7 @@ exports[`userContributions should render correctly when 0 contributions 1`] = `
               class="btn tuto ms-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -412,6 +414,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
               class="btn tuto me-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -450,6 +453,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
               class="btn dark"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -515,6 +519,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                     >
                       Statut
                       <span
+                        aria-hidden="true"
                         class="ms-2 icon"
                       >
                         <i
@@ -608,6 +613,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         style="margin-bottom: 4px; margin-right: 8px;"
                       >
                         <span
+                          aria-hidden="true"
                           class="icon"
                         >
                           <i
@@ -690,6 +696,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/dispositif/id1"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -698,6 +705,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -746,7 +754,9 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -1075,6 +1085,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               class="btn tuto me-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -1113,6 +1124,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
               class="btn dark"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -1178,6 +1190,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                     >
                       Statut
                       <span
+                        aria-hidden="true"
                         class="ms-2 icon"
                       >
                         <i
@@ -1271,6 +1284,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         style="margin-bottom: 4px; margin-right: 8px;"
                       >
                         <span
+                          aria-hidden="true"
                           class="icon"
                         >
                           <i
@@ -1353,6 +1367,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/dispositif/id1"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1361,6 +1376,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -1409,7 +1425,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -1484,6 +1502,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         style="margin-bottom: 4px; margin-right: 8px;"
                       >
                         <span
+                          aria-hidden="true"
                           class="icon"
                         >
                           <i
@@ -1566,6 +1585,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id2"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1574,6 +1594,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -1622,7 +1643,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -1735,6 +1758,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id3"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1743,6 +1767,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -1791,7 +1816,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -1904,6 +1931,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id4"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1912,6 +1940,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -1960,7 +1989,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -2035,6 +2066,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         style="margin-bottom: 4px; margin-right: 8px;"
                       >
                         <span
+                          aria-hidden="true"
                           class="icon"
                         >
                           <i
@@ -2117,6 +2149,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id5"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2125,6 +2158,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -2173,7 +2207,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -2292,6 +2328,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id6"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2300,6 +2337,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -2348,7 +2386,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -2423,6 +2463,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         style="margin-bottom: 4px; margin-right: 8px;"
                       >
                         <span
+                          aria-hidden="true"
                           class="icon"
                         >
                           <i
@@ -2508,6 +2549,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
+                          aria-label="Voir la fiche"
                           href="/demarche/id7"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2516,6 +2558,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                             style="margin-bottom: 4px;"
                           >
                             <span
+                              aria-hidden="true"
                               class="icon"
                             >
                               <i
@@ -2564,7 +2607,9 @@ exports[`userContributions should render correctly when contributions 1`] = `
                           style="margin-bottom: 4px;"
                         >
                           <span
+                            aria-label="Supprimer"
                             class="icon"
+                            role="img"
                           >
                             <i
                               style="height: 20px; line-height: 20px;"
@@ -2741,6 +2786,7 @@ exports[`userContributions should render correctly when loading 1`] = `
               class="btn dark me-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -2782,6 +2828,7 @@ exports[`userContributions should render correctly when loading 1`] = `
               class="btn tuto ms-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i

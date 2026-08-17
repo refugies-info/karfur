@@ -113,6 +113,7 @@ exports[`user translation should redirect if user has language but not langue in
               class="btn tuto ms-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -372,6 +373,7 @@ exports[`user translation should redirect if user has no language but langue in 
               class="btn tuto ms-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -1030,6 +1032,7 @@ exports[`user translation should return loader langue in url = first selected la
               class="btn tuto ms-2"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i

@@ -165,6 +165,7 @@ exports[`UserFavorites should render correctly when 0 favorites 1`] = `
           class="btn tuto me-2"
         >
           <span
+            aria-hidden="true"
             class="me-2 icon"
           >
             <i
@@ -421,6 +422,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
           data-testid="remove-all-favorites-button"
         >
           <span
+            aria-hidden="true"
             class="me-2 icon"
           >
             <i

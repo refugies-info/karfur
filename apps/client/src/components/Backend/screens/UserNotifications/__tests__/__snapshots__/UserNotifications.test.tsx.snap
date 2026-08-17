@@ -371,7 +371,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           class="c5"
         >
           <span
+            aria-label="Notification non lue"
             class="icon"
+            role="img"
           >
             <i
               style="height: 20px; line-height: 20px;"
@@ -416,6 +418,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             class="btn dark me-2"
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -458,6 +461,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             data-testid="test-delete-annuaire"
           >
             <span
+              aria-hidden="true"
               class="icon"
             >
               <i
@@ -501,7 +505,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           class="c5"
         >
           <span
+            aria-label="Notification non lue"
             class="icon"
+            role="img"
           >
             <i
               style="height: 20px; line-height: 20px;"
@@ -551,6 +557,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             class="btn dark"
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -600,7 +607,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           class="c5"
         >
           <span
+            aria-label="Notification non lue"
             class="icon"
+            role="img"
           >
             <i
               style="height: 20px; line-height: 20px;"
@@ -650,6 +659,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             class="btn dark"
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -694,6 +704,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             data-testid="test-delete-reaction"
           >
             <span
+              aria-hidden="true"
               class="icon"
             >
               <i
@@ -737,7 +748,9 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
           class="c5"
         >
           <span
+            aria-label="Notification lue"
             class="icon"
+            role="img"
           >
             <i
               style="height: 20px; line-height: 20px;"
@@ -787,6 +800,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             class="btn dark"
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -831,6 +845,7 @@ exports[`UserNotifications should render correctly when notif not read annuaire,
             data-testid="test-delete-reaction"
           >
             <span
+              aria-hidden="true"
               class="icon"
             >
               <i
