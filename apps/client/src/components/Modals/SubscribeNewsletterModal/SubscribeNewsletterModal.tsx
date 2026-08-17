@@ -133,7 +133,14 @@ export const SubscribeNewsletterModal = () => {
             icon: "success",
             timer: 1500,
           });
-          announce("Mail correctement enregistré !");
+          // Le libellé partagé avec la section d'accueil porte du gras pour l'affichage,
+          // une région vocale ne restitue que du texte.
+          announce(
+            t("NewsletterForm.confirmMessageText", {
+              defaultValue: "Mail correctement enregistré !",
+              email,
+            }).replace(/<[^>]*>/g, ""),
+          );
           setEmail("");
         })
         .catch((e) => {
@@ -142,7 +149,7 @@ export const SubscribeNewsletterModal = () => {
             announce(t("Footer.newsletter_contact_already_exist"));
           } else {
             Swal.fire("Oh non...", "Une erreur s'est produite", "error");
-            announce("Une erreur s'est produite");
+            announce(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
           }
         });
     } else {
