@@ -127,6 +127,10 @@ minimumReleaseAgeExclude:
   - dompurify
   - i18next-fs-backend
   - follow-redirects
+  # TODO: Remove after 2026-08-24 once Sentry SDK releases (RI-1433) are older than 7 days
+  - "@sentry/*"
+  - "@sentry-internal/*"
+  - "@opentelemetry/*"
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

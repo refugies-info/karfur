@@ -174,6 +174,13 @@ module.exports = {
       "./src/utils/withSimulatorExcludedArchitectures.js",
       // "./build-scripts/withM1build.js",
       [
+        "@sentry/react-native/expo",
+        {
+          organization: "betagouv",
+          project: "refugiesinfo-mobile",
+        },
+      ],
+      [
         "expo-build-properties",
         {
           android: {

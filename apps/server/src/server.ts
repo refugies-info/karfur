@@ -1,3 +1,6 @@
+import "./instrument";
+
+import * as Sentry from "@sentry/node";
 import { config } from "dotenv";
 
 config();
@@ -75,6 +78,9 @@ app.use((_, res, next) => {
 // Setup routes
 RegisterRoutes(app);
 app.enable("strict routing");
+
+Sentry.setupExpressErrorHandler(app);
+
 app.use(serverErrorHandler);
 
 app.get("*", (_req, res) => {

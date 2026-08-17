@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Languages } from "@refugies-info/api-types";
+import * as Sentry from "@sentry/react-native";
 import * as Updates from "expo-updates";
 import { initReactI18next } from "react-i18next";
 import { Text } from "react-native";
@@ -8,6 +9,13 @@ import MainApp from "./src/App";
 import { enableNotificationsListener } from "./src/libs/notifications";
 import { logger } from "./src/logger";
 import i18n from "./src/services/i18n";
+
+Sentry.init({
+  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
+  environment: process.env.EXPO_PUBLIC_ENV_NAME,
+  enabled: !!process.env.EXPO_PUBLIC_SENTRY_DSN,
+  tracesSampleRate: process.env.EXPO_PUBLIC_ENV_NAME === "production" ? 0.1 : 1.0,
+});
 
 enableNotificationsListener();
 
@@ -29,7 +37,7 @@ const update = async () =>
       logger.error("expo-updates ", e);
     });
 
-export default function App() {
+function App() {
   const { loading, error } = useAsync(async () => {
     try {
       update();
@@ -69,3 +77,5 @@ export default function App() {
   }
   return <MainApp />;
 }
+
+export default Sentry.wrap(App);
