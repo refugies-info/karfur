@@ -1,4 +1,5 @@
-import "./wdyr"; // <--- first import
+import "./instrument"; // <--- first import: Sentry doit hooker les handlers avant tout le reste
+import "./wdyr";
 import { registerRootComponent } from "expo";
 
 import App from "./App";

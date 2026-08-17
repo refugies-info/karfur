@@ -10,13 +10,6 @@ import { enableNotificationsListener } from "./src/libs/notifications";
 import { logger } from "./src/logger";
 import i18n from "./src/services/i18n";
 
-Sentry.init({
-  dsn: process.env.EXPO_PUBLIC_SENTRY_DSN,
-  environment: process.env.EXPO_PUBLIC_ENV_NAME,
-  enabled: !!process.env.EXPO_PUBLIC_SENTRY_DSN,
-  tracesSampleRate: process.env.EXPO_PUBLIC_ENV_NAME === "production" ? 0.1 : 1.0,
-});
-
 enableNotificationsListener();
 
 const update = async () =>
