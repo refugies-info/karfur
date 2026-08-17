@@ -4,10 +4,10 @@ import { useWindowSize } from "@refugies-info/ui";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useCallback } from "react";
+import { type MouseEvent, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode, useLocale } from "~/hooks";
+import { useEditionMode, useLocale, useSupportAvailability } from "~/hooks";
 import { FooterConsentManagementItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -24,10 +24,37 @@ const Footer = () => {
   const router = useRouter();
 
   const themes = useSelector(themesSelector);
+  const supportAvailability = useSupportAvailability();
 
   const openCrisp = () => {
     window.$crisp.push(["do", "chat:open"]);
   };
+
+  const contactTeamLabel = {
+    open: t("Footer.contact_team", "Contacter l'équipe"),
+    closed: t(
+      "Footer.contact_team_closed",
+      "Contacter l'équipe du lundi au jeudi, de 9h30 à 12h30 et de 14h à 18h",
+    ),
+    unavailable: t(
+      "Footer.contact_team_unavailable",
+      "Contacter l'équipe, momentanément indisponible",
+    ),
+  }[supportAvailability];
+
+  // Hors horaires, le lien garde sa place et son apparence mais n'ouvre plus rien : rôle lien,
+  // état désactivé, hors de l'ordre de tabulation. Le href subsiste car le Footer DSFR rend ce
+  // lien avec next/link, qui l'exige ; la navigation est neutralisée par preventDefault.
+  const contactTeamLinkProps =
+    supportAvailability === "open"
+      ? { onClick: openCrisp, href: "/" }
+      : {
+          href: "/",
+          role: "link",
+          "aria-disabled": true,
+          tabIndex: -1,
+          onClick: (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
+        };
 
   const toggleNewsletter = useCallback(() => {
     dispatch(toggleNewsletterModalAction());
@@ -254,11 +281,8 @@ const Footer = () => {
                 text: t("Footer.help_center", "Consulter le centre d'aide"),
               },
               {
-                linkProps: {
-                  onClick: openCrisp,
-                  href: "/",
-                },
-                text: t("Footer.contact_team", "Contacter l'équipe"),
+                linkProps: contactTeamLinkProps,
+                text: contactTeamLabel,
               },
               {
                 linkProps: {
