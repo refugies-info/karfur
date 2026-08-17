@@ -60,13 +60,11 @@ const SectionButtons = ({ id, content, className }: Props) => {
   }, []);
 
   // the audio of the previous language is not relevant anymore, back to the initial state
-  useStopAudioOnLocaleChange(
-    useCallback(() => {
-      setIsPlaying(false);
-      setShowTtsButtons(false);
-      setIsLoadingTts(false);
-    }, []),
-  );
+  useStopAudioOnLocaleChange(() => {
+    setIsPlaying(false);
+    setShowTtsButtons(false);
+    setIsLoadingTts(false);
+  });
 
   // reactions
   const dispositif = useSelector(selectedDispositifSelector);

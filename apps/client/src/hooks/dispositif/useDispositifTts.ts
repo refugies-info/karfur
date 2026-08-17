@@ -40,12 +40,10 @@ const useDispositifTts = () => {
   );
 
   // the audio of the previous language is not relevant anymore, back to the initial state
-  useStopAudioOnLocaleChange(
-    useCallback(() => {
-      setSectionPlaying(null);
-      setIsLoadingTts(false);
-    }, []),
-  );
+  useStopAudioOnLocaleChange(() => {
+    setSectionPlaying(null);
+    setIsLoadingTts(false);
+  });
 
   const toggleReading = useCallback(() => {
     if (sectionPlaying === null) {

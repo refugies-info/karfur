@@ -11,15 +11,14 @@ import useLocale from "./useLocale";
 const useStopAudioOnLocaleChange = (onStop?: () => void) => {
   const locale = useLocale();
   const previousLocale = useRef(locale);
-  const onStopRef = useRef(onStop);
-  onStopRef.current = onStop;
 
   useEffect(() => {
     if (previousLocale.current === locale) return;
+
     previousLocale.current = locale;
     stopAudio();
-    onStopRef.current?.();
-  }, [locale]);
+    onStop?.();
+  }, [locale, onStop]);
 };
 
 export default useStopAudioOnLocaleChange;

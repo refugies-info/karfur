@@ -63,7 +63,7 @@ const Layout = (props: Props) => {
   const ttsActive = useSelector(ttsActiveSelector);
 
   // the audio player is a singleton: whatever component started it, it must be silenced on language change
-  useStopAudioOnLocaleChange(useCallback(() => dispatch(toggleSpinner(false)), [dispatch]));
+  useStopAudioOnLocaleChange(() => dispatch(toggleSpinner(false)));
 
   // Language modal
   const showLangModal = useSelector(showLangModalSelector);
