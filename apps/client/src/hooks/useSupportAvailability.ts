@@ -53,16 +53,27 @@ const useSupportAvailability = (): SupportAvailability => {
     // sans bruit si le visiteur bloque Crisp.
     const readAvailability = () => {
       if (typeof window.$crisp?.is !== "function") return false;
-      const isAvailable = window.$crisp.is("website:available");
-      if (typeof isAvailable !== "boolean") return false;
 
-      setIsTeamAway(!isAvailable);
-      window.$crisp.push([
-        "on",
-        "website:availability:changed",
-        (available: boolean) => setIsTeamAway(!available),
-      ]);
-      return true;
+      try {
+        // Tant que la session n'est pas établie avec les serveurs Crisp, is("website:available")
+        // renvoie false par défaut : ce false ne dit pas que l'équipe est absente, il dit qu'on
+        // ne sait pas. On n'affiche l'indisponibilité que sur une information reçue.
+        if (!window.$crisp.get("session:identifier")) return false;
+
+        const isAvailable = window.$crisp.is("website:available");
+        if (typeof isAvailable !== "boolean") return false;
+
+        setIsTeamAway(!isAvailable);
+        window.$crisp.push([
+          "on",
+          "website:availability:changed",
+          (available: boolean) => setIsTeamAway(!available),
+        ]);
+        return true;
+      } catch {
+        // API du SDK indisponible ou modifiée : on s'en tient au calendrier
+        return false;
+      }
     };
 
     if (readAvailability()) return;
