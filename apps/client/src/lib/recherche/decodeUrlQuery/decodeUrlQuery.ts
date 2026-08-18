@@ -10,6 +10,10 @@ import type {
 import type { UrlSearchQuery } from "~/pages/recherche";
 import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
 import { backwardCompatibility } from "./decodeUrlQuery.compatibility";
+import { asString } from "./queryParam";
+
+const typeOptions: TypeOptions[] = ["all", "demarche", "dispositif", "ressource"];
+const sortValues: SortOptions[] = ["default", "date", "views", "theme", "location"];
 
 export const decodeQuery = (
   routerQuery: any,
@@ -30,7 +34,7 @@ export const decodeQuery = (
   } = routerQuery as UrlSearchQuery;
 
   let query: SearchQuery = {
-    search: search || "",
+    search: asString(search),
     departments: [],
     cities: [],
     needs: [],
@@ -61,24 +65,27 @@ export const decodeQuery = (
     type ||
     search
   ) {
-    if (departments) query.departments = decodeURIComponent(departments as string).split(",");
-    if (cities) query.cities = decodeURIComponent(cities as string).split(",");
-    if (needs) query.needs = decodeURIComponent(needs as string).split(",") as unknown as Id[];
-    if (themes) query.themes = decodeURIComponent(themes as string).split(",") as unknown as Id[];
-    if (age && query.age.length === 0)
-      query.age = decodeURIComponent(age as string).split(",") as AgeOptions[];
-    if (frenchLevel)
-      query.frenchLevel = decodeURIComponent(frenchLevel as string).split(",") as FrenchOptions[];
+    if (departments) query.departments = asString(departments).split(",");
+    if (cities) query.cities = asString(cities).split(",");
+    if (needs) query.needs = asString(needs.toString()).split(",") as unknown as Id[];
+    if (themes) query.themes = asString(themes.toString()).split(",") as unknown as Id[];
+    if (age && query.age.length === 0) query.age = asString(age).split(",") as AgeOptions[];
+    if (frenchLevel) query.frenchLevel = asString(frenchLevel).split(",") as FrenchOptions[];
     if (routerQuery.public)
-      query.public = decodeURIComponent(routerQuery.public as string).split(",") as PublicOptions[];
-    if (status) query.status = decodeURIComponent(status as string).split(",") as StatusOptions[];
-    if (language) query.language = decodeURIComponent(language as string).split(",");
+      query.public = asString(routerQuery.public).split(",") as PublicOptions[];
+    if (status) query.status = asString(status).split(",") as StatusOptions[];
+    if (language) query.language = asString(language).split(",");
     if (sort) {
-      const decodedSort = decodeURIComponent(sort as string);
-      query.sort = (decodedSort === "view" ? "views" : decodedSort) as SortOptions;
+      const rawSort = asString(sort);
+      const normalizedSort = (rawSort === "view" ? "views" : rawSort) as SortOptions;
+      // Unknown values (bots, stale links) must not leak into the filters
+      if (sortValues.includes(normalizedSort)) query.sort = normalizedSort;
     }
-    if (type) query.type = decodeURIComponent(type as string) as TypeOptions;
-    if (search) query.search = decodeURIComponent(search as string);
+    if (type) {
+      const rawType = asString(type) as TypeOptions;
+      if (typeOptions.includes(rawType)) query.type = rawType;
+    }
+    if (search) query.search = asString(search);
   }
 
   return query;

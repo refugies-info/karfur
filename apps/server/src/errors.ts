@@ -51,6 +51,10 @@ export class InvalidRequestError extends APIError {
   status = 400;
 }
 
+export class ConflictError extends APIError {
+  status = 409;
+}
+
 const getErrorStatus = (err: Error): number => {
   const error = err as { status?: number; statusCode?: number };
   if (typeof error.status === "number" && error.status >= 400 && error.status < 600)
@@ -109,10 +113,14 @@ export const serverErrorHandler: ErrorRequestHandler = (
 
   if (err instanceof Error) {
     const status = getErrorStatus(err);
+    // `message` and `stack` are non-enumerable on Error, so logging `err`
+    // directly serializes to `{}` and loses the diagnosis entirely.
     logger.error("[serverErrorHandler] Unknown error", {
       status,
       path: req.url,
-      error: err,
+      error: err.message,
+      errorName: err.name,
+      stack: err.stack,
     });
     res.status(status).json({
       message: err.message || "Internal Server Error",

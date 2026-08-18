@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 import ReactNativeBlobUtil from "react-native-blob-util";
 import { logger } from "~/logger";
 import { fetchAudio } from "~/utils/API";
+import { enablePlaybackInSilentMode } from "./audioSession";
 
 export interface Reader {
   play: () => Promise<void>;
@@ -82,6 +83,8 @@ const getNativeReader = (text: string, language: string | null, rate: number): R
       Speech.speak(text, {
         rate: rate,
         language: language || "fr",
+        // iOS: reuse the app audio session configured in audioSession.ts, so the mute switch is ignored
+        useApplicationAudioSession: true,
         onDone: () => resolve(),
       });
     }),
@@ -122,7 +125,11 @@ export const getTtsReader = async (
   text: string,
   language: string | null,
   rate: number,
-): Promise<Reader> =>
-  needsAzureTts(language)
+): Promise<Reader> => {
+  // must happen before any reader plays, otherwise iOS keeps the default silent-aware category
+  await enablePlaybackInSilentMode();
+
+  return needsAzureTts(language)
     ? getAzureReader(text, language, rate)
     : getNativeReader(text, language, rate);
+};

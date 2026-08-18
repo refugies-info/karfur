@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { ReadButton } from "~/components/UI/ReadButton";
 import { useStopVoiceover } from "~/hooks/useStopVoiceover";
+import { getBottomInset } from "~/libs/getBottomInset";
 import { getScreenFromUrl } from "~/libs/getScreenFromUrl";
 import { noVoiceover } from "~/libs/noVoiceover";
 import { setInitialUrlUsed } from "~/services/redux/User/user.actions";
@@ -96,7 +97,7 @@ function BottomTabBar({ state, descriptors, navigation, insets }: BottomTabBarPr
     noVoiceover(currentLanguageI18nCode);
   if (!noReadButton) items.splice(2, 0, <Space key="space" />);
 
-  const insetBottom = insets.bottom > 0 ? insets.bottom - 8 : 0;
+  const insetBottom = getBottomInset(insets.bottom);
 
   return (
     <BottomTabBarContainer

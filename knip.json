@@ -21,7 +21,12 @@
       ]
     },
     "apps/mobile": {
-      "entry": ["build-scripts/*.js", "src/translations/scripts/*.js", "src/utils/*.js"],
+      "entry": [
+        "index.js",
+        "build-scripts/*.js",
+        "src/translations/scripts/*.js",
+        "src/utils/*.js"
+      ],
       "expo": false,
       "ignoreDependencies": [
         "@babel/preset-env",

@@ -7,6 +7,7 @@ import {
   type User,
 } from "@refugies-info/mongo";
 import { isUndefined } from "lodash";
+import { ConflictError } from "~/errors";
 import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
 import { updateIndicator } from "~/modules/indicators/indicators.service";
@@ -23,7 +24,7 @@ const saveTranslation = (
   getDispositifById(new ObjectId(dispositifId)).then(async (dispositif) => {
     const userIsExpert = user.isExpert() || user.isAdmin();
     if (isDispositifTranslatedIn(dispositif, language) && !userIsExpert) {
-      throw new Error(`Dispositif is already translated in ${language}`);
+      throw new ConflictError(`Dispositif is already translated in ${language}`);
     }
 
     const _traduction: Partial<Traductions> = {
