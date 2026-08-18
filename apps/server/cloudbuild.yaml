@@ -74,6 +74,8 @@ steps:
           --set-secrets REACT_APP_SITE_SECRET=REACT_APP_SITE_SECRET:latest \
           --set-secrets SECRET=SECRET:latest \
           --set-secrets SENDGRID_API_KEY=SENDGRID_API_KEY:latest \
+          --set-secrets SENTRY_AUTH_TOKEN=SENTRY_AUTH_TOKEN:latest \
+          --set-secrets SENTRY_DSN=SENTRY_DSN:latest \
           --set-secrets SLACK_WEBHOOK_URL=SLACK_WEBHOOK_URL:latest \
           --set-secrets SMS_SENDER=SMS_SENDER:latest \
           --set-secrets TTS_KEY_1=TTS_KEY_1:latest \

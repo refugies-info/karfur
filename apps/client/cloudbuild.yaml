@@ -62,6 +62,9 @@ steps:
           --region ${_REGION} \
           --service-account ${_SA} \
           --set-secrets MONGODB_URI=${_MONGODB_VAR}:latest,WEBHOOK_SECRET=${_WEBHOOK_SECRET}:latest,REDIS_URI=${_REDIS_URI_VAR}:latest \
+          --set-secrets SENTRY_DSN=SENTRY_DSN:latest \
+          --set-secrets NEXT_PUBLIC_SENTRY_DSN=NEXT_PUBLIC_SENTRY_DSN:latest \
+          --set-secrets SENTRY_AUTH_TOKEN=SENTRY_AUTH_TOKEN:latest \
           --set-env-vars DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS} \
           "${vpc_args[@]}"
 
