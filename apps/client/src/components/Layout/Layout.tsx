@@ -10,7 +10,7 @@ import LanguageModal from "~/components/Modals/LanguageModal/LanguageModal";
 import NewProfileModal from "~/components/Modals/NewProfileModal";
 import { SubscribeNewsletterModal } from "~/components/Modals/SubscribeNewsletterModal/SubscribeNewsletterModal";
 import Navbar from "~/components/Navigation/Navbar";
-import { useChangeLanguage, useRTL } from "~/hooks";
+import { useChangeLanguage, useRTL, useStopAudioOnLocaleChange } from "~/hooks";
 import { ConsentBannerAndConsentManagement } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { readAudio, stopAudio } from "~/lib/readAudio";
@@ -61,6 +61,9 @@ const Layout = (props: Props) => {
   const router = useRouter();
 
   const ttsActive = useSelector(ttsActiveSelector);
+
+  // the audio player is a singleton: whatever component started it, it must be silenced on language change
+  useStopAudioOnLocaleChange(() => dispatch(toggleSpinner(false)));
 
   // Language modal
   const showLangModal = useSelector(showLangModalSelector);
