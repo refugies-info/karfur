@@ -81,9 +81,16 @@ jest.mock("expo-av", () => {
       Sound: {
         createAsync: jest.fn().mockResolvedValue({ sound }),
       },
+      setAudioModeAsync: jest.fn().mockResolvedValue(undefined),
     },
+    InterruptionModeIOS: { MixWithOthers: 0, DoNotMix: 1, DuckOthers: 2 },
+    InterruptionModeAndroid: { DoNotMix: 1, DuckOthers: 2 },
   };
 });
+
+jest.mock("expo-audio", () => ({
+  setAudioModeAsync: jest.fn().mockResolvedValue(undefined),
+}));
 
 jest.mock("expo-speech", () => ({
   speak: jest.fn((_, options) => options?.onDone?.()),

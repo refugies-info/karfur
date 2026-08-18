@@ -211,6 +211,14 @@ module.exports = {
       withCustomGradleProperties,
       withDisableStrictLinting,
     ],
+    // Android 16 (targetSdkVersion 36) ignores android:enforceNavigationBarContrast,
+    // so the system no longer draws a scrim behind the navigation bar. Its buttons
+    // are now painted straight onto our white bottom tab bar and need to be dark to
+    // stay visible. barStyle sets android:windowLightNavigationBar, which is still
+    // honoured on API 36 (unlike backgroundColor, a no-op there).
+    androidNavigationBar: {
+      barStyle: "dark-content",
+    },
     android: {
       userInterfaceStyle: "light",
       adaptiveIcon: {
