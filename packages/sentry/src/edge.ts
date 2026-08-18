@@ -12,9 +12,6 @@ Sentry.init({
   tracesSampleRate: process.env.NODE_ENV === "production" ? 0.1 : 1.0,
   environment: process.env.NODE_ENV,
 
-  // Enable logs to be sent to Sentry
-  enableLogs: true,
-
   dataCollection: {
     // To disable sending user data and HTTP bodies, uncomment the lines below. For more info visit:
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#dataCollection
