@@ -35,6 +35,7 @@
       "extends": "base",
       "developmentClient": true,
       "channel": "staging",
+      "environment": "preview",
       "distribution": "internal",
       "env": {
         "EXPO_APP_NAME": "Réfugiés.info - Dev",

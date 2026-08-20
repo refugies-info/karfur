@@ -178,6 +178,8 @@ module.exports = {
         {
           organization: "betagouv",
           project: "refugiesinfo-mobile",
+          // Sentry auto-hébergé : sans ça sentry-cli tape sentry.io et casse le build EAS
+          url: "https://sentry.incubateur.net/",
         },
       ],
       [
