@@ -39,10 +39,7 @@ const FreeResources = () => {
         <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
           <Image
             src={FreeResourcesImg}
-            alt={t(
-              "Homepage.ressourcesImgAlt",
-              "Capture d'écran du kit de communication de Réfugiés.info. L'interface affiche un site web avec une vidéo de présentation, un message d'accueil expliquant l'objectif du kit et une section d'accès rapide contenant des boutons vers différentes ressources. À droite, une série de flyers multilingues est disposée en éventail, représentant les supports physiques disponibles pour informer sur le projet.",
-            )}
+            alt={t("Homepage.ressourcesImgAlt", "Kit de communication de Réfugiés.info")}
             width={576}
             height={362}
           />
