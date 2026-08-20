@@ -33,7 +33,7 @@ const MobileApp = () => {
         >
           <Image
             src={appStoreBadge}
-            alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")}
+            alt={t("MobileApp.appStoreBadge", "Télécharger dans l'App Store")}
             fill
           />
         </a>
@@ -47,7 +47,7 @@ const MobileApp = () => {
             src={playStoreBadge}
             width={128}
             height={40}
-            alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+            alt={t("MobileApp.playStoreBadge", "Disponible sur Google Play")}
           />
         </a>
       </p>
