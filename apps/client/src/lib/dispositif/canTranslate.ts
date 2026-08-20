@@ -4,4 +4,4 @@ export const canTranslate = (
   dispositif: GetDispositifResponse,
   queryLanguage: string,
   isAdminOrExpert: boolean,
-) => isAdminOrExpert || !dispositif.availableLanguages.includes(queryLanguage);
+) => isAdminOrExpert || !(dispositif.availableLanguages || []).includes(queryLanguage);

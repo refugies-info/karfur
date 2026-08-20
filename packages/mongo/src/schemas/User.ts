@@ -31,7 +31,9 @@ export const UserZodSchema = z.object({
     UserStatus | undefined
   >,
   favorites: z.array(FavoriteZodSchema).optional(),
-  structures: z.array(zId("Structure")).optional(),
+  // .default([]) so a legacy document without the field never reads back as undefined:
+  // client code (canEdit, useDispositifForm...) treats structures as always present.
+  structures: z.array(zId("Structure")).default([]),
   last_connected: z.date().optional(),
   authy_id: z.string().optional(),
   reset_password_token: z.string().optional(),

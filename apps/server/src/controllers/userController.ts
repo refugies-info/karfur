@@ -209,6 +209,8 @@ export class UserController extends Controller {
           "partner",
           "departments",
         ]),
+        // `pick` omits absent keys: guarantee the array the API type promises
+        structures: request.user.structures ?? [],
         sso: !request.user.password,
       } as unknown as GetUserInfoResponse,
     };

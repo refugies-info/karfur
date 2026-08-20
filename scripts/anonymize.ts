@@ -15,7 +15,6 @@ const MAILS_COLLECTION = "mails";
 // pnpm install mongodb @faker-js/faker tsx -w
 // lancer depuis la racine du projet
 // pnpm tsx scripts/anonymize.ts
-// passer DRY_RUN à true pour faire vraiment le clean
 //clean le package.json avant push quoique ce soit
 
 // Active uniquement pour tester sans modifier MongoDB

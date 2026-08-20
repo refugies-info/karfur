@@ -27,7 +27,8 @@ export const canEdit = (
   }
 
   const isFromStructure =
-    dispositif.mainSponsor?._id && user.structures.includes(dispositif.mainSponsor?._id.toString());
+    dispositif.mainSponsor?._id &&
+    (user.structures || []).includes(dispositif.mainSponsor?._id.toString());
   if (isFromStructure) {
     return true;
   }

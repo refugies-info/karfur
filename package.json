@@ -16,6 +16,7 @@
     "onlyBuiltDependencies": [
       "@firebase/util",
       "@parcel/watcher",
+      "@sentry/cli",
       "@tailwindcss/oxide",
       "better-sqlite3",
       "core-js",
@@ -26,6 +27,9 @@
       "protobufjs",
       "sharp",
       "unrs-resolver"
+    ],
+    "ignoredBuiltDependencies": [
+      "@sentry/cli"
     ],
     "overrides": {
       "@codegouvfr/react-dsfr": "1.20.2",

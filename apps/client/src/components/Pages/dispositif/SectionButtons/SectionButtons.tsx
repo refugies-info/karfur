@@ -8,7 +8,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import Toast from "~/components/UI/Toast";
-import { useLocale } from "~/hooks";
+import { useLocale, useStopAudioOnLocaleChange } from "~/hooks";
 import { cn } from "~/lib/classname";
 import { pauseAudio, readAudio, resumeAudio } from "~/lib/readAudio";
 import { Event } from "~/lib/tracking";
@@ -58,6 +58,13 @@ const SectionButtons = ({ id, content, className }: Props) => {
     pauseAudio();
     setIsPlaying(false);
   }, []);
+
+  // the audio of the previous language is not relevant anymore, back to the initial state
+  useStopAudioOnLocaleChange(() => {
+    setIsPlaying(false);
+    setShowTtsButtons(false);
+    setIsLoadingTts(false);
+  });
 
   // reactions
   const dispositif = useSelector(selectedDispositifSelector);
