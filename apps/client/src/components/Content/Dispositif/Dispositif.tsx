@@ -58,7 +58,7 @@ const Dispositif = (props: Props) => {
   return (
     <div ref={dispositifRef} className={cn("w-full", isEditMode && "edit")} id="top">
       <SEO
-        title={dispositif?.titreMarque || dispositif?.titreInformatif || ""}
+        title={[dispositif?.titreMarque, dispositif?.titreInformatif].filter(Boolean).join(" - ")}
         description={dispositif?.abstract || ""}
         image={theme?.shareImage?.secure_url}
       />
