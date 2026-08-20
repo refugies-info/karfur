@@ -39,7 +39,13 @@ const DownloadAppModal = ({ show, toggle }: Props) => {
 
       <p className={styles.text}>{t("MobileAppModal.description")}</p>
       <div className={styles.rating}>
-        <Image src={RatingStars} width={136} height={24} alt="4,8" className="me-2" />
+        <Image
+          src={RatingStars}
+          width={136}
+          height={24}
+          alt={t("MobileApp.ratingAlt", "Note sur 5 :")}
+          className="me-2"
+        />
         4,8
       </div>
 

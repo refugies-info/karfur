@@ -650,6 +650,7 @@
   "MobileApp": {
     "rankingText": "Top 3 des applications publiques",
     "rankingLabel": "Note : 5 sur 5",
+    "ratingAlt": "Note sur 5 :",
     "titleDesktop": "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
     "titleMobile": "Télécharge l’application !",
     "subtitleDesktop": "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
