@@ -38,7 +38,7 @@ const Footer = () => {
     ),
     unavailable: t(
       "Footer.contact_team_unavailable",
-      "Contacter l'équipe, momentanément indisponible",
+      "Contacter l'équipe (momentanément indisponible)",
     ),
   }[supportAvailability];
 
