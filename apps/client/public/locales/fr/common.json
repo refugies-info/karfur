@@ -50,6 +50,7 @@
   },
   "Recherche": {
     "pageTitle": "Recherche",
+    "pageTitleWithSearch": "Résultats de la recherche sur \"{{search}}\"",
     "title": "Trouver une fiche d'information",
     "yourResults": "Vos {{count}} résultats de recherche",
     "yourResults_other": "Vos {{count}} résultats de recherche",
