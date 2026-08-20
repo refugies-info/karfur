@@ -84,7 +84,7 @@ const EmailField = (props: EmailProps) => {
         id="email"
         type="email"
         autoComplete="email"
-        title={t("Register.Votre adresse email", "Votre adresse email")}
+        title={t("Register.Votre email", "Votre email")}
         placeholder={t("Register.Votre email", "Votre email")}
         error={props.notEmailError}
         ariaDescribedby={props.notEmailError ? "newsletter-email-error" : undefined}
