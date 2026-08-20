@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import type { ReactElement, ReactNode } from "react";
 import LegalPagesLayout from "~/components/Layout/LegalPagesLayout";
+import SEO from "~/components/Seo";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
 import { Event } from "~/lib/tracking";
 
@@ -207,6 +208,7 @@ const PlanDuSite = () => {
 
   return (
     <>
+      <SEO title={t("sitemap.title", "Plan du site")} />
       <h1 className="mb-8 md:mb-20">{t("sitemap.title", "Plan du site")}</h1>
 
       <div className="space-y-10 md:space-y-20">
