@@ -1,9 +1,25 @@
+import * as Sentry from "@sentry/node";
 import type { Request, Response } from "express";
+import { ValidateError } from "tsoa";
 import logger from "~/logger";
-import { ConflictError, serverErrorHandler } from "./errors";
+import {
+  ConflictError,
+  InvalidRequestError,
+  NotFoundError,
+  serverErrorHandler,
+  UnauthorizedError,
+} from "./errors";
 
 jest.mock("~/logger", () => ({
   error: jest.fn(),
+}));
+
+jest.mock("@sentry/node", () => ({
+  captureException: jest.fn(),
+  captureMessage: jest.fn(),
+  withScope: jest.fn((cb: (scope: unknown) => void) =>
+    cb({ setLevel: jest.fn(), setTag: jest.fn(), setContext: jest.fn() }),
+  ),
 }));
 
 const buildResponse = () => {
@@ -74,5 +90,63 @@ describe("serverErrorHandler", () => {
       code: undefined,
       data: undefined,
     });
+  });
+});
+
+/**
+ * `Sentry.setupExpressErrorHandler` filtre sur `status >= 500`, donc tout le reste doit être
+ * remonté explicitement — c'est ce silence qui a laissé passer le 422 sur `metadatas.sessions`.
+ */
+describe("serverErrorHandler - remontée Sentry", () => {
+  const nodeEnv = process.env.NODE_ENV;
+  const req = { url: "/dispositifs/1", method: "PATCH" } as Request;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    process.env.NODE_ENV = "production";
+  });
+
+  afterAll(() => {
+    process.env.NODE_ENV = nodeEnv;
+  });
+
+  it("remonte une erreur de validation 422", () => {
+    const err = new ValidateError({ "body.metadatas.sessions": { message: "invalid" } }, "");
+
+    serverErrorHandler(err, req, buildResponse(), jest.fn());
+
+    expect(Sentry.captureMessage).toHaveBeenCalledWith(
+      expect.stringContaining("body.metadatas.sessions"),
+    );
+  });
+
+  it("remonte les 4xx qui trahissent un bug", () => {
+    serverErrorHandler(new InvalidRequestError("bad"), req, buildResponse(), jest.fn());
+    expect(Sentry.captureException).toHaveBeenCalledTimes(1);
+
+    serverErrorHandler(new ConflictError("conflict"), req, buildResponse(), jest.fn());
+    expect(Sentry.captureException).toHaveBeenCalledTimes(2);
+  });
+
+  it("ignore les statuts du trafic normal", () => {
+    serverErrorHandler(new UnauthorizedError("nope"), req, buildResponse(), jest.fn());
+    serverErrorHandler(new NotFoundError("absent"), req, buildResponse(), jest.fn());
+
+    expect(Sentry.captureException).not.toHaveBeenCalled();
+  });
+
+  it("laisse les 5xx au handler express pour éviter les doublons", () => {
+    serverErrorHandler(new TypeError("boom"), req, buildResponse(), jest.fn());
+
+    expect(Sentry.captureException).not.toHaveBeenCalled();
+  });
+
+  it("remonte un throw qui n'est pas une Error", () => {
+    const next = jest.fn();
+
+    serverErrorHandler("chaine jetee", req, buildResponse(), next);
+
+    expect(Sentry.captureMessage).toHaveBeenCalledWith(expect.stringContaining("Non-Error thrown"));
+    expect(next).toHaveBeenCalled();
   });
 });
