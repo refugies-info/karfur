@@ -48,7 +48,7 @@ const SaveErrorModal = (props: Props) => {
       {/* Volontairement discret : les utilisatrices et utilisateurs sont des associations,
           le détail ne sert qu'à ce que le support puisse le demander au téléphone. */}
       {errorDetails && (
-        <details className="mb-4 text-xs text-gray-500">
+        <details className="mb-4 text-very-small text-mention-grey">
           <summary className="cursor-pointer select-none">
             Informations techniques (utiles au support)
           </summary>
