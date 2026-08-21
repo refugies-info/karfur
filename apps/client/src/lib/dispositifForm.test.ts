@@ -61,3 +61,37 @@ describe("getDefaultValue", () => {
     expect(result.sponsors?.[1]).toBe("507f1f77bcf86cd799439012");
   });
 });
+
+describe("getDefaultValue - legacy sessions", () => {
+  const buildDispositif = (sessions: unknown) =>
+    ({
+      typeContenu: ContentType.DISPOSITIF,
+      metadatas: { location: ["56 - Morbihan"], sessions },
+    }) as unknown as GetDispositifResponse;
+
+  it("should convert an empty legacy sessions array to null", () => {
+    const result = getDefaultValue(buildDispositif([]));
+
+    expect(result.metadatas?.sessions).toBeNull();
+  });
+
+  it("should wrap a filled legacy sessions array into a SessionsMetadata object", () => {
+    const session = { startDate: "2026-01-01", endDate: "2026-01-31" };
+    const result = getDefaultValue(buildDispositif([session]));
+
+    expect(result.metadatas?.sessions).toEqual({ items: [session] });
+  });
+
+  it("should leave an already migrated sessions object untouched", () => {
+    const sessions = { modalitesEntreesSorties: 1, items: [] };
+    const result = getDefaultValue(buildDispositif(sessions));
+
+    expect(result.metadatas?.sessions).toEqual(sessions);
+  });
+
+  it("should keep the other metadatas untouched", () => {
+    const result = getDefaultValue(buildDispositif([]));
+
+    expect(result.metadatas?.location).toEqual(["56 - Morbihan"]);
+  });
+});

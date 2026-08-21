@@ -53,7 +53,7 @@ const CustomNavbarEdit = (props: Props) => {
   const { showMissingSteps, setShowMissingSteps, setFormSubmitted } = useContext(PageContext);
 
   // Save
-  const { isSaving, hasError } = useAutosave();
+  const { isSaving, hasError, errorDetails } = useAutosave();
   const saveText = useMemo(() => {
     if (isSaving) return "Sauvegarde en cours...";
     if (hasError) return "Erreur lors de la sauvegarde !";
@@ -236,7 +236,7 @@ const CustomNavbarEdit = (props: Props) => {
         onPublish={handlePublish}
         status={dispositif?.status || null}
       />
-      <SaveErrorModal show={hasError} />
+      <SaveErrorModal show={hasError} errorDetails={errorDetails} />
     </div>
   );
 };

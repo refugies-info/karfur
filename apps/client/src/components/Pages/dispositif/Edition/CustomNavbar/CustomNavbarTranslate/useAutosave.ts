@@ -1,10 +1,10 @@
 import type { Languages } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
-import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import type { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
+import { type AutosaveErrorDetails, reportAutosaveError } from "~/lib/autosaveError";
 import API from "~/utils/API";
 import PageContext from "~/utils/pageContext";
 
@@ -26,6 +26,7 @@ const useAutosave = () => {
 
   const [isSaving, setIsSaving] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [errorDetails, setErrorDetails] = useState<AutosaveErrorDetails | null>(null);
 
   const startDateRef = useRef<Date>(new Date());
   useEffect(() => {
@@ -40,6 +41,7 @@ const useAutosave = () => {
           debouncedSave(async () => {
             setIsSaving(true);
             setHasError(false);
+            setErrorDetails(null);
             try {
               await API.saveTraduction({
                 dispositifId: id || "",
@@ -53,7 +55,9 @@ const useAutosave = () => {
               });
             } catch (e: any) {
               setHasError(true);
-              logger.error("[autosave] error:", e.response.data.message);
+              setErrorDetails(
+                reportAutosaveError(e, { mode: "translate", dispositifId: id, locale: language }),
+              );
             }
             setIsSaving(false);
           });
@@ -64,7 +68,7 @@ const useAutosave = () => {
     }
   }, [pageContext.mode, id, language, methods, data, oldData]); // Removed startDate and router from dependencies
 
-  return { isSaving, hasError };
+  return { isSaving, hasError, errorDetails };
 };
 
 export default useAutosave;
