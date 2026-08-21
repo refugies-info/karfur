@@ -178,7 +178,8 @@ export const serverErrorHandler: ErrorRequestHandler = (
   logger.error("[serverErrorHandler] Non-Error thrown", { path: req.url, thrown: String(err) });
   Sentry.withScope((scope) => {
     scope.setTag("error.type", "non-error-thrown");
-    scope.setContext("request", { path: req.url, method: req.method, thrown: String(err) });
+    // `err` est passé tel quel : String() aplatirait un objet en "[object Object]".
+    scope.setContext("request", { path: req.url, method: req.method, thrown: err });
     Sentry.captureMessage(`Non-Error thrown: ${req.method} ${req.url}`);
   });
 

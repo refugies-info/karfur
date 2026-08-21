@@ -38,7 +38,9 @@ export class logger {
 
     Sentry.withScope((scope) => {
       scope.setTag("source", "client-logger");
-      if (data !== undefined) scope.setContext("logger", { message, data: String(data) });
+      // `data` est passé tel quel : Sentry sérialise les objets, alors que String() les
+      // aplatirait en "[object Object]".
+      if (data !== undefined) scope.setContext("logger", { message, data });
       Sentry.captureException(toError(message, data));
     });
   };

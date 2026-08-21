@@ -1,5 +1,6 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import TutorielImage from "~/assets/dispositif/tutoriel-image.svg";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import BaseModal from "~/components/UI/BaseModal";
 import Button from "~/components/UI/Button";
 import Image from "~/components/UI/Image";
@@ -13,11 +14,22 @@ interface Props {
 const SaveErrorModal = (props: Props) => {
   const reload = useCallback(() => location.reload(), []);
   const { errorDetails } = props;
+  const announce = useAnnounce();
+  const [copyState, setCopyState] = useState<"idle" | "done" | "error">("idle");
 
-  const copyDetails = useCallback(() => {
+  const copyDetails = useCallback(async () => {
     if (!errorDetails) return;
-    navigator.clipboard?.writeText(JSON.stringify(errorDetails, null, 2));
-  }, [errorDetails]);
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(errorDetails, null, 2));
+      setCopyState("done");
+      announce("Informations techniques copiées");
+    } catch {
+      // clipboard indisponible (permission refusée, contexte non sécurisé) : on le dit,
+      // les informations restent lisibles à l'écran.
+      setCopyState("error");
+      announce("La copie a échoué, les informations restent affichées");
+    }
+  }, [errorDetails, announce]);
 
   return (
     <BaseModal
@@ -51,6 +63,11 @@ const SaveErrorModal = (props: Props) => {
           <button type="button" onClick={copyDetails} className="underline">
             Copier
           </button>
+          {copyState !== "idle" && (
+            <span className="ms-2" aria-hidden="true">
+              {copyState === "done" ? "Copié" : "Copie impossible"}
+            </span>
+          )}
         </details>
       )}
       <div className="mb-8 flex justify-center">
