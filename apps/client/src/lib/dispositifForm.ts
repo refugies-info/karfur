@@ -5,7 +5,9 @@ import {
   type GetDispositifResponse,
   type Id,
   type InfoSections,
+  type Metadatas,
   type PostDispositifsResponse,
+  type Session,
   type Sponsor,
   type UpdateDispositifRequest,
   type UpdateDispositifResponse,
@@ -79,6 +81,17 @@ const addMissingAccordions = (
 };
 
 /**
+ * Legacy dispositifs store `metadatas.sessions` as a flat array (the old `Session[]` shape).
+ * The API now expects a `SessionsMetadata` object and answers 422 on arrays, which breaks
+ * autosave for every document not yet migrated. Normalize the value when loading the form.
+ */
+const normalizeSessions = (metadatas: Metadatas | undefined): Metadatas | undefined => {
+  if (!metadatas || !Array.isArray(metadatas.sessions)) return metadatas;
+  const items = metadatas.sessions as Session[];
+  return { ...metadatas, sessions: items.length > 0 ? { items } : null };
+};
+
+/**
  * Get initial form values for dispo edit
  */
 export const getDefaultValue = (
@@ -114,6 +127,8 @@ export const getDefaultValue = (
       return result as Sponsor;
     }),
   };
+
+  defaultValues.metadatas = normalizeSessions(defaultValues.metadatas);
 
   if (defaultValues.why)
     defaultValues.why = addMissingAccordions(

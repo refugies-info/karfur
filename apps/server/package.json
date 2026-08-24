@@ -29,6 +29,7 @@
     "@refugies-info/api-types": "workspace:*",
     "@refugies-info/mongo": "workspace:*",
     "@sendgrid/mail": "^8.1.6",
+    "@sentry/node": "^10.69.0",
     "@slack/webhook": "^7.0.7",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.49.1",

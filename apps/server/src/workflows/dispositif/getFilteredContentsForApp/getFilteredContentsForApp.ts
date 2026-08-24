@@ -33,7 +33,8 @@ const filterByAge =
     }
 
     return dispositifs.filter((dispositif) => {
-      if (!dispositif.metadatas.age) return true;
+      // metadatas is absent on some legacy dispositifs
+      if (!dispositif.metadatas?.age) return true;
       // Initialisation d'une intersection d'intervale invalide
       // car la borne supérieure est inférieure à la borne inférieure
       let intersection = { bottom: 0, top: -1 };

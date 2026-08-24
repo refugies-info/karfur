@@ -5,7 +5,7 @@ steps:
     args:
       [
         "-c",
-        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> cloudbuild.env; done; echo "NEXT_PUBLIC_DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS}" >> cloudbuild.env',
+        'for secret in $(gcloud secrets list --filter=REACT --format=''value(NAME)''); do echo NEXT_PUBLIC_$secret="$(gcloud secrets versions access --secret=$secret latest)" >> cloudbuild.env; done; echo "NEXT_PUBLIC_DISABLE_SEARCH_COUNTS=${_DISABLE_SEARCH_COUNTS}" >> cloudbuild.env; echo "SENTRY_AUTH_TOKEN=$(gcloud secrets versions access --secret=SENTRY_AUTH_TOKEN latest)" >> cloudbuild.env',
       ]
     dir: apps/client
 

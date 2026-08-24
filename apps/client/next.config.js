@@ -7,8 +7,9 @@ const {
   rewrites,
 } = require("./redirects.js");
 const path = require("path");
+const { withSentryConfig } = require("@sentry/nextjs");
 
-module.exports = {
+const nextConfig = {
   output: "standalone",
   outputFileTracingRoot: path.join(__dirname, "../../"),
   reactStrictMode: true, // see https://github.com/kirill-konshin/next-redux-wrapper/issues/422
@@ -76,3 +77,39 @@ module.exports = {
     ];
   },
 };
+
+module.exports = withSentryConfig(nextConfig, {
+  // For all available options, see:
+  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
+
+  org: "betagouv",
+  project: "refugiesinfo-client",
+  sentryUrl: "https://sentry.incubateur.net/",
+  // Only print logs for uploading source maps in CI
+  silent: !process.env.CI,
+
+  // For all available options, see:
+  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  // No tunnelRoute: the i18n locale middleware 308-redirects /monitoring to
+  // /fr/monitoring, which the Sentry rewrite does not cover, so every envelope
+  // ends up on the 404 page. Sentry is self-hosted on an internal domain, so
+  // ad-blockers are not a concern here.
+
+  webpack: {
+    // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
+    // See the following for more information:
+    // https://docs.sentry.io/product/crons/
+    // https://vercel.com/docs/cron-jobs
+    automaticVercelMonitors: true,
+
+    // Tree-shaking options for reducing bundle size
+    treeshake: {
+      // Automatically tree-shake Sentry logger statements to reduce bundle size
+      removeDebugLogging: true,
+    },
+  },
+});

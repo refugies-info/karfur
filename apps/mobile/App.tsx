@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Languages } from "@refugies-info/api-types";
+import * as Sentry from "@sentry/react-native";
 import * as Updates from "expo-updates";
 import { initReactI18next } from "react-i18next";
 import { Text } from "react-native";
@@ -29,7 +30,7 @@ const update = async () =>
       logger.error("expo-updates ", e);
     });
 
-export default function App() {
+function App() {
   const { loading, error } = useAsync(async () => {
     try {
       update();
@@ -69,3 +70,5 @@ export default function App() {
   }
   return <MainApp />;
 }
+
+export default Sentry.wrap(App);

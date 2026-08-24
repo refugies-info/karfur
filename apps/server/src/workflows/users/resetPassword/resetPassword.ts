@@ -1,5 +1,6 @@
 import type { ResetPasswordRequest, ResetPasswordResponse } from "@refugies-info/api-types";
 import crypto from "crypto";
+import { NotFoundError } from "~/errors";
 import logger from "~/logger";
 import { sendResetPasswordMail } from "~/modules/mail/mail.service";
 import LoginError, { LoginErrorType } from "~/modules/users/LoginError";
@@ -14,7 +15,7 @@ export const resetPassword = async (
   logger.info("[resetPassword] received", { email: body.email });
 
   const user = await getUserByEmailFromDB(body.email);
-  if (!user) throw new LoginError(LoginErrorType.USER_NOT_EXISTS);
+  if (!user) throw new NotFoundError(LoginErrorType.USER_NOT_EXISTS);
 
   await new Promise((resolve, reject) => {
     crypto.randomBytes(20, async (errb, buffer) => {

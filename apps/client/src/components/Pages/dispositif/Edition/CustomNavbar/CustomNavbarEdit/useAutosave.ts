@@ -5,11 +5,11 @@ import type {
   UpdateDispositifResponse,
 } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
-import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useMemo, useState } from "react";
 import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { type AutosaveErrorDetails, reportAutosaveError } from "~/lib/autosaveError";
 import { submitCreateForm, submitUpdateForm } from "~/lib/dispositifForm";
 import { addToAllStructuresActionCreator } from "~/services/AllStructures/allStructures.actions";
 import { setSelectedDispositifActionCreator } from "~/services/SelectedDispositif/selectedDispositif.actions";
@@ -35,6 +35,7 @@ const useAutosave = () => {
 
   const [isSaving, setIsSaving] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [errorDetails, setErrorDetails] = useState<AutosaveErrorDetails | null>(null);
 
   useEffect(() => {
     if (pageContext.mode === "edit") {
@@ -45,6 +46,7 @@ const useAutosave = () => {
 
           debouncedSave(async () => {
             setHasError(false);
+            setErrorDetails(null);
             setIsSaving(true);
             try {
               let response: UpdateDispositifResponse | PostDispositifsResponse | null = null;
@@ -140,7 +142,12 @@ const useAutosave = () => {
               setOldData(updatedOldData);
             } catch (e: any) {
               setHasError(true);
-              logger.error("[autosave] error:", e.response.data.message);
+              setErrorDetails(
+                reportAutosaveError(e, {
+                  mode: "edit",
+                  dispositifId: id?.toString(),
+                }),
+              );
             }
             setIsSaving(false);
           });
@@ -149,7 +156,7 @@ const useAutosave = () => {
     }
   }, [pageContext.mode, id, methods, data, oldData, router, dispositif, dispatch]);
 
-  return { isSaving, hasError };
+  return { isSaving, hasError, errorDetails };
 };
 
 export default useAutosave;
