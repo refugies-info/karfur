@@ -55,10 +55,6 @@ const MobileApp = () => {
     [appStoreBadge, playStoreBadge, t],
   );
 
-  const handleOpenStoreLink = (storelink: string) => {
-    window.open(storelink, "_blank");
-  };
-
   return (
     <section
       id="application"
@@ -139,7 +135,11 @@ const MobileApp = () => {
               iconId={"ri-app-store-fill"}
               iconPosition="right"
               className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
-              onClick={() => handleOpenStoreLink(iosStoreLink)}
+              linkProps={{
+                href: iosStoreLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
@@ -147,7 +147,11 @@ const MobileApp = () => {
               iconId={"ri-android-fill"}
               iconPosition="right"
               className={cn("justify-center max-md:w-full", isIOS && "hidden")}
-              onClick={() => handleOpenStoreLink(androidStoreLink)}
+              linkProps={{
+                href: androidStoreLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
