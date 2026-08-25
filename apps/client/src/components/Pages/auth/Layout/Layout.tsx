@@ -63,6 +63,7 @@ const Layout = (props: Props) => {
       )}
       <div className={cls(!props.fullWidth && "flex max-lg:flex-col")}>
         <main
+          id="contenu"
           className={cls(
             styles.main,
             props.fullWidth && styles.full_width,
