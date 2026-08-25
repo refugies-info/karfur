@@ -20,14 +20,22 @@ const FreeResources = () => {
           </p>
           <div className="flex flex-col gap-4">
             <Button
-              onClick={() => window.open("https://kit.refugies.info/formation/", "_blank")}
+              linkProps={{
+                href: "https://kit.refugies.info/formation/",
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }}
               iconId="fr-icon-arrow-right-line"
               iconPosition="right"
             >
               {t("Homepage.webinaireCTA", "Participer à un webinaire")}
             </Button>
             <Button
-              onClick={() => window.open("https://kit.refugies.info/", "_blank")}
+              linkProps={{
+                href: "https://kit.refugies.info/",
+                target: "_blank",
+                rel: "noopener noreferrer",
+              }}
               iconId="fr-icon-arrow-right-line"
               iconPosition="right"
               priority="tertiary"
