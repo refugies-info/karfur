@@ -11,8 +11,8 @@ const AuthNavbar = () => {
         </>
       }
       homeLinkProps={{
-        href: "#",
-        title: "Se connecter - Réfugiés.info",
+        href: "/",
+        title: "Accueil - Réfugiés.info",
       }}
       operatorLogo={{
         alt: "Réfugiés.info",
