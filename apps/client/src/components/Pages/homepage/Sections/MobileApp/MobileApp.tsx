@@ -139,6 +139,7 @@ const MobileApp = () => {
                 href: iosStoreLink,
                 target: "_blank",
                 rel: "noopener noreferrer",
+                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} App Store`,
               }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
@@ -151,6 +152,7 @@ const MobileApp = () => {
                 href: androidStoreLink,
                 target: "_blank",
                 rel: "noopener noreferrer",
+                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} Google Play`,
               }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
