@@ -67,6 +67,9 @@ export const MetaDataItem = ({
           React.createElement(
             contentAs,
             {
+              // role="list" : parade défensive, un ul sans puce peut perdre sa nature de
+              // liste sous Safari et VoiceOver. Retiré si la mesure conclut qu'il est inutile.
+              role: contentAs === "ul" ? "list" : undefined,
               className: cn(
                 "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
                 "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",

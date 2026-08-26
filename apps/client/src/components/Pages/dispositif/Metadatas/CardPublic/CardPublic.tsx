@@ -27,7 +27,9 @@ import styles from "./CardPublic.module.scss";
 const PublicList = ({ items }: { items: string[] }) => (
   <>
     {items.map((label, index) => (
-      <li key={label} className="inline">
+      // role="listitem" : le li reste en flux inline pour ne pas changer le rendu, ce qui
+      // lui retire son rôle natif.
+      <li key={label} className="inline" role="listitem">
         {label}
         {index < items.length - 1 && <span aria-hidden="true">, </span>}
       </li>
