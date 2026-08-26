@@ -261,10 +261,12 @@ const EditDepartments = (props: Props) => {
             its wrapper, which RGAA 8.9 asks us to drop here, and it renders a
             submit-typed button inside our form.
           */}
+          {/*
+            No inner label here: the visible one above is the field's only
+            label. The DSFR `SearchBar` ships a hidden "Rechercher" label that
+            hid the real one from screen readers (RGAA 11.1).
+          */}
           <div className="fr-search-bar">
-            <label className="fr-label" htmlFor={INPUT_ID}>
-              {t("Rechercher", "Rechercher")}
-            </label>
             <input
               ref={inputRef}
               className="fr-input"
