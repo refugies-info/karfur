@@ -166,6 +166,22 @@ const MobileApp = () => {
         ) : (
           <MobileAppSmsForm />
         )}
+        {/* Sous 768 px, le formulaire d'envoi par SMS disparaissait entierement :
+            perte de fonctionnalite au sens du critere 10.11. On le remet sous les
+            boutons de store, sans toucher au titre mobile qui releve d'un choix
+            editorial documente (PR #2709). L'intertitre reutilise la clef du titre
+            de bureau, deja traduite dans les 8 langues. */}
+        {isMobile && (
+          <div className="mt-10">
+            <h3 className="text-lg">
+              {t(
+                "MobileApp.titleDesktop",
+                "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+              )}
+            </h3>
+            <MobileAppSmsForm />
+          </div>
+        )}
       </div>
     </section>
   );
