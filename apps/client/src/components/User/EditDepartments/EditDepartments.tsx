@@ -1,5 +1,4 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { SearchBar } from "@codegouvfr/react-dsfr/SearchBar";
 import { logger } from "logger";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -11,6 +10,12 @@ import { formatDepartment } from "~/lib/departments";
 import { userDetailsSelector } from "~/services/User/user.selectors";
 import API from "~/utils/API";
 import styles from "./EditDepartments.module.scss";
+
+/**
+ * Fixed ids: this combobox is rendered at most once per page (registration step
+ * or user profile modal), so fixed ids stay deterministic between server and client.
+ */
+const INPUT_ID = "departments-search";
 
 interface Props {
   successCallback: () => void;
@@ -58,17 +63,24 @@ const EditDepartments = (props: Props) => {
   const suggestionsRef = useRef<HTMLDivElement | null>(null);
   useOutsideClick(suggestionsRef, () => setHidePredictions(true));
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
+  const isListboxOpen = !hidePredictions && predictions.length > 0;
+
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string) => {
     if (!isDirty) setIsDirty(true);
     const place = await getPlaceSelected(id);
     if (!place) return;
     if (!selectedDepartments.includes(place)) {
-      const newDeps = [...(selectedDepartments || []), place];
-      setSelectedDepartments(newDeps);
-      setHidePredictions(true);
-      setSearch("");
+      setSelectedDepartments([...(selectedDepartments || []), place]);
     }
+    // The combobox always closes and clears after a selection, and focus never
+    // leaves the text field: this is what makes Enter usable on an option.
+    setHidePredictions(true);
+    setSearch("");
+    inputRef.current?.focus();
   };
 
   useEffect(() => {
@@ -89,29 +101,51 @@ const EditDepartments = (props: Props) => {
       </label>
       <div className="relative">
         <div ref={suggestionsRef}>
-          <SearchBar
-            renderInput={({ className, id, placeholder, type }) => (
-              <input
-                className={className}
-                name="location"
-                id={id}
-                placeholder={placeholder}
-                type={type}
-                value={search}
-                onChange={handleChange}
-                onKeyDown={(event) => {
-                  if (event.key === "Escape") {
-                    setHidePredictions(true);
-                  }
-                }}
-              />
+          {/*
+            Hand-rolled equivalent of the DSFR `SearchBar`, kept class for class so
+            the rendering does not move. `SearchBar` hard-codes `role="search"` on
+            its wrapper, which RGAA 8.9 asks us to drop here, and it renders a
+            submit-typed button inside our form.
+          */}
+          <div className="fr-search-bar">
+            <label className="fr-label" htmlFor={INPUT_ID}>
+              Rechercher
+            </label>
+            <input
+              ref={inputRef}
+              className="fr-input"
+              name="location"
+              id={INPUT_ID}
+              placeholder="Rechercher"
+              type="search"
+              value={search}
+              onChange={handleChange}
+              onFocus={() => setIsInputFocused(true)}
+              onBlur={() => setIsInputFocused(false)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  setHidePredictions(true);
+                }
+              }}
+            />
+            {!isInputFocused && search === "" && (
+              <button
+                type="button"
+                className="fr-btn"
+                title="Rechercher"
+                style={{ position: "absolute", right: 0 }}
+                onClick={() => inputRef.current?.focus()}
+              >
+                Rechercher
+              </button>
             )}
-          />
-          {!!(!hidePredictions && predictions?.length) && (
+          </div>
+          {isListboxOpen && (
             <div className={styles.suggestions}>
-              {predictions.slice(0, 5).map((p, i) => (
+              {predictions.map((p) => (
                 <button
-                  key={i}
+                  key={p.id}
+                  type="button"
                   onClick={(e: any) => {
                     e.preventDefault();
                     onPlaceSelected(p.id);
