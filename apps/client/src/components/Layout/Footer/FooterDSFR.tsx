@@ -72,7 +72,10 @@ const Footer = () => {
         id="fr-footer"
         className={cn(styles.footer)}
         operatorLogo={{
-          alt: "Logo DIAIR",
+          alt: t(
+            "Footer.diair_full_name",
+            "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+          ),
           imgUrl: "/images/Logo-DIAIR.png",
           orientation: "horizontal",
         }}
@@ -80,9 +83,19 @@ const Footer = () => {
           "Footer.info",
           "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
         )}
+        // Le lien du bloc marque pointe vers le site de la DIAIR (décision du 26/08, audit RGAA 6.1) :
+        // l'alt du logo, seul contenu du lien, en est le nom accessible et reflète la destination
+        // (même clé Footer.diair_full_name que la première partie du title).
+        // Le target est explicite ; l'URL étant absolue, le Link enregistré par react-dsfr rend de
+        // toute façon ce lien en target="_blank" avec rel="noreferrer". Le title reprend l'intitulé
+        // et signale la nouvelle fenêtre, comme les autres liens du Footer DSFR.
         homeLinkProps={{
-          href: "/",
-          title: "Accueil - Réfugiés.info",
+          href: "https://accueil-integration-refugies.fr/",
+          target: "_blank",
+          title: `${t(
+            "Footer.diair_full_name",
+            "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+          )} - ${t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}`,
         }}
         bottomItems={[
           <Link

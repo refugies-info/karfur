@@ -475,7 +475,9 @@
     "mission_impact": "Mission et impact",
     "useful_links": "Liens utiles",
     "contact_team_closed": "Contacter l'équipe du lundi au jeudi, de 9h30 à 12h30 et de 14h à 18h",
-    "contact_team_unavailable": "Contacter l'équipe (momentanément indisponible)"
+    "contact_team_unavailable": "Contacter l'équipe (momentanément indisponible)",
+    "diair_full_name": "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+    "open_new_window": "ouvre une nouvelle fenêtre"
   },
   "Consent": {
     "analytics_title": "Analyse",
