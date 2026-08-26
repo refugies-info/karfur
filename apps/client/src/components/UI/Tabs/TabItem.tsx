@@ -12,13 +12,15 @@ interface TabItemProps {
 const TabItem = React.forwardRef<HTMLButtonElement, TabItemProps>(
   ({ children, isActive, className, ...props }, ref) => {
     return (
-      <button
-        className={cls(styles.tabitem, isActive && styles.active, className)}
-        {...props}
-        ref={ref}
-      >
-        {children}
-      </button>
+      <li className={styles.tabitemwrapper}>
+        <button
+          className={cls(styles.tabitem, isActive && styles.active, className)}
+          {...props}
+          ref={ref}
+        >
+          {children}
+        </button>
+      </li>
     );
   },
 );
