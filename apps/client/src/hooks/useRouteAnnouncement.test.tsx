@@ -1,6 +1,12 @@
 import { act, renderHook } from "@testing-library/react";
 import mockRouter from "next-router-mock";
-import useRouteAnnouncement, { ROUTE_ANNOUNCER_ID } from "./useRouteAnnouncement";
+import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
+import useRouteAnnouncement, {
+  clearAnchorNavigation,
+  markAnchorNavigation,
+  ROUTE_ANNOUNCER_ID,
+} from "./useRouteAnnouncement";
+import useScrollToAnchor from "./useScrollToAnchor";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -35,8 +41,14 @@ describe("useRouteAnnouncement", () => {
     document.body.innerHTML = "";
     document.title = "";
     frameQueue = [];
+    clearAnchorNavigation();
+    window.history.pushState({}, "", "/");
     mockRouter.setCurrentUrl("/");
     mockRouter.locale = "fr";
+    // Sans ce parser, `router.pathname` vaudrait l'URL résolue et la
+    // comparaison au motif de route ne prouverait rien.
+    mockRouter.useParser(createDynamicRouteParser(["/demarche/[id]", "/dispositif/[id]"]));
+    window.scrollTo = jest.fn();
     jest.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
       frameQueue.push(callback);
       return frameQueue.length;
@@ -61,7 +73,9 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("AGIR pour les personnes réfugiées - Réfugiés.info");
     });
 
-    it("n'écrit rien au montage, sans navigation", () => {
+    it("n'écrit rien et ne déplace pas le focus au montage, sans navigation", () => {
+      // Couvre aussi la première visite où la modale de langue s'ouvre seule :
+      // aucune navigation n'a lieu, le hook ne touche à rien.
       const paragraph = addAnnouncer();
       document.title = "Réfugiés.info";
 
@@ -69,6 +83,7 @@ describe("useRouteAnnouncement", () => {
       flushFrames();
 
       expect(paragraph.textContent).toBe("");
+      expect(document.activeElement).not.toBe(paragraph);
     });
 
     it("restitue le contenu à chaque navigation, même vers un titre identique", async () => {
@@ -167,6 +182,7 @@ describe("useRouteAnnouncement", () => {
       flushFrames();
 
       expect(paragraph.textContent).toBe("");
+      expect(document.activeElement).not.toBe(paragraph);
     });
 
     it("annonce une navigation qui change de page et de locale à la fois", async () => {
@@ -248,6 +264,151 @@ describe("useRouteAnnouncement", () => {
       });
       flushFrames();
 
+      expect(paragraph.textContent).toBe("AGIR pour les personnes réfugiées - Réfugiés.info");
+    });
+  });
+
+  describe("repositionnement du focus", () => {
+    it("pose le focus sur le paragraphe après une navigation ordinaire, sans défilement", async () => {
+      const paragraph = addAnnouncer();
+      const focusSpy = jest.spyOn(paragraph, "focus");
+      renderHook(() => useRouteAnnouncement());
+      document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/agir");
+      });
+      flushFrames();
+
+      expect(document.activeElement).toBe(paragraph);
+      // preventScroll : sans lui, le focus ferait remonter la page et
+      // détruirait la restauration de position au retour arrière (R16).
+      expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
+    });
+
+    it("ne déplace pas le focus sur une route à autofocus, mais synchronise le texte", async () => {
+      // Verdict VoiceOver du 26/08 : sur ces pages l'annonce du champ fait
+      // foi. Couvre aussi le cas du champ pas encore monté au moment du
+      // routeChangeComplete : le hook ne prend jamais le focus sur ces routes.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "Bienvenue - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/auth");
+      });
+      flushFrames();
+
+      expect(document.activeElement).not.toBe(paragraph);
+      expect(paragraph.textContent).toBe("Bienvenue - Réfugiés.info");
+    });
+
+    it("compare le motif de route, pas l'URL résolue, sur une route dynamique", async () => {
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "Demander l'asile - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/demarche/63528e00976acb4f7bcd37ad");
+      });
+      flushFrames();
+
+      expect(mockRouter.pathname).toBe("/demarche/[id]");
+      expect(document.activeElement).toBe(paragraph);
+    });
+
+    it("refocalise le paragraphe à chaque navigation, même à titre identique", async () => {
+      // Geste de forçage : focus() sur un élément déjà focalisé n'émet rien.
+      // Le hook sort le focus puis le remet, un événement focus par navigation.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      const focusEvents = jest.fn();
+      paragraph.addEventListener("focus", focusEvents);
+      document.title = "Bienvenue - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/plan-du-site");
+      });
+      flushFrames();
+      expect(document.activeElement).toBe(paragraph);
+
+      await act(async () => {
+        await mockRouter.push("/agir");
+      });
+      flushFrames();
+
+      expect(document.activeElement).toBe(paragraph);
+      expect(focusEvents).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe("drapeau d'ancre, partagé avec useScrollToAnchor", () => {
+    it("laisse le focus à la cible d'une ancre inter-pages, pas au paragraphe", async () => {
+      // Cas réel : lien newsletter du pied de page depuis /agir (R9).
+      window.history.pushState({}, "", "/agir");
+      const paragraph = addAnnouncer();
+      const target = document.createElement("div");
+      target.id = "newsletter";
+      document.body.appendChild(target);
+      renderHook(() => {
+        useScrollToAnchor();
+        useRouteAnnouncement();
+      });
+      document.title = "Réfugiés.info";
+
+      const anchor = document.createElement("a");
+      anchor.setAttribute("href", "/#newsletter");
+      document.body.appendChild(anchor);
+      await act(async () => {
+        anchor.click();
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+      flushFrames();
+
+      expect(document.activeElement).toBe(target);
+      expect(paragraph.textContent).toBe("");
+    });
+
+    it("consomme le drapeau : la navigation suivante retrouve le paragraphe", async () => {
+      // Sans remise à zéro, un drapeau collé éteindrait l'annonce du reste de
+      // la session.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
+
+      markAnchorNavigation();
+      await act(async () => {
+        await mockRouter.push("/agir");
+      });
+      flushFrames();
+      expect(document.activeElement).not.toBe(paragraph);
+      expect(paragraph.textContent).toBe("");
+
+      await act(async () => {
+        await mockRouter.push("/plan-du-site");
+      });
+      document.title = "Plan du site - Réfugiés.info";
+      flushFrames();
+
+      expect(document.activeElement).toBe(paragraph);
+      expect(paragraph.textContent).toBe("Plan du site - Réfugiés.info");
+    });
+
+    it("un drapeau remis à zéro après un push rejeté n'affecte pas la navigation suivante", async () => {
+      // Le finally de useScrollToAnchor remet le drapeau à zéro même quand le
+      // push est annulé par une navigation concurrente.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
+
+      markAnchorNavigation();
+      clearAnchorNavigation();
+      await act(async () => {
+        await mockRouter.push("/agir");
+      });
+      flushFrames();
+
+      expect(document.activeElement).toBe(paragraph);
       expect(paragraph.textContent).toBe("AGIR pour les personnes réfugiées - Réfugiés.info");
     });
   });

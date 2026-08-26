@@ -3,6 +3,14 @@ import mockRouter from "next-router-mock";
 import useScrollToAnchor from "./useScrollToAnchor";
 
 jest.mock("next/router", () => require("next-router-mock"));
+// Le drapeau d'ancre partagé est vérifié ici au niveau des appels ; son effet
+// réel sur l'annonce est couvert par useRouteAnnouncement.test.tsx.
+jest.mock("./useRouteAnnouncement", () => ({
+  markAnchorNavigation: jest.fn(),
+  clearAnchorNavigation: jest.fn(),
+}));
+
+const { markAnchorNavigation, clearAnchorNavigation } = require("./useRouteAnnouncement");
 
 /**
  * Piège de test, à ne pas retirer : le hook compare `window.location.pathname`,
@@ -148,6 +156,65 @@ describe("useScrollToAnchor", () => {
       });
       expect(document.activeElement).toBe(target);
       expect(callOrder(mockRouter.push)).toBeLessThan(callOrder(window.scrollTo));
+    });
+  });
+
+  describe("drapeau d'ancre, RGAA 12.8", () => {
+    it("pose le drapeau avant le push inter-pages et le remet à zéro après", async () => {
+      setLocation("/agir");
+      renderHook(() => useScrollToAnchor());
+      addTarget("newsletter");
+
+      await act(async () => {
+        clickAnchor("/#newsletter");
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+
+      expect(markAnchorNavigation).toHaveBeenCalledTimes(1);
+      expect(clearAnchorNavigation).toHaveBeenCalledTimes(1);
+      expect(callOrder(markAnchorNavigation)).toBeLessThan(callOrder(mockRouter.push));
+    });
+
+    it("ne pose pas le drapeau sur une ancre de même page, qui ne navigue pas", () => {
+      setLocation("/agir");
+      renderHook(() => useScrollToAnchor());
+      addTarget("contenu");
+
+      clickAnchor("#contenu");
+
+      expect(markAnchorNavigation).not.toHaveBeenCalled();
+    });
+
+    it("remet le drapeau à zéro même quand le push est rejeté", () => {
+      // Une navigation annulée par une autre rejette la promesse du push. Sans
+      // le finally, le drapeau resterait collé et éteindrait l'annonce de la
+      // navigation suivante. Le push n'a aucun catch (défaut préexistant
+      // consigné) : une vraie promesse rejetée ferait échouer la suite en
+      // rejet non géré. Ce thenable factice rejoue le chemin de rejet, le
+      // callback de then est sauté, celui de finally s'exécute.
+      setLocation("/agir");
+      renderHook(() => useScrollToAnchor());
+      const target = addTarget("newsletter");
+      const rejectedPush = {
+        then() {
+          return this;
+        },
+        finally(callback: () => void) {
+          callback();
+          return Promise.resolve(true);
+        },
+      };
+      (mockRouter.push as jest.Mock).mockImplementation(
+        () => rejectedPush as unknown as Promise<boolean>,
+      );
+
+      clickAnchor("/#newsletter");
+
+      expect(markAnchorNavigation).toHaveBeenCalledTimes(1);
+      expect(clearAnchorNavigation).toHaveBeenCalledTimes(1);
+      // La navigation ayant échoué, le défilement vers la cible n'a pas lieu.
+      expect(document.activeElement).not.toBe(target);
+      expect(window.scrollTo).not.toHaveBeenCalled();
     });
   });
 

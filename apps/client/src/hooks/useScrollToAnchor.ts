@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import { clearAnchorNavigation, markAnchorNavigation } from "./useRouteAnnouncement";
 
 /**
  * Custom hook to enable smooth scrolling for anchor links.
@@ -81,9 +82,19 @@ const useScrollToAnchor = () => {
         if (isSamePage) {
           scrollToHash(hash);
         } else {
-          router.push(path, undefined, { scroll: false }).then(() => {
-            scrollToHash(hash);
-          });
+          // La cible de l'ancre garde le focus : le drapeau empêche
+          // useRouteAnnouncement de le disputer sur cette navigation (RGAA
+          // 12.8). Remis à zéro dans un finally pour qu'un push rejeté
+          // (navigation annulée par une autre) ne laisse pas un drapeau collé.
+          markAnchorNavigation();
+          router
+            .push(path, undefined, { scroll: false })
+            .then(() => {
+              scrollToHash(hash);
+            })
+            .finally(() => {
+              clearAnchorNavigation();
+            });
         }
       }
     },
