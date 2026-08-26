@@ -22,13 +22,17 @@ const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
 
+  // 37.5rem valent 1200 px quand l'agrandissement du texte porte la racine a 32 px :
+  // la modale sortait alors de la fenetre. On borne par la largeur disponible, et la
+  // feuille de style lui donne un defilement vertical quand elle depasse en hauteur
+  // (RGAA 10.4 et 10.11).
   return (
     <Modal
       isOpen={props.show}
       toggle={props.toggle}
       labelledBy="language-modal-title"
       className={cn(styles.modal)}
-      contentClassName={cn(styles.modal_content, "md:min-w-[37.5rem]")}
+      contentClassName={cn(styles.modal_content, "md:min-w-[min(37.5rem,100%)]")}
     >
       <ModalBody className={cn(styles.modal_body)}>
         <div className="flex flex-col gap-8">
