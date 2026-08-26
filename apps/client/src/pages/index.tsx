@@ -167,7 +167,7 @@ const Homepage = (props: Props) => {
 
       <Newsletter />
 
-      {!isMobile && <WorkTogether />}
+      <WorkTogether />
     </div>
   );
 };
