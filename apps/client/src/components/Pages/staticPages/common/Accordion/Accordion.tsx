@@ -170,9 +170,11 @@ const Accordion = (props: Props) => {
         <div
           className={cn(
             "flex items-center",
-            // Le conteneur passe en colonne sous 992 px : la moitie de largeur n'a
-            // de sens que dans la mise en page a deux colonnes. En dessous, elle
-            // reduisait l'illustration a 144 px de large (RGAA 10.11).
+            // Le conteneur passe en colonne sous 768 px (isMobile) : la moitie de
+            // largeur n'a de sens que dans la mise en page a deux colonnes. En
+            // dessous, elle reduisait l'illustration a 144 px de large (RGAA 10.11).
+            // Entre 768 et 992 px, la branche isTablet ci-dessus affiche le media
+            // dans le contenu de l'accordeon.
             isMobile ? "w-full" : "w-1/2",
             props.mediaAlign === "center" ? "justify-center" : "justify-end",
             props.items[open[0]]?.className,
