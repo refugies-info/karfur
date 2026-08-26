@@ -2,7 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import type { GetLanguagesResponse } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { isMobile } from "react-device-detect";
-import { Col, ListGroupItem, Modal, ModalBody, Row } from "reactstrap";
+import { ListGroupItem, Modal, ModalBody } from "reactstrap";
 import { getPath } from "routes";
 import { LanguageSelector } from "~/components/UI/LanguageSelector";
 import useLocale from "~/hooks/useLocale";
@@ -55,24 +55,23 @@ const LanguageModal = (props: Props) => {
             tag="div"
             className={styles.list_group_item + " " + styles.unavailable}
           >
-            <Row>
-              <Col xs="8" className={cn(styles.vertical_center)}>
-                <p className="mb-0">
-                  {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
-                </p>
-              </Col>
-              <Col xs="4" className={styles.button_col}>
-                <Button
-                  linkProps={{
-                    href: getPath("/traduire", locale),
-                    prefetch: false,
-                    onClick: props.toggle,
-                  }}
-                >
-                  {t("Homepage.btnTranslate", "Traduire")}
-                </Button>
-              </Col>
-            </Row>
+            {/* La grille reactstrap Col xs=8 / xs=4 n'avait aucune variante : sous
+                380 px le bouton ne tenait pas dans son quart et recouvrait le
+                texte. Un flex qui passe a la ligne regle les deux (RGAA 10.11). */}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <p className="mb-0">
+                {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}
+              </p>
+              <Button
+                linkProps={{
+                  href: getPath("/traduire", locale),
+                  prefetch: false,
+                  onClick: props.toggle,
+                }}
+              >
+                {t("Homepage.btnTranslate", "Traduire")}
+              </Button>
+            </div>
           </ListGroupItem>
         )}
       </ModalBody>

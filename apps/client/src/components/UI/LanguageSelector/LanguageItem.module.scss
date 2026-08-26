@@ -10,7 +10,15 @@
   padding-inline: var(--inline-padding);
   padding-block: var(--block-padding);
   position: relative;
-  white-space: nowrap;
+
+  // Le nom de la langue ne se coupe pas, mais la ligne peut passer a la ligne
+  // suivante : sous 380 px le libelle, l'etiquette et le pourcentage ne tenaient
+  // pas sur une ligne et debordaient de leur boite (RGAA 10.11).
+  flex-wrap: wrap;
+
+  :global(.langLabel) {
+    white-space: nowrap;
+  }
 
   &:focus-visible {
     z-index: 2;
