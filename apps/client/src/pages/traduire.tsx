@@ -163,7 +163,9 @@ const RecensezVotreAction = (props: Props) => {
                 p-0 sur les li neutralisent puce, retrait et espacements de la base DSFR, la
                 disposition en flex reste celle de l'ancien div. */}
             {translationNeeds.length > 0 && (
-              <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center">
+              // role="list" : parade défensive, un ul sans puce peut perdre sa nature de liste
+              // sous Safari et VoiceOver. Les li gardent display: list-item, rien à ajouter.
+              <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center" role="list">
                 {translationNeeds.map((item, i) => (
                   <li key={i} className="p-0">
                     <LanguageCard href="#register" languageId={item.languageId} need={item.need} />

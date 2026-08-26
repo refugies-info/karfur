@@ -6,6 +6,9 @@ type AdressContentProps = {
   poi: Poi;
 };
 
+// role="list" et role="listitem" : parade défensive. Un ul sans puce peut perdre sa nature
+// de liste sous Safari et VoiceOver, et les li sont en display:flex, ce qui leur retire leur
+// rôle natif. Les deux sautent si la mesure au lecteur d'écran conclut qu'ils sont inutiles.
 // Chaque ligne garde exactement les classes qu'elle portait en <p>, plus p-0 pour annuler
 // le padding bas que la base DSFR pose sur les li.
 const LINE_CLASS =
@@ -21,7 +24,7 @@ export default function AdressContent({ poi }: AdressContentProps) {
   // On ne rend aucune liste quand il n'y a rien à lister.
   const lines = [
     poi.address && poi.address.length > 1 ? (
-      <li key="address" className={LINE_CLASS}>
+      <li key="address" className={LINE_CLASS} role="listitem">
         <span className="min-w-0 flex-1">{poi.address}</span>
         <CopyButton
           title={t("Dispositif.mapCopyAddress", "Copier l'adresse")}
@@ -30,7 +33,7 @@ export default function AdressContent({ poi }: AdressContentProps) {
       </li>
     ) : null,
     poi.phone && poi.phone.length > 1 ? (
-      <li key="phone" className={LINE_CLASS}>
+      <li key="phone" className={LINE_CLASS} role="listitem">
         <a href={`tel:${poi.phone}`} className="min-w-0 flex-1">
           {poi.phone}
         </a>
@@ -41,7 +44,7 @@ export default function AdressContent({ poi }: AdressContentProps) {
       </li>
     ) : null,
     poi.email && poi.email !== "ajouter@votreemail.fr" && poi.email.length > 1 ? (
-      <li key="email" className={LINE_CLASS}>
+      <li key="email" className={LINE_CLASS} role="listitem">
         <a href={`mailto:${poi.email}`} className="min-w-0 flex-1">
           {poi.email}
         </a>
@@ -56,7 +59,9 @@ export default function AdressContent({ poi }: AdressContentProps) {
   return (
     <address className="flex h-full flex-col gap-2 bg-white p-4 not-italic">
       {lines.length > 0 && (
-        <ul className="m-0 flex w-full list-none flex-col gap-2 p-0">{lines}</ul>
+        <ul className="m-0 flex w-full list-none flex-col gap-2 p-0" role="list">
+          {lines}
+        </ul>
       )}
     </address>
   );

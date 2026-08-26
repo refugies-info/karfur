@@ -129,9 +129,14 @@ const EditDepartments = (props: Props) => {
             {/* list-none p-0 m-0 sur le ul : neutralise la puce et le retrait posés par la base
                 DSFR, pour un rendu identique à l'ancienne structure en div. Le padding bas que
                 DSFR pose sur les li est déjà écrasé par le raccourci padding de .option. */}
-            <ul className="m-0 list-none p-0">
+            {/* role="list" et role="listitem" : parade défensive, pas une exigence RGAA.
+                Un ul sans puce peut perdre sa nature de liste sous Safari et VoiceOver, et
+                .option met les li en inline-flex, ce qui leur retire leur rôle natif.
+                Mesure au lecteur d'écran en attente, ces deux attributs sautent si elle
+                conclut qu'ils sont inutiles. */}
+            <ul className="m-0 list-none p-0" role="list">
               {selectedDepartments.map((dep) => (
-                <li key={dep} className={styles.option}>
+                <li key={dep} className={styles.option} role="listitem">
                   {formatDepartment(dep)}
                   <Button
                     iconId="fr-icon-close-line"

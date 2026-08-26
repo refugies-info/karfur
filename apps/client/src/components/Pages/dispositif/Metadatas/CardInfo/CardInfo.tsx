@@ -144,7 +144,9 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   >
                     {hasDepartments
                       ? (location as string[]).map((loc: string) => (
-                          <li key={loc} className="inline sm:flex">
+                          // role="listitem" : le li passe en inline ou en flex pour garder le
+                          // rendu d'origine, ce qui lui retire son rôle natif.
+                          <li key={loc} className="inline sm:flex" role="listitem">
                             <FRLink
                               href={isEditMode ? "#" : getLocationLink(loc)}
                               onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}
