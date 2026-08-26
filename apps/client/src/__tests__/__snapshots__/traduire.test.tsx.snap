@@ -348,44 +348,53 @@ exports[`traduire renders traduire 1`] = `
           >
             On cherche des traducteurs en :
           </h2>
-          <div
-            class="flex flex-wrap gap-6 md:justify-center"
+          <ul
+            class="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center"
+            role="list"
           >
-            <a
-              class="border-default-grey hover:hover-tint inline-flex items-center gap-2 border bg-white p-3 md:p-4"
-              href="/undefined#register"
+            <li
+              class="p-0"
             >
-              <span
-                class="text-h6 md:text-h5 font-bold"
-              />
-              <p
-                class="fr-badge fr-badge--warning fr-badge--no-icon"
-                id="fr-badge-«r5»"
+              <a
+                class="border-default-grey hover:hover-tint inline-flex items-center gap-2 border bg-white p-3 md:p-4"
+                href="/undefined#register"
               >
-                Besoin fort
-              </p>
-            </a>
-            <a
-              class="border-default-grey hover:hover-tint inline-flex items-center gap-2 border bg-white p-3 md:p-4"
-              href="/undefined#register"
+                <span
+                  class="text-h6 md:text-h5 font-bold"
+                />
+                <p
+                  class="fr-badge fr-badge--warning fr-badge--no-icon"
+                  id="fr-badge-«r5»"
+                >
+                  Besoin fort
+                </p>
+              </a>
+            </li>
+            <li
+              class="p-0"
             >
-              <span
-                class="flag fi fi-en"
-                title="en"
-              />
-              <span
-                class="text-h6 md:text-h5 font-bold"
+              <a
+                class="border-default-grey hover:hover-tint inline-flex items-center gap-2 border bg-white p-3 md:p-4"
+                href="/undefined#register"
               >
-                Anglais
-              </span>
-              <p
-                class="fr-badge fr-badge--new fr-badge--no-icon"
-                id="fr-badge-«r6»"
-              >
-                Besoin moyen
-              </p>
-            </a>
-          </div>
+                <span
+                  class="flag fi fi-en"
+                  title="en"
+                />
+                <span
+                  class="text-h6 md:text-h5 font-bold"
+                >
+                  Anglais
+                </span>
+                <p
+                  class="fr-badge fr-badge--new fr-badge--no-icon"
+                  id="fr-badge-«r6»"
+                >
+                  Besoin moyen
+                </p>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

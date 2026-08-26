@@ -343,30 +343,47 @@ exports[`recherche renders search results 1`] = `
           <div
             class="grid"
           >
-            <div
+            <ul
               class="tabsbar"
+              role="list"
             >
-              <button
-                class="tabitem active"
+              <li
+                class="tabitemwrapper"
               >
-                Filters.typeAll 
-              </button>
-              <button
-                class="tabitem"
+                <button
+                  class="tabitem active"
+                >
+                  Filters.typeAll 
+                </button>
+              </li>
+              <li
+                class="tabitemwrapper"
               >
-                Filters.typeDemarche 
-              </button>
-              <button
-                class="tabitem"
+                <button
+                  class="tabitem"
+                >
+                  Filters.typeDemarche 
+                </button>
+              </li>
+              <li
+                class="tabitemwrapper"
               >
-                Filters.typeDispositif 
-              </button>
-              <button
-                class="tabitem"
+                <button
+                  class="tabitem"
+                >
+                  Filters.typeDispositif 
+                </button>
+              </li>
+              <li
+                class="tabitemwrapper"
               >
-                Filters.typeRessource 
-              </button>
-            </div>
+                <button
+                  class="tabitem"
+                >
+                  Filters.typeRessource 
+                </button>
+              </li>
+            </ul>
             <button
               aria-expanded="false"
               aria-haspopup="true"
