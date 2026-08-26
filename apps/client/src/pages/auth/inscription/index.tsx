@@ -111,6 +111,7 @@ const AuthLogin = () => {
           nativeInputProps={{
             autoFocus: true,
             name: "name",
+            autoComplete: "given-name",
           }}
         />
         <PasswordInput
@@ -121,6 +122,7 @@ const AuthLogin = () => {
           }))}
           nativeInputProps={{
             name: "password",
+            autoComplete: "new-password",
             value: password,
             onChange: (e: any) => setPassword(e.target.value),
           }}
