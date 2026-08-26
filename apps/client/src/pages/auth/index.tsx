@@ -161,6 +161,7 @@ const AuthEmail = () => {
               nativeInputProps={{
                 autoFocus: true,
                 type: "email",
+                autoComplete: "email",
                 value: email,
                 onChange: (e: any) => setEmail(e.target.value),
               }}
