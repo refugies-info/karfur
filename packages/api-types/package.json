@@ -17,7 +17,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "mongoose": "^8.23.0"
+    "mongoose": "^8.24.3"
   },
   "repository": {
     "type": "git",
