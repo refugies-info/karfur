@@ -19,7 +19,7 @@ import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Layout/Layout";
-import { useRTL, useScrollToAnchor } from "~/hooks";
+import { useRouteAnnouncement, useRTL, useScrollToAnchor } from "~/hooks";
 import { useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
@@ -64,6 +64,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const router = useRouter();
 
   useScrollToAnchor();
+  useRouteAnnouncement();
 
   const options: PageOptions = Component.options || {
     cookiesModule: true,
