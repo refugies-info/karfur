@@ -696,7 +696,7 @@ exports[`userContributions should render correctly when click on delete 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/dispositif/id1"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1367,7 +1367,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/dispositif/id1"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1585,7 +1585,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id2"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1758,7 +1758,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id3"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -1931,7 +1931,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id4"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2149,7 +2149,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id5"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2328,7 +2328,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id6"
                           rel="noopener noreferrer"
                           target="_blank"
@@ -2549,7 +2549,7 @@ exports[`userContributions should render correctly when contributions 1`] = `
                         class="c11"
                       >
                         <a
-                          aria-label="Voir la fiche"
+                          aria-label="voir_la_fiche"
                           href="/demarche/id7"
                           rel="noopener noreferrer"
                           target="_blank"

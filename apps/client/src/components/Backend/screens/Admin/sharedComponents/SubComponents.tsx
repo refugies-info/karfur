@@ -236,7 +236,7 @@ export const SeeButton = (props: { burl: string }) => {
         href={props.burl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={t("Voir la fiche", "Voir la fiche")}
+        aria-label={t("voir_la_fiche", "Voir la fiche")}
       >
         <div style={{ marginBottom: "4px" }}>
           <EVAIcon name="eye" fill={colors.white} size={20} />

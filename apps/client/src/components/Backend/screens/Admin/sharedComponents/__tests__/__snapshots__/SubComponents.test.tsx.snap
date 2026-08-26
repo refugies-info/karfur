@@ -201,7 +201,7 @@ exports[`should render SeeButton 1`] = `
     class="c0"
   >
     <a
-      aria-label="Voir la fiche"
+      aria-label="voir_la_fiche"
       href="test-burl"
       rel="noopener noreferrer"
       target="_blank"
