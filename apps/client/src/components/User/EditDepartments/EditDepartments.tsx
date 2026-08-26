@@ -126,18 +126,23 @@ const EditDepartments = (props: Props) => {
 
         {selectedDepartments.length > 0 && (
           <div className="mt-12">
-            {selectedDepartments.map((dep, i) => (
-              <div key={dep} className={styles.option}>
-                {formatDepartment(dep)}
-                <Button
-                  iconId="fr-icon-close-line"
-                  priority="tertiary no outline"
-                  title="Retirer le département"
-                  size="small"
-                  onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
-                />
-              </div>
-            ))}
+            {/* list-none p-0 m-0 sur le ul : neutralise la puce et le retrait posés par la base
+                DSFR, pour un rendu identique à l'ancienne structure en div. Le padding bas que
+                DSFR pose sur les li est déjà écrasé par le raccourci padding de .option. */}
+            <ul className="m-0 list-none p-0">
+              {selectedDepartments.map((dep) => (
+                <li key={dep} className={styles.option}>
+                  {formatDepartment(dep)}
+                  <Button
+                    iconId="fr-icon-close-line"
+                    priority="tertiary no outline"
+                    title="Retirer le département"
+                    size="small"
+                    onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
