@@ -216,6 +216,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               data-testid="test-add-member"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -336,7 +337,9 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"
@@ -431,7 +434,9 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"
@@ -500,6 +505,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
               class="append input-group-text"
             >
               <span
+                aria-hidden="true"
                 class="icon"
               >
                 <i
@@ -542,6 +548,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             class="btn outline-black me-2"
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -582,6 +589,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
             disabled=""
           >
             <span
+              aria-hidden="true"
               class="me-2 icon"
             >
               <i
@@ -1055,6 +1063,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               data-testid="test-add-member"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -1175,7 +1184,9 @@ exports[`UserStructure should render correctly when structure with membres when 
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"
@@ -1270,7 +1281,9 @@ exports[`UserStructure should render correctly when structure with membres when 
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"
@@ -1518,6 +1531,7 @@ exports[`UserStructure should render correctly when structure with membres when 
               data-testid="test-add-member"
             >
               <span
+                aria-hidden="true"
                 class="me-2 icon"
               >
                 <i
@@ -1638,7 +1652,9 @@ exports[`UserStructure should render correctly when structure with membres when 
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"
@@ -1733,7 +1749,9 @@ exports[`UserStructure should render correctly when structure with membres when 
                         style="margin-bottom: 4px;"
                       >
                         <span
+                          aria-label="Supprimer"
                           class="icon"
+                          role="img"
                         >
                           <i
                             style="height: 20px; line-height: 20px;"

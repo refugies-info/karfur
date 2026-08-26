@@ -95,6 +95,9 @@
       border: none;
       padding: 10px;
       box-shadow: none;
+
+      // 10px du bloc + 8px que portait la marge basse du ul quand ce bloc était dedans
+      margin-bottom: 18px !important;
     }
 
     &.active {

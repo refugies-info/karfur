@@ -153,6 +153,7 @@ const CustomNavbarEdit = (props: Props) => {
                 name="close-outline"
                 size={16}
                 fill={fr.colors.decisions.text.default.info.default}
+                ariaLabel="Fermer l'avertissement"
               />
             </button>
           </div>

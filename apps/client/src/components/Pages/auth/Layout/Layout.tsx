@@ -1,4 +1,5 @@
 import { Notice } from "@codegouvfr/react-dsfr/Notice";
+import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import PersosIllu from "~/assets/auth/illu-persos.svg";
 import AuthIllu from "~/assets/auth/login-illu.svg";
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const Layout = (props: Props) => {
+  const { t } = useTranslation();
   const isRTL = useRTL();
 
   // force french language for login
@@ -85,7 +87,7 @@ const Layout = (props: Props) => {
                 Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info&nbsp;!
               </p>
               <div className={styles.rating}>
-                <Image src={RatingStars} width={136} height={24} alt="4,8" />
+                <Image src={RatingStars} width={136} height={24} alt={t("MobileApp.ratingAlt", "Note sur 5 :")} />
                 4,8
               </div>
               <p className={styles.small}>Application disponible sur Android et iOS</p>

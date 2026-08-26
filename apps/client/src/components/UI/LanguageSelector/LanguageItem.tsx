@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { forwardRef, memo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useChangeLanguage, useLocale } from "~/hooks";
+import { checkIsRTL } from "~/hooks/useRTL";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import { allLanguesSelector } from "~/services/Langue/langue.selectors";
@@ -63,7 +64,6 @@ const LanguageItem = memo(
       return (
         <button
           ref={ref}
-          data-nav-item
           className={cn(
             styles.item,
             styles[`design-${design}`],
@@ -77,21 +77,11 @@ const LanguageItem = memo(
           aria-disabled={disabled}
           key={item.langueCode}
           id={item.langueCode}
-          title={`${item.langueFr} - ${item.langueLoc}`}
           onClick={(e) => {
             e.stopPropagation();
             if (disabled) return;
             handleChangeLanguage(item);
           }}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              e.preventDefault();
-              if (disabled) return;
-              handleChangeLanguage(item);
-            }
-          }}
-          role="menuitem"
-          tabIndex={disabled ? -1 : 0}
           {...props}
         >
           {loading && (
@@ -111,7 +101,10 @@ const LanguageItem = memo(
             ></span>
           )}
           <span className="langLabel">
-            <b>{item.langueFr}</b> - {item.langueLoc}
+            <b>{item.langueFr}</b> -{" "}
+            <span lang={item.i18nCode} dir={checkIsRTL(item.i18nCode) ? "rtl" : undefined}>
+              {item.langueLoc}
+            </span>
           </span>{" "}
           {type === "global" && (
             <>

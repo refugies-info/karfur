@@ -17,6 +17,8 @@ interface Props {
   children: string;
   html?: boolean;
   className?: string;
+  /** Heading level of the callout labels, to match the surrounding hierarchy */
+  calloutTitleAs?: "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
 const Text = (props: Props) => {
@@ -186,8 +188,13 @@ const Text = (props: Props) => {
           const calloutSegment = segment as CalloutSegment;
 
           return (
-            <CallOut key={`callout-${calloutSegment.calloutType}-${index}`} className="p-4 ps-6">
-              <b className="mb-2 block text-xl">{calloutSegment.title}</b>
+            <CallOut
+              key={`callout-${calloutSegment.calloutType}-${index}`}
+              className="p-4 ps-6"
+              title={calloutSegment.title}
+              titleAs={props.calloutTitleAs ?? "h4"}
+              classes={{ title: "!mb-2 !mt-0 block text-xl !font-bold !text-inherit" }}
+            >
               <div
                 className="not-prose text-base max-sm:text-lg"
                 dangerouslySetInnerHTML={{ __html: calloutSegment.content }}

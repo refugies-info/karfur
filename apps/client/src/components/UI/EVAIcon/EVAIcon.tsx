@@ -20,6 +20,8 @@ interface Props {
   id?: string;
   onClick?: any;
   "aria-hidden"?: boolean | "true" | "false";
+  // Icône porteuse d'information : exposée avec role="img" et ce libellé
+  ariaLabel?: string;
 }
 
 const EVAIcon = ({ name = "", fill = "#fff", size = "medium", ...props }: Props) => {
@@ -41,7 +43,9 @@ const EVAIcon = ({ name = "", fill = "#fff", size = "medium", ...props }: Props)
       id={props.id}
       className={cls(props.className, styles.icon)}
       onClick={props.onClick}
-      aria-hidden={props["aria-hidden"]}
+      role={props.ariaLabel ? "img" : undefined}
+      aria-label={props.ariaLabel}
+      aria-hidden={props.ariaLabel ? undefined : (props["aria-hidden"] ?? true)}
     >
       <i
         dangerouslySetInnerHTML={{ __html: svg }}

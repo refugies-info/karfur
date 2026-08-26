@@ -126,8 +126,12 @@ export function getDirectiveComponents(t: TFunction) {
     // :::important
     important: ({ children }: DirectiveComponentProps) => {
       return (
-        <CallOut className="p-4 ps-6 not-prose">
-          <b className="mb-2 block text-xl">{t(getCalloutTranslationKey("important"))}</b>
+        <CallOut
+          className="p-4 ps-6 not-prose"
+          title={t(getCalloutTranslationKey("important"))}
+          titleAs="h2"
+          classes={{ title: "!mb-2 !mt-0 block text-xl !font-bold !text-inherit" }}
+        >
           <span className="block text-base max-sm:text-lg">{children}</span>
         </CallOut>
       );
@@ -136,8 +140,12 @@ export function getDirectiveComponents(t: TFunction) {
     // :::good-to-know
     "good-to-know": ({ children }: DirectiveComponentProps) => {
       return (
-        <CallOut className="p-4 ps-6 not-prose">
-          <b className="mb-2 block text-xl">{t(getCalloutTranslationKey("info"))}</b>
+        <CallOut
+          className="p-4 ps-6 not-prose"
+          title={t(getCalloutTranslationKey("info"))}
+          titleAs="h2"
+          classes={{ title: "!mb-2 !mt-0 block text-xl !font-bold !text-inherit" }}
+        >
           <span className="block text-base max-sm:text-lg">{children}</span>
         </CallOut>
       );

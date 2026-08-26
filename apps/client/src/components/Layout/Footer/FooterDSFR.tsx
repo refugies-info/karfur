@@ -4,10 +4,10 @@ import { useWindowSize } from "@refugies-info/ui";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { useCallback } from "react";
+import { type MouseEvent, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
-import { useEditionMode, useLocale } from "~/hooks";
+import { useEditionMode, useLocale, useSupportAvailability } from "~/hooks";
 import { FooterConsentManagementItem } from "~/hooks/useConsentContext";
 import { cn } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
@@ -24,10 +24,37 @@ const Footer = () => {
   const router = useRouter();
 
   const themes = useSelector(themesSelector);
+  const supportAvailability = useSupportAvailability();
 
   const openCrisp = () => {
     window.$crisp.push(["do", "chat:open"]);
   };
+
+  const contactTeamLabel = {
+    open: t("Footer.contact_team", "Contacter l'équipe"),
+    closed: t(
+      "Footer.contact_team_closed",
+      "Contacter l'équipe du lundi au jeudi, de 9h30 à 12h30 et de 14h à 18h",
+    ),
+    unavailable: t(
+      "Footer.contact_team_unavailable",
+      "Contacter l'équipe (momentanément indisponible)",
+    ),
+  }[supportAvailability];
+
+  // Hors horaires, le lien garde sa place et son apparence mais n'ouvre plus rien : rôle lien,
+  // état désactivé, hors de l'ordre de tabulation. Le href subsiste car le Footer DSFR rend ce
+  // lien avec next/link, qui l'exige ; la navigation est neutralisée par preventDefault.
+  const contactTeamLinkProps =
+    supportAvailability === "open"
+      ? { onClick: openCrisp, href: "/" }
+      : {
+          href: "/",
+          role: "link",
+          "aria-disabled": true,
+          tabIndex: -1,
+          onClick: (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
+        };
 
   const toggleNewsletter = useCallback(() => {
     dispatch(toggleNewsletterModalAction());
@@ -45,7 +72,10 @@ const Footer = () => {
         id="fr-footer"
         className={cn(styles.footer)}
         operatorLogo={{
-          alt: "Logo DIAIR",
+          alt: t(
+            "Footer.diair_full_name",
+            "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+          ),
           imgUrl: "/images/Logo-DIAIR.png",
           orientation: "horizontal",
         }}
@@ -53,9 +83,19 @@ const Footer = () => {
           "Footer.info",
           "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
         )}
+        // Le lien du bloc marque pointe vers le site de la DIAIR (décision du 26/08, audit RGAA 6.1) :
+        // l'alt du logo, seul contenu du lien, en est le nom accessible et reflète la destination
+        // (même clé Footer.diair_full_name que la première partie du title).
+        // Le target est explicite ; l'URL étant absolue, le Link enregistré par react-dsfr rend de
+        // toute façon ce lien en target="_blank" avec rel="noreferrer". Le title reprend l'intitulé
+        // et signale la nouvelle fenêtre, comme les autres liens du Footer DSFR.
         homeLinkProps={{
-          href: "/",
-          title: "Accueil - Réfugiés.info",
+          href: "https://accueil-integration-refugies.fr/",
+          target: "_blank",
+          title: `${t(
+            "Footer.diair_full_name",
+            "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+          )} - ${t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}`,
         }}
         bottomItems={[
           <Link
@@ -254,11 +294,8 @@ const Footer = () => {
                 text: t("Footer.help_center", "Consulter le centre d'aide"),
               },
               {
-                linkProps: {
-                  onClick: openCrisp,
-                  href: "/",
-                },
-                text: t("Footer.contact_team", "Contacter l'équipe"),
+                linkProps: contactTeamLinkProps,
+                text: contactTeamLabel,
               },
               {
                 linkProps: {

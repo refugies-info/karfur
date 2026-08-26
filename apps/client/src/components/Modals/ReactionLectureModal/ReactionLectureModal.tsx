@@ -24,7 +24,7 @@ const ReactionLectureModal = (props: Props) => {
       contentClassName={styles.modal_content}
     >
       <div className={styles.close} onClick={props.toggle}>
-        <EVAIcon name="close-outline" fill="#3D3D3D" size="large" />
+        <EVAIcon name="close-outline" fill="#3D3D3D" size="large" ariaLabel="Fermer" />
       </div>
       <div className={styles.modal_header}>
         Réaction{" "}

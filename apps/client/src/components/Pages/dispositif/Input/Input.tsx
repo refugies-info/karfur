@@ -88,11 +88,18 @@ const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, Props>((props, 
             fill={fr.colors.decisions.background.actionHigh.success.default}
             size={20}
             className={cls(styles.icon, styles.append)}
+            ariaLabel="Champ valide"
           />
         )}
         {props.reset && props.value && (
           <div className={styles.empty_btn}>
-            <EVAIcon name="close-outline" fill="dark" onClick={props.reset} size={20} />
+            <EVAIcon
+              name="close-outline"
+              fill="dark"
+              onClick={props.reset}
+              size={20}
+              ariaLabel="Effacer le champ"
+            />
           </div>
         )}
       </div>

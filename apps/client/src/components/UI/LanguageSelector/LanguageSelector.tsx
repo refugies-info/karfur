@@ -1,22 +1,26 @@
 import { activatedLanguages } from "data/activatedLanguages";
 import { forwardRef, type HTMLAttributes, useEffect, useRef } from "react";
-import {
-  AccessibleNavigation,
-  AccessibleNavigationItem,
-} from "~/components/UI/AccessibleNavigation/AccessibleNavigation";
 import { LanguageItem } from "~/components/UI/LanguageSelector/LanguageItem";
 import { useLocale } from "~/hooks";
+import { cn } from "~/lib/classname";
 
-interface LanguageSelectProps extends HTMLAttributes<HTMLDivElement> {
+interface LanguageSelectProps extends HTMLAttributes<HTMLUListElement> {
   onChangeLang?: () => void;
   type?: "global" | "page";
   itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null;
 }
 
-const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
+const LanguageSelector = forwardRef<HTMLUListElement, LanguageSelectProps>(
   (
-    { onChangeLang, type = "global", itemsDesign = "default", availableLanguages, ...props },
+    {
+      onChangeLang,
+      type = "global",
+      itemsDesign = "default",
+      availableLanguages,
+      className,
+      ...props
+    },
     ref,
   ) => {
     const sortedLanguages = [...activatedLanguages].sort((a, b) =>
@@ -37,15 +41,17 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
       sortedLanguages.unshift(frenchLanguage);
     }
 
+    // mt-2 sur le ul et p-0 sur les li : neutralise la marge haute du ul et le padding bas
+    // des li posés par la base DSFR, pour un rendu identique à l'ancienne structure
     return (
-      <AccessibleNavigation ref={ref} {...props} orientation="vertical" aria-label="Languages">
+      <ul ref={ref} className={cn("mx-0 mt-2 mb-0 list-none p-0", className)} {...props}>
         {sortedLanguages.map((lang, index) => {
           const isDisabled = availableLanguages
             ? !availableLanguages?.includes(lang?.i18nCode || "")
             : false;
 
           return (
-            <AccessibleNavigationItem key={index} asChild>
+            <li key={index} className="p-0">
               <LanguageItem
                 item={lang}
                 forceActive={forceFrenchLanguage && lang.langueCode === "fr"}
@@ -55,10 +61,10 @@ const LanguageSelector = forwardRef<HTMLDivElement, LanguageSelectProps>(
                 disabled={isDisabled}
                 ref={index === 0 ? firstItemRef : undefined}
               />
-            </AccessibleNavigationItem>
+            </li>
           );
         })}
-      </AccessibleNavigation>
+      </ul>
     );
   },
 );

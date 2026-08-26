@@ -26,7 +26,9 @@ exports[`should render DeleteButton disabled 1`] = `
       style="margin-bottom: 4px;"
     >
       <span
+        aria-label="Supprimer"
         class="icon"
+        role="img"
       >
         <i
           style="height: 20px; line-height: 20px;"
@@ -89,7 +91,9 @@ exports[`should render DeleteButton not disabled 1`] = `
       style="margin-bottom: 4px;"
     >
       <span
+        aria-label="Supprimer"
         class="icon"
+        role="img"
       >
         <i
           style="height: 20px; line-height: 20px;"
@@ -197,6 +201,7 @@ exports[`should render SeeButton 1`] = `
     class="c0"
   >
     <a
+      aria-label="voir_la_fiche"
       href="test-burl"
       rel="noopener noreferrer"
       target="_blank"
@@ -205,6 +210,7 @@ exports[`should render SeeButton 1`] = `
         style="margin-bottom: 4px;"
       >
         <span
+          aria-hidden="true"
           class="icon"
         >
           <i
@@ -953,7 +959,9 @@ exports[`should render TabHeader down 1`] = `
   >
     test
     <span
+      aria-label="tri_decroissant"
       class="icon"
+      role="img"
     >
       <i
         style="height: 20px; line-height: 20px;"
@@ -1022,7 +1030,9 @@ exports[`should render TabHeader up 1`] = `
   >
     test
     <span
+      aria-label="tri_croissant"
       class="icon"
+      role="img"
     >
       <i
         style="height: 20px; line-height: 20px;"
@@ -1227,7 +1237,9 @@ exports[`should render ValidateButton disabled 1`] = `
       style="margin-bottom: 4px;"
     >
       <span
+        aria-label="Valider"
         class="icon"
+        role="img"
       >
         <i
           style="height: 20px; line-height: 20px;"
@@ -1291,7 +1303,9 @@ exports[`should render ValidateButton not disabled 1`] = `
       style="margin-bottom: 4px;"
     >
       <span
+        aria-label="Valider"
         class="icon"
+        role="img"
       >
         <i
           style="height: 20px; line-height: 20px;"
