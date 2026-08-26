@@ -159,16 +159,18 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>On cherche des traducteurs en :</Title2>
-            <div className="flex flex-wrap gap-6 md:justify-center">
-              {translationNeeds.map((item, i) => (
-                <LanguageCard
-                  href="#register"
-                  key={i}
-                  languageId={item.languageId}
-                  need={item.need}
-                />
-              ))}
-            </div>
+            {/* Énumération de liens : structurée en ul/li (RGAA 9.3). list-none p-0 m-0 et
+                p-0 sur les li neutralisent puce, retrait et espacements de la base DSFR, la
+                disposition en flex reste celle de l'ancien div. */}
+            {translationNeeds.length > 0 && (
+              <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center">
+                {translationNeeds.map((item, i) => (
+                  <li key={i} className="p-0">
+                    <LanguageCard href="#register" languageId={item.languageId} need={item.need} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Section>
       </div>
