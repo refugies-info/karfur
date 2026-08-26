@@ -23,6 +23,13 @@ interface Props {
   itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null | undefined;
   key?: string;
+  /**
+   * Force le choix entre `mobileMode` et `desktopMode` au lieu de le deduire de
+   * `isMobile`. A utiliser quand le composant vit dans une mise en page dont le
+   * point de rupture est porte par une feuille de style, pour que les deux
+   * basculent ensemble.
+   */
+  isCompact?: boolean;
 }
 
 const LanguageMenu = ({
@@ -35,6 +42,7 @@ const LanguageMenu = ({
   availableLanguages = null,
   itemsDesign = "default",
   key,
+  isCompact,
 }: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
 
@@ -49,6 +57,7 @@ const LanguageMenu = ({
   }
 
   const { isMobile } = useWindowSize();
+  const compact = isCompact ?? isMobile;
 
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
@@ -73,7 +82,7 @@ const LanguageMenu = ({
   return (
     <>
       {stylesDisabled && <span>{t("Toolbar.Langue", "Langue :")}</span>}
-      {(isMobile && mobileMode === "accordion") || (!isMobile && desktopMode === "accordion") ? (
+      {(compact && mobileMode === "accordion") || (!compact && desktopMode === "accordion") ? (
         <Accordion
           label={
             <>
@@ -93,7 +102,7 @@ const LanguageMenu = ({
         </Accordion>
       ) : null}
 
-      {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
+      {(compact && mobileMode === "dropdown") || (!compact && desktopMode === "dropdown") ? (
         <DropdownRoot
           className={cn(className)}
           ref={dropdownRef}
@@ -127,7 +136,7 @@ const LanguageMenu = ({
         </DropdownRoot>
       ) : null}
 
-      {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
+      {(compact && mobileMode === "modal") || (!compact && desktopMode === "modal") ? (
         <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
           <Dialog.Trigger asChild>
             <Button priority="tertiary no outline" className={cn("flex gap-2", className)}>

@@ -3,7 +3,7 @@ import { cn, useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
-import { useLocale } from "~/hooks";
+import { useLocale, useMediaQuery } from "~/hooks";
 import { getPath } from "~/routes";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
@@ -16,7 +16,12 @@ import { getPath } from "~/routes";
 
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
-  const { isMobile, zoomLevel } = useWindowSize();
+  const { zoomLevel } = useWindowSize();
+  // On negocie exactement la media query du DSFR plutot que d'en ecrire une
+  // complementaire : a 992 px pile, Chrome fait matcher a la fois
+  // (min-width: 62em) et (max-width: 61.9999em), et les deux mises en page se
+  // superposaient. La valeur par defaut garde le rendu serveur en mode bureau.
+  const isDsfrCompactHeader = !useMediaQuery("(min-width: 62em)", true);
   const locale = useLocale();
 
   const menuItems = [
@@ -40,12 +45,20 @@ const QuickAccessMenu = () => {
       iconId="fr-icon-message-2-line"
       priority="tertiary no outline"
     >
-      {isMobile
+      {/* Meme point de rupture que la mise en page de l'en-tete : sinon le
+          libelle long s'affichait dans la barre de bureau des 200 % de zoom. */}
+      {isDsfrCompactHeader
         ? t("Toolbar.TraduireUneFiche", "Traduire une fiche")
         : t("Toolbar.Traduire", "Traduire")}
     </Button>,
     <LanguageMenu
       key="language"
+      // Le DSFR bascule sa barre d'outils vers le menu burger a 62em, et l'unite
+      // em d'une media query ne suit pas l'agrandissement du texte. Sans ce
+      // garde, le menu se croyait sur mobile a partir de 200 % de zoom texte et
+      // rendait son accordeon dans la barre de bureau, qui debordait alors de
+      // 952 px (RGAA 10.4).
+      isCompact={isDsfrCompactHeader}
       className={cn(zoomLevel >= 175 && "!w-full")}
       dropDownClassName={cn(zoomLevel >= 175 && "!w-full")}
     />,

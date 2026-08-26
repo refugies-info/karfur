@@ -14,6 +14,36 @@
         max-height: 3.3rem;
       }
     }
+
+    // A 200 % d'agrandissement du texte, les quatre boutons d'acces rapide
+    // mesuraient 1185 px dans une fenetre de 1280 et poussaient un defilement
+    // horizontal de la page. Le groupe passe a la ligne au lieu de deborder
+    // (RGAA 10.4).
+    // flex-wrap seul ne suffit pas : .fr-header__tools porte flex: 1 0 auto,
+    // donc il ne retrecit jamais sous la largeur de son contenu et le groupe
+    // garde une largeur disponible infinie. Il faut l'autoriser a retrecir et
+    // lever le min-width automatique de la chaine flex. A taille de texte
+    // normale le contenu tient, donc rien ne bouge.
+    :global .fr-header__tools {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links {
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links .fr-btns-group {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    // Meme cause pour la barre de navigation principale : au meme zoom, le
+    // dernier item depassait de 10 px (RGAA 10.4).
+    :global .fr-nav__list {
+      flex-wrap: wrap;
+    }
   }
 }
 
