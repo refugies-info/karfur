@@ -4,6 +4,7 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import { useDepartmentAutocomplete, useOutsideClick } from "~/hooks";
 import { cls } from "~/lib/classname";
@@ -79,6 +80,30 @@ const EditDepartments = (props: Props) => {
   useEffect(() => {
     setActiveIndex(-1);
   }, [predictions]);
+
+  const announce = useAnnounce();
+  const announcedCountRef = useRef<number | null>(null);
+
+  // Reads out how many suggestions are available. Fires on a change of count, not
+  // on every keystroke, so it does not talk over the listbox semantics.
+  useEffect(() => {
+    if (hidePredictions || search.length < 2) {
+      announcedCountRef.current = null;
+      return;
+    }
+    const count = predictions.length;
+    if (announcedCountRef.current === count) return;
+    announcedCountRef.current = count;
+
+    let message: string;
+    if (count === 0) message = "Aucune suggestion trouvée, modifiez votre recherche";
+    else if (count === 1)
+      message = "1 suggestion trouvée, utilisez les flèches haut et bas pour la parcourir";
+    else
+      message = `${count} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir`;
+
+    announce(message, { delay: 1500 });
+  }, [predictions, hidePredictions, search, announce]);
 
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string) => {
