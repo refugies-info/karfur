@@ -9,6 +9,7 @@ import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
+import styles from "./MobileApp.module.scss";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
@@ -134,7 +135,11 @@ const MobileApp = () => {
             <Button
               iconId={"ri-app-store-fill"}
               iconPosition="right"
-              className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
+              className={cn(
+                "justify-center max-md:w-full",
+                styles.storeLink,
+                isAndroid && "hidden",
+              )}
               linkProps={{
                 href: iosStoreLink,
                 target: "_blank",
@@ -147,7 +152,7 @@ const MobileApp = () => {
             <Button
               iconId={"ri-android-fill"}
               iconPosition="right"
-              className={cn("justify-center max-md:w-full", isIOS && "hidden")}
+              className={cn("justify-center max-md:w-full", styles.storeLink, isIOS && "hidden")}
               linkProps={{
                 href: androidStoreLink,
                 target: "_blank",

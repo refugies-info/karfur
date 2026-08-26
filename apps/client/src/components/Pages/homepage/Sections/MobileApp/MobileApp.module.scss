@@ -1,0 +1,9 @@
+// DSFR displays an external link icon (::after pseudo-element) on any
+// .fr-btn with target="_blank". _dsfr-fix.scss removes this indicator
+// everywhere except on .fr-link and .fr-btn, so the store download links
+// below would show it. Neutralize it locally to keep these links icon-free,
+// as they were before becoming real links (RGAA 7.1).
+// This rule is unlayered so it wins over the DSFR bundle (@layer dsfr).
+.storeLink[target="_blank"]::after {
+  content: none;
+}
