@@ -94,7 +94,7 @@ const Homepage = (props: Props) => {
 
       <Hero targetArrow="themes" />
 
-      {!isMobile && <StructuresLogos />}
+      <StructuresLogos />
 
       <Carrousel
         className="mb-20"
