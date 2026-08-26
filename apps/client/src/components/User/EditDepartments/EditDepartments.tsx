@@ -278,8 +278,11 @@ const EditDepartments = (props: Props) => {
                 <Button
                   iconId="fr-icon-close-line"
                   priority="tertiary no outline"
-                  title="Retirer le département"
+                  title={`Retirer le département ${formatDepartment(dep)}`}
                   size="small"
+                  // Without this the DSFR button falls back to type="submit" and
+                  // removing a chip saves the form.
+                  nativeButtonProps={{ type: "button" }}
                   onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
                 />
               </div>
