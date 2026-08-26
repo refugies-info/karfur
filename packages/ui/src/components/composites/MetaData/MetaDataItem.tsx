@@ -2,7 +2,7 @@ import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
 import Image from "next/image";
-import type React from "react";
+import React from "react";
 
 type MetaDataItemProps = {
   className?: string;
@@ -10,6 +10,13 @@ type MetaDataItemProps = {
   children?: React.ReactNode;
   onClick?: () => void;
   state?: "valid" | "invalid";
+  /**
+   * Balise du conteneur d'enfants. "p" par défaut. Passer "ul" quand les enfants sont une
+   * énumération, ce qu'exige le critère RGAA 9.3 : un <ul> ne peut pas vivre dans un <p>.
+   */
+  contentAs?: "p" | "ul";
+  /** Classes ajoutées au conteneur d'enfants, pour les cas où sa disposition doit changer. */
+  contentClassName?: string;
 } & (
   | { icon: FrIconClassName | RiIconClassName; logoImage?: never }
   | { icon?: never; logoImage: { url: string; alt?: string } }
@@ -23,6 +30,8 @@ export const MetaDataItem = ({
   children,
   onClick,
   state,
+  contentAs = "p",
+  contentClassName,
 }: MetaDataItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -54,18 +63,23 @@ export const MetaDataItem = ({
             {title}
           </h3>
         )}
-        {children && (
-          <p
-            className={cn(
-              "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
-              "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
-              "md:[&_a]:text-sm",
-              onClick && "[&_a]:pointer-events-none",
-            )}
-          >
-            {children}
-          </p>
-        )}
+        {children &&
+          React.createElement(
+            contentAs,
+            {
+              className: cn(
+                "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
+                "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
+                "md:[&_a]:text-sm",
+                onClick && "[&_a]:pointer-events-none",
+                // En ul, neutralise puce, retrait et marges de la base DSFR pour que le
+                // conteneur se comporte exactement comme le p qu'il remplace.
+                contentAs === "ul" && "m-0 list-none p-0 [&>li]:p-0",
+                contentClassName,
+              ),
+            },
+            children,
+          )}
       </div>
       {onClick && (
         <span className="ml-auto flex items-center">
