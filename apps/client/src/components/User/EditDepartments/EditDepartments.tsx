@@ -1,5 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { logger } from "logger";
+import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
@@ -67,8 +68,17 @@ const EditDepartments = (props: Props) => {
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  // Index of the option holding the visual focus. DOM focus never leaves the input,
+  // the position is carried by aria-activedescendant.
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const isListboxOpen = !hidePredictions && predictions.length > 0;
+  const activeOption = isListboxOpen ? predictions[activeIndex] : undefined;
+
+  // Any change to the suggestion set drops the visual focus.
+  useEffect(() => {
+    setActiveIndex(-1);
+  }, [predictions]);
 
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string) => {
@@ -82,7 +92,62 @@ const EditDepartments = (props: Props) => {
     // leaves the text field: this is what makes Enter usable on an option.
     setHidePredictions(true);
     setSearch("");
+    setActiveIndex(-1);
     inputRef.current?.focus();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const count = predictions.length;
+
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault();
+        if (count === 0) return;
+        if (!isListboxOpen) {
+          setHidePredictions(false);
+          setActiveIndex(event.altKey ? -1 : 0);
+          return;
+        }
+        if (event.altKey) return;
+        setActiveIndex((index) => (index + 1 >= count ? 0 : index + 1));
+        return;
+
+      case "ArrowUp":
+        event.preventDefault();
+        if (count === 0) return;
+        if (!isListboxOpen) {
+          setHidePredictions(false);
+          setActiveIndex(count - 1);
+          return;
+        }
+        setActiveIndex((index) => (index <= 0 ? count - 1 : index - 1));
+        return;
+
+      case "Enter":
+        // Closed listbox: implicit form submission is left untouched.
+        if (!isListboxOpen) return;
+        event.preventDefault();
+        if (activeOption) onPlaceSelected(activeOption.id);
+        else setHidePredictions(true);
+        return;
+
+      case "Escape":
+        event.preventDefault();
+        // Open: close and keep what was typed. Closed: clear the field, as the
+        // APG prescribes for an editable combobox.
+        if (isListboxOpen) setHidePredictions(true);
+        else setSearch("");
+        return;
+
+      case "Tab":
+        // Accept the focused option, then let focus move on normally.
+        if (activeOption) onPlaceSelected(activeOption.id);
+        setHidePredictions(true);
+        return;
+
+      default:
+        return;
+    }
   };
 
   useEffect(() => {
@@ -131,15 +196,12 @@ const EditDepartments = (props: Props) => {
               // with what was typed. Inline completion would overwrite the input
               // with unrelated text. Documented gap to the APG example.
               aria-autocomplete="list"
+              aria-activedescendant={activeOption ? getOptionId(activeOption.id) : undefined}
               value={search}
               onChange={handleChange}
               onFocus={() => setIsInputFocused(true)}
               onBlur={() => setIsInputFocused(false)}
-              onKeyDown={(event) => {
-                if (event.key === "Escape") {
-                  setHidePredictions(true);
-                }
-              }}
+              onKeyDown={handleKeyDown}
             />
             {!isInputFocused && search === "" && (
               <button
@@ -160,7 +222,7 @@ const EditDepartments = (props: Props) => {
               role="listbox"
               aria-label="Suggestions de départements"
             >
-              {predictions.map((p) => (
+              {predictions.map((p, index) => (
                 // `role="option"` on a <button> is allowed by ARIA in HTML, and it
                 // keeps the existing `.suggestions > button` styling untouched.
                 <button
@@ -168,8 +230,9 @@ const EditDepartments = (props: Props) => {
                   type="button"
                   role="option"
                   id={getOptionId(p.id)}
-                  aria-selected={false}
+                  aria-selected={index === activeIndex}
                   tabIndex={-1}
+                  className={index === activeIndex ? styles.active : undefined}
                   onClick={(e: any) => {
                     e.preventDefault();
                     onPlaceSelected(p.id);
