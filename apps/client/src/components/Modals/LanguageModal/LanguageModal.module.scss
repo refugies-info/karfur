@@ -4,7 +4,12 @@
 
 .modal {
   @include media-min("tablet-up") {
-    width: 500px;
+    // 37.5rem, soit la largeur que le contenu imposait deja par un min-width :
+    // le dialogue faisait 500 px et son contenu 600, qui depassait sur la droite.
+    // On dimensionne le dialogue lui-meme, et on le borne par la fenetre pour
+    // qu'il ne sorte plus a 200 % d'agrandissement du texte (RGAA 10.4).
+    width: 37.5rem;
+    max-width: calc(100vw - 3.5rem);
   }
 
   .close {
