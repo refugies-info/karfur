@@ -20,6 +20,7 @@ import styles from "./EditDepartments.module.scss";
  */
 const INPUT_ID = "departments-search";
 const LISTBOX_ID = "departments-suggestions";
+const ERROR_ID = "departments-error";
 const getOptionId = (code: string) => `departments-option-${code}`;
 
 interface Props {
@@ -283,6 +284,7 @@ const EditDepartments = (props: Props) => {
               // "list", not "both": suggestions are scored by similarity, so inline completion would overwrite the input
               aria-autocomplete="list"
               aria-activedescendant={activeOption ? getOptionId(activeOption.id) : undefined}
+              aria-describedby={error ? ERROR_ID : undefined}
               value={search}
               onChange={handleChange}
               onFocus={() => setIsInputFocused(true)}
@@ -355,7 +357,7 @@ const EditDepartments = (props: Props) => {
         )}
       </div>
 
-      <ErrorMessage error={error} />
+      <ErrorMessage error={error} id={ERROR_ID} />
 
       <div className="text-end">
         <Button
