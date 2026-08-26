@@ -129,22 +129,29 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                 let title = t("Infocards.departements", "Departements :");
                 if (location === "france") title = t("Infocards.france", "France");
                 else if (location === "online") title = t("Recherche.online", "En ligne");
+                // La liste des départements est une énumération : elle se structure en ul/li
+                // (RGAA 9.3). contentAs="ul" est nécessaire parce qu'un ul ne peut pas vivre
+                // dans le p que MetaDataItem pose par défaut. Le li est en display:inline
+                // pour ne pas changer le flux, que le conteneur soit en flex ou en inline.
+                const hasDepartments = Array.isArray(location) && location.length > 0;
                 return (
                   <MetaDataItem
                     icon={location === "online" ? "ri-at-line" : "fr-icon-france-line"}
                     title={title}
                     state={formSubmitted && location === undefined ? "invalid" : undefined}
                     onClick={isEditMode ? () => setActiveModal?.("Location") : undefined}
+                    contentAs={hasDepartments ? "ul" : "p"}
                   >
-                    {Array.isArray(location)
-                      ? location.map((loc: string) => (
-                          <FRLink
-                            key={loc}
-                            href={isEditMode ? "#" : getLocationLink(loc)}
-                            onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}
-                          >
-                            {formatDepartment(loc)}
-                          </FRLink>
+                    {hasDepartments
+                      ? (location as string[]).map((loc: string) => (
+                          <li key={loc} className="inline sm:flex">
+                            <FRLink
+                              href={isEditMode ? "#" : getLocationLink(loc)}
+                              onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}
+                            >
+                              {formatDepartment(loc)}
+                            </FRLink>
+                          </li>
                         ))
                       : null}
                   </MetaDataItem>
