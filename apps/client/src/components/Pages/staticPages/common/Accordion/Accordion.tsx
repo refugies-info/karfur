@@ -169,7 +169,11 @@ const Accordion = (props: Props) => {
       {!isTablet && props.withImages && open.length > 0 && (
         <div
           className={cn(
-            "flex w-1/2 items-center",
+            "flex items-center",
+            // Le conteneur passe en colonne sous 992 px : la moitie de largeur n'a
+            // de sens que dans la mise en page a deux colonnes. En dessous, elle
+            // reduisait l'illustration a 144 px de large (RGAA 10.11).
+            isMobile ? "w-full" : "w-1/2",
             props.mediaAlign === "center" ? "justify-center" : "justify-end",
             props.items[open[0]]?.className,
           )}
