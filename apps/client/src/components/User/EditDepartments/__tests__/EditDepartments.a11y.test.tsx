@@ -21,16 +21,18 @@ const DEPARTMENTS = [
   { nom: "Pas-de-Calais", code: "62" },
 ];
 
-const reduxState = {
+const stateWithUser = (departments?: string[]) => ({
   ...initialMockStore,
-  user: { ...initialMockStore.user, user: testUser },
-};
+  user: { ...initialMockStore.user, user: { ...testUser, departments } },
+});
 
-const renderComponent = async () => {
+const setIsLoading = jest.fn();
+
+const renderComponent = async (departments?: string[]) => {
   const result = wrapWithProvidersAndRenderForTesting({
     Component: EditDepartments,
-    compProps: { successCallback: jest.fn() },
-    reduxState,
+    compProps: { successCallback: jest.fn(), setIsLoading },
+    reduxState: stateWithUser(departments),
   });
   // Let the one-off department fetch of useDepartmentAutocomplete settle.
   await act(async () => {});
@@ -57,8 +59,9 @@ describe("EditDepartments, department combobox", () => {
     const input = getInput();
 
     expect(input).toHaveAttribute("aria-expanded", "false");
-    expect(input).toHaveAttribute("aria-controls", "departments-suggestions");
     expect(input).toHaveAttribute("aria-autocomplete", "list");
+    // Both references point at nothing while the listbox is not rendered.
+    expect(input).not.toHaveAttribute("aria-controls");
     expect(input).not.toHaveAttribute("aria-activedescendant");
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
@@ -71,6 +74,7 @@ describe("EditDepartments, department combobox", () => {
 
     await waitFor(() => expect(screen.getByRole("listbox")).toBeInTheDocument());
     expect(getInput()).toHaveAttribute("aria-expanded", "true");
+    expect(getInput()).toHaveAttribute("aria-controls", "departments-suggestions");
     expect(screen.getByRole("option", { name: "Paris" })).toBeInTheDocument();
   });
 
@@ -175,5 +179,56 @@ describe("EditDepartments, department combobox", () => {
 
     expect(API.updateUser).not.toHaveBeenCalled();
     expect(screen.queryByTitle("Retirer le département Paris (75)")).not.toBeInTheDocument();
+  });
+
+  // The test above cannot fail if the preventDefault on Enter is removed: with no
+  // department selected the submit button is disabled, so implicit submission
+  // cannot fire in the first place. This one runs the dangerous case.
+  it("does not submit on Enter when a department is already selected", async () => {
+    const user = userEvent.setup();
+    const API = require("utils/API").default;
+    await renderComponent(["75 - Paris"]);
+    const input = getInput();
+
+    // Guard: the scenario is only meaningful if implicit submission is possible.
+    expect(screen.getByRole("button", { name: /Valider/ })).toBeEnabled();
+
+    await user.type(input, "Pas-de");
+    await waitFor(() => expect(screen.getByRole("listbox")).toBeInTheDocument());
+
+    await user.keyboard("{ArrowDown}{Enter}");
+
+    expect(setIsLoading).not.toHaveBeenCalled();
+    expect(API.updateUser).not.toHaveBeenCalled();
+    expect(screen.getByTitle("Retirer le département Pas-de-Calais (62)")).toBeInTheDocument();
+  });
+
+  it("sends focus back to the field when a department is removed", async () => {
+    const user = userEvent.setup();
+    await renderComponent(["75 - Paris", "62 - Pas-de-Calais"]);
+
+    await user.click(screen.getByTitle("Retirer le département Paris (75)"));
+
+    expect(getInput()).toHaveFocus();
+    expect(document.body).not.toHaveFocus();
+    expect(screen.getByTitle("Retirer le département Pas-de-Calais (62)")).toBeInTheDocument();
+  });
+
+  it("does not lose focus nor stay silent when the last department is removed", async () => {
+    const user = userEvent.setup();
+    await renderComponent(["75 - Paris"]);
+
+    await user.click(screen.getByTitle("Retirer le département Paris (75)"));
+
+    // The whole chip list unmounts here, which is the case where focus used to
+    // fall on <body> and the error appeared with nothing said.
+    expect(screen.queryByTitle(/Retirer le département/)).not.toBeInTheDocument();
+    expect(screen.getByText("Vous devez sélectionner au moins un département")).toBeInTheDocument();
+    expect(getInput()).toHaveFocus();
+    await waitFor(() =>
+      expect(screen.getByRole("alert")).toHaveTextContent(
+        /Département Paris \(75\) retiré\. Vous devez sélectionner au moins un département\./,
+      ),
+    );
   });
 });

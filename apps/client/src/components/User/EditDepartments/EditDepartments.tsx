@@ -121,6 +121,23 @@ const EditDepartments = (props: Props) => {
     inputRef.current?.focus();
   };
 
+  const removeDepartment = (dep: string) => {
+    const remaining = selectedDepartments.filter((d) => d !== dep);
+    setSelectedDepartments(remaining);
+    // The activated button unmounts along with its chip, and focus would fall on
+    // <body>. Focus goes back to the search field because it is the only target
+    // that always exists: when the last chip goes, the whole chip list unmounts.
+    inputRef.current?.focus();
+    // "interrupt" so this direct answer to a user action is not queued behind the
+    // delayed suggestion counts.
+    announce(
+      remaining.length === 0
+        ? `Département ${formatDepartment(dep)} retiré. Vous devez sélectionner au moins un département.`
+        : `Département ${formatDepartment(dep)} retiré.`,
+      { priority: "interrupt" },
+    );
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const count = predictions.length;
 
@@ -215,7 +232,9 @@ const EditDepartments = (props: Props) => {
               autoComplete="off"
               role="combobox"
               aria-expanded={isListboxOpen}
-              aria-controls={LISTBOX_ID}
+              // Pointed at only while the listbox exists: a dangling aria-controls
+              // is a dead reference for assistive technologies.
+              aria-controls={isListboxOpen ? LISTBOX_ID : undefined}
               // "list" and not "both": the suggestion engine scores by inclusion and
               // Levenshtein distance, so the first suggestion often does not start
               // with what was typed. Inline completion would overwrite the input
@@ -283,7 +302,7 @@ const EditDepartments = (props: Props) => {
                   // Without this the DSFR button falls back to type="submit" and
                   // removing a chip saves the form.
                   nativeButtonProps={{ type: "button" }}
-                  onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
+                  onClick={() => removeDepartment(dep)}
                 />
               </div>
             ))}
