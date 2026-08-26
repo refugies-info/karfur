@@ -15,6 +15,7 @@ const TextExample = (props: Props) => {
           name={props.type === "error" ? "close-outline" : "checkmark"}
           fill="white"
           size={16}
+          ariaLabel={props.type === "error" ? "À éviter" : "À faire"}
         />
       </span>
       {props.text}

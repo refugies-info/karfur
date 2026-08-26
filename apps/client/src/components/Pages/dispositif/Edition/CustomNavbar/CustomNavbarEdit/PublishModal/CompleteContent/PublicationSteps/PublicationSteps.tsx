@@ -26,6 +26,7 @@ const PublicationSteps = (props: Props) => {
             size={24}
             fill={fr.colors.decisions.text.default.info.default}
             className={cls("me-2", styles.icon)}
+            ariaLabel={item.done ? "Étape terminée" : "Étape à faire"}
           />
           <div>
             <p className={styles.title}>{item.title}</p>

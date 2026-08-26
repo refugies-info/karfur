@@ -74,6 +74,7 @@ const UserDetail = (props: Props) => {
       <EVAIcon
         name={props.isSelected ? "radio-button-on" : "radio-button-off-outline"}
         fill={props.isSelected ? colors.white : colors.gray90}
+        ariaLabel={props.isSelected ? "Sélectionné" : "Non sélectionné"}
       />
     </UserDetailContainer>
   );

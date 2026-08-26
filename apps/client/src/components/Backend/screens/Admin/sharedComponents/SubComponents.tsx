@@ -1,5 +1,6 @@
 import type { GetAllDispositifsResponse, Id } from "@refugies-info/api-types";
 import moment from "moment";
+import { useTranslation } from "next-i18next";
 import styled from "styled-components";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { useUser } from "~/hooks";
@@ -204,53 +205,84 @@ const ButtonContainer = styled.div<ButtonContainerProps>`
     background-color: ${(props: ButtonContainerProps) => (props.$disabled ? colors.gray70 : props.$hoverColor)};
   }
 `;
-export const ValidateButton = (props: { onClick: () => void; disabled: boolean }) => (
-  <ButtonContainer
-    onClick={props.onClick}
-    $disabled={props.disabled}
-    $hoverColor={colors.validationHover}
-    data-testid="validate-button"
-  >
-    <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="checkmark-outline" fill={colors.white} size={20} />
-    </div>
-  </ButtonContainer>
-);
+export const ValidateButton = (props: { onClick: () => void; disabled: boolean }) => {
+  const { t } = useTranslation();
 
-export const SeeButton = (props: { burl: string }) => (
-  <ButtonContainer $hoverColor={colors.gray90}>
-    <a href={props.burl} target="_blank" rel="noopener noreferrer">
+  return (
+    <ButtonContainer
+      onClick={props.onClick}
+      $disabled={props.disabled}
+      $hoverColor={colors.validationHover}
+      data-testid="validate-button"
+    >
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye" fill={colors.white} size={20} />
+        <EVAIcon
+          name="checkmark-outline"
+          fill={colors.white}
+          size={20}
+          ariaLabel={t("Valider", "Valider")}
+        />
       </div>
-    </a>
-  </ButtonContainer>
-);
+    </ButtonContainer>
+  );
+};
 
-export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => (
-  <ButtonContainer $hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
-    <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="edit" fill={colors.white} size={20} />
-    </div>
-  </ButtonContainer>
-);
+export const SeeButton = (props: { burl: string }) => {
+  const { t } = useTranslation();
+
+  return (
+    <ButtonContainer $hoverColor={colors.gray90}>
+      <a
+        href={props.burl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t("voir_la_fiche", "Voir la fiche")}
+      >
+        <div style={{ marginBottom: "4px" }}>
+          <EVAIcon name="eye" fill={colors.white} size={20} />
+        </div>
+      </a>
+    </ButtonContainer>
+  );
+};
+
+export const EditButtonWithoutNavigation = (props: { onClick: () => void; testId?: string }) => {
+  const { t } = useTranslation();
+
+  return (
+    <ButtonContainer $hoverColor={colors.gray90} onClick={props.onClick} data-testid={props.testId}>
+      <div style={{ marginBottom: "4px" }}>
+        <EVAIcon name="edit" fill={colors.white} size={20} ariaLabel={t("Modifier", "Modifier")} />
+      </div>
+    </ButtonContainer>
+  );
+};
 
 export const DeleteButton = (props: {
   onClick: (event: any) => void;
   disabled: boolean;
   testId?: string;
-}) => (
-  <ButtonContainer
-    onClick={props.disabled ? undefined : props.onClick}
-    $hoverColor={colors.error}
-    $disabled={props.disabled}
-    data-testid={props.testId}
-  >
-    <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash" fill={colors.white} size={20} />
-    </div>
-  </ButtonContainer>
-);
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <ButtonContainer
+      onClick={props.disabled ? undefined : props.onClick}
+      $hoverColor={colors.error}
+      $disabled={props.disabled}
+      data-testid={props.testId}
+    >
+      <div style={{ marginBottom: "4px" }}>
+        <EVAIcon
+          name="trash"
+          fill={colors.white}
+          size={20}
+          ariaLabel={t("Supprimer", "Supprimer")}
+        />
+      </div>
+    </ButtonContainer>
+  );
+};
 
 const FilterButtonContainer = styled.div<{ $isSelected: boolean }>`
   background: ${(props: { $isSelected: boolean }) => (props.$isSelected ? colors.gray90 : colors.white)};
@@ -283,12 +315,26 @@ export const TabHeader = (props: {
   order: string | boolean | null;
   isSortedHeader: boolean;
   sens: string;
-}) => (
-  <StyledTabHeader order={props.order ? 1 : 0}>
-    {props.name}
-    {props.order && <EVAIcon name={`chevron-${props.sens}`} fill={colors.gray90} />}
-  </StyledTabHeader>
-);
+}) => {
+  const { t } = useTranslation();
+
+  return (
+    <StyledTabHeader order={props.order ? 1 : 0}>
+      {props.name}
+      {props.order && (
+        <EVAIcon
+          name={`chevron-${props.sens}`}
+          fill={colors.gray90}
+          ariaLabel={
+            props.sens === "up"
+              ? t("tri_croissant", "Tri croissant")
+              : t("tri_decroissant", "Tri décroissant")
+          }
+        />
+      )}
+    </StyledTabHeader>
+  );
+};
 
 export const Date = (props: {
   date: Date | undefined;

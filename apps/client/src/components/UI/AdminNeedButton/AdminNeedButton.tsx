@@ -49,7 +49,12 @@ const AdminThemeButton = (props: Props) => (
       )}
       {props.selected && (
         <span className={styles.hoverHidden}>
-          <EVAIcon name="checkmark-outline" fill={props.need.theme.colors.color100} size={20} />
+          <EVAIcon
+            name="checkmark-outline"
+            fill={props.need.theme.colors.color100}
+            size={20}
+            ariaLabel="Sélectionné"
+          />
         </span>
       )}
       {props.editButton && (
@@ -58,6 +63,7 @@ const AdminThemeButton = (props: Props) => (
             name="edit-outline"
             fill="white"
             size={16}
+            ariaLabel="Modifier le besoin"
             onClick={(e: any) => {
               e.stopPropagation();
               if (props.onClickEdit) props.onClickEdit();
@@ -70,6 +76,7 @@ const AdminThemeButton = (props: Props) => (
           name="arrow-forward"
           fill={props.need.theme.colors.color100}
           size={20}
+          ariaLabel="Ouvert"
           className="ms-2"
         />
       )}
