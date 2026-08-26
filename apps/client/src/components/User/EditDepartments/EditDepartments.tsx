@@ -16,6 +16,8 @@ import styles from "./EditDepartments.module.scss";
  * or user profile modal), so fixed ids stay deterministic between server and client.
  */
 const INPUT_ID = "departments-search";
+const LISTBOX_ID = "departments-suggestions";
+const getOptionId = (code: string) => `departments-option-${code}`;
 
 interface Props {
   successCallback: () => void;
@@ -118,6 +120,17 @@ const EditDepartments = (props: Props) => {
               id={INPUT_ID}
               placeholder="Rechercher"
               type="search"
+              // Browser autofill would cover the suggestion list, and a department
+              // search maps to no HTML autofill token.
+              autoComplete="off"
+              role="combobox"
+              aria-expanded={isListboxOpen}
+              aria-controls={LISTBOX_ID}
+              // "list" and not "both": the suggestion engine scores by inclusion and
+              // Levenshtein distance, so the first suggestion often does not start
+              // with what was typed. Inline completion would overwrite the input
+              // with unrelated text. Documented gap to the APG example.
+              aria-autocomplete="list"
               value={search}
               onChange={handleChange}
               onFocus={() => setIsInputFocused(true)}
@@ -141,11 +154,22 @@ const EditDepartments = (props: Props) => {
             )}
           </div>
           {isListboxOpen && (
-            <div className={styles.suggestions}>
+            <div
+              className={styles.suggestions}
+              id={LISTBOX_ID}
+              role="listbox"
+              aria-label="Suggestions de départements"
+            >
               {predictions.map((p) => (
+                // `role="option"` on a <button> is allowed by ARIA in HTML, and it
+                // keeps the existing `.suggestions > button` styling untouched.
                 <button
                   key={p.id}
                   type="button"
+                  role="option"
+                  id={getOptionId(p.id)}
+                  aria-selected={false}
+                  tabIndex={-1}
                   onClick={(e: any) => {
                     e.preventDefault();
                     onPlaceSelected(p.id);
