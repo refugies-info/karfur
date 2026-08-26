@@ -49,10 +49,13 @@ const QuickAccessMenu = () => {
       className={cn(zoomLevel >= 175 && "!w-full")}
       dropDownClassName={cn(zoomLevel >= 175 && "!w-full")}
     />,
-    !isMobile ? <LoginButton key="login" /> : null,
+    // Le bouton de connexion reste dans la liste a toutes les largeurs (RGAA 10.11).
+    // Le DSFR le rend dans la barre d'outils au-dessus de 62em et dans le menu
+    // burger en dessous : le retirer sous 48em le rendait inatteignable partout.
+    <LoginButton key="login" />,
   ];
 
-  return [...menuItems];
+  return menuItems.filter((item) => item !== null);
 };
 
 export { QuickAccessMenu };
