@@ -16,6 +16,8 @@ import {
   getFrenchLevelText,
   getFrequencyText,
   getPriceText,
+  getPublicList,
+  getPublicStatusList,
   getPublicStatusText,
   getPublicText,
   getTimeSlotsText,
@@ -43,6 +45,14 @@ export const getPublic = (publicType: Metadatas["public"] | null | undefined, t:
   if (!publicType) return publicType;
   return getPublicText(publicType, t);
 };
+/** Mêmes libellés que getPublicStatus, en liste, pour la structuration ul/li (RGAA 9.3). */
+export const getPublicStatusItems = (
+  publicStatus: Metadatas["publicStatus"] | null | undefined,
+  t: TFunction,
+) => (publicStatus ? getPublicStatusList(publicStatus, t) : null);
+/** Mêmes libellés que getPublic, en liste, pour la structuration ul/li (RGAA 9.3). */
+export const getPublicItems = (publicType: Metadatas["public"] | null | undefined, t: TFunction) =>
+  publicType ? getPublicList(publicType, t) : null;
 export const getAge = (age: Metadatas["age"] | null | undefined, t: TFunction) => {
   if (!age) return age; // null or undefined
   return getAgeText(age, t);
