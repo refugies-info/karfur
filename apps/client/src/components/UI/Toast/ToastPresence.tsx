@@ -9,6 +9,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from "react";
 
@@ -26,7 +27,14 @@ import {
  * puis se replace tout seul dans le portail dès qu'il est monté.
  */
 
-/** Laisse l'animation de fermeture se terminer avant de démonter le viewport. */
+/**
+ * Délai entre la fermeture d'un toast et le démontage du viewport, pour laisser
+ * l'animation de sortie se dérouler (`hide 100ms` dans `Toast.module.scss`).
+ *
+ * Le retrait de la clé est porté par la branche « fermé » de l'effet, jamais par
+ * son nettoyage : un nettoyage retirerait la clé dès le changement d'état et le
+ * délai n'existerait pas. Seul le démontage du composant retire immédiatement.
+ */
 const DUREE_SORTIE_MS = 300;
 
 /**
@@ -79,16 +87,49 @@ export const useDeclareToast = (open: boolean) => {
   useEffect(() => {
     if (open) {
       setToastOpen(cle, true);
-      return () => setToastOpen(cle, false);
+      return;
     }
     const timer = setTimeout(() => setToastOpen(cle, false), DUREE_SORTIE_MS);
     return () => clearTimeout(timer);
   }, [cle, open, setToastOpen]);
+
+  // Le démontage du composant, lui, retire la clé sans délai : il n'y a plus
+  // rien à animer. Cet effet est séparé pour que son nettoyage ne se déclenche
+  // pas au simple changement de `open`.
+  useEffect(() => () => setToastOpen(cle, false), [cle, setToastOpen]);
 };
 
-/** Viewport Radix, monté seulement quand au moins un toast est à afficher. */
+/**
+ * Viewport Radix, monté seulement quand au moins un toast est à afficher.
+ *
+ * Exception : on le garde monté tant qu'il porte le focus. À la fermeture d'un
+ * toast au clavier, Radix exécute `viewport?.focus()` ; démonter derrière lui
+ * ferait tomber le focus sur `<body>`. On attend donc que le focus soit sorti
+ * de la zone. C'est le comportement actuel de production dans ce seul cas, et
+ * la zone n'est alors pas un repère vide puisqu'elle porte le focus.
+ */
 export const ToastViewportWhenNeeded = (props: ComponentProps<typeof ToastViewport>) => {
   const { hasToasts } = useContext(ToastPresenceContext);
-  if (!hasToasts) return null;
-  return <ToastViewport {...props} />;
+  const [monte, setMonte] = useState(false);
+  const ref = useRef<HTMLOListElement>(null);
+
+  useEffect(() => {
+    if (hasToasts) {
+      setMonte(true);
+      return;
+    }
+    const zone = ref.current?.parentElement ?? ref.current;
+    if (!zone?.contains(document.activeElement)) {
+      setMonte(false);
+      return;
+    }
+    const surSortieDuFocus = (event: FocusEvent) => {
+      if (!zone.contains(event.relatedTarget as Node | null)) setMonte(false);
+    };
+    zone.addEventListener("focusout", surSortieDuFocus);
+    return () => zone.removeEventListener("focusout", surSortieDuFocus);
+  }, [hasToasts]);
+
+  if (!monte) return null;
+  return <ToastViewport ref={ref} {...props} />;
 };
