@@ -335,25 +335,30 @@ const EditDepartments = (props: Props) => {
 
         {selectedDepartments.length > 0 && (
           <div className="mt-12">
-            {selectedDepartments.map((dep, i) => (
-              <div key={dep} className={styles.option}>
-                {formatDepartment(dep)}
-                <Button
-                  iconId="fr-icon-close-line"
-                  priority="tertiary no outline"
-                  title={t("EditDepartments.remove_department", {
-                    department: formatDepartment(dep),
-                    defaultValue: "Retirer le département {{department}}",
-                    interpolation: { escapeValue: false },
-                  })}
-                  size="small"
-                  // Without this the DSFR button falls back to type="submit" and
-                  // removing a chip saves the form.
-                  nativeButtonProps={{ type: "button" }}
-                  onClick={() => removeDepartment(dep)}
-                />
-              </div>
-            ))}
+            {/* list-none p-0 m-0 sur le ul : neutralise la puce et le retrait posés par la base
+                DSFR, pour un rendu identique à l'ancienne structure en div. Le padding bas que
+                DSFR pose sur les li est déjà écrasé par le raccourci padding de .option. */}
+            <ul className="m-0 list-none p-0">
+              {selectedDepartments.map((dep) => (
+                <li key={dep} className={styles.option}>
+                  {formatDepartment(dep)}
+                  <Button
+                    iconId="fr-icon-close-line"
+                    priority="tertiary no outline"
+                    title={t("EditDepartments.remove_department", {
+                      department: formatDepartment(dep),
+                      defaultValue: "Retirer le département {{department}}",
+                      interpolation: { escapeValue: false },
+                    })}
+                    size="small"
+                    // Without this the DSFR button falls back to type="submit" and
+                    // removing a chip saves the form.
+                    nativeButtonProps={{ type: "button" }}
+                    onClick={() => removeDepartment(dep)}
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
