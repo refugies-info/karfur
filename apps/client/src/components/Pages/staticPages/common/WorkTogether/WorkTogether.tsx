@@ -99,7 +99,11 @@ const WorkTogether = () => {
       <h2 className="mx-4 mb-0 text-center">
         {t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}
       </h2>
-      <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[50.5rem] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
+      {/* A 768 px pile, max-md ne s'applique plus alors que max-xl s'applique
+          encore : la grille sortait a 808 px dans une fenetre de 768. La borne va
+          dans la valeur de width, car la classe container pose deja un max-width
+          qui l'emporterait sur un max-w-full (RGAA 10.11). */}
+      <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[min(50.5rem,100%)] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
           <div key={title} className="border-default-grey h-full border p-8">
             <div className="flex h-full flex-col gap-4">
