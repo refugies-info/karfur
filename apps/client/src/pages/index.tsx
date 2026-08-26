@@ -134,7 +134,7 @@ const Homepage = (props: Props) => {
         ))}
       </Carrousel>
 
-      {!isMobile && <FreeResources />}
+      <FreeResources />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
