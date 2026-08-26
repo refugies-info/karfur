@@ -61,25 +61,29 @@ const Newsletter = () => {
         <Image src={NewsletterIllu} alt="" width={433} height={320} className="m-auto max-w-full" />
 
         <div className="stacked relative grid h-full grid-cols-1 grid-rows-1 items-center">
-          {newsletterFormState === "success" && (
-            <Alert
-              closable
-              onClose={() => setNewsletterFormState("default")}
-              severity="success"
-              description={
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: t("NewsletterForm.confirmMessageText", {
-                      defaultValue: "Mail correctement enregistré !",
-                      email: email,
-                    }),
-                  }}
-                ></span>
-              }
-              title={t("NewsletterForm.confirmMessageTitle", "Yay...")}
-              className={cls("z-20 col-start-1 row-start-1 w-full bg-white transition")}
-            />
-          )}
+          {/* Région vivante permanente : role="status" doit exister avant l'arrivée du message
+              pour que les lecteurs d'écran restituent le succès (RGAA 7.5) */}
+          <div role="status" className="z-20 col-start-1 row-start-1 w-full">
+            {newsletterFormState === "success" && (
+              <Alert
+                closable
+                onClose={() => setNewsletterFormState("default")}
+                severity="success"
+                description={
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: t("NewsletterForm.confirmMessageText", {
+                        defaultValue: "Mail correctement enregistré !",
+                        email: email,
+                      }),
+                    }}
+                  ></span>
+                }
+                title={t("NewsletterForm.confirmMessageTitle", "Yay...")}
+                className={cls("w-full bg-white transition")}
+              />
+            )}
+          </div>
           <form
             onSubmit={sendMail}
             className={cls(
@@ -99,6 +103,7 @@ const Newsletter = () => {
                 type: "email",
                 value: email,
                 name: "email",
+                autoComplete: "email",
                 onChange: (e: any) => setEmail(e.target.value),
                 id: "newsletter-email",
               }}
