@@ -158,19 +158,14 @@ const EditDepartments = (props: Props) => {
     // that always exists: when the last chip goes, the whole chip list unmounts.
     inputRef.current?.focus();
     const department = formatDepartment(dep);
-    const message =
-      remaining.length === 0
-        ? t("EditDepartments.last_department_removed", {
-            department,
-            defaultValue:
-              "Département {{department}} retiré. Vous devez sélectionner au moins un département.",
-            interpolation: { escapeValue: false },
-          })
-        : t("EditDepartments.department_removed", {
-            department,
-            defaultValue: "Département {{department}} retiré.",
-            interpolation: { escapeValue: false },
-          });
+    // The removal only. When the last one goes the field also gets the error as
+    // its aria-describedby, read out with the label on the focus move above, so
+    // spelling the error out here too would say it twice in a row.
+    const message = t("EditDepartments.department_removed", {
+      department,
+      defaultValue: "Département {{department}} retiré.",
+      interpolation: { escapeValue: false },
+    });
     // ~300 ms clears the focus echo (measured 27/08); interrupt skips the queued counts.
     if (removeAnnounceTimerRef.current) clearTimeout(removeAnnounceTimerRef.current);
     removeAnnounceTimerRef.current = setTimeout(() => {

@@ -228,7 +228,6 @@
     "suggestions_found_one": "{{count}} suggestion",
     "suggestions_found_other": "{{count}} suggestions",
     "department_removed": "Département {{department}} retiré.",
-    "last_department_removed": "Département {{department}} retiré. Vous devez sélectionner au moins un département.",
     "remove_department": "Retirer le département {{department}}",
     "suggestions_label": "Suggestions de départements",
     "label": "Nom ou numéro du département",

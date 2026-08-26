@@ -272,12 +272,18 @@ describe("EditDepartments, department combobox", () => {
     // The whole chip list unmounts here, which is the case where focus used to
     // fall on <body> and the error appeared with nothing said.
     expect(screen.queryByTitle(/Retirer le département/)).not.toBeInTheDocument();
-    expect(screen.getByText("Vous devez sélectionner au moins un département")).toBeInTheDocument();
     expect(getInput()).toHaveFocus();
+
+    // The error is carried once, by the field's description, read out with the
+    // label on the focus move. The alert only reports the removal, otherwise the
+    // same sentence would be spoken twice in a row.
+    const error = screen.getByText("Vous devez sélectionner au moins un département");
+    expect(getInput()).toHaveAttribute("aria-describedby", error.id);
     await waitFor(() =>
-      expect(screen.getByRole("alert")).toHaveTextContent(
-        /Département Paris \(75\) retiré\. Vous devez sélectionner au moins un département\./,
-      ),
+      expect(screen.getByRole("alert")).toHaveTextContent(/Département Paris \(75\) retiré\./),
+    );
+    expect(screen.getByRole("alert")).not.toHaveTextContent(
+      /Vous devez sélectionner au moins un département/,
     );
   });
 });
