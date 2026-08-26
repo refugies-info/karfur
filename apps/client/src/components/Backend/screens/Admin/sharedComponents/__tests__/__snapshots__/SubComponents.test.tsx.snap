@@ -959,7 +959,7 @@ exports[`should render TabHeader down 1`] = `
   >
     test
     <span
-      aria-label="Tri décroissant"
+      aria-label="tri_decroissant"
       class="icon"
       role="img"
     >
@@ -1030,7 +1030,7 @@ exports[`should render TabHeader up 1`] = `
   >
     test
     <span
-      aria-label="Tri croissant"
+      aria-label="tri_croissant"
       class="icon"
       role="img"
     >

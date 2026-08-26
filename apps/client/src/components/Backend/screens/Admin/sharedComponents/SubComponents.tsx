@@ -327,8 +327,8 @@ export const TabHeader = (props: {
           fill={colors.gray90}
           ariaLabel={
             props.sens === "up"
-              ? t("Tri croissant", "Tri croissant")
-              : t("Tri décroissant", "Tri décroissant")
+              ? t("tri_croissant", "Tri croissant")
+              : t("tri_decroissant", "Tri décroissant")
           }
         />
       )}
