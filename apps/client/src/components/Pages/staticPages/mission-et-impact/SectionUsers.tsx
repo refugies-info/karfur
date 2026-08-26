@@ -20,7 +20,14 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_1"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_1")}</p>
+            {/* Citation en ligne : structurée en q (RGAA 9.4). Les guillemets font partie du
+                texte traduit, on neutralise donc ceux que le navigateur ajoute sur q, sans
+                quoi ils apparaîtraient en double à l'écran. */}
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_1")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges1_badge1")}
@@ -59,7 +66,11 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_2"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_2")}</p>
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_2")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges2_badge")}
