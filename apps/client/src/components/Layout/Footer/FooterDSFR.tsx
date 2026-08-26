@@ -86,7 +86,10 @@ const Footer = () => {
         // reprend l'intitulé et signale la nouvelle fenêtre, comme les autres liens du Footer DSFR.
         homeLinkProps={{
           href: "https://accueil-integration-refugies.fr/",
-          title: "Délégation interministérielle à l’accueil et à l’intégration des réfugiés - ouvre une nouvelle fenêtre",
+          title: `${t(
+            "Footer.diair_full_name",
+            "Délégation interministérielle à l’accueil et à l’intégration des réfugiés",
+          )} - ${t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}`,
         }}
         bottomItems={[
           <Link
