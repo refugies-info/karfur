@@ -20,6 +20,13 @@
     box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: 0;
     border: none;
+
+    // Dans une fenetre de 256 px de haut, la modale mesurait 866 px et etait
+    // coupee en bas, sans moyen d'atteindre la fin de la liste (RGAA 10.11).
+    // 3.5rem = les marges haute et basse que reactstrap pose sur .modal-dialog.
+    // En rem, donc la borne suit l'agrandissement du texte (RGAA 10.4).
+    max-height: calc(100vh - 3.5rem);
+    overflow-y: auto;
   }
 
   .modal_header {
