@@ -1,7 +1,7 @@
 import type { Languages } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import type { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
 import { type AutosaveErrorDetails, reportAutosaveError } from "~/lib/autosaveError";
@@ -68,7 +68,12 @@ const useAutosave = () => {
     }
   }, [pageContext.mode, id, language, methods, data, oldData]); // Removed startDate and router from dependencies
 
-  return { isSaving, hasError, errorDetails };
+  const dismissError = useCallback(() => {
+    setHasError(false);
+    setErrorDetails(null);
+  }, []);
+
+  return { isSaving, hasError, errorDetails, dismissError };
 };
 
 export default useAutosave;
