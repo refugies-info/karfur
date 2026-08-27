@@ -53,7 +53,7 @@ const CustomNavbarTranslate = (props: Props) => {
   const { showMissingSteps, setShowMissingSteps } = useContext(PageContext);
 
   // Save
-  const { isSaving, hasError, errorDetails } = useAutosave();
+  const { isSaving, hasError, errorDetails, dismissError } = useAutosave();
   const saveText = useMemo(() => {
     if (isSaving) return "Sauvegarde en cours...";
     if (hasError) return "Erreur lors de la sauvegarde !";
@@ -190,7 +190,7 @@ const CustomNavbarTranslate = (props: Props) => {
         nbWords={progress.totalWords}
         translators={props.translators}
       />
-      <SaveErrorModal show={hasError} errorDetails={errorDetails} />
+      <SaveErrorModal show={hasError} errorDetails={errorDetails} toggle={dismissError} />
     </div>
   );
 };
