@@ -89,20 +89,34 @@ const EditDepartments = (props: Props) => {
   useEffect(() => {
     if (hidePredictions || search.length < 2) {
       announcedCountRef.current = null;
-      return;
+      return undefined;
     }
     const count = predictions.length;
-    if (announcedCountRef.current === count) return;
+
+    if (count === 0) {
+      // Timed from the LAST keystroke, not from the change of count: the effect
+      // cleanup restarts this timer on every keystroke (search is a dependency),
+      // so the message always lands ~1.5 s after typing stops, clear of the
+      // keyboard echo window where VoiceOver loses it. Once said, it is not
+      // repeated while the count stays at 0; a non-zero count re-arms it.
+      if (announcedCountRef.current === count) return undefined;
+      const timer = setTimeout(() => {
+        announcedCountRef.current = 0;
+        announce("Aucune suggestion trouvée, modifiez votre recherche");
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+
+    if (announcedCountRef.current === count) return undefined;
     announcedCountRef.current = count;
 
-    let message: string;
-    if (count === 0) message = "Aucune suggestion trouvée, modifiez votre recherche";
-    else if (count === 1)
-      message = "1 suggestion trouvée, utilisez les flèches haut et bas pour la parcourir";
-    else
-      message = `${count} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir`;
+    const message =
+      count === 1
+        ? "1 suggestion trouvée, utilisez les flèches haut et bas pour la parcourir"
+        : `${count} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir`;
 
     announce(message, { delay: 1500 });
+    return undefined;
   }, [predictions, hidePredictions, search, announce]);
 
   const handleChange = (e: any) => setSearch(e.target.value);

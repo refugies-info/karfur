@@ -163,6 +163,23 @@ describe("EditDepartments, department combobox", () => {
     );
   });
 
+  it("announces the absence of suggestions once typing stops", async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    await user.type(getInput(), "zz");
+
+    // Timed from the last keystroke: the message lands ~1.5 s after typing
+    // stops, outside the keyboard echo window where VoiceOver loses it.
+    await waitFor(
+      () =>
+        expect(screen.getByRole("status")).toHaveTextContent(
+          /Aucune suggestion trouvée, modifiez votre recherche/,
+        ),
+      { timeout: 4000 },
+    );
+  });
+
   it("does not submit the form when a department is removed", async () => {
     const user = userEvent.setup();
     const API = require("utils/API").default;
