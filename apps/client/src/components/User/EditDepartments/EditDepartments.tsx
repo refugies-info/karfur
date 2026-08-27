@@ -260,6 +260,11 @@ const EditDepartments = (props: Props) => {
               // Browser autofill would cover the suggestion list, and a department
               // search maps to no HTML autofill token.
               autoComplete="off"
+              // Department names are not prose: the spell checker underlines the
+              // query and VoiceOver reads "mal orthographié" over the live-region
+              // announcements (heard in the 27/08 session, masking "Aucune
+              // suggestion trouvée").
+              spellCheck={false}
               role="combobox"
               aria-expanded={isListboxOpen}
               // Pointed at only while the listbox exists: a dangling aria-controls
