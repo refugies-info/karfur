@@ -121,6 +121,16 @@ const EditDepartments = (props: Props) => {
     inputRef.current?.focus();
   };
 
+  const removeAnnounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // A removal announcement still pending when the component unmounts (modal
+  // closed right after a removal) must not fire into a page that moved on.
+  useEffect(
+    () => () => {
+      if (removeAnnounceTimerRef.current) clearTimeout(removeAnnounceTimerRef.current);
+    },
+    [],
+  );
+
   const removeDepartment = (dep: string) => {
     const remaining = selectedDepartments.filter((d) => d !== dep);
     setSelectedDepartments(remaining);
@@ -128,14 +138,20 @@ const EditDepartments = (props: Props) => {
     // <body>. Focus goes back to the search field because it is the only target
     // that always exists: when the last chip goes, the whole chip list unmounts.
     inputRef.current?.focus();
-    // "interrupt" so this direct answer to a user action is not queued behind the
-    // delayed suggestion counts.
-    announce(
+    const message =
       remaining.length === 0
         ? `Département ${formatDepartment(dep)} retiré. Vous devez sélectionner au moins un département.`
-        : `Département ${formatDepartment(dep)} retiré.`,
-      { priority: "interrupt" },
-    );
+        : `Département ${formatDepartment(dep)} retiré.`;
+    // VoiceOver drops a live-region write that lands while it is still reacting
+    // to the focus() above (measured 3-5 ms after focusin). The interrupt path
+    // of the announcer ignores options.delay, so the offset lives here: ~300 ms
+    // puts the write clear of the focus echo. "interrupt" so this direct answer
+    // to a user action is not queued behind the delayed suggestion counts.
+    if (removeAnnounceTimerRef.current) clearTimeout(removeAnnounceTimerRef.current);
+    removeAnnounceTimerRef.current = setTimeout(() => {
+      removeAnnounceTimerRef.current = null;
+      announce(message, { priority: "interrupt" });
+    }, 300);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
