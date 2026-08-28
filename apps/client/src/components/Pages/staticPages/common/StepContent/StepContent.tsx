@@ -18,7 +18,7 @@ interface Props {
   image?: any;
   dottedLine?: boolean;
   width?: number;
-  buttonStep?: string;
+  buttonStep?: React.ReactNode;
   buttonStepEnd?: boolean;
   badge?: string;
 }

@@ -958,7 +958,12 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Votre fiche est publiée ! 🎉
+                Votre fiche est publiée ! 
+                <span
+                  aria-hidden="true"
+                >
+                  🎉
+                </span>
               </div>
             </div>
             <div
