@@ -4,13 +4,22 @@ import logger from "~/logger";
 const webhookUrl = process.env.SLACK_WEBHOOK_URL;
 const webhook = webhookUrl ? new IncomingWebhook(webhookUrl) : null;
 
+/**
+ * Préfixe l'environnement dans les notifs, sauf en production, pour éviter
+ * de confondre une notif de staging (ou d'un poste local) avec une vraie.
+ */
+export const getEnvPrefix = (): string => {
+  const env = process.env.NODE_ENV || "local";
+  return env === "production" ? "" : `[${env.toUpperCase()}] `;
+};
+
 export const sendSlackNotif = async (title: string, text: string, link: string) => {
-  if (process.env.NODE_ENV === "dev") {
-    logger.info("[sendSlackNotif] notif not sent in DEV: ", { title, text, link });
-    return;
-  }
+  // if (process.env.NODE_ENV === "dev") {
+  //   logger.info("[sendSlackNotif] notif not sent in DEV: ", { title, text, link });
+  //   return;
+  // }
   logger.info("[sendSlackNotif] send notif: ", { title, text, link });
-  const prefix = process.env.NODE_ENV === "staging" ? "[STAGING] " : "";
+  const prefix = getEnvPrefix();
   try {
     await webhook?.send({
       blocks: [
@@ -56,7 +65,7 @@ export const slackDeletedAccount = async (email: string) => {
     return;
   }
   logger.info("[sendSlackNotif] send notif: ", { email });
-  const prefix = process.env.NODE_ENV === "staging" ? "[STAGING] " : "";
+  const prefix = getEnvPrefix();
   try {
     await webhook?.send({
       blocks: [
