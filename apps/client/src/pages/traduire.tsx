@@ -221,7 +221,11 @@ const RecensezVotreAction = (props: Props) => {
               ]}
               image={StepImage4}
               width={440}
-              buttonStep="La traduction est publiée 🎉"
+              buttonStep={
+                <>
+                  La traduction est publiée <span aria-hidden="true">🎉</span>
+                </>
+              }
               buttonStepEnd
             />
           </div>

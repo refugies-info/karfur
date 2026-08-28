@@ -70,6 +70,7 @@ import type {
   PublishTranslationRequest,
   ReadSuggestionDispositifRequest,
   RegisterRequest,
+  ReportClientErrorRequest,
   ResetPasswordRequest,
   ResetPasswordResponse,
   SaveTranslationRequest,
@@ -766,6 +767,18 @@ const API = {
   smsContentLink: (body: ContentLinkRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.post<any, null>("/sms/content-link", body, { headers }).then(() => null);
+  },
+  /**
+   * Remonte une erreur du navigateur au canal technique. Volontairement silencieux : l'appel
+   * accompagne un échec déjà signalé à l'utilisatrice ou l'utilisateur, il ne doit pas en
+   * provoquer un second.
+   */
+  reportClientError: (body: ReportClientErrorRequest): Promise<null> => {
+    const headers = getHeaders();
+    return instance
+      .post<any, null>("/client-error", body, { headers })
+      .then(() => null)
+      .catch(() => null);
   },
 };
 

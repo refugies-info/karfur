@@ -605,7 +605,12 @@ exports[`traduire renders traduire 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
-                La traduction est publiée 🎉
+                La traduction est publiée 
+                <span
+                  aria-hidden="true"
+                >
+                  🎉
+                </span>
               </div>
             </div>
             <div

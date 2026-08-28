@@ -310,7 +310,11 @@ const RecensezVotreAction = (props: Props) => {
                 "Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.",
               ]}
               image={StepImage4}
-              buttonStep="Votre fiche est publiée ! 🎉"
+              buttonStep={
+                <>
+                  Votre fiche est publiée ! <span aria-hidden="true">🎉</span>
+                </>
+              }
               width={440}
             />
             <StepContent
