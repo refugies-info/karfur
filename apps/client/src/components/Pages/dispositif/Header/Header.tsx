@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import type { Picture, Sponsor } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import moment from "moment";
 import "moment/locale/ar";
@@ -41,6 +42,28 @@ const Header = (props: Props) => {
 
   // hide sponsor if it's the default sponsor
   const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
+
+  /**
+   * Sponsoring structure logo.
+   *
+   * Contents created outside RI (webhook) have no `mainSponsor`: their structure is
+   * embedded in `sponsors[0]`, whose logo is a plain URL and not a `Picture` object.
+   * We only use that fallback when `mainSponsor` is entirely absent, so that a mere
+   * partner's logo is never shown in place of the sponsoring structure's one.
+   */
+  const structureLogo = useMemo(() => {
+    if (dispositif?.mainSponsor) return dispositif.mainSponsor.picture?.secure_url;
+
+    const logo =
+      dispositif?.sponsors && dispositif?.sponsors.length > 0
+        ? ((dispositif?.sponsors?.[0] as Sponsor | undefined)?.logo as
+            | Picture
+            | string
+            | null
+            | undefined)
+        : null;
+    return typeof logo === "string" ? logo : logo?.secure_url;
+  }, [dispositif]);
 
   let vocalizationContent = "";
 
@@ -94,14 +117,9 @@ const Header = (props: Props) => {
 
       {!isTranslateMode && (
         <div className="flex items-center gap-3 text-sm">
-          {dispositif?.mainSponsor?.picture?.secure_url && (
+          {structureLogo && (
             <span className="border-default-grey relative inline-grid aspect-square h-14 w-14 items-center justify-center border p-1">
-              <Image
-                src={dispositif?.mainSponsor?.picture?.secure_url}
-                width={150}
-                height={150}
-                alt=""
-              />
+              <Image src={structureLogo} width={150} height={150} alt="" />
             </span>
           )}
 

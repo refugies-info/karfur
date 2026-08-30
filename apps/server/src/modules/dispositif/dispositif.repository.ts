@@ -16,6 +16,7 @@ import {
   DispositifModel,
   type Need,
   ObjectId,
+  type Sponsor,
   type Theme,
   type UserId,
 } from "@refugies-info/mongo";
@@ -126,6 +127,29 @@ export const getDispositifArray = async (
   }));
 };
 
+/**
+ * Sponsoring structure embedded in the content, as opposed to sponsors stored as a
+ * reference to a Structure. This is how contents created outside RI (webhook) arrive,
+ * since they have no `mainSponsor`.
+ *
+ * Their logo is a plain URL: we reshape it into the `picture` form the cards expect,
+ * the same way the `administrationLogo` fallback already does for demarches.
+ */
+const getEmbeddedSponsor = (sponsors: Dispositif["sponsors"]) => {
+  const sponsor = (sponsors || []).find(
+    (s): s is Sponsor => !!s && typeof (s as Sponsor).name === "string",
+  );
+  if (!sponsor) return null;
+
+  // A few legacy contents store a Picture object rather than a URL.
+  const logo = sponsor.logo as Picture | string | undefined;
+
+  return {
+    nom: sponsor.name,
+    picture: (typeof logo === "string" ? { secure_url: logo } : logo) as Picture,
+  };
+};
+
 export const getSimpleDispositifs = async (
   query: FilterQuery<Dispositif>,
   locale: Languages,
@@ -137,6 +161,7 @@ export const getSimpleDispositifs = async (
     {
       lastModificationDate: 1,
       mainSponsor: 1,
+      sponsors: 1,
       needs: 1,
       translations: 1,
       nbVuesMobile: 1,
@@ -155,7 +180,7 @@ export const getSimpleDispositifs = async (
         _id: dispositif._id,
         ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
         metadatas: dispositif.metadatas,
-        ...omit(dispositif, ["translations", "mainSponsor"]),
+        ...omit(dispositif, ["translations", "mainSponsor", "sponsors"]),
         availableLanguages: getAvailableLanguages(dispositif),
         hasDraftVersion: dispositif.hasDraftVersion,
         themeSortIndex: dispositif.sortThemeIndex,
@@ -175,6 +200,9 @@ export const getSimpleDispositifs = async (
           picture: dispositif.administrationLogo as any,
         };
       }
+      if (!resDisp.sponsor) {
+        resDisp.sponsor = getEmbeddedSponsor(dispositif.sponsors);
+      }
       return resDisp;
     }),
   );
@@ -191,6 +219,7 @@ export const getStructureDispositifs = async (
     {
       lastModificationDate: 1,
       mainSponsor: 1,
+      sponsors: 1,
       needs: 1,
       translations: 1,
       nbVuesMobile: 1,
@@ -241,7 +270,7 @@ export const getStructureDispositifs = async (
           _id: dispositif._id,
           ...pick(translation.content, ["titreInformatif", "titreMarque", "abstract"]),
           metadatas: dispositif.metadatas,
-          ...omit(dispositif, ["translations", "merci", "mainSponsor"]),
+          ...omit(dispositif, ["translations", "merci", "mainSponsor", "sponsors"]),
           availableLanguages: getAvailableLanguages(dispositif),
           hasDraftVersion: dispositif.hasDraftVersion,
           nbMercis: (dispositif.merci || []).length,
@@ -262,6 +291,9 @@ export const getStructureDispositifs = async (
             nom: (translation.content as DemarcheContent).administrationName,
             picture: dispositif.administrationLogo as any,
           };
+        }
+        if (!resDisp.sponsor) {
+          resDisp.sponsor = getEmbeddedSponsor(dispositif.sponsors);
         }
         return resDisp;
       }),

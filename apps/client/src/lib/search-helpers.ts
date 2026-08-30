@@ -396,6 +396,22 @@ const buildSponsorStages = (): PipelineStage[] => [
   },
   { $unwind: { path: "$sponsorDoc", preserveNullAndEmptyArrays: true } },
   {
+    // First embedded sponsor (a {name, logo} object), as opposed to sponsors stored
+    // as a reference to a Structure. This is how the sponsoring structure arrives
+    // for contents created outside RI (webhook).
+    $addFields: {
+      embeddedSponsor: {
+        $first: {
+          $filter: {
+            input: { $ifNull: ["$sponsors", []] },
+            as: "sponsor",
+            cond: { $eq: [{ $type: "$$sponsor.name" }, "string"] },
+          },
+        },
+      },
+    },
+  },
+  {
     $addFields: {
       sponsor: {
         $switch: {
@@ -427,13 +443,36 @@ const buildSponsorStages = (): PipelineStage[] => [
                 picture: "$administrationLogo",
               },
             },
+            {
+              // contents created outside RI: the sponsoring structure is embedded
+              // in the content, its logo is a plain URL (not a Picture object)
+              case: { $ifNull: ["$embeddedSponsor", false] },
+              then: {
+                nom: "$embeddedSponsor.name",
+                picture: {
+                  $cond: [
+                    { $eq: [{ $type: "$embeddedSponsor.logo" }, "string"] },
+                    { secure_url: "$embeddedSponsor.logo" },
+                    "$embeddedSponsor.logo",
+                  ],
+                },
+              },
+            },
           ],
           default: null,
         },
       },
     },
   },
-  { $project: { sponsorDoc: 0, mainSponsor: 0, administrationLogo: 0 } },
+  {
+    $project: {
+      sponsorDoc: 0,
+      embeddedSponsor: 0,
+      sponsors: 0,
+      mainSponsor: 0,
+      administrationLogo: 0,
+    },
+  },
 ];
 
 const RESULTS_PROJECTION = {
@@ -452,6 +491,7 @@ const RESULTS_PROJECTION = {
   nbVues: 1,
   nbVuesMobile: 1,
   mainSponsor: 1,
+  sponsors: 1, // resolved into `sponsor` by buildSponsorStages, then projected out
   administrationLogo: 1,
   availableLanguages: 1,
   hasDraftVersion: 1,
