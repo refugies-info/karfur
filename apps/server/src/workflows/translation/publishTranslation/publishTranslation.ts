@@ -6,6 +6,38 @@ import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispo
 import { getValidation } from "~/modules/traductions/traductions.repository";
 import validateTranslation from "../validateTranslation";
 
+/**
+ * Extrait toutes les clés de section du contenu FR (titreInformatif, what, accordéons how/why/next).
+ * Utilisé pour détecter les entrées "fantômes" dans toReview — sections supprimées du FR
+ * mais encore présentes dans le document de traduction (migration Typegoose → Zod).
+ */
+const getFrContentKeys = (dispositif: Awaited<ReturnType<typeof getDispositifById>>): string[] => {
+  const fr = dispositif?.translations?.fr?.content as Record<string, unknown> | undefined;
+  if (!fr) return [];
+
+  const keys: string[] = [];
+
+  for (const field of [
+    "titreInformatif",
+    "titreMarque",
+    "abstract",
+    "what",
+    "administrationName",
+  ]) {
+    if (fr[field]) keys.push(`content.${field}`);
+  }
+
+  for (const section of ["why", "how", "next"]) {
+    const sections = fr[section] as Record<string, { title?: string; text?: string }> | undefined;
+    if (!sections) continue;
+    for (const [key, value] of Object.entries(sections)) {
+      if (value?.title) keys.push(`content.${section}.${key}.title`);
+      if (value?.text) keys.push(`content.${section}.${key}.text`);
+    }
+  }
+  return keys;
+};
+
 const publishTranslation = (
   { language, dispositifId }: PublishTranslationRequest,
   user: User,
@@ -24,9 +56,24 @@ const publishTranslation = (
       );
 
       /**
-       * Si la traduction n'est pas terminée ou pas faite par un expert => erreur
+       * Si la traduction n'est pas terminée ou pas faite par un expert => erreur.
+       *
+       * Exception : si toutes les sections restantes dans toReview n'existent plus
+       * dans le FR actuel (supprimées par le rédacteur après la mise en révision),
+       * on considère la traduction comme terminée — l'expert ne peut pas cocher
+       * des sections qui ne sont plus affichées dans l'UI.
        */
-      if (!traduction.finished || !user.isExpert()) {
+      if (!traduction || !userIsExpert) {
+        throw new UnauthorizedError("You cannot publish this dispositif");
+      }
+
+      const pendingToReview = traduction.toReview ?? [];
+      const frKeys = getFrContentKeys(dispositif);
+      const hasOnlyStaleToReview =
+        pendingToReview.length > 0 && pendingToReview.every((key) => !frKeys.includes(key));
+      const effectivelyFinished = traduction.finished || hasOnlyStaleToReview;
+
+      if (!effectivelyFinished) {
         throw new UnauthorizedError("You cannot publish this dispositif");
       }
 
