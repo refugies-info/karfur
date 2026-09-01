@@ -2,6 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { logger } from "logger";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
@@ -21,6 +22,15 @@ const INPUT_ID = "departments-search";
 const LISTBOX_ID = "departments-suggestions";
 const getOptionId = (code: string) => `departments-option-${code}`;
 
+// French fallbacks: the keys live in fr/common.json only until they reach the translation flow.
+const SUGGESTIONS_FOUND_DEFAULTS = {
+  defaultValue_zero: "Aucune suggestion trouvée, modifiez votre recherche",
+  defaultValue_one:
+    "{{count}} suggestion trouvée, utilisez les flèches haut et bas pour la parcourir",
+  defaultValue_other:
+    "{{count}} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir",
+};
+
 interface Props {
   successCallback: () => void;
   setIsLoading?: (isLoading: boolean) => void;
@@ -28,6 +38,7 @@ interface Props {
 }
 
 const EditDepartments = (props: Props) => {
+  const { t } = useTranslation();
   const [error, setError] = useState("");
   const [selectedDepartments, setSelectedDepartments] = useState<string[]>([]);
   const [isDirty, setIsDirty] = useState(false);
@@ -102,7 +113,9 @@ const EditDepartments = (props: Props) => {
       if (announcedCountRef.current === count) return undefined;
       const timer = setTimeout(() => {
         announcedCountRef.current = 0;
-        announce("Aucune suggestion trouvée, modifiez votre recherche");
+        announce(
+          t("EditDepartments.suggestions_found", { count: 0, ...SUGGESTIONS_FOUND_DEFAULTS }),
+        );
       }, 1500);
       return () => clearTimeout(timer);
     }
@@ -110,14 +123,11 @@ const EditDepartments = (props: Props) => {
     if (announcedCountRef.current === count) return undefined;
     announcedCountRef.current = count;
 
-    const message =
-      count === 1
-        ? "1 suggestion trouvée, utilisez les flèches haut et bas pour la parcourir"
-        : `${count} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir`;
-
-    announce(message, { delay: 1500 });
+    announce(t("EditDepartments.suggestions_found", { count, ...SUGGESTIONS_FOUND_DEFAULTS }), {
+      delay: 1500,
+    });
     return undefined;
-  }, [predictions, hidePredictions, search, announce]);
+  }, [predictions, hidePredictions, search, announce, t]);
 
   const handleChange = (e: any) => setSearch(e.target.value);
   const onPlaceSelected = async (id: string, { restoreFocus = true } = {}) => {
@@ -152,10 +162,20 @@ const EditDepartments = (props: Props) => {
     // <body>. Focus goes back to the search field because it is the only target
     // that always exists: when the last chip goes, the whole chip list unmounts.
     inputRef.current?.focus();
+    const department = formatDepartment(dep);
     const message =
       remaining.length === 0
-        ? `Département ${formatDepartment(dep)} retiré. Vous devez sélectionner au moins un département.`
-        : `Département ${formatDepartment(dep)} retiré.`;
+        ? t("EditDepartments.last_department_removed", {
+            department,
+            defaultValue:
+              "Département {{department}} retiré. Vous devez sélectionner au moins un département.",
+            interpolation: { escapeValue: false },
+          })
+        : t("EditDepartments.department_removed", {
+            department,
+            defaultValue: "Département {{department}} retiré.",
+            interpolation: { escapeValue: false },
+          });
     // VoiceOver drops a live-region write that lands while it is still reacting
     // to the focus() above (measured 3-5 ms after focusin). The interrupt path
     // of the announcer ignores options.delay, so the offset lives here: ~300 ms
@@ -248,14 +268,14 @@ const EditDepartments = (props: Props) => {
           */}
           <div className="fr-search-bar">
             <label className="fr-label" htmlFor={INPUT_ID}>
-              Rechercher
+              {t("Rechercher", "Rechercher")}
             </label>
             <input
               ref={inputRef}
               className="fr-input"
               name="location"
               id={INPUT_ID}
-              placeholder="Rechercher"
+              placeholder={t("Rechercher", "Rechercher")}
               type="search"
               // Browser autofill would cover the suggestion list, and a department
               // search maps to no HTML autofill token.
@@ -286,11 +306,11 @@ const EditDepartments = (props: Props) => {
               <button
                 type="button"
                 className="fr-btn"
-                title="Rechercher"
+                title={t("Rechercher", "Rechercher")}
                 style={{ position: "absolute", right: 0 }}
                 onClick={() => inputRef.current?.focus()}
               >
-                Rechercher
+                {t("Rechercher", "Rechercher")}
               </button>
             )}
           </div>
@@ -299,7 +319,7 @@ const EditDepartments = (props: Props) => {
               className={styles.suggestions}
               id={LISTBOX_ID}
               role="listbox"
-              aria-label="Suggestions de départements"
+              aria-label={t("EditDepartments.suggestions_label", "Suggestions de départements")}
             >
               {predictions.map((p, index) => (
                 // `role="option"` on a <button> is allowed by ARIA in HTML, and it
@@ -332,7 +352,11 @@ const EditDepartments = (props: Props) => {
                 <Button
                   iconId="fr-icon-close-line"
                   priority="tertiary no outline"
-                  title={`Retirer le département ${formatDepartment(dep)}`}
+                  title={t("EditDepartments.remove_department", {
+                    department: formatDepartment(dep),
+                    defaultValue: "Retirer le département {{department}}",
+                    interpolation: { escapeValue: false },
+                  })}
                   size="small"
                   // Without this the DSFR button falls back to type="submit" and
                   // removing a chip saves the form.
