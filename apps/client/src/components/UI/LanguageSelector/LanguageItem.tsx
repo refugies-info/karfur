@@ -70,7 +70,7 @@ const LanguageItem = memo(
             (currentLanguage === item.i18nCode && !disabled) || forceActive ? styles.selected : "",
             type === "page" && "[&:before]:hidden",
             disabled &&
-              `disabled [&_*]:text-disabled-grey hover:bg-white [&_*]:pointer-events-none [&_*]:cursor-not-allowed ${styles.disabled}`,
+              `disabled [&_*]:text-mention-grey hover:bg-white [&_*]:pointer-events-none [&_*]:cursor-not-allowed ${styles.disabled}`,
             className,
           )}
           disabled={disabled}
