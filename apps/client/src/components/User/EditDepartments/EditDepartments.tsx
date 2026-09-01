@@ -294,9 +294,8 @@ const EditDepartments = (props: Props) => {
             {!isInputFocused && search === "" && (
               <button
                 type="button"
-                className="fr-btn"
+                className="fr-btn absolute end-0"
                 title={t("Rechercher", "Rechercher")}
-                style={{ position: "absolute", right: 0 }}
                 onClick={() => inputRef.current?.focus()}
               >
                 {t("Rechercher", "Rechercher")}
