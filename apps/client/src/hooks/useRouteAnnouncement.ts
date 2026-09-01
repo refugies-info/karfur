@@ -1,5 +1,6 @@
 import Router, { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
+import { humanizeRoutePattern } from "~/lib/humanizeRoutePattern";
 
 /**
  * Identifiant du paragraphe d'annonce posé tout en haut du `<body>` par
@@ -61,25 +62,6 @@ export const markAnchorNavigation = () => {
 
 export const clearAnchorNavigation = () => {
   anchorNavigationInProgress = false;
-};
-
-/**
- * Repli lisible pour les routes servies sans `<title>` (mesurées :
- * `/download-app`, `/embed`, `/dispositif`, `/demarche`). On humanise le motif
- * de route plutôt que d'annoncer un chemin d'URL brut ou de focaliser un
- * paragraphe vide (RGAA 12.8, R14/D13). Aucune clé i18n : le motif de route
- * est le seul libellé disponible sans traduction.
- */
-const humanizeRoutePattern = (pathname: string): string => {
-  const label = pathname
-    .replace(/[[\]]|\.{3}/g, "")
-    .split("/")
-    .filter(Boolean)
-    .join(" ")
-    .replace(/-/g, " ")
-    .trim();
-  if (!label) return "";
-  return label.charAt(0).toUpperCase() + label.slice(1);
 };
 
 const writeAnnouncement = (text: string, moveFocus: boolean) => {
