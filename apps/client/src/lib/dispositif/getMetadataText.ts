@@ -47,31 +47,25 @@ export const getPriceText = (data: Metadatas["price"] | undefined, t: TFunction)
 };
 
 /**
- * jsUcfirst ne portant que sur le premier caractère, l'appliquer au seul premier élément
- * redonne exactement la chaîne d'origine une fois les éléments recollés par ", ".
+ * Valeurs dont le libellé se lit dans le namespace Infocards. Union fermée et non string :
+ * c'est elle qui laisse t() vérifier les clés `Infocards.${valeur}` à la compilation.
  */
-const ucfirstFirstItem = (labels: string[]): string[] =>
-  labels.length === 0 ? [] : [jsUcfirst(labels[0]), ...labels.slice(1)];
+type InfocardsValue = NonNullable<Metadatas["public"] | Metadatas["publicStatus"]>[number];
 
 /**
- * Mêmes libellés que getPublicStatusText, mais élément par élément au lieu d'une chaîne
- * jointe, pour pouvoir structurer l'énumération en ul/li (RGAA 9.3).
+ * Libellés d'une énumération de métadonnées, un par élément au lieu d'une chaîne jointe,
+ * pour pouvoir la structurer en ul/li (RGAA 9.3). Seul le premier porte la majuscule,
+ * comme la chaîne jointe que ces listes remplacent.
  */
-export const getPublicStatusList = (
-  data: Metadatas["publicStatus"] | undefined,
+export const getInfocardsLabels = (
+  data: readonly InfocardsValue[] | null | undefined,
   t: TFunction,
 ): string[] | null => {
   if (!data || data.length === 0) return null;
-  return ucfirstFirstItem(data.map((d) => t(`Infocards.${d}`) as string));
-};
-
-/** Mêmes libellés que getPublicText, en liste. Voir getPublicStatusList. */
-export const getPublicList = (
-  data: Metadatas["public"] | undefined,
-  t: TFunction,
-): string[] | null => {
-  if (!data || data.length === 0) return null;
-  return ucfirstFirstItem(data.map((d) => t(`Infocards.${d}`) as string));
+  return data.map((value, index) => {
+    const label = t(`Infocards.${value}`) as string;
+    return index === 0 ? jsUcfirst(label) : label;
+  });
 };
 
 export const getPublicStatusText = (
