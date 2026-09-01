@@ -73,9 +73,11 @@ exports[`auth renders auth 1`] = `
     <div
       class="separator mx"
     >
-      <span>
+      <p
+        class="separator_label"
+      >
         ou connectez-vous avec
-      </span>
+      </p>
     </div>
     <button
       class="fr-btn fr-btn--tertiary button mb-4"

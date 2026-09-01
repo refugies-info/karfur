@@ -179,7 +179,7 @@ const AuthEmail = () => {
           </form>
 
           <div className={cls(styles.separator, styles.mx)}>
-            <span>ou connectez-vous avec</span>
+            <p className={styles.separator_label}>ou connectez-vous avec</p>
           </div>
 
           <Button onClick={loginGoogle} className={cls(styles.button, "mb-4")} priority="tertiary">

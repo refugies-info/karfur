@@ -99,6 +99,7 @@ const AuthLogin = () => {
           dismissible
           nativeButtonProps={{
             onClick: () => router.push(getPath("/auth", "fr")),
+            "aria-label": `${email} Changer mon adresse email`,
           }}
         >
           {email}
@@ -117,7 +118,19 @@ const AuthLogin = () => {
         <PasswordInput
           label="Mot de passe"
           messages={passwordStrength.criterias.map((criteria) => ({
-            message: t(criteria.label),
+            // RGAA 10.2: the green tick / red cross alone carries the state, so repeat it in text.
+            message: (
+              <>
+                {t(criteria.label)}
+                {!!password && (
+                  <span className="sr-only">
+                    {criteria.isOk
+                      ? t("Register.criteria_met", " (règle respectée)")
+                      : t("Register.criteria_not_met", " (règle non respectée)")}
+                  </span>
+                )}
+              </>
+            ),
             severity: !password ? "info" : criteria.isOk ? "valid" : "error",
           }))}
           nativeInputProps={{

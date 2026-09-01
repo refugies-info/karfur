@@ -216,6 +216,8 @@
     "criteria_special": "Un caractère spécial (!, @, #, $, &, *)",
     "criteria_number": "Un chiffre",
     "criteria_minlength": "Au moins 7 caractères",
+    "criteria_met": " (règle respectée)",
+    "criteria_not_met": " (règle non respectée)",
     "strong_password": "Mot de passe fort",
     "weak_password": "Mot de passe trop faible, il manque :",
     "email_invitation": "Nous vous enverrons un email d'invitation pour vous inscrire",

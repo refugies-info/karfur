@@ -13,6 +13,8 @@ export type FieldsetProps = {
   stateRelatedMessage?: ReactNode;
   disabled?: boolean;
   name?: string;
+  /** Id of the heading that names the group (RGAA 8.9). */
+  labelledBy?: string;
   options: {
     label: ReactNode;
     hintText?: ReactNode;
@@ -34,6 +36,7 @@ const PartnerRadio = memo(
       stateRelatedMessage,
       disabled = false,
       name: name_props,
+      labelledBy,
       ...rest
     } = props;
 
@@ -70,7 +73,7 @@ const PartnerRadio = memo(
           className,
         )}
         disabled={disabled}
-        aria-labelledby={cls(messagesWrapperId)}
+        aria-labelledby={labelledBy ?? messagesWrapperId}
         role={state === "default" ? undefined : "group"}
         {...rest}
         ref={ref}
