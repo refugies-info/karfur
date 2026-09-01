@@ -126,6 +126,24 @@ describe("EditDepartments, department combobox", () => {
     expect(screen.getByTitle("Retirer le département Paris (75)")).toBeInTheDocument();
   });
 
+  it("lets Tab move focus on after accepting the active option", async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+    const input = getInput();
+
+    await user.type(input, "Paris");
+    await waitFor(() => expect(screen.getByRole("listbox")).toBeInTheDocument());
+    await user.keyboard("{ArrowDown}");
+
+    await user.tab();
+
+    // The async selection settles after Tab has moved focus: it must not pull it back.
+    await waitFor(() =>
+      expect(screen.getByTitle("Retirer le département Paris (75)")).toBeInTheDocument(),
+    );
+    expect(input).not.toHaveFocus();
+  });
+
   it("closes on Escape, then clears the field on a second Escape", async () => {
     const user = userEvent.setup();
     await renderComponent();

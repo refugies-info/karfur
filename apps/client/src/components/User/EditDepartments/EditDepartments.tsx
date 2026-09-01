@@ -120,7 +120,7 @@ const EditDepartments = (props: Props) => {
   }, [predictions, hidePredictions, search, announce]);
 
   const handleChange = (e: any) => setSearch(e.target.value);
-  const onPlaceSelected = async (id: string) => {
+  const onPlaceSelected = async (id: string, { restoreFocus = true } = {}) => {
     if (!isDirty) setIsDirty(true);
     const place = await getPlaceSelected(id);
     if (!place) return;
@@ -132,7 +132,7 @@ const EditDepartments = (props: Props) => {
     setHidePredictions(true);
     setSearch("");
     setActiveIndex(-1);
-    inputRef.current?.focus();
+    if (restoreFocus) inputRef.current?.focus();
   };
 
   const removeAnnounceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -212,8 +212,8 @@ const EditDepartments = (props: Props) => {
         return;
 
       case "Tab":
-        // Accept the focused option, then let focus move on normally.
-        if (activeOption) onPlaceSelected(activeOption.id);
+        // Tab has already moved focus on; the selection must not pull it back.
+        if (activeOption) onPlaceSelected(activeOption.id, { restoreFocus: false });
         setHidePredictions(true);
         return;
 
