@@ -1,4 +1,5 @@
 import { ToastClose, ToastDescription, Toast as ToastRoot } from "@radix-ui/react-toast";
+import { useTranslation } from "next-i18next";
 import type React from "react";
 import { cn } from "~/lib/classname";
 import styles from "./Toast.module.scss";
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
+  const { t } = useTranslation();
   // The viewport is mounted only while a toast is shown (RGAA 8.9).
   useDeclareToast(open);
 
@@ -28,7 +30,7 @@ const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
         />
         {children}
       </ToastDescription>
-      <ToastClose aria-label="Close" className={styles.close}>
+      <ToastClose aria-label={t("close", "Fermer")} className={styles.close}>
         <i className={"fr-icon-close-line"} aria-hidden />
       </ToastClose>
     </ToastRoot>
