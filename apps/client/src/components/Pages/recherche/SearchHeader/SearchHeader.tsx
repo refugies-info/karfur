@@ -60,7 +60,7 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      <header role="banner" aria-labelledby="search-title">
+      <header aria-labelledby="search-title">
         <div className={styles.title}>
           <Container>
             <h1 id="search-title">{t("Recherche.title")}</h1>

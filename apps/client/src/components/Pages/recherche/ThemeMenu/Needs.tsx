@@ -149,7 +149,9 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                 checked: allNeedsSelected,
                 onChange: toggleAllNeeds,
                 className: "!border",
-                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", "fiches")}`,
+                "aria-label": t("Recherche.allSheetsCount", {
+                  count: (selectedThemeId && nbDispositifsByTheme[selectedThemeId.toString()]) || 0,
+                }),
               },
             },
             ...displayedNeeds.map((need) => {

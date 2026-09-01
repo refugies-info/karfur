@@ -58,7 +58,6 @@ export function DialogMenuLayout({
           value={value ?? []}
           onClear={resetOptions}
           isOpen={open}
-          aria-haspopup="menu"
           aria-expanded={open}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
@@ -71,6 +70,7 @@ export function DialogMenuLayout({
       {open && (
         <Dialog.Portal>
           <Dialog.Content
+            aria-modal="true"
             className={cls(
               styles.dialogMenu,
               open && !isAnimatingOut && styles.isOpen,

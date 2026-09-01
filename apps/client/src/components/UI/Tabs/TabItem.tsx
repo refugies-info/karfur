@@ -15,6 +15,7 @@ const TabItem = React.forwardRef<HTMLButtonElement, TabItemProps>(
       <li className={styles.tabitemwrapper}>
         <button
           className={cls(styles.tabitem, isActive && styles.active, className)}
+          aria-current={isActive ? "true" : undefined}
           {...props}
           ref={ref}
         >
