@@ -54,7 +54,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             priority={vote === true ? "primary" : "secondary"}
             className={cn(
               "flex h-[2.5rem] items-end gap-2 rounded-s-[50rem] shadow-none transition-all",
-              vote === false && "text-disabled-grey",
+              vote === false && "text-mention-grey",
             )}
           >
             <div className="relative">
@@ -77,7 +77,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             onClick={handleClickNo}
             className={cn(
               "flex h-[2.5rem] items-end gap-2 rounded-e-[50rem] shadow-none transition-all",
-              vote === true && "text-disabled-grey",
+              vote === true && "text-mention-grey",
             )}
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span>
