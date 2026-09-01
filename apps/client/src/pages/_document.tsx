@@ -17,6 +17,8 @@ const getServerTitle = (props: DocumentProps): string => {
 };
 
 export default function Document(props: DocumentProps) {
+  // The auth tunnel renders neither the main navigation nor the footer (RGAA 6.1).
+  const hasNavigationAndFooter = !(props.__NEXT_DATA__?.page ?? "").startsWith("/auth");
   return (
     <Html {...getColorSchemeHtmlAttributes(props)} className={caveat.variable}>
       <Head>
@@ -34,7 +36,7 @@ export default function Document(props: DocumentProps) {
         <p id={ROUTE_ANNOUNCER_ID} tabIndex={-1} className="sr-only">
           {getServerTitle(props)}
         </p>
-        <SkipLinksNavigation />
+        <SkipLinksNavigation hasNavigationAndFooter={hasNavigationAndFooter} />
         <Main />
         <NextScript />
       </body>
