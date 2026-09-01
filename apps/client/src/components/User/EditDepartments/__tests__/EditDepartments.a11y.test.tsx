@@ -66,6 +66,11 @@ describe("EditDepartments, department combobox", () => {
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
+  it("programmatically links the visible label to the search field", async () => {
+    await renderComponent();
+    expect(screen.getByLabelText(/Nom ou numéro du département/)).toBe(getInput());
+  });
+
   it("opens a listbox of options once a search matches", async () => {
     const user = userEvent.setup();
     await renderComponent();

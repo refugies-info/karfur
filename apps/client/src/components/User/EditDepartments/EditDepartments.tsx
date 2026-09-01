@@ -234,7 +234,7 @@ const EditDepartments = (props: Props) => {
 
   return (
     <form onSubmit={submit}>
-      <label htmlFor="location" className="fr-label mb-2">
+      <label htmlFor={INPUT_ID} className="fr-label mb-2">
         Nom ou numéro du département
         <span className="fr-hint-text">Plusieurs choix possibles</span>
       </label>
