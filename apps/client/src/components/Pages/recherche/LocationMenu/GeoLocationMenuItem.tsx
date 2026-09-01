@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { cls, cn } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -11,6 +12,7 @@ import styles from "./GeoLocationMenuItem.module.css";
 const GeoLocationMenuItem: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const announce = useAnnounce();
   // Initialize with true if geolocation is supported (check synchronously)
   const [geolocationSupported, setGeolocationSupported] = useState(
     typeof navigator !== "undefined" && "geolocation" in navigator,
@@ -32,12 +34,23 @@ const GeoLocationMenuItem: React.FC = () => {
               `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
             )
             .then((response) => {
-              if (response.data[0]?.departement?.nom) {
+              const department = response.data[0]?.departement?.nom;
+              if (department) {
                 dispatch(
                   addToQueryActionCreator({
-                    departments: [response.data[0].departement.nom],
+                    departments: [department],
                     sort: "location",
                   }),
+                );
+                announce(
+                  t(
+                    "Recherche.positionDepartmentSelected",
+                    "Département {{department}} sélectionné",
+                    {
+                      department,
+                    },
+                  ),
+                  { priority: "interrupt" },
                 );
               }
             });

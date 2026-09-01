@@ -87,6 +87,7 @@
     "titleThemes": "Les thématiques de l'intégration",
     "positionButton": "Utiliser ma position",
     "positionEnable": "Vous devez activer la géolocalisation pour votre navigateur",
+    "positionDepartmentSelected": "Département {{department}} sélectionné",
     "notDeployedText": "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
     "fiches_zero": "fiche",
     "fiches_one": "fiche",
