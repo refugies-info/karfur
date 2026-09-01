@@ -105,11 +105,7 @@ const EditDepartments = (props: Props) => {
     const count = predictions.length;
 
     if (count === 0) {
-      // Timed from the LAST keystroke, not from the change of count: the effect
-      // cleanup restarts this timer on every keystroke (search is a dependency),
-      // so the message always lands ~1.5 s after typing stops, clear of the
-      // keyboard echo window where VoiceOver loses it. Once said, it is not
-      // repeated while the count stays at 0; a non-zero count re-arms it.
+      // ~1.5 s from the last keystroke clears the keyboard echo (measured 27/08); said only once.
       if (announcedCountRef.current === count) return undefined;
       const timer = setTimeout(() => {
         announcedCountRef.current = 0;
@@ -176,11 +172,7 @@ const EditDepartments = (props: Props) => {
             defaultValue: "Département {{department}} retiré.",
             interpolation: { escapeValue: false },
           });
-    // VoiceOver drops a live-region write that lands while it is still reacting
-    // to the focus() above (measured 3-5 ms after focusin). The interrupt path
-    // of the announcer ignores options.delay, so the offset lives here: ~300 ms
-    // puts the write clear of the focus echo. "interrupt" so this direct answer
-    // to a user action is not queued behind the delayed suggestion counts.
+    // ~300 ms clears the focus echo (measured 27/08); interrupt skips the queued counts.
     if (removeAnnounceTimerRef.current) clearTimeout(removeAnnounceTimerRef.current);
     removeAnnounceTimerRef.current = setTimeout(() => {
       removeAnnounceTimerRef.current = null;
@@ -280,10 +272,7 @@ const EditDepartments = (props: Props) => {
               // Browser autofill would cover the suggestion list, and a department
               // search maps to no HTML autofill token.
               autoComplete="off"
-              // Department names are not prose: the spell checker underlines the
-              // query and VoiceOver reads "mal orthographié" over the live-region
-              // announcements (heard in the 27/08 session, masking "Aucune
-              // suggestion trouvée").
+              // The spell checker talks over the announcements in VoiceOver (measured 27/08).
               spellCheck={false}
               role="combobox"
               aria-expanded={isListboxOpen}
