@@ -849,6 +849,7 @@ exports[`traduire renders traduire 1`] = `
                         Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -890,6 +891,7 @@ exports[`traduire renders traduire 1`] = `
                         Combien de fiches je dois traduire ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -931,6 +933,7 @@ exports[`traduire renders traduire 1`] = `
                         Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -972,6 +975,7 @@ exports[`traduire renders traduire 1`] = `
                         Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -1013,6 +1017,7 @@ exports[`traduire renders traduire 1`] = `
                         Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>

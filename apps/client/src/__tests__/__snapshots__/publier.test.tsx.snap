@@ -253,6 +253,7 @@ exports[`publier renders publier 1`] = `
                         Bénéficiez d'un outil gratuit et traduit
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
                       />
                     </button>
@@ -303,6 +304,7 @@ exports[`publier renders publier 1`] = `
                         Donnez de la visibilité à votre action
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -344,6 +346,7 @@ exports[`publier renders publier 1`] = `
                         Recevez des candidatures adaptées
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -385,6 +388,7 @@ exports[`publier renders publier 1`] = `
                         Participez à un service public ouvert
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -1367,6 +1371,7 @@ exports[`publier renders publier 1`] = `
                           Pourquoi je dois écrire moi-même la fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1408,6 +1413,7 @@ exports[`publier renders publier 1`] = `
                           Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1449,6 +1455,7 @@ exports[`publier renders publier 1`] = `
                           En combien de temps ma fiche sera publiée ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1490,6 +1497,7 @@ exports[`publier renders publier 1`] = `
                           Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1531,6 +1539,7 @@ exports[`publier renders publier 1`] = `
                           Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
