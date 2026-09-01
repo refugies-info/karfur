@@ -547,7 +547,7 @@ exports[`publier renders publier 1`] = `
         <div
           class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
         >
-          <div
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -613,8 +613,8 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </article>
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -680,8 +680,8 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </article>
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -747,7 +747,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
         <div
           class="mt-10 text-center lg:mt-20"
@@ -800,11 +800,11 @@ exports[`publier renders publier 1`] = `
               >
                 Créez votre compte Réfugiés.info
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.
-              </div>
+              </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
@@ -849,16 +849,16 @@ exports[`publier renders publier 1`] = `
               >
                 Rédigez votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.
-              </div>
+              </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
@@ -903,11 +903,11 @@ exports[`publier renders publier 1`] = `
               >
                 Ajoutez la structure responsable
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.
-              </div>
+              </p>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -945,16 +945,16 @@ exports[`publier renders publier 1`] = `
               >
                 L’équipe éditoriale de Réfugiés.info relit et publie votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
-              </div>
+              </p>
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
@@ -1002,16 +1002,16 @@ exports[`publier renders publier 1`] = `
               >
                 Traduction en 7 langues de votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.
-              </div>
+              </p>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -1049,16 +1049,16 @@ exports[`publier renders publier 1`] = `
               >
                 Mettez à jour votre action régulièrement
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Attention, une action obsolète sera supprimée par l’équipe éditoriale.
-              </div>
+              </p>
               <span
                 class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />
@@ -1116,7 +1116,6 @@ exports[`publier renders publier 1`] = `
               href="https://kit.refugies.info/formation"
               rel="noopener noreferrer"
               target="_blank"
-              title="Séances découverte"
             >
               <div
                 class="flex h-full flex-col"
@@ -1153,6 +1152,7 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
@@ -1162,7 +1162,6 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Tutoriels et centre d’aide"
             >
               <div
                 class="flex h-full flex-col"
@@ -1199,13 +1198,13 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
             </a>
             <button
               class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint"
-              title="Live chat"
             >
               <div
                 class="flex h-full flex-col"
@@ -1242,6 +1241,7 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
@@ -1269,9 +1269,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
@@ -1285,9 +1287,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
@@ -1301,9 +1305,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"

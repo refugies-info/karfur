@@ -91,9 +91,9 @@ const StepContent = (props: Props) => {
               </ul>
             </div>
           ) : (
-            <div key={i} className="text-large mb-6">
+            <p key={i} className="text-large mb-6">
               {text}
-            </div>
+            </p>
           ),
         )}
         {props.cta && (

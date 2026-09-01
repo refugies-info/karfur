@@ -8,9 +8,6 @@ interface Props {
 
 const Flag = (props: Props) =>
   props.langueCode ? (
-    <span
-      className={cls(styles.flag, `fi fi-${props.langueCode}`, props.className)}
-      title={props.langueCode}
-    />
+    <span className={cls(styles.flag, `fi fi-${props.langueCode}`, props.className)} />
   ) : null;
 export default Flag;
