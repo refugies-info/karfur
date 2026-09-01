@@ -18,7 +18,7 @@ const AccordionLabel = ({ title, city }: { title: string; city?: string | null }
       <span className="text-title-xs mb-2 font-semibold">{title}</span>
       {city && (
         <p className="text-default-grey text-corps-sm mb-0 print:hidden">
-          <i className="fr-icon-building-line before:scale-75" />
+          <i className="fr-icon-building-line before:scale-75" aria-hidden="true" />
           {city}
         </p>
       )}

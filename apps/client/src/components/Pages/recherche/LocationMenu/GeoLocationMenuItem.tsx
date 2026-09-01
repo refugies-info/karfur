@@ -66,7 +66,10 @@ const GeoLocationMenuItem: React.FC = () => {
           onKeyDown={(e) => onEnterOrSpace(e, getLocation)}
           className={cn("w-full", styles.button)}
         >
-          <i className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)} />
+          <i
+            className={cls("fr-icon-send-plane-fill", "fr-icon--sm", styles.icon)}
+            aria-hidden="true"
+          />
           <span className={styles.buttonText}>
             {t("Recherche.positionButton", "Utiliser ma position")}
           </span>

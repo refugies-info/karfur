@@ -20,7 +20,7 @@ const SearchButton: React.FC<Props> = ({ onChange }) => {
   return (
     <form className={styles.container} onSubmit={(e) => e.preventDefault()}>
       <div className={styles.zone}>
-        <i className={cls("fr-icon-search-line", styles.icon)} />
+        <i className={cls("fr-icon-search-line", styles.icon)} aria-hidden="true" />
         <label htmlFor="theme-search-button" className="sr-only">
           {t("Recherche.themesPlaceholder", "Rechercher dans les thèmes")}
         </label>

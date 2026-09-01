@@ -14,7 +14,10 @@ const DSFRBadge = (props: Props) => {
   return (
     <Badge className={props.className} severity={props.severity} small={props.small} noIcon>
       {props.icon && (
-        <i className={cls(styles.icon, props.small && styles.small, props.icon, "me-1")} />
+        <i
+          className={cls(styles.icon, props.small && styles.small, props.icon, "me-1")}
+          aria-hidden="true"
+        />
       )}
       {props.children}
     </Badge>

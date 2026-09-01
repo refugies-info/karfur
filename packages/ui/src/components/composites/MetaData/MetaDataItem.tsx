@@ -41,7 +41,7 @@ export const MetaDataItem = ({
     >
       {icon &&
         (typeof icon === "string" ? (
-          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} />
+          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} aria-hidden="true" />
         ) : (
           icon
         ))}
@@ -70,7 +70,10 @@ export const MetaDataItem = ({
       {onClick && (
         <span className="ml-auto flex items-center">
           {state === "invalid" && (
-            <i className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1" />
+            <i
+              className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1"
+              aria-hidden="true"
+            />
           )}
           <Button
             iconId="fr-icon-edit-line"
