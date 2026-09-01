@@ -20,9 +20,9 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_1"),
               }}
             ></p>
-            {/* Citation en ligne : structurée en q (RGAA 9.4). Les guillemets font partie du
-                texte traduit, on neutralise donc ceux que le navigateur ajoute sur q, sans
-                quoi ils apparaîtraient en double à l'écran. */}
+            {/* Citations en ligne en q, prescrites par l'audit Ideance, P11, critère 9.4. Les
+                guillemets sont déjà dans le texte traduit, ceux du navigateur sont neutralisés
+                pour ne pas les doubler à l'écran. */}
             <p className="text-large">
               <q className="after:content-none before:content-none">
                 {t("MissionImpact.users_testimony_1")}

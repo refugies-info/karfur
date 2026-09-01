@@ -6,11 +6,7 @@ type AdressContentProps = {
   poi: Poi;
 };
 
-// role="list" et role="listitem" : parade défensive. Un ul sans puce peut perdre sa nature
-// de liste sous Safari et VoiceOver, et les li sont en display:flex, ce qui leur retire leur
-// rôle natif. Les deux sautent si la mesure au lecteur d'écran conclut qu'ils sont inutiles.
-// Chaque ligne garde exactement les classes qu'elle portait en <p>, plus p-0 pour annuler
-// le padding bas que la base DSFR pose sur les li.
+// Les classes que chaque ligne portait en <p>, plus p-0 pour le padding que DSFR pose sur les li.
 const LINE_CLASS =
   "text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2 p-0";
 
@@ -20,8 +16,8 @@ export default function AdressContent({ poi }: AdressContentProps) {
     navigator.clipboard.writeText(address);
   };
 
-  // Les informations du lieu sont une énumération : elles se structurent en ul/li (RGAA 9.3).
-  // On ne rend aucune liste quand il n'y a rien à lister.
+  // Informations du lieu : énumération structurée en ul/li (RGAA 9.3), rien de rendu si vide.
+  // Les rôles explicites sont justifiés sur la prop contentAs de MetaDataItem.
   const lines = [
     poi.address && poi.address.length > 1 ? (
       <li key="address" className={LINE_CLASS} role="listitem">
