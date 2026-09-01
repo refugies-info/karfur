@@ -25,13 +25,11 @@ export const SectionMission = () => {
             />
           </div>
           <div className="flex-1">
-            {/* Blockquote prescrit nommément par l'audit Ideance, page P11, critère 9.4,
-                section "La mission de Réfugiés.info". */}
-            <blockquote className="m-0">
-              <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
-              <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
-              <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
-            </blockquote>
+            {/* Levée de fait du 9.4 prescrit ici : la citation a disparu du contenu le 25/06
+                (commit 4efd162f5), voir docs/notes-tickets/rga-13.md. */}
+            <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
+            <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
+            <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>
           </div>
         </div>
       </div>
