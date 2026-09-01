@@ -126,14 +126,9 @@ const EditDepartments = (props: Props) => {
 
         {selectedDepartments.length > 0 && (
           <div className="mt-12">
-            {/* list-none p-0 m-0 sur le ul : neutralise la puce et le retrait posés par la base
-                DSFR, pour un rendu identique à l'ancienne structure en div. Le padding bas que
-                DSFR pose sur les li est déjà écrasé par le raccourci padding de .option. */}
-            {/* role="list" et role="listitem" : parade défensive, pas une exigence RGAA.
-                Un ul sans puce peut perdre sa nature de liste sous Safari et VoiceOver, et
-                .option met les li en inline-flex, ce qui leur retire leur rôle natif.
-                Mesure au lecteur d'écran en attente, ces deux attributs sautent si elle
-                conclut qu'ils sont inutiles. */}
+            {/* Énumération de départements : ul/li (RGAA 9.3), puce et retrait DSFR neutralisés
+                pour un rendu identique à l'ancienne structure en div. Rôles explicites justifiés
+                sur la prop contentAs de MetaDataItem. */}
             <ul className="m-0 list-none p-0" role="list">
               {selectedDepartments.map((dep) => (
                 <li key={dep} className={styles.option} role="listitem">

@@ -25,8 +25,8 @@ export const SectionMission = () => {
             />
           </div>
           <div className="flex-1">
-            {/* Bloc de citation relevé par l'audit : structuré en blockquote (RGAA 9.4).
-                m-0 explicite, la base annule déjà la marge par défaut du blockquote. */}
+            {/* Blockquote prescrit nommément par l'audit Ideance, page P11, critère 9.4,
+                section "La mission de Réfugiés.info". */}
             <blockquote className="m-0">
               <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
               <p className="!text-large">{t("MissionImpact.mission_p2")}</p>

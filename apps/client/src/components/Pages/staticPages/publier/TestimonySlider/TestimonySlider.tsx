@@ -17,8 +17,8 @@ const TestimonySlider = (props: Props) => {
       {props.testimonies.map((testimony, i) => (
         <div key={i} className="flex-1 space-y-6 md:px-8">
           <Image src={TestimonyIcon} width={40} height={40} alt="" />
-          {/* Bloc de citation relevé par l'audit : structuré en blockquote (RGAA 9.4).
-              Le nom et la fonction restent hors du blockquote, ils en sont la source. */}
+          {/* Blockquote prescrit par l'audit Ideance, P12, critère 9.4. Le nom et la fonction
+              restent dehors, ils sont la source de la citation. */}
           <blockquote className="m-0">
             <p className="!text-large !mb-6">{testimony.text}</p>
           </blockquote>

@@ -159,12 +159,9 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>On cherche des traducteurs en :</Title2>
-            {/* Énumération de liens : structurée en ul/li (RGAA 9.3). list-none p-0 m-0 et
-                p-0 sur les li neutralisent puce, retrait et espacements de la base DSFR, la
-                disposition en flex reste celle de l'ancien div. */}
+            {/* Énumération de liens : ul/li (RGAA 9.3), rôle explicite justifié sur la prop
+                contentAs de MetaDataItem. Le flex reprend la disposition de l'ancien div. */}
             {translationNeeds.length > 0 && (
-              // role="list" : parade défensive, un ul sans puce peut perdre sa nature de liste
-              // sous Safari et VoiceOver. Les li gardent display: list-item, rien à ajouter.
               <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center" role="list">
                 {translationNeeds.map((item, i) => (
                   <li key={i} className="p-0">

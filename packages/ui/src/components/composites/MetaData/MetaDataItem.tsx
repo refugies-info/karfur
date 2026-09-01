@@ -11,8 +11,12 @@ type MetaDataItemProps = {
   onClick?: () => void;
   state?: "valid" | "invalid";
   /**
-   * Balise du conteneur d'enfants. "p" par défaut. Passer "ul" quand les enfants sont une
-   * énumération, ce qu'exige le critère RGAA 9.3 : un <ul> ne peut pas vivre dans un <p>.
+   * Balise du conteneur d'enfants. "p" par défaut, "ul" quand les enfants sont une énumération
+   * (RGAA 9.3 : un <ul> ne peut pas vivre dans un <p>). En "ul" le conteneur perd puce, retrait
+   * et marges, et reçoit role="list" : sans ce rôle explicite, VoiceOver n'annonce plus la nature
+   * de liste ni le décompte dès que la puce est masquée (mesuré Safari + VoiceOver, 27/08).
+   * C'est la justification de tous les role="list" et role="listitem" posés sur les listes nues
+   * du dépôt.
    */
   contentAs?: "p" | "ul";
   /** Classes ajoutées au conteneur d'enfants, pour les cas où sa disposition doit changer. */
@@ -67,16 +71,12 @@ export const MetaDataItem = ({
           React.createElement(
             contentAs,
             {
-              // role="list" : parade défensive, un ul sans puce peut perdre sa nature de
-              // liste sous Safari et VoiceOver. Retiré si la mesure conclut qu'il est inutile.
               role: contentAs === "ul" ? "list" : undefined,
               className: cn(
                 "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
                 "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
                 "md:[&_a]:text-sm",
                 onClick && "[&_a]:pointer-events-none",
-                // En ul, neutralise puce, retrait et marges de la base DSFR pour que le
-                // conteneur se comporte exactement comme le p qu'il remplace.
                 contentAs === "ul" && "m-0 list-none p-0 [&>li]:p-0",
                 contentClassName,
               ),

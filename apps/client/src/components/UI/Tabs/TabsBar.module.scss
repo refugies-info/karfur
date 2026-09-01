@@ -8,9 +8,7 @@
   border: 1px solid $gray50;
   border-radius: u(1);
 
-  // La barre était un div contenant des boutons inline-block. En ul/li il faut redonner
-  // explicitement la disposition en rangée, et neutraliser puce, retrait et marges que la
-  // base DSFR pose sur ul et li.
+  // Rendu de l'ancien div de boutons inline-block, puce et retrait DSFR neutralisés.
   display: flex;
   flex-wrap: wrap;
   align-items: center;

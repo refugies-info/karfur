@@ -11,8 +11,7 @@ const TabsBar = React.forwardRef<HTMLUListElement, TabsBarProps>(({ children, ..
   const stylesDisabled = useStylesDisabled();
 
   return (
-    // role="list" : parade défensive, un ul sans puce peut perdre sa nature de liste sous
-    // Safari et VoiceOver. Les li gardent display: list-item, ils n'ont besoin de rien.
+    // Rôle explicite justifié sur la prop contentAs de MetaDataItem.
     <ul className={cls(styles.tabsbar)} role="list" {...props} ref={ref}>
       {children}
       {stylesDisabled && (

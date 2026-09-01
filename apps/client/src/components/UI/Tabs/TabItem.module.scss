@@ -1,7 +1,6 @@
 @import "~/scss/mixins/unit";
 
-// Le li n'est qu'un porteur de sémantique : aucune boîte propre, aucun espacement.
-// padding: 0 annule celui que la base DSFR pose sur tous les li.
+// Le li ne porte que la sémantique : aucune boîte propre, espacement DSFR annulé.
 .tabitemwrapper {
   margin: 0;
   padding: 0;

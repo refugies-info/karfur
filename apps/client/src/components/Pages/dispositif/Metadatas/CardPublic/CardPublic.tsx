@@ -20,15 +20,13 @@ import {
 import styles from "./CardPublic.module.scss";
 
 /**
- * Rend une énumération de publics en ul/li (RGAA 9.3) sans changer le rendu : les li restent
- * en flux inline et les virgules d'origine sont conservées, masquées aux technologies
- * d'assistance puisque la structure de liste porte déjà la séparation.
+ * Énumération de publics en ul/li (RGAA 9.3) sans changer le rendu : les li restent en flux
+ * inline et les virgules d'origine sont masquées aux technologies d'assistance, la structure
+ * de liste portant déjà la séparation.
  */
 const PublicList = ({ items }: { items: string[] }) => (
   <>
     {items.map((label, index) => (
-      // role="listitem" : le li reste en flux inline pour ne pas changer le rendu, ce qui
-      // lui retire son rôle natif.
       <li key={label} className="inline" role="listitem">
         {label}
         {index < items.length - 1 && <span aria-hidden="true">, </span>}

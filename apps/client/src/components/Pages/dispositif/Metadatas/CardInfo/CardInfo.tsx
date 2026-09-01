@@ -129,10 +129,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                 let title = t("Infocards.departements", "Departements :");
                 if (location === "france") title = t("Infocards.france", "France");
                 else if (location === "online") title = t("Recherche.online", "En ligne");
-                // La liste des départements est une énumération : elle se structure en ul/li
-                // (RGAA 9.3). contentAs="ul" est nécessaire parce qu'un ul ne peut pas vivre
-                // dans le p que MetaDataItem pose par défaut. Le li est en display:inline
-                // pour ne pas changer le flux, que le conteneur soit en flex ou en inline.
+                // Énumération de départements : ul/li (RGAA 9.3), d'où contentAs="ul".
                 const hasDepartments = Array.isArray(location) && location.length > 0;
                 return (
                   <MetaDataItem
@@ -144,8 +141,6 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                   >
                     {hasDepartments
                       ? (location as string[]).map((loc: string) => (
-                          // role="listitem" : le li passe en inline ou en flex pour garder le
-                          // rendu d'origine, ce qui lui retire son rôle natif.
                           <li key={loc} className="inline sm:flex" role="listitem">
                             <FRLink
                               href={isEditMode ? "#" : getLocationLink(loc)}
