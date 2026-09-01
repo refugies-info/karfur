@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
-  // Le viewport n'est monté que si un toast est à afficher (RGAA 8.9).
+  // The viewport is mounted only while a toast is shown (RGAA 8.9).
   useDeclareToast(open);
 
   const onOpenChange = (open: boolean) => {

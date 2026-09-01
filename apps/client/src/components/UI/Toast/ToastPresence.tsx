@@ -14,122 +14,91 @@ import {
 } from "react";
 
 /**
- * Suivi des toasts ouverts, pour ne monter le viewport Radix que lorsqu'il sert.
- *
- * Sans ce garde-fou, `<ToastViewport>` rend en permanence un conteneur
- * `<div role="region" aria-label="Notifications (F8)">` vide en fin de page.
- * Les lecteurs d'écran l'annoncent comme un repère de navigation qui ne mène
- * nulle part (RGAA 8.9, relevé Ideance sur la page d'accueil).
- *
- * Radix ne publie pas son compteur de toasts, on le tient donc nous-mêmes :
- * chaque `<Toast>` déclare sa présence, et le viewport apparaît puis disparaît
- * avec elle. `ToastImpl` de Radix rend `null` tant que le viewport n'existe pas,
- * puis se replace tout seul dans le portail dès qu'il est monté.
+ * Radix renders an empty `<div role="region" aria-label="Notifications (F8)">` at all times.
+ * Screen readers announce it as a landmark leading nowhere (RGAA 8.9, Ideance audit).
+ * Radix exposes no toast count, so we track open toasts and mount the viewport only when needed.
  */
 
-/**
- * Délai entre la fermeture d'un toast et le démontage du viewport, pour laisser
- * l'animation de sortie se dérouler (`hide 100ms` dans `Toast.module.scss`).
- *
- * Le retrait de la clé est porté par la branche « fermé » de l'effet, jamais par
- * son nettoyage : un nettoyage retirerait la clé dès le changement d'état et le
- * délai n'existerait pas. Seul le démontage du composant retire immédiatement.
- */
-const DUREE_SORTIE_MS = 300;
+/** Leaves room for the `hide 100ms` exit animation in `Toast.module.scss`. */
+const EXIT_ANIMATION_MS = 300;
 
-/**
- * L'identité d'un toast est un objet vide propre à l'instance, pas un `useId`.
- * `useId` consommerait un créneau du compteur d'identifiants de React et
- * décalerait ceux que DSFR génère en aval, ce qui change des identifiants
- * rendus sans rien apporter.
- */
-type CleToast = Record<string, never>;
+/** An empty object, not `useId`: that would shift the ids DSFR generates downstream. */
+type ToastKey = Record<string, never>;
 
 type ToastPresence = {
   hasToasts: boolean;
-  setToastOpen: (cle: CleToast, open: boolean) => void;
+  setToastOpen: (key: ToastKey, open: boolean) => void;
 };
 
-/**
- * Repli neutre hors provider : le harnais de test monte son propre viewport
- * sans passer par `_app`, et ne doit pas casser pour autant.
- */
-const REPLI: ToastPresence = { hasToasts: false, setToastOpen: () => {} };
+/** Neutral fallback: the test harness mounts its own viewport without going through `_app`. */
+const FALLBACK: ToastPresence = { hasToasts: false, setToastOpen: () => {} };
 
-const ToastPresenceContext = createContext<ToastPresence>(REPLI);
+const ToastPresenceContext = createContext<ToastPresence>(FALLBACK);
 
 export const ToastPresenceProvider = ({ children }: { children: ReactNode }) => {
-  const [ouverts, setOuverts] = useState<ReadonlySet<CleToast>>(() => new Set());
+  const [openToasts, setOpenToasts] = useState<ReadonlySet<ToastKey>>(() => new Set());
 
-  const setToastOpen = useCallback((cle: CleToast, open: boolean) => {
-    setOuverts((prev) => {
-      if (open === prev.has(cle)) return prev;
-      const suivant = new Set(prev);
-      if (open) suivant.add(cle);
-      else suivant.delete(cle);
-      return suivant;
+  const setToastOpen = useCallback((key: ToastKey, open: boolean) => {
+    setOpenToasts((prev) => {
+      if (open === prev.has(key)) return prev;
+      const next = new Set(prev);
+      if (open) next.add(key);
+      else next.delete(key);
+      return next;
     });
   }, []);
 
   const value = useMemo(
-    () => ({ hasToasts: ouverts.size > 0, setToastOpen }),
-    [ouverts, setToastOpen],
+    () => ({ hasToasts: openToasts.size > 0, setToastOpen }),
+    [openToasts, setToastOpen],
   );
 
   return <ToastPresenceContext.Provider value={value}>{children}</ToastPresenceContext.Provider>;
 };
 
-/** Déclare l'état d'un toast auprès du provider. */
 export const useDeclareToast = (open: boolean) => {
   const { setToastOpen } = useContext(ToastPresenceContext);
-  const [cle] = useState<CleToast>(() => ({}));
+  const [key] = useState<ToastKey>(() => ({}));
 
   useEffect(() => {
     if (open) {
-      setToastOpen(cle, true);
+      setToastOpen(key, true);
       return;
     }
-    const timer = setTimeout(() => setToastOpen(cle, false), DUREE_SORTIE_MS);
+    const timer = setTimeout(() => setToastOpen(key, false), EXIT_ANIMATION_MS);
     return () => clearTimeout(timer);
-  }, [cle, open, setToastOpen]);
+  }, [key, open, setToastOpen]);
 
-  // Le démontage du composant, lui, retire la clé sans délai : il n'y a plus
-  // rien à animer. Cet effet est séparé pour que son nettoyage ne se déclenche
-  // pas au simple changement de `open`.
-  useEffect(() => () => setToastOpen(cle, false), [cle, setToastOpen]);
+  // Separate effect: unmount drops the key at once, and its cleanup must not run on `open` changes.
+  useEffect(() => () => setToastOpen(key, false), [key, setToastOpen]);
 };
 
 /**
- * Viewport Radix, monté seulement quand au moins un toast est à afficher.
- *
- * Exception : on le garde monté tant qu'il porte le focus. À la fermeture d'un
- * toast au clavier, Radix exécute `viewport?.focus()` ; démonter derrière lui
- * ferait tomber le focus sur `<body>`. On attend donc que le focus soit sorti
- * de la zone. C'est le comportement actuel de production dans ce seul cas, et
- * la zone n'est alors pas un repère vide puisqu'elle porte le focus.
+ * Stays mounted while it holds focus: Radix calls `viewport.focus()` when a toast is closed with
+ * the keyboard, and unmounting behind it would drop focus on `<body>`.
  */
 export const ToastViewportWhenNeeded = (props: ComponentProps<typeof ToastViewport>) => {
   const { hasToasts } = useContext(ToastPresenceContext);
-  const [monte, setMonte] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const ref = useRef<HTMLOListElement>(null);
 
   useEffect(() => {
     if (hasToasts) {
-      setMonte(true);
+      setMounted(true);
       return;
     }
-    const zone = ref.current?.parentElement ?? ref.current;
-    if (!zone?.contains(document.activeElement)) {
-      setMonte(false);
+    const region = ref.current?.parentElement ?? ref.current;
+    if (!region?.contains(document.activeElement)) {
+      setMounted(false);
       return;
     }
-    const surSortieDuFocus = (event: FocusEvent) => {
-      if (!zone.contains(event.relatedTarget as Node | null)) setMonte(false);
+    const handleFocusOut = (event: FocusEvent) => {
+      if (!region.contains(event.relatedTarget as Node | null)) setMounted(false);
     };
-    zone.addEventListener("focusout", surSortieDuFocus);
-    return () => zone.removeEventListener("focusout", surSortieDuFocus);
+    region.addEventListener("focusout", handleFocusOut);
+    return () => region.removeEventListener("focusout", handleFocusOut);
   }, [hasToasts]);
 
-  if (!monte) return null;
+  if (!mounted) return null;
   return <ToastViewport ref={ref} {...props} />;
 };
