@@ -2,57 +2,44 @@ import Router, { useRouter } from "next/router";
 import { useEffect, useRef } from "react";
 import { humanizeRoutePattern } from "~/lib/humanizeRoutePattern";
 
-/**
- * Identifiant du paragraphe d'annonce posé tout en haut du `<body>` par
- * `_document.tsx`. Partagé pour que le hook et le document restent alignés.
- */
+/** Id of the announcer paragraph, shared with `_document.tsx` which renders it. */
 export const ROUTE_ANNOUNCER_ID = "route-announcer";
 
 /**
- * Nombre maximal de trames d'attente du `<title>` après `routeChangeComplete`.
- * Le titre est posé par `next/head` dans le même cycle de rendu, mais il peut
- * être momentanément vide pendant une transition (mesuré sur les redirections
- * du parcours auth). À 60 Hz cela laisse ~500 ms, à 120 Hz ~250 ms : dans les
- * deux cas plus que les 128 ms mesurées avant qu'une redirection chasse la
- * navigation en cours et invalide l'attente.
+ * Frame budget for the `<title>` wait. Frames, not a timer: the title lands
+ * with the render cycle. See voiceover.md for the measured values.
  */
 const TITLE_WAIT_MAX_FRAMES = 30;
 
 /**
- * Routes disposant d'un autofocus de page. Verdict de la mesure VoiceOver du
- * 26/08 : sur ces pages, poser le focus sur le paragraphe le vole au champ
- * autofocalisé ; l'annonce du champ fait foi, le paragraphe est synchronisé
- * mais ne reçoit ni focus ni annonce. Liste centralisée, exprimée en
- * `router.pathname`, un commentaire par entrée citant la déclaration
- * d'autofocus et son statut de mesure (mesuré ou seulement déclaré).
- * Procédure de mise à jour : documentation/client/accessibility/voiceover.md.
+ * Routes whose page sets its own autofocus: the paragraph stays in sync but is
+ * never focused, otherwise it steals the focus from the field. Update procedure
+ * in documentation/client/accessibility/voiceover.md.
  */
 const AUTOFOCUS_ROUTE_PATTERNS = new Set([
-  // src/pages/auth/index.tsx l.162 — mesuré le 25/08 (focus posé sur le champ email)
+  // src/pages/auth/index.tsx l.162 - measured 25/08 (focus set on the email field)
   "/auth",
-  // src/pages/auth/connexion.tsx l.97 — déclaré, non mesuré (redirige vers /fr/auth sans session)
+  // src/pages/auth/connexion.tsx l.97 - declared, not measured (redirects to /fr/auth without a session)
   "/auth/connexion",
-  // src/pages/auth/inscription/index.tsx l.112 — déclaré, non mesuré (redirige sans session)
+  // src/pages/auth/inscription/index.tsx l.112 - declared, not measured (redirects without a session)
   "/auth/inscription",
-  // src/components/User/EditPseudo/EditPseudo.tsx l.62 — déclaré, non mesuré (redirige sans session)
+  // src/components/User/EditPseudo/EditPseudo.tsx l.62 - declared, not measured (redirects without a session)
   "/auth/inscription/pseudo",
-  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 — déclaré, non mesuré (redirige sans session)
+  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 - declared, not measured (redirects without a session)
   "/auth/code-connexion",
-  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 — déclaré, non mesuré (redirige sans session)
+  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 - declared, not measured (redirects without a session)
   "/auth/code-securite",
-  // src/components/User/ForgotPassword/ForgotPassword.tsx l.44 — mesuré le 25/08 (focus posé)
+  // src/components/User/ForgotPassword/ForgotPassword.tsx l.44 - measured 25/08 (focus set)
   "/auth/reinitialiser-mot-de-passe",
-  // src/pages/auth/reinitialiser-mot-de-passe/nouveau.tsx l.122 et l.134 — déclaré ;
-  // mesuré le 25/08 SANS focus posé, conservé par prudence tant que l'écart n'est pas expliqué
+  // src/pages/auth/reinitialiser-mot-de-passe/nouveau.tsx l.122 and l.134 - declared;
+  // measured 25/08 with NO focus set, kept as a precaution until the gap is explained
   "/auth/reinitialiser-mot-de-passe/nouveau",
 ]);
 
 /**
- * Drapeau de navigation par ancre, partagé avec `useScrollToAnchor` : quand une
- * ancre inter-pages déclenche un `router.push`, la cible de l'ancre garde le
- * focus et le paragraphe ne s'en mêle pas. Posé avant le `push`, consommé au
- * `routeChangeComplete`, remis à zéro dans un `finally` sur la promesse du
- * `push` pour qu'une navigation annulée ne laisse pas un drapeau collé.
+ * Anchor navigation flag, shared with `useScrollToAnchor`: the anchor target
+ * keeps the focus, so the paragraph stays out of that navigation. Set before
+ * the `push`, consumed on `routeChangeComplete`, cleared in a `finally`.
  */
 let anchorNavigationInProgress = false;
 
@@ -67,41 +54,24 @@ export const clearAnchorNavigation = () => {
 const writeAnnouncement = (text: string, moveFocus: boolean) => {
   const paragraph = document.getElementById(ROUTE_ANNOUNCER_ID);
   if (!paragraph) return;
-  // Geste de forçage : deux navigations de suite vers un titre identique
-  // (`/auth` puis `/auth/inscription`, deux pages en `title="Bienvenue"`)
-  // doivent être restituées toutes les deux. Or `focus()` sur un élément déjà
-  // focalisé n'émet rien : on sort le focus et on vide le paragraphe avant de
-  // réécrire puis refocaliser, pour que la restitution reparte à neuf.
+  // `focus()` on an already focused element emits nothing, so two navigations
+  // in a row to the same title would only be announced once: blur and clear
+  // first, so the restitution starts fresh.
   if (document.activeElement === paragraph) paragraph.blur();
   paragraph.textContent = "";
   paragraph.textContent = text;
-  // `preventScroll` : la classe sr-only ne fixant ni top ni left, un focus
-  // défilant ferait remonter la page et détruirait la restauration de position
-  // au retour arrière navigateur. Motif maison de useScrollToAnchor.
+  // `preventScroll`: sr-only pins neither top nor left, a scrolling focus would
+  // jump the page and break browser back position restoration.
   if (moveFocus) paragraph.focus({ preventScroll: true });
 };
 
 /**
- * Annonce le changement de page et repositionne le focus lors des navigations
- * client (RGAA 12.8).
+ * Announces page changes and repositions the focus on client navigations
+ * (RGAA 12.8).
  *
- * Mécanique prescrite par l'audit Ideance : un paragraphe `sr-only` avec
- * `tabindex="-1"` en tête de `<body>` (posé par `_document.tsx`), synchronisé
- * avec le `<title>` de la page d'arrivée et focalisé à chaque navigation.
- * L'annonceur natif de Next (`<next-route-announcer>`) est neutralisé par CSS
- * dans `_dsfr-fix.scss`.
- *
- * Gardes :
- * - navigations superficielles ignorées (saisie dans le champ de recherche) ;
- * - changement de locale seul ignoré (redirection de langue du premier
- *   chargement, validation de la modale de langue) ;
- * - attente du titre annulée si une autre navigation démarre (jeton de
- *   génération) : seule la dernière navigation écrit et focalise ;
- * - route sans `<title>` : repli humanisé tiré du motif de route.
- *
- * Le focus ne se dispute jamais avec un autre mécanisme : la modale de langue
- * du premier chargement, l'autofocus de page (liste centralisée ci-dessus) et
- * la cible d'une ancre (`useScrollToAnchor`, drapeau partagé) le gardent.
+ * Syncs the `sr-only` paragraph rendered by `_document.tsx` with the incoming
+ * `<title>` and focuses it. Guards, autofocus exceptions and the measurements
+ * behind them: documentation/client/accessibility/voiceover.md.
  *
  * @example
  * // Use inside _app.tsx
@@ -118,8 +88,8 @@ const useRouteAnnouncement = () => {
   useEffect(() => {
     lastRouteRef.current = { pathname: Router.pathname, locale: Router.locale };
 
-    // Jeton de génération : toute navigation qui en chasse une autre rend
-    // l'attente de titre de la précédente périmée, sans écriture après coup.
+    // Generation token: a navigation that supersedes another makes the pending
+    // title wait stale, so only the last one writes.
     const handleRouteChangeStart = () => {
       generationRef.current += 1;
     };
@@ -127,9 +97,8 @@ const useRouteAnnouncement = () => {
     const waitForTitle = (generation: number) => {
       let frames = 0;
       const tick = () => {
-        if (generationRef.current !== generation) return; // attente périmée
-        // Le focus ne se dispute jamais avec l'autofocus d'une page : sur ces
-        // routes, le paragraphe est synchronisé sans être focalisé.
+        if (generationRef.current !== generation) return; // stale wait
+        // Never compete with a page autofocus: sync without focusing.
         const moveFocus = !AUTOFOCUS_ROUTE_PATTERNS.has(Router.pathname);
         const title = document.title;
         if (title) {
@@ -151,21 +120,19 @@ const useRouteAnnouncement = () => {
       const previous = lastRouteRef.current;
       lastRouteRef.current = { pathname: Router.pathname, locale: Router.locale };
 
-      // Navigation superficielle : la recherche pousse une navigation shallow
-      // débouncée à chaque frappe, qui ne change pas de page.
+      // The search page pushes a debounced shallow navigation on every
+      // keystroke, which is not a page change.
       if (shallow) return;
 
-      // Navigation issue d'une ancre inter-pages (`/#newsletter` depuis le pied
-      // de page) : la cible de l'ancre garde le focus, rien à annoncer ici.
-      // Le drapeau est consommé, la navigation suivante redevient ordinaire.
+      // Inter-page anchor (`/#newsletter` from the footer): the anchor target
+      // keeps the focus. Consuming the flag restores ordinary behavior next time.
       if (anchorNavigationInProgress) {
         anchorNavigationInProgress = false;
         return;
       }
 
-      // Seule la locale change sur la même page : redirection de langue du
-      // premier chargement (Layout.tsx), validation de la modale de langue.
-      // Ce n'est pas un changement de page, rien à annoncer.
+      // Only the locale changed on the same route: first-load language redirect
+      // (Layout.tsx) or language modal validation, not a page change.
       if (Router.locale !== previous.locale && Router.pathname === previous.pathname) return;
 
       waitForTitle(generationRef.current);
@@ -177,7 +144,7 @@ const useRouteAnnouncement = () => {
       router.events.off("routeChangeStart", handleRouteChangeStart);
       router.events.off("routeChangeComplete", handleRouteChangeComplete);
     };
-    // Abonnement unique au montage, même motif que les abonnements de _app.tsx.
+    // Subscribe once on mount, same pattern as the _app.tsx subscriptions.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

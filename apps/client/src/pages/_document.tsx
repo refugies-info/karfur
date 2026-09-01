@@ -5,9 +5,9 @@ import { caveat, dsfrDocumentApi } from "./_app";
 
 const { getColorSchemeHtmlAttributes, augmentDocumentForDsfr } = dsfrDocumentApi;
 
-// Le <title> produit par next/head est disponible dans props.head : on le
-// recopie pour que le paragraphe d'annonce porte le titre dès le HTML source,
-// comme le demande l'audit Ideance (RGAA 12.8).
+// The <title> produced by next/head is available in props.head: copying it here
+// gives the announcer paragraph its title straight from the source HTML
+// (RGAA 12.8).
 const getServerTitle = (props: DocumentProps): string => {
   const titleElement = props.head?.find((element) => element?.type === "title");
   const children = titleElement?.props?.children;
@@ -28,9 +28,9 @@ export default function Document(props: DocumentProps) {
         )}
       </Head>
       <body>
-        {/* Annonce de changement de page (RGAA 12.8) : paragraphe sr-only
-            synchronisé avec le <title> et focalisé à chaque navigation client
-            par useRouteAnnouncement, posé avant les liens d'évitement. */}
+        {/* Route change announcement (RGAA 12.8): sr-only paragraph synced with
+            the <title> and focused on every client navigation by
+            useRouteAnnouncement, placed before the skip links. */}
         <p id={ROUTE_ANNOUNCER_ID} tabIndex={-1} className="sr-only">
           {getServerTitle(props)}
         </p>

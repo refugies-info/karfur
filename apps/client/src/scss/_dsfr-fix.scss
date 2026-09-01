@@ -100,17 +100,14 @@ a:not(.underline):not(.fr-default) {
   }
 }
 
-// Annonce de changement de page (RGAA 12.8) : elle passe par le paragraphe
-// sr-only de _document.tsx, synchronisé et focalisé par useRouteAnnouncement.
-// L'annonceur natif de Next est éteint pour supprimer la double vocalisation
-// (mesure VoiceOver du 26/08 : display none suffit, plus aucune annonce).
-// Attention : `next-route-announcer` n'est pas une API publique. C'est le type
-// du portail créé par node_modules/next/dist/client/index.js (Next 15.5.18) ;
-// une montée de version peut le renommer et rendre cette règle muette sans
-// qu'aucun test ne rougisse. Garde-fou : le scénario navigateur vérifie que
-// l'élément existe et que son style calculé est bien display none. Cette règle
-// doit rester ici, hors de tout @layer (les règles couchées perdent la cascade
-// face au DSFR) et hors de tout @media.
+// Route change announcements go through the sr-only paragraph of _document.tsx
+// (RGAA 12.8), so the native Next announcer is turned off to remove the double
+// vocalisation. See documentation/client/accessibility/voiceover.md.
+// Careful: `next-route-announcer` is not a public API, it is the portal type
+// created by next/dist/client/index.js (Next 15.5.18). A version bump can rename
+// it and silence this rule without any test turning red.
+// This rule must stay out of any @layer (layered rules lose the cascade against
+// the DSFR) and out of any @media.
 next-route-announcer {
   display: none;
 }

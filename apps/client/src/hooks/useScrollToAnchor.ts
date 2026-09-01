@@ -28,15 +28,11 @@ const useScrollToAnchor = () => {
       if (!element.hasAttribute("tabIndex")) {
         element.setAttribute("tabIndex", "-1");
       }
-      // Le focus est posé AVANT la mesure. La barre d'évitement du DSFR passe de
-      // `position: absolute` à `position: relative` tant qu'elle garde le focus
-      // (`.fr-skiplinks:focus-within`, dsfr.css) et pousse la page de sa hauteur.
-      // Mesurer dans cet état puis sortir le focus de la barre la fait se replier
-      // pendant l'animation : le défilement atterrit 48 px trop bas et le haut de
-      // la cible passe au-dessus de la fenêtre. Mesuré sur /, /agir et une fiche.
+      // Focus BEFORE measuring: the DSFR skip link bar shifts the page while it
+      // holds the focus, so measuring first lands the scroll off. See voiceover.md.
       element.focus({ preventScroll: true });
 
-      // La mesure attend la trame suivante, une fois la barre repliée.
+      // Measure on the next frame, once the bar has collapsed.
       requestAnimationFrame(() => {
         // Calculate position with offset for header
         const headerOffset = 0;
@@ -73,19 +69,17 @@ const useScrollToAnchor = () => {
         event.preventDefault(); // Prevent full page reload
         const [path, hash] = href.split("#");
 
-        // Une ancre de même page (`href="#contenu"`) donne un `path` vide après le
-        // découpage. La traiter comme une navigation appelle `router.push("")`, que
-        // Next résout en motif de route : 404 sur les routes dynamiques et perte de
-        // la chaîne de requête ailleurs. Liens d'évitement, RGAA 12.7.
+        // A same-page anchor (`href="#contenu"`) yields an empty `path`. Treating
+        // it as a navigation calls `router.push("")`, which Next resolves to the
+        // route pattern: 404 on dynamic routes. Skip links, RGAA 12.7.
         const isSamePage = !path || path === window.location.pathname;
 
         if (isSamePage) {
           scrollToHash(hash);
         } else {
-          // La cible de l'ancre garde le focus : le drapeau empêche
-          // useRouteAnnouncement de le disputer sur cette navigation (RGAA
-          // 12.8). Remis à zéro dans un finally pour qu'un push rejeté
-          // (navigation annulée par une autre) ne laisse pas un drapeau collé.
+          // The anchor target keeps the focus: the flag stops useRouteAnnouncement
+          // from competing on this navigation (RGAA 12.8). Cleared in a finally so
+          // a rejected push does not leave the flag stuck.
           markAnchorNavigation();
           router
             .push(path, undefined, { scroll: false })
