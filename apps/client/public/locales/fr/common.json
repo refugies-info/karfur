@@ -277,6 +277,7 @@
     "mapCopyAddress": "Copier l'adresse",
     "mapCopyPhone": "Copier le numéro de téléphone",
     "mapCopyEmail": "Copier l'adresse email",
+    "skipMap": "Passer la carte",
     "react": "Faire une suggestion d'amélioration",
     "reactFeedbackMessage": "Votre réaction a bien été enregistrée, merci !",
     "suggestionTitle": "Vous avez une suggestion ?",
