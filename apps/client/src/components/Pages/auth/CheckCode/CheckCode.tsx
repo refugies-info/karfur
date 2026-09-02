@@ -4,13 +4,15 @@ import { isInBrowser } from "@refugies-info/ui";
 import { logger } from "logger";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useCookie } from "react-use";
 import { Col, Row } from "reactstrap";
 import GmailIcon from "~/assets/auth/providers/gmail-icon.svg";
 import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
 import Image from "~/components/UI/Image";
-import { useLogin } from "~/hooks";
+import { useLogin, useSendCode } from "~/hooks";
+import { startThrottleIfIdle } from "~/hooks/useThrottledEmail";
 import { cls } from "~/lib/classname";
 import styles from "~/scss/components/auth.module.scss";
 import API from "~/utils/API";
@@ -25,6 +27,7 @@ interface Props {
 }
 
 const CheckCode = (props: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const email = useMemo(
     () => props.email || (router.query.email as string),
@@ -70,12 +73,21 @@ const CheckCode = (props: Props) => {
     [logUser, email, code, props.type, updateUser, mfaCodeCookie, deleteMfaCodeCookie],
   );
 
+  const { sendCode, secondsLeft, canSendCode } = useSendCode(email);
+
+  // On the 2FA and update screens the server already sent the code before we get here.
+  // The login flow is driven by the code-connexion page, which sends it itself.
+  useEffect(() => {
+    if (props.type === "login") return;
+    startThrottleIfIdle("send-code", email);
+  }, [props.type, email]);
+
   const resendCode = useCallback(
     (e: any) => {
       e.preventDefault();
-      API.sendCode({ email });
+      sendCode();
     },
-    [email],
+    [sendCode],
   );
 
   const contact = useCallback(() => {
@@ -144,11 +156,15 @@ const CheckCode = (props: Props) => {
               iconId="fr-icon-mail-line"
               iconPosition="right"
               onClick={resendCode}
+              disabled={!canSendCode}
               className={styles.button}
               priority="tertiary"
             >
               Renvoyer le code
             </Button>
+            <p className={cls(styles.small, "mt-1")} role="status">
+              {!canSendCode && t("Auth.resendCodeCountdown", { count: secondsLeft })}
+            </p>
           </form>
 
           {props.type === "2fa" && (

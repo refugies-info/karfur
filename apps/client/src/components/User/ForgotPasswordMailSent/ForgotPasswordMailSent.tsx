@@ -1,8 +1,10 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { isInBrowser } from "@refugies-info/ui";
-import { useCallback } from "react";
+import { useTranslation } from "next-i18next";
+import { useCallback, useEffect } from "react";
+import { useResetPasswordMail } from "~/hooks";
+import { startThrottleIfIdle } from "~/hooks/useThrottledEmail";
 import { cls } from "~/lib/classname";
-import API from "~/utils/API";
 import styles from "./ForgotPasswordMailSent.module.scss";
 
 interface Props {
@@ -10,10 +12,18 @@ interface Props {
 }
 
 const ForgotPasswordMailSent = ({ email }: Props) => {
-  const sendMail = useCallback(async () => {
-    if (!email) return;
-    await API.resetPassword({ email });
+  const { t } = useTranslation();
+  const { sendResetPasswordMail, secondsLeft, canSendResetPasswordMail } =
+    useResetPasswordMail(email);
+
+  // This screen is only reachable after a send, so the countdown runs on arrival.
+  useEffect(() => {
+    startThrottleIfIdle("reset-password", email);
   }, [email]);
+
+  const sendMail = useCallback(() => {
+    sendResetPasswordMail();
+  }, [sendResetPasswordMail]);
 
   const openChat = useCallback(() => {
     if (!isInBrowser()) return;
@@ -26,10 +36,14 @@ const ForgotPasswordMailSent = ({ email }: Props) => {
         iconId="fr-icon-mail-line"
         iconPosition="right"
         onClick={sendMail}
-        className={cls(styles.button, "mb-4")}
+        disabled={!canSendResetPasswordMail}
+        className={cls(styles.button, "mb-1")}
       >
         Renvoyer le lien de réinitialisation
       </Button>
+      <p className={cls(styles.countdown, "mb-4")} role="status">
+        {!canSendResetPasswordMail && t("Auth.resendCodeCountdown", { count: secondsLeft })}
+      </p>
       <Button onClick={openChat} className={cls(styles.button)} priority="tertiary">
         Contacter le chat
       </Button>

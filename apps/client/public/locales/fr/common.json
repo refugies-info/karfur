@@ -898,5 +898,9 @@
       "description": "Ce dispositif provient du réseau des Carif Oref et est synchronisé via le référentiel data-inclusion."
     }
   },
-  "breadcrumbs": "Fil d'Ariane"
+  "breadcrumbs": "Fil d'Ariane",
+  "Auth": {
+    "resendCodeCountdown_one": "Un nouvel envoi sera possible dans {{count}} seconde.",
+    "resendCodeCountdown_other": "Un nouvel envoi sera possible dans {{count}} secondes."
+  }
 }

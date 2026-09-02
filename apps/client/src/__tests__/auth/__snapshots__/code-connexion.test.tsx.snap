@@ -77,10 +77,17 @@ exports[`auth/connexion renders code-connexion if email 1`] = `
       </button>
       <button
         class="fr-btn fr-btn--tertiary fr-icon-mail-line fr-btn--icon-right button"
+        disabled=""
         id="fr-button-«r3»"
       >
         Renvoyer le code
       </button>
+      <p
+        class="small mt-1"
+        role="status"
+      >
+        Auth.resendCodeCountdown
+      </p>
     </form>
     <div
       class="mb-4 space_top row"

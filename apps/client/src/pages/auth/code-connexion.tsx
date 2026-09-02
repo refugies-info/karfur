@@ -3,22 +3,23 @@ import { type ReactElement, useEffect, useState } from "react";
 import CheckCode from "~/components/Pages/auth/CheckCode";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
-import { useAuthRedirect } from "~/hooks";
+import { useAuthRedirect, useSendCode } from "~/hooks";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
-import API from "~/utils/API";
 
 const LoginCode = () => {
   useAuthRedirect(true);
   const router = useRouter();
+  const email = router.query.email as string;
+  const { sendCode } = useSendCode(email);
   const [codeSent, setCodeSent] = useState(false);
 
+  // Going through the hook means a reload within 60s does not send a second email.
   useEffect(() => {
-    const email = router.query.email as string;
     if (email && !codeSent) {
       setCodeSent(true);
-      API.sendCode({ email });
+      sendCode();
     }
-  }, [router, codeSent]);
+  }, [email, codeSent, sendCode]);
 
   return (
     <>
