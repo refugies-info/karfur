@@ -109,6 +109,17 @@ describe("markdownToReadableText", () => {
       );
     });
 
+    it("should leave no tag behind when removing one reveals another", () => {
+      expect(markdownToReadableText("Un texte <<strong>strong>important.")).toBe(
+        "Un texte important.",
+      );
+      expect(markdownToReadableText("<<script>script>alert(1)")).toBe("alert(1)");
+    });
+
+    it("should leave a lone angle bracket alone", () => {
+      expect(markdownToReadableText("Si a < b, alors c > d.")).toBe("Si a < b, alors c > d.");
+    });
+
     it("should unescape escaped markdown characters", () => {
       expect(markdownToReadableText("Un ast\\*risque et un underscore\\_.")).toBe(
         "Un ast*risque et un underscore_.",

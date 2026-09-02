@@ -52,6 +52,31 @@ const HEADING_MARKER = /^\s*#{1,6}\s+/;
 const ENDS_A_SENTENCE = /[.!?;:،۔؟]$/;
 
 /**
+ * Angle-bracketed sequences that carry no readable text: the two autolink
+ * forms, then any raw HTML tag, which GFM allows and which would otherwise be
+ * read out as a tag name.
+ */
+const ANGLE_BRACKETED = [/<[^>\s]+@[^>\s]+>/g, /<https?:\/\/[^>\s]*>/g, /<\/?[A-Za-z][^>]*>/g];
+
+/**
+ * Removes every angle-bracketed sequence, repeating until the line stops
+ * changing.
+ *
+ * A single pass is not enough: dropping one `<…>` can join the halves of
+ * another, so `<<script>script>` would come back as `<script>`. Each pass only
+ * ever shortens the line, so the loop terminates.
+ */
+function stripAngleBracketed(line: string): string {
+  let previous: string;
+  let current = line;
+  do {
+    previous = current;
+    for (const pattern of ANGLE_BRACKETED) current = current.replace(pattern, "");
+  } while (current !== previous);
+  return current;
+}
+
+/**
  * Strips the inline markdown syntax of a single line.
  *
  * Images keep their alt text, which is the accessible description of the
@@ -60,22 +85,18 @@ const ENDS_A_SENTENCE = /[.!?;:،۔؟]$/;
  */
 function stripInlineSyntax(line: string): string {
   return (
-    line
+    // Angle brackets go first, so an emphasis rule never mangles a URL.
+    stripAngleBracketed(line)
       // Images before links: `![alt](src)` also matches the link pattern.
       .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
       .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
       .replace(/\[([^\]]*)\]\[[^\]]*\]/g, "$1")
-      // Autolinks: `<https://…>` and `<contact@example.org>`.
-      .replace(/<[^>\s]+@[^>\s]+>/g, "")
-      .replace(/<https?:\/\/[^>\s]*>/g, "")
       // Inline code keeps its content, the backticks go.
       .replace(/`+([^`]*)`+/g, "$1")
       .replace(/~~([\s\S]*?)~~/g, "$1")
       .replace(/(\*{1,3})(\S(?:[\s\S]*?\S)?)\1/g, "$2")
       // Underscore emphasis only around word boundaries, so snake_case survives.
       .replace(/(^|[\s(])(_{1,3})(\S(?:[\s\S]*?\S)?)\2(?=[\s).,;:!?]|$)/g, "$1$3")
-      // Raw HTML is legal in GFM and would be read out as tag names.
-      .replace(/<\/?[A-Za-z][^>]*>/g, "")
       .replace(/\\([\\`*_{}[\]()#+\-.!|~>])/g, "$1")
       .replace(/\s+/g, " ")
       .trim()
@@ -136,7 +157,7 @@ function lineToText(line: string): string {
  *
  * @example
  * markdownToReadableText(':::toggle{title="Comment faire ?"}\nDemandez.\n:::')
- * // "Comment faire ?. Demandez."
+ * // "Comment faire ? Demandez."
  */
 export function markdownToReadableText(markdown: string | null | undefined): string {
   if (!markdown) return "";
