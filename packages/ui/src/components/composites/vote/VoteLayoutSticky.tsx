@@ -67,8 +67,9 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
                 themeId="light"
               />
             </div>
-
-            {t("ui.northStar_useful", "C'est utile ? ✨")}
+            <span>
+              {t("ui.northStar_useful", "C'est utile ?")} <span aria-hidden="true">✨</span>
+            </span>
           </Button>
           <hr className="h-[1rem] w-px bg-gray-300" />
           <Button

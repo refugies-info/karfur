@@ -45,6 +45,7 @@ const AddContentButton = (props: Props) => {
         name="alert-triangle"
         fill={fr.colors.decisions.background.actionHigh.error.default}
         className={cls(styles.icon, styles.ok)}
+        ariaLabel="Section incomplète"
       />
     ),
     [],
@@ -86,6 +87,7 @@ const AddContentButton = (props: Props) => {
                 name="checkmark-circle-2"
                 fill={fr.colors.decisions.background.actionHigh.blueFrance.active}
                 className={cls(styles.icon, styles.ok)}
+                ariaLabel="Section complétée"
               />
             ) : (
               errorIcon
@@ -103,6 +105,7 @@ const AddContentButton = (props: Props) => {
                 >
                   <EVAIcon
                     name="trash-2-outline"
+                    ariaLabel="Supprimer"
                     fill={
                       props.onDelete
                         ? fr.colors.decisions.text.actionHigh.blueFrance.default

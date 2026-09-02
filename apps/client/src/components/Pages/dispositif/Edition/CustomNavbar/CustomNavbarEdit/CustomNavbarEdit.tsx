@@ -53,7 +53,7 @@ const CustomNavbarEdit = (props: Props) => {
   const { showMissingSteps, setShowMissingSteps, setFormSubmitted } = useContext(PageContext);
 
   // Save
-  const { isSaving, hasError, errorDetails } = useAutosave();
+  const { isSaving, hasError, errorDetails, dismissError } = useAutosave();
   const saveText = useMemo(() => {
     if (isSaving) return "Sauvegarde en cours...";
     if (hasError) return "Erreur lors de la sauvegarde !";
@@ -153,6 +153,7 @@ const CustomNavbarEdit = (props: Props) => {
                 name="close-outline"
                 size={16}
                 fill={fr.colors.decisions.text.default.info.default}
+                ariaLabel="Fermer l'avertissement"
               />
             </button>
           </div>
@@ -236,7 +237,7 @@ const CustomNavbarEdit = (props: Props) => {
         onPublish={handlePublish}
         status={dispositif?.status || null}
       />
-      <SaveErrorModal show={hasError} errorDetails={errorDetails} />
+      <SaveErrorModal show={hasError} errorDetails={errorDetails} toggle={dismissError} />
     </div>
   );
 };

@@ -124,6 +124,7 @@ export const Notification = (props: Props) => {
         <EVAIcon
           name={props.read ? "bell-outline" : "bell"}
           fill={props.read ? colors.gray90 : colors.white}
+          ariaLabel={props.read ? "Notification lue" : "Notification non lue"}
         />
         <TextContainer read={props.read}>{getText(props.type)}</TextContainer>
         {props.type === "reaction" && props.title && (

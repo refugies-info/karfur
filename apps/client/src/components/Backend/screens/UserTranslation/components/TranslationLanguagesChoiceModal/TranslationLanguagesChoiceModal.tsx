@@ -99,7 +99,10 @@ const LangueItem = ({ langue, isSelected, onClick }: LangueItemProps) => (
     </div>
     <CheckBoxContainer isSelected={isSelected}>
       <div style={{ position: "absolute", bottom: "-2px" }}>
-        <EVAIcon name="checkmark-outline" />
+        <EVAIcon
+          name="checkmark-outline"
+          ariaLabel={isSelected ? "Langue sélectionnée" : undefined}
+        />
       </div>
     </CheckBoxContainer>
   </LangueItemContainer>

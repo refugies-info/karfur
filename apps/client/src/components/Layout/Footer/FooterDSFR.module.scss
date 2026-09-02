@@ -17,6 +17,32 @@
     display: none;
   }
 
+  /* RGAA 10.6: the etalab licence link carries no `fr-*` class, so it matches
+     `a:not(.underline):not(.fr-default)` in `scss/_dsfr-fix.scss`, which sets
+     `text-decoration: none` and `background-image: none` and therefore removes
+     the DSFR underline. That file is imported outside any cascade layer, so it
+     wins over `@layer dsfr` whatever the specificity: this override must stay
+     outside `@layer` too.
+
+     We target the container, not the link's id. react-dsfr only sets
+     `id="footer-etalab-licence-link"` in its French message; the English one
+     renders the same link with no id (Footer.js), and `useLang` follows
+     `router.locale`, so an id-based rule is inert on /en. The
+     `fr-footer__bottom-copy` class is emitted for every locale and wraps this
+     link alone.
+
+     On specificity: `[href]` counts at class level, so the bare selector
+     `.fr-footer__bottom-copy a[href]` is (0,2,1) and merely ties with
+     `_dsfr-fix.scss`, leaving source order to decide. What actually wins is the
+     module's root class. CSS Modules compiles this rule to
+     `.FooterDSFR_footer__<hash> .fr-footer__bottom-copy a[href]`, i.e. (0,3,1),
+     which beats (0,2,1) whatever the order. Keep the rule nested inside
+     `.footer`; hoisting it out would reintroduce the tie.
+     `:global()` is required because CSS Modules scopes these selectors. */
+  :global(.fr-footer__bottom-copy) a[href] {
+    text-decoration: underline;
+  }
+
   @media print {
     display: none;
   }

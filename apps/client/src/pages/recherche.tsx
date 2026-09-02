@@ -157,7 +157,17 @@ const Recherche = () => {
 
   return (
     <div className={cls(styles.container)}>
-      <SEO title={t("Recherche.pageTitle", "Recherche")} />
+      <SEO
+        title={
+          query.search
+            ? t("Recherche.pageTitleWithSearch", {
+                search: query.search,
+                defaultValue: 'Résultats de la recherche sur "{{search}}"',
+                interpolation: { escapeValue: false },
+              })
+            : t("Recherche.pageTitle", "Recherche")
+        }
+      />
 
       <HelpNotice />
       <SearchHeader counts={counts} nbResults={pagination.total} />

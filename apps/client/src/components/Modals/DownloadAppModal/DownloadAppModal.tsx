@@ -1,7 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
-import { useCallback } from "react";
 import { isIOS } from "react-device-detect";
 import { Modal } from "reactstrap";
 import RatingStars from "~/assets/auth/rating-stars.svg";
@@ -19,7 +18,6 @@ const STORE_LINK = isIOS ? iosStoreLink : androidStoreLink;
 
 const DownloadAppModal = ({ show, toggle }: Props) => {
   const { t } = useTranslation();
-  const goToStore = useCallback(() => window.open(STORE_LINK), []);
 
   return (
     <Modal isOpen={show} toggle={toggle} className={styles.modal} contentClassName={styles.content}>
@@ -30,16 +28,17 @@ const DownloadAppModal = ({ show, toggle }: Props) => {
         title={t("close")}
         className={styles.close}
       />
-      <Image
-        src={MobileAppIllu}
-        width={327}
-        alt="Réfugiés.info mobile app"
-        className={styles.illu}
-      />
+      <Image src={MobileAppIllu} width={327} alt="" className={styles.illu} />
 
       <p className={styles.text}>{t("MobileAppModal.description")}</p>
       <div className={styles.rating}>
-        <Image src={RatingStars} width={136} height={24} alt="4,8" className="me-2" />
+        <Image
+          src={RatingStars}
+          width={136}
+          height={24}
+          alt={t("MobileApp.ratingAlt", "Note sur 5 :")}
+          className="me-2"
+        />
         4,8
       </div>
 
@@ -49,7 +48,11 @@ const DownloadAppModal = ({ show, toggle }: Props) => {
           className="mb-2"
           iconId="fr-icon-download-line"
           iconPosition="right"
-          onClick={goToStore}
+          linkProps={{
+            href: STORE_LINK,
+            target: "_blank",
+            rel: "noopener noreferrer",
+          }}
         >
           {t("MobileAppModal.download")}
         </Button>

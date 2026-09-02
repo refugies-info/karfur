@@ -9,6 +9,7 @@ import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
 import { cn } from "~/lib/classname";
+import styles from "./MobileApp.module.scss";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
@@ -33,7 +34,7 @@ const MobileApp = () => {
         >
           <Image
             src={appStoreBadge}
-            alt={t("MobileApp.appStoreBadge", "Télécharger sur l'app store apple")}
+            alt={t("MobileApp.appStoreBadge", "Télécharger dans l'App Store")}
             fill
           />
         </a>
@@ -47,17 +48,13 @@ const MobileApp = () => {
             src={playStoreBadge}
             width={128}
             height={40}
-            alt={t("MobileApp.playStoreBadge", "Télécharger sur Google Play")}
+            alt={t("MobileApp.playStoreBadge", "Disponible sur Google Play")}
           />
         </a>
       </p>
     ),
     [appStoreBadge, playStoreBadge, t],
   );
-
-  const handleOpenStoreLink = (storelink: string) => {
-    window.open(storelink, "_blank");
-  };
 
   return (
     <section
@@ -138,16 +135,30 @@ const MobileApp = () => {
             <Button
               iconId={"ri-app-store-fill"}
               iconPosition="right"
-              className={cn("justify-center max-md:w-full", isAndroid && "hidden")}
-              onClick={() => handleOpenStoreLink(iosStoreLink)}
+              className={cn(
+                "justify-center max-md:w-full",
+                styles.storeLink,
+                isAndroid && "hidden",
+              )}
+              linkProps={{
+                href: iosStoreLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} App Store`,
+              }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>
             <Button
               iconId={"ri-android-fill"}
               iconPosition="right"
-              className={cn("justify-center max-md:w-full", isIOS && "hidden")}
-              onClick={() => handleOpenStoreLink(androidStoreLink)}
+              className={cn("justify-center max-md:w-full", styles.storeLink, isIOS && "hidden")}
+              linkProps={{
+                href: androidStoreLink,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} Google Play`,
+              }}
             >
               {t("MobileApp.downloadButtonText", "Télécharger l’application")}
             </Button>

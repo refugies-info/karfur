@@ -6,6 +6,7 @@ import { Modal } from "reactstrap";
 import styled from "styled-components";
 import Swal from "sweetalert2";
 import { newsletter } from "~/assets/figma";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import FButton from "~/components/UI/FButton/FButton";
 import { FButtonMobile } from "~/components/UI/FButtonMobile/FButtonMobile";
@@ -37,7 +38,7 @@ const MainContainer = styled.div`
   padding-top: 50px;
   margin: 8px;
 `;
-const TextContainer = styled.div`
+const TextContainer = styled.p`
   font-size: 18px;
   font-weight: normal;
   margin: 16px;
@@ -49,11 +50,13 @@ const ButtonContainer = styled.div`
   margin-top: 12px;
 `;
 
-const ErrorMessageContainer = styled.div`
+const ErrorMessageContainer = styled.p`
   color: ${colors.error};
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
+  // p reçoit une marge basse de bootstrap, absente du div d'origine
+  margin-bottom: 0;
 `;
 
 const CloseIconContainer = styled.div`
@@ -80,8 +83,11 @@ const EmailField = (props: EmailProps) => {
         onChange={props.onChange}
         id="email"
         type="email"
+        autoComplete="email"
+        title={t("Register.Votre email", "Votre email")}
         placeholder={t("Register.Votre email", "Votre email")}
         error={props.notEmailError}
+        ariaDescribedby={props.notEmailError ? "newsletter-email-error" : undefined}
         errorIcon="email-outline"
         newSize
       />
@@ -94,6 +100,7 @@ export const SubscribeNewsletterModal = () => {
   const [email, setEmail] = useState("");
   const [notEmailError, setNotEmailError] = useState(false);
   const { t } = useTranslation();
+  const announce = useAnnounce();
 
   const show = useSelector(showNewsletterModalSelector);
   const toggle = () => dispatch(toggleNewsletterModalAction(false));
@@ -126,12 +133,24 @@ export const SubscribeNewsletterModal = () => {
             icon: "success",
             timer: 1500,
           });
+          // Le libellé partagé avec la section d'accueil porte du gras pour l'affichage,
+          // une région vocale ne restitue que du texte.
+          announce(
+            t("NewsletterForm.confirmMessageText", {
+              defaultValue: "Mail correctement enregistré !",
+              email,
+            }).replace(/<[^>]*>/g, ""),
+          );
           setEmail("");
         })
         .catch((e) => {
-          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST")
+          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST") {
             Swal.fire("Oh non...", t("Footer.newsletter_contact_already_exist"), "error");
-          else Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+            announce(t("Footer.newsletter_contact_already_exist"));
+          } else {
+            Swal.fire("Oh non...", "Une erreur s'est produite", "error");
+            announce(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
+          }
         });
     } else {
       setNotEmailError(true);
@@ -142,21 +161,18 @@ export const SubscribeNewsletterModal = () => {
     <Modal
       isOpen={show}
       toggle={toggle}
+      labelledBy="newsletter-modal-title"
       className={styles.modal}
       contentClassName={styles.modal_content}
     >
       <MainContainer>
         {isMobile && (
           <CloseIconContainer onClick={toggle}>
-            <EVAIcon name="close" fill="white" size={"large"} />
+            <EVAIcon name="close" fill="white" size={"large"} aria-hidden="true" />
           </CloseIconContainer>
         )}
-        <Image
-          src={newsletter}
-          alt="image newsletter"
-          style={{ maxWidth: "100%", height: "auto" }}
-        />
-        <TitleContainer>
+        <Image src={newsletter} alt="" style={{ maxWidth: "100%", height: "auto" }} />
+        <TitleContainer id="newsletter-modal-title">
           {isMobile
             ? t("Footer.Newsletter", "Newsletter")
             : t("Footer.subscribe_to_newsletter_modal_title", "Inscription à la newsletter")}
@@ -174,7 +190,7 @@ export const SubscribeNewsletterModal = () => {
           notEmailError={notEmailError}
         />
         {notEmailError && (
-          <ErrorMessageContainer>{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
+          <ErrorMessageContainer id="newsletter-email-error">{`${t("Register.not_an_email")} ${t("Register.check_mail")}`}</ErrorMessageContainer>
         )}
         {isMobile ? (
           <FButtonMobile

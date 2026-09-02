@@ -65,6 +65,7 @@ const ChoiceButton = (props: Props) => {
               size={20}
               fill={fr.colors.decisions.text.mention.grey.default}
               className="ms-2"
+              ariaLabel="Aide"
               id={tooltipId}
             />
             <Tooltip target={tooltipId} placement="right" className={styles.tooltip}>

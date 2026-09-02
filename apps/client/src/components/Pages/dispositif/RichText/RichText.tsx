@@ -19,7 +19,7 @@ const RichText = (props: Props) => {
   return (
     <div className={cn(pageContext.mode !== "edit" && "prose no-dsfr", styles.content)}>
       {pageContext.mode !== "edit" ? (
-        <Text id={props.id} html>
+        <Text id={props.id} html calloutTitleAs="h2">
           {props.value || ""}
         </Text>
       ) : (

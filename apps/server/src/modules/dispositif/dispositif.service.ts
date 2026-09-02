@@ -115,8 +115,15 @@ export enum NotifType {
   UPDATED = "UPDATED",
   TO_VALIDATE = "TO_VALIDATE",
   VALIDATED_AND_PUBLISHED = "VALIDATED_AND_PUBLISHED",
+  METADATAS_PUBLISHED = "METADATAS_PUBLISHED",
 }
-export const notifyChange = async (notifType: NotifType, dispositifId: Id, userId: Id) => {
+export const notifyChange = async (
+  notifType: NotifType,
+  dispositifId: Id,
+  userId: Id,
+  /** libellés des metadatas modifiées, cités dans la notif METADATAS_PUBLISHED */
+  changedMetadatas: string[] = [],
+) => {
   try {
     const dispositif = await getDispositifById(
       dispositifId.toString(),
@@ -133,11 +140,12 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
     }
     const theme = (getDispositifTheme(dispositif)?.name?.fr || "").toLowerCase();
     const frTranslation = getDispositifTranslation(dispositif, "fr");
-    const contentTitle = `${
-      dispositif.typeContenu === ContentType.DISPOSITIF
-        ? frTranslation?.content.titreMarque + " - "
-        : ""
-    } ${frTranslation?.content.titreInformatif}`;
+    const titreInformatif = (frTranslation?.content.titreInformatif || "").trim();
+    const titreMarque = (frTranslation?.content.titreMarque || "").trim();
+    const contentTitle =
+      dispositif.typeContenu === ContentType.DISPOSITIF && titreMarque
+        ? `${titreMarque} - ${titreInformatif}`
+        : titreInformatif;
     const structure = user.structures[0]?.nom
       ? ` de la structure _${user.structures[0]?.nom}_`
       : "";
@@ -166,6 +174,14 @@ export const notifyChange = async (notifType: NotifType, dispositifId: Id, userI
         title = ":white_check_mark: Fiche validée et publiée";
         text = `Les modifications de la fiche ${type} *${contentTitle}* ont été validées et publiées. À valoriser ?`;
         break;
+      case NotifType.METADATAS_PUBLISHED: {
+        const changedFields = changedMetadatas.length
+          ? ` Champs modifiés : ${changedMetadatas.join(", ")}.`
+          : "";
+        title = ":paperclip: Métadonnées modifiées et publiées";
+        text = `Les métadonnées de la fiche ${type} *${contentTitle}* ont été modifiées puis publiées par _${user.username}_${structure}.${changedFields}`;
+        break;
+      }
     }
     return sendSlackNotif(title, text, `${url}/fr/${dispositif.typeContenu}/${dispositifId}`);
   } catch (e) {
@@ -422,6 +438,12 @@ export const publishDispositif = async (
   dispositifId: DispositifId,
   userId: UserId,
   keepTranslations?: boolean,
+  /**
+   * Renseigné quand la republication vient d'un membre de la structure dont les
+   * modifications ne touchent aucun texte traduisible (metadatas, carte,
+   * besoins, thèmes...) : la fiche est publiée sans validation admin.
+   */
+  publicationWithoutValidation?: { changedMetadatas: string[] },
 ) => {
   const oldDispositif = await getDispositifById(dispositifId, {
     status: 1,
@@ -500,7 +522,14 @@ export const publishDispositif = async (
         draftVersionStatus === DispositifStatus.DRAFT
       ) {
         await Promise.all([
-          notifyChange(NotifType.VALIDATED_AND_PUBLISHED, dispositifId, userId),
+          notifyChange(
+            publicationWithoutValidation
+              ? NotifType.METADATAS_PUBLISHED
+              : NotifType.VALIDATED_AND_PUBLISHED,
+            dispositifId,
+            userId,
+            publicationWithoutValidation?.changedMetadatas,
+          ),
           sendMailWhenDispositifPublishedAfterUpdate(updatedDispositif),
         ]);
       }
