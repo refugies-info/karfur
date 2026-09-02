@@ -115,9 +115,8 @@ exports[`CheckCode should render the component with the correct title and subtit
       </button>
       <p
         class="small mt-1"
-        role="status"
       >
-        Auth.resendCodeCountdown
+        Auth.resendEmailCountdown
       </p>
     </form>
     <div

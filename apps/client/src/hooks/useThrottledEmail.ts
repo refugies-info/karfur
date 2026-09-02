@@ -1,10 +1,19 @@
 import { logger } from "logger";
+import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
+import API from "~/utils/API";
 
 export const THROTTLED_EMAIL_DELAY_S = 60;
 
 /** Scopes are independent: a login code does not block a password reset. */
 export type ThrottledEmailScope = "send-code" | "reset-password";
+
+/** One sender per scope, so callers only pass the scope they need. */
+const senders: Record<ThrottledEmailScope, (email: string) => Promise<unknown>> = {
+  "send-code": (email) => API.sendCode({ email }),
+  "reset-password": (email) => API.resetPassword({ email }),
+};
 
 const SENT_EVENT = "throttled-email:sent";
 
@@ -52,6 +61,14 @@ export const startThrottleIfIdle = (scope: ThrottledEmailScope, email: string) =
   writeSentAt(scope, email);
 };
 
+interface Options {
+  /**
+   * Vocalises the start and the end of the countdown. Reserved for the component showing
+   * it, so a page mounting the hook only to send does not announce twice.
+   */
+  announceCountdown?: boolean;
+}
+
 /**
  * User-triggered email with 60 seconds between two sends. The delay is shared across
  * mounted components (event) and survives a page change (localStorage). The server
@@ -60,12 +77,11 @@ export const startThrottleIfIdle = (scope: ThrottledEmailScope, email: string) =
 const useThrottledEmail = (
   scope: ThrottledEmailScope,
   email: string,
-  send: (email: string) => Promise<unknown>,
+  { announceCountdown = false }: Options = {},
 ) => {
+  const { t } = useTranslation();
+  const announce = useAnnounce();
   const [secondsLeft, setSecondsLeft] = useState(0);
-  // The ref spares callers from having to memoize `send`.
-  const sendRef = useRef(send);
-  sendRef.current = send;
 
   useEffect(() => {
     const sync = () => setSecondsLeft(readSecondsLeft(scope, email));
@@ -81,12 +97,27 @@ const useThrottledEmail = (
     return () => window.clearInterval(timer);
   }, [isCountingDown, scope, email]);
 
+  // One announcement per transition instead of the 60 a live region would emit.
+  const isFirstAnnounceCheck = useRef(true);
+  useEffect(() => {
+    if (!announceCountdown) return;
+    if (isFirstAnnounceCheck.current) {
+      isFirstAnnounceCheck.current = false;
+      return;
+    }
+    announce(
+      isCountingDown
+        ? t("Auth.resendEmailCountdown", { count: readSecondsLeft(scope, email) })
+        : t("Auth.resendEmailAvailable"),
+    );
+  }, [announceCountdown, isCountingDown, announce, t, scope, email]);
+
   const sendEmail = useCallback(async () => {
     if (!email || readSecondsLeft(scope, email) > 0) return false;
     // Locked before the call to swallow a double click.
     writeSentAt(scope, email);
     try {
-      await sendRef.current(email);
+      await senders[scope](email);
       return true;
     } catch (e: any) {
       const retryAfter = e.response?.data?.data?.retryAfter;

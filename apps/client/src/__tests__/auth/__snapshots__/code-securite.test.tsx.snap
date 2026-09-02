@@ -84,9 +84,8 @@ exports[`auth/connexion renders code-securite if email 1`] = `
       </button>
       <p
         class="small mt-1"
-        role="status"
       >
-        Auth.resendCodeCountdown
+        Auth.resendEmailCountdown
       </p>
     </form>
     <div

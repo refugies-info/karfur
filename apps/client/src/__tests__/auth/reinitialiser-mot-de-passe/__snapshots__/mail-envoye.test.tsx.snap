@@ -51,9 +51,8 @@ exports[`auth/reinitialiser-mot-de-passe/mail-envoye renders page 1`] = `
     </button>
     <p
       class="countdown mb-4"
-      role="status"
     >
-      Auth.resendCodeCountdown
+      Auth.resendEmailCountdown
     </p>
     <button
       class="fr-btn fr-btn--tertiary button"

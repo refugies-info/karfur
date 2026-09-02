@@ -11,7 +11,7 @@ import { Col, Row } from "reactstrap";
 import GmailIcon from "~/assets/auth/providers/gmail-icon.svg";
 import OutlookIcon from "~/assets/auth/providers/outlook-icon.svg";
 import Image from "~/components/UI/Image";
-import { useLogin, useSendCode } from "~/hooks";
+import { useLogin, useThrottledEmail } from "~/hooks";
 import { startThrottleIfIdle } from "~/hooks/useThrottledEmail";
 import { cls } from "~/lib/classname";
 import styles from "~/scss/components/auth.module.scss";
@@ -73,7 +73,11 @@ const CheckCode = (props: Props) => {
     [logUser, email, code, props.type, updateUser, mfaCodeCookie, deleteMfaCodeCookie],
   );
 
-  const { sendCode, secondsLeft, canSendCode } = useSendCode(email);
+  const {
+    sendEmail: sendCode,
+    secondsLeft,
+    canSend: canSendCode,
+  } = useThrottledEmail("send-code", email, { announceCountdown: true });
 
   // On the 2FA and update screens the server already sent the code before we get here.
   // The login flow is driven by the code-connexion page, which sends it itself.
@@ -162,8 +166,9 @@ const CheckCode = (props: Props) => {
             >
               Renvoyer le code
             </Button>
-            <p className={cls(styles.small, "mt-1")} role="status">
-              {!canSendCode && t("Auth.resendCodeCountdown", { count: secondsLeft })}
+            {/* Vocalised through useAnnounce, not a live region: it changes every second. */}
+            <p className={cls(styles.small, "mt-1")}>
+              {!canSendCode && t("Auth.resendEmailCountdown", { count: secondsLeft })}
             </p>
           </form>
 

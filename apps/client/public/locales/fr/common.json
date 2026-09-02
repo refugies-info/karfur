@@ -900,7 +900,8 @@
   },
   "breadcrumbs": "Fil d'Ariane",
   "Auth": {
-    "resendCodeCountdown_one": "Un nouvel envoi sera possible dans {{count}} seconde.",
-    "resendCodeCountdown_other": "Un nouvel envoi sera possible dans {{count}} secondes."
+    "resendEmailCountdown_one": "Un nouvel envoi sera possible dans {{count}} seconde.",
+    "resendEmailCountdown_other": "Un nouvel envoi sera possible dans {{count}} secondes.",
+    "resendEmailAvailable": "Vous pouvez demander un nouvel envoi."
   }
 }
