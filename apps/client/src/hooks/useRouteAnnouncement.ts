@@ -13,26 +13,29 @@ const TITLE_WAIT_MAX_FRAMES = 30;
 
 /**
  * Routes whose page sets its own autofocus: the paragraph stays in sync but is
- * never focused, otherwise it steals the focus from the field. Update procedure
- * in documentation/client/accessibility/voiceover.md.
+ * never focused, otherwise it steals the focus from the field. Each entry
+ * carries the file:line (under src/) that declares the autofocus and whether
+ * the focus was measured in a browser or is only declared in the code (the
+ * "declared only" routes redirect to /fr/auth without a session). A route
+ * measured with no focus set is kept as a precaution until the gap is
+ * explained. Update procedure in documentation/client/accessibility/voiceover.md.
  */
 const AUTOFOCUS_ROUTE_PATTERNS = new Set([
-  // src/pages/auth/index.tsx l.162 - measured 25/08 (focus set on the email field)
+  // pages/auth/index.tsx:162, measured 25/08
   "/auth",
-  // src/pages/auth/connexion.tsx l.97 - declared, not measured (redirects to /fr/auth without a session)
+  // pages/auth/connexion.tsx:97, declared only
   "/auth/connexion",
-  // src/pages/auth/inscription/index.tsx l.112 - declared, not measured (redirects without a session)
+  // pages/auth/inscription/index.tsx:112, declared only
   "/auth/inscription",
-  // src/components/User/EditPseudo/EditPseudo.tsx l.62 - declared, not measured (redirects without a session)
+  // components/User/EditPseudo/EditPseudo.tsx:62, declared only
   "/auth/inscription/pseudo",
-  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 - declared, not measured (redirects without a session)
+  // components/Pages/auth/CheckCode/CheckCode.tsx:128, declared only
   "/auth/code-connexion",
-  // src/components/Pages/auth/CheckCode/CheckCode.tsx l.128 - declared, not measured (redirects without a session)
+  // components/Pages/auth/CheckCode/CheckCode.tsx:128, declared only
   "/auth/code-securite",
-  // src/components/User/ForgotPassword/ForgotPassword.tsx l.44 - measured 25/08 (focus set)
+  // components/User/ForgotPassword/ForgotPassword.tsx:44, measured 25/08
   "/auth/reinitialiser-mot-de-passe",
-  // src/pages/auth/reinitialiser-mot-de-passe/nouveau.tsx l.122 and l.134 - declared;
-  // measured 25/08 with NO focus set, kept as a precaution until the gap is explained
+  // pages/auth/reinitialiser-mot-de-passe/nouveau.tsx:122 and :134, measured 25/08, no focus set
   "/auth/reinitialiser-mot-de-passe/nouveau",
 ]);
 

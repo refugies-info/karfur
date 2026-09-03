@@ -102,8 +102,8 @@ On routes where the page sets its own autofocus (the auth funnel), the paragraph
 
 To update the list:
 
-1. Add the route pattern with a comment giving the `file:line` that declares the autofocus.
-2. State in the comment whether the autofocus behavior was actually measured in a browser (with an authenticated session when the route requires one; without a session most auth sub-routes redirect to `/fr/auth` and any measurement is wrong) or only declared in the code.
+1. Add the route pattern with a one-line comment of the form `// <file>:<line>, measured <date>` or `// <file>:<line>, declared only`, where `file:line` (relative to `apps/client/src`) is the declaration of the autofocus.
+2. `measured` means the autofocus behavior was actually observed in a browser (with an authenticated session when the route requires one; without a session most auth sub-routes redirect to `/fr/auth` and any measurement is wrong). `declared only` means the autofocus was found in the code but not measured. A route measured with no focus set says so on its line and is kept as a precaution until the gap is explained.
 3. Never add a route on the sole basis of an `autofocus` attribute in the DOM: two routes were measured with a declared autofocus that poses no focus at all.
 
 ### Skip links and anchor landing (RGAA 12.7)
