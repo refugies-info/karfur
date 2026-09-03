@@ -54,7 +54,7 @@ describe("EditDepartments, department combobox", () => {
     expect(container.querySelectorAll('[role="search"]')).toHaveLength(0);
   });
 
-  it("exposes the APG combobox attributes, collapsed by default", async () => {
+  it("exposes the ARIA Authoring Practices Guide (APG) combobox attributes, collapsed by default", async () => {
     await renderComponent();
     const input = getInput();
 

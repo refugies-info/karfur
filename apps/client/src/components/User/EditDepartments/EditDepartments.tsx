@@ -87,7 +87,6 @@ const EditDepartments = (props: Props) => {
   const isListboxOpen = !hidePredictions && predictions.length > 0;
   const activeOption = isListboxOpen ? predictions[activeIndex] : undefined;
 
-  // Any change to the suggestion set drops the visual focus.
   useEffect(() => {
     setActiveIndex(-1);
   }, [predictions]);
@@ -218,7 +217,7 @@ const EditDepartments = (props: Props) => {
       case "Escape":
         event.preventDefault();
         // Open: close and keep what was typed. Closed: clear the field, as the
-        // APG prescribes for an editable combobox.
+        // ARIA Authoring Practices Guide (APG) prescribes for an editable combobox.
         if (isListboxOpen) setHidePredictions(true);
         else setSearch("");
         return;
@@ -269,20 +268,13 @@ const EditDepartments = (props: Props) => {
               id={INPUT_ID}
               placeholder={t("Rechercher", "Rechercher")}
               type="search"
-              // Browser autofill would cover the suggestion list, and a department
-              // search maps to no HTML autofill token.
               autoComplete="off"
               // The spell checker talks over the announcements in VoiceOver (measured 27/08).
               spellCheck={false}
               role="combobox"
               aria-expanded={isListboxOpen}
-              // Pointed at only while the listbox exists: a dangling aria-controls
-              // is a dead reference for assistive technologies.
               aria-controls={isListboxOpen ? LISTBOX_ID : undefined}
-              // "list" and not "both": the suggestion engine scores by inclusion and
-              // Levenshtein distance, so the first suggestion often does not start
-              // with what was typed. Inline completion would overwrite the input
-              // with unrelated text. Documented gap to the APG example.
+              // "list", not "both": suggestions are scored by similarity, so inline completion would overwrite the input
               aria-autocomplete="list"
               aria-activedescendant={activeOption ? getOptionId(activeOption.id) : undefined}
               value={search}
