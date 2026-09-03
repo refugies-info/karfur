@@ -6,7 +6,7 @@ type AdressContentProps = {
   poi: Poi;
 };
 
-// Les classes que chaque ligne portait en <p>, plus p-0 pour le padding que DSFR pose sur les li.
+// The classes each line carried as a <p>, plus p-0 for the padding DSFR sets on li.
 const LINE_CLASS =
   "text-default-grey text-corps-sm !m-0 flex w-full items-center justify-between gap-2 p-0";
 
@@ -16,8 +16,8 @@ export default function AdressContent({ poi }: AdressContentProps) {
     navigator.clipboard.writeText(address);
   };
 
-  // Informations du lieu : énumération structurée en ul/li (RGAA 9.3), rien de rendu si vide.
-  // Les rôles explicites sont justifiés sur la prop contentAs de MetaDataItem.
+  // Venue details: enumeration structured as ul/li (RGAA 9.3), nothing rendered when empty.
+  // The explicit roles are justified on the contentAs prop of MetaDataItem.
   const lines = [
     poi.address && poi.address.length > 1 ? (
       <li key="address" className={LINE_CLASS} role="listitem">

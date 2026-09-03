@@ -20,9 +20,9 @@ import {
 import styles from "./CardPublic.module.scss";
 
 /**
- * Énumération de publics en ul/li (RGAA 9.3) sans changer le rendu : les li restent en flux
- * inline et les virgules d'origine sont masquées aux technologies d'assistance, la structure
- * de liste portant déjà la séparation.
+ * Audience enumeration as ul/li (RGAA 9.3) without changing the rendering: the li stay in
+ * inline flow and the original commas are hidden from assistive technologies, since the list
+ * structure already conveys the separation.
  */
 const PublicList = ({ items }: { items: string[] }) => (
   <>

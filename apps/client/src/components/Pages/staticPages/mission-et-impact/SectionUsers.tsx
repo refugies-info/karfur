@@ -20,9 +20,9 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_1"),
               }}
             ></p>
-            {/* Citations en ligne en q, prescrites par l'audit Ideance, P11, critère 9.4. Les
-                guillemets sont déjà dans le texte traduit, ceux du navigateur sont neutralisés
-                pour ne pas les doubler à l'écran. */}
+            {/* Inline quotes as q, prescribed by the Ideance audit, P11, criterion 9.4. The
+                quotation marks are already in the translated text, the browser's ones are
+                neutralised so they are not doubled on screen. */}
             <p className="text-large">
               <q className="after:content-none before:content-none">
                 {t("MissionImpact.users_testimony_1")}

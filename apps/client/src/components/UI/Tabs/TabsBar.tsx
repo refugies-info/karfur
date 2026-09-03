@@ -11,7 +11,7 @@ const TabsBar = React.forwardRef<HTMLUListElement, TabsBarProps>(({ children, ..
   const stylesDisabled = useStylesDisabled();
 
   return (
-    // Rôle explicite justifié sur la prop contentAs de MetaDataItem.
+    // Explicit role justified on the contentAs prop of MetaDataItem.
     <ul className={cls(styles.tabsbar)} role="list" {...props} ref={ref}>
       {children}
       {stylesDisabled && (
