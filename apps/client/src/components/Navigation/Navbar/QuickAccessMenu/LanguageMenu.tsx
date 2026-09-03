@@ -24,10 +24,9 @@ interface Props {
   availableLanguages?: string[] | null | undefined;
   key?: string;
   /**
-   * Force le choix entre `mobileMode` et `desktopMode` au lieu de le deduire de
-   * `isMobile`. A utiliser quand le composant vit dans une mise en page dont le
-   * point de rupture est porte par une feuille de style, pour que les deux
-   * basculent ensemble.
+   * Forces the choice between `mobileMode` and `desktopMode` instead of deriving
+   * it from `isMobile`. Use it when the component lives in a layout whose
+   * breakpoint is defined by a stylesheet, so that both switch together.
    */
   isCompact?: boolean;
 }
