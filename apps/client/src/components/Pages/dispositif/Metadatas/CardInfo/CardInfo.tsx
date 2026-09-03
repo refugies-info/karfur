@@ -51,7 +51,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
               onClick={isEditMode ? () => setActiveModal?.("Price") : undefined}
             >
               {price === null
-                ? "Non pertinent pour mon action"
+                ? t("Infocards.not_relevant", "Non pertinent pour mon action")
                 : price
                   ? getPrice(price, t)
                   : undefined}
@@ -73,7 +73,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
               }
             >
               {commitment === null
-                ? "Non pertinent pour mon action"
+                ? t("Infocards.not_relevant", "Non pertinent pour mon action")
                 : commitment
                   ? getCommitment(commitment, t)
                   : undefined}
@@ -95,7 +95,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
               }
             >
               {frequency === null
-                ? "Non pertinent pour mon action"
+                ? t("Infocards.not_relevant", "Non pertinent pour mon action")
                 : frequency
                   ? getFrequency(frequency, t)
                   : undefined}
@@ -117,7 +117,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
               }
             >
               {timeSlots === null
-                ? "Non pertinent pour mon action"
+                ? t("Infocards.not_relevant", "Non pertinent pour mon action")
                 : timeSlots
                   ? getTimeSlots(timeSlots, t)
                   : undefined}
