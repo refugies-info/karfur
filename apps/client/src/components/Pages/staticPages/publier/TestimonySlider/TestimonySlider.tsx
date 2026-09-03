@@ -23,8 +23,8 @@ const TestimonySlider = (props: Props) => {
             <p className="!text-large !mb-6">{testimony.text}</p>
           </blockquote>
           <div>
-            <div className="mb-2 font-bold">{testimony.name}</div>
-            <div>{testimony.position}</div>
+            <p className="mb-2 font-bold">{testimony.name}</p>
+            <p className="mb-0">{testimony.position}</p>
           </div>
         </div>
       ))}
