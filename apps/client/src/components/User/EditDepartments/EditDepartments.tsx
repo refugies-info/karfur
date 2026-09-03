@@ -59,7 +59,12 @@ const EditDepartments = (props: Props) => {
       } catch (e: any) {
         props.setIsLoading?.(false);
         logger.error(e);
-        setError("Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.");
+        setError(
+          t(
+            "EditDepartments.error_generic",
+            "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur.",
+          ),
+        );
       }
     },
     [userDetails, selectedDepartments, props.successCallback],
@@ -235,19 +240,23 @@ const EditDepartments = (props: Props) => {
 
   useEffect(() => {
     if (selectedDepartments.length === 0 && isDirty) {
-      setError("Vous devez sélectionner au moins un département");
+      setError(
+        t("EditDepartments.error_required", "Vous devez sélectionner au moins un département"),
+      );
     } else {
       setError("");
     }
-  }, [selectedDepartments, isDirty]);
+  }, [selectedDepartments, isDirty, t]);
 
   if (!userDetails) return null;
 
   return (
     <form onSubmit={submit}>
       <label htmlFor={INPUT_ID} className="fr-label mb-2">
-        Nom ou numéro du département
-        <span className="fr-hint-text">Plusieurs choix possibles</span>
+        {t("EditDepartments.label", "Nom ou numéro du département")}
+        <span className="fr-hint-text">
+          {t("EditDepartments.hint", "Plusieurs choix possibles")}
+        </span>
       </label>
       <div className="relative">
         <div ref={suggestionsRef}>
@@ -359,7 +368,7 @@ const EditDepartments = (props: Props) => {
           nativeButtonProps={{ type: "submit" }}
           disabled={loading || selectedDepartments.length === 0}
         >
-          Valider
+          {t("Valider", "Valider")}
         </Button>
       </div>
     </form>
