@@ -43,11 +43,17 @@ exports[`auth/reinitialiser-mot-de-passe/mail-envoye renders page 1`] = `
       </p>
     </div>
     <button
-      class="fr-btn fr-icon-mail-line fr-btn--icon-right button mb-4"
+      class="fr-btn fr-icon-mail-line fr-btn--icon-right button mb-1"
+      disabled=""
       id="fr-button-«r1»"
     >
       Renvoyer le lien de réinitialisation
     </button>
+    <p
+      class="countdown mb-4"
+    >
+      Auth.resendEmailCountdown
+    </p>
     <button
       class="fr-btn fr-btn--tertiary button"
       id="fr-button-«r2»"
