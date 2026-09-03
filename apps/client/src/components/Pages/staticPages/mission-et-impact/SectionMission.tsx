@@ -25,8 +25,8 @@ export const SectionMission = () => {
             />
           </div>
           <div className="flex-1">
-            {/* Levée de fait du 9.4 prescrit ici : la citation a disparu du contenu le 25/06
-                (commit 4efd162f5), voir docs/notes-tickets/rga-13.md. */}
+            {/* De facto lifting of the 9.4 prescribed here: the quote disappeared from the
+                content on 25/06 (commit 4efd162f5), see docs/notes-tickets/rga-13.md. */}
             <p className="!text-large">{t("MissionImpact.mission_p1")}</p>
             <p className="!text-large">{t("MissionImpact.mission_p2")}</p>
             <p className="!text-large !mb-0">{t("MissionImpact.mission_p3")}</p>

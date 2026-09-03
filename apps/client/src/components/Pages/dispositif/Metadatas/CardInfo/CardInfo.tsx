@@ -129,7 +129,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                 let title = t("Infocards.departements", "Departements :");
                 if (location === "france") title = t("Infocards.france", "France");
                 else if (location === "online") title = t("Recherche.online", "En ligne");
-                // Énumération de départements : ul/li (RGAA 9.3), d'où contentAs="ul".
+                // Department enumeration: ul/li (RGAA 9.3), hence contentAs="ul".
                 const hasDepartments = Array.isArray(location) && location.length > 0;
                 return (
                   <MetaDataItem

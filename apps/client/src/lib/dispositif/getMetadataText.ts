@@ -47,15 +47,15 @@ export const getPriceText = (data: Metadatas["price"] | undefined, t: TFunction)
 };
 
 /**
- * Valeurs dont le libellé se lit dans le namespace Infocards. Union fermée et non string :
- * c'est elle qui laisse t() vérifier les clés `Infocards.${valeur}` à la compilation.
+ * Values whose label is read from the Infocards namespace. A closed union rather than string:
+ * it is what lets t() check the `Infocards.${value}` keys at compile time.
  */
 type InfocardsValue = NonNullable<Metadatas["public"] | Metadatas["publicStatus"]>[number];
 
 /**
- * Libellés d'une énumération de métadonnées, un par élément au lieu d'une chaîne jointe,
- * pour pouvoir la structurer en ul/li (RGAA 9.3). Seul le premier porte la majuscule,
- * comme la chaîne jointe que ces listes remplacent.
+ * Labels of a metadata enumeration, one per item instead of a joined string, so that it can
+ * be structured as ul/li (RGAA 9.3). Only the first one is capitalised, like the joined
+ * string these lists replace.
  */
 export const getInfocardsLabels = (
   data: readonly InfocardsValue[] | null | undefined,

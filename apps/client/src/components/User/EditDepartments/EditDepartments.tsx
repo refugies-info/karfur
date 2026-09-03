@@ -126,9 +126,9 @@ const EditDepartments = (props: Props) => {
 
         {selectedDepartments.length > 0 && (
           <div className="mt-12">
-            {/* Énumération de départements : ul/li (RGAA 9.3), puce et retrait DSFR neutralisés
-                pour un rendu identique à l'ancienne structure en div. Rôles explicites justifiés
-                sur la prop contentAs de MetaDataItem. */}
+            {/* Department enumeration: ul/li (RGAA 9.3), DSFR bullet and indent neutralised
+                for a rendering identical to the former div structure. Explicit roles justified
+                on the contentAs prop of MetaDataItem. */}
             <ul className="m-0 list-none p-0" role="list">
               {selectedDepartments.map((dep) => (
                 <li key={dep} className={styles.option} role="listitem">

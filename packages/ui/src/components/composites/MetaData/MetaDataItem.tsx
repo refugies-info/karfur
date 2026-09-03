@@ -11,15 +11,15 @@ type MetaDataItemProps = {
   onClick?: () => void;
   state?: "valid" | "invalid";
   /**
-   * Balise du conteneur d'enfants. "p" par défaut, "ul" quand les enfants sont une énumération
-   * (RGAA 9.3 : un <ul> ne peut pas vivre dans un <p>). En "ul" le conteneur perd puce, retrait
-   * et marges, et reçoit role="list" : sans ce rôle explicite, VoiceOver n'annonce plus la nature
-   * de liste ni le décompte dès que la puce est masquée (mesuré Safari + VoiceOver, 27/08).
-   * C'est la justification de tous les role="list" et role="listitem" posés sur les listes nues
-   * du dépôt.
+   * Tag of the children container. "p" by default, "ul" when the children are an enumeration
+   * (RGAA 9.3: a <ul> cannot live inside a <p>). As "ul" the container loses bullet, indent
+   * and margins, and receives role="list": without this explicit role, VoiceOver no longer
+   * announces the list nature nor the item count once the bullet is hidden (measured on
+   * Safari + VoiceOver, 27/08). This is the justification for every role="list" and
+   * role="listitem" set on the bare lists of the repository.
    */
   contentAs?: "p" | "ul";
-  /** Classes ajoutées au conteneur d'enfants, pour les cas où sa disposition doit changer. */
+  /** Classes added to the children container, for the cases where its layout must change. */
   contentClassName?: string;
 } & (
   | { icon: FrIconClassName | RiIconClassName; logoImage?: never }

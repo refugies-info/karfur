@@ -159,8 +159,8 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>On cherche des traducteurs en :</Title2>
-            {/* Énumération de liens : ul/li (RGAA 9.3), rôle explicite justifié sur la prop
-                contentAs de MetaDataItem. Le flex reprend la disposition de l'ancien div. */}
+            {/* Link enumeration: ul/li (RGAA 9.3), explicit role justified on the contentAs
+                prop of MetaDataItem. The flex reproduces the layout of the former div. */}
             {translationNeeds.length > 0 && (
               <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center" role="list">
                 {translationNeeds.map((item, i) => (
