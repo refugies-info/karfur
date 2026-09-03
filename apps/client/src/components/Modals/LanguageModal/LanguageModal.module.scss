@@ -4,10 +4,10 @@
 
 .modal {
   @include media-min("tablet-up") {
-    // 37.5rem, soit la largeur que le contenu imposait deja par un min-width :
-    // le dialogue faisait 500 px et son contenu 600, qui depassait sur la droite.
-    // On dimensionne le dialogue lui-meme, et on le borne par la fenetre pour
-    // qu'il ne sorte plus a 200 % d'agrandissement du texte (RGAA 10.4).
+    // 37.5rem, i.e. the width the content already imposed through a min-width:
+    // the dialog was 500 px wide and its content 600, which overflowed on the right.
+    // The dialog itself is now sized, and bounded by the viewport so that it no
+    // longer overflows at 200 % text zoom (RGAA 10.4).
     width: 37.5rem;
     max-width: calc(100vw - 3.5rem);
   }
@@ -26,10 +26,10 @@
     border-radius: 0;
     border: none;
 
-    // Dans une fenetre de 256 px de haut, la modale mesurait 866 px et etait
-    // coupee en bas, sans moyen d'atteindre la fin de la liste (RGAA 10.11).
-    // 3.5rem = les marges haute et basse que reactstrap pose sur .modal-dialog.
-    // En rem, donc la borne suit l'agrandissement du texte (RGAA 10.4).
+    // In a 256 px tall viewport, the modal was 866 px tall and cut off at the
+    // bottom, with no way to reach the end of the list (RGAA 10.11).
+    // 3.5rem = the top and bottom margins reactstrap sets on .modal-dialog.
+    // In rem, so the bound follows text zoom (RGAA 10.4).
     max-height: calc(100vh - 3.5rem);
     overflow-y: auto;
   }

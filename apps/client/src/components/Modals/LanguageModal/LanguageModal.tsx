@@ -22,10 +22,10 @@ const LanguageModal = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
 
-  // La largeur et la hauteur de la modale sont bornees par la fenetre dans la
-  // feuille de style : a 200 % d'agrandissement du texte elle sortait a droite,
-  // et dans une fenetre de 256 px de haut elle etait coupee en bas sans moyen
-  // d'atteindre la fin de la liste (RGAA 10.4 et 10.11).
+  // The modal width and height are bounded by the viewport in the stylesheet:
+  // at 200 % text zoom it overflowed on the right, and in a 256 px tall viewport
+  // it was cut off at the bottom with no way to reach the end of the list
+  // (RGAA 10.4 and 10.11).
   return (
     <Modal
       isOpen={props.show}
@@ -59,9 +59,9 @@ const LanguageModal = (props: Props) => {
             tag="div"
             className={styles.list_group_item + " " + styles.unavailable}
           >
-            {/* La grille reactstrap Col xs=8 / xs=4 n'avait aucune variante : sous
-                380 px le bouton ne tenait pas dans son quart et recouvrait le
-                texte. Un flex qui passe a la ligne regle les deux (RGAA 10.11). */}
+            {/* The reactstrap Col xs=8 / xs=4 grid had no responsive variant: below
+                380 px the button did not fit in its quarter and overlapped the
+                text. A wrapping flex container fixes both (RGAA 10.11). */}
             <div className="flex flex-wrap items-center justify-between gap-4">
               <p className="mb-0">
                 {t("Homepage.traduire", "Vous pouvez nous aider à traduire !")}

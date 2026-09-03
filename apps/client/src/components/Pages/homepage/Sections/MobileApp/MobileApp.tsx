@@ -166,11 +166,11 @@ const MobileApp = () => {
         ) : (
           <MobileAppSmsForm />
         )}
-        {/* Sous 768 px, le formulaire d'envoi par SMS disparaissait entierement :
-            perte de fonctionnalite au sens du critere 10.11. On le remet sous les
-            boutons de store, sans toucher au titre mobile qui releve d'un choix
-            editorial documente (PR #2709). L'intertitre reutilise la clef du titre
-            de bureau, deja traduite dans les 8 langues. */}
+        {/* Below 768 px, the SMS sending form disappeared entirely: a loss of
+            functionality in the sense of criterion 10.11. It is put back under the
+            store buttons, without touching the mobile title, which comes from a
+            documented editorial choice (PR #2709). The subheading reuses the
+            desktop title key, already translated in the 8 languages. */}
         {isMobile && (
           <div className="mt-10">
             <h3 className="text-lg">

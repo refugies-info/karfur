@@ -11,9 +11,9 @@
   padding-block: var(--block-padding);
   position: relative;
 
-  // Le nom de la langue ne se coupe pas, mais la ligne peut passer a la ligne
-  // suivante : sous 380 px le libelle, l'etiquette et le pourcentage ne tenaient
-  // pas sur une ligne et debordaient de leur boite (RGAA 10.11).
+  // The language name does not break, but the row may wrap onto the next line:
+  // below 380 px the label, the tag and the percentage did not fit on one line
+  // and overflowed their box (RGAA 10.11).
   flex-wrap: wrap;
 
   :global(.langLabel) {

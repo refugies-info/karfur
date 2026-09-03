@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 
 /**
- * Suit une media query CSS.
+ * Tracks a CSS media query.
  *
- * A ne pas confondre avec `isMobile` de `useWindowSize`, qui compare la largeur
- * de la fenetre a la taille de police de la racine. Les deux divergent des que
- * l'utilisateur agrandit le texte : l'unite `em` d'une media query se mesure sur
- * la taille de police par defaut du navigateur, que l'agrandissement du texte ne
- * change pas, alors que la racine, elle, grandit. Quand un composant doit suivre
- * le meme point de rupture qu'une feuille de style (celle du DSFR par exemple),
- * c'est ce hook qu'il faut, pas `isMobile`.
+ * Not to be confused with `isMobile` from `useWindowSize`, which compares the
+ * viewport width to the root font size. The two diverge as soon as the user
+ * zooms the text: the `em` unit of a media query is measured against the
+ * browser default font size, which text zoom does not change, whereas the root
+ * font size does grow. When a component must follow the same breakpoint as a
+ * stylesheet (the DSFR one for instance), this hook is the one to use, not
+ * `isMobile`.
  *
- * `defaultValue` est la valeur du premier rendu, cote serveur et avant montage.
- * La choisir egale au comportement d'origine evite un saut a l'hydratation.
+ * `defaultValue` is the value of the first render, server side and before mount.
+ * Choosing it equal to the original behaviour avoids a jump at hydration.
  */
 export const useMediaQuery = (query: string, defaultValue = false): boolean => {
   const [matches, setMatches] = useState(defaultValue);

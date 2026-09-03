@@ -59,9 +59,9 @@ const StructuresLogos = () => {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 px-4 py-10 md:px-32 xl:px-4">
-      {/* Sous 768 px, les logos passent a 48 px et les gouttieres se resserrent :
-          a 72 px ils tenaient a deux par ligne et la section faisait 592 px de
-          haut a 320 px. Meme contenu, moins de defilement (RGAA 10.11). */}
+      {/* Below 768 px, the logos go down to 48 px and the gutters get tighter: at
+          72 px only two fit per row and the section was 592 px tall at 320 px.
+          Same content, less scrolling (RGAA 10.11). */}
       <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 md:gap-x-10">
         {logos.map((logo, index) => (
           <Image
