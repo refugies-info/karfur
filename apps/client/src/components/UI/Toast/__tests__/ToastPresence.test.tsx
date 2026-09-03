@@ -58,7 +58,7 @@ describe("ToastViewportWhenNeeded", () => {
     expect(notificationRegion()).not.toBeNull();
 
     // Programmatic close, with focus never having entered the toast.
-    fireEvent.click(screen.getByRole("button", { name: "Close" }));
+    fireEvent.click(screen.getByRole("button", { name: "close" }));
 
     await advanceTime(100);
     expect(notificationRegion()).not.toBeNull(); // S1: still there at t+100
@@ -71,7 +71,7 @@ describe("ToastViewportWhenNeeded", () => {
     render(<Harness openAtStart={true} />);
     await advanceTime(0);
 
-    const closeButton = screen.getByRole("button", { name: "Close" });
+    const closeButton = screen.getByRole("button", { name: "close" });
     closeButton.focus();
     expect(document.activeElement).toBe(closeButton);
 
