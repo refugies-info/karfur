@@ -2,9 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 import { createDynamicRouteParser } from "next-router-mock/dynamic-routes";
 import useRouteAnnouncement, {
-  clearAnchorNavigation,
   markAnchorNavigation,
   ROUTE_ANNOUNCER_ID,
+  unmarkAnchorNavigation,
 } from "./useRouteAnnouncement";
 import useScrollToAnchor from "./useScrollToAnchor";
 
@@ -41,7 +41,7 @@ describe("useRouteAnnouncement", () => {
     document.body.innerHTML = "";
     document.title = "";
     frameQueue = [];
-    clearAnchorNavigation();
+    unmarkAnchorNavigation();
     window.history.pushState({}, "", "/");
     mockRouter.setCurrentUrl("/");
     mockRouter.locale = "fr";
@@ -402,7 +402,7 @@ describe("useRouteAnnouncement", () => {
       document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
 
       markAnchorNavigation();
-      clearAnchorNavigation();
+      unmarkAnchorNavigation();
       await act(async () => {
         await mockRouter.push("/agir");
       });

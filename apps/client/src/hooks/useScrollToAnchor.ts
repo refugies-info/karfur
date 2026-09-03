@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
-import { clearAnchorNavigation, markAnchorNavigation } from "./useRouteAnnouncement";
+import { markAnchorNavigation, unmarkAnchorNavigation } from "./useRouteAnnouncement";
 
 /**
  * Custom hook to enable smooth scrolling for anchor links.
@@ -87,7 +87,7 @@ const useScrollToAnchor = () => {
               scrollToHash(hash);
             })
             .finally(() => {
-              clearAnchorNavigation();
+              unmarkAnchorNavigation();
             });
         }
       }

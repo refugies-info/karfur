@@ -7,10 +7,10 @@ jest.mock("next/router", () => require("next-router-mock"));
 // on the announcement is covered by useRouteAnnouncement.test.tsx.
 jest.mock("./useRouteAnnouncement", () => ({
   markAnchorNavigation: jest.fn(),
-  clearAnchorNavigation: jest.fn(),
+  unmarkAnchorNavigation: jest.fn(),
 }));
 
-const { markAnchorNavigation, clearAnchorNavigation } = require("./useRouteAnnouncement");
+const { markAnchorNavigation, unmarkAnchorNavigation } = require("./useRouteAnnouncement");
 
 /**
  * Test trap, do not remove: the hook compares `window.location.pathname`, not
@@ -171,7 +171,7 @@ describe("useScrollToAnchor", () => {
       });
 
       expect(markAnchorNavigation).toHaveBeenCalledTimes(1);
-      expect(clearAnchorNavigation).toHaveBeenCalledTimes(1);
+      expect(unmarkAnchorNavigation).toHaveBeenCalledTimes(1);
       expect(callOrder(markAnchorNavigation)).toBeLessThan(callOrder(mockRouter.push));
     });
 
@@ -211,7 +211,7 @@ describe("useScrollToAnchor", () => {
       clickAnchor("/#newsletter");
 
       expect(markAnchorNavigation).toHaveBeenCalledTimes(1);
-      expect(clearAnchorNavigation).toHaveBeenCalledTimes(1);
+      expect(unmarkAnchorNavigation).toHaveBeenCalledTimes(1);
       // The navigation failed, so the scroll to the target does not happen.
       expect(document.activeElement).not.toBe(target);
       expect(window.scrollTo).not.toHaveBeenCalled();

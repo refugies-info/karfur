@@ -47,7 +47,7 @@ export const markAnchorNavigation = () => {
   anchorNavigationInProgress = true;
 };
 
-export const clearAnchorNavigation = () => {
+export const unmarkAnchorNavigation = () => {
   anchorNavigationInProgress = false;
 };
 
