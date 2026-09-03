@@ -105,13 +105,13 @@ const WhyAccordions = (props: Props) => {
     },
   ];
 
-  // Sous 768 px, seuls les deux items ci-dessus etaient rendus : les deux
-  // derniers items de bureau, dont celui qui porte la video de mediation,
-  // disparaissaient (RGAA 10.11). Les deux premiers items ne sont pas des
-  // versions tronquees des items de bureau, ils sont ecrits en francais simplifie
-  // et s'adressent a la personne refugiee. On garde donc ce registre et on ajoute
-  // les deux items manquants a la suite, plutot que de basculer tout le mobile sur
-  // les textes de bureau, ce qui ferait perdre le francais simplifie.
+  // Below 768 px, only the two items above were rendered: the last two desktop
+  // items, including the one carrying the mediation video, disappeared
+  // (RGAA 10.11). The first two items are not truncated versions of the desktop
+  // items, they are written in simplified French and address the refugee
+  // directly. That register is kept and the two missing items are appended
+  // after them, rather than switching the whole mobile view to the desktop
+  // texts, which would lose the simplified French.
   const accordionItemsCompact = [...accordionItemsMobile, ...accordionItemsDesktop.slice(2)];
 
   return (

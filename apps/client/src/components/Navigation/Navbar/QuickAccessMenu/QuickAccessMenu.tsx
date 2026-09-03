@@ -17,10 +17,10 @@ import { getPath } from "~/routes";
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
   const { zoomLevel } = useWindowSize();
-  // On negocie exactement la media query du DSFR plutot que d'en ecrire une
-  // complementaire : a 992 px pile, Chrome fait matcher a la fois
-  // (min-width: 62em) et (max-width: 61.9999em), et les deux mises en page se
-  // superposaient. La valeur par defaut garde le rendu serveur en mode bureau.
+  // We negate the exact DSFR media query rather than writing a complementary
+  // one: at exactly 992 px, Chrome matches both (min-width: 62em) and
+  // (max-width: 61.9999em), and the two layouts overlapped. The default value
+  // keeps the server render in desktop mode.
   const isDsfrCompactHeader = !useMediaQuery("(min-width: 62em)", true);
   const locale = useLocale();
 
@@ -45,26 +45,26 @@ const QuickAccessMenu = () => {
       iconId="fr-icon-message-2-line"
       priority="tertiary no outline"
     >
-      {/* Meme point de rupture que la mise en page de l'en-tete : sinon le
-          libelle long s'affichait dans la barre de bureau des 200 % de zoom. */}
+      {/* Same breakpoint as the header layout: otherwise the long label showed
+          up in the desktop bar from 200 % zoom onwards. */}
       {isDsfrCompactHeader
         ? t("Toolbar.TraduireUneFiche", "Traduire une fiche")
         : t("Toolbar.Traduire", "Traduire")}
     </Button>,
     <LanguageMenu
       key="language"
-      // Le DSFR bascule sa barre d'outils vers le menu burger a 62em, et l'unite
-      // em d'une media query ne suit pas l'agrandissement du texte. Sans ce
-      // garde, le menu se croyait sur mobile a partir de 200 % de zoom texte et
-      // rendait son accordeon dans la barre de bureau, qui debordait alors de
-      // 952 px (RGAA 10.4).
+      // The DSFR moves its tools bar into the burger menu at 62em, and the em
+      // unit of a media query does not follow text zoom. Without this guard, the
+      // menu believed it was on mobile from 200 % text zoom onwards and rendered
+      // its accordion in the desktop bar, which then overflowed by 952 px
+      // (RGAA 10.4).
       isCompact={isDsfrCompactHeader}
       className={cn(zoomLevel >= 175 && "!w-full")}
       dropDownClassName={cn(zoomLevel >= 175 && "!w-full")}
     />,
-    // Le bouton de connexion reste dans la liste a toutes les largeurs (RGAA 10.11).
-    // Le DSFR le rend dans la barre d'outils au-dessus de 62em et dans le menu
-    // burger en dessous : le retirer sous 48em le rendait inatteignable partout.
+    // The login button stays in the list at every width (RGAA 10.11).
+    // The DSFR renders it in the tools bar above 62em and in the burger menu
+    // below: removing it under 48em made it unreachable everywhere.
     <LoginButton key="login" />,
   ];
 
