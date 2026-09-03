@@ -11,9 +11,9 @@ import useScrollToAnchor from "./useScrollToAnchor";
 jest.mock("next/router", () => require("next-router-mock"));
 
 /**
- * Le hook attend le titre par `requestAnimationFrame`. On contrôle les trames
- * à la main pour pouvoir jouer les scénarios de chevauchement : chaque appel à
- * `flushFrames(1)` rejoue une trame, `flushFrames()` épuise la file.
+ * The hook waits for the title through `requestAnimationFrame`. Frames are
+ * driven by hand so the overlap scenarios can be replayed: each call to
+ * `flushFrames(1)` plays one frame, `flushFrames()` drains the queue.
  */
 let frameQueue: FrameRequestCallback[] = [];
 const flushFrames = (count = Number.POSITIVE_INFINITY) => {
@@ -45,8 +45,8 @@ describe("useRouteAnnouncement", () => {
     window.history.pushState({}, "", "/");
     mockRouter.setCurrentUrl("/");
     mockRouter.locale = "fr";
-    // Sans ce parser, `router.pathname` vaudrait l'URL résolue et la
-    // comparaison au motif de route ne prouverait rien.
+    // Without this parser, `router.pathname` would hold the resolved URL and
+    // comparing it to the route pattern would prove nothing.
     mockRouter.useParser(createDynamicRouteParser(["/demarche/[id]", "/dispositif/[id]"]));
     window.scrollTo = jest.fn();
     jest.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
@@ -59,8 +59,8 @@ describe("useRouteAnnouncement", () => {
     jest.restoreAllMocks();
   });
 
-  describe("annonce du titre", () => {
-    it("recopie exactement le document.title d'arrivée après une navigation", async () => {
+  describe("title announcement", () => {
+    it("copies the incoming document.title verbatim after a navigation", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -73,9 +73,9 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("AGIR pour les personnes réfugiées - Réfugiés.info");
     });
 
-    it("n'écrit rien et ne déplace pas le focus au montage, sans navigation", () => {
-      // Couvre aussi la première visite où la modale de langue s'ouvre seule :
-      // aucune navigation n'a lieu, le hook ne touche à rien.
+    it("writes nothing and does not move the focus on mount, without a navigation", () => {
+      // Also covers the first visit, where the language modal opens on its own:
+      // no navigation happens, the hook touches nothing.
       const paragraph = addAnnouncer();
       document.title = "Réfugiés.info";
 
@@ -86,9 +86,9 @@ describe("useRouteAnnouncement", () => {
       expect(document.activeElement).not.toBe(paragraph);
     });
 
-    it("restitue le contenu à chaque navigation, même vers un titre identique", async () => {
-      // Couple réel : /auth et /auth/inscription déclarent le même
-      // title="Bienvenue". Le paragraphe doit être réécrit à chaque fois.
+    it("re-announces the content on every navigation, even towards an identical title", async () => {
+      // Real pair: /auth and /auth/inscription both declare the same
+      // title="Bienvenue". The paragraph must be rewritten every time.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -106,14 +106,14 @@ describe("useRouteAnnouncement", () => {
       flushFrames();
 
       expect(paragraph.textContent).toBe("Bienvenue - Réfugiés.info");
-      // Le nœud texte a été posé à neuf : preuve du geste de forçage,
-      // sans lequel React/DOM ne restituerait rien sur un texte identique.
+      // The text node was set afresh: proof of the forcing gesture, without
+      // which React/DOM would announce nothing on an identical text.
       expect(paragraph.firstChild).not.toBe(firstTextNode);
     });
   });
 
-  describe("titre vide et routes sans <title>", () => {
-    it("n'écrit jamais un chemin d'URL, même quand le titre reste vide", async () => {
+  describe("empty title and routes without a <title>", () => {
+    it("never writes a URL path, even when the title stays empty", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -127,7 +127,7 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).not.toContain("/");
     });
 
-    it("écrit un repli humanisé tiré du motif de route quand le titre reste vide", async () => {
+    it("writes a humanized fallback derived from the route pattern when the title stays empty", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -139,7 +139,7 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("Download app");
     });
 
-    it("écrit le titre dès qu'il est posé, même s'il était momentanément vide", async () => {
+    it("writes the title as soon as it is set, even if it was momentarily empty", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -155,8 +155,8 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("gardes", () => {
-    it("ne fait rien sur une navigation superficielle (saisie dans la recherche)", async () => {
+  describe("guards", () => {
+    it("does nothing on a shallow navigation (typing in the search field)", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "Recherche - Réfugiés.info";
@@ -169,9 +169,9 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("");
     });
 
-    it("ne fait rien quand seule la locale change sur la même page", async () => {
-      // Cas réel : redirection de langue du premier chargement et validation
-      // de la modale de langue, un router.replace non superficiel.
+    it("does nothing when only the locale changes on the same page", async () => {
+      // Real case: first-load language redirect and language modal validation,
+      // a non-shallow router.replace.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "Réfugiés.info";
@@ -185,7 +185,7 @@ describe("useRouteAnnouncement", () => {
       expect(document.activeElement).not.toBe(paragraph);
     });
 
-    it("annonce une navigation qui change de page et de locale à la fois", async () => {
+    it("announces a navigation that changes both the page and the locale", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "Пландусайту - Réfugiés.info";
@@ -199,18 +199,18 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("navigations chevauchées", () => {
-    it("n'écrit pas après coup quand une navigation en chasse une autre", async () => {
-      // La première navigation attend son titre ; une seconde démarre avant la
-      // fin de l'attente. L'attente périmée ne doit plus rien écrire.
+  describe("overlapping navigations", () => {
+    it("does not write afterwards when a navigation supersedes another", async () => {
+      // The first navigation waits for its title; a second one starts before
+      // the wait ends. The stale wait must not write anything anymore.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
       await act(async () => {
         await mockRouter.push("/agir");
       });
-      // L'attente de /agir est en file, titre encore vide. Une seconde
-      // navigation démarre : le jeton de génération invalide l'attente.
+      // The /agir wait is queued, title still empty. A second navigation
+      // starts: the generation token invalidates the wait.
       mockRouter.events.emit("routeChangeStart", "/plan-du-site", { shallow: false });
       document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
       flushFrames();
@@ -218,7 +218,7 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("");
     });
 
-    it("seule la dernière de deux navigations rapprochées écrit", async () => {
+    it("only the last of two back-to-back navigations writes", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -235,8 +235,8 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("chemins d'erreur", () => {
-    it("ne lève pas quand le paragraphe est absent du DOM", async () => {
+  describe("error paths", () => {
+    it("does not throw when the paragraph is missing from the DOM", async () => {
       renderHook(() => useRouteAnnouncement());
       document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
 
@@ -247,7 +247,7 @@ describe("useRouteAnnouncement", () => {
       expect(() => flushFrames()).not.toThrow();
     });
 
-    it("garde le titre de la dernière navigation aboutie après un routeChangeError", async () => {
+    it("keeps the title of the last completed navigation after a routeChangeError", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
 
@@ -257,7 +257,7 @@ describe("useRouteAnnouncement", () => {
       });
       flushFrames();
 
-      // Une navigation démarre puis échoue : rien ne doit être réécrit.
+      // A navigation starts then fails: nothing must be rewritten.
       mockRouter.events.emit("routeChangeStart", "/plan-du-site", { shallow: false });
       mockRouter.events.emit("routeChangeError", new Error("cancelled"), "/plan-du-site", {
         shallow: false,
@@ -268,8 +268,8 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("repositionnement du focus", () => {
-    it("pose le focus sur le paragraphe après une navigation ordinaire, sans défilement", async () => {
+  describe("focus repositioning", () => {
+    it("focuses the paragraph after an ordinary navigation, without scrolling", async () => {
       const paragraph = addAnnouncer();
       const focusSpy = jest.spyOn(paragraph, "focus");
       renderHook(() => useRouteAnnouncement());
@@ -281,15 +281,15 @@ describe("useRouteAnnouncement", () => {
       flushFrames();
 
       expect(document.activeElement).toBe(paragraph);
-      // preventScroll : sans lui, le focus ferait remonter la page et
-      // détruirait la restauration de position au retour arrière (R16).
+      // preventScroll: without it, the focus would scroll the page back to the
+      // top and break the position restoration on browser back (R16).
       expect(focusSpy).toHaveBeenCalledWith({ preventScroll: true });
     });
 
-    it("ne déplace pas le focus sur une route à autofocus, mais synchronise le texte", async () => {
-      // Verdict VoiceOver du 26/08 : sur ces pages l'annonce du champ fait
-      // foi. Couvre aussi le cas du champ pas encore monté au moment du
-      // routeChangeComplete : le hook ne prend jamais le focus sur ces routes.
+    it("does not move the focus on an autofocus route, but syncs the text", async () => {
+      // VoiceOver verdict of 26/08: on these pages the field announcement is
+      // authoritative. Also covers the case of a field not mounted yet at
+      // routeChangeComplete time: the hook never takes the focus on these routes.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "Bienvenue - Réfugiés.info";
@@ -303,7 +303,7 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("Bienvenue - Réfugiés.info");
     });
 
-    it("compare le motif de route, pas l'URL résolue, sur une route dynamique", async () => {
+    it("compares the route pattern, not the resolved URL, on a dynamic route", async () => {
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "Demander l'asile - Réfugiés.info";
@@ -317,9 +317,9 @@ describe("useRouteAnnouncement", () => {
       expect(document.activeElement).toBe(paragraph);
     });
 
-    it("refocalise le paragraphe à chaque navigation, même à titre identique", async () => {
-      // Geste de forçage : focus() sur un élément déjà focalisé n'émet rien.
-      // Le hook sort le focus puis le remet, un événement focus par navigation.
+    it("refocuses the paragraph on every navigation, even with an identical title", async () => {
+      // Forcing gesture: focus() on an already focused element emits nothing.
+      // The hook blurs then refocuses, one focus event per navigation.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       const focusEvents = jest.fn();
@@ -342,9 +342,9 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("drapeau d'ancre, partagé avec useScrollToAnchor", () => {
-    it("laisse le focus à la cible d'une ancre inter-pages, pas au paragraphe", async () => {
-      // Cas réel : lien newsletter du pied de page depuis /agir (R9).
+  describe("anchor flag, shared with useScrollToAnchor", () => {
+    it("leaves the focus on the target of an inter-page anchor, not on the paragraph", async () => {
+      // Real case: footer newsletter link from /agir (R9).
       window.history.pushState({}, "", "/agir");
       const paragraph = addAnnouncer();
       const target = document.createElement("div");
@@ -369,9 +369,9 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("");
     });
 
-    it("consomme le drapeau : la navigation suivante retrouve le paragraphe", async () => {
-      // Sans remise à zéro, un drapeau collé éteindrait l'annonce du reste de
-      // la session.
+    it("consumes the flag: the next navigation gets the paragraph back", async () => {
+      // Without the reset, a stuck flag would silence the announcement for the
+      // rest of the session.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
@@ -394,9 +394,9 @@ describe("useRouteAnnouncement", () => {
       expect(paragraph.textContent).toBe("Plan du site - Réfugiés.info");
     });
 
-    it("un drapeau remis à zéro après un push rejeté n'affecte pas la navigation suivante", async () => {
-      // Le finally de useScrollToAnchor remet le drapeau à zéro même quand le
-      // push est annulé par une navigation concurrente.
+    it("a flag cleared after a rejected push does not affect the next navigation", async () => {
+      // The finally in useScrollToAnchor clears the flag even when the push is
+      // cancelled by a concurrent navigation.
       const paragraph = addAnnouncer();
       renderHook(() => useRouteAnnouncement());
       document.title = "AGIR pour les personnes réfugiées - Réfugiés.info";
@@ -413,8 +413,8 @@ describe("useRouteAnnouncement", () => {
     });
   });
 
-  describe("nettoyage", () => {
-    it("retire l'abonnement au démontage", async () => {
+  describe("cleanup", () => {
+    it("removes the subscription on unmount", async () => {
       const paragraph = addAnnouncer();
       const { unmount } = renderHook(() => useRouteAnnouncement());
       unmount();

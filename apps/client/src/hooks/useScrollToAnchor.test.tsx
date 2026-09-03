@@ -3,8 +3,8 @@ import mockRouter from "next-router-mock";
 import useScrollToAnchor from "./useScrollToAnchor";
 
 jest.mock("next/router", () => require("next-router-mock"));
-// Le drapeau d'ancre partagé est vérifié ici au niveau des appels ; son effet
-// réel sur l'annonce est couvert par useRouteAnnouncement.test.tsx.
+// The shared anchor flag is checked here at the call level; its actual effect
+// on the announcement is covered by useRouteAnnouncement.test.tsx.
 jest.mock("./useRouteAnnouncement", () => ({
   markAnchorNavigation: jest.fn(),
   clearAnchorNavigation: jest.fn(),
@@ -13,15 +13,15 @@ jest.mock("./useRouteAnnouncement", () => ({
 const { markAnchorNavigation, clearAnchorNavigation } = require("./useRouteAnnouncement");
 
 /**
- * Piège de test, à ne pas retirer : le hook compare `window.location.pathname`,
- * pas `router.pathname`. `next-router-mock` ne touche jamais l'objet `location`
- * de jsdom. Sans `window.history.pushState`, tous les cas verraient "/" et
- * prendraient la branche même-page, donc les tests passeraient au vert en
- * prouvant l'inverse de ce qu'ils visent.
+ * Test trap, do not remove: the hook compares `window.location.pathname`, not
+ * `router.pathname`. `next-router-mock` never touches the jsdom `location`
+ * object. Without `window.history.pushState`, every case would see "/" and take
+ * the same-page branch, so the tests would pass while proving the opposite of
+ * what they target.
  */
 const setLocation = (url: string) => window.history.pushState({}, "", url);
 
-/** Le hook écoute au niveau `document` : il faut un vrai lien dans le DOM. */
+/** The hook listens at the `document` level: a real link in the DOM is needed. */
 const clickAnchor = (href: string) => {
   const anchor = document.createElement("a");
   anchor.setAttribute("href", href);
@@ -48,8 +48,8 @@ describe("useScrollToAnchor", () => {
     mockRouter.setCurrentUrl("/");
     setLocation("/");
     window.scrollTo = jest.fn();
-    // Le hook diffère la mesure d'une trame pour laisser la barre d'évitement du
-    // DSFR se replier. On la rend synchrone pour pouvoir assertionner le défilement.
+    // The hook defers the measurement by one frame to let the DSFR skip link
+    // bar collapse. It is made synchronous here so the scroll can be asserted.
     jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
       cb(0);
       return 0;
@@ -61,8 +61,8 @@ describe("useScrollToAnchor", () => {
     jest.restoreAllMocks();
   });
 
-  describe("ancre de même page, liens d'évitement, RGAA 12.7", () => {
-    it("ne navigue pas depuis une route dynamique, pose le focus et défile vers la cible", () => {
+  describe("same-page anchor, skip links, RGAA 12.7", () => {
+    it("does not navigate from a dynamic route, focuses and scrolls to the target", () => {
       setLocation("/demarche/63528e00976acb4f7bcd37ad");
       renderHook(() => useScrollToAnchor());
       const target = addTarget("contenu");
@@ -78,7 +78,7 @@ describe("useScrollToAnchor", () => {
       });
     });
 
-    it("pose le focus avant de mesurer, pour que la barre d'évitement soit repliée", () => {
+    it("focuses before measuring, so that the skip link bar is collapsed", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       const target = addTarget("contenu");
@@ -90,7 +90,7 @@ describe("useScrollToAnchor", () => {
       expect(callOrder(focusSpy)).toBeLessThan(callOrder(window.scrollTo));
     });
 
-    it("ne navigue pas depuis une route statique", () => {
+    it("does not navigate from a static route", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       addTarget("contenu");
@@ -100,7 +100,7 @@ describe("useScrollToAnchor", () => {
       expect(mockRouter.push).not.toHaveBeenCalled();
     });
 
-    it("n'écrase pas un tabindex déjà porté par la cible et lui donne quand même le focus", () => {
+    it("does not overwrite a tabindex already carried by the target and still focuses it", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       const target = addTarget("contenu", "0");
@@ -111,23 +111,23 @@ describe("useScrollToAnchor", () => {
       expect(document.activeElement).toBe(target);
     });
 
-    it("ne demande aucune navigation, donc laisse l'URL de recherche intacte", () => {
+    it("requests no navigation, hence leaves the search URL untouched", () => {
       setLocation("/recherche?search=logement&sort=default");
       renderHook(() => useScrollToAnchor());
       addTarget("contenu");
 
       clickAnchor("#contenu");
 
-      // C'est cette assertion qui prouve la conservation de la chaîne de requête :
-      // le défaut corrigé venait d'un `router.push("")` que Next résolvait en motif
-      // de route, ce qui effaçait la query. L'assertion sur `window.location.search`
-      // ci-dessous est documentaire : `next-router-mock` ne touche jamais `location`,
-      // elle ne pourrait donc pas échouer. La preuve réelle est la mesure navigateur.
+      // This assertion is what proves the query string is preserved: the fixed
+      // defect came from a `router.push("")` that Next resolved to the route
+      // pattern, which wiped the query. The assertion on `window.location.search`
+      // below is documentary: `next-router-mock` never touches `location`, so it
+      // could not fail. The real proof is the browser measurement.
       expect(mockRouter.push).not.toHaveBeenCalled();
       expect(window.location.search).toBe("?search=logement&sort=default");
     });
 
-    it("ne navigue pas quand le chemin de l'ancre est déjà le chemin courant", () => {
+    it("does not navigate when the anchor path is already the current path", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       addTarget("contenu");
@@ -138,8 +138,8 @@ describe("useScrollToAnchor", () => {
     });
   });
 
-  describe("ancre inter-pages", () => {
-    it("navigue vers la page cible avant de défiler vers l'ancre", async () => {
+  describe("inter-page anchor", () => {
+    it("navigates to the target page before scrolling to the anchor", async () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       const target = addTarget("newsletter");
@@ -159,8 +159,8 @@ describe("useScrollToAnchor", () => {
     });
   });
 
-  describe("drapeau d'ancre, RGAA 12.8", () => {
-    it("pose le drapeau avant le push inter-pages et le remet à zéro après", async () => {
+  describe("anchor flag, RGAA 12.8", () => {
+    it("sets the flag before the inter-page push and clears it afterwards", async () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       addTarget("newsletter");
@@ -175,7 +175,7 @@ describe("useScrollToAnchor", () => {
       expect(callOrder(markAnchorNavigation)).toBeLessThan(callOrder(mockRouter.push));
     });
 
-    it("ne pose pas le drapeau sur une ancre de même page, qui ne navigue pas", () => {
+    it("does not set the flag on a same-page anchor, which does not navigate", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       addTarget("contenu");
@@ -185,13 +185,13 @@ describe("useScrollToAnchor", () => {
       expect(markAnchorNavigation).not.toHaveBeenCalled();
     });
 
-    it("remet le drapeau à zéro même quand le push est rejeté", () => {
-      // Une navigation annulée par une autre rejette la promesse du push. Sans
-      // le finally, le drapeau resterait collé et éteindrait l'annonce de la
-      // navigation suivante. Le push n'a aucun catch (défaut préexistant
-      // consigné) : une vraie promesse rejetée ferait échouer la suite en
-      // rejet non géré. Ce thenable factice rejoue le chemin de rejet, le
-      // callback de then est sauté, celui de finally s'exécute.
+    it("clears the flag even when the push is rejected", () => {
+      // A navigation cancelled by another one rejects the push promise. Without
+      // the finally, the flag would stay stuck and silence the announcement of
+      // the next navigation. The push has no catch (pre-existing defect,
+      // recorded): a real rejected promise would fail the suite with an
+      // unhandled rejection. This fake thenable replays the rejection path: the
+      // then callback is skipped, the finally one runs.
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
       const target = addTarget("newsletter");
@@ -212,14 +212,14 @@ describe("useScrollToAnchor", () => {
 
       expect(markAnchorNavigation).toHaveBeenCalledTimes(1);
       expect(clearAnchorNavigation).toHaveBeenCalledTimes(1);
-      // La navigation ayant échoué, le défilement vers la cible n'a pas lieu.
+      // The navigation failed, so the scroll to the target does not happen.
       expect(document.activeElement).not.toBe(target);
       expect(window.scrollTo).not.toHaveBeenCalled();
     });
   });
 
-  describe("cas limites", () => {
-    it("ne lève pas et ne navigue pas sur un href réduit à un dièse", () => {
+  describe("edge cases", () => {
+    it("does not throw and does not navigate on an href reduced to a bare hash", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
 
@@ -228,7 +228,7 @@ describe("useScrollToAnchor", () => {
       expect(window.scrollTo).not.toHaveBeenCalled();
     });
 
-    it("ne lève pas, ne navigue pas et ne défile pas quand la cible n'existe pas", () => {
+    it("does not throw, navigate or scroll when the target does not exist", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
 
@@ -237,7 +237,7 @@ describe("useScrollToAnchor", () => {
       expect(window.scrollTo).not.toHaveBeenCalled();
     });
 
-    it("ignore les liens sans ancre", () => {
+    it("ignores links without an anchor", () => {
       setLocation("/agir");
       renderHook(() => useScrollToAnchor());
 
