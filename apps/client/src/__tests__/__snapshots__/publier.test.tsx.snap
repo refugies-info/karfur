@@ -449,20 +449,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Vincent Le Lann
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Compagnons du Tour de France à Nantes
-                </div>
+                </p>
               </div>
             </div>
             <div
@@ -479,20 +485,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Rémi Crouzel
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                </div>
+                </p>
               </div>
             </div>
             <div
@@ -509,20 +521,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Paola Salazar
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Directrice adjointe UniR
-                </div>
+                </p>
               </div>
             </div>
           </div>

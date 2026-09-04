@@ -7,4 +7,12 @@
 .tabsbar {
   border: 1px solid $gray50;
   border-radius: u(1);
+
+  // Rendering of the former inline-block buttons div, DSFR bullet and indent neutralised.
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

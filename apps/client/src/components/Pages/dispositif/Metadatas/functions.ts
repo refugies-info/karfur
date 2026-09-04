@@ -15,6 +15,7 @@ import {
   getCommitmentText,
   getFrenchLevelText,
   getFrequencyText,
+  getInfocardsLabels,
   getPriceText,
   getPublicStatusText,
   getPublicText,
@@ -43,6 +44,14 @@ export const getPublic = (publicType: Metadatas["public"] | null | undefined, t:
   if (!publicType) return publicType;
   return getPublicText(publicType, t);
 };
+/** Same labels as getPublicStatus, as a list, for the ul/li structure (RGAA 9.3). */
+export const getPublicStatusItems = (
+  publicStatus: Metadatas["publicStatus"] | null | undefined,
+  t: TFunction,
+) => getInfocardsLabels(publicStatus, t);
+/** Same labels as getPublic, as a list, for the ul/li structure (RGAA 9.3). */
+export const getPublicItems = (publicType: Metadatas["public"] | null | undefined, t: TFunction) =>
+  getInfocardsLabels(publicType, t);
 export const getAge = (age: Metadatas["age"] | null | undefined, t: TFunction) => {
   if (!age) return age; // null or undefined
   return getAgeText(age, t);

@@ -126,18 +126,23 @@ const EditDepartments = (props: Props) => {
 
         {selectedDepartments.length > 0 && (
           <div className="mt-12">
-            {selectedDepartments.map((dep, i) => (
-              <div key={dep} className={styles.option}>
-                {formatDepartment(dep)}
-                <Button
-                  iconId="fr-icon-close-line"
-                  priority="tertiary no outline"
-                  title="Retirer le département"
-                  size="small"
-                  onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
-                />
-              </div>
-            ))}
+            {/* Department enumeration: ul/li (RGAA 9.3), DSFR bullet and indent neutralised
+                for a rendering identical to the former div structure. Explicit roles justified
+                on the contentAs prop of MetaDataItem. */}
+            <ul className="m-0 list-none p-0" role="list">
+              {selectedDepartments.map((dep) => (
+                <li key={dep} className={styles.option} role="listitem">
+                  {formatDepartment(dep)}
+                  <Button
+                    iconId="fr-icon-close-line"
+                    priority="tertiary no outline"
+                    title="Retirer le département"
+                    size="small"
+                    onClick={() => setSelectedDepartments((deps) => deps?.filter((d) => d !== dep))}
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>

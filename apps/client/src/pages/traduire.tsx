@@ -159,16 +159,17 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>On cherche des traducteurs en :</Title2>
-            <div className="flex flex-wrap gap-6 md:justify-center">
-              {translationNeeds.map((item, i) => (
-                <LanguageCard
-                  href="#register"
-                  key={i}
-                  languageId={item.languageId}
-                  need={item.need}
-                />
-              ))}
-            </div>
+            {/* Link enumeration: ul/li (RGAA 9.3), explicit role justified on the contentAs
+                prop of MetaDataItem. The flex reproduces the layout of the former div. */}
+            {translationNeeds.length > 0 && (
+              <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center" role="list">
+                {translationNeeds.map((item, i) => (
+                  <li key={i} className="p-0">
+                    <LanguageCard href="#register" languageId={item.languageId} need={item.need} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Section>
       </div>
