@@ -17,8 +17,9 @@ const WriteContentCard = (props: Props) => (
   <button
     className={cls(styles.container, styles[props.color], props.selected && styles.selected)}
     onClick={props.onSelect}
+    aria-pressed={props.selected}
   >
-    <Image src={props.imageSrc} alt={props.type} width={200} height={162} />
+    <Image src={props.imageSrc} alt="" width={200} height={162} />
     <div className={styles.inner}>
       <div>
         <p className={styles.title}>Rédiger une fiche</p>

@@ -34,11 +34,9 @@ const MentionsLegales = () => {
           rectification, de modification et de suppression concernant des données qui vous
           concernent personnellement. Ce droit peut être exercé par voie électronique à l’adresse
           email suivante :{" "}
-          <a title="Email" href="mailto:contact@email.refugies.info">
-            contact@email.refugies.info
-          </a>
-          . Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre
-          d’identité, à l&apos;adresse suivante :
+          <a href="mailto:contact@email.refugies.info">contact@email.refugies.info</a>. Ou par
+          courrier postal, daté et signé, accompagné d&apos;une copie d’un titre d’identité, à
+          l&apos;adresse suivante :
         </p>
         <p>
           <strong>
@@ -70,11 +68,8 @@ const MentionsLegales = () => {
         textes, vidéos, animations, sons, logos et icônes, sont la propriété exclusive de
         l&apos;éditeur du site, à l’exception des marques, logos ou contenus appartenant à d’autres
         organisations. Pour toute demande d’autorisation ou d’information, veuillez nous contacter
-        par email :{" "}
-        <a title="Email" href="mailto:contact@email.refugies.info">
-          contact@email.refugies.info
-        </a>
-        . Des conditions spécifiques sont prévues pour la presse.
+        par email : <a href="mailto:contact@email.refugies.info">contact@email.refugies.info</a>.
+        Des conditions spécifiques sont prévues pour la presse.
       </p>
 
       <h2>Hébergeur</h2>

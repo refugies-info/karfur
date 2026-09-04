@@ -1,7 +1,6 @@
 import { RoleName, type TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -44,8 +43,6 @@ interface Props {
 }
 
 const RecensezVotreAction = (props: Props) => {
-  const router = useRouter();
-
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
   const [refHero, inViewHero] = useInView({ threshold: 0 });
@@ -84,11 +81,6 @@ const RecensezVotreAction = (props: Props) => {
         .sort((a, b) => NEED_ORDER[a.need] - NEED_ORDER[b.need]),
     [props],
   );
-
-  const navigateToTranslations = useCallback(() => {
-    router.push("/backend/user-translation");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="w-full">
@@ -342,7 +334,7 @@ const RecensezVotreAction = (props: Props) => {
         <Anchor id="register" />
         <div className="fr-container">
           <Register
-            onClickLoggedIn={navigateToTranslations}
+            hrefLoggedIn="/backend/user-translation"
             subtitleForm="Connectez-vous ou créez votre compte pour commencer à traduire les fiches."
             subtitleLoggedIn="Vous savez tout, vous pouvez traduire votre première fiche."
             btnLoggedIn="Traduire une fiche"
