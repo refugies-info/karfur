@@ -220,8 +220,9 @@ const EditDepartments = (props: Props) => {
 
       case "Escape":
         event.preventDefault();
-        // Open: close and keep what was typed. Closed: clear the field, as the
-        // ARIA Authoring Practices Guide (APG) prescribes for an editable combobox.
+        // Open: close and keep what was typed. Closed: clear the field. This is the
+        // W3C combobox pattern the audit asked us to follow (ARIA Authoring Practices
+        // Guide, https://www.w3.org/WAI/ARIA/apg/patterns/combobox/), not a bug.
         if (isListboxOpen) setHidePredictions(true);
         else setSearch("");
         return;
