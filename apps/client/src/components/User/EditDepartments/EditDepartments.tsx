@@ -22,15 +22,6 @@ const INPUT_ID = "departments-search";
 const LISTBOX_ID = "departments-suggestions";
 const getOptionId = (code: string) => `departments-option-${code}`;
 
-// French fallbacks: the keys live in fr/common.json only until they reach the translation flow.
-const SUGGESTIONS_FOUND_DEFAULTS = {
-  defaultValue_zero: "Aucune suggestion trouvée, modifiez votre recherche",
-  defaultValue_one:
-    "{{count}} suggestion trouvée, utilisez les flèches haut et bas pour la parcourir",
-  defaultValue_other:
-    "{{count}} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir",
-};
-
 interface Props {
   successCallback: () => void;
   setIsLoading?: (isLoading: boolean) => void;
@@ -114,7 +105,10 @@ const EditDepartments = (props: Props) => {
       const timer = setTimeout(() => {
         announcedCountRef.current = 0;
         announce(
-          t("EditDepartments.suggestions_found", { count: 0, ...SUGGESTIONS_FOUND_DEFAULTS }),
+          t("EditDepartments.suggestions_found", {
+            count: 0,
+            defaultValue: "Aucune suggestion, modifiez votre recherche",
+          }),
         );
       }, 1500);
       return () => clearTimeout(timer);
@@ -123,9 +117,14 @@ const EditDepartments = (props: Props) => {
     if (announcedCountRef.current === count) return undefined;
     announcedCountRef.current = count;
 
-    announce(t("EditDepartments.suggestions_found", { count, ...SUGGESTIONS_FOUND_DEFAULTS }), {
-      delay: 1500,
-    });
+    announce(
+      t("EditDepartments.suggestions_found", {
+        count,
+        defaultValue_one: "{{count}} suggestion",
+        defaultValue_other: "{{count}} suggestions",
+      }),
+      { delay: 1500 },
+    );
     return undefined;
   }, [predictions, hidePredictions, search, announce, t]);
 

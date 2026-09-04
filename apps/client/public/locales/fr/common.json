@@ -224,9 +224,9 @@
     "invalid_phone_number": "Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie."
   },
   "EditDepartments": {
-    "suggestions_found_zero": "Aucune suggestion trouvée, modifiez votre recherche",
-    "suggestions_found_one": "{{count}} suggestion trouvée, utilisez les flèches haut et bas pour la parcourir",
-    "suggestions_found_other": "{{count}} suggestions trouvées, utilisez les flèches haut et bas pour les parcourir",
+    "suggestions_found_zero": "Aucune suggestion, modifiez votre recherche",
+    "suggestions_found_one": "{{count}} suggestion",
+    "suggestions_found_other": "{{count}} suggestions",
     "department_removed": "Département {{department}} retiré.",
     "last_department_removed": "Département {{department}} retiré. Vous devez sélectionner au moins un département.",
     "remove_department": "Retirer le département {{department}}",

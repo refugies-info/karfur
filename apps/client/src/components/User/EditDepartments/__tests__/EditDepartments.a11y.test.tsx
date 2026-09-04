@@ -177,13 +177,9 @@ describe("EditDepartments, department combobox", () => {
     await user.type(getInput(), "Pa");
 
     // The announcer holds the message back by 1500 ms so the interface can settle.
-    await waitFor(
-      () =>
-        expect(screen.getByRole("status")).toHaveTextContent(
-          /2 suggestions trouvées, utilisez les flèches haut et bas/,
-        ),
-      { timeout: 4000 },
-    );
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(/2 suggestions/), {
+      timeout: 4000,
+    });
   });
 
   it("announces the absence of suggestions once typing stops", async () => {
@@ -197,7 +193,7 @@ describe("EditDepartments, department combobox", () => {
     await waitFor(
       () =>
         expect(screen.getByRole("status")).toHaveTextContent(
-          /Aucune suggestion trouvée, modifiez votre recherche/,
+          /Aucune suggestion, modifiez votre recherche/,
         ),
       { timeout: 4000 },
     );
