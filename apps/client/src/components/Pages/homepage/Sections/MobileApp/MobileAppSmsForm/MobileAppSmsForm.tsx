@@ -44,7 +44,9 @@ const MobileAppSmsForm = () => {
       API.smsDownloadApp({ phone, locale: languageSelected || "fr" })
         .then(() => {
           setShowToast(true);
-          announce(t("Dispositif.smsFormSent"));
+          announce(
+            t("MobileApp.smsSent", "Yay ! Un lien de téléchargement a été envoyé à ce numéro"),
+          );
           Event("SEND_SMS", "download app", "homepage");
           setPhone("");
         })
@@ -96,7 +98,7 @@ const MobileAppSmsForm = () => {
       </Button>
 
       <Toast open={showToast} closeCallback={() => setShowToast(false)}>
-        {t("Dispositif.smsFormSent")}
+        {t("MobileApp.smsSent", "Yay ! Un lien de téléchargement a été envoyé à ce numéro")}
       </Toast>
     </form>
   );

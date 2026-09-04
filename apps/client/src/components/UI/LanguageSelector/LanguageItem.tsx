@@ -125,6 +125,12 @@ const LanguageItem = memo(
           {type === "page" && (
             <span dir="ltr" className="ms-auto">
               <i
+                role="img"
+                aria-label={
+                  disabled
+                    ? t("LanguageDropdown.translation_in_progress", "En cours de traduction")
+                    : t("LanguageDropdown.translation_available", "Traduction disponible")
+                }
                 className={cn(
                   disabled ? "ri-progress-5-line" : "fr-icon-success-fill !text-default-success",
                 )}
