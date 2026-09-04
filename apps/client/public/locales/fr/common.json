@@ -653,14 +653,15 @@
     "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
     "description": "Suivez l'évolution du service Réfugiés.info",
     "label": "Adresse email (requise)",
-    "confirmMessageTitle": "Yay...",
-    "confirmMessageText": "Mail <b>{{email}}</b> correctement enregistré !",
+    "confirmMessageTitle": "Yay !",
+    "confirmMessageText": "Votre inscription à la newsletter a bien été enregistrée",
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
     "ok": "S'inscrire"
   },
   "MobileApp": {
+    "smsSent": "Yay ! Un lien de téléchargement a été envoyé à ce numéro",
     "rankingText": "Top 3 des applications publiques",
     "rankingLabel": "Note : 5 sur 5",
     "ratingAlt": "Note sur 5 :",
