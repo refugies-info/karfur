@@ -90,10 +90,15 @@ const StepContent = (props: Props) => {
                 ))}
               </ul>
             </div>
-          ) : (
+          ) : typeof text === "string" ? (
             <p key={i} className="text-large mb-6">
               {text}
             </p>
+          ) : (
+            // A ready-made element (a list, for instance) cannot live inside a <p>.
+            <div key={i} className="text-large mb-6">
+              {text}
+            </div>
           ),
         )}
         {props.cta && (
