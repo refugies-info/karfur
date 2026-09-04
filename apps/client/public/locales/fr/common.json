@@ -223,6 +223,19 @@
     "check_mail": "vérifiez l'orthographe.",
     "invalid_phone_number": "Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie."
   },
+  "EditDepartments": {
+    "suggestions_found_zero": "Aucune suggestion, modifiez votre recherche",
+    "suggestions_found_one": "{{count}} suggestion",
+    "suggestions_found_other": "{{count}} suggestions",
+    "department_removed": "Département {{department}} retiré.",
+    "last_department_removed": "Département {{department}} retiré. Vous devez sélectionner au moins un département.",
+    "remove_department": "Retirer le département {{department}}",
+    "suggestions_label": "Suggestions de départements",
+    "label": "Nom ou numéro du département",
+    "hint": "Plusieurs choix possibles",
+    "error_required": "Vous devez sélectionner au moins un département",
+    "error_generic": "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur."
+  },
   "UnauthorizedAccess": {
     "access_denied": "Accès refusé",
     "back_home": "Revenir à l'accueil"
