@@ -1,7 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
-import { memo, useEffect, useMemo, useRef } from "react";
+import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import {
@@ -77,7 +77,18 @@ const SearchResults = (props: Props) => {
     }
   }, [pagination.page, remainingItems, announce, t]);
 
+  // RGAA 12.8 : after loading more results, move the focus to the first new card.
+  const firstNewCardRef = useRef<HTMLElement | null>(null);
+  const [focusIndex, setFocusIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (focusIndex === null || dispositifs.length <= focusIndex) return;
+    firstNewCardRef.current?.focus();
+    setFocusIndex(null);
+  }, [focusIndex, dispositifs.length]);
+
   const handleSeeMore = () => {
+    setFocusIndex(dispositifs.length);
     announce(
       t("Recherche.loadingResults", "Chargement de {{count}} résultats...", {
         count: seeMoreCount,
@@ -149,10 +160,11 @@ const SearchResults = (props: Props) => {
             </h2>
 
             <div className={styles.results} id="resultats-liste">
-              {dispositifs.map((d) => (
+              {dispositifs.map((d, index) => (
                 <DispositifCard
                   className={styles.dispositifCard}
                   key={d._id.toString()}
+                  ref={index === focusIndex ? firstNewCardRef : undefined}
                   dispositif={d}
                   selectedDepartment={selectedDepartment}
                   targetBlank

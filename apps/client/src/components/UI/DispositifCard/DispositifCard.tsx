@@ -3,7 +3,7 @@ import { ContentType, type SimpleDispositif } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { memo, useMemo } from "react";
+import { forwardRef, memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
@@ -27,7 +27,7 @@ interface Props {
   className?: string;
 }
 
-const DispositifCard = (props: Props) => {
+const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const themes = useSelector(allThemesSelector);
@@ -80,6 +80,8 @@ const DispositifCard = (props: Props) => {
 
   return (
     <article
+      ref={ref}
+      tabIndex={-1}
       aria-labelledby={props.dispositif._id.toString()}
       className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
     >
@@ -202,7 +204,9 @@ const DispositifCard = (props: Props) => {
       </div>
     </article>
   );
-};
+});
+
+DispositifCard.displayName = "DispositifCard";
 
 const propsAreEqual = (prevProps: Props, nextProps: Props): boolean => {
   const prevDisp = prevProps.dispositif;

@@ -466,6 +466,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <article
           aria-labelledby="id1"
           class="[object Object]"
+          tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
@@ -577,6 +578,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <article
           aria-labelledby="id2"
           class="[object Object]"
+          tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
@@ -688,6 +690,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
         <article
           aria-labelledby="id3"
           class="[object Object]"
+          tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"

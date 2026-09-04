@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import { markAnchorNavigation, unmarkAnchorNavigation } from "./useRouteAnnouncement";
 
 /**
  * Custom hook to enable smooth scrolling for anchor links.
@@ -23,21 +24,26 @@ const useScrollToAnchor = () => {
   const scrollToHash = useCallback((hash: string) => {
     const element = document.getElementById(hash);
     if (element) {
-      // Calculate position with offset for header
-      const headerOffset = 0;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-
       // Manage focus
       if (!element.hasAttribute("tabIndex")) {
         element.setAttribute("tabIndex", "-1");
       }
+      // Focus BEFORE measuring: the DSFR skip link bar shifts the page while it
+      // holds the focus, so measuring first lands the scroll off. See voiceover.md.
       element.focus({ preventScroll: true });
+
+      // Measure on the next frame, once the bar has collapsed.
+      requestAnimationFrame(() => {
+        // Calculate position with offset for header
+        const headerOffset = 0;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      });
     }
   }, []);
 
@@ -63,12 +69,26 @@ const useScrollToAnchor = () => {
         event.preventDefault(); // Prevent full page reload
         const [path, hash] = href.split("#");
 
-        if (path !== window.location.pathname) {
-          router.push(path, undefined, { scroll: false }).then(() => {
-            scrollToHash(hash);
-          });
-        } else {
+        // A same-page anchor (`href="#contenu"`) yields an empty `path`. Treating
+        // it as a navigation calls `router.push("")`, which Next resolves to the
+        // route pattern: 404 on dynamic routes. Skip links, RGAA 12.7.
+        const isSamePage = !path || path === window.location.pathname;
+
+        if (isSamePage) {
           scrollToHash(hash);
+        } else {
+          // The anchor target keeps the focus: the flag stops useRouteAnnouncement
+          // from competing on this navigation (RGAA 12.8). Cleared in a finally so
+          // a rejected push does not leave the flag stuck.
+          markAnchorNavigation();
+          router
+            .push(path, undefined, { scroll: false })
+            .then(() => {
+              scrollToHash(hash);
+            })
+            .finally(() => {
+              unmarkAnchorNavigation();
+            });
         }
       }
     },
