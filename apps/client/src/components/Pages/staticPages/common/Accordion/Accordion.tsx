@@ -117,6 +117,7 @@ const Accordion = (props: Props) => {
                       {item.title}
                     </span>
                     <i
+                      aria-hidden="true"
                       className={cn(
                         "flex before:!h-4 before:!w-4",
                         isItemOpen

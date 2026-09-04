@@ -133,6 +133,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -164,6 +165,7 @@ exports[`recherche renders search results 1`] = `
                     title="Recherche.resetButton Français"
                   >
                     <i
+                      aria-hidden="true"
                       class="ri-close-circle-fill"
                     />
                   </button>
@@ -191,6 +193,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -218,6 +221,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -245,6 +249,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -272,6 +277,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -299,6 +305,7 @@ exports[`recherche renders search results 1`] = `
                     </span>
                      
                     <i
+                      aria-hidden="true"
                       class="ri-arrow-down-s-line"
                     />
                   </button>
@@ -382,6 +389,7 @@ exports[`recherche renders search results 1`] = `
                 Filters.sortView
               </span>
               <i
+                aria-hidden="true"
                 class="ri-expand-up-down-line fr-icon--sm"
               />
             </button>

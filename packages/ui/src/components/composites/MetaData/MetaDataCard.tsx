@@ -61,7 +61,10 @@ export const MetaDataCard = ({
             {onClick && (
               <>
                 {state === "invalid" && (
-                  <i className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1" />
+                  <i
+                    className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1"
+                    aria-hidden="true"
+                  />
                 )}
                 <Button
                   iconId="fr-icon-edit-line"
