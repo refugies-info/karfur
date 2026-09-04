@@ -88,7 +88,12 @@ const Layout = (props: Props) => {
                 Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info&nbsp;!
               </p>
               <div className={styles.rating}>
-                <Image src={RatingStars} width={136} height={24} alt={t("MobileApp.ratingAlt", "Note sur 5 :")} />
+                <Image
+                  src={RatingStars}
+                  width={136}
+                  height={24}
+                  alt={t("MobileApp.ratingAlt", "Note sur 5 :")}
+                />
                 4,8
               </div>
               <p className={styles.small}>Application disponible sur Android et iOS</p>

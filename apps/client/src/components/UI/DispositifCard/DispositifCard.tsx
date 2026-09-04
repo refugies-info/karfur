@@ -131,10 +131,7 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
               <div className="mb-2 flex gap-2">
                 <NewThemeBadge theme={theme} />
                 {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                  <NewThemeBadge
-                    aria-hidden="true"
-                    theme={props.dispositif.secondaryThemes?.length || 0}
-                  />
+                  <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
                 )}
               </div>
 

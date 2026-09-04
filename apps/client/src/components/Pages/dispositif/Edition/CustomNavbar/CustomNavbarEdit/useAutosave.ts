@@ -6,7 +6,7 @@ import type {
 } from "@refugies-info/api-types";
 import debounce from "lodash/debounce";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { type AutosaveErrorDetails, reportAutosaveError } from "~/lib/autosaveError";
@@ -156,7 +156,12 @@ const useAutosave = () => {
     }
   }, [pageContext.mode, id, methods, data, oldData, router, dispositif, dispatch]);
 
-  return { isSaving, hasError, errorDetails };
+  const dismissError = useCallback(() => {
+    setHasError(false);
+    setErrorDetails(null);
+  }, []);
+
+  return { isSaving, hasError, errorDetails, dismissError };
 };
 
 export default useAutosave;

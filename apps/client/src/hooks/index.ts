@@ -24,6 +24,7 @@ export { default as useSendSms } from "./useSendSms";
 export { default as useStopAudioOnLocaleChange } from "./useStopAudioOnLocaleChange";
 export { default as useSupportAvailability } from "./useSupportAvailability";
 export { default as useThemeIcon } from "./useThemeIcon";
+export { default as useThrottledEmail } from "./useThrottledEmail";
 export { default as useUniqueId } from "./useUniqueId";
 export { default as useUser } from "./useUser";
 export { default as useUtmz } from "./useUtmz";

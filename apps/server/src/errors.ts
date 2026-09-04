@@ -56,10 +56,14 @@ export class ConflictError extends APIError {
   status = 409;
 }
 
+export class TooManyRequestsError extends APIError {
+  status = 429;
+}
+
 /**
  * Statuts qui font partie du trafic normal : les remonter noierait Sentry.
  */
-const SILENT_STATUSES = new Set([401, 403, 404]);
+const SILENT_STATUSES = new Set([401, 403, 404, 429]);
 
 /**
  * `Sentry.setupExpressErrorHandler` ne remonte que les erreurs dont le statut est >= 500
