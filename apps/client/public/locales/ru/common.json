@@ -140,7 +140,7 @@
     "email_reminder": "Напомнить мне по email",
     "Recevoir une invitation": "Получить приглашение",
     "create_a_new_account": "Для участия создайте учетную запись, зайдя с вашего компьютера",
-    "criteria_special": "Специальный символ (!, @, #, $, &, *)",
+    "criteria_special": "Специальный символ",
     "criteria_number": "Цифра",
     "criteria_minlength": "Минимум 7 знаков",
     "strong_password": "Надежный пароль",

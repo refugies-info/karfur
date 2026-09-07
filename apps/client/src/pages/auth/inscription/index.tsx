@@ -15,6 +15,7 @@ import { getPath } from "routes";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
+import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
 import { useAuthRedirect, useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -121,7 +122,7 @@ const AuthLogin = () => {
             // RGAA 10.2: the green tick / red cross alone carries the state, so repeat it in text.
             message: (
               <>
-                {t(criteria.label)}
+                <PasswordCriteriaLabel label={criteria.label} />
                 {!!password && (
                   <span className="sr-only">
                     {criteria.isOk

@@ -140,7 +140,7 @@
     "email_reminder": "د بریښنالیک له لارې يې روالیږئ",
     "Recevoir une invitation": "بلنه ترلاسه کړئ",
     "create_a_new_account": "د ګډون لپاره د خپل کمپیوټرله لارې یو اکونټ جوړ کړئ",
-    "criteria_special": "یوه ځانکړي علامه (!, @, #, $, &, *)",
+    "criteria_special": "یوه ځانکړي علامه",
     "criteria_number": "یو عدد",
     "criteria_minlength": "لږ تر لږه ۷ توري",
     "strong_password": "غښتلی پاسورډ",
