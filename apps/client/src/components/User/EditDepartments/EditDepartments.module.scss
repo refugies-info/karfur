@@ -18,6 +18,12 @@
     text-align: left;
     padding: u(2) u(3);
   }
+
+  // Visual focus of the option pointed at by aria-activedescendant.
+  // Only shows in a state that did not exist before: arrow key navigation.
+  & > button.active {
+    background: var(--background-action-low-blue-france);
+  }
 }
 
 .option {
