@@ -23,7 +23,7 @@ import {
   ToastPresenceProvider,
   ToastViewportWhenNeeded,
 } from "~/components/UI/Toast/ToastPresence";
-import { useRTL, useScrollToAnchor } from "~/hooks";
+import { useRouteAnnouncement, useRTL, useScrollToAnchor } from "~/hooks";
 import { useConsent } from "~/hooks/useConsentContext";
 import { isContentPage } from "~/lib/isContentPage";
 import { Event, initGA } from "~/lib/tracking";
@@ -68,6 +68,7 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
   const router = useRouter();
 
   useScrollToAnchor();
+  useRouteAnnouncement();
 
   const options: PageOptions = Component.options || {
     cookiesModule: true,
