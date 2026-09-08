@@ -3,6 +3,7 @@ import Input from "@codegouvfr/react-dsfr/Input";
 import type { ResetPasswordResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useCallback, useState } from "react";
+import { markThrottledEmailSent } from "~/hooks/useThrottledEmail";
 import { cls } from "~/lib/classname";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
@@ -23,9 +24,17 @@ const ForgotPassword = ({ email, buttonFullWidth, successCallback }: Props) => {
       const email = e.target.email.value;
       try {
         const res = await API.resetPassword({ email });
+
+        markThrottledEmailSent("reset-password", email);
         Event("AUTH", "reset password", "mail sent");
         successCallback(res);
       } catch (e: any) {
+        if (e.response?.status === 429) {
+          // A mail went out less than a minute ago: move on, the confirmation screen
+          // shows the remaining countdown.
+          successCallback({ email });
+          return;
+        }
         logger.error(e);
         setError("Une erreur est survenue, veuillez réessayer ou contacter un administrateur");
       }

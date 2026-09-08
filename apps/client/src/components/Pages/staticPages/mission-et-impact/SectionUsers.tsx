@@ -41,7 +41,6 @@ export const SectionUsers = () => {
                 aria-labelledby="users_legend_1"
               />
               <figcaption
-                aria-hidden="true"
                 id="users_legend_1"
                 className="text-small text-mention-grey text-center italic"
               >
@@ -77,7 +76,6 @@ export const SectionUsers = () => {
                 height={191}
               />
               <figcaption
-                aria-hidden="true"
                 id="users_legend_2"
                 className="text-small text-mention-grey text-center italic"
               >
