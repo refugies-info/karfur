@@ -182,6 +182,19 @@ describe("EditDepartments, department combobox", () => {
     });
   });
 
+  it("drops the pending suggestion count once a department is chosen", async () => {
+    const user = userEvent.setup();
+    await renderComponent();
+
+    await user.type(getInput(), "Pa");
+    await waitFor(() => expect(screen.getByRole("listbox")).toBeInTheDocument());
+    // Choosing before the 1.5 s pause: the count must not be read afterwards.
+    await user.keyboard("{ArrowDown}{Enter}");
+
+    await act(() => new Promise((resolve) => setTimeout(resolve, 2200)));
+    expect(screen.getByRole("status")).not.toHaveTextContent(/suggestion/);
+  });
+
   it("announces the absence of suggestions once typing stops", async () => {
     const user = userEvent.setup();
     await renderComponent();

@@ -98,34 +98,29 @@ const EditDepartments = (props: Props) => {
       return undefined;
     }
     const count = predictions.length;
-
-    if (count === 0) {
-      // ~1.5 s from the last keystroke clears the keyboard echo (measured 27/08); said only once.
-      if (announcedCountRef.current === count) return undefined;
-      const timer = setTimeout(() => {
-        announcedCountRef.current = 0;
-        announce(
-          t("EditDepartments.suggestions_found", {
-            count: 0,
-            defaultValue: "Aucune suggestion, modifiez votre recherche",
-          }),
-        );
-      }, 1500);
-      return () => clearTimeout(timer);
-    }
-
     if (announcedCountRef.current === count) return undefined;
-    announcedCountRef.current = count;
 
-    announce(
-      t("EditDepartments.suggestions_found", {
-        count,
-        defaultValue_one: "{{count}} suggestion",
-        defaultValue_other: "{{count}} suggestions",
-      }),
-      { delay: 1500 },
-    );
-    return undefined;
+    // Wait ~1.5 s after the last keystroke: it clears the keyboard echo (measured 27/08),
+    // and only the final count is said. Queueing one message per keystroke replayed every
+    // intermediate count long after the choice was made (measured with VoiceOver 08/09).
+    // Closing the list or typing again cancels the pending message.
+    const timer = setTimeout(() => {
+      announcedCountRef.current = count;
+      // French counts 0 as singular: the empty case keeps its own wording.
+      announce(
+        count === 0
+          ? t("EditDepartments.suggestions_found", {
+              count: 0,
+              defaultValue: "Aucune suggestion, modifiez votre recherche",
+            })
+          : t("EditDepartments.suggestions_found", {
+              count,
+              defaultValue_one: "{{count}} suggestion",
+              defaultValue_other: "{{count}} suggestions",
+            }),
+      );
+    }, 1500);
+    return () => clearTimeout(timer);
   }, [predictions, hidePredictions, search, announce, t]);
 
   const handleChange = (e: any) => setSearch(e.target.value);
