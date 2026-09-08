@@ -2,6 +2,7 @@ import { ToastClose, ToastDescription, Toast as ToastRoot } from "@radix-ui/reac
 import type React from "react";
 import { cn } from "~/lib/classname";
 import styles from "./Toast.module.scss";
+import { useDeclareToast } from "./ToastPresence";
 
 interface Props {
   open: boolean;
@@ -11,6 +12,9 @@ interface Props {
 }
 
 const Toast = ({ open, children, type = "success", closeCallback }: Props) => {
+  // The viewport is mounted only while a toast is shown (RGAA 8.9).
+  useDeclareToast(open);
+
   const onOpenChange = (open: boolean) => {
     if (!open) closeCallback();
   };

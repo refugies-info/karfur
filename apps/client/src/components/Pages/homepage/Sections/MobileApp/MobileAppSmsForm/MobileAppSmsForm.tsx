@@ -4,7 +4,8 @@ import { Select } from "@codegouvfr/react-dsfr/SelectNext";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
+import Toast from "~/components/UI/Toast";
 import { Event } from "~/lib/tracking";
 import { isValidPhone } from "~/lib/validateFields";
 import { allLanguesSelector, languei18nSelector } from "~/services/Langue/langue.selectors";
@@ -12,9 +13,11 @@ import API from "~/utils/API";
 
 const MobileAppSmsForm = () => {
   const { t } = useTranslation();
+  const announce = useAnnounce();
 
   const [phone, setPhone] = useState("");
   const [phoneError, setPhoneError] = useState("");
+  const [showToast, setShowToast] = useState(false);
   const [languageSelected, setLanguageSelected] = useState<string | undefined>(undefined);
   const languages = useSelector(allLanguesSelector);
   const locale = useSelector(languei18nSelector);
@@ -26,26 +29,30 @@ const MobileAppSmsForm = () => {
     }
   }, [languages, locale]);
 
+  // Le retour de soumission passe par le toast partagé plutôt que par une fenêtre
+  // SweetAlert2 : celle-ci déplaçait le focus, ce qui interdit de restituer le message
+  // sans déranger la navigation en cours (RGAA 7.5).
+  const failWith = (message: string) => {
+    setPhoneError(message);
+    announce(message, { priority: "interrupt" });
+  };
+
   const sendSMS = (e: any) => {
     setPhoneError("");
     e.preventDefault();
     if (isValidPhone(phone)) {
       API.smsDownloadApp({ phone, locale: languageSelected || "fr" })
         .then(() => {
-          Swal.fire({
-            title: "Yay...",
-            text: "SMS envoyé !",
-            icon: "success",
-            timer: 1500,
-          });
+          setShowToast(true);
+          announce(t("Dispositif.smsFormSent"));
           Event("SEND_SMS", "download app", "homepage");
           setPhone("");
         })
-        .catch((e) => {
-          setPhoneError("Une erreur s'est produite");
+        .catch(() => {
+          failWith(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
         });
     } else {
-      setPhoneError(t("Register.invalid_phone_number"));
+      failWith(t("Register.invalid_phone_number"));
     }
   };
 
@@ -87,6 +94,10 @@ const MobileAppSmsForm = () => {
       >
         {t("MobileApp.buttonText", "Envoyer le lien")}
       </Button>
+
+      <Toast open={showToast} closeCallback={() => setShowToast(false)}>
+        {t("Dispositif.smsFormSent")}
+      </Toast>
     </form>
   );
 };

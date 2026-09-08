@@ -37,7 +37,7 @@ const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) 
             >
               {needCount}
             </b>
-            <i className={cls("fr-icon-arrow-down-s-line", styles.arrow)} />
+            <i className={cls("fr-icon-arrow-down-s-line", styles.arrow)} aria-hidden="true" />
           </span>
         </Accordion.Trigger>
       </Accordion.Header>
