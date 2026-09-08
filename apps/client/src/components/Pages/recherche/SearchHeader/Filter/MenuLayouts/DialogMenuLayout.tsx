@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import type React from "react";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import type { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
@@ -31,6 +31,19 @@ export function DialogMenuLayout({
   const [open, setOpen] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const descriptionId = useId();
+
+  // The Crisp bubble (z-index 1000001) sits above this dialog (1000000, lowered on
+  // purpose in e272e9e7b so tooltips stay reachable) and covers the end of the
+  // "Recherche.seeAllButtonWithCount" footer button from 970 px down to 320 px. The dialog fills the
+  // screen, so hiding the bubble while it is open takes nothing away and keeps the
+  // button entirely visible; the bubble comes back on close (RGAA 10.11).
+  useEffect(() => {
+    if (!open) return;
+    window.$crisp?.push(["do", "chat:hide"]);
+    return () => {
+      window.$crisp?.push(["do", "chat:show"]);
+    };
+  }, [open]);
 
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {
