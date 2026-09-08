@@ -12,14 +12,14 @@
     "@refugies-info/api-types": "workspace:*",
     "@zodyac/zod-mongoose": "^4.2.2",
     "jwt-simple": "^0.5.6",
-    "mongoose": "^8.24.3",
+    "mongoose": "^8.24.4",
     "password-hash": "^1.2.2",
     "speedgoose": "~2.2.0",
-    "zod": "^3.22.4"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
-    "@types/node": "^20.19.37",
+    "@types/node": "^20.19.43",
     "@types/password-hash": "^1.2.24",
     "typescript": "^5.9.3"
   }

@@ -45,8 +45,7 @@
     "ressourcesImgAlt": "Kit de communication de Réfugiés.info",
     "resourcesCTA": "Voir les outils",
     "webinaireCTA": "Participer à un webinaire",
-    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
-    "StructuresLogosVocalisation": "Nos partenaires :"
+    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !"
   },
   "Recherche": {
     "pageTitle": "Recherche",
@@ -292,6 +291,7 @@
     "mapCopyAddress": "Copier l'adresse",
     "mapCopyPhone": "Copier le numéro de téléphone",
     "mapCopyEmail": "Copier l'adresse email",
+    "skipMap": "Passer la carte",
     "react": "Faire une suggestion d'amélioration",
     "reactFeedbackMessage": "Votre réaction a bien été enregistrée, merci !",
     "suggestionTitle": "Vous avez une suggestion ?",
@@ -903,15 +903,22 @@
     "northStar_no": "Non",
     "northStar_yes": "Oui",
     "northStar_notUseful": "Pas utile",
-    "northStar_useful": "C'est utile ? ✨",
+    "northStar_useful": "C'est utile ?",
     "northStar_thanks": "Merci pour votre retour",
     "northStar_error": "Une erreur est survenue lors de la soumission de votre avis",
-    "northStar_vote_cancelled": "Votre vote a été retiré"
+    "northStar_vote_cancelled": "Votre vote a été retiré",
+    "themeBadge_one": "autre thème",
+    "themeBadge_other": "autres thèmes"
   },
   "ContentSources": {
     "RCO": {
       "description": "Ce dispositif provient du réseau des Carif Oref et est synchronisé via le référentiel data-inclusion."
     }
   },
-  "breadcrumbs": "Fil d'Ariane"
+  "breadcrumbs": "Fil d'Ariane",
+  "Auth": {
+    "resendEmailCountdown_one": "Un nouvel envoi sera possible dans {{count}} seconde.",
+    "resendEmailCountdown_other": "Un nouvel envoi sera possible dans {{count}} secondes.",
+    "resendEmailAvailable": "Vous pouvez demander un nouvel envoi."
+  }
 }

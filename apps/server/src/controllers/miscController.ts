@@ -1,8 +1,8 @@
-import type { TechnicalInfoRequest } from "@refugies-info/api-types";
-import { Body, Controller, Get, Post, Route } from "tsoa";
+import type { ReportClientErrorRequest, TechnicalInfoRequest } from "@refugies-info/api-types";
+import { Body, Controller, Get, Post, Request, Route, Security } from "tsoa";
 import { AuthenticationError } from "~/errors";
-import type { Response } from "~/types/interface";
-import { verifyVersion } from "~/workflows";
+import type { IRequest, Response } from "~/types/interface";
+import { reportClientError, verifyVersion } from "~/workflows";
 
 @Route("")
 export class MiscController extends Controller {
@@ -13,6 +13,19 @@ export class MiscController extends Controller {
         ? { text: "success" }
         : Promise.reject(new AuthenticationError("Please upgrade your application")),
     );
+  }
+
+  /**
+   * Authentifié : seules les personnes qui rédigent ou traduisent déclenchent ces erreurs, et
+   * un endpoint ouvert serait un moyen simple d'inonder Slack.
+   */
+  @Post("/client-error")
+  @Security("jwt")
+  public async clientError(
+    @Body() body: ReportClientErrorRequest,
+    @Request() request: IRequest,
+  ): Response {
+    return reportClientError(body, request.user).then(() => ({ text: "success" }));
   }
 
   @Get("/health")

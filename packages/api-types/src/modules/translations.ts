@@ -138,6 +138,13 @@ export interface SaveTranslationRequest {
       how?: { [key: string]: PartialTranslatedContent };
       next?: { [key: string]: PartialTranslatedContent };
       administrationName?: string;
+      /**
+       * Contenu markdown des fiches d'origine externe (RCO). Absent de ce type, il rendait les
+       * 163 fiches concernées intraduisibles : `noImplicitAdditionalProperties: throw-on-extras`
+       * refusait la clé en 422 dès que la section principale était traduite, alors que le reste
+       * de la chaîne la gère déjà (`countDispositifWords`, `validateTranslation`).
+       */
+      markdown?: string;
     };
   }>;
 }

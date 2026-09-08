@@ -61,4 +61,39 @@ describe("saveTranslation", () => {
       message: "Dispositif is already translated in uk",
     });
   });
+
+  /**
+   * Les 163 fiches d'origine RCO stockent leur corps dans `content.markdown`. La clé était
+   * absente de `SaveTranslationRequest`, donc `throw-on-extras` la refusait en 422 : traduire
+   * la section principale de ces fiches était impossible. Ce test est typé sans cast sur
+   * `translated`, pour qu'un retrait de la clé casse la compilation.
+   */
+  it("enregistre le corps markdown des fiches d'origine externe", async () => {
+    getDispositifByIdMock.mockResolvedValue({
+      _id: new ObjectId(dispositifId),
+      typeContenu: "dispositif",
+      translations: { fr: { content: { markdown: "# Titre\n\ntexte" } } },
+    } as any);
+
+    const request: SaveTranslationRequest = {
+      dispositifId,
+      language: "uk",
+      timeSpent: 1000,
+      toFinish: [],
+      toReview: [],
+      translated: {
+        content: {
+          titreInformatif: "Заголовок",
+          markdown: "# Заголовок\n\nтекст",
+        },
+      },
+    };
+
+    const saved = await saveTranslation(request, buildUser(false));
+
+    // `translated` est un Map côté mongoose (`z.record(z.any())` dans le schéma).
+    const content = (saved.translated as unknown as Map<string, any>).get("content");
+    expect(content.markdown).toBe("# Заголовок\n\nтекст");
+    expect(content.titreInformatif).toBe("Заголовок");
+  });
 });

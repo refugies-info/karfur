@@ -1,7 +1,7 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
 import type { Dispositif, Need, Structure, Theme, User } from "@refugies-info/mongo";
 import { isDocument, isDocumentArray } from "@refugies-info/mongo";
-import { get } from "lodash";
+import { get, isEqual } from "lodash";
 import { MustBePopulatedError } from "~/errors";
 import { getMapKeys, getMapValue, hasMapKey } from "~/libs/mongooseMaps";
 
@@ -104,4 +104,44 @@ export const getAvailableLanguages = (dispositif: any): string[] => {
   if (!dispositif.translations) return [];
   // Use centralized utility to handle both Map and plain object
   return getMapKeys(dispositif.translations);
+};
+
+/** Libellés lisibles des metadatas, dans l'ordre du schéma */
+const METADATAS_LABELS: Record<string, string> = {
+  location: "Lieux",
+  frenchLevel: "Niveau de français",
+  age: "Âge",
+  price: "Prix",
+  publicStatus: "Statut du public",
+  public: "Public visé",
+  conditions: "Conditions",
+  commitment: "Engagement",
+  frequency: "Fréquence",
+  timeSlots: "Créneaux horaires",
+  sessions: "Sessions",
+};
+
+/** null et undefined sont équivalents, et on sort des subdocuments Mongoose */
+const normalizeMetadata = (value: unknown) =>
+  value === null || value === undefined ? null : JSON.parse(JSON.stringify(value));
+
+/**
+ * Compare 2 versions des metadatas d'une fiche et renvoie les libellés des
+ * champs modifiés, pour pouvoir les citer dans une notification.
+ */
+export const getChangedMetadatasLabels = (
+  oldMetadatas: Dispositif["metadatas"] | undefined,
+  newMetadatas: Dispositif["metadatas"] | undefined,
+): string[] => {
+  const oldPlain = normalizeMetadata(oldMetadatas) || {};
+  const newPlain = normalizeMetadata(newMetadatas) || {};
+  const keys = [
+    ...Object.keys(METADATAS_LABELS),
+    // les clés inconnues du dictionnaire ne doivent pas passer inaperçues
+    ...Object.keys({ ...oldPlain, ...newPlain }).filter((key) => !(key in METADATAS_LABELS)),
+  ];
+
+  return keys
+    .filter((key) => !isEqual(normalizeMetadata(oldPlain[key]), normalizeMetadata(newPlain[key])))
+    .map((key) => METADATAS_LABELS[key] || key);
 };

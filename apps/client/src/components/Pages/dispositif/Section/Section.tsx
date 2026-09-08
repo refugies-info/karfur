@@ -27,12 +27,12 @@
  *
  * The "what" section also includes:
  * - Header (dispositif title, abstract, badges)
- * - SectionButtons (mobile share/listen buttons, RI only)
+ * - SectionButtons (mobile share/listen buttons)
  * - Metadatas sidebar (displayed inline on mobile/tablet or zoom >= 175%)
  */
 
-import { ContentType, type InfoSections, type Languages } from "@refugies-info/api-types";
-import { remarkRestoreHierarchy } from "@refugies-info/markdown-utils";
+import { ContentType, type InfoSections } from "@refugies-info/api-types";
+import { markdownToReadableText, remarkRestoreHierarchy } from "@refugies-info/markdown-utils";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type React from "react";
@@ -43,6 +43,7 @@ import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import { Header, Metadatas } from "~/components/Pages/dispositif";
 import { cn } from "~/lib/classname";
+import { getDispositifMarkdown } from "~/lib/dispositif";
 import {
   getDirectiveComponents,
   remarkDirectiveToComponent,
@@ -95,21 +96,18 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
   /**
    * Raw markdown content for RCO dispositifs.
    *
-   * Only used for the "what" section. Returns null for:
-   * - Non-"what" sections (RCO has no structured how/why/next)
-   * - RI dispositifs (they use contentHtml instead)
-   *
-   * Falls back to translations[lang].content.markdown if the top-level
-   * markdown field is not available (legacy data shape).
+   * Only used for the "what" section: RCO has no structured how/why/next.
+   * Null for RI dispositifs, they use contentHtml instead.
    */
-  const markdown = useMemo(() => {
-    if (sectionKey !== "what") return null;
-    if (!dispositif?.origin || dispositif.origin === "RI") return null;
-    const translationContent = dispositif.translations?.[i18n.language as Languages]?.content;
-    return (
-      dispositif.markdown || (dispositif as any).translations?.[i18n.language]?.content?.markdown
-    );
-  }, [sectionKey, dispositif, i18n.language]);
+  const markdown = useMemo(
+    () => (sectionKey === "what" ? getDispositifMarkdown(dispositif, i18n.language) : null),
+    [sectionKey, dispositif, i18n.language],
+  );
+
+  const listenableContent = useMemo(
+    () => (markdown ? markdownToReadableText(markdown) : contentHtml || ""),
+    [markdown, contentHtml],
+  );
 
   /**
    * Structured accordion content for how/why/next sections (RI only).
@@ -148,7 +146,7 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
    *
    *    sectionKey === "what":
    *    ├── Header (title, abstract, badges, source card)
-   *    ├── SectionButtons (share/listen — mobile only, RI only)
+   *    ├── SectionButtons (share/listen — mobile only)
    *    └── Content:
    *        ├── RCO → ReactMarkdown with remark plugin chain
    *        │         (remarkGfm → remarkDirective → remarkRestoreHierarchy
@@ -180,9 +178,13 @@ const Section = ({ sectionKey, contentType, className }: Props) => {
             {/* Dispositif header: title, abstract, badges (RI/RCO), source card */}
             <Header typeContenu={contentType || ContentType.DISPOSITIF} />
 
-            {/* Mobile share/listen buttons — only for RI (RCO has no contentHtml) */}
-            {contentHtml && isViewMode && !markdown && (
-              <SectionButtons id={sectionKey} className="mb-6 md:hidden" content={contentHtml} />
+            {/* Mobile share/listen buttons. RCO reads its markdown as plain text. */}
+            {isViewMode && listenableContent && (
+              <SectionButtons
+                id={sectionKey}
+                className="mb-6 md:hidden"
+                content={listenableContent}
+              />
             )}
 
             {markdown ? (

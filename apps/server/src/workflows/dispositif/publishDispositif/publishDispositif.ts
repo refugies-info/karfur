@@ -10,6 +10,7 @@ import { InvalidRequestError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import logger from "~/logger";
 import {
+  getChangedMetadatasLabels,
   getDispositifMainSponsor,
   getDispositifTranslation,
   isDispositifTranslatedIn,
@@ -132,7 +133,20 @@ export const publishDispositif = async (
 
       if (isAdmin || !hasTextChanges) {
         // admin or no changes in translations -> publish
-        await publishDispositifService(id, user._id, isAdmin ? body.keepTranslations : false);
+        // (non-admin = aucun texte modifié, on cite les metadatas changées dans la notif)
+        await publishDispositifService(
+          id,
+          user._id,
+          isAdmin ? body.keepTranslations : false,
+          isAdmin
+            ? undefined
+            : {
+                changedMetadatas: getChangedMetadatasLabels(
+                  oldDispositif.metadatas,
+                  draftDispositif.metadatas,
+                ),
+              },
+        );
       } else {
         // else, wait for admin validation, set the draft's status to UPDATE_TO_VALIDATE
         await updateDispositifInDB(id, { status: DispositifStatus.UPDATE_TO_VALIDATE }, true);

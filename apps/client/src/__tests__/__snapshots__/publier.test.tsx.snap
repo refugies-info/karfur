@@ -253,6 +253,7 @@ exports[`publier renders publier 1`] = `
                         Bénéficiez d'un outil gratuit et traduit
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
                       />
                     </button>
@@ -288,7 +289,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r8»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -303,6 +303,7 @@ exports[`publier renders publier 1`] = `
                         Donnez de la visibilité à votre action
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -329,7 +330,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«ra»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -344,6 +344,7 @@ exports[`publier renders publier 1`] = `
                         Recevez des candidatures adaptées
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -370,7 +371,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rc»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -385,6 +385,7 @@ exports[`publier renders publier 1`] = `
                         Participez à un service public ouvert
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -958,7 +959,12 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
-                Votre fiche est publiée ! 🎉
+                Votre fiche est publiée ! 
+                <span
+                  aria-hidden="true"
+                >
+                  🎉
+                </span>
               </div>
             </div>
             <div
@@ -1347,7 +1353,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rh»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1362,6 +1367,7 @@ exports[`publier renders publier 1`] = `
                           Pourquoi je dois écrire moi-même la fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1388,7 +1394,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rj»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1403,6 +1408,7 @@ exports[`publier renders publier 1`] = `
                           Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1429,7 +1435,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rl»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1444,6 +1449,7 @@ exports[`publier renders publier 1`] = `
                           En combien de temps ma fiche sera publiée ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1470,7 +1476,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rn»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1485,6 +1490,7 @@ exports[`publier renders publier 1`] = `
                           Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
@@ -1511,7 +1517,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rp»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1526,6 +1531,7 @@ exports[`publier renders publier 1`] = `
                           Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>

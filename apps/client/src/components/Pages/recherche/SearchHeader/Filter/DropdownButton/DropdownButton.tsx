@@ -75,7 +75,10 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         {!icon && value.length === 0 && !icon && (
           <>
             <span className={cls(styles.label)}>{label}</span>{" "}
-            <i className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}></i>
+            <i
+              className={isOpen ? "ri-arrow-up-s-line" : "ri-arrow-down-s-line"}
+              aria-hidden="true"
+            ></i>
           </>
         )}
       </button>
@@ -86,7 +89,7 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
           onClick={handleOnClear}
           title={`${t("Recherche.resetButton", "Réinitialiser le filtre")} ${label}`}
         >
-          <i className="ri-close-circle-fill"></i>
+          <i className="ri-close-circle-fill" aria-hidden="true"></i>
         </button>
       )}
     </div>

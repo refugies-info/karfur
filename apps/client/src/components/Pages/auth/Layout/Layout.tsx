@@ -35,7 +35,7 @@ const Layout = (props: Props) => {
       <AuthNavbar />
       {/* <main> wraps the help notice and the two-column block: the second fix
           written by the audit for RGAA 8.9, which keeps the visual layout as it was. */}
-      <main>
+      <main id="contenu">
         {props.loginHelp && (
           <Notice
             isClosable

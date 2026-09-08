@@ -605,7 +605,12 @@ exports[`traduire renders traduire 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
-                La traduction est publiée 🎉
+                La traduction est publiée 
+                <span
+                  aria-hidden="true"
+                >
+                  🎉
+                </span>
               </div>
             </div>
             <div
@@ -829,7 +834,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r9»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -844,6 +848,7 @@ exports[`traduire renders traduire 1`] = `
                         Quel niveau je dois avoir pour devenir traducteur ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -870,7 +875,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rb»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -885,6 +889,7 @@ exports[`traduire renders traduire 1`] = `
                         Combien de fiches je dois traduire ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -911,7 +916,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rd»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -926,6 +930,7 @@ exports[`traduire renders traduire 1`] = `
                         Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -952,7 +957,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rf»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -967,6 +971,7 @@ exports[`traduire renders traduire 1`] = `
                         Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
@@ -993,7 +998,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rh»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -1008,6 +1012,7 @@ exports[`traduire renders traduire 1`] = `
                         Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>

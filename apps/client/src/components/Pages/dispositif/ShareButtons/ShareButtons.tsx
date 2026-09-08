@@ -97,7 +97,10 @@ const ShareButtons = ({ className }: { className?: string }) => {
       >
         <Button
           priority="tertiary no outline"
-          onClick={() => setShowSMS(false)}
+          onClick={() => {
+            setShowSMS(false);
+            closeButtonRef.current?.focus();
+          }}
           iconId="ri-close-line"
           className={cn("z-10 ml-auto", !showSMS && "!hidden")}
           size="small"

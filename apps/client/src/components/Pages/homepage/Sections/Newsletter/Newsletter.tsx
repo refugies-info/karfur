@@ -86,6 +86,10 @@ const Newsletter = () => {
           </div>
           <form
             onSubmit={sendMail}
+            // RGAA 12.8: once the success message replaced it, the collapsed form must not stay
+            // reachable by keyboard or screen reader. `inert` does that without killing the
+            // collapse transition that `display: none` would cut short.
+            inert={newsletterFormState === "success"}
             className={cls(
               "col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in",
               newsletterFormState === "success"

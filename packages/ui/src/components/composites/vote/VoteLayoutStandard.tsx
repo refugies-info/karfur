@@ -89,7 +89,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
           )}
           aria-hidden="true"
         >
-          {t("ui.northStar_thanks", "Merci pour votre retour")} ☺️
+          {t("ui.northStar_thanks", "Merci pour votre retour")} <span aria-hidden="true">☺️</span>
         </p>
       </div>
     );
