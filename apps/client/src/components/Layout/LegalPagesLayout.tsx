@@ -2,7 +2,6 @@ import { Breadcrumb, type BreadcrumbProps as UIBreadcrumbProps } from "@refugies
 import { useRouter } from "next/router";
 import type React from "react";
 import Layout from "~/components/Layout/Layout";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 
 interface LegalPagesLayoutProps {
   children: React.ReactNode;
@@ -25,7 +24,6 @@ export default function LegalPagesLayout({
   return (
     <Layout history={pageHistory}>
       <div>
-        <HelpNotice className="w-screen" />
         <div className="fr-container w-full">
           <Breadcrumb
             className="w-full"
