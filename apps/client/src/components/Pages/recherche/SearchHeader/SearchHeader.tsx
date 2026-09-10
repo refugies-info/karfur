@@ -59,13 +59,15 @@ const SearchHeader = (props: Props) => {
     departmentsNotDeployed.find((dep) => !departmentsMessageHidden.includes(dep));
 
   return (
-    <header role="banner" aria-labelledby="search-title">
-      <div className={styles.title}>
-        <Container>
-          <h1 id="search-title">{t("Recherche.title")}</h1>
-          <p ref={stickyBarRef}>{t("Recherche.subtitle", { count: props.nbResults })}</p>
-        </Container>
-      </div>
+    <>
+      <header role="banner" aria-labelledby="search-title">
+        <div className={styles.title}>
+          <Container>
+            <h1 id="search-title">{t("Recherche.title")}</h1>
+            <p ref={stickyBarRef}>{t("Recherche.subtitle", { count: props.nbResults })}</p>
+          </Container>
+        </div>
+      </header>
       <div className={cls(styles.stickybar, isSticky && styles.sticky)}>
         <SearchCountsContext.Provider value={props.counts}>
           <Filters isSticky={isSticky} />
@@ -86,7 +88,7 @@ const SearchHeader = (props: Props) => {
           </div>
         )}
       </div>
-    </header>
+    </>
   );
 };
 
