@@ -14,7 +14,6 @@ import ShareImage from "~/assets/staticPages/traduire/share-image.svg";
 import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
 import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import {
   Accordion,
   Anchor,
@@ -93,7 +92,6 @@ const RecensezVotreAction = (props: Props) => {
   return (
     <div className="w-full">
       <SEO title="Aidez-nous à traduire !" />
-      <HelpNotice />
       <TranslationNotice />
 
       {/* HERO */}

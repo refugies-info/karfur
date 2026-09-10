@@ -15,7 +15,6 @@ import AgirLogos from "~/assets/agir/agir-logos.png";
 import IlluAccompagnement from "~/assets/agir/illu-accompagnement-social.svg";
 import IlluEmploi from "~/assets/agir/illu-emploi.svg";
 import IlluLogement from "~/assets/agir/illu-logement.svg";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
 import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
@@ -105,7 +104,6 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
         title="AGIR pour le logement et l’emploi des personnes réfugiées"
         description="AGIR (Accompagnement global et individualisé des réfugiés) est un programme d’accompagnement des réfugiés vers l’emploi, le logement et l’accès aux droits"
       />
-      <HelpNotice />
       <div className={styles.hero}>
         <Container>
           <Row className={styles.row}>
