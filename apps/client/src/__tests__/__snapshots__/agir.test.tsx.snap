@@ -77,6 +77,10 @@ exports[`agir renders traduire 1`] = `
       </div>
     </div>
     <div
+      aria-hidden="true"
+      class="-mb-px h-px"
+    />
+    <div
       class="nav"
     >
       <div

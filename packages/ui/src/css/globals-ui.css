@@ -21,6 +21,7 @@
 
   /* Shadows */
 
+  --shadow-sm: 0 2px 6px 0 #00001229;
   --shadow-ri: 0 6px 18px rgb(0 0 18 / 16%);
 
   /* Typescale titles desktop */

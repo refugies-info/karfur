@@ -75,9 +75,21 @@
   z-index: 2;
 
   @include isTablet {
-    /* stylelint-disable-next-line selector-class-pattern */
     :global(.fr-segmented__elements) {
       flex-wrap: wrap;
+    }
+  }
+
+  @include isMobile {
+    :global(.fr-segmented__elements) {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      width: fit-content;
+      max-width: 100%;
+    }
+
+    :global(.fr-segmented__element label) {
+      white-space: normal;
     }
   }
 }
@@ -129,12 +141,10 @@
 }
 
 .cards {
-  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__title a[href]) {
     color: var(--text-action-high-blue-france) !important;
   }
 
-  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-card__title a[href]::after) {
     content: "";
   }
