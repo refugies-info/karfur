@@ -89,7 +89,7 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
         {isOnline && <i className="ri-at-line me-1" aria-hidden="true"></i>}
         {badge.text}
       </Badge>
-      <div className={cn("fr-card", styles.container)}>
+      <div className={styles.container}>
         <div className={cn("fr-card__body", styles.body)}>
           <div className={cn("fr-card__content", styles.content)}>
             <div className={styles.text}>
