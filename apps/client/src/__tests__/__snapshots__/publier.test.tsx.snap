@@ -256,7 +256,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r7»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -298,7 +297,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r9»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -340,7 +338,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rb»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -1323,7 +1320,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rg»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1365,7 +1361,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«ri»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1407,7 +1402,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rk»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1449,7 +1443,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rm»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1491,7 +1484,6 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«ro»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
