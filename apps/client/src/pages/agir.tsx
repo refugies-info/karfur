@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
@@ -20,6 +20,7 @@ import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
+import useIsSticky from "~/hooks/useIsSticky";
 import {
   fallbackOperatorsPerDepartment,
   fetchAgirOperatorsPerDepartment,
@@ -53,6 +54,9 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
     () => operatorsPerDepartment[selectedDepartment],
     [selectedDepartment],
   );
+
+  const navSentinelRef = useRef<HTMLDivElement>(null);
+  const isNavSticky = useIsSticky(navSentinelRef);
 
   const [activeView, setActiveView] = useState<Section | null>(null);
   const [refProgram, inViewProgram] = useInView({ threshold: 0 });
@@ -144,7 +148,8 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
         </Container>
       </div>
 
-      <div className={styles.nav}>
+      <div ref={navSentinelRef} aria-hidden className="-mb-px h-px" />
+      <div className={cls(styles.nav, isNavSticky && "shadow-sm")}>
         <Container>
           <SegmentedControl
             hideLegend
