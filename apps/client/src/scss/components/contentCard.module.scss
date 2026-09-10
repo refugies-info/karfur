@@ -12,11 +12,17 @@ $shadowHeight: 1.4rem;
   width: 100%;
   height: 100%;
   position: relative;
-  display: block;
+
+  // The tile is the DSFR card itself, so it carries the column layout
+  display: flex;
+  flex-direction: column;
   background-color: var(--background-default-grey);
 
-  /* Keep the illustration colors on hover: the tile itself carries the state */
+  // Keep the illustration colors on hover: the tile itself carries the state
   --brighten: 0;
+
+  // The color the clipped text fades into, kept in sync with the background
+  --bg: var(--background-default-grey);
 
   em {
     background-color: #fbe769;
@@ -34,30 +40,16 @@ $shadowHeight: 1.4rem;
     --active-tint: transparent;
   }
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    max-width: 100%;
-    height: 100%;
-
-    --bg: 255 255 255;
-  }
-
   &:hover {
     background-color: var(--background-alt-grey);
 
-    .container {
-      --bg: 246 246 246;
-    }
+    --bg: var(--background-alt-grey);
   }
 
   &:active {
     background-color: var(--background-contrast-grey);
 
-    .container {
-      --bg: 238 238 238;
-    }
+    --bg: var(--background-contrast-grey);
   }
 
   .body {
@@ -158,7 +150,7 @@ $shadowHeight: 1.4rem;
       transform: translateY(calc(-100%));
       width: calc(100% + 1.5em);
       height: $shadowHeight;
-      background: linear-gradient(0deg, rgb(var(--bg) / 100%) 0%, rgb(var(--bg) / 0%) 100%);
+      background: linear-gradient(0deg, var(--bg) 0%, transparent 100%);
     }
 
     // The arrow icon
