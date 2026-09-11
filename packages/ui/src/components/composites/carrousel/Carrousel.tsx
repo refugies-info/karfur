@@ -279,7 +279,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
               {t.title}
             </h2>
           )}
-          <div className="z-10 flex items-center gap-2 max-md:order-last max-md:mt-4 max-md:mr-4 max-md:ml-auto max-md:flex-wrap max-md:justify-end">
+          <div className="z-10 flex items-center gap-2 max-md:order-last max-md:mt-4 max-md:me-4 max-md:ms-auto max-md:flex-wrap max-md:justify-end">
             <Button
               aria-label={`${t.prev} (${prevSlide + 1} ${t.countSeparator} ${childrenArray.length})`}
               onClick={handlePrevClick}
