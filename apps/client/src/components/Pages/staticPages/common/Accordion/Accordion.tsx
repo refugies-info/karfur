@@ -39,6 +39,7 @@ const Accordion = (props: Props) => {
   const { finalityConsent } = useConsent();
   const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
   const { isTablet, isMobile } = useWindowSize();
+  const isStacked = isTablet || isMobile;
 
   const isOpen = (index: number) => {
     return open.includes(index);
@@ -88,11 +89,11 @@ const Accordion = (props: Props) => {
   };
 
   return (
-    <div className={cn("flex gap-20", (isTablet || isMobile) && "flex-col", props.className)}>
+    <div className={cn("flex gap-20", isStacked && "flex-col", props.className)}>
       <div
         className={cn(
           props.withImages && "border-default-grey grow-1 basis-auto border-b",
-          props.withImages && !isTablet && !isMobile && "w-1/2",
+          props.withImages && !isStacked && "w-1/2",
         )}
       >
         <AccordionRoot multiOpen={props.multiOpen} initOpen={props.initOpen} setOpen={setOpen}>
@@ -136,7 +137,7 @@ const Accordion = (props: Props) => {
                       }}
                     ></p>
 
-                    {isTablet && props.withImages && (
+                    {isStacked && props.withImages && (
                       <>
                         {item?.image && getMedia("image", item)}
                         {item?.video && (
@@ -167,7 +168,7 @@ const Accordion = (props: Props) => {
           })}
         </AccordionRoot>
       </div>
-      {!isTablet && props.withImages && open.length > 0 && (
+      {!isStacked && props.withImages && open.length > 0 && (
         <div
           className={cn(
             "flex w-1/2 items-center",
