@@ -50,12 +50,12 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     <div ref={ref} className={isMobile ? styles.ref : undefined}>
       {isMobile ? (
         <Accordion.Root className={styles.accordion} type="single" collapsible>
-          {sortedThemes.map(({ _id, mainColor, short }, i) => {
+          {sortedThemes.map(({ _id, colors, short }, i) => {
             const count = nbNeedsSelectedByTheme[_id.toString()];
             return (
               <ThemeItemMobile
                 className={styles.accordionItem}
-                color={mainColor}
+                color={colors.color40}
                 key={i}
                 themeId={_id.toString()}
                 label={short[locale] ?? ""}
@@ -71,14 +71,14 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
           aria-orientation="vertical"
           aria-label={t("Recherche.themeTabs")}
         >
-          {sortedThemes.map(({ _id, mainColor, short }, i) => {
+          {sortedThemes.map(({ _id, colors, short }, i) => {
             const count = nbNeedsSelectedByTheme[_id.toString()];
             const selected = selectedThemeId === _id;
             const isFirst = i === 0;
             return (
               <ThemeItem
                 key={i}
-                color={mainColor}
+                color={colors.color40}
                 id={_id.toString()}
                 label={short[locale] ?? ""}
                 needCount={count}
