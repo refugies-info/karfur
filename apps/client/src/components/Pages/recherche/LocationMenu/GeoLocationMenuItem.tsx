@@ -34,7 +34,9 @@ const GeoLocationMenuItem: React.FC = () => {
               `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
             )
             .then((response) => {
-              const department = response.data[0]?.departement?.nom;
+              // The geo API answers with a list of communes; guard against an empty or malformed body.
+              const communes = Array.isArray(response.data) ? response.data : [];
+              const department = communes.length > 0 ? communes[0]?.departement?.nom : undefined;
               if (department) {
                 dispatch(
                   addToQueryActionCreator({
