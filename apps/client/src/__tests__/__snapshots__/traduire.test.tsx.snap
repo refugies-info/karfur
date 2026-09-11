@@ -810,7 +810,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r8»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -852,7 +851,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«ra»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -894,7 +892,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rc»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -936,7 +933,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«re»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -978,7 +974,6 @@ exports[`traduire renders traduire 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rg»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
