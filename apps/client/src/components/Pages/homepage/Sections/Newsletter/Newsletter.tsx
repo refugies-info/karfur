@@ -69,17 +69,11 @@ const Newsletter = () => {
                 closable
                 onClose={() => setNewsletterFormState("default")}
                 severity="success"
-                description={
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("NewsletterForm.confirmMessageText", {
-                        defaultValue: "Mail correctement enregistré !",
-                        email: email,
-                      }),
-                    }}
-                  ></span>
-                }
-                title={t("NewsletterForm.confirmMessageTitle", "Yay...")}
+                description={t(
+                  "NewsletterForm.confirmMessageText",
+                  "Votre inscription à la newsletter a bien été enregistrée",
+                )}
+                title={t("NewsletterForm.confirmMessageTitle", "Yay !")}
                 className={cls("w-full bg-white transition")}
               />
             )}
