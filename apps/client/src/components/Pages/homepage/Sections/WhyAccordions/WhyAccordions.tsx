@@ -105,13 +105,22 @@ const WhyAccordions = (props: Props) => {
     },
   ];
 
+  // Below 768 px, only the two items above were rendered: the last two desktop
+  // items, including the one carrying the mediation video, disappeared
+  // (RGAA 10.11). The first two items are not truncated versions of the desktop
+  // items, they are written in simplified French and address the refugee
+  // directly. That register is kept and the two missing items are appended
+  // after them, rather than switching the whole mobile view to the desktop
+  // texts, which would lose the simplified French.
+  const accordionItemsCompact = [...accordionItemsMobile, ...accordionItemsDesktop.slice(2)];
+
   return (
     <div className="container md:py-20">
       <h2 className="mb-20">
         {t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}
       </h2>
       <Accordion
-        items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
+        items={isMobile ? accordionItemsCompact : accordionItemsDesktop}
         withImages
         initOpen
         multiOpen={!!isTablet}

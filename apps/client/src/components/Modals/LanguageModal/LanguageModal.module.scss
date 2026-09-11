@@ -4,7 +4,12 @@
 
 .modal {
   @include media-min("tablet-up") {
-    width: 500px;
+    // 37.5rem, i.e. the width the content already imposed through a min-width:
+    // the dialog was 500 px wide and its content 600, which overflowed on the right.
+    // The dialog itself is now sized, and bounded by the viewport so that it no
+    // longer overflows at 200 % text zoom (RGAA 10.4).
+    width: 37.5rem;
+    max-width: calc(100vw - 3.5rem);
   }
 
   .close {
@@ -20,6 +25,13 @@
     box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: 0;
     border: none;
+
+    // In a 256 px tall viewport, the modal was 866 px tall and cut off at the
+    // bottom, with no way to reach the end of the list (RGAA 10.11).
+    // 3.5rem = the top and bottom margins reactstrap sets on .modal-dialog.
+    // In rem, so the bound follows text zoom (RGAA 10.4).
+    max-height: calc(100vh - 3.5rem);
+    overflow-y: auto;
   }
 
   .modal_header {
@@ -104,12 +116,6 @@
       background-color: $bleuCharte;
       border: 0.5px solid $bleuCharte;
     }
-
-    .vertical_center {
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-    }
   }
 
   // Cols
@@ -125,12 +131,6 @@
   .progress_col {
     display: flex;
     align-items: center;
-  }
-
-  .button_col {
-    display: flex;
-    padding-right: 15px;
-    justify-content: flex-end;
   }
 
   .icon_col {

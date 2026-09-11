@@ -14,6 +14,35 @@
         max-height: 3.3rem;
       }
     }
+
+    // At 200 % text zoom, the four quick access buttons measured 1185 px in a
+    // 1280 px wide viewport and forced a horizontal scroll on the page. The group
+    // now wraps instead of overflowing (RGAA 10.4).
+    // flex-wrap alone is not enough: .fr-header__tools has flex: 1 0 auto, so it
+    // never shrinks below its content width and the group keeps an infinite
+    // available width. It must be allowed to shrink, and the automatic min-width
+    // of the flex chain must be lifted. At normal text size the content fits, so
+    // nothing changes.
+    :global .fr-header__tools {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links {
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links .fr-btns-group {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    // Same cause for the main navigation bar: at the same zoom, the last item
+    // overflowed by 10 px (RGAA 10.4).
+    :global .fr-nav__list {
+      flex-wrap: wrap;
+    }
   }
 }
 

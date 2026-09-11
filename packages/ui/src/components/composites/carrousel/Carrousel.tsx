@@ -260,15 +260,26 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
       };
     }, [handleScroll, checkScrollability]);
 
+    // Below md the navigation row (two arrows and the "see more" link) used to
+    // be absolutely positioned at the bottom right, on a single line that could
+    // not wrap: at 320 px the "previous" arrow sat at x = -24, out of the
+    // viewport (RGAA 10.11). The header wrapper now dissolves into the section
+    // (`contents`), the row flows after the list and wraps when it is too wide,
+    // so the section grows with it instead of overlapping the cards. The list
+    // keeps a full width there: as a flex item with auto margins it would
+    // otherwise size to its content and push the page into horizontal scroll.
     return (
-      <section className={cn("relative w-full max-md:pb-14", className)} dir={dir}>
-        <div className="container mx-auto mb-8 flex w-full gap-4 lg:justify-between">
+      <section className={cn("relative w-full max-md:flex max-md:flex-col", className)} dir={dir}>
+        <div className="container mx-auto mb-8 flex w-full gap-4 max-md:contents lg:justify-between">
           {t.title && (
-            <h2 id={componentId} className="!mb-0 w-full !text-2xl font-bold max-sm:pe-[30%]">
+            <h2
+              id={componentId}
+              className="!mb-0 w-full !text-2xl font-bold max-md:!mb-8 max-md:px-4 max-sm:pe-[30%]"
+            >
               {t.title}
             </h2>
           )}
-          <div className="z-10 flex items-center gap-2 max-md:absolute max-md:right-4 max-md:bottom-0">
+          <div className="z-10 flex items-center gap-2 max-md:order-last max-md:mt-4 max-md:me-4 max-md:ms-auto max-md:flex-wrap max-md:justify-end">
             <Button
               aria-label={`${t.prev} (${prevSlide + 1} ${t.countSeparator} ${childrenArray.length})`}
               onClick={handlePrevClick}
@@ -300,7 +311,7 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
         <ul
           ref={scrollContainerRef}
           className={cn(
-            "carrousel noscrollbar m-auto flex list-none gap-4 p-0",
+            "carrousel noscrollbar m-auto flex list-none gap-4 p-0 max-md:w-full",
             "snap-x snap-mandatory overflow-x-auto scroll-smooth",
             "scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::WebkitScrollbar]:hidden",
             enableContainerPadding &&

@@ -99,7 +99,11 @@ const WorkTogether = () => {
       <h2 className="mx-4 mb-0 text-center">
         {t("WorkTogether.title", "Travaillons ensemble ! Vous êtes... ?")}
       </h2>
-      <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[50.5rem] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
+      {/* At exactly 768 px, max-md no longer applies while max-xl still does:
+          the grid overflowed to 808 px in a 768 px wide viewport. The bound goes
+          into the width value, because the container class already sets a
+          max-width that would win over a max-w-full (RGAA 10.11). */}
+      <div className="container grid grid-cols-1 items-center gap-10 max-xl:w-[min(50.5rem,100%)] max-md:w-full sm:grid-cols-2 xl:w-full xl:grid-cols-3">
         {cardsContent.map(({ title, description, link, cta, icon, image }) => (
           <div key={title} className="border-default-grey h-full border p-8">
             <div className="flex h-full flex-col gap-4">

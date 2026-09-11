@@ -90,7 +90,7 @@ const Homepage = (props: Props) => {
 
       <Hero targetArrow="themes" />
 
-      {!isMobile && <StructuresLogos />}
+      <StructuresLogos />
 
       <Carrousel
         className="mb-20"
@@ -134,7 +134,7 @@ const Homepage = (props: Props) => {
         ))}
       </Carrousel>
 
-      {!isMobile && <FreeResources />}
+      <FreeResources />
 
       <WhyAccordions nbDemarches={props.contentStatistics.nbDemarches || 0} />
 
@@ -142,7 +142,7 @@ const Homepage = (props: Props) => {
 
       <Newsletter />
 
-      {!isMobile && <WorkTogether />}
+      <WorkTogether />
     </div>
   );
 };

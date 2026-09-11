@@ -10,7 +10,15 @@
   padding-inline: var(--inline-padding);
   padding-block: var(--block-padding);
   position: relative;
-  white-space: nowrap;
+
+  // The language name does not break, but the row may wrap onto the next line:
+  // below 380 px the label, the tag and the percentage did not fit on one line
+  // and overflowed their box (RGAA 10.11).
+  flex-wrap: wrap;
+
+  :global(.langLabel) {
+    white-space: nowrap;
+  }
 
   &:focus-visible {
     z-index: 2;

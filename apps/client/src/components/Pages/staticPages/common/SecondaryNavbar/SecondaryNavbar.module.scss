@@ -1,10 +1,11 @@
-@import "~/scss/mixins/responsive";
-
 .nav {
-  @include media-max("xl-limit") {
-    /* stylelint-disable-next-line selector-class-pattern */
-    :global(.fr-segmented__elements) {
-      flex-wrap: wrap;
-    }
+  /* The segmented control used to wrap its elements only below the `xl-limit`
+     media query, which is evaluated against the browser default font size: at
+     200% text zoom on a 1280px window it did not apply and the four elements
+     overflowed the viewport. Let them wrap at every width; at 100% they still
+     fit on one line wherever they did before (RGAA 10.4). */
+  /* stylelint-disable-next-line selector-class-pattern */
+  :global(.fr-segmented__elements) {
+    flex-wrap: wrap;
   }
 }

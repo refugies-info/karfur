@@ -23,6 +23,12 @@ interface Props {
   itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null | undefined;
   key?: string;
+  /**
+   * Forces the choice between `mobileMode` and `desktopMode` instead of deriving
+   * it from `isMobile`. Use it when the component lives in a layout whose
+   * breakpoint is defined by a stylesheet, so that both switch together.
+   */
+  isCompact?: boolean;
 }
 
 const LanguageMenu = ({
@@ -35,6 +41,7 @@ const LanguageMenu = ({
   availableLanguages = null,
   itemsDesign = "default",
   key,
+  isCompact,
 }: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
 
@@ -49,6 +56,7 @@ const LanguageMenu = ({
   }
 
   const { isMobile } = useWindowSize();
+  const compact = isCompact ?? isMobile;
 
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
@@ -73,7 +81,7 @@ const LanguageMenu = ({
   return (
     <>
       {stylesDisabled && <span>{t("Toolbar.Langue", "Langue :")}</span>}
-      {(isMobile && mobileMode === "accordion") || (!isMobile && desktopMode === "accordion") ? (
+      {(compact && mobileMode === "accordion") || (!compact && desktopMode === "accordion") ? (
         <Accordion
           label={
             <>
@@ -93,7 +101,7 @@ const LanguageMenu = ({
         </Accordion>
       ) : null}
 
-      {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
+      {(compact && mobileMode === "dropdown") || (!compact && desktopMode === "dropdown") ? (
         <DropdownRoot
           className={cn(className)}
           ref={dropdownRef}
@@ -127,7 +135,7 @@ const LanguageMenu = ({
         </DropdownRoot>
       ) : null}
 
-      {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
+      {(compact && mobileMode === "modal") || (!compact && desktopMode === "modal") ? (
         <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
           <Dialog.Trigger asChild>
             <Button priority="tertiary no outline" className={cn("flex gap-2", className)}>

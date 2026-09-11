@@ -1,6 +1,5 @@
 import Badge from "@codegouvfr/react-dsfr/Badge";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { useWindowSize } from "@refugies-info/ui";
 import type React from "react";
 import { useMemo } from "react";
 import Image from "~/components/UI/Image";
@@ -24,14 +23,37 @@ interface Props {
 }
 
 const StepContent = (props: Props) => {
-  const { isTablet } = useWindowSize();
-
-  const buttonStep = useMemo(
+  // The badge used to pick its column with the JS `isTablet` flag while the
+  // columns themselves follow the Tailwind breakpoints. Below `md` it was
+  // absolutely positioned inside a text column with no bottom padding, so it
+  // covered the last paragraphs of the step; at 200% text zoom the JS said
+  // "mobile" while the CSS said "tablet" and the same overlap came back. The
+  // badge is now rendered twice and CSS decides which copy shows: in the text
+  // column, in the flow below `md` and absolute above `lg`; in the image
+  // column between `md` and `lg` (RGAA 10.11).
+  const badgeClassName =
+    "text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white";
+  const textColumnBadge = useMemo(
     () => (
       <div
         className={cls(
-          "text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white",
-          "absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
+          badgeClassName,
+          "relative mt-2 inline-block md:max-lg:hidden",
+          "lg:absolute lg:start-0 lg:mt-0 lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2",
+          props.buttonStepEnd && "lg:!bottom-0",
+        )}
+      >
+        {props.buttonStep}
+      </div>
+    ),
+    [props.buttonStep, props.buttonStepEnd],
+  );
+  const imageColumnBadge = useMemo(
+    () => (
+      <div
+        className={cls(
+          badgeClassName,
+          "hidden md:max-lg:block absolute start-0 bottom-[60px]",
           props.buttonStepEnd && "!bottom-0",
         )}
       >
@@ -107,7 +129,7 @@ const StepContent = (props: Props) => {
             {props.cta.text}
           </Button>
         )}
-        {!isTablet && props.buttonStep && buttonStep}
+        {props.buttonStep && textColumnBadge}
 
         {/* fade border */}
         {props.dottedLine && (
@@ -146,7 +168,7 @@ const StepContent = (props: Props) => {
           ></span>
         )}
       </div>
-      {isTablet && props.buttonStep && buttonStep}
+      {props.buttonStep && imageColumnBadge}
     </div>
   );
 };

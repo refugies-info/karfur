@@ -71,7 +71,6 @@ const Accordion = (props: Props) => {
             height={item.mediaHeight || "315"}
             src={item.youtube}
             title="YouTube video player"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className={cn(styles.youtube, "w-full")}
@@ -170,7 +169,13 @@ const Accordion = (props: Props) => {
       {!isTablet && props.withImages && open.length > 0 && (
         <div
           className={cn(
-            "flex w-1/2 items-center",
+            "flex items-center",
+            // The container switches to a column below 768 px (isMobile): the half
+            // width only makes sense in the two column layout. Below that, it
+            // shrank the illustration to 144 px wide (RGAA 10.11).
+            // Between 768 and 992 px, the isTablet branch above displays the media
+            // inside the accordion content.
+            isMobile ? "w-full" : "w-1/2",
             props.mediaAlign === "center" ? "justify-center" : "justify-end",
             props.items[open[0]]?.className,
           )}

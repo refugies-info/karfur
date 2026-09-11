@@ -166,6 +166,23 @@ const MobileApp = () => {
         ) : (
           <MobileAppSmsForm />
         )}
+        {/* Below 768 px, the SMS sending form disappeared entirely: a loss of
+            functionality in the sense of criterion 10.11. It is put back under the
+            store buttons, without touching the mobile title, which comes from a
+            documented editorial choice (PR #2709). The heading sits at the same level as the
+            mobile title (two sibling blocks of the section, RGAA 9.1) and reuses the
+            desktop title key, already translated in the 8 languages. */}
+        {isMobile && (
+          <div className="mt-10">
+            <h2 className="text-lg">
+              {t(
+                "MobileApp.titleDesktop",
+                "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+              )}
+            </h2>
+            <MobileAppSmsForm />
+          </div>
+        )}
       </div>
     </section>
   );
