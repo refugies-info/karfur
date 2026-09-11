@@ -1,10 +1,8 @@
 @import "~/scss/mixins/responsive";
 
 .nav {
-  @include media-max("xl-limit") {
-    :global(.fr-segmented__elements) {
-      flex-wrap: wrap;
-    }
+  :global(.fr-segmented__elements) {
+    flex-wrap: wrap;
   }
 
   @include isMobile {
