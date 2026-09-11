@@ -185,7 +185,7 @@ exports[`publier renders publier 1`] = `
             Pourquoi recenser mon action sur Réfugiés.info ?
           </h2>
           <div
-            class="flex gap-20 min-h-[480px]"
+            class="flex gap-20 lg:min-h-[480px]"
           >
             <div
               class="border-default-grey grow-1 basis-auto border-b w-1/2"
