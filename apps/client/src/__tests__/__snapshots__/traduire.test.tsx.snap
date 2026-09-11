@@ -570,7 +570,7 @@ exports[`traduire renders traduire 1`] = `
                 Vous allez recevoir un mail dès que la fiche que vous avez traduite sera visible sur le site Réfugiés.info et sur l'application mobile.
               </div>
               <div
-                class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
+                class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white relative mt-2 inline-block md:max-lg:hidden lg:absolute lg:start-0 lg:mt-0 lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 lg:!bottom-0"
               >
                 La traduction est publiée 
                 <span
@@ -594,6 +594,16 @@ exports[`traduire renders traduire 1`] = `
                 style="color: transparent; object-fit: contain;"
                 width="440"
               />
+            </div>
+            <div
+              class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white hidden md:max-lg:block absolute start-0 bottom-[60px] !bottom-0"
+            >
+              La traduction est publiée 
+              <span
+                aria-hidden="true"
+              >
+                🎉
+              </span>
             </div>
           </div>
         </div>

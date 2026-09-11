@@ -924,7 +924,7 @@ exports[`publier renders publier 1`] = `
                 Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
               </div>
               <div
-                class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
+                class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white relative mt-2 inline-block md:max-lg:hidden lg:absolute lg:start-0 lg:mt-0 lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
                 Votre fiche est publiée ! 
                 <span
@@ -948,6 +948,16 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent; object-fit: contain;"
                 width="440"
               />
+            </div>
+            <div
+              class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white hidden md:max-lg:block absolute start-0 bottom-[60px]"
+            >
+              Votre fiche est publiée ! 
+              <span
+                aria-hidden="true"
+              >
+                🎉
+              </span>
             </div>
           </div>
           <div
