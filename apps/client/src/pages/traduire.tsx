@@ -2,7 +2,7 @@ import { RoleName, type TranslationStatisticsResponse } from "@refugies-info/api
 import { logger } from "logger";
 import Image from "next/image";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
 import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
