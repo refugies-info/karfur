@@ -113,29 +113,31 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
                 Ce programme interministériel est piloté par la Direction générale des étrangers en
                 France (DGEF) en partenariat avec la DIHAL, la DIAIR, l’OFII et la DGEFP.
               </p>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                className="fr-button-reverse mb-4"
-                size="large"
-                linkProps={{
-                  href: "#program",
-                }}
-              >
-                Découvrir le programme
-              </Button>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                size="large"
-                priority="secondary"
-                className="fr-button-reverse"
-                linkProps={{
-                  href: "#map",
-                }}
-              >
-                Trouver mon opérateur
-              </Button>
+              <div className="flex flex-col items-start gap-4">
+                <Button
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  className="fr-button-reverse"
+                  size="large"
+                  linkProps={{
+                    href: "#program",
+                  }}
+                >
+                  Découvrir le programme
+                </Button>
+                <Button
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  size="large"
+                  priority="secondary"
+                  className="fr-button-reverse"
+                  linkProps={{
+                    href: "#map",
+                  }}
+                >
+                  Trouver mon opérateur
+                </Button>
+              </div>
             </Col>
             <Col className="flex justify-center lg:justify-end">
               <Image src={AgirLogos} width={400} height={280} alt="" />
