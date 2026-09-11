@@ -34,11 +34,10 @@ export const SectionUsers = () => {
             <figure>
               <Image
                 src={UsersGraph1}
-                alt=""
+                alt={t("MissionImpact.users_legend_1")}
                 className="mx-auto lg:mx-5"
                 width={416}
                 height={271}
-                aria-labelledby="users_legend_1"
               />
               <figcaption
                 id="users_legend_1"
@@ -69,8 +68,7 @@ export const SectionUsers = () => {
             <figure>
               <Image
                 src={UsersGraph2}
-                alt=""
-                aria-labelledby="users_legend_2"
+                alt={t("MissionImpact.users_legend_2")}
                 className="mx-auto lg:mx-10"
                 width={376}
                 height={191}

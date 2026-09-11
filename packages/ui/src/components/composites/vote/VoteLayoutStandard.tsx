@@ -45,10 +45,11 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
         ref={ref}
         className={cn("mb-4 flex flex-col gap-2 rounded-sm bg-white p-4 shadow-lg", className)}
       >
-        <p className="mb-2 text-xl font-bold">
+        {/* text-default-grey cancels the DSFR heading colour to keep the previous rendering */}
+        <h2 className="text-default-grey mb-2 text-xl font-bold">
           {t("ui.northStar_title", "Cette page vous a-t-elle été utile ?")}{" "}
           <span aria-hidden="true">✨</span>
-        </p>
+        </h2>
 
         <div className="grid grid-cols-2 gap-2">
           <Button

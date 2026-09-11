@@ -19,7 +19,9 @@ interface Props {
   subtitleForm: string;
   subtitleLoggedIn: string;
   btnLoggedIn: string;
-  onClickLoggedIn: () => void;
+  onClickLoggedIn?: () => void;
+  /** When the action is a plain navigation it must be a link, not a button (RGAA 7.1). */
+  hrefLoggedIn?: string;
   subtitleMobile: string;
   associatedRole: RoleName.TRAD | RoleName.CONTRIB;
 }
@@ -125,7 +127,9 @@ const Register = (props: Props) => {
           <p className="text-chapo mb-6">{isAuth ? props.subtitleLoggedIn : props.subtitleForm}</p>
           {isAuth ? (
             <Button
-              onClick={props.onClickLoggedIn}
+              {...(props.hrefLoggedIn
+                ? { linkProps: { href: props.hrefLoggedIn } }
+                : { onClick: props.onClickLoggedIn })}
               iconId="fr-icon-add-circle-line"
               iconPosition="right"
             >

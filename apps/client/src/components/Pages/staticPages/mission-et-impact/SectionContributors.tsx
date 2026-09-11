@@ -31,7 +31,7 @@ export const SectionContributors = (props: Props) => {
               <div className="relative inline-block">
                 <Image
                   src={CommunityIlluDispositifs}
-                  alt=""
+                  alt={`${props.nbDispositifPorteurs} ${t("MissionImpact.community_dispositifs_title")}`}
                   width={240}
                   height={80}
                   style={{ objectFit: "contain" }}
@@ -54,7 +54,7 @@ export const SectionContributors = (props: Props) => {
               <div className="relative inline-block">
                 <Image
                   src={CommunityIlluCda}
-                  alt=""
+                  alt={`${props.nbCDA} ${t("MissionImpact.community_cda_title")}`}
                   width={240}
                   height={80}
                   style={{ objectFit: "contain" }}
@@ -77,7 +77,7 @@ export const SectionContributors = (props: Props) => {
               <div className="relative inline-block">
                 <Image
                   src={CommunityIlluTraducteurs}
-                  alt=""
+                  alt={`${props.nbTranslators} ${t("MissionImpact.community_traducteurs_title")}`}
                   width={232}
                   height={80}
                   style={{ objectFit: "contain" }}

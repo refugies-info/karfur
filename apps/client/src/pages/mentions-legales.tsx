@@ -34,7 +34,7 @@ const MentionsLegales = () => {
           rectification, de modification et de suppression concernant des données qui vous
           concernent personnellement. Ce droit peut être exercé par voie électronique à l’adresse
           email suivante :{" "}
-          <a title="Email" href="mailto:contact@email.refugies.info">
+          <a className="underline" href="mailto:contact@email.refugies.info">
             contact@email.refugies.info
           </a>
           . Ou par courrier postal, daté et signé, accompagné d&apos;une copie d’un titre
@@ -57,7 +57,11 @@ const MentionsLegales = () => {
       <p>
         Les informations personnelles collectées ne sont en aucun cas confiées à des tiers. Pour
         plus d&apos;information consultez la page relative à{" "}
-        <Link href={getPath("/politique-de-confidentialite", locale)} prefetch={false}>
+        <Link
+          className="underline"
+          href={getPath("/politique-de-confidentialite", locale)}
+          prefetch={false}
+        >
           <strong>notre politique de confidentialité</strong>
         </Link>
         .
@@ -71,7 +75,7 @@ const MentionsLegales = () => {
         l&apos;éditeur du site, à l’exception des marques, logos ou contenus appartenant à d’autres
         organisations. Pour toute demande d’autorisation ou d’information, veuillez nous contacter
         par email :{" "}
-        <a title="Email" href="mailto:contact@email.refugies.info">
+        <a className="underline" href="mailto:contact@email.refugies.info">
           contact@email.refugies.info
         </a>
         . Des conditions spécifiques sont prévues pour la presse.
@@ -81,7 +85,13 @@ const MentionsLegales = () => {
 
       <p>
         Le site Refugies.info est hébergé par la société{" "}
-        <Link prefetch={false} href="https://cloud.google.com" target="_blank" rel="noopener">
+        <Link
+          className="underline"
+          prefetch={false}
+          href="https://cloud.google.com"
+          target="_blank"
+          rel="noopener"
+        >
           Google Cloud France
         </Link>
         . 8 rue de Londres 75009 Paris (SIRET 910 738 392 00018)
