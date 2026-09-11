@@ -71,7 +71,17 @@ exports[`auth/reinitialiser-mot-de-passe/nouveau renders page 1`] = `
             class="fr-message fr-message--info"
             id="password-«r2»-message-group-0"
           >
-            Register.criteria_special
+            Register.criteria_special 
+            <span
+              aria-hidden="true"
+            >
+              (!, @, #, $, &, *)
+            </span>
+            <span
+              class="sr-only"
+            >
+              (Register.criteria_special_spoken)
+            </span>
           </p>
           <p
             class="fr-message fr-message--info"

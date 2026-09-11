@@ -15,6 +15,7 @@ import { getPath } from "routes";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
+import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
 import { useAuthRedirect, useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -99,6 +100,7 @@ const AuthLogin = () => {
           dismissible
           nativeButtonProps={{
             onClick: () => router.push(getPath("/auth", "fr")),
+            "aria-label": `${email} Changer mon adresse email`,
           }}
         >
           {email}
@@ -111,16 +113,30 @@ const AuthLogin = () => {
           nativeInputProps={{
             autoFocus: true,
             name: "name",
+            autoComplete: "given-name",
           }}
         />
         <PasswordInput
           label="Mot de passe"
           messages={passwordStrength.criterias.map((criteria) => ({
-            message: t(criteria.label),
+            // RGAA 10.2: the green tick / red cross alone carries the state, so repeat it in text.
+            message: (
+              <>
+                <PasswordCriteriaLabel label={criteria.label} />
+                {!!password && (
+                  <span className="sr-only">
+                    {criteria.isOk
+                      ? t("Register.criteria_met", " (règle respectée)")
+                      : t("Register.criteria_not_met", " (règle non respectée)")}
+                  </span>
+                )}
+              </>
+            ),
             severity: !password ? "info" : criteria.isOk ? "valid" : "error",
           }))}
           nativeInputProps={{
             name: "password",
+            autoComplete: "new-password",
             value: password,
             onChange: (e: any) => setPassword(e.target.value),
           }}

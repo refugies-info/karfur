@@ -8,6 +8,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { type ReactElement, useCallback, useMemo, useState } from "react";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
+import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
 import { useAuthRedirect, useLogin } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
@@ -112,7 +113,7 @@ const AuthNewPassword = (props: Props) => {
                       },
                     ]
                   : passwordStrength.criterias.map((criteria) => ({
-                      message: t(criteria.label),
+                      message: <PasswordCriteriaLabel label={criteria.label} />,
                       severity: !password ? "info" : criteria.isOk ? "valid" : "error",
                     }))
               }

@@ -1,5 +1,5 @@
 // Password required criterias
-type Label =
+export type Label =
   | "Register.criteria_special"
   | "Register.criteria_number"
   | "Register.criteria_minlength";
