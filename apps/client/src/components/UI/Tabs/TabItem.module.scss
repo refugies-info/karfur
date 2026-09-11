@@ -1,5 +1,11 @@
 @import "~/scss/mixins/unit";
 
+// The li only carries the semantics: no box of its own, DSFR spacing cancelled.
+.tabitemwrapper {
+  margin: 0;
+  padding: 0;
+}
+
 .tabitem {
   border: 1px solid transparent;
   border-radius: u(1);

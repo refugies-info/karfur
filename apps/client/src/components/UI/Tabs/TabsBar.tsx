@@ -7,19 +7,20 @@ interface TabsBarProps {
   children: React.ReactNode;
 }
 
-const TabsBar = React.forwardRef<HTMLDivElement, TabsBarProps>(({ children, ...props }, ref) => {
+const TabsBar = React.forwardRef<HTMLUListElement, TabsBarProps>(({ children, ...props }, ref) => {
   const stylesDisabled = useStylesDisabled();
 
   return (
-    <div className={cls(styles.tabsbar)} {...props} ref={ref}>
+    // Explicit role justified on the contentAs prop of MetaDataItem.
+    <ul className={cls(styles.tabsbar)} role="list" {...props} ref={ref}>
       {children}
       {stylesDisabled && (
-        <>
+        <li aria-hidden="true">
           <br />
           <br />
-        </>
+        </li>
       )}
-    </div>
+    </ul>
   );
 });
 

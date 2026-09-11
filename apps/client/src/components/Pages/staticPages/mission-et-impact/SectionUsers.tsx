@@ -20,7 +20,14 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_1"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_1")}</p>
+            {/* Inline quotes as q, prescribed by the Ideance audit, P11, criterion 9.4. The
+                quotation marks are already in the translated text, the browser's ones are
+                neutralised so they are not doubled on screen. */}
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_1")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges1_badge1")}
@@ -58,7 +65,11 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_2"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_2")}</p>
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_2")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges2_badge")}

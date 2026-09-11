@@ -13,9 +13,27 @@ import {
   getFrenchLevel,
   getFrenchLevelLink,
   getPublic,
+  getPublicItems,
   getPublicStatus,
+  getPublicStatusItems,
 } from "../functions";
 import styles from "./CardPublic.module.scss";
+
+/**
+ * Audience enumeration as ul/li (RGAA 9.3) without changing the rendering: the li stay in
+ * inline flow and the original commas are hidden from assistive technologies, since the list
+ * structure already conveys the separation.
+ */
+const PublicList = ({ items }: { items: string[] }) => (
+  <>
+    {items.map((label, index) => (
+      <li key={label} className="inline" role="listitem">
+        {label}
+        {index < items.length - 1 && <span aria-hidden="true">, </span>}
+      </li>
+    ))}
+  </>
+);
 
 type Props = HTMLAttributes<HTMLDivElement> & {
   onClick?: () => void;
@@ -36,6 +54,9 @@ const CardPublic = ({ formData, ...props }: Props) => {
   const publicAge = dispositif?.metadatas?.age;
   const publicFrenchLevel = dispositif?.metadatas?.frenchLevel;
   const { setActiveModal, setModalPage, formSubmitted } = useContext(PageContext);
+
+  const publicStatusItems = getPublicStatusItems(publicStatus, t);
+  const publicSpecificItems = getPublicItems(publicSpecific, t);
 
   // Toggle visibility, if edit mode true, else check if there is any data
   const showCard = isEditMode
@@ -64,8 +85,14 @@ const CardPublic = ({ formData, ...props }: Props) => {
                     }
                   : undefined
               }
+              contentAs={publicStatusItems ? "ul" : "p"}
+              contentClassName={publicStatusItems ? "!inline" : undefined}
             >
-              {publicStatus ? getPublicStatus(publicStatus, t) : undefined}
+              {publicStatusItems ? (
+                <PublicList items={publicStatusItems} />
+              ) : publicStatus ? (
+                getPublicStatus(publicStatus, t)
+              ) : undefined}
             </MetaDataItem>
           ) : null}
 
@@ -82,10 +109,17 @@ const CardPublic = ({ formData, ...props }: Props) => {
                     }
                   : undefined
               }
+              contentAs={publicSpecificItems ? "ul" : "p"}
+              contentClassName={publicSpecificItems ? "!inline" : undefined}
             >
-              {publicSpecific
-                ? getPublic(publicSpecific, t)
-                : publicSpecific === null && "Non pertinent pour mon action"}
+              {publicSpecificItems ? (
+                <PublicList items={publicSpecificItems} />
+              ) : publicSpecific ? (
+                getPublic(publicSpecific, t)
+              ) : (
+                publicSpecific === null &&
+                t("Infocards.not_relevant", "Non pertinent pour mon action")
+              )}
             </MetaDataItem>
           ) : null}
 
@@ -104,7 +138,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               }
             >
               {publicFrenchLevel === null ? (
-                "Non pertinent pour mon action"
+                t("Infocards.not_relevant", "Non pertinent pour mon action")
               ) : publicFrenchLevel ? (
                 !publicFrenchLevel || publicFrenchLevel.length === 0 ? (
                   publicFrenchLevel
@@ -136,7 +170,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               }
             >
               {publicAge === null ? (
-                "Non pertinent pour mon action"
+                t("Infocards.not_relevant", "Non pertinent pour mon action")
               ) : publicAge ? (
                 <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>
                   {getAge(publicAge, t)}
