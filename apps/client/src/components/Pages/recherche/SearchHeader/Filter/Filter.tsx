@@ -254,7 +254,6 @@ const Filter = ({
                       <React.Fragment key={i}>
                         {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
                         <FilterCheckboxes
-                          className="px-2"
                           options={item.options}
                           currentmenu={item}
                           onSelectItem={onSelectItem}
@@ -343,7 +342,7 @@ const FilterCheckboxes = ({
   return (
     <DsfrCheckbox
       className={cn(
-        styles.fieldset,
+        styles.checkboxItems,
         "m-0 w-full p-0",
         "[&_>_div]:m-0",
         "[&_>_div_>_div]:m-0",

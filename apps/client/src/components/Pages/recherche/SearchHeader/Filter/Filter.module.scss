@@ -71,6 +71,27 @@
   z-index: 10;
 }
 
+.checkboxItems {
+  :global(.fr-fieldset__content) {
+    :global(.fr-checkbox-group) {
+      padding-block: u(2);
+      padding-inline: 10px u(2);
+
+      label {
+        padding-block: 0;
+      }
+
+      input[type="checkbox"] + label::before {
+        top: 0;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
 .radioContainer {
   padding-inline: u(2);
 
