@@ -481,95 +481,91 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               class="[object Object]"
             >
               <div
-                class="[object Object]"
+                class="text"
               >
-                <div
-                  class="text"
+                <h3
+                  class="fr-card__title"
+                  id="id1"
                 >
-                  <h3
-                    class="fr-card__title"
-                    id="id1"
-                  >
-                    <a
-                      href="/dispositif/id1"
-                    >
-                      <span
-                        class="[object Object]"
-                      >
-                        tinfo1
-                      </span>
-                    </a>
-                  </h3>
-                  <p
-                    class="[object Object]"
-                  >
-                    abstract1
-                  </p>
-                </div>
-                <div
-                  class="fr-card__start relative"
-                >
-                  <div
-                    aria-hidden="true"
-                    class="sponsor"
-                  >
-                    <img
-                      alt=""
-                      class="h-[3rem] object-contain"
-                      data-nimg="1"
-                      decoding="async"
-                      height="48"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent;"
-                      width="48"
-                    />
-                  </div>
-                  <div
-                    class="mb-2 flex gap-2"
+                  <a
+                    href="/dispositif/id1"
                   >
                     <span
-                      class="container theme-badge"
-                      style="background-color: rgb(214, 205, 228);"
+                      class="[object Object]"
                     >
-                      Français
+                      tinfo1
                     </span>
-                  </div>
+                  </a>
+                </h3>
+                <p
+                  class="[object Object]"
+                >
+                  abstract1
+                </p>
+              </div>
+              <div
+                class="fr-card__start relative"
+              >
+                <div
+                  aria-hidden="true"
+                  class="sponsor"
+                >
+                  <img
+                    alt=""
+                    class="h-[3rem] object-contain"
+                    data-nimg="1"
+                    decoding="async"
+                    height="48"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                    style="color: transparent;"
+                    width="48"
+                  />
                 </div>
                 <div
-                  class="end"
+                  class="mb-2 flex gap-2"
                 >
-                  <div
-                    class="[object Object]"
-                  />
-                  <i
-                    aria-hidden="true"
-                    class="fr-icon-arrow-right-line"
-                  />
+                  <span
+                    class="container theme-badge"
+                    style="background-color: rgb(214, 205, 228);"
+                  >
+                    Français
+                  </span>
                 </div>
               </div>
-            </div>
-            <div
-              aria-hidden="true"
-              class="fr-card__header"
-            >
               <div
-                class="fr-card__img"
+                class="end"
               >
-                <img
-                  alt=""
-                  class="fr-responsive-img"
-                  data-fr-js-ratio="true"
-                  data-nimg="1"
-                  decoding="async"
-                  height="158"
-                  loading="lazy"
-                  src="/images/cards/dispositif/français.svg"
-                  style="color: transparent;"
-                  width="280"
+                <div
+                  class="[object Object]"
+                />
+                <i
+                  aria-hidden="true"
+                  class="fr-icon-arrow-right-line"
                 />
               </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="fr-card__header"
+          >
+            <div
+              class="fr-card__img"
+            >
+              <img
+                alt=""
+                class="fr-responsive-img"
+                data-fr-js-ratio="true"
+                data-nimg="1"
+                decoding="async"
+                height="158"
+                loading="lazy"
+                src="/images/cards/dispositif/français.svg"
+                style="color: transparent;"
+                width="280"
+              />
             </div>
           </div>
         </article>
@@ -593,95 +589,91 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               class="[object Object]"
             >
               <div
-                class="[object Object]"
+                class="text"
               >
-                <div
-                  class="text"
+                <h3
+                  class="fr-card__title"
+                  id="id2"
                 >
-                  <h3
-                    class="fr-card__title"
-                    id="id2"
-                  >
-                    <a
-                      href="/dispositif/id2"
-                    >
-                      <span
-                        class="[object Object]"
-                      >
-                        tinfo2
-                      </span>
-                    </a>
-                  </h3>
-                  <p
-                    class="[object Object]"
-                  >
-                    abstract2
-                  </p>
-                </div>
-                <div
-                  class="fr-card__start relative"
-                >
-                  <div
-                    aria-hidden="true"
-                    class="sponsor"
-                  >
-                    <img
-                      alt=""
-                      class="h-[3rem] object-contain"
-                      data-nimg="1"
-                      decoding="async"
-                      height="48"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent;"
-                      width="48"
-                    />
-                  </div>
-                  <div
-                    class="mb-2 flex gap-2"
+                  <a
+                    href="/dispositif/id2"
                   >
                     <span
-                      class="container theme-badge"
-                      style="background-color: rgb(202, 190, 187);"
+                      class="[object Object]"
                     >
-                      Administratif
+                      tinfo2
                     </span>
-                  </div>
+                  </a>
+                </h3>
+                <p
+                  class="[object Object]"
+                >
+                  abstract2
+                </p>
+              </div>
+              <div
+                class="fr-card__start relative"
+              >
+                <div
+                  aria-hidden="true"
+                  class="sponsor"
+                >
+                  <img
+                    alt=""
+                    class="h-[3rem] object-contain"
+                    data-nimg="1"
+                    decoding="async"
+                    height="48"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                    style="color: transparent;"
+                    width="48"
+                  />
                 </div>
                 <div
-                  class="end"
+                  class="mb-2 flex gap-2"
                 >
-                  <div
-                    class="[object Object]"
-                  />
-                  <i
-                    aria-hidden="true"
-                    class="fr-icon-arrow-right-line"
-                  />
+                  <span
+                    class="container theme-badge"
+                    style="background-color: rgb(202, 190, 187);"
+                  >
+                    Administratif
+                  </span>
                 </div>
               </div>
-            </div>
-            <div
-              aria-hidden="true"
-              class="fr-card__header"
-            >
               <div
-                class="fr-card__img"
+                class="end"
               >
-                <img
-                  alt=""
-                  class="fr-responsive-img"
-                  data-fr-js-ratio="true"
-                  data-nimg="1"
-                  decoding="async"
-                  height="158"
-                  loading="lazy"
-                  src="/images/cards/dispositif/administratif.svg"
-                  style="color: transparent;"
-                  width="280"
+                <div
+                  class="[object Object]"
+                />
+                <i
+                  aria-hidden="true"
+                  class="fr-icon-arrow-right-line"
                 />
               </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="fr-card__header"
+          >
+            <div
+              class="fr-card__img"
+            >
+              <img
+                alt=""
+                class="fr-responsive-img"
+                data-fr-js-ratio="true"
+                data-nimg="1"
+                decoding="async"
+                height="158"
+                loading="lazy"
+                src="/images/cards/dispositif/administratif.svg"
+                style="color: transparent;"
+                width="280"
+              />
             </div>
           </div>
         </article>
@@ -705,92 +697,88 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               class="[object Object]"
             >
               <div
-                class="[object Object]"
+                class="text"
               >
-                <div
-                  class="text"
+                <h3
+                  class="fr-card__title"
+                  id="id3"
                 >
-                  <h3
-                    class="fr-card__title"
-                    id="id3"
-                  >
-                    <a
-                      href="/demarche/id3"
-                    >
-                      <span
-                        class="[object Object]"
-                      >
-                        tinfo3
-                      </span>
-                    </a>
-                  </h3>
-                  <p
-                    class="[object Object]"
-                  >
-                    abstract3
-                  </p>
-                </div>
-                <div
-                  class="fr-card__start relative"
-                >
-                  <div
-                    aria-hidden="true"
-                    class="sponsor"
-                  >
-                    <img
-                      alt=""
-                      class="h-[3rem] object-contain"
-                      data-nimg="1"
-                      decoding="async"
-                      height="48"
-                      loading="lazy"
-                      src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
-                      srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
-                      style="color: transparent;"
-                      width="48"
-                    />
-                  </div>
-                  <div
-                    class="mb-2 flex gap-2"
+                  <a
+                    href="/demarche/id3"
                   >
                     <span
-                      class="container theme-badge"
-                      style="background-color: rgb(193, 227, 242);"
+                      class="[object Object]"
                     >
-                      Logement
+                      tinfo3
                     </span>
-                  </div>
-                </div>
-                <div
-                  class="end"
+                  </a>
+                </h3>
+                <p
+                  class="[object Object]"
                 >
-                  <i
-                    aria-hidden="true"
-                    class="fr-icon-arrow-right-line"
+                  abstract3
+                </p>
+              </div>
+              <div
+                class="fr-card__start relative"
+              >
+                <div
+                  aria-hidden="true"
+                  class="sponsor"
+                >
+                  <img
+                    alt=""
+                    class="h-[3rem] object-contain"
+                    data-nimg="1"
+                    decoding="async"
+                    height="48"
+                    loading="lazy"
+                    src="/_next/image?url=%2Fimg.jpg&w=96&q=75"
+                    srcset="/_next/image?url=%2Fimg.jpg&w=48&q=75 1x, /_next/image?url=%2Fimg.jpg&w=96&q=75 2x"
+                    style="color: transparent;"
+                    width="48"
                   />
                 </div>
+                <div
+                  class="mb-2 flex gap-2"
+                >
+                  <span
+                    class="container theme-badge"
+                    style="background-color: rgb(193, 227, 242);"
+                  >
+                    Logement
+                  </span>
+                </div>
               </div>
-            </div>
-            <div
-              aria-hidden="true"
-              class="fr-card__header"
-            >
               <div
-                class="fr-card__img"
+                class="end"
               >
-                <img
-                  alt=""
-                  class="fr-responsive-img"
-                  data-fr-js-ratio="true"
-                  data-nimg="1"
-                  decoding="async"
-                  height="158"
-                  loading="lazy"
-                  src="/images/cards/demarche/logement.svg"
-                  style="color: transparent;"
-                  width="280"
+                <i
+                  aria-hidden="true"
+                  class="fr-icon-arrow-right-line"
                 />
               </div>
+            </div>
+          </div>
+          <div
+            aria-hidden="true"
+            class="fr-card__header"
+          >
+            <div
+              class="fr-card__img"
+            >
+              <img
+                alt=""
+                class="fr-responsive-img"
+                data-fr-js-ratio="true"
+                data-nimg="1"
+                decoding="async"
+                height="158"
+                loading="lazy"
+                src="/images/cards/demarche/logement.svg"
+                style="color: transparent;"
+                width="280"
+              />
             </div>
           </div>
         </article>

@@ -137,6 +137,14 @@
     flex-shrink: 0;
   }
 
+  // The label is a <p> for RGAA 8.9; keep the rendering it had as a <span>.
+  .separator_label {
+    flex-shrink: 0;
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
   &::after,
   &::before {
     content: "";

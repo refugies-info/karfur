@@ -23,16 +23,15 @@ export const SectionImpact = () => {
               imageUrl={PDFScreenshot.src}
               horizontal
               linkProps={{
-                href:
-                  typeof window !== "undefined"
-                    ? `${window.location.origin}/Livret-Impact-Refugies.infos-2024.pdf`
-                    : "#",
+                // Static file served from the site root: the link must be real on the server
+                // render too, and next/link must not prefix it with the locale.
+                href: "/Livret-Impact-Refugies.infos-2024.pdf",
+                locale: false,
                 target: "_blank",
                 rel: "noopener noreferrer",
               }}
-              imageAlt=""
+              imageAlt={t("MissionImpact.impact_booklet_alt")}
               title="Livret d'impact"
-              aria-label="Livret d'impact - cliquez pour le télécharger"
               desc="Mai 2024"
               endDetail="PDF - 61,88 Ko"
               className="fr-card--download mt-10 max-w-[24rem] md:mt-14"

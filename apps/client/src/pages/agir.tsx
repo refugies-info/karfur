@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import { Card } from "@codegouvfr/react-dsfr/Card";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { Col, Container, Row } from "reactstrap";
@@ -20,6 +20,7 @@ import DepartmentSelect from "~/components/UI/DepartmentSelect";
 import Image from "~/components/UI/Image";
 import MapFrance from "~/components/UI/MapFrance";
 import { MapContext } from "~/components/UI/MapFrance/MapContext";
+import useIsSticky from "~/hooks/useIsSticky";
 import {
   fallbackOperatorsPerDepartment,
   fetchAgirOperatorsPerDepartment,
@@ -53,6 +54,9 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
     () => operatorsPerDepartment[selectedDepartment],
     [selectedDepartment],
   );
+
+  const navSentinelRef = useRef<HTMLDivElement>(null);
+  const isNavSticky = useIsSticky(navSentinelRef);
 
   const [activeView, setActiveView] = useState<Section | null>(null);
   const [refProgram, inViewProgram] = useInView({ threshold: 0 });
@@ -113,29 +117,31 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
                 Ce programme interministériel est piloté par la Direction générale des étrangers en
                 France (DGEF) en partenariat avec la DIHAL, la DIAIR, l’OFII et la DGEFP.
               </p>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                className="fr-button-reverse mb-4"
-                size="large"
-                linkProps={{
-                  href: "#program",
-                }}
-              >
-                Découvrir le programme
-              </Button>
-              <Button
-                iconId="fr-icon-arrow-right-line"
-                iconPosition="right"
-                size="large"
-                priority="secondary"
-                className="fr-button-reverse"
-                linkProps={{
-                  href: "#map",
-                }}
-              >
-                Trouver mon opérateur
-              </Button>
+              <div className="flex flex-col items-start gap-4">
+                <Button
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  className="fr-button-reverse"
+                  size="large"
+                  linkProps={{
+                    href: "#program",
+                  }}
+                >
+                  Découvrir le programme
+                </Button>
+                <Button
+                  iconId="fr-icon-arrow-right-line"
+                  iconPosition="right"
+                  size="large"
+                  priority="secondary"
+                  className="fr-button-reverse"
+                  linkProps={{
+                    href: "#map",
+                  }}
+                >
+                  Trouver mon opérateur
+                </Button>
+              </div>
             </Col>
             <Col className="flex justify-center lg:justify-end">
               <Image src={AgirLogos} width={400} height={280} alt="" />
@@ -144,7 +150,8 @@ const Agir = ({ initialOperatorsPerDepartment }: AgirPageProps) => {
         </Container>
       </div>
 
-      <div className={styles.nav}>
+      <div ref={navSentinelRef} aria-hidden className="-mb-px h-px" />
+      <div className={cls(styles.nav, isNavSticky && "shadow-sm")}>
         <Container>
           <SegmentedControl
             hideLegend

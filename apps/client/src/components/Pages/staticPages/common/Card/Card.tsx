@@ -24,7 +24,7 @@ const CARD_HOVER_CLASSNAME = "hover:bg-background-alt-grey active:bg-active-tint
 
 const ArrowRight = () => (
   <div className="mt-6 w-full pt-2 text-right">
-    <i className="fr-icon-arrow-right-line text-title-blue-france" />
+    <i className="fr-icon-arrow-right-line text-title-blue-france" aria-hidden="true" />
   </div>
 );
 
@@ -70,7 +70,6 @@ const Card = (props: Props) => {
       <Link
         href={props.link}
         className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className, "block")}
-        title={props.title}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -85,7 +84,6 @@ const Card = (props: Props) => {
       <button
         className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className)}
         onClick={props.onClick}
-        title={props.title}
       >
         {content}
         <ArrowRight />
@@ -93,7 +91,7 @@ const Card = (props: Props) => {
     );
   }
 
-  return <div className={cls(CARD_CLASSNAME, props.className)}>{content}</div>;
+  return <article className={cls(CARD_CLASSNAME, props.className)}>{content}</article>;
 };
 
 export default Card;

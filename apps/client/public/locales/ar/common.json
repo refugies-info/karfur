@@ -140,7 +140,7 @@
     "email_reminder": "أرسل لي اشعار تذكير عبر الايميل الالكتروني",
     "Recevoir une invitation": "تلقي دعوة",
     "create_a_new_account": "أنشأ حساباً لك, من خلال جهاز الكمبيوتر, للمشاركة",
-    "criteria_special": "اشارة خاصة (!, @, #, $, &, *)",
+    "criteria_special": "اشارة خاصة",
     "criteria_number": "رقم",
     "criteria_minlength": "على الأقل 7 أحرف أو أرقام أو اشارة خاصة",
     "strong_password": "كلمة سر قوية",
