@@ -15,7 +15,8 @@ const AuthNavbar = () => {
         title: "Accueil - Réfugiés.info",
       }}
       operatorLogo={{
-        alt: "Réfugiés.info",
+        // Decorative: the service title next to it already reads "Réfugiés.info" (RGAA 1.2).
+        alt: "",
         imgUrl: "/images/logo-navbar-ri.svg",
         orientation: "horizontal",
       }}

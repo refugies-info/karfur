@@ -127,20 +127,17 @@ export const SubscribeNewsletterModal = () => {
       API.contacts({ email })
         .then(() => {
           Event("NEWSLETTER", "subscribe", "newsletter modal");
+          const confirmMessage = t(
+            "NewsletterForm.confirmMessageText",
+            "Votre inscription à la newsletter a bien été enregistrée",
+          );
           Swal.fire({
-            title: "Yay...",
-            text: "Mail correctement enregistré !",
+            title: t("NewsletterForm.confirmMessageTitle", "Yay !"),
+            text: confirmMessage,
             icon: "success",
             timer: 1500,
           });
-          // Le libellé partagé avec la section d'accueil porte du gras pour l'affichage,
-          // une région vocale ne restitue que du texte.
-          announce(
-            t("NewsletterForm.confirmMessageText", {
-              defaultValue: "Mail correctement enregistré !",
-              email,
-            }).replace(/<[^>]*>/g, ""),
-          );
+          announce(confirmMessage);
           setEmail("");
         })
         .catch((e) => {

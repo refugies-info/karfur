@@ -1,4 +1,3 @@
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SEO from "~/components/Seo";
 import EVAIcon from "~/components/UI/EVAIcon/EVAIcon";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -7,7 +6,6 @@ import styles from "~/scss/pages/declaration-accessibilite.module.scss";
 const DeclarationAccessibilite = () => {
   return (
     <div className="w-full">
-      <HelpNotice />
       <div className={styles.container + " animated fadeIn prose no-dsfr"}>
         <SEO title="Accessibilité : partiellement conforme" />
         <h1>Déclaration d'accessibilité</h1>
