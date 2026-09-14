@@ -204,7 +204,12 @@ export const SubscribeNewsletterModal = () => {
           />
         ) : (
           <ButtonContainer>
-            <FButton type="light-action" name="close-outline" onClick={toggle}>
+            <FButton
+              type="light-action"
+              name="close-outline"
+              onClick={toggle}
+              className={styles.secondary_button}
+            >
               <div> {t("Retour", "Retour")}</div>
             </FButton>
             <FButton

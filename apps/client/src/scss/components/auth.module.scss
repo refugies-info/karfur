@@ -128,7 +128,7 @@
 .separator {
   @include dsfr-text("large");
 
-  color: var(--text-disabled-grey);
+  color: var(--text-mention-grey);
   display: flex;
   align-items: center;
   gap: u(6);
