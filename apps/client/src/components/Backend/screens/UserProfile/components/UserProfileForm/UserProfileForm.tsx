@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import FRLink from "~/components/UI/FRLink";
+import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
 import { cls } from "~/lib/classname";
 import { isValidEmail, isValidPhone } from "~/lib/validateFields";
 import { getPasswordStrength } from "~/lib/validatePassword";
@@ -167,7 +168,7 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
 
       if (input === "new")
         return passwordStrength.criterias.map((criteria) => ({
-          message: t(criteria.label),
+          message: <PasswordCriteriaLabel label={criteria.label} />,
           severity: !newPassword ? "info" : criteria.isOk ? "valid" : "error",
         }));
       return [];
