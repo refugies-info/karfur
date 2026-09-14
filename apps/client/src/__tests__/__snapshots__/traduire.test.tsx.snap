@@ -8,7 +8,7 @@ exports[`traduire renders traduire 1`] = `
     class="sr-only"
     role="status"
   >
-
+     
   </div>
   <div
     aria-atomic="true"
@@ -16,7 +16,7 @@ exports[`traduire renders traduire 1`] = `
     class="sr-only"
     role="alert"
   >
-
+     
   </div>
   <div
     class="w-full"
@@ -350,7 +350,6 @@ exports[`traduire renders traduire 1`] = `
               >
                 <span
                   class="flag fi fi-en"
-
                 />
                 <span
                   class="text-h6 md:text-h5 font-bold"
@@ -405,7 +404,7 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Créez
+                Créez 
                 <strong>
                   votre compte
                 </strong>
@@ -458,7 +457,7 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Choisissez
+                Choisissez 
                 <strong>
                   votre langue
                 </strong>
@@ -566,7 +565,7 @@ exports[`traduire renders traduire 1`] = `
               <h3
                 class="text-h4 lg:text-h3 mb-6"
               >
-                Un
+                Un 
                 <strong>
                   expert relit et valide
                 </strong>
@@ -585,7 +584,7 @@ exports[`traduire renders traduire 1`] = `
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2 !bottom-0"
               >
-                La traduction est publiée
+                La traduction est publiée 
                 <span
                   aria-hidden="true"
                 >
