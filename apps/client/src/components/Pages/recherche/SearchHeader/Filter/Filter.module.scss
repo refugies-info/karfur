@@ -72,10 +72,11 @@
 }
 
 .checkboxItems {
+  /* stylelint-disable-next-line selector-class-pattern */
   :global(.fr-fieldset__content) {
     :global(.fr-checkbox-group) {
       padding-block: u(2);
-      padding-inline: 10px u(2);
+      padding-inline: u(2.5) u(2);
 
       label {
         padding-block: 0;
