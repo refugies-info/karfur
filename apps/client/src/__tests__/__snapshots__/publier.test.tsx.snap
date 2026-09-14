@@ -71,6 +71,10 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
+      aria-hidden="true"
+      class="-mb-px h-px"
+    />
+    <div
       class="sticky top-0 z-20 bg-white"
     >
       <div
