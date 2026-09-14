@@ -12,7 +12,9 @@ const CountUpFigure = (props: Props) => {
       <div className="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold">
         <InView>
           {({ inView, ref }) => (
-            <div ref={ref}>{inView ? <CountUp end={props.number} separator=" " /> : 0}</div>
+            <p ref={ref} className="text-alt-title lg:text-alt-title-big mb-0">
+              {inView ? <CountUp end={props.number} separator=" " /> : 0}
+            </p>
           )}
         </InView>
       </div>
