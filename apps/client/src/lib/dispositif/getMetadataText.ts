@@ -46,6 +46,28 @@ export const getPriceText = (data: Metadatas["price"] | undefined, t: TFunction)
   return jsUcfirst(`${data.values[0]}€ ${data.details ? t(`Infocards.${data.details}`) : ""}`);
 };
 
+/**
+ * Values whose label is read from the Infocards namespace. A closed union rather than string:
+ * it is what lets t() check the `Infocards.${value}` keys at compile time.
+ */
+type InfocardsValue = NonNullable<Metadatas["public"] | Metadatas["publicStatus"]>[number];
+
+/**
+ * Labels of a metadata enumeration, one per item instead of a joined string, so that it can
+ * be structured as ul/li (RGAA 9.3). Only the first one is capitalised, like the joined
+ * string these lists replace.
+ */
+export const getInfocardsLabels = (
+  data: readonly InfocardsValue[] | null | undefined,
+  t: TFunction,
+): string[] | null => {
+  if (!data || data.length === 0) return null;
+  return data.map((value, index) => {
+    const label = t(`Infocards.${value}`) as string;
+    return index === 0 ? jsUcfirst(label) : label;
+  });
+};
+
 export const getPublicStatusText = (
   data: Metadatas["publicStatus"] | undefined,
   t: TFunction,
