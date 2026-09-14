@@ -69,23 +69,21 @@ const Newsletter = () => {
                 closable
                 onClose={() => setNewsletterFormState("default")}
                 severity="success"
-                description={
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: t("NewsletterForm.confirmMessageText", {
-                        defaultValue: "Mail correctement enregistré !",
-                        email: email,
-                      }),
-                    }}
-                  ></span>
-                }
-                title={t("NewsletterForm.confirmMessageTitle", "Yay...")}
+                description={t(
+                  "NewsletterForm.confirmMessageText",
+                  "Votre inscription à la newsletter a bien été enregistrée",
+                )}
+                title={t("NewsletterForm.confirmMessageTitle", "Yay !")}
                 className={cls("w-full bg-white transition")}
               />
             )}
           </div>
           <form
             onSubmit={sendMail}
+            // RGAA 12.8: once the success message replaced it, the collapsed form must not stay
+            // reachable by keyboard or screen reader. `inert` does that without killing the
+            // collapse transition that `display: none` would cut short.
+            inert={newsletterFormState === "success"}
             className={cls(
               "col-start-1 row-start-1 overflow-y-clip transition-all duration-200 ease-in",
               newsletterFormState === "success"

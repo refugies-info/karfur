@@ -108,10 +108,16 @@ exports[`CheckCode should render the component with the correct title and subtit
       </button>
       <button
         class="fr-btn fr-btn--tertiary fr-icon-mail-line fr-btn--icon-right button"
+        disabled=""
         id="fr-button-«r3»"
       >
         Renvoyer le code
       </button>
+      <p
+        class="small mt-1"
+      >
+        Auth.resendEmailCountdown
+      </p>
     </form>
     <div
       class="small mx text-center"

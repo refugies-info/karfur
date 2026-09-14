@@ -22,39 +22,6 @@ exports[`publier renders publier 1`] = `
     class="w-full"
   >
     <div
-      class="fr-notice fr-notice--info"
-      id="fr-notice-«r0»"
-    >
-      <div
-        class="fr-container"
-      >
-        <div
-          class="fr-notice__body"
-        >
-          <p>
-            <span
-              class="fr-notice__title"
-            >
-              Réfugiés.info a été nommé Service numérique à impact national ! 
-              <a
-                class="!border-0 !underline"
-                href="https://beta.gouv.fr/startups/refugies.info#impact"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Découvrir l'impact du projet.
-              </a>
-            </span>
-          </p>
-          <button
-            class="fr-btn--close fr-btn"
-          >
-            Masquer le message
-          </button>
-        </div>
-      </div>
-    </div>
-    <div
       class="py-10 md:py-20 bg-action-high-blue-france"
     >
       <div
@@ -79,7 +46,7 @@ exports[`publier renders publier 1`] = `
             <a
               class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right fr-button-reverse max-md:text-large mt-10 w-full justify-center max-md:min-h-[48px] md:w-auto"
               href="#register"
-              id="fr-button-«r1»"
+              id="fr-button-«r0»"
             >
               Rédiger une fiche
             </a>
@@ -104,6 +71,10 @@ exports[`publier renders publier 1`] = `
       </div>
     </div>
     <div
+      aria-hidden="true"
+      class="-mb-px h-px"
+    />
+    <div
       class="sticky top-0 z-20 bg-white"
     >
       <div
@@ -114,7 +85,7 @@ exports[`publier renders publier 1`] = `
         >
           <fieldset
             class="fr-segmented fr-segmented--no-legend"
-            id="fr-segmented-«r2»"
+            id="fr-segmented-«r1»"
           >
             <div
               class="fr-segmented__elements"
@@ -123,14 +94,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-«r2»-0"
-                  name="segmented-name-«r3»"
+                  id="fr-segmented-«r1»-0"
+                  name="segmented-name-«r2»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-«r2»-0"
+                  for="fr-segmented-«r1»-0"
                 >
                   Pourquoi ?
                 </label>
@@ -139,14 +110,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-«r2»-1"
-                  name="segmented-name-«r3»"
+                  id="fr-segmented-«r1»-1"
+                  name="segmented-name-«r2»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-«r2»-1"
+                  for="fr-segmented-«r1»-1"
                 >
                   Quels critères ?
                 </label>
@@ -155,14 +126,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-«r2»-2"
-                  name="segmented-name-«r3»"
+                  id="fr-segmented-«r1»-2"
+                  name="segmented-name-«r2»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-«r2»-2"
+                  for="fr-segmented-«r1»-2"
                 >
                   Comment faire ?
                 </label>
@@ -171,14 +142,14 @@ exports[`publier renders publier 1`] = `
                 class="fr-segmented__element"
               >
                 <input
-                  id="fr-segmented-«r2»-3"
-                  name="segmented-name-«r3»"
+                  id="fr-segmented-«r1»-3"
+                  name="segmented-name-«r2»"
                   readonly=""
                   type="radio"
                 />
                 <label
                   class="fr-label"
-                  for="fr-segmented-«r2»-3"
+                  for="fr-segmented-«r1»-3"
                 >
                   Foire aux questions
                 </label>
@@ -192,7 +163,7 @@ exports[`publier renders publier 1`] = `
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
             href="#register"
-            id="fr-button-«r4»"
+            id="fr-button-«r3»"
           >
             Rédiger une fiche
           </a>
@@ -218,7 +189,7 @@ exports[`publier renders publier 1`] = `
             Pourquoi recenser mon action sur Réfugiés.info ?
           </h2>
           <div
-            class="flex gap-20 min-h-[480px]"
+            class="flex gap-20 lg:min-h-[480px]"
           >
             <div
               class="border-default-grey grow-1 basis-auto border-b w-1/2"
@@ -237,14 +208,14 @@ exports[`publier renders publier 1`] = `
                     data-state="open"
                   >
                     <button
-                      aria-controls="radix-«r6»"
+                      aria-controls="radix-«r5»"
                       aria-disabled="true"
                       aria-expanded="true"
                       class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="open"
-                      id="radix-«r5»"
+                      id="radix-«r4»"
                       type="button"
                     >
                       <span
@@ -253,16 +224,17 @@ exports[`publier renders publier 1`] = `
                         Bénéficiez d'un outil gratuit et traduit
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-subtract-line before:!bg-title-blue-france"
                       />
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-«r5»"
+                    aria-labelledby="radix-«r4»"
                     class="content"
                     data-orientation="vertical"
                     data-state="open"
-                    id="radix-«r6»"
+                    id="radix-«r5»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
                   >
@@ -288,13 +260,12 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«r8»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-«r7»"
+                      id="radix-«r6»"
                       type="button"
                     >
                       <span
@@ -303,17 +274,18 @@ exports[`publier renders publier 1`] = `
                         Donnez de la visibilité à votre action
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-«r7»"
+                    aria-labelledby="radix-«r6»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-«r8»"
+                    id="radix-«r7»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -329,13 +301,12 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«ra»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-«r9»"
+                      id="radix-«r8»"
                       type="button"
                     >
                       <span
@@ -344,17 +315,18 @@ exports[`publier renders publier 1`] = `
                         Recevez des candidatures adaptées
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-«r9»"
+                    aria-labelledby="radix-«r8»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-«ra»"
+                    id="radix-«r9»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -370,13 +342,12 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
-                      aria-controls="radix-«rc»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-«rb»"
+                      id="radix-«ra»"
                       type="button"
                     >
                       <span
@@ -385,17 +356,18 @@ exports[`publier renders publier 1`] = `
                         Participez à un service public ouvert
                       </span>
                       <i
+                        aria-hidden="true"
                         class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                       />
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-«rb»"
+                    aria-labelledby="radix-«ra»"
                     class="content"
                     data-orientation="vertical"
                     data-state="closed"
                     hidden=""
-                    id="radix-«rc»"
+                    id="radix-«rb»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -449,20 +421,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « J’ai eu le plaisir de découvrir Réfugiés.info en 2021 et d’en constater toute l’étendue et l’utilité pour les personnes que nous accompagnons dans le cadre de notre dispositif sur le département de Loire-Atlantique. Le résultat final est impressionnant ! »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Vincent Le Lann
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Compagnons du Tour de France à Nantes
-                </div>
+                </p>
               </div>
             </div>
             <div
@@ -479,20 +457,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « Réfugiés.info est un très bon site ressource, très complet, qui balaye de nombreuses thématiques, facile d’accès et intuitif. Un bon complément à mes connaissances actuelles. Les acteurs sont bien accompagnés dans la construction de fiches. »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Rémi Crouzel
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Mission Locale de Dijon & Conseiller IPeRACTIFS21
-                </div>
+                </p>
               </div>
             </div>
             <div
@@ -509,20 +493,26 @@ exports[`publier renders publier 1`] = `
                 style="color: transparent;"
                 width="40"
               />
-              <p
-                class="!text-large !mb-6"
+              <blockquote
+                class="m-0"
               >
-                « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
-              </p>
+                <p
+                  class="!text-large !mb-6"
+                >
+                  « UniR partage toutes ses actions sur la plateforme Réfugiés.info. C'est très intuitif à utiliser et ça permet de mettre en avant les informations clés sur chaque programme. À chaque nouvelle session, nous mettons à jour seulement les cases concernées et cela maintient nos informations accessibles à toutes et tous ! »
+                </p>
+              </blockquote>
               <div>
-                <div
+                <p
                   class="mb-2 font-bold"
                 >
                   Paola Salazar
-                </div>
-                <div>
+                </p>
+                <p
+                  class="mb-0"
+                >
                   Directrice adjointe UniR
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -547,7 +537,7 @@ exports[`publier renders publier 1`] = `
         <div
           class="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:justify-center lg:gap-10"
         >
-          <div
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -613,8 +603,8 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </article>
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -680,8 +670,8 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
-          <div
+          </article>
+          <article
             class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white"
           >
             <div
@@ -747,7 +737,7 @@ exports[`publier renders publier 1`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
         <div
           class="mt-10 text-center lg:mt-20"
@@ -755,7 +745,7 @@ exports[`publier renders publier 1`] = `
           <a
             class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            id="fr-button-«rd»"
+            id="fr-button-«rc»"
           >
             Lire la charte éditoriale complète
           </a>
@@ -800,15 +790,15 @@ exports[`publier renders publier 1`] = `
               >
                 Créez votre compte Réfugiés.info
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Chaque compte est personnel. Vos collègues pourront aussi créer leur propre compte pour modifier les fiches de votre structure.
-              </div>
+              </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
-                id="fr-button-«re»"
+                id="fr-button-«rd»"
               >
                 Créer mon compte
               </a>
@@ -849,20 +839,20 @@ exports[`publier renders publier 1`] = `
               >
                 Rédigez votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Vous vous adressez à des personnes réfugiées ou des personnes les aidant dans leur recherche.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Le niveau de langue étant très variable, le contenu de votre fiche doit donc être synthétique et vulgarisé.
-              </div>
+              </p>
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                id="fr-button-«rf»"
+                id="fr-button-«re»"
               >
                 Voir les bonnes pratiques
               </a>
@@ -903,11 +893,11 @@ exports[`publier renders publier 1`] = `
               >
                 Ajoutez la structure responsable
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 À la fin de votre rédaction, précisez la structure responsable de cette action : la vôtre ou une organisation amie que vous souhaitez recenser vous-même.
-              </div>
+              </p>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -945,16 +935,16 @@ exports[`publier renders publier 1`] = `
               >
                 L’équipe éditoriale de Réfugiés.info relit et publie votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Notre équipe éditoriale relit votre fiche et vous contacte s’il manque des informations essentielles.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Vous êtes informé par email lorsque la fiche est visible par les utilisateurs.
-              </div>
+              </p>
               <div
                 class="text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white absolute start-0 bottom-[60px] lg:bottom-[120px] lg:-translate-x-1/2 lg:rtl:translate-x-1/2"
               >
@@ -1002,16 +992,16 @@ exports[`publier renders publier 1`] = `
               >
                 Traduction en 7 langues de votre fiche
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Votre fiche est traduite par de vrais humains. Nous nous appuyons sur un réseau de bénévoles et d’experts linguistes pour traduire et vulgariser l’information dans un langage adapté aux personnes réfugiées.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Vos actions sont ainsi traduites gratuitement en 7 langues : anglais, arabe, pachto, persan/dari, tigrinya, ukrainien et russe.
-              </div>
+              </p>
             </div>
             <div
               class="relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px] border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0"
@@ -1049,16 +1039,16 @@ exports[`publier renders publier 1`] = `
               >
                 Mettez à jour votre action régulièrement
               </h3>
-              <div
+              <p
                 class="text-large mb-6"
               >
                 Votre action peut rapidement évoluer (dates des sessions de formation, formulaires de candidature, fréquence des cours de français, etc.), vous êtes garant de la mise à jour des informations.
-              </div>
-              <div
+              </p>
+              <p
                 class="text-large mb-6"
               >
                 Attention, une action obsolète sera supprimée par l’équipe éditoriale.
-              </div>
+              </p>
               <span
                 class="hidden lg:block from-beige/0 to-beige absolute -start-1 bottom-0 h-[200px] w-1 bg-gradient-to-b"
               />
@@ -1116,7 +1106,6 @@ exports[`publier renders publier 1`] = `
               href="https://kit.refugies.info/formation"
               rel="noopener noreferrer"
               target="_blank"
-              title="Séances découverte"
             >
               <div
                 class="flex h-full flex-col"
@@ -1153,6 +1142,7 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
@@ -1162,7 +1152,6 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Tutoriels et centre d’aide"
             >
               <div
                 class="flex h-full flex-col"
@@ -1199,13 +1188,13 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
             </a>
             <button
               class="lg:max-w-[22.5rem] p-6 md:p-8 flex-1 flex flex-col justify-between border border-default-grey text-left bg-white hover:bg-background-alt-grey active:bg-active-tint"
-              title="Live chat"
             >
               <div
                 class="flex h-full flex-col"
@@ -1242,6 +1231,7 @@ exports[`publier renders publier 1`] = `
                 class="mt-6 w-full pt-2 text-right"
               >
                 <i
+                  aria-hidden="true"
                   class="fr-icon-arrow-right-line text-title-blue-france"
                 />
               </div>
@@ -1269,9 +1259,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
@@ -1285,9 +1277,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
@@ -1301,9 +1295,11 @@ exports[`publier renders publier 1`] = `
               <div
                 class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
               >
-                <div>
+                <p
+                  class="text-alt-title lg:text-alt-title-big mb-0"
+                >
                   0
-                </div>
+                </p>
               </div>
               <p
                 class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
@@ -1352,13 +1348,12 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rh»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«rg»"
+                        id="radix-«rf»"
                         type="button"
                       >
                         <span
@@ -1367,17 +1362,18 @@ exports[`publier renders publier 1`] = `
                           Pourquoi je dois écrire moi-même la fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-«rg»"
+                      aria-labelledby="radix-«rf»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-«rh»"
+                      id="radix-«rg»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1393,13 +1389,12 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rj»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«ri»"
+                        id="radix-«rh»"
                         type="button"
                       >
                         <span
@@ -1408,17 +1403,18 @@ exports[`publier renders publier 1`] = `
                           Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-«ri»"
+                      aria-labelledby="radix-«rh»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-«rj»"
+                      id="radix-«ri»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1434,13 +1430,12 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rl»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«rk»"
+                        id="radix-«rj»"
                         type="button"
                       >
                         <span
@@ -1449,17 +1444,18 @@ exports[`publier renders publier 1`] = `
                           En combien de temps ma fiche sera publiée ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-«rk»"
+                      aria-labelledby="radix-«rj»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-«rl»"
+                      id="radix-«rk»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1475,13 +1471,12 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rn»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«rm»"
+                        id="radix-«rl»"
                         type="button"
                       >
                         <span
@@ -1490,17 +1485,18 @@ exports[`publier renders publier 1`] = `
                           Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-«rm»"
+                      aria-labelledby="radix-«rl»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-«rn»"
+                      id="radix-«rm»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1516,13 +1512,12 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
-                        aria-controls="radix-«rp»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«ro»"
+                        id="radix-«rn»"
                         type="button"
                       >
                         <span
@@ -1531,17 +1526,18 @@ exports[`publier renders publier 1`] = `
                           Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>
                         <i
+                          aria-hidden="true"
                           class="flex before:!h-4 before:!w-4 fr-icon-add-line"
                         />
                       </button>
                     </h3>
                     <div
-                      aria-labelledby="radix-«ro»"
+                      aria-labelledby="radix-«rn»"
                       class="content"
                       data-orientation="vertical"
                       data-state="closed"
                       hidden=""
-                      id="radix-«rp»"
+                      id="radix-«ro»"
                       role="region"
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
@@ -1556,7 +1552,7 @@ exports[`publier renders publier 1`] = `
             <a
               class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="https://help.refugies.info/fr/"
-              id="fr-button-«rq»"
+              id="fr-button-«rp»"
             >
               Voir le centre d’aide
             </a>
@@ -1601,7 +1597,7 @@ exports[`publier renders publier 1`] = `
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
-            id="fr-button-«rr»"
+            id="fr-button-«rq»"
           >
             Me connecter ou m'inscrire
           </button>

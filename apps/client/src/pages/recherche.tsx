@@ -15,7 +15,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import SearchHeader from "~/components/Pages/recherche/SearchHeader";
 import SearchResults from "~/components/Pages/recherche/SearchResults";
 import SEO from "~/components/Seo";
@@ -168,8 +167,6 @@ const Recherche = () => {
             : t("Recherche.pageTitle", "Recherche")
         }
       />
-
-      <HelpNotice />
       <SearchHeader counts={counts} nbResults={pagination.total} />
       <SearchResults />
     </div>

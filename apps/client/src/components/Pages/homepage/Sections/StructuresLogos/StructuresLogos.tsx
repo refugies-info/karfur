@@ -14,56 +14,46 @@ import PierreValdo from "~/assets/homepage/structures-logos/Dispositif-Pierre-Va
 
 const StructuresLogos = () => {
   const { t } = useTranslation();
-  const logos: { image: StaticImageData; alt: string; title: string }[] = [
+  const logos: { image: StaticImageData; alt: string }[] = [
     {
       image: FTDA,
-      title: "France Terre d'Asile",
-      alt: "",
+      alt: "France Terre d'Asile",
     },
     {
       image: SOS,
-      title: "Groupe SOS",
-      alt: "",
+      alt: "Groupe SOS",
     },
     {
       image: FranceTravail,
-      title: "France Travail",
-      alt: "",
+      alt: "France Travail",
     },
     {
       image: COS,
-      title: "Fondation COS",
-      alt: "",
+      alt: "Fondation COS Alexandre Glasberg",
     },
     {
       image: FH,
-      title: "France Horizon",
-      alt: "",
+      alt: "France Horizon",
     },
     {
       image: Coallia,
-      title: "Coallia",
-      alt: "",
+      alt: "Coallia",
     },
     {
       image: PierreValdo,
-      title: "Entraide Pierre Valdo",
-      alt: "",
+      alt: "Entraide Pierre Valdo",
     },
     {
       image: HIS,
-      title: "GIP Habitat et Interventions Sociales",
-      alt: "",
+      alt: "HIS - Habitat et Interventions Sociales",
     },
     {
       image: ForumRefugie,
-      title: "Forum Refugiés",
-      alt: "",
+      alt: "Forum Réfugiés",
     },
     {
       image: FederationActeurs,
-      title: "Fédération des Acteurs de la Solidarité",
-      alt: "",
+      alt: "FAS - Fédération des acteurs de la solidarité",
     },
   ];
 
@@ -79,10 +69,6 @@ const StructuresLogos = () => {
           "Homepage.StructuresLogosText",
           "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
         )}
-      </p>
-      <p className="sr-only">
-        {t("Homepage.StructuresLogosVocalisation", "Nos partenaires :")}{" "}
-        {logos.map((logo) => logo.title).join(", ")}
       </p>
     </section>
   );

@@ -3,7 +3,7 @@ import { ContentType, type SimpleDispositif } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { memo, useMemo } from "react";
+import { forwardRef, memo, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
@@ -27,7 +27,7 @@ interface Props {
   className?: string;
 }
 
-const DispositifCard = (props: Props) => {
+const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const themes = useSelector(allThemesSelector);
@@ -80,6 +80,8 @@ const DispositifCard = (props: Props) => {
 
   return (
     <article
+      ref={ref}
+      tabIndex={-1}
       aria-labelledby={props.dispositif._id.toString()}
       className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
     >
@@ -87,125 +89,122 @@ const DispositifCard = (props: Props) => {
         {isOnline && <i className="ri-at-line me-1" aria-hidden="true"></i>}
         {badge.text}
       </Badge>
-      <div className={cn("fr-card", styles.container)}>
-        <div className={cn("fr-card__body", styles.body)}>
-          <div className={cn("fr-card__content", styles.content)}>
-            <div className={styles.text}>
-              <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
-                <Link
-                  target={props.targetBlank ? "_blank" : undefined}
-                  rel={props.targetBlank ? "noopener noreferrer" : undefined}
-                  href={
-                    props.demoCard
-                      ? "#"
-                      : {
-                          pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
-                          query: { id: props.dispositif._id.toString(), ...utmParams },
-                        }
-                  }
-                >
-                  <span
-                    className={cn(styles.title, styles.three_lines)}
-                    dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
-                  ></span>
-                </Link>
-              </h3>
-              <p
-                className={cn("fr-card__desc", styles.desc)}
-                dangerouslySetInnerHTML={{ __html: safeAbstract }}
-              />
-            </div>
-
-            <div className="fr-card__start relative">
-              <div className={styles.sponsor} aria-hidden="true">
-                <Image
-                  className="h-[3rem] object-contain"
-                  src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
-                  alt=""
-                  width={48}
-                  height={48}
-                />
-              </div>
-              <div className="mb-2 flex gap-2">
-                <NewThemeBadge theme={theme} />
-                {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
-                  <NewThemeBadge
-                    aria-hidden="true"
-                    theme={props.dispositif.secondaryThemes?.length || 0}
-                  />
-                )}
-              </div>
-
-              {props.dispositif?.sponsor?.nom && (
-                <div className={styles.info}>
-                  <span>
-                    <i className="fr-icon-building-line me-2" aria-hidden="true" />
-                    <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
-                  </span>
-                </div>
-              )}
-            </div>
-
-            <div className={styles.end}>
-              {isDispositif ? (
-                <>
-                  <div className={cn(styles.info, "flex gap-2")}>
-                    {price && (
-                      <span className="shrink-0">
-                        <i className="fr-icon-money-euro-circle-line me-2" aria-hidden="true" />
-                        <span>{getPriceText(price, t)}</span>
-                      </span>
-                    )}
-                    {commitment && (
-                      <span className="shrink">
-                        <i className="fr-icon-time-line me-2" aria-hidden="true" />
-                        <span>{getCommitmentText(commitment, t, true)}</span>
-                      </span>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <>
-                  {props.dispositif.lastModificationDate && (
-                    <div className={cn(styles.info)}>
-                      <span className="shrink">
-                        <i className="fr-icon-time-line me-2" aria-hidden="true" />
-                        <span>
-                          {getRelativeTimeString(
-                            new Date(props.dispositif.lastModificationDate),
-                            locale,
-                            t,
-                          )}
-                        </span>
-                      </span>
-                    </div>
-                  )}
-                </>
-              )}
-              {!props.demoCard && <i className="fr-icon-arrow-right-line" aria-hidden="true" />}
-            </div>
+      <div className={cn("fr-card__body", styles.body)}>
+        <div className={cn("fr-card__content", styles.content)}>
+          <div className={styles.text}>
+            <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
+              <Link
+                target={props.targetBlank ? "_blank" : undefined}
+                rel={props.targetBlank ? "noopener noreferrer" : undefined}
+                href={
+                  props.demoCard
+                    ? "#"
+                    : {
+                        pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
+                        query: { id: props.dispositif._id.toString(), ...utmParams },
+                      }
+                }
+              >
+                <span
+                  className={cn(styles.title, styles.three_lines)}
+                  dangerouslySetInnerHTML={{ __html: safeTitreInformatif }}
+                ></span>
+              </Link>
+            </h3>
+            <p
+              className={cn("fr-card__desc", styles.desc)}
+              dangerouslySetInnerHTML={{ __html: safeAbstract }}
+            />
           </div>
-        </div>
-        <div className="fr-card__header" aria-hidden="true">
-          <div className="fr-card__img">
-            {cardImageUrl ? (
+
+          <div className="fr-card__start relative">
+            <div className={styles.sponsor} aria-hidden="true">
               <Image
-                className="fr-responsive-img"
-                width={280}
-                height={158}
-                src={cardImageUrl}
+                className="h-[3rem] object-contain"
+                src={props.dispositif?.sponsor?.picture?.secure_url || defaultImage}
                 alt=""
-                data-fr-js-ratio="true"
+                width={48}
+                height={48}
               />
-            ) : (
-              <div className={styles.placeholder_img}></div>
+            </div>
+            <div className="mb-2 flex gap-2">
+              <NewThemeBadge theme={theme} />
+              {(props.dispositif.secondaryThemes?.length || 0) > 0 && (
+                <NewThemeBadge theme={props.dispositif.secondaryThemes?.length || 0} />
+              )}
+            </div>
+
+            {props.dispositif?.sponsor?.nom && (
+              <div className={styles.info}>
+                <span>
+                  <i className="fr-icon-building-line me-2" aria-hidden="true" />
+                  <span dangerouslySetInnerHTML={{ __html: safeSponsorName }} />
+                </span>
+              </div>
             )}
           </div>
+
+          <div className={styles.end}>
+            {isDispositif ? (
+              <>
+                <div className={cn(styles.info, "flex gap-2")}>
+                  {price && (
+                    <span className="shrink-0">
+                      <i className="fr-icon-money-euro-circle-line me-2" aria-hidden="true" />
+                      <span>{getPriceText(price, t)}</span>
+                    </span>
+                  )}
+                  {commitment && (
+                    <span className="shrink">
+                      <i className="fr-icon-time-line me-2" aria-hidden="true" />
+                      <span>{getCommitmentText(commitment, t, true)}</span>
+                    </span>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                {props.dispositif.lastModificationDate && (
+                  <div className={cn(styles.info)}>
+                    <span className="shrink">
+                      <i className="fr-icon-time-line me-2" aria-hidden="true" />
+                      <span>
+                        {getRelativeTimeString(
+                          new Date(props.dispositif.lastModificationDate),
+                          locale,
+                          t,
+                        )}
+                      </span>
+                    </span>
+                  </div>
+                )}
+              </>
+            )}
+            {!props.demoCard && <i className="fr-icon-arrow-right-line" aria-hidden="true" />}
+          </div>
+        </div>
+      </div>
+      <div className="fr-card__header" aria-hidden="true">
+        <div className="fr-card__img">
+          {cardImageUrl ? (
+            <Image
+              className="fr-responsive-img"
+              width={280}
+              height={158}
+              src={cardImageUrl}
+              alt=""
+              data-fr-js-ratio="true"
+            />
+          ) : (
+            <div className={styles.placeholder_img}></div>
+          )}
         </div>
       </div>
     </article>
   );
-};
+});
+
+DispositifCard.displayName = "DispositifCard";
 
 const propsAreEqual = (prevProps: Props, nextProps: Props): boolean => {
   const prevDisp = prevProps.dispositif;

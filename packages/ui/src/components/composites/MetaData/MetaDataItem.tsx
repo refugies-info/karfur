@@ -2,7 +2,7 @@ import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { cn } from "@refugies-info/ui";
 import Image from "next/image";
-import type React from "react";
+import React from "react";
 
 type MetaDataItemProps = {
   className?: string;
@@ -10,6 +10,17 @@ type MetaDataItemProps = {
   children?: React.ReactNode;
   onClick?: () => void;
   state?: "valid" | "invalid";
+  /**
+   * Tag of the children container. "p" by default, "ul" when the children are an enumeration
+   * (RGAA 9.3: a <ul> cannot live inside a <p>). As "ul" the container loses bullet, indent
+   * and margins, and receives role="list": without this explicit role, VoiceOver no longer
+   * announces the list nature nor the item count once the bullet is hidden (measured on
+   * Safari + VoiceOver, 27/08). This is the justification for every role="list" and
+   * role="listitem" set on the bare lists of the repository.
+   */
+  contentAs?: "p" | "ul";
+  /** Classes added to the children container, for the cases where its layout must change. */
+  contentClassName?: string;
 } & (
   | { icon: FrIconClassName | RiIconClassName; logoImage?: never }
   | { icon?: never; logoImage: { url: string; alt?: string } }
@@ -23,6 +34,8 @@ export const MetaDataItem = ({
   children,
   onClick,
   state,
+  contentAs = "p",
+  contentClassName,
 }: MetaDataItemProps) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,7 +54,7 @@ export const MetaDataItem = ({
     >
       {icon &&
         (typeof icon === "string" ? (
-          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} />
+          <i className={cn(icon, "[&::before]:![--icon-size:1.5rem]")} aria-hidden="true" />
         ) : (
           icon
         ))}
@@ -54,23 +67,30 @@ export const MetaDataItem = ({
             {title}
           </h3>
         )}
-        {children && (
-          <p
-            className={cn(
-              "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
-              "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
-              "md:[&_a]:text-sm",
-              onClick && "[&_a]:pointer-events-none",
-            )}
-          >
-            {children}
-          </p>
-        )}
+        {children &&
+          React.createElement(
+            contentAs,
+            {
+              role: contentAs === "ul" ? "list" : undefined,
+              className: cn(
+                "md:text-corps-sm relative mb-0 flex h-full flex-wrap gap-2 max-sm:inline [&_a]:inline",
+                "before:content-[''] before:bg-border-default-grey before:absolute before:block before:h-full lg:before:w-px ltr:before:-left-5.25 rtl:before:-right-5.25",
+                "md:[&_a]:text-sm",
+                onClick && "[&_a]:pointer-events-none",
+                contentAs === "ul" && "m-0 list-none p-0 [&>li]:p-0",
+                contentClassName,
+              ),
+            },
+            children,
+          )}
       </div>
       {onClick && (
         <span className="ml-auto flex items-center">
           {state === "invalid" && (
-            <i className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1" />
+            <i
+              className="fr-icon-warning-fill text-action-high-red-marianne inline-block translate-x-1 scale-75 p-1"
+              aria-hidden="true"
+            />
           )}
           <Button
             iconId="fr-icon-edit-line"

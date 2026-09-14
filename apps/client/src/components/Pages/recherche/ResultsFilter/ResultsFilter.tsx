@@ -152,7 +152,10 @@ const ResultsFilter = (props: Props): React.ReactNode => {
                     aria-label={`${t(currentSortOption?.value || "")}, ${t("selected")}`}
                   >
                     <span className={styles.sort_label}>{t(currentSortOption?.value || "")}</span>
-                    <i className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}></i>
+                    <i
+                      className={fr.cx("ri-expand-up-down-line", "fr-icon--sm")}
+                      aria-hidden="true"
+                    ></i>
                   </button>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Portal>

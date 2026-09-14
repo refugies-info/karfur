@@ -39,8 +39,8 @@ export const RIAccordion = (props: RIAccordionProps) => {
             {title}
           </span>
           <span className="flex items-center">
-            <i className="ri-add-fill scale-75" />
-            <i className="ri-subtract-fill scale-75" />
+            <i className="ri-add-fill scale-75" aria-hidden="true" />
+            <i className="ri-subtract-fill scale-75" aria-hidden="true" />
           </span>
         </div>
       }

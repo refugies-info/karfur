@@ -45,8 +45,7 @@
     "ressourcesImgAlt": "Kit de communication de Réfugiés.info",
     "resourcesCTA": "Voir les outils",
     "webinaireCTA": "Participer à un webinaire",
-    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !",
-    "StructuresLogosVocalisation": "Nos partenaires :"
+    "StructuresLogosText": "Plus de 300 000 professionnels ont déjà adopté Réfugiés.info pour accompagner leurs bénéficiaires !"
   },
   "Recherche": {
     "pageTitle": "Recherche",
@@ -87,6 +86,7 @@
     "titleThemes": "Les thématiques de l'intégration",
     "positionButton": "Utiliser ma position",
     "positionEnable": "Vous devez activer la géolocalisation pour votre navigateur",
+    "positionDepartmentSelected": "Département {{department}} sélectionné",
     "notDeployedText": "Le référencement des actions locales débute dans le département – {{department}}. Votre recherche peut aboutir à peu de résultats.",
     "fiches_zero": "fiche",
     "fiches_one": "fiche",
@@ -213,15 +213,30 @@
     "email_reminder": "Me le rappeler par email",
     "Recevoir une invitation": "Recevoir une invitation",
     "create_a_new_account": "create_a_new_account",
-    "criteria_special": "Un caractère spécial (!, @, #, $, &, *)",
+    "criteria_special": "Un caractère spécial",
+    "criteria_special_spoken": "point d'exclamation, arobase, dièse, dollar, esperluette ou étoile",
     "criteria_number": "Un chiffre",
     "criteria_minlength": "Au moins 7 caractères",
+    "criteria_met": " (règle respectée)",
+    "criteria_not_met": " (règle non respectée)",
     "strong_password": "Mot de passe fort",
     "weak_password": "Mot de passe trop faible, il manque :",
     "email_invitation": "Nous vous enverrons un email d'invitation pour vous inscrire",
     "not_an_email": "Ceci n'est pas un email,",
     "check_mail": "vérifiez l'orthographe.",
     "invalid_phone_number": "Ceci n'est pas un numéro de téléphone valide, vérifiez votre saisie."
+  },
+  "EditDepartments": {
+    "suggestions_found_zero": "Aucune suggestion, modifiez votre recherche",
+    "suggestions_found_one": "{{count}} suggestion",
+    "suggestions_found_other": "{{count}} suggestions",
+    "department_removed": "Département {{department}} retiré.",
+    "remove_department": "Retirer le département {{department}}",
+    "suggestions_label": "Suggestions de départements",
+    "label": "Nom ou numéro du département",
+    "hint": "Plusieurs choix possibles",
+    "error_required": "Vous devez sélectionner au moins un département",
+    "error_generic": "Une erreur s'est produite, veuillez réessayer ou contacter un administrateur."
   },
   "UnauthorizedAccess": {
     "access_denied": "Accès refusé",
@@ -277,6 +292,7 @@
     "mapCopyAddress": "Copier l'adresse",
     "mapCopyPhone": "Copier le numéro de téléphone",
     "mapCopyEmail": "Copier l'adresse email",
+    "skipMap": "Passer la carte",
     "react": "Faire une suggestion d'amélioration",
     "reactFeedbackMessage": "Votre réaction a bien été enregistrée, merci !",
     "suggestionTitle": "Vous avez une suggestion ?",
@@ -334,6 +350,7 @@
     "frenchLevel": "Niveau de français",
     "age": "Âge",
     "public": "Public spécifique",
+    "not_relevant": "Non pertinent pour mon action",
     "alpha": "Alphabétisation",
     "asile": "Demandeurs d'asile",
     "refugie": "Réfugiés statutaires",
@@ -500,6 +517,8 @@
     "en_anglais": "en anglais",
     "en_ukrainien": "en ukrainien",
     "not_listenable": "Non écoutable",
+    "translation_in_progress": "En cours de traduction",
+    "translation_available": "Traduction disponible",
     "loading": "Chargement de la langue"
   },
   "topLink": "Haut de page",
@@ -650,14 +669,15 @@
     "title": "Inscrivez-vous à notre lettre d’information mensuelle !",
     "description": "Suivez l'évolution du service Réfugiés.info",
     "label": "Adresse email (requise)",
-    "confirmMessageTitle": "Yay...",
-    "confirmMessageText": "Mail <b>{{email}}</b> correctement enregistré !",
+    "confirmMessageTitle": "Yay !",
+    "confirmMessageText": "Votre inscription à la newsletter a bien été enregistrée",
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
     "ok": "S'inscrire"
   },
   "MobileApp": {
+    "smsSent": "Yay ! Un lien de téléchargement a été envoyé à ce numéro",
     "rankingText": "Top 3 des applications publiques",
     "rankingLabel": "Note : 5 sur 5",
     "ratingAlt": "Note sur 5 :",
@@ -719,6 +739,7 @@
     "impact_p1": "Sur Réfugiés.info, une information est considérée comme adaptée lorsqu’elle est fiable, à jour, claire, spécifique, traduite, écoutable, et actionnable.",
     "impact_p2": "Une fois produite, cette information doit être ensuite diffusée auprès des usagers afin qu’ils puissent l’utiliser. Réfugiés.info est désormais un média reconnu, fréquenté chaque mois par environ 100 000 étrangers primo-arrivants et réfugiés, ainsi que 30 000 à 40 000 professionnels.",
     "impact_p3": "La délivrance d’une information adaptée est la <strong>première brique pour le bon fonctionnement des administrations</strong> et <strong>la bonne mise en œuvre de la politique d’intégration des étrangers</strong> en France.",
+    "impact_booklet_alt": "Réfugiés.info, 5 ans au service de l'information des personnes réfugiées.",
     "impact_arguments_figures_title": "En chiffres",
     "impact_arguments_title_1": "Réfugiés.info fluidifie le travail des administrations",
     "impact_arguments_badge_1": "Impact pour l’État",
@@ -891,12 +912,19 @@
     "northStar_useful": "C'est utile ?",
     "northStar_thanks": "Merci pour votre retour",
     "northStar_error": "Une erreur est survenue lors de la soumission de votre avis",
-    "northStar_vote_cancelled": "Votre vote a été retiré"
+    "northStar_vote_cancelled": "Votre vote a été retiré",
+    "themeBadge_one": "autre thème",
+    "themeBadge_other": "autres thèmes"
   },
   "ContentSources": {
     "RCO": {
       "description": "Ce dispositif provient du réseau des Carif Oref et est synchronisé via le référentiel data-inclusion."
     }
   },
-  "breadcrumbs": "Fil d'Ariane"
+  "breadcrumbs": "Fil d'Ariane",
+  "Auth": {
+    "resendEmailCountdown_one": "Un nouvel envoi sera possible dans {{count}} seconde.",
+    "resendEmailCountdown_other": "Un nouvel envoi sera possible dans {{count}} secondes.",
+    "resendEmailAvailable": "Vous pouvez demander un nouvel envoi."
+  }
 }

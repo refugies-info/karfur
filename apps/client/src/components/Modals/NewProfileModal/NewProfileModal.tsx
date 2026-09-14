@@ -53,7 +53,7 @@ const NewProfileModal = () => {
       show={show}
       title={
         <>
-          <i className="fr-icon-warning-line me-2" />
+          <i className="fr-icon-warning-line me-2" aria-hidden="true" />
           Votre compte Réfugiés.info fait peau neuve&nbsp;!
         </>
       }

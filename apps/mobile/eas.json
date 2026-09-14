@@ -3,7 +3,7 @@
     "base": {
       "channel": "base",
       "ios": {
-        "image": "macos-sequoia-15.6-xcode-16.4"
+        "image": "macos-sequoia-15.6-xcode-26.0"
       },
       "node": "24.11.1",
       "pnpm": "10.23.0"

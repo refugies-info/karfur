@@ -1,9 +1,8 @@
 import { RoleName, type TranslationStatisticsResponse } from "@refugies-info/api-types";
 import { logger } from "logger";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import WhoIcon1 from "~/assets/staticPages/common/card-icon-bubble.svg";
 import CardIconCheck from "~/assets/staticPages/common/card-icon-check.svg";
@@ -14,7 +13,6 @@ import ShareImage from "~/assets/staticPages/traduire/share-image.svg";
 import StepImage2 from "~/assets/staticPages/traduire/step-image-2.svg";
 import StepImage3 from "~/assets/staticPages/traduire/step-image-3.png";
 import WhoIcon3 from "~/assets/staticPages/traduire/who-icon-3.svg";
-import { HelpNotice } from "~/components/Pages/recherche/HelpNotice";
 import {
   Accordion,
   Anchor,
@@ -44,8 +42,6 @@ interface Props {
 }
 
 const RecensezVotreAction = (props: Props) => {
-  const router = useRouter();
-
   // active links
   const [activeView, setActiveView] = useState<View | null>(null);
   const [refHero, inViewHero] = useInView({ threshold: 0 });
@@ -85,15 +81,9 @@ const RecensezVotreAction = (props: Props) => {
     [props],
   );
 
-  const navigateToTranslations = useCallback(() => {
-    router.push("/backend/user-translation");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <div className="w-full">
       <SEO title="Aidez-nous à traduire !" />
-      <HelpNotice />
       <TranslationNotice />
 
       {/* HERO */}
@@ -159,16 +149,17 @@ const RecensezVotreAction = (props: Props) => {
         <Section className="bg-action-low-blue-france">
           <div className="fr-container">
             <Title2>On cherche des traducteurs en :</Title2>
-            <div className="flex flex-wrap gap-6 md:justify-center">
-              {translationNeeds.map((item, i) => (
-                <LanguageCard
-                  href="#register"
-                  key={i}
-                  languageId={item.languageId}
-                  need={item.need}
-                />
-              ))}
-            </div>
+            {/* Link enumeration: ul/li (RGAA 9.3), explicit role justified on the contentAs
+                prop of MetaDataItem. The flex reproduces the layout of the former div. */}
+            {translationNeeds.length > 0 && (
+              <ul className="m-0 flex list-none flex-wrap gap-6 p-0 md:justify-center" role="list">
+                {translationNeeds.map((item, i) => (
+                  <li key={i} className="p-0">
+                    <LanguageCard href="#register" languageId={item.languageId} need={item.need} />
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Section>
       </div>
@@ -342,7 +333,7 @@ const RecensezVotreAction = (props: Props) => {
         <Anchor id="register" />
         <div className="fr-container">
           <Register
-            onClickLoggedIn={navigateToTranslations}
+            hrefLoggedIn="/backend/user-translation"
             subtitleForm="Connectez-vous ou créez votre compte pour commencer à traduire les fiches."
             subtitleLoggedIn="Vous savez tout, vous pouvez traduire votre première fiche."
             btnLoggedIn="Traduire une fiche"

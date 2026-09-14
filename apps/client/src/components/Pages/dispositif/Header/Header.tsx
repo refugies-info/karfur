@@ -1,4 +1,5 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { markdownToReadableText } from "@refugies-info/markdown-utils";
 import { useWindowSize } from "@refugies-info/ui";
 import moment from "moment";
 import "moment/locale/ar";
@@ -17,6 +18,7 @@ import SectionButtons from "~/components/Pages/dispositif/SectionButtons";
 import Sponsors from "~/components/Pages/dispositif/Sponsors";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
+import { getDispositifMarkdown } from "~/lib/dispositif";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
@@ -27,7 +29,7 @@ interface Props {
 }
 
 const Header = (props: Props) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const { isMobile } = useWindowSize();
   const [navigatorShareSupported, setNavigatorShareSupported] = useState(false);
@@ -42,15 +44,18 @@ const Header = (props: Props) => {
   // hide sponsor if it's the default sponsor
   const hideSponsor = dispositif?.mainSponsor?._id === "5f69cb9c0aab6900460c0f3f";
 
-  let vocalizationContent = "";
+  const markdown = getDispositifMarkdown(dispositif, i18n.language);
 
-  if (isMobile) {
-    vocalizationContent = dispositif?.titreInformatif || "";
-  } else if (dispositif?.titreInformatif) {
-    vocalizationContent = dispositif.titreInformatif + (dispositif?.what || "");
-  } else {
-    vocalizationContent = dispositif?.what || "";
-  }
+  // On mobile the body is read by the SectionButtons of the "what" section,
+  // this button only reads the title.
+  // RCO dispositifs carry their body as markdown, RI ones as HTML in "what".
+  const vocalizationTitle = dispositif?.titreInformatif || "";
+  const vocalizationBody = isMobile
+    ? ""
+    : markdown
+      ? markdownToReadableText(markdown)
+      : dispositif?.what || "";
+  const vocalizationContent = [vocalizationTitle, vocalizationBody].filter(Boolean).join(". ");
 
   const locale = useLocale();
   useEffect(() => {

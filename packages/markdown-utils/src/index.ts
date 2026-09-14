@@ -8,6 +8,7 @@
  * - Directive whitelist (VALID_DIRECTIVE_NAMES)
  * - Directive helpers (validation, prefix, text reconstruction)
  * - remarkRestoreHierarchy plugin (AST nesting fix)
+ * - markdownToReadableText (markdown to plain text, for text-to-speech)
  *
  * Platform-specific rendering stays in each app:
  * - Web: apps/client/src/lib/markdown/directive-to-component.tsx (React components)
@@ -24,6 +25,7 @@ export {
   isValidDirectiveName,
   reconstructDirectiveText,
 } from "./helpers";
-
+// Text extraction
+export { markdownToReadableText } from "./markdownToReadableText";
 // Plugins
 export { remarkRestoreHierarchy } from "./remarkRestoreHierarchy";

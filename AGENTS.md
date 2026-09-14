@@ -55,6 +55,7 @@ This document provides comprehensive guidance for AI agents (including Claude, C
 - Verify ARIA labels and roles are correct
 - Ensure every live page update is vocalised for assistive technologies
 - Always use the `useAnnounce` hook for centralized vocalisation of dynamic updates
+- Route change announcements and focus repositioning go through the route announcer paragraph (`useRouteAnnouncement` hook, `#route-announcer` in `_document.tsx`, RGAA 12.8 audit prescription); `useAnnounce` remains the rule for every other dynamic vocalisation
 
 ### II. Multilingual by Design
 

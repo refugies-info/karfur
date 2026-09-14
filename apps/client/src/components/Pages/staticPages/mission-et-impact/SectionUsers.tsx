@@ -20,7 +20,14 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_1"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_1")}</p>
+            {/* Inline quotes as q, prescribed by the Ideance audit, P11, criterion 9.4. The
+                quotation marks are already in the translated text, the browser's ones are
+                neutralised so they are not doubled on screen. */}
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_1")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges1_badge1")}
@@ -34,14 +41,12 @@ export const SectionUsers = () => {
             <figure>
               <Image
                 src={UsersGraph1}
-                alt=""
+                alt={t("MissionImpact.users_legend_1")}
                 className="mx-auto lg:mx-5"
                 width={416}
                 height={271}
-                aria-labelledby="users_legend_1"
               />
               <figcaption
-                aria-hidden="true"
                 id="users_legend_1"
                 className="text-small text-mention-grey text-center italic"
               >
@@ -59,7 +64,11 @@ export const SectionUsers = () => {
                 __html: t("MissionImpact.users_text_2"),
               }}
             ></p>
-            <p className="text-large">{t("MissionImpact.users_testimony_2")}</p>
+            <p className="text-large">
+              <q className="after:content-none before:content-none">
+                {t("MissionImpact.users_testimony_2")}
+              </q>
+            </p>
             <div className="space-x-2">
               <Badge small severity="info" noIcon>
                 {t("MissionImpact.users_badges2_badge")}
@@ -70,14 +79,12 @@ export const SectionUsers = () => {
             <figure>
               <Image
                 src={UsersGraph2}
-                alt=""
-                aria-labelledby="users_legend_2"
+                alt={t("MissionImpact.users_legend_2")}
                 className="mx-auto lg:mx-10"
                 width={376}
                 height={191}
               />
               <figcaption
-                aria-hidden="true"
                 id="users_legend_2"
                 className="text-small text-mention-grey text-center italic"
               >
