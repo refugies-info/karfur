@@ -873,7 +873,10 @@
     "howTo_tag_mandatory": "Obligatoire selon les cas",
     "howTo_tag_certification": "Prouver son niveau",
     "search_title": "Chercher un cours de français à",
-    "search_placeholder": "Rechercher par mot-clé"
+    "search_placeholder": "Rechercher par mot-clé",
+    "tab_upcoming": "Les prochains cours",
+    "tab_onDemand": "Dates sur demande",
+    "tab_all": "Tous les résultats"
   },
   "sitemap": {
     "title": "Plan du site",
