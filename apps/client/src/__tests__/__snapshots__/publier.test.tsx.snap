@@ -260,6 +260,7 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
+                      aria-controls="radix-«r7»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -301,6 +302,7 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
+                      aria-controls="radix-«r9»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -342,6 +344,7 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                   >
                     <button
+                      aria-controls="radix-«rb»"
                       aria-expanded="false"
                       class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                       data-orientation="vertical"
@@ -1106,6 +1109,7 @@ exports[`publier renders publier 1`] = `
               href="https://kit.refugies.info/formation"
               rel="noopener noreferrer"
               target="_blank"
+              title="Séances découverte - Footer.open_new_window"
             >
               <div
                 class="flex h-full flex-col"
@@ -1152,6 +1156,7 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
+              title="Tutoriels et centre d’aide - Footer.open_new_window"
             >
               <div
                 class="flex h-full flex-col"
@@ -1348,6 +1353,7 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
+                        aria-controls="radix-«rg»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1389,6 +1395,7 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
+                        aria-controls="radix-«ri»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1430,6 +1437,7 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
+                        aria-controls="radix-«rk»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1471,6 +1479,7 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
+                        aria-controls="radix-«rm»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
@@ -1512,6 +1521,7 @@ exports[`publier renders publier 1`] = `
                       data-state="closed"
                     >
                       <button
+                        aria-controls="radix-«ro»"
                         aria-expanded="false"
                         class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
                         data-orientation="vertical"
