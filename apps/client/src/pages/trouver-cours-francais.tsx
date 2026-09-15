@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useState } from "react";
 import { END } from "redux-saga";
 import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
-import { Hero, HowToLearnFrench } from "~/components/Pages/learnFrench";
+import { Hero, HowToLearnFrench, SearchBar } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
-import { HOW_TO_LEARN_FRENCH_CARD_IDS, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { HOW_TO_LEARN_FRENCH_CARD_IDS } from "~/data/learnFrench";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
@@ -21,10 +21,9 @@ interface Props {
 
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
-  const { locale } = useRouter();
-  // TODO(RI-1525): point to the #find-a-class section once it ships; until then, reuse the
-  // generic search pre-filtered on the "Apprendre le français" theme so the CTA stays functional.
-  const searchCtaHref = `${getPath("/recherche", locale)}?themes=${LEARN_FRENCH_THEME_ID}`;
+  const [departments, setDepartments] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
+  const [search, setSearch] = useState("");
 
   return (
     <div className="w-full">
@@ -34,7 +33,7 @@ const LearnFrench = (props: Props) => {
         title={t("LearnFrench.hero_title")}
         subtitle={t("LearnFrench.hero_subtitle")}
         searchCtaText={t("LearnFrench.hero_search_cta")}
-        searchCtaHref={searchCtaHref}
+        searchCtaHref="#find-a-class"
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
         learnMoreCtaHref="#how-to-learn-french"
         image={HeroIllu}
@@ -45,7 +44,20 @@ const LearnFrench = (props: Props) => {
         <HowToLearnFrench cards={props.howToCards} />
       </div>
 
-      {/* RI-1525 to RI-1528: search, filters, results lists */}
+      <div className="relative">
+        <Anchor id="find-a-class" />
+        <SearchBar
+          locations={[...departments, ...cities]}
+          onClearLocations={() => {
+            setDepartments([]);
+            setCities([]);
+          }}
+          search={search}
+          onSearchChange={setSearch}
+        />
+      </div>
+
+      {/* RI-1526 to RI-1528: filters sidebar, results lists */}
     </div>
   );
 };
