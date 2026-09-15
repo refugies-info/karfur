@@ -871,7 +871,9 @@
     "howTo_subtitle": "Certaines démarches ou solutions dépendent de la situation de la personne. Retrouvez ici les informations utiles avant de choisir un cours.",
     "howTo_tag_arrival": "À l'arrivée en France",
     "howTo_tag_mandatory": "Obligatoire selon les cas",
-    "howTo_tag_certification": "Prouver son niveau"
+    "howTo_tag_certification": "Prouver son niveau",
+    "search_title": "Chercher un cours de français à",
+    "search_placeholder": "Rechercher par mot-clé"
   },
   "sitemap": {
     "title": "Plan du site",
