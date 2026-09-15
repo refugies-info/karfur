@@ -15,6 +15,7 @@ export type PathNames =
   | "/plan-du-site"
   | "/politique-de-confidentialite"
   | "/mission-et-impact"
+  | "/trouver-cours-francais"
   | "/backend/[...backend]"
   | "/auth"
   | "/auth/connexion"
@@ -51,6 +52,7 @@ const routes: Routes = {
   "/plan-du-site": "/sitemap",
   "/politique-de-confidentialite": "/privacy-policy",
   "/mission-et-impact": "/mission-and-impact",
+  "/trouver-cours-francais": "/find-french-class",
   "/backend/[...backend]": "/backend/[...backend]",
   "/auth": "/auth",
   "/auth/connexion": "/auth/connexion",
