@@ -28,9 +28,9 @@ export const HowToLearnFrench = (props: Props) => {
         <p className="!text-large mb-10">{t("LearnFrench.howTo_subtitle")}</p>
         <RowCards>
           {props.cards.map((card) => (
-            <Card key={card.href} title={card.title} link={card.href}>
-              <p className="text-brand-blue-france !mb-2 text-sm font-bold uppercase">
-                {t(card.tagKey, { defaultValue: card.tagKey })}
+            <Card key={card.href} title={card.title} link={card.href} newTab={false}>
+              <p className="text-title-blue-france !mb-2 text-sm font-bold uppercase">
+                {t(card.tagKey, "")}
               </p>
               <p className="mb-0">{card.description}</p>
             </Card>
