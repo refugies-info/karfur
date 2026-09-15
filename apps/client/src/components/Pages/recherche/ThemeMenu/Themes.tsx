@@ -57,7 +57,7 @@ const Themes = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
                 className={styles.accordionItem}
                 color={colors.color40}
                 key={i}
-                themeId={_id.toString()}
+                themeId={_id}
                 label={short[locale] ?? ""}
                 needCount={count}
               />

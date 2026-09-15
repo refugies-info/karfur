@@ -16,12 +16,21 @@ import NeedItem from "./NeedItem";
 import styles from "./Needs.module.css";
 import { ThemeMenuContext } from "./ThemeMenuContext";
 
-const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
+interface Props {
+  themeId?: Id;
+}
+
+const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) => {
   const locale = useLocale();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const { search, selectedThemeId, nbDispositifsByNeed, nbDispositifsByTheme } =
-    useContext(ThemeMenuContext);
+  const {
+    search,
+    selectedThemeId: contextThemeId,
+    nbDispositifsByNeed,
+    nbDispositifsByTheme,
+  } = useContext(ThemeMenuContext);
+  const selectedThemeId = themeId ?? contextThemeId;
   const needs = useSelector(needsSelector);
   const allNeeds = useSelector(needsSelector);
   const themes = useSelector(allThemesSelector);
@@ -112,12 +121,15 @@ const Needs = React.forwardRef<HTMLDivElement | null, {}>((props, ref) => {
     announce(t("Recherche.updatingResults", "Mise \u00e0 jour des r\u00e9sultats..."));
   };
 
+  const isTabPanel = themeId === undefined;
+
   return (
     <div
       className={styles.container}
       ref={ref}
-      role="tabpanel"
-      id={selectedThemeId ? `tabpanel-${selectedThemeId}` : undefined}
+      role={isTabPanel ? "tabpanel" : undefined}
+      id={isTabPanel && selectedThemeId ? `tabpanel-${selectedThemeId}` : undefined}
+      aria-labelledby={isTabPanel && selectedThemeId ? `tab-${selectedThemeId}` : undefined}
     >
       <div
         className={cn("w-full px-2 [&_div]:m-0 [&_fieldset]:m-0 [&_fieldset]:w-full", styles.needs)}
