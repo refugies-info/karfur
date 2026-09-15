@@ -2,8 +2,14 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useState } from "react";
 import { END } from "redux-saga";
-import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
-import { Hero, HowToLearnFrench, SearchBar } from "~/components/Pages/learnFrench";
+import type { CourseTab, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
+import {
+  CourseTabs,
+  CourseTab as CourseTabValues,
+  Hero,
+  HowToLearnFrench,
+  SearchBar,
+} from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARD_IDS } from "~/data/learnFrench";
@@ -24,6 +30,7 @@ const LearnFrench = (props: Props) => {
   const [departments, setDepartments] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
   const [search, setSearch] = useState("");
+  const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
 
   return (
     <div className="w-full">
@@ -55,6 +62,9 @@ const LearnFrench = (props: Props) => {
           search={search}
           onSearchChange={setSearch}
         />
+        <div className="container">
+          <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+        </div>
       </div>
 
       {/* RI-1526 to RI-1528: filters sidebar, results lists */}
