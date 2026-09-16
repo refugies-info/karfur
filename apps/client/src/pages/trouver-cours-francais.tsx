@@ -1,22 +1,27 @@
+import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import type { CourseTab, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
+import type { CourseTab, FiltersState, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
 import {
   CourseTabs,
   CourseTab as CourseTabValues,
+  FiltersSidebar,
   Hero,
   HowToLearnFrench,
   SearchBar,
 } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
-import { HOW_TO_LEARN_FRENCH_CARD_IDS } from "~/data/learnFrench";
+import { HOW_TO_LEARN_FRENCH_CARD_IDS, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
 import { wrapper } from "~/services/configureStore";
+import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import API from "~/utils/API";
 import HeroIllu from "../assets/staticPages/learn-french/hero-illu.png";
@@ -25,12 +30,29 @@ interface Props {
   howToCards: HowToLearnFrenchCard[];
 }
 
+const EMPTY_FILTERS: FiltersState = {
+  departments: [],
+  cities: [],
+  frenchLevel: [],
+  categories: [],
+  publicFilter: [],
+};
+
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
-  const [departments, setDepartments] = useState<string[]>([]);
-  const [cities, setCities] = useState<string[]>([]);
+  const [filters, setFilters] = useState<FiltersState>(EMPTY_FILTERS);
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  const allNeeds = useSelector(needsSelector);
+  const categoryOptions = useMemo(
+    () =>
+      allNeeds
+        .filter((need) => String(need.theme._id) === LEARN_FRENCH_THEME_ID)
+        .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
+    [allNeeds],
+  );
 
   return (
     <div className="w-full">
@@ -54,27 +76,69 @@ const LearnFrench = (props: Props) => {
       <div className="relative">
         <Anchor id="find-a-class" />
         <SearchBar
-          locations={[...departments, ...cities]}
-          onClearLocations={() => {
-            setDepartments([]);
-            setCities([]);
-          }}
+          locations={[...filters.departments, ...filters.cities]}
+          onClearLocations={() => setFilters({ ...filters, departments: [], cities: [] })}
           search={search}
           onSearchChange={setSearch}
         />
         <div className="container">
           <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
         </div>
-      </div>
 
-      {/* RI-1526 to RI-1528: filters sidebar, results lists */}
+        <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
+          <Button
+            priority="secondary"
+            iconId="fr-icon-equalizer-line"
+            className="lg:hidden"
+            onClick={() => setShowMobileFilters(true)}
+          >
+            {t("LearnFrench.filters_title", "Filtrer")}
+          </Button>
+
+          <aside className="hidden shrink-0 lg:block lg:w-72">
+            <FiltersSidebar
+              filters={filters}
+              categoryOptions={categoryOptions}
+              onChange={setFilters}
+              onReset={() => setFilters(EMPTY_FILTERS)}
+            />
+          </aside>
+
+          {showMobileFilters && (
+            <div className="bg-default-grey fixed inset-0 z-50 overflow-y-auto p-4 lg:hidden">
+              <div className="flex items-center justify-between pb-4">
+                <h2 className="text-h6 mb-0">{t("LearnFrench.filters_title", "Filtrer")}</h2>
+                <button type="button" onClick={() => setShowMobileFilters(false)}>
+                  <i className="fr-icon-close-line" aria-hidden="true" />
+                  <span className="sr-only">{t("LearnFrench.filters_close", "Fermer")}</span>
+                </button>
+              </div>
+              <FiltersSidebar
+                filters={filters}
+                categoryOptions={categoryOptions}
+                onChange={setFilters}
+                onReset={() => setFilters(EMPTY_FILTERS)}
+              />
+              <Button
+                className="mt-6 w-full justify-center"
+                onClick={() => setShowMobileFilters(false)}
+              >
+                {t("LearnFrench.filters_apply", "Voir les résultats")}
+              </Button>
+            </div>
+          )}
+
+          {/* RI-1527/1528: results lists, pagination, share */}
+          <div className="flex-1" />
+        </div>
+      </div>
     </div>
   );
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const action = fetchThemesActionCreator();
-  store.dispatch(action);
+  store.dispatch(fetchThemesActionCreator());
+  store.dispatch(fetchNeedsActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
