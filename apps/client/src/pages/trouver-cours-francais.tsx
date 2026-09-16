@@ -65,6 +65,7 @@ const LearnFrench = (props: Props) => {
         searchCtaHref="#find-a-class"
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
         learnMoreCtaHref="#how-to-learn-french"
+        rcoDisclaimer={t("LearnFrench.hero_rco_disclaimer")}
         image={HeroIllu}
       />
 
