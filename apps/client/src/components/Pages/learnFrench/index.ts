@@ -4,4 +4,5 @@ export { FiltersSidebar } from "./FiltersSidebar";
 export { Hero } from "./Hero";
 export type { HowToLearnFrenchCard } from "./HowToLearnFrench";
 export { HowToLearnFrench } from "./HowToLearnFrench";
+export { LocationFilterButton } from "./LocationFilter";
 export { SearchBar } from "./SearchBar";

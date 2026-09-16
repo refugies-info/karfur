@@ -1,11 +1,11 @@
 import Input from "@codegouvfr/react-dsfr/Input";
-import Tag from "@codegouvfr/react-dsfr/Tag";
 import { useTranslation } from "next-i18next";
-import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
+import { LocationFilterButton } from "~/components/Pages/learnFrench/LocationFilter";
 
 interface Props {
-  locations: string[];
-  onClearLocations: () => void;
+  departments: string[];
+  cities: string[];
+  onLocationsChange: (departments: string[], cities: string[]) => void;
   search: string;
   onSearchChange: (search: string) => void;
 }
@@ -16,13 +16,13 @@ export const SearchBar = (props: Props) => {
 
   return (
     <div className="container flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:justify-between">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-3">
         <h2 className="text-h5 mb-0">{t("LearnFrench.search_title")}</h2>
-        {props.locations.length > 0 && (
-          <Tag dismissible onClick={props.onClearLocations}>
-            {summarizeLocations(props.locations)}
-          </Tag>
-        )}
+        <LocationFilterButton
+          departments={props.departments}
+          cities={props.cities}
+          onChange={props.onLocationsChange}
+        />
       </div>
       <Input
         iconId="fr-icon-search-line"

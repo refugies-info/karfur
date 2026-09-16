@@ -76,8 +76,11 @@ const LearnFrench = (props: Props) => {
       <div className="relative">
         <Anchor id="find-a-class" />
         <SearchBar
-          locations={[...filters.departments, ...filters.cities]}
-          onClearLocations={() => setFilters({ ...filters, departments: [], cities: [] })}
+          departments={filters.departments}
+          cities={filters.cities}
+          onLocationsChange={(departments, cities) =>
+            setFilters({ ...filters, departments, cities })
+          }
           search={search}
           onSearchChange={setSearch}
         />
