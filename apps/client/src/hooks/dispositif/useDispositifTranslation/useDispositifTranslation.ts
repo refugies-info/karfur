@@ -66,6 +66,7 @@ export type Progress = {
   pendingSteps: Step[];
   reviewSteps: Step[];
   isComplete: boolean;
+  hasNoTraduction: boolean;
 };
 
 /**
@@ -124,12 +125,20 @@ const useDispositifTranslation = (
     [sectionWordCount, data],
   );
 
+  const [hasChangeForm, setHasChangeForm] = useState(false);
+  const hasNoTraduction = useMemo(
+    () =>
+      !hasChangeForm && traductions.length > 0 && traductions.every((t) => t.isSynthetic === true),
+    [traductions, hasChangeForm],
+  );
+
   const progress: Progress = useMemo(
     () => ({
       totalSteps,
       doneSteps,
       missingSteps,
       isComplete,
+      hasNoTraduction,
       doneWords: wordsCount.done,
       totalWords: wordsCount.total,
       myDoneWords: myWordsCount.done,
@@ -141,6 +150,7 @@ const useDispositifTranslation = (
       doneSteps,
       missingSteps,
       isComplete,
+      hasNoTraduction,
       wordsCount,
       pendingSteps,
       reviewSteps,
@@ -152,7 +162,6 @@ const useDispositifTranslation = (
   /**
    * Valide la traduction de la section en cours pour la traduction de l'utilisateur courant
    */
-  const [hasChangeForm, setHasChangeForm] = useState(false); // used to show validator name or not
   const validate = useCallback(
     async (
       section: string,

@@ -22,6 +22,7 @@ interface Props {
   onQuit: () => void;
   onPublish: () => void;
   isComplete: boolean;
+  hasNoTraduction?: boolean;
   pendingSteps: Step[];
   progress: number;
   locale?: Languages;
@@ -70,15 +71,17 @@ const QuitModal = (props: Props) => {
             </Row>
 
             <div className="text-end">
-              <Button
-                priority="secondary"
-                onClick={props.onPublish}
-                evaIcon="arrow-forward-outline"
-                iconPosition="right"
-                className="me-2"
-              >
-                Publier
-              </Button>
+              {!props.hasNoTraduction && (
+                <Button
+                  priority="secondary"
+                  onClick={props.onPublish}
+                  evaIcon="arrow-forward-outline"
+                  iconPosition="right"
+                  className="me-2"
+                >
+                  Publier
+                </Button>
+              )}
               <Button onClick={props.onQuit} evaIcon="log-out-outline" iconPosition="right">
                 Quitter et publier plus tard
               </Button>

@@ -15,8 +15,9 @@ interface Props {
   show: boolean;
   toggle: () => void;
   onQuit: () => void;
-  onPublish: () => Promise<void>;
+  onPublish: () => Promise<boolean | Error | void>;
   isPublishing: boolean;
+  publishError?: { title: string; description: string };
   isComplete: boolean;
   missingSteps: Step[];
   pendingSteps: Step[];
@@ -70,8 +71,10 @@ const PublishModal = (props: Props) => {
             locale={props.locale}
             nbWords={props.nbWords}
             isPublishing={props.isPublishing}
+            publishError={props.publishError}
             publish={() => {
-              props.onPublish().then(() => {
+              props.onPublish().then((published) => {
+                if (published !== true) return;
                 if ((props.translators || []).length > 0) {
                   setScreenStep(1);
                 } else {

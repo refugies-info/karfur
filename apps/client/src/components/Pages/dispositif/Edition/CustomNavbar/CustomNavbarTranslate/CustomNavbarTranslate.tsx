@@ -35,6 +35,7 @@ interface Props {
 
 const defaultProgress: Progress = {
   isComplete: false,
+  hasNoTraduction: false,
   totalSteps: 6,
   doneSteps: 0,
   missingSteps: [],
@@ -73,11 +74,30 @@ const CustomNavbarTranslate = (props: Props) => {
 
   // Publish
   const [showPublishModal, togglePublishModal] = useToggle(false);
-  const [{ loading }, handlePublish] = useAsyncFn(async () => {
+  // useAsyncFn resolves with the error instead of rejecting, hence the explicit `true`
+  const [{ loading, error: publishError }, handlePublish] = useAsyncFn(async () => {
     const id = router.query.id as string;
-    if (!id || !progress.isComplete || !locale) return;
+    if (!id || !progress.isComplete || !locale) return false;
     await API.publishTraduction({ dispositifId: id, language: locale });
+    return true;
   }, [router.query.id, progress.isComplete, locale]);
+
+  const publishErrorContent = useMemo(() => {
+    if (!publishError) return undefined;
+    const code = (publishError as any)?.response?.data?.code;
+    if (code === "ALREADY_PUBLISHED") {
+      return {
+        title: "Cette traduction est déjà en ligne",
+        description:
+          "Elle a bien été publiée. Modifiez une section si vous souhaitez la republier.",
+      };
+    }
+    return {
+      title: "La publication n'a pas pu aboutir",
+      description:
+        "Votre traduction est bien enregistrée, mais elle n'a pas été publiée. Signalez-le à l'équipe Réfugiés.info en précisant le nom de la fiche et la langue.",
+    };
+  }, [publishError]);
 
   return (
     <div className={styles.container}>
@@ -137,12 +157,13 @@ const CustomNavbarTranslate = (props: Props) => {
               <Button
                 evaIcon={progress.isComplete ? "checkmark-circle-2" : undefined}
                 iconPosition="right"
+                disabled={progress.hasNoTraduction}
                 onClick={(e: any) => {
                   e.preventDefault();
                   togglePublishModal();
                 }}
               >
-                Publier
+                {progress.hasNoTraduction ? "Déjà publié" : "Publier"}
               </Button>
             </>
           ) : (
@@ -171,6 +192,7 @@ const CustomNavbarTranslate = (props: Props) => {
         }}
         pendingSteps={progress.pendingSteps}
         isComplete={progress.isComplete}
+        hasNoTraduction={progress.hasNoTraduction}
         progress={progress.doneSteps}
         locale={locale}
         nbWords={progress.myDoneWords}
@@ -181,6 +203,7 @@ const CustomNavbarTranslate = (props: Props) => {
         onQuit={quit}
         onPublish={handlePublish}
         isPublishing={loading}
+        publishError={publishErrorContent}
         missingSteps={progress.missingSteps}
         pendingSteps={progress.pendingSteps}
         reviewSteps={progress.reviewSteps}
