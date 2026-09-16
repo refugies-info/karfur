@@ -108,6 +108,7 @@ export interface GetTraductionsForReview {
   };
   toReview?: string[];
   toFinish: string[];
+  isSynthetic?: boolean;
 }
 export type GetTraductionsForReviewResponse = GetTraductionsForReview[];
 

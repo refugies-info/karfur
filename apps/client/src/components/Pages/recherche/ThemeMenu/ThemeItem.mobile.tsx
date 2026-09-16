@@ -1,14 +1,12 @@
 import * as Accordion from "@radix-ui/react-accordion";
+import type { Id } from "@refugies-info/api-types";
 import type React from "react";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
 import Needs from "~/components/Pages/recherche/ThemeMenu/Needs";
 import { cls } from "~/lib/classname";
-import { needsSelector } from "~/services/Needs/needs.selectors";
 import styles from "./ThemeItem.mobile.module.scss";
 
 interface Props {
-  themeId: string;
+  themeId: Id;
   label: string;
   needCount: number;
   className?: string;
@@ -16,14 +14,8 @@ interface Props {
 }
 
 const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) => {
-  const allNeeds = useSelector(needsSelector);
-
-  const needs = useMemo(() => {
-    return allNeeds.filter((need) => need.theme._id === themeId);
-  }, [allNeeds, themeId]);
-
   return (
-    <Accordion.Item value={themeId} className={styles.accordionItem}>
+    <Accordion.Item value={themeId.toString()} className={styles.accordionItem}>
       <Accordion.Header asChild>
         <Accordion.Trigger
           className={styles.trigger}
@@ -42,7 +34,7 @@ const ThemeItemMobile: React.FC<Props> = ({ themeId, label, needCount, color }) 
         </Accordion.Trigger>
       </Accordion.Header>
       <Accordion.Content className={styles.content}>
-        <Needs />
+        <Needs themeId={themeId} />
       </Accordion.Content>
     </Accordion.Item>
   );

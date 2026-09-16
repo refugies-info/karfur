@@ -252,6 +252,11 @@ const rebuildTranslations = async (
 
   const newTranslations = cloneDeep(translations);
 
+  const updatedDispositif = {
+    _id: dispositif._id,
+    translations: { ...newTranslations, fr: translationContent },
+  } as unknown as Dispositif;
+
   /**
    * On retire les sections supprimées de la nouvelle traduction
    * de l'ensemble des traductions existantes validées.
@@ -267,7 +272,7 @@ const rebuildTranslations = async (
       });
     });
     translationContent.created_at = new Date();
-    await removeTraductionsSections(dispositif._id, traductionDiff.removed, dispositif);
+    await removeTraductionsSections(dispositif._id, traductionDiff.removed, updatedDispositif);
   }
 
   if (!keepTranslations) {
@@ -316,7 +321,10 @@ const rebuildTranslations = async (
             toReviewCache: toReview,
             userId: value.validatorId,
           };
-          translation.finished = computeTraductionFinished(dispositif, translation as Traductions);
+          translation.finished = computeTraductionFinished(
+            updatedDispositif,
+            translation as Traductions,
+          );
           return translation as Traductions;
         });
       logger.info("translationsReviews", translationsReviews);
@@ -331,7 +339,7 @@ const rebuildTranslations = async (
       });
 
       // Mise à jour des validations existantes avec le toReview si ce n'est pas la première modification
-      await addToReview(dispositif._id, toReview, dispositif).then((result) => {
+      await addToReview(dispositif._id, toReview, updatedDispositif).then((result) => {
         logger.info("[updateDispositif] existing validations updated ", result);
       });
 

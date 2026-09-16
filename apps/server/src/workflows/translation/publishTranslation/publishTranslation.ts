@@ -3,6 +3,7 @@ import { ObjectId, type User } from "@refugies-info/mongo";
 import { UnauthorizedError } from "~/errors";
 import { isDispositifTranslatedIn } from "~/modules/dispositif/dispositif.business";
 import { addNewParticipant, getDispositifById } from "~/modules/dispositif/dispositif.repository";
+import { computeTraductionFinished } from "~/modules/traductions/traductions.business";
 import { getValidation } from "~/modules/traductions/traductions.repository";
 import validateTranslation from "../validateTranslation";
 
@@ -23,10 +24,21 @@ const publishTranslation = (
         user._id as ObjectId,
       );
 
+      if (!traduction) {
+        throw isDispositifTranslatedIn(dispositif, language)
+          ? new UnauthorizedError(
+              `Dispositif is already translated in ${language}`,
+              "ALREADY_PUBLISHED",
+            )
+          : new UnauthorizedError("You cannot publish this dispositif");
+      }
+
+      const isFinished = computeTraductionFinished(dispositif, traduction);
+
       /**
        * Si la traduction n'est pas terminée ou pas faite par un expert => erreur
        */
-      if (!traduction.finished || !user.isExpert()) {
+      if (!isFinished || !user.isExpert()) {
         throw new UnauthorizedError("You cannot publish this dispositif");
       }
 
