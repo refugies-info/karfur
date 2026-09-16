@@ -27,7 +27,7 @@ export const SearchBar = (props: Props) => {
       <Input
         iconId="fr-icon-search-line"
         label={placeholder}
-        className="mb-0 w-full [&_label]:sr-only lg:w-80"
+        className="[&_.fr-input]:!bg-white mb-0 w-full [&_label]:sr-only lg:w-80"
         nativeInputProps={{
           type: "search",
           placeholder,

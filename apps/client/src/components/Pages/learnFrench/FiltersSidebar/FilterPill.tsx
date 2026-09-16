@@ -14,7 +14,7 @@ export const FilterPill = (props: Props) => (
     className={cls(
       "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm",
       props.active
-        ? "bg-title-blue-france bg-action-blue-france text-white"
+        ? "bg-action-high-blue-france text-white"
         : "bg-action-low-blue-france text-title-blue-france hover:bg-open-blue-france",
     )}
   >

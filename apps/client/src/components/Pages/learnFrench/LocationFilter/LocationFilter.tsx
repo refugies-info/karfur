@@ -25,7 +25,7 @@ export const LocationFilter = (props: Props) => {
   }, [isOpen]);
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="relative [&_.fr-input]:!bg-white" ref={containerRef}>
       <SearchMenuItem onFocus={() => setIsOpen(true)} onChange={selection.onSearchInputChange} />
 
       {isOpen && (

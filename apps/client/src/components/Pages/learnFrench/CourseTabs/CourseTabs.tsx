@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { TabItem, TabsBar } from "~/components/UI/Tabs";
+import { cls } from "~/lib/classname";
 
 export const CourseTab = {
   UPCOMING: "upcoming",
@@ -14,6 +14,11 @@ interface Props {
   onChange: (tab: CourseTab) => void;
 }
 
+/**
+ * Matches the Figma design for this page specifically (filled navy active tab,
+ * container hugging its 3 tabs), not the shared UI/Tabs (border-only active state,
+ * full-width bar), used differently on /recherche.
+ */
 export const CourseTabs = (props: Props) => {
   const { t } = useTranslation();
 
@@ -24,20 +29,30 @@ export const CourseTabs = (props: Props) => {
       iconId: "fr-icon-calendar-event-line",
       labelKey: "LearnFrench.tab_onDemand",
     },
-    { key: CourseTab.ALL, iconId: "fr-icon-list-unordered", labelKey: "LearnFrench.tab_all" },
+    { key: CourseTab.ALL, iconId: "fr-icon-menu-fill", labelKey: "LearnFrench.tab_all" },
   ];
 
   return (
-    <TabsBar>
-      {tabs.map((tab) => (
-        <TabItem
-          key={tab.key}
-          isActive={props.activeTab === tab.key}
-          onClick={() => props.onChange(tab.key)}
-        >
-          <i className={tab.iconId} aria-hidden="true" /> {t(tab.labelKey, "")}
-        </TabItem>
-      ))}
-    </TabsBar>
+    <div className="border-default-grey inline-flex overflow-hidden rounded border bg-white">
+      {tabs.map((tab) => {
+        const isActive = props.activeTab === tab.key;
+        return (
+          <button
+            key={tab.key}
+            type="button"
+            onClick={() => props.onChange(tab.key)}
+            className={cls(
+              "text-h5 inline-flex items-center gap-2 px-4 py-3",
+              isActive
+                ? "bg-action-high-blue-france font-bold text-white"
+                : "text-default-grey font-normal",
+            )}
+          >
+            <i className={tab.iconId} aria-hidden="true" />
+            {t(tab.labelKey, "")}
+          </button>
+        );
+      })}
+    </div>
   );
 };
