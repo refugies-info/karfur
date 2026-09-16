@@ -24,7 +24,8 @@ interface Props {
 const toggle = <T,>(list: T[], value: T): T[] =>
   list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
 
-const SECTION_TITLE_CLASSNAME = "text-default-grey mb-3 flex items-center gap-2 text-lg font-bold";
+const SECTION_TITLE_CLASSNAME =
+  "text-default-grey mb-3 flex items-center gap-2 text-chapo font-bold";
 
 export const FiltersSidebar = (props: Props) => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ export const FiltersSidebar = (props: Props) => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-default-grey text-h6 mb-0">
+        <h2 className="text-title-grey text-h5 mb-0 font-bold">
           {t("LearnFrench.filters_title", "Filtrer")}
         </h2>
         {hasActiveFilters && (

@@ -12,13 +12,20 @@ export const FilterPill = (props: Props) => (
     type="button"
     onClick={props.onClick}
     className={cls(
-      "inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm",
+      "relative inline-flex items-center rounded-full px-4 py-2 text-sm",
       props.active
         ? "bg-action-high-blue-france text-white"
         : "bg-action-low-blue-france text-title-blue-france hover:bg-open-blue-france",
     )}
   >
     {props.children}
-    {props.active && <i className="fr-icon-checkbox-circle-fill fr-icon--sm" aria-hidden="true" />}
+    {props.active && (
+      <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-white">
+        <i
+          className="fr-icon-check-line fr-icon--xs text-action-high-blue-france"
+          aria-hidden="true"
+        />
+      </span>
+    )}
   </button>
 );

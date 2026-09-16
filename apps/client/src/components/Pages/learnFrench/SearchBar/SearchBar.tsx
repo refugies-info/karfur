@@ -17,7 +17,7 @@ export const SearchBar = (props: Props) => {
   return (
     <div className="container flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:justify-between">
       <div className="flex flex-wrap items-center gap-3">
-        <h2 className="text-h5 mb-0">{t("LearnFrench.search_title")}</h2>
+        <h2 className="text-h2 mb-0 font-bold">{t("LearnFrench.search_title")}</h2>
         <LocationFilterButton
           departments={props.departments}
           cities={props.cities}
