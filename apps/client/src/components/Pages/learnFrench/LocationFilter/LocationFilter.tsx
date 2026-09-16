@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { LocationPopoverBody } from "./LocationPopoverBody";
+import { UseMyPositionButton } from "./UseMyPositionButton";
 import { useLocationSelection } from "./useLocationSelection";
 
 interface Props {
@@ -30,6 +31,11 @@ export const LocationFilter = (props: Props) => {
 
       {isOpen && (
         <div className="border-default-grey absolute inset-x-0 top-full z-50 mt-1 divide-y divide-solid rounded-lg border bg-white shadow-[0_4px_12px_0_rgba(0,0,18,0.16)]">
+          <UseMyPositionButton
+            t={selection.t}
+            useMyPosition={selection.useMyPosition}
+            geolocating={selection.geolocating}
+          />
           <LocationPopoverBody {...selection} />
         </div>
       )}

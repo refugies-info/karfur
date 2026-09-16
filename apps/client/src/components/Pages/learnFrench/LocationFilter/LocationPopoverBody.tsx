@@ -1,5 +1,4 @@
 import Checkbox from "@codegouvfr/react-dsfr/Checkbox";
-import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import type { useLocationSelection } from "./useLocationSelection";
 
 type Selection = ReturnType<typeof useLocationSelection>;
@@ -17,17 +16,6 @@ export const LocationPopoverBody = (props: Props) => (
         />
       </div>
     )}
-
-    <button
-      type="button"
-      onClick={props.useMyPosition}
-      onKeyDown={(e) => onEnterOrSpace(e, props.useMyPosition)}
-      disabled={props.geolocating}
-      className="text-title-blue-france flex w-full items-center gap-2 p-3 text-sm"
-    >
-      <i className="fr-icon-send-plane-fill fr-icon--sm" aria-hidden="true" />
-      {props.t("Recherche.positionButton", "Utiliser ma position")}
-    </button>
 
     <div className="max-h-80 overflow-y-auto p-3">
       {props.search !== "" ? (

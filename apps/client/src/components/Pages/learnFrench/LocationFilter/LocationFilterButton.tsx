@@ -4,6 +4,7 @@ import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenu
 import { cls } from "~/lib/classname";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { LocationPopoverBody } from "./LocationPopoverBody";
+import { UseMyPositionButton } from "./UseMyPositionButton";
 import { useLocationSelection } from "./useLocationSelection";
 
 interface Props {
@@ -74,6 +75,11 @@ export const LocationFilterButton = (props: Props) => {
 
       {isOpen && (
         <div className="border-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border bg-white shadow-[0_4px_12px_0_rgba(0,0,18,0.16)]">
+          <UseMyPositionButton
+            t={selection.t}
+            useMyPosition={selection.useMyPosition}
+            geolocating={selection.geolocating}
+          />
           <div className="[&_.fr-input]:!bg-white p-3">
             <SearchMenuItem onChange={selection.onSearchInputChange} />
           </div>
