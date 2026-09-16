@@ -25,6 +25,9 @@ Both of these projects should follow these standards:
 - Only use **named exports**
 - All text should be in **english** (features, comments, commit messages and github discussions).
 - For typing, we use **typescript** on client and server.
+- Naming: **camelCase** for variables and functions, **PascalCase** for classes and React components. Prefer a descriptive name that is a bit longer over a short, cryptic one.
+- Refactor when you can, to reuse existing functions instead of copy-pasting, and to keep the codebase light.
+- No hardcoded user-facing text: always go through the i18n system (see the [i18n guide](client/i18n.md)) — add the translation key and regenerate/export the translation files instead of writing raw strings in JSX.
 
 ### Workflow
 
@@ -52,7 +55,13 @@ _Note: before opening a pull request, make sure to run the tests in client and s
 ### Document code
 
 - create single responsibility functions with transparent names
-- in complex parts, add comments in english
+- prefer clear, self-explanatory code over comments: well-written code shouldn't need comments to be understood
+- when you do add a comment, write it in **concise English**, and reserve it for what the code itself can't express — an exception, a workaround, a non-obvious business rule
+
+### Front components
+
+- front components should stay free of business logic as much as possible: they receive what to display through props, do any purely presentational reformatting locally, but don't hold business rules
+- front components should not import/fetch data directly; data must be loaded elsewhere (page, container, hook) and passed down as props
 
 ### Logs
 
