@@ -103,7 +103,7 @@ export const diffTraductions = (
 
 export const computeTraductionFinished = (
   dispositif: Dispositif,
-  translation: Traductions,
+  translation: Traductions | LeanTraductions,
 ): boolean => {
   const frTranslation = getDispositifTranslation(dispositif, "fr");
   if (!frTranslation) return false;
@@ -113,14 +113,16 @@ export const computeTraductionFinished = (
     frTranslation,
   ).length;
 
+  const frSections = new Set(keys(frTranslation));
   const translationSectionsCounter = removeEmptyValues(
-    keys(translation.translated) as (keyof TranslationContent)[],
+    keys(translation.translated).filter((section) =>
+      frSections.has(section),
+    ) as (keyof TranslationContent)[],
     translation.translated,
   ).length;
-
   const notFinished = [
     ...new Set([...(translation.toFinish || []), ...(translation.toReview || [])]),
-  ].length;
+  ].filter((section) => frSections.has(section)).length;
 
   if (dispositifSectionsCounter === 0) return true; // Avoid division by zero
 

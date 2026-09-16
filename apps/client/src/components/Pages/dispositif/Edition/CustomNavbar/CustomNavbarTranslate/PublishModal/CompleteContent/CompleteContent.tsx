@@ -1,3 +1,4 @@
+import Alert from "@codegouvfr/react-dsfr/Alert";
 import type { Languages } from "@refugies-info/api-types";
 import PublishImage from "~/assets/dispositif/publish-image.svg";
 import BubbleFlag from "~/components/UI/BubbleFlag";
@@ -10,6 +11,7 @@ interface Props {
   isPublishing: boolean;
   locale?: Languages;
   nbWords: number;
+  publishError?: { title: string; description: string };
 }
 
 const CompleteContent = (props: Props) => {
@@ -26,6 +28,16 @@ const CompleteContent = (props: Props) => {
       <div className="mt-6 mb-8 flex justify-center">
         <Image src={PublishImage} width={345} height={240} alt="" />
       </div>
+      <div role="alert">
+        {props.publishError && (
+          <Alert
+            severity="error"
+            title={props.publishError.title}
+            description={props.publishError.description}
+            className="mb-6"
+          />
+        )}
+      </div>
       <div className="text-end">
         <Button
           onClick={(e: any) => {
@@ -35,8 +47,9 @@ const CompleteContent = (props: Props) => {
           evaIcon="arrow-forward-outline"
           iconPosition="right"
           disabled={props.isPublishing}
+          isLoading={props.isPublishing}
         >
-          Publier
+          {props.isPublishing ? "Publication en cours…" : "Publier"}
         </Button>
       </div>
     </>

@@ -31,6 +31,7 @@ const buildTranslationsObject = (
       },
       toReview: [],
       toFinish: [],
+      isSynthetic: true,
     },
   ];
 
