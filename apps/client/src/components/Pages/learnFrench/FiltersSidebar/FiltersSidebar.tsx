@@ -3,8 +3,8 @@ import type { FrenchOptions, PublicOptions } from "data/searchFilters";
 import { frenchLevelFilter, publicOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import { LocationFilter } from "~/components/Pages/learnFrench/LocationFilter";
-import FilterButton from "~/components/UI/FilterButton/FilterButton";
 import useLocale from "~/hooks/useLocale";
+import { FilterPill } from "./FilterPill";
 
 export interface FiltersState {
   departments: string[];
@@ -24,6 +24,8 @@ interface Props {
 const toggle = <T,>(list: T[], value: T): T[] =>
   list.includes(value) ? list.filter((v) => v !== value) : [...list, value];
 
+const SECTION_TITLE_CLASSNAME = "text-default-grey mb-3 flex items-center gap-2 text-lg font-bold";
+
 export const FiltersSidebar = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
@@ -39,16 +41,22 @@ export const FiltersSidebar = (props: Props) => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-h6 mb-0">{t("LearnFrench.filters_title", "Filtrer")}</h2>
+        <h2 className="text-default-grey text-h6 mb-0">
+          {t("LearnFrench.filters_title", "Filtrer")}
+        </h2>
         {hasActiveFilters && (
-          <button type="button" className="text-title-blue-france text-sm" onClick={props.onReset}>
-            {t("LearnFrench.filters_reset", "Réinitialiser")}
+          <button
+            type="button"
+            className="text-title-blue-france text-sm underline"
+            onClick={props.onReset}
+          >
+            {t("LearnFrench.filters_reset", "Effacer")}
           </button>
         )}
       </div>
 
       <div>
-        <h3 className="text-label-grey mb-3 flex items-center gap-2 text-sm font-bold uppercase">
+        <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-map-pin-2-line" aria-hidden="true" />
           {t("LearnFrench.filters_location", "Localisation")}
         </h3>
@@ -60,13 +68,13 @@ export const FiltersSidebar = (props: Props) => {
       </div>
 
       <div>
-        <h3 className="text-label-grey mb-3 flex items-center gap-2 text-sm font-bold uppercase">
+        <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-chat-3-line" aria-hidden="true" />
           {t("LearnFrench.filters_level", "Niveau visé")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {frenchLevelFilter.map((option) => (
-            <FilterButton
+            <FilterPill
               key={option.key}
               active={filters.frenchLevel.includes(option.key)}
               onClick={() =>
@@ -74,19 +82,19 @@ export const FiltersSidebar = (props: Props) => {
               }
             >
               {t(option.value, "")}
-            </FilterButton>
+            </FilterPill>
           ))}
         </div>
       </div>
 
       <div>
-        <h3 className="text-label-grey mb-3 flex items-center gap-2 text-sm font-bold uppercase">
+        <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-layout-grid-line" aria-hidden="true" />
           {t("LearnFrench.filters_category", "Catégorie")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {props.categoryOptions.map((need) => (
-            <FilterButton
+            <FilterPill
               key={String(need._id)}
               active={filters.categories.includes(need._id)}
               onClick={() =>
@@ -94,19 +102,19 @@ export const FiltersSidebar = (props: Props) => {
               }
             >
               {need[locale]?.text || need.fr.text}
-            </FilterButton>
+            </FilterPill>
           ))}
         </div>
       </div>
 
       <div>
-        <h3 className="text-label-grey mb-3 flex items-center gap-2 text-sm font-bold uppercase">
+        <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-user-line" aria-hidden="true" />
           {t("LearnFrench.filters_public", "Public visé")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {publicOptions.map((option) => (
-            <FilterButton
+            <FilterPill
               key={option.key}
               active={filters.publicFilter.includes(option.key)}
               onClick={() =>
@@ -117,7 +125,7 @@ export const FiltersSidebar = (props: Props) => {
               }
             >
               {t(option.value, "")}
-            </FilterButton>
+            </FilterPill>
           ))}
         </div>
       </div>

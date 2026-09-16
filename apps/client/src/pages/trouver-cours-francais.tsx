@@ -73,7 +73,7 @@ const LearnFrench = (props: Props) => {
         <HowToLearnFrench cards={props.howToCards} />
       </div>
 
-      <div className="relative">
+      <div className="bg-alt-blue-france relative">
         <Anchor id="find-a-class" />
         <SearchBar
           departments={filters.departments}
@@ -84,10 +84,6 @@ const LearnFrench = (props: Props) => {
           search={search}
           onSearchChange={setSearch}
         />
-        <div className="container">
-          <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
-        </div>
-
         <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
           <Button
             priority="secondary"
@@ -108,14 +104,15 @@ const LearnFrench = (props: Props) => {
           </aside>
 
           {showMobileFilters && (
-            <div className="bg-default-grey fixed inset-0 z-50 overflow-y-auto p-4 lg:hidden">
-              <div className="flex items-center justify-between pb-4">
-                <h2 className="text-h6 mb-0">{t("LearnFrench.filters_title", "Filtrer")}</h2>
-                <button type="button" onClick={() => setShowMobileFilters(false)}>
-                  <i className="fr-icon-close-line" aria-hidden="true" />
-                  <span className="sr-only">{t("LearnFrench.filters_close", "Fermer")}</span>
-                </button>
-              </div>
+            <div className="bg-alt-blue-france fixed inset-0 z-50 overflow-y-auto p-4 lg:hidden">
+              <button
+                type="button"
+                className="absolute top-4 right-4"
+                onClick={() => setShowMobileFilters(false)}
+              >
+                <i className="fr-icon-close-line" aria-hidden="true" />
+                <span className="sr-only">{t("LearnFrench.filters_close", "Fermer")}</span>
+              </button>
               <FiltersSidebar
                 filters={filters}
                 categoryOptions={categoryOptions}
@@ -131,8 +128,9 @@ const LearnFrench = (props: Props) => {
             </div>
           )}
 
-          {/* RI-1527/1528: results lists, pagination, share */}
-          <div className="flex-1" />
+          <div className="min-w-0 flex-1">
+            <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+          </div>
         </div>
       </div>
     </div>
