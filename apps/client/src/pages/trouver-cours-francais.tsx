@@ -3,13 +3,13 @@ import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import type { CourseTab, FiltersState, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
+import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
 import {
+  CourseResults,
   CourseTabs,
-  CourseTab as CourseTabValues,
   FiltersSidebar,
   Hero,
   HowToLearnFrench,
@@ -18,6 +18,9 @@ import {
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARD_IDS, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
+import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
+import useLocale from "~/hooks/useLocale";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
@@ -32,14 +35,6 @@ interface Props {
   howToCards: HowToLearnFrenchCard[];
 }
 
-const EMPTY_FILTERS: FiltersState = {
-  departments: [],
-  cities: [],
-  frenchLevel: [],
-  categories: [],
-  publicFilter: [],
-};
-
 const mobileFiltersModal = createModal({
   id: "learn-french-mobile-filters-modal",
   isOpenedByDefault: false,
@@ -47,9 +42,10 @@ const mobileFiltersModal = createModal({
 
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
-  const [filters, setFilters] = useState<FiltersState>(EMPTY_FILTERS);
-  const [search, setSearch] = useState("");
-  const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
+  const locale = useLocale();
+  const { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady } =
+    useFrenchCourseFilters();
+  const courseSearch = useCourseSearch(filters, search, activeTab, isReady);
   const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
   useIsModalOpen(mobileFiltersModal, {
     onConceal: () => mobileFiltersButtonRef.current?.focus(),
@@ -63,6 +59,13 @@ const LearnFrench = (props: Props) => {
         .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
     [allNeeds],
   );
+  const needLabels = useMemo(
+    () => new Map(allNeeds.map((need) => [String(need._id), need[locale]?.text || need.fr.text])),
+    [allNeeds, locale],
+  );
+
+  const resetFilters = () =>
+    setFilters({ departments: [], cities: [], frenchLevel: [], categories: [], publicFilter: [] });
 
   return (
     <div className="w-full">
@@ -111,7 +114,7 @@ const LearnFrench = (props: Props) => {
               filters={filters}
               categoryOptions={categoryOptions}
               onChange={setFilters}
-              onReset={() => setFilters(EMPTY_FILTERS)}
+              onReset={resetFilters}
             />
           </aside>
 
@@ -124,13 +127,25 @@ const LearnFrench = (props: Props) => {
               filters={filters}
               categoryOptions={categoryOptions}
               onChange={setFilters}
-              onReset={() => setFilters(EMPTY_FILTERS)}
+              onReset={resetFilters}
               showTitle={false}
             />
           </mobileFiltersModal.Component>
 
           <div className="min-w-0 flex-1">
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+            <div className="mt-6">
+              <CourseResults
+                results={courseSearch.results}
+                total={courseSearch.total}
+                loading={courseSearch.loading}
+                loadingMore={courseSearch.loadingMore}
+                hasMore={courseSearch.page < courseSearch.pageCount}
+                onLoadMore={courseSearch.loadMore}
+                onResetFilters={resetFilters}
+                needLabels={needLabels}
+              />
+            </div>
           </div>
         </div>
       </div>

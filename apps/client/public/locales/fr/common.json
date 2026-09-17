@@ -888,7 +888,10 @@
     "filters_apply": "Voir les résultats",
     "location_placeholder": "Choisir la ville",
     "location_clear": "Effacer la localisation",
-    "location_remove": "Retirer {{location}}"
+    "location_remove": "Retirer {{location}}",
+    "card_contactStructure": "Contacter la structure pour les prochaines dates",
+    "results_loadMore": "Afficher plus de résultats",
+    "share_title": "Partager la liste :"
   },
   "sitemap": {
     "title": "Plan du site",
