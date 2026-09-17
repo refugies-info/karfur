@@ -85,6 +85,19 @@ export const useLocationSelection = (
     }),
   ];
 
+  const selectedLocationChips = [
+    ...departments.map((department) => ({
+      key: `department-${department}`,
+      label: decodeHTMLEntities(department),
+      onRemove: () => toggleLocation("department", department),
+    })),
+    ...cities.map((city) => ({
+      key: `city-${city}`,
+      label: decodeHTMLEntities(city),
+      onRemove: () => toggleLocation("city", city),
+    })),
+  ];
+
   const commonPlacesOptions = commonPlaces.map(({ deptNo, placeName }) => {
     const decodedCityName = decodeHTMLEntities(placeName);
     const isChecked = cities.some((city) => decodeHTMLEntities(city) === decodedCityName);
@@ -112,6 +125,7 @@ export const useLocationSelection = (
     onSearchInputChange,
     useMyPosition,
     selectedLocations,
+    selectedLocationChips,
     commonPlacesOptions,
     resultOptions,
   };

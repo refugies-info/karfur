@@ -29,6 +29,22 @@ export const LocationFilter = (props: Props) => {
     <div className="relative [&_.fr-input]:!bg-white" ref={containerRef}>
       <SearchMenuItem onFocus={() => setIsOpen(true)} onChange={selection.onSearchInputChange} />
 
+      {selection.selectedLocationChips.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {selection.selectedLocationChips.map((chip) => (
+            <button
+              key={chip.key}
+              type="button"
+              onClick={chip.onRemove}
+              className="bg-action-high-blue-france inline-flex items-center gap-1 rounded-full py-1 pl-3 pr-2 text-sm text-white"
+            >
+              {chip.label}
+              <i className="fr-icon-close-line fr-icon--sm" aria-hidden="true" />
+            </button>
+          ))}
+        </div>
+      )}
+
       {isOpen && (
         <div className="border-default-grey absolute inset-x-0 top-full z-50 mt-1 divide-y divide-solid rounded-lg border bg-white shadow-[0_4px_12px_0_rgba(0,0,18,0.16)]">
           <UseMyPositionButton
