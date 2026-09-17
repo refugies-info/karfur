@@ -49,7 +49,7 @@ export const CourseTabs = (props: Props) => {
             )}
           >
             <i className={tab.iconId} aria-hidden="true" />
-            {t(tab.labelKey, "")}
+            {t(tab.labelKey, tab.labelKey)}
           </button>
         );
       })}

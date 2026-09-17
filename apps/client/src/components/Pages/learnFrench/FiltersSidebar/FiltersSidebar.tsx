@@ -82,7 +82,7 @@ export const FiltersSidebar = (props: Props) => {
                 props.onChange({ ...filters, frenchLevel: toggle(filters.frenchLevel, option.key) })
               }
             >
-              {t(option.value, "")}
+              {t(option.value, option.value)}
             </FilterPill>
           ))}
         </div>
@@ -125,7 +125,7 @@ export const FiltersSidebar = (props: Props) => {
                 })
               }
             >
-              {t(option.value, "")}
+              {t(option.value, option.value)}
             </FilterPill>
           ))}
         </div>
