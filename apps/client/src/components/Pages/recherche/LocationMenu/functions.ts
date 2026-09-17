@@ -1,3 +1,17 @@
+/** Shortcuts shown when the location search field is empty. */
+export const commonPlaces = [
+  { placeName: "Paris", deptNo: "75", deptName: "Paris" },
+  { placeName: "Lyon", deptNo: "69", deptName: "Rhône" },
+  { placeName: "Strasbourg", deptNo: "67", deptName: "Bas-Rhin" },
+  { placeName: "Nantes", deptNo: "44", deptName: "Loire-Atlantique" },
+  { placeName: "Dijon", deptNo: "21", deptName: "Côte-d'Or" },
+  { placeName: "Bordeaux", deptNo: "33", deptName: "Gironde" },
+  { placeName: "Grenoble", deptNo: "38", deptName: "Isère" },
+  { placeName: "Toulouse", deptNo: "31", deptName: "Haute-Garonne" },
+  { placeName: "Rennes", deptNo: "35", deptName: "Ille-et-Vilaine" },
+  { placeName: "Marseille", deptNo: "13", deptName: "Bouches-du-Rhône" },
+];
+
 // API Response Interfaces
 export interface MunicipalityApiResponse {
   features: MunicipalityFeature[];
@@ -152,6 +166,22 @@ export const getCitiesForDepartment = async (departmentName: string): Promise<st
 };
 
 /**
+ * Resolves a department name from GPS coordinates, for "use my position" features.
+ */
+export const getDepartmentFromCoordinates = async (
+  lat: number,
+  lng: number,
+): Promise<string | null> => {
+  const response = await fetch(
+    `https://geo.api.gouv.fr/communes?lat=${lat}&lon=${lng}&fields=departement&format=json&geometry=centre`,
+  );
+  const data = await response.json();
+  // The geo API answers with a list of communes; guard against an empty or malformed body.
+  const communes = Array.isArray(data) ? data : [];
+  return communes.length > 0 ? (communes[0]?.departement?.nom ?? null) : null;
+};
+
+/**
  * Sort results by relevance
  */
 export function sortByRelevance(
@@ -191,3 +221,24 @@ export function sortByRelevance(
     return a.displayName.localeCompare(b.displayName);
   });
 }
+
+/**
+ * Searches cities and départements matching `search`, sorted by relevance, capped to the top 5.
+ */
+export const fetchLocationSuggestions = async (search: string): Promise<UnifiedSearchResult[]> => {
+  const apiSearchQuery = search.replace(/ /g, "%20");
+  const [municipalityData, departmentData] = await Promise.all([
+    fetch(
+      `https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`,
+    )
+      .then((response) => response.json())
+      .catch(() => ({ features: [] })),
+    fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
+      .then((response) => response.json())
+      .catch(() => []),
+  ]);
+
+  const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
+  const departmentResults = (departmentData || []).map(transformDepartmentResult);
+  return sortByRelevance([...municipalityResults, ...departmentResults], search).slice(0, 5);
+};

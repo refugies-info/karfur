@@ -16,6 +16,7 @@ interface SearchQuery extends ParsedUrlQuery {
   status?: string | string[];
   language?: string | string[];
   sort?: string;
+  hasUpcomingSession?: string;
 }
 
 const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
@@ -90,6 +91,7 @@ export interface QueryParams {
   status?: StatusOptions[];
   language?: string[];
   sort?: string;
+  hasUpcomingSession?: boolean;
 }
 
 export const buildQueryParams = (query: SearchQuery): QueryParams => ({
@@ -112,6 +114,12 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   ),
   language: getQueryParamAsArray(query.language),
   sort: typeof query.sort === "string" ? query.sort : undefined,
+  hasUpcomingSession:
+    query.hasUpcomingSession === "true"
+      ? true
+      : query.hasUpcomingSession === "false"
+        ? false
+        : undefined,
 });
 
 export const buildBaseMatch = (
@@ -119,6 +127,7 @@ export const buildBaseMatch = (
   algoliaIds?: string[],
 ): any => {
   const match: any = { status: "Actif" };
+  const exprConditions: any[] = [];
 
   if (algoliaIds) {
     const objectIds = toObjectIds(algoliaIds);
@@ -271,7 +280,7 @@ export const buildBaseMatch = (
       })
       .filter((cond) => cond !== null);
     if (ageConditions.length > 0) {
-      match.$expr = { $or: ageConditions };
+      exprConditions.push({ $or: ageConditions });
     }
   }
 
@@ -315,6 +324,27 @@ export const buildBaseMatch = (
     }));
     // Ensure language conditions are ANDed with other filters while ORed among themselves
     match.$and = (match.$and || []).concat([{ $or: languageConditions }]);
+  }
+
+  if (queryParams.hasUpcomingSession !== undefined) {
+    const upcomingSessionCount = {
+      $size: {
+        $filter: {
+          input: { $ifNull: ["$metadatas.sessions.items", []] },
+          as: "session",
+          cond: { $gt: ["$$session.startDate", "$$NOW"] },
+        },
+      },
+    };
+    exprConditions.push(
+      queryParams.hasUpcomingSession
+        ? { $gt: [upcomingSessionCount, 0] }
+        : { $eq: [upcomingSessionCount, 0] },
+    );
+  }
+
+  if (exprConditions.length > 0) {
+    match.$expr = exprConditions.length === 1 ? exprConditions[0] : { $and: exprConditions };
   }
 
   return match;
@@ -530,6 +560,27 @@ const buildSearchAggregation = (
     aggregation.push({ $sort: { nbVues: -1 } });
   } else if (sort === "date") {
     aggregation.push({ $sort: { publishedAt: -1 } });
+  } else if (sort === "nextSession") {
+    aggregation.push({
+      $addFields: {
+        nextSessionDate: {
+          $min: {
+            $filter: {
+              input: {
+                $map: {
+                  input: { $ifNull: ["$metadatas.sessions.items", []] },
+                  as: "session",
+                  in: "$$session.startDate",
+                },
+              },
+              as: "date",
+              cond: { $gt: ["$$date", "$$NOW"] },
+            },
+          },
+        },
+      },
+    });
+    aggregation.push({ $sort: { nextSessionDate: 1 } });
   } else {
     // "default" or undefined — sort by most recently updated
     aggregation.push({ $sort: { publishedAt: -1 } });

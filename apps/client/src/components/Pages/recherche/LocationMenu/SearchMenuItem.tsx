@@ -6,9 +6,10 @@ import { memo } from "react";
 
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-const SearchMenuItem = memo<Props>(({ onChange }) => {
+const SearchMenuItem = memo<Props>(({ onChange, onFocus }) => {
   const { t } = useTranslation();
   const placeholder = t("Recherche.searchPlaceholder", "Recherche par ville ou département");
 
@@ -34,6 +35,7 @@ const SearchMenuItem = memo<Props>(({ onChange }) => {
           type: "search",
           placeholder,
           onChange,
+          onFocus,
           className: "fr-input-wrap fr-icon-search-line",
         }}
       />
