@@ -1,7 +1,9 @@
 import Button from "@codegouvfr/react-dsfr/Button";
+import { createModal } from "@codegouvfr/react-dsfr/Modal";
+import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import type { CourseTab, FiltersState, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
@@ -38,12 +40,23 @@ const EMPTY_FILTERS: FiltersState = {
   publicFilter: [],
 };
 
+const mobileFiltersModal = createModal({
+  id: "learn-french-mobile-filters-modal",
+  isOpenedByDefault: false,
+});
+
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
   const [filters, setFilters] = useState<FiltersState>(EMPTY_FILTERS);
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
+  // DSFR's modal traps focus and closes on Escape natively (it's a <dialog>), but doesn't
+  // restore focus to the trigger on close — onConceal fires on every close (button, Escape,
+  // backdrop, or the "Voir les résultats" action) so this covers all of them.
+  useIsModalOpen(mobileFiltersModal, {
+    onConceal: () => mobileFiltersButtonRef.current?.focus(),
+  });
 
   const allNeeds = useSelector(needsSelector);
   const categoryOptions = useMemo(
@@ -87,10 +100,11 @@ const LearnFrench = (props: Props) => {
         />
         <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
           <Button
+            ref={mobileFiltersButtonRef}
             priority="secondary"
             iconId="fr-icon-equalizer-line"
             className="lg:hidden"
-            onClick={() => setShowMobileFilters(true)}
+            onClick={() => mobileFiltersModal.open()}
           >
             {t("LearnFrench.filters_title", "Filtrer")}
           </Button>
@@ -104,30 +118,19 @@ const LearnFrench = (props: Props) => {
             />
           </aside>
 
-          {showMobileFilters && (
-            <div className="bg-alt-blue-france fixed inset-0 z-50 overflow-y-auto p-4 lg:hidden">
-              <button
-                type="button"
-                className="absolute top-4 right-4"
-                onClick={() => setShowMobileFilters(false)}
-              >
-                <i className="fr-icon-close-line" aria-hidden="true" />
-                <span className="sr-only">{t("LearnFrench.filters_close", "Fermer")}</span>
-              </button>
-              <FiltersSidebar
-                filters={filters}
-                categoryOptions={categoryOptions}
-                onChange={setFilters}
-                onReset={() => setFilters(EMPTY_FILTERS)}
-              />
-              <Button
-                className="mt-6 w-full justify-center"
-                onClick={() => setShowMobileFilters(false)}
-              >
-                {t("LearnFrench.filters_apply", "Voir les résultats")}
-              </Button>
-            </div>
-          )}
+          <mobileFiltersModal.Component
+            title={t("LearnFrench.filters_title", "Filtrer")}
+            className="lg:hidden"
+            buttons={{ children: t("LearnFrench.filters_apply", "Voir les résultats") }}
+          >
+            <FiltersSidebar
+              filters={filters}
+              categoryOptions={categoryOptions}
+              onChange={setFilters}
+              onReset={() => setFilters(EMPTY_FILTERS)}
+              showTitle={false}
+            />
+          </mobileFiltersModal.Component>
 
           <div className="min-w-0 flex-1">
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />

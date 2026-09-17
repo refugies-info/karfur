@@ -1,7 +1,6 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
-import { cls } from "~/lib/classname";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { LocationPopoverBody } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
@@ -33,45 +32,30 @@ export const LocationFilterButton = (props: Props) => {
 
   return (
     <div className="relative" ref={containerRef}>
-      <button
-        type="button"
-        onClick={() => setIsOpen((open) => !open)}
-        className={cls(
-          "text-h5 inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold",
-          hasSelection
-            ? "bg-action-low-blue-france text-title-blue-france"
-            : "bg-default-grey hover:bg-open-blue-france",
-        )}
-      >
-        {hasSelection ? (
-          <>
+      {hasSelection ? (
+        <div className="text-h5 bg-action-low-blue-france text-title-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
+          <button type="button" onClick={() => setIsOpen((open) => !open)}>
             {summarizeLocations([...props.departments, ...props.cities])}
-            <span
-              role="button"
-              tabIndex={0}
-              onClick={(e) => {
-                e.stopPropagation();
-                props.onChange([], []);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.stopPropagation();
-                  props.onChange([], []);
-                }
-              }}
-              className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full"
-              aria-label={t("LearnFrench.location_clear", "Effacer la localisation")}
-            >
-              <i className="fr-icon-close-line fr-icon--sm text-white" aria-hidden="true" />
-            </span>
-          </>
-        ) : (
-          <>
-            {t("LearnFrench.location_placeholder", "Choisir la ville")}
-            <i className="fr-icon-arrow-down-s-line" aria-hidden="true" />
-          </>
-        )}
-      </button>
+          </button>
+          <button
+            type="button"
+            onClick={() => props.onChange([], [])}
+            className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full"
+            aria-label={t("LearnFrench.location_clear", "Effacer la localisation")}
+          >
+            <i className="fr-icon-close-line fr-icon--sm text-white" aria-hidden="true" />
+          </button>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setIsOpen((open) => !open)}
+          className="text-h5 bg-default-grey hover:bg-open-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold"
+        >
+          {t("LearnFrench.location_placeholder", "Choisir la ville")}
+          <i className="fr-icon-arrow-down-s-line" aria-hidden="true" />
+        </button>
+      )}
 
       {isOpen && (
         <div className="border-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border bg-white shadow-[0_4px_12px_0_rgba(0,0,18,0.16)]">

@@ -885,10 +885,10 @@
     "filters_level": "Niveau visé",
     "filters_category": "Catégorie",
     "filters_public": "Public visé",
-    "filters_close": "Fermer",
     "filters_apply": "Voir les résultats",
     "location_placeholder": "Choisir la ville",
-    "location_clear": "Effacer la localisation"
+    "location_clear": "Effacer la localisation",
+    "location_remove": "Retirer {{location}}"
   },
   "sitemap": {
     "title": "Plan du site",

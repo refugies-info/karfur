@@ -19,6 +19,7 @@ interface Props {
   categoryOptions: GetNeedResponse[];
   onChange: (filters: FiltersState) => void;
   onReset: () => void;
+  showTitle?: boolean;
 }
 
 const toggle = <T,>(list: T[], value: T): T[] =>
@@ -41,14 +42,16 @@ export const FiltersSidebar = (props: Props) => {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-title-grey text-h5 mb-0 font-bold">
-          {t("LearnFrench.filters_title", "Filtrer")}
-        </h2>
+      <div className="flex items-center">
+        {props.showTitle !== false && (
+          <h2 className="text-title-grey text-h5 mb-0 font-bold">
+            {t("LearnFrench.filters_title", "Filtrer")}
+          </h2>
+        )}
         {hasActiveFilters && (
           <button
             type="button"
-            className="text-title-blue-france text-sm underline"
+            className="text-title-blue-france ml-auto text-sm underline"
             onClick={props.onReset}
           >
             {t("LearnFrench.filters_reset", "Effacer")}

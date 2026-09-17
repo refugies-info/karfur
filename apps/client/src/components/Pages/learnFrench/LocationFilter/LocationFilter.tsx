@@ -36,6 +36,9 @@ export const LocationFilter = (props: Props) => {
               key={chip.key}
               type="button"
               onClick={chip.onRemove}
+              aria-label={selection.t("LearnFrench.location_remove", "Retirer {{location}}", {
+                location: chip.label,
+              })}
               className="bg-action-high-blue-france inline-flex items-center gap-1 rounded-full py-1 pl-3 pr-2 text-sm text-white"
             >
               {chip.label}
