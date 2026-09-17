@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useTranslation } from "next-i18next";
 import type React from "react";
 import { useEffect, useState } from "react";
@@ -7,6 +6,7 @@ import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { cls, cn } from "~/lib/classname";
 import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
+import { getDepartmentFromCoordinates } from "./functions";
 import styles from "./GeoLocationMenuItem.module.css";
 
 const GeoLocationMenuItem: React.FC = () => {
@@ -29,14 +29,8 @@ const GeoLocationMenuItem: React.FC = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (res) => {
-          axios
-            .get(
-              `https://geo.api.gouv.fr/communes?lat=${res.coords.latitude}&lon=${res.coords.longitude}&fields=departement&format=json&geometry=centre`,
-            )
-            .then((response) => {
-              // The geo API answers with a list of communes; guard against an empty or malformed body.
-              const communes = Array.isArray(response.data) ? response.data : [];
-              const department = communes.length > 0 ? communes[0]?.departement?.nom : undefined;
+          getDepartmentFromCoordinates(res.coords.latitude, res.coords.longitude).then(
+            (department) => {
               if (department) {
                 dispatch(
                   addToQueryActionCreator({
@@ -55,7 +49,8 @@ const GeoLocationMenuItem: React.FC = () => {
                   { priority: "interrupt" },
                 );
               }
-            });
+            },
+          );
           setPermissionDenied(false);
         },
         (error) => {

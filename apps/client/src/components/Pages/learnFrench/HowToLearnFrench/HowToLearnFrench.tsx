@@ -8,7 +8,6 @@ export interface HowToLearnFrenchCard {
   title: string;
   description: string;
   href: string;
-  /** i18n key for the card's tag, translated client-side (RI-1524) */
   tagKey: string;
 }
 
