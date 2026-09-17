@@ -8,6 +8,7 @@ const urlTranslations = [
   ["/publier", "/publish"],
   ["/traduire", "/translate"],
   ["/mission-et-impact", "/mission-and-impact"],
+  ["/trouver-cours-francais", "/find-french-class"],
   ["/mentions-legales", "/legal-notices"],
   ["/declaration-accessibilite", "/accessibility-statement"],
   ["/politique-de-confidentialite", "/privacy-policy"],

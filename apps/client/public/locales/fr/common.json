@@ -861,6 +861,18 @@
     "navbarItem8": "Voir les statistiques",
     "join_title": "Travaillons ensemble ! Vous êtes... ? "
   },
+  "LearnFrench": {
+    "seoTitle": "Trouvez le cours de français adapté !",
+    "hero_title": "Trouvez le cours de français adapté !",
+    "hero_subtitle": "Recherchez des cours de français gratuits partout en France par département et niveau.",
+    "hero_search_cta": "Trouver un cours de français",
+    "hero_learn_more_cta": "Que faire pour apprendre le français ?",
+    "howTo_title": "Que faire pour apprendre le français ?",
+    "howTo_subtitle": "Certaines démarches ou solutions dépendent de la situation de la personne. Retrouvez ici les informations utiles avant de choisir un cours.",
+    "howTo_tag_arrival": "À l'arrivée en France",
+    "howTo_tag_mandatory": "Obligatoire selon les cas",
+    "howTo_tag_certification": "Prouver son niveau"
+  },
   "sitemap": {
     "title": "Plan du site",
     "sections": {
