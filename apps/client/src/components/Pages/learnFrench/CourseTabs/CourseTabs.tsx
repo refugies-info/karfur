@@ -14,11 +14,6 @@ interface Props {
   onChange: (tab: CourseTab) => void;
 }
 
-/**
- * Matches the Figma design for this page specifically (filled navy active tab,
- * container hugging its 3 tabs), not the shared UI/Tabs (border-only active state,
- * full-width bar), used differently on /recherche.
- */
 export const CourseTabs = (props: Props) => {
   const { t } = useTranslation();
 

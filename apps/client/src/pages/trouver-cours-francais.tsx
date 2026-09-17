@@ -51,9 +51,6 @@ const LearnFrench = (props: Props) => {
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
   const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
-  // DSFR's modal traps focus and closes on Escape natively (it's a <dialog>), but doesn't
-  // restore focus to the trigger on close — onConceal fires on every close (button, Escape,
-  // backdrop, or the "Voir les résultats" action) so this covers all of them.
   useIsModalOpen(mobileFiltersModal, {
     onConceal: () => mobileFiltersButtonRef.current?.focus(),
   });
