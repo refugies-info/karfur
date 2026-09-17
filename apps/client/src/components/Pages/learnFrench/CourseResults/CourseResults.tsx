@@ -1,6 +1,8 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
+import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
+import Image from "~/components/UI/Image";
 import { CourseCard } from "./CourseCard";
 import { ShareResultsButtons } from "./ShareResultsButtons";
 
@@ -24,15 +26,16 @@ export const CourseResults = (props: Props) => {
 
   if (props.results.length === 0) {
     return (
-      <div className="flex flex-col items-start gap-4">
-        <div>
-          <h2 className="mb-2">
+      <div className="flex flex-col items-center gap-10 py-14">
+        <Image src={TutoImg} width={176} height={120} alt="" />
+        <div className="text-chapo text-default-grey flex flex-col items-center gap-1.5 text-center">
+          <h2 className="text-chapo mb-0 font-bold">
             {t(
               "Recherche.noResultTitle",
               "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
             )}
           </h2>
-          <p>
+          <p className="mb-0">
             {t(
               "Recherche.noResultText",
               "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
