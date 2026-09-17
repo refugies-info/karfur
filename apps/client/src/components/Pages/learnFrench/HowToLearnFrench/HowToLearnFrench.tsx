@@ -30,7 +30,7 @@ export const HowToLearnFrench = (props: Props) => {
           {props.cards.map((card) => (
             <Card key={card.href} title={card.title} link={card.href} newTab={false}>
               <p className="text-title-blue-france !mb-2 text-sm font-bold uppercase">
-                {t(card.tagKey, "")}
+                {t(card.tagKey, card.tagKey)}
               </p>
               <p className="mb-0">{card.description}</p>
             </Card>
