@@ -58,7 +58,7 @@ export const LocationFilterButton = (props: Props) => {
       )}
 
       {isOpen && (
-        <div className="border-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border bg-white shadow-[0_4px_12px_0_rgba(0,0,18,0.16)]">
+        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border shadow-[var(--raised-shadow)]">
           <UseMyPositionButton
             t={selection.t}
             useMyPosition={selection.useMyPosition}

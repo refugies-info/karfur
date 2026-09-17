@@ -1,6 +1,7 @@
 import debounce from "lodash/debounce";
 import { useTranslation } from "next-i18next";
 import { type ChangeEvent, useCallback, useMemo, useState } from "react";
+import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
   commonPlaces,
   fetchLocationSuggestions,
@@ -15,18 +16,37 @@ export const useLocationSelection = (
   onChange: (departments: string[], cities: string[]) => void,
 ) => {
   const { t } = useTranslation();
+  const announce = useAnnounce();
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState<UnifiedSearchResult[]>([]);
   const [geolocating, setGeolocating] = useState(false);
 
-  const handleSearchChange = useCallback(async (value: string) => {
-    setSearch(value);
-    if (value.length <= 2) {
-      setSuggestions([]);
-      return;
-    }
-    setSuggestions(await fetchLocationSuggestions(value));
-  }, []);
+  const announceResults = useCallback(
+    (count: number) => {
+      announce(t("Recherche.citySelectionsResults", { count }), { delay: 1500 });
+    },
+    [announce, t],
+  );
+
+  const handleSearchChange = useCallback(
+    async (value: string) => {
+      setSearch(value);
+      if (value.length <= 2) {
+        setSuggestions([]);
+        announceResults(0);
+        return;
+      }
+      try {
+        const results = await fetchLocationSuggestions(value);
+        setSuggestions(results);
+        announceResults(results.length);
+      } catch {
+        setSuggestions([]);
+        announceResults(0);
+      }
+    },
+    [announceResults],
+  );
 
   const debouncedSearchChange = useMemo(
     () => debounce(handleSearchChange, 500),

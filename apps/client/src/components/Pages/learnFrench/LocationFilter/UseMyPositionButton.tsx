@@ -1,4 +1,3 @@
-import { onEnterOrSpace } from "~/lib/onEnterOrSpace";
 import type { useLocationSelection } from "./useLocationSelection";
 
 type Selection = ReturnType<typeof useLocationSelection>;
@@ -10,7 +9,6 @@ export const UseMyPositionButton = (props: Props) => (
     <button
       type="button"
       onClick={props.useMyPosition}
-      onKeyDown={(e) => onEnterOrSpace(e, props.useMyPosition)}
       disabled={props.geolocating}
       className="text-title-blue-france flex items-start gap-2 text-base font-medium"
     >
