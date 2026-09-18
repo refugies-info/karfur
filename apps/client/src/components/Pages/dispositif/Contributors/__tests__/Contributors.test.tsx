@@ -7,21 +7,22 @@ import Contributors from "../Contributors";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-const dispositif = (origin: DispositifOrigin) => ({
+const dispositif = (origin: DispositifOrigin, location?: string[]) => ({
   _id: "dispositif-id",
   origin,
   theme: "themeId",
   secondaryThemes: [],
   needs: [],
+  metadatas: { location },
   participants: [{ _id: "user-1", username: "Alice", roles: [] }],
 });
 
-const renderWithOrigin = (origin: DispositifOrigin) =>
+const renderWithOrigin = (origin: DispositifOrigin, location?: string[]) =>
   wrapWithProvidersAndRenderForTesting({
     Component: Contributors,
     reduxState: {
       ...initialMockStore,
-      selectedDispositif: dispositif(origin) as any,
+      selectedDispositif: dispositif(origin, location) as any,
     },
   });
 
@@ -46,6 +47,27 @@ describe("Contributors", () => {
     renderWithOrigin(DispositifOrigin.RCO);
 
     expect(screen.getByRole("heading", { name: "Source" })).toBeInTheDocument();
+  });
+
+  it("shows the logo of the regional Carif-Oref covering the dispositif", () => {
+    renderWithOrigin(DispositifOrigin.RCO, ["75 - Paris", "93 - Seine-Saint-Denis"]);
+
+    const logo = screen.getByAltText("Logo Région Île-de-France");
+    expect(decodeURIComponent(logo.getAttribute("src") || "")).toContain(
+      "/images/sources/carif-oref-ile-de-france.webp",
+    );
+    // The i18n mock returns keys, so we check the region-aware sentence is the one picked
+    expect(screen.getByText("ContentSources.RCO.descriptionWithRegion")).toBeInTheDocument();
+  });
+
+  it("falls back to the generic Carif-Oref logo when no region can be identified", () => {
+    renderWithOrigin(DispositifOrigin.RCO);
+
+    const logo = screen.getByAltText("Logo RCO");
+    expect(decodeURIComponent(logo.getAttribute("src") || "")).toContain(
+      "/images/sources/carif-oref-logo.png",
+    );
+    expect(screen.getByText("ContentSources.RCO.description")).toBeInTheDocument();
   });
 
   it("does not show a source card for content authored on Réfugiés.info", () => {
