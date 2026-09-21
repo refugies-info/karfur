@@ -15,7 +15,7 @@ import {
 } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
-import { HOW_TO_LEARN_FRENCH_CARD_IDS, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { HOW_TO_LEARN_FRENCH_CARDS_CONFIG, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
@@ -160,19 +160,11 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
-  const cardConfig: { id: string; tagKey: string }[] = [
-    { id: HOW_TO_LEARN_FRENCH_CARD_IDS.cir, tagKey: "LearnFrench.howTo_tag_arrival" },
-    { id: HOW_TO_LEARN_FRENCH_CARD_IDS.civicExam, tagKey: "LearnFrench.howTo_tag_mandatory" },
-    {
-      id: HOW_TO_LEARN_FRENCH_CARD_IDS.certification,
-      tagKey: "LearnFrench.howTo_tag_certification",
-    },
-  ];
-
   const settledCards = await Promise.allSettled(
-    cardConfig.map(async ({ id, tagKey }) => {
+    HOW_TO_LEARN_FRENCH_CARDS_CONFIG.map(async ({ id, tagKey, icon }) => {
       const dispositif = await API.getDispositif(id, locale || "fr");
       return {
+        icon,
         title: dispositif.titreInformatif,
         description: dispositif.abstract,
         tagKey,
@@ -190,7 +182,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       howToCards.push(result.value);
     } else if (result.status === "rejected") {
       logger.error("[trouver-cours-francais] fetching card failed", {
-        id: cardConfig[index].id,
+        id: HOW_TO_LEARN_FRENCH_CARDS_CONFIG[index].id,
         error: result.reason,
       });
     }
