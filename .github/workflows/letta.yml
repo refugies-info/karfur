@@ -113,12 +113,18 @@ jobs:
             keep code suggestions and identifiers in English.
 
             Coding conventions are part of this review, not background reading.
-            AGENTS.md, CONTRIBUTING.md and `.specify/memory/constitution.md`
-            are the source of truth: a PR that contradicts them must be flagged
-            (see area 10), and a review that never opens them is incomplete.
-            If a convention doc looks stale next to the actual codebase, say so
-            instead of enforcing the stale rule — the toolchain has moved in the
-            past without the doc following.
+            `CLAUDE.md` — the coding-conventions document (RI-1437) — is the
+            primary source, alongside `documentation/README.md` (standards),
+            `CONTRIBUTING.md` (branching, PR process, commit prefixes),
+            `AGENTS.md` and `.specify/memory/constitution.md`. A PR that
+            contradicts them must be flagged (see area 10), and a review that
+            never opens them is incomplete. Where a doc disagrees with the real
+            codebase, say so instead of enforcing the stale rule — the toolchain
+            has moved in the past without the doc following.
+
+            Scope of `CLAUDE.md`'s "everything in English" rule: it governs
+            code, code comments and commit messages. Do not flag French PR or
+            issue text — French is the team's working language there.
 
             Review only. Never edit, commit or push: this job has read-only
             repository access, and "helpfully" fixing the PR on your own
@@ -160,14 +166,20 @@ jobs:
             9. Diff hygiene: every changed line should trace to the PR's stated
                scope — flag whole-file Biome/Prettier reformats, unrelated
                refactors, renames or formatting sweeps bundled with a fix.
-            10. Coding conventions (AGENTS.md, CONTRIBUTING.md, the
-               constitution): TypeScript strict; pnpm only, never npm/yarn;
-               new code uses App Router + Tailwind + Context API + Zod schemas
-               rather than the legacy Pages Router / SCSS / Redux / TypeGoose
-               stack; styling via DSFR tokens with no arbitrary values; shared
-               types in `@refugies-info/api-types`; shared UI in
-               `@refugies-info/ui`; `~` alias for `lib/` imports; no hardcoded
-               user-facing strings.
+            10. Coding conventions (`CLAUDE.md`, `documentation/README.md`):
+               camelCase variables/functions, PascalCase components, named
+               exports only, descriptive names over cryptic ones; code, code
+               comments and commit messages in concise English; new/touched code
+               fully typed; reuse an existing function instead of copy-pasting;
+               presentational components free of business logic and never
+               fetching data directly (data arrives via props); SCSS modules +
+               Tailwind/DSFR tokens — the documented
+               `stylelint-disable-next-line selector-class-pattern` above
+               `:global()` react-dsfr BEM selectors is an accepted pattern, not
+               a violation; server logging via `logger.*("[fn]", { data })`,
+               never log in client render. New code uses App Router + Tailwind +
+               Context API + Zod schemas rather than the legacy Pages Router /
+               SCSS / Redux / TypeGoose stack.
 
             Be surgical. Do not block the PR for stylistic nits or refactoring
             opportunities — call those out as suggestion comments only. If the PR
