@@ -1,10 +1,16 @@
 name: Letta Code
-# Two complementary trigger modes on the same agent (LETTA_AGENT_ID):
-#   1. Mention/label: users trigger the agent with `@letta-code` or the
-#      `letta-code` label, and the same conversation is resumed for follow-ups.
-#   2. Automated review: the `prompt:` input below auto-fires the agent on
-#      PR open / new commits / reopen, no mention required.
-# See https://github.com/letta-ai/letta-code-action#automated-workflows
+# One automation on the agent `vars.LETTA_AGENT_ID` (shared with playground),
+# with several entry points:
+#   - PR opened / reopened / synchronize / ready_for_review: a review pass
+#     fires automatically, no mention required.
+#   - New issues, or the `letta-code` label.
+#   - Comments and review comments, but only when they mention `@letta-code`.
+# `prompt:` is set, so the action always picks its "agent" mode — including for
+# mentions (src/modes/detector.ts returns "agent" as soon as `prompt` is set).
+# A mention therefore buys another review pass in the same thread, not a
+# branch-pushing interactive session. The agent resumes the conversation it
+# opened for this PR (matched on the summary `owner/repo/pr-<n>`). See
+# https://github.com/letta-ai/letta-code-action#automated-workflows
 on:
   issues:
     types: [opened, labeled]
@@ -25,10 +31,32 @@ jobs:
     # `github.event.sender.type != 'Bot'` because that would also exclude
     # release-please, future automation bots, and the action's own
     # github-actions identity, all of which may legitimately need a review.
-    if: github.event.sender.login != 'dependabot[bot]'
+    #
+    # Label events are restricted to the `letta-code` label. It does not exist
+    # in this repo, so in practice no label ever triggers a pass — which is the
+    # point: without this clause, adding ANY label started a full review pass,
+    # including release-please's "autorelease: pending" / "autorelease: tagged"
+    # on release PRs.
+    #
+    # Comment events additionally require an explicit `@letta-code` mention.
+    # Without that gate, every new comment started a full review pass: status
+    # comments, other review bots, and the agent's own replies to the author.
+    # PR events (opened / synchronize / reopened) are untouched, so
+    # release-please PRs are still reviewed on open and incremental reviews
+    # still fire when commits land.
+    if: >-
+      github.event.sender.login != 'dependabot[bot]' &&
+      (github.event.action != 'labeled' ||
+       github.event.label.name == 'letta-code') &&
+      (github.event_name != 'issue_comment' &&
+       github.event_name != 'pull_request_review_comment' ||
+       contains(github.event.comment.body, '@letta-code'))
     runs-on: ubuntu-latest
+    # Review only: the agent comments, it does not commit or push. On agent
+    # mode this job never pushes, so `contents: read` costs nothing and makes
+    # the boundary structural rather than a prompt-level promise.
     permissions:
-      contents: write
+      contents: read
       issues: write
       pull-requests: write
     steps:
@@ -40,12 +68,10 @@ jobs:
       # lag behind @letta-ai/letta-code on npm, so we install explicitly and
       # pass the resolved path via path_to_letta_executable. We deliberately
       # use `@latest`: getting the freshest CLI is the whole point of this
-      # step (the action is published as v0 with no semver discipline on the
-      # bundled binary). Supply-chain risk is accepted as a trade-off — if
-      # the npm package were ever compromised, the agent has access to the
-      # repo via `contents: write`, so this is a known and intentional
-      # trust boundary. Mitigation lives upstream (Letta's npm publishing
-      # process) rather than in pin/version policy.
+      # step. Supply-chain risk is accepted as a trade-off, but it is bounded
+      # by this job's permissions: a compromised package can read the repo and
+      # post comments, not push. Mitigation lives upstream (Letta's npm
+      # publishing process) rather than in pin/version policy.
       # https://github.com/letta-ai/letta-code-action#using-the-latest-cli
       - name: Install Letta Code CLI
         id: letta-bin
@@ -53,16 +79,27 @@ jobs:
           npm install -g @letta-ai/letta-code@latest
           echo "path=$(command -v letta)" >> "$GITHUB_OUTPUT"
 
-      - uses: letta-ai/letta-code-action@v0
+      # Pinned to a commit on main instead of a tag. `@v0` and `v0.0.6` both
+      # resolve to b50e45b (2026-04-15), where agent mode emitted neither
+      # `agent_id` nor `conversation_id` — only tag mode did. So
+      # `LETTA_AGENT_ID` reached the runner empty, it fell back to
+      # auto-discovery, and every run created a fresh agent with no
+      # conversation to resume. On b7e51ed (2026-09-15) agent mode reads
+      # `agent_id`, resolves the existing conversation and sets `is_followup`,
+      # which is what makes the inputs below effective. No upstream tag covers
+      # this revision: bump the SHA, do not go back to a floating tag.
+      # Dependabot's `github-actions` ecosystem keeps it moving.
+      - uses: letta-ai/letta-code-action@b7e51edb0643e67ae74327a1cdf0c332e549f8fc
         with:
           letta_api_key: ${{ secrets.LETTA_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # `agent_id` is only read in "tag" mode (@letta-code mention). This
-          # workflow always sets `prompt:`, so it runs in "agent" mode, which
-          # ignores agent_id and creates a new agent per run. We force reuse by
-          # passing `--agent` through letta_args (read by the CLI builder).
+          # Read in agent mode on the pinned revision, and used to resume the
+          # conversation opened for this PR. Do NOT also pass it through
+          # `letta_args`: run-letta.ts treats a user-supplied `--agent` as
+          # "switch agent" and appends `--new`, discarding the conversation_id
+          # the action just resolved. That is what made every run start a fresh
+          # conversation and re-review the PR from scratch.
           agent_id: ${{ vars.LETTA_AGENT_ID }}
-          letta_args: --agent ${{ vars.LETTA_AGENT_ID }}
           # "auto" lets the Letta platform pick the best model for the task.
           model: auto
           path_to_letta_executable: ${{ steps.letta-bin.outputs.path }}
@@ -74,6 +111,23 @@ jobs:
             You are reviewing a pull request on the Réfugiés.info (karfur) monorepo.
             Follow AGENTS.md and the karfur conventions. Write your review comments
             in French (the team is French-speaking); keep code suggestions in English.
+
+            Review only. Never edit, commit or push: this job has read-only
+            repository access, and "helpfully" fixing the PR on your own
+            initiative puts an unrelated commit on someone else's branch.
+
+            Budget — treat this as a hard constraint. A review that restates
+            the diff costs the author more than it gives them:
+            - One pass. No summary comment, no re-stating of the diff, no
+              praise padding, no tables.
+            - Review body: 5 bullets maximum, in the region of 1200 characters.
+            - Inline comments: 5 maximum, reserved for what blocks merge or
+              risks a production incident. Fold nits into a single bullet; do
+              not file what Biome already enforces.
+            - Never re-raise a finding that already exists in a review thread
+              on this PR, and say nothing about what the author has since
+              fixed.
+            - If nothing blocks merge, say so in one sentence and approve.
 
             Focus areas — only flag what blocks merge or risks a production incident:
             1. Accessibility (RGAA 4): semantic HTML, ARIA roles/labels, keyboard
@@ -95,6 +149,9 @@ jobs:
                z.record() without .lean() in repository methods, server awaits
                DB/cache init before app.listen (race condition).
             8. i18n keys: user-facing copy uses i18n keys, not literals.
+            9. Diff hygiene: every changed line should trace to the PR's stated
+               scope — flag whole-file Biome/Prettier reformats, unrelated
+               refactors, renames or formatting sweeps bundled with a fix.
 
             Be surgical. Do not block the PR for stylistic nits or refactoring
             opportunities — call those out as suggestion comments only. If the PR
@@ -102,3 +159,14 @@ jobs:
 
             Reply in the same conversation when the author responds — do not start
             a new review pass unless new commits land.
+          # Used instead of `prompt` when the action resumes the conversation
+          # it already opened for this PR (agent mode matches on the summary
+          # `owner/repo/pr-<n>`). Keeps follow-up passes delta-only.
+          followup_prompt: |
+            New commits landed on this PR since your last review. Review only
+            what changed since then, against the same focus areas and the same
+            budget (5 bullets, ~1200 characters, 5 inline comments maximum).
+
+            Do not repeat findings you already raised, and do not re-open
+            threads the author has since resolved. If the delta is clean, say
+            so in one sentence and approve.
