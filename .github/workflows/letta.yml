@@ -139,6 +139,13 @@ jobs:
             code, code comments and commit messages. Do not flag French PR or
             issue text — French is the team's working language there.
 
+            Delivery is part of the job: put the review on the pull request
+            itself, using `gh` (`gh pr review`, `gh api` for inline comments).
+            A review that remains in this conversation is invisible to the
+            team — a green check with no comment reads as "reviewed, nothing
+            wrong", which is worse than saying nothing at all. When nothing
+            blocks merge, submit an approving review whose body is one sentence.
+
             Review only. Never edit, commit or push: this job has read-only
             repository access, and "helpfully" fixing the PR on your own
             initiative puts an unrelated commit on someone else's branch.
@@ -211,3 +218,8 @@ jobs:
             Do not repeat findings you already raised, and do not re-open
             threads the author has since resolved. If the delta is clean, say
             so in one sentence and approve.
+
+            Delivery: post this on the pull request itself with `gh`
+            (`gh pr review`, `gh api` for inline comments). A review left in
+            this conversation is invisible to the team — a green check with no
+            comment reads as "reviewed, nothing wrong".
