@@ -66,6 +66,7 @@
     "relatedSheets_other": "{{count}} fiches liées",
     "relatedSheets_one": "{{count}} fiche liée",
     "relatedSheets_zero": "Aucune fiche liée",
+    "loading": "Chargement...",
     "loadingResults": "Chargement de {{count}} résultats...",
     "loadingResults_other": "Chargement de {{count}} résultats...",
     "loadingResults_one": "Chargement de {{count}} résultat...",

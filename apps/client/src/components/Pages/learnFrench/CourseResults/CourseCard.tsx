@@ -1,6 +1,7 @@
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { forwardRef } from "react";
 import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
@@ -19,7 +20,7 @@ const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   return first.split(" - ")[1] ?? first;
 };
 
-export const CourseCard = (props: Props) => {
+export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const title = useSanitizedContent(props.dispositif.titreInformatif);
@@ -42,6 +43,7 @@ export const CourseCard = (props: Props) => {
 
   return (
     <Link
+      ref={ref}
       href={href}
       className="border-default-grey hover:bg-alt-blue-france flex items-stretch border bg-white"
     >
@@ -51,13 +53,13 @@ export const CourseCard = (props: Props) => {
         }`}
       >
         {departmentBadge && (
-          <span className="w-fit rounded bg-[#fee7fc] px-1.5 py-1 text-xs font-bold whitespace-nowrap text-[#6e445a] uppercase">
+          <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
             {departmentBadge}
           </span>
         )}
         {nextSession ? (
           <div className="text-title-blue-france">
-            <p className="text-[40px] leading-none font-bold">
+            <p className="text-h1 leading-none font-bold">
               {new Date(nextSession.startDate).toLocaleDateString(locale, { day: "numeric" })}
             </p>
             <p className="text-base font-bold capitalize">
@@ -137,4 +139,6 @@ export const CourseCard = (props: Props) => {
       </div>
     </Link>
   );
-};
+});
+
+CourseCard.displayName = "CourseCard";
