@@ -29,7 +29,7 @@ const buildSearchParams = (
   usp.set("page", String(page));
   usp.set("limit", String(RESULTS_PER_PAGE));
   usp.set("locale", locale);
-  usp.set("sort", activeTab === CourseTab.ON_DEMAND ? "date" : "nextSession");
+  usp.set("sort", "nextSession");
   usp.append("themes", LEARN_FRENCH_THEME_ID);
 
   if (search) usp.set("search", search);

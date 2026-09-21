@@ -522,8 +522,11 @@ const buildSearchAggregation = (
   baseMatch: FilterQuery<SimpleDispositif>,
   options: SearchResultsOptions,
   algoliaIds?: string[],
+  locationFilter?: { departments?: string[]; cities?: string[] },
 ): PipelineStage[] => {
   const { page, limit, sort } = options;
+  const hasLocationFilter =
+    (locationFilter?.departments?.length ?? 0) > 0 || (locationFilter?.cities?.length ?? 0) > 0;
 
   const aggregation: PipelineStage[] = [
     { $match: baseMatch },
@@ -567,6 +570,30 @@ const buildSearchAggregation = (
   } else if (sort === "date") {
     aggregation.push({ $sort: { publishedAt: -1 } });
   } else if (sort === "nextSession") {
+    if (hasLocationFilter) {
+      aggregation.push({
+        $addFields: {
+          isLocal: {
+            $cond: {
+              if: {
+                $in: [
+                  "france",
+                  {
+                    $cond: [
+                      { $isArray: "$metadatas.location" },
+                      "$metadatas.location",
+                      ["$metadatas.location"],
+                    ],
+                  },
+                ],
+              },
+              then: 1,
+              else: 0,
+            },
+          },
+        },
+      });
+    }
     aggregation.push({
       $addFields: {
         nextSessionDate: {
@@ -591,7 +618,11 @@ const buildSearchAggregation = (
         },
       },
     });
-    aggregation.push({ $sort: { nextSessionDate: 1 } });
+    aggregation.push({
+      $sort: hasLocationFilter
+        ? { isLocal: 1, nextSessionDate: 1, publishedAt: -1 }
+        : { nextSessionDate: 1, publishedAt: -1 },
+    });
   } else {
     // "default" or undefined — sort by most recently updated
     aggregation.push({ $sort: { publishedAt: -1 } });
@@ -750,7 +781,10 @@ export const computeSearchResults = async (
     }
   }
 
-  const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds);
+  const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds, {
+    departments: queryParams.departments,
+    cities: queryParams.cities,
+  });
 
   const isSessionTimeSensitive =
     queryParams.hasUpcomingSession !== undefined || options.sort === "nextSession";
