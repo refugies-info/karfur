@@ -29,9 +29,12 @@ const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
  * Safely execute an aggregate with speedgoose cache, falling back to plain exec().
  * Parameter typed as `any` because speedgoose augments Aggregate with extra type params.
  */
-export const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
+export const executeCachedPipeline = async <T = any>(
+  aggregateQuery: any,
+  cacheOptions?: { ttl?: number },
+): Promise<T[]> => {
   return typeof aggregateQuery.cachePipeline === "function"
-    ? aggregateQuery.cachePipeline()
+    ? aggregateQuery.cachePipeline(cacheOptions)
     : aggregateQuery.exec();
 };
 
@@ -39,8 +42,11 @@ export const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promi
  * Safely execute a query with speedgoose cache, falling back to plain exec().
  * Parameter typed as `any` because speedgoose augments Query with extra type params.
  */
-export const executeCachedQuery = async <T = any>(query: any): Promise<T> => {
-  return typeof query.cacheQuery === "function" ? query.cacheQuery() : query.exec();
+export const executeCachedQuery = async <T = any>(
+  query: any,
+  cacheOptions?: { ttl?: number },
+): Promise<T> => {
+  return typeof query.cacheQuery === "function" ? query.cacheQuery(cacheOptions) : query.exec();
 };
 
 /**
@@ -564,19 +570,24 @@ const buildSearchAggregation = (
     aggregation.push({
       $addFields: {
         nextSessionDate: {
-          $min: {
-            $filter: {
-              input: {
-                $map: {
-                  input: { $ifNull: ["$metadatas.sessions.items", []] },
-                  as: "session",
-                  in: "$$session.startDate",
+          $ifNull: [
+            {
+              $min: {
+                $filter: {
+                  input: {
+                    $map: {
+                      input: { $ifNull: ["$metadatas.sessions.items", []] },
+                      as: "session",
+                      in: "$$session.startDate",
+                    },
+                  },
+                  as: "date",
+                  cond: { $gt: ["$$date", "$$NOW"] },
                 },
               },
-              as: "date",
-              cond: { $gt: ["$$date", "$$NOW"] },
             },
-          },
+            new Date("8800-01-01"),
+          ],
         },
       },
     });
@@ -741,9 +752,18 @@ export const computeSearchResults = async (
 
   const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds);
 
+  const isSessionTimeSensitive =
+    queryParams.hasUpcomingSession !== undefined || options.sort === "nextSession";
+
   const [results, total, typeCounts, suggestions] = await Promise.all([
-    executeCachedPipeline(Dispositif.aggregate(aggregation)),
-    executeCachedQuery<number>(Dispositif.countDocuments(baseMatch)),
+    executeCachedPipeline(
+      Dispositif.aggregate(aggregation),
+      isSessionTimeSensitive ? { ttl: 60 } : undefined,
+    ),
+    executeCachedQuery<number>(
+      Dispositif.countDocuments(baseMatch),
+      isSessionTimeSensitive ? { ttl: 60 } : undefined,
+    ),
     executeCachedPipeline(
       Dispositif.aggregate([
         { $match: baseMatchForCounts },

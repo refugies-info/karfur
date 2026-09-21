@@ -7,8 +7,9 @@ import {
 } from "~/components/Pages/learnFrench";
 import { LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import useLocale from "~/hooks/useLocale";
+import { logger } from "~/logger";
 
-const RESULTS_PER_PAGE = 10;
+export const RESULTS_PER_PAGE = 10;
 
 interface CourseSearchResponse {
   results: SimpleDispositif[];
@@ -57,21 +58,32 @@ export const useCourseSearch = (
   const [pageCount, setPageCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState(false);
   const requestIdRef = useRef(0);
 
   useEffect(() => {
     if (!ready) return;
     const requestId = ++requestIdRef.current;
     setLoading(true);
+    setError(false);
 
     fetch(`/api/search?${buildSearchParams(filters, search, activeTab, 1, locale).toString()}`)
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
+        return response.json();
+      })
       .then((data: CourseSearchResponse) => {
         if (requestId !== requestIdRef.current) return;
         setResults(data.results);
         setTotal(data.total);
         setPage(data.page);
         setPageCount(data.pageCount);
+      })
+      .catch((err) => {
+        if (requestId !== requestIdRef.current) return;
+        logger.error("[useCourseSearch] fetching results failed", { error: err });
+        setResults([]);
+        setError(true);
       })
       .finally(() => {
         if (requestId === requestIdRef.current) setLoading(false);
@@ -80,20 +92,25 @@ export const useCourseSearch = (
 
   const loadMore = async () => {
     setLoadingMore(true);
+    const requestId = ++requestIdRef.current;
     try {
-      const requestId = ++requestIdRef.current;
       const response = await fetch(
         `/api/search?${buildSearchParams(filters, search, activeTab, page + 1, locale).toString()}`,
       );
+      if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
       const data: CourseSearchResponse = await response.json();
       if (requestId !== requestIdRef.current) return;
       setResults((previous) => [...previous, ...data.results]);
       setPage(data.page);
       setPageCount(data.pageCount);
+    } catch (err) {
+      if (requestId === requestIdRef.current) {
+        logger.error("[useCourseSearch] loading more results failed", { error: err });
+      }
     } finally {
-      setLoadingMore(false);
+      if (requestId === requestIdRef.current) setLoadingMore(false);
     }
   };
 
-  return { results, total, page, pageCount, loading, loadingMore, loadMore };
+  return { results, total, page, pageCount, loading, loadingMore, error, loadMore };
 };

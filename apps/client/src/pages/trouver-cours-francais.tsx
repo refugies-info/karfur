@@ -138,6 +138,7 @@ const LearnFrench = (props: Props) => {
               <CourseResults
                 results={courseSearch.results}
                 total={courseSearch.total}
+                page={courseSearch.page}
                 loading={courseSearch.loading}
                 loadingMore={courseSearch.loadingMore}
                 hasMore={courseSearch.page < courseSearch.pageCount}
