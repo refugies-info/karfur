@@ -30,6 +30,7 @@ const buildSearchParams = (
   usp.set("limit", String(RESULTS_PER_PAGE));
   usp.set("locale", locale);
   usp.set("sort", "nextSession");
+  usp.set("strictNeeds", "true");
   usp.append("themes", LEARN_FRENCH_THEME_ID);
 
   if (search) usp.set("search", search);
