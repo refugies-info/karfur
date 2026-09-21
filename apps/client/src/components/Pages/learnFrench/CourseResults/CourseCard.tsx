@@ -20,6 +20,11 @@ const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   return first.split(" - ")[1] ?? first;
 };
 
+const isOnlineCourse = (dispositif: SimpleDispositif): boolean => {
+  const location = dispositif.metadatas?.location;
+  return !Array.isArray(location) && location === "online";
+};
+
 export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
@@ -29,6 +34,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const nextSession = getNextUpcomingSession(props.dispositif);
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
   const departmentBadge = getDepartmentBadge(props.dispositif);
+  const isOnline = isOnlineCourse(props.dispositif);
   const tags = (props.dispositif.needs ?? [])
     .map((needId) => props.needLabels.get(String(needId)))
     .filter((label): label is string => Boolean(label));
@@ -53,10 +59,17 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
           nextSession ? "border-action-high-blue-france border-l-4" : ""
         }`}
       >
-        {departmentBadge && (
-          <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-            {departmentBadge}
+        {isOnline ? (
+          <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+            <i className="ri-at-line" aria-hidden="true" />
+            {t("Recherche.online", "En ligne")}
           </span>
+        ) : (
+          departmentBadge && (
+            <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+              {departmentBadge}
+            </span>
+          )
         )}
         {sessionDate ? (
           <div className="text-title-blue-france">
