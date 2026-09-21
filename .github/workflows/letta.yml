@@ -96,7 +96,9 @@ jobs:
       # flag swaps `followup_prompt` in for `prompt`. `letta_args: --new` below
       # takes the fresh-conversation branch instead.
       # No upstream tag covers this revision: bump the SHA, do not go back to a
-      # floating tag. Dependabot's `github-actions` ecosystem keeps it moving.
+      # floating tag. Dependabot will not do it for us — for the
+      # `github-actions` ecosystem it only advances tagged refs, never a
+      # floating SHA. Moving the pin is a manual step, taken when a fix lands.
       - uses: letta-ai/letta-code-action@b7e51edb0643e67ae74327a1cdf0c332e549f8fc
         with:
           letta_api_key: ${{ secrets.LETTA_API_KEY }}
