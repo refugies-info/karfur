@@ -1,5 +1,5 @@
 name: Letta Code
-# One automation on the agent `vars.LETTA_AGENT_ID` (shared with playground),
+# One automation on the same agent (vars.LETTA_AGENT_ID, shared with playground),
 # with several entry points:
 #   - PR opened / reopened / synchronize / ready_for_review: a review pass
 #     fires automatically, no mention required.
@@ -8,8 +8,9 @@ name: Letta Code
 # `prompt:` is set, so the action always picks its "agent" mode — including for
 # mentions (src/modes/detector.ts returns "agent" as soon as `prompt` is set).
 # A mention therefore buys another review pass in the same thread, not a
-# branch-pushing interactive session. The agent resumes the conversation it
-# opened for this PR (matched on the summary `owner/repo/pr-<n>`). See
+# branch-pushing interactive session. Each pass runs the full review prompt on
+# a fresh conversation against the shared agent (`letta_args: --new` below);
+# it does not resume the pass it opened for this PR. See
 # https://github.com/letta-ai/letta-code-action#automated-workflows
 on:
   issues:
@@ -83,12 +84,19 @@ jobs:
       # resolve to b50e45b (2026-04-15), where agent mode emitted neither
       # `agent_id` nor `conversation_id` — only tag mode did. So
       # `LETTA_AGENT_ID` reached the runner empty, it fell back to
-      # auto-discovery, and every run created a fresh agent with no
-      # conversation to resume. On b7e51ed (2026-09-15) agent mode reads
-      # `agent_id`, resolves the existing conversation and sets `is_followup`,
-      # which is what makes the inputs below effective. No upstream tag covers
-      # this revision: bump the SHA, do not go back to a floating tag.
-      # Dependabot's `github-actions` ecosystem keeps it moving.
+      # auto-discovery, and every run created a fresh agent. That is also why
+      # this workflow used to smuggle the agent through `letta_args`. On
+      # b7e51ed (2026-09-15) agent mode reads `agent_id` (modes/agent/index.ts),
+      # which is what makes the input below effective. It also looks up a
+      # conversation by summary (`PR #<n> owner/repo`) and, when the lookup
+      # hits, sets `conversation_id` and `is_followup` — which is why every run
+      # after the first one on a PR failed on 2026-09-21: run-letta.ts resumes
+      # with `--conversation <id>` whenever `letta_args` carries no override,
+      # and the CLI rejects the flags that follow it. That same `is_followup`
+      # flag swaps `followup_prompt` in for `prompt`. `letta_args: --new` below
+      # takes the fresh-conversation branch instead.
+      # No upstream tag covers this revision: bump the SHA, do not go back to a
+      # floating tag. Dependabot's `github-actions` ecosystem keeps it moving.
       - uses: letta-ai/letta-code-action@b7e51edb0643e67ae74327a1cdf0c332e549f8fc
         with:
           letta_api_key: ${{ secrets.LETTA_API_KEY }}
