@@ -27,6 +27,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const description = useSanitizedContent(props.dispositif.abstract);
 
   const nextSession = getNextUpcomingSession(props.dispositif);
+  const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
   const departmentBadge = getDepartmentBadge(props.dispositif);
   const tags = (props.dispositif.needs ?? [])
     .map((needId) => props.needLabels.get(String(needId)))
@@ -57,16 +58,16 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             {departmentBadge}
           </span>
         )}
-        {nextSession ? (
+        {sessionDate ? (
           <div className="text-title-blue-france">
             <p className="text-h1 leading-none font-bold">
-              {new Date(nextSession.startDate).toLocaleDateString(locale, { day: "numeric" })}
+              {sessionDate.toLocaleDateString(locale, { day: "numeric" })}
             </p>
             <p className="text-base font-bold capitalize">
-              {new Date(nextSession.startDate).toLocaleDateString(locale, { month: "long" })}
+              {sessionDate.toLocaleDateString(locale, { month: "long" })}
             </p>
             <p className="text-base">
-              {new Date(nextSession.startDate).toLocaleDateString(locale, { year: "numeric" })}
+              {sessionDate.toLocaleDateString(locale, { year: "numeric" })}
             </p>
           </div>
         ) : (
