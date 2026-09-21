@@ -93,28 +93,39 @@ jobs:
         with:
           letta_api_key: ${{ secrets.LETTA_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Read in agent mode on the pinned revision, and used to resume the
-          # conversation opened for this PR. Do NOT also pass it through
-          # `letta_args`: run-letta.ts treats a user-supplied `--agent` as
-          # "switch agent" and appends `--new`, discarding the conversation_id
-          # the action just resolved. That is what made every run start a fresh
-          # conversation and re-review the PR from scratch.
+          # Read in agent mode on the pinned revision. Do NOT smuggle this
+          # through `letta_args` as `--agent <id>`: run-letta.ts treats a
+          # user-supplied `--agent` as "switch agent" and appends `--new`,
+          # discarding the conversation_id the action just resolved.
           agent_id: ${{ vars.LETTA_AGENT_ID }}
-          # Required for the resume path to work at all. `run-letta.ts` on
-          # b7e51ed appends `--yolo` whenever `environment` is empty, and the
-          # CLI (>= 0.32.5) refuses that combination on a `--conversation`
-          # send: "--yolo configures local execution and is not supported when
-          # sending to an existing Cloud harness." The run then dies in ~1s
-          # with `num_turns: 0`, before any review happens — which is why every
-          # run after the first one on a PR was red.
+          # Force a fresh conversation, matching playground. This is a
+          # workaround, and reverting it is the point of the upstream issue
+          # linked in this PR.
           #
-          # With the environment set, the action emits `--environment cloud`
-          # and deliberately omits `-m`/`--yolo`, so the resolved conversation
-          # is actually resumed and `followup_prompt` drives delta-only
-          # follow-ups. The turn runs on the agent's Cloud harness with the
-          # agent's own configuration, which also means a `model:` input would
-          # be ignored — hence none is passed here.
-          environment: cloud
+          # Why not resume: `run-letta.ts` on b7e51ed pushes `--conversation
+          # <id>` (a send to the agent's Cloud harness) and, because
+          # `environment` is empty, still appends `--yolo`. The CLI (>= 0.32.5)
+          # rejects that pair before doing anything:
+          #   "--yolo configures local execution and is not supported when
+          #    sending to an existing Cloud harness."
+          # The step then exits 1 with `num_turns: 0` and produces no review —
+          # which is why every run after the first one on a PR was red.
+          #
+          # Why not `environment: cloud`: setting it makes the command valid
+          # and the conversation does resume (delta-only `followup_prompt`),
+          # but the turn then executes on the agent's Cloud harness, which has
+          # no GitHub credentials for this repo. Verified 2026-09-21: the check
+          # went green and the agent wrote a correct review, but nothing was
+          # posted to the PR. A green check with no visible review is worse
+          # than a red one, so runner execution wins until upstream omits
+          # local-execution flags on the `--conversation` branch.
+          #
+          # Cost of `--new`: every review pass starts from scratch, with no
+          # memory of its own earlier findings. The prompt compensates by
+          # refusing to re-raise anything already in this PR's review threads.
+          letta_args: --new
+          # "auto" lets the Letta platform pick the model for the task.
+          model: auto
           path_to_letta_executable: ${{ steps.letta-bin.outputs.path }}
           # Auto-review prompt. The agent already has karfur context in
           # memory (architecture, AGENTS.md, gotchas, conventions), so this
@@ -138,13 +149,6 @@ jobs:
             Scope of `CLAUDE.md`'s "everything in English" rule: it governs
             code, code comments and commit messages. Do not flag French PR or
             issue text — French is the team's working language there.
-
-            Delivery is part of the job: put the review on the pull request
-            itself, using `gh` (`gh pr review`, `gh api` for inline comments).
-            A review that remains in this conversation is invisible to the
-            team — a green check with no comment reads as "reviewed, nothing
-            wrong", which is worse than saying nothing at all. When nothing
-            blocks merge, submit an approving review whose body is one sentence.
 
             Review only. Never edit, commit or push: this job has read-only
             repository access, and "helpfully" fixing the PR on your own
@@ -205,21 +209,13 @@ jobs:
             opportunities — call those out as suggestion comments only. If the PR
             is clean for its stated scope, say so briefly and approve.
 
-            Reply in the same conversation when the author responds — do not start
-            a new review pass unless new commits land.
-          # Used instead of `prompt` when the action resumes the conversation
-          # it already opened for this PR (agent mode matches on the summary
-          # `owner/repo/pr-<n>`). Keeps follow-up passes delta-only.
-          followup_prompt: |
-            New commits landed on this PR since your last review. Review only
-            what changed since then, against the same focus areas and the same
-            budget (5 bullets, ~1200 characters, 5 inline comments maximum).
-
-            Do not repeat findings you already raised, and do not re-open
-            threads the author has since resolved. If the delta is clean, say
-            so in one sentence and approve.
-
-            Delivery: post this on the pull request itself with `gh`
-            (`gh pr review`, `gh api` for inline comments). A review left in
-            this conversation is invisible to the team — a green check with no
-            comment reads as "reviewed, nothing wrong".
+            Comment on the pull request itself. Each pass runs on a fresh
+            conversation, so anything you want the author to see has to be a
+            comment on this PR — never a note to yourself.
+          # Deliberately no `followup_prompt` here, matching playground. Agent
+          # mode sets `is_followup` from the summary lookup, which runs whether
+          # or not `--new` is passed, and the action prefers `followup_prompt`
+          # over `prompt` whenever it is set. With `--new` there is no prior
+          # review to diff against, so a follow-up prompt would mean a delta
+          # review of nothing. Re-add it only together with real conversation
+          # resumption.
