@@ -28,14 +28,8 @@ export const useLocationSelection = (
     [announce, t],
   );
 
-  const handleSearchChange = useCallback(
+  const fetchSuggestionsFor = useCallback(
     async (value: string) => {
-      setSearch(value);
-      if (value.length <= 2) {
-        setSuggestions([]);
-        announceResults(0);
-        return;
-      }
       try {
         const results = await fetchLocationSuggestions(value);
         setSuggestions(results);
@@ -48,13 +42,24 @@ export const useLocationSelection = (
     [announceResults],
   );
 
-  const debouncedSearchChange = useMemo(
-    () => debounce(handleSearchChange, 500),
-    [handleSearchChange],
+  const debouncedFetchSuggestions = useMemo(
+    () => debounce(fetchSuggestionsFor, 500),
+    [fetchSuggestionsFor],
   );
+
   const onSearchInputChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => debouncedSearchChange(event.target.value),
-    [debouncedSearchChange],
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value;
+      setSearch(value);
+      if (value.length <= 2) {
+        debouncedFetchSuggestions.cancel();
+        setSuggestions([]);
+        announceResults(0);
+        return;
+      }
+      debouncedFetchSuggestions(value);
+    },
+    [debouncedFetchSuggestions, announceResults],
   );
 
   const toggleLocation = useCallback(
@@ -65,7 +70,12 @@ export const useLocationSelection = (
       const updated = exists
         ? list.filter((v) => decodeHTMLEntities(v) !== decoded)
         : [...list, decoded];
-      onChange(kind === "department" ? updated : departments, kind === "city" ? updated : cities);
+
+      if (kind === "department") {
+        onChange(updated, cities);
+      } else {
+        onChange(departments, updated);
+      }
     },
     [departments, cities, onChange],
   );
