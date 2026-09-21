@@ -52,6 +52,8 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
     <Link
       ref={ref}
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="border-default-grey hover:bg-alt-blue-france flex items-stretch border bg-white"
     >
       <div

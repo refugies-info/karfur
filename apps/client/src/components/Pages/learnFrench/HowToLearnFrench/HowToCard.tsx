@@ -17,6 +17,8 @@ export const HowToCard = (props: Props) => {
   return (
     <Link
       href={props.href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="border-default-grey hover:bg-alt-blue-france relative flex flex-1 flex-col items-center border bg-white pt-8"
     >
       <span
