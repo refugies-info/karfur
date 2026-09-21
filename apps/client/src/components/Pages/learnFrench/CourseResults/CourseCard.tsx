@@ -61,7 +61,6 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
       >
         {isOnline ? (
           <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-            <i className="ri-at-line" aria-hidden="true" />
             {t("Recherche.online", "En ligne")}
           </span>
         ) : (
