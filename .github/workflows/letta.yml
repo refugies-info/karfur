@@ -109,8 +109,16 @@ jobs:
           # project. Review comments target the French-speaking team.
           prompt: |
             You are reviewing a pull request on the Réfugiés.info (karfur) monorepo.
-            Follow AGENTS.md and the karfur conventions. Write your review comments
-            in French (the team is French-speaking); keep code suggestions in English.
+            Write your review comments in French (the team is French-speaking);
+            keep code suggestions and identifiers in English.
+
+            Coding conventions are part of this review, not background reading.
+            AGENTS.md, CONTRIBUTING.md and `.specify/memory/constitution.md`
+            are the source of truth: a PR that contradicts them must be flagged
+            (see area 10), and a review that never opens them is incomplete.
+            If a convention doc looks stale next to the actual codebase, say so
+            instead of enforcing the stale rule — the toolchain has moved in the
+            past without the doc following.
 
             Review only. Never edit, commit or push: this job has read-only
             repository access, and "helpfully" fixing the PR on your own
@@ -152,6 +160,14 @@ jobs:
             9. Diff hygiene: every changed line should trace to the PR's stated
                scope — flag whole-file Biome/Prettier reformats, unrelated
                refactors, renames or formatting sweeps bundled with a fix.
+            10. Coding conventions (AGENTS.md, CONTRIBUTING.md, the
+               constitution): TypeScript strict; pnpm only, never npm/yarn;
+               new code uses App Router + Tailwind + Context API + Zod schemas
+               rather than the legacy Pages Router / SCSS / Redux / TypeGoose
+               stack; styling via DSFR tokens with no arbitrary values; shared
+               types in `@refugies-info/api-types`; shared UI in
+               `@refugies-info/ui`; `~` alias for `lib/` imports; no hardcoded
+               user-facing strings.
 
             Be surgical. Do not block the PR for stylistic nits or refactoring
             opportunities — call those out as suggestion comments only. If the PR
