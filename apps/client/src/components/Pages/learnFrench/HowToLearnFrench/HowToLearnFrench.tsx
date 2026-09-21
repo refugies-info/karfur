@@ -1,10 +1,11 @@
+import type { StaticImageData } from "next/image";
 import { useTranslation } from "next-i18next";
-import Card from "~/components/Pages/staticPages/common/Card";
-import { RowCards } from "~/components/Pages/staticPages/common/RowCards";
 import { Section } from "~/components/Pages/staticPages/common/Section";
 import { Title2 } from "~/components/Pages/staticPages/common/Title2";
+import { HowToCard } from "./HowToCard";
 
 export interface HowToLearnFrenchCard {
+  icon: StaticImageData;
   title: string;
   description: string;
   href: string;
@@ -25,16 +26,18 @@ export const HowToLearnFrench = (props: Props) => {
           {t("LearnFrench.howTo_title")}
         </Title2>
         <p className="!text-large mb-10">{t("LearnFrench.howTo_subtitle")}</p>
-        <RowCards>
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-stretch lg:gap-8">
           {props.cards.map((card) => (
-            <Card key={card.href} title={card.title} link={card.href} newTab={false}>
-              <p className="text-title-blue-france !mb-2 text-sm font-bold uppercase">
-                {t(card.tagKey, card.tagKey)}
-              </p>
-              <p className="mb-0">{card.description}</p>
-            </Card>
+            <HowToCard
+              key={card.href}
+              icon={card.icon}
+              tagKey={card.tagKey}
+              title={card.title}
+              description={card.description}
+              href={card.href}
+            />
           ))}
-        </RowCards>
+        </div>
       </div>
     </Section>
   );
