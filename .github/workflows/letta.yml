@@ -100,8 +100,21 @@ jobs:
           # the action just resolved. That is what made every run start a fresh
           # conversation and re-review the PR from scratch.
           agent_id: ${{ vars.LETTA_AGENT_ID }}
-          # "auto" lets the Letta platform pick the best model for the task.
-          model: auto
+          # Required for the resume path to work at all. `run-letta.ts` on
+          # b7e51ed appends `--yolo` whenever `environment` is empty, and the
+          # CLI (>= 0.32.5) refuses that combination on a `--conversation`
+          # send: "--yolo configures local execution and is not supported when
+          # sending to an existing Cloud harness." The run then dies in ~1s
+          # with `num_turns: 0`, before any review happens — which is why every
+          # run after the first one on a PR was red.
+          #
+          # With the environment set, the action emits `--environment cloud`
+          # and deliberately omits `-m`/`--yolo`, so the resolved conversation
+          # is actually resumed and `followup_prompt` drives delta-only
+          # follow-ups. The turn runs on the agent's Cloud harness with the
+          # agent's own configuration, which also means a `model:` input would
+          # be ignored — hence none is passed here.
+          environment: cloud
           path_to_letta_executable: ${{ steps.letta-bin.outputs.path }}
           # Auto-review prompt. The agent already has karfur context in
           # memory (architecture, AGENTS.md, gotchas, conventions), so this
