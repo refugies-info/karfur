@@ -17,6 +17,7 @@ interface SearchQuery extends ParsedUrlQuery {
   language?: string | string[];
   sort?: string;
   hasUpcomingSession?: string;
+  strictNeeds?: string;
 }
 
 const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
@@ -98,6 +99,7 @@ export interface QueryParams {
   language?: string[];
   sort?: string;
   hasUpcomingSession?: boolean;
+  strictNeeds?: boolean;
 }
 
 export const buildQueryParams = (query: SearchQuery): QueryParams => ({
@@ -126,6 +128,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
       : query.hasUpcomingSession === "false"
         ? false
         : undefined,
+  strictNeeds: query.strictNeeds === "true",
 });
 
 export const buildBaseMatch = (
@@ -179,7 +182,12 @@ export const buildBaseMatch = (
   const needs = (queryParams.needs ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
   );
-  if (themes.length > 0 && needs.length > 0) {
+  if (themes.length > 0 && needs.length > 0 && queryParams.strictNeeds) {
+    const themeIds = toObjectIds(themes);
+    const needIds = toObjectIds(needs);
+    match.theme = { $in: themeIds };
+    match.needs = { $in: needIds };
+  } else if (themes.length > 0 && needs.length > 0) {
     // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
     // a record matches if it has the theme OR the need (not both).
     const themeIds = toObjectIds(themes);
