@@ -7,9 +7,6 @@ import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
 import { Event } from "~/lib/tracking";
 
-// Native <dialog>-based modal (same pattern as the mobile filters modal in
-// trouver-cours-francais.tsx): the SMS form must overlay the page instead of pushing content
-// down in the normal flow, and this gives us the focus-trap/Escape-close for free.
 const smsModal = createModal({
   id: "course-results-sms-modal",
   isOpenedByDefault: false,
