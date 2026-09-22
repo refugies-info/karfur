@@ -204,7 +204,7 @@ export const DispositifZodSchema = z.object({
   origin: z
     .enum(Object.values(DispositifOrigin) as [string, ...string[]])
     .default(DispositifOrigin.RI) as z.ZodType<DispositifOrigin>,
-  origin_id: z.string().optional(),
+  originId: z.string().optional(),
 
   mainSponsor: zId("Structure").optional(),
   theme: zId("Theme").optional(),

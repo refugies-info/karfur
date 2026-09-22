@@ -130,6 +130,36 @@ describe("Webhook API Endpoints", () => {
       );
     });
 
+    it("should map origin_id from the payload to originId", async () => {
+      const req = mockRequest({
+        method: "POST",
+        headers: { "webhook-secret": mockSecret },
+        body: {
+          email: mockEmail,
+          dispositif: {
+            origin: DispositifOrigin.RCO,
+            origin_id: "carif-oref--14_SE_0001597187",
+            theme: "507f1f77bcf86cd799439011",
+            translations: {
+              fr: { content: { titreInformatif: "Title", markdown: "MD" } },
+            },
+          },
+        },
+      });
+      const res = mockResponse();
+
+      await createHandler(req, res);
+
+      expect(res._getStatusCode()).toBe(201);
+      const { Dispositif } = await webhookUtils.getWebhookModels();
+      expect(Dispositif.create).toHaveBeenCalledWith(
+        expect.objectContaining({ originId: "carif-oref--14_SE_0001597187" }),
+      );
+      expect(Dispositif.create).toHaveBeenCalledWith(
+        expect.not.objectContaining({ origin_id: expect.anything() }),
+      );
+    });
+
     it("should return 401 if secret is invalid", async () => {
       (webhookUtils.validateWebhookSecret as jest.Mock).mockReturnValue(false);
       const req = mockRequest({ method: "POST" });
@@ -248,6 +278,37 @@ describe("Webhook API Endpoints", () => {
             theme: "507f1f77bcf86cd799439011",
             secondaryThemes: ["507f1f77bcf86cd799439012"],
           }),
+        }),
+      );
+    });
+  });
+
+  describe("POST /api/webhook/dispositif/update with origin_id", () => {
+    it("should map origin_id from the payload to originId", async () => {
+      const req = mockRequest({
+        method: "POST",
+        headers: { "webhook-secret": mockSecret },
+        body: {
+          email: mockEmail,
+          dispositif: {
+            _id: "507f1f77bcf86cd799439011",
+            origin_id: "carif-oref--07_816811S",
+            translations: {
+              fr: { content: { titreInformatif: "Updated" } },
+            },
+          },
+        },
+      });
+      const res = mockResponse();
+
+      await updateHandler(req, res);
+
+      expect(res._getStatusCode()).toBe(200);
+      const { Dispositif } = await webhookUtils.getWebhookModels();
+      expect(Dispositif.findByIdAndUpdate).toHaveBeenCalledWith(
+        "507f1f77bcf86cd799439011",
+        expect.objectContaining({
+          $set: expect.objectContaining({ originId: "carif-oref--07_816811S" }),
         }),
       );
     });
