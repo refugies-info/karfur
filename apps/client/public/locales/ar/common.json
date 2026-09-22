@@ -82,7 +82,15 @@
     "seeAllButtonWithCount": "مشاهدة ال {{count}} صفحة",
     "tooltipAucuneFicheCorrespondante": "لا يوجد صفحة معلومات مطابقة لهذا المعيار. اضبط عوامل التصفية الأخرى  للتصفية وفقاً لهذا المعيار المحدد.",
     "noResultTitle": "أُووبس ! لا توجد نتائج مطابقة لمعايير البحث التي أدخلتها.",
-    "noResultOther": "قد تهمك هذه الصفحات أيضاً"
+    "noResultOther": "قد تهمك هذه الصفحات أيضاً",
+    "allResultsDisplayed": "",
+    "citySelectionsResults": "",
+    "commonPlaces": "",
+    "loading": "",
+    "loadingResults": "",
+    "remainingResults": "",
+    "searchResultsLegend": "",
+    "selectedLocations": ""
   },
   "Widget": {
     "fiches": "صفحات معلومات",
@@ -577,5 +585,36 @@
     "northStar_notUseful": "غير مفيدة",
     "northStar_useful": "هل ذلك مفيد ؟",
     "northStar_thanks": "شكراً لك لرأيك"
+  },
+  "LearnFrench": {
+    "seoTitle": "",
+    "hero_title": "",
+    "hero_subtitle": "",
+    "hero_search_cta": "",
+    "hero_learn_more_cta": "",
+    "hero_rco_disclaimer": "",
+    "howTo_title": "",
+    "howTo_subtitle": "",
+    "howTo_tag_arrival": "",
+    "howTo_tag_mandatory": "",
+    "howTo_tag_certification": "",
+    "search_title": "",
+    "search_placeholder": "",
+    "tab_upcoming": "",
+    "tab_onDemand": "",
+    "tab_all": "",
+    "filters_title": "",
+    "filters_reset": "",
+    "filters_location": "",
+    "filters_level": "",
+    "filters_category": "",
+    "filters_public": "",
+    "filters_apply": "",
+    "location_placeholder": "",
+    "location_clear": "",
+    "location_remove": "",
+    "card_contactStructure": "",
+    "results_loadMore": "",
+    "share_title": ""
   }
 }

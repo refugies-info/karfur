@@ -83,7 +83,15 @@
     "seeAllButtonWithCount": "See all {{count}} information sheets",
     "tooltipAucuneFicheCorrespondante": "No sheets match this criterion. Adjust your other filters to filter by this specific criterion.",
     "noResultTitle": "Oops! There are no results matching your search criteria.",
-    "noResultOther": "You may also be interested in these information sheets"
+    "noResultOther": "You may also be interested in these information sheets",
+    "allResultsDisplayed": "",
+    "citySelectionsResults": "",
+    "commonPlaces": "",
+    "loading": "",
+    "loadingResults": "",
+    "remainingResults": "",
+    "searchResultsLegend": "",
+    "selectedLocations": ""
   },
   "Widget": {
     "fiches": "Sheets",
@@ -584,5 +592,36 @@
     "northStar_notUseful": "Not useful",
     "northStar_useful": "Is it useful?",
     "northStar_thanks": "Thank you for your feedback"
+  },
+  "LearnFrench": {
+    "seoTitle": "",
+    "hero_title": "",
+    "hero_subtitle": "",
+    "hero_search_cta": "",
+    "hero_learn_more_cta": "",
+    "hero_rco_disclaimer": "",
+    "howTo_title": "",
+    "howTo_subtitle": "",
+    "howTo_tag_arrival": "",
+    "howTo_tag_mandatory": "",
+    "howTo_tag_certification": "",
+    "search_title": "",
+    "search_placeholder": "",
+    "tab_upcoming": "",
+    "tab_onDemand": "",
+    "tab_all": "",
+    "filters_title": "",
+    "filters_reset": "",
+    "filters_location": "",
+    "filters_level": "",
+    "filters_category": "",
+    "filters_public": "",
+    "filters_apply": "",
+    "location_placeholder": "",
+    "location_clear": "",
+    "location_remove": "",
+    "card_contactStructure": "",
+    "results_loadMore": "",
+    "share_title": ""
   }
 }

@@ -82,7 +82,15 @@
     "seeAllButtonWithCount": "ነቶም {{count}} ፋይላት ረአይዎም",
     "tooltipAucuneFicheCorrespondante": "ንጠለብኩም ዝሰምማዕ ፋይል ኣይተረኽበን፣ ንዝያዳ ነጸርታ ካልእ ፍሉይ ሓበሬታ ግዳ ወስኹሉ ንምድላይኩም",
     "noResultTitle": "ኦህ እቕሬታ ! ን ጠለብኩም ዝሰማማዕ ፋይል ኣይተረኽበን",
-    "noResultOther": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ"
+    "noResultOther": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ",
+    "allResultsDisplayed": "",
+    "citySelectionsResults": "",
+    "commonPlaces": "",
+    "loading": "",
+    "loadingResults": "",
+    "remainingResults": "",
+    "searchResultsLegend": "",
+    "selectedLocations": ""
   },
   "Widget": {
     "fiches": "ፋይል",
@@ -578,5 +586,36 @@
     "northStar_notUseful": "ጠቓሚ ኣይኮነን",
     "northStar_useful": "ጠቓሚ ድዩ  ?",
     "northStar_thanks": "ንርእይቶኹም ኣዚና ነመስግን"
+  },
+  "LearnFrench": {
+    "seoTitle": "",
+    "hero_title": "",
+    "hero_subtitle": "",
+    "hero_search_cta": "",
+    "hero_learn_more_cta": "",
+    "hero_rco_disclaimer": "",
+    "howTo_title": "",
+    "howTo_subtitle": "",
+    "howTo_tag_arrival": "",
+    "howTo_tag_mandatory": "",
+    "howTo_tag_certification": "",
+    "search_title": "",
+    "search_placeholder": "",
+    "tab_upcoming": "",
+    "tab_onDemand": "",
+    "tab_all": "",
+    "filters_title": "",
+    "filters_reset": "",
+    "filters_location": "",
+    "filters_level": "",
+    "filters_category": "",
+    "filters_public": "",
+    "filters_apply": "",
+    "location_placeholder": "",
+    "location_clear": "",
+    "location_remove": "",
+    "card_contactStructure": "",
+    "results_loadMore": "",
+    "share_title": ""
   }
 }
