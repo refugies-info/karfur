@@ -16,11 +16,10 @@ import {
   searchResultsSelector,
 } from "~/services/SearchResults/searchResults.selector";
 import {
+  commonPlaces,
+  fetchLocationSuggestions,
   getCitiesForDepartment,
   getDepartmentForCity,
-  sortByRelevance,
-  transformDepartmentResult,
-  transformMunicipalityResult,
   type UnifiedSearchResult,
 } from "./functions";
 import GeoLocationMenuItem from "./GeoLocationMenuItem";
@@ -28,19 +27,6 @@ import styles from "./LocationMenu.module.css";
 import SearchMenuItem from "./SearchMenuItem";
 
 type ScreenReaderAnnounceOptions = NonNullable<Parameters<ReturnType<typeof useAnnounce>>[1]>;
-
-const commonPlaces = [
-  { placeName: "Paris", deptNo: "75", deptName: "Paris" },
-  { placeName: "Lyon", deptNo: "69", deptName: "Rhône" },
-  { placeName: "Strasbourg", deptNo: "67", deptName: "Bas-Rhin" },
-  { placeName: "Nantes", deptNo: "44", deptName: "Loire-Atlantique" },
-  { placeName: "Dijon", deptNo: "21", deptName: "Côte-d'Or" },
-  { placeName: "Bordeaux", deptNo: "33", deptName: "Gironde" },
-  { placeName: "Grenoble", deptNo: "38", deptName: "Isère" },
-  { placeName: "Toulouse", deptNo: "31", deptName: "Haute-Garonne" },
-  { placeName: "Rennes", deptNo: "35", deptName: "Ille-et-Vilaine" },
-  { placeName: "Marseille", deptNo: "13", deptName: "Bouches-du-Rhône" },
-];
 
 interface Props {
   mobile?: boolean;
@@ -78,28 +64,6 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
 
   const NOT_DEPLOYED_THRESHOLD = 10;
 
-  const fetchSuggestions = useCallback(async (search: string): Promise<UnifiedSearchResult[]> => {
-    const apiSearchQuery = search.replace(/ /g, "%20");
-
-    const [municipalityData, departmentData] = await Promise.all([
-      fetch(
-        `https://data.geopf.fr/geocodage/search?q=${encodeURIComponent(search)}&type=municipality`,
-      )
-        .then((response) => response.json())
-        .catch(() => ({ features: [] })),
-      fetch(`https://geo.api.gouv.fr/departements?nom=${apiSearchQuery}`)
-        .then((response) => response.json())
-        .catch(() => []),
-    ]);
-
-    const municipalityResults = (municipalityData.features || []).map(transformMunicipalityResult);
-    const departmentResults = (departmentData || []).map(transformDepartmentResult);
-    const allResults = [...municipalityResults, ...departmentResults];
-    const sortedResults = sortByRelevance(allResults, search);
-
-    return sortedResults.slice(0, 5);
-  }, []);
-
   const announceResults = useCallback(
     (count: number, options?: ScreenReaderAnnounceOptions) => {
       const announceOptions: ScreenReaderAnnounceOptions = {
@@ -129,7 +93,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       }
 
       try {
-        const results = await fetchSuggestions(search);
+        const results = await fetchLocationSuggestions(search);
         setSuggestions(results);
         announceResults(results.length);
       } catch (error) {
@@ -137,7 +101,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
         announceResults(0);
       }
     },
-    [announceResults, fetchSuggestions],
+    [announceResults],
   );
 
   const debouncedSearchChange = useMemo(

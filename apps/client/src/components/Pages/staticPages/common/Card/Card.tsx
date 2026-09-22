@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { type ReactElement, useMemo } from "react";
 import Image from "~/components/UI/Image";
 import { cls } from "~/lib/classname";
@@ -15,6 +16,7 @@ interface Props {
   footer?: ReactElement;
   footerBottom?: boolean;
   link?: string;
+  newTab?: boolean;
   onClick?: () => void;
 }
 
@@ -29,6 +31,8 @@ const ArrowRight = () => (
 );
 
 const Card = (props: Props) => {
+  const { t } = useTranslation();
+  const newTab = props.newTab ?? true;
   const content = useMemo(
     () => (
       <div className="flex h-full flex-col">
@@ -70,8 +74,13 @@ const Card = (props: Props) => {
       <Link
         href={props.link}
         className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className, "block")}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={newTab ? "_blank" : undefined}
+        rel={newTab ? "noopener noreferrer" : undefined}
+        title={
+          newTab
+            ? `${props.title} - ${t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}`
+            : undefined
+        }
       >
         {content}
         <ArrowRight />
