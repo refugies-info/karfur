@@ -55,7 +55,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const secondaryThemeIds = dispositif.secondaryThemes || [];
 
     // Prepare update payload, preserving original creator and creation date
-    const { theme, secondaryThemes, ...dispositifData } = dispositif;
+    const { theme, secondaryThemes, origin_id: originId, ...dispositifData } = dispositif;
 
     // Convertir les dates ISO en objets Date MongoDB
     let metadatas;
@@ -84,6 +84,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       status: DispositifStatus.ACTIVE,
     };
 
+    if (originId) updatePayload.originId = originId;
     if (themeId) updatePayload.theme = themeId;
     if (secondaryThemeIds.length > 0) updatePayload.secondaryThemes = secondaryThemeIds;
 
