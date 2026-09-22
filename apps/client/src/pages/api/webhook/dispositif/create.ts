@@ -52,7 +52,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const themeId = dispositif.theme;
     const secondaryThemeIds = dispositif.secondaryThemes || [];
 
-    const { theme, secondaryThemes, ...dispositifData } = dispositif;
+    const { theme, secondaryThemes, origin_id: originId, ...dispositifData } = dispositif;
 
     // Convertir les dates ISO en objets Date MongoDB
     let metadatas;
@@ -90,6 +90,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       },
     };
+
+    if (originId) newDispositif.originId = originId;
 
     // Ensure titles are also at top level if not already (for some versions of search/UI)
     if (!newDispositif.titreInformatif && dispositif.titreInformatif)
