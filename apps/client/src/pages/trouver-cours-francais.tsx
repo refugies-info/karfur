@@ -79,6 +79,8 @@ const LearnFrench = (props: Props) => {
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
         learnMoreCtaHref="#how-to-learn-french"
         rcoDisclaimer={t("LearnFrench.hero_rco_disclaimer")}
+        rcoLinkText={t("LearnFrench.hero_rco_link_text")}
+        rcoLinkHref="https://www.intercariforef.org/"
         image={HeroIllu}
       />
 

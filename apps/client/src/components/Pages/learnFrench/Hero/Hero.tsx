@@ -11,6 +11,8 @@ interface Props {
   learnMoreCtaText: string;
   learnMoreCtaHref: string;
   rcoDisclaimer: string;
+  rcoLinkText: string;
+  rcoLinkHref: string;
   image: StaticImageData;
 }
 
@@ -39,7 +41,17 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
                 {props.learnMoreCtaText}
               </Button>
             </div>
-            <p className="mt-10 text-sm text-[#2f4077]">{props.rcoDisclaimer}</p>
+            <p className="mt-10 text-sm text-[#2f4077]">
+              {props.rcoDisclaimer}{" "}
+              <a
+                href={props.rcoLinkHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                {props.rcoLinkText}
+              </a>
+            </p>
           </div>
           <div className="flex-1">
             <Image src={props.image} alt="" className="mx-auto h-auto max-w-full" />
