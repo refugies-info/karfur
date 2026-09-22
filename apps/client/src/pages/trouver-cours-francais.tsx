@@ -1,9 +1,20 @@
-import { useRouter } from "next/router";
+import Button from "@codegouvfr/react-dsfr/Button";
+import { createModal } from "@codegouvfr/react-dsfr/Modal";
+import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useMemo, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { END } from "redux-saga";
-import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
-import { Hero, HowToLearnFrench } from "~/components/Pages/learnFrench";
+import type { CourseTab, FiltersState, HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
+import {
+  CourseTabs,
+  CourseTab as CourseTabValues,
+  FiltersSidebar,
+  Hero,
+  HowToLearnFrench,
+  SearchBar,
+} from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARD_IDS, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
@@ -11,6 +22,8 @@ import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
 import { wrapper } from "~/services/configureStore";
+import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
+import { needsSelector } from "~/services/Needs/needs.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import API from "~/utils/API";
 import HeroIllu from "../assets/staticPages/learn-french/hero-illu.png";
@@ -19,12 +32,37 @@ interface Props {
   howToCards: HowToLearnFrenchCard[];
 }
 
+const EMPTY_FILTERS: FiltersState = {
+  departments: [],
+  cities: [],
+  frenchLevel: [],
+  categories: [],
+  publicFilter: [],
+};
+
+const mobileFiltersModal = createModal({
+  id: "learn-french-mobile-filters-modal",
+  isOpenedByDefault: false,
+});
+
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
-  const { locale } = useRouter();
-  // TODO(RI-1525): point to the #find-a-class section once it ships; until then, reuse the
-  // generic search pre-filtered on the "Apprendre le français" theme so the CTA stays functional.
-  const searchCtaHref = `${getPath("/recherche", locale)}?themes=${LEARN_FRENCH_THEME_ID}`;
+  const [filters, setFilters] = useState<FiltersState>(EMPTY_FILTERS);
+  const [search, setSearch] = useState("");
+  const [activeTab, setActiveTab] = useState<CourseTab>(CourseTabValues.UPCOMING);
+  const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
+  useIsModalOpen(mobileFiltersModal, {
+    onConceal: () => mobileFiltersButtonRef.current?.focus(),
+  });
+
+  const allNeeds = useSelector(needsSelector);
+  const categoryOptions = useMemo(
+    () =>
+      allNeeds
+        .filter((need) => String(need.theme._id) === LEARN_FRENCH_THEME_ID)
+        .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
+    [allNeeds],
+  );
 
   return (
     <div className="w-full">
@@ -34,9 +72,10 @@ const LearnFrench = (props: Props) => {
         title={t("LearnFrench.hero_title")}
         subtitle={t("LearnFrench.hero_subtitle")}
         searchCtaText={t("LearnFrench.hero_search_cta")}
-        searchCtaHref={searchCtaHref}
+        searchCtaHref="#find-a-class"
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
         learnMoreCtaHref="#how-to-learn-french"
+        rcoDisclaimer={t("LearnFrench.hero_rco_disclaimer")}
         image={HeroIllu}
       />
 
@@ -45,14 +84,63 @@ const LearnFrench = (props: Props) => {
         <HowToLearnFrench cards={props.howToCards} />
       </div>
 
-      {/* RI-1525 to RI-1528: search, filters, results lists */}
+      <div className="bg-alt-blue-france relative">
+        <Anchor id="find-a-class" />
+        <SearchBar
+          departments={filters.departments}
+          cities={filters.cities}
+          onLocationsChange={(departments, cities) =>
+            setFilters({ ...filters, departments, cities })
+          }
+          search={search}
+          onSearchChange={setSearch}
+        />
+        <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
+          <Button
+            ref={mobileFiltersButtonRef}
+            priority="secondary"
+            iconId="fr-icon-equalizer-line"
+            className="lg:hidden"
+            onClick={() => mobileFiltersModal.open()}
+          >
+            {t("LearnFrench.filters_title", "Filtrer")}
+          </Button>
+
+          <aside className="hidden shrink-0 lg:block lg:w-72">
+            <FiltersSidebar
+              filters={filters}
+              categoryOptions={categoryOptions}
+              onChange={setFilters}
+              onReset={() => setFilters(EMPTY_FILTERS)}
+            />
+          </aside>
+
+          <mobileFiltersModal.Component
+            title={t("LearnFrench.filters_title", "Filtrer")}
+            className="lg:hidden"
+            buttons={{ children: t("LearnFrench.filters_apply", "Voir les résultats") }}
+          >
+            <FiltersSidebar
+              filters={filters}
+              categoryOptions={categoryOptions}
+              onChange={setFilters}
+              onReset={() => setFilters(EMPTY_FILTERS)}
+              showTitle={false}
+            />
+          </mobileFiltersModal.Component>
+
+          <div className="min-w-0 flex-1">
+            <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
 export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale }) => {
-  const action = fetchThemesActionCreator();
-  store.dispatch(action);
+  store.dispatch(fetchThemesActionCreator());
+  store.dispatch(fetchNeedsActionCreator());
   store.dispatch(END);
   await store.sagaTask?.toPromise();
 
