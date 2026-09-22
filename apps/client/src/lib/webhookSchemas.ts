@@ -405,6 +405,7 @@ export const DispositifCreateSchema = BaseWebhookSchema.extend({
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
     webOnly: z.boolean().optional(),
+    origin_id: z.string().optional(),
     origin: z
       .nativeEnum(DispositifOrigin)
       .refine((val) => val === DispositifOrigin.RI || val === DispositifOrigin.RCO, {
@@ -428,6 +429,7 @@ export const DispositifUpdateSchema = BaseWebhookSchema.extend({
     translations: TranslationSchema,
     metadatas: MetadatasSchema.optional(),
     webOnly: z.boolean().optional(),
+    origin_id: z.string().optional(),
   }),
 });
 
