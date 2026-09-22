@@ -54,7 +54,11 @@ const SourceCard = ({ origin, sourceName, logoUrl }: Props) => {
         </div>
         <p className="text-sm mb-0">
           {sourceName && source.textKeyWithSourceName
-            ? t(source.textKeyWithSourceName, { sourceName })
+            ? // React escapes the output, i18next escaping would turn apostrophes into &#39;
+              t(source.textKeyWithSourceName, {
+                sourceName,
+                interpolation: { escapeValue: false },
+              })
             : t(source.textKey)}
         </p>
       </div>
