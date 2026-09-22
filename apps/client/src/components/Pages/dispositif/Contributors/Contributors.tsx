@@ -4,7 +4,10 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import LinkedThemes from "~/components/Pages/dispositif/LinkedThemes";
 import SourceCard from "~/components/Pages/dispositif/SourceCard";
-import { getCarifOrefCenterByLocation } from "~/data/carifOrefCenters";
+import {
+  getCarifOrefCenterByLocation,
+  getCarifOrefCenterByOriginId,
+} from "~/data/carifOrefCenters";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
 
@@ -18,9 +21,10 @@ const Contributors = () => {
   const carifOrefCenter = useMemo(
     () =>
       dispositif?.origin === DispositifOrigin.RCO
-        ? getCarifOrefCenterByLocation(dispositif.metadatas?.location)
+        ? (getCarifOrefCenterByOriginId(dispositif.originId) ??
+          getCarifOrefCenterByLocation(dispositif.metadatas?.location))
         : undefined,
-    [dispositif?.origin, dispositif?.metadatas?.location],
+    [dispositif?.origin, dispositif?.originId, dispositif?.metadatas?.location],
   );
   const participants = useMemo(() => {
     return (dispositif?.participants || []).sort((a, b) => {

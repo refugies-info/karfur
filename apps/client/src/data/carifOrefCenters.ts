@@ -153,6 +153,17 @@ export const carifOrefCenters: readonly CarifOrefCenter[] = [
   },
 ];
 
+const RCO_ORIGIN_ID_PATTERN = /^carif-oref--(\d+)_/;
+
+export const getCarifOrefCenterByOriginId = (
+  originId?: string | null,
+): CarifOrefCenter | undefined => {
+  const code = originId?.match(RCO_ORIGIN_ID_PATTERN)?.[1];
+  if (!code) return undefined;
+  const codeWithoutLeadingZero = String(Number(code));
+  return carifOrefCenters.find((center) => center.codes.includes(codeWithoutLeadingZero));
+};
+
 const getDepartmentCode = (location: string) => location.split(" - ")[0];
 export const getCarifOrefCenterByLocation = (
   location?: locationType | null,

@@ -7,9 +7,10 @@ import Contributors from "../Contributors";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-const dispositif = (origin: DispositifOrigin, location?: string[]) => ({
+const dispositif = (origin: DispositifOrigin, location?: string[], originId?: string) => ({
   _id: "dispositif-id",
   origin,
+  originId,
   theme: "themeId",
   secondaryThemes: [],
   needs: [],
@@ -17,12 +18,12 @@ const dispositif = (origin: DispositifOrigin, location?: string[]) => ({
   participants: [{ _id: "user-1", username: "Alice", roles: [] }],
 });
 
-const renderWithOrigin = (origin: DispositifOrigin, location?: string[]) =>
+const renderWithOrigin = (origin: DispositifOrigin, location?: string[], originId?: string) =>
   wrapWithProvidersAndRenderForTesting({
     Component: Contributors,
     reduxState: {
       ...initialMockStore,
-      selectedDispositif: dispositif(origin, location) as any,
+      selectedDispositif: dispositif(origin, location, originId) as any,
     },
   });
 
@@ -68,6 +69,22 @@ describe("Contributors", () => {
       "/images/sources/carif-oref-logo.png",
     );
     expect(screen.getByText("ContentSources.RCO.description")).toBeInTheDocument();
+  });
+
+  it("names the Carif-Oref from the number carried by the RCO id", () => {
+    renderWithOrigin(DispositifOrigin.RCO, undefined, "carif-oref--14_SE_0001847289");
+
+    const logo = screen.getByAltText("Logo Région Île-de-France");
+    expect(decodeURIComponent(logo.getAttribute("src") || "")).toContain(
+      "/images/sources/carif-oref-ile-de-france.webp",
+    );
+  });
+
+  it("prefers the RCO id over the departments when both are available", () => {
+    // Departments point to Île-de-France, the id to Bretagne: the id is the source of truth
+    renderWithOrigin(DispositifOrigin.RCO, ["75 - Paris"], "carif-oref--06_2353075S");
+
+    expect(screen.getByAltText("Logo GREF Bretagne")).toBeInTheDocument();
   });
 
   it("does not show a source card for content authored on Réfugiés.info", () => {

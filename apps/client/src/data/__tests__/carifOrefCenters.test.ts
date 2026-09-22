@@ -1,4 +1,8 @@
-import { carifOrefCenters, getCarifOrefCenterByLocation } from "../carifOrefCenters";
+import {
+  carifOrefCenters,
+  getCarifOrefCenterByLocation,
+  getCarifOrefCenterByOriginId,
+} from "../carifOrefCenters";
 
 describe("getCarifOrefCenterByLocation", () => {
   it("finds the Carif-Oref covering the departments of a dispositif", () => {
@@ -35,5 +39,43 @@ describe("getCarifOrefCenterByLocation", () => {
     const allDepartments = carifOrefCenters.flatMap((center) => center.departments);
 
     expect(new Set(allDepartments).size).toBe(allDepartments.length);
+  });
+});
+
+describe("getCarifOrefCenterByOriginId", () => {
+  it("reads the Carif number from an RCO content id", () => {
+    const center = getCarifOrefCenterByOriginId("carif-oref--14_SE_0001847289");
+
+    expect(center?.name).toBe("Région Île-de-France");
+    expect(center?.logoUrl).toBe("/images/sources/carif-oref-ile-de-france.webp");
+  });
+
+  it("ignores the leading zero RCO puts on single digit numbers", () => {
+    expect(getCarifOrefCenterByOriginId("carif-oref--07_816811S")?.name).toBe(
+      "GIP Alfa Centre-Val de Loire",
+    );
+    expect(getCarifOrefCenterByOriginId("carif-oref--06_2353075S")?.name).toBe("GREF Bretagne");
+  });
+
+  it("resolves Carifs sharing several numbers", () => {
+    expect(getCarifOrefCenterByOriginId("carif-oref--02_00540249")?.region).toBe(
+      "Nouvelle-Aquitaine",
+    );
+    expect(getCarifOrefCenterByOriginId("carif-oref--23_123456")?.region).toBe(
+      "Nouvelle-Aquitaine",
+    );
+  });
+
+  it("returns nothing for an unknown number, a foreign id or no id at all", () => {
+    expect(getCarifOrefCenterByOriginId("carif-oref--99_123456")).toBeUndefined();
+    expect(getCarifOrefCenterByOriginId("dora--123456")).toBeUndefined();
+    expect(getCarifOrefCenterByOriginId(undefined)).toBeUndefined();
+    expect(getCarifOrefCenterByOriginId("")).toBeUndefined();
+  });
+
+  it("maps every Carif number to a single Carif-Oref", () => {
+    const allCodes = carifOrefCenters.flatMap((center) => center.codes);
+
+    expect(new Set(allCodes).size).toBe(allCodes.length);
   });
 });
