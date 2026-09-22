@@ -16,6 +16,8 @@ interface SearchQuery extends ParsedUrlQuery {
   status?: string | string[];
   language?: string | string[];
   sort?: string;
+  hasUpcomingSession?: string;
+  strictNeeds?: string;
 }
 
 const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
@@ -28,9 +30,12 @@ const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
  * Safely execute an aggregate with speedgoose cache, falling back to plain exec().
  * Parameter typed as `any` because speedgoose augments Aggregate with extra type params.
  */
-export const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promise<T[]> => {
+export const executeCachedPipeline = async <T = any>(
+  aggregateQuery: any,
+  cacheOptions?: { ttl?: number },
+): Promise<T[]> => {
   return typeof aggregateQuery.cachePipeline === "function"
-    ? aggregateQuery.cachePipeline()
+    ? aggregateQuery.cachePipeline(cacheOptions)
     : aggregateQuery.exec();
 };
 
@@ -38,8 +43,11 @@ export const executeCachedPipeline = async <T = any>(aggregateQuery: any): Promi
  * Safely execute a query with speedgoose cache, falling back to plain exec().
  * Parameter typed as `any` because speedgoose augments Query with extra type params.
  */
-export const executeCachedQuery = async <T = any>(query: any): Promise<T> => {
-  return typeof query.cacheQuery === "function" ? query.cacheQuery() : query.exec();
+export const executeCachedQuery = async <T = any>(
+  query: any,
+  cacheOptions?: { ttl?: number },
+): Promise<T> => {
+  return typeof query.cacheQuery === "function" ? query.cacheQuery(cacheOptions) : query.exec();
 };
 
 /**
@@ -90,6 +98,8 @@ export interface QueryParams {
   status?: StatusOptions[];
   language?: string[];
   sort?: string;
+  hasUpcomingSession?: boolean;
+  strictNeeds?: boolean;
 }
 
 export const buildQueryParams = (query: SearchQuery): QueryParams => ({
@@ -112,6 +122,13 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   ),
   language: getQueryParamAsArray(query.language),
   sort: typeof query.sort === "string" ? query.sort : undefined,
+  hasUpcomingSession:
+    query.hasUpcomingSession === "true"
+      ? true
+      : query.hasUpcomingSession === "false"
+        ? false
+        : undefined,
+  strictNeeds: query.strictNeeds === "true",
 });
 
 export const buildBaseMatch = (
@@ -119,6 +136,7 @@ export const buildBaseMatch = (
   algoliaIds?: string[],
 ): any => {
   const match: any = { status: "Actif" };
+  const exprConditions: any[] = [];
 
   if (algoliaIds) {
     const objectIds = toObjectIds(algoliaIds);
@@ -164,7 +182,12 @@ export const buildBaseMatch = (
   const needs = (queryParams.needs ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
   );
-  if (themes.length > 0 && needs.length > 0) {
+  if (themes.length > 0 && needs.length > 0 && queryParams.strictNeeds) {
+    const themeIds = toObjectIds(themes);
+    const needIds = toObjectIds(needs);
+    match.theme = { $in: themeIds };
+    match.needs = { $in: needIds };
+  } else if (themes.length > 0 && needs.length > 0) {
     // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
     // a record matches if it has the theme OR the need (not both).
     const themeIds = toObjectIds(themes);
@@ -271,7 +294,7 @@ export const buildBaseMatch = (
       })
       .filter((cond) => cond !== null);
     if (ageConditions.length > 0) {
-      match.$expr = { $or: ageConditions };
+      exprConditions.push({ $or: ageConditions });
     }
   }
 
@@ -315,6 +338,27 @@ export const buildBaseMatch = (
     }));
     // Ensure language conditions are ANDed with other filters while ORed among themselves
     match.$and = (match.$and || []).concat([{ $or: languageConditions }]);
+  }
+
+  if (queryParams.hasUpcomingSession !== undefined) {
+    const upcomingSessionCount = {
+      $size: {
+        $filter: {
+          input: { $ifNull: ["$metadatas.sessions.items", []] },
+          as: "session",
+          cond: { $gt: ["$$session.startDate", "$$NOW"] },
+        },
+      },
+    };
+    exprConditions.push(
+      queryParams.hasUpcomingSession
+        ? { $gt: [upcomingSessionCount, 0] }
+        : { $eq: [upcomingSessionCount, 0] },
+    );
+  }
+
+  if (exprConditions.length > 0) {
+    match.$expr = exprConditions.length === 1 ? exprConditions[0] : { $and: exprConditions };
   }
 
   return match;
@@ -486,8 +530,11 @@ const buildSearchAggregation = (
   baseMatch: FilterQuery<SimpleDispositif>,
   options: SearchResultsOptions,
   algoliaIds?: string[],
+  locationFilter?: { departments?: string[]; cities?: string[] },
 ): PipelineStage[] => {
   const { page, limit, sort } = options;
+  const hasLocationFilter =
+    (locationFilter?.departments?.length ?? 0) > 0 || (locationFilter?.cities?.length ?? 0) > 0;
 
   const aggregation: PipelineStage[] = [
     { $match: baseMatch },
@@ -530,6 +577,60 @@ const buildSearchAggregation = (
     aggregation.push({ $sort: { nbVues: -1 } });
   } else if (sort === "date") {
     aggregation.push({ $sort: { publishedAt: -1 } });
+  } else if (sort === "nextSession") {
+    if (hasLocationFilter) {
+      aggregation.push({
+        $addFields: {
+          isLocal: {
+            $cond: {
+              if: {
+                $in: [
+                  "france",
+                  {
+                    $cond: [
+                      { $isArray: "$metadatas.location" },
+                      "$metadatas.location",
+                      ["$metadatas.location"],
+                    ],
+                  },
+                ],
+              },
+              then: 1,
+              else: 0,
+            },
+          },
+        },
+      });
+    }
+    aggregation.push({
+      $addFields: {
+        nextSessionDate: {
+          $ifNull: [
+            {
+              $min: {
+                $filter: {
+                  input: {
+                    $map: {
+                      input: { $ifNull: ["$metadatas.sessions.items", []] },
+                      as: "session",
+                      in: "$$session.startDate",
+                    },
+                  },
+                  as: "date",
+                  cond: { $gt: ["$$date", "$$NOW"] },
+                },
+              },
+            },
+            new Date("8800-01-01"),
+          ],
+        },
+      },
+    });
+    aggregation.push({
+      $sort: hasLocationFilter
+        ? { isLocal: 1, nextSessionDate: 1, publishedAt: -1 }
+        : { nextSessionDate: 1, publishedAt: -1 },
+    });
   } else {
     // "default" or undefined — sort by most recently updated
     aggregation.push({ $sort: { publishedAt: -1 } });
@@ -688,11 +789,23 @@ export const computeSearchResults = async (
     }
   }
 
-  const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds);
+  const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds, {
+    departments: queryParams.departments,
+    cities: queryParams.cities,
+  });
+
+  const isSessionTimeSensitive =
+    queryParams.hasUpcomingSession !== undefined || options.sort === "nextSession";
 
   const [results, total, typeCounts, suggestions] = await Promise.all([
-    executeCachedPipeline(Dispositif.aggregate(aggregation)),
-    executeCachedQuery<number>(Dispositif.countDocuments(baseMatch)),
+    executeCachedPipeline(
+      Dispositif.aggregate(aggregation),
+      isSessionTimeSensitive ? { ttl: 60 } : undefined,
+    ),
+    executeCachedQuery<number>(
+      Dispositif.countDocuments(baseMatch),
+      isSessionTimeSensitive ? { ttl: 60 } : undefined,
+    ),
     executeCachedPipeline(
       Dispositif.aggregate([
         { $match: baseMatchForCounts },

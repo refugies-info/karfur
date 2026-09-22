@@ -1,3 +1,4 @@
+export { CourseResults } from "./CourseResults";
 export { CourseTab, CourseTabs } from "./CourseTabs";
 export type { FiltersState } from "./FiltersSidebar";
 export { FiltersSidebar } from "./FiltersSidebar";
