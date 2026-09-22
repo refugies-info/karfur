@@ -5,7 +5,7 @@ interface ContentSourceDefinition {
   origin: DispositifOrigin;
   logo: Picture;
   textKey: string; // Clé de traduction dans i18n
-  textKeyWithRegion?: string;
+  textKeyWithSourceName?: string;
 }
 
 export const contentSources = [
@@ -17,7 +17,7 @@ export const contentSources = [
       secure_url: "/images/sources/carif-oref-logo.png",
     },
     textKey: "ContentSources.RCO.description",
-    textKeyWithRegion: "ContentSources.RCO.descriptionWithRegion",
+    textKeyWithSourceName: "ContentSources.RCO.descriptionWithSourceName",
   },
 ] as const satisfies readonly ContentSourceDefinition[];
 

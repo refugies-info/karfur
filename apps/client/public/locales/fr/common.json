@@ -918,8 +918,8 @@
   },
   "ContentSources": {
     "RCO": {
-      "description": "Ce dispositif provient du réseau des Carif Oref et est synchronisé via le référentiel data-inclusion.",
-      "descriptionWithRegion": "Ce dispositif provient du réseau des Carif Oref {{region}} et est synchronisé via le référentiel data-inclusion."
+      "description": "Ce dispositif provient du réseau des Carif Oref et a été retravaillé par l’équipe éditoriale Réfugiés.info",
+      "descriptionWithSourceName": "Ce dispositif provient de {{sourceName}} et a été retravaillé par l’équipe éditoriale Réfugiés.info"
     }
   },
   "breadcrumbs": "Fil d'Ariane",

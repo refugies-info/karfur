@@ -57,8 +57,8 @@ describe("Contributors", () => {
     expect(decodeURIComponent(logo.getAttribute("src") || "")).toContain(
       "/images/sources/carif-oref-ile-de-france.webp",
     );
-    // The i18n mock returns keys, so we check the region-aware sentence is the one picked
-    expect(screen.getByText("ContentSources.RCO.descriptionWithRegion")).toBeInTheDocument();
+    // The i18n mock returns keys, so we check the Carif-aware sentence is the one picked
+    expect(screen.getByText("ContentSources.RCO.descriptionWithSourceName")).toBeInTheDocument();
   });
 
   it("falls back to the generic Carif-Oref logo when no region can be identified", () => {

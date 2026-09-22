@@ -6,14 +6,13 @@ import { getContentSourceByOrigin } from "~/data/contentSources";
 interface Props {
   origin: DispositifOrigin;
   sourceName?: string;
-  sourceRegion?: string;
   logoUrl?: string;
 }
 
 /**
  * Displays the source information for a dispositif when origin is not RI
  */
-const SourceCard = ({ origin, sourceName, sourceRegion, logoUrl }: Props) => {
+const SourceCard = ({ origin, sourceName, logoUrl }: Props) => {
   const { t } = useTranslation();
   const source = getContentSourceByOrigin(origin);
 
@@ -54,8 +53,8 @@ const SourceCard = ({ origin, sourceName, sourceRegion, logoUrl }: Props) => {
           />
         </div>
         <p className="text-sm mb-0">
-          {sourceRegion && source.textKeyWithRegion
-            ? t(source.textKeyWithRegion, { region: sourceRegion })
+          {sourceName && source.textKeyWithSourceName
+            ? t(source.textKeyWithSourceName, { sourceName })
             : t(source.textKey)}
         </p>
       </div>

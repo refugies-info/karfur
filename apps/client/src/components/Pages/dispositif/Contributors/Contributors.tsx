@@ -42,7 +42,6 @@ const Contributors = () => {
         <SourceCard
           origin={dispositif.origin}
           sourceName={carifOrefCenter?.name}
-          sourceRegion={carifOrefCenter?.region}
           logoUrl={carifOrefCenter?.logoUrl}
         />
       )}
