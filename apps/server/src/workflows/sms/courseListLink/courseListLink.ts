@@ -11,9 +11,7 @@ import type { Response } from "~/types/interface";
 export const courseListLink = async (body: CourseListLinkRequest): Response => {
   logger.info("[courseListLink] received", body);
 
-  const text = body.location
-    ? t(body.locale, "courseListLink", { location: body.location, link: body.url })
-    : t(body.locale, "courseListLinkAllFrance", { link: body.url });
+  const text = t(body.locale, "courseListLink", { link: body.url });
 
   const smsSentOk = await sendSMS(text, body.phone);
   if (!smsSentOk.sent) {

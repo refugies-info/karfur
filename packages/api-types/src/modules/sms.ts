@@ -23,5 +23,4 @@ export interface CourseListLinkRequest {
   phone: string;
   url: string;
   locale: string;
-  location?: string;
 }

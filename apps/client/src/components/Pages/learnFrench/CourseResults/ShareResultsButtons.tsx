@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
 import useLocale from "~/hooks/useLocale";
-import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
 
@@ -15,12 +14,7 @@ const smsModal = createModal({
   isOpenedByDefault: false,
 });
 
-interface Props {
-  departments: string[];
-  cities: string[];
-}
-
-export const ShareResultsButtons = (props: Props) => {
+export const ShareResultsButtons = () => {
   const { t } = useTranslation();
   const locale = useLocale();
   const [showToastLink, setShowToastLink] = useState(false);
@@ -30,16 +24,14 @@ export const ShareResultsButtons = (props: Props) => {
     onConceal: () => smsButtonRef.current?.focus(),
   });
 
-  const location = summarizeLocations([...props.departments, ...props.cities]);
   const sendCourseListSms = useCallback(
     (tel: string, smsLocale: string) =>
       API.smsCourseListLink({
         phone: tel,
         url: window.location.href,
         locale: smsLocale,
-        location: location || undefined,
       }),
-    [location],
+    [],
   );
 
   const copyLink = useCallback(() => {

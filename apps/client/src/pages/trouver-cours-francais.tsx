@@ -147,7 +147,6 @@ const LearnFrench = (props: Props) => {
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}
                 needLabels={needLabels}
-                filters={filters}
               />
             </div>
           </div>
