@@ -4,5 +4,7 @@
     "with": "با"
   },
   "downloadApp": "برای دانلود اپلیکیشن Refugies.info اینجا کلیک کنید",
-  "contentLink": "سلام. این هم لینک برگه {{title}}: {{link}}"
+  "contentLink": "سلام. این هم لینک برگه {{title}}: {{link}}",
+  "courseListLink": "",
+  "courseListLinkAllFrance": ""
 }

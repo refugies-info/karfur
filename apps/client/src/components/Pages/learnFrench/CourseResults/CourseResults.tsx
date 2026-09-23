@@ -19,6 +19,8 @@ interface Props {
   onLoadMore: () => void;
   onResetFilters: () => void;
   needLabels: Map<string, string>;
+  departments: string[];
+  cities: string[];
 }
 
 export const CourseResults = (props: Props) => {
@@ -108,7 +110,7 @@ export const CourseResults = (props: Props) => {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="mb-0 font-bold">{t("Recherche.yourResults", { count: props.total })}</p>
-        <ShareResultsButtons />
+        <ShareResultsButtons departments={props.departments} cities={props.cities} />
       </div>
 
       <div className="flex flex-col gap-4">

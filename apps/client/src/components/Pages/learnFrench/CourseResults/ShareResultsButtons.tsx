@@ -5,14 +5,21 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
+import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { Event } from "~/lib/tracking";
+import API from "~/utils/API";
 
 const smsModal = createModal({
   id: "course-results-sms-modal",
   isOpenedByDefault: false,
 });
 
-export const ShareResultsButtons = () => {
+interface Props {
+  departments: string[];
+  cities: string[];
+}
+
+export const ShareResultsButtons = (props: Props) => {
   const { t } = useTranslation();
   const [showToastLink, setShowToastLink] = useState(false);
   const smsButtonRef = useRef<HTMLButtonElement>(null);
@@ -20,6 +27,18 @@ export const ShareResultsButtons = () => {
   const isSmsModalOpen = useIsModalOpen(smsModal, {
     onConceal: () => smsButtonRef.current?.focus(),
   });
+
+  const location = summarizeLocations([...props.departments, ...props.cities]);
+  const sendCourseListSms = useCallback(
+    (tel: string, smsLocale: string) =>
+      API.smsCourseListLink({
+        phone: tel,
+        url: window.location.href,
+        locale: smsLocale,
+        location: location || undefined,
+      }),
+    [location],
+  );
 
   const copyLink = useCallback(() => {
     Event("Share", "Copy", "from french course results");
@@ -74,7 +93,12 @@ export const ShareResultsButtons = () => {
       </div>
 
       <smsModal.Component title={t("Dispositif.sms", "SMS")}>
-        <SMSForm onSubmitSuccess={() => smsModal.close()} ref={smsFormInputContainerRef} />
+        <SMSForm
+          onSubmitSuccess={() => smsModal.close()}
+          onSend={sendCourseListSms}
+          restrictToAvailableLanguages={false}
+          ref={smsFormInputContainerRef}
+        />
       </smsModal.Component>
 
       <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
