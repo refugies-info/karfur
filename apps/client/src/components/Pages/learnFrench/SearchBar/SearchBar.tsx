@@ -1,7 +1,9 @@
 import Input from "@codegouvfr/react-dsfr/Input";
+import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type { FiltersState } from "~/components/Pages/learnFrench/FiltersSidebar";
 import { LocationFilterButton } from "~/components/Pages/learnFrench/LocationFilter";
+import styles from "./SearchBar.module.css";
 
 interface Props {
   filters: FiltersState;
@@ -44,7 +46,10 @@ export const SearchBar = (props: Props) => {
       <Input
         iconId="fr-icon-search-line"
         label={placeholder}
-        className="[&_.fr-input]:!bg-white mb-0 w-full [&_label]:sr-only lg:w-80"
+        className={cn(
+          styles.searchInput,
+          "[&_.fr-input]:!bg-white mb-0 w-full [&_label]:sr-only lg:w-80",
+        )}
         nativeInputProps={{
           type: "search",
           placeholder,
