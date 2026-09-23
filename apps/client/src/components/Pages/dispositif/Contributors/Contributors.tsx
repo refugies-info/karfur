@@ -4,6 +4,10 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import LinkedThemes from "~/components/Pages/dispositif/LinkedThemes";
 import SourceCard from "~/components/Pages/dispositif/SourceCard";
+import {
+  getCarifOrefCenterByLocation,
+  getCarifOrefCenterByOriginId,
+} from "~/data/carifOrefCenters";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import ContributorCard from "./ContributorCard";
 
@@ -14,6 +18,14 @@ const Contributors = () => {
   const { t } = useTranslation();
   const dispositif = useSelector(selectedDispositifSelector);
   const isImported = !!dispositif?.origin && dispositif.origin !== DispositifOrigin.RI;
+  const carifOrefCenter = useMemo(
+    () =>
+      dispositif?.origin === DispositifOrigin.RCO
+        ? (getCarifOrefCenterByOriginId(dispositif.originId) ??
+          getCarifOrefCenterByLocation(dispositif.metadatas?.location))
+        : undefined,
+    [dispositif?.origin, dispositif?.originId, dispositif?.metadatas?.location],
+  );
   const participants = useMemo(() => {
     return (dispositif?.participants || []).sort((a, b) => {
       if (a.roles?.includes(RoleName.ADMIN)) return -1;
@@ -26,7 +38,13 @@ const Contributors = () => {
     <div className="lg:bg-alt-blue-france lg:shadow-ri flex w-full flex-col p-4 lg:p-14 print:hidden">
       <LinkedThemes className="mb-10 max-sm:mt-10" />
 
-      {isImported && dispositif?.origin && <SourceCard origin={dispositif.origin} />}
+      {isImported && dispositif?.origin && (
+        <SourceCard
+          origin={dispositif.origin}
+          sourceName={carifOrefCenter?.name}
+          logoUrl={carifOrefCenter?.logoUrl}
+        />
+      )}
 
       {!isImported && (
         <>
