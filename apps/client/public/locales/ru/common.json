@@ -618,5 +618,22 @@
     "card_contactStructure": "",
     "results_loadMore": "",
     "share_title": ""
+  },
+  "EditDepartments": {
+    "suggestions_found_zero": "",
+    "suggestions_found_one": "",
+    "suggestions_found_other": "",
+    "department_removed": "",
+    "remove_department": "",
+    "suggestions_label": "",
+    "label": "",
+    "hint": "",
+    "error_required": "",
+    "error_generic": ""
+  },
+  "Auth": {
+    "resendEmailCountdown_one": "",
+    "resendEmailCountdown_other": "",
+    "resendEmailAvailable": ""
   }
 }
