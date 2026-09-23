@@ -1,6 +1,7 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
+import { frenchLevelValuesByOption } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import type { ParsedUrlQuery } from "querystring";
@@ -303,11 +304,7 @@ export const buildBaseMatch = (
   );
   if (frenchLevel.length > 0) {
     const allowedLevels = Array.from(
-      new Set(
-        frenchLevel.flatMap((cat) =>
-          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
-        ),
-      ),
+      new Set(frenchLevel.flatMap((cat) => frenchLevelValuesByOption[cat])),
     );
     // Match if the field (string or array) contains any allowedLevels
     match["metadatas.frenchLevel"] = { $in: allowedLevels };

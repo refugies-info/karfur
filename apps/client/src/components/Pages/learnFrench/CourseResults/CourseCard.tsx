@@ -1,12 +1,15 @@
 import type { SimpleDispositif } from "@refugies-info/api-types";
+import type { FrenchOptions } from "data/searchFilters";
+import { frenchLevelValuesByOption } from "data/searchFilters";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
 import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
 import { getPath } from "~/routes";
+import { SingleLineTags } from "./SingleLineTags";
 
 interface Props {
   dispositif: SimpleDispositif;
@@ -30,6 +33,21 @@ const isFranceWideCourse = (dispositif: SimpleDispositif): boolean => {
   return !Array.isArray(location) && location === "france";
 };
 
+const FRENCH_LEVEL_OPTIONS: FrenchOptions[] = ["a", "b", "c"];
+
+const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): string[] => {
+  const levels = dispositif.metadatas?.frenchLevel ?? [];
+  const labels: string[] = [];
+  if (levels.includes("alpha")) labels.push(t("Infocards.alpha"));
+  for (const option of FRENCH_LEVEL_OPTIONS) {
+    const optionLevels = frenchLevelValuesByOption[option].filter((level) => level !== "alpha");
+    if (optionLevels.some((level) => levels.includes(level))) {
+      labels.push(optionLevels.join("/"));
+    }
+  }
+  return labels;
+};
+
 export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
@@ -41,9 +59,10 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const departmentBadge = getDepartmentBadge(props.dispositif);
   const isOnline = isOnlineCourse(props.dispositif);
   const isFranceWide = isFranceWideCourse(props.dispositif);
-  const tags = (props.dispositif.needs ?? [])
+  const needTags = (props.dispositif.needs ?? [])
     .map((needId) => props.needLabels.get(String(needId)))
     .filter((label): label is string => Boolean(label));
+  const tags = [...getFrenchLevelLabels(props.dispositif, t), ...needTags];
 
   const commitment = getCommitmentText(props.dispositif.metadatas?.commitment, t);
   const frequency = getFrequencyText(props.dispositif.metadatas?.frequency, t);
@@ -105,18 +124,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col gap-4 p-8">
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-action-low-blue-france text-title-grey rounded-full px-3 py-1 text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <SingleLineTags tags={tags} />
 
         <div className="flex flex-col gap-3">
           <h3

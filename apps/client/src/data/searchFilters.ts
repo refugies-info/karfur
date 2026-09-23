@@ -1,4 +1,4 @@
-import type { publicStatusType, publicType } from "@refugies-info/api-types";
+import type { frenchLevelType, publicStatusType, publicType } from "@refugies-info/api-types";
 
 export type AgeOptions = "-18" | "18-25" | "+25";
 export type FrenchOptions = "a" | "b" | "c";
@@ -50,6 +50,11 @@ export const frenchLevelFilter: FrenchFilters = [
   { key: "b", value: "Filters.frenchLevelB", backwardCompatibility: ["moyennement"] },
   { key: "c", value: "Filters.frenchLevelC", backwardCompatibility: ["bien"] },
 ];
+export const frenchLevelValuesByOption: Record<FrenchOptions, frenchLevelType[]> = {
+  a: ["alpha", "A1", "A2"],
+  b: ["B1", "B2"],
+  c: ["C1", "C2"],
+};
 export const sortOptions: SortFilters = [
   { key: "date", value: "Filters.sortDate", backwardCompatibility: "created_at" },
   { key: "location", value: "Filters.sortLocation", backwardCompatibility: "" },
