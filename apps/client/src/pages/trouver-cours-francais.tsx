@@ -29,7 +29,7 @@ import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import API from "~/utils/API";
-import HeroIllu from "../assets/staticPages/learn-french/hero-illu.png";
+import HeroIllu from "../assets/staticPages/learn-french/hero-illu.svg";
 
 interface Props {
   howToCards: HowToLearnFrenchCard[];
