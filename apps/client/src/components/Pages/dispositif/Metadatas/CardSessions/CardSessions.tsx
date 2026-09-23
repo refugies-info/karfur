@@ -19,9 +19,10 @@ const CardSessions = ({ className }: Props) => {
 
   const upcomingSessions = useMemo(() => {
     if (!sessions || sessions.length === 0) return [];
-    const now = Date.now();
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
     return sessions
-      .filter((session: Session) => new Date(session.startDate).getTime() > now)
+      .filter((session: Session) => new Date(session.startDate).getTime() >= startOfToday.getTime())
       .sort(
         (a: Session, b: Session) =>
           new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
