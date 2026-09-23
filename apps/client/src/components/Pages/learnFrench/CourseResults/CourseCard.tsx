@@ -25,6 +25,11 @@ const isOnlineCourse = (dispositif: SimpleDispositif): boolean => {
   return !Array.isArray(location) && location === "online";
 };
 
+const isFranceWideCourse = (dispositif: SimpleDispositif): boolean => {
+  const location = dispositif.metadatas?.location;
+  return !Array.isArray(location) && location === "france";
+};
+
 export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
@@ -35,6 +40,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
   const departmentBadge = getDepartmentBadge(props.dispositif);
   const isOnline = isOnlineCourse(props.dispositif);
+  const isFranceWide = isFranceWideCourse(props.dispositif);
   const tags = (props.dispositif.needs ?? [])
     .map((needId) => props.needLabels.get(String(needId)))
     .filter((label): label is string => Boolean(label));
@@ -64,6 +70,10 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
         {isOnline ? (
           <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
             {t("Recherche.online", "En ligne")}
+          </span>
+        ) : isFranceWide ? (
+          <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+            {t("Recherche.france", "toute la France")}
           </span>
         ) : (
           departmentBadge && (
