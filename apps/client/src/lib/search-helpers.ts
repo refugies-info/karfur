@@ -451,6 +451,19 @@ const buildSponsorStages = (): PipelineStage[] => [
                 _id: "$sponsorDoc._id",
                 nom: "$sponsorDoc.nom",
                 picture: "$sponsorDoc.picture",
+                address: { $ifNull: ["$sponsorDoc.adressPublic", "$sponsorDoc.adresse"] },
+                phone: {
+                  $ifNull: [
+                    { $arrayElemAt: ["$sponsorDoc.phonesPublic", 0] },
+                    "$sponsorDoc.phone_contact",
+                  ],
+                },
+                email: {
+                  $ifNull: [
+                    { $arrayElemAt: ["$sponsorDoc.mailsPublic", 0] },
+                    "$sponsorDoc.mail_contact",
+                  ],
+                },
               },
             },
             {

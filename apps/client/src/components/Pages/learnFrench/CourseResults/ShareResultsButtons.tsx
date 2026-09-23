@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
+import useLocale from "~/hooks/useLocale";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { Event } from "~/lib/tracking";
 import API from "~/utils/API";
@@ -21,6 +22,7 @@ interface Props {
 
 export const ShareResultsButtons = (props: Props) => {
   const { t } = useTranslation();
+  const locale = useLocale();
   const [showToastLink, setShowToastLink] = useState(false);
   const smsButtonRef = useRef<HTMLButtonElement>(null);
   const smsFormInputContainerRef = useRef<HTMLDivElement>(null);
@@ -50,10 +52,22 @@ export const ShareResultsButtons = (props: Props) => {
 
   const print = useCallback(() => {
     Event("Share", "Print", "from french course results");
-    window.print();
-  }, []);
+    const localePrefix = locale === "fr" ? "" : `/${locale}`;
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "fixed";
+    iframe.style.top = "-10000px";
+    iframe.style.left = "-10000px";
+    iframe.setAttribute("aria-hidden", "true");
+    iframe.src = `${localePrefix}/trouver-cours-francais/print${window.location.search}`;
 
-  // Same pattern as ShareButtons.tsx: move focus into the form once it's rendered.
+    const cleanup = () => iframe.remove();
+    iframe.addEventListener("load", () => {
+      iframe.contentWindow?.addEventListener("afterprint", cleanup);
+      setTimeout(cleanup, 60_000);
+    });
+    document.body.appendChild(iframe);
+  }, [locale]);
+
   useEffect(() => {
     if (!isSmsModalOpen) return undefined;
     const timeout = setTimeout(() => {

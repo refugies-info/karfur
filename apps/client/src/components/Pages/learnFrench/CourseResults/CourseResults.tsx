@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
+import type { FiltersState } from "~/components/Pages/learnFrench/FiltersSidebar";
 import Image from "~/components/UI/Image";
 import { RESULTS_PER_PAGE } from "~/hooks/learnFrench/useCourseSearch";
 import { CourseCard } from "./CourseCard";
@@ -19,8 +20,7 @@ interface Props {
   onLoadMore: () => void;
   onResetFilters: () => void;
   needLabels: Map<string, string>;
-  departments: string[];
-  cities: string[];
+  filters: FiltersState;
 }
 
 export const CourseResults = (props: Props) => {
@@ -110,7 +110,10 @@ export const CourseResults = (props: Props) => {
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <p className="mb-0 font-bold">{t("Recherche.yourResults", { count: props.total })}</p>
-        <ShareResultsButtons departments={props.departments} cities={props.cities} />
+        <ShareResultsButtons
+          departments={props.filters.departments}
+          cities={props.filters.cities}
+        />
       </div>
 
       <div className="flex flex-col gap-4">
