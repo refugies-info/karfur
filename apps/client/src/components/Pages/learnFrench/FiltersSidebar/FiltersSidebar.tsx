@@ -113,7 +113,7 @@ export const FiltersSidebar = (props: Props) => {
 
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
-          <i className="fr-icon-user-line" aria-hidden="true" />
+          <i className="fr-icon-account-circle-line" aria-hidden="true" />
           {t("LearnFrench.filters_public", "Public visé")}
         </h3>
         <div className="flex flex-wrap gap-2">
