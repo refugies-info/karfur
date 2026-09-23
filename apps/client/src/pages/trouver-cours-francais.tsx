@@ -92,11 +92,11 @@ const LearnFrench = (props: Props) => {
       <div className="bg-alt-blue-france relative">
         <Anchor id="find-a-class" />
         <SearchBar
-          departments={filters.departments}
-          cities={filters.cities}
+          filters={filters}
           onLocationsChange={(departments, cities) =>
             setFilters({ ...filters, departments, cities })
           }
+          onReset={resetFilters}
           search={search}
           onSearchChange={setSearch}
         />
