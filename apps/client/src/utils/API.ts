@@ -10,6 +10,7 @@ import type {
   CheckUserExistsResponse,
   ContentLinkRequest,
   CountDispositifsRequest,
+  CourseListLinkRequest,
   CreateDispositifRequest,
   DeleteTranslationsRequest,
   DeleteUserFavoriteRequest,
@@ -767,6 +768,10 @@ const API = {
   smsContentLink: (body: ContentLinkRequest): Promise<null> => {
     const headers = getHeaders();
     return instance.post<any, null>("/sms/content-link", body, { headers }).then(() => null);
+  },
+  smsCourseListLink: (body: CourseListLinkRequest): Promise<null> => {
+    const headers = getHeaders();
+    return instance.post<any, null>("/sms/course-list-link", body, { headers }).then(() => null);
   },
   /**
    * Remonte une erreur du navigateur au canal technique. Volontairement silencieux : l'appel

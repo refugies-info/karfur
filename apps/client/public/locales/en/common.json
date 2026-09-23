@@ -623,7 +623,9 @@
     "location_remove": "",
     "card_contactStructure": "",
     "results_loadMore": "",
-    "share_title": ""
+    "share_title": "",
+    "print_updatedAt": "",
+    "print_until": ""
   },
   "EditDepartments": {
     "suggestions_found_zero": "",

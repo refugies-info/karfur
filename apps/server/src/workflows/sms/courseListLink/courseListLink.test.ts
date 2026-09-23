@@ -1,0 +1,49 @@
+import type { CourseListLinkRequest } from "@refugies-info/api-types";
+import { InvalidRequestError, ServiceUnavailableError } from "~/errors";
+import logger from "~/logger";
+import { sendSMS } from "~/services";
+import { courseListLink } from "./courseListLink";
+
+jest.mock("~/services");
+jest.mock("~/logger");
+
+const mockSendSMS = sendSMS as jest.Mock;
+
+const body: CourseListLinkRequest = {
+  phone: "+33600000000",
+  url: "https://example.com/trouver-cours-francais",
+  locale: "fr",
+};
+
+describe("courseListLink", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("sends the course list link by SMS", async () => {
+    mockSendSMS.mockResolvedValue({ status: 201, sent: true });
+
+    await expect(courseListLink(body)).resolves.toEqual({ text: "success" });
+    expect(mockSendSMS).toHaveBeenCalledWith(
+      "Bonjour, voici une liste de cours de français qui pourrait vous intéresser : https://example.com/trouver-cours-francais",
+      "+33600000000",
+    );
+  });
+
+  it("throws InvalidRequestError when the SMS request is invalid", async () => {
+    mockSendSMS.mockResolvedValue({ status: 400, sent: false });
+
+    await expect(courseListLink(body)).rejects.toThrow(InvalidRequestError);
+  });
+
+  it("logs and throws ServiceUnavailableError for SMS provider failures", async () => {
+    mockSendSMS.mockResolvedValue({ status: 401, sent: false });
+
+    await expect(courseListLink(body)).rejects.toThrow(ServiceUnavailableError);
+    await expect(courseListLink(body)).rejects.toThrow("[courseListLink] SMS provider unavailable");
+    expect(logger.error).toHaveBeenCalledWith("[courseListLink] SMS not sent", {
+      sent: false,
+      status: 401,
+    });
+  });
+});

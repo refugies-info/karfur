@@ -893,7 +893,9 @@
     "location_remove": "Retirer {{location}}",
     "card_contactStructure": "Contacter la structure",
     "results_loadMore": "Afficher plus de résultats",
-    "share_title": "Partager la liste :"
+    "share_title": "Partager la liste :",
+    "print_updatedAt": "Liste mise à jour le {{date}}",
+    "print_until": "Jusqu'au {{date}}"
   },
   "sitemap": {
     "title": "Plan du site",

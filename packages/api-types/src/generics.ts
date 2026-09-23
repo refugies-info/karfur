@@ -298,6 +298,9 @@ export interface SimpleDispositif {
   sponsor?: {
     nom: string;
     picture?: Picture;
+    address?: string;
+    phone?: string;
+    email?: string;
   };
   availableLanguages: string[];
   hasDraftVersion: boolean;
