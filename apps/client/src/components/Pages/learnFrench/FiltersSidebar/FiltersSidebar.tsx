@@ -76,7 +76,7 @@ export const FiltersSidebar = (props: Props) => {
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-chat-3-line" aria-hidden="true" />
-          {t("LearnFrench.filters_level", "Niveau visé")}
+          {t("LearnFrench.filters_level", "Niveau actuel")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {frenchLevelFilter.map((option) => (

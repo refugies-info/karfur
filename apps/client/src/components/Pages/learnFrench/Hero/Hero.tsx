@@ -5,7 +5,9 @@ import { Section } from "~/components/Pages/staticPages/common/Section";
 
 interface Props {
   title: string;
+  mobileTitle: string;
   subtitle: string;
+  mobileSubtitle: string;
   searchCtaText: string;
   searchCtaHref: string;
   learnMoreCtaText: string;
@@ -22,8 +24,14 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20">
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-h1 md:text-alt-title mb-6">{props.title}</h1>
-            <p className="text-chapo text-default-grey mb-10">{props.subtitle}</p>
+            <h1 className="text-h1 md:text-alt-title mb-6">
+              <span className="md:hidden">{props.mobileTitle}</span>
+              <span className="hidden md:inline">{props.title}</span>
+            </h1>
+            <p className="text-chapo text-default-grey mb-10">
+              <span className="md:hidden">{props.mobileSubtitle}</span>
+              <span className="hidden md:inline">{props.subtitle}</span>
+            </p>
             <div className="flex flex-col items-center gap-4 md:items-start">
               <Button
                 iconId="fr-icon-search-line"

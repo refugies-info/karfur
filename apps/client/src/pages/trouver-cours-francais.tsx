@@ -6,6 +6,7 @@ import { END } from "redux-saga";
 import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
 import {
   CourseResults,
+  CourseTab,
   CourseTabs,
   FiltersSidebar,
   FullScreenPanel,
@@ -75,7 +76,9 @@ const LearnFrench = (props: Props) => {
 
       <Hero
         title={t("LearnFrench.hero_title")}
+        mobileTitle={t("LearnFrench.hero_title_mobile")}
         subtitle={t("LearnFrench.hero_subtitle")}
+        mobileSubtitle={t("LearnFrench.hero_subtitle_mobile")}
         searchCtaText={t("LearnFrench.hero_search_cta")}
         searchCtaHref="#find-a-class"
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
@@ -135,6 +138,11 @@ const LearnFrench = (props: Props) => {
                 hasMore={courseSearch.page < courseSearch.pageCount}
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}
+                onSeeOtherCourses={
+                  activeTab === CourseTab.UPCOMING
+                    ? () => setActiveTab(CourseTab.ON_DEMAND)
+                    : undefined
+                }
                 needLabels={needLabels}
               />
             </div>
