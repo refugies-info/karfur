@@ -18,13 +18,17 @@ export const CourseTabs = (props: Props) => {
   const { t } = useTranslation();
 
   const tabs: { key: CourseTab; iconId: string; labelKey: string }[] = [
-    { key: CourseTab.UPCOMING, iconId: "fr-icon-time-line", labelKey: "LearnFrench.tab_upcoming" },
+    {
+      key: CourseTab.UPCOMING,
+      iconId: "fr-icon-calendar-2-line",
+      labelKey: "LearnFrench.tab_upcoming",
+    },
     {
       key: CourseTab.ON_DEMAND,
       iconId: "fr-icon-calendar-event-line",
       labelKey: "LearnFrench.tab_onDemand",
     },
-    { key: CourseTab.ALL, iconId: "fr-icon-menu-fill", labelKey: "LearnFrench.tab_all" },
+    { key: CourseTab.ALL, iconId: "fr-icon-list-unordered", labelKey: "LearnFrench.tab_all" },
   ];
 
   return (

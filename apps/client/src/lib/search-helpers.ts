@@ -1,6 +1,7 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
+import { frenchLevelValuesByOption, isFrenchOption } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import type { ParsedUrlQuery } from "querystring";
@@ -111,9 +112,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   age: getQueryParamAsArray(query.age).filter(
     (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
   ),
-  frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(
-    (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
-  ),
+  frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(isFrenchOption),
   public: getQueryParamAsArray(query.public).filter(
     (v): v is PublicOptions => typeof v === "string" && v.trim().length > 0,
   ),
@@ -298,16 +297,10 @@ export const buildBaseMatch = (
     }
   }
 
-  const frenchLevel = (queryParams.frenchLevel ?? []).filter(
-    (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
-  );
+  const frenchLevel = (queryParams.frenchLevel ?? []).filter(isFrenchOption);
   if (frenchLevel.length > 0) {
     const allowedLevels = Array.from(
-      new Set(
-        frenchLevel.flatMap((cat) =>
-          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
-        ),
-      ),
+      new Set(frenchLevel.flatMap((cat) => frenchLevelValuesByOption[cat])),
     );
     // Match if the field (string or array) contains any allowedLevels
     match["metadatas.frenchLevel"] = { $in: allowedLevels };
