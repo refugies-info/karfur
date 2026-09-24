@@ -31,6 +31,7 @@ const PrintCourseList = () => {
     [allNeeds, locale],
   );
 
+  // The effect re-runs whenever the results change: open the print dialog only once
   const hasPrinted = useRef(false);
   useEffect(() => {
     if (hasPrinted.current || !isReady || courseSearch.loading) return;
