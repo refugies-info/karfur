@@ -4,6 +4,8 @@ import { frenchLevelFilter, publicOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import { LocationFilter } from "~/components/Pages/learnFrench/LocationFilter";
 import useLocale from "~/hooks/useLocale";
+import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
+import { getNeedLabel } from "~/lib/learnFrench/needLabels";
 import { FilterPill } from "./FilterPill";
 
 export interface FiltersState {
@@ -19,7 +21,8 @@ interface Props {
   categoryOptions: GetNeedResponse[];
   onChange: (filters: FiltersState) => void;
   onReset: () => void;
-  showTitle?: boolean;
+  showHeader?: boolean;
+  compactLevelLabels?: boolean;
 }
 
 const toggle = <T,>(list: T[], value: T): T[] =>
@@ -42,22 +45,22 @@ export const FiltersSidebar = (props: Props) => {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center">
-        {props.showTitle !== false && (
+      {props.showHeader !== false && (
+        <div className="flex items-center">
           <h2 className="text-title-grey text-h5 mb-0 font-bold">
             {t("LearnFrench.filters_title", "Filtrer")}
           </h2>
-        )}
-        {hasActiveFilters && (
-          <button
-            type="button"
-            className="text-title-blue-france ml-auto text-sm underline"
-            onClick={props.onReset}
-          >
-            {t("LearnFrench.filters_reset", "Effacer")}
-          </button>
-        )}
-      </div>
+          {hasActiveFilters && (
+            <button
+              type="button"
+              className="text-title-blue-france ml-auto text-sm underline"
+              onClick={props.onReset}
+            >
+              {t("LearnFrench.filters_reset", "Effacer")}
+            </button>
+          )}
+        </div>
+      )}
 
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
@@ -74,7 +77,7 @@ export const FiltersSidebar = (props: Props) => {
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-chat-3-line" aria-hidden="true" />
-          {t("LearnFrench.filters_level", "Niveau visé")}
+          {t("LearnFrench.filters_level", "Niveau actuel")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {frenchLevelFilter.map((option) => (
@@ -85,7 +88,9 @@ export const FiltersSidebar = (props: Props) => {
                 props.onChange({ ...filters, frenchLevel: toggle(filters.frenchLevel, option.key) })
               }
             >
-              {t(option.value, option.value)}
+              {props.compactLevelLabels
+                ? getFrenchLevelOptionLabel(option.key, t)
+                : t(option.value, option.value)}
             </FilterPill>
           ))}
         </div>
@@ -105,7 +110,7 @@ export const FiltersSidebar = (props: Props) => {
                 props.onChange({ ...filters, categories: toggle(filters.categories, need._id) })
               }
             >
-              {need[locale]?.text || need.fr.text}
+              {getNeedLabel(need, locale)}
             </FilterPill>
           ))}
         </div>
@@ -113,7 +118,7 @@ export const FiltersSidebar = (props: Props) => {
 
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
-          <i className="fr-icon-user-line" aria-hidden="true" />
+          <i className="ri-account-circle-line" aria-hidden="true" />
           {t("LearnFrench.filters_public", "Public visé")}
         </h3>
         <div className="flex flex-wrap gap-2">

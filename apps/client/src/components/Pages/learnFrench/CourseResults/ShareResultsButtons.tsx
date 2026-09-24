@@ -5,7 +5,9 @@ import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useRef, useState } from "react";
 import SMSForm from "~/components/Pages/dispositif/SMSForm";
 import Toast from "~/components/UI/Toast";
+import useLocale from "~/hooks/useLocale";
 import { Event } from "~/lib/tracking";
+import API from "~/utils/API";
 
 const smsModal = createModal({
   id: "course-results-sms-modal",
@@ -14,12 +16,23 @@ const smsModal = createModal({
 
 export const ShareResultsButtons = () => {
   const { t } = useTranslation();
+  const locale = useLocale();
   const [showToastLink, setShowToastLink] = useState(false);
   const smsButtonRef = useRef<HTMLButtonElement>(null);
   const smsFormInputContainerRef = useRef<HTMLDivElement>(null);
   const isSmsModalOpen = useIsModalOpen(smsModal, {
     onConceal: () => smsButtonRef.current?.focus(),
   });
+
+  const sendCourseListSms = useCallback(
+    (tel: string, smsLocale: string) =>
+      API.smsCourseListLink({
+        phone: tel,
+        url: window.location.href,
+        locale: smsLocale,
+      }),
+    [],
+  );
 
   const copyLink = useCallback(() => {
     Event("Share", "Copy", "from french course results");
@@ -31,10 +44,22 @@ export const ShareResultsButtons = () => {
 
   const print = useCallback(() => {
     Event("Share", "Print", "from french course results");
-    window.print();
-  }, []);
+    const localePrefix = locale === "fr" ? "" : `/${locale}`;
+    const iframe = document.createElement("iframe");
+    iframe.style.position = "fixed";
+    iframe.style.top = "-10000px";
+    iframe.style.left = "-10000px";
+    iframe.setAttribute("aria-hidden", "true");
+    iframe.src = `${localePrefix}/trouver-cours-francais/print${window.location.search}`;
 
-  // Same pattern as ShareButtons.tsx: move focus into the form once it's rendered.
+    const cleanup = () => iframe.remove();
+    iframe.addEventListener("load", () => {
+      iframe.contentWindow?.addEventListener("afterprint", cleanup);
+      setTimeout(cleanup, 60_000);
+    });
+    document.body.appendChild(iframe);
+  }, [locale]);
+
   useEffect(() => {
     if (!isSmsModalOpen) return undefined;
     const timeout = setTimeout(() => {
@@ -74,7 +99,12 @@ export const ShareResultsButtons = () => {
       </div>
 
       <smsModal.Component title={t("Dispositif.sms", "SMS")}>
-        <SMSForm onSubmitSuccess={() => smsModal.close()} ref={smsFormInputContainerRef} />
+        <SMSForm
+          onSubmitSuccess={() => smsModal.close()}
+          onSend={sendCourseListSms}
+          restrictToAvailableLanguages={false}
+          ref={smsFormInputContainerRef}
+        />
       </smsModal.Component>
 
       <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>

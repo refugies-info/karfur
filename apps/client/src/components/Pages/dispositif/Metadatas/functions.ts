@@ -1,5 +1,6 @@
 import type { conditionType, Metadatas } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions } from "data/searchFilters";
+import { frenchLevelOptionKeys, frenchLevelValuesByOption } from "data/searchFilters";
 import type { LinkProps } from "next/link";
 import type { TFunction } from "next-i18next";
 import { getPath } from "routes";
@@ -125,13 +126,11 @@ export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
   };
 };
 export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkProps["href"] => {
-  const options: FrenchOptions[] = [];
-  if (frenchLevel) {
-    if (frenchLevel.includes("alpha") || frenchLevel.includes("A1") || frenchLevel.includes("A2"))
-      options.push("a");
-    if (frenchLevel.includes("B1") || frenchLevel.includes("B2")) options.push("b");
-    if (frenchLevel.includes("C1") || frenchLevel.includes("C2")) options.push("c");
-  }
+  const options: FrenchOptions[] = frenchLevel
+    ? frenchLevelOptionKeys.filter((option) =>
+        frenchLevelValuesByOption[option].some((level) => frenchLevel.includes(level)),
+      )
+    : [];
   return {
     pathname: getPath("/recherche", "fr"),
     search: buildUrlQuery({ frenchLevel: options }),

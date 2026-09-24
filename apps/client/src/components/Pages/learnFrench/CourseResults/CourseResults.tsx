@@ -18,6 +18,7 @@ interface Props {
   hasMore: boolean;
   onLoadMore: () => void;
   onResetFilters: () => void;
+  onSeeOtherCourses?: () => void;
   needLabels: Map<string, string>;
 }
 
@@ -75,39 +76,57 @@ export const CourseResults = (props: Props) => {
   }
 
   if (props.results.length === 0) {
+    const isUpcomingEmpty = Boolean(props.onSeeOtherCourses);
+
     return (
       <div className="flex flex-col items-center gap-10 py-14">
         <Image src={TutoImg} width={176} height={120} alt="" />
         <div className="text-chapo text-default-grey flex flex-col items-center gap-1.5 text-center">
           <h2 className="text-chapo mb-0 font-bold">
-            {t(
-              "Recherche.noResultTitle",
-              "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
-            )}
+            {isUpcomingEmpty
+              ? t(
+                  "LearnFrench.results_noUpcomingTitle",
+                  "Pas de prochaines dates connues pour le moment",
+                )
+              : t(
+                  "Recherche.noResultTitle",
+                  "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
+                )}
           </h2>
           <p className="mb-0">
-            {t(
-              "Recherche.noResultText",
-              "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
-            )}
+            {isUpcomingEmpty
+              ? t(
+                  "LearnFrench.results_noUpcomingText",
+                  "mais d’autres cours sont peut-être ouverts près de chez vous.",
+                )
+              : t(
+                  "Recherche.noResultText",
+                  "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
+                )}
           </p>
         </div>
-        <Button
-          priority="tertiary"
-          onClick={props.onResetFilters}
-          iconId="fr-icon-refresh-line"
-          iconPosition="right"
-        >
-          {t("Recherche.resetFilters", "Effacer les filtres")}
-        </Button>
+        {props.onSeeOtherCourses ? (
+          <Button onClick={props.onSeeOtherCourses}>
+            {t("LearnFrench.results_seeOtherCourses", "Voir les autres cours")}
+          </Button>
+        ) : (
+          <Button
+            priority="tertiary"
+            onClick={props.onResetFilters}
+            iconId="fr-icon-refresh-line"
+            iconPosition="right"
+          >
+            {t("Recherche.resetFilters", "Effacer les filtres")}
+          </Button>
+        )}
       </div>
     );
   }
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <p className="mb-0 font-bold">{t("Recherche.yourResults", { count: props.total })}</p>
+      <div className="hidden flex-wrap items-center justify-between gap-4 lg:flex">
+        <p className="mb-0 font-bold">{t("LearnFrench.results_count", { count: props.total })}</p>
         <ShareResultsButtons />
       </div>
 

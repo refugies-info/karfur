@@ -5,6 +5,10 @@
  */
 export const LEARN_FRENCH_THEME_ID = "63286a015d31b2c0cad9960a";
 
+/** Special `metadatas.location` values, besides the list of departments. */
+export const LOCATION_FRANCE = "france";
+export const LOCATION_ONLINE = "online";
+
 import ContractIcon from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/document/contract.svg";
 import BookIcon from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/leisure/book.svg";
 import SuccessIcon from "@codegouvfr/react-dsfr/dsfr/artwork/pictograms/system/success.svg";
