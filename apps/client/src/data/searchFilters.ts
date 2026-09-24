@@ -1,7 +1,7 @@
 import type { frenchLevelType, publicStatusType, publicType } from "@refugies-info/api-types";
 
 export type AgeOptions = "-18" | "18-25" | "+25";
-export type FrenchOptions = "a" | "b" | "c";
+export type FrenchOptions = "alpha" | "a" | "b" | "c";
 export type SortOptions = "default" | "date" | "views" | "theme" | "location";
 export type TypeOptions = "dispositif" | "demarche" | "all" | "ressource";
 export type PublicOptions = publicType;
@@ -46,15 +46,20 @@ export const ageFilters: AgeFilters = [
   },
 ];
 export const frenchLevelFilter: FrenchFilters = [
+  { key: "alpha", value: "Filters.frenchLevelAlpha", backwardCompatibility: [] },
   { key: "a", value: "Filters.frenchLevelA", backwardCompatibility: ["pas du tout", "un peu"] },
   { key: "b", value: "Filters.frenchLevelB", backwardCompatibility: ["moyennement"] },
   { key: "c", value: "Filters.frenchLevelC", backwardCompatibility: ["bien"] },
 ];
 export const frenchLevelValuesByOption: Record<FrenchOptions, frenchLevelType[]> = {
-  a: ["alpha", "A1", "A2"],
+  alpha: ["alpha"],
+  a: ["A1", "A2"],
   b: ["B1", "B2"],
   c: ["C1", "C2"],
 };
+export const frenchLevelOptionKeys: FrenchOptions[] = frenchLevelFilter.map((option) => option.key);
+export const isFrenchOption = (value: string): value is FrenchOptions =>
+  frenchLevelOptionKeys.includes(value as FrenchOptions);
 export const sortOptions: SortFilters = [
   { key: "date", value: "Filters.sortDate", backwardCompatibility: "created_at" },
   { key: "location", value: "Filters.sortLocation", backwardCompatibility: "" },

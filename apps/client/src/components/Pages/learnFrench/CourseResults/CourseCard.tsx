@@ -1,6 +1,5 @@
 import type { SimpleDispositif } from "@refugies-info/api-types";
-import type { FrenchOptions } from "data/searchFilters";
-import { frenchLevelValuesByOption } from "data/searchFilters";
+import { frenchLevelOptionKeys, frenchLevelValuesByOption } from "data/searchFilters";
 import Link from "next/link";
 import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
@@ -33,17 +32,15 @@ const isFranceWideCourse = (dispositif: SimpleDispositif): boolean => {
   return !Array.isArray(location) && location === "france";
 };
 
-const FRENCH_LEVEL_OPTIONS: FrenchOptions[] = ["a", "b", "c"];
-
 const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): string[] => {
   const levels = dispositif.metadatas?.frenchLevel ?? [];
   const labels: string[] = [];
-  if (levels.includes("alpha")) labels.push(t("Infocards.alpha"));
-  for (const option of FRENCH_LEVEL_OPTIONS) {
-    const optionLevels = frenchLevelValuesByOption[option].filter((level) => level !== "alpha");
-    if (optionLevels.some((level) => levels.includes(level))) {
-      labels.push(optionLevels.join("/"));
-    }
+  for (const option of frenchLevelOptionKeys) {
+    const optionLevels = frenchLevelValuesByOption[option];
+    if (!optionLevels.some((level) => levels.includes(level))) continue;
+    labels.push(
+      option === "alpha" ? t("Filters.frenchLevelAlpha", "Alpha") : optionLevels.join("/"),
+    );
   }
   return labels;
 };
