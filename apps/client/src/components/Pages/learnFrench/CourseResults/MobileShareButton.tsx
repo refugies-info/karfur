@@ -37,7 +37,7 @@ export const MobileShareButton = () => {
         aria-label={label}
         className="border-default-grey text-title-blue-france flex h-11 w-11 items-center justify-center rounded border bg-white"
       >
-        <i className="fr-icon-share-forward-line fr-icon--sm" aria-hidden="true" />
+        <i className="ri-share-forward-line fr-icon--sm" aria-hidden="true" />
       </button>
       <Toast open={showToastLink} closeCallback={() => setShowToastLink(false)}>
         {t("Dispositif.toastShareCopied")}

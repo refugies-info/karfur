@@ -20,7 +20,7 @@ export const CourseTabs = (props: Props) => {
   const tabs: { key: CourseTab; iconId: string; labelKey: string }[] = [
     {
       key: CourseTab.UPCOMING,
-      iconId: "fr-icon-calendar-2-line",
+      iconId: "ri-calendar-2-line",
       labelKey: "LearnFrench.tab_upcoming",
     },
     {
@@ -28,7 +28,7 @@ export const CourseTabs = (props: Props) => {
       iconId: "fr-icon-calendar-event-line",
       labelKey: "LearnFrench.tab_onDemand",
     },
-    { key: CourseTab.ALL, iconId: "fr-icon-list-unordered", labelKey: "LearnFrench.tab_all" },
+    { key: CourseTab.ALL, iconId: "ri-list-unordered", labelKey: "LearnFrench.tab_all" },
   ];
 
   return (

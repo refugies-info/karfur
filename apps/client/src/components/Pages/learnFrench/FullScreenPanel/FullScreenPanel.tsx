@@ -70,7 +70,7 @@ export const FullScreenPanel = (props: Props) => {
           onClick={props.onReset}
           className="text-title-blue-france inline-flex min-h-11 items-center gap-2 px-2 text-base font-medium"
         >
-          <i className="fr-icon-eraser-line fr-icon--sm" aria-hidden="true" />
+          <i className="ri-eraser-line fr-icon--sm" aria-hidden="true" />
           {t("LearnFrench.filters_reset", "Effacer")}
         </button>
         <button

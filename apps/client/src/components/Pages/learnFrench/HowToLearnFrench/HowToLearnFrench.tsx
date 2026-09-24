@@ -67,7 +67,7 @@ export const HowToLearnFrench = (props: Props) => {
         <div
           ref={listRef}
           onScroll={updateScrollState}
-          className="flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-1 lg:snap-none lg:gap-8 lg:overflow-visible lg:pb-0"
+          className="flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:snap-none lg:gap-8 lg:overflow-visible lg:pb-0"
         >
           {props.cards.map((card) => (
             <HowToCard
