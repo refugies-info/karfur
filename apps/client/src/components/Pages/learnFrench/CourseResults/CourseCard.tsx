@@ -3,8 +3,10 @@ import { frenchLevelOptionKeys, frenchLevelValuesByOption } from "data/searchFil
 import Link from "next/link";
 import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
+import { LOCATION_FRANCE, LOCATION_ONLINE } from "~/data/learnFrench";
 import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
+import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
 import { getPath } from "~/routes";
@@ -18,18 +20,18 @@ interface Props {
 const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   const location = dispositif.metadatas?.location;
   const first = Array.isArray(location) ? location[0] : location;
-  if (!first || first === "france" || first === "online") return null;
+  if (!first || first === LOCATION_FRANCE || first === LOCATION_ONLINE) return null;
   return first.split(" - ")[1] ?? first;
 };
 
 const isOnlineCourse = (dispositif: SimpleDispositif): boolean => {
   const location = dispositif.metadatas?.location;
-  return !Array.isArray(location) && location === "online";
+  return !Array.isArray(location) && location === LOCATION_ONLINE;
 };
 
 const isFranceWideCourse = (dispositif: SimpleDispositif): boolean => {
   const location = dispositif.metadatas?.location;
-  return !Array.isArray(location) && location === "france";
+  return !Array.isArray(location) && location === LOCATION_FRANCE;
 };
 
 const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): string[] => {
@@ -89,7 +91,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
           </span>
         ) : isFranceWide ? (
           <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-            {t("Recherche.france", "toute la France")}
+            {jsUcfirst(t("Recherche.france", "toute la France"))}
           </span>
         ) : (
           departmentBadge && (
