@@ -22,9 +22,9 @@ const PrintableCourseRow = (props: RowProps) => {
   const nextSession = getNextUpcomingSession(props.dispositif);
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
   const sessionEndDate = nextSession ? new Date(nextSession.endDate) : null;
-  const tags = (props.dispositif.needs ?? [])
-    .map((needId) => props.needLabels.get(String(needId)))
-    .filter((label): label is string => Boolean(label));
+  const tags = (props.dispositif.needs ?? []).flatMap(
+    (needId) => props.needLabels.get(String(needId)) ?? [],
+  );
 
   const until = sessionEndDate
     ? t("LearnFrench.print_until", {
@@ -138,13 +138,11 @@ export const PrintableCourseList = (props: Props) => {
 
   const locationSummary = [...props.filters.departments, ...props.filters.cities].join(", ");
   const levelSummary = props.filters.frenchLevel
-    .map((key) => frenchLevelFilter.find((option) => option.key === key)?.value)
-    .filter((value): value is string => Boolean(value))
+    .flatMap((key) => frenchLevelFilter.find((option) => option.key === key)?.value ?? [])
     .map((value) => t(value, value))
     .join(", ");
   const categorySummary = props.filters.categories
-    .map((id) => props.needLabels.get(String(id)))
-    .filter((label): label is string => Boolean(label))
+    .flatMap((id) => props.needLabels.get(String(id)) ?? [])
     .join(", ");
 
   const updatedAt = new Date().toLocaleDateString(locale, {
