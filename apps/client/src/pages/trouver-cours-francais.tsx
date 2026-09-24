@@ -24,6 +24,7 @@ import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { buildNeedLabels } from "~/lib/learnFrench/needLabels";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
 import { wrapper } from "~/services/configureStore";
@@ -54,10 +55,7 @@ const LearnFrench = (props: Props) => {
         .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
     [allNeeds],
   );
-  const needLabels = useMemo(
-    () => new Map(allNeeds.map((need) => [String(need._id), need[locale]?.text || need.fr.text])),
-    [allNeeds, locale],
-  );
+  const needLabels = useMemo(() => buildNeedLabels(allNeeds, locale), [allNeeds, locale]);
 
   const { badges, filterGroupCount } = useActiveFilters({
     filters,

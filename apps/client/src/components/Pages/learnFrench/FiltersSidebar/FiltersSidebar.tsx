@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { LocationFilter } from "~/components/Pages/learnFrench/LocationFilter";
 import useLocale from "~/hooks/useLocale";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
+import { getNeedLabel } from "~/lib/learnFrench/needLabels";
 import { FilterPill } from "./FilterPill";
 
 export interface FiltersState {
@@ -109,7 +110,7 @@ export const FiltersSidebar = (props: Props) => {
                 props.onChange({ ...filters, categories: toggle(filters.categories, need._id) })
               }
             >
-              {need[locale]?.text || need.fr.text}
+              {getNeedLabel(need, locale)}
             </FilterPill>
           ))}
         </div>
