@@ -601,6 +601,8 @@
     "howTo_tag_arrival": "",
     "howTo_tag_mandatory": "",
     "howTo_tag_certification": "",
+    "howTo_prev": "",
+    "howTo_next": "",
     "search_title": "",
     "search_placeholder": "",
     "search_submit": "",

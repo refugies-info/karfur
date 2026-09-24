@@ -18,10 +18,7 @@ interface Props {
 
 export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) => {
   return (
-    <Section
-      ref={ref}
-      className="bg-[linear-gradient(120deg,#c5d0fc_4.7%,#e3fdeb_126.1%)] pb-0 md:pb-0"
-    >
+    <Section ref={ref} className="bg-[linear-gradient(120deg,#c5d0fc_4.7%,#e3fdeb_126.1%)] md:pb-0">
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20">
           <div className="flex-1 text-center md:text-left">
@@ -56,7 +53,7 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
               </a>
             </p>
           </div>
-          <div className="flex-1">
+          <div className="order-first flex-1 md:order-none">
             <Image src={props.image} alt="" className="mx-auto h-auto max-w-full" />
           </div>
         </div>
