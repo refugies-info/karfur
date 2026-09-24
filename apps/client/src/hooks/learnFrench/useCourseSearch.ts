@@ -62,7 +62,9 @@ export const useCourseSearch = (
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(false);
+  const [settledSearchKey, setSettledSearchKey] = useState<string | null>(null);
   const requestIdRef = useRef(0);
+  const searchKey = buildSearchParams(filters, search, activeTab, 1, locale, limit).toString();
 
   useEffect(() => {
     if (!ready) return;
@@ -70,9 +72,7 @@ export const useCourseSearch = (
     setLoading(true);
     setError(false);
 
-    fetch(
-      `/api/search?${buildSearchParams(filters, search, activeTab, 1, locale, limit).toString()}`,
-    )
+    fetch(`/api/search?${searchKey}`)
       .then((response) => {
         if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
         return response.json();
@@ -83,6 +83,7 @@ export const useCourseSearch = (
         setTotal(data.total);
         setPage(data.page);
         setPageCount(data.pageCount);
+        setSettledSearchKey(searchKey);
       })
       .catch((err) => {
         if (requestId !== requestIdRef.current) return;
@@ -93,7 +94,7 @@ export const useCourseSearch = (
       .finally(() => {
         if (requestId === requestIdRef.current) setLoading(false);
       });
-  }, [filters, search, activeTab, locale, ready, limit]);
+  }, [searchKey, ready]);
 
   const loadMore = async () => {
     setLoadingMore(true);
@@ -117,5 +118,7 @@ export const useCourseSearch = (
     }
   };
 
-  return { results, total, page, pageCount, loading, loadingMore, error, loadMore };
+  const isSettled = !loading && !error && settledSearchKey === searchKey;
+
+  return { results, total, page, pageCount, loading, loadingMore, error, isSettled, loadMore };
 };

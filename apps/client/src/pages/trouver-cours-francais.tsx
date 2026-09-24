@@ -20,6 +20,7 @@ import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARDS_CONFIG, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import { useActiveFilters } from "~/hooks/learnFrench/useActiveFilters";
+import { useAutoSwitchToOnDemandTab } from "~/hooks/learnFrench/useAutoSwitchToOnDemandTab";
 import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
@@ -44,6 +45,13 @@ const LearnFrench = (props: Props) => {
   const { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady } =
     useFrenchCourseFilters();
   const courseSearch = useCourseSearch(filters, search, activeTab, isReady);
+  useAutoSwitchToOnDemandTab({
+    filters,
+    activeTab,
+    setActiveTab,
+    total: courseSearch.total,
+    isSettled: courseSearch.isSettled,
+  });
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
 
