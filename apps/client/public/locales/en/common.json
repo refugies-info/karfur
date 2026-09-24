@@ -609,6 +609,7 @@
     "howTo_tag_certification": "",
     "search_title": "",
     "search_placeholder": "",
+    "search_submit": "",
     "tab_upcoming": "",
     "tab_onDemand": "",
     "tab_all": "",
@@ -630,6 +631,8 @@
     "card_sendMail": "",
     "results_loadMore": "",
     "share_title": "",
+    "share_action": "",
+    "filter_remove": "",
     "print_updatedAt": "",
     "print_until": ""
   },

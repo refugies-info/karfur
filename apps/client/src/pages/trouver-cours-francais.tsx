@@ -1,4 +1,3 @@
-import Button from "@codegouvfr/react-dsfr/Button";
 import { createModal } from "@codegouvfr/react-dsfr/Modal";
 import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
@@ -13,11 +12,13 @@ import {
   FiltersSidebar,
   Hero,
   HowToLearnFrench,
+  MobileToolbar,
   SearchBar,
 } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARDS_CONFIG, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { useActiveFilters } from "~/hooks/learnFrench/useActiveFilters";
 import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
@@ -64,6 +65,14 @@ const LearnFrench = (props: Props) => {
     [allNeeds, locale],
   );
 
+  const { badges, filterGroupCount } = useActiveFilters({
+    filters,
+    onFiltersChange: setFilters,
+    needLabels,
+    search,
+    onSearchChange: setSearch,
+  });
+
   const resetFilters = () =>
     setFilters({ departments: [], cities: [], frenchLevel: [], categories: [], publicFilter: [] });
 
@@ -101,16 +110,6 @@ const LearnFrench = (props: Props) => {
           onSearchChange={setSearch}
         />
         <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
-          <Button
-            ref={mobileFiltersButtonRef}
-            priority="secondary"
-            iconId="fr-icon-equalizer-line"
-            className="lg:hidden"
-            onClick={() => mobileFiltersModal.open()}
-          >
-            {t("LearnFrench.filters_title", "Filtrer")}
-          </Button>
-
           <aside className="hidden shrink-0 lg:block lg:w-72">
             <FiltersSidebar
               filters={filters}
@@ -136,6 +135,17 @@ const LearnFrench = (props: Props) => {
 
           <div className="min-w-0 flex-1">
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+            <div className="mt-4 lg:hidden">
+              <MobileToolbar
+                total={courseSearch.total}
+                filterGroupCount={filterGroupCount}
+                badges={badges}
+                search={search}
+                onSearchSubmit={setSearch}
+                onOpenFilters={() => mobileFiltersModal.open()}
+                filtersButtonRef={mobileFiltersButtonRef}
+              />
+            </div>
             <div className="mt-6">
               <CourseResults
                 results={courseSearch.results}

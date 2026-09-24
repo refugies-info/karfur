@@ -36,7 +36,7 @@ export const SearchBar = (props: Props) => {
         {hasActiveFilters && (
           <button
             type="button"
-            className="text-title-blue-france text-sm underline"
+            className="text-title-blue-france hidden text-sm underline lg:inline"
             onClick={props.onReset}
           >
             {t("LearnFrench.filters_reset", "Effacer")}
@@ -48,7 +48,7 @@ export const SearchBar = (props: Props) => {
         label={placeholder}
         className={cn(
           styles.searchInput,
-          "[&_.fr-input]:!bg-white mb-0 w-full [&_label]:sr-only lg:w-80",
+          "[&_.fr-input]:!bg-white mb-0 hidden w-full [&_label]:sr-only lg:block lg:w-80",
         )}
         nativeInputProps={{
           type: "search",

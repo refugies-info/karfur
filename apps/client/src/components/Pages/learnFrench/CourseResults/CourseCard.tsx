@@ -10,6 +10,7 @@ import useLocale from "~/hooks/useLocale";
 import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
+import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
 import { getPath } from "~/routes";
 import { SingleLineTags } from "./SingleLineTags";
 
@@ -44,9 +45,7 @@ const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): strin
   for (const option of frenchLevelOptionKeys) {
     const optionLevels = frenchLevelValuesByOption[option];
     if (!optionLevels.some((level) => levels.includes(level))) continue;
-    labels.push(
-      option === "alpha" ? t("Filters.frenchLevelAlpha", "Alpha") : optionLevels.join("/"),
-    );
+    labels.push(getFrenchLevelOptionLabel(option, t));
   }
   return labels;
 };

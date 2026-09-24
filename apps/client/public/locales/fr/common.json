@@ -877,6 +877,7 @@
     "howTo_tag_certification": "Prouver le niveau",
     "search_title": "Chercher un cours de français à",
     "search_placeholder": "Rechercher par mot-clé",
+    "search_submit": "Rechercher",
     "tab_upcoming": "Dates fixes",
     "tab_onDemand": "Dates sur demande",
     "tab_all": "Tous les résultats",
@@ -898,6 +899,8 @@
     "card_sendMail": "Envoyer un mail",
     "results_loadMore": "Afficher plus de résultats",
     "share_title": "Partager la liste :",
+    "share_action": "Partager la liste",
+    "filter_remove": "Retirer le filtre {{label}}",
     "print_updatedAt": "Liste mise à jour le {{date}}",
     "print_until": "Jusqu'au {{date}}"
   },
