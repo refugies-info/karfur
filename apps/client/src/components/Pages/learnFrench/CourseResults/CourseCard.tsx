@@ -3,6 +3,7 @@ import { frenchLevelOptionKeys, frenchLevelValuesByOption } from "data/searchFil
 import Link from "next/link";
 import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
+import Image from "~/components/UI/Image";
 import { LOCATION_FRANCE, LOCATION_ONLINE } from "~/data/learnFrench";
 import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
@@ -16,6 +17,9 @@ interface Props {
   dispositif: SimpleDispositif;
   needLabels: Map<string, string>;
 }
+
+const CONTACT_BUTTON_CLASSNAME =
+  "border-action-high-blue-france text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
 
 const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   const location = dispositif.metadatas?.location;
@@ -67,39 +71,54 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const frequency = getFrequencyText(props.dispositif.metadatas?.frequency, t);
   const price = getPriceText(props.dispositif.metadatas?.price, t);
 
+  const sponsor = props.dispositif.sponsor;
+  const sponsorLogo = sponsor?.picture?.secure_url;
+  const showContactActions = !sessionDate && (sponsor?.phone || sponsor?.email);
+
   const href = {
     pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
     query: { id: String(props.dispositif._id) },
   };
 
   return (
-    <Link
-      ref={ref}
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="border-default-grey hover:bg-alt-blue-france flex items-stretch border bg-white"
-    >
+    <div className="border-default-grey hover:bg-alt-blue-france relative flex flex-col items-stretch border bg-white md:flex-row">
+      {nextSession && (
+        <span
+          aria-hidden="true"
+          className="bg-action-high-blue-france absolute inset-y-0 left-0 w-1 md:hidden"
+        />
+      )}
       <div
-        className={`flex w-[170px] shrink-0 flex-col gap-1 px-6 py-8 ${
-          nextSession ? "border-action-high-blue-france border-l-4" : ""
+        className={`border-default-grey flex flex-col gap-1 border-b px-4 py-5 md:w-[170px] md:shrink-0 md:border-b-0 md:px-6 md:py-8 ${
+          nextSession ? "md:border-action-high-blue-france md:border-l-4" : ""
         }`}
       >
-        {isOnline ? (
-          <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-            {t("Recherche.online", "En ligne")}
-          </span>
-        ) : isFranceWide ? (
-          <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-            {jsUcfirst(t("Recherche.france", "toute la France"))}
-          </span>
-        ) : (
-          departmentBadge && (
-            <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
-              {departmentBadge}
+        <div className="flex items-start justify-between gap-3">
+          {isOnline ? (
+            <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+              {t("Recherche.online", "En ligne")}
             </span>
-          )
-        )}
+          ) : isFranceWide ? (
+            <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+              {jsUcfirst(t("Recherche.france", "toute la France"))}
+            </span>
+          ) : (
+            departmentBadge && (
+              <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+                {departmentBadge}
+              </span>
+            )
+          )}
+          {!sessionDate && sponsorLogo && (
+            <Image
+              className="h-10 w-10 shrink-0 object-contain md:hidden"
+              src={sponsorLogo}
+              alt=""
+              width={40}
+              height={40}
+            />
+          )}
+        </div>
         {sessionDate ? (
           <div className="text-title-blue-france">
             <p className="text-h1 leading-none font-bold">
@@ -120,30 +139,52 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             )}
           </p>
         )}
+        {showContactActions && (
+          <div className="mt-3 flex flex-wrap gap-2 md:hidden">
+            {sponsor?.phone && (
+              <a href={`tel:${sponsor.phone}`} className={CONTACT_BUTTON_CLASSNAME}>
+                <i className="fr-icon-phone-line fr-icon--sm" aria-hidden="true" />
+                {t("LearnFrench.card_call", "Appeler")}
+              </a>
+            )}
+            {sponsor?.email && (
+              <a href={`mailto:${sponsor.email}`} className={CONTACT_BUTTON_CLASSNAME}>
+                <i className="fr-icon-mail-line fr-icon--sm" aria-hidden="true" />
+                {t("LearnFrench.card_sendMail", "Envoyer un mail")}
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-4 p-8">
+      <div className="flex min-w-0 flex-1 flex-col gap-4 p-4 md:p-8">
         <SingleLineTags tags={tags} />
 
         <div className="flex flex-col gap-3">
-          <h3
-            className="text-title-grey text-h5 mb-0 font-bold"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
-          {props.dispositif.sponsor?.nom && (
+          <h3 className="text-title-grey text-h5 mb-0 font-bold">
+            <Link
+              ref={ref}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-title-grey bg-none after:absolute after:inset-0 focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-[#0a76f6]"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+          </h3>
+          {sponsor?.nom && (
             <div className="text-mention-grey flex items-center gap-2 text-xs">
               <i className="fr-icon-building-line fr-icon--sm" aria-hidden="true" />
-              {props.dispositif.sponsor.nom}
+              {sponsor.nom}
             </div>
           )}
           <p
-            className="text-default-grey line-clamp-1 text-sm"
+            className="text-default-grey line-clamp-2 text-sm md:line-clamp-1"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>
 
-        <div className="flex items-center justify-between pt-2">
-          <div className="text-mention-grey flex flex-wrap items-center gap-4 text-xs">
+        <div className="flex items-end justify-between gap-4 pt-2 md:items-center">
+          <div className="text-mention-grey flex flex-col gap-2 text-xs md:flex-row md:flex-wrap md:items-center md:gap-4">
             {commitment && (
               <span className="flex items-center gap-2">
                 <i className="fr-icon-time-line fr-icon--sm" aria-hidden="true" />
@@ -169,7 +210,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
           />
         </div>
       </div>
-    </Link>
+    </div>
   );
 });
 
