@@ -8,6 +8,7 @@ import { ImageZodSchema } from "./generics";
 export const NeedTranslationSchema = z.object({
   text: z.string(),
   subtitle: z.string(),
+  short: z.string().optional(),
   updatedAt: z.date().optional(),
 });
 export type NeedTranslation = z.infer<typeof NeedTranslationSchema>;

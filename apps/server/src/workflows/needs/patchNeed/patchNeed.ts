@@ -20,6 +20,7 @@ export const patchNeed = async (id: string, body: Partial<NeedRequest>, user: Us
       (need.fr.text && need.fr.text !== oldNeed.fr.text) ||
       (need.fr.subtitle && need.fr.subtitle !== oldNeed.fr.subtitle);
     need.fr.updatedAt = isFrenchTextEdited ? new Date() : oldNeed.fr.updatedAt;
+    need.fr.short = need.fr.short ?? oldNeed.fr.short;
   }
 
   await saveNeedInDB(id, need);
