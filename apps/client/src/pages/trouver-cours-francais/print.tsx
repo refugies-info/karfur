@@ -9,6 +9,7 @@ import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { buildNeedLabels } from "~/lib/learnFrench/needLabels";
 import { wrapper } from "~/services/configureStore";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
@@ -26,10 +27,7 @@ const PrintCourseList = () => {
   const courseSearch = useCourseSearch(filters, search, activeTab, isReady, PRINT_RESULTS_LIMIT);
 
   const allNeeds = useSelector(needsSelector);
-  const needLabels = useMemo(
-    () => new Map(allNeeds.map((need) => [String(need._id), need[locale]?.text || need.fr.text])),
-    [allNeeds, locale],
-  );
+  const needLabels = useMemo(() => buildNeedLabels(allNeeds, locale), [allNeeds, locale]);
 
   // The effect re-runs whenever the results change: open the print dialog only once
   const hasPrinted = useRef(false);

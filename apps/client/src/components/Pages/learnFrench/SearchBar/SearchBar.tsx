@@ -9,6 +9,7 @@ interface Props {
   filters: FiltersState;
   onLocationsChange: (departments: string[], cities: string[]) => void;
   onReset: () => void;
+  onOpenLocationPanel: () => void;
   search: string;
   onSearchChange: (search: string) => void;
 }
@@ -32,11 +33,12 @@ export const SearchBar = (props: Props) => {
           departments={filters.departments}
           cities={filters.cities}
           onChange={props.onLocationsChange}
+          onOpenPanel={props.onOpenLocationPanel}
         />
         {hasActiveFilters && (
           <button
             type="button"
-            className="text-title-blue-france text-sm underline"
+            className="text-title-blue-france hidden text-sm underline lg:inline"
             onClick={props.onReset}
           >
             {t("LearnFrench.filters_reset", "Effacer")}
@@ -48,7 +50,7 @@ export const SearchBar = (props: Props) => {
         label={placeholder}
         className={cn(
           styles.searchInput,
-          "[&_.fr-input]:!bg-white mb-0 w-full [&_label]:sr-only lg:w-80",
+          "[&_.fr-input]:!bg-white mb-0 hidden w-full [&_label]:sr-only lg:block lg:w-80",
         )}
         nativeInputProps={{
           type: "search",

@@ -1,27 +1,31 @@
-import Button from "@codegouvfr/react-dsfr/Button";
-import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useMemo, useRef } from "react";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
 import {
   CourseResults,
+  CourseTab,
   CourseTabs,
   FiltersSidebar,
+  FullScreenPanel,
   Hero,
   HowToLearnFrench,
+  LocationPanel,
+  MobileToolbar,
   SearchBar,
 } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
 import { HOW_TO_LEARN_FRENCH_CARDS_CONFIG, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { useActiveFilters } from "~/hooks/learnFrench/useActiveFilters";
+import { useAutoSwitchToOnDemandTab } from "~/hooks/learnFrench/useAutoSwitchToOnDemandTab";
 import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
+import { buildNeedLabels } from "~/lib/learnFrench/needLabels";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
 import { wrapper } from "~/services/configureStore";
@@ -35,21 +39,21 @@ interface Props {
   howToCards: HowToLearnFrenchCard[];
 }
 
-const mobileFiltersModal = createModal({
-  id: "learn-french-mobile-filters-modal",
-  isOpenedByDefault: false,
-});
-
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady } =
     useFrenchCourseFilters();
   const courseSearch = useCourseSearch(filters, search, activeTab, isReady);
-  const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
-  useIsModalOpen(mobileFiltersModal, {
-    onConceal: () => mobileFiltersButtonRef.current?.focus(),
+  useAutoSwitchToOnDemandTab({
+    filters,
+    activeTab,
+    setActiveTab,
+    total: courseSearch.total,
+    isSettled: courseSearch.isSettled,
   });
+  const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
+  const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
 
   const allNeeds = useSelector(needsSelector);
   const categoryOptions = useMemo(
@@ -59,10 +63,15 @@ const LearnFrench = (props: Props) => {
         .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
     [allNeeds],
   );
-  const needLabels = useMemo(
-    () => new Map(allNeeds.map((need) => [String(need._id), need[locale]?.text || need.fr.text])),
-    [allNeeds, locale],
-  );
+  const needLabels = useMemo(() => buildNeedLabels(allNeeds, locale), [allNeeds, locale]);
+
+  const { badges, filterGroupCount } = useActiveFilters({
+    filters,
+    onFiltersChange: setFilters,
+    needLabels,
+    search,
+    onSearchChange: setSearch,
+  });
 
   const resetFilters = () =>
     setFilters({ departments: [], cities: [], frenchLevel: [], categories: [], publicFilter: [] });
@@ -73,7 +82,9 @@ const LearnFrench = (props: Props) => {
 
       <Hero
         title={t("LearnFrench.hero_title")}
+        mobileTitle={t("LearnFrench.hero_title_mobile")}
         subtitle={t("LearnFrench.hero_subtitle")}
+        mobileSubtitle={t("LearnFrench.hero_subtitle_mobile")}
         searchCtaText={t("LearnFrench.hero_search_cta")}
         searchCtaHref="#find-a-class"
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
@@ -97,20 +108,11 @@ const LearnFrench = (props: Props) => {
             setFilters({ ...filters, departments, cities })
           }
           onReset={resetFilters}
+          onOpenLocationPanel={() => setIsLocationPanelOpen(true)}
           search={search}
           onSearchChange={setSearch}
         />
         <div className="container flex flex-col gap-10 py-6 lg:flex-row lg:items-start">
-          <Button
-            ref={mobileFiltersButtonRef}
-            priority="secondary"
-            iconId="fr-icon-equalizer-line"
-            className="lg:hidden"
-            onClick={() => mobileFiltersModal.open()}
-          >
-            {t("LearnFrench.filters_title", "Filtrer")}
-          </Button>
-
           <aside className="hidden shrink-0 lg:block lg:w-72">
             <FiltersSidebar
               filters={filters}
@@ -120,22 +122,18 @@ const LearnFrench = (props: Props) => {
             />
           </aside>
 
-          <mobileFiltersModal.Component
-            title={t("LearnFrench.filters_title", "Filtrer")}
-            className="lg:hidden"
-            buttons={{ children: t("LearnFrench.filters_apply", "Voir les résultats") }}
-          >
-            <FiltersSidebar
-              filters={filters}
-              categoryOptions={categoryOptions}
-              onChange={setFilters}
-              onReset={resetFilters}
-              showTitle={false}
-            />
-          </mobileFiltersModal.Component>
-
           <div className="min-w-0 flex-1">
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
+            <div className="mt-4 lg:hidden">
+              <MobileToolbar
+                total={courseSearch.total}
+                filterGroupCount={filterGroupCount}
+                badges={badges}
+                search={search}
+                onSearchSubmit={setSearch}
+                onOpenFilters={() => setIsFiltersPanelOpen(true)}
+              />
+            </div>
             <div className="mt-6">
               <CourseResults
                 results={courseSearch.results}
@@ -146,11 +144,41 @@ const LearnFrench = (props: Props) => {
                 hasMore={courseSearch.page < courseSearch.pageCount}
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}
+                onSeeOtherCourses={
+                  activeTab === CourseTab.UPCOMING
+                    ? () => setActiveTab(CourseTab.ON_DEMAND)
+                    : undefined
+                }
                 needLabels={needLabels}
               />
             </div>
           </div>
         </div>
+
+        <FullScreenPanel
+          open={isFiltersPanelOpen}
+          title={t("LearnFrench.filters_title", "Filtrer")}
+          resultCount={courseSearch.total}
+          onClose={() => setIsFiltersPanelOpen(false)}
+          onReset={resetFilters}
+        >
+          <FiltersSidebar
+            filters={filters}
+            categoryOptions={categoryOptions}
+            onChange={setFilters}
+            onReset={resetFilters}
+            showHeader={false}
+            compactLevelLabels
+          />
+        </FullScreenPanel>
+        <LocationPanel
+          open={isLocationPanelOpen}
+          departments={filters.departments}
+          cities={filters.cities}
+          resultCount={courseSearch.total}
+          onChange={(departments, cities) => setFilters({ ...filters, departments, cities })}
+          onClose={() => setIsLocationPanelOpen(false)}
+        />
       </div>
     </div>
   );

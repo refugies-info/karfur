@@ -19,7 +19,7 @@ export const HowToCard = (props: Props) => {
       href={props.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="border-default-grey hover:bg-alt-blue-france relative flex flex-1 flex-col items-center border bg-white pt-8"
+      className="border-default-grey hover:bg-alt-blue-france relative flex w-[260px] shrink-0 snap-start flex-col items-center border bg-white pt-8 lg:w-auto lg:flex-1 lg:shrink"
     >
       <span
         className="bg-action-high-blue-france absolute -right-px -bottom-1 -left-px h-1"
