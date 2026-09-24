@@ -892,7 +892,7 @@
     "results_count": "{{count}} résultats",
     "results_count_other": "{{count}} résultats",
     "results_count_one": "{{count}} résultat",
-    "location_placeholder": "Choisir la ville ou département",
+    "location_placeholder": "Choisir la ville",
     "location_clear": "Effacer la localisation",
     "location_remove": "Retirer {{location}}",
     "card_contactStructure": "Contacter la structure",
