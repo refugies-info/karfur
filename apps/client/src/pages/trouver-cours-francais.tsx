@@ -1,8 +1,6 @@
-import { createModal } from "@codegouvfr/react-dsfr/Modal";
-import { useIsModalOpen } from "@codegouvfr/react-dsfr/Modal/useIsModalOpen";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useMemo, useRef } from "react";
+import { useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import type { HowToLearnFrenchCard } from "~/components/Pages/learnFrench";
@@ -10,8 +8,10 @@ import {
   CourseResults,
   CourseTabs,
   FiltersSidebar,
+  FullScreenPanel,
   Hero,
   HowToLearnFrench,
+  LocationPanel,
   MobileToolbar,
   SearchBar,
 } from "~/components/Pages/learnFrench";
@@ -36,21 +36,14 @@ interface Props {
   howToCards: HowToLearnFrenchCard[];
 }
 
-const mobileFiltersModal = createModal({
-  id: "learn-french-mobile-filters-modal",
-  isOpenedByDefault: false,
-});
-
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady } =
     useFrenchCourseFilters();
   const courseSearch = useCourseSearch(filters, search, activeTab, isReady);
-  const mobileFiltersButtonRef = useRef<HTMLButtonElement>(null);
-  useIsModalOpen(mobileFiltersModal, {
-    onConceal: () => mobileFiltersButtonRef.current?.focus(),
-  });
+  const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
+  const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
 
   const allNeeds = useSelector(needsSelector);
   const categoryOptions = useMemo(
@@ -106,6 +99,7 @@ const LearnFrench = (props: Props) => {
             setFilters({ ...filters, departments, cities })
           }
           onReset={resetFilters}
+          onOpenLocationPanel={() => setIsLocationPanelOpen(true)}
           search={search}
           onSearchChange={setSearch}
         />
@@ -119,20 +113,6 @@ const LearnFrench = (props: Props) => {
             />
           </aside>
 
-          <mobileFiltersModal.Component
-            title={t("LearnFrench.filters_title", "Filtrer")}
-            className="lg:hidden"
-            buttons={{ children: t("LearnFrench.filters_apply", "Voir les résultats") }}
-          >
-            <FiltersSidebar
-              filters={filters}
-              categoryOptions={categoryOptions}
-              onChange={setFilters}
-              onReset={resetFilters}
-              showTitle={false}
-            />
-          </mobileFiltersModal.Component>
-
           <div className="min-w-0 flex-1">
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
             <div className="mt-4 lg:hidden">
@@ -142,8 +122,7 @@ const LearnFrench = (props: Props) => {
                 badges={badges}
                 search={search}
                 onSearchSubmit={setSearch}
-                onOpenFilters={() => mobileFiltersModal.open()}
-                filtersButtonRef={mobileFiltersButtonRef}
+                onOpenFilters={() => setIsFiltersPanelOpen(true)}
               />
             </div>
             <div className="mt-6">
@@ -161,6 +140,31 @@ const LearnFrench = (props: Props) => {
             </div>
           </div>
         </div>
+
+        <FullScreenPanel
+          open={isFiltersPanelOpen}
+          title={t("LearnFrench.filters_title", "Filtrer")}
+          resultCount={courseSearch.total}
+          onClose={() => setIsFiltersPanelOpen(false)}
+          onReset={resetFilters}
+        >
+          <FiltersSidebar
+            filters={filters}
+            categoryOptions={categoryOptions}
+            onChange={setFilters}
+            onReset={resetFilters}
+            showHeader={false}
+            compactLevelLabels
+          />
+        </FullScreenPanel>
+        <LocationPanel
+          open={isLocationPanelOpen}
+          departments={filters.departments}
+          cities={filters.cities}
+          resultCount={courseSearch.total}
+          onChange={(departments, cities) => setFilters({ ...filters, departments, cities })}
+          onClose={() => setIsLocationPanelOpen(false)}
+        />
       </div>
     </div>
   );

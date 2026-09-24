@@ -9,6 +9,7 @@ interface Props {
   filters: FiltersState;
   onLocationsChange: (departments: string[], cities: string[]) => void;
   onReset: () => void;
+  onOpenLocationPanel: () => void;
   search: string;
   onSearchChange: (search: string) => void;
 }
@@ -32,6 +33,7 @@ export const SearchBar = (props: Props) => {
           departments={filters.departments}
           cities={filters.cities}
           onChange={props.onLocationsChange}
+          onOpenPanel={props.onOpenLocationPanel}
         />
         {hasActiveFilters && (
           <button

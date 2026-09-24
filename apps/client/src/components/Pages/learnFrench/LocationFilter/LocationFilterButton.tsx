@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
+import { useIsDesktopLayout } from "~/hooks/learnFrench/useIsDesktopLayout";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { LocationPopoverBody } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
@@ -10,6 +11,7 @@ interface Props {
   departments: string[];
   cities: string[];
   onChange: (departments: string[], cities: string[]) => void;
+  onOpenPanel: () => void;
 }
 
 export const LocationFilterButton = (props: Props) => {
@@ -18,6 +20,9 @@ export const LocationFilterButton = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const selection = useLocationSelection(props.departments, props.cities, props.onChange);
   const hasSelection = props.departments.length > 0 || props.cities.length > 0;
+  const isDesktopLayout = useIsDesktopLayout();
+  const openLocationPicker = () =>
+    isDesktopLayout ? setIsOpen((open) => !open) : props.onOpenPanel();
 
   useEffect(() => {
     if (!isOpen) return;
@@ -34,7 +39,7 @@ export const LocationFilterButton = (props: Props) => {
     <div className="relative" ref={containerRef}>
       {hasSelection ? (
         <div className="text-h5 bg-action-low-blue-france text-title-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
-          <button type="button" onClick={() => setIsOpen((open) => !open)}>
+          <button type="button" onClick={openLocationPicker}>
             {summarizeLocations([...props.departments, ...props.cities])}
           </button>
           <button
@@ -49,7 +54,7 @@ export const LocationFilterButton = (props: Props) => {
       ) : (
         <button
           type="button"
-          onClick={() => setIsOpen((open) => !open)}
+          onClick={openLocationPicker}
           className="text-h5 bg-default-grey hover:bg-open-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold"
         >
           {t("LearnFrench.location_placeholder", "Choisir la ville")}

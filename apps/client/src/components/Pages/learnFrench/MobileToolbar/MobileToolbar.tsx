@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import { type FormEvent, type Ref, useState } from "react";
+import { type FormEvent, useState } from "react";
 import { MobileShareButton } from "~/components/Pages/learnFrench/CourseResults/MobileShareButton";
 
 export interface ActiveFilterBadge {
@@ -15,7 +15,6 @@ interface Props {
   search: string;
   onSearchSubmit: (search: string) => void;
   onOpenFilters: () => void;
-  filtersButtonRef: Ref<HTMLButtonElement>;
 }
 
 const SEARCH_FORM_ID = "learn-french-mobile-search";
@@ -60,7 +59,6 @@ export const MobileToolbar = (props: Props) => {
           </button>
           <MobileShareButton />
           <button
-            ref={props.filtersButtonRef}
             type="button"
             onClick={props.onOpenFilters}
             className={`${TOOLBAR_BUTTON_CLASSNAME} gap-2 px-3 text-sm font-medium`}
