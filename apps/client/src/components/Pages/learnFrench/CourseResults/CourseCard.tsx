@@ -166,7 +166,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-title-grey bg-none after:absolute after:inset-0 after:m-0 after:h-full after:w-full after:bg-transparent after:[-webkit-mask-image:none] after:[mask-image:none] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-[#0a76f6]"
+              className="text-title-grey bg-none after:absolute after:inset-0 after:content-['']! after:m-0 after:h-full after:w-full after:bg-transparent after:[-webkit-mask-image:none] after:[mask-image:none] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-[#0a76f6]"
               dangerouslySetInnerHTML={{ __html: title }}
             />
           </h3>
