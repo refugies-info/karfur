@@ -69,7 +69,10 @@ const PrintableCourseRow = (props: RowProps) => {
           </div>
         ) : (
           <p className="text-mention-grey mb-0 text-sm">
-            {t("LearnFrench.card_contactStructure", "Contacter la structure")}
+            {t(
+              "LearnFrench.card_contactStructure",
+              "Contacter la structure pour les prochaines dates",
+            )}
           </p>
         )}
       </div>

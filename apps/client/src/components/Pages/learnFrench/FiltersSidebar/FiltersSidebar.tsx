@@ -5,6 +5,7 @@ import { useTranslation } from "next-i18next";
 import { LocationFilter } from "~/components/Pages/learnFrench/LocationFilter";
 import useLocale from "~/hooks/useLocale";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
+import { getNeedLabel } from "~/lib/learnFrench/needLabels";
 import { FilterPill } from "./FilterPill";
 
 export interface FiltersState {
@@ -76,7 +77,7 @@ export const FiltersSidebar = (props: Props) => {
       <div>
         <h3 className={SECTION_TITLE_CLASSNAME}>
           <i className="fr-icon-chat-3-line" aria-hidden="true" />
-          {t("LearnFrench.filters_level", "Niveau visé")}
+          {t("LearnFrench.filters_level", "Niveau actuel")}
         </h3>
         <div className="flex flex-wrap gap-2">
           {frenchLevelFilter.map((option) => (
@@ -109,7 +110,7 @@ export const FiltersSidebar = (props: Props) => {
                 props.onChange({ ...filters, categories: toggle(filters.categories, need._id) })
               }
             >
-              {need[locale]?.text || need.fr.text}
+              {getNeedLabel(need, locale)}
             </FilterPill>
           ))}
         </div>
