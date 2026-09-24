@@ -25,7 +25,7 @@ describe("courseListLink", () => {
 
     await expect(courseListLink(body)).resolves.toEqual({ text: "success" });
     expect(mockSendSMS).toHaveBeenCalledWith(
-      "Bonjour, voici une liste de cours de français qui pourrait vous intéresser : https://example.com/trouver-cours-francais",
+      "Bonjour, voici les cours de français disponibles : https://example.com/trouver-cours-francais",
       "+33600000000",
     );
   });
