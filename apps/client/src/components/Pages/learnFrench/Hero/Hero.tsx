@@ -11,12 +11,17 @@ interface Props {
   learnMoreCtaText: string;
   learnMoreCtaHref: string;
   rcoDisclaimer: string;
+  rcoLinkText: string;
+  rcoLinkHref: string;
   image: StaticImageData;
 }
 
 export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) => {
   return (
-    <Section ref={ref} className="bg-[linear-gradient(120deg,#c5d0fc_4.7%,#e3fdeb_126.1%)]">
+    <Section
+      ref={ref}
+      className="bg-[linear-gradient(120deg,#c5d0fc_4.7%,#e3fdeb_126.1%)] pb-0 md:pb-0"
+    >
       <div className="container">
         <div className="flex flex-col gap-10 md:flex-row md:items-center lg:gap-20">
           <div className="flex-1 text-center md:text-left">
@@ -32,14 +37,24 @@ export const Hero = React.forwardRef<HTMLDivElement | null, Props>((props, ref) 
               </Button>
               <Button
                 priority="secondary"
-                iconId="fr-icon-question-line"
+                iconId="fr-icon-compass-3-line"
                 iconPosition="left"
                 linkProps={{ href: props.learnMoreCtaHref }}
               >
                 {props.learnMoreCtaText}
               </Button>
             </div>
-            <p className="mt-10 text-sm text-[#2f4077]">{props.rcoDisclaimer}</p>
+            <p className="mt-10 text-sm text-[#2f4077]">
+              {props.rcoDisclaimer}{" "}
+              <a
+                href={props.rcoLinkHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                {props.rcoLinkText}
+              </a>
+            </p>
           </div>
           <div className="flex-1">
             <Image src={props.image} alt="" className="mx-auto h-auto max-w-full" />

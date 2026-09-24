@@ -29,7 +29,7 @@ import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import API from "~/utils/API";
-import HeroIllu from "../assets/staticPages/learn-french/hero-illu.png";
+import HeroIllu from "../assets/staticPages/learn-french/hero-illu.svg";
 
 interface Props {
   howToCards: HowToLearnFrenchCard[];
@@ -79,6 +79,8 @@ const LearnFrench = (props: Props) => {
         learnMoreCtaText={t("LearnFrench.hero_learn_more_cta")}
         learnMoreCtaHref="#how-to-learn-french"
         rcoDisclaimer={t("LearnFrench.hero_rco_disclaimer")}
+        rcoLinkText={t("LearnFrench.hero_rco_link_text")}
+        rcoLinkHref="https://www.intercariforef.org/"
         image={HeroIllu}
       />
 
@@ -90,11 +92,11 @@ const LearnFrench = (props: Props) => {
       <div className="bg-alt-blue-france relative">
         <Anchor id="find-a-class" />
         <SearchBar
-          departments={filters.departments}
-          cities={filters.cities}
+          filters={filters}
           onLocationsChange={(departments, cities) =>
             setFilters({ ...filters, departments, cities })
           }
+          onReset={resetFilters}
           search={search}
           onSearchChange={setSearch}
         />

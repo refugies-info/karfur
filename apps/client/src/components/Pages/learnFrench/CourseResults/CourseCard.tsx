@@ -1,12 +1,16 @@
 import type { SimpleDispositif } from "@refugies-info/api-types";
+import { frenchLevelOptionKeys, frenchLevelValuesByOption } from "data/searchFilters";
 import Link from "next/link";
-import { useTranslation } from "next-i18next";
+import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
+import { LOCATION_FRANCE, LOCATION_ONLINE } from "~/data/learnFrench";
 import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
+import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
 import { getPath } from "~/routes";
+import { SingleLineTags } from "./SingleLineTags";
 
 interface Props {
   dispositif: SimpleDispositif;
@@ -16,13 +20,31 @@ interface Props {
 const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   const location = dispositif.metadatas?.location;
   const first = Array.isArray(location) ? location[0] : location;
-  if (!first || first === "france" || first === "online") return null;
+  if (!first || first === LOCATION_FRANCE || first === LOCATION_ONLINE) return null;
   return first.split(" - ")[1] ?? first;
 };
 
 const isOnlineCourse = (dispositif: SimpleDispositif): boolean => {
   const location = dispositif.metadatas?.location;
-  return !Array.isArray(location) && location === "online";
+  return !Array.isArray(location) && location === LOCATION_ONLINE;
+};
+
+const isFranceWideCourse = (dispositif: SimpleDispositif): boolean => {
+  const location = dispositif.metadatas?.location;
+  return !Array.isArray(location) && location === LOCATION_FRANCE;
+};
+
+const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): string[] => {
+  const levels = dispositif.metadatas?.frenchLevel ?? [];
+  const labels: string[] = [];
+  for (const option of frenchLevelOptionKeys) {
+    const optionLevels = frenchLevelValuesByOption[option];
+    if (!optionLevels.some((level) => levels.includes(level))) continue;
+    labels.push(
+      option === "alpha" ? t("Filters.frenchLevelAlpha", "Alpha") : optionLevels.join("/"),
+    );
+  }
+  return labels;
 };
 
 export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
@@ -35,9 +57,11 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
   const departmentBadge = getDepartmentBadge(props.dispositif);
   const isOnline = isOnlineCourse(props.dispositif);
-  const tags = (props.dispositif.needs ?? [])
+  const isFranceWide = isFranceWideCourse(props.dispositif);
+  const needTags = (props.dispositif.needs ?? [])
     .map((needId) => props.needLabels.get(String(needId)))
     .filter((label): label is string => Boolean(label));
+  const tags = [...getFrenchLevelLabels(props.dispositif, t), ...needTags];
 
   const commitment = getCommitmentText(props.dispositif.metadatas?.commitment, t);
   const frequency = getFrequencyText(props.dispositif.metadatas?.frequency, t);
@@ -64,6 +88,10 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
         {isOnline ? (
           <span className="bg-contrast-info text-default-info flex w-fit items-center gap-1 rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
             {t("Recherche.online", "En ligne")}
+          </span>
+        ) : isFranceWide ? (
+          <span className="bg-contrast-purple-glycine text-label-purple-glycine w-fit rounded px-1.5 py-1 text-xs font-bold whitespace-nowrap uppercase">
+            {jsUcfirst(t("Recherche.france", "toute la France"))}
           </span>
         ) : (
           departmentBadge && (
@@ -95,18 +123,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col gap-4 p-8">
-        {tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="bg-action-low-blue-france text-title-grey rounded-full px-3 py-1 text-sm"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        <SingleLineTags tags={tags} />
 
         <div className="flex flex-col gap-3">
           <h3

@@ -107,7 +107,7 @@ export const CourseResults = (props: Props) => {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <p className="mb-0 font-bold">{t("Recherche.yourResults", { count: props.total })}</p>
+        <p className="mb-0 font-bold">{t("LearnFrench.results_count", { count: props.total })}</p>
         <ShareResultsButtons />
       </div>
 
