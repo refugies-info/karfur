@@ -107,8 +107,7 @@ const MobileApp = () => {
               className="inline-flex gap-3"
             >
               {Array.from({ length: 5 }).map((_, index) => (
-                // TODO @ledjay : fix yellow colors from DSFR
-                <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#fcc63a]" />
+                <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#6A6AF4]" />
               ))}
             </span>
             {t("MobileApp.rankingText", "Top 3 des applications publiques")}
