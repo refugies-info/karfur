@@ -35,8 +35,10 @@ const buildSearchParams = (
   usp.append("themes", LEARN_FRENCH_THEME_ID);
 
   if (search) usp.set("search", search);
-  for (const department of filters.departments) usp.append("departments", department);
-  for (const city of filters.cities) usp.append("cities", city);
+  const departments = new Set(filters.departments);
+  for (const city of filters.cities) departments.add(city.department);
+  for (const department of departments) usp.append("departments", department);
+  for (const city of filters.cities) usp.append("nearCity", city.name);
   for (const level of filters.frenchLevel) usp.append("frenchLevel", level);
   for (const category of filters.categories) usp.append("needs", String(category));
   for (const publicOption of filters.publicFilter) usp.append("public", publicOption);

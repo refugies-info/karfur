@@ -139,7 +139,10 @@ export const PrintableCourseList = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
 
-  const locationSummary = [...props.filters.departments, ...props.filters.cities].join(", ");
+  const locationSummary = [
+    ...props.filters.departments,
+    ...props.filters.cities.map((city) => city.name),
+  ].join(", ");
   const levelSummary = props.filters.frenchLevel
     .flatMap((key) => frenchLevelFilter.find((option) => option.key === key)?.value ?? [])
     .map((value) => t(value, value))

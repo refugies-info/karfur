@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import { FullScreenPanel } from "~/components/Pages/learnFrench/FullScreenPanel";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { LocationOptionsList, SelectedLocationsList } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
@@ -8,9 +9,9 @@ import { useLocationSelection } from "./useLocationSelection";
 interface Props {
   open: boolean;
   departments: string[];
-  cities: string[];
+  cities: CitySelection[];
   resultCount: number;
-  onChange: (departments: string[], cities: string[]) => void;
+  onChange: (departments: string[], cities: CitySelection[]) => void;
   onClose: () => void;
 }
 

@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { useIsDesktopLayout } from "~/hooks/learnFrench/useIsDesktopLayout";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
@@ -9,8 +10,8 @@ import { useLocationSelection } from "./useLocationSelection";
 
 interface Props {
   departments: string[];
-  cities: string[];
-  onChange: (departments: string[], cities: string[]) => void;
+  cities: CitySelection[];
+  onChange: (departments: string[], cities: CitySelection[]) => void;
   onOpenPanel: () => void;
 }
 
@@ -40,7 +41,7 @@ export const LocationFilterButton = (props: Props) => {
       {hasSelection ? (
         <div className="text-h5 bg-action-low-blue-france text-title-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
           <button type="button" onClick={openLocationPicker}>
-            {summarizeLocations([...props.departments, ...props.cities])}
+            {summarizeLocations([...props.departments, ...props.cities.map((city) => city.name)])}
           </button>
           <button
             type="button"

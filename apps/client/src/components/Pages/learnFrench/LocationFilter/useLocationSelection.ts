@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { type ChangeEvent, useCallback, useMemo, useState } from "react";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
+  type CitySelection,
   commonPlaces,
   fetchLocationSuggestions,
   getDepartmentFromCoordinates,
@@ -12,8 +13,8 @@ import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities";
 
 export const useLocationSelection = (
   departments: string[],
-  cities: string[],
-  onChange: (departments: string[], cities: string[]) => void,
+  cities: CitySelection[],
+  onChange: (departments: string[], cities: CitySelection[]) => void,
 ) => {
   const { t } = useTranslation();
   const announce = useAnnounce();
@@ -62,20 +63,26 @@ export const useLocationSelection = (
     [debouncedFetchSuggestions, announceResults],
   );
 
-  const toggleLocation = useCallback(
-    (kind: "department" | "city", value: string) => {
+  const toggleDepartment = useCallback(
+    (value: string) => {
       const decoded = decodeHTMLEntities(value);
-      const list = kind === "department" ? departments : cities;
-      const exists = list.some((v) => decodeHTMLEntities(v) === decoded);
+      const exists = departments.some((v) => decodeHTMLEntities(v) === decoded);
       const updated = exists
-        ? list.filter((v) => decodeHTMLEntities(v) !== decoded)
-        : [...list, decoded];
+        ? departments.filter((v) => decodeHTMLEntities(v) !== decoded)
+        : [...departments, decoded];
+      onChange(updated, cities);
+    },
+    [departments, cities, onChange],
+  );
 
-      if (kind === "department") {
-        onChange(updated, cities);
-      } else {
-        onChange(departments, updated);
-      }
+  const toggleCity = useCallback(
+    (name: string, department: string) => {
+      const decodedName = decodeHTMLEntities(name);
+      const exists = cities.some((city) => decodeHTMLEntities(city.name) === decodedName);
+      const updated = exists
+        ? cities.filter((city) => decodeHTMLEntities(city.name) !== decodedName)
+        : [...cities, { name: decodedName, department: decodeHTMLEntities(department) }];
+      onChange(departments, updated);
     },
     [departments, cities, onChange],
   );
@@ -87,30 +94,33 @@ export const useLocationSelection = (
       (position) => {
         getDepartmentFromCoordinates(position.coords.latitude, position.coords.longitude)
           .then((department) => {
-            if (department) toggleLocation("department", department);
+            if (department) toggleDepartment(department);
           })
           .finally(() => setGeolocating(false));
       },
       () => setGeolocating(false),
     );
-  }, [toggleLocation]);
+  }, [toggleDepartment]);
 
   const selectedLocations = [
     ...departments.map((department) => ({
       label: decodeHTMLEntities(department),
       nativeInputProps: {
         checked: true,
-        onChange: () => toggleLocation("department", department),
+        onChange: () => toggleDepartment(department),
       },
     })),
     ...cities.map((city) => {
-      const decoded = decodeHTMLEntities(city);
+      const decoded = decodeHTMLEntities(city.name);
       const commonPlace = commonPlaces.find(
         (place) => decodeHTMLEntities(place.placeName) === decoded,
       );
       return {
         label: commonPlace ? `${decoded} (${commonPlace.deptNo})` : decoded,
-        nativeInputProps: { checked: true, onChange: () => toggleLocation("city", city) },
+        nativeInputProps: {
+          checked: true,
+          onChange: () => toggleCity(city.name, city.department),
+        },
       };
     }),
   ];
@@ -119,21 +129,21 @@ export const useLocationSelection = (
     ...departments.map((department) => ({
       key: `department-${department}`,
       label: decodeHTMLEntities(department),
-      onRemove: () => toggleLocation("department", department),
+      onRemove: () => toggleDepartment(department),
     })),
     ...cities.map((city) => ({
-      key: `city-${city}`,
-      label: decodeHTMLEntities(city),
-      onRemove: () => toggleLocation("city", city),
+      key: `city-${city.name}`,
+      label: decodeHTMLEntities(city.name),
+      onRemove: () => toggleCity(city.name, city.department),
     })),
   ];
 
-  const commonPlacesOptions = commonPlaces.map(({ deptNo, placeName }) => {
+  const commonPlacesOptions = commonPlaces.map(({ deptNo, placeName, deptName }) => {
     const decodedCityName = decodeHTMLEntities(placeName);
-    const isChecked = cities.some((city) => decodeHTMLEntities(city) === decodedCityName);
+    const isChecked = cities.some((city) => decodeHTMLEntities(city.name) === decodedCityName);
     return {
       label: `${placeName} (${deptNo})`,
-      nativeInputProps: { checked: isChecked, onChange: () => toggleLocation("city", placeName) },
+      nativeInputProps: { checked: isChecked, onChange: () => toggleCity(placeName, deptName) },
     };
   });
 
@@ -143,8 +153,11 @@ export const useLocationSelection = (
       checked:
         result.type === "department"
           ? departments.some((d) => decodeHTMLEntities(d) === result.deptName)
-          : cities.some((c) => decodeHTMLEntities(c) === result.displayName),
-      onChange: () => toggleLocation(result.type, result.displayName),
+          : cities.some((c) => decodeHTMLEntities(c.name) === result.displayName),
+      onChange: () =>
+        result.type === "department"
+          ? toggleDepartment(result.displayName)
+          : toggleCity(result.displayName, result.deptName),
     },
   }));
 

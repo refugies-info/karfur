@@ -9,6 +9,8 @@ import type { ParsedUrlQuery } from "querystring";
 interface SearchQuery extends ParsedUrlQuery {
   search?: string;
   departments?: string | string[];
+  cities?: string | string[];
+  nearCity?: string | string[];
   themes?: string | string[];
   needs?: string | string[];
   age?: string | string[];
@@ -20,6 +22,8 @@ interface SearchQuery extends ParsedUrlQuery {
   hasUpcomingSession?: string;
   strictNeeds?: string;
 }
+
+const escapeRegExp = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
   return values
@@ -91,6 +95,7 @@ export interface QueryParams {
   search?: string;
   departments?: string[];
   cities?: string[];
+  nearCity?: string[];
   themes?: string[];
   needs?: string[];
   age?: AgeOptions[];
@@ -107,6 +112,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   search: typeof query.search === "string" ? query.search : undefined,
   departments: getQueryParamAsArray(query.departments),
   cities: getQueryParamAsArray(query.cities),
+  nearCity: getQueryParamAsArray(query.nearCity),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
   age: getQueryParamAsArray(query.age).filter(
@@ -151,7 +157,6 @@ export const buildBaseMatch = (
   );
 
   if (cities.length > 0 || departments.length > 0) {
-    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const tokensOrRegexes: (string | RegExp)[] = [];
 
     // Add department patterns
@@ -536,11 +541,16 @@ const buildSearchAggregation = (
   baseMatch: FilterQuery<SimpleDispositif>,
   options: SearchResultsOptions,
   algoliaIds?: string[],
-  locationFilter?: { departments?: string[]; cities?: string[] },
+  locationFilter?: { departments?: string[]; cities?: string[]; nearCity?: string[] },
 ): PipelineStage[] => {
   const { page, limit, sort } = options;
   const hasLocationFilter =
-    (locationFilter?.departments?.length ?? 0) > 0 || (locationFilter?.cities?.length ?? 0) > 0;
+    (locationFilter?.departments?.length ?? 0) > 0 ||
+    (locationFilter?.cities?.length ?? 0) > 0 ||
+    (locationFilter?.nearCity?.length ?? 0) > 0;
+  const nearCity = (locationFilter?.nearCity ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
 
   const aggregation: PipelineStage[] = [
     { $match: baseMatch },
@@ -585,28 +595,50 @@ const buildSearchAggregation = (
     aggregation.push({ $sort: { publishedAt: -1 } });
   } else if (sort === "nextSession") {
     if (hasLocationFilter) {
-      aggregation.push({
-        $addFields: {
-          isLocal: {
-            $cond: {
-              if: {
-                $in: [
-                  "france",
+      const locationArrayExpr = {
+        $cond: [
+          { $isArray: "$metadatas.location" },
+          "$metadatas.location",
+          ["$metadatas.location"],
+        ],
+      };
+      const isFranceExpr = { $in: ["france", locationArrayExpr] };
+
+      if (nearCity.length > 0) {
+        const nearCityRegex = `^(?:${nearCity.map(escapeRegExp).join("|")})(?: - |$)`;
+        aggregation.push({
+          $addFields: {
+            isLocal: {
+              $switch: {
+                branches: [
+                  { case: isFranceExpr, then: 2 },
                   {
-                    $cond: [
-                      { $isArray: "$metadatas.location" },
-                      "$metadatas.location",
-                      ["$metadatas.location"],
-                    ],
+                    case: {
+                      $anyElementTrue: {
+                        $map: {
+                          input: locationArrayExpr,
+                          as: "loc",
+                          in: {
+                            $regexMatch: { input: "$$loc", regex: nearCityRegex, options: "i" },
+                          },
+                        },
+                      },
+                    },
+                    then: 0,
                   },
                 ],
+                default: 1,
               },
-              then: 1,
-              else: 0,
             },
           },
-        },
-      });
+        });
+      } else {
+        aggregation.push({
+          $addFields: {
+            isLocal: { $cond: { if: isFranceExpr, then: 1, else: 0 } },
+          },
+        });
+      }
     }
     aggregation.push({
       $addFields: {
@@ -798,6 +830,7 @@ export const computeSearchResults = async (
   const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds, {
     departments: queryParams.departments,
     cities: queryParams.cities,
+    nearCity: queryParams.nearCity,
   });
 
   const isSessionTimeSensitive =

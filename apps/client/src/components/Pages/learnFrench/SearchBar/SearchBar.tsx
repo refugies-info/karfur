@@ -3,11 +3,12 @@ import { cn } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import type { FiltersState } from "~/components/Pages/learnFrench/FiltersSidebar";
 import { LocationFilterButton } from "~/components/Pages/learnFrench/LocationFilter";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 import styles from "./SearchBar.module.css";
 
 interface Props {
   filters: FiltersState;
-  onLocationsChange: (departments: string[], cities: string[]) => void;
+  onLocationsChange: (departments: string[], cities: CitySelection[]) => void;
   onReset: () => void;
   onOpenLocationPanel: () => void;
   search: string;

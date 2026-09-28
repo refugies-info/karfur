@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { LocationPopoverBody } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
@@ -6,8 +7,8 @@ import { useLocationSelection } from "./useLocationSelection";
 
 interface Props {
   departments: string[];
-  cities: string[];
-  onChange: (departments: string[], cities: string[]) => void;
+  cities: CitySelection[];
+  onChange: (departments: string[], cities: CitySelection[]) => void;
 }
 
 export const LocationFilter = (props: Props) => {
