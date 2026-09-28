@@ -9,7 +9,6 @@ import styles from "./SearchBar.module.css";
 interface Props {
   filters: FiltersState;
   onLocationsChange: (departments: string[], cities: CitySelection[]) => void;
-  onReset: () => void;
   onOpenLocationPanel: () => void;
   search: string;
   onSearchChange: (search: string) => void;
@@ -19,12 +18,6 @@ export const SearchBar = (props: Props) => {
   const { t } = useTranslation();
   const placeholder = t("LearnFrench.search_placeholder");
   const { filters } = props;
-  const hasActiveFilters =
-    filters.departments.length > 0 ||
-    filters.cities.length > 0 ||
-    filters.frenchLevel.length > 0 ||
-    filters.categories.length > 0 ||
-    filters.publicFilter.length > 0;
 
   return (
     <div className="container flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:justify-between">
@@ -36,15 +29,6 @@ export const SearchBar = (props: Props) => {
           onChange={props.onLocationsChange}
           onOpenPanel={props.onOpenLocationPanel}
         />
-        {hasActiveFilters && (
-          <button
-            type="button"
-            className="text-title-blue-france hidden text-sm underline lg:inline"
-            onClick={props.onReset}
-          >
-            {t("LearnFrench.filters_reset", "Effacer")}
-          </button>
-        )}
       </div>
       <Input
         iconId="fr-icon-search-line"

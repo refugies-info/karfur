@@ -1,7 +1,9 @@
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
-import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
+import SearchMenuItem, {
+  BLUE_UNDERLINE_CLASSNAME,
+} from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { useIsDesktopLayout } from "~/hooks/learnFrench/useIsDesktopLayout";
 import { summarizeLocations } from "~/lib/learnFrench/summarizeLocations";
 import { LocationPopoverBody } from "./LocationPopoverBody";
@@ -39,8 +41,8 @@ export const LocationFilterButton = (props: Props) => {
   return (
     <div className="relative" ref={containerRef}>
       {hasSelection ? (
-        <div className="text-h5 bg-action-low-blue-france text-title-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
-          <button type="button" onClick={openLocationPicker}>
+        <div className="text-h5 bg-action-low-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
+          <button type="button" onClick={openLocationPicker} className="text-[#1212ff]">
             {summarizeLocations([...props.departments, ...props.cities.map((city) => city.name)])}
           </button>
           <button
@@ -71,7 +73,10 @@ export const LocationFilterButton = (props: Props) => {
             geolocating={selection.geolocating}
           />
           <div className="[&_.fr-input]:!bg-white p-3">
-            <SearchMenuItem onChange={selection.onSearchInputChange} />
+            <SearchMenuItem
+              onChange={selection.onSearchInputChange}
+              className={BLUE_UNDERLINE_CLASSNAME}
+            />
           </div>
           <LocationPopoverBody {...selection} />
         </div>

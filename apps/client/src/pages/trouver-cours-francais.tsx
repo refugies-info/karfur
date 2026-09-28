@@ -107,7 +107,6 @@ const LearnFrench = (props: Props) => {
           onLocationsChange={(departments, cities) =>
             setFilters({ ...filters, departments, cities })
           }
-          onReset={resetFilters}
           onOpenLocationPanel={() => setIsLocationPanelOpen(true)}
           search={search}
           onSearchChange={setSearch}

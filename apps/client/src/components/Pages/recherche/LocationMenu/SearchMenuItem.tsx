@@ -4,12 +4,15 @@ import { useTranslation } from "next-i18next";
 import type React from "react";
 import { memo } from "react";
 
+export const BLUE_UNDERLINE_CLASSNAME = "[&_.fr-input]:!shadow-[inset_0_-2px_0_0_#1212ff]";
+
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  className?: string;
 }
 
-const SearchMenuItem = memo<Props>(({ onChange, onFocus }) => {
+const SearchMenuItem = memo<Props>(({ onChange, onFocus, className }) => {
   const { t } = useTranslation();
   const placeholder = t("Recherche.searchPlaceholder", "Recherche par ville ou département");
 
@@ -23,6 +26,7 @@ const SearchMenuItem = memo<Props>(({ onChange, onFocus }) => {
     "ltr:[&_.fr-input]:pe-4",
     "[&_input]:w-full",
     "[&_label]:sr-only",
+    className,
   );
 
   return (

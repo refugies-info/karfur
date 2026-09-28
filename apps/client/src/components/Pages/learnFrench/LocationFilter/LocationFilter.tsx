@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
-import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
+import SearchMenuItem, {
+  BLUE_UNDERLINE_CLASSNAME,
+} from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { LocationPopoverBody } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
 import { useLocationSelection } from "./useLocationSelection";
@@ -28,7 +30,11 @@ export const LocationFilter = (props: Props) => {
 
   return (
     <div className="relative [&_.fr-input]:!bg-white" ref={containerRef}>
-      <SearchMenuItem onFocus={() => setIsOpen(true)} onChange={selection.onSearchInputChange} />
+      <SearchMenuItem
+        onFocus={() => setIsOpen(true)}
+        onChange={selection.onSearchInputChange}
+        className={BLUE_UNDERLINE_CLASSNAME}
+      />
 
       {selection.selectedLocationChips.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">
