@@ -20,8 +20,14 @@ export const ShareResultsButtons = () => {
   const [showToastLink, setShowToastLink] = useState(false);
   const smsButtonRef = useRef<HTMLButtonElement>(null);
   const smsFormInputContainerRef = useRef<HTMLDivElement>(null);
+  const hasOpenedSmsModalRef = useRef(false);
   const isSmsModalOpen = useIsModalOpen(smsModal, {
-    onConceal: () => smsButtonRef.current?.focus(),
+    onDisclose: () => {
+      hasOpenedSmsModalRef.current = true;
+    },
+    onConceal: () => {
+      if (hasOpenedSmsModalRef.current) smsButtonRef.current?.focus();
+    },
   });
 
   const sendCourseListSms = useCallback(
