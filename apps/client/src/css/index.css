@@ -11,6 +11,12 @@
   /* Fonts */
   --font-sans: "Marianne", "Arial", "sans-serif";
 
+  /* Colors */
+
+  /* Figma: light/primary/$blue-france-sun-113-hover — darker than this project's
+     --blue-france-sun-113-625 (#8585f6), used where the design calls for it explicitly. */
+  --color-blue-france-sun-113-hover: #1212ff;
+
   /* Fonts sizes */
   --text-very-small: 12px;
   --text-very-small--line-height: 20px;

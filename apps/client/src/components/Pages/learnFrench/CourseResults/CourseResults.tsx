@@ -106,7 +106,7 @@ export const CourseResults = (props: Props) => {
           </p>
         </div>
         {props.onSeeOtherCourses ? (
-          <Button onClick={props.onSeeOtherCourses}>
+          <Button priority="tertiary" onClick={props.onSeeOtherCourses}>
             {t("LearnFrench.results_seeOtherCourses", "Voir les autres cours")}
           </Button>
         ) : (

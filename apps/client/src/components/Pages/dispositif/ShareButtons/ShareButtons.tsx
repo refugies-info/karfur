@@ -57,7 +57,10 @@ const ShareButtons = ({ className }: { className?: string }) => {
               id="SmsTooltip"
               title={t("Dispositif.sendBySMS")}
               ref={closeButtonRef}
-              className={cn("rtl:before:!ml-[0.25rem]", showSMS && "!text-[#1212ff]")}
+              className={cn(
+                "rtl:before:!ml-[0.25rem]",
+                showSMS && "!text-blue-france-sun-113-hover",
+              )}
             >
               {t("Dispositif.sms", "SMS")}
             </Button>

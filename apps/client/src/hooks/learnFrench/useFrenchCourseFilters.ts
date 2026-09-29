@@ -7,6 +7,7 @@ import {
   type CourseTab as CourseTabType,
   type FiltersState,
 } from "~/components/Pages/learnFrench";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 
 const EMPTY_FILTERS: FiltersState = {
   departments: [],
@@ -18,6 +19,16 @@ const EMPTY_FILTERS: FiltersState = {
 
 const asStringArray = (value: string | string[] | undefined): string[] =>
   value === undefined ? [] : Array.isArray(value) ? value : [value];
+
+const CITY_PARAM_SEPARATOR = "|";
+
+const encodeCitySelection = (city: CitySelection): string =>
+  `${city.name}${CITY_PARAM_SEPARATOR}${city.department}`;
+
+const decodeCitySelection = (value: string): CitySelection => {
+  const [name, department] = value.split(CITY_PARAM_SEPARATOR);
+  return { name: name ?? "", department: department ?? "" };
+};
 
 const URL_SYNC_DEBOUNCE_MS = 400;
 
@@ -35,7 +46,7 @@ export const useFrenchCourseFilters = () => {
     const query = router.query;
     setFilters({
       departments: asStringArray(query.departments),
-      cities: asStringArray(query.cities),
+      cities: asStringArray(query.cities).map(decodeCitySelection),
       frenchLevel: asStringArray(query.frenchLevel) as FrenchOptions[],
       categories: asStringArray(query.categories) as Id[],
       publicFilter: asStringArray(query.publicFilter) as PublicOptions[],
@@ -57,7 +68,7 @@ export const useFrenchCourseFilters = () => {
     syncTimeoutRef.current = setTimeout(() => {
       const query: Record<string, string | string[]> = {};
       if (filters.departments.length > 0) query.departments = filters.departments;
-      if (filters.cities.length > 0) query.cities = filters.cities;
+      if (filters.cities.length > 0) query.cities = filters.cities.map(encodeCitySelection);
       if (filters.frenchLevel.length > 0) query.frenchLevel = filters.frenchLevel;
       if (filters.categories.length > 0) query.categories = filters.categories.map(String);
       if (filters.publicFilter.length > 0) query.publicFilter = filters.publicFilter;

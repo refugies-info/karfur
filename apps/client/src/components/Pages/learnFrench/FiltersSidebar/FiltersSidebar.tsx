@@ -3,6 +3,7 @@ import type { FrenchOptions, PublicOptions } from "data/searchFilters";
 import { frenchLevelFilter, publicOptions } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import { LocationFilter } from "~/components/Pages/learnFrench/LocationFilter";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
 import useLocale from "~/hooks/useLocale";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
 import { getNeedLabel } from "~/lib/learnFrench/needLabels";
@@ -10,7 +11,7 @@ import { FilterPill } from "./FilterPill";
 
 export interface FiltersState {
   departments: string[];
-  cities: string[];
+  cities: CitySelection[];
   frenchLevel: FrenchOptions[];
   categories: Id[];
   publicFilter: PublicOptions[];
