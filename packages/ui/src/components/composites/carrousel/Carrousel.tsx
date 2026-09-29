@@ -260,14 +260,6 @@ export const Carrousel = forwardRef<CarrouselHandle, CarrouselProps>(
       };
     }, [handleScroll, checkScrollability]);
 
-    // Below md the navigation row (two arrows and the "see more" link) used to
-    // be absolutely positioned at the bottom right, on a single line that could
-    // not wrap: at 320 px the "previous" arrow sat at x = -24, out of the
-    // viewport (RGAA 10.11). The header wrapper now dissolves into the section
-    // (`contents`), the row flows after the list and wraps when it is too wide,
-    // so the section grows with it instead of overlapping the cards. The list
-    // keeps a full width there: as a flex item with auto margins it would
-    // otherwise size to its content and push the page into horizontal scroll.
     return (
       <section className={cn("relative w-full max-md:flex max-md:flex-col", className)} dir={dir}>
         <div className="container mx-auto mb-8 flex w-full gap-4 max-md:contents lg:justify-between">
