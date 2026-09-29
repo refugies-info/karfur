@@ -20,7 +20,7 @@ interface Props {
 const SEARCH_FORM_ID = "learn-french-mobile-search";
 
 const TOOLBAR_BUTTON_CLASSNAME =
-  "border-default-grey text-title-blue-france flex h-11 items-center justify-center rounded border bg-white";
+  "border-default-grey text-title-grey flex h-11 items-center justify-center rounded-full border bg-white";
 
 export const MobileToolbar = (props: Props) => {
   const { t } = useTranslation();
@@ -42,7 +42,7 @@ export const MobileToolbar = (props: Props) => {
   return (
     <div className="flex flex-col gap-3 lg:hidden">
       <div className="flex items-center justify-between gap-2">
-        <p className="mb-0 text-sm" aria-live="polite">
+        <p className="text-mention-grey mb-0 text-base font-medium" aria-live="polite">
           {t("LearnFrench.results_count", { count: props.total })}
         </p>
         <div className="flex items-center gap-2">

@@ -1,3 +1,8 @@
+export interface CitySelection {
+  name: string;
+  department: string;
+}
+
 /** Shortcuts shown when the location search field is empty. */
 export const commonPlaces = [
   { placeName: "Paris", deptNo: "75", deptName: "Paris" },

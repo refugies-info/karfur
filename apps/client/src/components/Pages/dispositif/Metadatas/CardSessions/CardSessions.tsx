@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import Badge from "~/components/UI/Badge";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
+const STARTS_SOON_THRESHOLD_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
 interface Props {
   className?: string;
 }
@@ -17,17 +19,21 @@ const CardSessions = ({ className }: Props) => {
   const sessions = sessionsMetadata?.items;
   const modalitesEntreesSorties = sessionsMetadata?.modalitesEntreesSorties;
 
+  const startOfToday = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today.getTime();
+  }, []);
+
   const upcomingSessions = useMemo(() => {
     if (!sessions || sessions.length === 0) return [];
-    const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
     return sessions
-      .filter((session: Session) => new Date(session.startDate).getTime() >= startOfToday.getTime())
+      .filter((session: Session) => new Date(session.startDate).getTime() >= startOfToday)
       .sort(
         (a: Session, b: Session) =>
           new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
       );
-  }, [sessions]);
+  }, [sessions, startOfToday]);
 
   const locale = t("__locale", { defaultValue: "fr" });
   const dateFormatter = useMemo(
@@ -48,6 +54,8 @@ const CardSessions = ({ className }: Props) => {
       {upcomingSessions.map((session: Session, index: number) => {
         const startDate = dateFormatter.format(new Date(session.startDate));
         const endDate = dateFormatter.format(new Date(session.endDate));
+        const startsSoon =
+          new Date(session.startDate).getTime() - startOfToday <= STARTS_SOON_THRESHOLD_MS;
 
         return (
           <MetaDataItem
@@ -62,11 +70,13 @@ const CardSessions = ({ className }: Props) => {
                   {t("Dispositif.to")} {endDate}
                 </span>
               </span>
-              <span>
-                <Badge severity="info" small icon="fr-icon-info-fill">
-                  {t("Dispositif.sessionStartsSoon")}
-                </Badge>
-              </span>
+              {startsSoon && (
+                <span>
+                  <Badge severity="info" small icon="fr-icon-info-fill">
+                    {t("Dispositif.sessionStartsSoon")}
+                  </Badge>
+                </span>
+              )}
             </span>
           </MetaDataItem>
         );

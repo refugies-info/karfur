@@ -20,7 +20,7 @@ interface Props {
 }
 
 const CONTACT_BUTTON_CLASSNAME =
-  "border-action-high-blue-france text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
+  "border-default-grey !text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
 
 const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   const location = dispositif.metadatas?.location;
@@ -80,7 +80,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   };
 
   return (
-    <div className="border-default-grey hover:bg-alt-blue-france relative flex flex-col items-stretch border bg-white md:flex-row">
+    <div className="border-default-grey hover:bg-alt-grey relative flex flex-col items-stretch border bg-white md:flex-row">
       {nextSession && (
         <span
           aria-hidden="true"
@@ -120,18 +120,18 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
         </div>
         {sessionDate ? (
           <div className="text-title-blue-france">
-            <p className="text-h1 leading-none font-bold">
+            <p className="text-h1 m-0 mb-2 mt-1 leading-none font-bold">
               {sessionDate.toLocaleDateString(locale, { day: "numeric" })}
             </p>
-            <p className="text-base font-bold capitalize">
+            <p className="m-0 text-base leading-tight font-bold capitalize">
               {sessionDate.toLocaleDateString(locale, { month: "long" })}
             </p>
-            <p className="text-base">
+            <p className="m-0 text-base leading-tight">
               {sessionDate.toLocaleDateString(locale, { year: "numeric" })}
             </p>
           </div>
         ) : (
-          <p className="text-mention-grey text-base font-medium">
+          <p className="text-mention-grey mt-3 text-base font-medium">
             {t(
               "LearnFrench.card_contactStructure",
               "Contacter la structure pour les prochaines dates",

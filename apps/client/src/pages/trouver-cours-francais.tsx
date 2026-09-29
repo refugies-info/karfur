@@ -107,7 +107,6 @@ const LearnFrench = (props: Props) => {
           onLocationsChange={(departments, cities) =>
             setFilters({ ...filters, departments, cities })
           }
-          onReset={resetFilters}
           onOpenLocationPanel={() => setIsLocationPanelOpen(true)}
           search={search}
           onSearchChange={setSearch}
@@ -119,6 +118,7 @@ const LearnFrench = (props: Props) => {
               categoryOptions={categoryOptions}
               onChange={setFilters}
               onReset={resetFilters}
+              compactLevelLabels
             />
           </aside>
 

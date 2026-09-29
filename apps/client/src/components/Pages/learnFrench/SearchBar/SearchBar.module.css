@@ -10,5 +10,6 @@
   & input {
     padding-left: 3rem !important;
     padding-right: 1rem;
+    box-shadow: inset 0 -2px 0 0 var(--color-blue-france-sun-113-hover) !important;
   }
 }
