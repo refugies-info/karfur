@@ -118,6 +118,7 @@ const LearnFrench = (props: Props) => {
               categoryOptions={categoryOptions}
               onChange={setFilters}
               onReset={resetFilters}
+              compactLevelLabels
             />
           </aside>
 
