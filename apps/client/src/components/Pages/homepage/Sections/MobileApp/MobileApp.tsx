@@ -107,7 +107,10 @@ const MobileApp = () => {
               className="inline-flex gap-3"
             >
               {Array.from({ length: 5 }).map((_, index) => (
-                <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#6A6AF4]" />
+                <i
+                  key={index}
+                  className="fr-icon-star-fill h-4 w-4 text-artwork-minor-blue-france"
+                />
               ))}
             </span>
             {t("MobileApp.rankingText", "Top 3 des applications publiques")}
