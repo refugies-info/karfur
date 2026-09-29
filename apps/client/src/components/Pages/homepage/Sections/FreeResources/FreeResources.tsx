@@ -9,9 +9,6 @@ const FreeResources = () => {
 
   return (
     <section className="bg-alt-blue-france w-full py-10 md:py-20" id="free-ressources">
-      {/* grid-cols-2 had no responsive variant: as the section was only rendered
-          above 768 px, the case never came up. At 320 px it produced two 124 px
-          wide columns (RGAA 10.11). */}
       <div className="container grid grid-cols-1 items-center gap-10 md:grid-cols-2">
         <div>
           <h2>{t("Homepage.resourcesTitle", "Des ressources gratuites à votre disposition")}</h2>
