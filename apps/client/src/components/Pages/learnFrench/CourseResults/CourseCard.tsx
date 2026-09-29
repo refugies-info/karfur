@@ -131,7 +131,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             </p>
           </div>
         ) : (
-          <p className="text-mention-grey text-base font-medium">
+          <p className="text-mention-grey mt-3 text-base font-medium">
             {t(
               "LearnFrench.card_contactStructure",
               "Contacter la structure pour les prochaines dates",
