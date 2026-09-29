@@ -32,11 +32,8 @@ export function DialogMenuLayout({
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const descriptionId = useId();
 
-  // The Crisp bubble (z-index 1000001) sits above this dialog (1000000, lowered on
-  // purpose in e272e9e7b so tooltips stay reachable) and covers the end of the
-  // "Recherche.seeAllButtonWithCount" footer button from 970 px down to 320 px. The dialog fills the
-  // screen, so hiding the bubble while it is open takes nothing away and keeps the
-  // button entirely visible; the bubble comes back on close (RGAA 10.11).
+  // The Crisp bubble sits above this full-screen dialog and covers its footer button:
+  // hide it while the dialog is open and show it again on close.
   useEffect(() => {
     if (!open) return;
     window.$crisp?.push(["do", "chat:hide"]);

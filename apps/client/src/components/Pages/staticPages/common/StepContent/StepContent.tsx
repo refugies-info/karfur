@@ -23,14 +23,6 @@ interface Props {
 }
 
 const StepContent = (props: Props) => {
-  // The badge used to pick its column with the JS `isTablet` flag while the
-  // columns themselves follow the Tailwind breakpoints. Below `md` it was
-  // absolutely positioned inside a text column with no bottom padding, so it
-  // covered the last paragraphs of the step; at 200% text zoom the JS said
-  // "mobile" while the CSS said "tablet" and the same overlap came back. The
-  // badge is now rendered twice and CSS decides which copy shows: in the text
-  // column, in the flow below `md` and absolute above `lg`; in the image
-  // column between `md` and `lg` (RGAA 10.11).
   const badgeClassName =
     "text-large bg-artwork-minor-blue-france z-10 rounded-full p-4 text-center font-bold text-white";
   const textColumnBadge = useMemo(
