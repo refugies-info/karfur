@@ -35,7 +35,7 @@ export const MobileShareButton = () => {
         onClick={share}
         title={label}
         aria-label={label}
-        className="border-default-grey text-title-blue-france flex h-11 w-11 items-center justify-center rounded border bg-white"
+        className="border-default-grey text-title-grey flex h-11 w-11 items-center justify-center rounded-full border bg-white"
       >
         <i className="ri-share-forward-line fr-icon--sm" aria-hidden="true" />
       </button>
