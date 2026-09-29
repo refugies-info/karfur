@@ -32,7 +32,7 @@ export const LocationPanel = (props: Props) => {
       <div className="flex flex-col gap-4">
         <SearchMenuItem
           onChange={selection.onSearchInputChange}
-          className={`${BLUE_UNDERLINE_CLASSNAME} [&_.fr-input]:!bg-[var(--color-background-alt-grey)]`}
+          className={`${BLUE_UNDERLINE_CLASSNAME} [&_.fr-input]:!bg-alt-grey`}
         />
         <SelectedLocationsList {...selection} />
         <div className="bg-alt-blue-france">

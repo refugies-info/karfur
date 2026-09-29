@@ -30,7 +30,7 @@ export const LocationFilter = (props: Props) => {
 
   return (
     <div
-      className="relative [&_.fr-input]:!bg-[var(--color-background-alt-grey)] md:[&_.fr-input]:!bg-white"
+      className="relative [&_.fr-input]:!bg-alt-grey md:[&_.fr-input]:!bg-white"
       ref={containerRef}
     >
       <SearchMenuItem

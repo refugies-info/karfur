@@ -42,7 +42,11 @@ export const LocationFilterButton = (props: Props) => {
     <div className="relative ms-3 inline-block align-middle" ref={containerRef}>
       {hasSelection ? (
         <div className="text-h6 md:text-h5 bg-action-low-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
-          <button type="button" onClick={openLocationPicker} className="text-[#1212ff]">
+          <button
+            type="button"
+            onClick={openLocationPicker}
+            className="text-blue-france-sun-113-hover"
+          >
             {summarizeLocations([...props.departments, ...props.cities.map((city) => city.name)])}
           </button>
           <button
