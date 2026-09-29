@@ -23,11 +23,6 @@ interface Props {
   itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null | undefined;
   key?: string;
-  /**
-   * Forces the choice between `mobileMode` and `desktopMode` instead of deriving
-   * it from `isMobile`. Use it when the component lives in a layout whose
-   * breakpoint is defined by a stylesheet, so that both switch together.
-   */
   isCompact?: boolean;
 }
 

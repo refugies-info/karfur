@@ -67,11 +67,6 @@ const NewProfileModal = () => {
         Pour continuer à accéder au contenu, merci de{" "}
         <strong>compléter votre profil en cliquant sur le bouton ci-dessous</strong>.
       </p>
-      {/* The actions row could not wrap and the inner column used the Bootstrap
-          `flex-column` utility, which this build does not generate (the utilities
-          API import is commented out in scss/_bootstrap.scss): the three actions
-          stayed on one line and pushed the help link out of the viewport below
-          380 px. A wrapping row and the Tailwind `flex-col` fix both (RGAA 10.11). */}
       <div className={cls("flex flex-wrap justify-between items-start gap-4", styles.actions)}>
         <Button priority="secondary" onClick={logout} className={styles.danger}>
           Me déconnecter
