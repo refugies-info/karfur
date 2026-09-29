@@ -20,7 +20,7 @@ interface Props {
 }
 
 const CONTACT_BUTTON_CLASSNAME =
-  "border-action-high-blue-france text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
+  "border-default-grey !text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
 
 const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
   const location = dispositif.metadatas?.location;
