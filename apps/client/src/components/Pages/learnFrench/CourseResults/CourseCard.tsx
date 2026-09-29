@@ -80,7 +80,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   };
 
   return (
-    <div className="border-default-grey hover:bg-alt-blue-france relative flex flex-col items-stretch border bg-white md:flex-row">
+    <div className="border-default-grey hover:bg-alt-grey relative flex flex-col items-stretch border bg-white md:flex-row">
       {nextSession && (
         <span
           aria-hidden="true"
@@ -120,13 +120,13 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
         </div>
         {sessionDate ? (
           <div className="text-title-blue-france">
-            <p className="text-h1 leading-none font-bold">
+            <p className="text-h1 m-0 mb-2 mt-1 leading-none font-bold">
               {sessionDate.toLocaleDateString(locale, { day: "numeric" })}
             </p>
-            <p className="text-base font-bold capitalize">
+            <p className="m-0 text-base leading-tight font-bold capitalize">
               {sessionDate.toLocaleDateString(locale, { month: "long" })}
             </p>
-            <p className="text-base">
+            <p className="m-0 text-base leading-tight">
               {sessionDate.toLocaleDateString(locale, { year: "numeric" })}
             </p>
           </div>
