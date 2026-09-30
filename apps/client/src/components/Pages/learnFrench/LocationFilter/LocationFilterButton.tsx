@@ -39,7 +39,7 @@ export const LocationFilterButton = (props: Props) => {
   }, [isOpen]);
 
   return (
-    <div className="relative ms-3 inline-block align-middle" ref={containerRef}>
+    <div className="relative -mt-2 inline-block align-middle" ref={containerRef}>
       {hasSelection ? (
         <div className="text-h6 md:text-h5 bg-action-low-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
           <button
