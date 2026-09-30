@@ -10,7 +10,7 @@ export const UseMyPositionButton = (props: Props) => (
       type="button"
       onClick={props.useMyPosition}
       disabled={props.geolocating}
-      className="text-title-blue-france flex items-start gap-2 text-base font-medium"
+      className="text-blue-france-sun-113-hover flex items-center gap-2 text-base font-medium"
     >
       <i className="fr-icon-send-plane-fill fr-icon--sm p-1" aria-hidden="true" />
       {props.t("Recherche.positionButton", "Utiliser ma position")}

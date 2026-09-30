@@ -32,7 +32,7 @@ export const LocationOptionsList = (props: Selection) =>
 export const LocationPopoverBody = (props: Props) => (
   <>
     {props.selectedLocations.length > 0 && (
-      <div className="p-3">
+      <div className="px-3 pt-3">
         <SelectedLocationsList {...props} />
       </div>
     )}
