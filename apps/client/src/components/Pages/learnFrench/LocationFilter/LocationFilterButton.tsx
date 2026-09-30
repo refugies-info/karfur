@@ -76,7 +76,7 @@ export const LocationFilterButton = (props: Props) => {
             useMyPosition={selection.useMyPosition}
             geolocating={selection.geolocating}
           />
-          <div className="bg-[var(--color-border-default-grey)] mx-3 h-px" aria-hidden="true" />
+          <div className="border-default-grey mx-3 border-t" aria-hidden="true" />
           <div className="[&_.fr-input]:!bg-white p-3">
             <SearchMenuItem
               onChange={selection.onSearchInputChange}

@@ -42,7 +42,7 @@ export const LocationPanel = (props: Props) => {
             geolocating={selection.geolocating}
           />
         </div>
-        <div className="bg-[var(--color-border-default-grey)] h-px" aria-hidden="true" />
+        <div className="border-default-grey border-t" aria-hidden="true" />
         <LocationOptionsList {...selection} />
       </div>
     </FullScreenPanel>
