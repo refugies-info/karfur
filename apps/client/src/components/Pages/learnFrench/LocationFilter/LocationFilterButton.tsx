@@ -45,14 +45,14 @@ export const LocationFilterButton = (props: Props) => {
           <button
             type="button"
             onClick={openLocationPicker}
-            className="text-blue-france-sun-113-hover"
+            className="text-blue-france-sun-113-hover inline-flex items-center leading-none"
           >
             {summarizeLocations([...props.departments, ...props.cities.map((city) => city.name)])}
           </button>
           <button
             type="button"
             onClick={() => props.onChange([], [])}
-            className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full"
+            className="bg-blue-france-sun-113-hover flex h-6 w-6 items-center justify-center rounded-full"
             aria-label={t("LearnFrench.location_clear", "Effacer la localisation")}
           >
             <i className="fr-icon-close-line fr-icon--sm text-white" aria-hidden="true" />
