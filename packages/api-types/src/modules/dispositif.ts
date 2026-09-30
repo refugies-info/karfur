@@ -28,7 +28,8 @@ type Facets =
   | "nbVuesMobile"
   | "nbDispositifs"
   | "nbDemarches"
-  | "nbUpdatedRecently";
+  | "nbUpdatedRecently"
+  | "nbFrenchCourses";
 
 export type Suggestion = {
   created_at: Date;
@@ -58,6 +59,7 @@ export interface GetDispositifsRequest {
   limit?: number;
   sort?: string;
   origin?: DispositifOrigin;
+  themeId?: string;
 }
 
 /**
@@ -330,6 +332,7 @@ export interface GetStatisticsResponse {
   nbDispositifs?: number;
   nbDemarches?: number;
   nbUpdatedRecently?: number;
+  nbFrenchCourses?: number;
 }
 
 /**

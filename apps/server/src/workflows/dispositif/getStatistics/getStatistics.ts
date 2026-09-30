@@ -1,6 +1,11 @@
-import type { GetStatisticsRequest, GetStatisticsResponse } from "@refugies-info/api-types";
+import {
+  DispositifStatus,
+  type GetStatisticsRequest,
+  type GetStatisticsResponse,
+} from "@refugies-info/api-types";
 import logger from "~/logger";
 import {
+  getCountDispositifs,
   getNbFiches,
   getNbMercis,
   getNbUpdatedRecently,
@@ -11,6 +16,8 @@ import type { ResponseWithData } from "~/types/interface";
 type Mercis = { mercis: number };
 type Vues = { nbVues: number; nbVuesMobile: number };
 type NbContent = { nbDispositifs: number; nbDemarches: number };
+
+const LEARN_FRENCH_THEME_ID = "63286a015d31b2c0cad9960a";
 
 export const getStatistics = async (
   query: GetStatisticsRequest,
@@ -47,6 +54,14 @@ export const getStatistics = async (
     lastTrimester.setMonth(lastTrimester.getMonth() - 3);
     const nbUpdatedRecently = await getNbUpdatedRecently(lastTrimester);
     data.nbUpdatedRecently = nbUpdatedRecently;
+  }
+
+  // nbFrenchCourses
+  if (noFacet || facets.includes("nbFrenchCourses")) {
+    data.nbFrenchCourses = await getCountDispositifs({
+      status: DispositifStatus.ACTIVE,
+      theme: LEARN_FRENCH_THEME_ID,
+    });
   }
 
   return {

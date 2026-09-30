@@ -14,12 +14,13 @@ export const getDispositifs = async (
   query: GetDispositifsRequest,
 ): ResponseWithData<SimpleDispositif[]> => {
   logger.info("[getDispositifs] called");
-  const { type, locale, limit, sort, origin } = query;
+  const { type, locale, limit, sort, origin, themeId } = query;
 
   const selectedLocale = (locale || "fr") as Languages;
   const dbQuery: FilterQuery<Dispositif> = { status: DispositifStatus.ACTIVE };
   if (type) dbQuery.typeContenu = type;
   if (origin) dbQuery.origin = origin;
+  if (themeId) dbQuery.theme = themeId;
 
   const result = await getSimpleDispositifs(
     dbQuery,
