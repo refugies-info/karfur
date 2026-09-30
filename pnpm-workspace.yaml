@@ -61,3 +61,121 @@ trustPolicyExclude:
   - "undici-types" # v6.21.0 lacks provenance attestation but is verified safe
   - "undici" # v6.21.2 lacks provenance attestation but is verified safe
   - "wait-on" # v9.0.3 lacks provenance attestation but is verified safe
+
+# -----------------------------------------------------------------------------
+# pnpm settings (migrated from the package.json "pnpm" field, which pnpm >= 10 no longer reads)
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# pnpm settings (migrated from the package.json "pnpm" field, which pnpm >= 10 no longer reads)
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+# pnpm settings (migrated from the package.json "pnpm" field, which pnpm >= 10 no longer reads)
+# -----------------------------------------------------------------------------
+onlyBuiltDependencies:
+  - '@firebase/util'
+  - '@parcel/watcher'
+  - '@sentry/cli'
+  - '@tailwindcss/oxide'
+  - 'better-sqlite3'
+  - 'core-js'
+  - 'core-js-pure'
+  - 'esbuild'
+  - 'mongodb-memory-server'
+  - 'oxc-resolver'
+  - 'protobufjs'
+  - 'sharp'
+  - 'unrs-resolver'
+ignoredBuiltDependencies:
+  - '@sentry/cli'
+overrides:
+  '@codegouvfr/react-dsfr': 1.20.2
+  baseline-browser-mapping: '^2.9.19'
+  caniuse-lite: 1.0.30001755
+  debug: 4.4.1
+  electron-to-chromium: 1.5.255
+  form-data: '^4.0.6'
+  glob: '^10.5.0'
+  image-size: '^2.0.4'
+  js-yaml: '^3.15.2'
+  pbkdf2: '^3.1.3'
+  'sha.js': '^2.4.12'
+  stylus: 'npm:noop3@^1000.0.0'
+  tmp: '^0.2.4'
+  undici: '^7.29.0'
+  validator: '^13.15.20'
+  mdast-util-to-hast: '>=13.2.1'
+  react-server-dom-webpack: '>=19.0.2'
+  node-forge: '>=1.4.0'
+  handlebars: '>=4.7.9'
+  brace-expansion: '^2.1.4'
+  'jsonwebtoken>jws': '^3.2.3'
+  'google-auth-library>jws': '^4.0.1'
+  'gtoken>jws': '^4.0.1'
+  'googleapis-common>google-auth-library': 10.9.1
+  fast-xml-parser: 5.7.0
+  immutable: '^5.1.8'
+  flatted: 3.4.2
+  tar: '^7.5.22'
+  svgo: '^3.3.4'
+  serialize-javascript: '^7.0.3'
+  minimatch: '^9.0.7'
+  yauzl: '^3.2.1'
+  '@tootallnate/once': '^3.0.1'
+  preact: '^10.27.3'
+  ajv: '^8.18.0'
+  qs: 6.16.0
+  webpack: '^5.104.1'
+  diff: '^4.0.4'
+  '@types/react': '~19.1.17'
+  '@types/react-dom': '~19.1.7'
+  'path-to-regexp@<1': 0.1.13
+  '@smithy/config-resolver@<4.4.0': '^4.4.0'
+  'smol-toml@<1.6.1': '^1.6.1'
+  'yaml@>=2.0.0 <2.8.3': '^2.8.3'
+  'yaml@<1.10.3': 1.10.3
+  lodash: '^4.18.1'
+  next: 15.5.24
+  axios: 1.18.1
+  vite: '^7.3.6'
+  '@hapi/content@<=6.0.1': 6.0.2
+  '@hapi/wreck@<18.1.2': 18.1.2
+  '@grpc/grpc-js@<1.13.5': 1.13.5
+  'joi@<18.2.1': 18.2.1
+  'esbuild@<0.28.1': 0.28.1
+  protobufjs: 7.6.5
+  '@protobufjs/utf8': 1.1.1
+  'ws@>=8.0.0 <8.21.0': 8.21.3
+  js-cookie: 3.0.7
+  multiparty: 4.3.0
+  '@babel/plugin-transform-modules-systemjs': 7.29.4
+  fast-uri: 3.1.6
+  fast-xml-builder: 1.1.7
+  ip-address: 10.3.1
+  postcss: 8.5.26
+  '@xmldom/xmldom@<0.8.15': '^0.8.15'
+  dompurify: 3.4.13
+  i18next-fs-backend: 2.6.7
+  follow-redirects: 1.16.0
+  uuid: 11.1.1
+  'check-dependency-version-consistency>js-yaml': 4.3.2
+  shell-quote: 1.10.0
+  websocket-driver: 0.7.5
+  sharp: '^0.35.4'
+  sanitize-html: '^2.17.7'
+  '@babel/core': '^7.29.7'
+  'nanoid@<3.3.18': 3.3.18
+  'ts-deepmerge@<8.0.0': 8.0.0
+  'body-parser@<2': 1.20.6
+  'ws@>=7.0.0 <7.5.13': 7.5.13
+  'ws@>=6.0.0 <6.2.6': 6.2.6
+  'browserslist@<4.28.7': 4.28.8
+  'postcss-selector-parser@>=7.1.0 <7.1.3': '^7.1.5'
+  'decode-uri-component@<0.5.0': 0.5.0
+patchedDependencies:
+  '@codegouvfr/react-dsfr@1.20.2': 'patches/@codegouvfr__react-dsfr@1.20.2.patch'
+peerDependencyRules:
+  allowedVersions:
+    react: '^19'
+    react-dom: '^19'
