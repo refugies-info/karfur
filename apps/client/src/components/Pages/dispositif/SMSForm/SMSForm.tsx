@@ -15,120 +15,126 @@ import { selectedDispositifSelector } from "~/services/SelectedDispositif/select
 interface Props {
   className?: string;
   onSubmitSuccess?: () => void;
+  onSend?: (tel: string, locale: string) => Promise<unknown>;
+  restrictToAvailableLanguages?: boolean;
 }
 
-const SMSForm = forwardRef<HTMLDivElement, Props>(({ className, onSubmitSuccess }, ref) => {
-  const { t } = useTranslation();
-  const locale = useLocale();
-  const dispositif = useSelector(selectedDispositifSelector);
-  const announce = useAnnounce();
+const SMSForm = forwardRef<HTMLDivElement, Props>(
+  ({ className, onSubmitSuccess, onSend, restrictToAvailableLanguages = true }, ref) => {
+    const { t } = useTranslation();
+    const locale = useLocale();
+    const dispositif = useSelector(selectedDispositifSelector);
+    const announce = useAnnounce();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [selectedLang, setSelectedLang] = useState<string>(locale);
-  const languages = useSelector(allLanguesSelector);
+    const [selectedLang, setSelectedLang] = useState<string>(locale);
+    const languages = useSelector(allLanguesSelector);
 
-  const selectOptions = useMemo(
-    () =>
-      languages.map((lang) => {
-        return {
-          ...lang,
-          disabled: !(dispositif?.availableLanguages || []).includes(lang.i18nCode),
-        };
-      }),
-    [languages, dispositif],
-  );
+    const selectOptions = useMemo(
+      () =>
+        languages.map((lang) => {
+          return {
+            ...lang,
+            disabled: restrictToAvailableLanguages
+              ? !(dispositif?.availableLanguages || []).includes(lang.i18nCode)
+              : false,
+          };
+        }),
+      [languages, dispositif, restrictToAvailableLanguages],
+    );
 
-  const [tel, setTel] = useState<string>("");
-  const [error, setError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [showToast, setShowToast] = useState(false);
-  const { sendSMS } = useSendSms();
+    const [tel, setTel] = useState<string>("");
+    const [error, setError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [showToast, setShowToast] = useState(false);
+    const { sendSMS } = useSendSms();
 
-  const send = () => {
-    setError(false);
-    setIsLoading(true);
-    if (isValidPhone(tel)) {
-      sendSMS(tel, selectedLang)
-        .then(() => {
-          setIsLoading(false);
-          setTel("");
-          setSelectedLang(locale);
-          setError(false);
-          setShowToast(true);
-          announce(t("Dispositif.smsFormSent"));
-          setShowToast(false);
-          setTimeout(() => {
-            onSubmitSuccess?.();
-          }, 2000);
-        })
-        .catch((e) => {
-          setIsLoading(false);
-          setError(true);
-          setErrorMessage(e.message);
-        });
-    } else {
-      setIsLoading(false);
-      setError(true);
-      setErrorMessage(t("Register.invalid_phone_number"));
-    }
-  };
+    const send = () => {
+      setError(false);
+      setIsLoading(true);
+      if (isValidPhone(tel)) {
+        (onSend ?? sendSMS)(tel, selectedLang)
+          .then(() => {
+            setIsLoading(false);
+            setTel("");
+            setSelectedLang(locale);
+            setError(false);
+            setShowToast(true);
+            announce(t("Dispositif.smsFormSent"));
+            setShowToast(false);
+            setTimeout(() => {
+              onSubmitSuccess?.();
+            }, 2000);
+          })
+          .catch((e) => {
+            setIsLoading(false);
+            setError(true);
+            setErrorMessage(e.message);
+          });
+      } else {
+        setIsLoading(false);
+        setError(true);
+        setErrorMessage(t("Register.invalid_phone_number"));
+      }
+    };
 
-  return (
-    <div className={className}>
-      <Input
-        id="sms-phone-input"
-        ref={ref}
-        nativeInputProps={{
-          type: "tel",
-          name: "tel",
-          onChange: (e: any) => setTel(e.target.value),
-        }}
-        label={t("MobileApp.phoneLabel", "Numéro de téléphone (requis)")}
-        state={error ? "error" : "default"}
-        stateRelatedMessage={errorMessage}
-        className="mb-4"
-      />
+    return (
+      <div className={className}>
+        <Input
+          id="sms-phone-input"
+          ref={ref}
+          nativeInputProps={{
+            type: "tel",
+            name: "tel",
+            onChange: (e: any) => setTel(e.target.value),
+          }}
+          label={t("MobileApp.phoneLabel", "Numéro de téléphone (requis)")}
+          state={error ? "error" : "default"}
+          stateRelatedMessage={errorMessage}
+          className="mb-4"
+        />
 
-      <Select
-        id="sms-language-select"
-        nativeSelectProps={{
-          name: "sms-language-select",
-          value: selectedLang,
-          onChange: (e: any) => setSelectedLang(e.target.value),
-        }}
-        label={t("Dispositif.smsFormLanguage", "Langue")}
-        className="mb-4"
-      >
-        {selectOptions.map((ln) => (
-          <option key={ln.i18nCode} value={ln.i18nCode}>
-            {ln.langueFr}
-          </option>
-        ))}
-      </Select>
+        <Select
+          id="sms-language-select"
+          nativeSelectProps={{
+            name: "sms-language-select",
+            value: selectedLang,
+            onChange: (e: any) => setSelectedLang(e.target.value),
+          }}
+          label={t("Dispositif.smsFormLanguage", "Langue")}
+          className="mb-4"
+        >
+          {selectOptions.map((ln) => (
+            <option key={ln.i18nCode} value={ln.i18nCode}>
+              {ln.langueFr}
+            </option>
+          ))}
+        </Select>
 
-      <Button
-        iconId="fr-icon-send-plane-line"
-        className="w-full justify-center"
-        iconPosition="right"
-        disabled={!tel || isLoading}
-        onClick={send}
-      >
-        {isLoading ? t("send_in_progress", "Envoi en cours...") : t("Envoyer", "Envoyer")}
-      </Button>
+        <Button
+          iconId="fr-icon-send-plane-line"
+          className="w-full justify-center"
+          iconPosition="right"
+          disabled={!tel || isLoading}
+          onClick={send}
+        >
+          {isLoading ? t("send_in_progress", "Envoi en cours...") : t("Envoyer", "Envoyer")}
+        </Button>
 
-      <Notice
-        title={t("Dispositif.smsFormHelp")}
-        severity="info"
-        className="[&_*]:text-corps-xs w-full bg-transparent !pb-0 [&_*]:p-0 [&_*]:font-normal [&_span]:flex"
-      />
+        <Notice
+          title={t("Dispositif.smsFormHelp")}
+          severity="info"
+          className="[&_*]:text-corps-xs w-full bg-transparent !pb-0 [&_*]:p-0 [&_*]:font-normal [&_span]:flex"
+        />
 
-      <Toast open={showToast} closeCallback={() => setShowToast(false)}>
-        {t("Dispositif.smsFormSent")}
-      </Toast>
-    </div>
-  );
-});
+        <Toast open={showToast} closeCallback={() => setShowToast(false)}>
+          {t("Dispositif.smsFormSent")}
+        </Toast>
+      </div>
+    );
+  },
+);
 
 SMSForm.displayName = "SMSForm";
 export default SMSForm;

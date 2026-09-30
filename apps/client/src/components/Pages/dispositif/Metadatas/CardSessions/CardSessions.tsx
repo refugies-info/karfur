@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import Badge from "~/components/UI/Badge";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 
+const STARTS_SOON_THRESHOLD_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
 interface Props {
   className?: string;
 }
@@ -15,17 +17,24 @@ const CardSessions = ({ className }: Props) => {
   const dispositif = useSelector(selectedDispositifSelector);
   const sessionsMetadata = dispositif?.metadatas?.sessions;
   const sessions = sessionsMetadata?.items;
-  const modalites = sessionsMetadata?.modalitesEntreesSorties;
+  const modalitesEntreesSorties = sessionsMetadata?.modalitesEntreesSorties;
 
-  // Trier sessions par date de début (croissant)
-  const sortedSessions = useMemo(() => {
+  const startOfToday = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today.getTime();
+  }, []);
+
+  const upcomingSessions = useMemo(() => {
     if (!sessions || sessions.length === 0) return [];
-    return [...sessions].sort(
-      (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
-    );
-  }, [sessions]);
+    return sessions
+      .filter((session: Session) => new Date(session.startDate).getTime() >= startOfToday)
+      .sort(
+        (a: Session, b: Session) =>
+          new Date(a.startDate).getTime() - new Date(b.startDate).getTime(),
+      );
+  }, [sessions, startOfToday]);
 
-  // Formatter de date réutilisable (optimisation performance)
   const locale = t("__locale", { defaultValue: "fr" });
   const dateFormatter = useMemo(
     () =>
@@ -37,28 +46,16 @@ const CardSessions = ({ className }: Props) => {
     [locale],
   );
 
-  // Date actuelle pour comparaison (une seule instance)
-  const now = new Date();
-
-  // Ne pas afficher si ni modalité ni sessions
-  if (modalites === undefined && (!sortedSessions || sortedSessions.length === 0)) return null;
+  if (modalitesEntreesSorties === 1) return null;
+  if (upcomingSessions.length === 0) return null;
 
   return (
     <MetaDataCard title={t("Dispositif.sessions")} className={className}>
-      {modalites !== undefined && modalites !== null && (
-        <MetaDataItem className="[&_p]:before:!hidden">
-          <span className="font-bold text-xs uppercase tracking-wide">
-            {modalites === 0
-              ? t("Dispositif.modalitesDatesFixesTitle")
-              : t("Dispositif.modalitesPermanentesTitle")}
-          </span>
-        </MetaDataItem>
-      )}
-      {sortedSessions.map((session: Session, index: number) => {
-        const refDate = modalites === 1 ? session.endDate : session.startDate;
-        const isPast = new Date(refDate) < now;
+      {upcomingSessions.map((session: Session, index: number) => {
         const startDate = dateFormatter.format(new Date(session.startDate));
         const endDate = dateFormatter.format(new Date(session.endDate));
+        const startsSoon =
+          new Date(session.startDate).getTime() - startOfToday <= STARTS_SOON_THRESHOLD_MS;
 
         return (
           <MetaDataItem
@@ -73,10 +70,12 @@ const CardSessions = ({ className }: Props) => {
                   {t("Dispositif.to")} {endDate}
                 </span>
               </span>
-              {isPast && (
-                <Badge severity="error" small icon="ri-alert-fill">
-                  {t("Dispositif.datePassed")}
-                </Badge>
+              {startsSoon && (
+                <span>
+                  <Badge severity="info" small icon="fr-icon-info-fill">
+                    {t("Dispositif.sessionStartsSoon")}
+                  </Badge>
+                </span>
               )}
             </span>
           </MetaDataItem>

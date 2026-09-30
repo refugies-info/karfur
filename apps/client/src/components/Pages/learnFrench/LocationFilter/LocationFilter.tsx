@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import SearchMenuItem from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
+import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
+import SearchMenuItem, {
+  BLUE_UNDERLINE_CLASSNAME,
+} from "~/components/Pages/recherche/LocationMenu/SearchMenuItem";
 import { LocationPopoverBody } from "./LocationPopoverBody";
 import { UseMyPositionButton } from "./UseMyPositionButton";
 import { useLocationSelection } from "./useLocationSelection";
 
 interface Props {
   departments: string[];
-  cities: string[];
-  onChange: (departments: string[], cities: string[]) => void;
+  cities: CitySelection[];
+  onChange: (departments: string[], cities: CitySelection[]) => void;
 }
 
 export const LocationFilter = (props: Props) => {
@@ -26,8 +29,15 @@ export const LocationFilter = (props: Props) => {
   }, [isOpen]);
 
   return (
-    <div className="relative [&_.fr-input]:!bg-white" ref={containerRef}>
-      <SearchMenuItem onFocus={() => setIsOpen(true)} onChange={selection.onSearchInputChange} />
+    <div
+      className="relative [&_.fr-input]:!bg-alt-grey md:[&_.fr-input]:!bg-white"
+      ref={containerRef}
+    >
+      <SearchMenuItem
+        onFocus={() => setIsOpen(true)}
+        onChange={selection.onSearchInputChange}
+        className={BLUE_UNDERLINE_CLASSNAME}
+      />
 
       {selection.selectedLocationChips.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">

@@ -24,18 +24,21 @@ const buildSearchParams = (
   activeTab: CourseTabType,
   page: number,
   locale: string,
+  limit: number,
 ): URLSearchParams => {
   const usp = new URLSearchParams();
   usp.set("page", String(page));
-  usp.set("limit", String(RESULTS_PER_PAGE));
+  usp.set("limit", String(limit));
   usp.set("locale", locale);
   usp.set("sort", "nextSession");
   usp.set("strictNeeds", "true");
   usp.append("themes", LEARN_FRENCH_THEME_ID);
 
   if (search) usp.set("search", search);
-  for (const department of filters.departments) usp.append("departments", department);
-  for (const city of filters.cities) usp.append("cities", city);
+  const departments = new Set(filters.departments);
+  for (const city of filters.cities) departments.add(city.department);
+  for (const department of departments) usp.append("departments", department);
+  for (const city of filters.cities) usp.append("nearCity", city.name);
   for (const level of filters.frenchLevel) usp.append("frenchLevel", level);
   for (const category of filters.categories) usp.append("needs", String(category));
   for (const publicOption of filters.publicFilter) usp.append("public", publicOption);
@@ -51,6 +54,7 @@ export const useCourseSearch = (
   search: string,
   activeTab: CourseTabType,
   ready: boolean,
+  limit: number = RESULTS_PER_PAGE,
 ) => {
   const locale = useLocale();
   const [results, setResults] = useState<SimpleDispositif[]>([]);
@@ -60,7 +64,9 @@ export const useCourseSearch = (
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState(false);
+  const [settledSearchKey, setSettledSearchKey] = useState<string | null>(null);
   const requestIdRef = useRef(0);
+  const searchKey = buildSearchParams(filters, search, activeTab, 1, locale, limit).toString();
 
   useEffect(() => {
     if (!ready) return;
@@ -68,7 +74,7 @@ export const useCourseSearch = (
     setLoading(true);
     setError(false);
 
-    fetch(`/api/search?${buildSearchParams(filters, search, activeTab, 1, locale).toString()}`)
+    fetch(`/api/search?${searchKey}`)
       .then((response) => {
         if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
         return response.json();
@@ -79,6 +85,7 @@ export const useCourseSearch = (
         setTotal(data.total);
         setPage(data.page);
         setPageCount(data.pageCount);
+        setSettledSearchKey(searchKey);
       })
       .catch((err) => {
         if (requestId !== requestIdRef.current) return;
@@ -89,14 +96,14 @@ export const useCourseSearch = (
       .finally(() => {
         if (requestId === requestIdRef.current) setLoading(false);
       });
-  }, [filters, search, activeTab, locale, ready]);
+  }, [searchKey, ready]);
 
   const loadMore = async () => {
     setLoadingMore(true);
     const requestId = ++requestIdRef.current;
     try {
       const response = await fetch(
-        `/api/search?${buildSearchParams(filters, search, activeTab, page + 1, locale).toString()}`,
+        `/api/search?${buildSearchParams(filters, search, activeTab, page + 1, locale, limit).toString()}`,
       );
       if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
       const data: CourseSearchResponse = await response.json();
@@ -113,5 +120,7 @@ export const useCourseSearch = (
     }
   };
 
-  return { results, total, page, pageCount, loading, loadingMore, error, loadMore };
+  const isSettled = !loading && !error && settledSearchKey === searchKey;
+
+  return { results, total, page, pageCount, loading, loadingMore, error, isSettled, loadMore };
 };

@@ -271,6 +271,7 @@ export type BaseGetDispositifResponse = {
   externalLink?: string;
   hasDraftVersion: boolean;
   origin: DispositifOrigin;
+  originId?: string;
   translations?: Partial<Record<Languages, TranslationContent>>;
 };
 

@@ -112,6 +112,7 @@ export const getContentById = async (
     hasDraftVersion: 1,
     administrationLogo: 1,
     origin: 1,
+    originId: 1,
   };
   let draftDispositif = null;
   const originalDispositif = await (await getDispositifById(id, fields))?.populate<{
@@ -206,6 +207,7 @@ export const getContentById = async (
       "externalLink",
       "creatorId",
       "origin",
+      "originId",
     ]),
   } as unknown as GetDispositifResponse;
 

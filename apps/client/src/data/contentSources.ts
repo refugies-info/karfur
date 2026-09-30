@@ -1,10 +1,11 @@
 import type { Picture } from "@refugies-info/api-types";
 import { DispositifOrigin } from "@refugies-info/api-types";
 
-export interface ContentSource {
+interface ContentSourceDefinition {
   origin: DispositifOrigin;
   logo: Picture;
   textKey: string; // Clé de traduction dans i18n
+  textKeyWithSourceName?: string;
 }
 
 export const contentSources = [
@@ -16,8 +17,14 @@ export const contentSources = [
       secure_url: "/images/sources/carif-oref-logo.png",
     },
     textKey: "ContentSources.RCO.description",
+    textKeyWithSourceName: "ContentSources.RCO.descriptionWithSourceName",
   },
-] as const satisfies readonly ContentSource[];
+] as const satisfies readonly ContentSourceDefinition[];
+
+/**
+ * Derived from the literals so that translation keys stay narrow enough for `t()`
+ */
+export type ContentSource = (typeof contentSources)[number];
 
 /**
  * Helper pour récupérer une source par son origin

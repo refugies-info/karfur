@@ -15,3 +15,12 @@ export interface ContentLinkRequest {
   url: string;
   locale: string;
 }
+
+/**
+ * @url POST /sms/course-list-link
+ */
+export interface CourseListLinkRequest {
+  phone: string;
+  url: string;
+  locale: string;
+}

@@ -3,6 +3,7 @@ import type { Id, Picture, SimpleTheme } from "../generics";
 export interface NeedTranslation {
   text: string;
   subtitle: string;
+  short?: string;
   updatedAt?: Date;
 }
 

@@ -1,6 +1,7 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
+import { frenchLevelValuesByOption, isFrenchOption } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import type { ParsedUrlQuery } from "querystring";
@@ -8,6 +9,8 @@ import type { ParsedUrlQuery } from "querystring";
 interface SearchQuery extends ParsedUrlQuery {
   search?: string;
   departments?: string | string[];
+  cities?: string | string[];
+  nearCity?: string | string[];
   themes?: string | string[];
   needs?: string | string[];
   age?: string | string[];
@@ -19,6 +22,8 @@ interface SearchQuery extends ParsedUrlQuery {
   hasUpcomingSession?: string;
   strictNeeds?: string;
 }
+
+const escapeRegExp = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 const toObjectIds = (values: string[]): mongoose.Types.ObjectId[] => {
   return values
@@ -90,6 +95,7 @@ export interface QueryParams {
   search?: string;
   departments?: string[];
   cities?: string[];
+  nearCity?: string[];
   themes?: string[];
   needs?: string[];
   age?: AgeOptions[];
@@ -106,14 +112,13 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   search: typeof query.search === "string" ? query.search : undefined,
   departments: getQueryParamAsArray(query.departments),
   cities: getQueryParamAsArray(query.cities),
+  nearCity: getQueryParamAsArray(query.nearCity),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
   age: getQueryParamAsArray(query.age).filter(
     (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
   ),
-  frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(
-    (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
-  ),
+  frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(isFrenchOption),
   public: getQueryParamAsArray(query.public).filter(
     (v): v is PublicOptions => typeof v === "string" && v.trim().length > 0,
   ),
@@ -152,7 +157,6 @@ export const buildBaseMatch = (
   );
 
   if (cities.length > 0 || departments.length > 0) {
-    const escapeRegExp = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const tokensOrRegexes: (string | RegExp)[] = [];
 
     // Add department patterns
@@ -298,16 +302,10 @@ export const buildBaseMatch = (
     }
   }
 
-  const frenchLevel = (queryParams.frenchLevel ?? []).filter(
-    (x): x is FrenchOptions => x === "a" || x === "b" || x === "c",
-  );
+  const frenchLevel = (queryParams.frenchLevel ?? []).filter(isFrenchOption);
   if (frenchLevel.length > 0) {
     const allowedLevels = Array.from(
-      new Set(
-        frenchLevel.flatMap((cat) =>
-          cat === "a" ? ["alpha", "A1", "A2"] : cat === "b" ? ["B1", "B2"] : ["C1", "C2"],
-        ),
-      ),
+      new Set(frenchLevel.flatMap((cat) => frenchLevelValuesByOption[cat])),
     );
     // Match if the field (string or array) contains any allowedLevels
     match["metadatas.frenchLevel"] = { $in: allowedLevels };
@@ -451,6 +449,19 @@ const buildSponsorStages = (): PipelineStage[] => [
                 _id: "$sponsorDoc._id",
                 nom: "$sponsorDoc.nom",
                 picture: "$sponsorDoc.picture",
+                address: { $ifNull: ["$sponsorDoc.adressPublic", "$sponsorDoc.adresse"] },
+                phone: {
+                  $ifNull: [
+                    { $arrayElemAt: ["$sponsorDoc.phonesPublic", 0] },
+                    "$sponsorDoc.phone_contact",
+                  ],
+                },
+                email: {
+                  $ifNull: [
+                    { $arrayElemAt: ["$sponsorDoc.mailsPublic", 0] },
+                    "$sponsorDoc.mail_contact",
+                  ],
+                },
               },
             },
             {
@@ -530,11 +541,16 @@ const buildSearchAggregation = (
   baseMatch: FilterQuery<SimpleDispositif>,
   options: SearchResultsOptions,
   algoliaIds?: string[],
-  locationFilter?: { departments?: string[]; cities?: string[] },
+  locationFilter?: { departments?: string[]; cities?: string[]; nearCity?: string[] },
 ): PipelineStage[] => {
   const { page, limit, sort } = options;
   const hasLocationFilter =
-    (locationFilter?.departments?.length ?? 0) > 0 || (locationFilter?.cities?.length ?? 0) > 0;
+    (locationFilter?.departments?.length ?? 0) > 0 ||
+    (locationFilter?.cities?.length ?? 0) > 0 ||
+    (locationFilter?.nearCity?.length ?? 0) > 0;
+  const nearCity = (locationFilter?.nearCity ?? []).filter(
+    (v) => typeof v === "string" && v.trim().length > 0,
+  );
 
   const aggregation: PipelineStage[] = [
     { $match: baseMatch },
@@ -579,28 +595,50 @@ const buildSearchAggregation = (
     aggregation.push({ $sort: { publishedAt: -1 } });
   } else if (sort === "nextSession") {
     if (hasLocationFilter) {
-      aggregation.push({
-        $addFields: {
-          isLocal: {
-            $cond: {
-              if: {
-                $in: [
-                  "france",
+      const locationArrayExpr = {
+        $cond: [
+          { $isArray: "$metadatas.location" },
+          "$metadatas.location",
+          ["$metadatas.location"],
+        ],
+      };
+      const isFranceExpr = { $in: ["france", locationArrayExpr] };
+
+      if (nearCity.length > 0) {
+        const nearCityRegex = `^(?:${nearCity.map(escapeRegExp).join("|")})(?: - |$)`;
+        aggregation.push({
+          $addFields: {
+            isLocal: {
+              $switch: {
+                branches: [
+                  { case: isFranceExpr, then: 2 },
                   {
-                    $cond: [
-                      { $isArray: "$metadatas.location" },
-                      "$metadatas.location",
-                      ["$metadatas.location"],
-                    ],
+                    case: {
+                      $anyElementTrue: {
+                        $map: {
+                          input: locationArrayExpr,
+                          as: "loc",
+                          in: {
+                            $regexMatch: { input: "$$loc", regex: nearCityRegex, options: "i" },
+                          },
+                        },
+                      },
+                    },
+                    then: 0,
                   },
                 ],
+                default: 1,
               },
-              then: 1,
-              else: 0,
             },
           },
-        },
-      });
+        });
+      } else {
+        aggregation.push({
+          $addFields: {
+            isLocal: { $cond: { if: isFranceExpr, then: 1, else: 0 } },
+          },
+        });
+      }
     }
     aggregation.push({
       $addFields: {
@@ -792,6 +830,7 @@ export const computeSearchResults = async (
   const aggregation = buildSearchAggregation(baseMatch, options, algoliaIds, {
     departments: queryParams.departments,
     cities: queryParams.cities,
+    nearCity: queryParams.nearCity,
   });
 
   const isSessionTimeSensitive =

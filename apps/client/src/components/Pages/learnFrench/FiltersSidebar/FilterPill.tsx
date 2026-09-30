@@ -20,11 +20,13 @@ export const FilterPill = (props: Props) => (
   >
     {props.children}
     {props.active && (
-      <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-white">
-        <i
-          className="fr-icon-check-line fr-icon--xs text-action-high-blue-france"
-          aria-hidden="true"
-        />
+      <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-white">
+        <span className="border-action-high-blue-france flex h-3.5 w-3.5 items-center justify-center rounded-full border-2">
+          <i
+            className="fr-icon-check-line fr-icon--xs text-action-high-blue-france"
+            aria-hidden="true"
+          />
+        </span>
       </span>
     )}
   </button>

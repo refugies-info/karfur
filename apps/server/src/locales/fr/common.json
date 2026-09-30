@@ -4,5 +4,6 @@
     "with": "avec"
   },
   "downloadApp": "Voici le lien pour télécharger l'application Réfugiés.info :",
-  "contentLink": "Bonjour. Voici le lien vers la fiche {{title}} : {{link}}"
+  "contentLink": "Bonjour. Voici le lien vers la fiche {{title}} : {{link}}",
+  "courseListLink": "Bonjour, voici les cours de français disponibles : {{link}}"
 }

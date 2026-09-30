@@ -1,5 +1,6 @@
 import type { Id, publicStatusType, publicType, SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, TypeOptions } from "data/searchFilters";
+import { frenchLevelValuesByOption } from "data/searchFilters";
 
 export const filterByThemeOrNeed = (
   dispositif: SimpleDispositif,
@@ -168,12 +169,6 @@ export const filterByAge = (dispositif: SimpleDispositif, ageFilters: AgeOptions
   return countMatchingAgeOptions(dispositif, ageFilters) > 0;
 };
 
-const FILTER_FRENCH_LEVEL_VALUES: Record<FrenchOptions, string[]> = {
-  a: ["alpha", "A1", "A2"],
-  b: ["B1", "B2"],
-  c: ["C1", "C2"],
-};
-
 export const filterByFrenchLevel = (
   dispositif: SimpleDispositif,
   frenchLevelFilters: FrenchOptions[],
@@ -186,7 +181,7 @@ export const filterByFrenchLevel = (
   // Build the union of allowed concrete levels from selected categories
   const allowed = new Set<string>();
   for (const cat of frenchLevelFilters) {
-    for (const lvl of FILTER_FRENCH_LEVEL_VALUES[cat]) allowed.add(lvl);
+    for (const lvl of frenchLevelValuesByOption[cat]) allowed.add(lvl);
   }
 
   return frenchLevels.some((lvl) => allowed.has(lvl));

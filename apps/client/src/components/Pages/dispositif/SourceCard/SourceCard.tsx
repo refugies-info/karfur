@@ -5,12 +5,14 @@ import { getContentSourceByOrigin } from "~/data/contentSources";
 
 interface Props {
   origin: DispositifOrigin;
+  sourceName?: string;
+  logoUrl?: string;
 }
 
 /**
  * Displays the source information for a dispositif when origin is not RI
  */
-const SourceCard = ({ origin }: Props) => {
+const SourceCard = ({ origin, sourceName, logoUrl }: Props) => {
   const { t } = useTranslation();
   const source = getContentSourceByOrigin(origin);
 
@@ -42,10 +44,22 @@ const SourceCard = ({ origin }: Props) => {
       </h2>
       <div className="flex items-center gap-10">
         <div className="flex-shrink-0">
-          <Image src={source.logo.secure_url} alt={`Logo ${origin}`} width={100} height={100} />
+          <Image
+            src={logoUrl ?? source.logo.secure_url}
+            alt={`Logo ${sourceName ?? origin}`}
+            width={120}
+            height={60}
+            className="h-[60px] w-[120px] object-contain"
+          />
         </div>
-        {/* textKey is dynamically retrieved from config, TypeScript can't infer the literal type */}
-        <p className="text-sm mb-0">{t(source.textKey as any)}</p>
+        <p className="text-sm mb-0">
+          {sourceName && source.textKeyWithSourceName
+            ? t(source.textKeyWithSourceName, {
+                sourceName,
+                interpolation: { escapeValue: false },
+              })
+            : t(source.textKey)}
+        </p>
       </div>
     </div>
   );
