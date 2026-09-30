@@ -70,12 +70,13 @@ export const LocationFilterButton = (props: Props) => {
       )}
 
       {isOpen && (
-        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border shadow-[--raised-shadow]">
+        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 rounded-lg border shadow-[--raised-shadow]">
           <UseMyPositionButton
             t={selection.t}
             useMyPosition={selection.useMyPosition}
             geolocating={selection.geolocating}
           />
+          <div className="bg-[var(--color-border-default-grey)] mx-3 h-px" aria-hidden="true" />
           <div className="[&_.fr-input]:!bg-white p-3">
             <SearchMenuItem
               onChange={selection.onSearchInputChange}
