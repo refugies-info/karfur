@@ -8,7 +8,7 @@ import { getUsersFromStructureMembres } from "../users/users.service";
 export const sendMailWhenDispositifArchived = async (dispositifId: Dispositif["_id"]) => {
   logger.info("[sendMailWhenDispositifArchived] received");
   const dispositif = await getDispositifById(dispositifId);
-  const structureMembres = await getStructureMembers(dispositif.mainSponsor.toString());
+  const structureMembres = await getStructureMembers(dispositif.mainSponsor?.toString());
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
   const titreInformatif = dispositif.translations.fr.content.titreInformatif;
