@@ -7,6 +7,7 @@ import { useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
+import { getPoiLocationText } from "~/lib/learnFrench/poiLocation";
 
 interface RowProps {
   dispositif: SimpleDispositif;
@@ -38,6 +39,8 @@ const PrintableCourseRow = (props: RowProps) => {
   const commitment = getCommitmentText(props.dispositif.metadatas?.commitment, t);
   const frequency = getFrequencyText(props.dispositif.metadatas?.frequency, t);
   const price = getPriceText(props.dispositif.metadatas?.price, t);
+  const poi = props.dispositif.map?.[0];
+  const poiLocation = getPoiLocationText(poi);
 
   return (
     <div className="border-default-grey flex gap-6 border-b py-6 [break-inside:avoid]">
@@ -52,7 +55,15 @@ const PrintableCourseRow = (props: RowProps) => {
           <p className="mb-2">{props.dispositif.sponsor.phone}</p>
         )}
         {props.dispositif.sponsor?.email && (
-          <p className="mb-0 break-all">{props.dispositif.sponsor.email}</p>
+          <p className="mb-2 break-all">{props.dispositif.sponsor.email}</p>
+        )}
+        {poiLocation && (
+          <>
+            {poi?.title && <p className="mb-2 font-bold">{poi.title}</p>}
+            <p className="mb-2">{poiLocation}</p>
+            {poi?.phone && <p className="mb-2">{poi.phone}</p>}
+            {poi?.email && <p className="mb-0 break-all">{poi.email}</p>}
+          </>
         )}
       </div>
 

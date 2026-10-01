@@ -34,7 +34,9 @@
     "resourcesText": "Ми надаємо вам набір цифрових та фізичних інструментів, щоб відкрити для себе проєкт та розповісти про нього оточуючим: анімаційні відео, багатомовні флаєри, презентаційні брошури, візуальні матеріали...",
     "resourcesCTA": "Переглянути інструменти",
     "webinaireCTA": "Взяти участь у вебінарі",
-    "StructuresLogosText": "Понад 300 000 професіоналів вже використовують Réfugiés.info для супроводу своїх клієнтів!"
+    "StructuresLogosText": "Понад 300 000 професіоналів вже використовують Réfugiés.info для супроводу своїх клієнтів!",
+    "infoTypeFrenchCourses": "{{count}} курсів французької мови по всій Франції",
+    "frenchCoursesSeeAll": "Переглянути всі курси французької мови"
   },
   "Recherche": {
     "pageTitle": "Пошук",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "Переглянути {{count}} записів",
     "tooltipAucuneFicheCorrespondante": "Жодних записів, що відповідають цьому критерію. Налаштуйте інші фільтри, щоб фільтрувати за цим критерієм.",
     "noResultTitle": "Ой, немає результатів, що відповідають вашим критеріям пошуку.",
-    "noResultOther": "Ці записи також можуть вас зацікавити"
+    "noResultOther": "Ці записи також можуть вас зацікавити",
+    "searchPlaceholder": "Пошук за містом або департаментом",
+    "commonPlaces": "Поширені міста",
+    "searchResultsLegend": "Результати пошуку",
+    "selectedLocations": "Обрані місця",
+    "loading": "Завантаження...",
+    "loadingResults": "Завантаження {{count}} результатів...",
+    "remainingResults": "Залишилося завантажити {{count}} результатів",
+    "allResultsDisplayed": "Усі результати відображено",
+    "citySelectionsResults": "Знайдено {{count}} варіантів, будь ласка, виберіть своє місто із запропонованих"
   },
   "Widget": {
     "fiches": "Записи",
@@ -116,7 +127,8 @@
     "typeAll": "Усі записи",
     "typeDispositif": "Схеми",
     "typeDemarche": "Процедури",
-    "typeRessource": "Ресурси онлайн"
+    "typeRessource": "Ресурси онлайн",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "Очікування",
@@ -380,7 +392,8 @@
     "directory": "Перелік організацій",
     "information_types": "Три типи інформації",
     "help_translate": "Допомогти з перекладом",
-    "mission_impact": "Місія та вплив"
+    "mission_impact": "Місія та вплив",
+    "frenchCourses": "Курси французької мови"
   },
   "Roles": {
     "admin": "Адмін",
@@ -631,5 +644,10 @@
     "northStar_notUseful": "Не корисна",
     "northStar_useful": "Чи це для вас корисно?",
     "northStar_thanks": "Дякуємо за ваш відгук"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "Курси французької мови"
+    }
   }
 }

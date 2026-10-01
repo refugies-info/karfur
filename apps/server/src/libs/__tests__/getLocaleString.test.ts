@@ -10,6 +10,9 @@ jest.mock("../../locales/en/common.json", () => ({
     teststring: "Test 2",
   },
 }));
+jest.mock("../../locales/ar/common.json", () => ({
+  teststring: "",
+}));
 
 describe("getLocaleString", () => {
   it("should return the translation", () => {
@@ -31,5 +34,9 @@ describe("getLocaleString", () => {
   it("should replace 2 params", () => {
     const res = getLocaleString("fr", "testparams", { param: "example", count: 2 });
     expect(res).toEqual("test example sentence with 2 params");
+  });
+  it("should fall back to the French translation when the locale's value is empty", () => {
+    const res = getLocaleString("ar", "teststring");
+    expect(res).toEqual("Test 1");
   });
 });
