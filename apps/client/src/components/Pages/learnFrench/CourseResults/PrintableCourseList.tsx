@@ -3,7 +3,7 @@ import { frenchLevelFilter } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
 import type { FiltersState } from "~/components/Pages/learnFrench/FiltersSidebar";
 import Image from "~/components/UI/Image";
-import { useSanitizedContent } from "~/hooks";
+import { SHORT_TEXT_ALLOWED_TAGS, useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
@@ -16,8 +16,8 @@ interface RowProps {
 const PrintableCourseRow = (props: RowProps) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const title = useSanitizedContent(props.dispositif.titreInformatif);
-  const description = useSanitizedContent(props.dispositif.abstract);
+  const title = useSanitizedContent(props.dispositif.titreInformatif, SHORT_TEXT_ALLOWED_TAGS);
+  const description = useSanitizedContent(props.dispositif.abstract, SHORT_TEXT_ALLOWED_TAGS);
 
   const nextSession = getNextUpcomingSession(props.dispositif);
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
