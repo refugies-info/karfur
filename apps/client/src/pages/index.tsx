@@ -13,6 +13,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { END } from "redux-saga";
+import { getPath } from "routes";
 import {
   FreeResources,
   Hero,
@@ -24,7 +25,8 @@ import StructuresLogos from "~/components/Pages/homepage/Sections/StructuresLogo
 import WorkTogether from "~/components/Pages/staticPages/common/WorkTogether";
 import SEO from "~/components/Seo";
 import DispositifCard from "~/components/UI/DispositifCard";
-import { useRTL } from "~/hooks";
+import { LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import { useLocale, useRTL } from "~/hooks";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { Event } from "~/lib/tracking";
 import commonStyles from "~/scss/components/staticPages.module.scss";
@@ -40,6 +42,7 @@ export interface Props {
   translationStatistics: TranslationStatisticsResponse;
   demarches: SimpleDispositif[];
   dispositifs: SimpleDispositif[];
+  frenchCourses: SimpleDispositif[];
 }
 
 const Homepage = (props: Props) => {
@@ -47,6 +50,7 @@ const Homepage = (props: Props) => {
   const { t } = useTranslation();
   const { isMobile } = useWindowSize();
   const isRTL = useRTL();
+  const locale = useLocale();
 
   useEffect(() => {
     dispatch(fetchNeedsActionCreator());
@@ -119,6 +123,27 @@ const Homepage = (props: Props) => {
         className="mb-20"
         dir={isRTL ? "rtl" : "ltr"}
         texts={{
+          title: t(
+            "Homepage.infoTypeFrenchCourses",
+            "{{count}} cours de français dans toute la France",
+            { count: props.contentStatistics.nbFrenchCourses || 0 },
+          ),
+          seeMore: t("Homepage.frenchCoursesSeeAll", "Voir tous les cours de français"),
+          prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
+          next: t("ui.carrouselNext", "Faire défiler à droite"),
+          countSeparator: t("ui.countSeparator", "sur"),
+        }}
+        seeMoreUrl={getPath("/trouver-cours-francais", locale)}
+      >
+        {props.frenchCourses.map((course, index) => (
+          <DispositifCard key={index} dispositif={course} />
+        ))}
+      </Carrousel>
+
+      <Carrousel
+        className="mb-20"
+        dir={isRTL ? "rtl" : "ltr"}
+        texts={{
           title: t("Homepage.infoTypeDispositif", "{{count}} dispositifs dans toute la France", {
             count: props.contentStatistics.nbDispositifs || 0,
           }),
@@ -158,6 +183,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
   let structuresStatistics: GetStructureStatisticsResponse = {};
   let demarches: SimpleDispositif[] = [];
   let dispositifs: SimpleDispositif[] = [];
+  let frenchCourses: SimpleDispositif[] = [];
 
   try {
     contentStatistics = await API.getDispositifsStatistics({
@@ -168,6 +194,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
         "nbDispositifs",
         "nbDemarches",
         "nbUpdatedRecently",
+        "nbFrenchCourses",
       ],
     });
     structuresStatistics = await API.getStructuresStatistics({
@@ -189,6 +216,12 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       sort: "nbVues",
       locale: locale || "fr",
     });
+    frenchCourses = await API.getDispositifs({
+      themeId: LEARN_FRENCH_THEME_ID,
+      limit: 15,
+      sort: "nbVues",
+      locale: locale || "fr",
+    });
   } catch (e) {
     logger.error("[index] build page", e);
   }
@@ -201,6 +234,7 @@ export const getStaticProps = wrapper.getStaticProps((store) => async ({ locale 
       translationStatistics,
       demarches,
       dispositifs,
+      frenchCourses,
     },
     revalidate: 60 * 10,
   };

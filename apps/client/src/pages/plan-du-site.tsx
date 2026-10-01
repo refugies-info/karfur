@@ -67,6 +67,12 @@ const PlanDuSite = () => {
           isExternal: true,
         },
         {
+          id: "frenchCourses",
+          label: t("sitemap.links.frenchCourses", "Cours de français"),
+          href: "/trouver-cours-francais",
+          isExternal: false,
+        },
+        {
           id: "act",
           label: t("sitemap.links.act", "AGIR"),
           href: "/agir",
