@@ -142,7 +142,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
           </p>
         )}
         {showContactActions && (
-          <div className="mt-3 flex flex-wrap gap-2 md:hidden">
+          <div className="mt-3 mb-4 flex flex-wrap gap-2 md:hidden">
             {sponsor?.phone && (
               <a href={`tel:${sponsor.phone}`} className={CONTACT_BUTTON_CLASSNAME}>
                 <i className="fr-icon-phone-line fr-icon--sm" aria-hidden="true" />

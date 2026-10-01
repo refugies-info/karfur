@@ -34,7 +34,9 @@
     "resourcesText": "موږ تاسې ته د ډیجیټل (انلاین) او فزیکي پلټفارم یو سیستم چمتو کړی، ترڅو له دې لارې فعالیتونه، برنامي ومومئ او په اړه یې له نورو سره معلومات شریک کړئ: معلوماتي ویډیوګانې، په بېلا بېلو ژبو د پوهاوي پاڼي، د پریزنټشن بروشرونه، بصري انځورونه، او داسي نور.",
     "resourcesCTA": "چمتو شوي وسایل او امکانات وګورئ",
     "webinaireCTA": "په ویبینار کې ګډون وکړئ",
-    "StructuresLogosText": "له ۳۰۰،۰۰۰ څخه زیاتو مسلکي کسانو لا دمخه د Réfugiés.info اپلیکیشن د اړمنو کسانو د ملاتړ لپاره کارولی دی!"
+    "StructuresLogosText": "له ۳۰۰،۰۰۰ څخه زیاتو مسلکي کسانو لا دمخه د Réfugiés.info اپلیکیشن د اړمنو کسانو د ملاتړ لپاره کارولی دی!",
+    "infoTypeFrenchCourses": "{{count}} د فرانسوي ژبې کورسونه په ټوله فرانسه کې",
+    "frenchCoursesSeeAll": "د فرانسوي ژبې ټول کورسونه وګورئ"
   },
   "Recherche": {
     "pageTitle": "لټون",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "{{count}} فایلونه وګورئ",
     "tooltipAucuneFicheCorrespondante": "هیڅ فایل د دې معیار او انتخاب سره سمون نه لري. ستاسو نور فلټرونه د دې ځانګړي معیار د فلټر کولو لپاره تنظیم کړئ.",
     "noResultTitle": "اوپس! هیڅ نتیحه ستاسو د لټون معیارونو مطابق ونه موندل شوه.",
-    "noResultOther": "تاسو ممکن دا فایلونه هم په زړه پورې ومومئ"
+    "noResultOther": "تاسو ممکن دا فایلونه هم په زړه پورې ومومئ",
+    "searchPlaceholder": "د ښار یا ولایت لټون",
+    "commonPlaces": "عمومي ښارونه",
+    "searchResultsLegend": "د لټون پایلې",
+    "selectedLocations": "ټاکل شوي ځایونه",
+    "loading": "په پورته کېدو کې دی...",
+    "loadingResults": "{{count}} پایلې پورته کیږي...",
+    "remainingResults": "د پورته کولو لپاره لا {{count}} پایلې پاتې دي",
+    "allResultsDisplayed": "ټولې پایلې ښودل شوې",
+    "citySelectionsResults": "{{count}} وړاندیزونه وموندل شول، مهرباني وکړئ خپل ښار د وړاندیزونو څخه وټاکئ"
   },
   "Widget": {
     "fiches": "فایلونه",
@@ -116,7 +127,8 @@
     "typeAll": "ټولې فیشونه",
     "typeDispositif": "وسایل",
     "typeDemarche": "مراحل",
-    "typeRessource": "آنلاین سرچینې"
+    "typeRessource": "آنلاین سرچینې",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "په حالت د انتظارکې",
@@ -380,7 +392,8 @@
     "directory": "د اړوند اړخونو او همکارانو لارښود",
     "information_types": "درې ډوله مالومات",
     "help_translate": "په ژباړه کې مرسته کول",
-    "mission_impact": "ماموریت او اغیز"
+    "mission_impact": "ماموریت او اغیز",
+    "frenchCourses": "د فرانسوي ژبي کورسونه"
   },
   "Roles": {
     "admin": "اډمین",
@@ -567,7 +580,11 @@
     "AnnotationsVocalize": "غږیز متنونه",
     "AnnotationsListen": "اوریدل"
   },
-  "SkipLinks": { "PiedDePage": "لمن لیک", "Menu": "فهرست", "Contenu": "محتوا" },
+  "SkipLinks": {
+    "PiedDePage": "لمن لیک",
+    "Menu": "فهرست",
+    "Contenu": "محتوا"
+  },
   "LearnFrench": {
     "seoTitle": "د  فرانسوي ژبې مناسب کورس مندل !",
     "hero_title": "د  فرانسوي ژبې مناسب کورس مندل",
@@ -627,5 +644,10 @@
     "northStar_notUseful": "ګټوره نه ده",
     "northStar_useful": "ایا دا ګټور دی؟",
     "northStar_thanks": "ستاسو د نظر ورکول څخه مننه"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "د فرانسوي ژبي کورسونه"
+    }
   }
 }

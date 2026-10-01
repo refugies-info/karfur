@@ -34,7 +34,9 @@
     "resourcesText": "ዝተፈላዩ ኣገባብ፣ ማለት ብ እንተርኔት ፣ ብ ድምጺ ብቪድዮ ከምኡውን ብ ወረቓቕቲ ዝዝርጋሕ ን ኣሽቱ  ፕሮሸራንት፣ ብ ዝተፍላላዩ ቋንቋታት ኣዳሊናልኩም ኣሎና ፣ ን ኣብነት",
     "resourcesCTA": "እነሀውልኩም ረኣይዎም",
     "webinaireCTA": "ኣብ ዌቢናር ተሳተፉ",
-    "StructuresLogosText": "ድሮ ልዕሊ 300 ሽሕ ሰብ ሞያ ድሮ ንተጠቀምቶም ንምድጋፍ Réfugiés.info ተቐቢሎም ኣለዉ!"
+    "StructuresLogosText": "ድሮ ልዕሊ 300 ሽሕ ሰብ ሞያ ድሮ ንተጠቀምቶም ንምድጋፍ Réfugiés.info ተቐቢሎም ኣለዉ!",
+    "infoTypeFrenchCourses": "{{count}} ትምህርቲ ቋንቋ ፈረንሳ ኣብ ኩሉ ፈረንሳ",
+    "frenchCoursesSeeAll": "ኩሎም ትምህርቲ ቋንቋ ፈረንሳ ርአዩ"
   },
   "Recherche": {
     "pageTitle": "መድለዪ",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "ነቶም {{count}} ፋይላት ረአይዎም",
     "tooltipAucuneFicheCorrespondante": "ንጠለብኩም ዝሰምማዕ ፋይል ኣይተረኽበን፣ ንዝያዳ ነጸርታ ካልእ ፍሉይ ሓበሬታ ግዳ ወስኹሉ ንምድላይኩም",
     "noResultTitle": "ኦህ እቕሬታ ! ን ጠለብኩም ዝሰማማዕ ፋይል ኣይተረኽበን",
-    "noResultOther": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ"
+    "noResultOther": "እዚ ፋይል'ዚ እውን የገድሰኩም ይኸውን'ዩ",
+    "searchPlaceholder": "ብከተማ ወይ ብዲስትሪክት ድለ",
+    "commonPlaces": "ልሙዳት ከተማታት",
+    "searchResultsLegend": "ውጽኢት ድሌት",
+    "selectedLocations": "ዝተመርጹ ቦታታት",
+    "loading": "ኣብ ምጽዓን...",
+    "loadingResults": "{{count}} ውጽኢታት ይጽዓኑ ኣለዉ...",
+    "remainingResults": "ገና {{count}} ውጽኢታት ክጽዓና ኣለወን",
+    "allResultsDisplayed": "ኩሎም ውጽኢታት ተራእዮም ኣለዉ",
+    "citySelectionsResults": "{{count}} ርእይቶታት ተረኺቦም ኣለዉ፣ በጃኹም ካብ ርእይቶታት ከተማኹም ምረጹ"
   },
   "Widget": {
     "fiches": "ፋይል",
@@ -116,7 +127,8 @@
     "typeAll": "ኩሉ መዝገቦች",
     "typeDispositif": "መሳርያታት",
     "typeDemarche": "ኣካላት",
-    "typeRessource": "ምንጪ ኣብ ኦንላይን ዘሎ"
+    "typeRessource": "ምንጪ ኣብ ኦንላይን ዘሎ",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "መጻንሒ",
@@ -380,7 +392,8 @@
     "directory": "መጠቕለሊ ኩሎም ፋይላት",
     "information_types": "ሰለስተ ዓይነት ሓበሬታታት",
     "help_translate": "ን ምትርጓም ሓግዝ",
-    "mission_impact": "ተልእኾን ጽልዋን"
+    "mission_impact": "ተልእኾን ጽልዋን",
+    "frenchCourses": "ትምህርቲ ቋንቋ ፈረንሳ፣"
   },
   "Roles": {
     "admin": "ምምሕዳር",
@@ -631,5 +644,10 @@
     "northStar_notUseful": "ጠቓሚ ኣይኮነን",
     "northStar_useful": "ጠቓሚ ድዩ  ?",
     "northStar_thanks": "ንርእይቶኹም ኣዚና ነመስግን"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "ትምህርቲ ቋንቋ ፈረንሳ፣"
+    }
   }
 }
