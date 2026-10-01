@@ -3,7 +3,6 @@ import { type Db, ObjectId } from "mongodb";
 
 type ShortTranslations = Record<"ru" | "ps" | "ar" | "fa" | "en" | "uk" | "ti", string>;
 
-// Translations of the "Apprendre le français" short names added by AddShortToNeeds1790330000000
 const needShortTranslationsMap: Record<string, ShortTranslations> = {
   // Français pour l'université
   "613721a409c5190dfa70d060": {
