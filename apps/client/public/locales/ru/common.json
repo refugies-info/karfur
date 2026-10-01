@@ -34,7 +34,9 @@
     "resourcesText": "Мы предлагаем вам полный спектр материалов, чтобы познакомиться с проектом и поделиться с другими: видео, флаеры на нескольких языках, брошюры, презентации и т.д.",
     "resourcesCTA": "Ваши инструменты",
     "webinaireCTA": "Принять участие в вебинаре",
-    "StructuresLogosText": "Более 300 000 профессионалов уже испольуют Réfugiés.info чтобы сопровождать своих бенефициаров!"
+    "StructuresLogosText": "Более 300 000 профессионалов уже испольуют Réfugiés.info чтобы сопровождать своих бенефициаров!",
+    "infoTypeFrenchCourses": "{{count}} курсов французского языка по всей Франции",
+    "frenchCoursesSeeAll": "Посмотреть все курсы французского языка"
   },
   "Recherche": {
     "pageTitle": "Поиск",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "Посмотреть {{count}} страниц",
     "tooltipAucuneFicheCorrespondante": "Ни одна страница не соответствует этому критерию. Измените другие параметры, чтобы фильтровать по этому конкретному критерию.",
     "noResultTitle": "Ой, ничего не найдено.",
-    "noResultOther": "Эти страницы могут вас заинтересовать"
+    "noResultOther": "Эти страницы могут вас заинтересовать",
+    "searchPlaceholder": "Поиск по городу или департаменту",
+    "commonPlaces": "Популярные города",
+    "searchResultsLegend": "Результаты поиска",
+    "selectedLocations": "Выбранные местоположения",
+    "loading": "Загрузка...",
+    "loadingResults": "Загрузка {{count}} результатов...",
+    "remainingResults": "Осталось загрузить {{count}} результатов",
+    "allResultsDisplayed": "Все результаты отображены",
+    "citySelectionsResults": "Найдено {{count}} вариантов, пожалуйста, выберите ваш город из предложенных"
   },
   "Widget": {
     "fiches": "Страницы",
@@ -116,7 +127,8 @@
     "typeAll": "Все записи",
     "typeDispositif": "Устройства",
     "typeDemarche": "Процедуры",
-    "typeRessource": "Онлайн ресурсы"
+    "typeRessource": "Онлайн ресурсы",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "На проверке",
@@ -380,7 +392,8 @@
     "directory": "Список участвующих ассоциаций и организаций",
     "information_types": "Три типа информации",
     "help_translate": "Помочь перевести",
-    "mission_impact": "Миссия и влияние"
+    "mission_impact": "Миссия и влияние",
+    "frenchCourses": "Курс французского языка"
   },
   "Roles": {
     "admin": "Админ",
@@ -631,5 +644,10 @@
     "northStar_notUseful": "Бесполезна",
     "northStar_useful": "Это полезно?",
     "northStar_thanks": "Спасибо за ваш отзыв"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "Курс французского языка"
+    }
   }
 }

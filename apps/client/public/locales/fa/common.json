@@ -34,7 +34,9 @@
     "resourcesText": "ما مجموعه‌ای از ابزارهای دیجیتالی و فزیکی را در اختیار شما قرار می‌دهیم تا در مورد پروژه بیاموزید و بتوانید از طریق کلیپ ها و بروشورهای ارائه شده دراطرافتان درباره آن صحبت کنید.",
     "resourcesCTA": "ابزارها را ببینید",
     "webinaireCTA": "در یک وبینار شرکت کنید",
-    "StructuresLogosText": "بیش از 300,000 متخصص از برنامه Réfugiés.info برای همراهی افراد نیازمند استفاده می‌کنند!"
+    "StructuresLogosText": "بیش از 300,000 متخصص از برنامه Réfugiés.info برای همراهی افراد نیازمند استفاده می‌کنند!",
+    "infoTypeFrenchCourses": "{{count}} کلاس زبان فرانسوی در سراسر فرانسه",
+    "frenchCoursesSeeAll": "مشاهده همه کلاس‌های زبان فرانسوی"
   },
   "Recherche": {
     "pageTitle": "جستجو",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "مشاهده همه {{count}} برگه",
     "tooltipAucuneFicheCorrespondante": "هیچ برگه‌ای با این شرایط پیدا نشد. فیلترهای خود را تغییر دهید تا بهتری پیدا کنید",
     "noResultTitle": "متأسفم! هیچ نتیجه‌ای برای جستجوی شما پیدا نشد",
-    "noResultOther": "این برگه‌ها ممکن است برای شما مفید باشد"
+    "noResultOther": "این برگه‌ها ممکن است برای شما مفید باشد",
+    "searchPlaceholder": "جستجو بر اساس شهر یا دپارتمان",
+    "commonPlaces": "شهرهای پرکاربرد",
+    "searchResultsLegend": "نتایج جستجو",
+    "selectedLocations": "مکان‌های انتخاب‌شده",
+    "loading": "در حال بارگذاری...",
+    "loadingResults": "در حال بارگذاری {{count}} نتیجه...",
+    "remainingResults": "{{count}} نتیجه دیگر برای بارگذاری باقی مانده است",
+    "allResultsDisplayed": "همه نتایج نمایش داده شد",
+    "citySelectionsResults": "{{count}} پیشنهاد یافت شد، لطفاً شهر خود را از میان پیشنهادها انتخاب کنید"
   },
   "Widget": {
     "fiches": "برگه ها",
@@ -116,7 +127,8 @@
     "typeAll": "همه رکوردها",
     "typeDispositif": "دستگاه‌ها",
     "typeDemarche": "رویه‌ها",
-    "typeRessource": "منابع آنلاین"
+    "typeRessource": "منابع آنلاین",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "در انتظار",
@@ -380,9 +392,14 @@
     "directory": "فهرست بازیگران",
     "information_types": "سه نوع اطلاعات",
     "help_translate": "کمک به ترجمه",
-    "mission_impact": "مأموریت و تأثیر"
+    "mission_impact": "مأموریت و تأثیر",
+    "frenchCourses": "کلاسهای (کورس های) زبان فرانسوی"
   },
-  "Roles": { "admin": "مدیر", "redactor": "ویرایشگر", "translator": "مترجم" },
+  "Roles": {
+    "admin": "مدیر",
+    "redactor": "ویرایشگر",
+    "translator": "مترجم"
+  },
   "LanguageDropdown": {
     "en_français": "به فرانسوی",
     "en_persan/dari": "به فارسی / دری",
@@ -563,7 +580,11 @@
     "AnnotationsVocalize": "صوتی کردن محتوا",
     "AnnotationsListen": "گوش دادن"
   },
-  "SkipLinks": { "PiedDePage": "پانوشت", "Menu": "فهرست", "Contenu": "محتوا" },
+  "SkipLinks": {
+    "PiedDePage": "پانوشت",
+    "Menu": "فهرست",
+    "Contenu": "محتوا"
+  },
   "LearnFrench": {
     "seoTitle": "کورس زبان فرانسوی مناسب خود را پیدا کنید!",
     "hero_title": "پیدا کردن کورس مناسب زبان فرانسوی",
@@ -623,5 +644,10 @@
     "northStar_notUseful": "مفید نبود",
     "northStar_useful": "آیا مفید بود؟",
     "northStar_thanks": "از نظر شما سپاسگزاریم"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "کلاسهای (کورس های) زبان فرانسوی"
+    }
   }
 }
