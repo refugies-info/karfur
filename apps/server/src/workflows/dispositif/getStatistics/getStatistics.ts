@@ -60,7 +60,7 @@ export const getStatistics = async (
   if (noFacet || facets.includes("nbFrenchCourses")) {
     data.nbFrenchCourses = await getCountDispositifs({
       status: DispositifStatus.ACTIVE,
-      theme: LEARN_FRENCH_THEME_ID,
+      $or: [{ theme: LEARN_FRENCH_THEME_ID }, { secondaryThemes: LEARN_FRENCH_THEME_ID }],
     });
   }
 

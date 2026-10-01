@@ -20,7 +20,7 @@ export const getDispositifs = async (
   const dbQuery: FilterQuery<Dispositif> = { status: DispositifStatus.ACTIVE };
   if (type) dbQuery.typeContenu = type;
   if (origin) dbQuery.origin = origin;
-  if (themeId) dbQuery.theme = themeId;
+  if (themeId) dbQuery.$or = [{ theme: themeId }, { secondaryThemes: themeId }];
 
   const result = await getSimpleDispositifs(
     dbQuery,
