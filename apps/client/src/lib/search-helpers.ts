@@ -521,6 +521,7 @@ const RESULTS_PROJECTION = {
   nbVuesMobile: 1,
   mainSponsor: 1,
   administrationLogo: 1,
+  map: 1,
   availableLanguages: 1,
   hasDraftVersion: 1,
   themeSortIndex: 1,

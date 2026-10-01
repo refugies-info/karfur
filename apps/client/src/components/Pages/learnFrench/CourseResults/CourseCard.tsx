@@ -11,6 +11,7 @@ import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
+import { getPoiLocationText } from "~/lib/learnFrench/poiLocation";
 import { getPath } from "~/routes";
 import { SingleLineTags } from "./SingleLineTags";
 
@@ -73,6 +74,8 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const sponsor = props.dispositif.sponsor;
   const sponsorLogo = sponsor?.picture?.secure_url;
   const showContactActions = !sessionDate && (sponsor?.phone || sponsor?.email);
+  const poi = props.dispositif.map?.[0];
+  const poiLocation = getPoiLocationText(poi);
 
   const href = {
     pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
@@ -174,6 +177,12 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             <div className="text-mention-grey flex items-center gap-2 text-xs">
               <i className="fr-icon-building-line fr-icon--sm" aria-hidden="true" />
               {sponsor.nom}
+            </div>
+          )}
+          {poiLocation && (
+            <div className="text-mention-grey flex items-center gap-2 text-xs">
+              <i className="fr-icon-map-pin-2-line fr-icon--sm" aria-hidden="true" />
+              {poi?.title ? `${poi.title} — ${poiLocation}` : poiLocation}
             </div>
           )}
           <p
