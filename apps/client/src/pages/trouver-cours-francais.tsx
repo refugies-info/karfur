@@ -63,7 +63,10 @@ const LearnFrench = (props: Props) => {
         .sort((a, b) => (a.position ?? 0) - (b.position ?? 0)),
     [allNeeds],
   );
-  const needLabels = useMemo(() => buildNeedLabels(allNeeds, locale), [allNeeds, locale]);
+  const needLabels = useMemo(
+    () => buildNeedLabels(categoryOptions, locale),
+    [categoryOptions, locale],
+  );
 
   const { badges, filterGroupCount } = useActiveFilters({
     filters,

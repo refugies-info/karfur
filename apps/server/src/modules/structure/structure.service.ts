@@ -42,7 +42,8 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (
   return true;
 };
 
-export const getStructureMembers = async (structureId: StructureId) => {
+export const getStructureMembers = async (structureId: StructureId | undefined) => {
+  if (!structureId) return [];
   try {
     const structure = await getStructureFromDB(structureId, { membres: 1 });
     if (!structure || !structure.membres || structure.membres.length === 0) {

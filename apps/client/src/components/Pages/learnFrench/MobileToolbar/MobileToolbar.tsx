@@ -66,7 +66,7 @@ export const MobileToolbar = (props: Props) => {
             <i className="fr-icon-equalizer-line fr-icon--sm" aria-hidden="true" />
             {t("LearnFrench.filters_title", "Filtrer")}
             {props.filterGroupCount > 0 && (
-              <span className="bg-action-high-blue-france flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs text-white">
+              <span className="bg-blue-france-sun-113-hover flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs text-white">
                 {props.filterGroupCount}
               </span>
             )}

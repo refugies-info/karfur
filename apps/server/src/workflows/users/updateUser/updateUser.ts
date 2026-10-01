@@ -33,7 +33,7 @@ const updateAsAdmin = async (
   };
   const expertRole = roles.find((r) => r.nom === RoleName.EXPERT_TRAD);
   const adminRole = roles.find((r) => r.nom === RoleName.ADMIN);
-  const currentRoles = userFromDB.roles;
+  const currentRoles = userFromDB.roles || [];
 
   const newRoles = currentRoles.filter(
     (role) =>
@@ -66,6 +66,7 @@ const updateAsMyself = async (
   let newUser: Partial<User> = {};
   let refreshToken = false;
   if (id !== userReq._id.toString()) throw new UnauthorizedError("Token invalide"); // only my infos
+  const currentRoles = userFromDB.roles || [];
 
   newUser = {
     partner: request.partner,
@@ -86,7 +87,7 @@ const updateAsMyself = async (
   }
   if (request.selectedLanguages) {
     const traducteurRole = roles.find((r) => r.nom === RoleName.TRAD);
-    const newRoles = uniqIds([...userFromDB.roles, traducteurRole._id]);
+    const newRoles = uniqIds([...currentRoles, traducteurRole._id]);
     newUser.roles = newRoles;
     newUser.selectedLanguages = request.selectedLanguages.map((ln) => new ObjectId(ln));
   }
@@ -95,13 +96,13 @@ const updateAsMyself = async (
     if (request.partner === "") {
       // remove partner -> remove TS role
 
-      const newRoles = userFromDB.roles.filter(
+      const newRoles = currentRoles.filter(
         (r) => r && r.toString() !== caregiverRole._id.toString(),
       );
       newUser.roles = newRoles;
     } else {
       // add partner -> add ts role
-      const newRoles = uniqIds([...userFromDB.roles, caregiverRole._id]);
+      const newRoles = uniqIds([...currentRoles, caregiverRole._id]);
       newUser.roles = newRoles;
     }
   }

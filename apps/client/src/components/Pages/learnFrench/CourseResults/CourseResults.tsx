@@ -86,7 +86,7 @@ export const CourseResults = (props: Props) => {
             {isUpcomingEmpty
               ? t(
                   "LearnFrench.results_noUpcomingTitle",
-                  "Pas de prochaines dates connues pour le moment",
+                  "De nouveaux cours seront ajoutés prochainement.",
                 )
               : t(
                   "Recherche.noResultTitle",
@@ -97,7 +97,7 @@ export const CourseResults = (props: Props) => {
             {isUpcomingEmpty
               ? t(
                   "LearnFrench.results_noUpcomingText",
-                  "mais d’autres cours sont peut-être ouverts près de chez vous.",
+                  "En attendant, d’autres sont peut-être ouverts près de chez vous !",
                 )
               : t(
                   "Recherche.noResultText",

@@ -21,6 +21,7 @@ interface SearchQuery extends ParsedUrlQuery {
   sort?: string;
   hasUpcomingSession?: string;
   strictNeeds?: string;
+  includeSecondaryThemes?: string;
 }
 
 const escapeRegExp = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -106,6 +107,7 @@ export interface QueryParams {
   sort?: string;
   hasUpcomingSession?: boolean;
   strictNeeds?: boolean;
+  includeSecondaryThemes?: boolean;
 }
 
 export const buildQueryParams = (query: SearchQuery): QueryParams => ({
@@ -134,6 +136,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
         ? false
         : undefined,
   strictNeeds: query.strictNeeds === "true",
+  includeSecondaryThemes: query.includeSecondaryThemes === "true",
 });
 
 export const buildBaseMatch = (
@@ -186,10 +189,19 @@ export const buildBaseMatch = (
   const needs = (queryParams.needs ?? []).filter(
     (v) => typeof v === "string" && v.trim().length > 0,
   );
+  const themeConditions = (themeIds: mongoose.Types.ObjectId[]) =>
+    queryParams.includeSecondaryThemes
+      ? [{ theme: { $in: themeIds } }, { secondaryThemes: { $in: themeIds } }]
+      : [{ theme: { $in: themeIds } }];
+
   if (themes.length > 0 && needs.length > 0 && queryParams.strictNeeds) {
     const themeIds = toObjectIds(themes);
     const needIds = toObjectIds(needs);
-    match.theme = { $in: themeIds };
+    if (queryParams.includeSecondaryThemes) {
+      match.$or = (match.$or || []).concat(themeConditions(themeIds));
+    } else {
+      match.theme = { $in: themeIds };
+    }
     match.needs = { $in: needIds };
   } else if (themes.length > 0 && needs.length > 0) {
     // Legacy filterByThemeOrNeed() semantics: when both themes and needs are provided,
@@ -197,13 +209,13 @@ export const buildBaseMatch = (
     const themeIds = toObjectIds(themes);
     const needIds = toObjectIds(needs);
     match.$or = (match.$or || []).concat([
-      { theme: { $in: themeIds } },
+      ...themeConditions(themeIds),
       { needs: { $in: needIds } },
     ]);
   } else {
     if (themes.length > 0) {
       const themeIds = toObjectIds(themes);
-      match.$or = (match.$or || []).concat([{ theme: { $in: themeIds } }]);
+      match.$or = (match.$or || []).concat(themeConditions(themeIds));
     }
 
     if (needs.length > 0) {
@@ -339,12 +351,13 @@ export const buildBaseMatch = (
   }
 
   if (queryParams.hasUpcomingSession !== undefined) {
+    const startOfToday = { $dateTrunc: { date: "$$NOW", unit: "day", timezone: "Europe/Paris" } };
     const upcomingSessionCount = {
       $size: {
         $filter: {
           input: { $ifNull: ["$metadatas.sessions.items", []] },
           as: "session",
-          cond: { $gt: ["$$session.startDate", "$$NOW"] },
+          cond: { $gte: ["$$session.startDate", startOfToday] },
         },
       },
     };
@@ -655,7 +668,12 @@ const buildSearchAggregation = (
                     },
                   },
                   as: "date",
-                  cond: { $gt: ["$$date", "$$NOW"] },
+                  cond: {
+                    $gte: [
+                      "$$date",
+                      { $dateTrunc: { date: "$$NOW", unit: "day", timezone: "Europe/Paris" } },
+                    ],
+                  },
                 },
               },
             },

@@ -5,7 +5,7 @@ import type React from "react";
 import { memo } from "react";
 
 export const BLUE_UNDERLINE_CLASSNAME =
-  "[&_.fr-input]:!shadow-[inset_0_-2px_0_0_var(--color-blue-france-sun-113-hover)]";
+  "[&_.fr-input]:!shadow-[inset_0_-2px_0_0_var(--color-border-action-high-blue-france)]";
 
 interface Props {
   onChange: React.ChangeEventHandler<HTMLInputElement>;

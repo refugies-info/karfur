@@ -21,8 +21,8 @@ export const SearchBar = (props: Props) => {
 
   return (
     <div className="container flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:justify-between">
-      <h2 className="text-h2 mb-0 font-bold">
-        {t("LearnFrench.search_title")}
+      <h2 className="text-h2 mb-0 text-left font-bold">
+        {t("LearnFrench.search_title")}{" "}
         <LocationFilterButton
           departments={filters.departments}
           cities={filters.cities}

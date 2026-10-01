@@ -15,7 +15,10 @@ export const log = async (
   authorId: Id,
 ) => {
   try {
-    if (oldDispositif.mainSponsor && oldDispositif.mainSponsor !== sponsorId) {
+    if (
+      oldDispositif.mainSponsor &&
+      oldDispositif.mainSponsor.toString() !== sponsorId.toString()
+    ) {
       await addLog(
         oldDispositif.mainSponsor.toString(),
         "Structure",
@@ -47,7 +50,7 @@ export const log = async (
         },
       );
     }
-    if (!oldDispositif.mainSponsor && sponsorId) {
+    if (!oldDispositif.mainSponsor) {
       await addLog(sponsorId, "Structure", "Nouvelle fiche attribuée : {{dynamic}}", {
         dynamicId: dispositifId,
         model_dynamic: "Dispositif",
@@ -58,23 +61,6 @@ export const log = async (
         },
         author: new ObjectId(authorId.toString()),
       });
-    }
-    if (oldDispositif.mainSponsor && !sponsorId) {
-      await addLog(
-        sponsorId,
-        "Structure",
-        "Fiche supprimée de la structure : {{dynamic}} et non attribuée à une nouvelle structure",
-        {
-          dynamicId: oldDispositif.mainSponsor.toString(),
-          model_dynamic: "Structure",
-          link: {
-            id: dispositifId,
-            model_link: "Dispositif",
-            next: "ModalContenu",
-          },
-          author: new ObjectId(authorId.toString()),
-        },
-      );
     }
     await addLog(dispositifId, "Dispositif", "Structure responsable modifiée : {{dynamic}}", {
       dynamicId: sponsorId,

@@ -264,6 +264,7 @@ export class DispositifController extends Controller {
     @Request() request: express.Request,
   ): Response {
     validateId(id, "dispositif");
+    validateId(body.sponsorId, "structure");
     return modifyDispositifMainSponsor(id, body, request.userId);
   }
 
