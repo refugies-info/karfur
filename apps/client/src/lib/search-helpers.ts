@@ -351,12 +351,15 @@ export const buildBaseMatch = (
   }
 
   if (queryParams.hasUpcomingSession !== undefined) {
+    // A session is "upcoming" for its whole start day, not just until the current instant —
+    // a course starting earlier today must still count as upcoming until midnight.
+    const startOfToday = { $dateTrunc: { date: "$$NOW", unit: "day", timezone: "Europe/Paris" } };
     const upcomingSessionCount = {
       $size: {
         $filter: {
           input: { $ifNull: ["$metadatas.sessions.items", []] },
           as: "session",
-          cond: { $gt: ["$$session.startDate", "$$NOW"] },
+          cond: { $gte: ["$$session.startDate", startOfToday] },
         },
       },
     };
@@ -667,7 +670,13 @@ const buildSearchAggregation = (
                     },
                   },
                   as: "date",
-                  cond: { $gt: ["$$date", "$$NOW"] },
+                  // Same "upcoming until midnight" rule as hasUpcomingSession above.
+                  cond: {
+                    $gte: [
+                      "$$date",
+                      { $dateTrunc: { date: "$$NOW", unit: "day", timezone: "Europe/Paris" } },
+                    ],
+                  },
                 },
               },
             },
