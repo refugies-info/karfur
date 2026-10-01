@@ -85,7 +85,7 @@
     "tooltipAucuneFicheCorrespondante": "لا يوجد صفحة معلومات مطابقة لهذا المعيار. اضبط عوامل التصفية الأخرى  للتصفية وفقاً لهذا المعيار المحدد.",
     "noResultTitle": "أُووبس ! لا توجد نتائج مطابقة لمعايير البحث التي أدخلتها.",
     "noResultOther": "قد تهمك هذه الصفحات أيضاً",
-    "searchPlaceholder": "البحث عن مدينة أو مقاطعة",
+    "searchPlaceholder": "البحث عن مدينة أو إقليم",
     "commonPlaces": "المدن الشائعة",
     "searchResultsLegend": "نتائج البحث",
     "selectedLocations": "المواقع المختارة",
