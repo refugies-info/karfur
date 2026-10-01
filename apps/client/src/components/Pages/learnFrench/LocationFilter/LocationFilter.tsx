@@ -59,12 +59,13 @@ export const LocationFilter = (props: Props) => {
       )}
 
       {isOpen && (
-        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 divide-y divide-solid rounded-lg border shadow-[--raised-shadow]">
+        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 rounded-lg border shadow-[--raised-shadow]">
           <UseMyPositionButton
             t={selection.t}
             useMyPosition={selection.useMyPosition}
             geolocating={selection.geolocating}
           />
+          <div className="border-default-grey mx-3 border-t" aria-hidden="true" />
           <LocationPopoverBody {...selection} />
         </div>
       )}

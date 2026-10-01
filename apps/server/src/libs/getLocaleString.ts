@@ -30,5 +30,8 @@ const replaceParams = (params: unknown, text: string | undefined): string | unde
   return newText;
 };
 
-export const getLocaleString = (locale: string, key: string, params?: unknown) =>
-  replaceParams(params, get(languageStrings, `${locale}.${key}`) as unknown as string) || key;
+export const getLocaleString = (locale: string, key: string, params?: unknown) => {
+  const localized = get(languageStrings, `${locale}.${key}`) as unknown as string;
+  const text = localized || (get(languageStrings, `fr.${key}`) as unknown as string);
+  return replaceParams(params, text) || key;
+};

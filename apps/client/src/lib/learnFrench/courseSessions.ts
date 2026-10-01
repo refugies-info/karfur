@@ -4,8 +4,9 @@ export const getNextUpcomingSession = (dispositif: SimpleDispositif): Session | 
   const items = dispositif.metadatas?.sessions?.items;
   if (!items || items.length === 0) return undefined;
 
-  const now = Date.now();
+  const startOfToday = new Date();
+  startOfToday.setHours(0, 0, 0, 0);
   return items
-    .filter((session) => new Date(session.startDate).getTime() > now)
+    .filter((session) => new Date(session.startDate).getTime() >= startOfToday.getTime())
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())[0];
 };

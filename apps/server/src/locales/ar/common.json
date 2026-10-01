@@ -5,5 +5,5 @@
   },
   "downloadApp": "تفضّل هذا الرابط من أجل تنزيل برنامج  Réfugiés.info",
   "contentLink": "مرحباً. اليك رابط الصفحة {{title}} : {{link}}",
-  "courseListLink": ""
+  "courseListLink": "مرحبًا، إليك دروس اللغة الفرنسية المتاحة: {{link}}"
 }

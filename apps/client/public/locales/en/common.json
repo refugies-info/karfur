@@ -34,7 +34,9 @@
     "resourcesText": "We provide you with a set of digital and physical tools to discover the project and talk about it around you: animated videos, multilingual flyers, presentation brochures, visuals, etc.",
     "resourcesCTA": "See the tools",
     "webinaireCTA": "Register to a webinar",
-    "StructuresLogosText": "More than 300,000 professionals have already adopted Réfugiés.info to support their clients!"
+    "StructuresLogosText": "More than 300,000 professionals have already adopted Réfugiés.info to support their clients!",
+    "infoTypeFrenchCourses": "{{count}} French courses across France",
+    "frenchCoursesSeeAll": "See all French courses"
   },
   "Recherche": {
     "pageTitle": "Search",
@@ -83,7 +85,16 @@
     "seeAllButtonWithCount": "See all {{count}} information sheets",
     "tooltipAucuneFicheCorrespondante": "No sheets match this criterion. Adjust your other filters to filter by this specific criterion.",
     "noResultTitle": "Oops! There are no results matching your search criteria.",
-    "noResultOther": "You may also be interested in these information sheets"
+    "noResultOther": "You may also be interested in these information sheets",
+    "searchPlaceholder": "Search by city or department",
+    "commonPlaces": "Common cities",
+    "searchResultsLegend": "Search results",
+    "selectedLocations": "Selected locations",
+    "loading": "Loading...",
+    "loadingResults": "Loading {{count}} results...",
+    "remainingResults": "{{count}} results remaining to load",
+    "allResultsDisplayed": "All results are displayed",
+    "citySelectionsResults": "{{count}} suggestions found, please select your city from the suggestions"
   },
   "Widget": {
     "fiches": "Sheets",
@@ -117,7 +128,8 @@
     "typeAll": "All records",
     "typeDispositif": "Schemes",
     "typeDemarche": "Procedures",
-    "typeRessource": "Online resources"
+    "typeRessource": "Online resources",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "Pending",
@@ -165,6 +177,9 @@
     "dispositif": "Programme",
     "importantInformations": "Important information",
     "practicalInformations": "Practical information",
+    "sessions": "Session",
+    "sessionDates": "From {{startDate}} to {{endDate}}",
+    "sessionStartsSoon": "Starting soon",
     "price": "Price",
     "sectionWhatAndWhy": "What is it and why is it interesting?",
     "sectionWhat": "What is it?",
@@ -341,6 +356,7 @@
     "newsletter": "Subscribe to the newsletter",
     "fichesDemarches": "Sheets on procedures",
     "dispositifsLocaux": "Local schemes",
+    "coursFrancais": "French Courses",
     "agir": "AGIR",
     "missionImpact": "Mission and impact",
     "partagerProjet": "Share the project",
@@ -378,7 +394,8 @@
     "directory": "Directory of actors",
     "information_types": "Three types of information",
     "help_translate": "Help to translate",
-    "mission_impact": "Mission and impact"
+    "mission_impact": "Mission and impact",
+    "frenchCourses": "French Courses"
   },
   "Consent": {
     "analytics_title": "Analysis",
@@ -569,7 +586,11 @@
     "AnnotationsVocalize": "Vocalisation of content",
     "AnnotationsListen": "Listening"
   },
-  "SkipLinks": { "PiedDePage": "Footer", "Menu": "Menu", "Contenu": "Content" },
+  "SkipLinks": {
+    "PiedDePage": "Footer",
+    "Menu": "Menu",
+    "Contenu": "Content"
+  },
   "LearnFrench": {
     "seoTitle": "Find the right French course!",
     "hero_title": "Find a suitable French course",
@@ -629,5 +650,10 @@
     "northStar_notUseful": "Not useful",
     "northStar_useful": "Is it useful?",
     "northStar_thanks": "Thank you for your feedback"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "French Courses"
+    }
   }
 }

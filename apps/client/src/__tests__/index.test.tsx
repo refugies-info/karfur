@@ -27,6 +27,7 @@ describe("homepage", () => {
           nbDispositifs: 500,
           nbDemarches: 80,
           nbUpdatedRecently: 23,
+          nbFrenchCourses: 42,
         },
         structuresStatistics: {
           nbStructures: 320,
@@ -43,6 +44,7 @@ describe("homepage", () => {
         },
         demarches: lastDemarches,
         dispositifs: lastDispositifs,
+        frenchCourses: lastDispositifs,
       },
     });
     expect(asFragment()).toMatchSnapshot();

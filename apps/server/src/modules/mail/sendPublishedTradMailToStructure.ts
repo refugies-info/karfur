@@ -9,7 +9,7 @@ import { sendPublishedTradMailToStructureService } from "./mail.service";
 export const sendPublishedTradMailToStructure = async (dispositif: Dispositif, locale: string) => {
   try {
     logger.info("[sendPublishedTradMailToStructureService] received");
-    const structureMembres = await getStructureMembers(dispositif.mainSponsor.toString());
+    const structureMembres = await getStructureMembers(dispositif.mainSponsor?.toString());
     const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
     const langue = getFormattedLocale(locale);

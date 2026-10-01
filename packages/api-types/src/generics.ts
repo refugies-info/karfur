@@ -302,6 +302,7 @@ export interface SimpleDispositif {
     phone?: string;
     email?: string;
   };
+  map?: Poi[] | null;
   availableLanguages: string[];
   hasDraftVersion: boolean;
   themeSortIndex: number;

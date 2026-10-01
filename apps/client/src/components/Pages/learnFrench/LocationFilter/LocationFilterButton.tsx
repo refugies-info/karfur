@@ -39,20 +39,20 @@ export const LocationFilterButton = (props: Props) => {
   }, [isOpen]);
 
   return (
-    <div className="relative ms-3 inline-block align-middle" ref={containerRef}>
+    <div className="relative -mt-2 inline-block align-middle" ref={containerRef}>
       {hasSelection ? (
         <div className="text-h6 md:text-h5 bg-action-low-blue-france inline-flex items-center gap-2 rounded-full px-4 py-2 font-bold">
           <button
             type="button"
             onClick={openLocationPicker}
-            className="text-blue-france-sun-113-hover"
+            className="text-blue-france-sun-113-hover inline-flex items-center leading-none"
           >
             {summarizeLocations([...props.departments, ...props.cities.map((city) => city.name)])}
           </button>
           <button
             type="button"
             onClick={() => props.onChange([], [])}
-            className="bg-action-high-blue-france flex h-6 w-6 items-center justify-center rounded-full"
+            className="bg-blue-france-sun-113-hover flex h-6 w-6 items-center justify-center rounded-full"
             aria-label={t("LearnFrench.location_clear", "Effacer la localisation")}
           >
             <i className="fr-icon-close-line fr-icon--sm text-white" aria-hidden="true" />
@@ -70,12 +70,13 @@ export const LocationFilterButton = (props: Props) => {
       )}
 
       {isOpen && (
-        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 divide-y divide-solid rounded-lg border shadow-[--raised-shadow]">
+        <div className="border-default-grey bg-default-grey absolute inset-x-0 top-full z-50 mt-1 min-w-64 rounded-lg border shadow-[--raised-shadow]">
           <UseMyPositionButton
             t={selection.t}
             useMyPosition={selection.useMyPosition}
             geolocating={selection.geolocating}
           />
+          <div className="border-default-grey mx-3 border-t" aria-hidden="true" />
           <div className="[&_.fr-input]:!bg-white p-3">
             <SearchMenuItem
               onChange={selection.onSearchInputChange}

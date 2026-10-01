@@ -168,6 +168,13 @@ const Footer = () => {
                 },
                 text: t("Footer.procedures", "Les fiches démarches"),
               },
+              {
+                linkProps: {
+                  href: getPath("/trouver-cours-francais", locale),
+                  prefetch: false,
+                },
+                text: t("Footer.frenchCourses", "Cours de français"),
+              },
               // Temporary disabled
               // {
               //   linkProps: {

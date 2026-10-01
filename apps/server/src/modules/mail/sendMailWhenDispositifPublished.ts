@@ -10,7 +10,7 @@ import {
 
 export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
   logger.info("[sendMailWhenDispositifPublished] received");
-  const structureId = dispo.mainSponsor.toString();
+  const structureId = dispo.mainSponsor?.toString();
   const structureMembres = await getStructureMembers(structureId);
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 
@@ -41,7 +41,7 @@ export const sendMailWhenDispositifPublished = async (dispo: Dispositif) => {
 
 export const sendMailWhenDispositifPublishedAfterUpdate = async (dispo: Dispositif) => {
   logger.info("[sendMailWhenDispositifPublishedAfterUpdate] received");
-  const structureId = dispo.mainSponsor.toString();
+  const structureId = dispo.mainSponsor?.toString();
   const structureMembres = await getStructureMembers(structureId);
   const membresToSendMail = await getUsersFromStructureMembres(structureMembres);
 

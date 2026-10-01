@@ -34,7 +34,9 @@
     "resourcesText": "نمدّك بمجموعة أدوات رقمية و ورقية لتتعرف على المشروع و لتتمكن من الحديث عنه فيما حولك عبر الفيديوهات التقديمية و المنشورات متعددة اللغات و المواد و  الكُتيبات الاعلامية.",
     "resourcesCTA": "مشاهدة الأدوات الاعلامية",
     "webinaireCTA": "المشاركة في ندوة عبر الإنترنت",
-    "StructuresLogosText": "لقد تبنى أكثر من 300 ألف محترف بالفعل موقع Réfugiés.info لدعم المستفيدين منهم!"
+    "StructuresLogosText": "لقد تبنى أكثر من 300 ألف محترف بالفعل موقع Réfugiés.info لدعم المستفيدين منهم!",
+    "infoTypeFrenchCourses": "{{count}} درس من دروس اللغة الفرنسية في جميع أنحاء فرنسا",
+    "frenchCoursesSeeAll": "عرض كل دروس اللغة الفرنسية"
   },
   "Recherche": {
     "pageTitle": "ابحث",
@@ -82,7 +84,16 @@
     "seeAllButtonWithCount": "مشاهدة ال {{count}} صفحة",
     "tooltipAucuneFicheCorrespondante": "لا يوجد صفحة معلومات مطابقة لهذا المعيار. اضبط عوامل التصفية الأخرى  للتصفية وفقاً لهذا المعيار المحدد.",
     "noResultTitle": "أُووبس ! لا توجد نتائج مطابقة لمعايير البحث التي أدخلتها.",
-    "noResultOther": "قد تهمك هذه الصفحات أيضاً"
+    "noResultOther": "قد تهمك هذه الصفحات أيضاً",
+    "searchPlaceholder": "البحث عن مدينة أو إقليم",
+    "commonPlaces": "المدن الشائعة",
+    "searchResultsLegend": "نتائج البحث",
+    "selectedLocations": "المواقع المختارة",
+    "loading": "جارٍ التحميل...",
+    "loadingResults": "جارٍ تحميل {{count}} نتيجة...",
+    "remainingResults": "تبقّى {{count}} نتيجة لتحميلها",
+    "allResultsDisplayed": "تم عرض جميع النتائج",
+    "citySelectionsResults": "تم العثور على {{count}} اقتراح، يرجى اختيار مدينتك من بين الاقتراحات"
   },
   "Widget": {
     "fiches": "صفحات معلومات",
@@ -116,7 +127,8 @@
     "typeAll": "جميع الملفات",
     "typeDispositif": "الأجهزة",
     "typeDemarche": "الإجراءات",
-    "typeRessource": "الموارد عبر الإنترنت"
+    "typeRessource": "الموارد عبر الإنترنت",
+    "frenchLevelAlpha": "Alpha"
   },
   "Status": {
     "En attente": "في الانتظار",
@@ -164,6 +176,9 @@
     "dispositif": "برنامج",
     "importantInformations": "معلومات مهمة",
     "practicalInformations": "معلومات عملية",
+    "sessions": "الفترة",
+    "sessionDates": "من {{startDate}} إلى {{endDate}}",
+    "sessionStartsSoon": "يبدأ قريبًا",
     "price": "السعر",
     "sectionWhatAndWhy": "ما العرض و ما أهميته ؟",
     "sectionWhat": "ما العرض ؟",
@@ -340,6 +355,7 @@
     "newsletter": "أسجل في الرسالة الدورية",
     "fichesDemarches": "صفحات معاملات ادارية",
     "dispositifsLocaux": "برامج و دورات محليّة",
+    "coursFrancais": "دروس اللغة الفرنسيّة",
     "agir": "برنامج AGIR",
     "missionImpact": "مهامنا و انجازاتنا",
     "partagerProjet": "شارك المشروع",
@@ -376,9 +392,14 @@
     "directory": "فهرس المنظمات و المؤسسات",
     "information_types": "ثلاثة أنواع من المعلومات",
     "help_translate": "المساعدة في الترجمة",
-    "mission_impact": "مهامنا و أنجازاتنا"
+    "mission_impact": "مهامنا و أنجازاتنا",
+    "frenchCourses": "دروس اللغة الفرنسيّة"
   },
-  "Roles": { "admin": "أدمن", "redactor": "مُحرر", "translator": "مُُترجم" },
+  "Roles": {
+    "admin": "أدمن",
+    "redactor": "مُحرر",
+    "translator": "مُُترجم"
+  },
   "LanguageDropdown": {
     "en_français": "باللغة الفرنسية",
     "en_persan/dari": "باللغة الفارسية / الداري",
@@ -622,5 +643,10 @@
     "northStar_notUseful": "غير مفيدة",
     "northStar_useful": "هل ذلك مفيد ؟",
     "northStar_thanks": "شكراً لك لرأيك"
+  },
+  "sitemap": {
+    "links": {
+      "frenchCourses": "دروس اللغة الفرنسيّة"
+    }
   }
 }

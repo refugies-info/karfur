@@ -5,5 +5,5 @@
   },
   "downloadApp": "Here is the link to download the Refugies.info app:",
   "contentLink": "Hello. Here is the link to the {{title}} file: {{link}}",
-  "courseListLink": ""
+  "courseListLink": "Hello, here are the available French courses: {{link}}"
 }

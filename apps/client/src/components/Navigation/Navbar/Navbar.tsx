@@ -75,6 +75,15 @@ const Navbar = () => {
         }),
       },
       {
+        linkProps: {
+          href: getPath("/trouver-cours-francais", locale),
+          prefetch: false,
+          className: styles.navLinkWithBookIcon,
+        },
+        text: t("Toolbar.coursFrancais", "Cours de français"),
+        isActive: isCurrent(getPath("/trouver-cours-francais", locale)),
+      },
+      {
         linkProps: { href: getPath("/agir", locale), prefetch: false },
         text: t("Toolbar.agir", "AGIR"),
         isActive: isCurrent(getPath("/agir", locale)),

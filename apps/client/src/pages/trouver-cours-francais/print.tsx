@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef } from "react";
 import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { PrintableCourseList } from "~/components/Pages/learnFrench/CourseResults/PrintableCourseList";
+import { LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
@@ -27,7 +28,14 @@ const PrintCourseList = () => {
   const courseSearch = useCourseSearch(filters, search, activeTab, isReady, PRINT_RESULTS_LIMIT);
 
   const allNeeds = useSelector(needsSelector);
-  const needLabels = useMemo(() => buildNeedLabels(allNeeds, locale), [allNeeds, locale]);
+  const categoryOptions = useMemo(
+    () => allNeeds.filter((need) => String(need.theme._id) === LEARN_FRENCH_THEME_ID),
+    [allNeeds],
+  );
+  const needLabels = useMemo(
+    () => buildNeedLabels(categoryOptions, locale),
+    [categoryOptions, locale],
+  );
 
   // The effect re-runs whenever the results change: open the print dialog only once
   const hasPrinted = useRef(false);

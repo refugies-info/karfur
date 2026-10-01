@@ -11,6 +11,7 @@ import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
+import { getPoiLocationText } from "~/lib/learnFrench/poiLocation";
 import { getPath } from "~/routes";
 import { SingleLineTags } from "./SingleLineTags";
 
@@ -73,6 +74,8 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const sponsor = props.dispositif.sponsor;
   const sponsorLogo = sponsor?.picture?.secure_url;
   const showContactActions = !sessionDate && (sponsor?.phone || sponsor?.email);
+  const poi = props.dispositif.map?.[0];
+  const poiLocation = getPoiLocationText(poi);
 
   const href = {
     pathname: getPath(`/${props.dispositif.typeContenu}/[id]`, locale),
@@ -90,7 +93,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
       <div
         className={`border-default-grey flex flex-col gap-1 border-b px-4 py-5 md:w-[170px] md:shrink-0 md:border-b-0 md:px-6 md:py-8 ${
           nextSession ? "md:border-action-high-blue-france md:border-l-4" : ""
-        }`}
+        } ${!sessionDate ? "max-md:pb-0" : ""}`}
       >
         <div className="flex items-start justify-between gap-3">
           {isOnline ? (
@@ -131,7 +134,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
             </p>
           </div>
         ) : (
-          <p className="text-mention-grey mt-3 text-base font-medium">
+          <p className="text-mention-grey text-base font-medium">
             {t(
               "LearnFrench.card_contactStructure",
               "Contacter la structure pour les prochaines dates",
@@ -139,7 +142,7 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
           </p>
         )}
         {showContactActions && (
-          <div className="mt-3 flex flex-wrap gap-2 md:hidden">
+          <div className="mt-3 mb-4 flex flex-wrap gap-2 md:hidden">
             {sponsor?.phone && (
               <a href={`tel:${sponsor.phone}`} className={CONTACT_BUTTON_CLASSNAME}>
                 <i className="fr-icon-phone-line fr-icon--sm" aria-hidden="true" />
@@ -176,8 +179,14 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
               {sponsor.nom}
             </div>
           )}
+          {poiLocation && (
+            <div className="text-mention-grey flex items-center gap-2 text-xs">
+              <i className="fr-icon-map-pin-2-line fr-icon--sm" aria-hidden="true" />
+              {poi?.title ? `${poi.title} — ${poiLocation}` : poiLocation}
+            </div>
+          )}
           <p
-            className="text-default-grey line-clamp-2 text-sm md:line-clamp-1"
+            className="text-default-grey line-clamp-2 text-sm max-md:mb-0 max-md:[&_p]:mb-0 md:line-clamp-1"
             dangerouslySetInnerHTML={{ __html: description }}
           />
         </div>
