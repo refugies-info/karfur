@@ -128,7 +128,7 @@ const Homepage = (props: Props) => {
             "{{count}} cours de français dans toute la France",
             { count: props.contentStatistics.nbFrenchCourses || 0 },
           ),
-          seeMore: t("Homepage.frenchCoursesSeeAll", "Voir tous les cours de français"),
+          seeMore: t("Homepage.frenchCoursesSeeAll", "Voir tous les cours"),
           prev: t("ui.carrouselPrev", "Faire défiler à gauche"),
           next: t("ui.carrouselNext", "Faire défiler à droite"),
           countSeparator: t("ui.countSeparator", "sur"),
