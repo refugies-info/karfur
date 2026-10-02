@@ -1,0 +1,48 @@
+# OSV-Scanner: dependency vulnerability scanning against the OSV database.
+# - Scheduled scan: weekly + on push to dev, uploads SARIF to Code Scanning.
+#   Reports all known vulnerabilities; does not block.
+# - PR scan: fails only on vulnerabilities newly introduced by the PR.
+#
+# Complements, not replaces, the cve-lite pre-push hook: cve-lite remains the
+# developer-facing remediation tool; this workflow is the CI-side lockfile
+# truth gate (no Dependabot-style scan lag).
+
+name: OSV-Scanner
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+  merge_group:
+  schedule:
+    - cron: "12 12 * * 1"
+
+permissions: {}
+
+jobs:
+  scan-scheduled:
+    if: ${{ github.event_name == 'push' || github.event_name == 'schedule' }}
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.6.0
+    with:
+      # Report-only: pre-existing vulnerabilities surface in Code Scanning
+      # without failing CI. The PR scan is the blocking gate.
+      fail-on-vuln: false
+
+  scan-pr:
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }}
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable-pr.yml@v2.6.0
+    with:
+      # Ratchet: fail only on vulnerabilities introduced by this PR.
+      fail-on-vuln: true
+      # Fork PRs get a read-only GITHUB_TOKEN; SARIF upload would 403 and
+      # fail the job regardless of vulnerabilities. PR results surface in
+      # the job log and annotations instead.
+      upload-sarif: false
