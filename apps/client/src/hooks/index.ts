@@ -15,7 +15,7 @@ export { default as useRouteAnnouncement } from "./useRouteAnnouncement";
 export { default as useRouterLocale } from "./useRouterLocale";
 export { default as useRTL } from "./useRTL";
 export { useRtriLinks } from "./useRtriLinks";
-export { useSanitizedContent } from "./useSanitizedContent";
+export { SHORT_TEXT_ALLOWED_TAGS, useSanitizedContent } from "./useSanitizedContent";
 export { useScrollDirection } from "./useScrollDirection";
 export { default as useScrolledBottomEvent } from "./useScrolledBottomEvent";
 export { default as useScrollToAnchor } from "./useScrollToAnchor";
