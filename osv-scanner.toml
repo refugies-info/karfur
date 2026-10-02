@@ -1,0 +1,9 @@
+# OSV-Scanner suppression list. Applies to the root pnpm-lock.yaml only
+# (config does not propagate to subdirectories).
+#
+# node-forge GHSA-86w9-cpqp-85rv (CVE-2025-... alias set, CVSS 8.7): no fixed
+# version exists upstream. karfur does not use the affected TLS certificate
+# parsing paths. Revisit when an upstream fix ships.
+[[IgnoredVulns]]
+id = "GHSA-86w9-cpqp-85rv"
+reason = "node-forge has no upstream fix; karfur does not use the affected TLS code paths"
