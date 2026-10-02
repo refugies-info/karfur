@@ -36,9 +36,38 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # ─── Affected apps — everything unless this is a speed release ─────────────
+  changes:
+    name: Detect Affected Apps
+    runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.affected.outputs.backend }}
+      frontend: ${{ steps.affected.outputs.frontend }}
+      mobile: ${{ steps.affected.outputs.mobile }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Compute affected apps
+        id: affected
+        env:
+          IS_SPEED_RELEASE: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[speed]') }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          if [[ "$IS_SPEED_RELEASE" == "true" ]] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+            echo "⚡ Speed release: diffing $BEFORE_SHA..$GITHUB_SHA"
+            scripts/release-affected-apps.sh "$BEFORE_SHA" "$GITHUB_SHA" | tee -a "$GITHUB_OUTPUT"
+          else
+            printf 'backend=true\nfrontend=true\nmobile=true\n' | tee -a "$GITHUB_OUTPUT"
+          fi
+
   # ─── Backend — always before frontend ──────────────────────────────────────
   deploy-backend:
     name: Deploy Backend
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -84,7 +113,9 @@ jobs:
   # ─── Frontend — runs after backend ─────────────────────────────────────────
   deploy-frontend:
     name: Deploy Frontend
-    needs: deploy-backend
+    needs: [changes, deploy-backend]
+    # Still runs when the backend was skipped, never when it failed.
+    if: ${{ !failure() && !cancelled() && needs.changes.outputs.frontend == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -130,6 +161,8 @@ jobs:
   # ─── Mobile — runs in parallel with backend (no build-time API calls) ──────
   deploy-mobile:
     name: Build Mobile
+    needs: changes
+    if: needs.changes.outputs.mobile == 'true'
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
     env:
