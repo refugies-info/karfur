@@ -1,9 +1,13 @@
 # OSV-Scanner suppression list. Applies to the root pnpm-lock.yaml only
 # (config does not propagate to subdirectories).
 #
-# node-forge GHSA-86w9-cpqp-85rv (CVE-2025-... alias set, CVSS 8.7): no fixed
-# version exists upstream. karfur does not use the affected TLS certificate
-# parsing paths. Revisit when an upstream fix ships.
+# node-forge GHSA-86w9-cpqp-85rv (CVE-2026-33894 et al., CVSS 8.7): RSA PKCS#1
+# v1.5 signature verification accepts extra nested DigestAlgorithm elements.
+# No fixed version exists upstream (range: all versions through 1.4.0). In
+# karfur, node-forge enters via @expo/code-signing-certificates (Expo build
+# tooling only); the affected path is not used at runtime. ignoreUntil forces
+# re-evaluation once an upstream fix can ship.
 [[IgnoredVulns]]
 id = "GHSA-86w9-cpqp-85rv"
-reason = "node-forge has no upstream fix; karfur does not use the affected TLS code paths"
+reason = "node-forge (via @expo/code-signing-certificates, Expo build tooling only) has no upstream fix; RSA signature verification path not used at runtime"
+ignoreUntil = 2027-01-01
