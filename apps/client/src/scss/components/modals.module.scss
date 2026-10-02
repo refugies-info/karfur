@@ -4,10 +4,15 @@
   min-width: 100px;
 
   .modal_content {
-    background: #e0e0e0;
+    background: $white;
     border: hidden;
     box-shadow: 0 4px 40px rgb(0 0 0 / 25%);
     border-radius: $radius;
     mix-blend-mode: normal;
+
+    // The light button has a transparent border, so it loses its outline on a white card.
+    .secondary_button {
+      border: 1px solid $gray80;
+    }
   }
 }
