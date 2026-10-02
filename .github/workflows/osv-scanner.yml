@@ -42,3 +42,7 @@ jobs:
     with:
       # Ratchet: fail only on vulnerabilities introduced by this PR.
       fail-on-vuln: true
+      # Fork PRs get a read-only GITHUB_TOKEN; SARIF upload would 403 and
+      # fail the job regardless of vulnerabilities. PR results surface in
+      # the job log and annotations instead.
+      upload-sarif: false
