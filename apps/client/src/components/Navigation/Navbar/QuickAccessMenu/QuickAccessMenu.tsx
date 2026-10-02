@@ -3,7 +3,7 @@ import { cn, useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import LanguageMenu from "~/components/Navigation/Navbar/QuickAccessMenu/LanguageMenu";
 import LoginButton from "~/components/Navigation/Navbar/QuickAccessMenu/LoginButton";
-import { useLocale } from "~/hooks";
+import { useLocale, useMediaQuery } from "~/hooks";
 import { getPath } from "~/routes";
 
 // This component retunrs an array of JSX items specifically for the DSFR Header component
@@ -16,7 +16,10 @@ import { getPath } from "~/routes";
 
 const QuickAccessMenu = () => {
   const { t } = useTranslation();
-  const { isMobile, zoomLevel } = useWindowSize();
+  const { zoomLevel } = useWindowSize();
+  // Negates the DSFR query rather than adding a max-width one: at exactly 992px,
+  // Chrome matches both (min-width: 62em) and (max-width: 61.9999em).
+  const isDsfrCompactHeader = !useMediaQuery("(min-width: 62em)", true);
   const locale = useLocale();
 
   const menuItems = [
@@ -40,19 +43,20 @@ const QuickAccessMenu = () => {
       iconId="fr-icon-message-2-line"
       priority="tertiary no outline"
     >
-      {isMobile
+      {isDsfrCompactHeader
         ? t("Toolbar.TraduireUneFiche", "Traduire une fiche")
         : t("Toolbar.Traduire", "Traduire")}
     </Button>,
     <LanguageMenu
       key="language"
+      isCompact={isDsfrCompactHeader}
       className={cn(zoomLevel >= 175 && "!w-full")}
       dropDownClassName={cn(zoomLevel >= 175 && "!w-full")}
     />,
-    !isMobile ? <LoginButton key="login" /> : null,
+    <LoginButton key="login" />,
   ];
 
-  return [...menuItems];
+  return menuItems.filter((item) => item !== null);
 };
 
 export { QuickAccessMenu };

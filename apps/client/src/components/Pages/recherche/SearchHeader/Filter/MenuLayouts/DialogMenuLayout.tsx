@@ -2,7 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
 import type React from "react";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
 import type { LayoutProps } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
@@ -31,6 +31,16 @@ export function DialogMenuLayout({
   const [open, setOpen] = useState(false);
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
   const descriptionId = useId();
+
+  // The Crisp bubble sits above this full-screen dialog and covers its footer button:
+  // hide it while the dialog is open and show it again on close.
+  useEffect(() => {
+    if (!open) return;
+    window.$crisp?.push(["do", "chat:hide"]);
+    return () => {
+      window.$crisp?.push(["do", "chat:show"]);
+    };
+  }, [open]);
 
   const handleOpenChange = (newOpen: boolean) => {
     if (!newOpen) {

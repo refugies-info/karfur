@@ -166,6 +166,17 @@ const MobileApp = () => {
         ) : (
           <MobileAppSmsForm />
         )}
+        {isMobile && (
+          <div className="mt-10">
+            <h2 className="text-lg">
+              {t(
+                "MobileApp.titleDesktop",
+                "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+              )}
+            </h2>
+            <MobileAppSmsForm />
+          </div>
+        )}
       </div>
     </section>
   );

@@ -105,13 +105,15 @@ const WhyAccordions = (props: Props) => {
     },
   ];
 
+  const accordionItemsCompact = [...accordionItemsMobile, ...accordionItemsDesktop.slice(2)];
+
   return (
     <div className="container md:py-20">
       <h2 className="mb-20">
         {t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}
       </h2>
       <Accordion
-        items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
+        items={isMobile ? accordionItemsCompact : accordionItemsDesktop}
         withImages
         initOpen
         multiOpen={!!isTablet}

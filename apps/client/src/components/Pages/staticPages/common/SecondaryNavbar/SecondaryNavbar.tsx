@@ -36,7 +36,7 @@ const SecondaryNavbar = (props: Props) => {
     <>
       <div ref={sentinelRef} aria-hidden className="-mb-px h-px" />
       <div className={cls("sticky top-0 z-20 bg-white", isSticky && "shadow-sm")}>
-        <div className="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
+        <div className="container flex flex-wrap md:flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
           <div className={styles.nav}>
             <SegmentedControl
               hideLegend

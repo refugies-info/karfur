@@ -10,7 +10,11 @@
   padding-inline: var(--inline-padding);
   padding-block: var(--block-padding);
   position: relative;
-  white-space: nowrap;
+  flex-wrap: wrap;
+
+  :global(.langLabel) {
+    white-space: nowrap;
+  }
 
   &:focus-visible {
     z-index: 2;
