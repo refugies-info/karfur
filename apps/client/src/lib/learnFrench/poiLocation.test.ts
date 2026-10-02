@@ -1,5 +1,5 @@
 import type { Poi } from "@refugies-info/api-types";
-import { getPoiLocationText } from "./poiLocation";
+import { getPoiDistinctTitle, getPoiLocationText } from "./poiLocation";
 
 const poi = (overrides: Partial<Poi>): Poi => ({
   title: "Centre",
@@ -38,5 +38,38 @@ describe("getPoiLocationText", () => {
 
   it("returns the address alone when there is no city", () => {
     expect(getPoiLocationText(poi({ address: "12 rue de la Paix" }))).toEqual("12 rue de la Paix");
+  });
+
+  it("drops the trailing country", () => {
+    expect(getPoiLocationText(poi({ address: "3 Rue Jean XXIII, 21000 Dijon, France" }))).toEqual(
+      "3 Rue Jean XXIII, 21000 Dijon",
+    );
+  });
+
+  it("does not append the city when the address already has a postcode", () => {
+    expect(
+      getPoiLocationText(
+        poi({ address: "12 Rue d'Assas, 75006 Paris, France", city: "12 Rue d'Assas, Paris" }),
+      ),
+    ).toEqual("12 Rue d'Assas, 75006 Paris");
+  });
+});
+
+describe("getPoiDistinctTitle", () => {
+  it("returns null when the lieu has no title", () => {
+    expect(getPoiDistinctTitle(undefined, "AGO")).toBeNull();
+    expect(getPoiDistinctTitle(poi({ title: "" }), "AGO")).toBeNull();
+  });
+
+  it("hides the title when it repeats the structure name, ignoring case and accents", () => {
+    expect(
+      getPoiDistinctTitle(poi({ title: "Accueil Goutte d'Or" }), "accueil goutte d’or "),
+    ).toBeNull();
+    expect(getPoiDistinctTitle(poi({ title: "Forma.Clé" }), "Forma.Cle")).toBeNull();
+  });
+
+  it("keeps a title that adds information", () => {
+    expect(getPoiDistinctTitle(poi({ title: "Cesam Dijon" }), "CESAM")).toEqual("Cesam Dijon");
+    expect(getPoiDistinctTitle(poi({ title: "Bercail" }), undefined)).toEqual("Bercail");
   });
 });
