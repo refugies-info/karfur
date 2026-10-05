@@ -305,6 +305,8 @@ const Filter = ({
                         currentmenu={item}
                         onSelectItem={onSelectItem}
                         showCounts={showCounts}
+                        legend={label}
+                        legendClassName="sr-only"
                       />
                     );
                   })}
