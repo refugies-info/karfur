@@ -86,6 +86,7 @@ exports[`traduire renders traduire 1`] = `
         >
           <ul
             class="fr-raw-list"
+            role="list"
           >
             <li>
               <a

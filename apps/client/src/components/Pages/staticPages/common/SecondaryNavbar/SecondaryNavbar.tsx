@@ -27,13 +27,9 @@ const SecondaryNavbar = (props: Props) => {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const isSticky = useIsSticky(sentinelRef);
 
-  // Move focus to the target anchor, then scroll smoothly and update the URL hash
+  // useScrollToAnchor (_app) handles focus and scrolling; only the hash is set, keeping the Next router state
   const goTo = useCallback((id: string) => {
-    const target = document.getElementById(id);
-    if (!target) return;
-    target.focus({ preventScroll: true });
-    target.scrollIntoView({ behavior: "smooth" });
-    history.replaceState(null, "", `#${id}`);
+    history.replaceState(history.state, "", `#${id}`);
   }, []);
 
   return (
@@ -42,17 +38,15 @@ const SecondaryNavbar = (props: Props) => {
       <div className={cls("sticky top-0 z-20 bg-white", isSticky && "shadow-sm")}>
         <div className="container flex flex-wrap md:flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
           <nav aria-label={t("Dispositif.summary", "Sommaire")} className={styles.nav}>
-            <ul className="fr-raw-list">
+            {/* Explicit role justified on the contentAs prop of MetaDataItem. */}
+            <ul className="fr-raw-list" role="list">
               {props.leftLinks.map((link) => (
                 <li key={link.id}>
                   <a
                     href={`#${link.id}`}
                     className="fr-raw-link"
                     aria-current={isActive(link.id) ? "true" : undefined}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      goTo(link.id);
-                    }}
+                    onClick={() => goTo(link.id)}
                   >
                     {link.text}
                   </a>
