@@ -92,9 +92,7 @@ const AuthLogin = () => {
             className={styles.radio}
             options={[
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconStructure} width={48} height={48} />
-                ),
+                illustration: <Image alt="" src={GoalIconStructure} width={48} height={48} />,
                 label: "Recenser mon dispositif",
                 hintText: "Pour les membres et responsables de structure",
                 nativeInputProps: {
@@ -103,9 +101,7 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconTranslate} width={48} height={48} />
-                ),
+                illustration: <Image alt="" src={GoalIconTranslate} width={48} height={48} />,
                 label: "Traduire une fiche",
                 hintText: "Pour les bilingues qui souhaitent contribuer",
                 nativeInputProps: {
@@ -114,9 +110,7 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconUser} width={26} height={56} />
-                ),
+                illustration: <Image alt="" src={GoalIconUser} width={26} height={56} />,
                 label: "Sauvegarder mes fiches préférées",
                 hintText: "En créant mon espace personnel",
                 nativeInputProps: {
