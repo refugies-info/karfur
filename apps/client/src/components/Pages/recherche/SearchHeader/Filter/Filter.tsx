@@ -10,7 +10,8 @@ import {
   sortOptions,
 } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useMemo } from "react";
+import type React from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
@@ -251,15 +252,16 @@ const Filter = ({
                 <>
                   {menuItems.map((item, i) => {
                     return (
-                      <React.Fragment key={i}>
-                        {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
-                        <FilterCheckboxes
-                          options={item.options}
-                          currentmenu={item}
-                          onSelectItem={onSelectItem}
-                          showCounts={showCounts}
-                        />
-                      </React.Fragment>
+                      <FilterCheckboxes
+                        key={i}
+                        options={item.options}
+                        currentmenu={item}
+                        onSelectItem={onSelectItem}
+                        showCounts={showCounts}
+                        legend={item.label ? <DialogLegend>{item.label}</DialogLegend> : undefined}
+                        legendClassName={styles.dialogLegend}
+                        className={item.label ? styles.dialogGroup : undefined}
+                      />
                     );
                   })}
                   <DialogMenuLayoutTitle className={styles.menuItemLabel}>
@@ -325,22 +327,32 @@ const Filter = ({
   );
 };
 
+const DialogLegend = ({ children }: { children: React.ReactNode }) => (
+  <span className={styles.dialogLegendText}>{children}</span>
+);
+
 const FilterCheckboxes = ({
   options,
   currentmenu,
   onSelectItem,
   className,
   showCounts,
+  legend,
+  legendClassName,
 }: {
   options: FilterOptions;
   currentmenu: MenuItemProps;
   onSelectItem: (filterKey: keyof SearchQuery, optionKey: string) => void;
   className?: string;
   showCounts: boolean;
+  legend?: React.ReactNode;
+  legendClassName?: string;
 }) => {
   const { t } = useTranslation();
   return (
     <DsfrCheckbox
+      legend={legend}
+      classes={{ legend: legendClassName }}
       className={cn(
         styles.checkboxItems,
         "m-0 w-full p-0",

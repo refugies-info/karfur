@@ -93,6 +93,26 @@
   }
 }
 
+// Fieldsets of the mobile dialog carry their own legend, styled like DialogMenuLayout's sub-title
+.dialogGroup {
+  &:not(:first-child) {
+    margin-top: u(8);
+  }
+
+  .dialogLegend {
+    @include dsfr-text("large");
+
+    color: black;
+    margin: 0 0 u(2);
+    padding: 0 u(2);
+  }
+
+  // DSFR forces fr-text--regular (layered !important) on legends: bold has to live on a child node
+  .dialogLegendText {
+    font-weight: bold;
+  }
+}
+
 .radioContainer {
   padding-inline: u(2);
 
