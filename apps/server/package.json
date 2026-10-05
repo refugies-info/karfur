@@ -33,7 +33,7 @@
     "@slack/webhook": "^7.2.0",
     "airtable": "^0.12.2",
     "algoliasearch": "^5.59.0",
-    "axios": "^1.18.1",
+    "axios": "^1.20.0",
     "cloudinary": "^2.11.0",
     "compression": "^1.8.2",
     "cors": "^2.8.6",

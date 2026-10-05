@@ -18,13 +18,13 @@ overrides:
   sha.js: ^2.4.12
   stylus: npm:noop3@^1000.0.0
   tmp: ^0.2.4
-  undici: ^7.29.0
+  undici: 7.29.1
   validator: ^13.15.20
   mdast-util-to-hast: '>=13.2.1'
   react-server-dom-webpack: '>=19.0.2'
   node-forge: '>=1.4.0'
   handlebars: '>=4.7.9'
-  brace-expansion: ^2.1.4
+  brace-expansion: ^2.1.7
   jsonwebtoken>jws: ^3.2.3
   google-auth-library>jws: ^4.0.1
   gtoken>jws: ^4.0.1
@@ -52,12 +52,12 @@ overrides:
   yaml@<1.10.3: 1.10.3
   lodash: ^4.18.1
   next: 15.5.24
-  axios: 1.18.1
+  axios: 1.20.0
   vite: ^7.3.6
   '@hapi/content@<=6.0.1': 6.0.2
   '@hapi/wreck@<18.1.2': 18.1.2
-  '@grpc/grpc-js@<1.13.5': 1.13.5
-  joi@<18.2.1: 18.2.1
+  '@grpc/grpc-js@<1.13.6': 1.13.6
+  joi@<18.2.6: 18.2.6
   esbuild@<0.28.1: 0.28.1
   protobufjs: 7.6.5
   '@protobufjs/utf8': 1.1.1
@@ -65,12 +65,12 @@ overrides:
   js-cookie: 3.0.7
   multiparty: 4.3.0
   '@babel/plugin-transform-modules-systemjs': 7.29.4
-  fast-uri: 3.1.6
+  fast-uri: 3.1.7
   fast-xml-builder: 1.1.7
-  ip-address: 10.3.1
+  ip-address: 10.7.1
   postcss: 8.5.26
   '@xmldom/xmldom@<0.8.15': ^0.8.15
-  dompurify: 3.4.13
+  dompurify: 3.4.16
   i18next-fs-backend: 2.6.7
   follow-redirects: 1.16.0
   uuid: 11.1.1
@@ -234,8 +234,8 @@ importers:
         specifier: ^3.3.4
         version: 3.3.4
       axios:
-        specifier: 1.18.1
-        version: 1.18.1
+        specifier: 1.20.0
+        version: 1.20.0
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -553,8 +553,8 @@ importers:
         specifier: ^5.59.0
         version: 5.59.0
       axios:
-        specifier: 1.18.1
-        version: 1.18.1
+        specifier: 1.20.0
+        version: 1.20.0
       expo:
         specifier: ~54.0.37
         version: 54.0.37(@babel/core@7.29.7)(react-native-webview@13.15.0(react-native@0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)(typescript@5.9.3)
@@ -839,8 +839,8 @@ importers:
         specifier: ^5.59.0
         version: 5.59.0
       axios:
-        specifier: 1.18.1
-        version: 1.18.1
+        specifier: 1.20.0
+        version: 1.20.0
       cloudinary:
         specifier: ^2.11.0
         version: 2.11.0
@@ -2863,8 +2863,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  '@grpc/grpc-js@1.13.5':
-    resolution: {integrity: sha512-ILtqflBY9tzd79bKa87eS98vZFCso5/uYxuArfcKrmRDatRg7KWmI/Vr9+xOEf2Y2E/44HXMCx3JKZe/Y4yF6g==}
+  '@grpc/grpc-js@1.13.6':
+    resolution: {integrity: sha512-S9U8ioEds9fo8zCt4K8CyWHLJPg63FBgZo/hYUPVTiKppwsx/ykTnFg4g4/70beoa/DYao9uROQRcoahVH8PVQ==}
     engines: {node: '>=12.10.0'}
 
   '@grpc/proto-loader@0.7.15':
@@ -6185,8 +6185,8 @@ packages:
     resolution: {integrity: sha512-UzGt8zg7Ny8djbYMhxl2zuEevVa7r2gJjYY5Lwr1xM7+XU2nd6CkIWFTVcCIbAP63vSz71NaVyyuSk9lHKcy0A==}
     engines: {node: '>=4'}
 
-  axios@1.18.1:
-    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
+  axios@1.20.0:
+    resolution: {integrity: sha512-r8aOh8j9cGKpgQAqpzrUHnSIc6a59Y3Xf/cv8sy1DrHCkZHzQGEuoq1tARk6qSyDdtQGSDgpb9kFlruzPvrgwg==}
 
   b4a@1.8.1:
     resolution: {integrity: sha512-aiqre1Nr0B/6DgE2N5vwTc+2/oQZ4Wh1t4NznYY4E00y8LCt6NqdRv81so00oo27D8MVKTpUa/MwUUtBLXCoDw==}
@@ -6405,8 +6405,8 @@ packages:
     resolution: {integrity: sha512-apC2+fspHGI3mMKj+dGevkGo/tCqVB8jMb6i+OX+E29p0Iposz07fABkRIfVUPNd5A5VbuOz1bZbnmkKLYF+wQ==}
     engines: {node: '>= 5.10.0'}
 
-  brace-expansion@2.1.4:
-    resolution: {integrity: sha512-hGfVzPxthbf3+2yjg/RBs60cB0FhqBS/zvdV/4wn4/BmN0bNMMHPc4V/BbFieqf1TKAGGAHnY4eSjajCl0f2Xg==}
+  brace-expansion@2.1.7:
+    resolution: {integrity: sha512-uZbew1NqdmPDTMJ8ah1y+b+9QEJrfkXFk3RcTQw3X0jW/xRUvFKsg1CfQdSYGdTbXZWExtU3J3ccxtnfw1Fi0g==}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -7171,8 +7171,8 @@ packages:
     resolution: {integrity: sha512-gYzvtM72ZtxQO0T048kd6HWSbbGCNOUwcnfQ01cqIJ4X2IYKFFHZ5mKvrQETcFXxsRObZulDaKmy//R7TPtsBg==}
     engines: {node: '>=20.19.0'}
 
-  dompurify@3.4.13:
-    resolution: {integrity: sha512-2vmYIoqjze2d+kakP8S/nS5shfsl587kzwEjcGlTdiksUVgFHnFCsLYDVj/JNqJVOQZGSYBTmuycv0PodwmnMQ==}
+  dompurify@3.4.16:
+    resolution: {integrity: sha512-sqo+pNp3qRhCIpbgRi1y8Tgk27Bo2Ry7w0dC1NBeNTdZChWjz9Xb/KOoZbRP/R6pQZ80Qw8YhXw13hWWBbMRnQ==}
 
   domutils@2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
@@ -7688,8 +7688,8 @@ packages:
   fast-shallow-equal@1.0.0:
     resolution: {integrity: sha512-HPtaa38cPgWvaCFmRNhlc6NG7pv6NUHqjPgVAkWGoB9mQMwYB27/K0CvOM5Czy+qpT3e8XJ6Q4aPAnzpNpzNaw==}
 
-  fast-uri@3.1.6:
-    resolution: {integrity: sha512-7Ical1vFEMr0onbVzEDIreM22I4khW+fzyQPwvAFWBp1iwdshSZRsL4jjRvPG9JP1uiqMHRto+YU6R2/CzDz5Q==}
+  fast-uri@3.1.7:
+    resolution: {integrity: sha512-dOvZVzjdZdz7phd9v6jCbwxrBW3fK6n8Rc0CtdmM4bumzMnxywBYhuph6J819RRw/ku+rLbelwfMunktuzVVHg==}
 
   fast-xml-builder@1.1.7:
     resolution: {integrity: sha512-Yh7/7rQuMXICNr0oMYDR2yHP6oUvmQsTToFeOWj/kIDhAwQ+c4Ol/lbcwOmEM5OHYQmh6S6EQSQ1sljCKP36bQ==}
@@ -8272,8 +8272,8 @@ packages:
     resolution: {integrity: sha512-ehuGcf94bQXhfagULNXrJdfnWO38v070jxSx/qE87Kjzmu2fU7ro5EFAb+OPituLqgfyuQaym5DlrNydW2sJ9A==}
     engines: {node: '>=12.22.0'}
 
-  ip-address@10.3.1:
-    resolution: {integrity: sha512-1e9d3kb97NHJTIJDZW9rKqW2h6+dFa50Dy0fpPSMQp2ADje5gvKsXmdiK6dwY5t76TaTt5+P5N1Y/LoToIxP6g==}
+  ip-address@10.7.1:
+    resolution: {integrity: sha512-4OUAqU9Z1i3vCnS05hzGiFnEMDpQ+62pAD/MVQOp83fYyNC8GleCqaS0QikQBmcWCrKFiUs/B8ztRRiYOAXuCA==}
     engines: {node: '>= 12'}
 
   ipaddr.js@1.9.1:
@@ -8779,8 +8779,8 @@ packages:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
 
-  joi@18.2.5:
-    resolution: {integrity: sha512-+gEA7rLfaNWx9JzawWPrPetSZwT16NUqHtECDgjyAJreXcs4TM7tx2Pa+VVJJK0YHM83ybrVdaT6UekHH50FJQ==}
+  joi@18.2.6:
+    resolution: {integrity: sha512-8MD5jy4xIcTQi/pHbc10auxclVoJS3pPNiLaTNfW0eh90GbOPU+Y2AjDQnuQsUcHUGNJxqTMmAW6Ho895RaKPA==}
     engines: {node: '>= 20'}
 
   js-cookie@3.0.7:
@@ -12105,8 +12105,8 @@ packages:
   undici-types@8.3.0:
     resolution: {integrity: sha512-j375ScV60dom+YkPFIfTLcOiPxkN/buHz5GobjLhixFuANaNs3C9l4GmrWqejgXWJ7BbJcFYpTEUkS1Ge8bpZQ==}
 
-  undici@7.29.0:
-    resolution: {integrity: sha512-IDxfleLmmbSskfWSUATiN1nfn2rDuvnMOqb5CWR92iIfojA0Ud+ulOAAEQ57LPr9rWmsreUyf5lwyao+7GNNVw==}
+  undici@7.29.1:
+    resolution: {integrity: sha512-RYONW2MeafgYlkVOKYKkA/Ag7BmXqgIWCa8t1m0JcxrQg9pI9lEqRhAOruOBCbAohOa/gkCF+iPi9hrgvTzu6Q==}
     engines: {node: '>=20.18.1'}
 
   unicode-canonical-property-names-ecmascript@2.0.1:
@@ -14386,7 +14386,7 @@ snapshots:
       structured-headers: 0.4.1
       tar: 7.5.22
       terminal-link: 2.1.1
-      undici: 7.29.0
+      undici: 7.29.1
       wrap-ansi: 7.0.0
       ws: 8.21.3
     optionalDependencies:
@@ -14796,7 +14796,7 @@ snapshots:
       '@firebase/logger': 0.5.0
       '@firebase/util': 1.13.0
       '@firebase/webchannel-wrapper': 1.0.5
-      '@grpc/grpc-js': 1.13.5
+      '@grpc/grpc-js': 1.13.6
       '@grpc/proto-loader': 0.7.15
       tslib: 2.8.1
 
@@ -15018,7 +15018,7 @@ snapshots:
       react: 19.1.0
       react-native: 0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0)
 
-  '@grpc/grpc-js@1.13.5':
+  '@grpc/grpc-js@1.13.6':
     dependencies:
       '@grpc/proto-loader': 0.7.15
       '@js-sdsl/ordered-map': 4.4.2
@@ -17034,7 +17034,7 @@ snapshots:
   '@sendgrid/client@8.1.6':
     dependencies:
       '@sendgrid/helpers': 8.0.0
-      axios: 1.18.1
+      axios: 1.20.0
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -17214,7 +17214,7 @@ snapshots:
     dependencies:
       progress: 2.0.3
       proxy-from-env: 1.1.0
-      undici: 7.29.0
+      undici: 7.29.1
       which: 2.0.2
     optionalDependencies:
       '@sentry/cli-darwin': 3.6.2
@@ -17448,7 +17448,7 @@ snapshots:
       '@slack/types': 2.22.0
       '@types/node': 22.20.1
       '@types/retry': 0.12.0
-      axios: 1.18.1
+      axios: 1.20.0
       p-retry: 4.6.2
       retry: 0.13.1
     transitivePeerDependencies:
@@ -18698,7 +18698,7 @@ snapshots:
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
-      fast-uri: 3.1.6
+      fast-uri: 3.1.7
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
@@ -18832,7 +18832,7 @@ snapshots:
 
   axe-core@4.13.0: {}
 
-  axios@1.18.1:
+  axios@1.20.0:
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.1)
       form-data: 4.0.6
@@ -19133,7 +19133,7 @@ snapshots:
     dependencies:
       big-integer: 1.6.52
 
-  brace-expansion@2.1.4:
+  brace-expansion@2.1.7:
     dependencies:
       balanced-match: 1.0.2
 
@@ -19916,7 +19916,7 @@ snapshots:
     dependencies:
       domelementtype: 3.0.0
 
-  dompurify@3.4.13:
+  dompurify@3.4.16:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
 
@@ -20531,7 +20531,7 @@ snapshots:
 
   fast-shallow-equal@1.0.0: {}
 
-  fast-uri@3.1.6: {}
+  fast-uri@3.1.7: {}
 
   fast-xml-builder@1.1.7:
     dependencies:
@@ -20893,7 +20893,7 @@ snapshots:
 
   google-gax@4.6.1:
     dependencies:
-      '@grpc/grpc-js': 1.13.5
+      '@grpc/grpc-js': 1.13.6
       '@grpc/proto-loader': 0.7.15
       '@types/long': 4.0.2
       abort-controller: 3.0.0
@@ -21287,7 +21287,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ip-address@10.3.1:
+  ip-address@10.7.1:
     optional: true
 
   ipaddr.js@1.9.1: {}
@@ -21420,7 +21420,7 @@ snapshots:
 
   isomorphic-dompurify@2.36.0:
     dependencies:
-      dompurify: 3.4.13
+      dompurify: 3.4.16
       jsdom: 28.1.0
     transitivePeerDependencies:
       - '@noble/hashes'
@@ -22285,7 +22285,7 @@ snapshots:
 
   jiti@2.7.0: {}
 
-  joi@18.2.5:
+  joi@18.2.6:
     dependencies:
       '@hapi/address': 5.1.1
       '@hapi/formula': 3.0.2
@@ -22362,7 +22362,7 @@ snapshots:
       saxes: 6.0.0
       symbol-tree: 3.2.4
       tough-cookie: 6.0.2
-      undici: 7.29.0
+      undici: 7.29.1
       w3c-xmlserializer: 5.0.0
       webidl-conversions: 8.0.1
       whatwg-mimetype: 5.0.0
@@ -23574,7 +23574,7 @@ snapshots:
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.1.4
+      brace-expansion: 2.1.7
 
   minimist@1.2.8: {}
 
@@ -25684,7 +25684,7 @@ snapshots:
 
   socks@2.8.7:
     dependencies:
-      ip-address: 10.3.1
+      ip-address: 10.7.1
       smart-buffer: 4.2.0
     optional: true
 
@@ -26411,7 +26411,7 @@ snapshots:
 
   twilio@5.13.1:
     dependencies:
-      axios: 1.18.1
+      axios: 1.20.0
       dayjs: 1.11.23
       https-proxy-agent: 5.0.1
       jsonwebtoken: 9.0.3
@@ -26491,7 +26491,7 @@ snapshots:
   undici-types@8.3.0:
     optional: true
 
-  undici@7.29.0: {}
+  undici@7.29.1: {}
 
   unicode-canonical-property-names-ecmascript@2.0.1: {}
 
@@ -26724,8 +26724,8 @@ snapshots:
 
   wait-on@9.1.0:
     dependencies:
-      axios: 1.18.1
-      joi: 18.2.5
+      axios: 1.20.0
+      joi: 18.2.6
       lodash: 4.18.1
       minimist: 1.2.8
       rxjs: 7.8.2
