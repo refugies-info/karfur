@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
   DialogMenuLayout,
-  DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
@@ -264,34 +263,25 @@ const Filter = ({
                       />
                     );
                   })}
-                  <DialogMenuLayoutTitle className={styles.menuItemLabel}>
-                    {t("Recherche.sortBy")}
-                  </DialogMenuLayoutTitle>
-
-                  {sortOptions
-                    .filter((option) => {
-                      if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                      if (query.departments.length === 0 && option.key === "location") return false;
-                      return true;
-                    })
-                    .map((option, i) => {
-                      const isSelected = query.sort === option.key;
-                      return (
-                        <div key={i} className={styles.radioContainer}>
-                          <RadioButtons
-                            options={[
-                              {
-                                label: t(option.value),
-                                nativeInputProps: {
-                                  checked: isSelected,
-                                  onChange: () => selectSort(option.key),
-                                },
-                              },
-                            ]}
-                          />
-                        </div>
-                      );
-                    })}
+                  <RadioButtons
+                    legend={<DialogLegend>{t("Recherche.sortBy")}</DialogLegend>}
+                    className={cn(styles.dialogGroup, styles.sortGroup)}
+                    classes={{ legend: styles.dialogLegend, content: styles.sortOptions }}
+                    options={sortOptions
+                      .filter((option) => {
+                        if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                        if (query.departments.length === 0 && option.key === "location")
+                          return false;
+                        return true;
+                      })
+                      .map((option) => ({
+                        label: t(option.value),
+                        nativeInputProps: {
+                          checked: query.sort === option.key,
+                          onChange: () => selectSort(option.key),
+                        },
+                      }))}
+                  />
                 </>
               )}
             </DialogMenuLayout>

@@ -113,10 +113,13 @@
   }
 }
 
-.radioContainer {
-  padding-inline: u(2);
+// Single "sort by" radio fieldset: same offsets as the former one-fieldset-per-option layout
+fieldset.sortGroup {
+  margin: 0 (-(u(1))) u(1);
+}
 
-  & fieldset {
-    margin-block: u(1);
+.sortOptions {
+  :global(.fr-radio-group) + :global(.fr-radio-group) {
+    margin-top: -(u(2));
   }
 }
