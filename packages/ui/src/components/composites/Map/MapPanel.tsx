@@ -1,8 +1,19 @@
 "use client";
+import type { Poi } from "@refugies-info/api-types";
 import { Carrousel, cn, useWindowSize } from "@refugies-info/ui";
 import { useCallback, useEffect, useMemo } from "react";
 import { useMapContext } from "./MapContext";
 import MapPanelItem from "./MapPanelItem";
+
+const getPoiAnchorId = (poi: Poi, index: number) => {
+  const slug = poi.title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return slug ? `poi-${slug}-${index}` : `poi-${index}`;
+};
 
 type MapPanelProps = {
   className?: string;
@@ -36,7 +47,7 @@ export const MapPanel = ({ className }: MapPanelProps) => {
       <MapPanelItem
         className="h-full w-[80vw] max-w-96"
         key={`${poi.title}-${i}`}
-        id={`${poi.title}-${i}`}
+        id={getPoiAnchorId(poi, i)}
         poi={poi}
       />
     ));
@@ -45,7 +56,7 @@ export const MapPanel = ({ className }: MapPanelProps) => {
   const desktopItems = useMemo(() => {
     return mapData.map((poi, i) => (
       <div role="listitem" key={`${poi.title}-${i}`}>
-        <MapPanelItem id={`${poi.title}-${i}`} poi={poi} />
+        <MapPanelItem id={getPoiAnchorId(poi, i)} poi={poi} />
       </div>
     ));
   }, [mapData]);
