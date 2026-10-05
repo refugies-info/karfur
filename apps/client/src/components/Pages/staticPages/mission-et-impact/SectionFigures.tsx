@@ -9,9 +9,11 @@ export const SectionFigures = () => {
   const { t } = useTranslation();
   return (
     <Section className="bg-action-high-blue-france">
-      <div className="container">
+      <div className="@container container">
         <Title2 className="text-inverted-blue-france">{t("MissionImpact.figures_title")}</Title2>
-        <div className="flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:gap-20">
+        {/* Wrap only when the three fixed-width figures plus gaps (58rem at lg, 67rem at xl) no longer fit,
+            e.g. at 200% text zoom where rem grows but the container does not (RGAA 10.4) */}
+        <div className="flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:gap-20 lg:@max-[58rem]:flex-wrap xl:@max-[67rem]:flex-wrap">
           <Figure title="1,3M" text={t("MissionImpact.figures_text_1")} image={StatGraph} />
           <Figure title="n°1" text={t("MissionImpact.figures_text_2")} image={StatPodium} />
           <Figure title="4,6/5" text={t("MissionImpact.figures_text_3")} image={StatStars} />
