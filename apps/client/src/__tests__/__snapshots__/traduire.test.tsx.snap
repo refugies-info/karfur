@@ -80,90 +80,54 @@ exports[`traduire renders traduire 1`] = `
       <div
         class="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
-        <div
+        <nav
+          aria-label="Dispositif.summary"
           class="nav"
         >
-          <fieldset
-            class="fr-segmented fr-segmented--no-legend"
-            id="fr-segmented-«r1»"
+          <ul
+            class="fr-raw-list"
           >
-            <div
-              class="fr-segmented__elements"
-            >
-              <div
-                class="fr-segmented__element"
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#who"
               >
-                <input
-                  id="fr-segmented-«r1»-0"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-0"
-                >
-                  Qui peut traduire ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Qui peut traduire ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#steps"
               >
-                <input
-                  id="fr-segmented-«r1»-1"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-1"
-                >
-                  Comment faire ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Comment faire ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#next"
               >
-                <input
-                  id="fr-segmented-«r1»-2"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-2"
-                >
-                  Et après ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Et après ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#faq"
               >
-                <input
-                  id="fr-segmented-«r1»-3"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-3"
-                >
-                  Foire aux questions
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
+                Foire aux questions
+              </a>
+            </li>
+          </ul>
+        </nav>
         <div
           class="hidden shrink-0 md:block"
         >
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
             href="#register"
-            id="fr-button-«r3»"
+            id="fr-button-«r1»"
           >
             Aider à traduire
           </a>
@@ -177,8 +141,9 @@ exports[`traduire renders traduire 1`] = `
         class="py-10 md:py-20"
       >
         <span
-          class="absolute -top-[96px] md:-top-[120px]"
+          class="absolute -top-[96px] outline-none md:-top-[120px]"
           id="who"
+          tabindex="-1"
         />
         <div
           class="fr-container"
@@ -335,7 +300,7 @@ exports[`traduire renders traduire 1`] = `
                 />
                 <p
                   class="fr-badge fr-badge--warning fr-badge--no-icon"
-                  id="fr-badge-«r4»"
+                  id="fr-badge-«r2»"
                 >
                   Besoin fort
                 </p>
@@ -358,7 +323,7 @@ exports[`traduire renders traduire 1`] = `
                 </span>
                 <p
                   class="fr-badge fr-badge--new fr-badge--no-icon"
-                  id="fr-badge-«r5»"
+                  id="fr-badge-«r3»"
                 >
                   Besoin moyen
                 </p>
@@ -372,8 +337,9 @@ exports[`traduire renders traduire 1`] = `
       class="relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="steps"
+        tabindex="-1"
       />
       <div
         class="py-10 md:py-20 bg-alt-beige-gris-galet"
@@ -418,7 +384,7 @@ exports[`traduire renders traduire 1`] = `
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
-                id="fr-button-«r6»"
+                id="fr-button-«r4»"
               >
                 Créer mon compte
               </a>
@@ -618,8 +584,9 @@ exports[`traduire renders traduire 1`] = `
         class="py-10 md:py-20 bg-action-low-blue-france"
       >
         <span
-          class="absolute -top-[96px] md:-top-[120px]"
+          class="absolute -top-[96px] outline-none md:-top-[120px]"
           id="next"
+          tabindex="-1"
         />
         <div
           class="fr-container"
@@ -780,8 +747,9 @@ exports[`traduire renders traduire 1`] = `
       class="py-10 md:py-20 relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="faq"
+        tabindex="-1"
       />
       <div
         class="fr-container"
@@ -819,13 +787,54 @@ exports[`traduire renders traduire 1`] = `
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-«r7»"
+                      id="radix-«r5»"
                       type="button"
                     >
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Quel niveau je dois avoir pour devenir traducteur ?
+                      </span>
+                      <i
+                        aria-hidden="true"
+                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-«r5»"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-«r6»"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-expanded="false"
+                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-«r7»"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-start text-xl font-medium"
+                      >
+                        Combien de fiches je dois traduire ?
                       </span>
                       <i
                         aria-hidden="true"
@@ -866,7 +875,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
-                        Combien de fiches je dois traduire ?
+                        Combien de temps est nécessaire pour traduire une fiche ?
                       </span>
                       <i
                         aria-hidden="true"
@@ -907,7 +916,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
-                        Combien de temps est nécessaire pour traduire une fiche ?
+                        Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
                       </span>
                       <i
                         aria-hidden="true"
@@ -948,7 +957,7 @@ exports[`traduire renders traduire 1`] = `
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
-                        Quels sont les avantages de traduire des fiches sur Réfugiés.info ?
+                        Est-ce que de nouvelles langues seront bientôt disponibles ?
                       </span>
                       <i
                         aria-hidden="true"
@@ -967,47 +976,6 @@ exports[`traduire renders traduire 1`] = `
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
                 </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
-                    data-orientation="vertical"
-                    data-state="closed"
-                  >
-                    <button
-                      aria-expanded="false"
-                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                      data-orientation="vertical"
-                      data-radix-collection-item=""
-                      data-state="closed"
-                      id="radix-«rf»"
-                      type="button"
-                    >
-                      <span
-                        class="mb-0 grow-1 text-start text-xl font-medium"
-                      >
-                        Est-ce que de nouvelles langues seront bientôt disponibles ?
-                      </span>
-                      <i
-                        aria-hidden="true"
-                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                      />
-                    </button>
-                  </h3>
-                  <div
-                    aria-labelledby="radix-«rf»"
-                    class="content"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-«rg»"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -1018,8 +986,9 @@ exports[`traduire renders traduire 1`] = `
       class="py-10 md:py-20 bg-alt-beige-gris-galet relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="register"
+        tabindex="-1"
       />
       <div
         class="fr-container"
@@ -1051,7 +1020,7 @@ exports[`traduire renders traduire 1`] = `
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
-            id="fr-button-«rh»"
+            id="fr-button-«rf»"
           >
             Me connecter ou m'inscrire
           </button>
