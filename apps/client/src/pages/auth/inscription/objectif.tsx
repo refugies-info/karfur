@@ -60,11 +60,14 @@ const AuthLogin = () => {
     [router, userId, role, next],
   );
 
-  if (!userId) return null;
+  // Render the title even before the user is loaded so the page is never untitled
+  const seo = <SEO title="Votre objectif" />;
+
+  if (!userId) return seo;
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre objectif" />
+      {seo}
       <div className={styles.container_inner}>
         <Button
           priority="tertiary"
