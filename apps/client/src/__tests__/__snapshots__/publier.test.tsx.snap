@@ -1106,7 +1106,6 @@ exports[`publier renders publier 1`] = `
               href="https://kit.refugies.info/formation"
               rel="noopener noreferrer"
               target="_blank"
-              title="Séances découverte - Footer.open_new_window"
             >
               <div
                 class="flex h-full flex-col"
@@ -1139,6 +1138,12 @@ exports[`publier renders publier 1`] = `
                   </p>
                 </div>
               </div>
+               
+              <span
+                class="sr-only"
+              >
+                Footer.open_new_window
+              </span>
               <div
                 class="mt-6 w-full pt-2 text-right"
               >
@@ -1153,7 +1158,6 @@ exports[`publier renders publier 1`] = `
               href="https://help.refugies.info/fr/"
               rel="noopener noreferrer"
               target="_blank"
-              title="Tutoriels et centre d’aide - Footer.open_new_window"
             >
               <div
                 class="flex h-full flex-col"
@@ -1186,6 +1190,12 @@ exports[`publier renders publier 1`] = `
                   </p>
                 </div>
               </div>
+               
+              <span
+                class="sr-only"
+              >
+                Footer.open_new_window
+              </span>
               <div
                 class="mt-6 w-full pt-2 text-right"
               >
