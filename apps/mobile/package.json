@@ -23,7 +23,7 @@
     "@redux-devtools/extension": "^3.3.0",
     "@sentry/react-native": "^8.23.0",
     "algoliasearch": "^5.59.0",
-    "axios": "^1.18.1",
+    "axios": "^1.20.0",
     "expo": "~54.0.37",
     "expo-audio": "~1.1.1",
     "expo-av": "~16.0.8",
