@@ -43,7 +43,7 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
         {count && count > 0 ? <span className={styles.count}>{count}</span> : null}
 
         {icon ? (
-          <i className={icon}></i>
+          <i className={icon} aria-hidden="true"></i>
         ) : (
           value[0] && <span className={cls(styles.label, styles.limitedWidth)}>{label}</span>
         )}
