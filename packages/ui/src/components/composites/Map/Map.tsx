@@ -2,6 +2,7 @@
 import type { Poi } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import dynamic from "next/dynamic";
+import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MapContext } from "./MapContext";
 import { MapPanel } from "./MapPanel";
@@ -21,6 +22,8 @@ type MapProps = {
   mapData: Poi[];
   defaultFocusedPoi?: Poi;
   showSidebar?: boolean;
+  // Anchor of a skip link rendered between the address panel and the map
+  skipLinkTarget?: string;
 };
 
 export const Map = ({
@@ -30,7 +33,9 @@ export const Map = ({
   mapData,
   defaultFocusedPoi,
   showSidebar = true,
+  skipLinkTarget,
 }: MapProps) => {
+  const { t } = useTranslation();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [focusedPoi, setFocusedPoi] = useState<Poi | null>(null);
   const previousFullscreenState = useRef(isFullscreen);
@@ -149,12 +154,18 @@ export const Map = ({
         )}
       >
         {showSidebar && <MapPanel />}
-        <DynamicLeafletMap
-          className={cn(
-            "grid max-lg:min-h-128 max-md:h-[60vh] print:hidden",
-            isFullscreen && "lg:col-span-3",
+        {/* The map and its skip link share one grid cell so the focused link never pushes the map out of its column */}
+        <div className={cn("flex min-h-0 flex-col", isFullscreen && "lg:col-span-3")}>
+          {skipLinkTarget && (
+            <a
+              href={skipLinkTarget}
+              className="sr-only focus:not-sr-only focus:mb-4 focus:inline-block focus:underline"
+            >
+              {t("Dispositif.skipMap", "Passer la carte")}
+            </a>
           )}
-        />
+          <DynamicLeafletMap className="grid min-h-0 grow max-lg:min-h-128 max-md:h-[60vh] print:hidden" />
+        </div>
       </div>
     </MapContext.Provider>
   ) : (
