@@ -175,6 +175,7 @@ overrides:
   'decode-uri-component@<0.5.0': 0.5.0
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2': 'patches/@codegouvfr__react-dsfr@1.20.2.patch'
+  'metro@0.83.3': 'patches/metro@0.83.3.patch'
 peerDependencyRules:
   allowedVersions:
     react: '^19'

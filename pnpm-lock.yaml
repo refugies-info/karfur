@@ -93,6 +93,9 @@ patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2':
     hash: e4d4535ed52cd68ab97c98870c705dcbf7dc6756fcf49f61ab94a9464c223ae9
     path: patches/@codegouvfr__react-dsfr@1.20.2.patch
+  metro@0.83.3:
+    hash: 8d2c8fcb6601e670869d8b656034ae6eeb716e336677e5cf2d3ac8bc94d6a536
+    path: patches/metro@0.83.3.patch
 
 importers:
 
@@ -14541,7 +14544,7 @@ snapshots:
 
   '@expo/metro@54.2.0':
     dependencies:
-      metro: 0.83.3
+      metro: 0.83.3(patch_hash=8d2c8fcb6601e670869d8b656034ae6eeb716e336677e5cf2d3ac8bc94d6a536)
       metro-babel-transformer: 0.83.3
       metro-cache: 0.83.3
       metro-cache-key: 0.83.3
@@ -16821,9 +16824,7 @@ snapshots:
       metro-runtime: 0.83.8
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
     optional: true
 
   '@react-native/normalize-colors@0.81.5': {}
@@ -23026,7 +23027,7 @@ snapshots:
       connect: 3.7.0
       flow-enums-runtime: 0.0.6
       jest-validate: 29.7.0
-      metro: 0.83.3
+      metro: 0.83.3(patch_hash=8d2c8fcb6601e670869d8b656034ae6eeb716e336677e5cf2d3ac8bc94d6a536)
       metro-cache: 0.83.3
       metro-core: 0.83.3
       metro-runtime: 0.83.3
@@ -23199,7 +23200,7 @@ snapshots:
       '@babel/parser': 7.29.8
       '@babel/types': 7.29.8
       flow-enums-runtime: 0.0.6
-      metro: 0.83.3
+      metro: 0.83.3(patch_hash=8d2c8fcb6601e670869d8b656034ae6eeb716e336677e5cf2d3ac8bc94d6a536)
       metro-babel-transformer: 0.83.3
       metro-cache: 0.83.3
       metro-cache-key: 0.83.3
@@ -23232,7 +23233,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  metro@0.83.3:
+  metro@0.83.3(patch_hash=8d2c8fcb6601e670869d8b656034ae6eeb716e336677e5cf2d3ac8bc94d6a536):
     dependencies:
       '@babel/code-frame': 7.29.7
       '@babel/core': 7.29.7
