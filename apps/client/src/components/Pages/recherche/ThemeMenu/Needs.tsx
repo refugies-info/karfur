@@ -38,6 +38,8 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
+  // Same switch as Filter.tsx: with counts disabled the labels must not announce a count
+  const showCounts = process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS !== "true";
 
   const displayedNeeds = useMemo(() => {
     if (search) {
@@ -149,12 +151,18 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                 checked: allNeedsSelected,
                 onChange: toggleAllNeeds,
                 className: "!border",
-                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", "fiches")}`,
+                "aria-label": showCounts
+                  ? t("Recherche.allSheetsCount", {
+                      count:
+                        (selectedThemeId && nbDispositifsByTheme[selectedThemeId.toString()]) || 0,
+                    })
+                  : t("Recherche.all", "Tous"),
               },
             },
             ...displayedNeeds.map((need) => {
               const selected =
                 query.needs.includes(need._id) || query.themes.includes(need.theme._id);
+              const needText = need[locale]?.text || "";
 
               return {
                 label: <NeedItem need={need} />,
@@ -162,7 +170,9 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                   checked: selected,
                   onChange: () => selectNeed(need._id),
                   className: "!border",
-                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
+                  "aria-label": showCounts
+                    ? `${needText} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`
+                    : needText,
                 },
               };
             }),

@@ -57,6 +57,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             priority={vote === true ? "primary" : "secondary"}
             className={cn("flex h-[1.7rem] w-full items-end gap-2 transition-all")}
             size="small"
+            aria-pressed={vote === true}
           >
             <div className="relative" aria-hidden="true">
               <span
@@ -77,6 +78,7 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             onClick={handleClickNo}
             className={cn("flex h-[1.7rem] w-full items-end gap-2 transition-all")}
             size="small"
+            aria-pressed={vote === false}
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span>{" "}
             {t("ui.northStar_no", "Non")}

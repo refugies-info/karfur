@@ -23,7 +23,6 @@ exports[`recherche renders search results 1`] = `
   >
     <header
       aria-labelledby="search-title"
-      role="banner"
     >
       <div
         class="title"
@@ -91,7 +90,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -119,7 +117,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button values"
                 >
                   <span
@@ -151,7 +148,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -179,7 +175,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -207,7 +202,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -235,7 +229,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -263,7 +256,6 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
                   class="button"
                 >
                   <span
@@ -291,7 +283,7 @@ exports[`recherche renders search results 1`] = `
               >
                 <button
                   aria-expanded="false"
-                  aria-haspopup="menu"
+                  aria-label="Recherche.filtersAndSortModalTitle (Recherche.selectedFiltersCount)"
                   class="button"
                 >
                   <i
@@ -325,6 +317,7 @@ exports[`recherche renders search results 1`] = `
                 class="tabitemwrapper"
               >
                 <button
+                  aria-current="true"
                   class="tabitem active"
                 >
                   Filters.typeAll 
