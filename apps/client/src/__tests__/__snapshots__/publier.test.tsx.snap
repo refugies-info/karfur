@@ -80,90 +80,54 @@ exports[`publier renders publier 1`] = `
       <div
         class="container flex flex-nowrap items-start justify-between gap-10 py-4 md:py-10"
       >
-        <div
+        <nav
+          aria-label="Dispositif.summary"
           class="nav"
         >
-          <fieldset
-            class="fr-segmented fr-segmented--no-legend"
-            id="fr-segmented-«r1»"
+          <ul
+            class="fr-raw-list"
           >
-            <div
-              class="fr-segmented__elements"
-            >
-              <div
-                class="fr-segmented__element"
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#why"
               >
-                <input
-                  id="fr-segmented-«r1»-0"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-0"
-                >
-                  Pourquoi ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Pourquoi ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#required"
               >
-                <input
-                  id="fr-segmented-«r1»-1"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-1"
-                >
-                  Quels critères ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Quels critères ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#steps"
               >
-                <input
-                  id="fr-segmented-«r1»-2"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-2"
-                >
-                  Comment faire ?
-                </label>
-              </div>
-              <div
-                class="fr-segmented__element"
+                Comment faire ?
+              </a>
+            </li>
+            <li>
+              <a
+                class="fr-raw-link"
+                href="#faq"
               >
-                <input
-                  id="fr-segmented-«r1»-3"
-                  name="segmented-name-«r2»"
-                  readonly=""
-                  type="radio"
-                />
-                <label
-                  class="fr-label"
-                  for="fr-segmented-«r1»-3"
-                >
-                  Foire aux questions
-                </label>
-              </div>
-            </div>
-          </fieldset>
-        </div>
+                Foire aux questions
+              </a>
+            </li>
+          </ul>
+        </nav>
         <div
           class="hidden shrink-0 md:block"
         >
           <a
             class="fr-btn fr-icon-arrow-right-line fr-btn--icon-right"
             href="#register"
-            id="fr-button-«r3»"
+            id="fr-button-«r1»"
           >
             Rédiger une fiche
           </a>
@@ -174,8 +138,9 @@ exports[`publier renders publier 1`] = `
       class="relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="why"
+        tabindex="-1"
       />
       <div
         class="py-10 md:py-20"
@@ -208,14 +173,14 @@ exports[`publier renders publier 1`] = `
                     data-state="open"
                   >
                     <button
-                      aria-controls="radix-«r5»"
+                      aria-controls="radix-«r3»"
                       aria-disabled="true"
                       aria-expanded="true"
                       class="flex w-full items-center gap-4 border-t px-4 py-3 bg-action-low-blue-france active:bg-action-low-blue-france-active hover:bg-action-low-blue-france-hover border-artwork-minor-blue-france"
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="open"
-                      id="radix-«r4»"
+                      id="radix-«r2»"
                       type="button"
                     >
                       <span
@@ -230,11 +195,11 @@ exports[`publier renders publier 1`] = `
                     </button>
                   </h3>
                   <div
-                    aria-labelledby="radix-«r4»"
+                    aria-labelledby="radix-«r2»"
                     class="content"
                     data-orientation="vertical"
                     data-state="open"
-                    id="radix-«r5»"
+                    id="radix-«r3»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none;"
                   >
@@ -265,13 +230,54 @@ exports[`publier renders publier 1`] = `
                       data-orientation="vertical"
                       data-radix-collection-item=""
                       data-state="closed"
-                      id="radix-«r6»"
+                      id="radix-«r4»"
                       type="button"
                     >
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
                         Donnez de la visibilité à votre action
+                      </span>
+                      <i
+                        aria-hidden="true"
+                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                      />
+                    </button>
+                  </h3>
+                  <div
+                    aria-labelledby="radix-«r4»"
+                    class="content"
+                    data-orientation="vertical"
+                    data-state="closed"
+                    hidden=""
+                    id="radix-«r5»"
+                    role="region"
+                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                  />
+                </div>
+                <div
+                  class=""
+                  data-orientation="vertical"
+                  data-state="closed"
+                >
+                  <h3
+                    class="!mb-0"
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <button
+                      aria-expanded="false"
+                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                      data-orientation="vertical"
+                      data-radix-collection-item=""
+                      data-state="closed"
+                      id="radix-«r6»"
+                      type="button"
+                    >
+                      <span
+                        class="mb-0 grow-1 text-start text-xl font-medium"
+                      >
+                        Recevez des candidatures adaptées
                       </span>
                       <i
                         aria-hidden="true"
@@ -312,7 +318,7 @@ exports[`publier renders publier 1`] = `
                       <span
                         class="mb-0 grow-1 text-start text-xl font-medium"
                       >
-                        Recevez des candidatures adaptées
+                        Participez à un service public ouvert
                       </span>
                       <i
                         aria-hidden="true"
@@ -327,47 +333,6 @@ exports[`publier renders publier 1`] = `
                     data-state="closed"
                     hidden=""
                     id="radix-«r9»"
-                    role="region"
-                    style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                  />
-                </div>
-                <div
-                  class=""
-                  data-orientation="vertical"
-                  data-state="closed"
-                >
-                  <h3
-                    class="!mb-0"
-                    data-orientation="vertical"
-                    data-state="closed"
-                  >
-                    <button
-                      aria-expanded="false"
-                      class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                      data-orientation="vertical"
-                      data-radix-collection-item=""
-                      data-state="closed"
-                      id="radix-«ra»"
-                      type="button"
-                    >
-                      <span
-                        class="mb-0 grow-1 text-start text-xl font-medium"
-                      >
-                        Participez à un service public ouvert
-                      </span>
-                      <i
-                        aria-hidden="true"
-                        class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                      />
-                    </button>
-                  </h3>
-                  <div
-                    aria-labelledby="radix-«ra»"
-                    class="content"
-                    data-orientation="vertical"
-                    data-state="closed"
-                    hidden=""
-                    id="radix-«rb»"
                     role="region"
                     style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                   />
@@ -523,8 +488,9 @@ exports[`publier renders publier 1`] = `
       class="py-10 md:py-20 relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="required"
+        tabindex="-1"
       />
       <div
         class="fr-container"
@@ -745,7 +711,7 @@ exports[`publier renders publier 1`] = `
           <a
             class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
             href="https://help.refugies.info/fr/article/charte-editoriale-comment-bien-rediger-une-fiche-1twbzhu/"
-            id="fr-button-«rc»"
+            id="fr-button-«ra»"
           >
             Lire la charte éditoriale complète
           </a>
@@ -756,8 +722,9 @@ exports[`publier renders publier 1`] = `
       class="relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="steps"
+        tabindex="-1"
       />
       <div
         class="py-10 md:py-20 bg-alt-beige-gris-galet"
@@ -798,7 +765,7 @@ exports[`publier renders publier 1`] = `
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="#register"
-                id="fr-button-«rd»"
+                id="fr-button-«rb»"
               >
                 Créer mon compte
               </a>
@@ -852,7 +819,7 @@ exports[`publier renders publier 1`] = `
               <a
                 class="fr-btn fr-btn--tertiary fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
                 href="https://help.refugies.info/fr/category/charte-editoriale-2fq3x7/"
-                id="fr-button-«re»"
+                id="fr-button-«rc»"
               >
                 Voir les bonnes pratiques
               </a>
@@ -1316,8 +1283,9 @@ exports[`publier renders publier 1`] = `
         class="py-10 md:py-20 relative"
       >
         <span
-          class="absolute -top-[96px] md:-top-[120px]"
+          class="absolute -top-[96px] outline-none md:-top-[120px]"
           id="faq"
+          tabindex="-1"
         />
         <div
           class="fr-container"
@@ -1355,13 +1323,54 @@ exports[`publier renders publier 1`] = `
                         data-orientation="vertical"
                         data-radix-collection-item=""
                         data-state="closed"
-                        id="radix-«rf»"
+                        id="radix-«rd»"
                         type="button"
                       >
                         <span
                           class="mb-0 grow-1 text-start text-xl font-medium"
                         >
                           Pourquoi je dois écrire moi-même la fiche ?
+                        </span>
+                        <i
+                          aria-hidden="true"
+                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
+                        />
+                      </button>
+                    </h3>
+                    <div
+                      aria-labelledby="radix-«rd»"
+                      class="content"
+                      data-orientation="vertical"
+                      data-state="closed"
+                      hidden=""
+                      id="radix-«re»"
+                      role="region"
+                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+                    />
+                  </div>
+                  <div
+                    class=""
+                    data-orientation="vertical"
+                    data-state="closed"
+                  >
+                    <h3
+                      class="!mb-0"
+                      data-orientation="vertical"
+                      data-state="closed"
+                    >
+                      <button
+                        aria-expanded="false"
+                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
+                        data-orientation="vertical"
+                        data-radix-collection-item=""
+                        data-state="closed"
+                        id="radix-«rf»"
+                        type="button"
+                      >
+                        <span
+                          class="mb-0 grow-1 text-start text-xl font-medium"
+                        >
+                          Je ne suis pas à l'aise avec le numérique, est-ce facile ?
                         </span>
                         <i
                           aria-hidden="true"
@@ -1402,7 +1411,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="mb-0 grow-1 text-start text-xl font-medium"
                         >
-                          Je ne suis pas à l'aise avec le numérique, est-ce facile ?
+                          En combien de temps ma fiche sera publiée ?
                         </span>
                         <i
                           aria-hidden="true"
@@ -1443,7 +1452,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="mb-0 grow-1 text-start text-xl font-medium"
                         >
-                          En combien de temps ma fiche sera publiée ?
+                          Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
                         </span>
                         <i
                           aria-hidden="true"
@@ -1484,7 +1493,7 @@ exports[`publier renders publier 1`] = `
                         <span
                           class="mb-0 grow-1 text-start text-xl font-medium"
                         >
-                          Est-ce que je peux écrire une fiche pour une structure dont je ne fais pas partie ?
+                          Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
                         </span>
                         <i
                           aria-hidden="true"
@@ -1503,47 +1512,6 @@ exports[`publier renders publier 1`] = `
                       style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
                     />
                   </div>
-                  <div
-                    class=""
-                    data-orientation="vertical"
-                    data-state="closed"
-                  >
-                    <h3
-                      class="!mb-0"
-                      data-orientation="vertical"
-                      data-state="closed"
-                    >
-                      <button
-                        aria-expanded="false"
-                        class="border-default-grey flex w-full items-center gap-4 border-t px-4 py-3"
-                        data-orientation="vertical"
-                        data-radix-collection-item=""
-                        data-state="closed"
-                        id="radix-«rn»"
-                        type="button"
-                      >
-                        <span
-                          class="mb-0 grow-1 text-start text-xl font-medium"
-                        >
-                          Pourquoi est-il nécessaire de simplifier le contenu de ma fiche ?
-                        </span>
-                        <i
-                          aria-hidden="true"
-                          class="flex before:!h-4 before:!w-4 fr-icon-add-line"
-                        />
-                      </button>
-                    </h3>
-                    <div
-                      aria-labelledby="radix-«rn»"
-                      class="content"
-                      data-orientation="vertical"
-                      data-state="closed"
-                      hidden=""
-                      id="radix-«ro»"
-                      role="region"
-                      style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
-                    />
-                  </div>
                 </div>
               </div>
             </div>
@@ -1554,7 +1522,7 @@ exports[`publier renders publier 1`] = `
             <a
               class="fr-btn fr-btn--tertiary-no-outline fr-btn--lg fr-icon-arrow-right-line fr-btn--icon-right"
               href="https://help.refugies.info/fr/"
-              id="fr-button-«rp»"
+              id="fr-button-«rn»"
             >
               Voir le centre d’aide
             </a>
@@ -1566,8 +1534,9 @@ exports[`publier renders publier 1`] = `
       class="py-10 md:py-20 bg-alt-beige-gris-galet relative"
     >
       <span
-        class="absolute -top-[96px] md:-top-[120px]"
+        class="absolute -top-[96px] outline-none md:-top-[120px]"
         id="register"
+        tabindex="-1"
       />
       <div
         class="fr-container"
@@ -1599,7 +1568,7 @@ exports[`publier renders publier 1`] = `
           </p>
           <button
             class="fr-btn fr-icon-account-pin-circle-line fr-btn--icon-right"
-            id="fr-button-«rq»"
+            id="fr-button-«ro»"
           >
             Me connecter ou m'inscrire
           </button>
