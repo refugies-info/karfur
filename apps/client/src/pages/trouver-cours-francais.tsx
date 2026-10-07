@@ -42,9 +42,17 @@ interface Props {
 const LearnFrench = (props: Props) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady } =
-    useFrenchCourseFilters();
-  const courseSearch = useCourseSearch(filters, search, activeTab, isReady);
+  const {
+    filters,
+    setFilters,
+    search,
+    debouncedSearch,
+    setSearch,
+    activeTab,
+    setActiveTab,
+    isReady,
+  } = useFrenchCourseFilters();
+  const courseSearch = useCourseSearch(filters, debouncedSearch, activeTab, isReady);
   useAutoSwitchToOnDemandTab({
     filters,
     activeTab,
@@ -77,7 +85,13 @@ const LearnFrench = (props: Props) => {
   });
 
   const resetFilters = () =>
-    setFilters({ departments: [], cities: [], frenchLevel: [], categories: [], publicFilter: [] });
+    setFilters({
+      departments: [],
+      cities: [],
+      frenchLevel: [],
+      categories: [],
+      publicFilter: [],
+    });
 
   return (
     <div className="w-full">
