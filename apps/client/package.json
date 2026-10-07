@@ -154,7 +154,7 @@
     "redux-mock-store": "^1.5.5",
     "redux-saga-test-plan": "^4.0.6",
     "sass": "^1.105.0",
-    "sharp": "^0.35.3",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3",
     "typescript-plugin-css-modules": "^5.2.0",
