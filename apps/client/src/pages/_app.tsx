@@ -19,6 +19,7 @@ import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Layout/Layout";
+import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
 import {
   ToastPresenceProvider,
   ToastViewportWhenNeeded,
@@ -126,6 +127,10 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           <TooltipProvider delayDuration={250}>
             <ScreenReaderAnnouncerProvider>
               <Provider store={store}>
+                {/* Rendered in _app, not _document, so the links follow client navigations (RGAA 6.1). */}
+                <SkipLinksNavigation
+                  hasNavigationAndFooter={!router.pathname.startsWith("/auth")}
+                />
                 {getLayout(<Component history={history} {...props.pageProps} />)}
               </Provider>
 
