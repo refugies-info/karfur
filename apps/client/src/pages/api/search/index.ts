@@ -1,6 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "~/lib/db";
-import { buildQueryParams, computeSearchResults, type SearchResponse } from "~/lib/search-helpers";
+import {
+  buildQueryParams,
+  computeSearchResults,
+  DEFAULT_SEARCH_LIMIT,
+  MAX_SEARCH_LIMIT,
+  parsePaginationParam,
+  type SearchResponse,
+} from "~/lib/search-helpers";
 
 const handler = async (
   req: NextApiRequest,
@@ -14,8 +21,8 @@ const handler = async (
     const conn = await dbConnect();
     const queryParams = buildQueryParams(req.query);
     const { type, sort, locale } = req.query;
-    const page = parseInt(req.query.page as string, 10) || 1;
-    const limit = parseInt(req.query.limit as string, 10) || 10;
+    const page = parsePaginationParam(req.query.page, 1);
+    const limit = parsePaginationParam(req.query.limit, DEFAULT_SEARCH_LIMIT, MAX_SEARCH_LIMIT);
 
     const response = await computeSearchResults(conn, queryParams, {
       page,
