@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import Image from "~/components/UI/Image";
-import { useLocale, useSanitizedContent, useUtmz } from "~/hooks";
+import { SHORT_TEXT_ALLOWED_TAGS, useLocale, useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
@@ -71,9 +71,15 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
     };
   }, [props.dispositif.metadatas, props.selectedDepartment, isDispositif, t]);
 
-  const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
-  const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
-  const safeAbstract = useSanitizedContent(props.dispositif.abstract);
+  const safeSponsorName = useSanitizedContent(
+    props.dispositif?.sponsor?.nom,
+    SHORT_TEXT_ALLOWED_TAGS,
+  );
+  const safeTitreInformatif = useSanitizedContent(
+    props.dispositif.titreInformatif,
+    SHORT_TEXT_ALLOWED_TAGS,
+  );
+  const safeAbstract = useSanitizedContent(props.dispositif.abstract, SHORT_TEXT_ALLOWED_TAGS);
   const cardImageUrl = useCardImageUrl(theme, props.dispositif.typeContenu);
 
   const defaultImage = isDispositif ? defaultStructureImage : demarcheIcon;
