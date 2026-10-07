@@ -93,10 +93,33 @@
   }
 }
 
-.radioContainer {
-  padding-inline: u(2);
+// Fieldsets of the mobile dialog carry their own legend, styled like DialogMenuLayout's sub-title
+.dialogGroup {
+  &:not(:first-child) {
+    margin-top: u(8);
+  }
 
-  & fieldset {
-    margin-block: u(1);
+  .dialogLegend {
+    @include dsfr-text("large");
+
+    color: black;
+    margin: 0 0 u(2);
+    padding: 0 u(2);
+  }
+
+  // DSFR forces fr-text--regular (layered !important) on legends: bold has to live on a child node
+  .dialogLegendText {
+    font-weight: bold;
+  }
+}
+
+// Single "sort by" radio fieldset: same offsets as the former one-fieldset-per-option layout
+fieldset.sortGroup {
+  margin: 0 (-(u(1))) u(1);
+}
+
+.sortOptions {
+  :global(.fr-radio-group) + :global(.fr-radio-group) {
+    margin-top: -(u(2));
   }
 }
