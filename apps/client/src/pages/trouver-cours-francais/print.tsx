@@ -24,8 +24,14 @@ const PRINT_RESULTS_LIMIT = 500;
 const PrintCourseList = () => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { filters, search, activeTab, isReady } = useFrenchCourseFilters();
-  const courseSearch = useCourseSearch(filters, search, activeTab, isReady, PRINT_RESULTS_LIMIT);
+  const { filters, debouncedSearch, activeTab, isReady } = useFrenchCourseFilters();
+  const courseSearch = useCourseSearch(
+    filters,
+    debouncedSearch,
+    activeTab,
+    isReady,
+    PRINT_RESULTS_LIMIT,
+  );
 
   const allNeeds = useSelector(needsSelector);
   const categoryOptions = useMemo(
