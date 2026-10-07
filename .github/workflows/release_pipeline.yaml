@@ -211,3 +211,33 @@ jobs:
           else
             eas build --platform all --profile production --non-interactive --no-wait --auto-submit
           fi
+
+  # ─── Slack — reports the pipeline outcome, whatever it is ──────────────────
+  notify-slack:
+    name: Notify Slack
+    needs: [changes, deploy-backend, deploy-frontend, deploy-mobile]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post deployment result
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          ENVIRONMENT: ${{ github.ref_name == 'production' && 'Production' || 'Staging' }}
+          FAILED: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+          BACKEND: ${{ needs.deploy-backend.result }}
+          FRONTEND: ${{ needs.deploy-frontend.result }}
+          MOBILE: ${{ needs.deploy-mobile.result }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          if [[ "$FAILED" == "true" ]]; then
+            TITLE="❌ $ENVIRONMENT deployment failed"
+          else
+            TITLE="✅ $ENVIRONMENT deployment succeeded"
+          fi
+
+          TEXT=$(printf '*%s*\nBackend: %s · Frontend: %s · Mobile: %s\n%s\n<%s|View the run>' \
+            "$TITLE" "$BACKEND" "$FRONTEND" "$MOBILE" "${COMMIT_MESSAGE%%$'\n'*}" "$RUN_URL")
+
+          jq -n --arg text "$TEXT" '{text: $text}' \
+            | curl --fail --silent --show-error -X POST -H 'Content-Type: application/json' --data @- "$SLACK_WEBHOOK_URL"
