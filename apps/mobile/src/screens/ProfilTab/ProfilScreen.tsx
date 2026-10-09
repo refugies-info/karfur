@@ -31,7 +31,6 @@ import {
 import { styles } from "~/theme";
 import UserProfileIcon from "~/theme/images/profile/user-profile.svg";
 import type { ProfileParamList } from "~/types/navigation";
-import { updateAppUser } from "~/utils/API";
 
 // TODO: use separator from components
 const Separator = styled.View`
@@ -82,14 +81,6 @@ export const ProfilScreen: React.FC<
     dispatch(removeUserFrenchLevelActionCreator(true));
     dispatch(removeUserAgeActionCreator(true));
     dispatch(removeUserLocationActionCreator(true));
-    return updateAppUser({
-      selectedLanguage: undefined,
-      city: undefined,
-      department: undefined,
-      age: undefined,
-      frenchLevel: undefined,
-      expoPushToken: undefined,
-    });
   };
 
   const reinitializeApp = () => {
