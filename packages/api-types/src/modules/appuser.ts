@@ -6,7 +6,7 @@ import type { Languages } from "../generics";
 export interface AppUserRequest {
   city?: string | null;
   department?: string | null;
-  selectedLanguage?: Languages;
+  selectedLanguage?: Languages | null;
   age?: string | null;
   frenchLevel?: string | null;
   expoPushToken?: string;

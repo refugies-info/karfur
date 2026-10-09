@@ -1,5 +1,8 @@
 import { AppUserModel } from "@refugies-info/mongo";
-import { updateNotificationsSettings } from "~/modules/appusers/appusers.repository";
+import {
+  updateNotificationsSettings,
+  updateOrCreateAppUser,
+} from "~/modules/appusers/appusers.repository";
 
 describe("appusers.repository", () => {
   beforeEach(async () => {
@@ -80,5 +83,22 @@ describe("appusers.repository", () => {
 
     const saved = await AppUserModel.findOne({ uid }).lean();
     expect(saved?.notificationsSettings).toEqual(updated);
+  });
+
+  it("should not delete other app users when no push token is sent", async () => {
+    await AppUserModel.create({ uid: "other-without-token" });
+    await AppUserModel.create({ uid: "current" });
+
+    await updateOrCreateAppUser({ uid: "current", age: "18 à 25 ans" }, []);
+
+    expect(await AppUserModel.countDocuments({ uid: "other-without-token" })).toBe(1);
+  });
+
+  it("should delete the stale app user sharing the same push token", async () => {
+    await AppUserModel.create({ uid: "stale", expoPushToken: "ExponentPushToken[same]" });
+
+    await updateOrCreateAppUser({ uid: "current", expoPushToken: "ExponentPushToken[same]" }, []);
+
+    expect(await AppUserModel.countDocuments({ uid: "stale" })).toBe(0);
   });
 });
