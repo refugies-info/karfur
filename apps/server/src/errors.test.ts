@@ -135,6 +135,20 @@ describe("serverErrorHandler - remontée Sentry", () => {
     expect(Sentry.captureException).not.toHaveBeenCalled();
   });
 
+  it("ignores the 2FA step of the login flow and keeps the mfaCode out of logs", () => {
+    const data = { email: "user@example.com", code: "24231651" };
+    const error = new InvalidRequestError("No code supplied", "NO_CODE_SUPPLIED", data);
+    const res = buildResponse();
+    serverErrorHandler(error, req, res, jest.fn());
+
+    expect(Sentry.captureException).not.toHaveBeenCalled();
+    expect(logger.error).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({ data: undefined }),
+    );
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ data }));
+  });
+
   it("laisse les 5xx au handler express pour éviter les doublons", () => {
     serverErrorHandler(new TypeError("boom"), req, buildResponse(), jest.fn());
 
