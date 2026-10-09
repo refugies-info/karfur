@@ -2,6 +2,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import { useNotificationsStatus } from "~/hooks/useNotificationsStatus";
 
+export const NOTIFICATIONS_MODAL_SEEN_KEY = "notificationsModal";
+
 const useNotifcationsModal = (
   delay: number,
 ): {
@@ -13,11 +15,11 @@ const useNotifcationsModal = (
 
   useEffect(() => {
     const showModal = async () => {
-      const keyExists = await AsyncStorage.getItem("notificationsModal");
+      const keyExists = await AsyncStorage.getItem(NOTIFICATIONS_MODAL_SEEN_KEY);
       if (!accessGranted) {
         if (!keyExists) {
           setTimeout(() => {
-            AsyncStorage.setItem("notificationsModal", "true").then(() => {
+            AsyncStorage.setItem(NOTIFICATIONS_MODAL_SEEN_KEY, "true").then(() => {
               setNotificationsModalVisible(true);
             });
           }, delay);
