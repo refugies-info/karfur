@@ -24,7 +24,7 @@ const itemsToSave: Partial<Record<Item, keyof AppUserRequest>> = {
 export const saveItemInAsyncStorage = async (item: Item, value: string) => {
   await AsyncStorage.setItem(item, value);
   const apiField = itemsToSave[item];
-  if (apiField) await updateAppUser({ [apiField]: null });
+  if (apiField) await updateAppUser({ [apiField]: value });
 };
 
 export const getItemInAsyncStorage = async (item: Item) => await AsyncStorage.getItem(item);
@@ -32,5 +32,5 @@ export const getItemInAsyncStorage = async (item: Item) => await AsyncStorage.ge
 export const deleteItemInAsyncStorage = async (item: Item) => {
   await AsyncStorage.removeItem(item);
   const apiField = itemsToSave[item];
-  if (apiField) await updateAppUser({ [apiField]: undefined });
+  if (apiField) await updateAppUser({ [apiField]: null });
 };
