@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import type { AppUserRequest } from "@refugies-info/api-types";
 import { updateAppUser } from "~/utils/API";
 
 type Item =
@@ -12,38 +13,24 @@ type Item =
   | "FAVORITES"
   | "LOCALIZED_WARNING_HIDDEN";
 
-const itemsToSave = {
+const itemsToSave: Partial<Record<Item, keyof AppUserRequest>> = {
   AGE: "age",
   CITY: "city",
   DEP: "department",
-  FAVORITES: "FAVORITES",
   FRENCH_LEVEL: "frenchLevel",
-  HAS_USER_NEW_FAVORITES: "HAS_USER_NEW_FAVORITES",
-  HAS_USER_SEEN_ONBOARDING: "HAS_USER_SEEN_ONBOARDING",
-  LOCALIZED_WARNING_HIDDEN: "LOCALIZED_WARNING_HIDDEN",
   SELECTED_LANGUAGE: "selectedLanguage",
 } as const;
 
-type ItemsToSave = keyof typeof itemsToSave;
-
-export const saveItemInAsyncStorage = async (item: ItemsToSave, value: string) => {
+export const saveItemInAsyncStorage = async (item: Item, value: string) => {
   await AsyncStorage.setItem(item, value);
-
-  if (Object.keys(itemsToSave).includes(item)) {
-    await updateAppUser({
-      [itemsToSave[item]]: value === null ? undefined : value,
-    });
-  }
+  const apiField = itemsToSave[item];
+  if (apiField) await updateAppUser({ [apiField]: null });
 };
 
 export const getItemInAsyncStorage = async (item: Item) => await AsyncStorage.getItem(item);
 
-export const deleteItemInAsyncStorage = async (item: ItemsToSave) => {
+export const deleteItemInAsyncStorage = async (item: Item) => {
   await AsyncStorage.removeItem(item);
-
-  if (Object.keys(itemsToSave).includes(item)) {
-    await updateAppUser({
-      [itemsToSave[item]]: undefined,
-    });
-  }
+  const apiField = itemsToSave[item];
+  if (apiField) await updateAppUser({ [apiField]: undefined });
 };
