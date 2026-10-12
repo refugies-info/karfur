@@ -159,6 +159,7 @@ const LearnFrench = (props: Props) => {
                 page={courseSearch.currentPage}
                 loading={courseSearch.isLoading}
                 loadingMore={courseSearch.isLoadingMore}
+                error={courseSearch.error}
                 hasMore={courseSearch.currentPage < courseSearch.totalPageCount}
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}

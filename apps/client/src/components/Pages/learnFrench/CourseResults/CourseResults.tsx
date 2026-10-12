@@ -2,9 +2,8 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
-import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
-import Image from "~/components/UI/Image";
+import { NoResultsPlaceholder } from "~/components/UI/NoResultsPlaceholder";
 import { RESULTS_PER_PAGE } from "~/hooks/learnFrench/useCourseSearch";
 import { CourseCard } from "./CourseCard";
 import { ShareResultsButtons } from "./ShareResultsButtons";
@@ -15,6 +14,7 @@ interface Props {
   page: number;
   loading: boolean;
   loadingMore: boolean;
+  error: boolean;
   hasMore: boolean;
   onLoadMore: () => void;
   onResetFilters: () => void;
@@ -75,36 +75,44 @@ export const CourseResults = (props: Props) => {
     return <p className="text-default-grey">{t("Recherche.loading", "Chargement...")}</p>;
   }
 
+  if (props.error) {
+    return (
+      <NoResultsPlaceholder
+        role="alert"
+        title={t("LearnFrench.results_errorTitle", "Les cours n'ont pas pu être chargés.")}
+        text={t("LearnFrench.results_errorText", "Veuillez réessayer dans quelques instants.")}
+      />
+    );
+  }
+
   if (props.results.length === 0) {
     const isUpcomingEmpty = Boolean(props.onSeeOtherCourses);
 
     return (
-      <div className="flex flex-col items-center gap-10 py-14">
-        <Image src={TutoImg} width={176} height={120} alt="" />
-        <div className="text-chapo text-default-grey flex flex-col items-center gap-1.5 text-center">
-          <h2 className="text-chapo mb-0 font-bold">
-            {isUpcomingEmpty
-              ? t(
-                  "LearnFrench.results_noUpcomingTitle",
-                  "De nouveaux cours seront ajoutés prochainement.",
-                )
-              : t(
-                  "Recherche.noResultTitle",
-                  "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
-                )}
-          </h2>
-          <p className="mb-0">
-            {isUpcomingEmpty
-              ? t(
-                  "LearnFrench.results_noUpcomingText",
-                  "En attendant, d’autres sont peut-être ouverts près de chez vous !",
-                )
-              : t(
-                  "Recherche.noResultText",
-                  "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
-                )}
-          </p>
-        </div>
+      <NoResultsPlaceholder
+        title={
+          isUpcomingEmpty
+            ? t(
+                "LearnFrench.results_noUpcomingTitle",
+                "De nouveaux cours seront ajoutés prochainement.",
+              )
+            : t(
+                "Recherche.noResultTitle",
+                "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
+              )
+        }
+        text={
+          isUpcomingEmpty
+            ? t(
+                "LearnFrench.results_noUpcomingText",
+                "En attendant, d’autres sont peut-être ouverts près de chez vous !",
+              )
+            : t(
+                "Recherche.noResultText",
+                "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
+              )
+        }
+      >
         {props.onSeeOtherCourses ? (
           <Button priority="tertiary" onClick={props.onSeeOtherCourses}>
             {t("LearnFrench.results_seeOtherCourses", "Voir les autres cours")}
@@ -119,7 +127,7 @@ export const CourseResults = (props: Props) => {
             {t("Recherche.resetFilters", "Effacer les filtres")}
           </Button>
         )}
-      </div>
+      </NoResultsPlaceholder>
     );
   }
 

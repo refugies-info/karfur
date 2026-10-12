@@ -908,6 +908,8 @@
     "results_noUpcomingTitle": "De nouveaux cours seront ajoutés prochainement.",
     "results_noUpcomingText": "En attendant, d’autres sont peut-être ouverts près de chez vous !",
     "results_seeOtherCourses": "Voir les autres cours",
+    "results_errorTitle": "Oups ! Une erreur est survenue.",
+    "results_errorText": "Nous n'avons pas pu charger les résultats. Veuillez réessayer dans quelques instants ou vérifier votre connexion internet.",
     "share_title": "Partager la liste :",
     "share_action": "Partager la liste",
     "filter_remove": "Retirer le filtre {{label}}",
