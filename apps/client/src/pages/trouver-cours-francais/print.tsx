@@ -46,14 +46,14 @@ const PrintCourseList = () => {
   // The effect re-runs whenever the results change: open the print dialog only once
   const hasPrinted = useRef(false);
   useEffect(() => {
-    if (hasPrinted.current || !isReady || courseSearch.loading) return;
+    if (hasPrinted.current || !isReady || courseSearch.isLoading) return;
     hasPrinted.current = true;
     window.print();
-  }, [isReady, courseSearch.loading]);
+  }, [isReady, courseSearch.isLoading]);
 
   return (
     <div className="mx-auto max-w-[1000px] px-8 py-10">
-      {!isReady || courseSearch.loading ? (
+      {!isReady || courseSearch.isLoading ? (
         <p className="text-default-grey">{t("Recherche.loading", "Chargement...")}</p>
       ) : (
         <PrintableCourseList

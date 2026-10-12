@@ -57,8 +57,8 @@ const LearnFrench = (props: Props) => {
     filters,
     activeTab,
     setActiveTab,
-    total: courseSearch.total,
-    isSettled: courseSearch.isSettled,
+    total: courseSearch.totalResultsCount,
+    isSettled: !courseSearch.isLoading,
   });
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
@@ -143,7 +143,7 @@ const LearnFrench = (props: Props) => {
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
             <div className="mt-4 lg:hidden">
               <MobileToolbar
-                total={courseSearch.total}
+                total={courseSearch.totalResultsCount}
                 filterGroupCount={filterGroupCount}
                 badges={badges}
                 search={search}
@@ -154,11 +154,11 @@ const LearnFrench = (props: Props) => {
             <div className="mt-6">
               <CourseResults
                 results={courseSearch.results}
-                total={courseSearch.total}
-                page={courseSearch.page}
-                loading={courseSearch.loading}
-                loadingMore={courseSearch.loadingMore}
-                hasMore={courseSearch.page < courseSearch.pageCount}
+                total={courseSearch.totalResultsCount}
+                page={courseSearch.currentPage}
+                loading={courseSearch.isLoading}
+                loadingMore={courseSearch.isLoadingMore}
+                hasMore={courseSearch.currentPage < courseSearch.totalPageCount}
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}
                 onSeeOtherCourses={
@@ -175,7 +175,7 @@ const LearnFrench = (props: Props) => {
         <FullScreenPanel
           open={isFiltersPanelOpen}
           title={t("LearnFrench.filters_title", "Filtrer")}
-          resultCount={courseSearch.total}
+          resultCount={courseSearch.totalResultsCount}
           onClose={() => setIsFiltersPanelOpen(false)}
           onReset={resetFilters}
         >
@@ -192,7 +192,7 @@ const LearnFrench = (props: Props) => {
           open={isLocationPanelOpen}
           departments={filters.departments}
           cities={filters.cities}
-          resultCount={courseSearch.total}
+          resultCount={courseSearch.totalResultsCount}
           onChange={(departments, cities) => setFilters({ ...filters, departments, cities })}
           onClose={() => setIsLocationPanelOpen(false)}
         />
