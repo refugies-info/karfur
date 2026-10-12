@@ -4,7 +4,7 @@ import { useTranslation } from "next-i18next";
 import { useEffect, useRef, useState } from "react";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { NoResultsPlaceholder } from "~/components/UI/NoResultsPlaceholder";
-import { RESULTS_PER_PAGE } from "~/hooks/learnFrench/useCourseSearch";
+import { RESULTS_PER_PAGE } from "~/data/learnFrench";
 import { CourseCard } from "./CourseCard";
 import { ShareResultsButtons } from "./ShareResultsButtons";
 

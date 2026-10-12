@@ -7,6 +7,8 @@ import {
 import { LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
 import type { PaginatedResponse } from "~/hooks/usePaginatedResults";
 
+export const COURSE_SEARCH_CACHE_KEY = "french-course-search";
+
 export type CourseSearchResponse = PaginatedResponse<SimpleDispositif>;
 
 export interface CourseSearchParams {

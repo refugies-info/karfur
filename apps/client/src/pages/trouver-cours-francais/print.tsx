@@ -1,3 +1,4 @@
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import type { ReactElement } from "react";
@@ -6,12 +7,18 @@ import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { PrintableCourseList } from "~/components/Pages/learnFrench/CourseResults/PrintableCourseList";
 import { LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
-import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
+import { usePaginatedResults } from "~/hooks/usePaginatedResults";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildNeedLabels } from "~/lib/learnFrench/needLabels";
 import { wrapper } from "~/services/configureStore";
+import {
+  COURSE_SEARCH_CACHE_KEY,
+  type CourseSearchParams,
+  type CourseSearchResponse,
+  fetchCourseSearchPage,
+} from "~/services/FrenchCourseSearch/frenchCourseSearch.service";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import type { PageOptions } from "~/types/interface";
@@ -25,13 +32,18 @@ const PrintCourseList = () => {
   const { t } = useTranslation();
   const locale = useLocale();
   const { filters, debouncedSearch, activeTab, isReady } = useFrenchCourseFilters();
-  const courseSearch = useCourseSearch(
-    filters,
-    debouncedSearch,
-    activeTab,
-    isReady,
-    PRINT_RESULTS_LIMIT,
-  );
+  const courseSearch = usePaginatedResults<
+    CourseSearchParams,
+    SimpleDispositif,
+    CourseSearchResponse
+  >({
+    cacheKey: COURSE_SEARCH_CACHE_KEY,
+    params: isReady
+      ? { filters, search: debouncedSearch, activeTab, locale, limit: PRINT_RESULTS_LIMIT }
+      : null,
+    fetchPage: fetchCourseSearchPage,
+    logLabel: "[trouver-cours-francais/print]",
+  });
 
   const allNeeds = useSelector(needsSelector);
   const categoryOptions = useMemo(
