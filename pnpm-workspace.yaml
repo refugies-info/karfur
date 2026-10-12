@@ -132,17 +132,17 @@ overrides:
   '@types/react-dom': '~19.1.7'
   'path-to-regexp@<1': 0.1.13
   '@smithy/config-resolver@<4.4.0': '^4.4.0'
-  'smol-toml@<1.6.1': '^1.6.1'
+  'smol-toml@<1.9.0': 1.9.0
   'yaml@>=2.0.0 <2.8.3': '^2.8.3'
   'yaml@<1.10.3': 1.10.3
   lodash: '^4.18.1'
-  next: 15.5.24
+  next: 15.5.27
   axios: 1.20.0
   vite: '^7.3.6'
   '@hapi/content@<=6.0.1': 6.0.2
   '@hapi/wreck@<18.1.2': 18.1.2
   '@grpc/grpc-js@<1.13.6': 1.13.6
-  'joi@<18.2.6': 18.2.6
+  'joi@<18.2.9': 18.2.9
   'esbuild@<0.28.1': 0.28.1
   protobufjs: 7.6.5
   '@protobufjs/utf8': 1.1.1
@@ -160,7 +160,7 @@ overrides:
   follow-redirects: 1.16.0
   uuid: 11.1.1
   'check-dependency-version-consistency>js-yaml': 4.3.2
-  shell-quote: 1.10.0
+  shell-quote: 1.11.0
   websocket-driver: 0.7.5
   sharp: '^0.35.4'
   sanitize-html: '^2.17.7'
@@ -171,8 +171,10 @@ overrides:
   'ws@>=7.0.0 <7.5.13': 7.5.13
   'ws@>=6.0.0 <6.2.6': 6.2.6
   'browserslist@<4.28.7': 4.28.8
-  'postcss-selector-parser@>=7.1.0 <7.1.3': '^7.1.5'
+  'postcss-selector-parser@<7.1.6': 7.1.6
   'decode-uri-component@<0.5.0': 0.5.0
+  'proxy-addr@<2.0.8': 2.0.8
+  'source-map-js@<1.2.2': 1.2.2
 patchedDependencies:
   '@codegouvfr/react-dsfr@1.20.2': 'patches/@codegouvfr__react-dsfr@1.20.2.patch'
   'metro@0.83.3': 'patches/metro@0.83.3.patch'
