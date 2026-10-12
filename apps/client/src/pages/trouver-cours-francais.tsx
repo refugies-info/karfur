@@ -59,6 +59,7 @@ const LearnFrench = (props: Props) => {
     setActiveTab,
     total: courseSearch.totalResultsCount,
     isSettled: !courseSearch.isLoading,
+    hasError: courseSearch.error,
   });
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
