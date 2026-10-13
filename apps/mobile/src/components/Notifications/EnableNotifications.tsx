@@ -26,8 +26,8 @@ const LottieContainer = styled.View`
 `;
 
 interface Props {
-  onDismiss?: () => void | undefined;
-  onDone?: () => void | undefined;
+  onDismiss?: () => void;
+  onDone?: () => void;
 }
 
 export const EnableNotifications = ({ onDismiss, onDone }: Props) => {

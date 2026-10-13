@@ -64,6 +64,7 @@ export class TooManyRequestsError extends APIError {
  * Statuts qui font partie du trafic normal : les remonter noierait Sentry.
  */
 const SILENT_STATUSES = new Set([401, 403, 404, 429]);
+const SILENT_CODES = new Set(["NO_CODE_SUPPLIED"]);
 
 /**
  * `Sentry.setupExpressErrorHandler` ne remonte que les erreurs dont le statut est >= 500
@@ -142,14 +143,15 @@ export const serverErrorHandler: ErrorRequestHandler = (
   }
 
   if (err instanceof APIError) {
+    const isSilent = SILENT_CODES.has(err.code ?? "");
     logger.error(`[serverErrorHandler] ${err.message}`, {
       status: err.status,
       path: req.url,
       error: err.message,
-      data: err.data,
+      data: isSilent ? undefined : err.data,
     });
 
-    captureBelow500(err, req, err.status, { code: err.code, data: err.data });
+    if (!isSilent) captureBelow500(err, req, err.status, { code: err.code, data: err.data });
 
     res.status(err.status).json({
       message: err.message,
