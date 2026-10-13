@@ -109,10 +109,12 @@ export const updateOrCreateAppUser = async (
   const appUser = await AppUserModel.findOne({ uid: payload.uid });
 
   // delete outdated appusers with the same ExpoPushToken
-  await AppUserModel.deleteMany({
-    uid: { $ne: payload.uid },
-    expoPushToken: payload.expoPushToken,
-  });
+  if (payload.expoPushToken) {
+    await AppUserModel.deleteMany({
+      uid: { $ne: payload.uid },
+      expoPushToken: payload.expoPushToken,
+    });
+  }
 
   if (appUser) {
     await AppUserModel.updateOne({ uid: payload.uid }, payload, { upsert: true });
