@@ -24,6 +24,8 @@ steps:
         "APP_ENV=${_APP_ENV}",
         "--build-arg",
         "APP_SITE_URL=${_APP_SITE_URL}",
+        "--build-arg",
+        "SENTRY_RELEASE=$COMMIT_SHA",
         "-f",
         "./apps/client/Dockerfile",
         ".",
