@@ -39,6 +39,7 @@ steps:
           --service-account ${_SA} \
           --set-env-vars MINIMUM_APP_VERSION=${_MINIMUM_APP_VERSION} \
           --set-env-vars NODE_ENV=${_NODE_ENV} \
+          --set-env-vars SENTRY_RELEASE=$COMMIT_SHA \
           --set-env-vars NODE_OPTIONS="--max-old-space-size=${_NODE_HEAP_SIZE}" \
           --set-env-vars AGIR_OPERATORS_GCS_BUCKET=refugies-info-assets \
           --set-env-vars AGIR_OPERATORS_GCS_OBJECT=agir/operators/current.json \
