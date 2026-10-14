@@ -46,6 +46,7 @@ FROM tools AS installer
   ARG APP_ENV=production
   ARG APP_SERVER_URL=http://localhost:8000
   ARG APP_SITE_URL=http://localhost:3000
+  ARG SENTRY_RELEASE
 
   # Set working directory
   WORKDIR /app
@@ -66,6 +67,7 @@ FROM tools AS installer
   RUN echo "NEXT_PUBLIC_REACT_APP_ENV=${APP_ENV}" >> apps/client/.env
   RUN echo "NEXT_PUBLIC_REACT_APP_SERVER_URL=${APP_SERVER_URL}" >> apps/client/.env
   RUN echo "NEXT_PUBLIC_REACT_APP_SITE_URL=${APP_SITE_URL}" >> apps/client/.env
+  RUN echo "SENTRY_RELEASE=${SENTRY_RELEASE}" >> apps/client/.env
 
   # Build app using turbo
   RUN pnpm build:client
