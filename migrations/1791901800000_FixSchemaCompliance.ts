@@ -114,12 +114,6 @@ export class FixSchemaCompliance1791901800000 implements MigrationInterface {
     log(`users: removed null roles on ${roles.modifiedCount} user(s)`);
   }
 
-  public async down(db: Db): Promise<void | never> {
-    // The role goes back to the name CreateNewsletterRoleAndUser1733826012000 created (and deletes).
-    // The other fixes are a no-op: the previous (invalid) values are not recoverable.
-    await db
-      .collection("roles")
-      .updateOne({ nom: RoleName.NEWSLETTER }, { $set: { nom: LEGACY_NEWSLETTER_ROLE } });
-    log("down(): newsletter role name restored, the other fixes are not reverted.");
-  }
+  // Not reversible: the previous invalid values are not kept. Restore from the Mongo backup.
+  public async down(): Promise<void | never> {}
 }
