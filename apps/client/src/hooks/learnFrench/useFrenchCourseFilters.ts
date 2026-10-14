@@ -1,7 +1,7 @@
 import type { Id } from "@refugies-info/api-types";
 import type { FrenchOptions, PublicOptions } from "data/searchFilters";
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CourseTab,
   type CourseTab as CourseTabType,
@@ -30,15 +30,15 @@ const decodeCitySelection = (value: string): CitySelection => {
   return { name: name ?? "", department: department ?? "" };
 };
 
-const URL_SYNC_DEBOUNCE_MS = 400;
+const SEARCH_DEBOUNCE_MS = 300;
 
 export const useFrenchCourseFilters = () => {
   const router = useRouter();
   const [filters, setFilters] = useState<FiltersState>(EMPTY_FILTERS);
   const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [activeTab, setActiveTab] = useState<CourseTabType>(CourseTab.UPCOMING);
   const [isReady, setIsReady] = useState(false);
-  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     if (!router.isReady || isReady) return;
@@ -51,7 +51,10 @@ export const useFrenchCourseFilters = () => {
       categories: asStringArray(query.categories) as Id[],
       publicFilter: asStringArray(query.publicFilter) as PublicOptions[],
     });
-    if (typeof query.search === "string") setSearch(query.search);
+    if (typeof query.search === "string") {
+      setSearch(query.search);
+      setDebouncedSearch(query.search);
+    }
     if (
       typeof query.tab === "string" &&
       (Object.values(CourseTab) as string[]).includes(query.tab)
@@ -62,27 +65,36 @@ export const useFrenchCourseFilters = () => {
   }, [router.isReady]);
 
   useEffect(() => {
+    const timeout = setTimeout(() => setDebouncedSearch(search), SEARCH_DEBOUNCE_MS);
+    return () => clearTimeout(timeout);
+  }, [search]);
+
+  useEffect(() => {
     if (!isReady) return;
 
-    clearTimeout(syncTimeoutRef.current);
-    syncTimeoutRef.current = setTimeout(() => {
-      const query: Record<string, string | string[]> = {};
-      if (filters.departments.length > 0) query.departments = filters.departments;
-      if (filters.cities.length > 0) query.cities = filters.cities.map(encodeCitySelection);
-      if (filters.frenchLevel.length > 0) query.frenchLevel = filters.frenchLevel;
-      if (filters.categories.length > 0) query.categories = filters.categories.map(String);
-      if (filters.publicFilter.length > 0) query.publicFilter = filters.publicFilter;
-      if (search) query.search = search;
-      if (activeTab !== CourseTab.UPCOMING) query.tab = activeTab;
+    const query: Record<string, string | string[]> = {};
+    if (filters.departments.length > 0) query.departments = filters.departments;
+    if (filters.cities.length > 0) query.cities = filters.cities.map(encodeCitySelection);
+    if (filters.frenchLevel.length > 0) query.frenchLevel = filters.frenchLevel;
+    if (filters.categories.length > 0) query.categories = filters.categories.map(String);
+    if (filters.publicFilter.length > 0) query.publicFilter = filters.publicFilter;
+    if (debouncedSearch) query.search = debouncedSearch;
+    if (activeTab !== CourseTab.UPCOMING) query.tab = activeTab;
 
-      router.replace({ pathname: router.pathname, query }, undefined, {
-        shallow: true,
-        scroll: false,
-      });
-    }, URL_SYNC_DEBOUNCE_MS);
+    router.replace({ pathname: router.pathname, query }, undefined, {
+      shallow: true,
+      scroll: false,
+    });
+  }, [filters, debouncedSearch, activeTab, isReady]);
 
-    return () => clearTimeout(syncTimeoutRef.current);
-  }, [filters, search, activeTab, isReady]);
-
-  return { filters, setFilters, search, setSearch, activeTab, setActiveTab, isReady };
+  return {
+    filters,
+    setFilters,
+    search,
+    debouncedSearch,
+    setSearch,
+    activeTab,
+    setActiveTab,
+    isReady,
+  };
 };

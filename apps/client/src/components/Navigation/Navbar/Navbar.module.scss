@@ -14,6 +14,25 @@
         max-height: 3.3rem;
       }
     }
+
+    :global .fr-header__tools {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links {
+      min-width: 0;
+    }
+
+    :global .fr-header__tools-links .fr-btns-group {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    :global .fr-nav__list {
+      flex-wrap: wrap;
+    }
   }
 }
 

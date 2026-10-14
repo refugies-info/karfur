@@ -31,6 +31,13 @@
 
 .input {
   flex: 1 0 0;
+  color: var(--text-default-grey);
+}
+
+/* The field sits on a grey background: the browser default placeholder, half transparent, is too faint. */
+.input::placeholder {
+  color: var(--text-mention-grey);
+  opacity: 1;
 }
 
 .input[dir="rtl"] {

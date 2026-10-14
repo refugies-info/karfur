@@ -393,6 +393,20 @@ export const getSearchClient = (): {
 
 // --- Server-side search results computation ---
 
+export const DEFAULT_SEARCH_LIMIT = 10;
+// Must stay above the largest limit used by the client (print page: 500)
+export const MAX_SEARCH_LIMIT = 500;
+
+export const parsePaginationParam = (
+  value: string | string[] | undefined,
+  fallback: number,
+  max = Number.MAX_SAFE_INTEGER,
+): number => {
+  const parsed = parseInt(value as string, 10);
+  if (!Number.isFinite(parsed) || parsed < 1) return fallback;
+  return Math.min(parsed, max);
+};
+
 export interface SearchResultsOptions {
   page: number;
   limit: number;
