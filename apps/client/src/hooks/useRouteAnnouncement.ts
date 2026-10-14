@@ -83,6 +83,7 @@ const writeAnnouncement = (text: string, moveFocus: boolean) => {
 const useRouteAnnouncement = () => {
   const router = useRouter();
   const generationRef = useRef(0);
+  const outgoingTitleRef = useRef("");
   const lastRouteRef = useRef<{ pathname: string; locale?: string }>({
     pathname: "",
     locale: undefined,
@@ -95,6 +96,9 @@ const useRouteAnnouncement = () => {
     // title wait stale, so only the last one writes.
     const handleRouteChangeStart = () => {
       generationRef.current += 1;
+      // The outgoing title may still be in place for a few frames after
+      // routeChangeComplete: remember it so the wait does not announce it.
+      outgoingTitleRef.current = document.title;
     };
 
     const waitForTitle = (generation: number) => {
@@ -104,13 +108,14 @@ const useRouteAnnouncement = () => {
         // Never compete with a page autofocus: sync without focusing.
         const moveFocus = !AUTOFOCUS_ROUTE_PATTERNS.has(Router.pathname);
         const title = document.title;
-        if (title) {
+        if (title && title !== outgoingTitleRef.current) {
           writeAnnouncement(title, moveFocus);
           return;
         }
         frames += 1;
         if (frames >= TITLE_WAIT_MAX_FRAMES) {
-          const fallback = humanizeRoutePattern(Router.pathname);
+          // Two consecutive pages may legitimately share a title.
+          const fallback = title || humanizeRoutePattern(Router.pathname);
           if (fallback) writeAnnouncement(fallback, moveFocus);
           return;
         }
