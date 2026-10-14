@@ -96,10 +96,7 @@ export const CourseResults = (props: Props) => {
                 "LearnFrench.results_noUpcomingTitle",
                 "De nouveaux cours seront ajoutés prochainement.",
               )
-            : t(
-                "Recherche.noResultTitle",
-                "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
-              )
+            : t("Recherche.noResultTitle", "Oups ! Une erreur est survenu.")
         }
         text={
           isUpcomingEmpty
@@ -109,7 +106,7 @@ export const CourseResults = (props: Props) => {
               )
             : t(
                 "Recherche.noResultText",
-                "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
+                "Nous n'avons pas pu charger les résultats. Veuillez réessayer dans quelques instants ou vérifier votre connexion internet.",
               )
         }
       >
