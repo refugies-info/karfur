@@ -63,6 +63,33 @@ jobs:
             printf 'backend=true\nfrontend=true\nmobile=true\n' | tee -a "$GITHUB_OUTPUT"
           fi
 
+  # ─── Release — one version for the whole monorepo, tagged on every production push
+  release:
+    name: Tag Release
+    if: github.ref_name == 'production'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Compute version from conventional commits
+        id: version
+        run: echo "version=$(scripts/next-release-version.sh)" | tee -a "$GITHUB_OUTPUT"
+
+      - name: Create tag and GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          scripts/release-notes.sh "$VERSION" > notes.md
+          gh release create "karfur-v$VERSION" --target "$GITHUB_SHA" --title "karfur: v$VERSION" --notes-file notes.md
+
   # ─── Backend — always before frontend ──────────────────────────────────────
   deploy-backend:
     name: Deploy Backend
@@ -161,8 +188,9 @@ jobs:
   # ─── Mobile — runs in parallel with backend (no build-time API calls) ──────
   deploy-mobile:
     name: Build Mobile
-    needs: changes
-    if: needs.changes.outputs.mobile == 'true'
+    needs: [changes, release]
+    # Still runs on staging, where the release job is skipped.
+    if: ${{ !failure() && !cancelled() && needs.changes.outputs.mobile == 'true' }}
     runs-on: ubuntu-latest
     environment: ${{ github.ref_name == 'staging' && 'staging-mobile' || 'master-mobile' }}
     env:
@@ -202,6 +230,17 @@ jobs:
         run: |
           mkdir -p credentials
           echo '${{ secrets.EXPO_SERVICE_ACCOUNT_KEY}}' | base64 --decode > credentials/refugies-info-appkey.json
+
+      # EAS builds from git, so the release version is committed locally (never pushed).
+      - name: Set release version
+        if: needs.release.outputs.version != ''
+        working-directory: ./apps/mobile
+        env:
+          VERSION: ${{ needs.release.outputs.version }}
+        run: |
+          npm pkg set version="$VERSION"
+          git -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" \
+            commit --quiet -am "chore(mobile): release $VERSION"
 
       - name: Build app on both platforms
         working-directory: ./apps/mobile
