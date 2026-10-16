@@ -277,8 +277,8 @@ export const updateDispositifInDB = async (
   updateDraft: boolean = false,
 ): Promise<Dispositif> => {
   return updateDraft
-    ? DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
-        upsert: true,
+    ? // no upsert: a draft is only created by cloneDispositifInDrafts, from the full dispositif
+      DispositifDraftModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
         new: true,
       }).populate("theme secondaryThemes")
     : DispositifModel.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif, {
@@ -700,6 +700,9 @@ export const cloneDispositifInDrafts = async (id: DispositifId, newData: Partial
       }
     : null;
 
+  // hasDraftVersion is false here: any draft left behind (eg. recreated by an autosave racing a
+  // publication) is stale and would make create() fail on the duplicate _id.
+  await DispositifDraftModel.deleteOne({ _id: id });
   return DispositifDraftModel.create({ ...sanitizedDispositif, ...newData });
 };
 
