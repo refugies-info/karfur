@@ -31,11 +31,11 @@ Both of these projects should follow these standards:
 
 ### Workflow
 
-We use 3 git branches which triggers the deployment automatically:
+We use 3 git branches which trigger the deployment automatically (`.github/workflows/release_pipeline.yaml`):
 
 - `dev` for development
-- `staging-frontend` and `staging-backend` for staging
-- `master-frontend` and `master-backend` for production
+- `staging` for staging
+- `production` for production
 
 You can follow the build status on GCP: https://console.cloud.google.com/home/dashboard?project=refugies-info
 
@@ -43,12 +43,11 @@ For all the new features, you must follow this process:
 
 - create a `feature` branch with your changes
 - open a pull request to `dev`. Add the `bug` or `enhancement` tag. Add the ticket link to the PR, and the PR link in the ticket.
-- once it's merged, open a pull request to `staging-\[frontend|backend\]` to test the feature.
-  Name it `[STG-FRONT|BACK]` and add the `release` tag.
-  You can also use the command `pnpm pr:stg` from the right folder to create it automatically (needs `gh` installed locally)
-- once it's validated, open a pull request to `master-\[frontend|backend\]` to deploy the feature.
-  Name it `[PROD-FRONT|BACK]` and add the `release` tag.
-  You can also use the command `pnpm pr:prod` from the right folder to create it automatically (needs `gh` installed locally)
+- once it's merged, run `pnpm pr:stg` to open the `dev` → `staging` release PR (needs `gh` installed locally).
+- once it's validated, run `pnpm pr:prod` to open the `staging` → `production` release PR.
+- add `:speed` (`pnpm pr:stg:speed`, `pnpm pr:prod:speed`) to only redeploy the apps touched by the diff; otherwise backend, frontend and mobile are all redeployed.
+
+Versioning is automatic: every push to `production` tags the whole monorepo `karfur-vX.Y.Z` and publishes a GitHub release. The version comes from the conventional commits since the last tag (breaking change → major, `feat` → minor, else patch). The mobile build gets that version at build time, so never bump `package.json` versions by hand: the latest `karfur-v*` tag is the source of truth.
 
 _Note: before opening a pull request, make sure to run the tests in client and server folders: `npm run test`_
 
