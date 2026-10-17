@@ -90,12 +90,6 @@ const Dispositif = (props: Props) => {
             {isViewMode ? (
               (dispositif?.map || []).length > 0 && (
                 <>
-                  <a
-                    href="#after-map"
-                    className="sr-only focus:not-sr-only focus:mb-4 focus:inline-block focus:underline"
-                  >
-                    {t("Dispositif.skipMap", "Passer la carte")}
-                  </a>
                   <MapNew data={dispositif?.map || []} />
                   <div id="after-map" tabIndex={-1} />
                 </>
