@@ -295,6 +295,7 @@ exports[`recherche renders search results 1`] = `
                   class="button"
                 >
                   <i
+                    aria-hidden="true"
                     class="ri-equalizer-line"
                   />
                 </button>
