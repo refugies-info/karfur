@@ -81,7 +81,7 @@ const PlanDuSite = () => {
         {
           id: "missionImpact",
           label: t("sitemap.links.missionImpact", "Mission et impact"),
-          href: "/mission-impact",
+          href: "/mission-et-impact",
           isExternal: false,
         },
         {
