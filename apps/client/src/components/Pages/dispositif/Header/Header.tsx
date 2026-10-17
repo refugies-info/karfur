@@ -110,7 +110,7 @@ const Header = (props: Props) => {
             </span>
           )}
 
-          <span className="flex flex-col gap-1">
+          <p className="mb-0 flex flex-col gap-1 text-sm">
             {isEditMode ? (
               <SponsorsEdit />
             ) : (
@@ -119,7 +119,7 @@ const Header = (props: Props) => {
             {isViewMode && dispositif?.date && (
               <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
             )}
-          </span>
+          </p>
         </div>
       )}
 
