@@ -2,9 +2,37 @@ import "jest-styled-components";
 import { initialMockStore } from "~/__fixtures__/reduxStore";
 import { wrapWithProvidersAndRenderForTesting } from "../../jest/lib/wrapWithProvidersAndRender";
 import { setupGoogleMock } from "../__mocks__/react-google-autocomplete";
+import type { SearchResponse } from "../lib/search-helpers";
 import recherche from "../pages/recherche";
+import type { SearchQuery } from "../services/SearchResults/searchResults.reducer";
 
 jest.mock("next/router", () => require("next-router-mock"));
+
+const initialQuery: SearchQuery = {
+  search: "",
+  departments: [],
+  themes: ["6319f6b363ab2bbb162d7df5"],
+  needs: [],
+  age: [],
+  frenchLevel: [],
+  language: [],
+  public: [],
+  status: [],
+  sort: "default",
+  type: "all",
+};
+
+const emptyResults: SearchResponse = {
+  results: [],
+  suggestions: [],
+  noResults: [],
+  total: 0,
+  programCount: 0,
+  procedureCount: 0,
+  onlineCount: 0,
+  page: 1,
+  pageCount: 0,
+};
 
 describe("recherche", () => {
   const originalEnv = process.env;
@@ -25,48 +53,16 @@ describe("recherche", () => {
 
     const { asFragment } = wrapWithProvidersAndRenderForTesting({
       Component: recherche,
+      compProps: { initialQuery, initialResults: emptyResults, initialCounts: null },
       reduxState: {
         ...initialMockStore,
-        searchCounts: {
-          data: {
-            themes: {},
-            needs: {},
-            frenchLevels: {},
-            ageRanges: {},
-            publics: {},
-            languages: {},
-            statuses: {},
-            types: { dispositif: 0, demarche: 0, online: 0 },
-            total: 0,
-          },
-          loading: false,
-          error: null,
-        },
         searchResults: {
           results: {
             matches: [],
             suggestions: [],
           },
-          pagination: {
-            page: 1,
-            pageCount: 0,
-            total: 0,
-          },
-          loading: false,
           noResults: [],
-          query: {
-            search: "",
-            departments: [],
-            themes: ["6319f6b363ab2bbb162d7df5"],
-            needs: [],
-            age: [],
-            frenchLevel: [],
-            language: [],
-            public: [],
-            status: [],
-            sort: "default",
-            type: "all",
-          },
+          query: initialQuery,
         },
       },
     });

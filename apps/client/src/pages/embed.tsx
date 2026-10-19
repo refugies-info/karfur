@@ -23,19 +23,35 @@ import {
   addToQueryActionCreator,
   setSearchResultsActionCreator,
 } from "~/services/SearchResults/searchResults.actions";
-import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import {
+  noResultsSelector,
+  searchQuerySelector,
+  searchResultsSelector,
+} from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 import { themesSelector } from "~/services/Themes/themes.selectors";
 
 const Embed = () => {
   const themes = useSelector(themesSelector);
   const query = useSelector(searchQuerySelector);
+  const { matches, suggestions } = useSelector(searchResultsSelector);
+  const noResultsSuggestions = useSelector(noResultsSelector);
 
   return (
     <div className={cls(styles.container, styles.embed)}>
       <Container className={styles.container_inner}>
         <EmbedHeader themes={themes} languages={query.language} departments={query.departments} />
-        <SearchResults targetBlank={true} />
+        <SearchResults
+          results={matches}
+          suggestions={suggestions}
+          noResultsSuggestions={noResultsSuggestions}
+          counts={null}
+          totalResultsCount={matches.length}
+          currentPage={1}
+          isLoading={false}
+          onLoadMore={() => {}}
+          targetBlank={true}
+        />
 
         <footer>
           <p>

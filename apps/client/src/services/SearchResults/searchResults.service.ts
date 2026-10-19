@@ -1,12 +1,17 @@
 import type { SearchResponse } from "~/lib/search-helpers";
 import type { SearchQuery } from "./searchResults.reducer";
 
-const SEARCH_RESULTS_LIMIT = 24;
+export const SEARCH_RESULTS_CACHE_KEY = "search-results";
+export const SEARCH_RESULTS_LIMIT = 24;
 
-export const fetchSearchResults = async (
-  query: SearchQuery,
+export interface SearchResultsParams {
+  query: SearchQuery;
+  locale: string;
+}
+
+export const fetchSearchResultsPage = async (
+  { query, locale }: SearchResultsParams,
   page: number,
-  locale = "fr",
 ): Promise<SearchResponse> => {
   const usp = new URLSearchParams();
   usp.set("page", String(page));
@@ -27,8 +32,6 @@ export const fetchSearchResults = async (
   for (const lang of query.language) usp.append("language", lang);
 
   const response = await fetch(`/api/search?${usp.toString()}`);
-  if (!response.ok) {
-    throw new Error("Failed to fetch search results");
-  }
+  if (!response.ok) throw new Error(`/api/search responded ${response.status}`);
   return response.json();
 };

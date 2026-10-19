@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import useSWRInfinite from "swr/infinite";
 import { logger } from "~/logger";
 
@@ -13,6 +14,8 @@ interface UsePaginatedResultsOptions<TParams, TResponse> {
   params: TParams | null;
   fetchPage: (params: TParams, page: number) => Promise<TResponse>;
   logLabel: string;
+  /** First page already loaded server-side: shown right away and not fetched again. */
+  initialData?: TResponse;
 }
 
 /**
@@ -28,6 +31,7 @@ export const usePaginatedResults = <
   params,
   fetchPage,
   logLabel,
+  initialData,
 }: UsePaginatedResultsOptions<TParams, TResponse>) => {
   const getKey = (pageIndex: number, previousPage: TResponse | null) => {
     if (params === null) return null;
@@ -46,6 +50,8 @@ export const usePaginatedResults = <
     getKey,
     ([, keyParams, page]: readonly [string, TParams, number]) => fetchPage(keyParams, page),
     {
+      fallbackData: initialData ? [initialData] : undefined,
+      revalidateOnMount: initialData ? false : undefined,
       keepPreviousData: true,
       revalidateFirstPage: false,
       revalidateOnFocus: false,
@@ -55,13 +61,14 @@ export const usePaginatedResults = <
   );
 
   const hasSearchError = Boolean(error) && size === 1;
-  const pages = hasSearchError ? [] : (data ?? []);
+  const pages = useMemo(() => (hasSearchError ? [] : (data ?? [])), [hasSearchError, data]);
+  const results = useMemo(() => pages.flatMap((page) => page.results), [pages]);
   const lastPage = pages[pages.length - 1];
   const isLoadingMore = isValidating && size > pages.length;
   const isLoading = params === null || isRequestLoading;
 
   return {
-    results: pages.flatMap((page) => page.results),
+    results,
     firstPage: pages[0] as TResponse | undefined,
     totalResultsCount: pages[0]?.total ?? 0,
     currentPage: lastPage?.page ?? 1,

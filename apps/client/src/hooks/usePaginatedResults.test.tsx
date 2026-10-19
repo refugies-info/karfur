@@ -27,6 +27,7 @@ const wrapper = ({ children }: { children: ReactNode }) => (
 const renderPaginated = (
   initialParams: Params | null,
   fetchPage: (params: Params, page: number) => Promise<Response>,
+  initialData?: Response,
 ) =>
   renderHook(
     ({ params }: { params: Params | null }) =>
@@ -35,6 +36,7 @@ const renderPaginated = (
         params,
         fetchPage,
         logLabel: "[test]",
+        initialData,
       }),
     { wrapper, initialProps: { params: initialParams } },
   );
@@ -66,6 +68,27 @@ describe("usePaginatedResults", () => {
     expect(result.current.totalPageCount).toBe(2);
     expect(result.current.isLoading).toBe(false);
     expect(result.current.firstPage?.suggestions).toEqual(["a-suggestion"]);
+  });
+
+  it("shows the initial data right away without fetching on mount", async () => {
+    const fetchPage = jest
+      .fn()
+      .mockImplementation(async (params: Params, page: number) =>
+        buildPage(params.search, page, 2),
+      );
+    const { result } = renderPaginated({ search: "a" }, fetchPage, buildPage("a", 1, 2));
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.results).toEqual(["a-1-1", "a-1-2"]);
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 20));
+    });
+    expect(fetchPage).not.toHaveBeenCalled();
+
+    act(() => result.current.loadMore());
+    await waitFor(() => expect(result.current.results).toHaveLength(4));
+
+    expect(fetchPage).toHaveBeenCalledWith({ search: "a" }, 2);
   });
 
   it("appends the next page on loadMore without reloading the first one", async () => {
