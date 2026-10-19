@@ -363,6 +363,7 @@ describe("updateDispositif", () => {
     const newDispositif = new DispositifModel(fixtures.dispositif);
     newDispositif.status = DispositifStatus.ACTIVE;
     newDispositif.mainSponsor = fixtures.structure._id;
+    newDispositif.hasDraftVersion = true;
 
     const draftDispositif = new DispositifModel(fixtures.dispositif);
     draftDispositif.status = DispositifStatus.DRAFT;
@@ -387,7 +388,7 @@ describe("updateDispositif", () => {
       fixtures.user,
     );
 
-    expect(getDispositifByIdMock).not.toHaveBeenCalled();
+    expect(getDraftDispositifByIdMock).toHaveBeenCalled();
     expect(cloneDispositifInDraftsMock).not.toHaveBeenCalled();
     const newDispositifContent = {
       lastModificationAuthor: new ObjectId("6569af9815c38bd134125ff3"),
@@ -426,6 +427,56 @@ describe("updateDispositif", () => {
         origin: "RI",
       },
     });
+  });
+
+  it("ignores a draft that hasDraftVersion does not reference, and clones a new one", async () => {
+    const getDispositifByIdMock = jest.spyOn(repository, "getDispositifById");
+    const getDraftDispositifByIdMock = jest.spyOn(repository, "getDraftDispositifById");
+    const updateDispositifInDBMock = jest.spyOn(repository, "updateDispositifInDB");
+    const cloneDispositifInDraftsMock = jest.spyOn(repository, "cloneDispositifInDrafts");
+    jest.spyOn(repository, "addNewParticipant").mockResolvedValue(null);
+    jest.spyOn(service, "notifyChange").mockResolvedValue();
+    jest.spyOn(authorizations, "checkUserIsAuthorizedToModifyDispositif").mockReturnValue(true);
+    jest.spyOn(log, "log").mockResolvedValue();
+
+    const publishedDispositif = new DispositifModel(fixtures.dispositif);
+    publishedDispositif.status = DispositifStatus.ACTIVE;
+    publishedDispositif.hasDraftVersion = false;
+    getDispositifByIdMock.mockResolvedValue(publishedDispositif);
+    getDraftDispositifByIdMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    cloneDispositifInDraftsMock.mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    updateDispositifInDBMock.mockResolvedValue(publishedDispositif);
+
+    const result = await updateDispositif(
+      "5ce7b52d83983700167bca27",
+      { titreInformatif: "nouveau titre" },
+      fixtures.user,
+    );
+
+    expect(getDraftDispositifByIdMock).not.toHaveBeenCalled();
+    expect(cloneDispositifInDraftsMock).toHaveBeenCalled();
+    expect(updateDispositifInDBMock).toHaveBeenCalledWith(
+      "5ce7b52d83983700167bca27",
+      { hasDraftVersion: true },
+      false,
+    );
+    expect(result.data.hasDraftVersion).toBe(true);
+  });
+
+  it("throws when the draft disappears before being saved", async () => {
+    const publishedDispositif = new DispositifModel(fixtures.dispositif);
+    publishedDispositif.status = DispositifStatus.ACTIVE;
+    publishedDispositif.hasDraftVersion = true;
+    jest.spyOn(repository, "getDispositifById").mockResolvedValue(publishedDispositif);
+    jest
+      .spyOn(repository, "getDraftDispositifById")
+      .mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    jest.spyOn(repository, "updateDispositifInDB").mockResolvedValue(null);
+    jest.spyOn(authorizations, "checkUserIsAuthorizedToModifyDispositif").mockReturnValue(true);
+
+    await expect(
+      updateDispositif("5ce7b52d83983700167bca27", { titreInformatif: "x" }, fixtures.user),
+    ).rejects.toThrow("dispositif not found");
   });
 
   it("updates dispositif, allow empty titles", async () => {
