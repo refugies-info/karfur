@@ -639,8 +639,8 @@ importers:
         specifier: ^15.7.4
         version: 15.7.4(i18next@23.16.8)(react-dom@19.1.0(react@19.1.0))(react-native@0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)(typescript@5.9.3)
       react-instantsearch-core:
-        specifier: ^7.50.0
-        version: 7.50.0(algoliasearch@5.59.0)(react@19.1.0)
+        specifier: ^7.52.0
+        version: 7.52.0(algoliasearch@5.59.0)(react@19.1.0)
       react-native:
         specifier: 0.81.5
         version: 0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0)
@@ -1079,10 +1079,10 @@ importers:
         version: 3.0.3
       jest:
         specifier: ^29.7.0
-        version: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+        version: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       ts-jest:
         specifier: ^29.4.12
-        version: 29.4.12(@babel/core@7.29.7)(@jest/transform@30.5.2)(@jest/types@30.5.1)(babel-jest@30.5.2(@babel/core@7.29.7))(jest-util@30.5.1)(jest@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)))(typescript@5.9.3)
+        version: 29.4.12(@babel/core@7.29.7)(@jest/transform@30.5.2)(@jest/types@30.5.1)(babel-jest@30.5.2(@babel/core@7.29.7))(jest-util@30.5.1)(jest@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)))(typescript@5.9.3)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -2124,6 +2124,10 @@ packages:
 
   '@babel/template@7.29.7':
     resolution: {integrity: sha512-puq+Gf35oI24FeN11LkoUQFqv9uwNeWpxXZi/Ji3rRIoKAzKnxRaZ+Gkj0vKS9ZCiTESfng1N9LyOyXvo+m+Gg==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/traverse@7.29.10':
+    resolution: {integrity: sha512-B3lYAs2nkKskbgQ1nfy8Ma9ao9Q1rntTAQHrzzyDuj+TSO+X3le6PfWwqDvodsb+OumE10eMFfuMCTQSQ5iuIQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/traverse@7.29.8':
@@ -5011,8 +5015,8 @@ packages:
     resolution: {integrity: sha512-Y1XfSefHIOub9762qm3ShafdlEE/Va8h3kLUeMq765fNeWeNLcOP2YUPr86H1SlyGwZTOqQ67RlBZPZ3k9Djgg==}
     engines: {node: '>=18.0.0'}
 
-  '@smithy/core@3.35.1':
-    resolution: {integrity: sha512-i4YPS4B6ts7bjn7UwLnGjiZdprOvHvgGobFZsYK3GIY3E5hIqtj0rReU69BcTpGp+fvtraSNXeG1l+jtJvF55w==}
+  '@smithy/core@3.35.2':
+    resolution: {integrity: sha512-ejTukBuP/Pg3t9N8Ux+0zKsXeHWm7p6W3HbXFOyltKasSxZwCFmvTut7kBdZSCF3m9y1bXXyVu6p2xuMFcsTyQ==}
     engines: {node: '>=18.0.0'}
 
   '@smithy/credential-provider-imds@4.5.2':
@@ -5597,6 +5601,9 @@ packages:
   '@types/google.maps@3.65.5':
     resolution: {integrity: sha512-oR9Hq/WaKGzIguZEwoCuyQ0ofDhCbefmS9RrjLUZ5scMziwTE6xA90drJYt2ZsyUCYmCqnxQcDpfGqeRE/Zgog==}
 
+  '@types/google.maps@3.66.6':
+    resolution: {integrity: sha512-F+m8NwLXXDf43/GsxmyceugqpBtKMaQGM/raqyINTG+r7fFgCXKxTZJ6Aw4QeMwUkIJwDtYVeUhndq3RFNkuDA==}
+
   '@types/graceful-fs@4.1.9':
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
 
@@ -5698,8 +5705,8 @@ packages:
   '@types/node@22.20.1':
     resolution: {integrity: sha512-EANqOCF9QFyra+4pfxUcX9STKJpCLjMbObVzljIJomAWSnuSIEAvyzEU53GaajbXJEgdh0iEcPL+DGvpUd4k1Q==}
 
-  '@types/node@26.6.4':
-    resolution: {integrity: sha512-ldVPDCzj7fsaGZrLB0NuHuTvJcsNasysBAqMolr/cgxrLd1xbqxIr3XJiPnHHJUCxj5sNF1vnRj9aWnrVh5Jcg==}
+  '@types/node@26.6.5':
+    resolution: {integrity: sha512-uMzsv9stDdofIZBx4UGh4Z9ZgXnGC9seRDscilBcTHAeOFk67MZg/k9bWVfO+bk4qZmG+l52hRnLwUiH2LnJTg==}
 
   '@types/password-hash@1.2.24':
     resolution: {integrity: sha512-rdIR0oa8Pd2JP/KZ22UeLD6vrJWfZ2vgSKtWNCFpWtmUu5LR61+0yx051BN7IKpfxDI595jjhLcVBC3rZ2qfeQ==}
@@ -6124,6 +6131,11 @@ packages:
 
   algoliasearch-helper@3.29.3:
     resolution: {integrity: sha512-gVOMbbPVrCO3Xs+B+BLAIGFqIQow6qHMTYCEeBqLQB9m4ZmKUqMwkEumlal2iyyezHEd4Y0FvFTLbCRutCutIQ==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+
+  algoliasearch-helper@3.30.0:
+    resolution: {integrity: sha512-leiyAC/Giqxk9OW2YCUZDtqKZInSwMgdhd4PNqeUC8eNBZgtIB9BlUR0RkAbHeS9r5GxI1GiJUu31SO8RjWfaA==}
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
@@ -8333,8 +8345,16 @@ packages:
   instantsearch-ui-components@0.41.0:
     resolution: {integrity: sha512-7Wrb7HHcZIFOOjh0FPjmLtVULbp0m5PuXnGS2pdRu21yIsN9USHKkMc/1Qk0UUwmm5szCp8mAgGtxiXlZi91FA==}
 
+  instantsearch-ui-components@0.43.0:
+    resolution: {integrity: sha512-oEaoM2gTrh7AsU+LhgzFBLd564KZxG4HD1urKSrh2btTt0xbEJPKC0yCqbxByJxoYRceN4FO7j6UEMRhTUbDDQ==}
+
   instantsearch.js@4.118.0:
     resolution: {integrity: sha512-W7APUVZwPY+nmENkgh/WM8nMzcu2/yKKhtxNHgD9vjd8/O+zrw/iL13cTPBD1KAfRnxakRowWWdmSiWR8TwieQ==}
+    peerDependencies:
+      algoliasearch: '>= 3.1 < 6'
+
+  instantsearch.js@4.120.0:
+    resolution: {integrity: sha512-Vr9RzAcyasBo1hR23aUB2fT0gU1tIrzBUm+mtlgAEndt+uFLcH8tV5i5bcA32Iyjatipbf8heEs6trHIMMXf5Q==}
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
 
@@ -10788,8 +10808,8 @@ packages:
       typescript:
         optional: true
 
-  react-instantsearch-core@7.50.0:
-    resolution: {integrity: sha512-CBOEY/RPc8NNwUSQH2rTMabYqTLbggKet/1nXyBhz59d1qIg3F9Y/udn4nK+ympYMf3R7LNdlYKsUN72SYwkHg==}
+  react-instantsearch-core@7.52.0:
+    resolution: {integrity: sha512-TKakRCTk6puV0qR3O54WkUS1ECcu0DNhPzkCUzGl/lTSp2IuDP6nsOS5/xMiOCZlyumNwgq+fJpuPRHavLca7g==}
     peerDependencies:
       algoliasearch: '>= 3.1 < 6'
       react: '>= 16.8.0 < 20'
@@ -11707,8 +11727,8 @@ packages:
     resolution: {integrity: sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw==}
     engines: {node: '>=14.16'}
 
-  strnum@2.4.2:
-    resolution: {integrity: sha512-rDG3Ah4TV0k1hWvLSzkZtMmLN9+eS+h3knq4MP6A42Y3Yh5qGNnOUs1jJkoSr8FG5dsL28c7KgkIBzSEykqtuw==}
+  strnum@2.5.1:
+    resolution: {integrity: sha512-UM4nTLWzQiDBseVxUGxN0wJzIk0UU89Qi7pKXz9qISo+lhviJikTuikBsK/oFRlpvYHvSdz0TVoLyQ+sEpYwxA==}
 
   structured-headers@0.4.1:
     resolution: {integrity: sha512-0MP/Cxx5SzeeZ10p/bZI0S6MpgD+yxAhi1BOQ34jgnMXsCq3j1t6tQnZu+KdlL7dvJTLT3g9xN8tl10TqgFMcg==}
@@ -12890,7 +12910,7 @@ snapshots:
       '@aws-sdk/util-user-agent-browser': 3.873.0
       '@aws-sdk/util-user-agent-node': 3.883.0
       '@smithy/config-resolver': 4.7.2
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/fetch-http-handler': 5.8.0
       '@smithy/hash-node': 4.5.2
       '@smithy/invalid-dependency': 4.5.2
@@ -12934,7 +12954,7 @@ snapshots:
       '@aws-sdk/util-user-agent-browser': 3.873.0
       '@aws-sdk/util-user-agent-node': 3.883.0
       '@smithy/config-resolver': 4.7.2
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/fetch-http-handler': 5.8.0
       '@smithy/hash-node': 4.5.2
       '@smithy/invalid-dependency': 4.5.2
@@ -12967,7 +12987,7 @@ snapshots:
     dependencies:
       '@aws-sdk/types': 3.862.0
       '@aws-sdk/xml-builder': 3.873.0
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/node-config-provider': 4.6.2
       '@smithy/property-provider': 4.5.2
       '@smithy/protocol-http': 5.6.2
@@ -13104,7 +13124,7 @@ snapshots:
       '@aws-sdk/nested-clients': 3.883.0
       '@aws-sdk/types': 3.862.0
       '@smithy/config-resolver': 4.7.2
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/credential-provider-imds': 4.5.2
       '@smithy/node-config-provider': 4.6.2
       '@smithy/property-provider': 4.5.2
@@ -13142,7 +13162,7 @@ snapshots:
       '@aws-sdk/core': 3.883.0
       '@aws-sdk/types': 3.862.0
       '@aws-sdk/util-endpoints': 3.879.0
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/protocol-http': 5.6.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
@@ -13163,7 +13183,7 @@ snapshots:
       '@aws-sdk/util-user-agent-browser': 3.873.0
       '@aws-sdk/util-user-agent-node': 3.883.0
       '@smithy/config-resolver': 4.7.2
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/fetch-http-handler': 5.8.0
       '@smithy/hash-node': 4.5.2
       '@smithy/invalid-dependency': 4.5.2
@@ -14163,6 +14183,18 @@ snapshots:
       '@babel/code-frame': 7.29.7
       '@babel/parser': 7.29.8
       '@babel/types': 7.29.8
+
+  '@babel/traverse@7.29.10':
+    dependencies:
+      '@babel/code-frame': 7.29.7
+      '@babel/generator': 7.29.8
+      '@babel/helper-globals': 7.29.7
+      '@babel/parser': 7.29.9
+      '@babel/template': 7.29.7
+      '@babel/types': 7.29.8
+      debug: 4.4.1(supports-color@5.5.0)
+    transitivePeerDependencies:
+      - supports-color
 
   '@babel/traverse@7.29.8':
     dependencies:
@@ -15506,7 +15538,7 @@ snapshots:
       - supports-color
       - ts-node
 
-  '@jest/core@29.7.0(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))':
+  '@jest/core@29.7.0(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))':
     dependencies:
       '@jest/console': 29.7.0
       '@jest/reporters': 29.7.0
@@ -15520,7 +15552,7 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@22.20.1)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      jest-config: 29.7.0(@types/node@22.20.1)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       jest-haste-map: 29.7.0
       jest-message-util: 29.7.0
       jest-regex-util: 29.6.3
@@ -16801,7 +16833,7 @@ snapshots:
 
   '@react-native/babel-plugin-codegen@0.84.1(@babel/core@7.29.7)':
     dependencies:
-      '@babel/traverse': 7.29.8
+      '@babel/traverse': 7.29.10
       '@react-native/codegen': 0.84.1(@babel/core@7.29.7)
     transitivePeerDependencies:
       - '@babel/core'
@@ -16979,9 +17011,7 @@ snapshots:
       metro-runtime: 0.83.8
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
     optional: true
 
   '@react-native/normalize-colors@0.81.5': {}
@@ -17615,11 +17645,11 @@ snapshots:
 
   '@smithy/config-resolver@4.7.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
-  '@smithy/core@3.35.1':
+  '@smithy/core@3.35.2':
     dependencies:
       '@smithy/types': 4.19.0
       tslib: 2.8.1
@@ -17627,27 +17657,27 @@ snapshots:
 
   '@smithy/credential-provider-imds@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
     optional: true
 
   '@smithy/fetch-http-handler@5.8.0':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
     optional: true
 
   '@smithy/hash-node@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/invalid-dependency@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
@@ -17658,75 +17688,75 @@ snapshots:
 
   '@smithy/middleware-content-length@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/middleware-endpoint@4.7.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/middleware-retry@4.8.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/middleware-serde@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/middleware-stack@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/node-config-provider@4.6.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/node-http-handler@4.12.1':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
     optional: true
 
   '@smithy/property-provider@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/protocol-http@5.6.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/shared-ini-file-loader@4.7.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/signature-v4@5.7.4':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
     optional: true
 
   '@smithy/smithy-client@4.15.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       '@smithy/types': 4.19.0
       tslib: 2.8.1
     optional: true
@@ -17738,25 +17768,25 @@ snapshots:
 
   '@smithy/url-parser@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-base64@4.6.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-body-length-browser@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-body-length-node@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
@@ -17768,43 +17798,43 @@ snapshots:
 
   '@smithy/util-config-provider@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-defaults-mode-browser@4.6.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-defaults-mode-node@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-endpoints@3.7.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-middleware@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-retry@4.6.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
   '@smithy/util-stream@4.8.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
@@ -17816,7 +17846,7 @@ snapshots:
 
   '@smithy/util-utf8@4.5.2':
     dependencies:
-      '@smithy/core': 3.35.1
+      '@smithy/core': 3.35.2
       tslib: 2.8.1
     optional: true
 
@@ -18335,6 +18365,8 @@ snapshots:
 
   '@types/google.maps@3.65.5': {}
 
+  '@types/google.maps@3.66.6': {}
+
   '@types/graceful-fs@4.1.9':
     dependencies:
       '@types/node': 22.20.1
@@ -18446,7 +18478,7 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
-  '@types/node@26.6.4':
+  '@types/node@26.6.5':
     dependencies:
       undici-types: 8.9.0
     optional: true
@@ -18863,6 +18895,11 @@ snapshots:
       require-from-string: 2.0.2
 
   algoliasearch-helper@3.29.3(algoliasearch@5.59.0):
+    dependencies:
+      '@algolia/events': 4.0.1
+      algoliasearch: 5.59.0
+
+  algoliasearch-helper@3.30.0(algoliasearch@5.59.0):
     dependencies:
       '@algolia/events': 4.0.1
       algoliasearch: 5.59.0
@@ -19748,13 +19785,13 @@ snapshots:
       - supports-color
       - ts-node
 
-  create-jest@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)):
+  create-jest@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)):
     dependencies:
       '@jest/types': 29.6.3
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      jest-config: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       jest-util: 29.7.0
       prompts: 2.4.2
     transitivePeerDependencies:
@@ -20706,7 +20743,7 @@ snapshots:
       '@nodable/entities': 2.2.0
       fast-xml-builder: 1.1.7
       path-expression-matcher: 1.6.2
-      strnum: 2.4.2
+      strnum: 2.5.1
     optional: true
 
   fastest-levenshtein@1.0.16: {}
@@ -21414,6 +21451,10 @@ snapshots:
     transitivePeerDependencies:
       - react
 
+  instantsearch-ui-components@0.43.0:
+    dependencies:
+      '@swc/helpers': 0.5.18
+
   instantsearch.js@4.118.0(algoliasearch@5.59.0):
     dependencies:
       '@algolia/events': 4.0.1
@@ -21427,6 +21468,26 @@ snapshots:
       hogan.js: 3.0.2
       htm: 3.1.1
       instantsearch-ui-components: 0.41.0(react@19.1.0)
+      preact: 10.29.8
+      qs: 6.16.0
+      react: 19.1.0
+      search-insights: 2.17.3
+    transitivePeerDependencies:
+      - preact-render-to-string
+
+  instantsearch.js@4.120.0(algoliasearch@5.59.0):
+    dependencies:
+      '@algolia/events': 4.0.1
+      '@swc/helpers': 0.5.18
+      '@types/dom-speech-recognition': 0.0.1
+      '@types/google.maps': 3.66.6
+      '@types/hogan.js': 3.0.5
+      '@types/qs': 6.15.1
+      algoliasearch: 5.59.0
+      algoliasearch-helper: 3.30.0(algoliasearch@5.59.0)
+      hogan.js: 3.0.2
+      htm: 3.1.1
+      instantsearch-ui-components: 0.43.0
       preact: 10.29.8
       qs: 6.16.0
       react: 19.1.0
@@ -21732,16 +21793,16 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)):
+  jest-cli@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       '@jest/test-result': 29.7.0
       '@jest/types': 29.6.3
       chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      create-jest: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       exit: 0.1.2
       import-local: 3.2.0
-      jest-config: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      jest-config: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       jest-util: 29.7.0
       jest-validate: 29.7.0
       yargs: 17.7.3
@@ -21801,7 +21862,7 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@29.7.0(@types/node@22.20.1)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)):
+  jest-config@29.7.0(@types/node@22.20.1)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)):
     dependencies:
       '@babel/core': 7.29.7
       '@jest/test-sequencer': 29.7.0
@@ -21827,12 +21888,12 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 22.20.1
-      ts-node: 10.9.2(@types/node@26.6.4)(typescript@5.9.3)
+      ts-node: 10.9.2(@types/node@26.6.5)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
 
-  jest-config@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)):
+  jest-config@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)):
     dependencies:
       '@babel/core': 7.29.7
       '@jest/test-sequencer': 29.7.0
@@ -21857,8 +21918,8 @@ snapshots:
       slash: 3.0.0
       strip-json-comments: 3.1.1
     optionalDependencies:
-      '@types/node': 26.6.4
-      ts-node: 10.9.2(@types/node@26.6.4)(typescript@5.9.3)
+      '@types/node': 26.6.5
+      ts-node: 10.9.2(@types/node@26.6.5)(typescript@5.9.3)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -22419,12 +22480,12 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)):
+  jest@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)):
     dependencies:
-      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      '@jest/core': 29.7.0(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       '@jest/types': 29.6.3
       import-local: 3.2.0
-      jest-cli: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      jest-cli: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -23285,7 +23346,7 @@ snapshots:
   metro-source-map@0.83.3:
     dependencies:
       '@babel/traverse': 7.29.8
-      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.29.8'
+      '@babel/traverse--for-generate-function-map': '@babel/traverse@7.29.10'
       '@babel/types': 7.29.8
       flow-enums-runtime: 0.0.6
       invariant: 2.2.4
@@ -23379,7 +23440,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.29.7
       '@babel/generator': 7.29.8
-      '@babel/parser': 7.29.8
+      '@babel/parser': 7.29.9
       '@babel/types': 7.29.8
       flow-enums-runtime: 0.0.6
       metro: 0.83.8
@@ -24899,12 +24960,12 @@ snapshots:
       react-native: 0.81.5(@babel/core@7.29.7)(@react-native/metro-config@0.84.1(@babel/core@7.29.7))(@types/react@19.1.17)(react@19.1.0)
       typescript: 5.9.3
 
-  react-instantsearch-core@7.50.0(algoliasearch@5.59.0)(react@19.1.0):
+  react-instantsearch-core@7.52.0(algoliasearch@5.59.0)(react@19.1.0):
     dependencies:
       '@swc/helpers': 0.5.18
       algoliasearch: 5.59.0
-      algoliasearch-helper: 3.29.3(algoliasearch@5.59.0)
-      instantsearch.js: 4.118.0(algoliasearch@5.59.0)
+      algoliasearch-helper: 3.30.0(algoliasearch@5.59.0)
+      instantsearch.js: 4.120.0(algoliasearch@5.59.0)
       react: 19.1.0
       use-sync-external-store: 1.5.0(react@19.1.0)
     transitivePeerDependencies:
@@ -26063,7 +26124,7 @@ snapshots:
 
   strip-json-comments@5.0.3: {}
 
-  strnum@2.4.2:
+  strnum@2.5.1:
     dependencies:
       anynum: 1.0.1
     optional: true
@@ -26484,12 +26545,12 @@ snapshots:
       babel-jest: 29.7.0(@babel/core@7.29.7)
       jest-util: 30.5.1
 
-  ts-jest@29.4.12(@babel/core@7.29.7)(@jest/transform@30.5.2)(@jest/types@30.5.1)(babel-jest@30.5.2(@babel/core@7.29.7))(jest-util@30.5.1)(jest@29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3)))(typescript@5.9.3):
+  ts-jest@29.4.12(@babel/core@7.29.7)(@jest/transform@30.5.2)(@jest/types@30.5.1)(babel-jest@30.5.2(@babel/core@7.29.7))(jest-util@30.5.1)(jest@29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3)))(typescript@5.9.3):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       handlebars: 4.7.10
-      jest: 29.7.0(@types/node@26.6.4)(ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3))
+      jest: 29.7.0(@types/node@26.6.5)(ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3))
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
@@ -26522,14 +26583,14 @@ snapshots:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
 
-  ts-node@10.9.2(@types/node@26.6.4)(typescript@5.9.3):
+  ts-node@10.9.2(@types/node@26.6.5)(typescript@5.9.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.13
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 26.6.4
+      '@types/node': 26.6.5
       acorn: 8.18.0
       acorn-walk: 8.3.5
       arg: 4.1.3
