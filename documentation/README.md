@@ -48,6 +48,7 @@ For all the new features, you must follow this process:
 - add `:speed` (`pnpm pr:stg:speed`, `pnpm pr:prod:speed`) to only redeploy the apps touched by the diff; otherwise backend, frontend and mobile are all redeployed.
 
 Versioning is automatic: every push to `production` tags the whole monorepo `karfur-vX.Y.Z` and publishes a GitHub release. The version comes from the conventional commits since the last tag (breaking change → major, `feat` → minor, else patch). The mobile build gets that version at build time, so never bump `package.json` versions by hand: the latest `karfur-v*` tag is the source of truth.
+Use to handle version on mobile build
 
 _Note: before opening a pull request, make sure to run the tests in client and server folders: `npm run test`_
 
