@@ -108,7 +108,7 @@ overrides:
   mdast-util-to-hast: '>=13.2.1'
   react-server-dom-webpack: '>=19.0.2'
   node-forge: '>=1.4.0'
-  handlebars: '>=4.7.9'
+  handlebars: 4.7.10
   brace-expansion: '^2.1.7'
   'jsonwebtoken>jws': '^3.2.3'
   'google-auth-library>jws': '^4.0.1'
