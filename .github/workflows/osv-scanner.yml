@@ -26,7 +26,7 @@ jobs:
       contents: read
       security-events: write
       actions: read
-    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.6.0
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.7.0
     with:
       # Report-only: pre-existing vulnerabilities surface in Code Scanning
       # without failing CI. The PR scan is the blocking gate.
