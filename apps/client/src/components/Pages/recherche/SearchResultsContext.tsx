@@ -2,7 +2,6 @@ import type { SimpleDispositif } from "@refugies-info/api-types";
 import { createContext, useContext } from "react";
 
 export interface SearchResultsContextValue {
-  /** Results loaded so far (all the pages already displayed). */
   results: SimpleDispositif[];
   totalResultsCount: number;
 }
