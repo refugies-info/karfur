@@ -5,11 +5,10 @@ import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "reactstrap";
 import { searchQuerySelector } from "services/SearchResults/searchResults.selector";
-import TutoImg from "~/assets/dispositif/tutoriel-image.svg";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ResultsFilter from "~/components/Pages/recherche/ResultsFilter";
 import DispositifCard from "~/components/UI/DispositifCard";
-import Image from "~/components/UI/Image";
+import { NoResultsPlaceholder } from "~/components/UI/NoResultsPlaceholder";
 import { getDisplayRuleForQuery } from "~/lib/recherche/queryContents";
 import { Event } from "~/lib/tracking";
 import type { SearchCountsResponse } from "~/pages/api/search/counts";
@@ -102,34 +101,25 @@ const SearchResults = (props: Props) => {
         <ResultsFilter counts={counts} />
 
         {props.error ? (
-          <div className={styles.no_results} id="resultats-liste">
-            <Image src={TutoImg} width={176} height={120} alt="" />
-            <div>
-              <h2 className="mb-2" id="resultats">
-                {t("Recherche.errorTitle", "Les résultats n'ont pas pu être chargés.")}
-              </h2>
-              <p>{t("Recherche.errorText", "Veuillez réessayer dans quelques instants.")}</p>
-            </div>
-          </div>
+          <NoResultsPlaceholder
+            role="alert"
+            titleId="resultats"
+            title={t("Recherche.errorTitle", "Les résultats n'ont pas pu être chargés.")}
+            text={t("Recherche.errorText", "Veuillez réessayer dans quelques instants.")}
+          />
         ) : noResults ? (
           <>
-            <div className={styles.no_results} id="resultats-liste">
-              <Image src={TutoImg} width={176} height={120} alt="" />
-              <div>
-                <h2 className="mb-2" id="resultats">
-                  {t(
-                    "Recherche.noResultTitle",
-                    "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
-                  )}
-                </h2>
-                <p>
-                  {t(
-                    "Recherche.noResultText",
-                    "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
-                  )}
-                </p>
-              </div>
-
+            <NoResultsPlaceholder
+              titleId="resultats"
+              title={t(
+                "Recherche.noResultTitle",
+                "Oups ! Il n'y a aucun résultat avec vos critères de recherche.",
+              )}
+              text={t(
+                "Recherche.noResultText",
+                "Utilisez moins de filtres ou vérifiez l'orthographe du mot-clé.",
+              )}
+            >
               <Button
                 priority="tertiary"
                 onClick={() => dispatch(resetFiltersActionCreator(query.search))}
@@ -138,7 +128,7 @@ const SearchResults = (props: Props) => {
               >
                 {t("Recherche.resetFilters", "Effacer les filtres")}
               </Button>
-            </div>
+            </NoResultsPlaceholder>
 
             <div style={{ width: "100%" }}>
               <h2 className={styles.no_results_other} id="resultats-suggestions">

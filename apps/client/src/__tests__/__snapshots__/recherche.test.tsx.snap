@@ -380,8 +380,7 @@ exports[`recherche renders search results 1`] = `
           </div>
         </div>
         <div
-          class="no_results"
-          id="resultats-liste"
+          class="flex flex-col items-center gap-10 py-14"
         >
           <img
             alt=""
@@ -394,14 +393,18 @@ exports[`recherche renders search results 1`] = `
             style="color: transparent;"
             width="176"
           />
-          <div>
+          <div
+            class="text-chapo text-default-grey flex flex-col items-center gap-1.5 text-center"
+          >
             <h2
-              class="mb-2"
+              class="text-chapo mb-0 font-bold"
               id="resultats"
             >
               Recherche.noResultTitle
             </h2>
-            <p>
+            <p
+              class="mb-0"
+            >
               Recherche.noResultText
             </p>
           </div>
