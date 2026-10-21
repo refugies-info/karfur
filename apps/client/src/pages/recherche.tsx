@@ -12,36 +12,28 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { getPath, isRoute } from "routes";
 import SearchHeader from "~/components/Pages/recherche/SearchHeader";
 import SearchResults from "~/components/Pages/recherche/SearchResults";
 import SEO from "~/components/Seo";
 import { useLocale, useUtmz } from "~/hooks";
+import { useSearchData } from "~/hooks/recherche/useSearchData";
 import { cls } from "~/lib/classname";
 import dbConnect from "~/lib/db";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildUrlQuery } from "~/lib/recherche/buildUrlQuery";
 import decodeQuery from "~/lib/recherche/decodeUrlQuery";
-import { buildQueryParams, computeSearchResults } from "~/lib/search-helpers";
-import { computeSearchCounts } from "~/pages/api/search/counts";
+import { buildQueryParams, computeSearchResults, type SearchResponse } from "~/lib/search-helpers";
+import { computeSearchCounts, type SearchCountsResponse } from "~/pages/api/search/counts";
 import styles from "~/scss/pages/recherche.module.scss";
 import { wrapper } from "~/services/configureStore";
 import { toggleLangueActionCreator } from "~/services/Langue/langue.actions";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
-import { fetchSearchCountsSuccess } from "~/services/SearchCounts/searchCounts.reducer";
-import { searchCountsDataSelector } from "~/services/SearchCounts/searchCounts.selector";
-import {
-  addToQueryActionCreator,
-  fetchSearchResultsRequest,
-  fetchSearchResultsSuccess,
-} from "~/services/SearchResults/searchResults.actions";
+import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
-import {
-  searchPaginationSelector,
-  searchQuerySelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
 
 export type UrlSearchQuery = {
@@ -91,16 +83,28 @@ const pickRelevantFilters = (q: SearchQuery) => {
   };
 };
 
-const Recherche = () => {
+interface Props {
+  initialQuery: SearchQuery;
+  initialResults: SearchResponse | null;
+  initialCounts: SearchCountsResponse | null;
+}
+
+const Recherche = ({ initialQuery, initialResults, initialCounts }: Props) => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const router = useRouter();
   const locale = useLocale();
   const { params } = useUtmz();
 
-  const counts = useSelector(searchCountsDataSelector);
   const query = useSelector(searchQuerySelector);
-  const pagination = useSelector(searchPaginationSelector);
+  // Filters typed by the user are applied after the debounce: they drive the data fetching and the URL
+  const [appliedQuery, setAppliedQuery] = useState(initialQuery);
+  const searchData = useSearchData({
+    query: appliedQuery,
+    locale,
+    initialQuery,
+    initialResults,
+    initialCounts,
+  });
 
   // Stable refs for values used inside debounce (avoids stale closures and re-creating the fn)
   const routerRef = useRef(router);
@@ -112,7 +116,7 @@ const Recherche = () => {
 
   const debouncedSearchAndUrlUpdate = useCallback(
     debounce((currentQuery: SearchQuery) => {
-      dispatch(fetchSearchResultsRequest(currentQuery));
+      setAppliedQuery(currentQuery);
 
       const oldQueryString = routerRef.current.asPath.split("?")[1] || "";
       const newQueryString = buildUrlQuery(currentQuery, paramsRef.current);
@@ -127,7 +131,7 @@ const Recherche = () => {
         );
       }
     }, 500),
-    [dispatch],
+    [],
   );
 
   // when navigating, save state to prevent loop on search page
@@ -167,8 +171,22 @@ const Recherche = () => {
             : t("Recherche.pageTitle", "Recherche")
         }
       />
-      <SearchHeader counts={counts} nbResults={pagination.total} />
-      <SearchResults />
+      <SearchHeader
+        counts={searchData.counts}
+        results={searchData.results}
+        nbResults={searchData.totalResultsCount}
+      />
+      <SearchResults
+        results={searchData.results}
+        suggestions={searchData.suggestions}
+        noResultsSuggestions={searchData.noResults}
+        counts={searchData.counts}
+        totalResultsCount={searchData.totalResultsCount}
+        currentPage={searchData.currentPage}
+        isLoading={searchData.isLoading || searchData.isLoadingMore}
+        error={searchData.error}
+        onLoadMore={searchData.loadMore}
+      />
     </div>
   );
 };
@@ -193,6 +211,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
       // Decode URL query into SearchQuery
       const initialQuery = decodeQuery(query, store.getState().themes.activeThemes);
       store.dispatch(addToQueryActionCreator(initialQuery));
+
+      let initialResults: SearchResponse | null = null;
+      let initialCounts: SearchCountsResponse | null = null;
 
       // Fetch initial search results directly from MongoDB (no API route call)
       try {
@@ -224,11 +245,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         ]);
 
         // Serialize to strip Mongoose ObjectIds / BSON types that Next.js can't serialize
-        const serializedSearch = JSON.parse(JSON.stringify(searchResponse));
-        store.dispatch(fetchSearchResultsSuccess(serializedSearch));
-        if (countsResponse) {
-          store.dispatch(fetchSearchCountsSuccess(JSON.parse(JSON.stringify(countsResponse))));
-        }
+        initialResults = JSON.parse(JSON.stringify(searchResponse));
+        initialCounts = countsResponse ? JSON.parse(JSON.stringify(countsResponse)) : null;
       } catch (error) {
         // If DB connection fails, render with empty results (client will retry)
         console.error("SSR search failed:", error);
@@ -236,6 +254,9 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
       return {
         props: {
+          initialQuery: store.getState().searchResults.query,
+          initialResults,
+          initialCounts,
           ...(await serverSideTranslations(getLanguageFromLocale(locale), ["common"])),
         },
       };

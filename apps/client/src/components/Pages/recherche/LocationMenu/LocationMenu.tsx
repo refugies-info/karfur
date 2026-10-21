@@ -10,11 +10,8 @@ import { useSearchEventName } from "~/hooks";
 import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
-import {
-  searchPaginationSelector,
-  searchQuerySelector,
-  searchResultsSelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
+import { useSearchResultsContext } from "../SearchResultsContext";
 import {
   commonPlaces,
   fetchLocationSuggestions,
@@ -35,8 +32,7 @@ interface Props {
 const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const searchResults = useSelector(searchResultsSelector);
-  const pagination = useSelector(searchPaginationSelector);
+  const { results, totalResultsCount } = useSearchResultsContext();
   const eventName = useSearchEventName();
   const announce = useAnnounce();
   const { t } = useTranslation();
@@ -44,7 +40,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
   const [locationSearch, setLocationSearch] = useState("");
   const [suggestions, setSuggestions] = useState<UnifiedSearchResult[]>([]);
   const [pendingAnnounce, setPendingAnnounce] = useState(false);
-  const previousMatchesRef = useRef(searchResults.matches);
+  const previousMatchesRef = useRef(results);
 
   // Helper function to normalize location names for comparison
   const getNormalizedLocations = (locations: string[]): string[] => {
@@ -221,21 +217,21 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
 
   useEffect(() => {
     if (!pendingAnnounce) {
-      previousMatchesRef.current = searchResults.matches;
+      previousMatchesRef.current = results;
       return;
     }
 
-    const hasNewResults = previousMatchesRef.current !== searchResults.matches;
+    const hasNewResults = previousMatchesRef.current !== results;
     if (!hasNewResults) return;
 
-    previousMatchesRef.current = searchResults.matches;
+    previousMatchesRef.current = results;
 
     const currentDepartments = query.departments || [];
     const currentCities = query.cities || [];
 
     announce(
       t("Recherche.loadedSheets", "{{count}} fiches chargées", {
-        count: searchResults.matches.length,
+        count: results.length,
       }),
       {
         delay: 1000,
@@ -243,7 +239,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
     );
 
     // Warn about underserved departments using pagination total as proxy
-    if (pagination.total < NOT_DEPLOYED_THRESHOLD && currentDepartments.length > 0) {
+    if (totalResultsCount < NOT_DEPLOYED_THRESHOLD && currentDepartments.length > 0) {
       currentDepartments.forEach((dept) => {
         announce(
           t(
@@ -258,15 +254,7 @@ const LocationMenu: React.FC<Props> = ({ mobile = false }) => {
       });
     }
     setPendingAnnounce(false);
-  }, [
-    pendingAnnounce,
-    query.departments,
-    query.cities,
-    pagination.total,
-    announce,
-    t,
-    searchResults.matches,
-  ]);
+  }, [pendingAnnounce, query.departments, query.cities, totalResultsCount, announce, t, results]);
 
   const renderSuggestions = () => (
     <Checkbox
