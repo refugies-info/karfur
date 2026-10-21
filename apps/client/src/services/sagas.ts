@@ -16,7 +16,6 @@ import userSaga from "./User/user.saga";
 import userContributionsSaga from "./UserContributions/userContributions.saga";
 import userFavoritesSaga from "./UserFavoritesInLocale/UserFavoritesInLocale.saga";
 import structuresSaga from "./UserStructure/userStructure.saga";
-import widgets from "./Widgets/widgets.saga";
 
 export function* rootSaga(): SagaIterator {
   yield fork(userSaga);
@@ -35,5 +34,4 @@ export function* rootSaga(): SagaIterator {
   yield fork(dispositifsWithTranslationsStatus);
   yield fork(needs);
   yield fork(themes);
-  yield fork(widgets);
 }

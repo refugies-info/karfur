@@ -57,7 +57,6 @@ import {
   userFavoritesReducer,
 } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { structureReducer, type UserStructureState } from "./UserStructure/userStructure.reducer";
-import { type WidgetsState, widgetsReducer } from "./Widgets/widgets.reducer";
 
 export interface RootState {
   activeDispositifs: ActiveDispositifsState;
@@ -80,7 +79,6 @@ export interface RootState {
   userFavorites: UserFavoritesState;
   users: AllUsersState;
   userStructure: UserStructureState;
-  widgets: WidgetsState;
 }
 
 const combinedReducer = combineReducers({
@@ -104,7 +102,6 @@ const combinedReducer = combineReducers({
   userFavorites: userFavoritesReducer,
   users: allUsersReducer,
   userStructure: structureReducer,
-  widgets: widgetsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {
