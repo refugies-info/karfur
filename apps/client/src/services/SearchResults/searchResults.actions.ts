@@ -1,12 +1,7 @@
-import type { SimpleDispositif } from "@refugies-info/api-types";
 import { type ActionType, action } from "typesafe-actions";
-import { ADD_TO_QUERY, SET_NO_RESULTS, SET_RESULTS } from "./searchResults.actionTypes";
-import type { Results, SearchQuery } from "./searchResults.reducer";
+import { ADD_TO_QUERY } from "./searchResults.actionTypes";
+import type { SearchQuery } from "./searchResults.reducer";
 
-// `setSearchResultsActionCreator` / `setNoResultsActionCreator` are only used by embed.tsx
-export const setSearchResultsActionCreator = (results: Results) => action(SET_RESULTS, results);
-export const setNoResultsActionCreator = (results: SimpleDispositif[]) =>
-  action(SET_NO_RESULTS, results);
 export const addToQueryActionCreator = (query: Partial<SearchQuery>) => action(ADD_TO_QUERY, query);
 
 export const resetFiltersActionCreator = (search: string) =>
@@ -26,8 +21,6 @@ export const resetFiltersActionCreator = (search: string) =>
   } as SearchQuery);
 
 const actions = {
-  setSearchResultsActionCreator,
-  setNoResultsActionCreator,
   addToQueryActionCreator,
   resetFiltersActionCreator,
 };
