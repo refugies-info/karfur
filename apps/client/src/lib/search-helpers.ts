@@ -1,7 +1,7 @@
 import { type SearchClient, searchClient } from "@algolia/client-search";
 import type { SimpleDispositif } from "@refugies-info/api-types";
 import type { AgeOptions, FrenchOptions, PublicOptions, StatusOptions } from "data/searchFilters";
-import { frenchLevelValuesByOption, isFrenchOption } from "data/searchFilters";
+import { frenchLevelValuesByOption, isAgeOption, isFrenchOption } from "data/searchFilters";
 import mongoose, { type FilterQuery, type Model, type PipelineStage } from "mongoose";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import type { ParsedUrlQuery } from "querystring";
@@ -117,9 +117,7 @@ export const buildQueryParams = (query: SearchQuery): QueryParams => ({
   nearCity: getQueryParamAsArray(query.nearCity),
   themes: getQueryParamAsArray(query.themes),
   needs: getQueryParamAsArray(query.needs),
-  age: getQueryParamAsArray(query.age).filter(
-    (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
-  ),
+  age: getQueryParamAsArray(query.age).filter(isAgeOption),
   frenchLevel: getQueryParamAsArray(query.frenchLevel).filter(isFrenchOption),
   public: getQueryParamAsArray(query.public).filter(
     (v): v is PublicOptions => typeof v === "string" && v.trim().length > 0,
@@ -225,9 +223,7 @@ export const buildBaseMatch = (
     }
   }
 
-  const ages = (queryParams.age ?? []).filter(
-    (a): a is AgeOptions => a === "-18" || a === "18-25" || a === "+25",
-  );
+  const ages = (queryParams.age ?? []).filter(isAgeOption);
   if (ages.length > 0) {
     const minAgeExpr = {
       $switch: {
