@@ -17,4 +17,3 @@ export * from "./modules/theme";
 export * from "./modules/translations";
 export * from "./modules/tts";
 export * from "./modules/user";
-export * from "./modules/widget";

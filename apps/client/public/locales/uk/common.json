@@ -95,13 +95,6 @@
     "allResultsDisplayed": "Усі результати відображено",
     "citySelectionsResults": "Знайдено {{count}} варіантів, будь ласка, виберіть своє місто із запропонованих"
   },
-  "Widget": {
-    "fiches": "Записи",
-    "withTheme": "на тему",
-    "available": "доступні",
-    "inLocation": "у",
-    "inLanguage": "у"
-  },
   "UserFavorites": {
     "tooltip_add": "Зберегти запис",
     "tooltip_remove": "Видалити збережені записи",

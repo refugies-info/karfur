@@ -232,9 +232,6 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.20
         version: 0.5.20(tailwindcss@4.3.3)
-      algoliasearch:
-        specifier: ^5.59.0
-        version: 5.59.0
       autosuggest-highlight:
         specifier: ^3.3.4
         version: 3.3.4
@@ -16981,9 +16978,7 @@ snapshots:
       metro-runtime: 0.83.8
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
     optional: true
 
   '@react-native/normalize-colors@0.81.5': {}
