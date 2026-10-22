@@ -2,12 +2,12 @@ import { ContentType, DispositifOrigin, DispositifStatus } from "@refugies-info/
 import { z } from "zod";
 
 // ObjectId validation - prevents NoSQL injection
-const ObjectIdSchema = z.string().regex(/^[0-9a-fA-F]{24}$/, {
+export const ObjectIdSchema = z.string().regex(/^[0-9a-fA-F]{24}$/, {
   message: "Format ObjectId invalide (doit être 24 caractères hexadécimaux)",
 });
 
 // Base schema for shared fields
-const BaseWebhookSchema = z.object({
+export const BaseWebhookSchema = z.object({
   email: z.string().email("Format d'email invalide"),
 });
 

@@ -212,6 +212,134 @@ Returns the list of available needs in id/value format, grouped by their associa
 
 ---
 
+### 7. Search Contents
+
+Finds contents by title or id, or resolves a list of ids to display them.
+
+- **URL**: `/api/webhook/dispositif/search`
+- **Method**: `GET`
+- **Query** (one of the two is required):
+  - `q`: a title fragment (matches `titreInformatif` and `titreMarque`, active contents only, 20 results max) or a full ObjectId (returned whatever its status).
+  - `ids`: comma-separated ObjectIds (100 max), returned whatever their status.
+- **Response** (`200 OK`):
+  ```json
+  [
+    {
+      "id": "507f1f77bcf86cd799439031",
+      "type": "dispositif",
+      "status": "Actif",
+      "titreInformatif": "Avoir une carte de séjour",
+      "titreMarque": "...",
+      "sponsorName": "Ministère de l'Intérieur"
+    }
+  ]
+  ```
+
+---
+
+### 8. Widget Configs
+
+A widget config stores the settings of an embeddable widget (title, filters, manually selected / excluded contents, display options). The editor is the only writer; the model is `WidgetConfig` in `@refugies-info/mongo`.
+
+All write endpoints take the editor's `email` to check their role (Admin or Contrib required); it is not stored. Unknown fields are rejected with a `400`.
+
+#### Create — `POST /api/webhook/widget-config/create`
+
+```json
+{
+  "email": "exemple@email.com",
+  "widgetConfig": {
+    "internalTitle": "Widget Bordeaux",
+    "type": "list",
+    "structureName": "Association Exemple",
+    "authorizedDomains": ["exemple.org"],
+    "externalTitle": "Les fiches de Bordeaux",
+    "displayDescription": true,
+    "filters": { "departments": ["Gironde"] },
+    "selectedDispositifIds": [],
+    "excludedDispositifIds": [],
+    "pageSize": 8,
+    "sortBy": "date",
+    "displayShareModule": true,
+    "displayFilterBar": true,
+    "filterBarOptions": ["keyword", "location"],
+    "status": "inactive"
+  }
+}
+```
+
+Every field is required except `description`; there are no defaults.
+
+| Field | Constraints |
+|---|---|
+| `internalTitle` | 150 characters max |
+| `type` | `list` \| `thumbnail` |
+| `structureName` | Free text, 150 characters max, not linked to the structures collection |
+| `authorizedDomains` | Hostnames only (`exemple.org`), lowercased, 20 max |
+| `externalTitle` | 100 characters max |
+| `description` | Optional, 300 characters max, empty string clears it |
+| `filters` | `{}` for no filter, see below |
+| `selectedDispositifIds` / `excludedDispositifIds` | 100 max each, a content cannot be in both |
+| `pageSize` | `4`, `8` or `12` |
+| `sortBy` | `date`, `views`, `theme`, `location` (same keys as the search) |
+| `filterBarOptions` | `keyword`, `location`, `theme`, `public`, `status`, `frenchLevel`, `age`, `language` |
+| `status` | `active` \| `inactive` |
+
+**`filters`** mirror the search parameters. A missing or empty category means "no filter"; values of a category are OR-ed, categories are AND-ed.
+
+```json
+{
+  "contentTypes": ["dispositif"],
+  "departments": ["Gironde"],
+  "themes": ["<themeId>"],
+  "needs": ["<needId>"],
+  "publics": ["women"],
+  "statuses": ["asile"],
+  "frenchLevels": ["a"],
+  "ages": ["18-25"],
+  "languages": ["ar"]
+}
+```
+
+`departments` takes department **names** as the search does (`"Gironde"`, not `"33"` nor `"33 - Gironde"`) and rejects anything else. Contents available in all of France are always included when a department is set. There is no city filter: the search relies on departments.
+
+Response (`201 Created`): `{ "message": "...", "id": "...", "publicId": "..." }`. `publicId` is the stable identifier meant for the embed code.
+
+#### Update — `POST|PATCH /api/webhook/widget-config/update`
+
+Same payload as create, with `widgetConfig._id` and only the fields to change. Arrays and `filters` are replaced as a whole. `statusUpdatedAt` is refreshed only when `status` actually changes. Response (`200 OK`): `{ "message": "...", "id": "..." }`. There is no delete: set `status` to `inactive`.
+
+#### Read — `GET /api/webhook/widget-config` and `GET /api/webhook/widget-config/{id}`
+
+The list returns summaries (`_id`, `publicId`, `internalTitle`, `type`, `status`, `structureName`, `updatedAt`), most recently updated first. The detail returns the whole config as stored (`_id` included).
+
+#### Preview Count — `POST /api/webhook/widget-config/preview-count`
+
+Counts the published contents matching a set of filters, with the search rules. It does not account for manually selected or excluded contents.
+
+- **Body**: `{ "filters": { ... } }`
+- **Response** (`200 OK`): `{ "count": 5 }`
+
+---
+
+### 9. List All Contents
+
+Lists every content of the `dispositifs` collection, **whatever its status** (active, archived, deleted, drafts, ...) and type (dispositif or démarche), page by page. Full documents are returned as stored, minus `__v`. Drafts being edited live in a separate collection and are not included.
+
+- **URL**: `/api/webhook/dispositif/all`
+- **Method**: `GET`
+- **Query**:
+  - `limit`: page size, 50 by default, 200 at most.
+  - `cursor`: the `nextCursor` of the previous page. Omit it for the first page.
+- **Response** (`200 OK`): `{ "items": [ ... ], "nextCursor": "507f1f77bcf86cd799439051" }`. `nextCursor` is `null` on the last page.
+
+Loop until `nextCursor` is `null`. Pages are sorted by `_id`, so a content created while you iterate is either returned or picked up by the next run, never duplicated.
+
+> [!WARNING]
+> Documents include internal fields (`creatorId`, `participants`, `adminComments`, user feedback...). The endpoint is protected by the webhook secret; select the fields you need on the consumer side.
+
+---
+
 ## Field Values Reference
 
 ### Location
