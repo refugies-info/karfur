@@ -1,4 +1,6 @@
 import "@testing-library/jest-dom";
+import { statSync } from "node:fs";
+import path from "node:path";
 import { setLink } from "@codegouvfr/react-dsfr/link";
 import { render, screen } from "@testing-library/react";
 import Link from "next/link";
@@ -28,5 +30,12 @@ describe("SectionImpact", () => {
     expect(link).toHaveAttribute("href", bookletPath);
     expect(link.closest(".fr-card")).not.toHaveAttribute("aria-label");
     expect(screen.getByRole("img")).toHaveAttribute("alt", "MissionImpact.impact_booklet_alt");
+  });
+
+  it("shows the weight of the PDF actually served from public/", () => {
+    render(<SectionImpact />);
+
+    const { size } = statSync(path.join(__dirname, "../../../../../../public", bookletPath));
+    expect(screen.getByText(`PDF - ${Math.round(size / 1024)} Ko`)).toBeInTheDocument();
   });
 });

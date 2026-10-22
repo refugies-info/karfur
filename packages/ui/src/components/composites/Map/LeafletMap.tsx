@@ -9,7 +9,7 @@ import "leaflet/dist/leaflet.css";
 import { useTranslation } from "next-i18next";
 import type React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { AttributionControl, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import CustomControls from "./CustomControls";
 import { useMapContext } from "./MapContext";
@@ -253,9 +253,11 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
         zoomAnimation={true}
         markerZoomAnimation={true}
         zoomControl={false}
+        attributionControl={false}
         style={{ height: "100%", width: "100%" }}
         dragging={isMobile ? false : true}
       >
+        <AttributionControl prefix="<a href='https://leafletjs.com' target='_blank' tabindex='-1'>Leaflet</a>" />
         <CustomControls />
         <TileLayer
           url={`https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png?api_key=${process.env.NEXT_PUBLIC_REACT_APP_STADIA_MAPS_API_KEY}`}
@@ -266,7 +268,7 @@ export const LeafletMap = ({ className }: LeafletMapProps): React.ReactElement =
           updateWhenZooming={true}
           maxNativeZoom={16}
           tileSize={256}
-          attribution="<div aria-hidden='true'>&copy; <a href='https://www.stadiamaps.com/' target='_blank'>Stadia Maps</a> &copy; <a href='https://openmaptiles.org/' target='_blank'>OpenMapTiles</a> &copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors</div>"
+          attribution="<div aria-hidden='true'>&copy; <a href='https://www.stadiamaps.com/' target='_blank' tabindex='-1'>Stadia Maps</a> &copy; <a href='https://openmaptiles.org/' target='_blank' tabindex='-1'>OpenMapTiles</a> &copy; <a href='https://www.openstreetmap.org/copyright' tabindex='-1'>OpenStreetMap</a> contributors</div>"
         />
         <MarkerClusterGroup
           ref={clusterGroupRef}

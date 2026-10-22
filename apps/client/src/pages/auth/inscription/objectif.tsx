@@ -1,6 +1,5 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RoleName } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useRouter } from "next/router";
@@ -14,6 +13,7 @@ import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import Image from "~/components/UI/Image";
+import { RegisterStepper } from "~/components/User";
 import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -76,7 +76,7 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
+        <RegisterStepper currentStep={stepCount[0]} stepCount={stepCount[1]} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Que souhaitez-vous faire&nbsp;?</h1>

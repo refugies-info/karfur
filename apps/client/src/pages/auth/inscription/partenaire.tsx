@@ -1,5 +1,4 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RoleName } from "@refugies-info/api-types";
 import { partners } from "data/structurePartners";
 import { logger } from "logger";
@@ -12,6 +11,7 @@ import PartnerRadio from "~/components/Pages/auth/PartnerRadio";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import Image from "~/components/UI/Image";
+import { RegisterStepper } from "~/components/User";
 import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -59,7 +59,7 @@ const AuthLogin = () => {
     <div className={cls(styles.container, styles.full)}>
       <SEO title="Votre structure" />
       <div className={styles.container_inner}>
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
+        <RegisterStepper currentStep={stepCount[0]} stepCount={stepCount[1]} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1 id="partner-input-title">

@@ -60,6 +60,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
             <div className="relative">
               <span
                 className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}
+                aria-hidden="true"
               ></span>
               <ThumbUpAnimated
                 ref={thumbUpRef as React.RefObject<ThumbUpAnimatedRef>}

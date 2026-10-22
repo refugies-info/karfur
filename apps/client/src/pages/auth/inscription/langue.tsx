@@ -1,12 +1,11 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { type ReactElement, useCallback, useMemo } from "react";
 import { useAsyncFn } from "react-use";
 import { END } from "redux-saga";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
-import { EditLanguage } from "~/components/User";
+import { EditLanguage, RegisterStepper } from "~/components/User";
 import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
@@ -51,7 +50,7 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
+        <RegisterStepper currentStep={stepCount[0]} stepCount={stepCount[1]} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>En quelle langue souhaitez-vous traduire&nbsp;?</h1>

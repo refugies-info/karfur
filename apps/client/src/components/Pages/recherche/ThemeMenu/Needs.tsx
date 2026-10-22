@@ -149,7 +149,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                 checked: allNeedsSelected,
                 onChange: toggleAllNeeds,
                 className: "!border",
-                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", "fiches")}`,
+                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", { count: (selectedThemeId && nbDispositifsByTheme[selectedThemeId.toString()]) || 0 })}`,
               },
             },
             ...displayedNeeds.map((need) => {
@@ -162,7 +162,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                   checked: selected,
                   onChange: () => selectNeed(need._id),
                   className: "!border",
-                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
+                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", { count: nbDispositifsByNeed[need._id.toString()] || 0 })}`,
                 },
               };
             }),
