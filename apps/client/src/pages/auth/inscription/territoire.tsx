@@ -24,11 +24,14 @@ const AuthLogin = () => {
   }, [router, userDetails]);
   const stepCount = useMemo(() => getStepCount(null), [getStepCount]);
 
-  if (!userDetails) return null;
+  // Render the title even before the user is loaded so the page is never untitled
+  const seo = <SEO title="Votre territoire" />;
+
+  if (!userDetails) return seo;
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre territoire" />
+      {seo}
       {isLoading ? (
         <Loader text="Création de votre espace..." subtitle={inscriptionMessage} />
       ) : (
