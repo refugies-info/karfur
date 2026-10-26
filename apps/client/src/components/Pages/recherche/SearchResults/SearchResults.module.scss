@@ -79,28 +79,6 @@
   }
 }
 
-.no_results {
-  margin: auto;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: u(10);
-  align-items: center;
-  justify-content: center;
-  padding: u(14) 0;
-  text-align: center;
-
-  h2 {
-    @include dsfr-text("chapo");
-
-    font-weight: bold;
-  }
-
-  p {
-    @include dsfr-text("chapo");
-  }
-}
-
 .no_results_other {
   @include dsfr-text("h3");
 

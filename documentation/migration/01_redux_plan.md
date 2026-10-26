@@ -17,7 +17,7 @@ We have identified 22 reducers. Here is where they will move:
 - `ActiveDispositifs`, `AllDispositifs`, `SelectedDispositif`
 - `ActiveStructures`, `AllStructures`, `SelectedStructure`
 - `ActiveUsers`, `AllUsers`, `User` (Current User profile)
-- `Needs`, `Themes`, `Widgets`
+- `Needs`, `Themes`
 - `UserContributions`, `UserFavorites`, `UserStructure`
 - `SearchResults` (The `results` part)
 - `SearchCounts`

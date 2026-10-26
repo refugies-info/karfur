@@ -95,13 +95,6 @@
     "allResultsDisplayed": "Все результаты отображены",
     "citySelectionsResults": "Найдено {{count}} вариантов, пожалуйста, выберите ваш город из предложенных"
   },
-  "Widget": {
-    "fiches": "Страницы",
-    "withTheme": "с темой",
-    "available": "доступно",
-    "inLocation": "в",
-    "inLanguage": "в"
-  },
   "UserFavorites": {
     "tooltip_add": "Сохранить страницу",
     "tooltip_remove": "Удалить сохраненные страницы",

@@ -1,5 +1,5 @@
 # WARNING: using root folder as current context to make this dockerfile work
-FROM node:24.14.0-alpine AS base
+FROM node:24.22.1-alpine AS base
 
   # Update and install system packages
   RUN apk update && apk add --no-cache libc6-compat

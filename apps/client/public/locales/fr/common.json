@@ -157,16 +157,11 @@
     "clear": "Effacer",
     "seeAllButtonWithCount": "Voir les {{count}} fiches",
     "tooltipAucuneFicheCorrespondante": "Aucune fiche ne correspond à ce critère. Ajustez vos autres filtres pour filtrer sur ce critère spécifique.",
+    "errorTitle": "Les résultats n'ont pas pu être chargés.",
+    "errorText": "Veuillez réessayer dans quelques instants.",
     "noResultTitle": "Oups ! Il n’y a aucun résultat avec vos critères de recherche.",
     "noResultOther": "Ces fiches peuvent aussi vous intéresser",
     "filtersDialogDescription": "Choisissez vos filtres et options de tri pour affiner les résultats de recherche."
-  },
-  "Widget": {
-    "fiches": "Fiches",
-    "withTheme": "avec le thème",
-    "available": "disponibles",
-    "inLocation": "en",
-    "inLanguage": "en"
   },
   "UserFavorites": {
     "tooltip_add": "Sauvegarder la fiche",
@@ -908,6 +903,8 @@
     "results_noUpcomingTitle": "De nouveaux cours seront ajoutés prochainement.",
     "results_noUpcomingText": "En attendant, d’autres sont peut-être ouverts près de chez vous !",
     "results_seeOtherCourses": "Voir les autres cours",
+    "results_errorTitle": "Oups ! Une erreur est survenue.",
+    "results_errorText": "Nous n'avons pas pu charger les résultats. Veuillez réessayer dans quelques instants ou vérifier votre connexion internet.",
     "share_title": "Partager la liste :",
     "share_action": "Partager la liste",
     "filter_remove": "Retirer le filtre {{label}}",
