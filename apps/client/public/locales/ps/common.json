@@ -95,13 +95,6 @@
     "allResultsDisplayed": "ټولې پایلې ښودل شوې",
     "citySelectionsResults": "{{count}} وړاندیزونه وموندل شول، مهرباني وکړئ خپل ښار د وړاندیزونو څخه وټاکئ"
   },
-  "Widget": {
-    "fiches": "فایلونه",
-    "withTheme": "له موضوع سره",
-    "available": "شتون لري",
-    "inLocation": "په",
-    "inLanguage": "په"
-  },
   "UserFavorites": {
     "tooltip_add": "فایل خوندي کړئ",
     "tooltip_remove": "خوندي شوي فایلونه حذف کړئ",

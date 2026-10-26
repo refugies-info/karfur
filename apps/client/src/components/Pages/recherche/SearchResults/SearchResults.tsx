@@ -27,7 +27,6 @@ interface Props {
   isLoading: boolean;
   error?: boolean;
   onLoadMore: () => void;
-  targetBlank?: boolean;
 }
 
 const SearchResults = (props: Props) => {
