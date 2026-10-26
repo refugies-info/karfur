@@ -8,7 +8,6 @@ export type TabQuery =
   | "utilisateurs"
   | "divers"
   | "categories"
-  | "widgets"
   | undefined;
 type Status = DispositifStatus | StructureStatus | UserStatusType;
 

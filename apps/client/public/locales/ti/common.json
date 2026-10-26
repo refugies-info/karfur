@@ -95,13 +95,6 @@
     "allResultsDisplayed": "ኩሎም ውጽኢታት ተራእዮም ኣለዉ",
     "citySelectionsResults": "{{count}} ርእይቶታት ተረኺቦም ኣለዉ፣ በጃኹም ካብ ርእይቶታት ከተማኹም ምረጹ"
   },
-  "Widget": {
-    "fiches": "ፋይል",
-    "withTheme": "ምስ ዛዕባ ወይ ጉዳይ",
-    "available": "ኣብ ኣገልግሎት",
-    "inLocation": "ኣብ ውሽጢ",
-    "inLanguage": "ኣብ"
-  },
   "UserFavorites": {
     "tooltip_add": "ምዕቃብ ፋይል",
     "tooltip_remove": "ዝዓቀብኩሞ ፋይል ተጠቐምሉ",

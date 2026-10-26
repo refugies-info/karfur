@@ -47,7 +47,6 @@ import type {
   GetUserFavoritesResponse,
   GetUserInfoResponse,
   GetUserStatisticsResponse,
-  GetWidgetResponse,
   Id,
   ImprovementsRequest,
   IsInContactResponse,
@@ -60,13 +59,11 @@ import type {
   PatchStructureRequest,
   PatchStructureRolesRequest,
   PatchThemeResponse,
-  PatchWidgetResponse,
   PostAdminOptionResponse,
   PostDispositifsResponse,
   PostImageResponse,
   PostStructureRequest,
   PostThemeResponse,
-  PostWidgetResponse,
   PublishDispositifRequest,
   PublishTranslationRequest,
   ReadSuggestionDispositifRequest,
@@ -94,7 +91,6 @@ import type {
   UpdatePositionsRequest,
   UpdateUserRequest,
   UpdateUserResponse,
-  WidgetRequest,
 } from "@refugies-info/api-types";
 import { isInBrowser } from "@refugies-info/ui";
 import axios, { type Canceler } from "axios";
@@ -579,30 +575,6 @@ const API = {
   deleteTheme: (query: Id): Promise<null> => {
     const headers = getHeaders();
     return instance.delete<any, null>(`/themes/${query}`, { headers }).then(() => null);
-  },
-
-  // Widgets
-  getWidgets: (): Promise<GetWidgetResponse> => {
-    const headers = getHeaders();
-    return instance
-      .get<any, APIResponse<GetWidgetResponse>>("/widgets", { headers })
-      .then((response) => response.data.data);
-  },
-  postWidgets: (body: WidgetRequest): Promise<PostWidgetResponse> => {
-    const headers = getHeaders();
-    return instance
-      .post<any, APIResponse<PostWidgetResponse>>("/widgets", body, { headers })
-      .then((response) => response.data.data);
-  },
-  patchWidget: (id: Id, body: Partial<WidgetRequest>): Promise<PatchWidgetResponse> => {
-    const headers = getHeaders();
-    return instance
-      .patch<any, APIResponse<PatchWidgetResponse>>(`/widgets/${id}`, body, { headers })
-      .then((response) => response.data.data);
-  },
-  deleteWidget: (query: Id): Promise<null> => {
-    const headers = getHeaders();
-    return instance.delete<any, null>(`/widgets/${query}`, { headers }).then(() => null);
   },
 
   // Export

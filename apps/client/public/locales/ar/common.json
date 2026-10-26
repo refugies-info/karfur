@@ -95,13 +95,6 @@
     "allResultsDisplayed": "تم عرض جميع النتائج",
     "citySelectionsResults": "تم العثور على {{count}} اقتراح، يرجى اختيار مدينتك من بين الاقتراحات"
   },
-  "Widget": {
-    "fiches": "صفحات معلومات",
-    "withTheme": "مع موضوع",
-    "available": "متاح",
-    "inLocation": "ب",
-    "inLanguage": "ب"
-  },
   "UserFavorites": {
     "tooltip_add": "حفظ الصفحة",
     "tooltip_remove": "ازالة من الصفحات المحفوظة",
