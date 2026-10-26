@@ -15,7 +15,7 @@
     "mongoose": "^8.24.4",
     "password-hash": "^1.2.2",
     "speedgoose": "~2.2.0",
-    "zod": "^3.25.76"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@refugies-info/typescript-config": "workspace:*",
