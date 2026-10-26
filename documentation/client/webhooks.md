@@ -383,14 +383,14 @@ Loop until `nextCursor` is `null`. Pages are sorted by `_id`, so a content creat
 
 ## Error Handling
 
-The API returns standard HTTP status codes with informative JSON messages:
+The API returns standard HTTP status codes with informative JSON messages. Messages returned to the caller are written in French, as the first webhooks do.
 
 | Status | Code | Message | Description |
 | :--- | :--- | :--- | :--- |
 | **400** | `Bad Request` | `Format d'email invalide`, `L'origine doit être 'RI' ou 'RCO'`, `Format ObjectId invalide`, etc. | Payload validation error (Zod). |
 | **401** | `Unauthorized` | `Accès refusé : Secret invalide ou manquant` | The `webhook-secret` header is missing or incorrect. |
 | **403** | `Forbidden` | `Accès refusé : IP non autorisée` | The request allows from an unauthorized IP address. |
-| **403** | `Forbidden` | `Accès refusé. Rôle requis : Admin ou Contrib` | The user does not have sufficient permissions. |
+| **403** | `Forbidden` | `Accès refusé. Rôle requis pour cette action (create) : Admin ou Contrib` | The user does not have sufficient permissions. The message names the action and the roles it requires. |
 | **404** | `Not Found` | `Utilisateur non trouvé pour cet email` | The email in the payload does not match any user. |
 | **500** | `Internal Server Error` | _(Variable)_ | Unexpected server error. |
 

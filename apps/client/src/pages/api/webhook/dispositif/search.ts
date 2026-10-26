@@ -24,10 +24,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     .filter(Boolean);
 
   if (!text && !ids?.length) {
-    return res.status(400).json({ message: "Either q or ids is required" });
+    return res.status(400).json({ message: "Le paramètre q ou ids est requis" });
   }
   if (ids && (ids.length > MAX_IDS || !ids.every((id) => ObjectIdSchema.safeParse(id).success))) {
-    return res.status(400).json({ message: `ids must be at most ${MAX_IDS} valid ObjectIds` });
+    return res
+      .status(400)
+      .json({ message: `ids doit contenir au plus ${MAX_IDS} ObjectIds valides` });
   }
 
   try {

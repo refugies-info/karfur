@@ -11,7 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const payloadId = ObjectIdSchema.safeParse(req.query.id);
   if (!payloadId.success) {
-    return res.status(400).json({ message: "Invalid id" });
+    return res.status(400).json({ message: "Identifiant invalide" });
   }
 
   try {
@@ -19,7 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const widgetConfig = await WidgetConfig.findById(payloadId.data).select("-__v").lean();
 
     if (!widgetConfig) {
-      return res.status(404).json({ message: "Widget config not found" });
+      return res.status(404).json({ message: "Configuration de widget introuvable" });
     }
 
     return res.status(200).json(widgetConfig);

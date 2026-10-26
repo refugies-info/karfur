@@ -76,10 +76,16 @@ export const getWebhookModels = async () => {
   };
 };
 
-export const checkWebhookPermissions = (
-  user: any,
-  action: "create" | "update" | "translation" | "archive",
-) => {
+type WebhookAction = "create" | "update" | "translation" | "archive";
+
+const REQUIRED_ROLES_LABEL_BY_ACTION: Record<WebhookAction, string> = {
+  create: "Admin ou Contrib",
+  update: "Admin ou Contrib",
+  archive: "Admin ou Contrib",
+  translation: "Admin, Contrib, Trad ou ExpertTrad",
+};
+
+export const checkWebhookPermissions = (user: any, action: WebhookAction) => {
   if (!user || !user.roles) {
     return false;
   }
@@ -112,7 +118,7 @@ export const authorizeWebhookRequest = (
   allowedMethods: string[],
 ): boolean => {
   if (!req.method || !allowedMethods.includes(req.method)) {
-    res.status(405).json({ message: "Method Not Allowed" });
+    res.status(405).json({ message: "Méthode non autorisée" });
     return false;
   }
 
@@ -169,7 +175,7 @@ export const getAuthorizedWebhookUser = async (
   res: NextApiResponse,
   User: mongoose.Model<any>,
   email: string,
-  action: Parameters<typeof checkWebhookPermissions>[1],
+  action: WebhookAction,
 ) => {
   const user = await getWebhookUser(User, email);
 
@@ -179,7 +185,9 @@ export const getAuthorizedWebhookUser = async (
   }
 
   if (!checkWebhookPermissions(user, action)) {
-    res.status(403).json({ message: "Accès refusé. Rôle requis : Admin ou Contrib" });
+    res.status(403).json({
+      message: `Accès refusé. Rôle requis pour cette action (${action}) : ${REQUIRED_ROLES_LABEL_BY_ACTION[action]}`,
+    });
     return null;
   }
 

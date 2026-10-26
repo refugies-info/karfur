@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!payload.success) {
     return res
       .status(400)
-      .json({ message: "Invalid payload", errors: formatZodErrors(payload.error) });
+      .json({ message: "Données invalides", errors: formatZodErrors(payload.error) });
   }
 
   try {

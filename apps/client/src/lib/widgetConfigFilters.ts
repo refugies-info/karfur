@@ -17,7 +17,6 @@ export const countWidgetFilterMatches = async (
     language: filters.languages,
   });
 
-  // Both content types selected is the same as no restriction
   if (filters.contentTypes?.length === 1) {
     match.typeContenu = filters.contentTypes[0];
   }

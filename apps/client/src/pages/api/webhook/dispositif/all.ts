@@ -19,13 +19,13 @@ const QuerySchema = z.object({
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (!authorizeWebhookRequest(req, res, ["GET"])) return;
 
-  const payloas = QuerySchema.safeParse(req.query);
-  if (!payloas.success) {
+  const payload = QuerySchema.safeParse(req.query);
+  if (!payload.success) {
     return res
       .status(400)
-      .json({ message: "Invalid query", errors: formatZodErrors(payloas.error) });
+      .json({ message: "Requête invalide", errors: formatZodErrors(payload.error) });
   }
-  const { cursor, limit } = payloas.data;
+  const { cursor, limit } = payload.data;
 
   try {
     const { Dispositif } = await getWebhookModels();
