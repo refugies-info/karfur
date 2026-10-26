@@ -33,7 +33,6 @@ import {
   miscellaneousReducer,
 } from "./Miscellaneous/miscellaneous.reducer";
 import { type NeedsState, needsReducer } from "./Needs/needs.reducer";
-import searchCountsReducer, { type SearchCountsState } from "./SearchCounts/searchCounts.reducer";
 import {
   type SearchResultsState,
   searchResultsReducer,
@@ -58,7 +57,6 @@ import {
   userFavoritesReducer,
 } from "./UserFavoritesInLocale/UserFavoritesInLocale.reducer";
 import { structureReducer, type UserStructureState } from "./UserStructure/userStructure.reducer";
-import { type WidgetsState, widgetsReducer } from "./Widgets/widgets.reducer";
 
 export interface RootState {
   activeDispositifs: ActiveDispositifsState;
@@ -72,7 +70,6 @@ export interface RootState {
   miscellaneous: MiscellaneousState;
   needs: NeedsState;
   searchResults: SearchResultsState;
-  searchCounts: SearchCountsState;
   selectedDispositif: SelectedDispositifState;
   selectedStructure: SelectedStructureState;
   themes: ThemesState;
@@ -82,7 +79,6 @@ export interface RootState {
   userFavorites: UserFavoritesState;
   users: AllUsersState;
   userStructure: UserStructureState;
-  widgets: WidgetsState;
 }
 
 const combinedReducer = combineReducers({
@@ -97,7 +93,6 @@ const combinedReducer = combineReducers({
   miscellaneous: miscellaneousReducer,
   needs: needsReducer,
   searchResults: searchResultsReducer,
-  searchCounts: searchCountsReducer,
   selectedDispositif: selectedDispositifReducer,
   selectedStructure: selectedStructureReducer,
   themes: themesReducer,
@@ -107,7 +102,6 @@ const combinedReducer = combineReducers({
   userFavorites: userFavoritesReducer,
   users: allUsersReducer,
   userStructure: structureReducer,
-  widgets: widgetsReducer,
 });
 
 export const appReducer: Reducer<any, any> = (state, action) => {

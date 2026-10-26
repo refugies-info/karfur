@@ -5,11 +5,6 @@
 .container {
   background: $gray20;
   width: 100%;
-
-  &.embed {
-    padding: 0;
-    min-height: 100vh;
-  }
 }
 
 .container_inner {
@@ -26,16 +21,4 @@
 
 .hidden {
   display: none !important;
-}
-
-.embed {
-  footer p {
-    padding: u(2) u(8);
-    display: inline-flex;
-    align-items: center;
-
-    .logo {
-      margin: 0 u(6);
-    }
-  }
 }

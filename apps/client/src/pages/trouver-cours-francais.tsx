@@ -1,3 +1,4 @@
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useMemo, useState } from "react";
@@ -18,17 +19,27 @@ import {
 } from "~/components/Pages/learnFrench";
 import { Anchor } from "~/components/Pages/staticPages/common/Anchor";
 import SEO from "~/components/Seo";
-import { HOW_TO_LEARN_FRENCH_CARDS_CONFIG, LEARN_FRENCH_THEME_ID } from "~/data/learnFrench";
+import {
+  HOW_TO_LEARN_FRENCH_CARDS_CONFIG,
+  LEARN_FRENCH_THEME_ID,
+  RESULTS_PER_PAGE,
+} from "~/data/learnFrench";
 import { useActiveFilters } from "~/hooks/learnFrench/useActiveFilters";
 import { useAutoSwitchToOnDemandTab } from "~/hooks/learnFrench/useAutoSwitchToOnDemandTab";
-import { useCourseSearch } from "~/hooks/learnFrench/useCourseSearch";
 import { useFrenchCourseFilters } from "~/hooks/learnFrench/useFrenchCourseFilters";
 import useLocale from "~/hooks/useLocale";
+import { usePaginatedResults } from "~/hooks/usePaginatedResults";
 import { getLanguageFromLocale } from "~/lib/getLanguageFromLocale";
 import { buildNeedLabels } from "~/lib/learnFrench/needLabels";
 import { logger } from "~/logger";
 import { getPath } from "~/routes";
 import { wrapper } from "~/services/configureStore";
+import {
+  COURSE_SEARCH_CACHE_KEY,
+  type CourseSearchParams,
+  type CourseSearchResponse,
+  fetchCourseSearchPage,
+} from "~/services/FrenchCourseSearch/frenchCourseSearch.service";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { fetchThemesActionCreator } from "~/services/Themes/themes.actions";
@@ -52,13 +63,25 @@ const LearnFrench = (props: Props) => {
     setActiveTab,
     isReady,
   } = useFrenchCourseFilters();
-  const courseSearch = useCourseSearch(filters, debouncedSearch, activeTab, isReady);
+  const courseSearch = usePaginatedResults<
+    CourseSearchParams,
+    SimpleDispositif,
+    CourseSearchResponse
+  >({
+    cacheKey: COURSE_SEARCH_CACHE_KEY,
+    params: isReady
+      ? { filters, search: debouncedSearch, activeTab, locale, limit: RESULTS_PER_PAGE }
+      : null,
+    fetchPage: fetchCourseSearchPage,
+    logLabel: "[trouver-cours-francais]",
+  });
   useAutoSwitchToOnDemandTab({
     filters,
     activeTab,
     setActiveTab,
-    total: courseSearch.total,
-    isSettled: courseSearch.isSettled,
+    total: courseSearch.totalResultsCount,
+    isSettled: !courseSearch.isLoading,
+    hasError: courseSearch.error,
   });
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
@@ -143,7 +166,7 @@ const LearnFrench = (props: Props) => {
             <CourseTabs activeTab={activeTab} onChange={setActiveTab} />
             <div className="mt-4 lg:hidden">
               <MobileToolbar
-                total={courseSearch.total}
+                total={courseSearch.totalResultsCount}
                 filterGroupCount={filterGroupCount}
                 badges={badges}
                 search={search}
@@ -154,11 +177,12 @@ const LearnFrench = (props: Props) => {
             <div className="mt-6">
               <CourseResults
                 results={courseSearch.results}
-                total={courseSearch.total}
-                page={courseSearch.page}
-                loading={courseSearch.loading}
-                loadingMore={courseSearch.loadingMore}
-                hasMore={courseSearch.page < courseSearch.pageCount}
+                total={courseSearch.totalResultsCount}
+                page={courseSearch.currentPage}
+                loading={courseSearch.isLoading}
+                loadingMore={courseSearch.isLoadingMore}
+                error={courseSearch.error}
+                hasMore={courseSearch.currentPage < courseSearch.totalPageCount}
                 onLoadMore={courseSearch.loadMore}
                 onResetFilters={resetFilters}
                 onSeeOtherCourses={
@@ -175,7 +199,7 @@ const LearnFrench = (props: Props) => {
         <FullScreenPanel
           open={isFiltersPanelOpen}
           title={t("LearnFrench.filters_title", "Filtrer")}
-          resultCount={courseSearch.total}
+          resultCount={courseSearch.totalResultsCount}
           onClose={() => setIsFiltersPanelOpen(false)}
           onReset={resetFilters}
         >
@@ -192,7 +216,7 @@ const LearnFrench = (props: Props) => {
           open={isLocationPanelOpen}
           departments={filters.departments}
           cities={filters.cities}
-          resultCount={courseSearch.total}
+          resultCount={courseSearch.totalResultsCount}
           onChange={(departments, cities) => setFilters({ ...filters, departments, cities })}
           onClose={() => setIsLocationPanelOpen(false)}
         />

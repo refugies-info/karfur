@@ -1,4 +1,5 @@
 import Alert from "@codegouvfr/react-dsfr/Alert";
+import type { SimpleDispositif } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -8,11 +9,9 @@ import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities.ts";
 import type { SearchCountsResponse } from "~/pages/api/search/counts";
-import {
-  searchPaginationSelector,
-  searchQuerySelector,
-} from "~/services/SearchResults/searchResults.selector";
+import { searchQuerySelector } from "~/services/SearchResults/searchResults.selector";
 import { SearchCountsContext } from "../SearchCountsContext";
+import { SearchResultsContext } from "../SearchResultsContext";
 import Filters from "./Filters";
 import styles from "./SearchHeader.module.scss";
 
@@ -20,6 +19,7 @@ const HIDDEN_DEPS_KEY = "hideBannerDepartments";
 const NOT_DEPLOYED_THRESHOLD = 10;
 
 interface Props {
+  results: SimpleDispositif[];
   nbResults: number;
   counts: SearchCountsResponse | null;
 }
@@ -28,7 +28,11 @@ const SearchHeader = (props: Props) => {
   const { t } = useTranslation();
   const stickyBarRef = useRef<HTMLDivElement>(null);
   const query = useSelector(searchQuerySelector);
-  const pagination = useSelector(searchPaginationSelector);
+
+  const searchResultsContext = useMemo(
+    () => ({ results: props.results, totalResultsCount: props.nbResults }),
+    [props.results, props.nbResults],
+  );
 
   const { isMobile } = useWindowSize();
   const isSticky = useIsSticky(stickyBarRef);
@@ -39,9 +43,9 @@ const SearchHeader = (props: Props) => {
   // if a department is selected and total results < threshold, it's likely underserved
   const departmentsNotDeployed = useMemo(() => {
     if (query.departments.length === 0) return [];
-    if (pagination.total >= NOT_DEPLOYED_THRESHOLD) return [];
+    if (props.nbResults >= NOT_DEPLOYED_THRESHOLD) return [];
     return query.departments;
-  }, [query.departments, pagination.total]);
+  }, [query.departments, props.nbResults]);
 
   useEffect(() => {
     const savedDepartments = localStorage.getItem(HIDDEN_DEPS_KEY);
@@ -70,7 +74,9 @@ const SearchHeader = (props: Props) => {
       </header>
       <div className={cls(styles.stickybar, isSticky && styles.sticky)}>
         <SearchCountsContext.Provider value={props.counts}>
-          <Filters isSticky={isSticky} />
+          <SearchResultsContext.Provider value={searchResultsContext}>
+            <Filters isSticky={isSticky} />
+          </SearchResultsContext.Provider>
         </SearchCountsContext.Provider>
         {isMobile && !isSticky && showNotDeployedMessage && (
           <div className={styles.notDeployedAlert}>
