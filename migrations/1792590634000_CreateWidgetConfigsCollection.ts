@@ -1,7 +1,7 @@
 import type { MigrationInterface } from "mongo-migrate-ts";
 import type { Db } from "mongodb";
 
-const COLLECTION = "widgetconfigs";
+const COLLECTION = "widget_config";
 const log = (message: string) => console.log(`[Migration1792590634000] ${message}`);
 
 /**

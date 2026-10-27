@@ -63,7 +63,7 @@ export type WidgetConfig = z.infer<typeof WidgetConfigZodSchema> & Document<Type
 
 const WidgetConfigMongooseSchema = zodSchema(WidgetConfigZodSchema);
 WidgetConfigMongooseSchema.path("publicId").unique(true);
-WidgetConfigMongooseSchema.set("collection", "widgetconfigs");
+WidgetConfigMongooseSchema.set("collection", "widget_config");
 WidgetConfigMongooseSchema.set("timestamps", true);
 
 WidgetConfigMongooseSchema.path("pageSize").validate(
