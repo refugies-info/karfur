@@ -195,20 +195,6 @@ export const Admin = (props: Props) => {
             />
           </NavLink>
         </NavItem>
-        <NavItem className="list-none">
-          <NavLink
-            className="mr-4 p-0"
-            active={activeTab === "widgets"}
-            onClick={() => toggleTab("widgets")}
-          >
-            <Onglet
-              iconSelected="code"
-              iconNotSelected="code-outline"
-              text="Widgets"
-              isSelected={activeTab === "widgets"}
-            />
-          </NavLink>
-        </NavItem>
       </Nav>
       <TabContent activeTab={activeTab} className={styles.tab_content}>
         <CustomTabPane activeTab={activeTab} />

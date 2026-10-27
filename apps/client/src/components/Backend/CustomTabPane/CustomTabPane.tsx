@@ -4,7 +4,6 @@ import { AdminContenu } from "../screens/Admin/AdminContenu";
 import { AdminStructures } from "../screens/Admin/AdminStructures";
 import { AdminUsers } from "../screens/Admin/AdminUsers";
 import { Needs } from "../screens/Admin/Needs";
-import { Widgets } from "../screens/Admin/Widgets";
 import Dashboard from "../screens/Dashboard";
 
 interface Props {
@@ -28,9 +27,6 @@ const CustomTabPane = (props: Props) => {
       </TabPane>
       <TabPane tabId="categories" className="p-0">
         <Needs />
-      </TabPane>
-      <TabPane tabId="widgets" className="p-0">
-        <Widgets />
       </TabPane>
     </>
   );

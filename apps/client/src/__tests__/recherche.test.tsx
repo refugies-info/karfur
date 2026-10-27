@@ -57,11 +57,6 @@ describe("recherche", () => {
       reduxState: {
         ...initialMockStore,
         searchResults: {
-          results: {
-            matches: [],
-            suggestions: [],
-          },
-          noResults: [],
           query: initialQuery,
         },
       },

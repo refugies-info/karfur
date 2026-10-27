@@ -163,13 +163,6 @@
     "noResultOther": "Ces fiches peuvent aussi vous intéresser",
     "filtersDialogDescription": "Choisissez vos filtres et options de tri pour affiner les résultats de recherche."
   },
-  "Widget": {
-    "fiches": "Fiches",
-    "withTheme": "avec le thème",
-    "available": "disponibles",
-    "inLocation": "en",
-    "inLanguage": "en"
-  },
   "UserFavorites": {
     "tooltip_add": "Sauvegarder la fiche",
     "tooltip_remove": "Retirer des fiches sauvegardées",

@@ -91,7 +91,7 @@ The `<title>` is set by `next/head` in the same render cycle as `routeChangeComp
 
 The application produces a `<title>` from two places only: `components/Seo.tsx` and `pages/sitemap.tsx`. `<SEO>` always emits a title; without a `title` prop it emits the bare site name `Réfugiés.info`. Two different defects follow:
 
-- A route that never mounts `<SEO>` leaves `document.title` empty. The fallback fires and the paragraph gets a humanized route pattern. Concerned: `/download-app`, `/embed`, `/dispositif/test-preview`, `/_error`.
+- A route that never mounts `<SEO>` leaves `document.title` empty. The fallback fires and the paragraph gets a humanized route pattern. Concerned: `/download-app`, `/dispositif/test-preview`, `/_error`.
 - A route that mounts `<SEO>` with an empty title announces `Réfugiés.info` on every navigation. The fallback never fires. Concerned: `/dispositif` and `/demarche` in creation mode, both through `components/Content/Dispositif/Dispositif.tsx`.
 
 The fallback lives in `~/lib/humanizeRoutePattern`. It is a safety net, not a substitute for real titles: without it the focus would land on an empty paragraph and nothing at all would be announced, which is a plain 12.8 regression. Giving these routes a real title is a separate task for the refugies.info team; the fallback simply becomes unreachable once they have one.

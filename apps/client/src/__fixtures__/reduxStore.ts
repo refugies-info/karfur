@@ -53,11 +53,6 @@ const initialUserFavoritesState: UserFavoritesState = {
 };
 
 const initialMockSearchReults: SearchResultsState = {
-  results: {
-    matches: [],
-    suggestions: [],
-  },
-  noResults: [],
   query: {
     search: "",
     departments: [],
