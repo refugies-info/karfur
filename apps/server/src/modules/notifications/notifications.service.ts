@@ -1,15 +1,14 @@
 import { ContentType, type Languages } from "@refugies-info/api-types";
 import {
-  type AppUser,
+  type AppUserType,
   type Dispositif,
   type DispositifId,
   type Notification,
   NotificationModel,
 } from "@refugies-info/mongo";
 import { Expo, type ExpoPushMessage, type ExpoPushTicket } from "expo-server-sdk";
-import uniq from "lodash/uniq";
-import { availableLanguages } from "~/libs/getFormattedLocale";
 import { getLocaleString as t } from "~/libs/getLocaleString";
+import { getMapKeys, mapToPlainObject } from "~/libs/mongooseMaps";
 import logger from "~/logger";
 import { processAppUsersByBatch } from "~/modules/appusers/appusers.repository";
 import {
@@ -18,14 +17,16 @@ import {
   isDispositif,
 } from "~/modules/dispositif/dispositif.business";
 import {
+  claimNotificationsLanguages,
   getDispositifById,
-  updateDispositifInDB,
 } from "~/modules/dispositif/dispositif.repository";
 import { getAdminOption } from "../adminOptions/adminOptions.repository";
 import {
   filterTargets,
   filterTargetsForDemarche,
+  getDemarcheTargetsQuery,
   getNotificationEmoji,
+  getTargetsQuery,
   parseDispositif,
   type Requirements,
 } from "./helpers";
@@ -44,16 +45,7 @@ const getUserMaxNotifs = (
 ): Promise<{ _id: string; count: number }[]> => {
   return NotificationModel.aggregate([
     {
-      $match: {
-        $expr: {
-          $gte: [
-            "$createdAt",
-            {
-              $add: [new Date(), -1000 * 60 * 60 * 24 * nbDays],
-            },
-          ],
-        },
-      },
+      $match: { createdAt: { $gte: new Date(Date.now() - 1000 * 60 * 60 * 24 * nbDays) } },
     },
     {
       $group: { _id: "$uid", count: { $sum: 1 } },
@@ -70,26 +62,26 @@ const getUserMaxNotifs = (
  * returns uids of appusers which should not receive notifications
  * @returns
  */
-export const getUsersNotifsNotAllowed = async (): Promise<string[]> => {
+export const getUsersNotifsNotAllowed = async (): Promise<Set<string>> => {
   const usersLastDay = await getUserMaxNotifs(1, 3);
   const usersLastWeek = await getUserMaxNotifs(7, 7);
-  return uniq([...usersLastDay.map((u) => u._id), ...usersLastWeek.map((u) => u._id)]);
+  return new Set([...usersLastDay.map((u) => u._id), ...usersLastWeek.map((u) => u._id)]);
 };
 
 export const getNotificationsToSend = async (
   notifications: Notification[],
   tokens: Record<string, string>,
+  usersNotAllowed: Set<string>,
 ) => {
-  const usersNotAllowed: string[] = []; // await getUsersNotifsNotAllowed(); // FIXME: temporary removed to send survey to TS
   const messages: ExpoPushMessage[] = notifications
     .map((notification) => {
-      if (usersNotAllowed.includes(notification.uid)) return null;
+      if (usersNotAllowed.has(notification.uid)) return null;
       return {
         to: tokens[notification.uid],
         title: "Réfugiés.info",
         body: notification.title,
         data: {
-          ...notification.data,
+          ...mapToPlainObject(notification.data),
           notificationId: notification._id.toString(),
         },
       };
@@ -148,10 +140,11 @@ export const sendNotifications = async (messages: ExpoPushMessage[]) => {
 };
 
 const sendDispositifNotificationsBatch = async (
-  users: AppUser[],
+  users: AppUserType[],
   dispositif: Dispositif,
   requirements: Requirements,
   lang: Languages,
+  usersNotAllowed: Set<string>,
 ) => {
   const dispositifId = dispositif._id;
 
@@ -188,12 +181,8 @@ const sendDispositifNotificationsBatch = async (
     }),
   );
 
-  const messages = await getNotificationsToSend(savedNotifications, tokens);
+  const messages = await getNotificationsToSend(savedNotifications, tokens, usersNotAllowed);
   await sendNotifications(messages);
-
-  const payload = dispositif?.notificationsSent || {};
-  payload[lang] = true;
-  await updateDispositifInDB(dispositifId, { notificationsSent: payload });
 };
 
 export const sendDispositifNotifications = async (dispositifId: DispositifId, lang: Languages) => {
@@ -241,8 +230,17 @@ export const sendDispositifNotifications = async (dispositifId: DispositifId, la
         return;
       }
 
-      await processAppUsersByBatch(100, (users) =>
-        sendDispositifNotificationsBatch(users, dispositif, requirements, lang),
+      const claimedLanguages = await claimNotificationsLanguages(dispositifId, [lang]);
+      if (claimedLanguages.length === 0) {
+        logger.info(
+          `[sendDispositifNotifications] dispositif ${dispositifId} notifications already sent for lang ${lang}`,
+        );
+        return;
+      }
+
+      const usersNotAllowed = await getUsersNotifsNotAllowed();
+      await processAppUsersByBatch(getTargetsQuery(requirements, lang), 100, (users) =>
+        sendDispositifNotificationsBatch(users, dispositif, requirements, lang, usersNotAllowed),
       );
     } catch (err) {
       logger.error("[sendDispositifNotifications]", err);
@@ -253,13 +251,15 @@ export const sendDispositifNotifications = async (dispositifId: DispositifId, la
 };
 
 const sendDemarcheNotificationsBatch = async (
-  users: AppUser[],
+  users: AppUserType[],
   demarche: Dispositif,
   requirements: Requirements,
+  languages: string[],
+  usersNotAllowed: Set<string>,
 ) => {
   const demarcheId = demarche._id;
 
-  const targetUsers = filterTargetsForDemarche(users, requirements, demarche);
+  const targetUsers = filterTargetsForDemarche(users, requirements, languages);
 
   logger.info(
     `[sendDemarcheNotificationsBatch] demarche ${demarcheId} - ${targetUsers.length} users found`,
@@ -291,14 +291,8 @@ const sendDemarcheNotificationsBatch = async (
     }),
   );
 
-  const messages = await getNotificationsToSend(savedNotifications, tokens);
+  const messages = await getNotificationsToSend(savedNotifications, tokens, usersNotAllowed);
   await sendNotifications(messages);
-
-  const payload = demarche?.notificationsSent || {};
-  for (const lang of availableLanguages) {
-    payload[lang] = true;
-  }
-  await updateDispositifInDB(demarcheId, { notificationsSent: payload });
 };
 
 export const sendDemarcheNotifications = async (demarcheId: DispositifId) => {
@@ -333,8 +327,33 @@ export const sendDemarcheNotifications = async (demarcheId: DispositifId) => {
         return;
       }
 
-      await processAppUsersByBatch(100, (users) =>
-        sendDemarcheNotificationsBatch(users, demarche, requirements),
+      // Only the languages never pushed yet: clicking again after new translations sends just those.
+      const claimedLanguages = await claimNotificationsLanguages(
+        demarcheId,
+        getMapKeys(demarche.translations as any),
+      );
+      if (claimedLanguages.length === 0) {
+        logger.info(
+          `[sendDemarcheNotifications] demarche ${demarcheId} - no new language to notify`,
+        );
+        return;
+      }
+      logger.info(`[sendDemarcheNotifications] demarche ${demarcheId} - languages`, {
+        languages: claimedLanguages,
+      });
+
+      const usersNotAllowed = await getUsersNotifsNotAllowed();
+      await processAppUsersByBatch(
+        getDemarcheTargetsQuery(requirements, claimedLanguages),
+        100,
+        (users) =>
+          sendDemarcheNotificationsBatch(
+            users,
+            demarche,
+            requirements,
+            claimedLanguages,
+            usersNotAllowed,
+          ),
       );
     } catch (err) {
       logger.error("[sendDemarcheNotifications]", err);
