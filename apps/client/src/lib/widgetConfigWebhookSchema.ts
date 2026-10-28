@@ -10,7 +10,7 @@ import {
   WIDGET_CONFIG_PAGE_SIZES,
   WIDGET_CONFIG_SORT_OPTIONS,
   WIDGET_CONFIG_STATUSES,
-  WIDGET_CONFIG_TYPES,
+  type WIDGET_CONFIG_TYPES,
   type WidgetConfigPageSize,
 } from "@refugies-info/api-types";
 import { z } from "zod";
@@ -48,9 +48,8 @@ export const WidgetConfigFiltersSchema = z
 
 export type WidgetConfigFiltersInput = z.infer<typeof WidgetConfigFiltersSchema>;
 
-const widgetConfigShape = {
+const commonShape = {
   internalTitle: z.string().trim().min(1).max(150),
-  type: z.enum(WIDGET_CONFIG_TYPES),
   structureName: z.string().trim().min(1).max(150),
   authorizedDomains: z
     .array(
@@ -60,6 +59,10 @@ const widgetConfigShape = {
     )
     .max(MAX_AUTHORIZED_DOMAINS),
   externalTitle: z.string().trim().min(1).max(100),
+  status: z.enum(WIDGET_CONFIG_STATUSES),
+};
+
+const listShape = {
   description: z.string().trim().max(300),
   displayDescription: z.boolean(),
   filters: WidgetConfigFiltersSchema,
@@ -74,7 +77,10 @@ const widgetConfigShape = {
   displayShareModule: z.boolean(),
   displayFilterBar: z.boolean(),
   filterBarOptions: z.array(z.enum(WIDGET_CONFIG_FILTER_BAR_OPTIONS)),
-  status: z.enum(WIDGET_CONFIG_STATUSES),
+};
+
+const thumbnailShape = {
+  dispositifId: ObjectIdSchema,
 };
 
 export const hasSelectedAndExcludedOverlap = (
@@ -92,17 +98,33 @@ const overlapIssue = {
   path: ["excludedDispositifIds"],
 };
 
+const WidgetConfigCreatePayloadSchema = z
+  .discriminatedUnion("type", [
+    z
+      .object({ type: z.literal("list"), ...commonShape, ...listShape })
+      .partial({ description: true })
+      .strict(),
+    z.object({ type: z.literal("thumbnail"), ...commonShape, ...thumbnailShape }).strict(),
+  ])
+  .refine((config) => config.type === "thumbnail" || hasNoOverlap(config), overlapIssue);
+
 export const WidgetConfigCreateSchema = BaseWebhookSchema.extend({
-  widgetConfig: z
-    .object(widgetConfigShape)
-    .partial({ description: true })
-    .strict()
-    .refine(hasNoOverlap, overlapIssue),
+  widgetConfig: WidgetConfigCreatePayloadSchema,
 });
+
+const updatableFields = {
+  list: Object.keys({ ...commonShape, ...listShape }),
+  thumbnail: Object.keys({ ...commonShape, ...thumbnailShape }),
+} as const;
+
+export const getForeignFields = (
+  type: (typeof WIDGET_CONFIG_TYPES)[number],
+  fields: string[],
+): string[] => fields.filter((field) => !updatableFields[type].includes(field));
 
 export const WidgetConfigUpdateSchema = BaseWebhookSchema.extend({
   widgetConfig: z
-    .object(widgetConfigShape)
+    .object({ ...commonShape, ...listShape, ...thumbnailShape })
     .partial()
     .extend({ _id: ObjectIdSchema })
     .strict()

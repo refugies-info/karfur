@@ -7,6 +7,7 @@ import {
   standardErrorResponse,
 } from "~/lib/webhookUtils";
 import {
+  getForeignFields,
   hasSelectedAndExcludedOverlap,
   WidgetConfigUpdateSchema,
 } from "~/lib/widgetConfigWebhookSchema";
@@ -33,8 +34,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(404).json({ message: "Configuration de widget introuvable" });
     }
 
-    const selectedIds = changes.selectedDispositifIds ?? existing.selectedDispositifIds.map(String);
-    const excludedIds = changes.excludedDispositifIds ?? existing.excludedDispositifIds.map(String);
+    const foreignFields = getForeignFields(existing.type, Object.keys(changes));
+    if (foreignFields.length > 0) {
+      return res.status(400).json({
+        message: `Champs non modifiables pour un widget de type ${existing.type} : ${foreignFields.join(", ")}`,
+      });
+    }
+
+    const selectedIds =
+      changes.selectedDispositifIds ?? (existing.selectedDispositifIds ?? []).map(String);
+    const excludedIds =
+      changes.excludedDispositifIds ?? (existing.excludedDispositifIds ?? []).map(String);
     if (hasSelectedAndExcludedOverlap(selectedIds, excludedIds)) {
       return res.status(400).json({
         message: "Une fiche ne peut pas être à la fois ajoutée manuellement et exclue",

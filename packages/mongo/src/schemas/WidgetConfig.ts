@@ -45,18 +45,25 @@ const WidgetConfigZodSchema = z.object({
   authorizedDomains: z.array(z.string()),
 
   externalTitle: z.string().max(100),
+  thumbnailDispositifId: zId("Dispositif").optional(),
   description: z.string().max(300).optional(),
-  displayDescription: z.boolean(),
+  displayDescription: z.boolean().optional(),
 
-  filters: WidgetConfigFiltersZodSchema,
-  selectedDispositifIds: z.array(zId("Dispositif")).max(WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS),
-  excludedDispositifIds: z.array(zId("Dispositif")).max(WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS),
+  filters: WidgetConfigFiltersZodSchema.optional(),
+  selectedDispositifIds: z
+    .array(zId("Dispositif"))
+    .max(WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS)
+    .optional(),
+  excludedDispositifIds: z
+    .array(zId("Dispositif"))
+    .max(WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS)
+    .optional(),
 
-  pageSize: z.number().refine(isAllowedPageSize),
-  sortBy: z.enum(WIDGET_CONFIG_SORT_OPTIONS),
-  displayShareModule: z.boolean(),
-  displayFilterBar: z.boolean(),
-  filterBarOptions: z.array(z.enum(WIDGET_CONFIG_FILTER_BAR_OPTIONS)),
+  pageSize: z.number().refine(isAllowedPageSize).optional(),
+  sortBy: z.enum(WIDGET_CONFIG_SORT_OPTIONS).optional(),
+  displayShareModule: z.boolean().optional(),
+  displayFilterBar: z.boolean().optional(),
+  filterBarOptions: z.array(z.enum(WIDGET_CONFIG_FILTER_BAR_OPTIONS)).optional(),
 });
 
 export type WidgetConfig = z.infer<typeof WidgetConfigZodSchema> & Document<Types.ObjectId>;

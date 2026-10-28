@@ -192,6 +192,95 @@ describe("Widget config webhooks", () => {
       );
     });
 
+    describe("thumbnail widget", () => {
+      const validThumbnailBody = () => ({
+        email: "editor@refugies.info",
+        widgetConfig: {
+          internalTitle: "Widget titre de voyage",
+          type: "thumbnail",
+          structureName,
+          authorizedDomains: ["exemple.org"],
+          externalTitle: "Demander un titre de voyage",
+          dispositifId: objectId("a"),
+          status: "inactive",
+        },
+      });
+
+      it("creates a widget with only the fields of a thumbnail", async () => {
+        models.WidgetConfig.create.mockImplementation((data) =>
+          Promise.resolve({ ...data, _id: widgetConfigId }),
+        );
+        const body = validThumbnailBody();
+        const res = mockResponse();
+
+        await createHandler(mockRequest({ body }), res);
+
+        const created = models.WidgetConfig.create.mock.calls[0][0];
+        expect(created).toMatchObject(body.widgetConfig);
+        expect(Object.keys(created).sort()).toEqual(
+          [...Object.keys(body.widgetConfig), "publicId", "statusUpdatedAt"].sort(),
+        );
+        expect(res.status).toHaveBeenCalledWith(201);
+      });
+
+      it("requires the content to display", async () => {
+        const body = validThumbnailBody();
+        delete (body.widgetConfig as Partial<typeof body.widgetConfig>).dispositifId;
+        const res = mockResponse();
+
+        await createHandler(mockRequest({ body }), res);
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(models.WidgetConfig.create).not.toHaveBeenCalled();
+      });
+
+      it("rejects an invalid content id", async () => {
+        const body = validThumbnailBody();
+        Object.assign(body.widgetConfig, { dispositifId: "nope" });
+        const res = mockResponse();
+
+        await createHandler(mockRequest({ body }), res);
+
+        expect(res.status).toHaveBeenCalledWith(400);
+      });
+
+      it.each([
+        ["filters", { filters: {} }],
+        ["pageSize", { pageSize: 8 }],
+        ["selectedDispositifIds", { selectedDispositifIds: [] }],
+        ["description", { description: "Texte" }],
+      ])("rejects the list field %s", async (_name, extra) => {
+        const body = validThumbnailBody();
+        Object.assign(body.widgetConfig, extra);
+        const res = mockResponse();
+
+        await createHandler(mockRequest({ body }), res);
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(models.WidgetConfig.create).not.toHaveBeenCalled();
+      });
+    });
+
+    it("rejects the content of a thumbnail on a list widget", async () => {
+      const body = validCreateBody();
+      Object.assign(body.widgetConfig, { dispositifId: objectId("a") });
+      const res = mockResponse();
+
+      await createHandler(mockRequest({ body }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+    });
+
+    it("rejects an unknown widget type", async () => {
+      const body = validCreateBody();
+      Object.assign(body.widgetConfig, { type: "carousel" });
+      const res = mockResponse();
+
+      await createHandler(mockRequest({ body }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+    });
+
     it("normalizes the authorized domains", async () => {
       models.WidgetConfig.create.mockImplementation((data) =>
         Promise.resolve({ ...data, _id: widgetConfigId }),
@@ -211,6 +300,7 @@ describe("Widget config webhooks", () => {
   describe("POST /api/webhook/widget-config/update", () => {
     const stored = (overrides = {}) => ({
       _id: widgetConfigId,
+      type: "list",
       status: "inactive",
       selectedDispositifIds: [objectId("d")],
       excludedDispositifIds: [objectId("e")],
@@ -280,6 +370,55 @@ describe("Widget config webhooks", () => {
       expect(models.WidgetConfig.updateOne.mock.calls[0][1].$set).not.toHaveProperty(
         "statusUpdatedAt",
       );
+    });
+
+    it("does not allow to change the type of a widget", async () => {
+      models.WidgetConfig.findById.mockReturnValue(chainable(stored()));
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ type: "thumbnail" }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
+    it("rejects a field of another widget type", async () => {
+      models.WidgetConfig.findById.mockReturnValue(chainable(stored()));
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ dispositifId: objectId("a") }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(res.json).toHaveBeenCalledWith({
+        message: "Champs non modifiables pour un widget de type list : dispositifId",
+      });
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
+    it("changes the content displayed by a thumbnail widget", async () => {
+      models.WidgetConfig.findById.mockReturnValue(
+        chainable({ _id: widgetConfigId, type: "thumbnail", status: "active" }),
+      );
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ dispositifId: objectId("a") }) }), res);
+
+      expect(models.WidgetConfig.updateOne.mock.calls[0][1].$set).toEqual({
+        dispositifId: objectId("a"),
+      });
+      expect(res.status).toHaveBeenCalledWith(200);
+    });
+
+    it("rejects a list field on a thumbnail widget", async () => {
+      models.WidgetConfig.findById.mockReturnValue(
+        chainable({ _id: widgetConfigId, type: "thumbnail", status: "active" }),
+      );
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ pageSize: 8 }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
     });
 
     it("accepts a new structure name", async () => {
