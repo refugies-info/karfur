@@ -239,11 +239,18 @@ Finds contents by title or id, or resolves a list of ids to display them.
 
 ### 8. Widget Configs
 
-A widget config stores the settings of an embeddable widget (title, filters, manually selected / excluded contents, display options). The editor is the only writer; the model is `WidgetConfig` in `@refugies-info/mongo`.
+A widget config stores the settings of an embeddable widget. The editor is the only writer; the model is `WidgetConfig` in `@refugies-info/mongo`.
+
+The fields depend on the `type` of the widget, which cannot be changed once created:
+
+- `list`: a filterable list of contents (title, description, filters, manually selected / excluded contents, display options).
+- `thumbnail`: a single content, chosen by its id (`dispositifId`).
 
 All write endpoints take the editor's `email` to check their role (Admin or Contrib required); it is not stored. Unknown fields are rejected with a `400`.
 
 #### Create — `POST /api/webhook/widget-config/create`
+
+Example for a `list` widget (see below for a `thumbnail`).
 
 ```json
 {
@@ -305,9 +312,26 @@ Every field is required except `description`; there are no defaults.
 
 Response (`201 Created`): `{ "message": "...", "id": "...", "publicId": "..." }`. `publicId` is the stable identifier meant for the embed code.
 
+**`thumbnail`** widgets only take the common fields (`internalTitle`, `structureName`, `authorizedDomains`, `externalTitle`, `status`) and `dispositifId`, the id of the content displayed. Every other field of a `list` widget is rejected.
+
+```json
+{
+  "email": "exemple@email.com",
+  "widgetConfig": {
+    "internalTitle": "Widget titre de voyage",
+    "type": "thumbnail",
+    "structureName": "Association Exemple",
+    "authorizedDomains": ["exemple.org"],
+    "externalTitle": "Demander un titre de voyage",
+    "dispositifId": "<dispositifId>",
+    "status": "inactive"
+  }
+}
+```
+
 #### Update — `POST|PATCH /api/webhook/widget-config/update`
 
-Same payload as create, with `widgetConfig._id` and only the fields to change. Arrays and `filters` are replaced as a whole. `statusUpdatedAt` is refreshed only when `status` actually changes. Response (`200 OK`): `{ "message": "...", "id": "..." }`. There is no delete: set `status` to `inactive`.
+Same payload as create, with `widgetConfig._id` and only the fields to change. `type` cannot be changed, and a field that does not belong to the type of the widget is rejected with a `400`. Arrays and `filters` are replaced as a whole. `statusUpdatedAt` is refreshed only when `status` actually changes. Response (`200 OK`): `{ "message": "...", "id": "..." }`. There is no delete: set `status` to `inactive`.
 
 #### Read — `GET /api/webhook/widget-config` and `GET /api/webhook/widget-config/{id}`
 
