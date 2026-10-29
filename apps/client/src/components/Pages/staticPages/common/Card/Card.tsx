@@ -78,14 +78,10 @@ const Card = (props: Props) => {
         rel={newTab ? "noopener noreferrer" : undefined}
       >
         {content}
-        {/* The new window is announced inside the link itself, not in a title (RGAA 6.1). */}
         {newTab && (
-          <>
-            {" "}
-            <span className="sr-only">
-              {t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}
-            </span>
-          </>
+          <span className="sr-only">
+            {t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}
+          </span>
         )}
         <ArrowRight />
       </Link>

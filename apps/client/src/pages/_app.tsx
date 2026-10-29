@@ -127,7 +127,6 @@ const App = ({ Component, ...pageProps }: AppPropsWithLayout) => {
           <TooltipProvider delayDuration={250}>
             <ScreenReaderAnnouncerProvider>
               <Provider store={store}>
-                {/* Rendered in _app, not _document, so the links follow client navigations (RGAA 6.1). */}
                 <SkipLinksNavigation
                   hasNavigationAndFooter={!router.pathname.startsWith("/auth")}
                 />
