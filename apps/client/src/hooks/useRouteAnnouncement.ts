@@ -96,8 +96,6 @@ const useRouteAnnouncement = () => {
     // title wait stale, so only the last one writes.
     const handleRouteChangeStart = () => {
       generationRef.current += 1;
-      // The outgoing title may still be in place for a few frames after
-      // routeChangeComplete: remember it so the wait does not announce it.
       outgoingTitleRef.current = document.title;
     };
 
@@ -114,7 +112,6 @@ const useRouteAnnouncement = () => {
         }
         frames += 1;
         if (frames >= TITLE_WAIT_MAX_FRAMES) {
-          // Two consecutive pages may legitimately share a title.
           const fallback = title || humanizeRoutePattern(Router.pathname);
           if (fallback) writeAnnouncement(fallback, moveFocus);
           return;

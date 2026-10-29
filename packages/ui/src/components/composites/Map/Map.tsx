@@ -22,7 +22,6 @@ type MapProps = {
   mapData: Poi[];
   defaultFocusedPoi?: Poi;
   showSidebar?: boolean;
-  // Anchor of a skip link rendered between the address panel and the map
   skipLinkTarget?: string;
 };
 
@@ -154,7 +153,6 @@ export const Map = ({
         )}
       >
         {showSidebar && <MapPanel />}
-        {/* The map and its skip link share one grid cell so the focused link never pushes the map out of its column */}
         <div className={cn("flex min-h-0 flex-col", isFullscreen && "lg:col-span-3")}>
           {skipLinkTarget && (
             <a
