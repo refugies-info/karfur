@@ -1138,7 +1138,6 @@ exports[`publier renders publier 1`] = `
                   </p>
                 </div>
               </div>
-               
               <span
                 class="sr-only"
               >
@@ -1190,7 +1189,6 @@ exports[`publier renders publier 1`] = `
                   </p>
                 </div>
               </div>
-               
               <span
                 class="sr-only"
               >
