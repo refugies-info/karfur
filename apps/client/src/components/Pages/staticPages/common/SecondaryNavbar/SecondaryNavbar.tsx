@@ -1,7 +1,7 @@
 import type { FrIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import { useTranslation } from "next-i18next";
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { smoothScroll } from "~/lib/smoothScroll";
@@ -27,11 +27,6 @@ const SecondaryNavbar = (props: Props) => {
   const sentinelRef = useRef<HTMLDivElement>(null);
   const isSticky = useIsSticky(sentinelRef);
 
-  // useScrollToAnchor (_app) handles focus and scrolling; only the hash is set, keeping the Next router state
-  const goTo = useCallback((id: string) => {
-    history.replaceState(history.state, "", `#${id}`);
-  }, []);
-
   return (
     <>
       <div ref={sentinelRef} aria-hidden className="-mb-px h-px" />
@@ -45,7 +40,6 @@ const SecondaryNavbar = (props: Props) => {
                     href={`#${link.id}`}
                     className="fr-raw-link"
                     aria-current={isActive(link.id) ? "true" : undefined}
-                    onClick={() => goTo(link.id)}
                   >
                     {link.text}
                   </a>
