@@ -64,14 +64,14 @@ const SearchHeader = (props: Props) => {
 
   return (
     <>
-      <div>
+      <header aria-labelledby="search-title">
         <div className={styles.title}>
           <Container>
             <h1 id="search-title">{t("Recherche.title")}</h1>
             <p ref={stickyBarRef}>{t("Recherche.subtitle", { count: props.nbResults })}</p>
           </Container>
         </div>
-      </div>
+      </header>
       <div className={cls(styles.stickybar, isSticky && styles.sticky)}>
         <SearchCountsContext.Provider value={props.counts}>
           <SearchResultsContext.Provider value={searchResultsContext}>

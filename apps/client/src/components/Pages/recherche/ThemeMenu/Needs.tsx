@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import { useLocale, useSearchEventName } from "~/hooks";
 import { getNeedsFromThemes, getThemesFromNeeds } from "~/lib/recherche/getThemesFromNeeds";
+import { areSearchCountsEnabled } from "~/lib/recherche/searchCounts";
 import { Event } from "~/lib/tracking";
 import { needsSelector } from "~/services/Needs/needs.selectors";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
@@ -38,6 +39,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
   const needsContainerRef = useRef<HTMLDivElement | null>(null);
   const eventName = useSearchEventName();
   const announce = useAnnounce();
+  const showCounts = areSearchCountsEnabled();
 
   const displayedNeeds = useMemo(() => {
     if (search) {
@@ -149,12 +151,19 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                 checked: allNeedsSelected,
                 onChange: toggleAllNeeds,
                 className: "!border",
-                "aria-label": `${t("Recherche.all", "Tous")} ${selectedThemeId ? nbDispositifsByTheme[selectedThemeId.toString()] : ""} ${t("Recherche.fiches", { count: (selectedThemeId && nbDispositifsByTheme[selectedThemeId.toString()]) || 0 })}`,
+                "aria-label": showCounts
+                  ? t("Recherche.allSheetsCount", {
+                      count:
+                        (selectedThemeId && nbDispositifsByTheme[selectedThemeId.toString()]) || 0,
+                    })
+                  : t("Recherche.all", "Tous"),
               },
             },
             ...displayedNeeds.map((need) => {
               const selected =
                 query.needs.includes(need._id) || query.themes.includes(need.theme._id);
+              const needText = need[locale]?.text || "";
+              const needCount = nbDispositifsByNeed[need._id.toString()] || 0;
 
               return {
                 label: <NeedItem need={need} />,
@@ -162,7 +171,9 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                   checked: selected,
                   onChange: () => selectNeed(need._id),
                   className: "!border",
-                  "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", { count: nbDispositifsByNeed[need._id.toString()] || 0 })}`,
+                  "aria-label": showCounts
+                    ? `${needText} ${needCount} ${t("Recherche.fiches", { count: needCount })}`
+                    : needText,
                 },
               };
             }),
