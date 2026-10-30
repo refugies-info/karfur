@@ -5,6 +5,7 @@ import demarchesMobile from "~/assets/homepage/why-accordion/demarches-mobile.pn
 import dispos from "~/assets/homepage/why-accordion/dispos-mobile.png";
 import dispositif from "~/assets/homepage/why-accordion/dispositifs.png";
 import partage from "~/assets/homepage/why-accordion/partage.png";
+import videoMediation from "~/assets/homepage/why-accordion/video-mediation.png";
 import { Accordion } from "~/components/Pages/staticPages/common";
 
 interface Props {
@@ -66,9 +67,14 @@ const WhyAccordions = (props: Props) => {
         defaultValue:
           "Sur Réfugiés.info, l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social.",
       }),
-      youtube: "https://www.youtube-nocookie.com/embed/QMRR2csgan0",
-      mediaWidth: 442,
-      mediaHeight: 320,
+      alt: t(
+        "Homepage.accordionItemsdesktopVideoAlt",
+        "Vidéo « Comment accompagner au mieux mes bénéficiaires ? » sur YouTube",
+      ),
+      image: videoMediation,
+      link: "https://www.youtube.com/watch?v=QMRR2csgan0",
+      mediaWidth: 580,
+      mediaHeight: 326,
     },
   ];
 
@@ -105,13 +111,15 @@ const WhyAccordions = (props: Props) => {
     },
   ];
 
+  const accordionItemsCompact = [...accordionItemsMobile, ...accordionItemsDesktop.slice(2)];
+
   return (
     <div className="container md:py-20">
       <h2 className="mb-20">
         {t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}
       </h2>
       <Accordion
-        items={isMobile ? accordionItemsMobile : accordionItemsDesktop}
+        items={isMobile ? accordionItemsCompact : accordionItemsDesktop}
         withImages
         initOpen
         multiOpen={!!isTablet}

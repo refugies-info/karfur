@@ -12,13 +12,12 @@ import { decodeHTMLEntities } from "~/lib/decodeHTMLEntities";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import {
-  searchPaginationSelector,
   searchQuerySelector,
-  searchResultsSelector,
   themesDisplayedValueSelector,
 } from "~/services/SearchResults/searchResults.selector";
 import LocationMenu from "../LocationMenu";
 import { useSearchCounts } from "../SearchCountsContext";
+import { useSearchResultsContext } from "../SearchResultsContext";
 import ThemeMenu from "../ThemeMenu";
 import Filter from "./Filter";
 import styles from "./Filters.module.scss";
@@ -41,8 +40,7 @@ const Filters = (props: Props) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const query = useSelector(searchQuerySelector);
-  const searchResults = useSelector(searchResultsSelector);
-  const pagination = useSelector(searchPaginationSelector);
+  const { results, totalResultsCount } = useSearchResultsContext();
   const stylesDisabled = useStylesDisabled();
   const announce = useAnnounce();
   const eventName = useSearchEventName();
@@ -50,9 +48,9 @@ const Filters = (props: Props) => {
   const NOT_DEPLOYED_THRESHOLD = 10;
   const departmentsNotDeployed = useMemo(() => {
     if (query.departments.length === 0) return [];
-    if (pagination.total >= NOT_DEPLOYED_THRESHOLD) return [];
+    if (totalResultsCount >= NOT_DEPLOYED_THRESHOLD) return [];
     return query.departments;
-  }, [query.departments, pagination.total]);
+  }, [query.departments, totalResultsCount]);
 
   // KEYWORD
   const [insideSearchInput, setInsideSearchInput] = useState(false);
@@ -80,7 +78,7 @@ const Filters = (props: Props) => {
     if (currentSearchInputValue.length === 0) {
       announce(
         t("Recherche.emptySearch", "Recherche par mot clé vide. {{count}} fiches chargées", {
-          count: searchResults.matches.length,
+          count: results.length,
           search: currentSearchInputValue,
         }),
         {
@@ -96,7 +94,7 @@ const Filters = (props: Props) => {
         "Recherche.resultsForYourSearch",
         "{{count}} résultats trouvés pour votre recherche {{search}}",
         {
-          count: searchResults.matches.length,
+          count: results.length,
           search: currentSearchInputValue,
         },
       ),
@@ -105,7 +103,7 @@ const Filters = (props: Props) => {
         delay: 1000,
       },
     );
-  }, [announce, searchResults.matches.length, t, currentSearchInputValue, insideSearchInput]);
+  }, [announce, results.length, t, currentSearchInputValue, insideSearchInput]);
 
   // THEME
   const themeDisplayedValue = useSelector(themesDisplayedValueSelector);

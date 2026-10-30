@@ -22,8 +22,12 @@ export const updateDispositifTagsOrNeeds = async (
   if (body.secondaryThemes?.length) allThemes.push(...body.secondaryThemes);
 
   let newNeeds: string[] = [];
-  const draftOriginalDispositif = await getDraftDispositifById(id, { needs: 1 });
-  const originalDispositif = draftOriginalDispositif || (await getDispositifById(id, { needs: 1 }));
+  const publishedDispositif = await getDispositifById(id, { needs: 1, hasDraftVersion: 1 });
+  // a draft that hasDraftVersion does not reference is never shown: leave it untouched
+  const draftOriginalDispositif = publishedDispositif?.hasDraftVersion
+    ? await getDraftDispositifById(id, { needs: 1 })
+    : null;
+  const originalDispositif = draftOriginalDispositif || publishedDispositif;
   if (body.theme || body.secondaryThemes) {
     if (body.needs || originalDispositif.needs) {
       // if a need of the content has a tag that is not a tag of the content we remove the need

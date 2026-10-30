@@ -4,8 +4,10 @@ import {
   LogModel,
   NeedModel,
   RoleModel,
+  StructureModel,
   ThemeModel,
   UserModel,
+  WidgetConfigModel,
 } from "@refugies-info/mongo";
 import crypto from "crypto";
 import type mongoose from "mongoose";
@@ -69,13 +71,21 @@ export const getWebhookModels = async () => {
     Theme: ThemeModel,
     Need: NeedModel,
     Log: LogModel,
+    Structure: StructureModel,
+    WidgetConfig: WidgetConfigModel,
   };
 };
 
-export const checkWebhookPermissions = (
-  user: any,
-  action: "create" | "update" | "translation" | "archive",
-) => {
+type WebhookAction = "create" | "update" | "translation" | "archive";
+
+const REQUIRED_ROLES_LABEL_BY_ACTION: Record<WebhookAction, string> = {
+  create: "Admin ou Contrib",
+  update: "Admin ou Contrib",
+  archive: "Admin ou Contrib",
+  translation: "Admin, Contrib, Trad ou ExpertTrad",
+};
+
+export const checkWebhookPermissions = (user: any, action: WebhookAction) => {
   if (!user || !user.roles) {
     return false;
   }
@@ -100,6 +110,29 @@ export const checkWebhookPermissions = (
   }
 
   return false;
+};
+
+export const authorizeWebhookRequest = (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  allowedMethods: string[],
+): boolean => {
+  if (!req.method || !allowedMethods.includes(req.method)) {
+    res.status(405).json({ message: "Méthode non autorisée" });
+    return false;
+  }
+
+  if (!validateWebhookSecret(req)) {
+    res.status(401).json({ message: "Accès refusé : Secret invalide ou manquant" });
+    return false;
+  }
+
+  if (!validateSourceIP(req)) {
+    res.status(403).json({ message: "Accès refusé : IP non autorisée" });
+    return false;
+  }
+
+  return true;
 };
 
 export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: string[]) => {
@@ -133,6 +166,29 @@ export const getWebhookUser = async (User: mongoose.Model<any>, email: string) =
   if (user.roles && user.roles.length > 0) {
     const populatedRoles = await RoleModel.find({ _id: { $in: user.roles } });
     user.roles = populatedRoles;
+  }
+
+  return user;
+};
+
+export const getAuthorizedWebhookUser = async (
+  res: NextApiResponse,
+  User: mongoose.Model<any>,
+  email: string,
+  action: WebhookAction,
+) => {
+  const user = await getWebhookUser(User, email);
+
+  if (!user) {
+    res.status(404).json({ message: "Utilisateur non trouvé pour cet email" });
+    return null;
+  }
+
+  if (!checkWebhookPermissions(user, action)) {
+    res.status(403).json({
+      message: `Accès refusé. Rôle requis pour cette action (${action}) : ${REQUIRED_ROLES_LABEL_BY_ACTION[action]}`,
+    });
+    return null;
   }
 
   return user;

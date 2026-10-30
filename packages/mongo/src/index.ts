@@ -25,4 +25,4 @@ export * from "./schemas/Structure";
 export * from "./schemas/Theme";
 export * from "./schemas/Traductions";
 export * from "./schemas/User";
-export * from "./schemas/Widget";
+export * from "./schemas/WidgetConfig";

@@ -46,7 +46,13 @@ const nextConfig = {
     return config;
   },
   //This option requires Next 13.1 or newer, if you can't update you can use this plugin instead: https://github.com/martpie/next-transpile-modules
-  transpilePackages: ["@codegouvfr/react-dsfr", "@refugies-info/mongo", "@refugies-info/ui"],
+  transpilePackages: [
+    "@codegouvfr/react-dsfr",
+    "@refugies-info/mongo",
+    "@refugies-info/ui",
+    // ships ES2022 class static blocks, unparseable by Safari < 16.4
+    "@radix-ui/react-collection",
+  ],
   serverExternalPackages: ["mongoose"],
   compiler: {
     styledComponents: true,

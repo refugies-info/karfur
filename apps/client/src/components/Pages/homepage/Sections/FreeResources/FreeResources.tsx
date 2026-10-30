@@ -8,8 +8,8 @@ const FreeResources = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-alt-blue-france w-full py-20" id="free-ressources">
-      <div className="container grid grid-cols-2 items-center gap-10">
+    <section className="bg-alt-blue-france w-full py-10 md:py-20" id="free-ressources">
+      <div className="container grid grid-cols-1 items-center gap-10 md:grid-cols-2">
         <div>
           <h2>{t("Homepage.resourcesTitle", "Des ressources gratuites à votre disposition")}</h2>
           <p>

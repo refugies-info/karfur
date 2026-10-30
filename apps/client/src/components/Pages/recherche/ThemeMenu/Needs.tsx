@@ -163,6 +163,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
               const selected =
                 query.needs.includes(need._id) || query.themes.includes(need.theme._id);
               const needText = need[locale]?.text || "";
+              const needCount = nbDispositifsByNeed[need._id.toString()] || 0;
 
               return {
                 label: <NeedItem need={need} />,
@@ -171,7 +172,7 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
                   onChange: () => selectNeed(need._id),
                   className: "!border",
                   "aria-label": showCounts
-                    ? `${needText} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`
+                    ? `${needText} ${needCount} ${t("Recherche.fiches", { count: needCount })}`
                     : needText,
                 },
               };

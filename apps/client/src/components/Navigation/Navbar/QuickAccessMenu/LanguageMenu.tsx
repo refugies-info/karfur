@@ -23,6 +23,7 @@ interface Props {
   itemsDesign?: "radio" | "default";
   availableLanguages?: string[] | null | undefined;
   key?: string;
+  isCompact?: boolean;
 }
 
 const LanguageMenu = ({
@@ -35,6 +36,7 @@ const LanguageMenu = ({
   availableLanguages = null,
   itemsDesign = "default",
   key,
+  isCompact,
 }: Props) => {
   const [langMenuOpened, setLangMenuOpened] = useState(false);
 
@@ -49,6 +51,7 @@ const LanguageMenu = ({
   }
 
   const { isMobile } = useWindowSize();
+  const compact = isCompact ?? isMobile;
 
   const stylesDisabled = useStylesDisabled();
   const { t } = useTranslation();
@@ -73,7 +76,7 @@ const LanguageMenu = ({
   return (
     <>
       {stylesDisabled && <span>{t("Toolbar.Langue", "Langue :")}</span>}
-      {(isMobile && mobileMode === "accordion") || (!isMobile && desktopMode === "accordion") ? (
+      {(compact && mobileMode === "accordion") || (!compact && desktopMode === "accordion") ? (
         <Accordion
           label={
             <>
@@ -93,7 +96,7 @@ const LanguageMenu = ({
         </Accordion>
       ) : null}
 
-      {(isMobile && mobileMode === "dropdown") || (!isMobile && desktopMode === "dropdown") ? (
+      {(compact && mobileMode === "dropdown") || (!compact && desktopMode === "dropdown") ? (
         <DropdownRoot
           className={cn(className)}
           ref={dropdownRef}
@@ -127,7 +130,7 @@ const LanguageMenu = ({
         </DropdownRoot>
       ) : null}
 
-      {(isMobile && mobileMode === "modal") || (!isMobile && desktopMode === "modal") ? (
+      {(compact && mobileMode === "modal") || (!compact && desktopMode === "modal") ? (
         <Dialog.Root open={langMenuOpened} onOpenChange={setLangMenuOpened} key={key}>
           <Dialog.Trigger asChild>
             <Button priority="tertiary no outline" className={cn("flex gap-2", className)}>
@@ -155,6 +158,7 @@ const LanguageMenu = ({
               <Dialog.Portal>
                 <Dialog.Content
                   className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white"
+                  aria-modal="true"
                   aria-describedby={descriptionId}
                 >
                   <Dialog.Title className="border-default-grey sticky top-0 z-50 mb-6 flex items-center justify-between border-b bg-white p-4 py-5">
@@ -164,7 +168,8 @@ const LanguageMenu = ({
                         iconId="fr-icon-close-line"
                         className="text-title-xs text-title-grey"
                         priority="tertiary no outline"
-                        title="Fermer"
+                        title={t("close", "Fermer")}
+                        nativeButtonProps={{ "aria-label": t("close", "Fermer") }}
                       />
                     </Dialog.Close>
                   </Dialog.Title>

@@ -13,9 +13,10 @@ const Config = {
 
 // Env variables for staging or production here
 if (
-  Updates.channel === "staging" ||
-  Updates.channel === "development" ||
-  Updates.channel === "preview"
+  !__DEV__ &&
+  (Updates.channel === "staging" ||
+    Updates.channel === "development" ||
+    Updates.channel === "preview")
 ) {
   Config.envName = "STAGING";
   Config.siteUrl = "https://staging.refugies.info";

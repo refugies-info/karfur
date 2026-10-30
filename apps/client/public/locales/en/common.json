@@ -96,13 +96,6 @@
     "allResultsDisplayed": "All results are displayed",
     "citySelectionsResults": "{{count}} suggestions found, please select your city from the suggestions"
   },
-  "Widget": {
-    "fiches": "Sheets",
-    "withTheme": "with the topic",
-    "available": "available",
-    "inLocation": "in",
-    "inLanguage": "in"
-  },
   "UserFavorites": {
     "tooltip_add": "Save the file",
     "tooltip_remove": "Remove saved files",

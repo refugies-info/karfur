@@ -95,13 +95,6 @@
     "allResultsDisplayed": "همه نتایج نمایش داده شد",
     "citySelectionsResults": "{{count}} پیشنهاد یافت شد، لطفاً شهر خود را از میان پیشنهادها انتخاب کنید"
   },
-  "Widget": {
-    "fiches": "برگه ها",
-    "withTheme": "با موضوع",
-    "available": "موجود",
-    "inLocation": "در",
-    "inLanguage": "در"
-  },
   "UserFavorites": {
     "tooltip_add": "ذخیره‌سازی صفحه",
     "tooltip_remove": "حذف از صفحات ذخیره‌شده",

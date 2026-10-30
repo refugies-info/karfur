@@ -98,14 +98,14 @@ export function* createNeed(action: ReturnType<typeof createNeedActionCreator>):
 
 export function* deleteNeed(action: ReturnType<typeof deleteNeedActionCreator>): SagaIterator {
   try {
-    yield put(startLoading(LoadingStatusKey.DELETE_WIDGET));
+    yield put(startLoading(LoadingStatusKey.DELETE_NEED));
     logger.info("[deleteNeed] start deleting need");
     yield call(API.deleteNeed, action.payload);
 
     const needs: GetNeedResponse[] = [...(yield select(needsSelector))];
     yield put(setNeedsActionCreator(needs.filter((n) => n._id !== action.payload)));
 
-    yield put(finishLoading(LoadingStatusKey.DELETE_WIDGET));
+    yield put(finishLoading(LoadingStatusKey.DELETE_NEED));
   } catch (error) {
     const { message } = error as Error;
     logger.error("Error while deleting need ", {

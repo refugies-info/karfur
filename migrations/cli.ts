@@ -15,5 +15,6 @@ mongoMigrateCli({
   uri: MIGRATE_MONGO_URI,
   migrationsDir: __dirname,
   migrationsCollection: "migrations",
-  globPattern: "**/*.ts",
+  // Only timestamped files: matching cli.ts would re-run this CLI and apply every migration twice.
+  globPattern: "[0-9]*_*.ts",
 });

@@ -3,12 +3,12 @@ import { ContentType, type SimpleDispositif } from "@refugies-info/api-types";
 import { cn } from "@refugies-info/ui";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { forwardRef, memo, useMemo } from "react";
+import { forwardRef, memo, useId, useMemo } from "react";
 import { useSelector } from "react-redux";
 import defaultStructureImage from "~/assets/recherche/default-structure-image.svg";
 import demarcheIcon from "~/assets/recherche/illu-demarche.svg";
 import Image from "~/components/UI/Image";
-import { useLocale, useSanitizedContent, useUtmz } from "~/hooks";
+import { SHORT_TEXT_ALLOWED_TAGS, useLocale, useSanitizedContent, useUtmz } from "~/hooks";
 import { useCardImageUrl } from "~/hooks/useCardImage";
 import { jsLcfirst, jsUcfirst } from "~/lib";
 import { getCommitmentText, getPriceText } from "~/lib/dispositif";
@@ -29,6 +29,8 @@ interface Props {
 
 const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
   const { t } = useTranslation();
+  // Not the dispositif id: the same card can be rendered twice on a page (homepage carousels)
+  const titleId = useId();
   const locale = useLocale();
   const themes = useSelector(allThemesSelector);
   const isDispositif = useMemo(
@@ -71,9 +73,15 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
     };
   }, [props.dispositif.metadatas, props.selectedDepartment, isDispositif, t]);
 
-  const safeSponsorName = useSanitizedContent(props.dispositif?.sponsor?.nom);
-  const safeTitreInformatif = useSanitizedContent(props.dispositif.titreInformatif);
-  const safeAbstract = useSanitizedContent(props.dispositif.abstract);
+  const safeSponsorName = useSanitizedContent(
+    props.dispositif?.sponsor?.nom,
+    SHORT_TEXT_ALLOWED_TAGS,
+  );
+  const safeTitreInformatif = useSanitizedContent(
+    props.dispositif.titreInformatif,
+    SHORT_TEXT_ALLOWED_TAGS,
+  );
+  const safeAbstract = useSanitizedContent(props.dispositif.abstract, SHORT_TEXT_ALLOWED_TAGS);
   const cardImageUrl = useCardImageUrl(theme, props.dispositif.typeContenu);
 
   const defaultImage = isDispositif ? defaultStructureImage : demarcheIcon;
@@ -82,7 +90,7 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
     <article
       ref={ref}
       tabIndex={-1}
-      aria-labelledby={props.dispositif._id.toString()}
+      aria-labelledby={titleId}
       className={cn(styles.wrapper, props.className, "fr-card fr-card--sm fr-enlarge-link")}
     >
       <Badge small className={cn(badge.className, "absolute top-2 left-2 z-10")}>
@@ -92,7 +100,7 @@ const DispositifCard = forwardRef<HTMLElement, Props>((props, ref) => {
       <div className={cn("fr-card__body", styles.body)}>
         <div className={cn("fr-card__content", styles.content)}>
           <div className={styles.text}>
-            <h3 className="fr-card__title" id={props.dispositif._id.toString()}>
+            <h3 className="fr-card__title" id={titleId}>
               <Link
                 target={props.targetBlank ? "_blank" : undefined}
                 rel={props.targetBlank ? "noopener noreferrer" : undefined}

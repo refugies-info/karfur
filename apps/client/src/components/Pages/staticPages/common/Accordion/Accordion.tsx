@@ -2,6 +2,7 @@ import Button from "@codegouvfr/react-dsfr/Button";
 import * as AccordionRadix from "@radix-ui/react-accordion";
 import { useWindowSize } from "@refugies-info/ui";
 import DOMPurify from "isomorphic-dompurify";
+import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import AccordionRoot from "~/components/Pages/staticPages/common/Accordion/AccordionRoot";
 import Image from "~/components/UI/Image";
@@ -15,6 +16,7 @@ type Item = {
   text: string;
   image?: any;
   alt?: string;
+  link?: string;
   video?: string;
   youtube?: string;
   mediaWidth?: number;
@@ -36,6 +38,7 @@ interface Props {
 }
 
 const Accordion = (props: Props) => {
+  const { t } = useTranslation();
   const { finalityConsent } = useConsent();
   const [open, setOpen] = useState<number[]>(props.initOpen ? [0] : []);
   const { isTablet, isMobile } = useWindowSize();
@@ -47,8 +50,8 @@ const Accordion = (props: Props) => {
 
   const getMedia = (type: "image" | "video" | "youtube", item: Item) => {
     switch (type) {
-      case "image":
-        return (
+      case "image": {
+        const image = (
           <Image
             src={item?.image}
             alt={item?.alt ? item.alt : ""}
@@ -57,6 +60,17 @@ const Accordion = (props: Props) => {
             className="mx-auto mt-6 h-auto max-w-full lg:mt-0"
           />
         );
+        return item.link ? (
+          <a href={item.link} target="_blank" rel="noopener noreferrer" className="block">
+            {image}
+            <span className="sr-only">
+              {t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}
+            </span>
+          </a>
+        ) : (
+          image
+        );
+      }
       case "video":
         return (
           <AutoplayVideo
@@ -72,7 +86,6 @@ const Accordion = (props: Props) => {
             height={item.mediaHeight || "315"}
             src={item.youtube}
             title="YouTube video player"
-            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
             className={cn(styles.youtube, "w-full")}
@@ -80,7 +93,10 @@ const Accordion = (props: Props) => {
         ) : (
           <div
             className={styles.no_cookie}
-            style={{ width: item.mediaWidth || 560, height: item.mediaHeight || 315 }}
+            style={{
+              width: item.mediaWidth || 560,
+              height: item.mediaHeight || 315,
+            }}
           >
             Vous devez accepter les cookies pour afficher les vidéos Youtube.
           </div>
