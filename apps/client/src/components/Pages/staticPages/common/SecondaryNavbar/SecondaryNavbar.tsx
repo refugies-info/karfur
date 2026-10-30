@@ -38,7 +38,6 @@ const SecondaryNavbar = (props: Props) => {
       <div className={cls("sticky top-0 z-20 bg-white", isSticky && "shadow-sm")}>
         <div className="container flex flex-wrap md:flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
           <nav aria-label={t("Dispositif.summary", "Sommaire")} className={styles.nav}>
-            {/* Explicit role justified on the contentAs prop of MetaDataItem. */}
             <ul className="fr-raw-list" role="list">
               {props.leftLinks.map((link) => (
                 <li key={link.id}>

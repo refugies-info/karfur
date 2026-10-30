@@ -2,7 +2,6 @@ interface Props {
   id: string;
 }
 
-// Focusable target for in-page links, kept out of the tab order and without a visible outline
 export const Anchor = (props: Props) => {
   return (
     <span
