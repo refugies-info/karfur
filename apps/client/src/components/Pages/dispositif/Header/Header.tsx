@@ -80,6 +80,8 @@ const Header = (props: Props) => {
     }
   };
 
+  // SponsorsEdit renders a block, so the sponsor line is only a paragraph outside edit mode
+  const SponsorsWrapper = isEditMode ? "div" : "p";
   return (
     <header className="relative">
       {isViewMode && (
@@ -110,7 +112,7 @@ const Header = (props: Props) => {
             </span>
           )}
 
-          <span className="flex flex-col gap-1">
+          <SponsorsWrapper className="mb-0 flex flex-col gap-1">
             {isEditMode ? (
               <SponsorsEdit />
             ) : (
@@ -119,7 +121,7 @@ const Header = (props: Props) => {
             {isViewMode && dispositif?.date && (
               <span className="text-mention-grey">{`${t("Dispositif.updated")} ${moment(dispositif.date).fromNow()}`}</span>
             )}
-          </span>
+          </SponsorsWrapper>
         </div>
       )}
 
