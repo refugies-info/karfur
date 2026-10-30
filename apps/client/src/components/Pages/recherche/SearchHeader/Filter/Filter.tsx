@@ -21,6 +21,7 @@ import {
 import { useSearchEventName } from "~/hooks";
 import useStylesDisabled from "~/hooks/useStyleDisabled";
 import { cls, cn } from "~/lib/classname";
+import { areSearchCountsEnabled } from "~/lib/recherche/searchCounts";
 import { Event } from "~/lib/tracking";
 import { addToQueryActionCreator } from "~/services/SearchResults/searchResults.actions";
 import type { SearchQuery } from "~/services/SearchResults/searchResults.reducer";
@@ -93,7 +94,7 @@ const Filter = ({
 
   const { isMobile, isTablet } = useWindowSize();
 
-  const showCounts = process.env.NEXT_PUBLIC_DISABLE_SEARCH_COUNTS !== "true";
+  const showCounts = areSearchCountsEnabled();
 
   const processedMenuItems = useMemo(() => {
     if (!menuItems) return [];
