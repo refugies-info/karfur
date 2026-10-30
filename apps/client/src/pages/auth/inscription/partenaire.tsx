@@ -53,11 +53,14 @@ const AuthLogin = () => {
     [router, userId, next, partner],
   );
 
-  if (!userId) return null;
+  // Render the title even before the user is loaded so the page is never untitled
+  const seo = <SEO title="Votre structure" />;
+
+  if (!userId) return seo;
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre structure" />
+      {seo}
       <div className={styles.container_inner}>
         <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
 

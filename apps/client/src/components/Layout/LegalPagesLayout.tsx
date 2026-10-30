@@ -1,5 +1,6 @@
 import { Breadcrumb, type BreadcrumbProps as UIBreadcrumbProps } from "@refugies-info/ui";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import type React from "react";
 import Layout from "~/components/Layout/Layout";
 
@@ -19,6 +20,7 @@ export default function LegalPagesLayout({
   },
 }: LegalPagesLayoutProps) {
   const router = useRouter();
+  const { t } = useTranslation();
   const pageHistory = history.length > 0 ? history : [router.asPath];
 
   return (
@@ -29,6 +31,7 @@ export default function LegalPagesLayout({
             className="w-full"
             segments={BreadcrumbProps.segments}
             currentPageLabel={title}
+            homeLabel={t("homepage", "Accueil")}
           />
           <main className="mx-auto mb-10 w-full max-w-3xl">{children}</main>
         </div>
