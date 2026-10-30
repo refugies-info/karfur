@@ -52,19 +52,6 @@
     border-top: 1px solid $gray20;
   }
 
-  .dialogSubTitle {
-    @include dsfr-text("large");
-
-    font-weight: bold;
-    color: black;
-    margin-bottom: u(2);
-    padding-inline: u(2);
-
-    &:not(:first-child) {
-      margin-top: u(8);
-    }
-  }
-
   /* Slide-in Animation */
   &.slideIn {
     animation: slide-in-from-right 600ms ease-out forwards;

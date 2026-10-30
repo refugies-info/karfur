@@ -1,7 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import * as Dialog from "@radix-ui/react-dialog";
 import { useTranslation } from "next-i18next";
-import type React from "react";
 import { useEffect, useId, useState } from "react";
 import { useDispatch } from "react-redux";
 import DropdownButton from "~/components/Pages/recherche/SearchHeader/Filter/DropdownButton";
@@ -130,12 +129,3 @@ export function DialogMenuLayout({
     </Dialog.Root>
   );
 }
-
-type DialogMenuLayoutTitleProps = {
-  children: React.ReactNode;
-  className?: string;
-};
-
-export const DialogMenuLayoutTitle = ({ children, className }: DialogMenuLayoutTitleProps) => {
-  return <div className={cls(styles.dialogSubTitle, className)}>{children}</div>;
-};
