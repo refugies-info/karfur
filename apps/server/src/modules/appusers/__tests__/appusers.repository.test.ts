@@ -1,5 +1,6 @@
 import { AppUserModel } from "@refugies-info/mongo";
 import {
+  processAppUsersByBatch,
   updateNotificationsSettings,
   updateOrCreateAppUser,
 } from "~/modules/appusers/appusers.repository";
@@ -100,5 +101,28 @@ describe("appusers.repository", () => {
     await updateOrCreateAppUser({ uid: "current", expoPushToken: "ExponentPushToken[same]" }, []);
 
     expect(await AppUserModel.countDocuments({ uid: "stale" })).toBe(0);
+  });
+
+  it("should process every app user once, with plain-object notification themes", async () => {
+    const notificationsSettings = {
+      global: true,
+      local: true,
+      demarches: true,
+      themes: { theme1: true },
+    };
+    await AppUserModel.create(["a", "b", "c"].map((uid) => ({ uid, notificationsSettings })));
+
+    const seen: { uid: string; themeEnabled: boolean }[] = [];
+    await processAppUsersByBatch({}, 2, async (users) => {
+      users.forEach((user) =>
+        seen.push({
+          uid: user.uid,
+          themeEnabled: user.notificationsSettings?.themes?.["theme1"] === true,
+        }),
+      );
+    });
+
+    expect(seen.map((user) => user.uid).sort()).toEqual(["a", "b", "c"]);
+    expect(seen.every((user) => user.themeEnabled)).toBe(true);
   });
 });
