@@ -21,10 +21,7 @@ exports[`recherche renders search results 1`] = `
   <div
     class="container"
   >
-    <header
-      aria-labelledby="search-title"
-      role="banner"
-    >
+    <div>
       <div
         class="title"
       >
@@ -41,7 +38,7 @@ exports[`recherche renders search results 1`] = `
           </p>
         </div>
       </div>
-    </header>
+    </div>
     <div
       class="stickybar"
     >

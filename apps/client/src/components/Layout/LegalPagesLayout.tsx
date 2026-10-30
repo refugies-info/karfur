@@ -30,7 +30,7 @@ export default function LegalPagesLayout({
             segments={BreadcrumbProps.segments}
             currentPageLabel={title}
           />
-          <main className="mx-auto mb-10 w-full max-w-3xl">{children}</main>
+          <div className="mx-auto mb-10 w-full max-w-3xl">{children}</div>
         </div>
       </div>
     </Layout>
