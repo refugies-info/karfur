@@ -8,7 +8,7 @@ interface Props {
 
 export const Figure = (props: Props) => {
   return (
-    <div className="w-fit space-y-6 text-center">
+    <div className="w-fit space-y-6 text-center lg:grow lg:basis-64">
       <span className="relative mx-auto flex h-[14rem] w-[16rem] xl:w-[19rem]">
         <Image src={props.image} alt="" className="" fill />
       </span>
