@@ -116,6 +116,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
                     ? "ri-pause-fill"
                     : "ri-play-fill",
               )}
+              aria-hidden="true"
             />
             {isMobile || isTablet ? t("listen") : ""}
           </Button>
