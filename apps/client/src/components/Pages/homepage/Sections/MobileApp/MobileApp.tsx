@@ -107,8 +107,10 @@ const MobileApp = () => {
               className="inline-flex gap-3"
             >
               {Array.from({ length: 5 }).map((_, index) => (
-                // TODO @ledjay : fix yellow colors from DSFR
-                <i key={index} className="fr-icon-star-fill h-4 w-4 text-[#fcc63a]" />
+                <i
+                  key={index}
+                  className="fr-icon-star-fill h-4 w-4 text-artwork-minor-blue-france"
+                />
               ))}
             </span>
             {t("MobileApp.rankingText", "Top 3 des applications publiques")}
@@ -165,6 +167,17 @@ const MobileApp = () => {
           </span>
         ) : (
           <MobileAppSmsForm />
+        )}
+        {isMobile && (
+          <div className="mt-10">
+            <h2 className="text-lg">
+              {t(
+                "MobileApp.titleDesktop",
+                "Envoyez un lien de téléchargement de l’application à vos bénéficiaires !",
+              )}
+            </h2>
+            <MobileAppSmsForm />
+          </div>
         )}
       </div>
     </section>

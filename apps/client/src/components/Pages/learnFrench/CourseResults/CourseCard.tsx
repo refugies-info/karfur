@@ -5,7 +5,7 @@ import { type TFunction, useTranslation } from "next-i18next";
 import { forwardRef } from "react";
 import Image from "~/components/UI/Image";
 import { LOCATION_FRANCE, LOCATION_ONLINE } from "~/data/learnFrench";
-import { useSanitizedContent } from "~/hooks";
+import { SHORT_TEXT_ALLOWED_TAGS, useSanitizedContent } from "~/hooks";
 import useLocale from "~/hooks/useLocale";
 import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
@@ -54,8 +54,8 @@ const getFrenchLevelLabels = (dispositif: SimpleDispositif, t: TFunction): strin
 export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const title = useSanitizedContent(props.dispositif.titreInformatif);
-  const description = useSanitizedContent(props.dispositif.abstract);
+  const title = useSanitizedContent(props.dispositif.titreInformatif, SHORT_TEXT_ALLOWED_TAGS);
+  const description = useSanitizedContent(props.dispositif.abstract, SHORT_TEXT_ALLOWED_TAGS);
 
   const nextSession = getNextUpcomingSession(props.dispositif);
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;

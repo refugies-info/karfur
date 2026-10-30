@@ -1,0 +1,1 @@
+export { NoResultsPlaceholder } from "./NoResultsPlaceholder";

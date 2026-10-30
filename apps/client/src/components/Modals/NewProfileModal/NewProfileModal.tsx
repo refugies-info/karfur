@@ -67,12 +67,12 @@ const NewProfileModal = () => {
         Pour continuer à accéder au contenu, merci de{" "}
         <strong>compléter votre profil en cliquant sur le bouton ci-dessous</strong>.
       </p>
-      <div className={cls("flex justify-between items-start", styles.actions)}>
+      <div className={cls("flex flex-wrap justify-between items-start gap-4", styles.actions)}>
         <Button priority="secondary" onClick={logout} className={styles.danger}>
           Me déconnecter
         </Button>
 
-        <div className="flex flex-column items-end gap-2">
+        <div className="flex flex-col items-end gap-2">
           <Button
             iconId="fr-icon-arrow-right-line"
             iconPosition="right"

@@ -4,7 +4,8 @@
 
 .modal {
   @include media-min("tablet-up") {
-    width: 500px;
+    width: 37.5rem;
+    max-width: calc(100vw - 3.5rem);
   }
 
   .close {
@@ -20,6 +21,8 @@
     box-shadow: 0 0 16px rgb(0 0 0 / 30%);
     border-radius: 0;
     border: none;
+    max-height: calc(100vh - 3.5rem);
+    overflow-y: auto;
   }
 
   .modal_header {
@@ -104,12 +107,6 @@
       background-color: $bleuCharte;
       border: 0.5px solid $bleuCharte;
     }
-
-    .vertical_center {
-      display: flex;
-      align-items: center;
-      padding-left: 20px;
-    }
   }
 
   // Cols
@@ -125,12 +122,6 @@
   .progress_col {
     display: flex;
     align-items: center;
-  }
-
-  .button_col {
-    display: flex;
-    padding-right: 15px;
-    justify-content: flex-end;
   }
 
   .icon_col {

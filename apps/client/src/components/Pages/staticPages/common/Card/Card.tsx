@@ -9,6 +9,8 @@ interface Props {
   children: any;
   className?: string;
   image?: any;
+  // Leave empty for decorative images (RGAA 1.2), describe informative ones (RGAA 1.3)
+  imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;
   imageComponent?: ReactElement;
@@ -41,7 +43,7 @@ const Card = (props: Props) => {
           {props.image && (
             <Image
               src={props.image}
-              alt=""
+              alt={props.imageAlt ?? ""}
               width={props.imageWidth || 80}
               height={props.imageHeight || 80}
               style={{ objectFit: "contain" }}
@@ -60,6 +62,7 @@ const Card = (props: Props) => {
       props.title,
       props.children,
       props.image,
+      props.imageAlt,
       props.header,
       props.footer,
       props.footerBottom,

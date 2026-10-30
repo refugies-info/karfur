@@ -1,6 +1,6 @@
 # When updating versions, please also update them in the various package.json files
 # (root, apps/*, packages/*) for volta, engines, and packageManager fields.
-node = "24.14.0"
+node = "24.22.1"
 pnpm = "10.32.1"
 proto = "0.55.4"
 

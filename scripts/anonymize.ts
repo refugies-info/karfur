@@ -113,17 +113,10 @@ async function anonymizeUsers(db: any): Promise<Map<string, string>> {
         // Profil
         description: user.description ? "Profil utilisateur anonymisé" : undefined,
 
-        // Image
-        picture: user.picture
-          ? {
-              imgId: "anonymous",
-              public_id: "anonymous",
-              secure_url: "https://example.com/avatar.png",
-            }
-          : undefined,
-
         updatedAt: new Date(),
       },
+      // A fake avatar URL breaks next/image (host not allowed), so the picture is dropped.
+      $unset: { picture: "" },
     };
 
     if (DRY_RUN) {

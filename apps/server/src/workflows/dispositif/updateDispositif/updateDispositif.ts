@@ -7,6 +7,7 @@ import {
 import type { DemarcheContent, DispositifContent, TranslationContent } from "@refugies-info/mongo";
 import { type Dispositif, ObjectId, type StructureId, type User } from "@refugies-info/mongo";
 import { isString, omit } from "lodash";
+import { NotFoundError } from "~/errors";
 import { checkUserIsAuthorizedToModifyDispositif } from "~/libs/checkAuthorizations";
 import { isToday } from "~/libs/isToday";
 import { mapToPlainObject } from "~/libs/mongooseMaps";
@@ -73,39 +74,29 @@ export const updateDispositif = async (
 ): ResponseWithData<UpdateDispositifResponse> => {
   logger.info("[updateDispositif] received", { id, body, user: user._id });
 
-  const draftOldDispositif = await getDraftDispositifById(
+  const fields = {
+    typeContenu: 1,
+    translations: 1,
+    mainSponsor: 1,
+    creatorId: 1,
+    status: 1,
+    lastModificationDate: 1,
+    theme: 1,
+    secondaryThemes: 1,
+    administrationLogo: 1,
+  };
+  const publishedDispositif = await getDispositifById(
     id,
-    {
-      typeContenu: 1,
-      translations: 1,
-      mainSponsor: 1,
-      creatorId: 1,
-      status: 1,
-      lastModificationDate: 1,
-      theme: 1,
-      secondaryThemes: 1,
-      administrationLogo: 1,
-    },
+    { ...fields, hasDraftVersion: 1 },
     "mainSponsor",
   );
+  // Same source of truth as getContentById and publishDispositif: a draft the flag ignores is
+  // never shown, so saving into it would silently lose the changes.
+  const draftOldDispositif = publishedDispositif?.hasDraftVersion
+    ? await getDraftDispositifById(id, fields, "mainSponsor")
+    : null;
 
-  const oldDispositif =
-    draftOldDispositif ||
-    (await getDispositifById(
-      id,
-      {
-        typeContenu: 1,
-        translations: 1,
-        mainSponsor: 1,
-        creatorId: 1,
-        status: 1,
-        lastModificationDate: 1,
-        theme: 1,
-        secondaryThemes: 1,
-        administrationLogo: 1,
-      },
-      "mainSponsor",
-    ));
+  const oldDispositif = draftOldDispositif || publishedDispositif;
   checkUserIsAuthorizedToModifyDispositif(oldDispositif, user, !!draftOldDispositif);
 
   const translationContent = buildDispositifContent(body, oldDispositif);
@@ -139,6 +130,8 @@ export const updateDispositif = async (
   } else {
     // else, we save in the current or draft version
     newDispositif = await updateDispositifInDB(id, editedDispositif, !!draftOldDispositif);
+    // the draft was deleted in between, eg. by a publication
+    if (!newDispositif) throw new NotFoundError("dispositif not found");
 
     // if dispositif becomes incomplete, revert it to DRAFT
     const isStatusWaiting =

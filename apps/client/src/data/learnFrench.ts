@@ -3,6 +3,7 @@
  * whose `theme` or `secondaryThemes` is this id. Also used to select the theme's `needs` for the
  * "Catégorie" filter (RI-1526) — see `needsSelector`, those already carry their own translations.
  */
+export const RESULTS_PER_PAGE = 10;
 export const LEARN_FRENCH_THEME_ID = "63286a015d31b2c0cad9960a";
 
 /** Special `metadatas.location` values, besides the list of departments. */

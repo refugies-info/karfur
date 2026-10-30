@@ -1,9 +1,15 @@
 import type { SearchCountsResponse } from "../../pages/api/search/counts";
 import type { SearchQuery } from "../SearchResults/searchResults.reducer";
 
-export const getSearchCounts = async (searchQuery: SearchQuery): Promise<SearchCountsResponse> => {
-  // Exclude presentation-only params from counts: type (tab) and sort
-  const { search, sort, type, ...otherFilters } = searchQuery as any;
+export const SEARCH_COUNTS_CACHE_KEY = "search-counts";
+
+// Presentation-only params (type tab and sort) are not part of the counts query
+export type SearchCountsQuery = Omit<SearchQuery, "sort" | "type">;
+
+export const getSearchCounts = async (
+  searchQuery: SearchCountsQuery,
+): Promise<SearchCountsResponse> => {
+  const { search, ...otherFilters } = searchQuery;
   const params = {
     ...otherFilters,
     query: search,
@@ -24,7 +30,7 @@ export const getSearchCounts = async (searchQuery: SearchQuery): Promise<SearchC
   const queryString = usp.toString();
   const response = await fetch(`/api/search/counts?${queryString}`);
   if (!response.ok) {
-    throw new Error("Failed to fetch search counts");
+    throw new Error(`/api/search/counts responded ${response.status}`);
   }
   return response.json();
 };

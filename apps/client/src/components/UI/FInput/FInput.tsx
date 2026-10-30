@@ -46,7 +46,7 @@ const FInput = (props: Props) => {
           {!props.error ? (
             <EVAIcon name={props.prependName} fill={props.prependFill || colors.gray90} />
           ) : (
-            <EVAIcon name={props.errorIcon || props.prependName} fill="#F44336" />
+            <EVAIcon name={props.errorIcon || props.prependName} fill={colors.error} />
           )}
         </InputGroupText>
       )}
@@ -82,7 +82,7 @@ const FInput = (props: Props) => {
       {(props.append || props.error) && (
         <InputGroupText className={styles.append} onClick={props.onAppendClick}>
           {props.error && props.errorType !== "wrongPassword" ? (
-            <EVAIcon name="alert-triangle" fill="#F44336" />
+            <EVAIcon name="alert-triangle" fill={colors.error} />
           ) : (
             <EVAIcon name={props.appendName} fill={props.appendFill || colors.gray90} />
           )}
