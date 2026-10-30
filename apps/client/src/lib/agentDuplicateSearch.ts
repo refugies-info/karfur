@@ -4,7 +4,10 @@ export interface DuplicateSearchRequest {
   title: string;
   description?: string;
   structureName?: string;
+  /** @deprecated use communes */
   commune?: string;
+  communes?: string[];
+  postalCodes?: string[];
   departments?: string[];
   limit?: number;
 }
@@ -14,8 +17,10 @@ export interface DuplicateSearchCandidate {
   url: string;
   titreInformatif?: string;
   titreMarque?: string;
+  status?: string;
   location?: string | string[];
   city: string[];
+  addresses?: string[];
   mainSponsorNom?: string;
   mainSponsorAcronyme?: string;
   score: number;
@@ -26,7 +31,8 @@ export interface DuplicateSearchQuery {
   title: string;
   description?: string;
   structureName?: string;
-  commune?: string;
+  communes: string[];
+  postalCodes: string[];
   departments: string[];
   limit: number;
 }
@@ -90,7 +96,16 @@ export const parseDuplicateSearchRequest = (body: unknown): DuplicateSearchQuery
   const description = typeof body.description === "string" ? body.description.trim() : undefined;
   const structureName =
     typeof body.structureName === "string" ? body.structureName.trim() : undefined;
-  const commune = typeof body.commune === "string" ? body.commune.trim() : undefined;
+  const communes = Array.from(
+    new Set(
+      [...toStringArray(body.communes), ...toStringArray([body.commune])].map((commune) =>
+        commune.trim(),
+      ),
+    ),
+  );
+  const postalCodes = Array.from(
+    new Set(toStringArray(body.postalCodes).map((postalCode) => postalCode.trim())),
+  );
   const departments = toStringArray(body.departments).map((department) => department.trim());
   const limit = parseLimit(body.limit);
 
@@ -102,7 +117,8 @@ export const parseDuplicateSearchRequest = (body: unknown): DuplicateSearchQuery
     title,
     ...(description ? { description } : {}),
     ...(structureName ? { structureName } : {}),
-    ...(commune ? { commune } : {}),
+    communes,
+    postalCodes,
     departments,
     limit,
   };
@@ -137,6 +153,11 @@ const departmentToRegex = (department: string) => {
   return escapeRegExp(trimmed);
 };
 
+// RI stores the postal code inside the free-text address ("…, 78200 Mantes-la-Jolie").
+const postalCodeToRegex = (postalCode: string) => `\\b${escapeRegExp(postalCode)}\\b`;
+
+const anyOfRegex = (regexes: string[]) => regexes.join("|");
+
 const getLocationSearchConditions = (query: DuplicateSearchQuery): Record<string, unknown>[] => {
   const conditions: Record<string, unknown>[] = [];
 
@@ -146,8 +167,12 @@ const getLocationSearchConditions = (query: DuplicateSearchQuery): Record<string
     });
   }
 
-  if (query.commune) {
-    conditions.push({ "map.city": { $regex: escapeRegExp(query.commune), $options: "i" } });
+  for (const commune of query.communes) {
+    conditions.push({ "map.city": { $regex: escapeRegExp(commune), $options: "i" } });
+  }
+
+  for (const postalCode of query.postalCodes) {
+    conditions.push({ "map.address": { $regex: postalCodeToRegex(postalCode), $options: "i" } });
   }
 
   return conditions;
@@ -281,8 +306,26 @@ const buildDuplicateSearchScoreExpression = (
     expressions.push(buildRegexScoreExpression("$translations.fr.content.titreMarque", token, 1));
   }
 
-  if (query.commune) {
-    expressions.push(buildRegexScoreExpression("$map.city", query.commune, 5));
+  if (query.communes.length > 0) {
+    expressions.push(
+      buildRegexScoreExpression(
+        "$map.city",
+        anyOfRegex(query.communes.map(escapeRegExp)),
+        5,
+        false,
+      ),
+    );
+  }
+
+  if (query.postalCodes.length > 0) {
+    expressions.push(
+      buildRegexScoreExpression(
+        "$map.address",
+        anyOfRegex(query.postalCodes.map(postalCodeToRegex)),
+        5,
+        false,
+      ),
+    );
   }
 
   for (const department of query.departments) {
@@ -315,14 +358,9 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
   const needsSponsorSearch = sponsorConditions.length > 0;
   const dbLimit = Math.min(query.limit * 4, MAX_DB_CANDIDATES);
 
-  const pipeline: PipelineStage[] = [
-    {
-      $match: {
-        status: "Actif",
-        typeContenu: "dispositif",
-      },
-    },
-  ];
+  // Every status, deleted included: a record already deleted or archived on RI
+  // must not be published again from RCO either.
+  const pipeline: PipelineStage[] = [{ $match: { typeContenu: "dispositif" } }];
 
   if (!needsSponsorSearch) {
     const preLookupMatch = buildConstrainedMatchStage(textConditions, locationConditions);
@@ -364,6 +402,7 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
         id: { $toString: "$_id" },
         titreInformatif: "$translations.fr.content.titreInformatif",
         titreMarque: "$translations.fr.content.titreMarque",
+        status: 1,
         location: "$metadatas.location",
         city: {
           $filter: {
@@ -374,6 +413,7 @@ export const buildDuplicateSearchPipeline = (query: DuplicateSearchQuery): Pipel
             },
           },
         },
+        addresses: { $ifNull: ["$map.address", []] },
         mainSponsorNom: "$mainSponsorInfo.nom",
         mainSponsorAcronyme: "$mainSponsorInfo.acronyme",
       },
@@ -426,7 +466,7 @@ export const scoreDuplicateCandidates = (
   const descriptionTokens = tokenize(query.description);
   const normalizedTitle = normalizeText(query.title);
   const normalizedStructure = normalizeText(query.structureName);
-  const normalizedCommune = normalizeText(query.commune);
+  const normalizedCommunes = query.communes.map(normalizeText);
   const normalizedDepartments = query.departments.map(normalizeText);
   const structureInitials = getInitials(query.structureName);
 
@@ -444,11 +484,23 @@ export const scoreDuplicateCandidates = (
       const locations = candidateLocations(candidate).map(normalizeText);
 
       if (
-        normalizedCommune &&
-        candidateCities.some((city) => includesEitherWay(city, normalizedCommune))
+        candidateCities.some((city) =>
+          normalizedCommunes.some((commune) => includesEitherWay(city, commune)),
+        )
       ) {
         score += 5;
         reasons.push("same city");
+      }
+
+      if (
+        query.postalCodes.some((postalCode) =>
+          (candidate.addresses ?? []).some((address) =>
+            new RegExp(postalCodeToRegex(postalCode)).test(address),
+          ),
+        )
+      ) {
+        score += 5;
+        reasons.push("same postal code");
       }
 
       if (

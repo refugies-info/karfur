@@ -18,7 +18,8 @@ describe("agentDuplicateSearch", () => {
       ).toEqual({
         title: "Cours FLE",
         structureName: "FTDA",
-        commune: "Paris",
+        communes: ["Paris"],
+        postalCodes: [],
         departments: ["75", "invalid"],
         limit: 30,
       });
@@ -32,16 +33,29 @@ describe("agentDuplicateSearch", () => {
   });
 
   describe("buildDuplicateSearchPipeline", () => {
+    it("searches every status and returns it", () => {
+      const pipeline = buildDuplicateSearchPipeline({
+        communes: [],
+        postalCodes: [],
+        title: "Cours FLE",
+        departments: [],
+        limit: 10,
+      });
+      expect(JSON.stringify(pipeline)).not.toContain('"status":"Actif"');
+      expect(pipeline.at(-1)).toMatchObject({ $project: { status: 1 } });
+    });
+
     it("filters on title and location before looking up sponsors when structure is absent", () => {
       const pipeline = buildDuplicateSearchPipeline({
         title: "Cours FLE",
-        commune: "Paris",
+        communes: ["Paris"],
+        postalCodes: [],
         departments: ["75"],
         limit: 10,
       });
 
       expect(pipeline[0]).toEqual({
-        $match: { status: "Actif", typeContenu: "dispositif" },
+        $match: { typeContenu: "dispositif" },
       });
       expect(pipeline[1]).toMatchObject({
         $match: {
@@ -81,7 +95,8 @@ describe("agentDuplicateSearch", () => {
       const pipeline = buildDuplicateSearchPipeline({
         title: "Cours FLE",
         structureName: "FTDA",
-        commune: "Paris",
+        communes: ["Paris"],
+        postalCodes: [],
         departments: ["75"],
         limit: 10,
       });
@@ -132,6 +147,8 @@ describe("agentDuplicateSearch", () => {
 
     it("keeps normalized sponsor fallback for accented names", () => {
       const pipeline = buildDuplicateSearchPipeline({
+        communes: [],
+        postalCodes: [],
         title: "Atelier cuisine",
         structureName: "Café",
         departments: [],
@@ -145,6 +162,8 @@ describe("agentDuplicateSearch", () => {
 
     it("does not duplicate single-word title score expressions", () => {
       const pipeline = buildDuplicateSearchPipeline({
+        communes: [],
+        postalCodes: [],
         title: "FLE",
         departments: [],
         limit: 10,
@@ -160,7 +179,8 @@ describe("agentDuplicateSearch", () => {
       const pipeline = buildDuplicateSearchPipeline({
         title: "Cours FLE",
         structureName: "FTDA",
-        commune: "Paris",
+        communes: ["Paris"],
+        postalCodes: [],
         departments: ["75"],
         limit: 10,
       });
@@ -174,6 +194,8 @@ describe("agentDuplicateSearch", () => {
 
     it("anchors one-digit department codes in DB-side scoring", () => {
       const pipeline = buildDuplicateSearchPipeline({
+        communes: [],
+        postalCodes: [],
         title: "Cours FLE",
         departments: ["3"],
         limit: 10,
@@ -188,7 +210,8 @@ describe("agentDuplicateSearch", () => {
     it("matches array field values per item for DB-side scoring", () => {
       const pipeline = buildDuplicateSearchPipeline({
         title: "Cours FLE",
-        commune: "Paris",
+        communes: ["Paris"],
+        postalCodes: [],
         departments: ["3"],
         limit: 10,
       });
@@ -222,7 +245,8 @@ describe("agentDuplicateSearch", () => {
         {
           title: "Cours FLE",
           structureName: "France Terre d'Asile",
-          commune: "",
+          communes: [],
+          postalCodes: [],
           departments: ["3"],
           limit: 10,
         },
@@ -247,13 +271,40 @@ describe("agentDuplicateSearch", () => {
         {
           title: "Cours FLE",
           structureName: "France Terre d'Asile",
-          commune: "",
+          communes: [],
+          postalCodes: [],
           departments: ["3"],
           limit: 10,
         },
       );
 
       expect(candidate.reasons).toContain("same department/location");
+    });
+
+    it("matches the postal code inside the RI address, as a whole number", () => {
+      const query = {
+        title: "Atelier",
+        communes: [],
+        postalCodes: ["75018"],
+        departments: [],
+        limit: 10,
+      };
+      const withAddress = (address: string) =>
+        scoreDuplicateCandidates(
+          [{ id: "a", city: [], addresses: [`12 rue Ordener, ${address}`] }],
+          query,
+        )[0].reasons;
+
+      expect(withAddress("75018 Paris")).toContain("same postal code");
+      expect(withAddress("750180 Ailleurs")).not.toContain("same postal code");
+      expect(JSON.stringify(buildDuplicateSearchPipeline(query))).toContain('"map.address"');
+    });
+
+    it("keeps accepting the legacy commune field", () => {
+      expect(
+        parseDuplicateSearchRequest({ title: "x", commune: "Lyon", communes: ["Lyon", "Bron"] })
+          .communes,
+      ).toEqual(["Lyon", "Bron"]);
     });
 
     it("scores location, sponsor and content similarities", () => {
@@ -272,7 +323,8 @@ describe("agentDuplicateSearch", () => {
         {
           title: "Cours FLE",
           structureName: "France Terre d'Asile",
-          commune: "Paris",
+          communes: ["Paris"],
+          postalCodes: [],
           departments: ["75"],
           limit: 10,
         },
