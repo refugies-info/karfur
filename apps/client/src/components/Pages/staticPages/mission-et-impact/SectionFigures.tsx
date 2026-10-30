@@ -11,7 +11,7 @@ export const SectionFigures = () => {
     <Section className="bg-action-high-blue-france">
       <div className="container">
         <Title2 className="text-inverted-blue-france">{t("MissionImpact.figures_title")}</Title2>
-        <div className="flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:gap-20">
+        <div className="flex flex-col items-center justify-center gap-10 lg:flex-row lg:flex-wrap lg:items-start lg:gap-20">
           <Figure title="1,3M" text={t("MissionImpact.figures_text_1")} image={StatGraph} />
           <Figure title="n°1" text={t("MissionImpact.figures_text_2")} image={StatPodium} />
           <Figure title="4,6/5" text={t("MissionImpact.figures_text_3")} image={StatStars} />
