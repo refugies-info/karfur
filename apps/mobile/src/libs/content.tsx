@@ -159,21 +159,6 @@ export const formatSessionDate = (date: Date | string): string => {
   }).format(d);
 };
 
-/**
- * Check if a session date is in the past.
- * - modalites === 0 (dates fixes): compare startDate (can no longer join)
- * - modalites === 1 (entrées permanentes): compare endDate (can join until end)
- * - fallback (undefined/null): compare endDate
- */
-export const isSessionPast = (
-  session: { startDate: Date | string; endDate: Date | string },
-  modalites?: number | null,
-): boolean => {
-  const refDate = modalites === 1 ? session.endDate : session.startDate;
-  const d = typeof refDate === "string" ? new Date(refDate) : refDate;
-  return d < new Date();
-};
-
 const getSessionsText = (
   sessions: SessionsMetadata | null | undefined,
   t: TFunction,
@@ -181,15 +166,10 @@ const getSessionsText = (
   if (!sessions?.items || sessions.items.length === 0) return null;
 
   return sessions.items
-    .map((session) => {
-      const start = formatSessionDate(session.startDate);
-      const end = formatSessionDate(session.endDate);
-      const text = `${t("content_screen.session_from", "Du")} ${start} ${t("content_screen.session_to", "au")} ${end}`;
-      if (isSessionPast(session, sessions?.modalitesEntreesSorties)) {
-        return `${text} (${t("content_screen.session_past", "DATE DÉPASSÉE")})`;
-      }
-      return text;
-    })
+    .map(
+      (session) =>
+        `${t("content_screen.session_from", "Du")} ${formatSessionDate(session.startDate)} ${t("content_screen.session_to", "au")} ${formatSessionDate(session.endDate)}`,
+    )
     .join("\n");
 };
 
