@@ -459,6 +459,47 @@ describe("sendDemarcheNotifications", () => {
   });
 });
 
+describe("sendContentNotifications", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: true }));
+  });
+
+  it("claims dispositif languages one by one (dispositif flow)", async () => {
+    jest
+      .spyOn(dispositifRepository, "getDispositifById")
+      .mockResolvedValue(new DispositifModel(fixtures.dispositif));
+    const claimMock = jest
+      .spyOn(dispositifRepository, "claimNotificationsLanguages")
+      .mockResolvedValue([]);
+
+    await notifications.sendContentNotifications(fixtures.dispositif._id);
+
+    const languages = Object.keys(fixtures.dispositif.translations);
+    expect(claimMock.mock.calls).toEqual(
+      languages.map((lang) => [fixtures.dispositif._id, [lang]]),
+    );
+  });
+
+  it("claims all démarche languages at once (démarche flow)", async () => {
+    jest
+      .spyOn(dispositifRepository, "getDispositifById")
+      .mockResolvedValue(new DispositifModel(fixtures.demarche));
+    const claimMock = jest
+      .spyOn(dispositifRepository, "claimNotificationsLanguages")
+      .mockResolvedValue([]);
+
+    await notifications.sendContentNotifications(fixtures.demarche._id);
+
+    expect(claimMock).toHaveBeenCalledWith(
+      fixtures.demarche._id,
+      Object.keys(fixtures.demarche.translations),
+    );
+  });
+});
+
 describe("claimNotificationsLanguages", () => {
   beforeEach(() => {
     jest.restoreAllMocks();

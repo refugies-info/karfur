@@ -44,7 +44,7 @@ import {
   sendMailWhenDispositifPublished,
   sendMailWhenDispositifPublishedAfterUpdate,
 } from "~/modules/mail/sendMailWhenDispositifPublished";
-import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
+// import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
   computeTraductionFinished,
@@ -501,7 +501,8 @@ export const publishDispositif = async (
     try {
       await Promise.all([
         notifyChange(NotifType.PUBLISHED, dispositifId, userId),
-        sendDispositifNotifications(dispositifId, "fr"),
+        // Automatic push disabled: too many notifications, admins push manually from the back-office.
+        // sendDispositifNotifications(dispositifId, "fr"),
       ]);
     } catch (error) {
       logger.error("[publishDispositif] error while sending notifications", error);
