@@ -49,6 +49,8 @@ const Navbar = () => {
     const playStoreBadge =
       assetsOnServer.storeBadges.playStore[locale] || assetsOnServer.storeBadges.playStore.en;
 
+    const isOtherDevice = !isIOS && !isAndroid;
+
     if (isBackend) return backendNavigation;
     return [
       {
@@ -146,7 +148,7 @@ const Navbar = () => {
         text: t("Toolbar.newsletter", "Newsletter"),
       },
 
-      isMobile && !isAndroid
+      isMobile && (isIOS || isOtherDevice)
         ? {
             linkProps: {
               href: iosStoreLink,
@@ -164,7 +166,7 @@ const Navbar = () => {
             ),
           }
         : null,
-      isMobile && !isIOS
+      isMobile && (isAndroid || isOtherDevice)
         ? {
             linkProps: {
               href: androidStoreLink,
