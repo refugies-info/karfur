@@ -23,11 +23,7 @@ describe("getNotificationsToSend", () => {
     jest.clearAllMocks();
   });
 
-  // FIXME: temporary removed to send survey to TS. Can be restored if the function is used again
-  it.skip("remove not allowed users", async () => {
-    const getUsersNotifsNotAllowedMock = jest.spyOn(notifications, "getUsersNotifsNotAllowed");
-    getUsersNotifsNotAllowedMock.mockResolvedValue(["1", "2"]);
-
+  it("remove not allowed users", async () => {
     const savedNotifications: Notification[] = [
       {
         uid: "1",
@@ -45,7 +41,7 @@ describe("getNotificationsToSend", () => {
         uid: "3",
         seen: false,
         title: "test",
-        data: {},
+        data: { type: "dispositif", contentId: "content3" },
       } as any,
     ];
 
@@ -57,14 +53,16 @@ describe("getNotificationsToSend", () => {
     const res = await notifications.getNotificationsToSend(
       savedNotifications.map((n) => new NotificationModel(n)),
       tokens,
+      new Set(["1", "2"]),
     );
-    expect(getUsersNotifsNotAllowedMock).toHaveBeenCalled();
     expect(res).toEqual([
       {
         to: "expo3",
         title: "Réfugiés.info",
         body: "test",
         data: {
+          type: "dispositif",
+          contentId: "content3",
           notificationId: expect.anything(),
         },
       },
@@ -156,6 +154,8 @@ describe("sendDispositifNotifications", () => {
     const insertNotificationsMock = jest.spyOn(NotificationModel, "insertMany");
     const getNotificationsToSendMock = jest.spyOn(notifications, "getNotificationsToSend");
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
+    const claimMock = jest.spyOn(dispositifRepository, "claimNotificationsLanguages");
+    const usersNotAllowedMock = jest.spyOn(notifications, "getUsersNotifsNotAllowed");
 
     // Mock data
     const dispositifId = fixtures.dispositif._id;
@@ -204,7 +204,8 @@ describe("sendDispositifNotifications", () => {
       savedNotifications.map((n) => new NotificationModel(n)),
     );
     getNotificationsToSendMock.mockResolvedValue(messages);
-    updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
+    claimMock.mockResolvedValue([lang]);
+    usersNotAllowedMock.mockResolvedValue(new Set(["blocked"]));
 
     // Call the function
     await notifications.sendDispositifNotifications(dispositifId, lang);
@@ -223,7 +224,7 @@ describe("sendDispositifNotifications", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(expect.any(Object), null, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
@@ -241,10 +242,13 @@ describe("sendDispositifNotifications", () => {
         },
       })),
     );
-    expect(getNotificationsToSendMock).toHaveBeenCalled();
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, {
-      notificationsSent: { [lang]: true },
-    });
+    expect(claimMock).toHaveBeenCalledWith(dispositifId, [lang]);
+    expect(getNotificationsToSendMock).toHaveBeenCalledWith(
+      expect.any(Array),
+      expect.any(Object),
+      new Set(["blocked"]),
+    );
+    expect(updateDispositifInDBMock).not.toHaveBeenCalled();
     // FIXME: randomly generated nested id
     expect(sendNotifications).toHaveBeenCalledWith(
       messages.map((m) => ({ ...m, data: { notificationId: expect.anything() } })),
@@ -339,6 +343,8 @@ describe("sendDemarcheNotifications", () => {
     const insertNotificationsMock = jest.spyOn(NotificationModel, "insertMany");
     const getNotificationsToSendMock = jest.spyOn(notifications, "getNotificationsToSend");
     const sendNotifications = jest.spyOn(notifications, "sendNotifications");
+    const claimMock = jest.spyOn(dispositifRepository, "claimNotificationsLanguages");
+    const usersNotAllowedMock = jest.spyOn(notifications, "getUsersNotifsNotAllowed");
 
     // Mock data
     const dispositifId = fixtures.demarche._id;
@@ -386,7 +392,10 @@ describe("sendDemarcheNotifications", () => {
       savedNotifications.map((n) => new NotificationModel(n)),
     );
     getNotificationsToSendMock.mockResolvedValue(messages);
-    updateDispositifInDBMock.mockResolvedValue(fixtures.dispositif);
+    const translatedLanguages = Object.keys(fixtures.demarche.translations);
+    const newLanguages = translatedLanguages.slice(1);
+    claimMock.mockResolvedValue(newLanguages);
+    usersNotAllowedMock.mockResolvedValue(new Set());
 
     // Call the function
     await notifications.sendDemarcheNotifications(dispositifId);
@@ -405,11 +414,11 @@ describe("sendDemarcheNotifications", () => {
       "theme",
     );
     expect(getAdminOptionMock).toHaveBeenCalled();
-    expect(getAppUsersBatchMock).toHaveBeenCalledWith(0, 100);
+    expect(getAppUsersBatchMock).toHaveBeenCalledWith(expect.any(Object), null, 100);
     expect(filterTargetsMock).toHaveBeenCalledWith(
       targetUsers.map((t) => expect.objectContaining(omit(t, "_id"))),
       requirements,
-      demarcheModel,
+      newLanguages,
     );
     expect(getNotificationEmojiMock).toHaveBeenCalledWith(demarcheModel);
     expect(insertNotificationsMock).toHaveBeenCalledWith(
@@ -423,21 +432,88 @@ describe("sendDemarcheNotifications", () => {
         },
       })),
     );
+    expect(claimMock).toHaveBeenCalledWith(dispositifId, translatedLanguages);
     expect(getNotificationsToSendMock).toHaveBeenCalled();
-    expect(updateDispositifInDBMock).toHaveBeenCalledWith(dispositifId, {
-      notificationsSent: {
-        ar: true,
-        en: true,
-        fa: true,
-        ps: true,
-        ru: true,
-        ti: true,
-        uk: true,
-      },
-    });
+    expect(updateDispositifInDBMock).not.toHaveBeenCalled();
     // FIXME: randomly generated nested id
     expect(sendNotifications).toHaveBeenCalledWith(
       messages.map((m) => ({ ...m, data: { notificationId: expect.anything() } })),
     );
+  });
+
+  it("should not send anything when every translated language was already notified", async () => {
+    jest
+      .spyOn(adminOptionsRepository, "getAdminOption")
+      .mockResolvedValue(new AdminOptionsModel({ value: true }));
+    jest
+      .spyOn(dispositifRepository, "getDispositifById")
+      .mockResolvedValue(new DispositifModel(fixtures.demarche));
+    jest.spyOn(dispositifRepository, "claimNotificationsLanguages").mockResolvedValue([]);
+    const getAppUsersBatchMock = jest.spyOn(appusersRepository, "getAppUsersBatch");
+    const sendNotifications = jest.spyOn(notifications, "sendNotifications");
+
+    await notifications.sendDemarcheNotifications(fixtures.demarche._id);
+
+    expect(getAppUsersBatchMock).not.toHaveBeenCalled();
+    expect(sendNotifications).not.toHaveBeenCalled();
+  });
+});
+
+describe("claimNotificationsLanguages", () => {
+  beforeEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it("claims each language once, even when called twice (double click)", async () => {
+    const { insertedId: _id } = await DispositifModel.collection.insertOne({
+      typeContenu: "demarche",
+      notificationsSent: { ar: true },
+    });
+
+    const [first, second] = await Promise.all([
+      dispositifRepository.claimNotificationsLanguages(_id, ["fr", "ar", "uk"]),
+      dispositifRepository.claimNotificationsLanguages(_id, ["fr", "ar", "uk"]),
+    ]);
+
+    expect([...first, ...second].sort()).toEqual(["fr", "uk"]);
+    expect(await dispositifRepository.claimNotificationsLanguages(_id, ["fr", "uk", "en"])).toEqual(
+      ["en"],
+    );
+  });
+
+  it("claims a language on a content without notificationsSent", async () => {
+    const { insertedId: _id } = await DispositifModel.collection.insertOne({
+      typeContenu: "dispositif",
+    });
+    expect(await dispositifRepository.claimNotificationsLanguages(_id, ["fr"])).toEqual(["fr"]);
+  });
+});
+
+describe("getUsersNotifsNotAllowed", () => {
+  beforeEach(async () => {
+    jest.restoreAllMocks();
+    await NotificationModel.deleteMany({});
+  });
+
+  it("blocks users with 3 notifications in a day or 7 in a week, ignoring older ones", async () => {
+    const daysAgo = (days: number) => new Date(Date.now() - days * 24 * 3600 * 1000);
+    const notif = (uid: string, createdAt: Date) => ({
+      uid,
+      title: "t",
+      data: {},
+      seen: false,
+      createdAt,
+    });
+    await NotificationModel.collection.insertMany([
+      ...[0, 0, 0].map(() => notif("threeToday", daysAgo(0.1))),
+      ...[0, 0].map(() => notif("twoToday", daysAgo(0.1))),
+      ...[1, 2, 3, 4, 5, 6, 6.5].map((d) => notif("sevenThisWeek", daysAgo(d))),
+      ...[8, 9, 10, 11, 12, 13, 14].map((d) => notif("sevenOld", daysAgo(d))),
+    ]);
+
+    expect([...(await notifications.getUsersNotifsNotAllowed())].sort()).toEqual([
+      "sevenThisWeek",
+      "threeToday",
+    ]);
   });
 });

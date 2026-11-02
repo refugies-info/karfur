@@ -268,6 +268,21 @@ export const getStructureDispositifs = async (
     );
 };
 
+export const claimNotificationsLanguages = async (
+  dispositifId: DispositifId,
+  languages: string[],
+): Promise<string[]> => {
+  const claimed: string[] = [];
+  for (const lang of languages) {
+    const { modifiedCount } = await DispositifModel.updateOne(
+      { _id: dispositifId, [`notificationsSent.${lang}`]: { $ne: true } },
+      { $set: { [`notificationsSent.${lang}`]: true } },
+    );
+    if (modifiedCount === 1) claimed.push(lang);
+  }
+  return claimed;
+};
+
 export const updateDispositifInDB = async (
   dispositifId: DispositifId,
   modifiedDispositif:
