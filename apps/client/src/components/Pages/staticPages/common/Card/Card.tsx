@@ -79,13 +79,13 @@ const Card = (props: Props) => {
         className={cls(CARD_CLASSNAME, CARD_HOVER_CLASSNAME, props.className, "block")}
         target={newTab ? "_blank" : undefined}
         rel={newTab ? "noopener noreferrer" : undefined}
-        title={
-          newTab
-            ? `${props.title} - ${t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}`
-            : undefined
-        }
       >
         {content}
+        {newTab && (
+          <span className="sr-only">
+            {t("Footer.open_new_window", "ouvre une nouvelle fenêtre")}
+          </span>
+        )}
         <ArrowRight />
       </Link>
     );
