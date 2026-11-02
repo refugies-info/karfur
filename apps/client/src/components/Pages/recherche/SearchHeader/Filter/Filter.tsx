@@ -10,12 +10,12 @@ import {
   sortOptions,
 } from "data/searchFilters";
 import { useTranslation } from "next-i18next";
-import React, { useCallback, useMemo } from "react";
+import type React from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import {
   DialogMenuLayout,
-  DialogMenuLayoutTitle,
   DropDownMenuLayout,
 } from "~/components/Pages/recherche/SearchHeader/Filter/MenuLayouts";
 import { useSearchEventName } from "~/hooks";
@@ -251,45 +251,37 @@ const Filter = ({
                 <>
                   {menuItems.map((item, i) => {
                     return (
-                      <React.Fragment key={i}>
-                        {item.label && <DialogMenuLayoutTitle>{item.label}</DialogMenuLayoutTitle>}
-                        <FilterCheckboxes
-                          options={item.options}
-                          currentmenu={item}
-                          onSelectItem={onSelectItem}
-                          showCounts={showCounts}
-                        />
-                      </React.Fragment>
+                      <FilterCheckboxes
+                        key={i}
+                        options={item.options}
+                        currentmenu={item}
+                        onSelectItem={onSelectItem}
+                        showCounts={showCounts}
+                        legend={item.label ? <DialogLegend>{item.label}</DialogLegend> : undefined}
+                        legendClassName={styles.dialogLegend}
+                        className={item.label ? styles.dialogGroup : undefined}
+                      />
                     );
                   })}
-                  <DialogMenuLayoutTitle className={styles.menuItemLabel}>
-                    {t("Recherche.sortBy")}
-                  </DialogMenuLayoutTitle>
-
-                  {sortOptions
-                    .filter((option) => {
-                      if (themesDisplayed.length === 1 && option.key === "theme") return false;
-                      if (query.departments.length === 0 && option.key === "location") return false;
-                      return true;
-                    })
-                    .map((option, i) => {
-                      const isSelected = query.sort === option.key;
-                      return (
-                        <div key={i} className={styles.radioContainer}>
-                          <RadioButtons
-                            options={[
-                              {
-                                label: t(option.value),
-                                nativeInputProps: {
-                                  checked: isSelected,
-                                  onChange: () => selectSort(option.key),
-                                },
-                              },
-                            ]}
-                          />
-                        </div>
-                      );
-                    })}
+                  <RadioButtons
+                    legend={<DialogLegend>{t("Recherche.sortBy")}</DialogLegend>}
+                    className={cn(styles.dialogGroup, styles.sortGroup)}
+                    classes={{ legend: styles.dialogLegend, content: styles.sortOptions }}
+                    options={sortOptions
+                      .filter((option) => {
+                        if (themesDisplayed.length === 1 && option.key === "theme") return false;
+                        if (query.departments.length === 0 && option.key === "location")
+                          return false;
+                        return true;
+                      })
+                      .map((option) => ({
+                        label: t(option.value),
+                        nativeInputProps: {
+                          checked: query.sort === option.key,
+                          onChange: () => selectSort(option.key),
+                        },
+                      }))}
+                  />
                 </>
               )}
             </DialogMenuLayout>
@@ -313,6 +305,8 @@ const Filter = ({
                         currentmenu={item}
                         onSelectItem={onSelectItem}
                         showCounts={showCounts}
+                        legend={label}
+                        legendClassName="sr-only"
                       />
                     );
                   })}
@@ -325,22 +319,32 @@ const Filter = ({
   );
 };
 
+const DialogLegend = ({ children }: { children: React.ReactNode }) => (
+  <span className={styles.dialogLegendText}>{children}</span>
+);
+
 const FilterCheckboxes = ({
   options,
   currentmenu,
   onSelectItem,
   className,
   showCounts,
+  legend,
+  legendClassName,
 }: {
   options: FilterOptions;
   currentmenu: MenuItemProps;
   onSelectItem: (filterKey: keyof SearchQuery, optionKey: string) => void;
   className?: string;
   showCounts: boolean;
+  legend?: React.ReactNode;
+  legendClassName?: string;
 }) => {
   const { t } = useTranslation();
   return (
     <DsfrCheckbox
+      legend={legend}
+      classes={{ legend: legendClassName }}
       className={cn(
         styles.checkboxItems,
         "m-0 w-full p-0",
