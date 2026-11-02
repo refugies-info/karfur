@@ -1,15 +1,11 @@
-import Button from "@codegouvfr/react-dsfr/Button";
 import { AnnotationsOverlay, useWindowSize } from "@refugies-info/ui";
 import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useTranslation } from "next-i18next";
 import { useMemo } from "react";
-import { isAndroid, isIOS } from "react-device-detect";
 import { assetsOnServer } from "~/assets/assetsOnServer";
 import application from "~/assets/homepage/application.png";
 import Image from "~/components/UI/Image";
 import { useLocale } from "~/hooks";
-import { cn } from "~/lib/classname";
-import styles from "./MobileApp.module.scss";
 import MobileAppSmsForm from "./MobileAppSmsForm";
 
 const MobileApp = () => {
@@ -30,24 +26,25 @@ const MobileApp = () => {
           href={iosStoreLink}
           rel="noopener noreferrer"
           target="_blank"
-          className="relative h-10 w-30"
+          className="relative h-10 w-32"
         >
           <Image
             src={appStoreBadge}
             alt={t("MobileApp.appStoreBadge", "Télécharger dans l'App Store")}
             fill
+            className="object-contain"
           />
         </a>
         <a
           href={androidStoreLink}
           rel="noopener noreferrer"
           target="_blank"
-          className="relative h-10 w-32"
+          className="relative h-10 w-34"
         >
           <Image
             src={playStoreBadge}
-            width={128}
-            height={40}
+            fill
+            className="object-contain"
             alt={t("MobileApp.playStoreBadge", "Disponible sur Google Play")}
           />
         </a>
@@ -132,42 +129,7 @@ const MobileApp = () => {
               : "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
           )}
         </p>
-        {isMobile ? (
-          <span className="flex flex-col gap-4">
-            <Button
-              iconId={"ri-app-store-fill"}
-              iconPosition="right"
-              className={cn(
-                "justify-center max-md:w-full",
-                styles.storeLink,
-                isAndroid && "hidden",
-              )}
-              linkProps={{
-                href: iosStoreLink,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} App Store`,
-              }}
-            >
-              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
-            </Button>
-            <Button
-              iconId={"ri-android-fill"}
-              iconPosition="right"
-              className={cn("justify-center max-md:w-full", styles.storeLink, isIOS && "hidden")}
-              linkProps={{
-                href: androidStoreLink,
-                target: "_blank",
-                rel: "noopener noreferrer",
-                "aria-label": `${t("MobileApp.downloadButtonText", "Télécharger l’application")} Google Play`,
-              }}
-            >
-              {t("MobileApp.downloadButtonText", "Télécharger l’application")}
-            </Button>
-          </span>
-        ) : (
-          <MobileAppSmsForm />
-        )}
+        {!isMobile && <MobileAppSmsForm />}
         {isMobile && (
           <div className="mt-10">
             <h2 className="text-lg">
