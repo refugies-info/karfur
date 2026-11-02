@@ -363,6 +363,17 @@ export const sendDemarcheNotifications = async (demarcheId: DispositifId) => {
   }
 };
 
+// Manual "Push" button from the admin: same entry point for dispositifs and démarches.
+export const sendContentNotifications = async (contentId: DispositifId) => {
+  const content = await getDispositifById(contentId, { typeContenu: 1, translations: 1 });
+  if (!content || !isDispositif(content)) return sendDemarcheNotifications(contentId);
+
+  // Each call claims its language, so a second click only notifies newly translated ones.
+  for (const lang of getMapKeys(content.translations as any)) {
+    await sendDispositifNotifications(contentId, lang as Languages);
+  }
+};
+
 export default {
   expo,
   isNotificationsActive,
