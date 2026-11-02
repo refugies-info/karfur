@@ -2,7 +2,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 export const RoleZodSchema = z.object({
   nom: z.enum(Object.values(RoleName) as [string, ...string[]]) as z.ZodType<RoleName>,

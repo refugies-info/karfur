@@ -1,6 +1,6 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // Notification Schema
 export const NotificationSchema = z.object({

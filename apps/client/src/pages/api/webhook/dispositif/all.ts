@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { z } from "zod/v3";
 import { ObjectIdSchema } from "~/lib/webhookSchemas";
 import {
   authorizeWebhookRequest,

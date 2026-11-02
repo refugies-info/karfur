@@ -1,7 +1,7 @@
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // AdminOptions Schema
 export const AdminOptionsSchema = z.object({
