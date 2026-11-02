@@ -70,3 +70,14 @@ body {
     }
   }
 }
+
+// Store badges are two separate nav items: keep them side by side in the mobile menu,
+// with enough gap for each focus outline. Unlayered to win over DSFR's column layout.
+:global(.fr-nav__list):has(.storeBadgeLink) {
+  flex-flow: row wrap;
+  column-gap: 1.5rem;
+
+  > :global(.fr-nav__item):not(:has(> .storeBadgeLink)) {
+    width: 100%;
+  }
+}

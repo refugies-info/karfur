@@ -5,7 +5,7 @@ import { androidStoreLink, iosStoreLink } from "data/storeLinks";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { memo, useCallback, useMemo } from "react";
-import { isIOS } from "react-device-detect";
+import { isAndroid, isIOS } from "react-device-detect";
 import { useDispatch } from "react-redux";
 import { getPath } from "routes";
 import { assetsOnServer } from "~/assets/assetsOnServer";
@@ -146,28 +146,38 @@ const Navbar = () => {
         text: t("Toolbar.newsletter", "Newsletter"),
       },
 
-      isMobile
+      isMobile && !isAndroid
         ? {
             linkProps: {
-              href: isIOS ? iosStoreLink : androidStoreLink,
+              href: iosStoreLink,
               target: "_blank",
-              className: "px-0",
+              className: cn("px-0", styles.storeBadgeLink),
             },
-            text: isIOS ? (
+            text: (
               <Image
                 src={appStoreBadge}
                 alt={t("Toolbar.getItOnAppStore", "Télécharger dans l'App Store")}
-                width={120}
+                width={126}
                 height={40}
-                className="mt-3"
+                className="mt-3 h-10 w-auto"
               />
-            ) : (
+            ),
+          }
+        : null,
+      isMobile && !isIOS
+        ? {
+            linkProps: {
+              href: androidStoreLink,
+              target: "_blank",
+              className: cn("px-0", styles.storeBadgeLink),
+            },
+            text: (
               <Image
                 src={playStoreBadge}
                 alt={t("Toolbar.getItOnPlayStore", "Disponible sur Google Play")}
-                width={134}
+                width={135}
                 height={40}
-                className="mt-3"
+                className="mt-3 h-10 w-auto"
               />
             ),
           }
