@@ -464,13 +464,13 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
     >
       <div>
         <article
-          aria-labelledby="id1"
+          aria-labelledby="«r0»"
           class="[object Object]"
           tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
-            id="fr-badge-«r0»"
+            id="fr-badge-«r1»"
           >
             Lieu d'action
           </p>
@@ -485,7 +485,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               >
                 <h3
                   class="fr-card__title"
-                  id="id1"
+                  id="«r0»"
                 >
                   <a
                     href="/dispositif/id1"
@@ -572,13 +572,13 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
       </div>
       <div>
         <article
-          aria-labelledby="id2"
+          aria-labelledby="«r2»"
           class="[object Object]"
           tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
-            id="fr-badge-«r1»"
+            id="fr-badge-«r3»"
           >
             Lieu d'action
           </p>
@@ -593,7 +593,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               >
                 <h3
                   class="fr-card__title"
-                  id="id2"
+                  id="«r2»"
                 >
                   <a
                     href="/dispositif/id2"
@@ -680,13 +680,13 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
       </div>
       <div>
         <article
-          aria-labelledby="id3"
+          aria-labelledby="«r4»"
           class="[object Object]"
           tabindex="-1"
         >
           <p
             class="fr-badge fr-badge--sm fr-badge--no-icon $$typeof type props _owner _store"
-            id="fr-badge-«r2»"
+            id="fr-badge-«r5»"
           >
             Dispositif.demarche
           </p>
@@ -701,7 +701,7 @@ exports[`UserFavorites should render correctly when 3 favorites 1`] = `
               >
                 <h3
                   class="fr-card__title"
-                  id="id3"
+                  id="«r4»"
                 >
                   <a
                     href="/demarche/id3"

@@ -203,7 +203,7 @@ export const ContentDetailsModal = (props: Props) => {
             >
               Web only
             </FButton>
-            {dispositif.status === "Actif" && dispositif.typeContenu === "demarche" && (
+            {dispositif.status === "Actif" && (
               <FButton
                 className="me-2"
                 type="dark"

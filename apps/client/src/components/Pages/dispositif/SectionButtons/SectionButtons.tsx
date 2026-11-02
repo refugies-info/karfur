@@ -104,6 +104,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
             onClick={isPlaying ? pause : startReading}
             size="small"
             priority="tertiary no outline"
+            aria-pressed={isPlaying}
             title={t("listen")}
           >
             <i
@@ -116,6 +117,7 @@ const SectionButtons = ({ id, content, className }: Props) => {
                     ? "ri-pause-fill"
                     : "ri-play-fill",
               )}
+              aria-hidden="true"
             />
             {isMobile || isTablet ? t("listen") : ""}
           </Button>

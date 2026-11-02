@@ -76,7 +76,6 @@ const EditDepartments = (props: Props) => {
   useOutsideClick(suggestionsRef, () => setHidePredictions(true));
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [isInputFocused, setIsInputFocused] = useState(false);
   // Index of the option holding the visual focus. DOM focus never leaves the input,
   // the position is carried by aria-activedescendant.
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -282,11 +281,9 @@ const EditDepartments = (props: Props) => {
               aria-describedby={error ? ERROR_ID : undefined}
               value={search}
               onChange={handleChange}
-              onFocus={() => setIsInputFocused(true)}
-              onBlur={() => setIsInputFocused(false)}
               onKeyDown={handleKeyDown}
             />
-            {!isInputFocused && search === "" && (
+            {search === "" && (
               <button
                 type="button"
                 className="fr-btn absolute end-0"

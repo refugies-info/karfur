@@ -1,3 +1,4 @@
+import { RoleModel } from "@refugies-info/mongo";
 import crypto from "crypto";
 import dbConnect from "./db";
 import * as webhookUtils from "./webhookUtils";
@@ -47,6 +48,85 @@ describe("Webhook Utilities", () => {
       const user = await webhookUtils.getWebhookUser(User, "test@test.com");
       expect(user).toEqual(mockUser);
       expect(User.findOne).toHaveBeenCalledWith({ email: "test@test.com" });
+    });
+  });
+
+  describe("authorizeWebhookRequest", () => {
+    const mockResponse = () => {
+      const res: any = {};
+      res.status = jest.fn().mockReturnValue(res);
+      res.json = jest.fn().mockReturnValue(res);
+      return res;
+    };
+
+    beforeEach(() => {
+      process.env.WEBHOOK_SECRET = "correct-secret";
+      delete process.env.ALLOWED_WEBHOOK_IPS;
+      (crypto.timingSafeEqual as jest.Mock).mockReturnValue(true);
+    });
+
+    it("rejects a method that is not allowed", () => {
+      const res = mockResponse();
+      const req: any = { method: "GET", headers: { "webhook-secret": "correct-secret" } };
+      expect(webhookUtils.authorizeWebhookRequest(req, res, ["POST"])).toBe(false);
+      expect(res.status).toHaveBeenCalledWith(405);
+    });
+
+    it("rejects a missing secret", () => {
+      const res = mockResponse();
+      const req: any = { method: "POST", headers: {} };
+      expect(webhookUtils.authorizeWebhookRequest(req, res, ["POST"])).toBe(false);
+      expect(res.status).toHaveBeenCalledWith(401);
+    });
+
+    it("rejects an IP that is not allowed", () => {
+      process.env.ALLOWED_WEBHOOK_IPS = "1.1.1.1";
+      const res = mockResponse();
+      const req: any = {
+        method: "POST",
+        headers: { "webhook-secret": "correct-secret", "x-forwarded-for": "2.2.2.2" },
+      };
+      expect(webhookUtils.authorizeWebhookRequest(req, res, ["POST"])).toBe(false);
+      expect(res.status).toHaveBeenCalledWith(403);
+    });
+
+    it("lets a valid request through without answering", () => {
+      const res = mockResponse();
+      const req: any = { method: "PATCH", headers: { "webhook-secret": "correct-secret" } };
+      expect(webhookUtils.authorizeWebhookRequest(req, res, ["POST", "PATCH"])).toBe(true);
+      expect(res.status).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("getAuthorizedWebhookUser", () => {
+    const mockResponse = () => {
+      const res: any = {};
+      res.status = jest.fn().mockReturnValue(res);
+      res.json = jest.fn().mockReturnValue(res);
+      return res;
+    };
+
+    it("answers 404 when the user does not exist", async () => {
+      const res = mockResponse();
+      const User: any = { findOne: jest.fn().mockResolvedValue(null) };
+      expect(await webhookUtils.getAuthorizedWebhookUser(res, User, "a@b.fr", "create")).toBeNull();
+      expect(res.status).toHaveBeenCalledWith(404);
+    });
+
+    it("answers 403 when the user has no allowed role", async () => {
+      const res = mockResponse();
+      const User: any = { findOne: jest.fn().mockResolvedValue({ roles: [] }) };
+      expect(await webhookUtils.getAuthorizedWebhookUser(res, User, "a@b.fr", "create")).toBeNull();
+      expect(res.status).toHaveBeenCalledWith(403);
+    });
+
+    it("returns the user when they are admin", async () => {
+      const res = mockResponse();
+      const user = { roles: ["role1"] };
+      const User: any = { findOne: jest.fn().mockResolvedValue(user) };
+      jest.spyOn(RoleModel, "find").mockResolvedValueOnce([{ nom: "Admin" }] as any);
+      expect(await webhookUtils.getAuthorizedWebhookUser(res, User, "a@b.fr", "create")).toBe(user);
+      expect(res.status).not.toHaveBeenCalled();
     });
   });
 

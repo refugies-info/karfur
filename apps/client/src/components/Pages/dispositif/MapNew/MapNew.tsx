@@ -71,6 +71,7 @@ const MapNew = ({ data }: MapNewProps) => {
       title={title}
       description={isClient ? description : ""}
       defaultFocusedPoi={data.length === 1 ? data[0] : undefined}
+      skipLinkTarget="#after-map"
     />
   );
 };

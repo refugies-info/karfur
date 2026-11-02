@@ -1,9 +1,8 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { type ReactElement, useMemo } from "react";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
-import { EditPseudo } from "~/components/User";
+import { EditPseudo, RegisterStepper } from "~/components/User";
 import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -29,7 +28,7 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
+        <RegisterStepper currentStep={stepCount[0]} stepCount={stepCount[1]} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Choisissez un pseudonyme</h1>

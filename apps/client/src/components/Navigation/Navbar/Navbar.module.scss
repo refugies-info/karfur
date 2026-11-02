@@ -70,3 +70,12 @@ body {
     }
   }
 }
+
+:global(.fr-nav__list):has(.storeBadgeLink) {
+  flex-flow: row wrap;
+  column-gap: 1.5rem;
+
+  > :global(.fr-nav__item):not(:has(> .storeBadgeLink)) {
+    width: 100%;
+  }
+}

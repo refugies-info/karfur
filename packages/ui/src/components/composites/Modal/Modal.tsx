@@ -206,6 +206,7 @@ export const Modal = ({
         />
         <Dialog.Content
           className={`fixed top-1/2 left-1/2 z-[1001] flex ${maxWidthClasses[maxWidth]} -translate-x-1/2 -translate-y-1/2 flex-col bg-white p-8 pt-4 shadow-[0_2px_6px_0_rgb(0_0_18_/_16.1%)] focus:outline-none max-sm:w-[95vw] max-sm:max-w-[95vw] max-sm:p-6 ${className}`}
+          aria-modal="true"
           aria-labelledby="modal-title"
           aria-describedby={description ? "modal-description" : undefined}
           onOpenAutoFocus={handleOpenAutoFocus}

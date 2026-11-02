@@ -97,6 +97,7 @@ export const SectionContributors = (props: Props) => {
           </Card>
           <Card
             image={CommunityIlluExperts}
+            imageAlt={t("MissionImpact.community_experts_alt", "7 experts traducteurs")}
             imageWidth={240}
             title={t("MissionImpact.community_experts_title")}
             footer={
@@ -110,6 +111,7 @@ export const SectionContributors = (props: Props) => {
           </Card>
           <Card
             image={CommunityIlluAmbassadeurs}
+            imageAlt={t("MissionImpact.community_ambassadeurs_alt", "23 ambassadeurs")}
             imageWidth={232}
             title={t("MissionImpact.community_ambassadeurs_title")}
             footer={
@@ -126,6 +128,7 @@ export const SectionContributors = (props: Props) => {
           </Card>
           <Card
             image={CommunityIlluInfluenceurs}
+            imageAlt={t("MissionImpact.community_influenceurs_alt", "4 influenceurs")}
             imageWidth={232}
             title={t("MissionImpact.community_influenceurs_title")}
             footer={
@@ -142,6 +145,10 @@ export const SectionContributors = (props: Props) => {
           </Card>
           <Card
             image={CommunityIlluPartenaires}
+            imageAlt={t(
+              "MissionImpact.community_partenaires_alt",
+              "14 partenaires, dont France Terre d'Asile, Coallia et Groupe SOS",
+            )}
             imageWidth={240}
             title={t("MissionImpact.community_partenaires_title")}
             footer={
@@ -158,6 +165,7 @@ export const SectionContributors = (props: Props) => {
           </Card>
           <Card
             image={CommunityIlluTesteurs}
+            imageAlt={t("MissionImpact.community_testeurs_alt", "203 testeurs")}
             imageWidth={232}
             title={t("MissionImpact.community_testeurs_title")}
             footer={

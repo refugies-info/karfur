@@ -78,7 +78,7 @@ const ResultsSection: React.FC<Props> = ({ theme, needs }) => {
               nativeInputProps: {
                 checked: selected,
                 onChange: () => selectNeed(need._id),
-                "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", "fiches")}`,
+                "aria-label": `${need[locale]?.text || ""} ${nbDispositifsByNeed[need._id.toString()] || 0} ${t("Recherche.fiches", { count: nbDispositifsByNeed[need._id.toString()] || 0 })}`,
               },
             };
           })}

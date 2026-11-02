@@ -11,6 +11,6 @@ export type LayoutProps = {
   tooltip?: { trigger: string; text: string } | null | undefined;
   autoFocus?: boolean;
 };
-export { DialogMenuLayout, DialogMenuLayoutTitle } from "./DialogMenuLayout";
+export { DialogMenuLayout } from "./DialogMenuLayout";
 export { DropdownProvider, useDropdownContext } from "./DropDownMenuContext";
 export { DropDownMenuLayout } from "./DropDownMenuLayout";

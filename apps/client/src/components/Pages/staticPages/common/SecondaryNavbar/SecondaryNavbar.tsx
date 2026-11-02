@@ -1,7 +1,7 @@
 import type { FrIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
-import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
-import { useCallback, useRef } from "react";
+import { useTranslation } from "next-i18next";
+import { useRef } from "react";
 import useIsSticky from "~/hooks/useIsSticky";
 import { cls } from "~/lib/classname";
 import { smoothScroll } from "~/lib/smoothScroll";
@@ -21,36 +21,32 @@ interface Props {
 }
 
 const SecondaryNavbar = (props: Props) => {
+  const { t } = useTranslation();
   const isActive = (view: string) => props.activeView === view;
 
   const sentinelRef = useRef<HTMLDivElement>(null);
   const isSticky = useIsSticky(sentinelRef);
-
-  const scrollTo = useCallback((id: string) => {
-    document.querySelector(`#${id}`)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  }, []);
 
   return (
     <>
       <div ref={sentinelRef} aria-hidden className="-mb-px h-px" />
       <div className={cls("sticky top-0 z-20 bg-white", isSticky && "shadow-sm")}>
         <div className="container flex flex-wrap md:flex-nowrap items-start justify-between gap-10 py-4 md:py-10">
-          <div className={styles.nav}>
-            <SegmentedControl
-              hideLegend
-              //@ts-expect-error
-              segments={props.leftLinks.map((link) => ({
-                label: link.text,
-                nativeInputProps: {
-                  checked: isActive(link.id),
-                  onClick: () => scrollTo(link.id),
-                  readOnly: true,
-                },
-              }))}
-            />
-          </div>
+          <nav aria-label={t("Dispositif.summary", "Sommaire")} className={styles.nav}>
+            <ul className="fr-raw-list" role="list">
+              {props.leftLinks.map((link) => (
+                <li key={link.id}>
+                  <a
+                    href={`#${link.id}`}
+                    className="fr-raw-link"
+                    aria-current={isActive(link.id) ? "true" : undefined}
+                  >
+                    {link.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
           {props.rightLink && (
             <div className="hidden shrink-0 md:block">
               <Button

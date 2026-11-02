@@ -110,6 +110,41 @@ describe("useRouteAnnouncement", () => {
       // which React/DOM would announce nothing on an identical text.
       expect(paragraph.firstChild).not.toBe(firstTextNode);
     });
+
+    it("does not announce the title of the page being left when the new one lands late", async () => {
+      // Real case (sign-up steps, measured 14/10): the incoming <title> lands
+      // 30 to 39 ms after routeChangeComplete, the outgoing one is still read.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "Votre objectif - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/auth/inscription/territoire");
+      });
+      flushFrames(2);
+      expect(paragraph.textContent).toBe("");
+      document.title = "Votre territoire - Réfugiés.info";
+      flushFrames();
+
+      expect(paragraph.textContent).toBe("Votre territoire - Réfugiés.info");
+    });
+
+    it("announces an unchanged title once the frame budget is spent", async () => {
+      // Two consecutive pages with the same title are indistinguishable from a
+      // late title: the hook waits the whole budget (30 frames) before writing.
+      const paragraph = addAnnouncer();
+      renderHook(() => useRouteAnnouncement());
+      document.title = "Bienvenue - Réfugiés.info";
+
+      await act(async () => {
+        await mockRouter.push("/auth/inscription");
+      });
+      flushFrames(29);
+      expect(paragraph.textContent).toBe("");
+      flushFrames(1);
+
+      expect(paragraph.textContent).toBe("Bienvenue - Réfugiés.info");
+    });
   });
 
   describe("empty title and routes without a <title>", () => {

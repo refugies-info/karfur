@@ -6,20 +6,15 @@ import {
 } from "@refugies-info/api-types";
 import type React from "react";
 import { memo, useMemo } from "react";
-import { Image, View } from "react-native";
+import { Image } from "react-native";
 import styled from "styled-components/native";
 import { useTranslationWithRTL } from "~/hooks/useTranslationWithRTL";
-import {
-  formatSessionDate,
-  getConditionImage,
-  getDescriptionNew,
-  isSessionPast,
-} from "~/libs/content";
+import { formatSessionDate, getConditionImage, getDescriptionNew } from "~/libs/content";
 import { styles } from "~/theme";
 import { Columns, Rows, RowsSpacing } from "../layout";
 import { ReadableText } from "../ReadableText";
 import { TextDSFR_L_Bold, TextDSFR_MD, TextDSFR_MD_Bold } from "../StyledText";
-import { Badge, Title } from "../typography";
+import { Title } from "../typography";
 import { IMAGE_SIZE, InfocardImage } from "./InfocardImage";
 
 interface Props {
@@ -161,7 +156,6 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
                 {metadatas.sessions.items.map((session, index) => {
                   const start = formatSessionDate(session.startDate);
                   const end = formatSessionDate(session.endDate);
-                  const past = isSessionPast(session, metadatas.sessions?.modalitesEntreesSorties);
                   return (
                     <Columns
                       key={index}
@@ -177,14 +171,6 @@ const InfocardsSectionComponent = ({ content, color }: Props) => {
                             {`${t("content_screen.session_from", "Du")} ${start} ${t("content_screen.session_to", "au")} ${end}`}
                           </DescriptionText>
                         </ReadableText>
-                        {past && (
-                          <View style={{ marginTop: 4 }}>
-                            <Badge
-                              type="error"
-                              text={t("content_screen.session_past", "DATE DÉPASSÉE")}
-                            />
-                          </View>
-                        )}
                       </InfocardTextContainer>
                     </Columns>
                   );

@@ -1,7 +1,14 @@
-import type { frenchLevelType, publicStatusType, publicType } from "@refugies-info/api-types";
+import {
+  type frenchLevelType,
+  type publicStatusType,
+  type publicType,
+  SEARCH_AGE_OPTIONS,
+  type SearchAgeOption,
+  type SearchFrenchLevelOption,
+} from "@refugies-info/api-types";
 
-export type AgeOptions = "-18" | "18-25" | "+25";
-export type FrenchOptions = "alpha" | "a" | "b" | "c";
+export type AgeOptions = SearchAgeOption;
+export type FrenchOptions = SearchFrenchLevelOption;
 export type SortOptions = "default" | "date" | "views" | "theme" | "location";
 export type TypeOptions = "dispositif" | "demarche" | "all" | "ressource";
 export type PublicOptions = publicType;
@@ -58,6 +65,8 @@ export const frenchLevelValuesByOption: Record<FrenchOptions, frenchLevelType[]>
   c: ["C1", "C2"],
 };
 export const frenchLevelOptionKeys: FrenchOptions[] = frenchLevelFilter.map((option) => option.key);
+export const isAgeOption = (value: string): value is AgeOptions =>
+  (SEARCH_AGE_OPTIONS as readonly string[]).includes(value);
 export const isFrenchOption = (value: string): value is FrenchOptions =>
   frenchLevelOptionKeys.includes(value as FrenchOptions);
 export const sortOptions: SortFilters = [
