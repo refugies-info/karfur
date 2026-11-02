@@ -38,6 +38,11 @@ export const DropdownButton = React.forwardRef<HTMLButtonElement, Props>(functio
           value.length > 0 && !icon && styles.values,
         )}
         ref={forwardedRef}
+        aria-label={
+          icon
+            ? `${label} (${t("Recherche.selectedFiltersCount", { count: count ?? 0 })})`
+            : undefined
+        }
         {...other}
       >
         {count && count > 0 ? <span className={styles.count}>{count}</span> : null}

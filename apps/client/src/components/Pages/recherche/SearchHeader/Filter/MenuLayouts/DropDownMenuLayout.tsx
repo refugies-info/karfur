@@ -152,7 +152,6 @@ export function DropDownMenuLayout({
           resetOptions();
         }}
         isOpen={open}
-        aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => handleOpenChange(!open)}
         onKeyDown={handleKeyDown}
@@ -162,12 +161,7 @@ export function DropDownMenuLayout({
       </DropdownButton>
 
       {open && (
-        <div
-          className={styles.menu}
-          ref={dropdownRef}
-          role="menu"
-          onKeyDown={handleDropdownKeyDown}
-        >
+        <div className={styles.menu} ref={dropdownRef} onKeyDown={handleDropdownKeyDown}>
           {children}
         </div>
       )}
