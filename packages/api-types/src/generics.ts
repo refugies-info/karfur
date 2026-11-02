@@ -12,7 +12,8 @@ export type Id = ExcludeMethods<string | Types.ObjectId>;
 export type Uuid = string;
 export type RichText = string;
 export type TranslatedText = { [key: string]: string };
-export type Languages = "fr" | "en" | "uk" | "ti" | "ar" | "ps" | "ru" | "fa";
+export const LANGUAGE_CODES = ["fr", "en", "uk", "ti", "ar", "ps", "ru", "fa"] as const;
+export type Languages = (typeof LANGUAGE_CODES)[number];
 
 /**
  * @pattern [0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}
@@ -179,14 +180,23 @@ export type priceDetails =
   | "trimester"
   | "semester"
   | "year";
-export type publicStatusType =
-  | "asile"
-  | "refugie"
-  | "subsidiaire"
-  | "temporaire"
-  | "apatride"
-  | "french";
-export type publicType = "family" | "women" | "youths" | "senior" | "gender";
+export const PUBLIC_STATUS_TYPES = [
+  "asile",
+  "refugie",
+  "subsidiaire",
+  "temporaire",
+  "apatride",
+  "french",
+] as const;
+export type publicStatusType = (typeof PUBLIC_STATUS_TYPES)[number];
+export const PUBLIC_TYPES = ["family", "women", "youths", "senior", "gender"] as const;
+export type publicType = (typeof PUBLIC_TYPES)[number];
+
+// Brackets of the search filters, not the values stored on a content
+export const SEARCH_AGE_OPTIONS = ["-18", "18-25", "+25"] as const;
+export type SearchAgeOption = (typeof SEARCH_AGE_OPTIONS)[number];
+export const SEARCH_FRENCH_LEVEL_OPTIONS = ["alpha", "a", "b", "c"] as const;
+export type SearchFrenchLevelOption = (typeof SEARCH_FRENCH_LEVEL_OPTIONS)[number];
 export type conditionType =
   | "acte naissance"
   | "titre sejour"

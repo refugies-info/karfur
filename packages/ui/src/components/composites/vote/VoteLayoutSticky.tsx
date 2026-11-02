@@ -56,10 +56,12 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
               "flex h-[2.5rem] items-end gap-2 rounded-s-[50rem] shadow-none transition-all",
               vote === false && "text-mention-grey",
             )}
+            aria-pressed={vote === true}
           >
             <div className="relative">
               <span
                 className={cn("fr-icon-thumb-up-line", vote === true ? "opacity-0" : "opacity-100")}
+                aria-hidden="true"
               ></span>
               <ThumbUpAnimated
                 ref={thumbUpRef as React.RefObject<ThumbUpAnimatedRef>}
@@ -79,6 +81,7 @@ const VoteLayoutSticky = forwardRef<HTMLDivElement, VoteLayoutStickyProps>(
               "flex h-[2.5rem] items-end gap-2 rounded-e-[50rem] shadow-none transition-all",
               vote === true && "text-mention-grey",
             )}
+            aria-pressed={vote === false}
           >
             <span className="fr-icon-thumb-down-line" aria-hidden="true"></span>
             {t("ui.northStar_notUseful", "Pas utile")}

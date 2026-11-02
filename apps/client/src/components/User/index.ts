@@ -3,3 +3,4 @@ export { default as EditLanguage } from "./EditLanguage";
 export { default as EditPseudo } from "./EditPseudo";
 export { default as ForgotPassword } from "./ForgotPassword";
 export { default as ForgotPasswordMailSent } from "./ForgotPasswordMailSent";
+export { default as RegisterStepper } from "./RegisterStepper";

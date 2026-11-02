@@ -28,6 +28,7 @@ function addVariant({ className, size }: BookmarkProps) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path d="M17 2V5H20V7H16.999L17 10H15L14.999 7H12V5H15V2H17Z" fill="#000091" />
       <path
@@ -47,6 +48,7 @@ function fillVariant({ className, size }: BookmarkProps) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path
         fillRule="evenodd"
@@ -67,6 +69,7 @@ function lineVariant({ className, size }: BookmarkProps) {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
       <path
         fillRule="evenodd"

@@ -1,9 +1,9 @@
 import { ContentType, type Metadatas } from "@refugies-info/api-types";
 import type { AppUserType, Dispositif, Theme } from "@refugies-info/mongo";
+import type { FilterQuery } from "mongoose";
 import {
   getDispositifDepartements,
   getDispositifTheme,
-  isDispositifTranslatedIn,
 } from "~/modules/dispositif/dispositif.business";
 
 const ALL = "france";
@@ -83,6 +83,42 @@ export const parseDispositif = (dispositif: Dispositif): Requirements => {
   };
 };
 
+const getDepartmentNames = (departments: string[]) => departments.map((dep) => dep.split(" - ")[1]);
+
+const hasPushTokenQuery = { expoPushToken: { $nin: [null, ""] } };
+
+const getThemeQuery = (mainThemeId: string | null) =>
+  mainThemeId ? { [`notificationsSettings.themes.${mainThemeId}`]: true } : {};
+
+export const getTargetsQuery = (
+  requirements: Requirements,
+  lang: string,
+): FilterQuery<AppUserType> => {
+  const { departments, mainThemeId } = requirements;
+  const locationQuery = Array.isArray(departments)
+    ? { department: { $in: getDepartmentNames(departments) }, "notificationsSettings.local": true }
+    : departments === ALL
+      ? { "notificationsSettings.global": true }
+      : { department: { $in: [] as string[] } };
+
+  return {
+    selectedLanguage: lang,
+    ...hasPushTokenQuery,
+    ...getThemeQuery(mainThemeId),
+    ...locationQuery,
+  };
+};
+
+export const getDemarcheTargetsQuery = (
+  requirements: Requirements,
+  languages: string[],
+): FilterQuery<AppUserType> => ({
+  selectedLanguage: { $in: languages },
+  "notificationsSettings.demarches": true,
+  ...hasPushTokenQuery,
+  ...getThemeQuery(requirements.mainThemeId),
+});
+
 export const filterTargets = (targets: AppUserType[], requirements: Requirements, lang: string) => {
   return targets.filter((target) => {
     const { age, departments, type, mainThemeId } = requirements;
@@ -92,7 +128,7 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
     const ageOk = !target.age || (parsedAge.min >= age.min && parsedAge.max <= age.max);
     const departmentsOk =
       (Array.isArray(departments) &&
-        departments.map((dep) => dep.split(" - ")[1]).includes(target.department) &&
+        getDepartmentNames(departments).includes(target.department) &&
         notificationsSettings.local) ||
       (departments === ALL && notificationsSettings.global);
 
@@ -108,7 +144,7 @@ export const filterTargets = (targets: AppUserType[], requirements: Requirements
 export const filterTargetsForDemarche = (
   targets: AppUserType[],
   requirements: Requirements,
-  demarche: Dispositif,
+  languages: string[],
 ) => {
   return targets.filter((target) => {
     const { age, mainThemeId } = requirements;
@@ -120,7 +156,7 @@ export const filterTargetsForDemarche = (
     const typeOk = notificationsSettings?.demarches;
     const themeOk = !mainThemeId || notificationsSettings?.themes?.[mainThemeId];
 
-    const langOk = isDispositifTranslatedIn(demarche, target.selectedLanguage as any);
+    const langOk = languages.includes(target.selectedLanguage || "");
 
     return langOk && ageOk && themeOk && typeOk && target.expoPushToken;
   });

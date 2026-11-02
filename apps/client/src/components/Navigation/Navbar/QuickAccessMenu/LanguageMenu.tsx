@@ -158,6 +158,7 @@ const LanguageMenu = ({
               <Dialog.Portal>
                 <Dialog.Content
                   className="fixed inset-0 z-1000001 flex h-screen w-screen flex-col overflow-y-auto bg-white"
+                  aria-modal="true"
                   aria-describedby={descriptionId}
                 >
                   <Dialog.Title className="border-default-grey sticky top-0 z-50 mb-6 flex items-center justify-between border-b bg-white p-4 py-5">
@@ -167,7 +168,8 @@ const LanguageMenu = ({
                         iconId="fr-icon-close-line"
                         className="text-title-xs text-title-grey"
                         priority="tertiary no outline"
-                        title="Fermer"
+                        title={t("close", "Fermer")}
+                        nativeButtonProps={{ "aria-label": t("close", "Fermer") }}
                       />
                     </Dialog.Close>
                   </Dialog.Title>

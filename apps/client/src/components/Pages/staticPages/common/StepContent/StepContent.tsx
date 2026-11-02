@@ -65,7 +65,7 @@ const StepContent = (props: Props) => {
     >
       <div
         className={cls(
-          "border-artwork-minor-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26",
+          "border-action-high-blue-france relative order-2 max-w-none border-s-4 ps-8 pb-9 lg:min-h-[420px] lg:ps-[80px] lg:pb-26",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "!pb-0 lg:!pb-[250px]",
         )}
@@ -73,7 +73,7 @@ const StepContent = (props: Props) => {
         <div
           className={cls(
             "absolute -start-[1rem] top-0 h-8 w-8 lg:-start-[1.375rem] lg:h-10 lg:w-10",
-            "text-h5 lg:text-h4 bg-artwork-minor-blue-france rounded-full font-bold text-white",
+            "text-h5 lg:text-h4 bg-action-high-blue-france rounded-full font-bold text-white",
             "flex items-center justify-center",
           )}
         >
@@ -142,7 +142,7 @@ const StepContent = (props: Props) => {
       <div
         className={cls(
           "relative order-1 flex w-auto shrink-0 items-start justify-center lg:w-[480px]",
-          "border-artwork-minor-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
+          "border-action-high-blue-france border-s-4 ps-8 pb-[60px] lg:border-none lg:ps-0 lg:pb-0",
           props.dottedLine && "border-dashed",
           !!props.buttonStep && "pb-[150px] lg:pb-0",
         )}

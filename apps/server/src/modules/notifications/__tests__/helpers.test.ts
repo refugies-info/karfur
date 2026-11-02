@@ -1,5 +1,5 @@
 import { ContentType } from "@refugies-info/api-types";
-import { ThemeModel } from "@refugies-info/mongo";
+import { AppUserModel, ThemeModel } from "@refugies-info/mongo";
 import cloneDeep from "lodash/cloneDeep";
 import { fixtures } from "../../../__fixtures__";
 import { targets } from "../__fixtures__/targets";
@@ -7,7 +7,9 @@ import {
   filterTargets,
   filterTargetsForDemarche,
   getAge,
+  getDemarcheTargetsQuery,
   getNotificationEmoji,
+  getTargetsQuery,
   getTitle,
   parseDispositif,
   type Requirements,
@@ -124,7 +126,11 @@ describe("notification helpers", () => {
       type: ContentType.DEMARCHE,
       mainThemeId: "theme1",
     };
-    const res1 = filterTargetsForDemarche(targets, req1, fixtures.demarche);
+    const res1 = filterTargetsForDemarche(
+      targets,
+      req1,
+      Object.keys(fixtures.demarche.translations),
+    );
     expect(res1.map((r) => r.uid)).toEqual(["1", "2", "6"]);
   });
 
@@ -138,5 +144,50 @@ describe("notification helpers", () => {
     disp2.theme = null;
     const res2 = getNotificationEmoji(disp2);
     expect(res2).toEqual("🔔");
+  });
+
+  describe("mongo prefilters keep every user the in-memory filters select", () => {
+    beforeEach(async () => {
+      await AppUserModel.deleteMany({});
+      await AppUserModel.insertMany(targets);
+    });
+
+    it.each<[string, Requirements["departments"], string | null]>([
+      ["france + theme", "france", "theme1"],
+      ["departments + theme", ["35 - Ille-et-Vilaine"], "theme1"],
+      ["france, no theme", "france", null],
+      ["no location", null, "theme1"],
+    ])("getTargetsQuery: %s", async (_label, departments, mainThemeId) => {
+      const requirements: Requirements = {
+        age: { min: 0, max: 99 },
+        departments,
+        type: ContentType.DISPOSITIF,
+        mainThemeId,
+      };
+      for (const lang of ["fr", "fa"]) {
+        const prefiltered = await AppUserModel.find(getTargetsQuery(requirements, lang)).lean();
+        expect(filterTargets(prefiltered as any, requirements, lang).map((t) => t.uid)).toEqual(
+          filterTargets(targets, requirements, lang).map((t) => t.uid),
+        );
+      }
+    });
+
+    it("getDemarcheTargetsQuery", async () => {
+      const requirements: Requirements = {
+        age: { min: 0, max: 99 },
+        departments: "france",
+        type: ContentType.DEMARCHE,
+        mainThemeId: "theme1",
+      };
+      const languages = Object.keys(fixtures.demarche.translations);
+      const prefiltered = await AppUserModel.find(
+        getDemarcheTargetsQuery(requirements, languages),
+      ).lean();
+      const expected = filterTargetsForDemarche(targets, requirements, languages);
+      expect(expected.length).toBeGreaterThan(0);
+      expect(
+        filterTargetsForDemarche(prefiltered as any, requirements, languages).map((t) => t.uid),
+      ).toEqual(expected.map((t) => t.uid));
+    });
   });
 });

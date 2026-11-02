@@ -1,6 +1,5 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { RadioButtons } from "@codegouvfr/react-dsfr/RadioButtons";
-import { Stepper } from "@codegouvfr/react-dsfr/Stepper";
 import { RoleName } from "@refugies-info/api-types";
 import { logger } from "logger";
 import { useRouter } from "next/router";
@@ -14,6 +13,7 @@ import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import Image from "~/components/UI/Image";
+import { RegisterStepper } from "~/components/User";
 import { useRegisterFlow } from "~/hooks";
 import { cls } from "~/lib/classname";
 import { defaultStaticProps } from "~/lib/getDefaultStaticProps";
@@ -60,11 +60,14 @@ const AuthLogin = () => {
     [router, userId, role, next],
   );
 
-  if (!userId) return null;
+  // Render the title even before the user is loaded so the page is never untitled
+  const seo = <SEO title="Votre objectif" />;
+
+  if (!userId) return seo;
 
   return (
     <div className={cls(styles.container, styles.full)}>
-      <SEO title="Votre objectif" />
+      {seo}
       <div className={styles.container_inner}>
         <Button
           priority="tertiary"
@@ -76,7 +79,7 @@ const AuthLogin = () => {
           Retour
         </Button>
 
-        <Stepper currentStep={stepCount[0]} stepCount={stepCount[1]} title={null} />
+        <RegisterStepper currentStep={stepCount[0]} stepCount={stepCount[1]} />
 
         <div className={cls(styles.title, styles.sm, "mt-12")}>
           <h1>Que souhaitez-vous faire&nbsp;?</h1>
@@ -89,9 +92,7 @@ const AuthLogin = () => {
             className={styles.radio}
             options={[
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconStructure} width={48} height={48} />
-                ),
+                illustration: <Image alt="" src={GoalIconStructure} width={48} height={48} />,
                 label: "Recenser mon dispositif",
                 hintText: "Pour les membres et responsables de structure",
                 nativeInputProps: {
@@ -100,9 +101,7 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconTranslate} width={48} height={48} />
-                ),
+                illustration: <Image alt="" src={GoalIconTranslate} width={48} height={48} />,
                 label: "Traduire une fiche",
                 hintText: "Pour les bilingues qui souhaitent contribuer",
                 nativeInputProps: {
@@ -111,9 +110,7 @@ const AuthLogin = () => {
                 },
               },
               {
-                illustration: (
-                  <Image alt="illustration" src={GoalIconUser} width={26} height={56} />
-                ),
+                illustration: <Image alt="" src={GoalIconUser} width={26} height={56} />,
                 label: "Sauvegarder mes fiches préférées",
                 hintText: "En créant mon espace personnel",
                 nativeInputProps: {

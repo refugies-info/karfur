@@ -25,7 +25,7 @@ import { getLanguageByCode } from "~/modules/langues/langues.repository";
 import { updateLanguagesAvancement } from "~/modules/langues/langues.service";
 import { sendPublishedTradMailToStructure } from "~/modules/mail/sendPublishedTradMailToStructure";
 import { sendPublishedTradMailToTraductors } from "~/modules/mail/sendPublishedTradMailToTraductors";
-import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
+// import { sendDispositifNotifications } from "~/modules/notifications/notifications.service";
 import { deleteTradsInDB } from "~/modules/traductions/traductions.repository";
 import { addTradToAirtable } from "~/modules/traductions/traductions.service";
 import { log } from "./log";
@@ -97,11 +97,12 @@ const validateTranslation = (
         ),
         isFirstValidation ? addTradToAirtable(dispositif, language, translation, username) : null,
 
-        isFirstValidation
-          ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
-              logger.error("[validateTranslations] error while sending notifications", error);
-            })
-          : null,
+        // Automatic push disabled: too many notifications, admins push manually from the back-office.
+        // isFirstValidation
+        //   ? sendDispositifNotifications(dispositif._id, language).catch((error) => {
+        //       logger.error("[validateTranslations] error while sending notifications", error);
+        //     })
+        //   : null,
         isFirstValidation ? updateLanguagesAvancement() : null,
         isDispositif(dispositif) && isFirstValidation
           ? sendPublishedTradMailToStructure(dispositif, language).catch((error) => {

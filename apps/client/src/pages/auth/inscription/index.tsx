@@ -74,7 +74,7 @@ const AuthLogin = () => {
 
   return (
     <div className={cls(styles.container, styles.half)}>
-      <SEO title="Bienvenue" />
+      <SEO title={t("Register.title", "Créez votre compte")} />
       <Button
         priority="tertiary"
         size="small"
@@ -94,7 +94,7 @@ const AuthLogin = () => {
       )}
 
       <div className={styles.title}>
-        <h1>Créez votre compte</h1>
+        <h1>{t("Register.title", "Créez votre compte")}</h1>
         <Tag
           className={styles.tag}
           dismissible
@@ -144,6 +144,8 @@ const AuthLogin = () => {
         />
 
         <Checkbox
+          legend={t("Register.newsletter_legend", "Lettre d’information")}
+          classes={{ legend: "sr-only" }}
           options={[
             {
               label: "Recevoir l’actualité mensuelle de Réfugiés.info",

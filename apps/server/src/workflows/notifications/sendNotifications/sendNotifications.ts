@@ -1,6 +1,6 @@
 import type { SendNotificationsRequest } from "@refugies-info/api-types";
 import logger from "~/logger";
-import { sendDemarcheNotifications } from "~/modules/notifications/notifications.service";
+import { sendContentNotifications } from "~/modules/notifications/notifications.service";
 import type { Response } from "~/types/interface";
 import { log } from "./log";
 
@@ -10,7 +10,7 @@ export const sendNotifications = async (
 ): Response => {
   logger.info("[sendNotifications] received");
 
-  await sendDemarcheNotifications(body.demarcheId);
+  await sendContentNotifications(body.demarcheId);
   await log(body.demarcheId, userId);
 
   return { text: "success" };

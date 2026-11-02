@@ -33,7 +33,7 @@ export const SectionImpact = () => {
               imageAlt={t("MissionImpact.impact_booklet_alt")}
               title="Livret d'impact"
               desc="Mai 2024"
-              endDetail="PDF - 61,88 Ko"
+              endDetail="PDF - 758 Ko"
               className="fr-card--download mt-10 max-w-[24rem] md:mt-14"
             />
           </div>

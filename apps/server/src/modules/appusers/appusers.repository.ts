@@ -4,6 +4,7 @@ import {
   type AppUserType,
   type NotificationsSettings,
 } from "@refugies-info/mongo";
+import type { FilterQuery, Types } from "mongoose";
 
 const DEFAULT_NOTIFICATIONS_SETTINGS: NotificationsSettings = {
   global: true,
@@ -14,19 +15,27 @@ const DEFAULT_NOTIFICATIONS_SETTINGS: NotificationsSettings = {
 
 export const getAllAppUsers = async () => AppUserModel.find();
 
-export const getAppUsersBatch = async (skip: number, batchSize: number) =>
-  AppUserModel.find().skip(skip).limit(batchSize);
+export const getAppUsersBatch = async (
+  query: FilterQuery<AppUserType>,
+  afterId: Types.ObjectId | null,
+  batchSize: number,
+) =>
+  AppUserModel.find(afterId ? { ...query, _id: { $gt: afterId } } : query)
+    .sort({ _id: 1 })
+    .limit(batchSize)
+    .lean<(AppUserType & { _id: Types.ObjectId })[]>();
 
 export const processAppUsersByBatch = async (
+  query: FilterQuery<AppUserType>,
   batchSize: number,
-  processor: (users: AppUser[]) => Promise<void>,
+  processor: (users: AppUserType[]) => Promise<void>,
 ) => {
-  let skip = 0;
+  let lastId: Types.ObjectId | null = null;
   for (;;) {
-    const users: AppUser[] = await getAppUsersBatch(skip, batchSize);
+    const users = await getAppUsersBatch(query, lastId, batchSize);
     if (users.length === 0) break;
     await processor(users);
-    skip += batchSize;
+    lastId = users[users.length - 1]._id;
   }
 };
 
