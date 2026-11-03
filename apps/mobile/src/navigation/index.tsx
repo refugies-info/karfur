@@ -146,10 +146,20 @@ export const RootNavigator = () => {
   useEffect(() => {
     if (navigationReady) {
       // get initial notif. Read issue for more informations https://github.com/expo/expo/issues/14078#issuecomment-1041294084
+      const launchResponses = [Notifications.getLastNotificationResponse()];
       while (notificationDataStackLength() > 0) {
-        handleNotification(getNotificationFromStack());
+        launchResponses.push(getNotificationFromStack() ?? null);
       }
       disableNotificationsListener();
+      // The early listener misses the launching click on cold start; both sources can hold the same one.
+      Notifications.clearLastNotificationResponse();
+      const handledIds = new Set<string>();
+      for (const response of launchResponses) {
+        const id = response?.notification.request.identifier;
+        if (!response || !id || handledIds.has(id)) continue;
+        handledIds.add(id);
+        handleNotification(response);
+      }
 
       // Listener for app backgrounded
       responseListener.current = Notifications.addNotificationResponseReceivedListener((response) =>

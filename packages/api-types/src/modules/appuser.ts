@@ -10,6 +10,7 @@ export interface AppUserRequest {
   age?: string | null;
   frenchLevel?: string | null;
   expoPushToken?: string;
+  platform?: "ios" | "android";
 }
 
 /**
