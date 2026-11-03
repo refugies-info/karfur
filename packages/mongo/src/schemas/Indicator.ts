@@ -1,7 +1,7 @@
 import type { Languages } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // Indicator Schema
 export const IndicatorSchema = z.object({

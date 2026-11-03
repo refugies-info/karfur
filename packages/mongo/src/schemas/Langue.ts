@@ -2,7 +2,7 @@ import { LANGUAGE_CODES } from "@refugies-info/api-types";
 import { zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
 import { SpeedGooseCacheAutoCleaner } from "speedgoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // Reusable i18n code schema for language codes
 export const I18nCodeZodSchema = z.enum(LANGUAGE_CODES);

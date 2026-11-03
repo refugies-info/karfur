@@ -12,7 +12,7 @@ import {
 import crypto from "crypto";
 import type mongoose from "mongoose";
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { ZodError } from "zod";
+import type { ZodError } from "zod/v3";
 import dbConnect from "./db";
 import type { WebhookMetadatas, WebhookSession } from "./webhookSchemas";
 

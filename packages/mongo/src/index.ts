@@ -1,5 +1,5 @@
 import { extendZod } from "@zodyac/zod-mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 extendZod(z);
 

@@ -3,7 +3,7 @@ import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import jwt from "jwt-simple";
 import { type Document, type Model, model, models, type Schema, type Types } from "mongoose";
 import passwordHash from "password-hash";
-import { z } from "zod";
+import { z } from "zod/v3";
 import { type ImageType, ImageZodSchema } from "./generics";
 import type { Langue } from "./Langue";
 import type { Role } from "./Role";

@@ -1,5 +1,5 @@
 import { type Document, Schema, Types } from "mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 export class ObjectId extends Types.ObjectId {}
 
