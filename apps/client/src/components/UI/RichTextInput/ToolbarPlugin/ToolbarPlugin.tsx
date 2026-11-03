@@ -40,7 +40,7 @@ import {
   INSERT_CALLOUT_COMMAND,
   REMOVE_CALLOUT_COMMAND,
 } from "../plugins/CalloutPlugin";
-import { type CalloutLevel, CalloutNode } from "../plugins/CalloutPlugin/CalloutNode";
+import type { CalloutLevel } from "../plugins/CalloutPlugin/CalloutNode";
 import ToolbarButton from "./ToolbarButton";
 import ToolbarDropdown from "./ToolbarDropdown";
 import styles from "./ToolbarPlugin.module.scss";
@@ -50,14 +50,13 @@ const blockTypeToBlockName = {
   h3: "Titre",
   number: "Liste numérotée",
   paragraph: "Normal",
-  important: "Important",
-  info: "Bon à savoir",
 };
 
 export default function ToolbarPlugin() {
   const [editor] = useLexicalComposerContext();
   const [activeEditor, setActiveEditor] = useState(editor);
   const [blockType, setBlockType] = useState<keyof typeof blockTypeToBlockName>("paragraph");
+  const [calloutLevel, setCalloutLevel] = useState<CalloutLevel | null>(null);
   const [selectedElementKey, setSelectedElementKey] = useState<NodeKey | null>(null);
   const [isLink, setIsLink] = useState(false);
   const [isBold, setIsBold] = useState(false);
@@ -96,6 +95,9 @@ export default function ToolbarPlugin() {
       if (element === null) {
         element = anchorNode.getTopLevelElementOrThrow();
       }
+      const callout = $findMatchingParent(anchorNode, $isCalloutNode);
+      setCalloutLevel($isCalloutNode(callout) ? callout.getLevel() : null);
+
       const elementKey = element.getKey();
       const elementDOM = activeEditor.getElementByKey(elementKey);
       if (elementDOM !== null) {
@@ -105,11 +107,6 @@ export default function ToolbarPlugin() {
           const parentList = $getNearestNodeOfType<ListNode>(anchorNode, ListNode);
           const type = parentList ? parentList.getListType() : element.getListType();
           setBlockType(type as "number" | "bullet");
-        } else if ($isCalloutNode(element)) {
-          // callout
-          const parentNode = $getNearestNodeOfType<CalloutNode>(anchorNode, CalloutNode);
-          const type = parentNode ? parentNode.getLevel() : element.getLevel();
-          setBlockType(type);
         } else {
           // heading
           const type = $isHeadingNode(element) ? element.getTag() : element.getType();
@@ -220,7 +217,7 @@ export default function ToolbarPlugin() {
   }, [editor, isLink]);
 
   const formatCallout = (type: CalloutLevel) => {
-    if (blockType !== type) {
+    if (calloutLevel !== type) {
       editor.dispatchCommand(INSERT_CALLOUT_COMMAND, type);
     } else {
       editor.dispatchCommand(REMOVE_CALLOUT_COMMAND, undefined);
@@ -358,13 +355,13 @@ export default function ToolbarPlugin() {
               text: "Bloc Important",
               icon: "ri-alert-fill",
               onClick: () => formatCallout("important"),
-              selected: blockType === "important",
+              selected: calloutLevel === "important",
             },
             {
               text: "Bloc Bon à savoir",
               icon: "ri-side-bar-fill",
               onClick: () => formatCallout("info"),
-              selected: blockType === "info",
+              selected: calloutLevel === "info",
             },
           ]}
         />
