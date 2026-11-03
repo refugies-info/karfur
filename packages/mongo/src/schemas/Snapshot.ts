@@ -1,7 +1,7 @@
 import { DispositifStatus } from "@refugies-info/api-types";
 import { zId, zodSchema } from "@zodyac/zod-mongoose";
 import { type Document, type Model, model, models, type Types } from "mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // Needs strict imports or definitions if we want deep validation
 // For now, we use unknown for complex nested types or simple object structures

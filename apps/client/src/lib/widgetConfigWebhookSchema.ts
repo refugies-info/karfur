@@ -13,7 +13,7 @@ import {
   type WIDGET_CONFIG_TYPES,
   type WidgetConfigPageSize,
 } from "@refugies-info/api-types";
-import { z } from "zod";
+import { z } from "zod/v3";
 import { departments } from "../data/departments";
 import { BaseWebhookSchema, ObjectIdSchema } from "./webhookSchemas";
 

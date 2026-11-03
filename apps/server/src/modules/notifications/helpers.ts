@@ -85,7 +85,13 @@ export const parseDispositif = (dispositif: Dispositif): Requirements => {
 
 const getDepartmentNames = (departments: string[]) => departments.map((dep) => dep.split(" - ")[1]);
 
-const hasPushTokenQuery = { expoPushToken: { $nin: [null, ""] } };
+const ACTIVE_USER_MS = 365 * 24 * 60 * 60 * 1000;
+
+// updatedAt is bumped by updateAppUser on every app launch: older users are considered gone.
+export const getPushableUsersQuery = (): FilterQuery<AppUserType> => ({
+  expoPushToken: { $nin: [null, ""] },
+  updatedAt: { $gte: new Date(Date.now() - ACTIVE_USER_MS) },
+});
 
 const getThemeQuery = (mainThemeId: string | null) =>
   mainThemeId ? { [`notificationsSettings.themes.${mainThemeId}`]: true } : {};
@@ -103,7 +109,7 @@ export const getTargetsQuery = (
 
   return {
     selectedLanguage: lang,
-    ...hasPushTokenQuery,
+    ...getPushableUsersQuery(),
     ...getThemeQuery(mainThemeId),
     ...locationQuery,
   };
@@ -115,7 +121,7 @@ export const getDemarcheTargetsQuery = (
 ): FilterQuery<AppUserType> => ({
   selectedLanguage: { $in: languages },
   "notificationsSettings.demarches": true,
-  ...hasPushTokenQuery,
+  ...getPushableUsersQuery(),
   ...getThemeQuery(requirements.mainThemeId),
 });
 
