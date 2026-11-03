@@ -1,0 +1,100 @@
+diff --git a/dist/index.cjs b/dist/index.cjs
+index bbd4bdb..8c56f2b 100644
+--- a/dist/index.cjs
++++ b/dist/index.cjs
+@@ -96,7 +96,7 @@ var zmAssert = {
+ var zmAssertIds;
+ 
+ // src/assertions/instanceOf.ts
+-var import_zod = require("zod");
++var import_zod = require("zod/v3");
+ var zmAssert2 = {
+   string(f) {
+     return f instanceof import_zod.ZodString;
+@@ -213,7 +213,7 @@ var assertions_default = {
+ 
+ // src/extension.ts
+ var import_mongoose = require("mongoose");
+-var import_zod2 = require("zod");
++var import_zod2 = require("zod/v3");
+ var zod_extended = false;
+ function extendZod(z_0) {
+   if (zod_extended) return;
+diff --git a/dist/index.d.cts b/dist/index.d.cts
+index 6fdd65d..03df811 100644
+--- a/dist/index.d.cts
++++ b/dist/index.d.cts
+@@ -1,4 +1,4 @@
+ import { Types, SchemaTypes, SchemaDefinition, SchemaTypeOptions, SchemaOptions, Schema } from 'mongoose';
+-import { z, ZodType, ZodRawShape, ZodObject } from 'zod';
++import { z, ZodType, ZodRawShape, ZodObject } from 'zod/v3';
+ 
+ declare namespace zm {
+@@ -95,7 +95,7 @@ declare namespace zm {
+     };
+ }
+ 
+-declare module "zod" {
++declare module "zod/v3" {
+     interface ZodString {
+         unique: (arg?: boolean) => ZodString;
+         sparse: (arg?: boolean) => ZodString;
+@@ -132,7 +132,7 @@ declare module "zod" {
+  *
+  * @example
+  * ```typescript
+- * import { z } from "zod";
++ * import { z } from "zod/v3";
+  * import { extendZod } from "./extension";
+  *
+  * extendZod(z);
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 6fdd65d..03df811 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -1,4 +1,4 @@
+ import { Types, SchemaTypes, SchemaDefinition, SchemaTypeOptions, SchemaOptions, Schema } from 'mongoose';
+-import { z, ZodType, ZodRawShape, ZodObject } from 'zod';
++import { z, ZodType, ZodRawShape, ZodObject } from 'zod/v3';
+ 
+ declare namespace zm {
+@@ -95,7 +95,7 @@ declare namespace zm {
+     };
+ }
+ 
+-declare module "zod" {
++declare module "zod/v3" {
+     interface ZodString {
+         unique: (arg?: boolean) => ZodString;
+         sparse: (arg?: boolean) => ZodString;
+@@ -132,7 +132,7 @@ declare module "zod" {
+  *
+  * @example
+  * ```typescript
+- * import { z } from "zod";
++ * import { z } from "zod/v3";
+  * import { extendZod } from "./extension";
+  *
+  * extendZod(z);
+diff --git a/dist/index.js b/dist/index.js
+index 2e23a0d..4eb857a 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -69,7 +69,7 @@ var zmAssert = {
+ var zmAssertIds;
+ 
+ // src/assertions/instanceOf.ts
+-import { ZodAny, ZodArray, ZodBoolean, ZodDate, ZodDefault, ZodEffects, ZodEnum, ZodMap, ZodNativeEnum, ZodNullable, ZodNumber, ZodObject, ZodOptional, ZodRecord, ZodString, ZodUnion } from "zod";
++import { ZodAny, ZodArray, ZodBoolean, ZodDate, ZodDefault, ZodEffects, ZodEnum, ZodMap, ZodNativeEnum, ZodNullable, ZodNumber, ZodObject, ZodOptional, ZodRecord, ZodString, ZodUnion } from "zod/v3";
+ var zmAssert2 = {
+   string(f) {
+     return f instanceof ZodString;
+@@ -186,7 +186,7 @@ var assertions_default = {
+ 
+ // src/extension.ts
+ import { isValidObjectId, Types } from "mongoose";
+-import { z } from "zod";
++import { z } from "zod/v3";
+ var zod_extended = false;
+ function extendZod(z_0) {
+   if (zod_extended) return;

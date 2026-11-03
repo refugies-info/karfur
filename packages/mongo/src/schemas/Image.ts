@@ -1,5 +1,5 @@
 import { type Model, model, models, Schema, type Types } from "mongoose";
-import { z } from "zod";
+import { z } from "zod/v3";
 
 // CloudinaryImage Schema (for Cloudinary images stored in DB)
 export const CloudinaryImageSchema = z.object({
