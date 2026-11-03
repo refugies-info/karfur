@@ -1,6 +1,4 @@
-import Card from "@codegouvfr/react-dsfr/Card";
 import { useTranslation } from "next-i18next";
-import PDFScreenshot from "~/assets/staticPages/mission-et-impact/pdf-screenshot.png";
 import { Section, Title2 } from "~/components/Pages/staticPages/common";
 import { ImpactCol } from "~/components/Pages/staticPages/mission-et-impact/ImpactCol";
 
@@ -17,25 +15,6 @@ export const SectionImpact = () => {
             <p className="text-h4 md:text-h3 text-artwork-major-blue-france !mb-0">
               {t("MissionImpact.impact_subtitle")}
             </p>
-
-            <Card
-              enlargeLink
-              imageUrl={PDFScreenshot.src}
-              horizontal
-              linkProps={{
-                // Static file served from the site root: the link must be real on the server
-                // render too, and next/link must not prefix it with the locale.
-                href: "/Livret-Impact-Refugies.infos-2024.pdf",
-                locale: false,
-                target: "_blank",
-                rel: "noopener noreferrer",
-              }}
-              imageAlt={t("MissionImpact.impact_booklet_alt")}
-              title="Livret d'impact"
-              desc="Mai 2024"
-              endDetail="PDF - 758 Ko"
-              className="fr-card--download mt-10 max-w-[24rem] md:mt-14"
-            />
           </div>
           <div className="flex-1">
             <p className="!text-large">{t("MissionImpact.impact_p1")}</p>
