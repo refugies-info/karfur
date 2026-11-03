@@ -7,10 +7,14 @@ import {
   NotificationModel,
 } from "@refugies-info/mongo";
 import { Expo, type ExpoPushMessage, type ExpoPushTicket } from "expo-server-sdk";
+import { countBy } from "lodash";
 import { getLocaleString as t } from "~/libs/getLocaleString";
 import { getMapKeys, mapToPlainObject } from "~/libs/mongooseMaps";
 import logger from "~/logger";
-import { processAppUsersByBatch } from "~/modules/appusers/appusers.repository";
+import {
+  processAppUsersByBatch,
+  removeExpoPushTokens,
+} from "~/modules/appusers/appusers.repository";
 import {
   getDispositifTranslated,
   isDemarche,
@@ -117,26 +121,39 @@ export const markNotificationAsSeen = async (notificationId: string, uid: string
   }
 };
 
+export type SentPush = { to: string; ticket: ExpoPushTicket };
+
+const getPushError = (push: { ticket: ExpoPushTicket }) =>
+  push.ticket.status === "error" ? push.ticket.details?.error || "unknown" : null;
+
 export const sendNotifications = async (messages: ExpoPushMessage[]) => {
-  const pushTickets: ExpoPushTicket[] = [];
+  const sentPushes: SentPush[] = [];
   const notificationActive = await isNotificationsActive();
 
   // already added in sendDispositifNotifications but replicated here
   // to be more secure if new feature in the future
-  if (notificationActive) {
-    const chunks = expo.chunkPushNotifications(messages);
+  if (!notificationActive) return sentPushes;
 
-    for (const chunk of chunks) {
-      try {
-        const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-        pushTickets.push(...ticketChunk);
-      } catch (error) {
-        logger.error("[sendNotifications]", error);
-      }
+  for (const chunk of expo.chunkPushNotifications(messages)) {
+    try {
+      const tickets = await expo.sendPushNotificationsAsync(chunk);
+      tickets.forEach((ticket, index) =>
+        sentPushes.push({ to: chunk[index].to as string, ticket }),
+      );
+    } catch (error) {
+      logger.error("[sendNotifications]", error);
     }
   }
 
-  return pushTickets;
+  const errors = countBy(sentPushes.map(getPushError).filter(Boolean));
+  logger.info("[sendNotifications] tickets", { sent: sentPushes.length, errors });
+
+  const unregisteredTokens = sentPushes
+    .filter((push) => getPushError(push) === "DeviceNotRegistered")
+    .map((push) => push.to);
+  if (unregisteredTokens.length > 0) await removeExpoPushTokens(unregisteredTokens);
+
+  return sentPushes;
 };
 
 const sendDispositifNotificationsBatch = async (

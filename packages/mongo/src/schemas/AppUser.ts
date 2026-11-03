@@ -19,6 +19,7 @@ export const AppUserZodSchema = z.object({
   age: z.string().optional(),
   frenchLevel: z.string().optional(),
   expoPushToken: z.string().optional(),
+  platform: z.enum(["ios", "android"]).optional(),
   notificationsSettings: NotificationsSettingsZodSchema.optional(),
   created_at: z.date().optional(),
   updatedAt: z.date().optional(),

@@ -6,7 +6,7 @@ import { getExpoPushTokenAsync } from "expo-notifications";
 import { StatusBar } from "expo-status-bar";
 import * as Updates from "expo-updates";
 import { Suspense, useEffect } from "react";
-import { I18nManager, View } from "react-native";
+import { I18nManager, Platform, View } from "react-native";
 import "react-native-gesture-handler";
 
 import type { AppUserRequest, Languages } from "@refugies-info/api-types";
@@ -47,6 +47,7 @@ const updateUserInfo = async () => {
     department,
     age,
     frenchLevel,
+    platform: Platform.OS === "ios" ? "ios" : "android",
   };
   const token = (
     await getExpoPushTokenAsync({

@@ -15,6 +15,14 @@ const DEFAULT_NOTIFICATIONS_SETTINGS: NotificationsSettings = {
 
 export const getAllAppUsers = async () => AppUserModel.find();
 
+// timestamps: false keeps updatedAt meaning "last app launch".
+export const removeExpoPushTokens = (tokens: string[]) =>
+  AppUserModel.updateMany(
+    { expoPushToken: { $in: tokens } },
+    { $unset: { expoPushToken: 1 } },
+    { timestamps: false },
+  );
+
 export const getAppUsersBatch = async (
   query: FilterQuery<AppUserType>,
   afterId: Types.ObjectId | null,
