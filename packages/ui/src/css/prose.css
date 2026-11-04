@@ -14,14 +14,21 @@
       @apply mt-0 mb-4;
 
       & + h2,
-      & + h3 {
+      & + h3,
+      & + h4:where(.rtri-title) {
         @apply mt-8 mb-6;
       }
     }
 
     h2,
-    h3 {
+    h3,
+    h4:where(.rtri-title) {
       @apply mt-0 mb-6;
+    }
+
+    h4:where(.rtri-title) {
+      font-size: 1.25em;
+      line-height: 1.6;
     }
 
     .fr-accordion + :is(h1, h2, h3, h4, h5, h6) {

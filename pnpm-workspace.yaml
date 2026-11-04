@@ -25,7 +25,6 @@ minimumReleaseAge: 10080
 # (typically a security fix), with a TODO date to remove it.
 minimumReleaseAgeExclude:
   - "joi@18.3.1" # TODO 2026-11-05: security fix GHSA-4528-x5fx-h6hg, remove after the 7-day quarantine
-  - "node-forge@1.4.2" # TODO 2026-11-04: security fixes, remove after the 7-day quarantine
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.

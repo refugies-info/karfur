@@ -1,18 +1,25 @@
+import { $isListNode } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { $setBlocksType } from "@lexical/selection";
-import { $findMatchingParent, mergeRegister } from "@lexical/utils";
+import {
+  $findMatchingParent,
+  $insertNodeToNearestRoot,
+  $unwrapNode,
+  mergeRegister,
+} from "@lexical/utils";
 import {
   $createParagraphNode,
+  $getRoot,
   $getSelection,
-  $isParagraphNode,
+  $isElementNode,
   $isRangeSelection,
-  $setSelection,
   COMMAND_PRIORITY_EDITOR,
   COMMAND_PRIORITY_LOW,
   createCommand,
   DELETE_CHARACTER_COMMAND,
   KEY_ARROW_DOWN_COMMAND,
   KEY_ARROW_UP_COMMAND,
+  type LexicalNode,
+  type RangeSelection,
 } from "lexical";
 import { useEffect } from "react";
 
@@ -23,6 +30,32 @@ const REMOVE_CALLOUT_COMMAND = createCommand();
 
 export { $isCalloutNode, INSERT_CALLOUT_COMMAND, REMOVE_CALLOUT_COMMAND };
 
+const $getParentCallout = (selection: RangeSelection): CalloutNode | null =>
+  $findMatchingParent(selection.anchor.getNode(), $isCalloutNode) as CalloutNode | null;
+
+/** Selected root-level blocks, stopping at an existing callout to keep the document order. */
+const $getSelectedRootBlocks = (selection: RangeSelection): LexicalNode[] => {
+  const root = $getRoot();
+  const blocks = new Set<LexicalNode>();
+  for (const node of selection.getNodes()) {
+    const block = node === root ? null : $findMatchingParent(node, (n) => n.getParent() === root);
+    if (!block) continue;
+    if ($isCalloutNode(block)) break;
+    blocks.add(block);
+  }
+  return [...blocks];
+};
+
+const $isCaretAtCalloutStart = (selection: RangeSelection, callout: CalloutNode): boolean => {
+  if (!selection.isCollapsed() || selection.anchor.offset !== 0) return false;
+  const anchorNode = selection.anchor.getNode();
+  const firstBlock = callout.getFirstChild();
+  return (
+    $isElementNode(firstBlock) &&
+    (anchorNode === firstBlock || anchorNode === firstBlock.getFirstDescendant())
+  );
+};
+
 export default function CalloutPlugin() {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
@@ -31,26 +64,18 @@ export default function CalloutPlugin() {
     }
 
     return mergeRegister(
+      // Backspace at the very start of a callout removes the box but keeps its content.
+      // Lists are left to the list plugin, which first turns the item into a paragraph.
       editor.registerCommand(
         DELETE_CHARACTER_COMMAND,
-        () => {
+        (isBackward: boolean) => {
           const selection = $getSelection();
-          if (
-            !$isRangeSelection(selection) ||
-            !selection.isCollapsed() ||
-            selection.anchor.offset !== 0
-          ) {
-            return false;
-          }
-          const anchorNode = selection.anchor.getNode().getTopLevelElement();
-          const previousSibling = anchorNode?.getPreviousSibling();
-          if (anchorNode && previousSibling === null && $isCalloutNode(anchorNode)) {
-            $setSelection(null);
-            anchorNode?.insertBefore($createParagraphNode());
-            anchorNode.remove();
-          }
-
-          return false;
+          if (!isBackward || !$isRangeSelection(selection)) return false;
+          const callout = $getParentCallout(selection);
+          if (!callout || !$isCaretAtCalloutStart(selection, callout)) return false;
+          if ($isListNode(callout.getFirstChild())) return false;
+          $unwrapNode(callout);
+          return true;
         },
         COMMAND_PRIORITY_LOW,
       ),
@@ -66,7 +91,7 @@ export default function CalloutPlugin() {
             return false;
           }
 
-          const container = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode);
+          const container = $getParentCallout(selection);
 
           if (container === null) {
             return false;
@@ -88,7 +113,7 @@ export default function CalloutPlugin() {
             return false;
           }
 
-          const container = $findMatchingParent(selection.anchor.getNode(), $isCalloutNode);
+          const container = $getParentCallout(selection);
 
           if (container === null) {
             return false;
@@ -105,43 +130,25 @@ export default function CalloutPlugin() {
       editor.registerCommand(
         INSERT_CALLOUT_COMMAND,
         (level: CalloutLevel) => {
-          editor.update(() => {
-            const selection = $getSelection();
-            if (!$isRangeSelection(selection)) return;
-            // just change callout level
-            const matchingCalloutParent = $findMatchingParent(
-              selection.anchor.getNode(),
-              $isCalloutNode,
-            ) as CalloutNode | null;
-            if (matchingCalloutParent) {
-              if (matchingCalloutParent.getLevel() !== level) {
-                matchingCalloutParent.setLevel(level);
-              }
-              return; // or return to not nest callouts
-            }
+          const selection = $getSelection();
+          if (!$isRangeSelection(selection)) return false;
 
-            // if text selected, transform block into callout
-            const matchingParagraphParent = $findMatchingParent(
-              selection.anchor.getNode(),
-              $isParagraphNode,
-            );
-            if (matchingParagraphParent?.getTextContent()) {
-              $setBlocksType(selection, () => $createCalloutNode(level));
-              editor.update(() => {
-                const selection = $getSelection();
-                selection?.insertNodes([$createParagraphNode()]);
-              });
-              return;
-            }
+          const parentCallout = $getParentCallout(selection);
+          if (parentCallout) {
+            parentCallout.setLevel(level);
+            return true;
+          }
 
-            // else, insert new one with line breaks
-            selection.insertNodes([
-              $createParagraphNode(),
-              $createCalloutNode(level),
-              $createParagraphNode(),
-            ]);
-          });
-
+          const blocks = $getSelectedRootBlocks(selection);
+          const callout = $createCalloutNode(level);
+          if (blocks.length === 0) {
+            const paragraph = $createParagraphNode();
+            $insertNodeToNearestRoot(callout.append(paragraph));
+            paragraph.select();
+            return true;
+          }
+          blocks[0].insertBefore(callout);
+          callout.append(...blocks);
           return true;
         },
         COMMAND_PRIORITY_EDITOR,
@@ -149,12 +156,10 @@ export default function CalloutPlugin() {
       editor.registerCommand(
         REMOVE_CALLOUT_COMMAND,
         () => {
-          editor.update(() => {
-            const selection = $getSelection();
-            if (!$isRangeSelection(selection)) return;
-            $setBlocksType(selection, () => $createParagraphNode());
-          });
-
+          const selection = $getSelection();
+          if (!$isRangeSelection(selection)) return false;
+          const callout = $getParentCallout(selection);
+          if (callout) $unwrapNode(callout);
           return true;
         },
         COMMAND_PRIORITY_EDITOR,

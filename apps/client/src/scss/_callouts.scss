@@ -29,6 +29,10 @@
       line-height: 1.75rem;
     }
 
+    > :last-child {
+      margin-bottom: 0;
+    }
+
     &::before {
       color: var(--color-text-title-grey);
       content: attr(data-title);

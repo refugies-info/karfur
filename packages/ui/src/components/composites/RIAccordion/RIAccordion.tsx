@@ -56,6 +56,8 @@ export const RIAccordion = (props: RIAccordionProps) => {
         // Layout overrides
         "[&_h3_button]:grid-cols-[1fr] [&_h3_button]:items-start [&_h3_button]:justify-between [&_h3_button]:gap-1 md:[&_h3_button]:grid",
         "[&_h3]:!mb-0",
+        // The titles of the editor in the content are h4, and had the same margin as the h3 before
+        "[&_h4.rtri-title]:!mb-0",
         // Force first child of content to have no top margin to align with accordion padding
         "[&_.fr-collapse_>_*:first-child]:mt-0",
         "rtl:[&_h3_button]:text-right",
