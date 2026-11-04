@@ -103,7 +103,7 @@
  * │                                                                             │
  * │  HTML from RI may contain:                                                  │
  * │    <div class="callout callout--important" data-callout="important">        │
- * │    <p>, <h2>, <h3>, <a>, <ul>, <li>, <strong>, <em>, <b>                   │
+ * │    <p>, <h2>, <h3>, <h4>, <a>, <ul>, <li>, <strong>, <em>, <b>              │
  * │                                                                             │
  * │  HTML from RCO/markdown may contain:                                        │
  * │    <div data-toggle="true" data-title="X" data-html-content="...">          │
@@ -224,6 +224,29 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
     return sanitized;
   };
 
+  // The titles of the editor are h4, the ones saved before are h3: they look the same
+  const heading3Style = {
+    fontSize: styles.fonts.sizes.l,
+    fontFamily: styles.fonts.families.marianneBold,
+    lineHeight: 28,
+    fontWeight: null,
+    color: props.headingColor || styles.colors.black,
+  };
+
+  const renderHeading3 = (children: React.ReactNode, key: React.Key | undefined) => (
+    <TextDSFR_L_Bold
+      key={key}
+      color={props.headingColor}
+      style={{
+        marginTop: styles.margin * 2,
+        marginBottom: styles.margin * 2,
+      }}
+      accessibilityRole="header"
+    >
+      {children}
+    </TextDSFR_L_Bold>
+  );
+
   /**
    * The core HTML rendering element (react-native-render-html).
    *
@@ -232,7 +255,7 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
    *
    * Configuration sections:
    * - classesStyles: RI legacy CSS classes (bloc-rouge, icon-left-side, etc.)
-   * - tagsStyles: Base styling for HTML tags (strong, em, b, h2, h3)
+   * - tagsStyles: Base styling for HTML tags (strong, em, b, h2, h3, h4)
    * - baseFontStyle: Default font (Marianne Regular, DSFR font family)
    * - renderers: Custom React Native components for each HTML tag
    */
@@ -292,13 +315,8 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
           fontWeight: null,
           color: props.headingColor || styles.colors.black,
         },
-        h3: {
-          fontSize: styles.fonts.sizes.l,
-          fontFamily: styles.fonts.families.marianneBold,
-          lineHeight: 28,
-          fontWeight: null,
-          color: props.headingColor || styles.colors.black,
-        },
+        h3: heading3Style,
+        h4: heading3Style,
       }}
       baseFontStyle={{
         fontSize: styles.fonts.sizes.md,
@@ -321,20 +339,9 @@ export const ContentFromHtml = React.forwardRef<ReadableTextRef, Props>((props, 
             {children}
           </TextDSFR_XL>
         ),
-        /** h3 → DSFR L Bold heading with theme color and accessibilityRole="header" */
-        h3: (_, children, _cssStyles, passProps) => (
-          <TextDSFR_L_Bold
-            key={passProps.key}
-            color={props.headingColor}
-            style={{
-              marginTop: styles.margin * 2,
-              marginBottom: styles.margin * 2,
-            }}
-            accessibilityRole="header"
-          >
-            {children}
-          </TextDSFR_L_Bold>
-        ),
+        /** h3 and h4 → DSFR L Bold heading with theme color and accessibilityRole="header" */
+        h3: (_, children, _cssStyles, passProps) => renderHeading3(children, passProps.key),
+        h4: (_, children, _cssStyles, passProps) => renderHeading3(children, passProps.key),
         /** a → Link component with in-app or external navigation */
         a: (attrs, children, _cssStyles, passProps) => (
           <Link
