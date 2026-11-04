@@ -196,7 +196,7 @@ const Text = (props: Props) => {
               classes={{ title: "!mb-2 !mt-0 block text-xl !font-bold !text-inherit" }}
             >
               <div
-                className="not-prose text-base max-sm:text-lg"
+                className="not-prose text-base max-sm:text-lg [&>*:last-child]:mb-0"
                 dangerouslySetInnerHTML={{ __html: calloutSegment.content }}
               />
             </CallOut>

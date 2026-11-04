@@ -69,6 +69,14 @@ export class CalloutNode extends ElementNode {
     return false;
   }
 
+  isShadowRoot(): boolean {
+    return true;
+  }
+
+  canBeEmpty(): boolean {
+    return false;
+  }
+
   static importDOM(): DOMConversionMap | null {
     return {
       div: (domNode: HTMLElement) => {
