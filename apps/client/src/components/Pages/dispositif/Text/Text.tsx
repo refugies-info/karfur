@@ -7,6 +7,7 @@ import {
   getCalloutTranslationKey,
   htmlParsing,
   type TextSegment,
+  titlesToH4,
   translationParsing,
 } from "~/lib/contentParsing";
 import PageContext from "~/utils/pageContext";
@@ -152,11 +153,13 @@ const Text = (props: Props) => {
       },
     ]);
 
+    const titlesConverted = titlesToH4(translated);
+
     if (!hasMounted) {
-      return translated;
+      return titlesConverted;
     }
 
-    const listItemsTransformed = transformListItems(translated);
+    const listItemsTransformed = transformListItems(titlesConverted);
     const boldTagsCleaned = cleanNestedBoldTags(listItemsTransformed);
     return cleanUnnecessarySpans(boldTagsCleaned);
   }, [hasMounted, props.children, props.html, t]);

@@ -47,7 +47,7 @@ import styles from "./ToolbarPlugin.module.scss";
 
 const blockTypeToBlockName = {
   bullet: "Liste à puces",
-  h3: "Titre",
+  h4: "Titre",
   number: "Liste numérotée",
   paragraph: "Normal",
 };
@@ -151,8 +151,8 @@ export default function ToolbarPlugin() {
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection) || $isTableSelection(selection)) {
-        if (blockType !== "h3") {
-          $setBlocksType(selection, () => $createHeadingNode("h3"));
+        if (blockType !== "h4") {
+          $setBlocksType(selection, () => $createHeadingNode("h4"));
         } else {
           $setBlocksType(selection, () => $createParagraphNode());
         }
@@ -287,7 +287,7 @@ export default function ToolbarPlugin() {
         <ToolbarButton
           disabled={!isEditable}
           onClick={() => formatHeading()}
-          isPressed={blockType === "h3"}
+          isPressed={blockType === "h4"}
           title="Titre"
           text="Titre"
         />

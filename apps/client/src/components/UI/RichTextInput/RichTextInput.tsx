@@ -15,13 +15,14 @@ import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FocusPlugin from "./plugins/FocusPlugin";
 import LinkPlugin from "./plugins/LinkPlugin";
 import OnHtmlChangePlugin from "./plugins/OnHtmlChangePlugin";
+import TitleLevelPlugin from "./plugins/TitleLevelPlugin";
 import styles from "./RichTextInput.module.scss";
 import ToolbarPlugin from "./ToolbarPlugin";
 
 const theme = {
   link: "rtri-link",
   heading: {
-    h3: "rtri-title",
+    h4: "rtri-title",
   },
   text: {
     underline: "rtri-underline",
@@ -89,6 +90,7 @@ const RichTextInput: FC<Props> = (props: Props) => {
         <TabIndentationPlugin />
         <LinkPlugin />
         <CalloutPlugin />
+        <TitleLevelPlugin />
         <FocusPlugin onFocus={onFocusCallback} onBlur={onBlurCallback} />
         <FloatingLinkEditorPlugin anchorElem={floatingAnchorElem || undefined} />
         <RichTextPlugin
