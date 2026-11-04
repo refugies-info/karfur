@@ -15,6 +15,9 @@ export const getCalloutTranslationKey = (level: "info" | "important") => {
   }
 };
 
+export const titlesToH4 = (html: string) =>
+  html.replace(/<h3([^>]*\brtri-title\b[^>]*)>([\s\S]*?)<\/h3>/g, "<h4$1>$2</h4>");
+
 interface ToParse {
   nodeAttr: string | RegExp;
   translation: string;
