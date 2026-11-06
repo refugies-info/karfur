@@ -5,8 +5,25 @@ updates:
     schedule:
       interval: "weekly"
     cooldown:
+      # Matches the 7-day minimumReleaseAge gate in pnpm-workspace.yaml, so
+      # Dependabot never proposes a version the workspace install would reject.
       default-days: 7
+    open-pull-requests-limit: 5
+    groups:
+      # One PR per week for minor + patch bumps across the whole workspace.
+      npm-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+      # Majors stay separate: they need individual review.
+      npm-major:
+        patterns: ["*"]
+        update-types: ["major"]
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns: ["*"]
