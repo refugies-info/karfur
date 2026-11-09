@@ -127,7 +127,7 @@ overrides:
   '@tootallnate/once': '^3.0.1'
   preact: '^10.27.3'
   ajv: '^8.18.0'
-  qs: 6.16.0
+  qs: 6.16.1
   webpack: '^5.104.1'
   diff: '^4.0.4'
   '@types/react': '~19.1.17'
