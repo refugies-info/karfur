@@ -90,7 +90,8 @@ const VoteLayoutStandard = forwardRef<HTMLDivElement, VoteLayoutStandardProps>(
             hasVoted ? "max-h-[1000px]" : "max-h-0",
             vote === true && "delay-1000",
           )}
-          aria-hidden="true"
+          // Hidden from assistive technologies only while collapsed (RGAA 10.8).
+          aria-hidden={hasVoted ? undefined : true}
         >
           {t("ui.northStar_thanks", "Merci pour votre retour")} <span aria-hidden="true">☺️</span>
         </p>
