@@ -10,7 +10,7 @@ type Props = ComponentProps<typeof NextLink>;
  * an href. A disabled link (role="link" + aria-disabled) has no destination, so it is
  * rendered as a plain anchor without href (RGAA 6.1).
  */
-const DsfrLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
+export const DsfrLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const isDisabledLink =
     props.role === "link" && (props["aria-disabled"] === true || props["aria-disabled"] === "true");
 
@@ -25,6 +25,7 @@ const DsfrLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
       prefetch: _prefetch,
       locale: _locale,
       legacyBehavior: _legacyBehavior,
+      onClick: _onClick,
       ...anchorProps
     } = props;
     return <a ref={ref} {...anchorProps} />;
@@ -34,5 +35,3 @@ const DsfrLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
 });
 
 DsfrLink.displayName = "DsfrLink";
-
-export default DsfrLink;

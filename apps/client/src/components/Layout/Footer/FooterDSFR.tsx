@@ -42,10 +42,8 @@ const Footer = () => {
     ),
   }[supportAvailability];
 
-  // Hors horaires, le lien garde sa place et son apparence mais n'ouvre plus rien : rôle lien et
-  // état désactivé, comme prescrit par l'audit (RGAA 6.1). Le href n'est là que pour le typage de
-  // react-dsfr : DsfrLink le retire du rendu dès qu'un lien est désactivé, donc le lien n'a plus
-  // de destination et sort de l'ordre de tabulation.
+  // Outside support hours the link keeps its place but is disabled (RGAA 6.1). The href only
+  // satisfies react-dsfr typing: DsfrLink drops it from the rendered disabled link.
   const contactTeamLinkProps =
     supportAvailability === "open"
       ? { onClick: openCrisp, href: "/" }

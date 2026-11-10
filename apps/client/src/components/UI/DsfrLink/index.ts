@@ -1,1 +1,1 @@
-export { default } from "./DsfrLink";
+export { DsfrLink } from "./DsfrLink";

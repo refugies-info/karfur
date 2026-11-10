@@ -18,7 +18,7 @@ import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Layout/Layout";
-import DsfrLink from "~/components/UI/DsfrLink";
+import { DsfrLink } from "~/components/UI/DsfrLink";
 import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
 import {
   ToastPresenceProvider,
