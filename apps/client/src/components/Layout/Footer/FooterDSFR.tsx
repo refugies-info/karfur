@@ -4,7 +4,7 @@ import { useWindowSize } from "@refugies-info/ui";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { type MouseEvent, useCallback } from "react";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPath } from "routes";
 import { useEditionMode, useLocale, useSupportAvailability } from "~/hooks";
@@ -42,19 +42,14 @@ const Footer = () => {
     ),
   }[supportAvailability];
 
-  // Hors horaires, le lien garde sa place et son apparence mais n'ouvre plus rien : rôle lien,
-  // état désactivé, hors de l'ordre de tabulation. Le href subsiste car le Footer DSFR rend ce
-  // lien avec next/link, qui l'exige ; la navigation est neutralisée par preventDefault.
+  // Hors horaires, le lien garde sa place et son apparence mais n'ouvre plus rien : rôle lien et
+  // état désactivé, comme prescrit par l'audit (RGAA 6.1). Le href n'est là que pour le typage de
+  // react-dsfr : DsfrLink le retire du rendu dès qu'un lien est désactivé, donc le lien n'a plus
+  // de destination et sort de l'ordre de tabulation.
   const contactTeamLinkProps =
     supportAvailability === "open"
       ? { onClick: openCrisp, href: "/" }
-      : {
-          href: "/",
-          role: "link",
-          "aria-disabled": true,
-          tabIndex: -1,
-          onClick: (e: MouseEvent<HTMLAnchorElement>) => e.preventDefault(),
-        };
+      : { href: "/", role: "link", "aria-disabled": true };
 
   const toggleNewsletter = useCallback(() => {
     dispatch(toggleNewsletterModalAction());
