@@ -69,7 +69,7 @@ const WhyAccordions = (props: Props) => {
       }),
       alt: t(
         "Homepage.accordionItemsdesktopVideoAlt",
-        "Vidéo « Comment accompagner au mieux mes bénéficiaires ? » sur YouTube",
+        "Cliquer pour visionner la vidéo « Comment accompagner au mieux mes bénéficiaires ? » sur YouTube",
       ),
       image: videoMediation,
       link: "https://www.youtube.com/watch?v=QMRR2csgan0",
