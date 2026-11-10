@@ -63,38 +63,45 @@ exports[`auth/reinitialiser-mot-de-passe/nouveau renders page 1`] = `
           />
         </div>
         <div
-          aria-live="assertive"
           class="fr-messages-group"
           id="password-«r2»-messages-group"
         >
-          <p
-            class="fr-message fr-message--info"
-            id="password-«r2»-message-group-0"
+          <ul
+            role="list"
+            style="list-style: none; margin: 0px; padding: 0px;"
           >
-            Register.criteria_special 
-            <span
-              aria-hidden="true"
+            <li
+              class="fr-message fr-message--info"
+              id="password-«r2»-message-group-0"
+              style="padding-bottom: 0px;"
             >
-              (!, @, #, $, &, *)
-            </span>
-            <span
-              class="sr-only"
+              Register.criteria_special 
+              <span
+                aria-hidden="true"
+              >
+                (!, @, #, $, &, *)
+              </span>
+              <span
+                class="sr-only"
+              >
+                (Register.criteria_special_spoken)
+              </span>
+            </li>
+            <li
+              class="fr-message fr-message--info"
+              id="password-«r2»-message-group-1"
+              style="padding-bottom: 0px;"
             >
-              (Register.criteria_special_spoken)
-            </span>
-          </p>
-          <p
-            class="fr-message fr-message--info"
-            id="password-«r2»-message-group-1"
-          >
-            Register.criteria_number
-          </p>
-          <p
-            class="fr-message fr-message--info"
-            id="password-«r2»-message-group-2"
-          >
-            Register.criteria_minlength
-          </p>
+              Register.criteria_number
+            </li>
+            <li
+              class="fr-message fr-message--info"
+              id="password-«r2»-message-group-2"
+              style="padding-bottom: 0px;"
+            >
+              Register.criteria_minlength
+            </li>
+          </ul>
         </div>
         <div
           class="fr-password__checkbox fr-checkbox-group fr-checkbox-group--sm"
