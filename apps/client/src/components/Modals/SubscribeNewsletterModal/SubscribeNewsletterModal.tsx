@@ -116,7 +116,6 @@ export const SubscribeNewsletterModal = () => {
         title: "Oops...",
         text: "Aucun mail renseigné",
         icon: "error",
-        timer: 1500,
       });
       return;
     }
@@ -135,7 +134,6 @@ export const SubscribeNewsletterModal = () => {
             title: t("NewsletterForm.confirmMessageTitle", "Yay !"),
             text: confirmMessage,
             icon: "success",
-            timer: 1500,
           });
           announce(confirmMessage);
           setEmail("");
