@@ -43,9 +43,7 @@
     text-decoration: underline;
   }
 
-  /* RGAA 6.1: outside support hours the contact link is rendered without href.
-     DSFR greys out `a:not([href])` (2.8:1 on this background), but this text
-     carries the opening hours, so it keeps the colour of the other links. */
+  /* DSFR greys out links without href, this one still displays the opening hours. */
   :global(.fr-footer__top-link):not([href]) {
     color: inherit;
     cursor: default;

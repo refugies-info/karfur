@@ -6,8 +6,6 @@ interface Props {
   text: string;
 }
 
-// One paragraph per statistic, figure and label together (RGAA 8.9). Spans keep the markup
-// valid: a paragraph cannot contain block elements.
 const CountUpFigure = (props: Props) => {
   return (
     <InView>

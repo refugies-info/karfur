@@ -3,13 +3,7 @@ import { type ComponentProps, forwardRef } from "react";
 
 type Props = ComponentProps<typeof NextLink>;
 
-/**
- * Link component registered with react-dsfr.
- *
- * react-dsfr renders every link through the registered component, and next/link requires
- * an href. A disabled link (role="link" + aria-disabled) has no destination, so it is
- * rendered as a plain anchor without href (RGAA 6.1).
- */
+// next/link requires an href, which a disabled link must not have.
 export const DsfrLink = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
   const isDisabledLink =
     props.role === "link" && (props["aria-disabled"] === true || props["aria-disabled"] === "true");

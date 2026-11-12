@@ -31,7 +31,6 @@ const AuthNewPassword = (props: Props) => {
   const token: string = useMemo(() => router.query.token as string, [router.query]);
   const [formError, setFormError] = useState("");
   const announce = useAnnounce();
-  // The password rules are no longer a live region: submit errors are announced explicitly.
   useEffect(() => {
     if (formError) announce(formError);
   }, [formError, announce]);

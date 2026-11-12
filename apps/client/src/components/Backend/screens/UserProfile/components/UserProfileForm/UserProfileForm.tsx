@@ -45,7 +45,6 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
   const [oldPasswordError, setOldPasswordError] = useState<string | null>(null);
   const [newPasswordError, setNewPasswordError] = useState<string | null>(null);
   const announce = useAnnounce();
-  // The password rules are no longer a live region: submit errors are announced explicitly.
   useEffect(() => {
     const passwordError = oldPasswordError || newPasswordError;
     if (passwordError) announce(passwordError);

@@ -42,8 +42,7 @@ const Footer = () => {
     ),
   }[supportAvailability];
 
-  // Outside support hours the link keeps its place but is disabled (RGAA 6.1). The href only
-  // satisfies react-dsfr typing: DsfrLink drops it from the rendered disabled link.
+  // react-dsfr requires an href: DsfrLink drops it when the link is disabled.
   const contactTeamLinkProps =
     supportAvailability === "open"
       ? { onClick: openCrisp, href: "/" }

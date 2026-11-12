@@ -138,7 +138,6 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
         ref={needsContainerRef}
       >
         <Checkbox
-          // RGAA 11.6: the group is named after its theme; the visible name is the tab or accordion title.
           legend={selectedTheme?.short[locale] || t("Recherche.theme", "Thème")}
           classes={{ legend: "sr-only" }}
           className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b"
