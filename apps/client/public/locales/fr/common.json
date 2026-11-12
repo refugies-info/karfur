@@ -681,6 +681,9 @@
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
+    "errorsTitle": "Oh non...",
+    "errorsEmptyemailTitle": "Oops...",
+    "errorsEmptyemail": "Aucun mail renseigné",
     "ok": "S'inscrire"
   },
   "MobileApp": {
