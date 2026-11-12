@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAsyncFn } from "react-use";
-import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
+import { useAnnounceMessage } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import ErrorMessage from "~/components/UI/ErrorMessage";
 import FRLink from "~/components/UI/FRLink";
 import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
@@ -44,11 +44,7 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
   const [newPassword, setNewPassword] = useState("");
   const [oldPasswordError, setOldPasswordError] = useState<string | null>(null);
   const [newPasswordError, setNewPasswordError] = useState<string | null>(null);
-  const announce = useAnnounce();
-  useEffect(() => {
-    const passwordError = oldPasswordError || newPasswordError;
-    if (passwordError) announce(passwordError);
-  }, [oldPasswordError, newPasswordError, announce]);
+  useAnnounceMessage(oldPasswordError || newPasswordError);
   const passwordStrength = useMemo(() => getPasswordStrength(newPassword), [newPassword]);
 
   // Fill form

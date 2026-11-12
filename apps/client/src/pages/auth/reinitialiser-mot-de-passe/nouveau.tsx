@@ -5,8 +5,8 @@ import { logger } from "logger";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { type ReactElement, useCallback, useEffect, useMemo, useState } from "react";
-import { useAnnounce } from "~/components/Accessibility/ScreenReaderAnnouncer";
+import { type ReactElement, useCallback, useMemo, useState } from "react";
+import { useAnnounceMessage } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Pages/auth/Layout";
 import SEO from "~/components/Seo";
 import PasswordCriteriaLabel from "~/components/User/PasswordCriteriaLabel";
@@ -30,10 +30,7 @@ const AuthNewPassword = (props: Props) => {
   const { logUser } = useLogin();
   const token: string = useMemo(() => router.query.token as string, [router.query]);
   const [formError, setFormError] = useState("");
-  const announce = useAnnounce();
-  useEffect(() => {
-    if (formError) announce(formError);
-  }, [formError, announce]);
+  useAnnounceMessage(formError);
   const [step, setStep] = useState<1 | 2>(1);
   const [password, setPassword] = useState("");
   const passwordStrength = useMemo(() => getPasswordStrength(password), [password]);
