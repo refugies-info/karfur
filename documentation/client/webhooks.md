@@ -335,7 +335,7 @@ Same payload as create, with `widgetConfig._id` and only the fields to change. `
 
 #### Read — `GET /api/webhook/widget-config` and `GET /api/webhook/widget-config/{id}`
 
-The list returns summaries (`_id`, `publicId`, `internalTitle`, `type`, `status`, `structureName`, `updatedAt`), most recently updated first. The detail returns the whole config as stored (`_id` included).
+The list returns summaries (`_id`, `publicId`, `internalTitle`, `type`, `status`, `structureName`, `createdAt`, `updatedAt`, `statusUpdatedAt`, `lastTrafficAt`), most recently updated first. `lastTrafficAt` is absent until the widget API records a visit; it is never written by the editor. The detail returns the whole config as stored (`_id` included).
 
 #### Preview Count — `POST /api/webhook/widget-config/preview-count`
 
