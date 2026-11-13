@@ -39,14 +39,13 @@ describe("removeOrphanSteps", () => {
   });
 
   it("leaves the other fields and the input untouched", () => {
-    const translation = {
-      content: { abstract: "Résumé", next: { removed: { title: "A", text: "B" } } },
-    } as unknown as TranslationContent;
+    const next = { removed: { title: "A", text: "B" } };
+    const translation = { content: { abstract: "Résumé", next } } as unknown as TranslationContent;
 
     const result = removeOrphanSteps(translation, frTranslation);
 
     expect(result.content).toEqual({ abstract: "Résumé", next: {} });
-    expect(translation.content.next).toEqual({ removed: { title: "A", text: "B" } });
+    expect(next).toEqual({ removed: { title: "A", text: "B" } });
   });
 
   it("returns a translation without content as it is", () => {
