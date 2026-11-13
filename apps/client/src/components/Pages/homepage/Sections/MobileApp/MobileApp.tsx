@@ -106,6 +106,7 @@ const MobileApp = () => {
               {Array.from({ length: 5 }).map((_, index) => (
                 <i
                   key={index}
+                  aria-hidden="true"
                   className="fr-icon-star-fill h-4 w-4 text-artwork-minor-blue-france"
                 />
               ))}
