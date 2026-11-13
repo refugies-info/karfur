@@ -43,6 +43,12 @@
     text-decoration: underline;
   }
 
+  /* DSFR greys out links without href, this one still displays the opening hours. */
+  :global(.fr-footer__top-link):not([href]) {
+    color: inherit;
+    cursor: default;
+  }
+
   @media print {
     display: none;
   }

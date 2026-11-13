@@ -9,7 +9,6 @@ import { TooltipProvider } from "@radix-ui/react-tooltip";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Caveat } from "next/font/google";
-import Link from "next/link";
 import NextRouter, { useRouter } from "next/router";
 import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
@@ -19,6 +18,7 @@ import { useEffectOnce } from "react-use";
 import toastStyles from "scss/components/toast.module.scss";
 import { ScreenReaderAnnouncerProvider } from "~/components/Accessibility/ScreenReaderAnnouncer";
 import Layout from "~/components/Layout/Layout";
+import { DsfrLink } from "~/components/UI/DsfrLink";
 import SkipLinksNavigation from "~/components/UI/SkipLinksNavigation/SkipLinksNavigation";
 import {
   ToastPresenceProvider,
@@ -39,7 +39,7 @@ const useLang = () => NextRouter.router?.locale ?? "fr";
 
 const { withDsfr, dsfrDocumentApi } = createNextDsfrIntegrationApi({
   defaultColorScheme: "light",
-  Link,
+  Link: DsfrLink,
   useLang,
 });
 

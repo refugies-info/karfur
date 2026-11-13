@@ -9,6 +9,8 @@ import { findAllRespo } from "~/modules/structure/structure.service";
 import { getUsersForTranslationStats, hasRole } from "~/modules/users/users.repository";
 import type { ResponseWithData } from "~/types/interface";
 
+const ACCESSIBLE_PROCEDURE_COMMITTEE_ID = "5dea308bafabdf00513ba335";
+
 export const getStatistics = async (
   query: GetStructureStatisticsRequest,
 ): ResponseWithData<GetStructureStatisticsResponse> => {
@@ -27,7 +29,7 @@ export const getStatistics = async (
   // nbCDA
   if (noFacet || facets.includes("nbCDA")) {
     const cda = await getStructuresFromDB(
-      { nom: "Comité de la Démarche Accessible" },
+      { _id: ACCESSIBLE_PROCEDURE_COMMITTEE_ID },
       { membres: 1 },
     );
     data.nbCDA = cda[0]?.membres?.length ?? 0;
