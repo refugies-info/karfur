@@ -1241,60 +1241,51 @@ exports[`publier renders publier 1`] = `
           <div
             class="flex flex-col justify-center gap-10 lg:flex-row lg:gap-20"
           >
-            <div
-              class="flex-1 text-center"
+            <p
+              class="mb-0 flex-1 text-center"
             >
-              <div
-                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              <span
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big block font-bold"
               >
-                <p
-                  class="text-alt-title lg:text-alt-title-big mb-0"
-                >
-                  0
-                </p>
-              </div>
-              <p
-                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+                0
+              </span>
+               
+              <span
+                class="text-title-blue-france text-chapo mt-6 block font-bold"
               >
                 fiches publiées
-              </p>
-            </div>
-            <div
-              class="flex-1 text-center"
+              </span>
+            </p>
+            <p
+              class="mb-0 flex-1 text-center"
             >
-              <div
-                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              <span
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big block font-bold"
               >
-                <p
-                  class="text-alt-title lg:text-alt-title-big mb-0"
-                >
-                  0
-                </p>
-              </div>
-              <p
-                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+                0
+              </span>
+               
+              <span
+                class="text-title-blue-france text-chapo mt-6 block font-bold"
               >
                 structures inscrites
-              </p>
-            </div>
-            <div
-              class="flex-1 text-center"
+              </span>
+            </p>
+            <p
+              class="mb-0 flex-1 text-center"
             >
-              <div
-                class="text-title-blue-france text-alt-title lg:text-alt-title-big font-bold"
+              <span
+                class="text-title-blue-france text-alt-title lg:text-alt-title-big block font-bold"
               >
-                <p
-                  class="text-alt-title lg:text-alt-title-big mb-0"
-                >
-                  0
-                </p>
-              </div>
-              <p
-                class="text-title-blue-france text-chapo mt-6 mb-0 font-bold"
+                0
+              </span>
+               
+              <span
+                class="text-title-blue-france text-chapo mt-6 block font-bold"
               >
                 vues sur les fiches
-              </p>
-            </div>
+              </span>
+            </p>
           </div>
         </div>
       </div>

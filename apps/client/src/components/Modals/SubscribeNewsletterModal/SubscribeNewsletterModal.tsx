@@ -109,14 +109,20 @@ export const SubscribeNewsletterModal = () => {
     setEmail(event.target.value);
   };
 
+  const closableDialog = {
+    showCloseButton: true,
+    closeButtonAriaLabel: t("close", "Fermer"),
+    customClass: { closeButton: "!text-title-grey" },
+  };
+
   const sendMail = (e: any) => {
     e.preventDefault();
     if (email === "") {
       Swal.fire({
-        title: "Oops...",
-        text: "Aucun mail renseigné",
+        ...closableDialog,
+        title: t("NewsletterForm.errorsEmptyemailTitle", "Oops..."),
+        text: t("NewsletterForm.errorsEmptyemail", "Aucun mail renseigné"),
         icon: "error",
-        timer: 1500,
       });
       return;
     }
@@ -132,22 +138,26 @@ export const SubscribeNewsletterModal = () => {
             "Votre inscription à la newsletter a bien été enregistrée",
           );
           Swal.fire({
+            ...closableDialog,
             title: t("NewsletterForm.confirmMessageTitle", "Yay !"),
             text: confirmMessage,
             icon: "success",
-            timer: 1500,
           });
           announce(confirmMessage);
           setEmail("");
         })
         .catch((e) => {
-          if (e.response?.data?.code === "CONTACT_ALREADY_EXIST") {
-            Swal.fire("Oh non...", t("Footer.newsletter_contact_already_exist"), "error");
-            announce(t("Footer.newsletter_contact_already_exist"));
-          } else {
-            Swal.fire("Oh non...", "Une erreur s'est produite", "error");
-            announce(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
-          }
+          const errorMessage =
+            e.response?.data?.code === "CONTACT_ALREADY_EXIST"
+              ? t("Footer.newsletter_contact_already_exist")
+              : t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite");
+          Swal.fire({
+            ...closableDialog,
+            title: t("NewsletterForm.errorsTitle", "Oh non..."),
+            text: errorMessage,
+            icon: "error",
+          });
+          announce(errorMessage);
         });
     } else {
       setNotEmailError(true);

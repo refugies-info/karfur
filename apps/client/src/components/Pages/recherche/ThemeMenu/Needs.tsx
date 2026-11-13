@@ -138,6 +138,8 @@ const Needs = React.forwardRef<HTMLDivElement | null, Props>(({ themeId }, ref) 
         ref={needsContainerRef}
       >
         <Checkbox
+          legend={selectedTheme?.short[locale] || t("Recherche.theme", "Thème")}
+          classes={{ legend: "sr-only" }}
           className="[&_.fr-checkbox-group:first-child]:border-default-grey [&_.fr-checkbox-group:first-child]:border-b"
           options={[
             {

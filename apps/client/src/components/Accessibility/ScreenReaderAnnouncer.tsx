@@ -81,6 +81,13 @@ export const useAnnounce = () => {
   return ctx.announce;
 };
 
+export const useAnnounceMessage = (message?: string | null) => {
+  const announce = useAnnounce();
+  useEffect(() => {
+    if (message) announce(message);
+  }, [message, announce]);
+};
+
 /**
  * Provider component for screen reader announcements.
  * Manages dual-channel queue (polite + assertive) with pessimistic read time estimation.

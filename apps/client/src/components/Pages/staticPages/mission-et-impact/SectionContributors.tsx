@@ -54,7 +54,10 @@ export const SectionContributors = (props: Props) => {
               <div className="relative inline-block">
                 <Image
                   src={CommunityIlluCda}
-                  alt={`${props.nbCDA} ${t("MissionImpact.community_cda_title")}`}
+                  alt={t("MissionImpact.community_cda_alt", {
+                    count: props.nbCDA,
+                    defaultValue: "{{count}} membres",
+                  })}
                   width={240}
                   height={80}
                   style={{ objectFit: "contain" }}

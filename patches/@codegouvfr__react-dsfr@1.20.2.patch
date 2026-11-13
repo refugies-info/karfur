@@ -1,3 +1,19 @@
+diff --git a/blocks/PasswordInput.js b/blocks/PasswordInput.js
+index 932de4a367592df625350c63b1b69c60e3e58d0e..fab225b1a5a27a10ebd9b6a8ab26d7e754ab9a3f 100644
+--- a/blocks/PasswordInput.js
++++ b/blocks/PasswordInput.js
+@@ -76,9 +76,9 @@ export const PasswordInput = memo(forwardRef((props, ref) => {
+                     ? `${messagesGroupId} ${nativeInputProps["aria-describedby"]}`
+                     : messagesGroupId
+             })))),
+-        messages.length !== 0 && (React.createElement("div", { className: fr.cx("fr-messages-group"), id: messagesGroupId, "aria-live": "assertive" },
++        messages.length !== 0 && (React.createElement("div", { className: fr.cx("fr-messages-group"), id: messagesGroupId },
+             messagesHint !== "" && (React.createElement("p", { className: fr.cx("fr-message"), id: messageGroupId }, messagesHint)),
+-            messages.map(({ severity, message }, index) => (React.createElement("p", { key: index, className: fr.cx("fr-message", `fr-message--${severity}`), id: `${messageGroupId}-${index}` }, message))))),
++            React.createElement("ul", { role: "list", style: { listStyle: "none", margin: 0, padding: 0 } }, messages.map(({ severity, message }, index) => (React.createElement("li", { key: index, className: fr.cx("fr-message", `fr-message--${severity}`), id: `${messageGroupId}-${index}`, style: { paddingBottom: 0 } }, message)))))),
+         React.createElement("div", { className: cx(fr.cx("fr-password__checkbox", "fr-checkbox-group", "fr-checkbox-group--sm"), classes.checkbox) },
+             React.createElement("input", { "aria-label": t("show password"), id: togglePasswordShowId, type: "checkbox", disabled: disabled || undefined }),
+             React.createElement("label", { className: cx(fr.cx("fr-password__checkbox", "fr-label"), classes.checkbox), htmlFor: togglePasswordShowId }, t("show")))));
 diff --git a/consentManagement/ConsentBannerAndConsentManagement/ConsentBanner.js b/consentManagement/ConsentBannerAndConsentManagement/ConsentBanner.js
 index e1f2baababfca4e042e7daf8dbbb5ef5b17b9c3c..7e7433e4c747831b0429b57b2ecc388a017b3747 100644
 --- a/consentManagement/ConsentBannerAndConsentManagement/ConsentBanner.js

@@ -42,7 +42,7 @@
     "accordionItemsdesktopText3": "Lors d’un rendez-vous, vous pouvez envoyer une fiche intéressante directement sur le téléphone de la personne que vous accompagnez. Votre numéro personnel reste anonyme.",
     "accordionItemsdesktopTitle4": "Bénéficiez d'un outil de médiation",
     "accordionItemsdesktopText4": "Sur Réfugiés.info, l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social.",
-    "accordionItemsdesktopVideoAlt": "Vidéo « Comment accompagner au mieux mes bénéficiaires ? » sur YouTube",
+    "accordionItemsdesktopVideoAlt": "Cliquer pour visionner la vidéo « Comment accompagner au mieux mes bénéficiaires ? » sur YouTube",
     "resourcesTitle": "Des ressources gratuites à votre disposition",
     "resourcesText": "Nous vous fournissons un ensemble d’outils numériques et physiques pour découvrir le projet et en parler autour de vous : vidéos animées, flyers multilangues, brochures de présentation, visuels, etc.",
     "ressourcesImgAlt": "Kit de communication de Réfugiés.info",
@@ -681,6 +681,9 @@
     "errorsEmailnotvalid": "Ceci n'est pas un email, vérifiez l'orthographe.",
     "errorsAlreadyexists": "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
     "errorsSystemerror": "Une erreur s'est produite",
+    "errorsTitle": "Oh non...",
+    "errorsEmptyemailTitle": "Oops...",
+    "errorsEmptyemail": "Aucun mail renseigné",
     "ok": "S'inscrire"
   },
   "MobileApp": {
@@ -797,6 +800,9 @@
     "community_dispositifs_title": "Les porteurs de dispositifs",
     "community_dispositifs_subtitle": "Ils recensent les dispositifs favorisant l'intégration des personnes réfugiées dans les territoires.",
     "community_cda_title": "Le comité de la démarche accessible",
+    "community_cda_alt_one": "{{count}} membre",
+    "community_cda_alt_other": "{{count}} membres",
+    "community_cda_alt_zero": "Aucun membre",
     "community_cda_subtitle": "Composé d’institutions et d’experts, il rédige des fiches sur les démarches pour faciliter leur compréhension.",
     "community_traducteurs_title": "Les traducteurs bénévoles",
     "community_traducteurs_subtitle": "Ils participent à la traduction de l'information pour la rendre accessible au plus grand nombre.",
