@@ -5,6 +5,7 @@ import { useCallback, useContext, useEffect, useMemo, useRef, useState } from "r
 import { type DeepPartialSkipArrayKey, useFormContext, useWatch } from "react-hook-form";
 import type { TranslateForm } from "~/hooks/dispositif/useDispositifTranslateForm";
 import { type AutosaveErrorDetails, reportAutosaveError } from "~/lib/autosaveError";
+import { removeInvalidTranslationValues } from "~/lib/removeInvalidTranslationValues";
 import API from "~/utils/API";
 import PageContext from "~/utils/pageContext";
 
@@ -47,7 +48,9 @@ const useAutosave = () => {
                 dispositifId: id || "",
                 timeSpent: new Date().getTime() - startDateRef.current.getTime(),
                 translated: {
-                  content: formData.translated.content,
+                  content: formData.translated.content
+                    ? removeInvalidTranslationValues(formData.translated.content)
+                    : formData.translated.content,
                 },
                 toFinish: formData.toFinish,
                 toReview: formData.toReview,
