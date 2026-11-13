@@ -47,7 +47,7 @@
     "lodash": "^4.18.1",
     "microsoft-cognitiveservices-speech-sdk": "^1.51.0",
     "moment": "^2.31.0",
-    "mongoose": "^8.24.4",
+    "mongoose": "^8.24.7",
     "password-hash": "^1.2.2",
     "path-to-regexp": "^8.4.2",
     "phone": "^3.1.72",

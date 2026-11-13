@@ -51,7 +51,7 @@
     "lexical": "^0.27.2",
     "lodash": "^4.18.1",
     "moment": "^2.31.0",
-    "mongoose": "^8.24.4",
+    "mongoose": "^8.24.7",
     "next": "15.5.28",
     "next-i18next": "^15.4.3",
     "next-redux-wrapper": "^8.1.0",
