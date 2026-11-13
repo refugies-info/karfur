@@ -136,3 +136,34 @@ export const getSectionsTranslated = (traduction: Traductions | LeanTraductions)
   ];
   return translatedSections.filter((t) => !notFinished.includes(t));
 };
+
+const STEP_SECTIONS = ["why", "how", "next"] as const;
+
+const pickValidStepTexts = (step: unknown): Record<string, string> =>
+  Object.fromEntries(
+    (["title", "text"] as const)
+      .map((field) => [field, get(step, field)] as const)
+      .filter(([, value]) => typeof value === "string"),
+  );
+
+export const removeOrphanSteps = <T extends Partial<TranslationContent>>(
+  translation: T,
+  frTranslation: Partial<TranslationContent>,
+): T => {
+  if (!translation?.content) return translation;
+  const content = { ...translation.content } as Record<string, unknown>;
+
+  STEP_SECTIONS.forEach((section) => {
+    const steps = content[section];
+    if (!steps || typeof steps !== "object") return;
+    const frSteps = get(frTranslation, `content.${section}`, {});
+    content[section] = Object.fromEntries(
+      Object.entries(steps)
+        .filter(([id]) => id in frSteps)
+        .map(([id, step]) => [id, pickValidStepTexts(step)])
+        .filter(([, step]) => !isEmpty(step)),
+    );
+  });
+
+  return { ...translation, content };
+};
