@@ -49,6 +49,7 @@ import { takeSnapshot } from "~/modules/snapshots/snapshots.service";
 import {
   computeTraductionFinished,
   diffTraductions,
+  removeOrphanSteps,
 } from "~/modules/traductions/traductions.business";
 import { updateLanguagesAvancement } from "../langues/langues.service";
 import { createStructureInDB } from "../structure/structure.repository";
@@ -251,6 +252,11 @@ const rebuildTranslations = async (
   logger.info("[updateDispositif] traduction changes ", traductionDiff);
 
   const newTranslations = cloneDeep(translations);
+  Object.keys(newTranslations)
+    .filter((locale) => locale !== "fr")
+    .forEach((locale) => {
+      newTranslations[locale] = removeOrphanSteps(newTranslations[locale], translationContent);
+    });
 
   const updatedDispositif = {
     _id: dispositif._id,
