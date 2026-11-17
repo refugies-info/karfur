@@ -223,15 +223,19 @@ describe("Widget config webhooks", () => {
         expect(res.status).toHaveBeenCalledWith(201);
       });
 
-      it("requires the content to display", async () => {
+      it("creates a widget before its content is chosen", async () => {
+        models.WidgetConfig.create.mockImplementation((data) =>
+          Promise.resolve({ ...data, _id: widgetConfigId }),
+        );
         const body = validThumbnailBody();
         delete (body.widgetConfig as Partial<typeof body.widgetConfig>).dispositifId;
         const res = mockResponse();
 
         await createHandler(mockRequest({ body }), res);
 
-        expect(res.status).toHaveBeenCalledWith(400);
-        expect(models.WidgetConfig.create).not.toHaveBeenCalled();
+        const created = models.WidgetConfig.create.mock.calls[0][0];
+        expect(created).not.toHaveProperty("dispositifId");
+        expect(res.status).toHaveBeenCalledWith(201);
       });
 
       it("rejects an invalid content id", async () => {
