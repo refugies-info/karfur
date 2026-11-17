@@ -104,7 +104,10 @@ const WidgetConfigCreatePayloadSchema = z
       .object({ type: z.literal("list"), ...commonShape, ...listShape })
       .partial({ description: true })
       .strict(),
-    z.object({ type: z.literal("thumbnail"), ...commonShape, ...thumbnailShape }).strict(),
+    z
+      .object({ type: z.literal("thumbnail"), ...commonShape, ...thumbnailShape })
+      .partial({ dispositifId: true })
+      .strict(),
   ])
   .refine((config) => config.type === "thumbnail" || hasNoOverlap(config), overlapIssue);
 
