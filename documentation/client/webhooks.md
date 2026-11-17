@@ -312,7 +312,7 @@ Every field is required except `description`; there are no defaults.
 
 Response (`201 Created`): `{ "message": "...", "id": "...", "publicId": "..." }`. `publicId` is the stable identifier meant for the embed code.
 
-**`thumbnail`** widgets only take the common fields (`internalTitle`, `structureName`, `authorizedDomains`, `externalTitle`, `status`) and `dispositifId`, the id of the content displayed. Every other field of a `list` widget is rejected.
+**`thumbnail`** widgets only take the common fields (`internalTitle`, `structureName`, `authorizedDomains`, `externalTitle`, `status`) and `dispositifId`, the id of the content displayed (optional on creation: the content can be chosen afterwards, a thumbnail without content displays nothing). Every other field of a `list` widget is rejected.
 
 ```json
 {
