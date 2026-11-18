@@ -629,7 +629,7 @@ const buildSearchAggregation = (
       const isFranceExpr = { $in: ["france", locationArrayExpr] };
 
       if (nearCity.length > 0) {
-        const nearCityRegex = `^(?:${nearCity.map(escapeRegExp).join("|")})(?: - |$)`;
+        const nearCityRegex = `^(?:${nearCity.map(escapeRegExp).join("|")})$`;
         aggregation.push({
           $addFields: {
             isLocal: {
@@ -640,10 +640,14 @@ const buildSearchAggregation = (
                     case: {
                       $anyElementTrue: {
                         $map: {
-                          input: locationArrayExpr,
-                          as: "loc",
+                          input: { $ifNull: ["$map", []] },
+                          as: "poi",
                           in: {
-                            $regexMatch: { input: "$$loc", regex: nearCityRegex, options: "i" },
+                            $regexMatch: {
+                              input: { $ifNull: ["$$poi.city", ""] },
+                              regex: nearCityRegex,
+                              options: "i",
+                            },
                           },
                         },
                       },
