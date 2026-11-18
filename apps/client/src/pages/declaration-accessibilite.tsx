@@ -7,7 +7,7 @@ const DeclarationAccessibilite = () => {
   return (
     <div className="w-full">
       <div className={styles.container + " animated fadeIn prose no-dsfr"}>
-        <SEO title="Accessibilité : partiellement conforme" />
+        <SEO title="Accessibilité : totalement conforme" />
         <h1>Déclaration d'accessibilité</h1>
         <p className={styles.text_muted}>
           <EVAIcon name="clock-outline" fill="#5E5E5E" className={styles.icon} aria-hidden="true" />
@@ -15,8 +15,7 @@ const DeclarationAccessibilite = () => {
         </p>
         <p>
           Cette page présente nos engagements en matière d'accessibilité numérique puis définit le
-          niveau de conformité de ce présent site à la réglementation et aux référentiels en
-          vigueur.
+          niveau de conformité de ce site à la réglementation et aux référentiels en vigueur.
         </p>
 
         <h2>Qu'est-ce que l'accessibilité numérique ?</h2>
@@ -61,12 +60,12 @@ const DeclarationAccessibilite = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            article 47 de la loi n°2005-102 du 11 février 2005
+            article 47 de la loi n° 2005-102 du 11 février 2005
           </a>
           .
         </p>
 
-        <h2>Déclaration de conformité partielle au RGAA</h2>
+        <h2>Déclaration de conformité au RGAA</h2>
         <p>
           Cette déclaration s'applique au site{" "}
           <a href="https://refugies.info/" target="_blank" rel="noopener noreferrer">
@@ -77,122 +76,54 @@ const DeclarationAccessibilite = () => {
 
         <h3>État de conformité</h3>
         <p>
-          Ce présent site est partiellement conforme au{" "}
+          Le présent site est totalement conforme au{" "}
           <a
             href="https://accessibilite.numerique.gouv.fr/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            RGAA (Référentiel Général d'Amélioration de l'Accessibilité)
+            RGAA (Référentiel général d'amélioration de l'accessibilité)
           </a>{" "}
-          - version 4.1.2 en raison des non-conformités énumérées ci-après.
+          - version 4.1.2.
         </p>
 
         <h3>Résultats des tests</h3>
         <p>
-          L'audit de conformité au RGAA version 4.1.2 réalisé en mars 2026 par la société{" "}
+          L'audit initial de conformité au RGAA version 4.1.2 réalisé en mars 2026 par la société{" "}
           <a href="https://ideance.net/" target="_blank" rel="noopener noreferrer">
             Ideance
           </a>{" "}
-          révèle que sur l'échantillon :
+          a révélé que sur l'échantillon :
         </p>
         <ul>
           <li>
-            Le taux de conformité global est de 57 %. Ce taux est obtenu en divisant le nombre de
+            Le taux de conformité global était de 57 %. Ce taux est obtenu en divisant le nombre de
             critères conformes par le nombre de critères applicables.
           </li>
           <li>
-            Le taux de conformité moyen est de 68,3 %. Ce taux est obtenu en faisant la moyenne des
-            taux de conformité de chaque page.
+            Le taux de conformité moyen était de 68,3 %. Ce taux est obtenu en faisant la moyenne
+            des taux de conformité de chaque page.
           </li>
         </ul>
+        <p>
+          À la suite de phases correctives menées par les équipes du site Réfugiés.info et d'un
+          contre-audit réalisé en novembre 2026 par la société Ideance, ce dernier révèle que, sur
+          l'échantillon, le taux de conformité global est désormais de 100 %.
+        </p>
+        <p>
+          Compte tenu du délai relativement conséquent intervenu entre l'audit initial (mené courant
+          mars 2026) et le contre-audit (mené courant novembre 2026), il est possible que des
+          évolutions mineures (graphiques, techniques et/ou éditoriales) apportées sur le site
+          entre-temps n'aient pas fait l'objet d'audit.
+        </p>
+        <p>
+          Par conséquent, il se peut que ces taux de conformité soient en réalité légèrement
+          différents, à la hausse comme à la baisse, en raison de la présence de nouveaux critères
+          conformes ou non conformes.
+        </p>
+        <p>Ces éventuelles évolutions seront analysées lors du prochain audit du site.</p>
 
         <h3>Contenus non accessibles</h3>
-
-        <h4>Non-conformités</h4>
-        <p>Liste des critères non conformes :</p>
-        <ul>
-          <li>1.1 - Des images porteuses d'informations n'ont pas d'alternative textuelle.</li>
-          <li>
-            1.2 - Des images décoratives ne sont pas ignorées par les technologies d'assistance.
-          </li>
-          <li>
-            1.3 - Des alternatives textuelles d'images porteuses d'informations ne sont pas
-            pertinentes.
-          </li>
-          <li>2.2 - Des titres d'iframes ne sont pas pertinents.</li>
-          <li>
-            3.2 - Des contrastes entre couleur de texte et couleur d'arrière-plan ne sont pas
-            suffisamment élevés.
-          </li>
-          <li>
-            3.3 - Des contrastes entre couleur de composants d'interface ou éléments graphiques
-            porteurs d'informations et couleur d'arrière-plan ne sont pas suffisamment élevés.
-          </li>
-          <li>
-            4.1 - Des vidéos ne possèdent pas de transcription textuelle ou d'audiodescription.
-          </li>
-          <li>4.5 - Des vidéos ne possèdent pas d'audiodescription.</li>
-          <li>4.7 - Des vidéos ne sont pas clairement identifiables.</li>
-          <li>6.1 - Des liens ne sont pas explicites.</li>
-          <li>7.1 - Des scripts ne sont pas compatibles avec les technologies d'assistance.</li>
-          <li>
-            7.5 - Des messages de statut ne sont pas correctement restitués par les technologies
-            d'assistance.
-          </li>
-          <li>8.5 - Des pages ne possèdent pas de titre.</li>
-          <li>8.6 - Des titres de page ne sont pas pertinents.</li>
-          <li>8.7 - Des changements de langue ne sont pas indiqués.</li>
-          <li>8.9 - Des balises sont utilisées uniquement à des fins de présentation.</li>
-          <li>8.10 - Des changements de sens de lecture ne sont pas signalés.</li>
-          <li>
-            9.1 - Des informations ne sont pas structurées par l'utilisation appropriée de titres.
-          </li>
-          <li>9.3 - Des listes ne sont pas correctement structurées.</li>
-          <li>9.4 - Des citations ne sont pas correctement indiquées.</li>
-          <li>
-            10.1 - Des feuilles de styles ne sont pas utilisées pour contrôler la présentation.
-          </li>
-          <li>
-            10.2 - Des contenus visibles porteurs d'informations ne sont pas présents lorsque les
-            feuilles de styles sont désactivées.
-          </li>
-          <li>
-            10.4 - Des textes ne sont pas lisibles lorsque la taille des caractères est augmentée
-            jusqu'à 200 %, au moins.
-          </li>
-          <li>
-            10.6 - Des liens dont la nature n'est pas évidente ne sont pas visibles par rapport à
-            leur texte environnant.
-          </li>
-          <li>
-            10.8 - Des contenus cachés n'ont pas vocation à être ignorés par les technologies
-            d'assistance.
-          </li>
-          <li>
-            10.11 - Des contenus ne peuvent pas être présentés sans avoir recours à un défilement
-            horizontal pour une fenêtre ayant une largeur de 320px.
-          </li>
-          <li>11.1 - Des champs de formulaire n'ont pas d'étiquette.</li>
-          <li>11.6 - Des regroupements de champs de même nature n'ont pas de légende.</li>
-          <li>11.10 - Des contrôles de saisie ne sont pas utilisés de manière pertinente.</li>
-          <li>
-            11.13 - La finalité de champs de saisie ne peut pas être déduite pour faciliter leur
-            remplissage automatique avec les données de l'utilisateur ou de l'utilisatrice.
-          </li>
-          <li>
-            12.7 - Un lien d'évitement ou d'accès rapide à la zone de contenu principal est absent.
-          </li>
-          <li>12.8 - L'ordre de tabulation n'est pas cohérent.</li>
-          <li>
-            13.3 - Des documents bureautiques en téléchargement ne possèdent pas de version
-            accessible.
-          </li>
-          <li>
-            13.5 - Des contenus cryptiques (art ASCII, émoticône, syntaxe cryptique) n'ont pas
-            d'alternative.
-          </li>
-        </ul>
 
         <h4>Contenus non soumis à l'obligation d'accessibilité</h4>
         <p>
@@ -229,9 +160,9 @@ const DeclarationAccessibilite = () => {
           que de la norme européenne EN 301 549.
         </p>
         <p>
-          En pratique, ce critère n'a désormais plus aucun bénéfice pour l'accessibilité aux
-          personnes handicapées. Les éventuels problèmes d'accessibilité émanant de la non validité
-          du code source généré étant couverts par d'autres critères du RGAA.
+          En pratique, ce critère n'apporte désormais plus aucun bénéfice pour l'accessibilité aux
+          personnes handicapées. Les éventuels problèmes d'accessibilité émanant de la non-validité
+          du code source généré sont couverts par d'autres critères du RGAA.
         </p>
 
         <h4>Création de compte : critère 7.5</h4>
@@ -255,13 +186,6 @@ const DeclarationAccessibilite = () => {
 
         <h4>Éléments de tiers non audités</h4>
 
-        <h5>Lecteur vidéo</h5>
-        <p>Le lecteur vidéo « YouTube » n'a pas fait l'objet d'un audit complet et détaillé.</p>
-        <p>
-          Il a toutefois été vérifié que son utilisation est bien possible avec différentes
-          technologies d'assistance.
-        </p>
-
         <h5>Chatbot</h5>
         <p>Le chatbot d'aide n'a pas fait l'objet d'un audit complet et détaillé.</p>
         <p>
@@ -279,7 +203,7 @@ const DeclarationAccessibilite = () => {
         </p>
 
         <h3>Établissement de cette déclaration</h3>
-        <p>Cette déclaration a été établie le 16 mars 2026.</p>
+        <p>Cette déclaration a été établie le 17 novembre 2026.</p>
 
         <h4>Technologies utilisées pour la réalisation du site</h4>
         <ul>
@@ -405,20 +329,10 @@ const DeclarationAccessibilite = () => {
           </li>
         </ul>
 
-        <h3>Démarche d'amélioration</h3>
-        <p>
-          Réfugiés.info a engagé une démarche d'amélioration continue de l'accessibilité depuis
-          2024. L'audit de mars 2026 a permis de mesurer les progrès réalisés et d'identifier les
-          non-conformités restantes. Les corrections sont en cours de déploiement progressif.
-        </p>
-
         <h3>Retour d'information et contact</h3>
         <p>
           Si vous n'arrivez pas à accéder à un contenu ou à un service de ce site, vous pouvez nous
-          contacter via un des moyens ci-après en décrivant votre problème :
-        </p>
-        <p>
-          Écrivez-nous à l'adresse email :{" "}
+          contacter en nous écrivant à l'adresse email :{" "}
           <a href="mailto:contact@refugies.info">contact@refugies.info</a>.
         </p>
         <p>Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés au plus tard.</p>
@@ -479,7 +393,7 @@ const DeclarationAccessibilite = () => {
             services privés » et enfin « Handicap ».
           </li>
           <li>
-            Soit envoyer un courrier gratuit (sans mettre de timbre) par la poste à l'adresse
+            Soit envoyez un courrier gratuit (sans mettre de timbre) par la poste à l'adresse
             suivante :
           </li>
         </ul>
@@ -501,7 +415,7 @@ const DeclarationAccessibilite = () => {
             className={styles.icon}
             aria-hidden="true"
           />
-          Mise à jour : <span className="text-default-success">26 mars 2026</span>
+          Mise à jour : <span className="text-default-success">17 novembre 2026</span>
         </p>
       </div>
     </div>
