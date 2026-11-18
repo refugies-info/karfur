@@ -59,7 +59,7 @@ const Footer = () => {
     <>
       <h2 className="sr-only">{t("Footer.useful_links", "Liens utiles")}</h2>
       <DSFRFooter
-        accessibility="partially compliant"
+        accessibility="fully compliant"
         brandTop="GOUVERNEMENT"
         id="fr-footer"
         className={cn(styles.footer)}
@@ -104,7 +104,7 @@ const Footer = () => {
             className="fr-footer__bottom-link"
             prefetch={false}
           >
-            {t("Footer.accessibility_link", "Accessibilité : partiellement conforme")}
+            {t("Footer.accessibility_link", "Accessibilité : totalement conforme")}
           </Link>,
           <Link
             href={getPath("/mentions-legales", locale)}
