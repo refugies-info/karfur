@@ -19,6 +19,10 @@ export interface CourseSearchParams {
   limit: number;
 }
 
+export const getSearchedDepartments = (filters: FiltersState): string[] => [
+  ...new Set([...filters.departments, ...filters.cities.map((city) => city.department)]),
+];
+
 export const buildSearchParams = (
   { filters, search, activeTab, locale, limit }: CourseSearchParams,
   page: number,
@@ -33,9 +37,8 @@ export const buildSearchParams = (
   searchParams.append("themes", LEARN_FRENCH_THEME_ID);
 
   if (search) searchParams.set("search", search);
-  const departments = new Set(filters.departments);
-  for (const city of filters.cities) departments.add(city.department);
-  for (const department of departments) searchParams.append("departments", department);
+  for (const department of getSearchedDepartments(filters))
+    searchParams.append("departments", department);
   for (const city of filters.cities) searchParams.append("nearCity", city.name);
   for (const level of filters.frenchLevel) searchParams.append("frenchLevel", level);
   for (const category of filters.categories) searchParams.append("needs", String(category));
