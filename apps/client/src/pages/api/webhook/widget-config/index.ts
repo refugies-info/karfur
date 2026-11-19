@@ -12,7 +12,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { WidgetConfig } = await getWebhookModels();
     const widgetConfigs = await WidgetConfig.find()
       .sort({ updatedAt: -1 })
-      .select("publicId internalTitle type status structureName updatedAt")
+      .select(
+        "publicId internalTitle type status structureName createdAt updatedAt statusUpdatedAt lastTrafficAt",
+      )
       .lean();
 
     return res.status(200).json(widgetConfigs);

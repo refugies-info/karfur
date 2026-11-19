@@ -36,6 +36,7 @@ const WidgetConfigZodSchema = z.object({
 
   status: z.enum(WIDGET_CONFIG_STATUSES),
   statusUpdatedAt: z.date(),
+  lastTrafficAt: z.date().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 
@@ -45,7 +46,7 @@ const WidgetConfigZodSchema = z.object({
   authorizedDomains: z.array(z.string()),
 
   externalTitle: z.string().max(100),
-  thumbnailDispositifId: zId("Dispositif").optional(),
+  dispositifId: zId("Dispositif").optional(),
   description: z.string().max(300).optional(),
   displayDescription: z.boolean().optional(),
 
