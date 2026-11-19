@@ -22,14 +22,14 @@ overrides:
   validator: ^13.15.20
   mdast-util-to-hast: '>=13.2.1'
   react-server-dom-webpack: '>=19.0.2'
-  node-forge: 1.4.2
+  node-forge: 1.4.3
   handlebars: 4.7.10
   brace-expansion: ^2.1.7
   jsonwebtoken>jws: ^3.2.3
   google-auth-library>jws: ^4.0.1
   gtoken>jws: ^4.0.1
   googleapis-common>google-auth-library: 10.9.1
-  fast-xml-parser: 5.7.0
+  fast-xml-parser: 5.12.0
   immutable: ^5.1.8
   flatted: 3.4.2
   tar: ^7.5.22
@@ -282,8 +282,8 @@ importers:
         specifier: ^2.31.0
         version: 2.31.0
       mongoose:
-        specifier: ^8.24.4
-        version: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+        specifier: ^8.24.7
+        version: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       next:
         specifier: 15.5.28
         version: 15.5.28(@babel/core@7.29.7)(@opentelemetry/api@1.9.1)(@types/node@22.20.1)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.105.0)
@@ -890,8 +890,8 @@ importers:
         specifier: ^2.31.0
         version: 2.31.0
       mongoose:
-        specifier: ^8.24.4
-        version: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+        specifier: ^8.24.7
+        version: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       password-hash:
         specifier: ^1.2.2
         version: 1.2.2
@@ -1054,8 +1054,8 @@ importers:
   packages/api-types:
     dependencies:
       mongoose:
-        specifier: ^8.24.4
-        version: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+        specifier: ^8.24.7
+        version: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
     devDependencies:
       '@refugies-info/typescript-config':
         specifier: workspace:*
@@ -1095,13 +1095,13 @@ importers:
         version: link:../api-types
       '@zodyac/zod-mongoose':
         specifier: ^4.2.2
-        version: 4.2.2(patch_hash=e4532396b16332b9b772638411d64fdee2df80e5870017a9f6941c976527c3f9)(mongoose@8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7))(zod@4.6.7)
+        version: 4.2.2(patch_hash=e4532396b16332b9b772638411d64fdee2df80e5870017a9f6941c976527c3f9)(mongoose@8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7))(zod@4.6.7)
       jwt-simple:
         specifier: ^0.5.6
         version: 0.5.6
       mongoose:
-        specifier: ^8.24.4
-        version: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+        specifier: ^8.24.7
+        version: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       password-hash:
         specifier: ^1.2.2
         version: 1.2.2
@@ -3610,8 +3610,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@nodable/entities@2.2.0':
-    resolution: {integrity: sha512-9uGyhaQavEUMC8AIddIjau4NsnsXhou+j5sBAGojCM1oxmQpVKTWR/9JxABD6UAv12vpIms55fPZKFQEhG6uBg==}
+  '@nodable/entities@3.1.0':
+    resolution: {integrity: sha512-LsS/DjHr+uDM647Gru/cA8+J3a3HfhttwCKLyuoyN7yXTFCxKBtSgMQBvrW9yNPa2/zDRUNuGPaH5QUFoa4arQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -8224,8 +8224,8 @@ packages:
   fast-xml-builder@1.1.7:
     resolution: {integrity: sha512-Yh7/7rQuMXICNr0oMYDR2yHP6oUvmQsTToFeOWj/kIDhAwQ+c4Ol/lbcwOmEM5OHYQmh6S6EQSQ1sljCKP36bQ==}
 
-  fast-xml-parser@5.7.0:
-    resolution: {integrity: sha512-MTcrUoRQ1GSQ9iG3QJzBGquYYYeA7piZaJoIWbPFGbRn6Jj6z7xgoAyi4DrZX4y2ZIQQBF59gc/zmvvejjgoFQ==}
+  fast-xml-parser@5.12.0:
+    resolution: {integrity: sha512-/pXxRBtwxY9w8z7YbgsvIPPcPvFDsTbIkWwTQJhzNJPokj+TbN6ftmcv4j/pEQDvOCNnKGDzuk5Bo2oogIOiFg==}
     hasBin: true
 
   fastest-levenshtein@1.0.16:
@@ -8953,6 +8953,9 @@ packages:
   is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
     engines: {node: '>=10'}
+
+  is-unsafe@2.0.3:
+    resolution: {integrity: sha512-ZBllczCCO267vgdFb6Tq3pv+LhHaCiGMdr+ZsuL+OopruAg7S+3ZDs1vD0RPC0uSrkjzbraxaGjtX1YBxjPeFQ==}
 
   is-what@4.1.16:
     resolution: {integrity: sha512-ZhMwEosbFJkA0YhFnNDgTM4ZxDRsS6HqTo7qsZM08fehyRYIYa0yHu5R6mgo1n/8MgaPBXiPimPD77baVFYg+A==}
@@ -10328,16 +10331,16 @@ packages:
       socks:
         optional: true
 
-  mongoose@8.24.4:
-    resolution: {integrity: sha512-DoV8hYy5ssoh/j99rhYzeS2BLLcLJZ+EGQYfe/Ln+yMorBy0wgKdlwJBj59zJ1N0MnEKQypbeqUYFB0FVThmYg==}
+  mongoose@8.24.8:
+    resolution: {integrity: sha512-p6g/mvvW2PJlC3lgzQJ7PECArfaOTKWJVG/KHf67WYU3MvJ72ZWdv5u7syFRe881IjALMZpKwffNE97G10HTzg==}
     engines: {node: '>=16.20.1'}
 
   mpath@0.9.0:
     resolution: {integrity: sha512-ikJRQTk8hw5DEoFVxHG1Gn9T/xcjtdnOKIU1JTmGjZZlg9LST2mBLmcX3/ICIbgJydT2GOc15RnNy5mHmzfSew==}
     engines: {node: '>=4.0.0'}
 
-  mquery@5.0.0:
-    resolution: {integrity: sha512-iQMncpmEK8R8ncT8HJGsGc9Dsp8xcgYMVSbs5jgnm1lFHTZqMJTUWTDx1LBO8+mK3tPNZWFLBghQEIOULSTHZg==}
+  mquery@5.0.1:
+    resolution: {integrity: sha512-C99lWV0TFI34pS008jBsi3JrE2xZPnTgUw5yApQR71nRP0hxLy8D5m1Lbbk83c8AQWJwdJ0329HzFtZ1MRTUIw==}
     engines: {node: '>=14.0.0'}
 
   mri@1.2.0:
@@ -10494,8 +10497,8 @@ packages:
     resolution: {integrity: sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
-  node-forge@1.4.2:
-    resolution: {integrity: sha512-rRtAR5XLJ8gCKd9du4qrKAsgCG1ObGP4gLeNJMa4vYSeq4bmBMOJk5IHkrviBV0q7uoAJlVd8HEQYQSVUb4FGQ==}
+  node-forge@1.4.3:
+    resolution: {integrity: sha512-P6wzfh6t70avmV8FrVEAd/36sOPJQ+hkaJVX1Laap9J/77m7M0eyozDvc8SwnDf4P7MP94gwbAAo0rg3YVXT+g==}
     engines: {node: '>= 6.13.0'}
 
   node-int64@0.4.0:
@@ -13130,6 +13133,10 @@ packages:
     resolution: {integrity: sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==}
     engines: {node: '>=18'}
 
+  xml-naming@0.3.0:
+    resolution: {integrity: sha512-ghig2TBE/H11aOVgmahA3MhimvkBr6JIYknH/Dhdk10nXwdbIqBJsbfMxpvFPG8bAw77gN29aQWvKpmVoPlvPQ==}
+    engines: {node: '>=16.0.0'}
+
   xml2js@0.6.0:
     resolution: {integrity: sha512-eLTh0kA8uHceqesPqSE+VvO1CDDJWMwlQfB6LuN6T8w6MaDJ8Txm8P7s5cHD0miF0V+GGTZrDQfxPZQVsur33w==}
     engines: {node: '>=4.0.0'}
@@ -13488,7 +13495,7 @@ snapshots:
       '@smithy/util-body-length-browser': 4.5.2
       '@smithy/util-middleware': 4.5.2
       '@smithy/util-utf8': 4.5.2
-      fast-xml-parser: 5.7.0
+      fast-xml-parser: 5.12.0
       tslib: 2.8.1
     optional: true
 
@@ -15053,7 +15060,7 @@ snapshots:
       glob: 10.5.0
       lan-network: 0.2.1
       minimatch: 9.0.9
-      node-forge: 1.4.2
+      node-forge: 1.4.3
       npm-package-arg: 11.0.3
       ora: 3.4.0
       picomatch: 4.0.7
@@ -15089,7 +15096,7 @@ snapshots:
 
   '@expo/code-signing-certificates@0.0.6':
     dependencies:
-      node-forge: 1.4.2
+      node-forge: 1.4.3
 
   '@expo/config-plugins@54.0.5':
     dependencies:
@@ -16683,7 +16690,7 @@ snapshots:
   '@next/swc-win32-x64-msvc@15.5.28':
     optional: true
 
-  '@nodable/entities@2.2.0':
+  '@nodable/entities@3.1.0':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -19602,9 +19609,9 @@ snapshots:
 
   '@yarnpkg/lockfile@1.1.0': {}
 
-  '@zodyac/zod-mongoose@4.2.2(patch_hash=e4532396b16332b9b772638411d64fdee2df80e5870017a9f6941c976527c3f9)(mongoose@8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7))(zod@4.6.7)':
+  '@zodyac/zod-mongoose@4.2.2(patch_hash=e4532396b16332b9b772638411d64fdee2df80e5870017a9f6941c976527c3f9)(mongoose@8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7))(zod@4.6.7)':
     dependencies:
-      mongoose: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+      mongoose: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       zod: 4.6.7
 
   abab@2.0.6: {}
@@ -21525,12 +21532,14 @@ snapshots:
       path-expression-matcher: 1.6.2
     optional: true
 
-  fast-xml-parser@5.7.0:
+  fast-xml-parser@5.12.0:
     dependencies:
-      '@nodable/entities': 2.2.0
+      '@nodable/entities': 3.1.0
       fast-xml-builder: 1.1.7
+      is-unsafe: 2.0.3
       path-expression-matcher: 1.6.2
       strnum: 2.5.1
+      xml-naming: 0.3.0
     optional: true
 
   fastest-levenshtein@1.0.16: {}
@@ -22405,6 +22414,9 @@ snapshots:
       which-typed-array: 1.1.22
 
   is-unicode-supported@0.1.0: {}
+
+  is-unsafe@2.0.3:
+    optional: true
 
   is-what@4.1.16: {}
 
@@ -24703,13 +24715,13 @@ snapshots:
       '@aws-sdk/credential-providers': 3.883.0
       socks: 2.8.7
 
-  mongoose@8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7):
+  mongoose@8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7):
     dependencies:
       bson: 6.10.4
       kareem: 2.6.3
       mongodb: 6.20.0(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       mpath: 0.9.0
-      mquery: 5.0.0
+      mquery: 5.0.1
       ms: 2.1.3
       sift: 17.1.3
     transitivePeerDependencies:
@@ -24724,7 +24736,7 @@ snapshots:
 
   mpath@0.9.0: {}
 
-  mquery@5.0.0:
+  mquery@5.0.1:
     dependencies:
       debug: 4.4.1(supports-color@5.5.0)
     transitivePeerDependencies:
@@ -24956,7 +24968,7 @@ snapshots:
       fetch-blob: 3.2.0
       formdata-polyfill: 4.0.10
 
-  node-forge@1.4.2: {}
+  node-forge@1.4.3: {}
 
   node-int64@0.4.0: {}
 
@@ -26785,7 +26797,7 @@ snapshots:
       fastq: 1.20.1
       ioredis: 5.11.1
       keyv: 4.5.4
-      mongoose: 8.24.4(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
+      mongoose: 8.24.8(@aws-sdk/credential-providers@3.883.0)(socks@2.8.7)
       mpath: 0.9.0
       typedi: 0.10.0
     transitivePeerDependencies:
@@ -28085,6 +28097,9 @@ snapshots:
   xml-name-validator@4.0.0: {}
 
   xml-name-validator@5.0.0: {}
+
+  xml-naming@0.3.0:
+    optional: true
 
   xml2js@0.6.0:
     dependencies:

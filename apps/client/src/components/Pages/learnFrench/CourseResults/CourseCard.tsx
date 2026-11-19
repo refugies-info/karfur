@@ -10,6 +10,7 @@ import useLocale from "~/hooks/useLocale";
 import { jsUcfirst } from "~/lib";
 import { getCommitmentText, getFrequencyText, getPriceText } from "~/lib/dispositif";
 import { getNextUpcomingSession } from "~/lib/learnFrench/courseSessions";
+import { getDepartmentBadge } from "~/lib/learnFrench/departmentBadge";
 import { getFrenchLevelOptionLabel } from "~/lib/learnFrench/frenchLevelLabels";
 import { getPoiDistinctTitle, getPoiLocationText } from "~/lib/learnFrench/poiLocation";
 import { getPath } from "~/routes";
@@ -18,17 +19,11 @@ import { SingleLineTags } from "./SingleLineTags";
 interface Props {
   dispositif: SimpleDispositif;
   needLabels: Map<string, string>;
+  searchedDepartments: string[];
 }
 
 const CONTACT_BUTTON_CLASSNAME =
   "border-default-grey !text-title-blue-france relative z-10 inline-flex min-h-11 items-center gap-2 border bg-white px-3 text-sm font-medium whitespace-nowrap";
-
-const getDepartmentBadge = (dispositif: SimpleDispositif): string | null => {
-  const location = dispositif.metadatas?.location;
-  const first = Array.isArray(location) ? location[0] : location;
-  if (!first || first === LOCATION_FRANCE || first === LOCATION_ONLINE) return null;
-  return first.split(" - ")[1] ?? first;
-};
 
 const isOnlineCourse = (dispositif: SimpleDispositif): boolean => {
   const location = dispositif.metadatas?.location;
@@ -59,7 +54,10 @@ export const CourseCard = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
 
   const nextSession = getNextUpcomingSession(props.dispositif);
   const sessionDate = nextSession ? new Date(nextSession.startDate) : null;
-  const departmentBadge = getDepartmentBadge(props.dispositif);
+  const departmentBadge = getDepartmentBadge(
+    props.dispositif.metadatas?.location,
+    props.searchedDepartments,
+  );
   const isOnline = isOnlineCourse(props.dispositif);
   const isFranceWide = isFranceWideCourse(props.dispositif);
   const needTags = (props.dispositif.needs ?? [])

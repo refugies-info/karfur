@@ -20,6 +20,7 @@ interface Props {
   onResetFilters: () => void;
   onSeeOtherCourses?: () => void;
   needLabels: Map<string, string>;
+  searchedDepartments: string[];
 }
 
 export const CourseResults = (props: Props) => {
@@ -142,6 +143,7 @@ export const CourseResults = (props: Props) => {
             ref={index === focusIndex ? firstNewCardRef : undefined}
             dispositif={dispositif}
             needLabels={props.needLabels}
+            searchedDepartments={props.searchedDepartments}
           />
         ))}
       </div>

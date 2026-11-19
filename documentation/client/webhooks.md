@@ -312,7 +312,7 @@ Every field is required except `description`; there are no defaults.
 
 Response (`201 Created`): `{ "message": "...", "id": "...", "publicId": "..." }`. `publicId` is the stable identifier meant for the embed code.
 
-**`thumbnail`** widgets only take the common fields (`internalTitle`, `structureName`, `authorizedDomains`, `externalTitle`, `status`) and `dispositifId`, the id of the content displayed. Every other field of a `list` widget is rejected.
+**`thumbnail`** widgets only take the common fields (`internalTitle`, `structureName`, `authorizedDomains`, `externalTitle`, `status`) and `dispositifId`, the id of the content displayed (optional on creation: the content can be chosen afterwards, a thumbnail without content displays nothing). Every other field of a `list` widget is rejected.
 
 ```json
 {
@@ -335,7 +335,7 @@ Same payload as create, with `widgetConfig._id` and only the fields to change. `
 
 #### Read — `GET /api/webhook/widget-config` and `GET /api/webhook/widget-config/{id}`
 
-The list returns summaries (`_id`, `publicId`, `internalTitle`, `type`, `status`, `structureName`, `updatedAt`), most recently updated first. The detail returns the whole config as stored (`_id` included).
+The list returns summaries (`_id`, `publicId`, `internalTitle`, `type`, `status`, `structureName`, `createdAt`, `updatedAt`, `statusUpdatedAt`, `lastTrafficAt`), most recently updated first. `lastTrafficAt` is absent until the widget API records a visit; it is never written by the editor. The detail returns the whole config as stored (`_id` included).
 
 #### Preview Count — `POST /api/webhook/widget-config/preview-count`
 

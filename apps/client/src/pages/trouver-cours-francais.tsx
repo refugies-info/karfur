@@ -39,6 +39,7 @@ import {
   type CourseSearchParams,
   type CourseSearchResponse,
   fetchCourseSearchPage,
+  getSearchedDepartments,
 } from "~/services/FrenchCourseSearch/frenchCourseSearch.service";
 import { fetchNeedsActionCreator } from "~/services/Needs/needs.actions";
 import { needsSelector } from "~/services/Needs/needs.selectors";
@@ -83,6 +84,7 @@ const LearnFrench = (props: Props) => {
     isSettled: !courseSearch.isLoading,
     hasError: courseSearch.error,
   });
+  const searchedDepartments = useMemo(() => getSearchedDepartments(filters), [filters]);
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [isLocationPanelOpen, setIsLocationPanelOpen] = useState(false);
 
@@ -191,6 +193,7 @@ const LearnFrench = (props: Props) => {
                     : undefined
                 }
                 needLabels={needLabels}
+                searchedDepartments={searchedDepartments}
               />
             </div>
           </div>
