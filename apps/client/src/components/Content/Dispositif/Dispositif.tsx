@@ -3,9 +3,7 @@ import { ContentType } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useTranslation } from "next-i18next";
 import { useContext, useMemo, useRef } from "react";
-import ReactMarkdown from "react-markdown";
 import { useSelector } from "react-redux";
-import remarkGfm from "remark-gfm";
 import { Banner, Breadcrumb, Contributors, Section } from "~/components/Pages/dispositif";
 import {
   BannerEdition,
