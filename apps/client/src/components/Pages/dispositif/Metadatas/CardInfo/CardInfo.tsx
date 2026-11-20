@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { type HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FRLink from "~/components/UI/FRLink";
+import { useLocale } from "~/hooks";
 import { formatDepartment } from "~/lib/departments";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
@@ -16,6 +17,7 @@ type CardInfoProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => {
+  const locale = useLocale();
   const { t } = useTranslation();
 
   const { mode } = useContext(PageContext);
@@ -143,7 +145,7 @@ const CardInfo = ({ onClick, formData, className, ...props }: CardInfoProps) => 
                       ? (location as string[]).map((loc: string) => (
                           <li key={loc} className="inline sm:flex" role="listitem">
                             <FRLink
-                              href={isEditMode ? "#" : getLocationLink(loc)}
+                              href={isEditMode ? "#" : getLocationLink(loc, locale)}
                               onClick={() => Event("DISPO_VIEW", "click location", "Left sidebar")}
                             >
                               {formatDepartment(loc)}
