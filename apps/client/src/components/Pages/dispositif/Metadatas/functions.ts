@@ -107,13 +107,13 @@ export const getConditionImage = (condition: conditionType) => {
   }
 };
 
-export const getLocationLink = (department: string): LinkProps["href"] => {
+export const getLocationLink = (department: string, locale: string): LinkProps["href"] => {
   return {
-    pathname: getPath("/recherche", "fr"),
+    pathname: getPath("/recherche", locale),
     search: buildUrlQuery({ departments: [department.split(" - ")[1]] }),
   };
 };
-export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
+export const getAgeLink = (age: Metadatas["age"], locale: string): LinkProps["href"] => {
   const options: AgeOptions[] = [];
   if (age) {
     if (age.ages[0] < 18) options.push("-18");
@@ -121,18 +121,21 @@ export const getAgeLink = (age: Metadatas["age"]): LinkProps["href"] => {
     if (age.ages[0] >= 25 || age.ages[1] > 25) options.push("+25");
   }
   return {
-    pathname: getPath("/recherche", "fr"),
+    pathname: getPath("/recherche", locale),
     search: buildUrlQuery({ age: options }),
   };
 };
-export const getFrenchLevelLink = (frenchLevel: Metadatas["frenchLevel"]): LinkProps["href"] => {
+export const getFrenchLevelLink = (
+  frenchLevel: Metadatas["frenchLevel"],
+  locale: string,
+): LinkProps["href"] => {
   const options: FrenchOptions[] = frenchLevel
     ? frenchLevelOptionKeys.filter((option) =>
         frenchLevelValuesByOption[option].some((level) => frenchLevel.includes(level)),
       )
     : [];
   return {
-    pathname: getPath("/recherche", "fr"),
+    pathname: getPath("/recherche", locale),
     search: buildUrlQuery({ frenchLevel: options }),
   };
 };

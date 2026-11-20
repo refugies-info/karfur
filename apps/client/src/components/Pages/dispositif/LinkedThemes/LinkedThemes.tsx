@@ -44,7 +44,7 @@ const LinkedThemes = ({ className }: { className?: string }) => {
         <li>
           <SearchThemeButton
             theme={theme}
-            href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+            href={getPath("/recherche", locale, `?${buildUrlQuery({ themes: [theme._id] })}`)}
             value={jsUcfirst(theme.short[locale] || "")}
             onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
           />
@@ -55,7 +55,7 @@ const LinkedThemes = ({ className }: { className?: string }) => {
           <li key={i} className="">
             <SearchThemeButton
               theme={theme}
-              href={getPath("/recherche", "fr", `?${buildUrlQuery({ themes: [theme._id] })}`)}
+              href={getPath("/recherche", locale, `?${buildUrlQuery({ themes: [theme._id] })}`)}
               value={jsUcfirst(theme.short[locale] || "")}
               onClick={() => Event("DISPO_VIEW", "click theme", "Linked themes")}
             />
@@ -69,7 +69,7 @@ const LinkedThemes = ({ className }: { className?: string }) => {
             <li key={i}>
               <SearchThemeButton
                 theme={theme}
-                href={getPath("/recherche", "fr", `?${buildUrlQuery({ needs: [need._id] })}`)}
+                href={getPath("/recherche", locale, `?${buildUrlQuery({ needs: [need._id] })}`)}
                 value={need[locale]?.text || need.fr.text}
                 onClick={() => Event("DISPO_VIEW", "click need", "Linked themes")}
               />
