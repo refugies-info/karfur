@@ -126,7 +126,7 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (axios.isCancel(error)) {
-      logger.error("Error (request cancelled): ", { error: error.message });
+      logger.warn("Error (request cancelled): ", { error: error.message });
     }
     return Promise.reject(error);
   },
