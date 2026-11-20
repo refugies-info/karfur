@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import * as Sentry from "@sentry/nextjs";
+import axios from "axios";
 
 const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
 
@@ -7,10 +8,22 @@ const isProduction = process.env.NEXT_PUBLIC_REACT_APP_ENV === "production";
  * Extrait une Error exploitable par Sentry : sans elle, tous les événements d'un même appel
  * se regroupent sur la stack de ce fichier au lieu du site d'appel.
  */
-const toError = (message: string, data?: any): Error => {
-  if (data instanceof Error) return data;
+export const toError = (message: string, rawData?: any): Error => {
+  if (rawData instanceof Error) return rawData;
+  // Most call sites log `{ error }`: unwrap it so the server message isn't lost.
+  const data = rawData?.error ?? rawData;
   if (data?.response?.data?.message) return new Error(`${message} ${data.response.data.message}`);
   return new Error(message);
+};
+
+/**
+ * An axios error without a response never reached the server (offline, flaky mobile network,
+ * request aborted by a navigation): nothing to fix on our side, so it stays out of Sentry.
+ * Callers pass the error either directly or wrapped as `{ error }`.
+ */
+export const isNetworkError = (data?: any): boolean => {
+  const error = data instanceof Error ? data : data?.error;
+  return axios.isAxiosError(error) && !error.response;
 };
 
 const THROTTLE_MS = 60_000;
@@ -56,7 +69,7 @@ export class logger {
    */
   static error = (message: string, data?: any, options?: { captureToSentry?: boolean }) => {
     if (!isProduction) console.error(message, data);
-    if (options?.captureToSentry === false) return;
+    if (options?.captureToSentry === false || isNetworkError(data)) return;
     if (!shouldSendToSentry(message)) return;
 
     Sentry.withScope((scope) => {
