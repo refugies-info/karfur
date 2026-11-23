@@ -23,8 +23,7 @@ minimumReleaseAge: 10080
 # Empty: every past bypass has aged out of the 7-day quarantine (last sweep 2026-08-31).
 # Add an entry only for a version needed sooner than 7 days after publication
 # (typically a security fix), with a TODO date to remove it.
-minimumReleaseAgeExclude:
-  - "joi@18.3.1" # TODO 2026-11-05: security fix GHSA-4528-x5fx-h6hg, remove after the 7-day quarantine
+minimumReleaseAgeExclude: []
 
 # Prevent downgrading packages to older versions during updates.
 # Protects against attacks that republish older vulnerable versions.
@@ -109,14 +108,14 @@ overrides:
   validator: '^13.15.20'
   mdast-util-to-hast: '>=13.2.1'
   react-server-dom-webpack: '>=19.0.2'
-  node-forge: 1.4.2
+  node-forge: 1.4.3
   handlebars: 4.7.10
   brace-expansion: '^2.1.7'
   'jsonwebtoken>jws': '^3.2.3'
   'google-auth-library>jws': '^4.0.1'
   'gtoken>jws': '^4.0.1'
   'googleapis-common>google-auth-library': 10.9.1
-  fast-xml-parser: 5.7.0
+  fast-xml-parser: 5.12.0
   immutable: '^5.1.8'
   flatted: 3.4.2
   tar: '^7.5.22'

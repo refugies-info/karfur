@@ -8,6 +8,7 @@ import {
   type FiltersState,
 } from "~/components/Pages/learnFrench";
 import type { CitySelection } from "~/components/Pages/recherche/LocationMenu/functions";
+import { mergeCourseFiltersQuery } from "~/lib/learnFrench/courseFiltersQuery";
 
 const EMPTY_FILTERS: FiltersState = {
   departments: [],
@@ -81,10 +82,14 @@ export const useFrenchCourseFilters = () => {
     if (debouncedSearch) query.search = debouncedSearch;
     if (activeTab !== CourseTab.UPCOMING) query.tab = activeTab;
 
-    router.replace({ pathname: router.pathname, query }, undefined, {
-      shallow: true,
-      scroll: false,
-    });
+    router.replace(
+      { pathname: router.pathname, query: mergeCourseFiltersQuery(router.query, query) },
+      undefined,
+      {
+        shallow: true,
+        scroll: false,
+      },
+    );
   }, [filters, debouncedSearch, activeTab, isReady]);
 
   return {
