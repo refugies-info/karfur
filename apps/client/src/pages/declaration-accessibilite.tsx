@@ -64,6 +64,12 @@ const DeclarationAccessibilite = () => {
           </a>
           .
         </p>
+        <p>
+          Compte tenu du déploiement prochain du Référentiel général d'amélioration de
+          l'accessibilité, version 5 en fin d'année 2026, nous avons pris la décision d'attendre sa
+          publication pour s'appuyer sur ses recommandations afin d'établir notre Schéma pluriannuel
+          de mise en accessibilité ainsi que le plan d'action qui en découle.
+        </p>
 
         <h2>Déclaration de conformité au RGAA</h2>
         <p>
