@@ -26,8 +26,9 @@ const useBackendNavigation = (): MainNavigationProps.Item[] => {
 
   // logout
   const disconnect = () => {
-    API.logout();
-    window.location.href = "/";
+    API.logout().finally(() => {
+      window.location.href = "/";
+    });
   };
 
   return [

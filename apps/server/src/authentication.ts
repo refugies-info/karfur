@@ -1,9 +1,27 @@
+import { UserStatus } from "@refugies-info/api-types";
 import { type ObjectId, type User, UserModel } from "@refugies-info/mongo";
 import type { Request } from "express";
 import jwt from "jwt-simple";
 import { AuthenticationError, UnauthorizedError } from "~/errors";
 
 // type Role = "optional" | "admin" | "expert";
+
+type TokenPayload = { _id?: string; tokenVersion?: number; exp?: number };
+
+const getUserFromToken = async (token: string): Promise<User | null> => {
+  let payload: TokenPayload;
+  try {
+    payload = jwt.decode(token, process.env.SECRET, false, "HS256");
+  } catch {
+    return null;
+  }
+  if (!payload?._id || !payload.exp) return null;
+
+  const user = await UserModel.findById(payload._id).populate("roles");
+  if (!user || user.status === UserStatus.DELETED) return null;
+  if ((payload.tokenVersion ?? 0) !== (user.tokenVersion ?? 0)) return null;
+  return user;
+};
 
 export async function expressAuthentication(
   request: Request,
@@ -42,14 +60,11 @@ export async function expressAuthentication(
       if (optionalAuthentication) return null;
       throw new AuthenticationError("[authentication] No token found", undefined, logData);
     }
-    const decoded = jwt.decode(token, process.env.SECRET);
-    if (!decoded) {
+    const user = await getUserFromToken(token);
+    if (!user) {
       if (optionalAuthentication) return null;
-      throw new AuthenticationError("[authentication] No user found", undefined, logData);
+      throw new AuthenticationError("[authentication] Invalid token", undefined, logData);
     }
-
-    const user = await UserModel.findById(decoded._id).populate("roles");
-    if (!user) throw new AuthenticationError("[authentication] No user found", undefined, logData);
     request.userId = user._id;
     logData.userId = user._id;
 

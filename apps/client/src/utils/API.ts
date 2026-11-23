@@ -197,8 +197,10 @@ const API = {
     if (!isInBrowser()) return false;
     return getAuthToken() !== undefined;
   },
-  logout: () => {
-    return removeAuthToken();
+  logout: async (): Promise<void> => {
+    const headers = getHeaders();
+    removeAuthToken();
+    await instance.post("/user/logout", {}, { headers }).catch(() => {});
   },
 
   // User
