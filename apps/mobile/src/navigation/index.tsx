@@ -37,7 +37,6 @@ import {
 } from "~/services/redux/User/user.selectors";
 import { styles } from "~/theme";
 import type { RootStackParamList } from "~/types/navigation";
-import { markNotificationAsSeen } from "~/utils/API";
 import { FirebaseEvent } from "~/utils/eventsUsedInFirebase";
 import { logEventInFirebase } from "~/utils/logEvent";
 import type { RootStackParamList as NavigationRootStackParamList } from "../types/navigation";
@@ -106,41 +105,19 @@ export const RootNavigator = () => {
   //Notifications listener
   const handleNotification = async (response: NotificationResponse | null | undefined) => {
     if (!response) return;
-    switch (response?.notification?.request?.content?.data?.type) {
-      case "dispositif":
-        {
-          logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
-            contentId: response.notification.request.content.data.contentId,
-          });
+    logEventInFirebase(FirebaseEvent.OPEN_NOTIFICATION, {
+      contentId: response.notification.request.content.data?.contentId,
+    });
+    queryClient.invalidateQueries("notifications");
 
-          // Use type assertion to handle the nested navigation structure
-          // This is necessary because the type definitions don't fully support nested navigation
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const navigation = navigationRef.current as any;
-
-          // First navigate to the Root tab
-          navigation.navigate("Root");
-
-          // Then navigate to the ContentScreen with the contentId
-          // Using a small timeout to ensure the navigation stack is ready
-          setTimeout(() => {
-            navigation.navigate("Explorer", {
-              screen: "ContentScreen",
-              params: {
-                contentId: response.notification.request.content.data.contentId,
-              },
-            });
-          }, 100);
-          await markNotificationAsSeen({
-            notificationId: response.notification.request.content.data.notificationId as string,
-          });
-          queryClient.invalidateQueries("notifications");
-        }
-        break;
-
-      default:
-        break;
-    }
+    // Nested navigation is not covered by the root param list types.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const navigation = navigationRef.current as any;
+    navigation.navigate("Root");
+    // Let the Root tabs mount before targeting a nested screen.
+    setTimeout(() => {
+      navigation.navigate("Explorer", { screen: "NotificationsScreen", params: {} });
+    }, 100);
   };
 
   useEffect(() => {
