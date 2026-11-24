@@ -39,8 +39,9 @@ const NewProfileModal = () => {
   }, [user]);
 
   const logout = useCallback(() => {
-    API.logout();
-    window.location.href = "/";
+    API.logout().finally(() => {
+      window.location.href = "/";
+    });
   }, []);
 
   const openCrisp = useCallback((e: any) => {

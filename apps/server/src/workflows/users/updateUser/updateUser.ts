@@ -83,6 +83,7 @@ const updateAsMyself = async (
       request.password.newPassword || "",
     );
     newUser.password = newHashedPassword;
+    newUser.tokenVersion = (userReq.tokenVersion ?? 0) + 1;
     if (!refreshToken) refreshToken = true;
   }
   if (request.selectedLanguages) {
