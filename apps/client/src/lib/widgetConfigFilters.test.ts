@@ -1,4 +1,3 @@
-import { ContentType } from "@refugies-info/api-types";
 import { countWidgetFilterMatches } from "./widgetConfigFilters";
 import type { WidgetConfigFiltersInput } from "./widgetConfigWebhookSchema";
 
@@ -24,22 +23,43 @@ describe("countWidgetFilterMatches", () => {
     expect(match.typeContenu).toBeUndefined();
   });
 
-  it("restricts to the content type when only one is selected", async () => {
+  it.each<[string, WidgetConfigFiltersInput["contentTypes"], object[]]>([
+    ["a single type", ["demarche"], [{ typeContenu: "demarche" }]],
+    ["online resources", ["online"], [{ "metadatas.location": "online" }]],
+    [
+      "a type or online resources",
+      ["dispositif", "online"],
+      [{ typeContenu: "dispositif" }, { "metadatas.location": "online" }],
+    ],
+  ])("restricts to %s", async (_case, contentTypes, expected) => {
     const { model, countDocuments } = fakeDispositifModel(2);
 
-    await countWidgetFilterMatches(model, { contentTypes: [ContentType.DEMARCHE] });
+    await countWidgetFilterMatches(model, { contentTypes });
 
-    expect(countDocuments.mock.calls[0][0].typeContenu).toBe(ContentType.DEMARCHE);
+    expect(countDocuments.mock.calls[0][0].$and).toContainEqual({ $or: expected });
   });
 
-  it("does not restrict the type when both are selected", async () => {
+  it("does not restrict the type when demarches and dispositifs are selected", async () => {
     const { model, countDocuments } = fakeDispositifModel(2);
 
     await countWidgetFilterMatches(model, {
-      contentTypes: [ContentType.DISPOSITIF, ContentType.DEMARCHE],
+      contentTypes: ["dispositif", "demarche", "online"],
     });
 
-    expect(countDocuments.mock.calls[0][0].typeContenu).toBeUndefined();
+    expect(countDocuments.mock.calls[0][0].$and).toBeUndefined();
+  });
+
+  it("keeps the departments filter along with online resources", async () => {
+    const { model, countDocuments } = fakeDispositifModel(2);
+
+    await countWidgetFilterMatches(model, {
+      contentTypes: ["online"],
+      departments: ["Gironde"],
+    });
+
+    const match = countDocuments.mock.calls[0][0];
+    expect(match["metadatas.location"].$in).toContain("france");
+    expect(match.$and).toContainEqual({ $or: [{ "metadatas.location": "online" }] });
   });
 
   it.each<[string, WidgetConfigFiltersInput]>([

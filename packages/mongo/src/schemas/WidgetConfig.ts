@@ -1,9 +1,9 @@
 import {
-  ContentType,
   PUBLIC_STATUS_TYPES,
   PUBLIC_TYPES,
   SEARCH_AGE_OPTIONS,
   SEARCH_FRENCH_LEVEL_OPTIONS,
+  WIDGET_CONFIG_CONTENT_TYPES,
   WIDGET_CONFIG_FILTER_BAR_OPTIONS,
   WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS,
   WIDGET_CONFIG_PAGE_SIZES,
@@ -20,7 +20,7 @@ const isAllowedPageSize = (value: number) =>
   (WIDGET_CONFIG_PAGE_SIZES as readonly number[]).includes(value);
 
 const WidgetConfigFiltersZodSchema = z.object({
-  contentTypes: z.array(z.nativeEnum(ContentType)).optional(),
+  contentTypes: z.array(z.enum(WIDGET_CONFIG_CONTENT_TYPES)).optional(),
   departments: z.array(z.string()).optional(),
   themes: z.array(zId("Theme")).optional(),
   needs: z.array(zId("Need")).optional(),
@@ -80,7 +80,7 @@ WidgetConfigMongooseSchema.path("pageSize").validate(
 );
 
 const allowedFilterValues: Record<string, readonly string[]> = {
-  "filters.contentTypes": Object.values(ContentType),
+  "filters.contentTypes": WIDGET_CONFIG_CONTENT_TYPES,
   "filters.publics": PUBLIC_TYPES,
   "filters.statuses": PUBLIC_STATUS_TYPES,
   "filters.frenchLevels": SEARCH_FRENCH_LEVEL_OPTIONS,

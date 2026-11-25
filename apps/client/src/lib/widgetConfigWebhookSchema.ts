@@ -1,10 +1,10 @@
 import {
-  ContentType,
   LANGUAGE_CODES,
   PUBLIC_STATUS_TYPES,
   PUBLIC_TYPES,
   SEARCH_AGE_OPTIONS,
   SEARCH_FRENCH_LEVEL_OPTIONS,
+  WIDGET_CONFIG_CONTENT_TYPES,
   WIDGET_CONFIG_FILTER_BAR_OPTIONS,
   WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS,
   WIDGET_CONFIG_PAGE_SIZES,
@@ -33,7 +33,7 @@ const DepartmentNameSchema = z.string().refine((value) => DEPARTMENT_NAMES.inclu
 // Same keys and value formats as the search query parameters
 export const WidgetConfigFiltersSchema = z
   .object({
-    contentTypes: z.array(z.nativeEnum(ContentType)),
+    contentTypes: z.array(z.enum(WIDGET_CONFIG_CONTENT_TYPES)),
     departments: z.array(DepartmentNameSchema),
     themes: z.array(ObjectIdSchema),
     needs: z.array(ObjectIdSchema),
