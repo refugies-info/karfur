@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   try {
     const { WidgetConfig } = await getWebhookModels();
-    const widgetConfigs = await WidgetConfig.find()
+    const widgetConfigs = await WidgetConfig.find({ status: { $ne: "deleted" } })
       .sort({ updatedAt: -1 })
       .select(
         "publicId internalTitle type status structureName createdAt updatedAt statusUpdatedAt lastTrafficAt",

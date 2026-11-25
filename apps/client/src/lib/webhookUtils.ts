@@ -76,12 +76,13 @@ export const getWebhookModels = async () => {
   };
 };
 
-type WebhookAction = "create" | "update" | "translation" | "archive";
+type WebhookAction = "create" | "update" | "translation" | "archive" | "delete";
 
 const REQUIRED_ROLES_LABEL_BY_ACTION: Record<WebhookAction, string> = {
   create: "Admin ou Contrib",
   update: "Admin ou Contrib",
   archive: "Admin ou Contrib",
+  delete: "Admin ou Contrib",
   translation: "Admin, Contrib, Trad ou ExpertTrad",
 };
 
@@ -157,7 +158,7 @@ export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: stri
 };
 
 export const getWebhookUser = async (User: mongoose.Model<any>, email: string) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: { $eq: email } });
   if (!user) {
     return null;
   }
