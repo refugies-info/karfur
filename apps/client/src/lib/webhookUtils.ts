@@ -158,7 +158,7 @@ export const getThemeIdsByNames = async (Theme: mongoose.Model<any>, names: stri
 };
 
 export const getWebhookUser = async (User: mongoose.Model<any>, email: string) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email: { $eq: email } });
   if (!user) {
     return null;
   }
