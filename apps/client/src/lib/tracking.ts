@@ -1,6 +1,7 @@
 import { isEmpty } from "lodash";
 import { logger } from "logger";
 import ReactGA from "react-ga4";
+import { writeUtmzCookie } from "./utmzCookie";
 
 /**
  * Le code suivant permet de stocker dans un cookie
@@ -42,7 +43,7 @@ const storeCampaignInfosInCookie = () => {
     expires.setTime(expires.getTime() + 24 * 60 * 60 * 1000);
 
     // Créer un cookie __utmz de remplacement
-    document.cookie = `__utmz=${utmQueryString}; path=/; expires=${expires.toUTCString()}`;
+    writeUtmzCookie(utmQueryString, expires);
   }
 };
 
