@@ -4,6 +4,7 @@ import { useTranslation } from "next-i18next";
 import { type HTMLAttributes, useContext, useMemo } from "react";
 import { useSelector } from "react-redux";
 import FRLink from "~/components/UI/FRLink";
+import { useLocale } from "~/hooks";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import PageContext from "~/utils/pageContext";
@@ -41,6 +42,7 @@ type Props = HTMLAttributes<HTMLDivElement> & {
 };
 
 const CardPublic = ({ formData, ...props }: Props) => {
+  const locale = useLocale();
   const { t } = useTranslation();
 
   const { mode } = useContext(PageContext);
@@ -145,7 +147,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
                 ) : (
                   <FRLink
                     className={styles.frenchLevelLink}
-                    href={isEditMode ? "#" : getFrenchLevelLink(publicFrenchLevel)}
+                    href={isEditMode ? "#" : getFrenchLevelLink(publicFrenchLevel, locale)}
                     onClick={() => Event("DISPO_VIEW", "click french level", "Left sidebar")}
                   >
                     {getFrenchLevel(publicFrenchLevel, t)}
@@ -172,7 +174,7 @@ const CardPublic = ({ formData, ...props }: Props) => {
               {publicAge === null ? (
                 t("Infocards.not_relevant", "Non pertinent pour mon action")
               ) : publicAge ? (
-                <FRLink href={isEditMode ? "#" : getAgeLink(publicAge)}>
+                <FRLink href={isEditMode ? "#" : getAgeLink(publicAge, locale)}>
                   {getAge(publicAge, t)}
                 </FRLink>
               ) : undefined}

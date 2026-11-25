@@ -43,6 +43,8 @@ export const UserZodSchema = z.object({
   departments: z.array(z.string()).optional(),
   created_at: z.date().optional(),
   mfaCode: z.string().optional(),
+  // Bumped to revoke every token issued before (password change, logout).
+  tokenVersion: z.number().optional(),
 });
 
 export type UserType = z.infer<typeof UserZodSchema>;
@@ -94,16 +96,15 @@ UserMongooseSchema.methods.authenticate = function (password: string) {
   return this.password && passwordHash.verify(password, this.password);
 };
 
+const TOKEN_TTL_SECONDS = 7 * 24 * 60 * 60;
+
 UserMongooseSchema.methods.getToken = function () {
   if (!process.env.SECRET) throw new Error("You need to setup a SECRET envvar for jwt");
+  const iat = Math.floor(Date.now() / 1000);
   return jwt.encode(
-    {
-      _id: this._id,
-      username: this.username,
-      password: this.password,
-      email: this.email,
-    },
+    { _id: this._id, tokenVersion: this.tokenVersion ?? 0, iat, exp: iat + TOKEN_TTL_SECONDS },
     process.env.SECRET,
+    "HS256",
   );
 };
 

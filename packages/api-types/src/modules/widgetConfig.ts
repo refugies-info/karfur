@@ -1,7 +1,11 @@
-export const WIDGET_CONFIG_STATUSES = ["active", "inactive"] as const;
+export const WIDGET_CONFIG_EDITABLE_STATUSES = ["active", "inactive"] as const;
+export const WIDGET_CONFIG_STATUSES = [...WIDGET_CONFIG_EDITABLE_STATUSES, "deleted"] as const;
 export type WidgetConfigStatus = (typeof WIDGET_CONFIG_STATUSES)[number];
 
 export const WIDGET_CONFIG_TYPES = ["list", "thumbnail"] as const;
+
+export const WIDGET_CONFIG_CONTENT_TYPES = ["dispositif", "demarche", "online"] as const;
+export type WidgetConfigContentType = (typeof WIDGET_CONFIG_CONTENT_TYPES)[number];
 
 export const WIDGET_CONFIG_PAGE_SIZES = [4, 8, 12] as const;
 export type WidgetConfigPageSize = (typeof WIDGET_CONFIG_PAGE_SIZES)[number];

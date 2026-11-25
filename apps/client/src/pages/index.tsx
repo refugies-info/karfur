@@ -112,7 +112,7 @@ const Homepage = (props: Props) => {
           }),
           countSeparator: t("ui.countSeparator", "sur"),
         }}
-        seeMoreUrl="/recherche?search=&sort=default&type=demarche"
+        seeMoreUrl={getPath("/recherche", locale, "?search=&sort=default&type=demarche")}
       >
         {props.demarches.map((demarche, index) => (
           <DispositifCard key={index} dispositif={demarche} />
@@ -152,7 +152,7 @@ const Homepage = (props: Props) => {
           next: t("ui.carrouselNext", "Faire défiler à droite"),
           countSeparator: t("ui.countSeparator", "sur"),
         }}
-        seeMoreUrl="/recherche?search=&sort=default&type=dispositif"
+        seeMoreUrl={getPath("/recherche", locale, "?search=&sort=default&type=dispositif")}
       >
         {props.dispositifs.map((dispositif, index) => (
           <DispositifCard key={index} dispositif={dispositif} />

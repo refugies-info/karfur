@@ -1,13 +1,23 @@
 import Cookies from "js-cookie";
 
-// import jwt_decode from "jwt-decode";
-
 const COOKIE_NAME = "authorization";
+
+const getTokenExpiration = (token: string): Date | undefined => {
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/")));
+    return payload.exp ? new Date(payload.exp * 1000) : undefined;
+  } catch {
+    return undefined;
+  }
+};
 
 export const setAuthToken = (token: string) => {
   if (token) {
-    // const decoded = jwt_decode(token);
-    Cookies.set(COOKIE_NAME, token, { expires: 365 }); // TODO : set expiration, not available in token
+    Cookies.set(COOKIE_NAME, token, {
+      expires: getTokenExpiration(token),
+      secure: window.location.protocol === "https:",
+      sameSite: "lax",
+    });
   }
 };
 export const getAuthToken = (): string | undefined => {
