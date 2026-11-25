@@ -1,8 +1,10 @@
-import { useMemo } from "react";
-import { useCookie } from "react-use";
+import { useMemo, useSyncExternalStore } from "react";
+import { readUtmzCookie, subscribeToUtmzCookie } from "~/lib/utmzCookie";
+
+const readServerUtmzCookie = () => null;
 
 const useUtmz = () => {
-  const [utmz] = useCookie("__utmz");
+  const utmz = useSyncExternalStore(subscribeToUtmzCookie, readUtmzCookie, readServerUtmzCookie);
 
   const params: { [key: string]: string } = useMemo(() => {
     const newParams: { [key: string]: string } = {};
