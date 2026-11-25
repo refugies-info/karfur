@@ -47,7 +47,7 @@ describe("Webhook Utilities", () => {
       const User: any = { findOne: jest.fn().mockResolvedValue(mockUser) };
       const user = await webhookUtils.getWebhookUser(User, "test@test.com");
       expect(user).toEqual(mockUser);
-      expect(User.findOne).toHaveBeenCalledWith({ email: "test@test.com" });
+      expect(User.findOne).toHaveBeenCalledWith({ email: { $eq: "test@test.com" } });
     });
   });
 

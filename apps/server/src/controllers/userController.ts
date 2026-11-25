@@ -39,6 +39,7 @@ import {
   Security,
 } from "tsoa";
 import { validateId } from "~/libs/validateId";
+import { revokeUserTokens } from "~/modules/users/users.repository";
 import type { IRequest, Response, ResponseWithData } from "~/types/interface";
 import { setSelectedLanguages } from "~/workflows";
 import { addUserFavorite } from "~/workflows/users/addUserFavorite";
@@ -234,6 +235,13 @@ export class UserController extends Controller {
   public async deleteUser(@Path() id: string): Response {
     validateId(id, "user");
     await deleteUser(id);
+    return { text: "success" };
+  }
+
+  @Post("/logout")
+  @Security("jwt")
+  public async logout(@Request() request: IRequest): Response {
+    await revokeUserTokens(request.user._id);
     return { text: "success" };
   }
 

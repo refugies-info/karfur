@@ -34,11 +34,12 @@ export const setNewPassword = async (
         throw new LoginError(LoginErrorType.NO_CODE_SUPPLIED);
       }
     }
-    const token = await logUser(user);
     user.password = passwordHash.generate(body.newPassword);
     user.reset_password_token = undefined;
     user.reset_password_expires = undefined;
+    user.tokenVersion = (user.tokenVersion ?? 0) + 1;
     await user.save();
+    const token = await logUser(user);
 
     return {
       data: { token },

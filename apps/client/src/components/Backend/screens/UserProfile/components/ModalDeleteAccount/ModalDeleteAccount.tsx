@@ -14,7 +14,7 @@ export const modalDeleteAccount = createModal({
 export const ModalDeleteAccount = (props: Props) => {
   const [{ loading, error }, onValidate] = useAsyncFn(async () => {
     await API.deleteMyAccount();
-    API.logout();
+    await API.logout();
     window.location.href = "/";
   }, []);
 

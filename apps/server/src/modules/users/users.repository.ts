@@ -99,6 +99,9 @@ export const getUsersForTranslationStats = (): Promise<UserForTranslationStats[]
     .cacheQuery() as unknown as Promise<UserForTranslationStats[]>;
 
 // update
+export const revokeUserTokens = (id: Id) =>
+  UserModel.updateOne({ _id: id }, { $inc: { tokenVersion: 1 } });
+
 export const updateUserInDB = async (
   id: Id,
   modifiedUser: Partial<User>, // FIXME in updateUser

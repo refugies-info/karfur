@@ -18,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const { WidgetConfig } = await getWebhookModels();
     const widgetConfig = await WidgetConfig.findById(payloadId.data).select("-__v").lean();
 
-    if (!widgetConfig) {
+    if (!widgetConfig || widgetConfig.status === "deleted") {
       return res.status(404).json({ message: "Configuration de widget introuvable" });
     }
 

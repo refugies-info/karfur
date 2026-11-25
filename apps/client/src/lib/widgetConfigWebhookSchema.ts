@@ -1,15 +1,15 @@
 import {
-  ContentType,
   LANGUAGE_CODES,
   PUBLIC_STATUS_TYPES,
   PUBLIC_TYPES,
   SEARCH_AGE_OPTIONS,
   SEARCH_FRENCH_LEVEL_OPTIONS,
+  WIDGET_CONFIG_CONTENT_TYPES,
+  WIDGET_CONFIG_EDITABLE_STATUSES,
   WIDGET_CONFIG_FILTER_BAR_OPTIONS,
   WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS,
   WIDGET_CONFIG_PAGE_SIZES,
   WIDGET_CONFIG_SORT_OPTIONS,
-  WIDGET_CONFIG_STATUSES,
   type WIDGET_CONFIG_TYPES,
   type WidgetConfigPageSize,
 } from "@refugies-info/api-types";
@@ -33,7 +33,7 @@ const DepartmentNameSchema = z.string().refine((value) => DEPARTMENT_NAMES.inclu
 // Same keys and value formats as the search query parameters
 export const WidgetConfigFiltersSchema = z
   .object({
-    contentTypes: z.array(z.nativeEnum(ContentType)),
+    contentTypes: z.array(z.enum(WIDGET_CONFIG_CONTENT_TYPES)),
     departments: z.array(DepartmentNameSchema),
     themes: z.array(ObjectIdSchema),
     needs: z.array(ObjectIdSchema),
@@ -59,7 +59,7 @@ const commonShape = {
     )
     .max(MAX_AUTHORIZED_DOMAINS),
   externalTitle: z.string().trim().min(1).max(100),
-  status: z.enum(WIDGET_CONFIG_STATUSES),
+  status: z.enum(WIDGET_CONFIG_EDITABLE_STATUSES),
 };
 
 const listShape = {
@@ -132,6 +132,10 @@ export const WidgetConfigUpdateSchema = BaseWebhookSchema.extend({
     .extend({ _id: ObjectIdSchema })
     .strict()
     .refine(hasNoOverlap, overlapIssue),
+});
+
+export const WidgetConfigDeleteSchema = BaseWebhookSchema.extend({
+  widgetConfig: z.object({ _id: ObjectIdSchema }).strict(),
 });
 
 export const WidgetConfigPreviewSchema = z.object({ filters: WidgetConfigFiltersSchema }).strict();
