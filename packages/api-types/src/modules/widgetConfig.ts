@@ -1,4 +1,5 @@
-export const WIDGET_CONFIG_STATUSES = ["active", "inactive"] as const;
+export const WIDGET_CONFIG_EDITABLE_STATUSES = ["active", "inactive"] as const;
+export const WIDGET_CONFIG_STATUSES = [...WIDGET_CONFIG_EDITABLE_STATUSES, "deleted"] as const;
 export type WidgetConfigStatus = (typeof WIDGET_CONFIG_STATUSES)[number];
 
 export const WIDGET_CONFIG_TYPES = ["list", "thumbnail"] as const;

@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (!user) return;
 
     const existing = await WidgetConfig.findById(_id).lean();
-    if (!existing) {
+    if (!existing || existing.status === "deleted") {
       return res.status(404).json({ message: "Configuration de widget introuvable" });
     }
 
@@ -54,8 +54,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const now = new Date();
     const statusChanged = changes.status !== undefined && changes.status !== existing.status;
 
-    await WidgetConfig.updateOne(
-      { _id },
+    const { matchedCount } = await WidgetConfig.updateOne(
+      { _id, status: { $ne: "deleted" } },
       {
         $set: {
           ...changes,
@@ -63,6 +63,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       },
     );
+    if (matchedCount === 0) {
+      return res.status(404).json({ message: "Configuration de widget introuvable" });
+    }
 
     return res
       .status(200)

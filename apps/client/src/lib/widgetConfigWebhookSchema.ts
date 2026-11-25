@@ -5,11 +5,11 @@ import {
   SEARCH_AGE_OPTIONS,
   SEARCH_FRENCH_LEVEL_OPTIONS,
   WIDGET_CONFIG_CONTENT_TYPES,
+  WIDGET_CONFIG_EDITABLE_STATUSES,
   WIDGET_CONFIG_FILTER_BAR_OPTIONS,
   WIDGET_CONFIG_MAX_MANUAL_DISPOSITIFS,
   WIDGET_CONFIG_PAGE_SIZES,
   WIDGET_CONFIG_SORT_OPTIONS,
-  WIDGET_CONFIG_STATUSES,
   type WIDGET_CONFIG_TYPES,
   type WidgetConfigPageSize,
 } from "@refugies-info/api-types";
@@ -59,7 +59,7 @@ const commonShape = {
     )
     .max(MAX_AUTHORIZED_DOMAINS),
   externalTitle: z.string().trim().min(1).max(100),
-  status: z.enum(WIDGET_CONFIG_STATUSES),
+  status: z.enum(WIDGET_CONFIG_EDITABLE_STATUSES),
 };
 
 const listShape = {
@@ -132,6 +132,10 @@ export const WidgetConfigUpdateSchema = BaseWebhookSchema.extend({
     .extend({ _id: ObjectIdSchema })
     .strict()
     .refine(hasNoOverlap, overlapIssue),
+});
+
+export const WidgetConfigDeleteSchema = BaseWebhookSchema.extend({
+  widgetConfig: z.object({ _id: ObjectIdSchema }).strict(),
 });
 
 export const WidgetConfigPreviewSchema = z.object({ filters: WidgetConfigFiltersSchema }).strict();

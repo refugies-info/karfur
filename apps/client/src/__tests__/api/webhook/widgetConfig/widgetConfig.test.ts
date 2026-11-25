@@ -3,6 +3,7 @@ import * as widgetConfigFilters from "../../../../lib/widgetConfigFilters";
 import dispositifSearchHandler from "../../../../pages/api/webhook/dispositif/search";
 import getByIdHandler from "../../../../pages/api/webhook/widget-config/[id]";
 import createHandler from "../../../../pages/api/webhook/widget-config/create";
+import deleteHandler from "../../../../pages/api/webhook/widget-config/delete";
 import listHandler from "../../../../pages/api/webhook/widget-config/index";
 import previewCountHandler from "../../../../pages/api/webhook/widget-config/preview-count";
 import updateHandler from "../../../../pages/api/webhook/widget-config/update";
@@ -73,6 +74,7 @@ describe("Widget config webhooks", () => {
     (webhookUtils.authorizeWebhookRequest as jest.Mock).mockReturnValue(true);
     (webhookUtils.getAuthorizedWebhookUser as jest.Mock).mockResolvedValue(user);
     (webhookUtils.getWebhookModels as jest.Mock).mockResolvedValue(models);
+    models.WidgetConfig.updateOne.mockResolvedValue({ matchedCount: 1, modifiedCount: 1 });
     (webhookUtils.formatZodErrors as jest.Mock).mockImplementation((error) =>
       error.issues.map((issue: any) => ({ key: issue.path.join("."), message: issue.message })),
     );
@@ -105,6 +107,7 @@ describe("Widget config webhooks", () => {
       ],
       ["a page size not allowed", { pageSize: 10 }, "widgetConfig.pageSize"],
       ["an unknown sort", { sortBy: "random" }, "widgetConfig.sortBy"],
+      ["the deleted status", { status: "deleted" }, "widgetConfig.status"],
       ["an unknown filter key", { filters: { cityName: ["Bordeaux"] } }, "widgetConfig.filters"],
       [
         "an invalid theme id",
@@ -325,6 +328,35 @@ describe("Widget config webhooks", () => {
       expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
     });
 
+    it("returns 404 when the widget is deleted", async () => {
+      models.WidgetConfig.findById.mockReturnValue(chainable(stored({ status: "deleted" })));
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ status: "active" }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
+    it("returns 404 when the widget is deleted during the update", async () => {
+      models.WidgetConfig.findById.mockReturnValue(chainable(stored()));
+      models.WidgetConfig.updateOne.mockResolvedValue({ matchedCount: 0 });
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ status: "active" }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+    });
+
+    it("does not allow to delete a widget through an update", async () => {
+      const res = mockResponse();
+
+      await updateHandler(mockRequest({ body: updateBody({ status: "deleted" }) }), res);
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
     it("requires a valid _id", async () => {
       const res = mockResponse();
 
@@ -353,7 +385,7 @@ describe("Widget config webhooks", () => {
       await updateHandler(mockRequest({ body: updateBody({ internalTitle: "Renamed" }) }), res);
 
       const [filter, update] = models.WidgetConfig.updateOne.mock.calls[0];
-      expect(filter).toEqual({ _id: widgetConfigId });
+      expect(filter).toEqual({ _id: widgetConfigId, status: { $ne: "deleted" } });
       expect(update.$set).toEqual({ internalTitle: "Renamed" });
       expect(res.status).toHaveBeenCalledWith(200);
     });
@@ -449,6 +481,7 @@ describe("Widget config webhooks", () => {
 
       await listHandler(mockRequest({ method: "GET" }), res);
 
+      expect(models.WidgetConfig.find).toHaveBeenCalledWith({ status: { $ne: "deleted" } });
       expect(res.status).toHaveBeenCalledWith(200);
       expect(res.json).toHaveBeenCalledWith(widgetConfigs);
     });
@@ -465,6 +498,17 @@ describe("Widget config webhooks", () => {
 
     it("returns 404 when not found", async () => {
       models.WidgetConfig.findById.mockReturnValue(chainable(null));
+      const res = mockResponse();
+
+      await getByIdHandler(mockRequest({ method: "GET", query: { id: widgetConfigId } }), res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+    });
+
+    it("returns 404 for a deleted widget", async () => {
+      models.WidgetConfig.findById.mockReturnValue(
+        chainable({ _id: widgetConfigId, status: "deleted" }),
+      );
       const res = mockResponse();
 
       await getByIdHandler(mockRequest({ method: "GET", query: { id: widgetConfigId } }), res);
@@ -593,6 +637,93 @@ describe("Widget config webhooks", () => {
       );
 
       expect(models.Dispositif.find).toHaveBeenCalledWith({ _id: { $in: ids } });
+    });
+  });
+
+  describe("DELETE /api/webhook/widget-config/delete", () => {
+    const deleteRequest = () =>
+      mockRequest({
+        method: "DELETE",
+        body: { email: "editor@refugies.info", widgetConfig: { _id: widgetConfigId } },
+      });
+
+    const mockExisting = (widgetConfig: unknown) =>
+      models.WidgetConfig.findById.mockReturnValue(chainable(widgetConfig));
+
+    it("marks a widget that has never been active as deleted", async () => {
+      mockExisting({ _id: widgetConfigId });
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(models.WidgetConfig.updateOne).toHaveBeenCalledWith(
+        { _id: widgetConfigId, status: { $ne: "deleted" }, lastTrafficAt: { $exists: false } },
+        { $set: { status: "deleted", statusUpdatedAt: expect.any(Date) } },
+      );
+      expect(res.status).toHaveBeenCalledWith(200);
+    });
+
+    it("refuses to delete a widget that has been active", async () => {
+      mockExisting({ _id: widgetConfigId, lastTrafficAt: new Date() });
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+      expect(res.status).toHaveBeenCalledWith(409);
+    });
+
+    it("refuses when the first visit happens during the deletion", async () => {
+      mockExisting({ _id: widgetConfigId });
+      models.WidgetConfig.updateOne.mockResolvedValue({ modifiedCount: 0 });
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(res.status).toHaveBeenCalledWith(409);
+    });
+
+    it("returns 404 for an unknown widget", async () => {
+      mockExisting(null);
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+    });
+
+    it("returns 404 for a widget already deleted", async () => {
+      mockExisting({ _id: widgetConfigId, status: "deleted" });
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(res.status).toHaveBeenCalledWith(404);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
+    it("rejects an invalid id", async () => {
+      const res = mockResponse();
+
+      await deleteHandler(
+        mockRequest({
+          method: "DELETE",
+          body: { email: "editor@refugies.info", widgetConfig: { _id: "abc" } },
+        }),
+        res,
+      );
+
+      expect(res.status).toHaveBeenCalledWith(400);
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
+    });
+
+    it("stops when the user is not allowed", async () => {
+      (webhookUtils.getAuthorizedWebhookUser as jest.Mock).mockResolvedValue(null);
+      const res = mockResponse();
+
+      await deleteHandler(deleteRequest(), res);
+
+      expect(models.WidgetConfig.updateOne).not.toHaveBeenCalled();
     });
   });
 });
