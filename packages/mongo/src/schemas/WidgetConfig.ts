@@ -37,6 +37,7 @@ const WidgetConfigZodSchema = z.object({
   status: z.enum(WIDGET_CONFIG_STATUSES),
   statusUpdatedAt: z.date(),
   lastTrafficAt: z.date().optional(),
+  activeSinceAt: z.date().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
 
