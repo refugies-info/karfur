@@ -1,6 +1,6 @@
 @import "~/scss/colors";
 @import "~/scss/variables";
-@import "~/scss/mixins/links";
+@import "~/scss/mixins/text";
 
 .container {
   background: $white;
@@ -9,8 +9,11 @@
   padding: 30px 10px;
 
   a[href] {
-    @include dsfr-link;
+    text-decoration: underline;
+    text-underline-offset: 4px;
   }
+
+  @include legal-headings;
 
   h1 {
     margin-bottom: 56px;
