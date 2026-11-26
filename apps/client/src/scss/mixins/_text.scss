@@ -128,7 +128,6 @@ $dsfr-texts: (
   line-height: list.nth($sizes, 2);
 }
 
-// Legal pages heading scale: one DSFR step skipped per level so the hierarchy is visible (RI-1712)
 @mixin legal-headings() {
   h1,
   h2,
