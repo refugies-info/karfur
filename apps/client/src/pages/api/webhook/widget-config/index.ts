@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const widgetConfigs = await WidgetConfig.find({ status: { $ne: "deleted" } })
       .sort({ updatedAt: -1 })
       .select(
-        "publicId internalTitle type status structureName createdAt updatedAt statusUpdatedAt lastTrafficAt",
+        "publicId internalTitle type status structureName createdAt updatedAt statusUpdatedAt lastTrafficAt activeSinceAt",
       )
       .lean();
 
