@@ -71,7 +71,6 @@ const DeclarationAccessibilite = () => {
           de mise en accessibilité ainsi que le plan d'action qui en découle.
         </p>
 
-        <h2>Déclaration de conformité au RGAA</h2>
         <p>
           Cette déclaration s'applique au site{" "}
           <a href="https://refugies.info/" target="_blank" rel="noopener noreferrer">
@@ -80,7 +79,7 @@ const DeclarationAccessibilite = () => {
           .
         </p>
 
-        <h3>État de conformité</h3>
+        <h2>État de conformité</h2>
         <p>
           Le présent site est totalement conforme au{" "}
           <a
@@ -129,9 +128,9 @@ const DeclarationAccessibilite = () => {
         </p>
         <p>Ces éventuelles évolutions seront analysées lors du prochain audit du site.</p>
 
-        <h3>Contenus non accessibles</h3>
+        <h2>Contenus non accessibles</h2>
 
-        <h4>Contenus non soumis à l'obligation d'accessibilité</h4>
+        <h3>Contenus non soumis à l'obligation d'accessibilité</h3>
         <p>
           La carte interactive « Leaflet », présente dans la section « Lieu d'accueil » de la page «
           <a
@@ -149,9 +148,9 @@ const DeclarationAccessibilite = () => {
           autre forme numérique accessible.
         </p>
 
-        <h3>Remarques complémentaires</h3>
+        <h2>Remarques complémentaires</h2>
 
-        <h4>Validité du code source généré</h4>
+        <h3>Validité du code source généré</h3>
         <p>
           Le code source généré des pages du site n'est pas totalement valide selon le type de
           document spécifié.
@@ -171,7 +170,7 @@ const DeclarationAccessibilite = () => {
           du code source généré sont couverts par d'autres critères du RGAA.
         </p>
 
-        <h4>Création de compte : critère 7.5</h4>
+        <h3>Création de compte : critère 7.5</h3>
         <p>
           Au sein de la première étape «{" "}
           <a
@@ -190,9 +189,9 @@ const DeclarationAccessibilite = () => {
           apporterait plus de confusion que d'amélioration.
         </p>
 
-        <h4>Éléments de tiers non audités</h4>
+        <h3>Éléments de tiers non audités</h3>
 
-        <h5>Chatbot</h5>
+        <h4>Chatbot</h4>
         <p>Le chatbot d'aide n'a pas fait l'objet d'un audit complet et détaillé.</p>
         <p>
           Il a toutefois été vérifié que son utilisation est bien possible avec différentes
@@ -208,10 +207,10 @@ const DeclarationAccessibilite = () => {
           .
         </p>
 
-        <h3>Établissement de cette déclaration</h3>
+        <h2>Établissement de cette déclaration</h2>
         <p>Cette déclaration a été établie le 17 novembre 2026.</p>
 
-        <h4>Technologies utilisées pour la réalisation du site</h4>
+        <h3>Technologies utilisées pour la réalisation du site</h3>
         <ul>
           <li>HTML5.</li>
           <li>ARIA.</li>
@@ -219,7 +218,7 @@ const DeclarationAccessibilite = () => {
           <li>JavaScript.</li>
         </ul>
 
-        <h4>Environnement de test</h4>
+        <h3>Environnement de test</h3>
         <p>
           Les tests ont été effectués avec les combinaisons de navigateur web et lecteur d'écran
           suivantes :
@@ -231,14 +230,14 @@ const DeclarationAccessibilite = () => {
           <li>Safari et VoiceOver sous iOS 26.2.1.</li>
         </ul>
 
-        <h4>Outils pour évaluer l'accessibilité</h4>
+        <h3>Outils pour évaluer l'accessibilité</h3>
         <ul>
           <li>Colour Contrast Analyser.</li>
           <li>Outils de développement Firefox.</li>
           <li>Web Developer (extension Firefox).</li>
         </ul>
 
-        <h4>Pages du site ayant fait l'objet de la vérification de conformité</h4>
+        <h3>Pages du site ayant fait l'objet de la vérification de conformité</h3>
         <ul>
           <li>
             <a href="https://refugies.info/" target="_blank" rel="noopener noreferrer">
@@ -335,7 +334,7 @@ const DeclarationAccessibilite = () => {
           </li>
         </ul>
 
-        <h3>Retour d'information et contact</h3>
+        <h2>Retour d'information et contact</h2>
         <p>
           Si vous n'arrivez pas à accéder à un contenu ou à un service de ce site, vous pouvez nous
           contacter en nous écrivant à l'adresse email :{" "}
@@ -343,7 +342,7 @@ const DeclarationAccessibilite = () => {
         </p>
         <p>Nous nous engageons à vous répondre dans un délai de 2 jours ouvrés au plus tard.</p>
 
-        <h3>Voies de recours</h3>
+        <h2>Voies de recours</h2>
         <ol>
           <li>
             Vous avez identifié sur ce site web un ou plusieurs manquement(s) à la réglementation
@@ -355,7 +354,7 @@ const DeclarationAccessibilite = () => {
         </ol>
         <p>Alors vous avez la possibilité de :</p>
 
-        <h4>Contacter l'Arcom</h4>
+        <h3>Contacter l'Arcom</h3>
         <p>
           Afin de signaler un ou plusieurs manquement(s) à la réglementation relative à
           l'accessibilité numérique, rendez-vous sur la page «{" "}
@@ -369,7 +368,7 @@ const DeclarationAccessibilite = () => {
           » du site web de l'Arcom.
         </p>
 
-        <h4>Saisir le Défenseur des droits</h4>
+        <h3>Saisir le Défenseur des droits</h3>
         <p>
           Pour faire valoir vos droits relatifs à des défauts d'accessibilité que vous avez
           rencontrés :
@@ -421,7 +420,7 @@ const DeclarationAccessibilite = () => {
             className={styles.icon}
             aria-hidden="true"
           />
-          Mise à jour : <span className="text-default-success">17 novembre 2026</span>
+          Mise à jour : <span className="text-default-success">26 novembre 2026</span>
         </p>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import type React from "react";
 import Layout from "~/components/Layout/Layout";
+import styles from "~/scss/pages/legal-pages.module.scss";
 
 interface LegalPagesLayoutProps {
   children: React.ReactNode;
@@ -33,7 +34,7 @@ export default function LegalPagesLayout({
             currentPageLabel={title}
             homeLabel={t("homepage", "Accueil")}
           />
-          <div className="mx-auto mb-10 w-full max-w-3xl">{children}</div>
+          <div className={`mx-auto mb-10 w-full max-w-3xl ${styles.content}`}>{children}</div>
         </div>
       </div>
     </Layout>
