@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useCookie } from "react-use";
 import { getPath } from "routes";
+import { getBaseUrl } from "~/lib/getBaseUrl";
 import { Event } from "~/lib/tracking";
 import { selectedDispositifSelector } from "~/services/SelectedDispositif/selectedDispositif.selector";
 import API from "~/utils/API";
@@ -21,7 +22,7 @@ const useSendSms = () => {
       return API.smsContentLink({
         phone: tel,
         id: dispositif?._id.toString() || "",
-        url: `https://refugies.info/${ln}${getPath(
+        url: `${getBaseUrl()}${ln}${getPath(
           dispositif?.typeContenu === ContentType.DEMARCHE ? "/demarche/[id]" : "/dispositif/[id]",
           ln,
         ).replace("[id]", dispositif?._id.toString() || "")}?share=sms${

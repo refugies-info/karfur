@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL || "https://refugies.info";
+const SITE_URL = process.env.NEXT_PUBLIC_REACT_APP_SITE_URL;
 
 const PROD_ROBOTS_TXT = [
   "User-agent: *",

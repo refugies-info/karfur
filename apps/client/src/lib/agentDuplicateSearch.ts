@@ -1,4 +1,5 @@
 import type { PipelineStage } from "mongoose";
+import { getBaseUrl } from "~/lib/getBaseUrl";
 
 export interface DuplicateSearchRequest {
   title: string;
@@ -493,7 +494,7 @@ export const scoreDuplicateCandidates = (
 
       return {
         ...candidate,
-        url: `https://refugies.info/dispositif/${candidate.id}`,
+        url: `${getBaseUrl()}dispositif/${candidate.id}`,
         score,
         reasons,
       };
