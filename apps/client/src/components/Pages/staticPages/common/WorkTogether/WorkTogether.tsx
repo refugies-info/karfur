@@ -40,7 +40,7 @@ const WorkTogether = () => {
       title: t("WorkTogether.agir_title", "Opérateurs du programme AGIR ?"),
       description: t(
         "WorkTogether.agir_subtitle",
-        "Réfugiés.info est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà Réfugiés.info au quotidien.",
+        "$t(Header.serviceName) est une solution pour animer et cartographier les acteurs locaux avec qui vous travaillez sur vos territoires. Rejoignez une trentaine d’équipes qui utilisent déjà $t(Header.serviceName) au quotidien.",
       ),
       link: "https://calendar.app.google/7qTiARjh6Gd657Rs5",
       cta: t("WorkTogether.meeting_cta", "Prendre rendez-vous"),
@@ -55,7 +55,7 @@ const WorkTogether = () => {
       title: t("WorkTogether.etat_title", "Opérateurs d’État ?"),
       description: t(
         "WorkTogether.etat_subtitle",
-        "Réfugiés.info permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
+        "$t(Header.serviceName) permet à vos équipes d’accéder à un centre de ressources à jour et local, mais aussi de faciliter l’intégration des nouvelles recrues. 14 opérateurs ont déjà signé un partenariat, rejoignez la prochaine promotion.",
       ),
       link: "https://calendar.app.google/7qTiARjh6Gd657Rs5",
       cta: t("WorkTogether.meeting_cta", "Prendre rendez-vous"),
@@ -66,7 +66,7 @@ const WorkTogether = () => {
       title: t("WorkTogether.administration_title", "Administration ou institution publique ?"),
       description: t(
         "WorkTogether.administration_subtitle",
-        "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? Réfugiés.info vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
+        "Vous souhaitez cartographier les acteurs de votre territoire tout en ayant de l’impact et en optimisant vos dépenses ? $t(Header.serviceName) vous aide à vous adresser à vos usagers avec de l’information ciblée et accessible.",
       ),
       link: "https://calendly.com/nour-refugies-info/rdv-ambassadeur-de-refugies-info",
       cta: t("WorkTogether.meeting_cta", "Prendre rendez-vous"),
@@ -77,7 +77,7 @@ const WorkTogether = () => {
       title: t("WorkTogether.structure_title", "Structures porteuses de dispositifs ?"),
       description: t(
         "WorkTogether.structure_subtitle",
-        "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
+        "$t(Header.serviceName) donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
       ),
       link: getPath("/publier", locale),
       cta: t("WorkTogether.structure_cta", "Publier votre fiche"),
@@ -88,7 +88,7 @@ const WorkTogether = () => {
       title: t("WorkTogether.traducteur_title", "Polyglottes bénévoles ?"),
       description: t(
         "WorkTogether.traducteur_subtitle",
-        "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
+        "L’information sur $t(Header.serviceName) est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
       ),
       link: getPath("/traduire", locale),
       cta: t("WorkTogether.traducteur_cta", "Traduire une fiche"),

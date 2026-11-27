@@ -174,7 +174,7 @@ export const PrintableCourseList = (props: Props) => {
         <h1 className="text-h3 mb-0 font-bold">{t("LearnFrench.hero_title")}</h1>
         <div className="flex items-center gap-2">
           <Image src="/images/logoRI.svg" alt="" width={32} height={32} priority />
-          <span className="text-lg font-bold">{t("Header.serviceName", "Réfugiés.info")}</span>
+          <span className="text-lg font-bold">{t("Header.serviceName", "Vivre en France")}</span>
         </div>
       </div>
 

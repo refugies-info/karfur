@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export type SupportAvailability = "open" | "closed" | "unavailable";
 
-// Horaires du support Réfugiés.info : du lundi au jeudi, de 9h30 à 12h30 et de 14h à 18h.
+// Horaires du support : du lundi au jeudi, de 9h30 à 12h30 et de 14h à 18h.
 const OPENING_DAYS = ["Mon", "Tue", "Wed", "Thu"];
 const OPENING_RANGES = [
   [9 * 60 + 30, 12 * 60 + 30],

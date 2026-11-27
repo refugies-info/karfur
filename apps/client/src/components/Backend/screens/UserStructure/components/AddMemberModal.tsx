@@ -1,4 +1,5 @@
 import type { GetActiveUsersResponse, Id, StructureMember } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +48,7 @@ interface Props {
 }
 
 const AddMemberModal = (props: Props) => {
+  const { t } = useTranslation();
   const [selectedUser, setSelectedUser] = useState<GetActiveUsersResponse | null>(null);
 
   const onSelectItem = (data: GetActiveUsersResponse | null) => setSelectedUser(data);
@@ -75,7 +77,7 @@ const AddMemberModal = (props: Props) => {
       <Title>Ajouter un membre</Title>
       <InformationContainer>
         <b>Attention :</b> assurez-vous que la personne que vous souhaitez ajouter a déjà créé un
-        compte sur réfugiés.info.
+        compte sur {t("Header.serviceName")}.
       </InformationContainer>
       {isLoading && (
         <SkeletonTheme baseColor={colors.white}>

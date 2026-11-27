@@ -43,7 +43,7 @@ export const help: Record<string, Content[]> = {
     {
       title: "Faut-il faire traduire les modifications ?",
       intro: [
-        "En tant qu’administrateur de Réfugiés.info, tu peux choisir de ne pas faire traduire tes modifications. Fais-le seulement pour des fautes d’orthographe ou de syntaxe, mais pas si tu ajoutes des informations ou si tu modifies le sens des phrases !",
+        "En tant qu’administrateur, tu peux choisir de ne pas faire traduire tes modifications. Fais-le seulement pour des fautes d’orthographe ou de syntaxe, mais pas si tu ajoutes des informations ou si tu modifies le sens des phrases !",
       ],
     },
   ],

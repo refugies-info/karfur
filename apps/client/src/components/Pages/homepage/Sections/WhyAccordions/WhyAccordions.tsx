@@ -25,7 +25,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItemsdesktopText1", {
         count: props.nbDemarches,
         defaultValue:
-          "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être enclenchées. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de la vie quotidienne.",
+          "Une fois la protection internationale obtenue, de nombreuses démarches administratives doivent être enclenchées. $t(Header.serviceName) publie des fiches pratiques pour vulgariser ces démarches. Aujourd’hui, il en existe {{count}}, réparties sur l’ensemble des thématiques de la vie quotidienne.",
       }),
       alt: "",
 
@@ -38,7 +38,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItemsdesktopText2", {
         count: props.nbDemarches,
         defaultValue:
-          "Réfugiés.info permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
+          "$t(Header.serviceName) permet d’orienter vos bénéficiaires au sein de votre territoire et au-delà. En renseignant votre département, vous trouverez la liste des actions présentes autour de vous pour accueillir et accompagner les personnes réfugiées. Attention, la plateforme est collaborative : certains territoires sont mieux cartographiés que d’autres.",
       }),
       alt: "",
       image: dispositif,
@@ -65,7 +65,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItemsdesktopText4", {
         count: props.nbDemarches,
         defaultValue:
-          "Sur Réfugiés.info, l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social.",
+          "Sur $t(Header.serviceName), l’information est simplifiée, traduite en 7 langues et écoutable. Les fiches peuvent servir de support pour communiquer ou expliquer une information. Cet outil peut ainsi faciliter le travail d’accompagnement social.",
       }),
       alt: t(
         "Homepage.accordionItemsdesktopVideoAlt",
@@ -87,7 +87,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItemsmobileText1", {
         count: props.nbDemarches,
         defaultValue:
-          "Après la réponse positive pour votre statut, il faut faire des démarches administratives dans plusieurs domaines (papiers, santé, travail, famille...). Réfugiés.info propose des textes en français facile et des traductions pour comprendre comment faire les démarches.",
+          "Après la réponse positive pour votre statut, il faut faire des démarches administratives dans plusieurs domaines (papiers, santé, travail, famille...). $t(Header.serviceName) propose des textes en français facile et des traductions pour comprendre comment faire les démarches.",
       }),
       alt: "",
       image: demarchesMobile,
@@ -102,7 +102,7 @@ const WhyAccordions = (props: Props) => {
       text: t("Homepage.accordionItemsmobileText2", {
         count: props.nbDemarches,
         defaultValue:
-          "Réfugiés.info permet de trouver des associations, des centres de formation, des structures d'accompagnement dans votre département.",
+          "$t(Header.serviceName) permet de trouver des associations, des centres de formation, des structures d'accompagnement dans votre département.",
       }),
       alt: "",
       image: dispos,
@@ -116,7 +116,7 @@ const WhyAccordions = (props: Props) => {
   return (
     <div className="container md:py-20">
       <h2 className="mb-20">
-        {t("Homepage.whyTitle", "Pourquoi et quand utiliser Réfugiés.info ?")}
+        {t("Homepage.whyTitle", "Pourquoi et quand utiliser $t(Header.serviceName) ?")}
       </h2>
       <Accordion
         items={isMobile ? accordionItemsCompact : accordionItemsDesktop}

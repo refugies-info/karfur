@@ -1,5 +1,6 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { RoleName } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useState } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { useSelector } from "react-redux";
@@ -13,6 +14,7 @@ import API from "~/utils/API";
 import styles from "./NewProfileModal.module.scss";
 
 const NewProfileModal = () => {
+  const { t } = useTranslation();
   const [show, setShow] = useState(false);
   const user = useSelector(userSelector);
   const { next } = useRegisterFlow(null);
@@ -55,14 +57,14 @@ const NewProfileModal = () => {
       title={
         <>
           <i className="fr-icon-warning-line me-2" aria-hidden="true" />
-          Votre compte Réfugiés.info fait peau neuve&nbsp;!
+          Votre compte {t("Header.serviceName")} fait peau neuve&nbsp;!
         </>
       }
       small
     >
       <p>
-        Réfugiés.info améliore votre expérience de connexion pour vous proposer des contenus plus
-        adaptés à vos besoins.
+        {t("Header.serviceName")} améliore votre expérience de connexion pour vous proposer des
+        contenus plus adaptés à vos besoins.
       </p>
       <p>
         Pour continuer à accéder au contenu, merci de{" "}

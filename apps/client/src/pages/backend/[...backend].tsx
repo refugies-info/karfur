@@ -2,6 +2,7 @@ import { RoleName } from "@refugies-info/api-types";
 import { isInBrowser } from "@refugies-info/ui";
 import { createBrowserHistory } from "history";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
@@ -35,6 +36,7 @@ const Redirect = () => {
 };
 
 const Backend = () => {
+  const { t } = useTranslation();
   const user = useSelector(userSelector);
   const isLoading = useSelector(isLoadingSelector(LoadingStatusKey.FETCH_USER));
   const dispatch = useDispatch();
@@ -100,7 +102,7 @@ const Backend = () => {
                   exact={route.exact}
                   render={() =>
                     isAuthorized(route) ? (
-                      <route.component title={route.name} />
+                      <route.component title={`${route.name} - ${t("Header.serviceName")}`} />
                     ) : (
                       <UnauthorizedAccess />
                     )

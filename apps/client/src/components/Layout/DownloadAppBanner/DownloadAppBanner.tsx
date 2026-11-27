@@ -36,7 +36,7 @@ const DownloadAppBanner = () => {
       <div className="flex items-center">
         <Image src="/images/logo-navbar-ri.svg" width="40" height="40" alt="" />
         <div className="ms-2">
-          <div className={styles.brand}>Réfugiés.info</div>
+          <div className={styles.brand}>{t("Header.serviceName", "Vivre en France")}</div>
           <div>{t("Dispositif.freeApp")}</div>
         </div>
       </div>

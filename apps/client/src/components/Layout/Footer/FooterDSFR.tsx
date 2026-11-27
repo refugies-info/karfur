@@ -73,7 +73,7 @@ const Footer = () => {
         }}
         contentDescription={t(
           "Footer.info",
-          "Réfugiés.info est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
+          "$t(Header.serviceName) est un portail d’information collaboratif visant à donner de l’information simple et traduite aux personnes réfugiées en France.",
         )}
         // Le lien du bloc marque pointe vers le site de la DIAIR (décision du 26/08, audit RGAA 6.1) :
         // l'alt du logo, seul contenu du lien, en est le nom accessible et reflète la destination

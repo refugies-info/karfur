@@ -46,7 +46,7 @@ const Newsletter = () => {
           setNewsletterError(
             t(
               "NewsletterForm.errorsAlreadyexists",
-              "Cette adresse mail est déjà inscrite à la newsletter Réfugiés.info !",
+              "Cette adresse mail est déjà inscrite à la newsletter $t(Header.serviceName) !",
             ),
           );
         else setNewsletterError(t("NewsletterForm.errorsSystemerror", "Une erreur s'est produite"));
@@ -94,7 +94,12 @@ const Newsletter = () => {
             <h2>
               {t("NewsletterForm.title", "Inscrivez-vous à notre lettre d’information mensuelle !")}
             </h2>
-            <p>{t("NewsletterForm.description", "Suivez l'évolution du service Réfugiés.info")}</p>
+            <p>
+              {t(
+                "NewsletterForm.description",
+                "Suivez l'évolution du service $t(Header.serviceName)",
+              )}
+            </p>
 
             <Input
               nativeInputProps={{

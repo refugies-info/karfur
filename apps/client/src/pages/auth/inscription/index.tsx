@@ -148,7 +148,7 @@ const AuthLogin = () => {
           classes={{ legend: "sr-only" }}
           options={[
             {
-              label: "Recevoir l’actualité mensuelle de Réfugiés.info",
+              label: `Recevoir l’actualité mensuelle de ${t("Header.serviceName")}`,
               nativeInputProps: {
                 checked: subscribeNewsletter,
                 onChange: () => setSubscribeNewsletter((o) => !o),

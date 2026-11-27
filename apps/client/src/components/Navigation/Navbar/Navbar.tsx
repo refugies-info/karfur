@@ -203,15 +203,18 @@ const Navbar = () => {
         }
         homeLinkProps={{
           href: "/",
-          title: "Accueil - Réfugiés.info",
+          title: `Accueil - ${t("Header.serviceName", "Vivre en France")}`,
         }}
         operatorLogo={{
           alt: "",
           imgUrl: "/images/logoRI.svg",
           orientation: "horizontal",
         }}
-        serviceTitle={t("Header.serviceName", "Réfugiés.info")}
-        serviceTagline={t("Header.serviceTagline", "L'information pour les réfugiés en France")}
+        serviceTitle={t("Header.serviceName", "Vivre en France")}
+        serviceTagline={t(
+          "Header.serviceTagline",
+          "S’informer, s’orienter et s’intégrer en France",
+        )}
         quickAccessItems={quickAccessMenu}
         navigation={navigationItems}
         className={cn(styles.navBar, "print:hidden")}

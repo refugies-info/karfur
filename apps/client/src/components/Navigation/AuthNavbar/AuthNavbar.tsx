@@ -1,6 +1,10 @@
 import { Header } from "@codegouvfr/react-dsfr/Header";
+import { useTranslation } from "next-i18next";
 
 const AuthNavbar = () => {
+  const { t } = useTranslation();
+  const serviceName = t("Header.serviceName", "Vivre en France");
+
   return (
     <Header
       brandTop={
@@ -12,16 +16,16 @@ const AuthNavbar = () => {
       }
       homeLinkProps={{
         href: "/",
-        title: "Accueil - Réfugiés.info",
+        title: `Accueil - ${serviceName}`,
       }}
       operatorLogo={{
-        // Decorative: the service title next to it already reads "Réfugiés.info" (RGAA 1.2).
+        // Decorative: the service title next to it already reads the service name (RGAA 1.2).
         alt: "",
         imgUrl: "/images/logo-navbar-ri.svg",
         orientation: "horizontal",
       }}
-      serviceTitle="Réfugiés.info"
-      serviceTagline="L’information simple et traduite pour les réfugiés et leurs accompagnants"
+      serviceTitle={serviceName}
+      serviceTagline={t("Header.serviceTagline", "S’informer, s’orienter et s’intégrer en France")}
     />
   );
 };

@@ -1,6 +1,7 @@
 import { fr } from "@codegouvfr/react-dsfr";
 import { ContentType, DispositifStatus } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { useToggle } from "react-use";
@@ -21,6 +22,7 @@ import Status from "../Status";
 import styles from "./StructureReceiveDispositif.module.scss";
 
 const StructureReceiveDispositif = () => {
+  const { t } = useTranslation();
   const [receiveDispositif, setReceiveDispositif] = useState<boolean | null>(null);
   const [showModal, toggleModal] = useToggle(false);
   const dispositif = useSelector(selectedDispositifSelector);
@@ -70,7 +72,7 @@ const StructureReceiveDispositif = () => {
         <strong>{dispositif?.creatorId?.username || "Un utilisateur"}</strong> a proposé cette fiche
         et a indiqué que votre structure porte ce dispositif. En cochant « Oui », vous pourrez
         modifier et valider la fiche. Si vous cochez « Non », elle ne sera jamais publiée sur le
-        site de Réfugiés.info.
+        site de {t("Header.serviceName")}.
       </p>
 
       <div>

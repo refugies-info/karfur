@@ -25,7 +25,7 @@ export const helpSearch: Help = {
 export const helpCreate: Help = {
   title: "À quoi sert cette information ?",
   content: [
-    "Ces informations permettent de créer la fiche annuaire de la structure sur Réfugiés.info.",
+    "Ces informations permettent de créer la fiche annuaire de la structure sur notre site.",
     "Elles seront validées par le responsable de la structure.",
   ],
 };

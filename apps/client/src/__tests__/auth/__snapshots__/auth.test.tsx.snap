@@ -36,7 +36,7 @@ exports[`auth renders auth 1`] = `
       <p
         class="subtitle"
       >
-        Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée.
+        Votre compte Header.serviceName vous permet d’avoir une expérience personnalisée.
       </p>
     </div>
     <form>

@@ -3,6 +3,7 @@ import Input from "@codegouvfr/react-dsfr/Input";
 import { RoleName, type SubscriptionRequest } from "@refugies-info/api-types";
 import { useWindowSize } from "@refugies-info/ui";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { useState } from "react";
 import { getPath } from "routes";
 import DesktopRegisterImg from "~/assets/staticPages/publier/desktop-register.svg";
@@ -27,6 +28,7 @@ interface Props {
 }
 
 const Register = (props: Props) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { isTablet } = useWindowSize();
   const { isAuth } = useAuth();
@@ -68,7 +70,7 @@ const Register = (props: Props) => {
         <>
           <Image
             src={MobileRegisterImg}
-            alt="Mockup of refugies.info"
+            alt={`Mockup of ${t("Header.serviceName")}`}
             width={195}
             height={154}
             className="mx-auto mb-10"

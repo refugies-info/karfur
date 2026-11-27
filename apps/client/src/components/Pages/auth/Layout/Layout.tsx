@@ -87,7 +87,8 @@ const Layout = (props: Props) => {
 
               <div className={cls(styles.right_content, "w-[480px] max-lg:w-full")}>
                 <p className={styles.chapo}>
-                  Plus de 100 000 réfugiés et 2 000 professionnels ont adopté Réfugiés.info&nbsp;!
+                  Plus de 100 000 réfugiés et 2 000 professionnels ont adopté{" "}
+                  {t("Header.serviceName")}&nbsp;!
                 </p>
                 <div className={styles.rating}>
                   <Image
