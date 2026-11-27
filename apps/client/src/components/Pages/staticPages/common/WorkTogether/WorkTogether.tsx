@@ -2,12 +2,14 @@ import type { FrIconClassName, RiIconClassName } from "@codegouvfr/react-dsfr";
 import Button from "@codegouvfr/react-dsfr/Button";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { getPath } from "routes";
 import AgirLogos from "~/assets/agir/agir-logos.png";
 import Structures from "~/assets/homepage/structures.png";
 import Avatar from "~/assets/pictogrammes/avatar.svg";
 import CityHall from "~/assets/pictogrammes/city-hall.svg";
 import Community from "~/assets/pictogrammes/community.svg";
 import LocationFrance from "~/assets/pictogrammes/location-france.svg";
+import { useLocale } from "~/hooks";
 
 type cardContentItemType = {
   title: string;
@@ -20,6 +22,7 @@ type cardContentItemType = {
 
 const WorkTogether = () => {
   const { t } = useTranslation();
+  const locale = useLocale();
 
   const cardsContent: cardContentItemType[] = [
     {
@@ -76,7 +79,7 @@ const WorkTogether = () => {
         "WorkTogether.structure_subtitle",
         "Réfugiés.info donne la possibilité de rédiger une fiche explicative de votre action, avec les détails utiles aux bénéficiaires et les modalités d’inscription. Cette fiche sera ensuite publiée sur la plateforme puis traduite en 7 langues. Recensez votre action sur la plateforme.",
       ),
-      link: "https://refugies.info/publier",
+      link: getPath("/publier", locale),
       cta: t("WorkTogether.structure_cta", "Publier votre fiche"),
       icon: "fr-icon-arrow-right-line",
       image: <Image src={LocationFrance} alt="" />,
@@ -87,7 +90,7 @@ const WorkTogether = () => {
         "WorkTogether.traducteur_subtitle",
         "L’information sur Réfugiés.info est traduite de manière collaborative. Vous maîtrisez une langue disponible sur la plateforme ? Vous pouvez aider à traduire le contenu à votre convenance. Votre travail sera lu par un de nos experts avant d’être publié. Rejoignez la communauté des traducteurs bénévoles.",
       ),
-      link: "https://refugies.info/traduire",
+      link: getPath("/traduire", locale),
       cta: t("WorkTogether.traducteur_cta", "Traduire une fiche"),
       icon: "fr-icon-arrow-right-line",
       image: <Image src={Community} alt="" />,
@@ -113,7 +116,7 @@ const WorkTogether = () => {
               <Button
                 linkProps={{
                   href: link,
-                  target: link.startsWith("https://refugies.info/") ? undefined : "_blank",
+                  target: link.startsWith("/") ? undefined : "_blank",
                 }}
                 iconId={icon}
                 iconPosition="right"
