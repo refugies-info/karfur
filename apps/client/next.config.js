@@ -9,6 +9,11 @@ const {
 const path = require("path");
 const { withSentryConfig } = require("@sentry/nextjs");
 
+// Canonical, og:url, hreflang, robots.txt and sitemaps are built from it: fail the build rather than ship broken URLs.
+if (!process.env.NEXT_PUBLIC_REACT_APP_SITE_URL) {
+  throw new Error("NEXT_PUBLIC_REACT_APP_SITE_URL is required");
+}
+
 const nextConfig = {
   output: "standalone",
   outputFileTracingRoot: path.join(__dirname, "../../"),

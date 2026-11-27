@@ -45,7 +45,7 @@ FROM tools AS installer
   # Build arguments
   ARG APP_ENV=production
   ARG APP_SERVER_URL=http://localhost:8000
-  ARG APP_SITE_URL=http://localhost:3000
+  ARG APP_SITE_URL
   ARG SENTRY_RELEASE
 
   # Set working directory
