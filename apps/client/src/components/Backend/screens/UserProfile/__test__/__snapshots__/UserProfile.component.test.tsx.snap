@@ -460,7 +460,7 @@ exports[`UserProfile should render correctly 1`] = `
               >
                 <span>
                   <strong>
-                    La lettre d’information de Réfugiés.info
+                    La lettre d’information de Header.serviceName
                   </strong>
                    : actualités, nouveaux contenus, mises à jour, événements.
                 </span>

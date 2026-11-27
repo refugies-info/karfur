@@ -2,6 +2,7 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { logger } from "logger";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { type ReactElement, useCallback, useState } from "react";
 import { useAsyncFn } from "react-use";
 import { getPath } from "routes";
@@ -25,6 +26,7 @@ import API from "~/utils/API";
 import { googleProvider } from "~/utils/googleSignIn";
 
 const AuthEmail = () => {
+  const { t } = useTranslation();
   useAuthRedirect(false);
   const router = useRouter();
   const { logUser, handleError } = useLogin();
@@ -131,7 +133,7 @@ const AuthEmail = () => {
     <div className={cls(styles.container, styles.half)}>
       <SEO
         title="Bienvenue"
-        description="Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée."
+        description={`Votre compte ${t("Header.serviceName")} vous permet d’avoir une expérience personnalisée.`}
       />
 
       {isLoading ? (
@@ -149,7 +151,8 @@ const AuthEmail = () => {
           <div className={styles.title}>
             <h1>Bienvenue&nbsp;!</h1>
             <p className={styles.subtitle}>
-              Votre compte Réfugiés.info vous permet d’avoir une expérience personnalisée.
+              Votre compte {t("Header.serviceName")} vous permet d’avoir une expérience
+              personnalisée.
             </p>
           </div>
 

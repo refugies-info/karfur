@@ -489,7 +489,7 @@ exports[`UserStructure should render correctly when add member modal is open 1`]
           <b>
             Attention :
           </b>
-           assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur réfugiés.info.
+           assurez-vous que la personne que vous souhaitez ajouter a déjà créé un compte sur Header.serviceName.
         </div>
         <div>
           <div
@@ -855,7 +855,7 @@ exports[`UserStructure should render correctly when no structure 1`] = `
       <div
         class="c1"
       >
-        Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de réfugiés.info via le live chat en bas à droite de votre écran.
+        Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de Header.serviceName via le live chat en bas à droite de votre écran.
       </div>
     </div>
   </div>

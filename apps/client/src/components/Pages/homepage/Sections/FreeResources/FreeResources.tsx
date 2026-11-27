@@ -47,7 +47,7 @@ const FreeResources = () => {
         <Link href="https://kit.refugies.info/" target="_blank" rel="noopener noreferrer">
           <Image
             src={FreeResourcesImg}
-            alt={t("Homepage.ressourcesImgAlt", "Kit de communication de Réfugiés.info")}
+            alt={t("Homepage.ressourcesImgAlt", "Kit de communication de $t(Header.serviceName)")}
             width={576}
             height={362}
           />

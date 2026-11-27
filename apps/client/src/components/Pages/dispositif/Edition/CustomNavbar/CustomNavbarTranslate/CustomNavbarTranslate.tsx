@@ -6,6 +6,7 @@ import type {
   TranslationContent,
 } from "@refugies-info/api-types";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import type React from "react";
 import { useCallback, useContext, useMemo } from "react";
 import { useAsyncFn, useToggle } from "react-use";
@@ -47,6 +48,7 @@ const defaultProgress: Progress = {
 };
 
 const CustomNavbarTranslate = (props: Props) => {
+  const { t } = useTranslation();
   const { locale } = props;
   const progress = props.progress || defaultProgress;
   const { user } = useUser();
@@ -94,10 +96,9 @@ const CustomNavbarTranslate = (props: Props) => {
     }
     return {
       title: "La publication n'a pas pu aboutir",
-      description:
-        "Votre traduction est bien enregistrée, mais elle n'a pas été publiée. Signalez-le à l'équipe Réfugiés.info en précisant le nom de la fiche et la langue.",
+      description: `Votre traduction est bien enregistrée, mais elle n'a pas été publiée. Signalez-le à l'équipe ${t("Header.serviceName")} en précisant le nom de la fiche et la langue.`,
     };
-  }, [publishError]);
+  }, [publishError, t]);
 
   return (
     <div className={styles.container}>

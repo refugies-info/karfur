@@ -126,7 +126,7 @@ const MobileApp = () => {
           {t(
             isMobile ? "MobileApp.subtitleMobile" : "MobileApp.subtitleDesktop",
             isMobile
-              ? "Gratuite, traduite en 7 langues, facile à utiliser... L’application Réfugiés.info vous aide à construire votre vie en France !"
+              ? "Gratuite, traduite en 7 langues, facile à utiliser... L’application $t(Header.serviceName) vous aide à construire votre vie en France !"
               : "Gratuite, l’application a été conçue avec et pour les personnes réfugiées. Elles pourront y trouver de l’information simplifiée, traduite en 7 langues et écoutable.",
           )}
         </p>

@@ -18,7 +18,7 @@ const Sitemap: NextPageWithLayout<SitemapProps> = ({ urls }) => {
   return (
     <>
       <Head>
-        <title>Sitemap - Réfugiés.info</title>
+        <title>Sitemap</title>
         <meta name="robots" content="noindex, follow" />
         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       </Head>

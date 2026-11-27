@@ -1,6 +1,7 @@
 import Button from "@codegouvfr/react-dsfr/Button";
 import { ToggleSwitch } from "@codegouvfr/react-dsfr/ToggleSwitch";
 import { logger } from "logger";
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
@@ -28,6 +29,7 @@ interface Props {
 }
 
 export const UserProfile = (props: Props) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const userDetails = useSelector(userDetailsSelector);
@@ -181,8 +183,8 @@ export const UserProfile = (props: Props) => {
               <ToggleSwitch
                 label={
                   <span>
-                    <strong>La lettre d’information de Réfugiés.info</strong> : actualités, nouveaux
-                    contenus, mises à jour, événements.
+                    <strong>La lettre d’information de {t("Header.serviceName")}</strong> :
+                    actualités, nouveaux contenus, mises à jour, événements.
                   </span>
                 }
                 helperText="Maximum 1 fois par mois"

@@ -1,4 +1,5 @@
 import type { Id } from "@refugies-info/api-types";
+import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
@@ -39,6 +40,7 @@ interface Props {
 }
 
 export const UserStructureComponent = (props: Props) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const userStructure = useSelector(userStructureSelector);
   const user = useSelector(userSelector);
@@ -116,8 +118,8 @@ export const UserStructureComponent = (props: Props) => {
       <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         <ErrorContainer>
           <ErrorText>
-            Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de
-            réfugiés.info via le live chat en bas à droite de votre écran.
+            Une erreur est survenue. Veuillez recharger la page ou contacter l'équipe de{" "}
+            {t("Header.serviceName")} via le live chat en bas à droite de votre écran.
           </ErrorText>
         </ErrorContainer>
       </div>

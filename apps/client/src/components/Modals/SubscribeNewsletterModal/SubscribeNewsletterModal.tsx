@@ -187,7 +187,7 @@ export const SubscribeNewsletterModal = () => {
         <TextContainer>
           {t(
             "Footer.subscribe_for_informations",
-            "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet Réfugiés.info",
+            "Inscrivez-vous à notre lettre d'information pour suivre l'évolution du projet $t(Header.serviceName)",
           )}
         </TextContainer>
         <EmailField

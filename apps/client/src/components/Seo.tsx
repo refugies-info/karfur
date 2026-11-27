@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { type NextRouter, useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 import { getPath, type PathNames } from "routes";
 import { useLocale } from "~/hooks";
 import { getBaseUrl } from "~/lib/getBaseUrl";
@@ -10,7 +11,6 @@ interface Props {
   image?: string | null;
 }
 
-const defaultTitle = "Réfugiés.info";
 const defaultImage = "/images/og-image-refugies.jpg";
 
 const getAlternateLocales = (
@@ -39,11 +39,13 @@ const SEO = (props: Props) => {
   const prefixTitle = props.title ? `${props.title} - ` : "";
   const router = useRouter();
   const locale = useLocale();
+  const { t } = useTranslation();
+  const serviceName = t("Header.serviceName", "Vivre en France");
 
   return (
     <Head>
       <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-      <title>{prefixTitle + defaultTitle}</title>
+      <title>{prefixTitle + serviceName}</title>
       {props.description && <meta name="description" content={props.description} />}
       <link rel="canonical" href={getFullPath(router, locale)} />
 
@@ -52,7 +54,7 @@ const SEO = (props: Props) => {
       <meta property="og:type" content="website" />
       {props.title && <meta property="og:title" content={props.title} />}
       {props.description && <meta property="og:description" content={props.description} />}
-      <meta property="og:site_name" content={defaultTitle} />
+      <meta property="og:site_name" content={serviceName} />
       <meta property="og:image" content={getImagePath(props.image || defaultImage)} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />

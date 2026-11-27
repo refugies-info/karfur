@@ -139,7 +139,9 @@ const UserProfileForm = ({ edition, setEdition }: Props) => {
         } else if (errorCode === "USERNAME_TAKEN") {
           setUsernameError("Ce nom d'utilisateur est déjà pris. Veuillez en choisir un autre.");
         } else if (errorCode === "EMAIL_TAKEN") {
-          setEmailError("Un compte Réfugiés.info est déjà associé à cette adresse email.");
+          setEmailError(
+            `Un compte ${t("Header.serviceName")} est déjà associé à cette adresse email.`,
+          );
         } else {
           throw new Error("Une erreur est survenue. Veuillez réessayer");
         }
